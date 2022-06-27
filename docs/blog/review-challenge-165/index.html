@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #165">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #165</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #165</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Jun 27, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-165.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-164/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 165</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So here we are then.</p>
+<p>I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-165/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-165/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one <em><strong>more</strong></em> thing before we finally get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...Enough? Fine. So without even further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc165task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc165task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc165blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC165TASK1">Task 1</a>                 •             <a href="#PWC165TASK2">Task 2</a>             	•             <a href="#PWC165BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC165TASK1">TASK 1</h1>
+<h1 id="scalable-vector-graphics-svg">Scalable Vector Graphics (SVG)</h1>
+<p><em>Submitted by: Ryan J Thompson</em></p>
+<p>Scalable Vector Graphics (SVG) are not made of pixels, but lines, ellipses, and various curves that can be scaled to any size without any loss of quality. If you have ever tried to resize a small JPG or PNG, you know what I mean by “loss of quality”! What many people do not know about SVG files is, they are simply XML files, so they can easily be generated programmatically.</p>
+<p>For this task, you may use external library, such as Perl’s SVG library, maintained in recent years by our very own Mohammad S Anwar. You can instead generate the XML yourself; it’s actually quite simple. The source for the example image for Task #2 might be instructive.</p>
+<p>Your task is to accept a series of points and lines in the following format, one per line, in arbitrary order:</p>
+<pre><code>    Point: x,y
+    Line:  x1,y1,x2,y2
+</code></pre><p><strong>Example:</strong></p>
+<pre><code>    53,10
+    53,10,23,30
+    23,30
+</code></pre><p>Then, generate an SVG file plotting all points, and all lines. If done correctly, you can view the output .svg file in your browser.</p>
+<h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/saiftynet/perl/ch-1.pl"><strong>Saif Ahmed</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>The SVG file format is a document object model for a drawing, described in an XML file. Object primitives are established on a nominally-sized canvas with relevant attributes such as fill color, line width or radius, which are taken by an external rasterizer as directives to reproduce the desired drawing on demand. Attribute dimensions are given in pixels, which are taken in the relative context to the default canvas size. This allows unlimited scaling of the final rendering, as a 10 pixel diameter circle in a 100 pixel wide canvas will always scale at 10% of the drawn width whatever it is resized to.</p>
+<p>There were 19 submissions for our first humble task this past week.</p>
+<h2 id="a-selection-of-submissions">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>The SVG file format, as Ryan notes, is in its basic form straightforward to anyone familiar with XML markup: tags define elements, with balanced tags acting as logical containers passing their attributes on to whatever elements are found inside. Ultimately we end up with lists of elements to be drawn, each with a variety of attributes, specified or default, that are used to produce the stylistic choices desired.</p>
+<p>CPAN has an excellent SVG module, which provides a nice object-oriented interface to building an image. However with the simple data provided it was not a very complicated task to concatenate an XML string directly, copying the boilerplate headers. Of course SVG can get complicated in its less common edge cases but none of that was to be seen here.</p>
+<p>In a third way, several people built their own object interfaces with a minimal API to get the job done, providing easy expansion should the need ever arise: just write a new method for whatever element is desired.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/05/16/plotting-revenge-weekly-challenge-165.html">Plotting Revenge: Weekly Challenge #165 | Committed to Memory</a></p>
+<p>Dave will start us off today with a demonstration of using the SVG module, which provides a convenient object framework for producing the drawing code.</p>
+<p>The instantiated object will take care of all the necessary boilerplate in the headers and such, so we can get right to adding line and point elements as we read the input data, here given as a configuration string. How we get the string isn&rsquo;t really important.</p>
+<p>We get two points and a line, and Dave declares an arbitrarily-sized canvas of 100 pixels square. Looping through the input data we find two lists of 2 numbers, and one of 4, so we call <code>add_line()</code> once and <code>add_point()</code> twice. The complicated part. if you want to call it that, is building a hash of attributes to adequately describe the element we wish to draw.</p>
+<p>When we&rsquo;re ready we can call <code>xmlify()</code> on our object which returns a string of XML, that in this case is printed to file. After all, it&rsquo;s just text.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> SVG;
+
+    <span style="color:#66d9ef">my</span> $config <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#39;END&#39;</span>;
+
+    <span style="color:#ae81ff">53</span>,<span style="color:#ae81ff">10</span>
+    <span style="color:#ae81ff">53</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">23</span>,<span style="color:#ae81ff">30</span>
+    <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">30</span>
+
+    <span style="color:#66d9ef">END</span>
+
+    <span style="color:#66d9ef">my</span> @config <span style="color:#f92672">=</span> grep { <span style="color:#e6db74">/\d/</span> } split <span style="color:#e6db74">/\n/</span>, $config;
+    <span style="color:#66d9ef">my</span> $svg    <span style="color:#f92672">=</span> SVG<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+        height <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">100</span>,
+        width  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">100</span>,
+    );
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $entry (@config) {
+        <span style="color:#66d9ef">my</span> @coords <span style="color:#f92672">=</span> map { int $_ } split <span style="color:#e6db74">/,/</span>, $entry;
+        add_line( $svg, <span style="color:#f92672">\</span>@coords )         <span style="color:#66d9ef">if</span> scalar @coords <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>;
+        add_point( $svg, <span style="color:#f92672">\</span>@coords, <span style="color:#e6db74">&#39;red&#39;</span> ) <span style="color:#66d9ef">if</span> scalar @coords <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+    }
+
+    <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> $svg<span style="color:#f92672">-&gt;</span>xmlify;
+    say $output;
+    exit;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_line</span> ( $svg, $coords, $color = &#39;black&#39; ) {
+        $svg<span style="color:#f92672">-&gt;</span>line(
+            x1    <span style="color:#f92672">=&gt;</span> $coords<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>],
+            y1    <span style="color:#f92672">=&gt;</span> $coords<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>],
+            x2    <span style="color:#f92672">=&gt;</span> $coords<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+            y2    <span style="color:#f92672">=&gt;</span> $coords<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>],
+            style <span style="color:#f92672">=&gt;</span> {
+                stroke         <span style="color:#f92672">=&gt;</span> $color,
+                <span style="color:#e6db74">&#39;stroke-width&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0.5</span>,
+                fill           <span style="color:#f92672">=&gt;</span> $color,
+            }
+        );
+
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_point</span> ( $svg, $coords, $color = &#39;black&#39; ) {
+        $svg<span style="color:#f92672">-&gt;</span>circle(
+            cx    <span style="color:#f92672">=&gt;</span> $coords<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>],
+            cy    <span style="color:#f92672">=&gt;</span> $coords<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>],
+            r     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0.5</span>,
+            style <span style="color:#f92672">=&gt;</span> {
+                stroke         <span style="color:#f92672">=&gt;</span> $color,
+                <span style="color:#e6db74">&#39;stroke-width&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0.5</span>,
+                fill           <span style="color:#f92672">=&gt;</span> $color,
+            }
+        );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/05/simple-svg-generator/">PWC 165 › Simple SVG generator - Ryan J Thompson</a></p>
+<p>Ryan introduces the group container for elements. Groups have their own style attributes, which are inherited by any elements contained within the group. Here we&rsquo;ve decided what a &ldquo;point&rdquo; will look like and so we can define each as and x- and y- coordinate with a radius.</p>
+<p>Likewise the lines are given their own group as well with their own style attributes.</p>
+<p>You&rsquo;ll notice there will be a lot of hardcoding attributes into the final script, perhaps more than seems proper. After all, abstract constants and config information, right? Isn&rsquo;t that just good form? The problem here is that there just are a lot of attributes to consider — it&rsquo;s aesthetic choices we&rsquo;re making and there are a large number of options available to us. We could remove them to a YAML file I suppose, or even in some cases CSS, which is pretty cool — don&rsquo;t get me wrong — but in a sense that&rsquo;s just complexifying what we need to do whilst kicking the can down the road. So we may as well hard-code it for these demonstrations.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">plot_svg</span> {
+        <span style="color:#66d9ef">my</span> $svg <span style="color:#f92672">=</span> SVG<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(width <span style="color:#f92672">=&gt;</span> $o{width}, height <span style="color:#f92672">=&gt;</span> $o{height},
+            $o{credits} ? () : (<span style="color:#f92672">-</span>nocredits <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>));
+
+        <span style="color:#75715e"># Style the points and lines</span>
+        <span style="color:#66d9ef">my</span> $lg <span style="color:#f92672">=</span> $svg<span style="color:#f92672">-&gt;</span>group(           id <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;lines&#39;</span>,
+                            <span style="color:#e6db74">&#39;stroke-width&#39;</span> <span style="color:#f92672">=&gt;</span> $o{<span style="color:#e6db74">&#39;stroke-width&#39;</span>},
+                                    stroke <span style="color:#f92672">=&gt;</span> $o{<span style="color:#e6db74">&#39;line-color&#39;</span>});
+
+        <span style="color:#66d9ef">my</span> $pg <span style="color:#f92672">=</span> $svg<span style="color:#f92672">-&gt;</span>group(           id <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;points&#39;</span>,
+                                      fill <span style="color:#f92672">=&gt;</span> $o{<span style="color:#e6db74">&#39;point-color&#39;</span>});
+
+        <span style="color:#75715e"># Plot points and lines</span>
+        <span style="color:#66d9ef">for</span> (@_) {
+            $lg<span style="color:#f92672">-&gt;</span>line(  x1 <span style="color:#f92672">=&gt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], y1 <span style="color:#f92672">=&gt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>],
+                        x2 <span style="color:#f92672">=&gt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>], y2 <span style="color:#f92672">=&gt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>])                 <span style="color:#66d9ef">if</span> @$_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>;
+            $pg<span style="color:#f92672">-&gt;</span>circle(cx <span style="color:#f92672">=&gt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], cy <span style="color:#f92672">=&gt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>],r <span style="color:#f92672">=&gt;</span> $o{radius}) <span style="color:#66d9ef">if</span> @$_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+        }
+
+        $svg<span style="color:#f92672">-&gt;</span>xmlify;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://e7-87-83.github.io/coding/challenge_165.html">CY&rsquo;s Take on The Weekly Challenge #165 </a></p>
+<p>Let&rsquo;s look at one more base example using the SVG module, this time from CY. One observation that CY draws attention to is that the SVG drawing described in the XML is built up in the order that the elements are placed; later elements are stacked above those placed earlier and hence will overwrite them in the Z-dimension. The SVG module makes sure to preserve this ordering, which may not be immediately obvious using the object interface.</p>
+<p>As such she makes sure to draw her points after her lines, as to not have the possibility of lines overwriting them. This is well-thought-out design.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        chomp;
+        <span style="color:#66d9ef">my</span> @nums <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;,&#34;</span>, $_;
+        <span style="color:#66d9ef">if</span> (scalar @nums <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+            push @points, [@nums];
+        }
+        <span style="color:#66d9ef">elsif</span> (scalar @nums <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
+            new_line(@nums);
+        }
+    }
+
+    new_point($_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>) <span style="color:#66d9ef">foreach</span> @points; <span style="color:#75715e">#so that the lines won&#39;t be over points</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new_point</span> {
+        <span style="color:#66d9ef">my</span> ($cx, $cy) <span style="color:#f92672">=</span> ($_[<span style="color:#ae81ff">0</span>], $_[<span style="color:#ae81ff">1</span>]);
+        $img<span style="color:#f92672">-&gt;</span>circle(cx <span style="color:#f92672">=&gt;</span> $cx, cy <span style="color:#f92672">=&gt;</span> $cy, r <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, style <span style="color:#f92672">=&gt;</span> {fill <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;red&#39;</span>});
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new_line</span> {
+        <span style="color:#66d9ef">my</span> ($x1, $y1, $x2, $y2) <span style="color:#f92672">=</span> ($_[<span style="color:#ae81ff">0</span>], $_[<span style="color:#ae81ff">1</span>], $_[<span style="color:#ae81ff">2</span>], $_[<span style="color:#ae81ff">3</span>]);
+        $img<span style="color:#f92672">-&gt;</span>line( x1 <span style="color:#f92672">=&gt;</span> $x1, y1 <span style="color:#f92672">=&gt;</span> $y1, x2 <span style="color:#f92672">=&gt;</span> $x2, y2 <span style="color:#f92672">=&gt;</span> $y2,
+        style <span style="color:#f92672">=&gt;</span> {
+            <span style="color:#e6db74">&#39;fill-opacity&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>,
+            <span style="color:#e6db74">&#39;stroke&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;green&#39;</span>
+        });
+    }
+
+    <span style="color:#66d9ef">print</span> $img<span style="color:#f92672">-&gt;</span>xmlify(<span style="color:#f92672">-</span>namespace<span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;svg&#39;</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/julien-fiegehenn/typescript/ch-1.ts">Typescript</a></p>
+<p>Taking the abstraction one level further we have Julien, who collects all his graphic-construction processing into a personal module, <code>Plot.pm</code>, that itself then calls <code>SVG</code> to handle the image format. Wheels within wheels, people. It&rsquo;s turtles all the way down.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    Plot::plot( grep ref, map { chomp; [ split <span style="color:#e6db74">/,/</span> ]; } <span style="color:#e6db74">&lt;DATA&gt;</span> );
+
+    __DATA__
+    <span style="color:#ae81ff">53</span>,<span style="color:#ae81ff">10</span>
+    <span style="color:#ae81ff">53</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">23</span>,<span style="color:#ae81ff">30</span>
+    <span style="color:#ae81ff">23</span>,<span style="color:#ae81ff">30</span>
+</code></pre></div><p>From <code>Plot.pm</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">plot</span> {
+        <span style="color:#66d9ef">my</span> (@input) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $svg    <span style="color:#f92672">=</span> SVG<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+        <span style="color:#66d9ef">my</span> $points <span style="color:#f92672">=</span> $svg<span style="color:#f92672">-&gt;</span>group(
+            id    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;points&#39;</span>,
+            style <span style="color:#f92672">=&gt;</span> {
+                stroke <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;orange&#39;</span>,
+                fill   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;orange&#39;</span>
+            },
+        );
+        <span style="color:#66d9ef">my</span> $lines <span style="color:#f92672">=</span> $svg<span style="color:#f92672">-&gt;</span>group(
+            id    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;lines&#39;</span>,
+            style <span style="color:#f92672">=&gt;</span> {
+                stroke         <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;blue&#39;</span>,
+                fill           <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;blue&#39;</span>,
+                <span style="color:#e6db74">&#39;stroke-width&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+            },
+        );
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $record (@input) {
+            <span style="color:#66d9ef">if</span> ( @$record <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> ) {
+                $points<span style="color:#f92672">-&gt;</span>circle( cx <span style="color:#f92672">=&gt;</span> $record<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], cy <span style="color:#f92672">=&gt;</span> $record<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>], r <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span> );
+            }
+            <span style="color:#66d9ef">else</span> {
+                $lines<span style="color:#f92672">-&gt;</span>line(
+                    x1 <span style="color:#f92672">=&gt;</span> $record<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>],
+                    y1 <span style="color:#f92672">=&gt;</span> $record<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>],
+                    x2 <span style="color:#f92672">=&gt;</span> $record<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+                    y2 <span style="color:#f92672">=&gt;</span> $record<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>]
+                );
+            }
+
+            <span style="color:#75715e"># update the image size</span>
+            $size <span style="color:#f92672">=</span> max($size, @$record);
+        }
+
+        <span style="color:#f92672">.</span> <span style="color:#f92672">.</span> <span style="color:#f92672">.</span>
+
+        <span style="color:#75715e"># write to disk</span>
+        open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, <span style="color:#e6db74">&#39;output.svg&#39;</span> <span style="color:#f92672">or</span> die $!;
+        <span style="color:#66d9ef">print</span> $fh $svg<span style="color:#f92672">-&gt;</span>xmlify;
+    }
+</code></pre></div><p>In passing I will note she also uses our own Choroba&rsquo;s (versus anyone else&rsquo;s Choroba) handy <code>ARGV::OrDATA</code> module, which will preferentially take input to the diamond operator from <code>STDIN</code> on the command line or in the absence of this open the <code>__DATA__</code> filehandle and draw from there.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/05/22">SVG Plots of Points and Lines — Perl — RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/05/22">SVG Plots of Points and Lines — Prolog — RabbitFarm</a></p>
+<p>The simple SGV image requested (Image? Design? Drawing plans? We&rsquo;re really blurring the lines here)  only has a few elements and is consequently not very complicated.  Thus if we can manage to properly construct only two types of element tags and a set of whatever headers are required then we can just assemble the parts in order to match the format and have our complete list of instructions.</p>
+<p>Ok, let&rsquo;s have at it.</p>
+<p>Adam modularizes the process into a collection of subroutines, with a wrapper, <code>svg()</code> to wrangle them. The first thing on making a new image is to make identifying headers, so <code>svg_begin()</code> returns these and they are saved as a string.</p>
+<p>The data has been read in and placed in an array of arrays, one per line, and it is passed to a loop to be cycled through. A conditional on the length of the sub-array is used to determine whether a line is a point or a line and the appropriate routine is called with the array data, and the result concatenated to the SGV string. On completion, a call to <code>svg_end()</code> closes the outer tag.</p>
+<p>That&rsquo;s it. That&rsquo;s all you need.</p>
+<pre><code>        &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;                                   &lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.0//EN&quot; &quot;http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd&quot;&gt;                                                                          &lt;svg height=&quot;100%&quot; width=&quot;100%&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:svg=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+&lt;circle cx=&quot;53&quot; cy=&quot;10&quot; r=&quot;1&quot; /&gt;&lt;line x1=&quot;53&quot; x2=&quot;23&quot; y1=&quot;10&quot; y2=&quot;30&quot; style=&quot;stroke:#006600;&quot; /&gt;&lt;circle cx=&quot;23&quot; cy=&quot;30&quot; r=&quot;1&quot; /&gt;&lt;/svg&gt;
+</code></pre><p>Yes it&rsquo;s not exactly the prettiest thing for a human to read, but the machines? They don&rsquo;t care. Some of the more arrogant ones among them even seem to think this makes them superior. Well, let them say that when I&rsquo;m holding a power plug in my hand is all I have to say. That usually settles them down. Life, I say, is better when we can just get along.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">svg_begin</span>{
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">BEGIN</span>;
+            <span style="color:#f92672">&lt;</span>?xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span> standalone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;yes&#34;</span>?<span style="color:#f92672">&gt;</span>                                   <span style="color:#f92672">&lt;!</span>DOCTYPE svg PUBLIC <span style="color:#e6db74">&#34;-//W3C//DTD SVG 1.0//EN&#34;</span> <span style="color:#e6db74">&#34;http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd&#34;</span><span style="color:#f92672">&gt;</span>                                                                          <span style="color:#f92672">&lt;</span>svg height<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;100%&#34;</span> width<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;100%&#34;</span> xmlns<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.w3.org/2000/svg&#34;</span> xmlns:svg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.w3.org/2000/svg&#34;</span> xmlns:xlink<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.w3.org/1999/xlink&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#66d9ef">BEGIN</span>
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">svg_end</span>{
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&lt;/svg&gt;&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">svg_point</span>{
+        <span style="color:#66d9ef">my</span>($x, $y) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&lt;circle cx=\&#34;$x\&#34; cy=\&#34;$y\&#34; r=\&#34;1\&#34; /&gt;&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">svg_line</span>{
+        <span style="color:#66d9ef">my</span>($x0, $y0, $x1, $y1) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&lt;line x1=\&#34;$x0\&#34; x2=\&#34;$x1\&#34; y1=\&#34;$y0\&#34; y2=\&#34;$y1\&#34; style=\&#34;stroke:#006600;\&#34; /&gt;&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">svg</span>{
+        <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $svg <span style="color:#f92672">=</span> svg_begin;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $line (@_){
+            $svg <span style="color:#f92672">.=</span> svg_point(@{$line}) <span style="color:#66d9ef">if</span> @{$line} <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+            $svg <span style="color:#f92672">.=</span> svg_line(@{$line})  <span style="color:#66d9ef">if</span> @{$line} <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>;
+        }
+        <span style="color:#66d9ef">return</span> $svg <span style="color:#f92672">.</span> svg_end;
+    }
+</code></pre></div><p>One thing though, is that since Perl 5.26 we can now say</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#f92672">&lt;&lt;~</span><span style="color:#e6db74">&#39;BEGIN&#39;</span>;
+        <span style="color:#f92672">...</span>some stuff that you don<span style="color:#960050;background-color:#1e0010">&#39;</span>t want indented in the output<span style="color:#f92672">...</span>
+        <span style="color:#66d9ef">BEGIN</span>
+</code></pre></div><p>and this will ignore any leading whitespace before the closing delimiter on every line in the heredoc. Which is great for embedding heredocs inside structures that are themselves already indented, such as subroutines or loops. Note the placement of the added tilde. Super handy.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-165-line-of-best-fit.html">Perl Weekly Challenge 165: Line of Best Fit</a></p>
+<p>Here&rsquo;s another example of direct construction from Laurent. Again, we only have to handle two types of elements so it really isn&rsquo;t very complicated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> constant SCALE <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>;
+
+    <span style="color:#66d9ef">my</span> ( @points, @lines);
+    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">qq{&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:svg=&#34;http://www.w3.org/2000/svg&#34;
+</span><span style="color:#e6db74">    xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; width=&#34;500&#34; height=&#34;500&#34;&gt;\n}</span>;
+    <span style="color:#66d9ef">my</span> @input <span style="color:#f92672">=</span> <span style="color:#e6db74">qw&lt;53,10 53,10,23,30  23,30  34,35,36&gt;</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $val (@input) {
+        <span style="color:#66d9ef">my</span> @items <span style="color:#f92672">=</span> split <span style="color:#e6db74">/,/</span>, $val;
+        <span style="color:#75715e"># say &#34;@items&#34;;</span>
+        <span style="color:#66d9ef">if</span> (@items <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+            make_point(@items)
+        } <span style="color:#66d9ef">elsif</span> (@items <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
+            make_line(@items);
+        } <span style="color:#66d9ef">else</span> {
+            warn <span style="color:#e6db74">&#34;Error on item &#34;</span>, @items;
+        }
+    }
+    $out <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;&lt;/svg&gt;&#34;</span>;
+    say $out;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_point</span> {
+        <span style="color:#66d9ef">my</span> @dots <span style="color:#f92672">=</span> map $_ <span style="color:#f92672">*</span> SCALE, @_;
+        <span style="color:#66d9ef">my</span> $point <span style="color:#f92672">=</span> <span style="color:#e6db74">qq{&lt;circle cx= &#34;$dots[0]&#34; cy=&#34;$dots[1]&#34; r=&#34;3&#34; fill=&#34;forestgreen&#34;/&gt;\n}</span>;
+        $out <span style="color:#f92672">.=</span> $point;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_line</span> {
+        <span style="color:#66d9ef">my</span> @dots <span style="color:#f92672">=</span> map $_ <span style="color:#f92672">*</span> SCALE, @_;
+        <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">qq{&lt;line x1=&#34;$dots[0]&#34; y1=&#34;$dots[1]&#34; x2=&#34;$dots[2]&#34; y2=&#34;$dots[3]&#34; }</span>;
+        $line <span style="color:#f92672">.=</span> <span style="color:#e6db74">qq{stroke=&#34;navy&#34; /&gt;\n}</span>;
+        $out <span style="color:#f92672">.=</span> $line
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/duncan-c-white/C/ch-1.c">C</a></p>
+<p>Duncan takes a similar stance of assembling a collection of subroutines to produce the various tags required, with the added abstraction of squirreling them away in their own module, <code>MySVG.pm</code>. The aim of this module is to print the various SVG tags directly to <code>STDOUT</code> using <code>say</code>.</p>
+<p>The result is to divide the computational portion of the processing, which in this case comprises processing the input and gathering the maximum height and width values to properly size the canvas, and then handing these variables off to the module functions to process the output. It&rsquo;s just compartmentalization by use; the subroutines are exported and used directly in the main body of the script.</p>
+<p>Duncan uses <code>Function::Parameters</code> with their <code>fun</code> keyword to get subroutines signatures.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span>( $w, $h ) <span style="color:#f92672">=</span> @wh{<span style="color:#e6db74">qw(W H)</span>};
+    $w <span style="color:#f92672">+=</span> (<span style="color:#ae81ff">10</span><span style="color:#f92672">-</span>$w%10);
+    $h <span style="color:#f92672">+=</span> (<span style="color:#ae81ff">10</span><span style="color:#f92672">-</span>$h%10);
+
+    <span style="color:#66d9ef">my</span> $xscale <span style="color:#f92672">=</span> $w <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">200</span> ? <span style="color:#ae81ff">200</span><span style="color:#f92672">/</span>$w : <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $yscale <span style="color:#f92672">=</span> $h <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">200</span> ? <span style="color:#ae81ff">200</span><span style="color:#f92672">/</span>$h : <span style="color:#ae81ff">1</span>;
+
+    warn <span style="color:#e6db74">&#34;maxxy rectangle is w $w, h $h, xscale $xscale, yscale $yscale\n&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+
+    start_svg( $w <span style="color:#f92672">*</span> $xscale, $h <span style="color:#f92672">*</span> $yscale );
+
+    setcolour( <span style="color:#e6db74">&#34;blue&#34;</span> );
+    setlinewidth( <span style="color:#ae81ff">1</span> );
+    line( $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>$xscale, $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$yscale,
+          $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">*</span>$xscale, $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">*</span>$yscale ) <span style="color:#66d9ef">foreach</span> @ln;
+
+    setcolour( <span style="color:#e6db74">&#34;orange&#34;</span> );
+    point( $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>$xscale, $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$yscale ) <span style="color:#66d9ef">foreach</span> @pt;
+
+    end_svg();
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>For my own solution I choses a similar approach to structuring the processing, inlining a separate SVG package, but this time making a <code>Moo</code> object.</p>
+<p>It was a fun exercise, albeit longer and more complicated than it needed to be to get the job done.</p>
+<p>I think you probably get the idea by now.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $svg <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SVG(<span style="color:#ae81ff">200</span>,<span style="color:#ae81ff">300</span>);
+    <span style="color:#66d9ef">my</span> $attr;
+
+    $attr  <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;stroke&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;blue&#34;</span>,  <span style="color:#e6db74">&#34;stroke-width&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;4&#34;</span> };
+    $svg<span style="color:#f92672">-&gt;</span>group( <span style="color:#e6db74">&#34;lines&#34;</span>, $attr);
+    $svg<span style="color:#f92672">-&gt;</span>add( $svg<span style="color:#f92672">-&gt;</span>line($_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>) ) <span style="color:#66d9ef">for</span> @lines;
+
+    $attr <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;fill&#34;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;red&#34;</span> };
+    $svg<span style="color:#f92672">-&gt;</span>group( <span style="color:#e6db74">&#34;circle&#34;</span>, $attr);
+    $svg<span style="color:#f92672">-&gt;</span>add( $svg<span style="color:#f92672">-&gt;</span>circle($_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>) ) <span style="color:#66d9ef">for</span> @points;
+
+    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> $svg<span style="color:#f92672">-&gt;</span>make_SVG;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/05/17/pwc165-scalable-vector-graphics/">PWC165 - Scalable Vector Graphics (SVG) - ETOOBUSY</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/05/18/pwc165-line-of-best-fit/">PWC165 - Line of Best Fit - ETOOBUSY</a></p>
+<p>All in all, though, with all of this conceptual streamlining of the process and considering how the API can mirror the data being represented, there&rsquo;s always going to be a few that, shall we say, go the other way.</p>
+<p>As you may have noticed, I have on several occasions used the term &ldquo;boilerplate&rdquo; in referring to the SVG header section of an image. Aside from the the specific height and width information for the canvas, this is largely accurate.</p>
+<p>Likewise the <code>circle</code> and <code>line</code> elements are self-similar as well, only filling in the various coordinates and radius in the case of the circle.</p>
+<p>So why not fill in a template?</p>
+<p>Using his own <code>Template::Perlish</code> module, this is what Flavio does. Bringing in a templating framework might seem excessive, and Flavio himself would likely agree with this sentiment. But should you wish to draw a number of lines atop a field of tiny circles using fixed fill and stroke choices, then just reach for this template — it&rsquo;ll do just what you ask.</p>
+<p>After the setup, of course.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Template::Perlish;
+
+    <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;53,10\n53,10,23,30\n23,30&#34;</span>;
+    say svg_for($input);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">svg_for</span> ($text) {
+       state $tp2 <span style="color:#f92672">=</span> Template::Perlish<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>compile_as_sub(
+    <span style="color:#e6db74">q{&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+</span><span style="color:#e6db74">    &lt;!DOCTYPE svg PUBLIC &#34;-//W3C//DTD SVG 1.0//EN&#34; &#34;http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd&#34;&gt;
+</span><span style="color:#e6db74">    &lt;svg height=&#34;400&#34; width=&#34;400&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:svg=&#34;http://www.w3.org/2000/svg&#34;&gt;
+</span><span style="color:#e6db74">    [% for my $item (A &#39;lines&#39;) {
+</span><span style="color:#e6db74">          if ($item-&gt;@* == 2) {
+</span><span style="color:#e6db74">    %] &lt;circle r=&#34;4&#34; cx=&#34;[%= $item-&gt;[0] %]&#34; cy=&#34;[%= $item-&gt;[1] %]&#34; stroke-width=&#34;0&#34; fill=&#34;#000000&#34; /&gt;
+</span><span style="color:#e6db74">    [%    } else {
+</span><span style="color:#e6db74">    %] &lt;polyline points=&#34;[%= join &#39; &#39;, $item-&gt;@* %]&#34; stroke=&#34;#ff0000&#34; stroke-width=&#34;6&#34; /&gt;
+</span><span style="color:#e6db74">    [%    }
+</span><span style="color:#e6db74">       }
+</span><span style="color:#e6db74">    %]&lt;/svg&gt;}</span>);
+       $tp2<span style="color:#f92672">-&gt;</span>({lines <span style="color:#f92672">=&gt;</span> [map {[ split <span style="color:#e6db74">m{,+}mxs</span> ]} split <span style="color:#e6db74">m{\n+}mxs</span>, $text]});
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>On top of this, if we consider Flavio&rsquo;s effort excusable due to, say, low blood sugar or perhaps an unexpected blow to the head, we have oddly enough received a <em>second</em> templating solution from none other than Choroba. Perhaps there is something airborne wafting across Europe that someone should really know about. Or aliens. Can&rsquo;t rule that out. It&rsquo;s&hellip; disturbing. I know a guy — I&rsquo;ll make some calls and get back to you.</p>
+<p>In any case here we are, using the full-sized <code>Template</code> module. Boilerplate, plug in some variables, put some sections on repeat according to arrays of lines and points, and bang you&rsquo;re in.</p>
+<p>Ok, I must say I&rsquo;m coming around to the idea. Have to say did not see that one coming, though.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $TEMPLATE <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;__SVG__&#39;</span>;
+    <span style="color:#f92672">&lt;</span>?xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span> standalone<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;yes&#34;</span>?<span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;!</span>DOCTYPE svg PUBLIC <span style="color:#e6db74">&#34;-//W3C//DTD SVG 1.0//EN&#34;</span> <span style="color:#e6db74">&#34;http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span>svg height<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[% height %]&#34;</span> width<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[% width %]&#34;</span> xmlns<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.w3.org/2000/svg&#34;</span> xmlns:svg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.w3.org/2000/svg&#34;</span> xmlns:xlink<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.w3.org/1999/xlink&#34;</span><span style="color:#f92672">&gt;</span>
+    [% IF lines <span style="color:#f92672">-</span>%<span style="color:#960050;background-color:#1e0010">]</span>
+        <span style="color:#960050;background-color:#1e0010">&lt;</span>g id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lines&#34;</span> stroke<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#369&#34;</span> stroke<span style="color:#f92672">-</span>width<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;4&#34;</span><span style="color:#f92672">&gt;</span>
+        [%<span style="color:#960050;background-color:#1e0010">-</span> FOREACH line IN lines %<span style="color:#960050;background-color:#1e0010">]</span>
+            <span style="color:#960050;background-color:#1e0010">&lt;</span>line x1<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[% line.0 %]&#34;</span> x2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[% line.2 %]&#34;</span> y1<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[% line.1 %]&#34;</span> y2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[% line.3 %]&#34;</span> <span style="color:#f92672">/&gt;</span>
+        [%<span style="color:#960050;background-color:#1e0010">-</span> END %<span style="color:#960050;background-color:#1e0010">]</span>
+        <span style="color:#960050;background-color:#1e0010">&lt;/</span>g<span style="color:#f92672">&gt;</span>
+    [% END<span style="color:#f92672">-</span> %<span style="color:#960050;background-color:#1e0010">]</span>
+    <span style="color:#960050;background-color:#1e0010">[%-</span> IF points <span style="color:#f92672">-</span>%<span style="color:#960050;background-color:#1e0010">]</span>
+        <span style="color:#960050;background-color:#1e0010">&lt;</span>g fill<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#f73&#34;</span> id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;points&#34;</span><span style="color:#f92672">&gt;</span>
+        [%<span style="color:#960050;background-color:#1e0010">-</span> FOREACH point IN points %<span style="color:#960050;background-color:#1e0010">]</span>
+            <span style="color:#960050;background-color:#1e0010">&lt;</span>circle cx<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[% point.0 %]&#34;</span> cy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[% point.1 %]&#34;</span> r<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">/&gt;</span>
+        [%<span style="color:#960050;background-color:#1e0010">-</span> END %<span style="color:#960050;background-color:#1e0010">]</span>
+        <span style="color:#960050;background-color:#1e0010">&lt;/</span>g<span style="color:#f92672">&gt;</span>
+    [%<span style="color:#960050;background-color:#1e0010">-</span> END %<span style="color:#960050;background-color:#1e0010">]</span>
+    <span style="color:#960050;background-color:#1e0010">&lt;/</span>svg<span style="color:#f92672">&gt;</span>
+    __SVG__
+
+    <span style="color:#66d9ef">my</span> $template <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Template&#39;</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+    $template<span style="color:#f92672">-&gt;</span>process(<span style="color:#f92672">\</span>$TEMPLATE,
+                       {height <span style="color:#f92672">=&gt;</span> $height,
+                        width  <span style="color:#f92672">=&gt;</span> $width,
+                        points <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>@points,
+                        lines  <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>@lines}
+    ) <span style="color:#f92672">or</span> die $template<span style="color:#f92672">-&gt;</span>error;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-165/james-smith">The Weekly Challenge 165 - straight through the point!</a></p>
+<p>Finally, we&rsquo;ll close with James, who takes the ideas we&rsquo;ve seen today and implements <em>all of them</em>. Unsatisfied with solving this task he goes on to solve the next one as well, in the same script.</p>
+<p>It&rsquo;s kind of involved.</p>
+<p>The script itself has a lot of parts, as we have noted it includes code for finding a best-fit line as well, which we&rsquo;ll put aside for now. But as the second task requests that we use the code from the first, both tasks are merged together.</p>
+<p>So let&rsquo;s look at the SGV code portion, shall we?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $DEF            <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#39;margin&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">40</span>, <span style="color:#e6db74">&#39;max_w&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">960</span>, <span style="color:#e6db74">&#39;max_h&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">540</span>,
+                           <span style="color:#e6db74">&#39;color&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;#000&#39;</span>,  <span style="color:#e6db74">&#39;stroke&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+                           <span style="color:#e6db74">&#39;fill&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;#ccc&#39;</span>,   <span style="color:#e6db74">&#39;radius&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>,
+                           <span style="color:#e6db74">&#39;border&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;#000&#39;</span>, <span style="color:#e6db74">&#39;bg&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;#eee&#39;</span> };
+    <span style="color:#66d9ef">my</span> $LINE_TEMPLATE  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;line x1=&#34;%s&#34; y1=&#34;%s&#34; x2=&#34;%s&#34; y2=&#34;%s&#34; /&gt;&#39;</span>;
+    <span style="color:#66d9ef">my</span> $POINT_TEMPLATE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;circle cx=&#34;%s&#34; cy=&#34;%s&#34; r=&#34;%s&#34; /&gt;&#39;</span>;
+    <span style="color:#66d9ef">my</span> $SVG_TEMPLATE   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+</span><span style="color:#e6db74">    &lt;!DOCTYPE svg PUBLIC &#34;-//W3C//DTD SVG 1.0//EN&#34; &#34;http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd&#34;&gt;
+</span><span style="color:#e6db74">    &lt;svg height=&#34;%s&#34; width=&#34;%s&#34; viewBox=&#34;%s %s %s %s&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:svg=&#34;http://www.w3.org/2000/svg&#34;
+</span><span style="color:#e6db74">      xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
+</span><span style="color:#e6db74">      &lt;rect stroke=&#34;%s&#34; stroke-width=&#34;%s&#34; fill=&#34;%s&#34; x=&#34;%s&#34; y=&#34;%s&#34; width=&#34;%s&#34; height=&#34;%s&#34; /&gt;
+</span><span style="color:#e6db74">      &lt;g transform=&#34;scale(1,-1) translate(0,%s)&#34;&gt;
+</span><span style="color:#e6db74">      &lt;g stroke=&#34;%s&#34; stroke-width=&#34;%s&#34;&gt;
+</span><span style="color:#e6db74">        %s
+</span><span style="color:#e6db74">      &lt;/g&gt;
+</span><span style="color:#e6db74">      &lt;g fill=&#34;%s&#34;&gt;
+</span><span style="color:#e6db74">        %s
+</span><span style="color:#e6db74">      &lt;/g&gt;
+</span><span style="color:#e6db74">      &lt;/g&gt;
+</span><span style="color:#e6db74">    &lt;/svg&gt;&#39;</span>;
+
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">render_svg</span> {
+      <span style="color:#66d9ef">my</span>( $ps, $ls, $config          ) <span style="color:#f92672">=</span> @_;
+      <span style="color:#66d9ef">my</span> %conf <span style="color:#f92672">=</span> (%{$DEF}, %{$config});
+      <span style="color:#66d9ef">my</span>( $min_x, $max_x, $min_y, $max_y ) <span style="color:#f92672">=</span> get_ranges( $ps, $0 <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;ch-2.pl&#39;</span> ? <span style="color:#f92672">[]</span> : $ls );
+      <span style="color:#66d9ef">my</span> $margin <span style="color:#f92672">=</span> $conf{<span style="color:#e6db74">&#39;margin&#39;</span>};
+
+      <span style="color:#75715e">## Adjust height and width so it fits the size from the config.</span>
+      <span style="color:#66d9ef">my</span>($W,$H,$width,$height) <span style="color:#f92672">=</span> ($conf{<span style="color:#e6db74">&#39;max_w&#39;</span>},$conf{<span style="color:#e6db74">&#39;max_h&#39;</span>},$max_x<span style="color:#f92672">-</span>$min_x<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$margin,$max_y<span style="color:#f92672">-</span>$min_y<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$margin);
+      ( $width<span style="color:#e6db74">/$height &gt; $W/</span>$H ) ? ( $H <span style="color:#f92672">=</span> $height<span style="color:#e6db74">/$width*$W ) : ( $W = $width/</span>$height<span style="color:#f92672">*</span>$H );
+      <span style="color:#75715e">## Calculate the scale factor so that we keep spots/lines the same size irrespective of the ranges.</span>
+      <span style="color:#66d9ef">my</span> $sf <span style="color:#f92672">=</span> $width<span style="color:#f92672">/</span>$W;
+
+      sprintf $SVG_TEMPLATE,
+        $H,              $W,               $min_x <span style="color:#f92672">-</span> $margin, $min_y <span style="color:#f92672">-</span> $margin, $width, $height,                    <span style="color:#75715e">## svg element</span>
+        $conf{<span style="color:#e6db74">&#39;border&#39;</span>}, $sf, $conf{<span style="color:#e6db74">&#39;bg&#39;</span>}, $min_x <span style="color:#f92672">-</span> $margin, $min_y <span style="color:#f92672">-</span> $margin, $width, $height,                    <span style="color:#75715e">## bg rect</span>
+        <span style="color:#f92672">-</span>$min_y<span style="color:#f92672">-</span>$max_y,
+        $conf{<span style="color:#e6db74">&#39;color&#39;</span>}, $conf{<span style="color:#e6db74">&#39;stroke&#39;</span>} <span style="color:#f92672">*</span> $sf, join( <span style="color:#e6db74">qq(\n    )</span>, map { sprintf $LINE_TEMPLATE,   @{$_} } @{$ls} ), <span style="color:#75715e">## lines</span>
+        $conf{<span style="color:#e6db74">&#39;fill&#39;</span>}, join( <span style="color:#e6db74">qq(\n    )</span>, map { sprintf $POINT_TEMPLATE,  @{$_}, $conf{<span style="color:#e6db74">&#39;radius&#39;</span>}<span style="color:#f92672">*</span>$sf  } @{$ps}   )  <span style="color:#75715e">## points</span>
+    }
+</code></pre></div><p>As you can see James has hit the middle ground in defining sub-templates for the individual elements as <code>sprintf</code> formats. Then after gathering all necessary data into variables, a system of nested <code>sprintf</code> statements renders the final XML code.</p>
+<p>It&rsquo;s a worthy effort. Magnificent, really.</p>
+<h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/05/dots-lines-and-whatever-fits-best.html">Dots, lines and whatever fits best</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_165__Scaling_the_Fits.html">RogerBW&rsquo;s Blog: The Weekly Challenge 165: Scaling the Fits</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/05/20/PWC165/">Perl Weekly Challenge 165 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC165TASK2">TASK 2</h1>
+<h1 id="line-of-best-fit">Line of Best Fit</h1>
+<p><em>Submitted by: Ryan J Thompson</em></p>
+<p>When you have a scatter plot of points, a line of best fit is the line that best describes the relationship between the points, and is very useful in statistics. Otherwise known as linear regression.</p>
+<p>The method most often used is known as the least squares method, as it is straightforward and efficient, but you may use any method that generates the correct result.</p>
+<p>Calculate the line of best fit for the following 48 points:</p>
+<pre><code>    333,129    39,189   140,156   292,134   393,52    160,166   362,122    13,193       341,104   320,113   109,177   203,152   343,100   225,110    23,186   282,102       284,98    205,133   297,114   292,126   339,112   327,79    253,136    61,169       128,176   346,72    316,103   124,162    65,181   159,137   212,116   337,86       215,136   153,137   390,104   100,180    76,188    77,181    69,195    92,186       275,96    250,147    34,174   213,134   186,129   189,154   361,82    363,89
+</code></pre><p>Using your rudimentary graphing engine from Task #1, graph all points, as well as the line of best fit.</p>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/julien-fiegehenn/perl/ch-2.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/saiftynet/perl/ch-2.pl"><strong>Saif Ahmed</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>The Least Squares method is a technique in linear regression for fitting a line through a plot of data such that the difference between the line points and the orignal data points is minimized across the line. As such whilst controlling one axis, the differences between the other in the points and the line model are gathered and squared, and the sum of these squares is minimized, hence the name.</p>
+<p>For most datasets, this technique produces a very good approximation of the &ldquo;best&rdquo; line through the data, but that statement naturally leads to questions on the meaning of &ldquo;best&rdquo;. The context of the data itself, and the conclusions that we wish to draw, ultimately guide the answer. For instance, a linear fit may not even be the most useful visualization at all;  parabolic or more complex curves will obviously be a better approximation for some data.</p>
+<p>Variants to the linear least squares technique allow for schemes compensating for known properties in error ranges in the data, or when the data is affected by known constraints.</p>
+<p>Using the least-squares approximation, the squares of the differences between the known values and those in the approximated line are used because by squaring the deviations larger values are given a higher negative weight than smaller, and the model will look for  a line with many small differences and steer away from larger gaps, providing a satisfying middle result. That said it is often beneficial to prune obviously suspect outliers, whose errors might be explained by external forces.</p>
+<p>There were 19 submissions for the second task this past week.</p>
+<h2 id="a-selection-of-submissions-1">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/saiftynet/perl/ch-2.pl"><strong>Saif Ahmed</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Even though it was not required, nearly every submission implemented a least-squares regression for their fitting, with only one exception. We&rsquo;ll certainly look at that. On the other hand, seeing as we&rsquo;re doing data analysis we did see several submissions using the PDL . We&rsquo;ll have a look at those too, to spice things up a bit.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>We&rsquo;ll start this out with my own submission. After all, it has the basic building blocks of a  least-squares fit all laid out in what I hope is a clear manner.</p>
+<p>You&rsquo;ll have to be the judge of that, though. I try, and my job is to do my best to explain it.</p>
+<p>The least-squares line of best fit for a given set of <em>N</em> individual points can be derived using two formulas, one each for the slope (<em>m</em>) and intercept (<em>b</em>), to form a line equation of the form</p>
+<p><em>y</em> = <em>m</em> <em>x</em> + <em>b</em></p>
+<p>Those formulae require four independent summations from the x- and y-coordinates, and give a slope <em>m</em>:</p>
+<pre><code>         N Σ(xy) − Σx Σy
+    m = —————————————————
+         N Σ(x^2) − (Σx)^2
+</code></pre><p>and an intercept <em>b</em>:</p>
+<pre><code>          Σy − m Σx
+    b =  ———————————
+              N
+</code></pre><p>The data is delivered as an array of arrays, with each outer element a pair of x and y coordinates. Looping across this list, we compile the four sums:</p>
+<ul>
+<li>all x-values</li>
+<li>all y values</li>
+<li>for each pair, the x-value squared and the results summed</li>
+<li>for each pair, the x-value times the y-value</li>
+</ul>
+<p>The size of the data set is already known from the scalar value of the variable <code>@data</code>.</p>
+<p>Once we have the slope and the intercept we can calculate y-values for an appropriately-sized canvas to enclose all the points, in this case 400 (nominal) pixels wide.</p>
+<p>A few more commands are required to plug the input data along with the result into the SVG code from task 1.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">best_fit</span> (@points) {
+        <span style="color:#66d9ef">my</span> ($xsum, $ysum, $sqsum, $xysum);
+
+        <span style="color:#66d9ef">for</span> (@data) {
+            $xsum  <span style="color:#f92672">+=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+            $ysum  <span style="color:#f92672">+=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+            $sqsum <span style="color:#f92672">+=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>;
+            $xysum <span style="color:#f92672">+=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+        }
+
+        <span style="color:#66d9ef">my</span> $slope     <span style="color:#f92672">=</span> ((@data <span style="color:#f92672">*</span> $xysum) <span style="color:#f92672">-</span> ($xsum <span style="color:#f92672">*</span> $ysum))
+                            <span style="color:#f92672">/</span> ((@data <span style="color:#f92672">*</span> $sqsum) <span style="color:#f92672">-</span> ($xsum <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>));
+        <span style="color:#66d9ef">my</span> $intercept <span style="color:#f92672">=</span> ($ysum <span style="color:#f92672">-</span> ($slope <span style="color:#f92672">*</span> $xsum)) <span style="color:#f92672">/</span> @data;
+
+        <span style="color:#75715e">## hardwired 400px canvas for now</span>
+        <span style="color:#66d9ef">my</span> $xmax <span style="color:#f92672">=</span> <span style="color:#ae81ff">400</span>;
+
+        <span style="color:#75715e">## x1, y1, x2, y2</span>
+        <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">0</span>, $intercept, <span style="color:#ae81ff">400</span>, ($slope <span style="color:#f92672">*</span> <span style="color:#ae81ff">400</span> <span style="color:#f92672">+</span> $intercept))
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>In their extremely well laid-out version, the monk Athanasius really works the &ldquo;one line, one action&rdquo; philosophy.</p>
+<p>I approve.</p>
+<p>They also take a moment to gather the minimum and maximum x-values from the data set, allowing them to calculate the endpoints of the fit line with more precision, instead of simply overshooting as I did.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    MAIN:
+    {
+        <span style="color:#66d9ef">my</span> $sum_x    <span style="color:#f92672">=</span> sum( map { $_<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ]             } @POINTS );
+        <span style="color:#66d9ef">my</span> $sum_y    <span style="color:#f92672">=</span> sum( map { $_<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">1</span> ]             } @POINTS );
+        <span style="color:#66d9ef">my</span> $sum_x_sq <span style="color:#f92672">=</span> sum( map { $_<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">*</span> $_<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ] } @POINTS );
+        <span style="color:#66d9ef">my</span> $sum_x_y  <span style="color:#f92672">=</span> sum( map { $_<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">*</span> $_<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">1</span> ] } @POINTS );
+        <span style="color:#66d9ef">my</span> $N        <span style="color:#f92672">=</span> scalar @POINTS;
+        <span style="color:#66d9ef">my</span> $m        <span style="color:#f92672">=</span> (($N <span style="color:#f92672">*</span> $sum_x_y ) <span style="color:#f92672">-</span> ($sum_x <span style="color:#f92672">*</span> $sum_y)) <span style="color:#f92672">/</span>
+                       (($N <span style="color:#f92672">*</span> $sum_x_sq) <span style="color:#f92672">-</span> ($sum_x <span style="color:#f92672">*</span> $sum_x));
+        <span style="color:#66d9ef">my</span> $B        <span style="color:#f92672">=</span> ($sum_y <span style="color:#f92672">-</span> ($m <span style="color:#f92672">*</span> $sum_x)) <span style="color:#f92672">/</span> $N;
+        <span style="color:#66d9ef">my</span> %elements;
+
+        push @{ $elements{ points } }, [ @$_ ] <span style="color:#66d9ef">for</span> @POINTS;
+
+        <span style="color:#66d9ef">my</span> $x1 <span style="color:#f92672">=</span> (min map { $_<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ] } @POINTS) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;   <span style="color:#75715e"># min x</span>
+        <span style="color:#66d9ef">my</span> $y1 <span style="color:#f92672">=</span> ($m <span style="color:#f92672">*</span> $x1) <span style="color:#f92672">+</span> $B;
+        <span style="color:#66d9ef">my</span> $x2 <span style="color:#f92672">=</span> (max map { $_<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ] } @POINTS) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;   <span style="color:#75715e"># max x</span>
+        <span style="color:#66d9ef">my</span> $y2 <span style="color:#f92672">=</span> ($m <span style="color:#f92672">*</span> $x2) <span style="color:#f92672">+</span> $B;
+
+        push @{ $elements{ lines  } }, [ $x1, $y1, $x2, $y2 ];
+
+        ch_1::encode_svg( <span style="color:#f92672">\</span>%elements, $OUTFILE );
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">qq[SVG encoded to file &#34;$OUTFILE&#34;\n]</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>We haven&rsquo;t looked at the work from the wandering doctor in a while — here they demonstrate how to use the <code>reduce()</code> function from <code>List::Util</code> to create their own <code>sum()</code>. The <code>reduce()</code> function, if you recall, merely provides a framework for systematically accessing the elements in an array, processing each and modifying a single carried accumulator that is ultimately returned. By carefully choosing the block function that is applied, many common list functions can be created. Here they provide several examples, first to only add the first element positions from the list of points, and then in a different pass sum the second. A third version just sums the elements as found.</p>
+<p>The common method for determiing the least-squares line calculates the slope and intercept equation; the doc then passes this data to a separate <code>create_line()</code> function to determine the two endpoints required for an SVG <code>line</code> tag.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate_best_fit</span>
+    {
+         <span style="color:#66d9ef">my</span> @points <span style="color:#f92672">=</span> @_;
+
+         <span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> scalar @points;
+
+         <span style="color:#75715e"># Step 1: For each (x,y) point calculate x^2 and xy:</span>
+         <span style="color:#66d9ef">my</span> @x_sq <span style="color:#f92672">=</span> map $_<span style="color:#f92672">-&gt;</span>{x} <span style="color:#f92672">*</span> $_<span style="color:#f92672">-&gt;</span>{x}, @points;
+
+         <span style="color:#66d9ef">my</span> @xy   <span style="color:#f92672">=</span> map $_<span style="color:#f92672">-&gt;</span>{x} <span style="color:#f92672">*</span> $_<span style="color:#f92672">-&gt;</span>{y}, @points;
+
+         <span style="color:#75715e"># Step 2: Sum all x, y, x^2 and xy:</span>
+
+         <span style="color:#66d9ef">my</span> $sum_x <span style="color:#f92672">=</span> reduce { $a <span style="color:#f92672">+</span> $b<span style="color:#f92672">-&gt;</span>{x} } <span style="color:#ae81ff">0</span>, @points;
+         <span style="color:#66d9ef">my</span> $sum_y <span style="color:#f92672">=</span> reduce { $a <span style="color:#f92672">+</span> $b<span style="color:#f92672">-&gt;</span>{y} } <span style="color:#ae81ff">0</span>, @points;
+         <span style="color:#66d9ef">my</span> $sum_x_sq <span style="color:#f92672">=</span> reduce {$a <span style="color:#f92672">+</span> $b } @x_sq;
+         <span style="color:#66d9ef">my</span> $sum_xy <span style="color:#f92672">=</span> reduce {$a <span style="color:#f92672">+</span> $b} @xy;
+
+         <span style="color:#75715e"># Step 3: Calculate slope m:</span>
+         <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span>  ($N <span style="color:#f92672">*</span> $sum_xy <span style="color:#f92672">-</span> $sum_x <span style="color:#f92672">*</span> $sum_y) <span style="color:#f92672">/</span>
+                  ($N <span style="color:#f92672">*</span> $sum_x_sq <span style="color:#f92672">-</span> ($sum_x <span style="color:#f92672">*</span> $sum_x));
+
+         <span style="color:#75715e"># Step 4: Calculate Intercept b:</span>
+         <span style="color:#66d9ef">my</span> $intrcpt <span style="color:#f92672">=</span> ($sum_y <span style="color:#f92672">-</span> $m <span style="color:#f92672">*</span> $sum_x) <span style="color:#f92672">/</span> $N;
+
+         <span style="color:#66d9ef">return</span> ($m, $intrcpt);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_line</span>
+    {
+         <span style="color:#66d9ef">my</span> ( $x1, $x2, $slp, $itr ) <span style="color:#f92672">=</span> @_;
+         <span style="color:#66d9ef">my</span> $y1 <span style="color:#f92672">=</span> int( $slp <span style="color:#f92672">*</span> $x1 <span style="color:#f92672">+</span> $itr );
+         <span style="color:#66d9ef">my</span> $y2 <span style="color:#f92672">=</span> int( $slp <span style="color:#f92672">*</span> $x2 <span style="color:#f92672">+</span> $itr );
+         <span style="color:#66d9ef">return</span> {x1 <span style="color:#f92672">=&gt;</span> $x1, y1 <span style="color:#f92672">=&gt;</span> $y1, x2 <span style="color:#f92672">=&gt;</span> $x2, y2 <span style="color:#f92672">=&gt;</span> $y2};
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/saiftynet/perl/ch-2.pl"><strong>Saif Ahmed</strong></a></p>
+<p>New member Saif focuses on the output SVG drawing, treating the calculation of the best-fit line to be another required element in the final XML to be parameterized.</p>
+<p>As such the control flow is a little different, focusing first on the construction of the SGV drawing as an elaborate concatenated string. In a first pass over the data, a pair of regular expresions match out line and point coordiantes and append them as elements to a growing string of XML tags. As every point is added, however, its data is also handed off to an <code>addPoint()</code> routine where the sums for the least-squares calculations are gathered in global variables.</p>
+<p>Once every point in the dataset is processed the best-fit line can be calculated from the aggregate analysis variables, which happens in-place as a new SVG tag is being constructed. The tag is added, the SVG format is completed with head and tail tags and the result written to file.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> (@data) {
+       <span style="color:#75715e"># find and genrate lines</span>
+       $svg<span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;  &lt;line x1=\&#34;$2\&#34; y1=\&#34;$3\&#34; x2=\&#34;$4\&#34; y2=\&#34;$5\&#34; stroke=\&#34;red\&#34;\/&gt;\n&#34;</span>
+           <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">/(^|\s)([\-\=]?[\d]+\.?[\d]*),([\-\=]?[\d]+\.?[\d]*),([\-\=]?[\d]+\.?[\d]*),([\-\=]?[\d]+\.?[\d]*)($|\s)/g</span>);
+       <span style="color:#75715e"># find and generate points adding to analysis if needed</span>
+       <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">/(^|\s)([\-\=]?[\d]+\.?[\d]*),([\-\=]?[\d]+\.?[\d]*)($|\s)/g</span>){
+             addPoint($2,$3);
+        	 $svg<span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;  &lt;circle cx=\&#34;$2\&#34; cy=\&#34;$3\&#34; r=\&#34;2\&#34; stroke=\&#34;blue\&#34; \/&gt;\n&#34;</span>
+           };
+    }
+    $svg<span style="color:#f92672">.=</span> bestFitLine();
+
+    <span style="color:#75715e"># top and tail the svg contents, and flip the data so that the SVG coordinate system becomes cartesian</span>
+    $svg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;svg  viewBox=\&#34;&#34;</span><span style="color:#f92672">.</span>($minX<span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>($minY<span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>($maxX<span style="color:#f92672">-</span>$minX<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>($maxY<span style="color:#f92672">-</span>$minY<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\&#34; style=\&#34;background-color:green\&#34; xmlns=\&#34;http://www.w3.org/2000/svg\&#34;&gt;\n&#34;</span><span style="color:#f92672">.</span>
+         <span style="color:#e6db74">&#34;&lt;g  transform=\&#34;scale(1,-1) translate(0,&#34;</span><span style="color:#f92672">.</span>(<span style="color:#f92672">-</span>$maxY<span style="color:#f92672">-</span>$minY)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;)\&#34;&gt;\n&#34;</span><span style="color:#f92672">.</span> <span style="color:#75715e"># flips the points for a cartesian chart</span>
+          <span style="color:#e6db74">&#34;  &lt;rect x=\&#34;&#34;</span><span style="color:#f92672">.</span>($minX<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\&#34; y=\&#34;&#34;</span><span style="color:#f92672">.</span>($minY<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\&#34; width=\&#34;&#34;</span><span style="color:#f92672">.</span>($maxX<span style="color:#f92672">-</span>$minX<span style="color:#f92672">+</span><span style="color:#ae81ff">10</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\&#34; height=\&#34;&#34;</span><span style="color:#f92672">.</span>($maxY<span style="color:#f92672">-</span>$minY<span style="color:#f92672">+</span><span style="color:#ae81ff">10</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\&#34; stroke=\&#34;blue\&#34;  fill=\&#34;#D5DBDB\&#34; \/&gt;\n&#34;</span><span style="color:#f92672">.</span>
+         $svg<span style="color:#f92672">.</span>
+         <span style="color:#e6db74">&#34;\n&lt;/g&gt;\n&#34;</span><span style="color:#f92672">.</span>
+           <span style="color:#e6db74">&#34;&lt;text x=\&#34;&#34;</span><span style="color:#f92672">.</span>(($minX<span style="color:#f92672">+</span>$maxX)<span style="color:#e6db74">/2).&#34;\&#34; y=\&#34;&#34;.($minY+20).&#34;\&#34; fill=\&#34;red\&#34;&gt;$title&lt;/</span>text<span style="color:#f92672">&gt;\</span>n<span style="color:#e6db74">&#34;.
+</span><span style="color:#e6db74">         &#34;</span><span style="color:#e6db74">&lt;/svg&gt;</span><span style="color:#960050;background-color:#1e0010">&#34;</span>;
+
+    <span style="color:#75715e"># each point found is added to the stats</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">addPoint</span>{
+      <span style="color:#66d9ef">my</span> ($x,$y)<span style="color:#f92672">=</span>@_;
+      $maxX<span style="color:#f92672">=</span> $x <span style="color:#66d9ef">if</span> ($x<span style="color:#f92672">&gt;</span>$maxX);
+      $maxY<span style="color:#f92672">=</span> $y <span style="color:#66d9ef">if</span> ($y<span style="color:#f92672">&gt;</span>$maxY);
+      $minX<span style="color:#f92672">=</span> $x <span style="color:#66d9ef">if</span> ($x<span style="color:#f92672">&lt;</span>$minX);
+      $minY<span style="color:#f92672">=</span> $y <span style="color:#66d9ef">if</span> ($y<span style="color:#f92672">&lt;</span>$minY);
+      $sumX<span style="color:#f92672">+=</span>$x;
+      $sumY<span style="color:#f92672">+=</span>$y;
+      $sumX2<span style="color:#f92672">+=</span>$x<span style="color:#f92672">*</span>$x;
+      $sumXY<span style="color:#f92672">+=</span>$x<span style="color:#f92672">*</span>$y;
+      $number<span style="color:#f92672">++</span>;
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>In an alternative to reading points from a file, or commonly the inlne <code>__DATA__</code> filehandle, Ulrich has us enter any number of points from the command line, via <code>&lt;STDIN&gt;</code>.</p>
+<p>On receiving the data, he can then compute the best-fit line, which he does in a separate <code>findline()</code> routine. A number of <code>map</code> statements loop over the data to compute the various sums required. The slope and intercept are returned.</p>
+<p>He then gets to work immediately on constructing an SVG file, opening a filehandle and then outputting the XML tags to it as they are created. The data has been parsed and readied, so after the header information, the line is output, followed by a list of points.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">findLine</span> {
+      <span style="color:#66d9ef">my</span> $passedPoints <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> $sumOfX <span style="color:#f92672">=</span> sum( map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } @{$passedPoints}) ;
+      <span style="color:#66d9ef">my</span> $sumOfY <span style="color:#f92672">=</span> sum( map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @{$passedPoints}) ;
+      <span style="color:#66d9ef">my</span> $sumOfXY <span style="color:#f92672">=</span> sum( map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @{$passedPoints}) ;
+      <span style="color:#66d9ef">my</span> $sumOfXsquare <span style="color:#f92672">=</span> sum( map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } @{$passedPoints}) ;
+      <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> scalar( @{$passedPoints} ) ;
+      <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> ($len <span style="color:#f92672">*</span> $sumOfXY <span style="color:#f92672">-</span> $sumOfX <span style="color:#f92672">*</span> $sumOfY ) <span style="color:#f92672">/</span> ( $len <span style="color:#f92672">*</span>
+        $sumOfXsquare <span style="color:#f92672">-</span> $sumOfX <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> ) ;
+      <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> ( $sumOfY <span style="color:#f92672">-</span> $m <span style="color:#f92672">*</span> $sumOfX ) <span style="color:#f92672">/</span> $len ;
+      <span style="color:#66d9ef">return</span> ( $m , $b ) ;
+    }
+
+    <span style="color:#f92672">.</span> <span style="color:#f92672">.</span> <span style="color:#f92672">.</span>
+
+    <span style="color:#66d9ef">my</span> ( $m , $b ) <span style="color:#f92672">=</span> findLine( <span style="color:#f92672">\</span>@points ) ;
+    say <span style="color:#e6db74">&#34;The points entered are best fitted by a line with the equation y = $m x + $b!&#34;</span> ;
+    open ( <span style="color:#66d9ef">my</span> $fh , <span style="color:#e6db74">&#34;&gt;&gt; testfile.svg&#34;</span> ) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Can&#39;t append to testfile.svg! $!\n&#34;</span> ;
+    say $fh <span style="color:#e6db74">&#39;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;&#39;</span> ;
+    <span style="color:#66d9ef">print</span> $fh <span style="color:#e6db74">&#39;&lt;!DOCTYPE svg PUBLIC &#34;-//W3C//DTD SVG 1.0//EN&#34;&#39;</span> ;
+    say $fh <span style="color:#e6db74">&#39;  &#34;http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd&#34;&gt;&#39;</span> ;
+    <span style="color:#66d9ef">print</span> $fh <span style="color:#e6db74">&#39;&lt;svg height=&#34;300&#34; width=&#34;400&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&#39;</span> ;
+    say $fh <span style="color:#e6db74">&#39; xmlns:svg=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;&#39;</span> ;
+    say $fh <span style="color:#e6db74">&#39;&lt;g id=&#34;lines&#34; stroke=&#34;#369&#34; stroke-width=&#34;4&#34;&gt;&#39;</span> ;
+    <span style="color:#66d9ef">my</span> $startx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ;
+    <span style="color:#66d9ef">my</span> $endx <span style="color:#f92672">=</span> <span style="color:#ae81ff">400</span> ;
+    <span style="color:#66d9ef">my</span> $starty <span style="color:#f92672">=</span> $m <span style="color:#f92672">*</span> $startx <span style="color:#f92672">+</span> $b ;
+    <span style="color:#66d9ef">my</span> $endy <span style="color:#f92672">=</span> $m <span style="color:#f92672">*</span> $endx <span style="color:#f92672">+</span> $b ;
+    say $fh <span style="color:#e6db74">&#34;  &lt;line x1=\&#34;$startx\&#34; x2=\&#34;$endx\&#34; y1=\&#34;$starty\&#34; y2=\&#34;$endy\&#34;  /&gt;&#34;</span> ;
+    say $fh <span style="color:#e6db74">&#34;&lt;/g&gt;&#34;</span> ;
+    say $fh <span style="color:#e6db74">&#34;&lt;g fill=\&#34;#f73\&#34; id=\&#34;points\&#34;&gt;&#34;</span> ;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p ( @points ) {
+      say $fh <span style="color:#e6db74">&#34;  &lt;circle cx=\&#34;$p-&gt;[0]\&#34; cy=\&#34;$p-&gt;[1]\&#34; r=\&#34;3\&#34;  /&gt;&#34;</span> ;
+    }
+    say $fh <span style="color:#e6db74">&#34; &lt;/g&gt;&#34;</span> ;
+    say $fh <span style="color:#e6db74">&#34;&lt;/svg&gt;&#34;</span> ;
+    close $fh ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-165-line-of-best-fit.html">Perl Weekly Challenge 165: Line of Best Fit</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-165-scalable-vestor-graphics.html">Perl Weekly Challenge 165: Scalable Vector Graphics</a></p>
+<p>One could argue, I suppose, that the graphical output of an SVG image was only a suggestion, not a requirement. It is sort of tacked on there, at the bottom of the description, and easy to miss. As this happened several times I&rsquo;ve decided I&rsquo;ll be gracious about it and look the other way. Life is&hellip; variable, as are my moods.</p>
+<p>Without that code the computation of the least-squares line is much more compact, as demonstrated here by Laurent. Furthermore, without the need to produce (<em>x</em>,<em>y</em>) endpoints for a line we can directly report the slope/intercept equation.</p>
+<pre><code>    Slope: -0.299956500261231, intercept = 200.132272535582
+    The equation of the line of best fit is: y = -0.30 x + 200.13
+</code></pre><p>Laurent&rsquo;s <code>lsm()</code> routine is quite direct and to-the-point:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lsm</span> {
+        <span style="color:#66d9ef">my</span> @points <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> ($s_x, $s_y, $s_xy, $s_x2) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $point (@points) {
+            <span style="color:#66d9ef">my</span> ($x, $y) <span style="color:#f92672">=</span> ($point<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $point<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+            $s_x <span style="color:#f92672">+=</span> $x;
+            $s_y <span style="color:#f92672">+=</span> $y;
+            $s_xy <span style="color:#f92672">+=</span> $x <span style="color:#f92672">*</span> $y;
+            $s_x2 <span style="color:#f92672">+=</span> $x <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>;
+        }
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> scalar @points;
+        <span style="color:#66d9ef">my</span> $slope <span style="color:#f92672">=</span> ($n <span style="color:#f92672">*</span> $s_xy <span style="color:#f92672">-</span> $s_x <span style="color:#f92672">*</span> $s_y) <span style="color:#f92672">/</span> ($n <span style="color:#f92672">*</span> $s_x2 <span style="color:#f92672">-</span> $s_x <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>);
+        <span style="color:#66d9ef">my</span> $intercept <span style="color:#f92672">=</span> ($s_y <span style="color:#f92672">-</span> $slope <span style="color:#f92672">*</span> $s_x) <span style="color:#f92672">/</span> $n;
+        <span style="color:#66d9ef">return</span> $slope, $intercept;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/duncan-c-white/C/ch-2.c">C</a></p>
+<p>With his SVG creation code locked off in a separate personal module, the remaining best-fit calculation code for Duncan&rsquo;s submission is quite compact as well, only, you know, he actually checks all the boxes for the task. Oh well. Good for him.</p>
+<p>Duncan, to those not familiar, is fond of <code>Function::Parameter</code> to provide subroutine signatures in his code; these structures are rebranded using the <code>fun</code> function keyword. So that&rsquo;s what that&rsquo;s all about.</p>
+<p>TIMTOWTDI.</p>
+<p>Carrying on, he demonstrates again is a straightforward fashion how creating his line is just an exercise of creating some aggregate data and filling it into find the slope and intercept parameters on a line equation.</p>
+<p>The interface to his SGV creation code is quite interesting. I especially likes the bounding rectangle — that was a nice touch.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    fun bestfit( @data )
+    {
+        <span style="color:#66d9ef">my</span> $sumx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $sumy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $sumxy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $sumx2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pt (@data)
+        {
+        	<span style="color:#66d9ef">my</span>( $x, $y ) <span style="color:#f92672">=</span> @$pt;
+        	$sumx <span style="color:#f92672">+=</span> $x;
+        	$sumy <span style="color:#f92672">+=</span> $y;
+        	$sumxy <span style="color:#f92672">+=</span> $x <span style="color:#f92672">*</span> $y;
+        	$sumx2 <span style="color:#f92672">+=</span> $x <span style="color:#f92672">*</span> $x;
+        }
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> @data;
+        warn <span style="color:#e6db74">&#34;bestfit: n=$n, sumx=$sumx, sumy=$sumy, sumxy=$sumxy, sumx^2=$sumx2\n&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+
+        <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> ($n <span style="color:#f92672">*</span> $sumxy <span style="color:#f92672">-</span> $sumx <span style="color:#f92672">*</span> $sumy) <span style="color:#f92672">/</span> ($n <span style="color:#f92672">*</span> $sumx2 <span style="color:#f92672">-</span> $sumx <span style="color:#f92672">*</span> $sumx);
+        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> ($sumy <span style="color:#f92672">-</span> $m <span style="color:#f92672">*</span> $sumx) <span style="color:#f92672">/</span> $n;
+
+        warn <span style="color:#e6db74">&#34;bestfit: m=$m, c=$c\n&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+        <span style="color:#66d9ef">return</span>( $m, $c );
+    }
+
+    <span style="color:#66d9ef">my</span>( $m, $c ) <span style="color:#f92672">=</span> bestfit( @pt );
+    <span style="color:#66d9ef">my</span> $y1 <span style="color:#f92672">=</span> $m <span style="color:#f92672">+</span> $c;    		<span style="color:#75715e"># for x==1</span>
+    <span style="color:#66d9ef">my</span> $y2 <span style="color:#f92672">=</span> $m <span style="color:#f92672">*</span> ($w<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> $c;    	<span style="color:#75715e"># for x==w-1</span>
+
+    start_svg( $w <span style="color:#f92672">*</span> $xscale, $h <span style="color:#f92672">*</span> $yscale );
+
+    setcolour( <span style="color:#e6db74">&#34;black&#34;</span> );
+    setlinewidth( <span style="color:#ae81ff">1</span> );
+    rect( <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, $w<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $h<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> );
+
+    setcolour( <span style="color:#e6db74">&#34;blue&#34;</span> );
+    setlinewidth( <span style="color:#ae81ff">1</span> );
+    line( <span style="color:#ae81ff">1</span>, $y1<span style="color:#f92672">*</span>$yscale, ($w<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>$xscale, $y2<span style="color:#f92672">*</span>$yscale );
+
+    setcolour( <span style="color:#e6db74">&#34;orange&#34;</span> );
+    point( $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>$xscale, $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$yscale ) <span style="color:#66d9ef">foreach</span> @pt;
+
+    end_svg();
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/cheok-yin-fung/julia/ch-2.jl">Julia</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://e7-87-83.github.io/coding/challenge_165.html">CY&rsquo;s Take on The Weekly Challenge #165 </a></p>
+<p>Mathematical equations are CY&rsquo;s bread-and-butter, so she was quite at home with this little foray into statistics and implementing equations, right? Ok, sure. No problem. The mathematical realm is a uniquely complicated place, full of incomprehensible beauty and speechless terror. Perhaps statistics is not exactly in her wheelhouse, as she says.</p>
+<p>How true her statement is remains uncertain to me, as she makes short work of the required calculations in any case.</p>
+<p>In truth I ws hoping for an explanation as to how squaring the data seems to hit an ideal &ldquo;sweet spot&rdquo; in weighting towards small divergences and against outlier data far from the model projection. We could, after all, use cubes and get more compression, or logs and get less, but the least <em>squares</em> method seems to be universally accepted. I really haven&rsquo;t had time to study this question myself, and at the moment, much as I&rsquo;d like to go down that rabbit-hole I need to exercise some discipline and get this review published.</p>
+<p>Maybe next time, or maybe someone could point me to a paper.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> scalar @points;
+
+    <span style="color:#66d9ef">my</span> $slope <span style="color:#f92672">=</span>
+         (  $n <span style="color:#f92672">*</span> sum(map {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]} @points)  <span style="color:#75715e"># n sum(xy) - sum(x) sum(y)</span>
+          <span style="color:#f92672">-</span> sum(map{$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]} @points) <span style="color:#f92672">*</span> sum(map{$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]} @points) )
+        <span style="color:#f92672">/</span> ( $n <span style="color:#f92672">*</span> sum(map{$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>} @points)        <span style="color:#75715e"># n sum(sq x) - sq(sum x)</span>
+             <span style="color:#f92672">-</span> (sum( map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]} @points ))<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>) ;
+
+
+    <span style="color:#66d9ef">my</span> $intercept <span style="color:#f92672">=</span>
+         ( sum( map {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]} @points )             <span style="color:#75715e"># sum(y) - slope * sum(x)</span>
+        <span style="color:#f92672">-</span> $slope <span style="color:#f92672">*</span> sum( map {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]} @points) )
+        <span style="color:#f92672">/</span> $n ;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">y_best_fit</span> {
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">return</span> $slope<span style="color:#f92672">*</span>$x <span style="color:#f92672">+</span> $intercept;
+    }
+
+    <span style="color:#66d9ef">my</span> $minx <span style="color:#f92672">=</span> min( map {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]} @points );
+    <span style="color:#66d9ef">my</span> $maxx <span style="color:#f92672">=</span> max( map {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]} @points );
+
+    <span style="color:#66d9ef">my</span> $line_of_best_fit <span style="color:#f92672">=</span>
+        join <span style="color:#e6db74">&#34;,&#34;</span>, $minx,y_best_fit($minx),$maxx,y_best_fit($maxx);
+
+    open FH, <span style="color:#e6db74">&#34;&gt; BEST_FIT_DATA&#34;</span> <span style="color:#f92672">or</span> die $!;
+    say FH $line_of_best_fit;
+    say FH $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>],<span style="color:#e6db74">&#34;,&#34;</span>,$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> @points;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_165__Scaling_the_Fits.html">RogerBW&rsquo;s Blog: The Weekly Challenge 165: Scaling the Fits</a></p>
+<p>The only submission to stray from the Least Squares technique when fitting their lines was Roger, who brings us something known as the &ldquo;Theil–Sen estimator&rdquo;.</p>
+<p>And what is that? No idea. Let&rsquo;s find out.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Theil%E2%80%93Sen_estimator">Theil–Sen estimator</a> works by calculating the slope between every pair of two points in the dataset and then calculating  the median of all of these slopes.</p>
+<p>Well that does sound like it will work, doesn&rsquo;t it? And it does, and well. It is both efficient and apparently particularly robust in tolerating outlier points, compared to a standard least squares calculation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min max)</span>;
+
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#points<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j ($i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#points) {
+        <span style="color:#66d9ef">if</span> ($points[$i][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $points[$j][<span style="color:#ae81ff">0</span>]) {
+          push @slope,($points[$j][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$points[$i][<span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span>($points[$j][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>$points[$i][<span style="color:#ae81ff">0</span>])
+        }
+      }
+    }
+
+    <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> median(<span style="color:#f92672">\</span>@slope);
+
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> median([map {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $m<span style="color:#f92672">*</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]} @points]);
+
+    <span style="color:#66d9ef">my</span> @x<span style="color:#f92672">=</span>map {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]} @points;
+    <span style="color:#66d9ef">my</span> @l;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $xb (min(@x),max(@x)) {
+      push @l,$xb;
+      push @l,$xb<span style="color:#f92672">*</span>$m<span style="color:#f92672">+</span>$c;
+    }
+
+    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;,&#39;</span>,@l),<span style="color:#e6db74">&#34;\n&#34;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">median</span>($s0) {
+      <span style="color:#66d9ef">my</span> @s<span style="color:#f92672">=</span>sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @{$s0};
+      <span style="color:#66d9ef">return</span> $s[int((scalar @s)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg brings us <code>PDL::Slatec</code> - a PDL interface to the slatec numerical programming library.</p>
+<p>Despite the Perl Data Language being built for data processing, it will not do a least-squares analysis out-of-the-box. There are however several module options to supply this functionality, and as noted Jorg has picked <code>PDL::Slatec</code>, a perl interface to the FORTRAN SLATEC statistical library. For those curious, SLATEC is derived from &ldquo;Sandia, Los Alamos, [Air Force Weapons Laboratory] Technical Exchange Committee&rdquo;.</p>
+<p>The library provides a method, <code>polyfit()</code>, which given the point data set, an array of weights, and a maximum exponent to allow, will find the best line available through the points. Note we could for instance give this function a 2 and it would look for the best parabolic curve.</p>
+<p>Here though, we are asking for straight line, so we pass it 1.</p>
+<p>The <code>polyfit()</code> function returns a solution in an internal representation to describe the line. We can then gather the two points with minimal and maximal x-coordinates using the <code>minmax</code> function, and hand them to a second SLATEC function, <code>polyvalue()</code> to get a vector of y values from the <code>$fit</code> line function. Very nice.</p>
+<p>Now that we have our line as 2 coordinate endpoints, we can draw it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">least_square_linear_regression</span> ($fh) {
+        <span style="color:#75715e"># Slurp the file content, remove trailing whitespace, convert</span>
+        <span style="color:#75715e"># whitespace to semicolons and use the resulting string as a piddle</span>
+        <span style="color:#75715e"># constructor argument.  This results in a 2xN piddle of coordinate</span>
+        <span style="color:#75715e"># pairs.</span>
+        <span style="color:#66d9ef">my</span> $points <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> {
+            local $/;
+            pdl <span style="color:#e6db74">&lt;$fh&gt;</span> <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+\z//</span>r <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+/;/g</span>r
+        };
+        <span style="color:#75715e"># Split the points&#39; coordinates in separate piddles along the first</span>
+        <span style="color:#75715e"># dimension resulting in piddles for x and y values as required by</span>
+        <span style="color:#75715e"># &#34;polyfit&#34;.  Then find the best fit with a polynomial of degree one</span>
+        <span style="color:#75715e"># (i.e. a line).  Here only the solution&#39;s internal representation</span>
+        <span style="color:#75715e"># is needed as the result.</span>
+        <span style="color:#66d9ef">my</span> $fit <span style="color:#f92672">=</span> (polyfit $points<span style="color:#f92672">-&gt;</span>xchg(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>dog, ones($points<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">1</span>)), <span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">3</span>];
+        <span style="color:#75715e"># Get the x range.</span>
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> pdl minmax $points<span style="color:#f92672">-&gt;</span>slice(<span style="color:#ae81ff">0</span>);
+        <span style="color:#75715e"># Get the corresponding y values.</span>
+        <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> (polyvalue(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, $x, $fit))[<span style="color:#ae81ff">0</span>];
+        <span style="color:#75715e"># Create a line piddle having x and y as endpoint coordinates.</span>
+        <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> pdl($x, $y)<span style="color:#f92672">-&gt;</span>xchg(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>);
+
+        <span style="color:#66d9ef">if</span> (wantarray) {
+            <span style="color:#75715e"># Flatten the line piddle.</span>
+            <span style="color:#66d9ef">return</span> $line<span style="color:#f92672">-&gt;</span>list;
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#75715e"># Convert the line endpoints (2x2) into the shape expected by</span>
+            <span style="color:#75715e"># gen_svg (2x2x1) from task 1 and generate an SVG from the given</span>
+            <span style="color:#75715e"># points and the regression line.</span>
+            <span style="color:#66d9ef">return</span> gen_svg($points, $line<span style="color:#f92672">-&gt;</span>dummy(<span style="color:#ae81ff">2</span>));
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/05/20/PWC165/">Perl Weekly Challenge 165 – W. Luis Mochán</a></p>
+<p>And finally we&rsquo;ll end with Luis, with a different approach to using the PDL.</p>
+<p>Luis simply builds the required variables from scratch and installs them into equations to find slope and intercept coordinates for our line. Given these he can then plug minimal and maximal x-values into the results to calculate the related ys. Luis has opted not to draw the graphic, but delivered us a list of points and lines that can be fed to the previous program.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> PDL;
+    <span style="color:#66d9ef">my</span> $input<span style="color:#f92672">=</span>pdl($ARGV[<span style="color:#ae81ff">0</span>]);
+    <span style="color:#66d9ef">my</span> $N<span style="color:#f92672">=</span>$input<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">1</span>); <span style="color:#75715e"># number of points</span>
+
+    <span style="color:#66d9ef">my</span> $sum<span style="color:#f92672">=</span>$input<span style="color:#f92672">-&gt;</span>transpose<span style="color:#f92672">-&gt;</span>sumover;
+    <span style="color:#66d9ef">my</span> ($sum_x, $sum_y)<span style="color:#f92672">=</span>$sum<span style="color:#f92672">-&gt;</span>list;
+    <span style="color:#66d9ef">my</span> $sum_2<span style="color:#f92672">=</span>($input<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">-&gt;</span>transpose<span style="color:#f92672">-&gt;</span>sumover; <span style="color:#75715e"># sum of squares</span>
+    <span style="color:#66d9ef">my</span> ($sum_x_2, $sum_y_2)<span style="color:#f92672">=</span>$sum_2<span style="color:#f92672">-&gt;</span>list;
+    <span style="color:#66d9ef">my</span> $sum_xy<span style="color:#f92672">=</span>$input<span style="color:#f92672">-&gt;</span>prodover<span style="color:#f92672">-&gt;</span>sumover; <span style="color:#75715e"># sum of xy</span>
+    <span style="color:#66d9ef">my</span> $det<span style="color:#f92672">=</span>$N<span style="color:#f92672">*</span>$sum_x_2<span style="color:#f92672">-</span>$sum_x<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+    die <span style="color:#e6db74">&#34;Singular system&#34;</span> <span style="color:#66d9ef">if</span> $det<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">my</span> $slope<span style="color:#f92672">=</span>($N<span style="color:#f92672">*</span>$sum_xy<span style="color:#f92672">-</span>$sum_x<span style="color:#f92672">*</span>$sum_y)<span style="color:#f92672">/</span>$det;
+    <span style="color:#66d9ef">my</span> $intercept<span style="color:#f92672">=</span>($sum_x_2<span style="color:#f92672">*</span>$sum_y<span style="color:#f92672">-</span>$sum_x<span style="color:#f92672">*</span>$sum_xy)<span style="color:#f92672">/</span>$det;
+
+    say join <span style="color:#e6db74">&#34;,&#34;</span>, @$_ <span style="color:#66d9ef">for</span> @{$input<span style="color:#f92672">-&gt;</span>unpdl}; <span style="color:#75715e"># output points</span>
+    <span style="color:#66d9ef">my</span> $x<span style="color:#f92672">=</span>$input<span style="color:#f92672">-&gt;</span>slice(<span style="color:#e6db74">&#34;(0)&#34;</span>); <span style="color:#75715e"># x coords</span>
+    <span style="color:#66d9ef">my</span> ($y0, $y1)<span style="color:#f92672">=</span>map {$slope<span style="color:#f92672">*</span>$_<span style="color:#f92672">+</span>$intercept} (<span style="color:#66d9ef">my</span> ($x0,$x1)<span style="color:#f92672">=</span>($x<span style="color:#f92672">-&gt;</span>minimum,$x<span style="color:#f92672">-&gt;</span>maximum));
+    say <span style="color:#e6db74">&#34;$x0, $y0, $x1, $y1&#34;</span>;
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/05/22">SVG Plots of Points and Lines — Perl — RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/05/22">SVG Plots of Points and Lines — Prolog — RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/05/16/plotting-revenge-weekly-challenge-165.html">Plotting Revenge: Weekly Challenge #165 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/05/18/pwc165-line-of-best-fit/">PWC165 - Line of Best Fit - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-165/james-smith">The Weekly Challenge 165 - straight through the point!</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/julien-fiegehenn/perl/ch-2.pl"><strong>Julien Fiegehenn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/julien-fiegehenn/typescript/ch-2.ts">Typescript</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/05/dots-lines-and-whatever-fits-best.html">Dots, lines and whatever fits best</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-165/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/05/simple-svg-generator/">PWC 165 › Simple SVG generator - Ryan J Thompson</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC165BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC165BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/05/22">SVG Plots of Points and Lines — Perl — RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/05/22">SVG Plots of Points and Lines — Prolog — RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/doubly-scalable.html">Doubly Scalable with Raku - Arne Sommer</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Cheok-Yin Fung</strong></p>
+<ul>
+<li><a href="https://e7-87-83.github.io/coding/challenge_165.html">CY&rsquo;s Take on The Weekly Challenge #165 </a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/05/16/plotting-revenge-weekly-challenge-165.html">Plotting Revenge: Weekly Challenge #165 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/05/17/pwc165-scalable-vector-graphics/">PWC165 - Scalable Vector Graphics (SVG) - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/05/18/pwc165-line-of-best-fit/">PWC165 - Line of Best Fit - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-165/james-smith">The Weekly Challenge 165 - straight through the point!</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-165-line-of-best-fit.html">Perl Weekly Challenge 165: Line of Best Fit</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-165-scalable-vestor-graphics.html">Perl Weekly Challenge 165: Scalable Vector Graphics</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/05/18/PerlWeeklyChallenge165.html#task1">Perl Weekly Challenge 165: SVG</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/05/18/PerlWeeklyChallenge165.html#task1plperl">Perl Weekly Challenge 165: SVG</a> ( <em>PL/Perl</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/05/18/PerlWeeklyChallenge165.html#task1plpgsql">Perl Weekly Challenge 165: SVG</a> ( <em>PL/PostgreSQL</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/05/dots-lines-and-whatever-fits-best.html">Dots, lines and whatever fits best</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_165__Scaling_the_Fits.html">RogerBW&rsquo;s Blog: The Weekly Challenge 165: Scaling the Fits</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Ryan Thompson</strong></p>
+<ul>
+<li><a href="https://ry.ca/2022/05/simple-svg-generator/">PWC 165 › Simple SVG generator - Ryan J Thompson</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/05/20/PWC165/">Perl Weekly Challenge 165 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+

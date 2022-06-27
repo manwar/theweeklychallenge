@@ -85,6 +85,8 @@ Quick recap of **[The Weekly Challenge - 170](/blog/recap-challenge-170)** by `M
 ## PERL REVIEW {#PERLREVIEW}
 ***
 
+Please check out **Perl** solutions review of **[The Weekly Challenge - 165](/blog/review-challenge-165)** by `Colin Crain`.
+
 If you missed any past reviews then please check out the [**collection**](/p5-reviews).
 
 <br>
