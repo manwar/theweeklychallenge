@@ -1,6 +1,6 @@
 ---
 author:       Ryan Thompson
-date:         2022-06-13T14:11:36
+date:         2022-06-28T14:11:36
 description:  "Ryan Thompson › Perl Weekly Review #164"
 tags:         ["perl"]
 title:        "Ryan Thompson › Perl Weekly Review #164"
