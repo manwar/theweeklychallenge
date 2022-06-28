@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Ryan Thompson › Perl Weekly Review #164">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ryan Thompson › Perl Weekly Review #164</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Ryan Thompson › Perl Weekly Review #164</h2>
+                    <div class="portfolio-meta">
+                        <span>Tuesday, Jun 28, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-164.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>Continues from <a href="/blog/review-challenge-163/">previous week</a>.</p>
+<p>Ryan Thompson with you this week. I&rsquo;m back doing reviews temporarily to help Colin out, so expect to see both of us in the weeks to come!</p>
+<p>Welcome to the Perl review for Week 164 of the Weekly Challenge! For a quick overview, go through the <a href="/blog/perl-weekly-challenge-164/">original tasks</a> and <a href="/blog/recap-challenge-164/">recap</a> of the weekly challenge.</p>
+<h2 id="getting-in-touch">Getting in Touch</h2>
+<p><a href="mailto:rjt@cpan.org"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Email me (Ryan) with any feedback about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>We&rsquo;d greatly appreciate any feedback you&rsquo;d like to give.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<h3 id="task-1---prime-palindrometask1"><a href="#task1">Task 1 - Prime Palindrome</a></h3>
+<p>[ <a href="#adam-russell1">Adam Russell</a>  | <a href="#alexander-pankoff1">Alexander Pankoff</a>  | <a href="#arne-sommer1">Arne Sommer</a>  | <a href="#athanasius1">Athanasius</a>  | <a href="#cheok-yin-fung1">Cheok-Yin Fung</a>  | <a href="#colin-crain1">Colin Crain</a>  | <a href="#dave-jacoby1">Dave Jacoby</a>  | <a href="#deadmarshal1">Ali Moradi</a>  | <a href="#duncan-c-white1">Duncan C. White</a>  | <a href="#e-choroba1">E. Choroba</a>  | <a href="#jaldhar-h-vyas1">Jaldhar H. Vyas</a>  | <a href="#james-marquis1">James Marquis</a>  | <a href="#james-smith1">James Smith</a>  | <a href="#jo-371">Jorg Sommrey</a>  | <a href="#julien-fiegehenn1">Julien Fiegehenn</a>  | <a href="#kjetillll1">Kjetil Skotheim</a>  | <a href="#laurent-rosenfeld1">Laurent Rosenfeld</a>  | <a href="#lubos-kolouch1">Lubos Kolouch</a>  | <a href="#luiz-felipe1">Luiz Felipe</a>  | <a href="#mattneleigh1">Matthew Neleigh</a>  | <a href="#mohammad-anwar1">Mohammad S Anwar</a>  | <a href="#perlboy19671">Niels van Dijke</a>  | <a href="#pete-houston1">Pete Houston</a>  | <a href="#peter-campbell-smith1">Peter Campbell Smith</a>  | <a href="#pokgopun1">PokGoPun</a>  | <a href="#polettix1">Flavio Poletti</a>  | <a href="#robert-dicicco1">Robert DiCicco</a>  | <a href="#roger-bell-west1">Roger Bell_West</a>  | <a href="#ryan-thompson1">Ryan Thompson</a>  | <a href="#ulrich-rieke1">Ulrich Rieke</a>  | <a href="#wlmb1">W. Luis Mochan</a>  ]</p>
+<h3 id="task-2---happy-numberstask2"><a href="#task2">Task 2 - Happy Numbers</a></h3>
+<p>[ <a href="#adam-russell2">Adam Russell</a>  | <a href="#alexander-pankoff2">Alexander Pankoff</a>  | <a href="#arne-sommer2">Arne Sommer</a>  | <a href="#athanasius2">Athanasius</a>  | <a href="#cheok-yin-fung2">Cheok-Yin Fung</a>  | <a href="#colin-crain2">Colin Crain</a>  | <a href="#dave-jacoby2">Dave Jacoby</a>  | <a href="#deadmarshal2">Ali Moradi</a>  | <a href="#duncan-c-white2">Duncan C. White</a>  | <a href="#e-choroba2">E. Choroba</a>  | <a href="#jaldhar-h-vyas2">Jaldhar H. Vyas</a>  | <a href="#james-smith2">James Smith</a>  | <a href="#jo-372">Jorg Sommrey</a>  | <a href="#julien-fiegehenn2">Julien Fiegehenn</a>  | <a href="#kjetillll2">Kjetil Skotheim</a>  | <a href="#laurent-rosenfeld2">Laurent Rosenfeld</a>  | <a href="#lubos-kolouch2">Lubos Kolouch</a>  | <a href="#luiz-felipe2">Luiz Felipe</a>  | <a href="#mattneleigh2">Matthew Neleigh</a>  | <a href="#perlboy19672">Niels van Dijke</a>  | <a href="#pete-houston2">Pete Houston</a>  | <a href="#peter-campbell-smith2">Peter Campbell Smith</a>  | <a href="#pokgopun2">PokGoPun</a>  | <a href="#polettix2">Flavio Poletti</a>  | <a href="#roger-bell-west2">Roger Bell_West</a>  | <a href="#ryan-thompson2">Ryan Thompson</a>  | <a href="#ulrich-rieke2">Ulrich Rieke</a>  | <a href="#wlmb2">W. Luis Mochan</a>  ]</p>
+<h3 id="blogsblogs"><a href="#blogs">Blogs</a></h3>
+<hr>
+<hr>
+<h1 id="task1">Task #1 - Prime Palindrome</h1>
+<h2 id="original-description">Original description</h2>
+<p>Write a script to find all prime numbers less than 1000, which are also
+palindromes in base 10. Palindromic numbers are numbers whose digits are the
+same in reverse. For example, 313 is a palindromic prime, but 337 is not, even
+though 733 (337 reversed) is also prime.</p>
+<h2 id="commentary">Commentary</h2>
+<p>We&rsquo;ve looked at prime numbers and palindromes separately on several occasions,
+so these concepts aren&rsquo;t new to most team members in the Challenge. Most
+people seemed to converge on the idea that if they can generate (or test)
+prime numbers, it&rsquo;s then a simple matter to test whether each prime is also a
+palindrome. That being said, we&rsquo;ll see a few variations on this theme!</p>
+<p>When it came to testing for palindromes, there was a clear winner, at least in
+terms of popularity. The builtin <code>reverse</code> function will reverse a string,
+when called in scalar context. If a string (including a number being
+represented as a string) is equal to itself in reverse, it&rsquo;s a palindrome.</p>
+<p>That&rsquo;s certainly not the only way to do it, though, so keep your eye out for
+a few unique approaches.</p>
+<hr>
+<h2 id="stats">Stats</h2>
+<ul>
+<li>
+<p>Number of submissions: <strong>31</strong></p>
+</li>
+<li>
+<p>Total SLOC: <strong>885</strong></p>
+</li>
+<li>
+<p>Average SLOC: <strong>28</strong></p>
+</li>
+</ul>
+<h2 id="adam-russell1">Adam Russell</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/adam-russell/perl/ch-1.pl">Adam Russell&rsquo;s solution</a>
+uses <a href="https://metacpan.org/pod/Math::Primality"><code>Math::Primality</code></a>&lsquo;s
+<code>is_prime()</code> function to test for primes. To test for a palindrome, Adam uses
+a variation on the scalar <code>reverse</code> method. When called in list context,
+<code>reverse</code> reverses the elements of that list, as one might expect. So, Adam
+first <code>split</code>s the string into a character list, then <code>reverse</code>s that list,
+then <code>join</code>s it back together.  :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">palindrome_primes_under</span>{
+    <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @palindrome_primes;
+    {
+        $n<span style="color:#f92672">--</span>;
+        unshift @palindrome_primes, $n <span style="color:#66d9ef">if</span>(is_prime($n) <span style="color:#f92672">&amp;&amp;</span> join(<span style="color:#e6db74">&#34;&#34;</span>, reverse(split(<span style="color:#e6db74">//</span>, $n))) <span style="color:#f92672">==</span> $n);
+        <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+    }
+    <span style="color:#66d9ef">return</span> @palindrome_primes;
+}
+</code></pre></div><p>Adam also provided a Prolog solution, which he blogged about as well:</p>
+<p><strong>Blog</strong> › <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/05/15">Perl</a></p>
+<p><strong>Blog</strong> › <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/05/15">Prolog</a></p>
+<h2 id="alexander-pankoff1">Alexander Pankoff</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/alexander-pankoff/perl/ch-1.pl">Alexander Pankoff&rsquo;s
+solution</a>
+looks a lot like Adam&rsquo;s, but Alexander uses his own modules he&rsquo;s built up from
+previous challenges.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> My::Prime::Util <span style="color:#e6db74">qw(is_prime)</span>;
+<span style="color:#66d9ef">use</span> My::String::Util <span style="color:#e6db74">qw(is_palindromic)</span>;
+
+run() <span style="color:#66d9ef">unless</span> caller();
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run</span>() {
+    say join( <span style="color:#e6db74">&#34;\n&#34;</span>, grep { is_palindromic($_) <span style="color:#f92672">&amp;&amp;</span> is_prime($_) } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span> );
+}
+</code></pre></div><p>You&rsquo;ll notice the basic check is there: if a number is palindromic and prime,
+it&rsquo;s a winner!</p>
+<h2 id="arne-sommer1">Arne Sommer</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/arne-sommer/perl/ch-1.pl">Arne Sommer&rsquo;s
+solution</a>
+relies on <a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a> and scalar <code>reverse</code> for the palindromic check:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $current (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $limit <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+{
+  <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> is_prime($current);
+  <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $current <span style="color:#f92672">eq</span> reverse($current);
+
+  push(@result, $current);
+}
+</code></pre></div><p><strong>Blog</strong> › <a href="https://raku-musings.com/primarily-happy.html">Primarily Happy with Raku and Perl - Arne Sommer</a></p>
+<h2 id="athanasius1">Athanasius</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/athanasius/perl/ch-1.pl">Athanasius&rsquo;s
+solution</a>
+starts off with a POD comment outlining some observations, and the overall
+algorithm they will employ.</p>
+<p>Here&rsquo;s the high level logic:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $primes <span style="color:#f92672">=</span> get_primes();
+    <span style="color:#66d9ef">my</span> @pr_pals;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $prime (@$primes)
+    {
+        push @pr_pals, $prime <span style="color:#66d9ef">if</span> is_palindrome( $prime );
+    }
+</code></pre></div><p>The <code>get_primes()</code> sub uses a Sieve of Eratosthenes to generate a list of
+prime numbers. However, there&rsquo;s a twist! Athanasius quotes <a href="http://oeis.org/A002385">David Wasserman in
+OEIS A002385</a>:</p>
+<blockquote>
+<p>Every palindrome with an even number of digits is divisible by 11, so 11 is the only member of the sequence with an even number of digits.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    @primes <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">||</span> length <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span> } @primes;
+</code></pre></div><p>From there, <code>@pr_pals</code> will hold the result. Athanasius then loops over the
+list of <code>@$primes</code> and includes every such prime that also <code>is_palindrome()</code>,
+similar to logic we&rsquo;ve seen from other solutions.</p>
+<p>The <code>is_palindrome()</code> function is very explicit in its check of each pair of
+digits:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_palindrome</span> {
+    <span style="color:#66d9ef">my</span> ($n)     <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span>  @digits <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#39;&#39;</span>, $n;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> int( scalar( @digits ) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>))
+    {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $digits[ $i ] <span style="color:#f92672">==</span> $digits[ $#digits <span style="color:#f92672">-</span> $i ];
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><p>I really like the amount of thought Athanasius has put into this solution.</p>
+<h2 id="cheok-yin-fung1">Cheok-Yin Fung</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/cheok-yin-fung/perl/ch-1.pl">Cheok-Yin Fung&rsquo;s
+solution</a>
+is a refreshingly cheeky one-liner:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map {  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_\n&#34;</span> <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">1</span> x $_) <span style="color:#f92672">!~</span> <span style="color:#e6db74">/^1?$|^(11+?)\1+$/</span> <span style="color:#f92672">&amp;&amp;</span> $_ <span style="color:#f92672">eq</span> scalar reverse $_ } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span>
+</code></pre></div><p>Looking a little closer at that regex, it looks familiar to me, and Cheok-Yin
+immediately confirms my suspicion with the following comment: &ldquo;using Abigail&rsquo;s
+regex to test for prime numbers&rdquo;. If you&rsquo;ve never seen this bit of obfuscated
+Perl lore, you&rsquo;re in for a treat. <a href="http://neilk.net/blog/2000/06/01/abigails-regex-to-test-for-prime-numbers/">Here&rsquo;s a detailed
+analysis</a>.</p>
+<p>So that&rsquo;s the prime number test handled. Cheok-Yin then uses the <code>scalar reverse</code> check for palindromes.</p>
+<h2 id="colin-crain1">Colin Crain</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/colin-crain/perl/ch-1.pl">Colin Crain&rsquo;s
+solution</a>
+starts with a suitably svelte Sieve of Eratosthenes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sieve</span> ($limit) {
+    <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>) x $limit;
+    @s[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $f (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>sqrt($limit)) {
+        $s[$f <span style="color:#f92672">*</span> $_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> $f<span style="color:#f92672">..</span>$limit<span style="color:#f92672">/</span>$f;
+    }
+    <span style="color:#66d9ef">return</span> grep { $s[$_] } (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$limit);
+}
+</code></pre></div><p>This <code>sieve</code> function returns a list of primes up to a maximum of <code>$limit</code>.
+Colin then feeds that list through a <code>grep</code> regex to filter out anything that
+isn&rsquo;t also a palindrome:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say $_ <span style="color:#66d9ef">for</span> grep { <span style="color:#e6db74">/^(.*).?(??{reverse($1)})$/</span> } sieve($input);
+</code></pre></div><p>The regex is interesting in that it matches part of the string, and then
+insists that the remainder of the string must match <code>??{reverse($1)}</code> (in
+other words, the second half must be the reverse of the first half). There&rsquo;s
+an optional character in the middle, for the case of odd-length numbers.</p>
+<p>The <code>??{ code }</code> syntax is called a <em>postponed regular subexpression.</em> This is
+a fancy way of saying, &ldquo;Perl will run your code, and then feed it back in to
+the regex engine as a new subexpression,&rdquo; so the code&rsquo;s output can contain a
+pattern.</p>
+<p>It&rsquo;s a clever way of doing things, for sure. The backtracking Perl will
+perform means <code>reverse($1)</code> will be called n/2 times, where n is the length of
+the string. I don&rsquo;t care, though. It&rsquo;s fun, and I like it.</p>
+<h2 id="dave-jacoby1">Dave Jacoby</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/dave-jacoby/perl/ch-1.pl">Dave Jacoby&rsquo;s solution</a>
+uses a home-grown <code>is_prime()</code> function that uses trial division:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> ($n) {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt $n ) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>_ }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><p>Dave then loops over integers between 1 and 1000, printing out those that pass
+an <code>is_prime()</code> check and a <code>reverse</code> palindrome check:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say join <span style="color:#e6db74">&#34;\n&#34;</span>,
+    grep { $_ <span style="color:#f92672">eq</span> reverse $_ }
+    grep { is_prime($_) }
+    <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span>;
+</code></pre></div><p>Dave&rsquo;s blog is—as always—a good read. In it, he also provides a one-liner with
+<a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -MMath::Prime::Util<span style="color:#f92672">=</span>is_prime -e <span style="color:#e6db74">&#39;print join &#34;\n&#34;, grep { $_ eq reverse $_} grep { is_prime($_) } 1..1000&#39;</span>
+</code></pre></div><p><strong>Blog</strong> › <a href="https://jacoby.github.io/2022/05/09/shiny-happy-numbers-weekly-challenge-164.html">Shiny Happy Numbers: Weekly Challenge #164 | Committed to Memory</a></p>
+<h2 id="deadmarshal1">Ali Moradi</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/deadmarshal/perl/ch-1.pl">Ali Moradi&rsquo;s solution</a>
+is another good example of a trial division <code>is_prime()</code> function and string
+reverse palindrome check:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span>{
+    <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>; }
+    <span style="color:#66d9ef">foreach</span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>sqrt($n)) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+}
+
+<span style="color:#66d9ef">foreach</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span>){
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_ &#34;</span> <span style="color:#66d9ef">if</span> ($_ <span style="color:#f92672">==</span> reverse $_) <span style="color:#f92672">&amp;&amp;</span> (is_prime($_));
+}
+</code></pre></div><h2 id="duncan-c-white1">Duncan C. White</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/duncan-c-white/perl/ch-1.pl">Duncan C. White&rsquo;s solution</a>
+uses his own <code>MakePrimes</code> module, which is a standard sieve. It is code he has
+re-used in the Challenge at least 14 times, with the first instance I could
+find being all the way back in week 22! The palindrome check is our old
+friend, <code>$x eq reverse($x)</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">qw(.)</span>;
+<span style="color:#66d9ef">use</span> Function::Parameters;
+<span style="color:#66d9ef">use</span> MakePrimes;
+
+<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+
+fun ispalindrome( $x )
+{
+    <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">eq</span> reverse($x) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+}
+
+<span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> primes_upto( $n );
+
+say <span style="color:#e6db74">&#34;Palindromic primes up to $n&#34;</span>;
+say <span style="color:#66d9ef">for</span> grep { ispalindrome($_) } @primes;
+</code></pre></div><h2 id="e-choroba1">E. Choroba</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/e-choroba/perl/ch-1.pl">E. Choroba&rsquo;s solution</a>
+uses <a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a>&lsquo;s
+<code>forprimes</code> subroutine to efficiently loop through a list of primes. That
+subroutine accepts a code block that is run for every prime in the specified
+range. Choroba <code>push</code>es the number to a result list if that number passes the
+familiar <code>$_ == reverse</code> palindrome test:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw{ forprimes is_prime }</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_palindrome</span> {
+    <span style="color:#66d9ef">my</span> @pp;
+    forprimes { push @pp, $_ <span style="color:#66d9ef">if</span> $_ <span style="color:#f92672">==</span> reverse } <span style="color:#ae81ff">999</span>;
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@pp
+}
+</code></pre></div><h2 id="jaldhar-h-vyas1">Jaldhar H. Vyas</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/jaldhar-h-vyas/perl/ch-1.pl">Jaldhar H. Vyas&rsquo;s solution</a>
+starts off with an <code>isPrime()</code> function that uses trial division.
+Jaldhar then loops over all numbers from 1..1000 and returns those that are
+prime and palindromic:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say join <span style="color:#e6db74">q{ }</span>, grep { isPrime($_) <span style="color:#f92672">&amp;&amp;</span> $_ <span style="color:#f92672">==</span> reverse $_ } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span>;
+</code></pre></div><p><strong>Blog</strong> › <a href="https://www.braincells.com/perl/2022/05/perl_weekly_challenge_week_164.html">Perl Weekly Challenge: Week 164</a></p>
+<h2 id="james-marquis1">James Marquis</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/james-marquis/perl/ch-1.pl">James Marquis&rsquo;s solution</a>
+is interesting in that it works in several discrete stages. Here is the
+initialization:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Math::Prime::Util  <span style="color:#e6db74">qw(:all)</span>;
+<span style="color:#66d9ef">my</span> @start <span style="color:#f92672">=</span> ();
+<span style="color:#66d9ef">my</span> @start2 <span style="color:#f92672">=</span> ();
+<span style="color:#66d9ef">my</span> @start3 <span style="color:#f92672">=</span> ();
+<span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> ();
+ @start <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span><span style="color:#f92672">..</span>$ARGV[<span style="color:#ae81ff">0</span>]);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;You entered $ARGV[0]\n&#34;</span>; <span style="color:#75715e"># Shown at the end as well</span>
+ @start2 <span style="color:#f92672">=</span> grep <span style="color:#e6db74">/\b[1379]\d*[1379]$/</span>, @start;
+@start3 <span style="color:#f92672">=</span> grep {$_  <span style="color:#66d9ef">if</span> is_prime($_)} @start2;
+</code></pre></div><p>Already here, we can see <code>@start</code> is populated with all 2+ digit numbers in
+range. <code>@start2</code> is a simple filter that takes advantage of the fact that
+prime numbers (other than 2) end in 1, 3, 7, or 9 (and if they&rsquo;re palindromic,
+they must begin with one of these numbers as well). James could have included
+a stronger test here, to ensure the first digit matched the last, but it&rsquo;s not
+really necessary at this stage. Finally, <code>@start3</code> filters for prime numbers,
+using <code>Math::Prime::Util</code>.</p>
+<p>Next up, James loops over <code>@start3</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> (@start3){
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_\n&#34;</span> <span style="color:#66d9ef">if</span>  is_prime($_);
+    <span style="color:#66d9ef">my</span> $rev <span style="color:#f92672">=</span> reverse $_;
+
+    @factors <span style="color:#f92672">=</span> factor($rev);
+    <span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;Reverse of $_ is $rev has factors @factors .\n&#34;</span> <span style="color:#66d9ef">unless</span> is_prime($rev);
+}
+
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;The range requested was  10 to $ARGV[0].\n&#34;</span>;
+</code></pre></div><p>While James hasn&rsquo;t filtered out non-palindromes here, he was on the right
+track with <code>reverse</code>.</p>
+<h2 id="james-smith1">James Smith</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/james-smith/perl/ch-1.pl">James Smith&rsquo;s solution</a>
+uses <code>Math::Prime::Util</code> for primality testing, and <code>reverse</code> to check for
+palindromes, with a twist:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> ($p,$lim,@pal)<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>,shift<span style="color:#e6db74">//</span><span style="color:#ae81ff">1e3</span>);
+
+($p <span style="color:#f92672">^</span> reverse $p) <span style="color:#f92672">||</span> (push @pal,$p) <span style="color:#66d9ef">while</span> ($p<span style="color:#f92672">=</span>next_prime $p) <span style="color:#f92672">&lt;</span> $lim;
+</code></pre></div><p>There is a fair bit of potential confusion for the unwary, packed into that
+second line.</p>
+<p>Even though James uses <code>reverse</code> to reverse the string, Perl will treat the
+result as a number for the <code>^</code> operator, meaning, we&rsquo;re seeing a <em>bitwise</em> XOR
+here. When A and B are equal, A ^ B == 0 (false), and when A and B differ, A ^
+B != 0 (true).</p>
+<p>The <code>||</code> (or) logic is tricky as well. At first glance, you might think the
+<code>push(...) while</code> loop is always run, but it isn&rsquo;t, because the <code>||</code>
+operator short circuits when the left hand side is true. Therefore, when A ^ B
+is true (that is, when the numbers are <em>not</em> equal), the right hand side (the
+<code>push</code>) is not run. Or with fewer double negatives: the number is <code>push</code>ed to
+the results only when it is equal to its reverse (a palindrome).</p>
+<p>These sorts of hacks always bring a smile to my face in the Weekly Challenge
+context, as they would be right at home in code golf or obfuscation
+challenges.</p>
+<p><strong>Blog</strong> › <a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-164/james-smith">perlweeklychallenge-club/challenge-164/james-smith at master · drbaggy/perlweeklychallenge-club · GitHub</a></p>
+<h2 id="jo-371">Jorg Sommrey</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/jo-37/perl/ch-1.pl">Jorg Sommrey&rsquo;s solution</a>
+uses <code>Math::Prime::Util</code>'s <code>todigits</code> and <code>fromdigits</code> functions, which are
+efficient alternatives to the usual <code>split</code> and <code>join</code>, and they support
+arbitrary bases, too. I often overlook these functions myself, so this is a
+great reminder!</p>
+<p>Jorg also uses
+<a href="https://metacpan.org/pod/Syntax::Keyword::Gather"><code>Syntax::Keyword::Gather</code></a>
+as a Perl 5 implementation of Raku&rsquo;s <code>gather</code> / <code>take</code> keywords, which in this
+case replace the typical <code>push @result, $p</code> gather step.</p>
+<p>The actual loop here uses the <code>prime_iterator</code> function, so every time <code>$p = $pi-&gt;()</code> is called, <code>$p</code> is the next prime.</p>
+<p>Finally, we see a variant of the usual <code>reverse</code> method. However, this is
+where <code>fromdigits</code> and <code>todigits</code> come into the picture, to compare in any
+<code>$base</code>.</p>
+<p>Without further ado, here is Jorg&rsquo;s main <code>prime_palindrome()</code> sub:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(fromdigits todigits prime_iterator)</span>;
+<span style="color:#66d9ef">use</span> Syntax::Keyword::Gather;
+
+<span style="color:#75715e"># Collect all prime palindrome numbers in base $base not larger than $n</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_palindrome</span> ($n, $base) {
+    gather {
+        <span style="color:#66d9ef">my</span> $pi <span style="color:#f92672">=</span> prime_iterator;
+        <span style="color:#66d9ef">while</span> ((<span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $pi<span style="color:#f92672">-&gt;</span>()) <span style="color:#f92672">&lt;=</span> $n) {
+            take $p <span style="color:#66d9ef">if</span> $p <span style="color:#f92672">==</span> fromdigits [reverse todigits $p, $base], $base;
+        }
+    }
+}
+</code></pre></div><h2 id="julien-fiegehenn1">Julien Fiegehenn</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/julien-fiegehenn/perl/ch-1.pl">Julien Fiegehenn&rsquo;s solution</a>
+starts off with a hard-coded array of <code>@primes</code> below 1000. We&rsquo;ve already done
+so much work with prime numbers I think we can take for granted Julien knows
+at least a few ways to generate such a list.</p>
+<p>The loop that generates the prime palindromes will look familiar:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $number (@primes) {
+    say $number <span style="color:#66d9ef">if</span> $number <span style="color:#f92672">eq</span> reverse $number;
+}
+</code></pre></div><h2 id="kjetillll1">Kjetil Skotheim</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/kjetillll/perl/ch-1.pl">Kjetil Skotheim&rsquo;s solution</a>
+splits out the prime and palindrome functionality into two subs, which work
+with regexes (or regexen, if you like):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_palindromic</span> { local $_ <span style="color:#f92672">=</span> shift<span style="color:#e6db74">//</span>$_;        <span style="color:#e6db74">/^((.)(?1)\2|.?)$/</span> }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span>       { local $_ <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> x (shift<span style="color:#e6db74">//</span>$_); <span style="color:#f92672">!</span><span style="color:#e6db74">/^1?$|^(11+?)\1+$/</span> }
+</code></pre></div><p>You&rsquo;ll recognize Abigail&rsquo;s prime number regex from earlier. The palindrome
+regex is identical to <a href="https://stackoverflow.com/a/233326/3847547">one posted to Stack
+Overflow</a>.</p>
+<p>Notice how it uses a recursive subpattern <code>(?1)</code> followed by the <code>\2</code> which
+matches the whole recursive part. The recursion itself will ensure the
+subpattern is reversed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">print</span> join<span style="color:#e6db74">&#39; &#39;</span>, grep is_palindromic <span style="color:#f92672">&amp;&amp;</span> is_prime, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">999</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p>Running this solution on primes below 1000 is quick, but asking it to find the
+next set (below 100000; there are no palindromic primes between 1000..10000)
+spins up my fans for 19 seconds.</p>
+<h2 id="laurent-rosenfeld1">Laurent Rosenfeld</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/laurent-rosenfeld/perl/ch-1.pl">Laurent Rosenfeld&rsquo;s solution</a>
+returns us to some semblance of normalcy with a familiar <code>is_prime</code> and
+<code>reverse</code> solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say map <span style="color:#e6db74">&#34;$_ &#34;</span>, grep { is_prime $_} grep {$_ <span style="color:#f92672">==</span> reverse $_} <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">999</span>;
+</code></pre></div><p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-164-prime-palindromes-and-happy-numbers.html">Perl Weekly Challenge 164: Prime Palindromes and Happy Numbers</a></p>
+<h2 id="lubos-kolouch1">Lubos Kolouch</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/lubos-kolouch/perl/ch-1.pl">Lubos Kolouch&rsquo;s solution</a>
+uses <code>Math::Prime::Util</code> to generate primes, and defines an <code>is_palindrome</code>
+function for the palindrome testing:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_palindrome</span> {
+    <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">return</span> $what <span style="color:#f92672">eq</span> reverse $what;
+}
+</code></pre></div><h2 id="luiz-felipe1">Luiz Felipe</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/luiz-felipe/perl/ch-1.pl">Luiz Felipe&rsquo;s solution</a> gives us a character-by-character <code>is_palindrome</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_palindrome</span> {
+    <span style="color:#66d9ef">my</span> (@number, $reverse);
+
+    @number <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, shift;
+    $reverse <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $#number; $i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">--</span>) {
+        $reverse <span style="color:#f92672">=</span> $reverse <span style="color:#f92672">.</span> $number[$i];
+    }
+
+    <span style="color:#66d9ef">return</span> $reverse <span style="color:#f92672">eq</span> join <span style="color:#e6db74">&#39;&#39;</span>, @number;
+}
+</code></pre></div><p>Luiz&rsquo;s <code>is_prime</code> works by trial division:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> {
+    <span style="color:#66d9ef">my</span> ($number);
+
+    $number <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; $i <span style="color:#f92672">&lt;=</span> $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>; $i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($number % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><h2 id="mattneleigh1">Matthew Neleigh</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/mattneleigh/perl/ch-1.pl">Matthew Neleigh&rsquo;s solution</a>
+generates primes with a Sieve of Eratosthenes. Interestingly, however, instead
+of returning an array or hash, Matthew returns a string, with the <em>n</em>th
+character being set to 1 if and only if <em>n</em> is prime.</p>
+<p>Matthew notes this is done to save memory versus using an array. Indeed, using
+<a href="https://metacpan.org/pod/Devel::Size"><code>Devel::Size</code></a>, I found that an array
+of ones and zeroes takes up about 66x more memory than the equivalent string.
+One could take this even further with a bit map, and cut that size in half by
+skipping even numbers (which are always composite, except for the number 2).</p>
+<p>The <code>find_palindromic_primes()</code> sub uses the <code>$primes</code> result from the sieve
+to generate a list of <code>@palindromic_primes</code>. Beware, <code>$primes</code> is both the
+input (desired count of primes), and is then reused to store the results from
+the sieve:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_palindromic_primes</span>{
+    <span style="color:#66d9ef">my</span> $primes <span style="color:#f92672">=</span> int(shift());
+
+    <span style="color:#66d9ef">return</span>(undef)
+        <span style="color:#66d9ef">if</span>($primes <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>);
+
+    <span style="color:#66d9ef">my</span> @palindromic_primes <span style="color:#f92672">=</span> ();
+
+    <span style="color:#75715e"># Gather a quantity of prime numbers</span>
+    $primes <span style="color:#f92672">=</span> sieve_of_eratosthenes($primes);
+
+    <span style="color:#75715e"># Loop from 2 onward...</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> (length($$primes) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)){
+        <span style="color:#66d9ef">if</span>(substr($$primes, $i, <span style="color:#ae81ff">1</span>)){
+            <span style="color:#75715e"># $i is prime; see if it&#39;s a palindrome and</span>
+            <span style="color:#75715e"># if so, store it in the list</span>
+            push(@palindromic_primes, $i)
+                <span style="color:#66d9ef">if</span>(reverse(split(<span style="color:#e6db74">&#34;&#34;</span>, $i)) <span style="color:#f92672">==</span> $i);
+        }
+    }
+
+    <span style="color:#66d9ef">return</span>(@palindromic_primes);
+
+}
+</code></pre></div><p>The palindrome test has a little bit of subtlety with list and scalar context:
+<code>reverse(split(&quot;&quot;, $i))</code> splits the number and then reverses the list of
+digits. However, since that result is immediately being used for a scalar
+comparison, this puts it back into scalar context, returning a string.</p>
+<p>The <code>sieve_of_eratosthenes</code> function returns a scalar ref rather than the
+scalar itself. There is no space or time efficiency for doing so, but perhaps
+Luiz had another motivation for using a ref here.</p>
+<h2 id="mohammad-anwar1">Mohammad S Anwar</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/mohammad-anwar/perl/ch-1.pl">Mohammad S Anwar&rsquo;s solution</a>
+contains a nicely compact trial divison <code>is_prime()</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> {
+    <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
+
+    <span style="color:#66d9ef">do</span> { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>_) } <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt $n);
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><p>The important line in his <code>prime_palindrome()</code> function is as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        <span style="color:#66d9ef">my</span> $_i <span style="color:#f92672">=</span> (reverse $i) <span style="color:#f92672">+</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> is_prime($i) <span style="color:#f92672">and</span> is_prime($_i);
+</code></pre></div><p>Can you see a difference here, compared to other solutions? Mohammad isn&rsquo;t
+generating prime palindromes, he&rsquo;s generating <strong>emirps!</strong></p>
+<p>What the heck is an &ldquo;emirp&rdquo;? An emirp (prime spelled backwards) is a number
+that gives a different prime when the digits are reversed. Technically, 11
+isn&rsquo;t an emirp, because the reverse gives you the <em>same</em> prime.</p>
+<h2 id="perlboy19671">Niels van Dijke</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/perlboy1967/perl/ch-1.pl">Niels van Dijke&rsquo;s solution</a>
+uses <a href="https://metacpan.org/pod/Math::Prime::XS"><code>Math::Prime::XS</code></a> for a
+compact one-liner:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say join <span style="color:#e6db74">&#39;, &#39;</span>, grep { $_ <span style="color:#f92672">==</span> reverse $_ } primes(<span style="color:#ae81ff">1000</span>);
+</code></pre></div><h2 id="pete-houston1">Pete Houston</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/pete-houston/perl/ch-1.pl">Pete Houston&rsquo;s solution</a>
+uses <code>Math::Prime::Util</code> and scalar <code>reverse</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @pp;
+
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $max) {
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $n <span style="color:#f92672">eq</span> reverse $n;
+    push @pp, $n <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">eq</span> reverse $n <span style="color:#f92672">&amp;&amp;</span> is_prime ($n);
+}
+
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@pp\n&#34;</span>;
+</code></pre></div><p>This code does not return the correct output. We instead get a single number:
+2. Can you spot why?</p>
+<p>The <code>next unless ...</code> line is a red herring. That line is unnecessary, but
+it&rsquo;s not what is messing up our output. No, it&rsquo;s the following line. You&rsquo;d be
+forgiven for thinking the order of operations in that <code>if</code> condition would be
+equivalent to <code>($n eq reverse $n) &amp;&amp; (is_prime($n))</code>, but in fact it is
+evaluated as <code>$n eq reverse($n &amp;&amp; is_prime($n))</code>!</p>
+<p>The number 2 is the only number that passes, because <code>is_prime()</code> returns 2 if
+the number is definitely prime, so <code>2 eq reverse(2 &amp;&amp; 2)</code> is true.
+(<code>is_prime()</code> returns 1 if a number is probably prime, which can only happen
+for numbers larger than 2^64).</p>
+<p>Adding some brackets fixes the error: <code>$n eq reverse($n) &amp;&amp; is_prime($n)</code>.
+Another way to go about it is to use the loose <code>and</code>: <code>$n eq reverse $n and is_prime($n)</code>. No doubt Pete knows this and merely made a last minute
+adjustment that slipped through testing. I&rsquo;ve definitely been there!</p>
+<h2 id="peter-campbell-smith1">Peter Campbell Smith</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/peter-campbell-smith/perl/ch-1.pl">Peter Campbell Smith&rsquo;s solution</a>
+uses a nested loop to combine the logic of his trial division prime check,
+with the scalar <code>reverse</code> palindrome check:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> (%primes, $j, $p, $results, $reverse);
+
+<span style="color:#75715e"># discover primes</span>
+%primes <span style="color:#f92672">=</span> ();
+OUTER: <span style="color:#66d9ef">for</span> $j (<span style="color:#ae81ff">2</span> <span style="color:#f92672">...</span> <span style="color:#ae81ff">1000</span>) {
+
+    <span style="color:#75715e"># not prime if $j divisible by a lesser prime</span>
+    <span style="color:#66d9ef">for</span> $p (keys %primes) {
+        <span style="color:#66d9ef">next</span> OUTER <span style="color:#66d9ef">if</span> $j % <span style="color:#960050;background-color:#1e0010">$</span>p <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+    }
+
+    <span style="color:#75715e"># found a prime, check for palindromicity</span>
+    $primes{$j} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    $reverse <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    $reverse <span style="color:#f92672">=</span> $reverse <span style="color:#f92672">.</span> $1 <span style="color:#66d9ef">while</span> $j <span style="color:#f92672">=~</span> m<span style="color:#f92672">|</span>(<span style="color:#f92672">.</span>)<span style="color:#f92672">|</span>g;
+    $results <span style="color:#f92672">.=</span> <span style="color:#e6db74">qq[$j, ]</span> <span style="color:#66d9ef">if</span> $j <span style="color:#f92672">==</span> reverse($j);
+}
+say <span style="color:#e6db74">qq[\nThe following are palindromic primes:\n]</span> <span style="color:#f92672">.</span> substr($results, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
+</code></pre></div><p><strong>Blog</strong> › <a href="https://pjcs-pwc.blogspot.com/2022/05/palindromic-primes-and-moody-numbers.html">Palindromic primes and moody numbers</a></p>
+<h2 id="pokgopun1">PokGoPun</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/pokgopun/perl/ch-1.pl">PokGoPun&rsquo;s solution</a>
+checks for palindromes in a different way (whitespace and comments added by
+me):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> int(length($_)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+        $pld{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $i<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>
+                   <span style="color:#f92672">||</span> $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
+                   <span style="color:#f92672">&amp;&amp;</span> $_ <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^(
+</span><span style="color:#e6db74">                        \d{$i})     # $1: First half of number
+</span><span style="color:#e6db74">                        \d?         #     Middle digit if odd length
+</span><span style="color:#e6db74">                        (\d{$i}     # $2: Second half of number
+</span><span style="color:#e6db74">                    )$/x</span> <span style="color:#f92672">&amp;&amp;</span> $1 <span style="color:#f92672">eq</span> join <span style="color:#e6db74">&#34;&#34;</span>, reverse split <span style="color:#e6db74">//</span>, $2;
+</code></pre></div><p>So the regex effectively splits the number into halves (throwing away the
+middle digit, if there is one), and then the first half is compared to the
+<code>reverse</code> of the second half. Interesting.</p>
+<p>The primality testing is done with a sieve. Instead of building up a list of
+primes, they <code>delete</code> any composites they find from the list of palindromes
+found from the previous step. Here is the sieve:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>sqrt($n)){
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+        {
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> $n;
+            delete $pld{$i};
+            $i <span style="color:#f92672">+=</span> $_;
+            <span style="color:#66d9ef">redo</span>;
+        }
+    }
+</code></pre></div><p>Do you see that nested block? The <code>redo</code> will actually return to the top of
+that block, rather than the top of the <code>foreach</code> block! As the <code>redo</code> perldoc
+puts it, &ldquo;a block by itself is semantically identical to a loop that executes
+once. Thus redo inside such a block will effectively turn it into a looping
+construct.&rdquo; The same goes for <code>last</code>, <code>next</code>, etc. Neat, eh?</p>
+<h2 id="polettix1">Flavio Poletti</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/polettix/perl/ch-1.pl">Flavio Poletti&rsquo;s solution</a>
+uses a prime number algorithm credited to Wikipedia:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> { <span style="color:#75715e"># https://en.wikipedia.org/wiki/Primality_test</span>
+   <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>;
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span>;
+   <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> ($_[<span style="color:#ae81ff">0</span>] % 2) <span style="color:#f92672">&amp;&amp;</span> ($_[<span style="color:#ae81ff">0</span>] % 3);
+   <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; $i <span style="color:#f92672">*</span> $i <span style="color:#f92672">&lt;=</span> $_[<span style="color:#ae81ff">0</span>]; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">6</span>) {
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> ($_[<span style="color:#ae81ff">0</span>] % <span style="color:#960050;background-color:#1e0010">$</span>i) <span style="color:#f92672">&amp;&amp;</span> ($_[<span style="color:#ae81ff">0</span>] % <span style="color:#960050;background-color:#1e0010">($</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>));
+   }
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><p>This works by ruling out some low hanging fruit, such as 0, 1, 2, 3, and
+multiples of 2 and 3. It then performs the so-called &ldquo;6k ± 1&rdquo; test to reduce
+the number of operations, compared to trial division.</p>
+<p>As a side note, I wholeheartedly encourage code re-use, so I very much
+appreciate when people cite their sources like this, when their work is taken
+or derived from someone else&rsquo;s.</p>
+<p>The <code>is_palindrome()</code> check uses scalar <code>reverse</code>, as we&rsquo;re very familiar with
+by now.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say join <span style="color:#e6db74">&#39; &#39;</span>, grep {is_prime($_) <span style="color:#f92672">&amp;&amp;</span> is_palindrome($_)} <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $max;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_palindrome</span> ($n) { $n <span style="color:#f92672">eq</span> reverse $n }
+</code></pre></div><p><strong>Blog</strong> › <a href="https://github.polettix.it/ETOOBUSY/2022/05/10/pwc164-prime-palindrome/">PWC164 - Prime Palindrome - ETOOBUSY</a></p>
+<h2 id="robert-dicicco1">Robert DiCicco</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/robert-dicicco/perl/ch-1.pl">Robert DiCicco&rsquo;s solution</a>
+uses <code>is_prime</code> and scalar <code>reverse</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1000</span>; $n<span style="color:#f92672">++</span>){
+  <span style="color:#66d9ef">if</span> (is_prime($n)) {
+    $prime_rev <span style="color:#f92672">=</span> reverse($n);
+    <span style="color:#66d9ef">if</span> ((is_prime($prime_rev)) <span style="color:#f92672">&amp;&amp;</span> ($n <span style="color:#f92672">==</span> $prime_rev)){
+      <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$n &#34;</span>;
+    }
+  }
+}
+</code></pre></div><h2 id="roger-bell-west1">Roger Bell West</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/roger-bell-west/perl/ch-1.pl">Roger Bell West&rsquo;s
+solution</a>
+has an interesting take on the palindrome test:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isnumpal</span> {
+    <span style="color:#66d9ef">my</span> $c0 <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $c0;
+    <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> ($c <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> $j <span style="color:#f92672">+</span> $c % 10;
+        $c <span style="color:#f92672">=</span> int($c<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>);
+    }
+    <span style="color:#66d9ef">return</span> ($c0 <span style="color:#f92672">==</span> $j);
+}
+</code></pre></div><p>Rather than using <code>reverse</code> or other such string manipulation, Roger has gone
+at it numerically, stripping off each trailing digit with <code>$c % 10</code> before
+removing it with <code>$c = int($c / 10)</code>. <code>$j</code> is built up one digit at a time. If
+<code>$j</code> is equal to the initial input, it&rsquo;s a palindrome. This method would be
+well suited for languages like C, which would then avoid the need for number
+conversions like <code>snprintf()</code> or the non-standard but common <code>itoa()</code>.</p>
+<p><strong>Blog</strong> › <a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_164__Happy_Palindromes.html">RogerBW&rsquo;s Blog: The Weekly Challenge 164: Happy Palindromes</a></p>
+<h2 id="ryan-thompson1">Ryan Thompson</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/ryan-thompson/perl/ch-1.pl">My solution</a>
+uses a sieve to generate all primes under the maximum, and <code>scalar reverse</code> to
+check for palindromes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say <span style="color:#66d9ef">for</span> grep { $_ <span style="color:#f92672">eq</span> scalar reverse $_ } primes_under( pop <span style="color:#e6db74">//</span> <span style="color:#ae81ff">1000</span> );
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">primes_under</span> {
+    <span style="color:#66d9ef">my</span> $limit <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @comp; <span style="color:#75715e"># Composite numbers (non-primes)</span>
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$limit) {
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $comp[$n];
+        $comp[$_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> map { $n <span style="color:#f92672">*</span> $_ } <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$limit<span style="color:#f92672">/</span>$n;
+    }
+
+    <span style="color:#ae81ff">2</span>, grep { <span style="color:#f92672">!</span>$comp[$_] } <span style="color:#ae81ff">3</span><span style="color:#f92672">..</span>$limit;
+}
+</code></pre></div><p><strong>Blog</strong> › <a href="https://ry.ca/2022/05/palindromic-primes/">PWC 164 › Palindromic Primes – Ryan J Thompson</a></p>
+<h2 id="ulrich-rieke1">Ulrich Rieke</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/ulrich-rieke/perl/ch-1.pl">Ulrich Rieke&rsquo;s solution</a>
+has an <code>isPrime()</code> checker that uses trial division:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isPrime</span> {
+  <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
+  <span style="color:#66d9ef">if</span> ( $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> ;
+  }
+  <span style="color:#66d9ef">elsif</span> ( $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> ) {
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> ;
+  }
+  <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">my</span> $root <span style="color:#f92672">=</span> ceil( sqrt( $number ) ) ;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $root ) {
+        <span style="color:#66d9ef">if</span> ( $number % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> ;
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> ;
+  }
+}
+</code></pre></div><p>Ulrich&rsquo;s <code>isPalindrome()</code> uses <code>split//</code> and <code>reverse</code> in list context,
+<code>join</code>'d back together:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isPalindrome</span> {
+  <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
+  <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split(<span style="color:#e6db74"> //</span> , $number ) ;
+  <span style="color:#66d9ef">return</span> join( <span style="color:#e6db74">&#39;&#39;</span> , reverse @digits ) <span style="color:#f92672">eq</span> $number ;
+}
+
+say join( <span style="color:#e6db74">&#39;,&#39;</span> , grep { isPrime( $_ ) <span style="color:#f92672">&amp;&amp;</span> isPalindrome( $_ ) } (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">999</span>)) ;
+</code></pre></div><h2 id="wlmb1">W. Luis Mochan</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/wlmb/perl/ch-1.pl">W. Luis Mochan&rsquo;s solution</a>
+uses <code>primes</code> from <code>Math::Prime::Util</code> along with scalar <code>reverse</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(primes)</span>;
+say <span style="color:#e6db74">&#34;Output: &#34;</span>, join <span style="color:#e6db74">&#34;, &#34;</span>, grep {$_ <span style="color:#f92672">eq</span> reverse} @{primes(<span style="color:#ae81ff">1000</span>)};
+</code></pre></div><p><strong>Blog</strong> › <a href="https://wlmb.github.io/2022/05/12/PWC164/">Perl Weekly Challenge 164. – W. Luis Mochán. Blog. – Físico, investigador del ICF-UNAM.Physicist, researcher at ICF-UNAM.</a></p>
+<hr>
+<hr>
+<h1 id="task2">Task #2 - Happy Numbers</h1>
+<p>Happy Numbers are found with the following method: Starting with a positive
+integer, <em>n,</em> replace that number by the sum of the squares of its digits, and
+repeat that process until the number equals 1 (n is happy), or it reaches a
+cycle that does not equal 1 (n is unhappy). The example provided is perhaps
+more instructive:</p>
+<pre><code>19 =&gt; 1^2 + 9^2
+   =&gt; 1   + 81
+   =&gt; 82 =&gt; 8^2 + 2^2
+         =&gt; 64  + 4
+         =&gt; 68 =&gt; 6^2 + 8^2
+               =&gt; 36  + 64
+               =&gt; 100 =&gt; 1^2 + 0^2 + 0^2
+                      =&gt; 1 + 0 + 0
+                      =&gt; 1
+</code></pre><p>Therefore, 19 is a happy number (in base 10).</p>
+<hr>
+<h2 id="discussion">Discussion</h2>
+<p>There are a few different solution options. The problem lends itself very well
+to a recursive solution, but an iterative solution will do just as well, and
+that&rsquo;s the direction most people went.</p>
+<p>Some people, like myself, opted for a straightforward and concise approach to
+calculating whether a particular number is happy or not. Others threw some
+more robust techniques at it, such as memoization, pre-computing, and snazzy
+formatting.</p>
+<p>Somewhat surprisingly (to me, at least), the average length of solution was
+almost double that of task 1, even with a fair number of people including
+their own primality test or sieve in task 1. So let&rsquo;s dive into these task 2
+solutions and see what&rsquo;s going on!</p>
+<hr>
+<h2 id="stats-1">Stats</h2>
+<ul>
+<li>
+<p>Number of submissions: <strong>28</strong></p>
+</li>
+<li>
+<p>Total SLOC: <strong>1433</strong></p>
+</li>
+<li>
+<p>Average SLOC: <strong>51</strong></p>
+</li>
+</ul>
+<h2 id="adam-russell2">Adam Russell</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/adam-russell/perl/ch-2.pl">Adam Russell&rsquo;s solution</a> starts us off happily enough:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">happy</span>{
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @seen;
+    <span style="color:#66d9ef">my</span> $pdi <span style="color:#f92672">=</span> sub{
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        {
+            $total <span style="color:#f92672">+=</span> ($n % 10)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+            $n <span style="color:#f92672">=</span> int($n <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>);
+            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+        }
+        <span style="color:#66d9ef">return</span> $total;
+    };
+    {
+        push @seen, $n;
+        $n <span style="color:#f92672">=</span> $pdi<span style="color:#f92672">-&gt;</span>($n);
+        <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> (grep {$_ <span style="color:#f92672">==</span> $n} @seen) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+    }
+    <span style="color:#66d9ef">return</span> boolean($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
+}
+</code></pre></div><p>This sub returns a true value if <code>$n</code> is happy. Adam uses an anonymous sub,
+<code>$pdi</code>—for <em>Perfect Digit Invariant</em>—to calculate the total sum of squares of
+digits for a given number. As with task #1, Adam uses <code>redo</code> inside of a bare
+BLOCK to exit the loop early.  Another way to write that block would be:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        <span style="color:#66d9ef">do</span> {
+            $total <span style="color:#f92672">+=</span> ($n % 10)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+            $n <span style="color:#f92672">=</span> int($n <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>);
+        } <span style="color:#66d9ef">while</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+</code></pre></div><p>However, Adam&rsquo;s blog post lets us know he is perfectly aware of his penchant
+for <code>redo</code>, which made three appearances in his solutions this week:</p>
+<blockquote>
+<p>I have become incorrigible in my use of redo! The novelty just hasn&rsquo;t worn off I suppose.</p>
+</blockquote>
+<p>Adam, I always enjoy pointing interesting language features out, so be as
+incorrigible as you like!</p>
+<p>Back to the <code>happy</code> function, we have another loop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {
+        push @seen, $n;
+        $n <span style="color:#f92672">=</span> $pdi<span style="color:#f92672">-&gt;</span>($n);
+        <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> (grep {$_ <span style="color:#f92672">==</span> $n} @seen) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p>The above block is another <code>redo</code> loop that continues looping over all sums of
+square digits starting from the original <code>$n</code>, until <code>$n == 1</code> or <code>$n</code> is in
+<code>@seen</code>.</p>
+<p>Adam then simply loops until he&rsquo;s found <code>N</code> happy numbers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">MAIN:{
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @happy;
+    {
+        $i<span style="color:#f92672">++</span>;
+        push @happy, $i <span style="color:#66d9ef">if</span> happy($i);
+        <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @happy <span style="color:#f92672">&lt;</span> N;
+    }
+    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;, &#34;</span>, @happy) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+}
+</code></pre></div><p><strong>Blog</strong> › <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/05/15">RabbitFarm (Perl)</a></p>
+<p><strong>Blog</strong> › <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/05/15">RabbitFarm (Prolog)</a></p>
+<h2 id="alexander-pankoff2">Alexander Pankoff</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/alexander-pankoff/perl/ch-2.pl">Alexander Pankoff&rsquo;s solution</a>
+starts off with the following high level logic:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">happy_numbers</span>($n) {
+    <span style="color:#66d9ef">my</span> @happy_numbers <span style="color:#f92672">=</span> ();
+    <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; @happy_numbers <span style="color:#f92672">&lt;</span> $n ; $i<span style="color:#f92672">++</span> ) {
+        push @happy_numbers, $i <span style="color:#66d9ef">if</span> is_happy_number($i);
+    }
+
+    <span style="color:#66d9ef">return</span> @happy_numbers;
+}
+</code></pre></div><p>As we are asked to find the first eight happy numbers, Alexander simply loops
+over all numbers until <code>@happy_numbers</code> contains <code>$n == 8</code> elements.</p>
+<p>The <code>is_happy_number()</code> function returns true iff <code>$n</code> is a happy number:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy_number</span>($n) {
+    <span style="color:#66d9ef">my</span> %seen;
+
+    <span style="color:#66d9ef">while</span> ( $n <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> ) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $seen{$n};
+        $seen{$n} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        $n <span style="color:#f92672">=</span> sum0( map { $_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> } split( <span style="color:#e6db74">m//</span>, $n ) );
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><p>Alexander detects loops with a <code>%seen</code> hash. Hashes are a good choice, here,
+since the distribution of seen values will be quite sparse, and hashes give
+constant time performance in Perl.</p>
+<p>The <code>while</code> loop keeps replacing <code>$n</code> with the sum of the squares of its
+digits, until <code>$n == 1</code>. If <code>$seen{$n}</code> is true, Alexander <code>returns</code> to bail
+out. All in all, this is an efficient, clean way to go about it!</p>
+<h2 id="arne-sommer2">Arne Sommer</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/arne-sommer/perl/ch-2.pl">Arne Sommer&rsquo;s solution</a> starts us off with a sum-of-digit-squares sub:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">happy</span> ($number) {
+    <span style="color:#66d9ef">return</span> sum( map { $_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> } split(<span style="color:#e6db74"> //</span>, $number ) );
+}
+</code></pre></div><p>The remaining code loops until the number of elements in <code>@result</code> is the
+<code>$limit</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @result;
+<span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+<span style="color:#66d9ef">while</span> ( <span style="color:#f92672">++</span>$number ) {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $number;
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $delta;
+
+    <span style="color:#66d9ef">while</span> ( $n <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+        $n <span style="color:#f92672">=</span> happy($n);
+        $i<span style="color:#f92672">--</span>;
+    }
+
+    <span style="color:#66d9ef">if</span> ($verbose) {
+        $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>
+          ? say <span style="color:#e6db74">&#34;: $number is happy (in &#34;</span> <span style="color:#f92672">.</span> ( <span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> $i ) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; step(s))&#34;</span>
+          : say <span style="color:#e6db74">&#34;: $number is not happy&#34;</span>;
+    }
+
+    push( @result, $number ) <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> @result <span style="color:#f92672">==</span> $limit;
+}
+</code></pre></div><p><strong>Blog</strong> › <a href="https://raku-musings.com/primarily-happy.html">Primarily Happy with Raku and Perl - Arne Sommer</a></p>
+<h2 id="athanasius2">Athanasius</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/athanasius/perl/ch-2.pl">Athanasius&rsquo;s solution</a>
+starts off by defining a <code>$CYCLE</code> set (via
+<a href="https://metacpan.org/pod/Set::Tiny"><code>Set::Tiny</code></a>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Const::Fast;
+<span style="color:#66d9ef">use</span> Set::Tiny;
+
+const <span style="color:#66d9ef">my</span> $CYCLE  <span style="color:#f92672">=&gt;</span> Set::Tiny<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( <span style="color:#e6db74">qw[ 4 16 37 58 89 145 42 20 ]</span> );
+</code></pre></div><p>In a code comment, Athanasius references the Wikipedia article&rsquo;s observation
+that all base-10 numbers either terminate at 1, or end in the above cycle.
+Thus, if any of those numbers are seen, we can immediately conclude the number
+is unhappy. And that&rsquo;s just what Athanasius does:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> ; scalar @happy <span style="color:#f92672">&lt;</span> $TARGET ; <span style="color:#f92672">++</span>$n ) {
+    <span style="color:#66d9ef">my</span> ( $done, $last ) <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">0</span>, $n );
+
+    <span style="color:#66d9ef">until</span> ($done) {
+        <span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> sum_of_squares($last);
+
+        <span style="color:#66d9ef">if</span> ( $next <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )               <span style="color:#75715e"># n is happy</span>
+        {
+            push @happy, $n;
+            $done <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        }
+        <span style="color:#66d9ef">elsif</span> ( $CYCLE<span style="color:#f92672">-&gt;</span>has($next) )    <span style="color:#75715e"># n is unhappy</span>
+        {
+            $done <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        }
+
+        $last <span style="color:#f92672">=</span> $next;
+    }
+}
+
+printf <span style="color:#e6db74">&#34;The first %d 10-Happy Numbers:\n%s\n&#34;</span>, $TARGET, join <span style="color:#e6db74">&#39;, &#39;</span>, @happy;
+</code></pre></div><p>I&rsquo;m glad Athanasius showcased this optimization, so I could talk about it.</p>
+<h2 id="cheok-yin-fung2">Cheok-Yin Fung</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/cheok-yin-fung/perl/ch-2.pl">Cheok-Yin Fung</a> counts her way to happiness:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $happiness <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#ae81ff">8</span>;
+<span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+<span style="color:#66d9ef">while</span> ( $counter <span style="color:#f92672">&lt;</span> $happiness ) {
+    <span style="color:#66d9ef">if</span> (verify_happy($n)) {
+        $counter<span style="color:#f92672">++</span>;
+        say $n;
+    }
+    $n<span style="color:#f92672">++</span>;
+}
+</code></pre></div><p>If only <em>life</em> were that simple!</p>
+<p>The real heavy lifting is done by the <code>verify_happy</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">verify_happy</span> {
+    <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">my</span> @arr;
+    <span style="color:#66d9ef">while</span> ($number <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">999</span>) {
+        @arr <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, $number;
+        $number <span style="color:#f92672">=</span> sum map {$_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>} @arr;
+    }
+
+    <span style="color:#66d9ef">my</span> @appeared <span style="color:#f92672">=</span> ($number);
+    <span style="color:#66d9ef">my</span> $loop_control <span style="color:#f92672">=</span> <span style="color:#ae81ff">244</span>;  <span style="color:#75715e"># 243 = 9**2 + 9**2 + 9**2</span>
+    <span style="color:#66d9ef">do</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+        @arr <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, $number;
+        $number <span style="color:#f92672">=</span> sum map {$_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>} @arr;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> any {$number <span style="color:#f92672">==</span> $_} @appeared;
+        push @appeared, $number;
+        $loop_control<span style="color:#f92672">--</span>;
+    } <span style="color:#66d9ef">while</span> ($loop_control<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>That top while loop only runs for numbers greater than 999, to pre-run the sum
+of digit squares part of the algorithm until the number is three digits or
+less. You might worry this might result in an infinite loop if a cycle is
+detected before then, but <a href="#athanasius2">Athanasius&rsquo;s solution</a> highlights why
+that can never happen.</p>
+<p>The second loop repeatedly calculates the sum of square digits and returns 1
+if <code>$n == 1</code> or 0 if we&rsquo;ve seen the number before. The <code>$loop_control</code>
+variable, I confess, is a bit of a mystery. My educated guess is that it looks
+like a bit of defensive programming to prevent an infinite loop if we detect
+neither a cycle nor a 1, which is not possible.</p>
+<h2 id="colin-crain2">Colin Crain</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/colin-crain/perl/ch-2.pl">Colin Crain&rsquo;s solution</a> loops until eight numbers have passed the <code>happy()</code> test:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">happy</span> ($num) {
+    <span style="color:#66d9ef">my</span> %seen <span style="color:#f92672">=</span> ( $num <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> );
+
+    <span style="color:#66d9ef">while</span> ( $num <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> ) {
+        $num <span style="color:#f92672">=</span> sum map { $_ <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> } split <span style="color:#e6db74">//</span>, $num;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $seen{$num};
+        $seen{$num} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    }
+    <span style="color:#66d9ef">return</span> $num;
+}
+</code></pre></div><p>Using a hash for <code>%seen</code> values gives Colin an O(1) (constant time) lookup.</p>
+<p><strong>Blog</strong> › <a href="https://colincrain.com/2022/05/15/happy-happy-joy-joy/">Happy Happy Joy Joy – Programming Excursions in Perl and Raku</a></p>
+<h2 id="dave-jacoby2">Dave Jacoby</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/dave-jacoby/perl/ch-2.pl">Dave Jacoby&rsquo;s solution</a> similarly loops eight times:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @happy;
+<span style="color:#66d9ef">while</span> ( scalar @happy <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span> ) {
+    state $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    $c<span style="color:#f92672">++</span>;
+    push @happy, $c <span style="color:#66d9ef">if</span> is_happy($c);
+}
+say join <span style="color:#e6db74">&#34;, &#34;</span>, @happy;
+exit;
+</code></pre></div><p>Dave&rsquo;s <code>is_happy()</code> has a slight tweak that I quite like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy</span>( $n ) {
+    <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> $n;
+    <span style="color:#66d9ef">my</span> %done;
+    <span style="color:#66d9ef">while</span> ( <span style="color:#f92672">!</span>$done{$m} ) {
+        $done{$m}<span style="color:#f92672">++</span>;
+        $m <span style="color:#f92672">=</span> sum0 map { $_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> } split <span style="color:#e6db74">//</span>, $m;
+    }
+    <span style="color:#66d9ef">return</span> $m <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>Dave was able to turn both exit conditions into a single check against
+<code>%done</code>, knowing that once we get to 1, that value will repeat. The turnbuckle
+<code>return</code> does explicitly check for 1.</p>
+<p><strong>Blog</strong> › <a href="https://jacoby.github.io/2022/05/09/shiny-happy-numbers-weekly-challenge-164.html">Shiny Happy Numbers: Weekly Challenge #164 | Committed to Memory</a></p>
+<h2 id="deadmarshal2">Ali Moradi</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/deadmarshal/perl/ch-2.pl">Ali Moradi&rsquo;s solution</a>
+gives us another variation, with <code>sum0</code>. <code>sum0</code> is used when you need your sum
+to have a default value (zero) in the case an empty list is passed in.
+Whatever alternate universe Ali is in where a number can have zero digits,
+sounds very interesting indeed! Seriously, though, <code>sum0</code> is a good utility to
+tuck away in your brain, as there are a lot of situations where having a
+default sum (instead of <code>undef</code>) is a good thing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum0)</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy</span>{
+  <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+  <span style="color:#66d9ef">my</span> %seen;
+  <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>){
+    $n <span style="color:#f92672">=</span> sum0(map {$_ <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>} split <span style="color:#e6db74">//</span>, $n);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $seen{$n}<span style="color:#f92672">++</span>;
+  }
+}
+</code></pre></div><p>By now we&rsquo;re really starting to see some patterns and similar code.</p>
+<h2 id="duncan-c-white2">Duncan C. White</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/duncan-c-white/perl/ch-2.pl">Duncan C. White&rsquo;s solution</a>
+coincidentally also uses <code>sum0</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Function::Parameters;
+
+fun ishappy( $x )
+{
+    <span style="color:#66d9ef">my</span> %seen;
+    <span style="color:#66d9ef">while</span>( $x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> )
+    {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $seen{$x}<span style="color:#f92672">++</span>;
+        <span style="color:#75715e">#say &#34;debug: x=$x&#34; if $debug;</span>
+        $x <span style="color:#f92672">=</span> sum0( map { $_ <span style="color:#f92672">*</span> $_ } split(<span style="color:#e6db74">//</span>,$x) );
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><h2 id="e-choroba2">E. Choroba</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/e-choroba/perl/ch-2.pl">E. Choroba&rsquo;s solution</a>
+gives us something a little bit different. Choroba does use a hash, eschews
+core <code>List::Util</code>'s <code>sum</code> in favor of a <code>for</code> loop, but structures the whole
+thing in a <code>happy_numbers()</code> function that returns an array ref of the first
+<code>$tally</code> happy numbers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">happy_numbers</span> {
+    <span style="color:#66d9ef">my</span> ($tally) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> @happy_numbers;
+    <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+  CANDIDATE:
+    <span style="color:#66d9ef">while</span> (@happy_numbers <span style="color:#f92672">&lt;</span> $tally) {
+        <span style="color:#66d9ef">my</span> $replace <span style="color:#f92672">=</span> $number;
+        <span style="color:#66d9ef">my</span> %loop;
+        <span style="color:#66d9ef">my</span> $sum;
+        <span style="color:#66d9ef">do</span> {
+            $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            $sum <span style="color:#f92672">+=</span> $_ <span style="color:#f92672">*</span> $_ <span style="color:#66d9ef">for</span> split <span style="color:#e6db74">//</span>, $replace;
+            $replace <span style="color:#f92672">=</span> $sum;
+            <span style="color:#66d9ef">next</span> CANDIDATE <span style="color:#66d9ef">if</span> $loop{$sum}<span style="color:#f92672">++</span>;
+
+        } <span style="color:#66d9ef">until</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> $sum;
+
+        push @happy_numbers, $number;
+
+    } <span style="color:#66d9ef">continue</span> {
+        <span style="color:#f92672">++</span>$number;
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@happy_numbers
+}
+</code></pre></div><h2 id="jaldhar-h-vyas2">Jaldhar H. Vyas</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/jaldhar-h-vyas/perl/ch-2.pl">Jaldhar H. Vyas&rsquo;s solution</a>
+also chooses not to use <code>List::Util</code>, writing his own pure Perl <code>sum</code>
+function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span> {
+    <span style="color:#66d9ef">my</span> ($arr) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $elem (@{$arr}) {
+        $total <span style="color:#f92672">+=</span> $elem;
+    }
+
+    <span style="color:#66d9ef">return</span> $total;
+}
+</code></pre></div><p>Why not, eh?</p>
+<p>The <code>isHappy()</code> function relies on the fact that base-10 happy numbers always
+have a cycle length of 8:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isHappy</span> {
+    <span style="color:#66d9ef">my</span> ($i) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $tries <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> $i;
+
+    <span style="color:#66d9ef">while</span> ($s <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">if</span> ($tries <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>) {
+            <span style="color:#66d9ef">return</span> undef;
+        }
+        $s <span style="color:#f92672">=</span> sum([map { $_ <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> } split <span style="color:#e6db74">//</span>, $s]);
+        $tries<span style="color:#f92672">++</span>;
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><p><strong>Blog</strong> › <a href="https://www.braincells.com/perl/2022/05/perl_weekly_challenge_week_164.html">Perl Weekly Challenge: Week 164</a></p>
+<h2 id="james-smith2">James Smith</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/james-smith/perl/ch-2.pl">James Smith&rsquo;s solution</a>
+is over 200 lines, contains a test suite, benchmarking, and several
+variations, progressively more complex. It&rsquo;s worth looking at, and checking
+out his blog, as it&rsquo;s a wonderful journey through his approach to this
+problem. I&rsquo;ll highlight James&rsquo;s precache version:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy_precache</span> {
+    state @happy;
+    <span style="color:#66d9ef">my</span> ( $L, $N, $t, @ret, %seen ) <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1_640</span>, $_[<span style="color:#ae81ff">0</span>] );
+
+    <span style="color:#66d9ef">unless</span> (@happy) {
+        @happy <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> );
+      O: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $N ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $L ) {
+            <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $N;
+            %seen <span style="color:#f92672">=</span> ();
+            <span style="color:#66d9ef">while</span> ( $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ) {
+                <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> defined $happy[$n] <span style="color:#f92672">&amp;&amp;</span> $happy[$n] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+                <span style="color:#66d9ef">if</span> ( defined $happy[$n] <span style="color:#f92672">||</span> $seen{$n} ) {
+                    $happy[$_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> keys %seen;
+                    <span style="color:#66d9ef">next</span> O;
+                }
+                $seen{ $t <span style="color:#f92672">=</span> $n } <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                <span style="color:#66d9ef">do</span> { $n <span style="color:#f92672">+=</span> ( $t % 10 )<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> } <span style="color:#66d9ef">while</span> $t <span style="color:#f92672">=</span> int( $t <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span> );
+            }
+            $happy[$_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> $N, keys %seen;
+        }
+    }
+
+    <span style="color:#66d9ef">if</span> ( $N <span style="color:#f92672">&gt;</span> $L ) {    <span style="color:#75715e">## If not in cached array we compute</span>
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $N, $N <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;    <span style="color:#75715e">## the sum of digits squared....</span>
+        <span style="color:#66d9ef">do</span> { $N <span style="color:#f92672">+=</span> ( $n % 10 )<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> } <span style="color:#66d9ef">while</span> $n <span style="color:#f92672">=</span> int( $n <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span> );
+    }
+    $happy[$N];                <span style="color:#75715e">## And look up value in the cache..</span>
+}
+</code></pre></div><p>Right off the bat, notice the <code>state</code> variable, which will persist between
+calls of <code>is_happy_precache()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    state @happy;
+    <span style="color:#66d9ef">my</span> ( $L, $N, $t, @ret, %seen ) <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1_640</span>, $_[<span style="color:#ae81ff">0</span>] );
+</code></pre></div><p>The next line front-loads a few of the declarations needed, while sneaking in
+the argument, <code>$N</code>.</p>
+<ul>
+<li><code>$L = 1640</code> appears to be the limit that James has imposed on his routine.</li>
+<li><code>$N</code> is of course the number we want to compute the happiness of.</li>
+<li><code>$t</code> appears to be a temporary variable, or maybe &ldquo;total&rdquo;? In any case, it&rsquo;s used only inside the <code>while</code> loop.</li>
+<li><code>@ret</code> is unused, probably a vestigal bit from his other variations.</li>
+<li><code>%seen</code> is our list of seen values, which is reset every time through the outer <code>for my $N</code> loop</li>
+</ul>
+<p>That <code>for my $N</code> loop, you&rsquo;ll note, gives us a different lexically scoped
+<code>$N</code>.</p>
+<p>The bulk of the function is the <code>unless (@happy) { ... }</code> loop, which is only
+run the first time <code>is_happy_precache()</code> is called. This loop goes through
+every number and determines if it&rsquo;s happy or sad. James gets to take advantage
+of prior knowledge by setting <code>$happy[$_]</code> zero for every <code>%seen</code> number, if a
+cycle is detected, since they will all lead to the same cycle. On subsequent
+iterations through the loop, if <code>$happy[$n]</code> is defined, it is no longer
+necessary to do the successive sum of square digits calculations.</p>
+<p>Finally, James has a check if <code>$N &gt; $L</code>, which enables the function to compute
+values beyond its hard-coded limit, and then simply returns <code>$happy[$N]</code>.</p>
+<p>James&rsquo;s benchmarks suggest this method is over five times faster than
+<code>is_happy(1_000_000)</code>, at the cost of more memory and a penalty to the first
+call. These are tradeoffs we often have to decide on in software development.</p>
+<p><strong>Blog</strong> › <a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-164/james-smith">perlweeklychallenge-club/challenge-164/james-smith at master · drbaggy/perlweeklychallenge-club · GitHub</a></p>
+<h2 id="jo-372">Jorg Sommrey</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/jo-37/perl/ch-2.pl">Jorg Sommrey&rsquo;s solution</a>
+takes it to the next level by supporting arbitrary bases. Here is his
+function, which returns a generator for b-happy numbers (happy numbers in base
+b):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Generalizing the task to b-happy numbers in any base.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># Build a generator for b-happy numbers.</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">happy_gen</span> ($base) {
+    <span style="color:#66d9ef">my</span> %happy;
+    generator {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;; $n<span style="color:#f92672">++</span>) {
+            <span style="color:#75715e"># Return cached results.</span>
+            <span style="color:#66d9ef">if</span> (exists $happy{$n}) {
+                yield $n <span style="color:#66d9ef">if</span> $happy{$n};
+                <span style="color:#66d9ef">next</span>;
+            }
+            <span style="color:#75715e"># Get the digit square sum sequence for $n in base $base up to</span>
+            <span style="color:#75715e"># the first known happy or unhappy number.</span>
+            <span style="color:#66d9ef">my</span> $seen <span style="color:#f92672">=</span> dsss($n, $base, <span style="color:#f92672">\</span>%happy);
+            <span style="color:#75715e"># Is $n a b-happy number?</span>
+            <span style="color:#66d9ef">my</span> $happy <span style="color:#f92672">=</span> $seen<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">1</span>};
+            <span style="color:#75715e"># Cache the new found numbers as happy or unhappy.</span>
+            @happy{keys %$seen} <span style="color:#f92672">=</span> ($happy) x keys %$seen;
+
+            yield $n <span style="color:#66d9ef">if</span> $happy;
+        }
+    }
+}
+</code></pre></div><p>That <code>generator { ... }</code>, by the way, comes from
+<a href="https://metacpan.org/pod/Coro::Generator"><code>Coro::Generator</code></a>. Here it&rsquo;s
+working as an iterator, which returns the next b-happy number on every call,
+like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span>  $it <span style="color:#f92672">=</span> happy_gen(<span style="color:#ae81ff">10</span>);
+say $it<span style="color:#f92672">-&gt;</span>() <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>; <span style="color:#75715e"># First 5 10-happy numbers</span>
+</code></pre></div><p>Jorg also takes a caching approach, but does not need to precompute anything:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Cache the new found numbers as happy or unhappy.</span>
+@happy{keys %$seen} <span style="color:#f92672">=</span> ($happy) x keys %$seen;
+</code></pre></div><p>This hash slice syntax makes for very concise and expressive code.</p>
+<p>The <code>dsss()</code> sub builds up the digit square sum sequence for a number <code>$n</code> in
+an arbitrary <code>$base</code>. Here the result is fed back into the <code>$happy</code> hashref
+that is given as an argument, allowing the caller to benefit from all of the
+other happy (or sad) numbers found along the way.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Build a digit square sum sequence for $n in base $base with cached</span>
+<span style="color:#75715e"># results in the hash ref $happy</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dsss</span> ($n, $base, $happy) {
+    <span style="color:#66d9ef">my</span> %seen;
+    <span style="color:#75715e"># Test and set $n as seen.</span>
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>$seen{$n}<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (exists $happy<span style="color:#f92672">-&gt;</span>{$n}) {
+            <span style="color:#75715e"># Add one as hash key to signal that a b-happy number has</span>
+            <span style="color:#75715e"># been found.</span>
+            $seen{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $happy<span style="color:#f92672">-&gt;</span>{$n};
+            <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%seen;
+        }
+        <span style="color:#75715e"># Get the next number as the digit square sum of the current</span>
+        <span style="color:#75715e"># number.</span>
+        $n <span style="color:#f92672">=</span> vecreduce {$a <span style="color:#f92672">+</span> $b<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>} <span style="color:#ae81ff">0</span>, todigits $n, $base;
+    }
+    <span style="color:#75715e"># Return the seen numbers as hash keys.</span>
+    <span style="color:#f92672">\</span>%seen;
+}
+</code></pre></div><p>Instead of bringing in <code>sum</code>, Jorg shows us the <code>vecreduce</code> subroutine from
+<a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a>. It works
+just like you&rsquo;d expect from other reduce implementations, such as the one that
+you get from the core <code>List::Util</code> module. <code>reduce</code> is extremely versatile.</p>
+<h2 id="julien-fiegehenn2">Julien Fiegehenn</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/julien-fiegehenn/perl/ch-2.pl">Julien Fiegehenn&rsquo;s solution</a>
+is a return to the familiar format of using a <code>%seen</code> hash and <code>sum</code>ming the
+squares of the digits:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">happy_number</span> {
+    <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">my</span> %seen;
+    <span style="color:#66d9ef">until</span> ( $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
+        <span style="color:#66d9ef">my</span> $new_number <span style="color:#f92672">=</span> sum map { $_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> } split <span style="color:#e6db74">//</span>, $number;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $seen{$new_number}<span style="color:#f92672">++</span>;
+        $number <span style="color:#f92672">=</span> $new_number;
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><h2 id="kjetillll2">Kjetil Skotheim</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/kjetillll/perl/ch-2.pl">Kjetil Skotheim&rsquo;s solution</a>
+gives us a recursive implementation, rather than an iterative one:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> ( %seen, $happy );
+    $happy <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+            $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>     ? <span style="color:#ae81ff">1</span>
+          : $seen{$n}<span style="color:#f92672">++</span> ? <span style="color:#ae81ff">0</span>
+          :               <span style="color:#f92672">&amp;</span>$happy( sum( map $_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>, $n <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\d/g</span> ) );
+    };
+    <span style="color:#f92672">&amp;</span>$happy($n);
+}
+</code></pre></div><p>The <code>$happy</code> sub is a closure around <code>%seen</code>. The sub itself is a single
+conditional statement that returns 1 or 0 for the base cases (happy or
+<code>%seen</code>), and recurses on the sum of squares of digits otherwise.</p>
+<p>This is logically equivalent to the iterative format we&rsquo;ve seen several times
+already. In fact, in some languages (Perl being a perhaps slightly unfortunate
+exception), since the recursive step happens at the end (or tail) of the
+function, the compiler will optimize this so-called tail call into a <code>goto</code>,
+making it exactly equivalent to an iterative version. For various reasons,
+Perl doesn&rsquo;t do tail call optimization. <a href="https://perldoc.perl.org/functions/goto">You can kind of fake
+it</a> with <code>goto &amp;NAME</code>, but it&rsquo;s not
+exactly an optimization.</p>
+<h2 id="laurent-rosenfeld2">Laurent Rosenfeld</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/laurent-rosenfeld/perl/ch-2.pl">Laurent Rosenfeld&rsquo;s solution</a>
+is another great example of the hash of <code>%seen</code> values, and simple, clear code
+to calculate the digit square sum:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> %seen;
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> exists $seen{$n};
+        $seen{$n} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> map $_ <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>, split <span style="color:#e6db74">//</span>, $n;
+        $n <span style="color:#f92672">=</span> $sum;
+    }
+}
+</code></pre></div><p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-164-prime-palindromes-and-happy-numbers.html">Perl Weekly Challenge 164: Prime Palindromes and Happy Numbers | laurent_r [blogs.perl.org]</a></p>
+<h2 id="lubos-kolouch2">Lubos Kolouch</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/lubos-kolouch/perl/ch-2.pl">Lubos Kolouch&rsquo;s solution</a>
+includes simple summation code, and is otherwise very similar to other
+solutions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy</span> {
+    <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">my</span> %results_cache;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $num ( split <span style="color:#e6db74">//</span>, $what ) {
+            $result <span style="color:#f92672">+=</span> $num <span style="color:#f92672">*</span> $num;
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $result <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $results_cache{$result};
+        $results_cache{$result} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        $what <span style="color:#f92672">=</span> $result;
+    }
+
+    <span style="color:#66d9ef">return</span>;
+}
+</code></pre></div><h2 id="luiz-felipe2">Luiz Felipe</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/luiz-felipe/perl/ch-2.pl">Luiz Felipe&rsquo;s solution</a>
+breaks the test out into two functions. The first, <code>happy_sum()</code>, is simply
+tasked with computing the digit square sum:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">happy_sum</span> {
+    <span style="color:#66d9ef">my</span> ($number, $sum);
+
+    $number <span style="color:#f92672">=</span> shift;
+    $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $sub_number (split <span style="color:#e6db74">//</span>, $number) {
+        $sum <span style="color:#f92672">+=</span> $sub_number <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>;
+    }
+
+    <span style="color:#66d9ef">return</span> $sum;
+}
+</code></pre></div><p>And the <code>is_happy()</code> function, with the by now very familiar <code>%seen</code> hash,
+takes care of the rest:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy</span> {
+    <span style="color:#66d9ef">my</span> ($number, %seen);
+
+    $number <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">until</span> ($number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">my</span> $new_number <span style="color:#f92672">=</span> happy_sum($number);
+
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $seen{$new_number}<span style="color:#f92672">++</span>;
+
+        $number <span style="color:#f92672">=</span> $new_number;
+    }
+}
+</code></pre></div><p>It&rsquo;s worth noting that there is no obvious return value here for what happens
+when the <code>until ($number == 1) { ... }</code> loop falls through (in the case of a
+happy number). Remember that the return value of any BLOCK in Perl is always
+the last expression in the BLOCK.</p>
+<p>The <code>$number = $new_number</code> expression&rsquo;s value will propagate to the return
+for the <code>sub is_happy { ... }</code> block. So, <code>is_happy</code> returns <code>$new_number</code>,
+which will always be 1 thanks to the <code>until</code> loop&rsquo;s condition.</p>
+<p>Could Luiz have simply stuck a <code>return 1</code> after the loop? Sure. But then one
+or two of you wouldn&rsquo;t have learned about implicit return values.</p>
+<p>Personally, I take a considered approach when it comes to using an explicit
+<code>return</code> at the end of a sub. I&rsquo;m guided by what is going to be obvious,
+maintainable, and error free, without leaking internal logic. Often that means
+an explicit <code>return</code>, but just as often not. Some corporate style guides are
+sticklers for explicit <code>return</code>s, but that&rsquo;s a whole &lsquo;nother discussion.</p>
+<h2 id="mattneleigh2">Matthew Neleigh</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/mattneleigh/perl/ch-2.pl">Matthew Neleigh&rsquo;s solution</a>
+is perhaps most interesting for the internal documentation style:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">################################################################################</span>
+<span style="color:#75715e"># Determine whether a positive integer is a Happy Number in Base 10; see</span>
+<span style="color:#75715e"># https://en.wikipedia.org/wiki/Happy_number for a description of the Happy</span>
+<span style="color:#75715e"># Numbers</span>
+<span style="color:#75715e"># Takes one argument:</span>
+<span style="color:#75715e"># * The integer N to examine</span>
+<span style="color:#75715e"># Returns on success:</span>
+<span style="color:#75715e"># * 1 if N is a Happy Number</span>
+<span style="color:#75715e"># * 0 if N is not a Happy Number</span>
+<span style="color:#75715e"># Returns on error:</span>
+<span style="color:#75715e"># * undef if N is less than 1</span>
+<span style="color:#75715e">################################################################################</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy_number_b10</span>{
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> int(shift());
+
+    <span style="color:#66d9ef">return</span>(undef)
+        <span style="color:#66d9ef">unless</span>($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+
+    <span style="color:#66d9ef">my</span> %seen <span style="color:#f92672">=</span> ();
+
+    <span style="color:#75715e"># Loop until one of the exit criteria triggers</span>
+    <span style="color:#75715e"># a return from the function</span>
+    <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>){
+        <span style="color:#66d9ef">my</span> $sum_squares <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#75715e"># If $n is one, we&#39;ve found a happy number;</span>
+        <span style="color:#75715e"># return true</span>
+        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">1</span>)
+            <span style="color:#66d9ef">if</span>($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
+
+        <span style="color:#75715e"># Sum the squares of the digits in $n</span>
+        <span style="color:#66d9ef">foreach</span>(split(<span style="color:#e6db74">&#34;&#34;</span>, $n)){
+            $sum_squares <span style="color:#f92672">+=</span> $_ <span style="color:#f92672">*</span> $_;
+        }
+
+        <span style="color:#75715e"># If we&#39;ve seen this value of $sum_squares</span>
+        <span style="color:#75715e"># before, we didn&#39;t start with a happy number;</span>
+        <span style="color:#75715e"># return false</span>
+        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>)
+            <span style="color:#66d9ef">if</span>($seen{$sum_squares});
+
+        <span style="color:#75715e"># Store the sum of the squares for later</span>
+        <span style="color:#75715e"># examination in future iterations, and set</span>
+        <span style="color:#75715e"># $n to this new value</span>
+        $seen{$sum_squares} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        $n <span style="color:#f92672">=</span> $sum_squares;
+    }
+
+}
+</code></pre></div><p>The comments do a very good job of describing what is happening in great
+detail. Here&rsquo;s the function without the comments:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy_number_b10</span>{
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> int(shift());
+
+    <span style="color:#66d9ef">return</span>(undef) <span style="color:#66d9ef">unless</span>($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+
+    <span style="color:#66d9ef">my</span> %seen <span style="color:#f92672">=</span> ();
+
+    <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>){
+        <span style="color:#66d9ef">my</span> $sum_squares <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">if</span>($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
+
+        <span style="color:#66d9ef">foreach</span>(split(<span style="color:#e6db74">&#34;&#34;</span>, $n)){
+            $sum_squares <span style="color:#f92672">+=</span> $_ <span style="color:#f92672">*</span> $_;
+        }
+
+        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">if</span>($seen{$sum_squares});
+
+        $seen{$sum_squares} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        $n <span style="color:#f92672">=</span> $sum_squares;
+    }
+
+}
+</code></pre></div><p>Matt&rsquo;s verbose comment style looks rather like an inline blog post, which is a
+perfectly efficient way to communicate a Weekly Challenge solution, in my
+opinion!</p>
+<h2 id="perlboy19672">Niels van Dijke</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/perlboy1967/perl/ch-2.pl">Niels van Dijke&rsquo;s solution</a>
+is a nice and concise variation on the theme we&rsquo;ve seen before:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isHappy</span> ($) {
+  <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+
+  <span style="color:#66d9ef">my</span> %seen;
+
+  <span style="color:#66d9ef">while</span> ($n <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> <span style="color:#f92672">!</span>exists $seen{$n}) {
+    $seen{$n}<span style="color:#f92672">++</span>;
+    $n <span style="color:#f92672">=</span> sum map { $_<span style="color:#f92672">*</span>$_ } unpack <span style="color:#e6db74">&#39;(A1)*&#39;</span>, $n;
+  }
+
+  <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><p>Niels has made it a bit more concise by combining the happy/sad conditionals
+in the <code>while</code> statement. What makes Neils&rsquo;s solution stand out, however, is
+the use of <code>unpack</code> instead of <code>split</code>, to get the digits of <code>$n</code>. He&rsquo;s the
+only one to use <code>unpack</code>.</p>
+<h2 id="pete-houston2">Pete Houston</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/pete-houston/perl/ch-2.pl">Pete Houston&rsquo;s solution</a>
+is again, quite similar, but there&rsquo;s a twist:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy</span> {
+    <span style="color:#66d9ef">my</span> $x    <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> %seen <span style="color:#f92672">=</span> ($x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+
+    <span style="color:#66d9ef">while</span> ($x <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>) {
+
+        <span style="color:#75715e"># Sum the squares of the digits</span>
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $sum <span style="color:#f92672">+=</span> chop ($x) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> length $x;
+
+        <span style="color:#75715e"># Have we looped?</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $seen{$sum};
+
+        <span style="color:#75715e"># Store it and go again</span>
+        $seen{$x <span style="color:#f92672">=</span> $sum} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><p>Pete&rsquo;s use of <code>chop</code> to get the digits is a fun way to go about it. <code>chop</code> got
+a bad rap in the early days of Perl, as some programmers used it to remove
+trailing newlines. This worked on Unix and Linux systems where the newline was
+a single character, but caused errors on DOS-based systems that used <code>\r\n</code>
+for a newline, and failed even more ungracefully if the string didn&rsquo;t contain
+a newline at all. <code>chop</code> also modifies its argument, whereas <code>chomp()</code> does
+not. Over and over, &ldquo;use <code>chomp</code>, not <code>chop</code>. It&rsquo;s safer!&quot;, was beaten
+into our heads. <code>chop</code> has always had its uses, though!</p>
+<p>Pete is not removing newlines, nor does he care if the argument is modified,
+so <code>chop</code> works just fine.</p>
+<h2 id="peter-campbell-smith2">Peter Campbell Smith</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/peter-campbell-smith/perl/ch-2.pl">Peter Campbell Smith&rsquo;s solution</a>
+starts off with a bunch of file-scoped variables:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> ($test, $so_far, $i, @digits, $d, @seen, @sad, $result1, $result2, $indent, $found);
+</code></pre></div><p>What these do, I have no idea yet, although it appears there is a whole array
+of <code>@sad</code>ness in store!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+@sad <span style="color:#f92672">=</span> ();
+
+<span style="color:#75715e"># loop in the hope that we find 8 happy numbers before 1000</span>
+TEST: <span style="color:#66d9ef">for</span> $test (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span>) {
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $found <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>;  <span style="color:#75715e"># success!</span>
+
+    $indent <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    $so_far <span style="color:#f92672">=</span> $test;   <span style="color:#75715e"># this will be our running sum of squares</span>
+    @seen <span style="color:#f92672">=</span> ();        <span style="color:#75715e"># these are sums already seen for this $test (indicating looping)</span>
+    $result1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+    <span style="color:#75715e"># now iterate over the adding the digits squares</span>
+    <span style="color:#66d9ef">for</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10</span>) {
+
+        <span style="color:#75715e"># split $so_far into digits</span>
+        @digits <span style="color:#f92672">=</span> split(<span style="color:#e6db74">&#39;&#39;</span>, $so_far);
+
+        <span style="color:#75715e"># this is all stuff to format the output as per Mohammad&#39;s example</span>
+        $result1 <span style="color:#f92672">.=</span> <span style="color:#e6db74">qq[$so_far =&gt; ]</span>;
+        $indent <span style="color:#f92672">+=</span> length($so_far) <span style="color:#f92672">+</span> ($i <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">4</span>);
+        $result2 <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39; &#39;</span> x $indent) <span style="color:#f92672">.</span> <span style="color:#e6db74">qq[=&gt; ]</span>;
+
+        <span style="color:#75715e"># now sum the square of the digits</span>
+        $so_far <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> $d (@digits) {
+            $so_far <span style="color:#f92672">+=</span> $d<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+
+            <span style="color:#75715e"># more formatting stuff</span>
+            $result1 <span style="color:#f92672">.=</span> <span style="color:#e6db74">qq[$d^2 + ]</span>;
+            $result2 <span style="color:#f92672">.=</span> $d<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">qq[ + ]</span>;
+        }
+
+        <span style="color:#75715e"># more formatting stuff</span>
+        $result1 <span style="color:#f92672">=</span> substr($result1, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">qq[\n]</span> <span style="color:#f92672">.</span>
+                substr($result2, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">qq[\n]</span> <span style="color:#f92672">.</span> (<span style="color:#e6db74">&#39; &#39;</span> x $indent) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;=&gt; &#39;</span>;
+
+        <span style="color:#75715e"># if $so_far is 1 we are happy!</span>
+        <span style="color:#66d9ef">if</span> ($so_far <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+            say <span style="color:#e6db74">qq[\n${result1}1]</span>;
+            $found <span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">next</span> TEST;
+
+        <span style="color:#75715e"># if $so_far has been seen already for this $test or is already known to be $sad</span>
+        <span style="color:#75715e"># then we&#39;re in a loop and $test is sad</span>
+        } <span style="color:#66d9ef">elsif</span> ($seen[$so_far] <span style="color:#f92672">or</span> $sad[$so_far]) {
+            $sad[$so_far] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">next</span> TEST;
+        }
+
+        <span style="color:#75715e"># if neither of the above are true then we note that we&#39;ve seen $seen and keep going</span>
+        $seen[$so_far] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    }
+}
+</code></pre></div><p>Peter&rsquo;s code is also formatting the results exactly in the way Mohammad&rsquo;s task
+description did, so we&rsquo;ll see, for example:</p>
+<pre><code>28 =&gt; 2^2 + 8^2
+   =&gt; 4 + 64
+   =&gt; 68 =&gt; 6^2 + 8^2
+         =&gt; 36 + 64
+         =&gt; 100 =&gt; 1^2 + 0^2 + 0^2
+                =&gt; 1 + 0 + 0
+                =&gt; 1
+</code></pre><p>Neat!</p>
+<p><strong>Blog</strong> › <a href="https://pjcs-pwc.blogspot.com/2022/05/palindromic-primes-and-moody-numbers.html">Palindromic primes and moody numbers</a></p>
+<h2 id="pokgopun2">PokGoPun</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/pokgopun/perl/ch-2.pl">PokGoPun&rsquo;s solution</a>
+uses simple a memoization strategy on top of a recursive implementation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %happy;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isHappy</span>{
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">return</span> $happy{$i} <span style="color:#66d9ef">if</span> defined $happy{$i};
+    <span style="color:#66d9ef">if</span> (grep{$_<span style="color:#f92672">==</span>$i} @_){
+        $happy{$_}<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> <span style="color:#66d9ef">foreach</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> eval(join(<span style="color:#e6db74">&#34; + &#34;</span>, map{$_<span style="color:#f92672">*</span>$_} split <span style="color:#e6db74">//</span>,$i));
+    push @_, $i;
+    <span style="color:#66d9ef">if</span> ($sum<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>){
+        $happy{$_}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">foreach</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+    <span style="color:#66d9ef">return</span> isHappy($sum,@_);
+}
+</code></pre></div><p>Every time a number is found to be happy or sad, every seen number is added to
+the cache.</p>
+<h2 id="polettix2">Flavio Poletti</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/polettix/perl/ch-2.pl">Flavio Poletti&rsquo;s solution</a>
+also caches results, using two <code>state</code> variables:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy</span> ($n) {
+   state $is_happy <span style="color:#f92672">=</span> { <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> };
+   state $is_not_happy <span style="color:#f92672">=</span> {};
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $is_happy<span style="color:#f92672">-&gt;</span>{$n};
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $is_not_happy<span style="color:#f92672">-&gt;</span>{$n};
+   <span style="color:#66d9ef">my</span> %round;
+   <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span> $round{$n}) {
+      $round{$n} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+      $n <span style="color:#f92672">=</span> sum map { $_ <span style="color:#f92672">*</span> $_ } split <span style="color:#e6db74">m{}mxs</span>, $n;
+      <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+         $is_happy<span style="color:#f92672">-&gt;</span>{$_} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> keys %round;
+         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+      }
+   }
+   $is_not_happy<span style="color:#f92672">-&gt;</span>{$_} <span style="color:#66d9ef">for</span> keys %round;
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p><strong>Blog</strong> › <a href="https://github.polettix.it/ETOOBUSY/2022/05/11/pwc164-happy-numbers/">PWC164 - Happy Numbers - ETOOBUSY</a></p>
+<h2 id="roger-bell-west2">Roger Bell_West</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/roger-bell-west/perl/ch-2.pl">Roger Bell_West&rsquo;s solution</a>
+starts out with a sum of square digits function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ssd</span> {
+    <span style="color:#66d9ef">my</span> $n   <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> ( $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+        <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> $n % 10;
+        $out <span style="color:#f92672">+=</span> $d <span style="color:#f92672">*</span> $d;
+        $n <span style="color:#f92672">=</span> int( $n <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span> );
+    }
+    <span style="color:#66d9ef">return</span> $out;
+}
+</code></pre></div><p>Roger peels off each digit with <code>$n % 10</code> rather than using <code>split</code>, <code>unpack</code>,
+or <code>chop</code>. His <code>happy()</code> function returns a list of <code>$ct</code> happy numbers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">happy</span> {
+    <span style="color:#66d9ef">my</span> $ct <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> %hm <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> );
+    <span style="color:#66d9ef">my</span> $c  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @out;
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        $c<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">unless</span> ( exists $hm{$c} ) {
+            <span style="color:#66d9ef">my</span> $v  <span style="color:#f92672">=</span> $c;
+            <span style="color:#66d9ef">my</span> %ss <span style="color:#f92672">=</span> ( $v <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> );
+            <span style="color:#66d9ef">my</span> $h  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+                <span style="color:#66d9ef">if</span> ( exists $hm{$v} ) {
+                    $h <span style="color:#f92672">=</span> $hm{$v};
+                    <span style="color:#66d9ef">last</span>;
+                }
+                <span style="color:#66d9ef">else</span> {
+                    $v <span style="color:#f92672">=</span> ssd($v);
+                    <span style="color:#66d9ef">if</span> ( exists $ss{$v} ) {
+                        $h <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                        <span style="color:#66d9ef">last</span>;
+                    }
+                    $ss{$v}<span style="color:#f92672">++</span>;
+                }
+            }
+            map { $hm{$_} <span style="color:#f92672">=</span> $h } keys %ss;
+        }
+        <span style="color:#66d9ef">if</span> ( $hm{$c} ) {
+            push @out, $c;
+            <span style="color:#66d9ef">if</span> ( scalar @out <span style="color:#f92672">&gt;=</span> $ct ) {
+                <span style="color:#66d9ef">last</span>;
+            }
+        }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@out;
+}
+</code></pre></div><p>We can see some familiar constructs here: a cache of happy numbers in <code>%hm</code>,
+and a seen hash in <code>%ss</code>, with a simple loop that iterates over the <code>ssd()</code>
+function (sum of square digits) until the result has been seen, or is known to
+be happy (or sad). 1 is pre-populated in <code>%hm</code>, so Roger doesn&rsquo;t need to
+explicitly check for <code>$v == 1</code>.</p>
+<p><strong>Blog</strong> › <a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_164__Happy_Palindromes.html">RogerBW&rsquo;s Blog: The Weekly Challenge 164: Happy Palindromes</a></p>
+<h2 id="ryan-thompson2">Ryan Thompson</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/ryan-thompson/perl/ch-2.pl">My solution</a>
+is quite similar to the others:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Return true if $_ is a happy number</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_happy</span>(_) {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">my</span> %seen;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $n; $c <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>; $c <span style="color:#f92672">=</span> sum map { $_<span style="color:#f92672">*</span>$_ } split <span style="color:#e6db74">//</span>, $c) {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $seen{$c}<span style="color:#f92672">++</span>;
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+}
+</code></pre></div><p>For some reason, I decided to cram the sum of square digits into into the
+C-style <code>for</code> loop conditional. It&rsquo;s certainly not the weirdest thing I&rsquo;ve
+ever shoved into a conditional, but this is a PG-rated review, so I&rsquo;ll just
+leave it at that.</p>
+<p>At least you know I&rsquo;m not immune to my own critiques!</p>
+<p><strong>Blog</strong> › <a href="https://ry.ca/2022/05/happy-numbers/">PWC 164 › Happy Numbers – Ryan J Thompson</a></p>
+<h2 id="ulrich-rieke2">Ulrich Rieke</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/ulrich-rieke/perl/ch-2.pl">Ulrich Rieke&rsquo;s solution</a>
+gives us a nicely concise <code>squareSum()</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">squareSum</span> {
+    <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">return</span> sum( map { $_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> } split(<span style="color:#e6db74"> //</span>, $number ) );
+}
+</code></pre></div><p>He then uses that to implement an iterative <code>isHappy()</code> checker:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isHappy</span> {
+    <span style="color:#66d9ef">my</span> %seen;
+    <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $sum    <span style="color:#f92672">=</span> squareSum($number);
+    $seen{$sum}<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">do</span> {
+        $sum <span style="color:#f92672">=</span> squareSum($sum);
+        $seen{$sum}<span style="color:#f92672">++</span>;
+    } <span style="color:#66d9ef">until</span> ( $sum <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> $seen{$sum} <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> );
+    <span style="color:#66d9ef">return</span> ( $sum <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> );
+}
+</code></pre></div><h2 id="wlmb2">W. Luis Mochan</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/wlmb/perl/ch-2.pl">W. Luis Mochan&rsquo;s solution</a>
+is another concise iterative implementation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">happy</span> {
+    <span style="color:#66d9ef">my</span> $x<span style="color:#f92672">=</span>shift;
+    <span style="color:#66d9ef">my</span> %seen;
+    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>$seen{$x}){
+        $seen{$x}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+        $x<span style="color:#f92672">=</span>sum map {$_<span style="color:#f92672">*</span>$_} split <span style="color:#e6db74">&#34;&#34;</span>, $x
+    }
+    <span style="color:#66d9ef">return</span> $x<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><p><strong>Blog</strong> › <a href="https://wlmb.github.io/2022/05/12/PWC164/">Perl Weekly Challenge 164. – W. Luis Mochán. Blog. – Físico, investigador del ICF-UNAM.Physicist, researcher at ICF-UNAM.</a></p>
+<hr>
+<hr>
+<h2 id="blogs">See Also</h2>
+<h3 id="blogs-this-week">Blogs this week:</h3>
+<p><strong>Adam Russell</strong> › <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/05/15">RabbitFarm</a> | <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/05/15">RabbitFarm</a></p>
+<p><strong>Arne Sommer</strong> › <a href="https://raku-musings.com/primarily-happy.html">Primarily Happy with Raku and Perl - Arne Sommer</a></p>
+<p><strong>Colin Crain</strong> › <a href="https://colincrain.com/2022/05/15/happy-happy-joy-joy/">Happy Happy Joy Joy – Programming Excursions in Perl and Raku</a></p>
+<p><strong>Dave Jacoby</strong> › <a href="https://jacoby.github.io/2022/05/09/shiny-happy-numbers-weekly-challenge-164.html">Shiny Happy Numbers: Weekly Challenge #164 | Committed to Memory</a></p>
+<p><strong>Flavio Poletti</strong> › <a href="https://github.polettix.it/ETOOBUSY/2022/05/10/pwc164-prime-palindrome/">PWC164 - Prime Palindrome - ETOOBUSY</a> | <a href="https://github.polettix.it/ETOOBUSY/2022/05/11/pwc164-happy-numbers/">PWC164 - Happy Numbers - ETOOBUSY</a></p>
+<p><strong>Jaldhar H. Vyas</strong> › <a href="https://www.braincells.com/perl/2022/05/perl_weekly_challenge_week_164.html">Perl Weekly Challenge: Week 164</a></p>
+<p><strong>James Smith</strong> › <a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-164/james-smith">perlweeklychallenge-club/challenge-164/james-smith at master · drbaggy/perlweeklychallenge-club · GitHub</a></p>
+<p><strong>Laurent Rosenfeld</strong> › <a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-164-prime-palindromes-and-happy-numbers.html">Perl Weekly Challenge 164: Prime Palindromes and Happy Numbers | laurent_r [blogs.perl.org]</a></p>
+<p><strong>Luca Ferrari</strong> › <a href="https://fluca1978.github.io/2022/05/09/PerlWeeklyChallenge164.html#task1">Perl Weekly Challenge 164: quick and easy – Luca Ferrari – Open Source advocate, human being</a> | <a href="https://fluca1978.github.io/2022/05/09/PerlWeeklyChallenge164.html#task2">Perl Weekly Challenge 164: quick and easy – Luca Ferrari – Open Source advocate, human being</a></p>
+<p><strong>Mark Senn</strong> › <a href="https://engineering.purdue.edu/~mark/twc-164-1.pdf">Mark Senn&rsquo;s blog</a> | <a href="https://engineering.purdue.edu/~mark/twc-164-2.pdf">Mark Senn&rsquo;s blog</a></p>
+<p><strong>Peter Campbell Smith</strong> › <a href="https://pjcs-pwc.blogspot.com/2022/05/palindromic-primes-and-moody-numbers.html">Palindromic primes and moody numbers</a></p>
+<p><strong>Roger Bell_West</strong> › <a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_164__Happy_Palindromes.html">RogerBW&rsquo;s Blog: The Weekly Challenge 164: Happy Palindromes</a></p>
+<p><strong>Ryan Thompson</strong> › <a href="https://ry.ca/2022/05/happy-numbers/">PWC 164 › Happy Numbers – Ryan J Thompson</a> | <a href="https://ry.ca/2022/05/palindromic-primes/">PWC 164 › Palindromic Primes – Ryan J Thompson</a></p>
+<p><strong>W. Luis Mochan</strong> › <a href="https://wlmb.github.io/2022/05/12/PWC164/">Perl Weekly Challenge 164. – W. Luis Mochán. Blog. – Físico, investigador del ICF-UNAM.Physicist, researcher at ICF-UNAM.</a></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+

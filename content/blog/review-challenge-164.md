@@ -4,6 +4,7 @@ date:         2022-06-28T14:11:36
 description:  "Ryan Thompson › Perl Weekly Review #164"
 tags:         ["perl"]
 title:        "Ryan Thompson › Perl Weekly Review #164"
+image:        images/blog/p5-review-challenge-164.jpg
 type:         post
 ---
 
@@ -15,11 +16,11 @@ Welcome to the Perl review for Week 164 of the Weekly Challenge! For a quick ove
 
 ## Getting in Touch
 
-<a href="mailto:rjt@cpan.org"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Email me (Ryan) with any feedback about this review.
+<a href="mailto:rjt@cpan.org"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Email me (Ryan) with any feedback about this review.
 
-<a href="https://github.com/manwar/perlweeklychallenge"><img src="http://ry.ca/misc/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request for any issues you may find with this page.
+<a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request for any issues you may find with this page.
 
-<a href="https://twitter.com/perlwchallenge"><img src="http://ry.ca/misc/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
+<a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
 
 We'd greatly appreciate any feedback you'd like to give.
 
@@ -753,8 +754,8 @@ me):
 
 ```perl
         my $i = int(length($_)/2);
-        $pld{$_}++ if $i==0 
-                   || $i > 0 
+        $pld{$_}++ if $i==0
+                   || $i > 0
                    && $_ =~ /^(
                         \d{$i})     # $1: First half of number
                         \d?         #     Middle digit if odd length
@@ -1131,7 +1132,7 @@ sub happy ($number) {
 ```
 
 The remaining code loops until the number of elements in `@result` is the
-`$limit`: 
+`$limit`:
 
 ```perl
 my @result;
@@ -1455,7 +1456,7 @@ sub isHappy {
 is over 200 lines, contains a test suite, benchmarking, and several
 variations, progressively more complex. It's worth looking at, and checking
 out his blog, as it's a wonderful journey through his approach to this
-problem. I'll highlight James's precache version: 
+problem. I'll highlight James's precache version:
 
 ```perl
 sub is_happy_precache {
@@ -1999,12 +2000,12 @@ Peter's code is also formatting the results exactly in the way Mohammad's task
 description did, so we'll see, for example:
 
 ```
-28 => 2^2 + 8^2 
-   => 4 + 64 
-   => 68 => 6^2 + 8^2 
-         => 36 + 64 
-         => 100 => 1^2 + 0^2 + 0^2 
-                => 1 + 0 + 0 
+28 => 2^2 + 8^2
+   => 4 + 64
+   => 68 => 6^2 + 8^2
+         => 36 + 64
+         => 100 => 1^2 + 0^2 + 0^2
+                => 1 + 0 + 0
                 => 1
 ```
 
