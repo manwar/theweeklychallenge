@@ -46,6 +46,10 @@ Please find below guest contributions.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/pascal/ch1.pas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/pascal/ch2.pas) in **Pascal**.
 
+##### **Bartosz Jarzyna** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/c/ch-1.c) in **C**.
+
+##### **Bartosz Jarzyna** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/pascal/ch-1.pas) in **Pascal**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
