@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-06-30T00:00:00+00:00
+date: 2022-07-01T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -55,6 +55,40 @@ Please find below guest contributions.
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/conor-hoekstra/haskell/ch-1.hs) in **Haskell**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/awk/ch-1.awk) in **Awk**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/bc/ch-1.bc) in **Bc**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/c/ch-1.c) in **C**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/d/ch-1.d) in **D**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/dart/ch-1.dart) in **Dart**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/go/ch-1.go) in **Go**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/javascript/ch-1.js) in **JavaScript**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/julia/ch-1.julia) in **Julia**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/kotlin/ch-1.kt) in **Kotlin**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/lua/ch-1.lua) in **Lua**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/nim/ch-1.nim) in **Nim**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/pascal/ch-1.pas) in **Pascal**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/python/ch-1.py) in **Python**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/ring/ch-1.ring) in **Ring**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/ruby/ch-1.rb) in **Ruby**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/rust/ch-1.rs) in **Rust**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/scala/ch-1.scala) in **Scala**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
