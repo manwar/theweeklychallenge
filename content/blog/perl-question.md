@@ -51,9 +51,8 @@ If you have access to latest release `Perl v5.36` then you can even try this:
 <br>
 
 ```perl
-    sub name($self, $name) {
-       defined $name && $self->{name} = $name;
-       return $self->{name};
+    sub do_add($x, $y) {
+       return $x + $y;
     }
 ```
 
