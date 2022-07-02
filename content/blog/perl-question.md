@@ -1,7 +1,7 @@
 ---
-title: "Perl Question???"
+title: "Perl Question ???"
 date: 2022-07-02T00:00:00+00:00
-description: "Perl Question???"
+description: "Perl Question ???"
 type: post
 image: images/blog/perl-question.jpg
 author: Mohammad S Anwar
