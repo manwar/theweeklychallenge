@@ -61,4 +61,20 @@ If you have access to latest release `Perl v5.36` then you can even try this:
 
 It is readable and easy to maintain.
 
+<br>
+
+#### UPDATE: [02/07/20222]
+
+<br>
+
+After posting the link to the blog post on `Facebook`, I received some useful stats. I haven't verified it, though.
+
+#### James Curtis-Smith
+
+> You usually have around a 40% performance hit by using get-setter methods {if trivial} than separate get & set methods {the more requests for the get method the less efficient it becomes} due to the overhead of the if.
+
+> The no-variable form is around 20% faster than the @_ version {again assuming the contents of the method are a trivial assignment}
+
+***
+
 That's it for now, keep hacking.
