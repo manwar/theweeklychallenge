@@ -35,7 +35,7 @@ If you ask me, personally I would do something like this:
 ```perl
     sub name {
        my ($self, $name) = @_;
-       $self->{name} //= $name;
+       defined $name && $self->{name} = $name;
        return $self->{name};
     }
 ```
@@ -52,7 +52,7 @@ If you have access to latest release `Perl v5.36` then you can even try this:
 
 ```perl
     sub name($self, $name) {
-       $self->{name} //= $name;
+       defined $name && $self->{name} = $name;
        return $self->{name};
     }
 ```
