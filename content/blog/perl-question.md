@@ -51,8 +51,9 @@ If you have access to latest release `Perl v5.36` then you can even try this:
 <br>
 
 ```perl
-    sub do_add($x, $y) {
-       return $x + $y;
+    sub name($self, $name = undef) {
+       defined $name && $self->{name} = $name;
+       return $self->{name};
     }
 ```
 
