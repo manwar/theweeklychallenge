@@ -54,6 +54,8 @@ Please find below guest contributions.
 
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/conor-hoekstra/haskell/ch-1.hs) in **Haskell**.
 
+##### **Duncan C. White** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/duncan-c-white/c/ch-1.c) in **C**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/awk/ch-1.awk) in **Awk**.
