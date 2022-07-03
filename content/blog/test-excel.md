@@ -92,6 +92,7 @@ Time for some action.
 #!/usr/bin/perl
 
 use v5.36;
+use Test::Excel;
 
 compare_excel('demo-1.xls', 'demo-2.xls', { spec => 'spec.txt' })
 ?
@@ -111,6 +112,7 @@ You can use as unit testing as below:
 
 use v5.36;
 use Test::More;
+use Test::Excel;
 
 ok compare_excel('demo-1.xls', 'demo-2.xls', { spec => 'spec.txt' });
 
