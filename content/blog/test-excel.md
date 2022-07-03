@@ -114,7 +114,26 @@ use v5.36;
 use Test::More;
 use Test::Excel;
 
-ok compare_excel('demo-1.xls', 'demo-2.xls', { spec => 'spec.txt' });
+ok  compare_excel('demo-1.xls', 'demo-2.xls', { spec => 'spec.txt' });
+ok !compare_excel('demo-1.xls', 'demo-3.xls', { spec => 'spec.txt' });
+
+done_testing;
+```
+
+<br>
+
+Or something like this:
+
+<br>
+
+```perl
+#!/usr/bin/perl
+
+use Test::More;
+
+use_ok('Test::Excel');
+cmp_excel_ok('demo-1.xls', 'demo-2.xls', { spec => 'spec.txt' });
+cmp_excel_not_ok('demo-1.xls', 'demo-3.xls', { spec => 'spec.txt' });
 
 done_testing;
 ```

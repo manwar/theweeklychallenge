@@ -258,7 +258,20 @@ compare_excel(<span style="color:#e6db74">&#39;demo-1.xls&#39;</span>, <span sty
 <span style="color:#66d9ef">use</span> Test::More;
 <span style="color:#66d9ef">use</span> Test::Excel;
 
-ok compare_excel(<span style="color:#e6db74">&#39;demo-1.xls&#39;</span>, <span style="color:#e6db74">&#39;demo-2.xls&#39;</span>, { spec <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;spec.txt&#39;</span> });
+ok  compare_excel(<span style="color:#e6db74">&#39;demo-1.xls&#39;</span>, <span style="color:#e6db74">&#39;demo-2.xls&#39;</span>, { spec <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;spec.txt&#39;</span> });
+ok <span style="color:#f92672">!</span>compare_excel(<span style="color:#e6db74">&#39;demo-1.xls&#39;</span>, <span style="color:#e6db74">&#39;demo-3.xls&#39;</span>, { spec <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;spec.txt&#39;</span> });
+
+done_testing;
+</code></pre></div><br>
+<p>Or something like this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
+
+<span style="color:#66d9ef">use</span> Test::More;
+
+use_ok(<span style="color:#e6db74">&#39;Test::Excel&#39;</span>);
+cmp_excel_ok(<span style="color:#e6db74">&#39;demo-1.xls&#39;</span>, <span style="color:#e6db74">&#39;demo-2.xls&#39;</span>, { spec <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;spec.txt&#39;</span> });
+cmp_excel_not_ok(<span style="color:#e6db74">&#39;demo-1.xls&#39;</span>, <span style="color:#e6db74">&#39;demo-3.xls&#39;</span>, { spec <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;spec.txt&#39;</span> });
 
 done_testing;
 </code></pre></div><br>
