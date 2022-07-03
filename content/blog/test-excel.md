@@ -129,6 +129,7 @@ Or something like this:
 ```perl
 #!/usr/bin/perl
 
+use v5.36;
 use Test::More;
 
 use_ok('Test::Excel');
