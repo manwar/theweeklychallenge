@@ -89,6 +89,8 @@ If you need help or suggestions for your solutions, feel free to drop me a mail.
 
 ---
 
+<br>
+
 That brings the end of the conversation with **Alexander Pankoff**. Please do let us know your view. We will come back next month with another champion.
 
 ---

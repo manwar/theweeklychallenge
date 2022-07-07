@@ -92,6 +92,8 @@ Lacking much math, I sometimes appreciate the opportunity to learn some. I enjoy
 
 ---
 
+<br>
+
 That brings the end of the conversation with `Robert Ransbottom`. Please do let us know your view. We will come back next month with another champion.
 
 ---

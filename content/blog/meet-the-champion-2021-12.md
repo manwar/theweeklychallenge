@@ -81,6 +81,8 @@ But I also like to go beyond the question asked - for example in challege 141 ta
 
 ---
 
+<br>
+
 That brings the end of the conversation with **Peter Campbell Smith**. Please do let us know your view. We will come back next month with another champion.
 
 ---
