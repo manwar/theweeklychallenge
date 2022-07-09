@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-07-08T00:00:00+00:00
+date: 2022-07-09T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -41,6 +41,10 @@ Please find below guest contributions.
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/conor-hoekstra/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/conor-hoekstra/apl/ch-2.apl) in **APL**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/julia/ch-2.jl) in **Julia**.
+
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/python/ch-2.py) in **Python**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/python/ch-1.py) in **Python**.
 
