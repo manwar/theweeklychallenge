@@ -42,9 +42,15 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/c/ch-2.c) in **C**.
+
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/julia/ch-2.jl) in **Julia**.
 
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/python/ch-2.py) in **Python**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/ring/ch-2.ring) in **Ring**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/ruby/ch-2.rb) in **Ruby**.
 
 ##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/python/ch-2.py) in **Python**.
 
