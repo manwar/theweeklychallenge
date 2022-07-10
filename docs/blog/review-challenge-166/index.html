@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #166">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #166</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #166</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Jul 10, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-166.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-165/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 166</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So here we are then.</p>
+<p>I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>Before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-166/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-166/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one <em><strong>more</strong></em> thing before we finally get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...Enough? Fine. So without even further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc166task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc166task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc166blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC166TASK1">Task 1</a>                 •             <a href="#PWC166TASK2">Task 2</a>             	•             <a href="#PWC166BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC166TASK1">TASK 1</h1>
+<h1 id="hexadecimal-words">Hexadecimal Words</h1>
+<p><em>Submitted by: Ryan J Thompson</em></p>
+<p>As an old systems programmer, whenever I needed to come up with a 32-bit number, I would reach for the tired old examples like <code>0xDeadBeef</code> and <code>0xC0dedBad</code>. I want more!</p>
+<p>Write a program that will read from a dictionary and find 2- to 8-letter words that can be “spelled” in hexadecimal, with the addition of the following letter substitutions:</p>
+<pre><code>    o ⟶ 0 (e.g., 0xf00d = “food”)
+    l ⟶ 1
+    i ⟶ 1
+    s ⟶ 5
+    t ⟶ 7
+</code></pre><p>You can use your own dictionary or you can simply <code>open ../../../data/dictionary.txt</code> (relative to your script’s location in our GitHub repository) to access the dictionary of common words from Week #161.</p>
+<p>Optional Extras (for an <code>0xAddedFee</code>, of course!) Limit the number of “special” letter substitutions in any one result to keep that result at least somewhat comprehensible. (<code>0x51105010</code> is an actual example from my sample solution you may wish to avoid!)</p>
+<p>Find phrases of words that total 8 characters in length (e.g., <code>0xFee1Face</code>), rather than just individual words.</p>
+<h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>With an apology to Ryan, I feel the need to preface this by saying I&rsquo;ve never been a fan of leet-speak (&ldquo;1337-5P34K&rdquo;). Not so much for the coinages in the cant — I am nothing if not a font of pop-culture — but specifically for the letter substitutions. Aside from satisfying the rules for a new pass-phrase I just pretty much don&rsquo;t do that. For someone so willing to massacre the language as much as I am in search of an interesting turn of phrase, apparently I maintain some fairly strict rules when doing so, and glyphic substitution seems to be where I draw the line.</p>
+<p>Mind you, not semantic substitution, such as using &ldquo;+&rdquo; for &ldquo;and&rdquo;, + furthermore I seem to have a unique and fairly freewheeling approach to punctuation. No, those are fine, in the right circumstance. Homonymic substitution 2 b sure, but then honestly I usually reject that as  lazy. If you want people to read what you write, you need to put the work in yourself instead of foisting the effort off onto your readers. It&rsquo;s not quite a zero-sum game, but there is a certain minimal work required to transmit information. Think of it in terms of compression and decompression: generally schemes that are quick to expand are hard to compress and vice-versa. You are asking for your reader&rsquo;s attention. Earn it. Also, not to put too fine a point on it, but I routinely find people too lazy to write are also too lazy to properly think things through. The two go hand-in-hand. YMMV.</p>
+<p>But back to the task. Semiotic misgivings aside, what about constructing words using weird constraints? Now there&rsquo;s something I can sink my teeth into. Bring it on! Let&rsquo;s do this!</p>
+<p>And, sure, ok, there is obviously a certain flexibility with what i&rsquo;ve said just now: substituting a 0 for an O is hardly on the same level as a 7 for a T. I still can&rsquo;t think why I&rsquo;d <em>do</em> it, mind you, but I&rsquo;m much more likely to let it ride and more on.</p>
+<p>Ryan&rsquo;s allowed substitution scheme reflects a similar pragmatism, but I do still find those 7s highly sus. After all, seven ate nine. Never forget that.</p>
+<p>There were 19 members willing to plunge into the icy waters of the first task this week.</p>
+<h2 id="a-5313c710n-0f-5u8m15510n5">a 5313C710N 0f 5U8M15510N5</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a></p>
+<p>I find the members of the Weekly Challenge to often be an unruly, ungovernable lot. As such no one tells them what to do: &ldquo;live to ride, ride to die&rdquo;&quot;. Or code. Or something like that.</p>
+<p>Given the open-ended nature of the optional extras, we saw quite a lot of variation in the what, exactly the task was presented to be solved.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan will start us of today with a straightforward, base solution to the task of finding the longest word, ignoring the more complicated options. That will give us a nice introduction to the steps involved.</p>
+<p>At heart we need to select words from a dictionary that fulfil certain criteria; in the base case, that they only contain the letters that can be mapped to valid hexadecimal digits. Aside from the obvious &ldquo;A&rdquo; through &ldquo;F&rdquo;, we also include the additional letters &ldquo;O&rdquo;, &ldquo;L&rdquo;, &ldquo;I&rdquo;, &ldquo;S&rdquo;, and &ldquo;T&rdquo;, mapped by their resemblance to numbers.</p>
+<p>So-called resemblance?</p>
+<p>Stepping away from that thorn-bush, the five additional numeric substitutions are given and that&rsquo;s that.</p>
+<p>Moving on, he tabulates a translation hash of characters to their agreed-on hexadecimal equivalents, using a hardcoded list of flattened key-value pairs.</p>
+<p>The selection step for each individual word taken from the dictionary is to divide it into an array of characters and verify each letter exists in this hash, while constructing a new version of the word using the hexadecimal values concatenated into a string.</p>
+<p>If a hash lookup is successful the hash value is appended, but if it fails the subroutine short-circuits and returns early, and the word fails the test.</p>
+<p>As Duncan is looking for the longest word, a separate variable is kept through the search holding the longest word found so far. Because this method finds the first word of any given length the longest word found is &ldquo;abdicate&rdquo;, at 8 letters, which in hexadecimal yields &ldquo;ABD1CA7E&rdquo;.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %mapping <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(a a b b c c d d e e f f o 0 l 1 i 1 s 5 t 7)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hexword</span> ($)
+    {
+        <span style="color:#66d9ef">my</span>( $word ) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $let (split(<span style="color:#e6db74">//</span>, $word))
+        {
+        	<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">unless</span> $mapping{$let};
+        	$result <span style="color:#f92672">.=</span> $mapping{$let};
+        }
+        <span style="color:#66d9ef">return</span> $result;;
+    }
+
+    <span style="color:#66d9ef">while</span>( <span style="color:#e6db74">&lt;$in&gt;</span> )
+    {
+        chomp;
+        <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> length($_);
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $len <span style="color:#f92672">&gt;=</span> $minlen <span style="color:#f92672">&amp;&amp;</span> $len <span style="color:#f92672">&lt;=</span> $maxlen;
+        $_ <span style="color:#f92672">=</span> lc($_);
+        <span style="color:#66d9ef">my</span> $hw <span style="color:#f92672">=</span> hexword( $_ );
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $hw;
+        $longest <span style="color:#f92672">=</span> $hw <span style="color:#66d9ef">if</span> length($hw) <span style="color:#f92672">&gt;</span> length($longest);
+        say <span style="color:#e6db74">&#34;$_ == $hw&#34;</span>;
+    }
+
+    say <span style="color:#e6db74">&#34;longest: $longest&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/ulrich-rieke/haskell/ch-1.hs">Haskell</a></p>
+<p>Ulrich introduces the idea of matching against a regular expression to find his hex-compliant word list.  If it doesn&rsquo;t match immediately a <code>tr///</code> translation is used and the match is tried again.</p>
+<p>I should note that internally the <code>tr///</code> command builds a static translation table during  compilation, so you can&rsquo;t, for instance, use any variables within it as they don&rsquo;t exist at this stage. On the other hand that table ends up hardcoded and so the operator is extremely fast compared to a regular expression. There really is no comparison, in fact. So we would most likely be better off just performing the translation on every word and only testing the match once.</p>
+<p>A regular expression, though, in my eyes is the way to go here.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw ( </span>any ) ;
+
+    <span style="color:#66d9ef">my</span> $potentialHex <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^[0-9a-f]{2,8}$&#39;</span> ;
+    <span style="color:#66d9ef">my</span> @hexwords ;
+    <span style="color:#66d9ef">my</span> $line ;
+    open ( <span style="color:#66d9ef">my</span> $fh , <span style="color:#e6db74">&#34;&lt; dict.txt&#34;</span> ) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Can&#39;t open file: $!&#34;</span> ;
+    <span style="color:#66d9ef">while</span> ( $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span> ) {
+      chomp $line ;
+      <span style="color:#66d9ef">if</span> ( $line <span style="color:#f92672">=~</span><span style="color:#e6db74"> /$potentialHex/</span> ) {
+          push @hexwords , <span style="color:#e6db74">&#34;0x$line&#34;</span> ;
+      }
+      <span style="color:#66d9ef">else</span> {
+          $line <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/olist/</span><span style="color:#ae81ff">01157</span><span style="color:#f92672">/</span> ;
+          <span style="color:#66d9ef">if</span> ( $line <span style="color:#f92672">=~</span><span style="color:#e6db74"> /$potentialHex/</span> ) {
+        push @hexwords , <span style="color:#e6db74">&#34;0x$line&#34;</span> ;
+          }
+      }
+    }
+    close( $fh ) ;
+    say join( <span style="color:#e6db74">&#39;, &#39;</span> , @hexwords ) ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_166__Hexing_the_Directories.html">RogerBW&rsquo;s Blog: The Weekly Challenge 166: Hexing the Directories</a></p>
+<p>On the subject of regular expressions, Roger notes that a Global Regular Expression Print command executed from the shell can parse out our word lists from the dictionary file quickly and effectively. The command, <code>grep</code> is also available in Perl of course.</p>
+<p>Roger uses several <code>egrep</code> commands in the shell to determine how many solutions to various hex-words problems the dictionary presents. He can then use these numbers to test his function.</p>
+<p>He could use <code>grep</code>, after all he just did, but perhaps in search of a novelty he chooses a different path: splitting the word into an array of characters, then testing each to make sure it is hex-compliant as per the rules.</p>
+<p>The test for special characters is made separately, so that on finding a match there a counter is incremented, allowing him to limit the number of numeric substitutions made, which is a nice added extra.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hexwords</span>($lo,$hi,$sb) {
+      <span style="color:#66d9ef">my</span> @out;
+      open <span style="color:#66d9ef">my</span> $fh,<span style="color:#e6db74">&#39;&lt;&#39;</span>,<span style="color:#e6db74">&#39;dict.txt&#39;</span>;
+      <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
+        chomp $line;
+        <span style="color:#66d9ef">if</span> (length($line) <span style="color:#f92672">&gt;=</span> $lo <span style="color:#f92672">&amp;&amp;</span> length($line) <span style="color:#f92672">&lt;=</span> $hi) {
+          <span style="color:#66d9ef">my</span> $valid <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+          <span style="color:#66d9ef">my</span> $sbc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+          <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (split <span style="color:#e6db74">&#39;&#39;</span>,$line) {
+            <span style="color:#66d9ef">if</span> ($c <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[oilst]/</span>) {
+              $sbc<span style="color:#f92672">++</span>;
+              <span style="color:#66d9ef">if</span> ($sbc <span style="color:#f92672">&gt;</span> $sb) {
+                $valid <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+              }
+            } <span style="color:#66d9ef">elsif</span> ($c <span style="color:#f92672">lt</span> <span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">||</span> $c <span style="color:#f92672">gt</span> <span style="color:#e6db74">&#39;f&#39;</span>) {
+              $valid <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            }
+            <span style="color:#66d9ef">unless</span> ($valid) {
+              <span style="color:#66d9ef">last</span>;
+            }
+          }
+            <span style="color:#66d9ef">if</span> ($valid) {
+              push @out,$line;
+            }
+        }
+      }
+      close $fh;
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@out;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels, on the other hand, has no problem utilizing <code>grep</code> to do his filtration.</p>
+<p>As noted above, the historical context of <code>grep</code> as a shell utility is good to remember, as it serves as a reminder of how closely the idea of regular expressions is integrated into it. Perl has taken that original idea and broadened this into a general-purpose filter.</p>
+<p>Here Niels provides solutions for the main challenge and the two optional tasks as well, each starting with a carefully tuned regex filter on the dictionary word list.</p>
+<p>Of note here is his <code>hexPhrase()</code> function, which fits words found into partitions of an 8-character phrase space with a minimum of 2-letter words. Spoiler: there&rsquo;s a lot of them, 44634 to be exact.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hexWords</span> ($)  {
+      <span style="color:#66d9ef">my</span> ($dictFile) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#66d9ef">return</span> grep{chomp <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">/^[a-folist]{2,8}$/</span>}
+                  read_file $dictFile;
+    }
+
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hexWords2</span> ($) {
+      <span style="color:#66d9ef">my</span> ($dictFile) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#66d9ef">return</span> grep{chomp <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">/^[a-fost]{2,8}$/</span>}
+                  read_file $dictFile;
+    }
+
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hexPhrase</span> ($) {
+      <span style="color:#66d9ef">my</span> ($dictFile) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#66d9ef">my</span> @res;
+      <span style="color:#66d9ef">my</span> %hwl;
+
+      <span style="color:#66d9ef">my</span> @hw <span style="color:#f92672">=</span> grep {<span style="color:#e6db74">/^[^ost][[a-fost]{1,5}$/</span>} hexWords2($dictFile);
+      map { push(@{$hwl{length($_)}},$_) } @hw;
+
+      <span style="color:#66d9ef">my</span> @l <span style="color:#f92672">=</span> (
+        [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>],
+        [<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>],
+        [<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">4</span>],
+        [<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>],
+        [<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">2</span>]
+      );
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $ar (@l) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $w (glob <span style="color:#e6db74">&#39;{&#39;</span><span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;}:{&#39;</span>, map { join(<span style="color:#e6db74">&#39;,&#39;</span>, @{$hwl{$_}}) } @$ar)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;}&#39;</span>) {
+          <span style="color:#66d9ef">my</span> @w <span style="color:#f92672">=</span> map { ucfirst } split(<span style="color:#e6db74">/:/</span>,$w);
+          $w <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>, @w);
+          push(@res, $w) <span style="color:#66d9ef">if</span> (length(join(<span style="color:#e6db74">&#39;&#39;</span>,uniq(@w))) <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>);
+        }
+      }
+
+      <span style="color:#66d9ef">return</span> @res;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/05/hexadecimal-words/">PWC 166 › Hexadecimal Words - Ryan J Thompson</a></p>
+<p>This is Ryan&rsquo;s baby, so let&rsquo;s see what he did for us, shall we?</p>
+<p>Ryan serves us up with solutions prepared two ways. First off is a demonstration of just how compact a solution can be, incorporating a <code>map</code> and <code>grep</code> to filter out any word that doesn&rsquo;t make the cut in a single line.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> File::Slurper <span style="color:#e6db74">qw&lt; read_lines &gt;</span>;
+
+    <span style="color:#66d9ef">my</span> $dict <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;../../../data/dictionary.txt&#39;</span>;
+
+    say <span style="color:#66d9ef">for</span> map {     y<span style="color:#e6db74">/olist/</span><span style="color:#ae81ff">01157</span><span style="color:#f92672">/</span>r    }
+           grep { <span style="color:#e6db74">/^[0-9a-folist]{2,8}$/</span> } read_lines($dict);
+</code></pre></div><p>Ok, I&rsquo;m sure the file-slurping function he imports will likely add significant number of lines to this code, but the point remains that a well-placed regex followed by numeric substitution is all we need to find our words.</p>
+<p>Then again, it is a little less-than-ideal. He cites many shortcomings to this approach, the principle ones being there are only single words being generated and sometimes relentless, pitiless substitution renders those poor words as quivering puddles of line-noise, a crushed, shattered shadow of their former selves.</p>
+<p>It&rsquo;s inhumane and unsanitary. This is the 21st century, not medieval Europe. This will not stand.</p>
+<p>Much like ants at a picnic, rules arrive and start making 4 lines into 63. And the <code>File::Slurper</code> module is still hanging around, don&rsquo;t forget that. And let&rsquo;s add a few more functions from <code>List::Util</code> to round things off.</p>
+<p>Ultimately, though, the effort accommodating these concerns pays off. After installing a variety or configuration variables for phrase-length, minimum word length and maximum number of number substitutions (as a fraction of the total), Ryan generates a list of a list of 380,000 or so combinations: 8 letters length; minimum 3 letters; 1 number maximum. Here&rsquo;s a short sampling:</p>
+<pre><code>    Blade Fed =&gt; b1adefed
+    Blade Fee =&gt; b1adefee
+    Bleed Cab =&gt; b1eedcab
+    Bleed Cad =&gt; b1eedcad
+    Bleed Dab =&gt; b1eeddab
+    Bleed Dad =&gt; b1eeddad
+    Bleed Ebb =&gt; b1eedebb
+    Bleed Fad =&gt; b1eedfad
+    Bleed Fed =&gt; b1eedfed
+    Bleed Fee =&gt; b1eedfee
+    Boded Cab =&gt; b0dedcab
+    Boded Cad =&gt; b0dedcad
+    Boded Dab =&gt; b0deddab
+    Boded Dad =&gt; b0deddad
+    Boded Ebb =&gt; b0dedebb
+    Boded Fad =&gt; b0dedfad
+    Boded Fed =&gt; b0dedfed
+    Boded Fee =&gt; b0dedfee
+    Cab Cable =&gt; cabcab1e
+    Cab Cacao =&gt; cabcaca0
+    Cab Cadet =&gt; cabcade7
+    Cab Cased =&gt; cabca5ed
+    Cab Cease =&gt; cabcea5e
+    Cab Ceded =&gt; cabceded
+    Cab Cedes =&gt; cabcede5
+    Cab Coded =&gt; cabc0ded
+</code></pre><p>Visual display of information is one of my favorite interests, and adding a space between words is one of those details that separates the modern, urban sophisticate from the filthy savages of the world. Be like Ryan.</p>
+<p>The post-processing is done by three subroutines: first the words are filtered, then assembled into phrases, and then the phrases prepared for output.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Perform any desired filtering of results. Takes an array of</span>
+    <span style="color:#75715e"># [ orig_word =&gt; hex_word ] and returns true if it should be included</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">filter</span>(_) {
+        <span style="color:#66d9ef">my</span> ($orig, $hex) <span style="color:#f92672">=</span> @{$_[<span style="color:#ae81ff">0</span>]};
+
+        <span style="color:#75715e"># Count number of substitutions in the word</span>
+        <span style="color:#66d9ef">my</span> $subs <span style="color:#f92672">=</span>()<span style="color:#f92672">=</span> ($orig <span style="color:#f92672">^</span> $hex) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[^\0]/g</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $subs <span style="color:#f92672">&gt;</span> length($hex)<span style="color:#f92672">*</span>$o{<span style="color:#e6db74">&#39;max-sub&#39;</span>};
+
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> length($hex) <span style="color:#f92672">&gt;</span> $o{length};
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> length($hex) <span style="color:#f92672">&lt;</span> $o{<span style="color:#e6db74">&#39;min-length&#39;</span>};
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># pass</span>
+    }
+
+    <span style="color:#75715e"># Get unique n-word phrases of length $o{length} (recursive)</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_phrases</span> {
+        <span style="color:#66d9ef">my</span> @phrases;
+
+        <span style="color:#66d9ef">sub</span> {
+            <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> sum map { length } @_;
+
+                                    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $len <span style="color:#f92672">&gt;</span>  $o{length};
+            push @phrases, [@_] <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $len <span style="color:#f92672">==</span> $o{length};
+
+            __SUB__<span style="color:#f92672">-&gt;</span>(@_, $_) <span style="color:#66d9ef">for</span> grep { $_ <span style="color:#f92672">ge</span> $_[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] } @words;
+        }<span style="color:#f92672">-&gt;</span>();
+
+        @phrases;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pretty_print</span> {
+        <span style="color:#66d9ef">my</span> $spaces <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> max map { <span style="color:#ae81ff">0</span><span style="color:#f92672">+</span>@$_ } @_;
+        <span style="color:#66d9ef">for</span> (@_) {
+            <span style="color:#66d9ef">my</span> $phrase <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39; &#39;</span>, map ucfirst, @$_;
+            <span style="color:#66d9ef">my</span> $hexphrase <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, map { $words{$_} } @$_;
+            printf <span style="color:#e6db74">&#34;%@{[$o{length}+$spaces]}s =&gt; %$o{length}s\n&#34;</span>,
+                    $phrase, $hexphrase;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/05/25/0x7e57ab1e-0xc0deba5e-weekly-challenge-166.html">0x7e57ab1e 0xc0deba5e: Weekly Challenge #166 | Committed to Memory</a></p>
+<p>When we&rsquo;re substituting a digit for a letter that bears some superficial resemblance, what exactly are we doing? Well, we&rsquo;re making a mapping from one set of characters to another. In this association, each character is linked to a single character in the replacement set, making the mapping surjective, with the domain and codomains consisting solely of the characters in play. However because two letters: &ldquo;i&rdquo; and &ldquo;l&rdquo;, both map to &ldquo;1&rdquo;, the mapping is <em>not</em> injective. Consequently we don&rsquo;t have a bijective mapping, being another name for a strict 1-to-1 equivalence.</p>
+<p>As we have two possible sources, when we come across a 1 in a hex-word to be read, it needs to be inferred from context which letter was used to create it. This is one reason why s1111e57 — silliest — is so hard to read.</p>
+<p>Dave makes two mappings, in the form of hashes — one for the translated characters and another to recognize disallowed characters. Iterating across the characters found in each candidate word, each letter is translated if a mapping is found, and the word rejected if it shows up in the <code>%banned</code> hash.</p>
+<p>I suspect he really wanted to use that <code>get_complement()</code> function from <code>List::Compare</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Compare;
+
+    <span style="color:#66d9ef">my</span> @words   <span style="color:#f92672">=</span> get_words();
+    <span style="color:#66d9ef">my</span> @letters <span style="color:#f92672">=</span> <span style="color:#e6db74">qw{ a b c d e f o l i s t }</span>;
+    <span style="color:#66d9ef">my</span> @banned  <span style="color:#f92672">=</span> bad_letters(@letters);
+    <span style="color:#66d9ef">my</span> %banned  <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } @banned;
+    <span style="color:#66d9ef">my</span> %mapping <span style="color:#f92672">=</span> (
+        i <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1&#39;</span>,
+        l <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1&#39;</span>,
+        o <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;0&#39;</span>,
+        s <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;5&#39;</span>,
+        t <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;7&#39;</span>,
+    );
+    map { $mapping{$_} <span style="color:#f92672">=</span> $_ } <span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;f&#39;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bad_letters</span>( @letters ) {
+        <span style="color:#66d9ef">my</span> @alpha  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;z&#39;</span>;
+        <span style="color:#66d9ef">my</span> $lc     <span style="color:#f92672">=</span> List::Compare<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( <span style="color:#f92672">\</span>@letters, <span style="color:#f92672">\</span>@alpha );
+        <span style="color:#66d9ef">my</span> @banned <span style="color:#f92672">=</span> $lc<span style="color:#f92672">-&gt;</span>get_complement();
+        <span style="color:#66d9ef">return</span> @banned;
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg gives us a compact solution limited to only two numeric substitutions. He accomplished this in a novel way, performing a global match on either 1, 5, or 7. The use of the, um, &ldquo;Saturn&rdquo; operator forces list context, which is then taken in scalar context suppling the length of the list, or in other words the number of matches made.</p>
+<p>Jorg himself uses the alternate term &ldquo;goatse&rdquo; operator, which, for the love of all that is good and holy in the world please do not Google for more information. The Saturn operator (which isn&rsquo;t technically an operator at all, but several chained together) can be found <a href="https://metacpan.org/dist/perlsecret/view/lib/perlsecret.pod#Goatse">here, in perlsecret</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        chomp;
+        tr<span style="color:#e6db74">/olist/</span><span style="color:#ae81ff">01157</span><span style="color:#f92672">/</span>;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> <span style="color:#e6db74">/^[0-9a-f]{2,8}$/</span>;
+        <span style="color:#75715e"># Allow a maximum of two lesser comprehensible letters.</span>
+        <span style="color:#75715e"># Force global match into list context, then convert to scalar.</span>
+        <span style="color:#75715e"># See &#34;Goatse&#34; in perlsecret.</span>
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;</span> (() <span style="color:#f92672">=</span> <span style="color:#e6db74">/[157]/g</span>);
+        say <span style="color:#e6db74">&#34;0x\u$_&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/05/d00dle5-we-are-asked-for-list-of-2-8.html">Peter attempts Perl Weekly Challenge</a></p>
+<p>If we were to eliminate the substitution from &ldquo;l&rdquo; to &ldquo;1&rdquo;, then each number could have only one character equivalent, and our brains would then think we&rsquo;re just looking at a funny font where some of the characters happen to look like numbers. That would be a lot easier to deal with, I dare say.</p>
+<p>Peter goes ahead and implements this particular option, which helps quite a bit. Here&rsquo;s a sampling:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    Omitting l <span style="color:#f92672">-&gt;</span> <span style="color:#ae81ff">1</span>:
+        ABA7E   ABA7ED   ABA7E5    ABB07   ABB075 ABD1CA7E     ABE7    ABE75  ABE77ED    AB1DE
+       AB1DE5    AB0DE   AB0DE5  AB5CE55   ACCEDE  ACCEDED  ACCEDE5   ACCE55 ACCE55ED ACCE55E5
+       ACC057 ACC057ED  ACC0575      ACE     ACED     ACE5     AC1D    AC1D5      AC7    AC7ED
+         AC75       AD      ADD    ADDED   ADD1C7 ADD1C7ED  ADD1C75     ADD5      AD0    AD0BE
+       AD0BE5      AD5   AFFEC7 AFFEC7ED  AFFEC75    AF007      A1D     A1DE    A1DED    A1DE5
+         A1D5       A5 A5BE5705  A5CE71C A5CE71C5    A51DE   A51DE5      A55    A55E5   A55E55
+     A55E55ED A55E55E5    A55E7   A55E75   A55157 A55157ED  A551575
+</code></pre></div><p>This is welcome change to my tired eyes, but taken alone, the going can still be tough if we allow unlimited numbers. The last word, &ldquo;assists&rdquo; serves as a warning to the cavalier.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># not allowing l -&gt; 1</span>
+    say <span style="color:#e6db74">qq[\nOmitting l -&gt; 1:]</span>;
+    $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    WORD: <span style="color:#66d9ef">while</span> ($dictionary <span style="color:#f92672">=~</span> m<span style="color:#f92672">|</span>(<span style="color:#f92672">.*</span>)?<span style="color:#f92672">\</span>n<span style="color:#f92672">|</span>g) {
+        $word <span style="color:#f92672">=</span> $1;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> (length($word) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">or</span> length($word) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">or</span> $word <span style="color:#f92672">=~</span> m<span style="color:#f92672">|</span>[<span style="color:#f92672">^</span>abcdefoist]<span style="color:#f92672">|</span>i;
+        $word <span style="color:#f92672">=~</span> y<span style="color:#f92672">|</span>oistOIST<span style="color:#f92672">|</span><span style="color:#ae81ff">01570157</span><span style="color:#f92672">|</span>;
+        <span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#39;%9s&#39;</span>, uc($word));
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">qq[\n]</span> <span style="color:#66d9ef">unless</span> <span style="color:#f92672">++</span>$count %10;
+    }
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">qq[\n]</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$count %10;
+    say <span style="color:#e6db74">qq[$count words]</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/julien-fiegehenn/typescript/ch-1.ts">Typescript</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://simbabque.github.io/posts/weekly-challenge-166-github-copilot/">The Weekly Challenge 166: Github DWIM - Julien&rsquo;s tech(ish) blog</a></p>
+<p>Lastly, Julien gives a uniquely new method, novel less for its actual approach but rather from its means of construction, having been directed in consultation with GitHub copilot.</p>
+<p>For those unfamiliar, GitHub copilot is an AI-assisted IDE, where the user prompts the AI with comments on what needs to be done, and the AI suggests code to do it.</p>
+<p>It&rsquo;s unclear how much of what is presented here remains as actually written by the AI, but Julien does use the adjective &ldquo;mostly&rdquo;, and notes that it&rsquo;s &ldquo;not the best quality code&rdquo;.</p>
+<p>For what it&rsquo;s worth he does do something else interesting, to slurp in his dictionary data.  Using <code>Path::Tiny</code> for his I/O, this immediately gives us a <code>lines</code> method, with a <code>chomp</code> attribute. Looks easy to operate.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Path::Tiny <span style="color:#e6db74">&#39;path&#39;</span>;
+    <span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> @dictionary <span style="color:#f92672">=</span> path(<span style="color:#e6db74">&#39;./dict.txt&#39;</span>)<span style="color:#f92672">-&gt;</span>lines( { chomp <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } );
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_hex_words</span> {
+        <span style="color:#66d9ef">my</span> $dictionary <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> @words;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $word (@dictionary) {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> length $word <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> length $word <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">8</span>;
+            $word <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/olist/</span><span style="color:#ae81ff">01157</span><span style="color:#f92672">/</span>;
+
+            <span style="color:#66d9ef">if</span> ( $word <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[0-9a-f]+$/</span> ) {
+                push @words, $word;
+            }
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@words;
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/05/24/pwc166-hexadecimal-words/">PWC166 - Hexadecimal Words - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-166/james-smith">Perl Weekly Challenge #166</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-166-hexadecimal-words-and-k-directory-diff.html">Perl Weekly Challenge 166: Hexadecimal Words and K-Directory Diff</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/robert-dicicco/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/robert-dicicco/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/robert-dicicco/ruby/ch-1.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/05/25/PWC166/">Perl Weekly Challenge 166 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC166TASK2">TASK 2</h1>
+<h1 id="k-directory-diff">K-Directory Diff</h1>
+<p><em>Submitted by: Ryan J Thompson</em></p>
+<p>Given a few (three or more) directories (non-recursively), display a side-by-side difference of files that are missing from at least one of the directories. Do not display files that exist in every directory.</p>
+<p>Since the task is non-recursive, if you encounter a subdirectory, append a /, but otherwise treat it the same as a regular file.</p>
+<p><strong>Example</strong></p>
+<p>Given the following directory structure:</p>
+<pre><code>dir_a:
+    Arial.ttf  Comic_Sans.ttf  Georgia.ttf  Helvetica.ttf
+    Impact.otf  Verdana.ttf  Old_Fonts/
+
+dir_b:
+    Arial.ttf  Comic_Sans.ttf  Courier_New.ttf  Helvetica.ttf
+    Impact.otf  Tahoma.ttf  Verdana.ttf
+
+dir_c:
+    Arial.ttf  Courier_New.ttf  Helvetica.ttf  Impact.otf
+    Monaco.ttf  Verdana.ttf
+</code></pre><p><strong>expected output:</strong></p>
+<p>The output should look similar to the following:</p>
+<pre><code>    dir_a          | dir_b           | dir_c
+    -------------- | --------------- | ---------------
+    Comic_Sans.ttf | Comic_Sans.ttf  |
+                   | Courier_New.ttf | Courier_New.ttf
+    Georgia.ttf    |                 |
+                   |                 | Monaco.ttf
+    Old_Fonts/     |                 |
+                   | Tahoma.ttf      |
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/julien-fiegehenn/perl/ch-2.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>For our second task we&rsquo;re veering away from our usual string munging and number crunching to focus on another central talent of Perl, the language known as the Pathologically Eclectic Rubbish Lister.</p>
+<p>Which would be listing rubbish, of course.</p>
+<p>It&rsquo;s nice to branch out, wouldn&rsquo;t you say?</p>
+<p>There were 17 submissions for the second task this past week.</p>
+<h2 id="a-selection-of-submissions">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>The task has three or so basic components: input, sorting, and output, with arguably the last two a little more important than the first.</p>
+<p>Constructing a model directory structure and then parsing it using <code>opendir</code> and <code>readdir</code> is a very useful thing ot know about in Perl, and I will not deride the utility of setting up a model in one&rsquo;s filesystem to do this. It&rsquo;s a good exercise, and I&rsquo;ve used these loyal and trustworthy functions myself in this past year. When you need them, they&rsquo;re there for you, and have your back. Perl&rsquo;s good like that.</p>
+<p>The logic portion of the challenge in deeply entangled with the output report, because to write files ordered by <em>every</em> file, yet with only the existing files written in each directory&rsquo;s column, we need a to be able to produce that sorting on command as we write each line of output. So we need to structure our logic accordingly. We saw different approaches to what I regarded fundamentally as a data structure problem. The detail that we aren&rsquo;t just listing the file contents but the differences, also means that any file present in all directories should not be listed at all. This throws another small complication in the works.</p>
+<p>Finally, pretty-printing the fancy report is tricky, for the reasons stated above. One file per line, either listed or left blank, under each directory means we need an ordered list of all files not common to all directories to start with. As each file is iterated through we then need to write a line of text with the file listed in possibly numerous places, properly spaced.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>A common action in sorting the file data was to construct a hash keyed with the directory names, each pointing to a list of files within it. These hash value lists are then taken and reformulated as a hash of filenames, each pointing to a list of directories that contain it.</p>
+<p>Here the monk Athanasius constructs just such a sequence of actions, followed by a filter to remove files located in every directory from the processed, reversed hash.</p>
+<p>This is their main control flow, illustrating the sorting. The table display is a whole system to itself, keeping track of the spacing. However we are already largely there, as we can sort the keys of <code>%file2dirs</code> to get the information we need to write each line of the output.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    MAIN:
+    <span style="color:#75715e">#==============================================================================</span>
+    {
+        <span style="color:#66d9ef">my</span> @dirs      <span style="color:#f92672">=</span> parse_command_line();
+        <span style="color:#66d9ef">my</span> $dir2files <span style="color:#f92672">=</span> map_dir_to_files( <span style="color:#f92672">\</span>@dirs );
+        <span style="color:#66d9ef">my</span> %file2dirs;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $dir (keys %$dir2files)
+        {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $file (@{ $dir2files<span style="color:#f92672">-&gt;</span>{ $dir } })
+            {
+                push @{ $file2dirs{ $file } }, $dir;
+            }
+        }
+
+        <span style="color:#66d9ef">my</span> $dir_count <span style="color:#f92672">=</span> scalar @dirs;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $filename (keys %file2dirs)
+        {
+            <span style="color:#66d9ef">if</span> (scalar @{ $file2dirs{ $filename } } <span style="color:#f92672">==</span> $dir_count)
+            {
+                delete $file2dirs{ $filename };
+            }
+        }
+
+        display_table( <span style="color:#f92672">\</span>@dirs, <span style="color:#f92672">\</span>%file2dirs );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>For my own solution, I skipped building a detailed model filesystem to read, and instead hardcoded the data directly as lists. I even wrote some code that <em>should</em> work, but was more focused on the problem of how to sort and present the differences.</p>
+<p>I settled on what I think of as inserting everything into a big crazy data structure and then flipping this on its side to read out the result. It seems to work quite well.</p>
+<p>The input data is a hash of directories, with each key pointing to an array of files within that directory.</p>
+<p>The output data structure is a hash, <code>%file_locations</code>, of file names pointing to an array of indices where those files are found. The indices correspond to the ordering of the sorted list of directory keys.</p>
+<p>Thus, if we allocate one column per directory, the index lists will correspond to the columns that should be populated in that file&rsquo;s output line. Then we can construct an array for each line of the output, with either filenames or empty strings at each correct index.</p>
+<p>The logic, then, is all about creating this intermediate array of index values for each file.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">## fill the data structure</span>
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $dir (sort keys %dirs) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $file ($dirs{$dir}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>) {
+            $file_locations{$file}<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">=</span> $file;
+        }
+        $i<span style="color:#f92672">++</span>;
+    }
+
+    <span style="color:#75715e">## read the data structure and write the report</span>
+    $i       <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> keys %dirs;
+    <span style="color:#66d9ef">my</span> $w    <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;              <span style="color:#75715e">## arbitrary and fixed column width</span>
+    <span style="color:#66d9ef">my</span> $fmt  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; %-${w}s &#34;</span>;
+
+    <span style="color:#66d9ef">my</span> $header <span style="color:#f92672">=</span>  join <span style="color:#e6db74">&#39;|&#39;</span>, map { sprintf $fmt, $_ } sort keys %dirs;
+    <span style="color:#66d9ef">my</span> $break  <span style="color:#f92672">=</span>  join <span style="color:#e6db74">&#39;|&#39;</span>, map { sprintf $fmt, $_ } (<span style="color:#e6db74">&#39;-&#39;</span> x $w) x keys %dirs;
+
+    say $header;
+    say $break;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $file ( sort keys %file_locations) {
+        <span style="color:#66d9ef">my</span> $fcount <span style="color:#f92672">=</span> scalar grep { $_ } $file_locations{$file}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        my $dcount <span style="color:#f92672">=</span> scalar keys %dirs;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $fcount <span style="color:#f92672">==</span> $dcount;
+
+        <span style="color:#75715e">## fiddle the arrays to make sure we have one element for each</span>
+        <span style="color:#75715e">## directory to improve output look</span>
+        <span style="color:#66d9ef">my</span> @out <span style="color:#f92672">=</span> map { $file_locations{$file}<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span> }(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$dcount<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+        say join <span style="color:#e6db74">&#39;|&#39;</span>, map { sprintf $fmt, (defined $_ ? $_ : <span style="color:#e6db74">&#39;&#39;</span>) } @out;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/05/d00dle5-we-are-asked-for-list-of-2-8.html">Peter attempts Perl Weekly Challenge</a></p>
+<p>Peter seems to have taken a similar approach, at least with regards to constructing a  central hash of filenames associated with a list of all directories that contain it. .</p>
+<p>In his own words, from his <a href="https://pjcs-pwc.blogspot.com/2022/05/d00dle5-we-are-asked-for-list-of-2-8.html">writeup</a>, he describes the steps:</p>
+<blockquote>
+<p>The logic of this is:</p>
+<ul>
+<li>Loop over directories and files</li>
+<li>Find the longest file name (to determine column width)</li>
+<li>Create <code>%files</code> with key = file name and value = a list of the containing directories</li>
+<li>Create a string (<code>$all</code>) that indicates the file is in all directories</li>
+</ul>
+</blockquote>
+<p>He uses a method of keeping the directory list for each file as a string. As each directory is read in, an outside model string is appended to with the name, so that in the end this model shows what a file string would look like if found en every directory. A simple string equality with this model is used to filter out files found everywhere from the output.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/05/25/PWC166/">Perl Weekly Challenge 166 – W. Luis Mochán</a></p>
+<p>Placing the parsed filenames into a hash, associated with location data seemed to be pretty natural approach. Exactly how that location data was encoded, however, showed wide variation.</p>
+<p>Here Luis builds a hash keyed with the filenames, with each pointing to another hash with directory names as keys and value 1. Nested hashes, I might add, are inherently cool. The differences in access time between an ordered array and an associative array are probably smaller than you think.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Prepare data</span>
+    <span style="color:#66d9ef">foreach</span>(@ARGV){ <span style="color:#75715e"># iterate over provided directories</span>
+        opendir(<span style="color:#66d9ef">my</span> $dir_handle, $_);
+        <span style="color:#66d9ef">while</span>(<span style="color:#66d9ef">my</span> $file_name<span style="color:#f92672">=</span>readdir $dir_handle){ <span style="color:#75715e"># iterate over directory content</span>
+            $file_name<span style="color:#f92672">.=</span><span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">-</span>d <span style="color:#e6db74">&#34;$_/$file_name&#34;</span>; <span style="color:#75715e"># flag file if it is a nested directory</span>
+        $present{$file_name}{$_}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; <span style="color:#75715e"># $file_name is present in directory $_</span>
+        }
+    }
+    <span style="color:#75715e"># Output results</span>
+    say join <span style="color:#e6db74">&#34;|&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, @ARGV, <span style="color:#e6db74">&#34;&#34;</span>; <span style="color:#75715e"># output row of directories</span>
+    say <span style="color:#e6db74">&#34;|-&#34;</span>; <span style="color:#75715e"># separator line</span>
+    <span style="color:#66d9ef">foreach</span> (sort keys %present){
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> (keys %{$present{$_}}<span style="color:#f92672">==</span>uniq @ARGV); <span style="color:#75715e"># skip files present everywhere</span>
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;| &#34;</span>; <span style="color:#75715e"># start a row</span>
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $directory(@ARGV){
+            <span style="color:#66d9ef">print</span> $present{$_}{$directory} ? <span style="color:#e6db74">&#34;$_ |&#34;</span> : <span style="color:#e6db74">&#34; |&#34;</span>; <span style="color:#75715e"># filename if present, blank if not</span>
+        }
+        say <span style="color:#e6db74">&#34;&#34;</span>;
+    }
+</code></pre></div><p>The output is simplified because it is designed to tabulate under emacs org-mode. As a one time combatant in the emacs-vim wars I approve of this. I still use many of the keybindings in my current editor. They&rsquo;re wired into my brain.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels constructs a similar hash-of-hashes, but goes through the trouble of properly constructing a text output table. Not that I&rsquo;m disparaging emacs users, mind you, as I would never do that. For shame! And more so I sometimes want to see what org-mode is all about — everyone lauds it as a game-changer, which makes me curious.</p>
+<p>But not so curious as to find the time to do it, unfortunately. I just don&rsquo;t seem to have enough time for everything anymore.</p>
+<p>But back to Niels. In the top section we can see the data structure being constructed, and in the bottom the output is quickly formulated. Of note here the column widths here are dynamic, each sized to the directory name and the files within it by a carefully constructed format string.</p>
+<p>Each line is then output using a <code>printf</code> statement.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Build filelist presence map</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $dir (@dirs) {
+      $maxLength{$dir} <span style="color:#f92672">=</span> length($dir);
+      opendir(D, $dir);
+      map {
+        $_ <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-</span>d <span style="color:#e6db74">&#34;$dir/$_&#34;</span>);
+        $dirEntries{$_}{$dir}<span style="color:#f92672">++</span>;
+        $maxLength{$dir} <span style="color:#f92672">=</span> max($maxLength{$dir}, length($_));
+      } readdir(D);
+    }
+
+    <span style="color:#75715e"># Create report</span>
+    <span style="color:#66d9ef">my</span> $fmt <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39; | &#39;</span>, map { <span style="color:#e6db74">&#34;%-$maxLength{$_}s&#34;</span> } sort keys(%maxLength))<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\n&#34;</span>;
+
+    printf($fmt, @dirs);
+    printf($fmt <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/ /</span><span style="color:#f92672">-/</span>r, map { <span style="color:#e6db74">&#39;-&#39;</span> x $maxLength{$_} } @dirs);
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $f (sort keys %dirEntries) {
+      printf($fmt, map { exists $dirEntries{$f}{$_} ? $f : <span style="color:#e6db74">&#39;&#39;</span> } @dirs)
+        <span style="color:#66d9ef">unless</span> (scalar @dirs <span style="color:#f92672">==</span> scalar keys %{$dirEntries{$f}});
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/05/25/pwc166-k-directory-diff/">PWC166 - K-Directory Diff - ETOOBUSY</a></p>
+<p>Flavio approaches the problem in the framework of set theory: if each directory is a set of files, what we are looking for is the difference of the sets: the union of all sets minus the intersection of all sets. This will eliminate files common to all directories.</p>
+<p>In a major deviation from the norm, though, Flavio has constructed not just lists of files, but ordered arrays of the directory columns, with empty elements interspersed where files should <em>not</em> be listed in the output.</p>
+<p>The output, then, is iterating through these lists one element at a time, compiling the line for that element from listed either filenames of empty strings, and then outputting the results.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">select_incompletes</span> (@lists) {
+       <span style="color:#66d9ef">my</span> (@retval, %union, %intersection);
+       @intersection{$lists[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*}</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">(</span>);
+       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $list (@lists) {
+          @union{$list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*}</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">(</span>);
+          %intersection <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> }
+             grep { exists $intersection{$_} } $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+          <span style="color:#960050;background-color:#1e0010">$</span>list <span style="color:#f92672">=</span> { map { $_ <span style="color:#f92672">=&gt;</span> $_ } $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">};</span>
+          push @retval, <span style="color:#f92672">[]</span>;
+       }
+       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $item (sort { $a <span style="color:#f92672">cmp</span> $b } keys %union) {
+          <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> exists $intersection{$item};
+          <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#lists) {
+             push $retval[$i]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $lists[$i]{$item} <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>;
+          }
+       }
+       <span style="color:#66d9ef">return</span> @retval;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/05/k-directory-diff/">PWC 166 › K-Directory Diff - Ryan J Thompson</a></p>
+<p>Ryan also chooses a hash of hases, with directories as top-level keys, linked to a <code>files</code> hash and a <code>maxlen</code> maximum string length. The <code>files</code> hash in turn contains a key for every file within the directory. Along the way, he complies a sorted list of files and directories that he can iterate through to construct the output, checking at each directory column to see whether a file exists as a key.</p>
+<p>Ryan is a little more robust in his directory parsing than most, installing file switches to discard anything not a file or a directory, and making sure in the case of a directory read that it has a slash appended.</p>
+<p>The <code>File::Slurp</code> module has a <code>read_dir</code> function that makes short work of inhaling the filesystem structure.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Read all dirs, calculate their max filename length, and return the works</span>
+    <span style="color:#75715e"># $result{dir1}{files}{fileA} = 1 if fileA exists in dir1</span>
+    <span style="color:#75715e"># $result{dir1}{maxlen} = maximum filename length in dir1</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">read_all_dirs</span> {
+        map {
+            <span style="color:#66d9ef">my</span> $dir <span style="color:#f92672">=</span> $_;
+            <span style="color:#66d9ef">my</span> %hash <span style="color:#f92672">=</span> map  { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> }
+                       map  { <span style="color:#f92672">-</span>d <span style="color:#e6db74">&#34;$dir/$_&#34;</span> ?  <span style="color:#e6db74">&#34;${_}/&#34;</span> : $_ }
+                       grep { <span style="color:#f92672">-</span>f <span style="color:#e6db74">&#34;$dir/$_&#34;</span> <span style="color:#f92672">or</span> <span style="color:#f92672">-</span>d <span style="color:#e6db74">&#34;$dir/$_&#34;</span> } read_dir($dir);
+
+            $dir <span style="color:#f92672">=&gt;</span> {
+                files  <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>%hash,
+                maxlen <span style="color:#f92672">=&gt;</span> max map length, keys %hash, $dir
+            }
+        } @_
+    }
+
+    <span style="color:#75715e"># Main event: Output files that do not exist in all @dirs</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $file (@uniq) {
+        <span style="color:#66d9ef">my</span> @files <span style="color:#f92672">=</span> map { $dirs{$_}{files}{$file} ? $file : <span style="color:#e6db74">&#39;&#39;</span> } @dirs;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> all { length } @files; <span style="color:#75715e"># Exists in all directories</span>
+
+        printf $fmt, @files;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-166/james-smith">Perl Weekly Challenge #166</a></p>
+<p>Finally we&rsquo;ll end with James, who gives us his familiar treatment working through various approaches to the subject as hand. Here he starts by processing the input directory list data into a hash of filenames keyed to a nested hash of the directories that contain them.</p>
+<p>It seems there were two basic strategies in building the central data structure: either this way, with files as keys and directory names as values, or vice versa, with directories pointing to filenames. It&rsquo;s interesting that the two end up fairly equivalent as they both hold the relationships required to construct the differential table.</p>
+<p>If we&rsquo;re iterating through filenames and matching them to directories, we can end up with arrays of columns, one for each directory, but to output them we need the elements in each column to match the respective output lines to make our pleasing table. So as each column array is built for the directories, a test is made to see whether a file is contained within it, and either the filename is added to the array or and empty string, denoting a space.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">## Now draw the body - we loop through each of the unique filenames</span>
+    <span style="color:#75715e">## and see whether it is in all 4 columns (in which case we skip)</span>
+    <span style="color:#75715e">## otherwise we look to see which entries are present in each</span>
+    <span style="color:#75715e">## directory and show those....</span>
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $filename ( sort keys %filenames ) {
+
+    <span style="color:#75715e">## Foreach filename - we first see it is in all columns,</span>
+    <span style="color:#75715e">## If it is we display the filename in the appropriate columnns.</span>
+
+      <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> @paths <span style="color:#f92672">==</span> keys %{$filenames{$filename}};
+      <span style="color:#66d9ef">my</span> @columns;
+      <span style="color:#66d9ef">for</span> (@paths) {
+        <span style="color:#66d9ef">if</span>( exists $filenames{$filename}{$_} ) {
+          push @columns, $filename;
+        } <span style="color:#66d9ef">else</span> {
+          push @columns, <span style="color:#e6db74">&#39;&#39;</span>;
+        }
+      }
+      say sprintf $TEMPLATE, @columns;
+    }
+</code></pre></div><p>This all works well, so then he goes golfing. I&rsquo;ll leave out most of the steps, but here is where he ends up:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">z</span>{<span style="color:#66d9ef">my</span>($l,%d,%u)<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#e6db74">/\//</span>,$u{$&#39;<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;/&#39;</span>x<span style="color:#f92672">-</span>d}{$d{$`}<span style="color:#f92672">=</span>$`}<span style="color:#f92672">++</span><span style="color:#66d9ef">for</span><span style="color:#e6db74">&lt;*/*&gt;</span>;$l<span style="color:#f92672">&lt;</span>length?$l<span style="color:#f92672">=</span>length
+    :<span style="color:#ae81ff">1</span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span>@p<span style="color:#f92672">=</span>sort keys%d),@_<span style="color:#f92672">=</span>keys%u;say$a<span style="color:#f92672">=</span>join(<span style="color:#e6db74">&#39;-&#39;</span>x$l,(<span style="color:#e6db74">&#39;+--&#39;</span>)x@p,<span style="color:#e6db74">&#39;+
+</span><span style="color:#e6db74">    &#39;</span>),sprintf($b<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;| %-${l}s &#34;</span>x@p<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;|
+</span><span style="color:#e6db74">    &#39;</span>,@p),$a,map({<span style="color:#e6db74">//</span>;@p<span style="color:#f92672">-</span>%{$u{$&#39;}}?sprintf$b,map{$u{$&#39;}{$_}?$&#39;:<span style="color:#e6db74">&#39;&#39;</span>}@p:()}sort@_),$a}
+</code></pre></div><p>I don&rsquo;t think I&rsquo;m even going to try.</p>
+<p>However interested parties will be able to consult his <a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-166/james-smith">detailed blog writeup</a> where he explains what he&rsquo;s done quite well.</p>
+<h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/05/25/0x7e57ab1e-0xc0deba5e-weekly-challenge-166.html">0x7e57ab1e 0xc0deba5e: Weekly Challenge #166 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/julien-fiegehenn/perl/ch-2.pl"><strong>Julien Fiegehenn</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://simbabque.github.io/posts/weekly-challenge-166-github-copilot/">The Weekly Challenge 166: Github DWIM - Julien&rsquo;s tech(ish) blog</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-166-hexadecimal-words-and-k-directory-diff.html">Perl Weekly Challenge 166: Hexadecimal Words and K-Directory Diff</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-166/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_166__Hexing_the_Directories.html">RogerBW&rsquo;s Blog: The Weekly Challenge 166: Hexing the Directories</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC166BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC166BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/hexa-diff.html">Hexa Diff with Raku - Arne Sommer</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/05/25/0x7e57ab1e-0xc0deba5e-weekly-challenge-166.html">0x7e57ab1e 0xc0deba5e: Weekly Challenge #166 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/05/24/pwc166-hexadecimal-words/">PWC166 - Hexadecimal Words - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/05/25/pwc166-k-directory-diff/">PWC166 - K-Directory Diff - ETOOBUSY</a> ( <em>Perl</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/05/26/pwc166-k-directory-diff-raku/">PWC166 - K-Directory Diff (Raku solution) - ETOOBUSY</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-166/james-smith">Perl Weekly Challenge #166</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Julien Fiegehenn</strong></p>
+<ul>
+<li><a href="https://simbabque.github.io/posts/weekly-challenge-166-github-copilot/">The Weekly Challenge 166: Github DWIM - Julien&rsquo;s tech(ish) blog</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-166-hexadecimal-words-and-k-directory-diff.html">Perl Weekly Challenge 166: Hexadecimal Words and K-Directory Diff</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/05/23/PerlWeeklyChallenge166.html#task1">Perl Weekly Challenge 166: file, directories and hex! – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/05/23/PerlWeeklyChallenge166.html#task1plperl">Perl Weekly Challenge 166: file, directories and hex! – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/Perl</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/05/23/PerlWeeklyChallenge166.html#task1plpgsql">Perl Weekly Challenge 166: file, directories and hex! – Luca Ferrari – Open Source advocate, human being</a> ( <em>Pl/PostgreSQL</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/05/d00dle5-we-are-asked-for-list-of-2-8.html">Peter attempts Perl Weekly Challenge</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_166__Hexing_the_Directories.html">RogerBW&rsquo;s Blog: The Weekly Challenge 166: Hexing the Directories</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Ryan Thompson</strong></p>
+<ul>
+<li><a href="https://ry.ca/2022/05/hexadecimal-words/">PWC 166 › Hexadecimal Words - Ryan J Thompson</a> ( <em>Perl</em> )</li>
+<li><a href="https://ry.ca/2022/05/k-directory-diff/">PWC 166 › K-Directory Diff - Ryan J Thompson</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/05/25/PWC166/">Perl Weekly Challenge 166 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
