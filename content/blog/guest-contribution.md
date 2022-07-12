@@ -40,6 +40,8 @@ Please find below guest contributions.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
+##### **Stephen G Lynn** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/steve-g-lynn/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/steve-g-lynn/julia/ch-2.jl) in **Julia**.
+
 ----
 ## [The Weekly Challenge - 172](/blog/perl-weekly-challenge-172) {#172}
 <br>
