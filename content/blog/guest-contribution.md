@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-07-12T00:00:00+00:00
+date: 2022-07-13T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -56,9 +56,9 @@ Please find below guest contributions.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/pokgopun/go/ch-2.go) in **Go**.
 
-##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/robert-dicicco/julia/ch-1.jl) in **Julia**.
+##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/robert-dicicco/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/robert-dicicco/julia/ch-2.jl) in **Julia**.
 
-##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/robert-dicicco/ruby/ch-1.rb) in **Ruby**.
+##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/robert-dicicco/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/robert-dicicco/ruby/ch-2.rb) in **Ruby**.
 
 ##### **Stephen G Lynn** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/steve-g-lynn/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/steve-g-lynn/julia/ch-2.jl) in **Julia**.
 
