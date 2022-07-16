@@ -56,7 +56,23 @@ Please find below guest contributions.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/bc/ch-2.bc) in **Bc**.
 
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/d/ch-1.d) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/d/ch-2.d) in **D**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/dc/ch-2.dc) in **Dc**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/dart/ch-2.dart) in **Dart**.
+
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/go/ch-2.go) in **Go**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/javascript/ch-2.js) in **JavaScript**.
+
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/julia/ch-2.jl) in **Julia**.
+
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/kotlin/ch-1.kt) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/kotlin/ch-2.kt) in **Kotlin**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/lua/ch-2.lua) in **Lua**.
+
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/nim/ch-1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/nim/ch-2.nim) in **Nim**.
 
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/python/ch-2.py) in **Python**.
 
@@ -65,6 +81,8 @@ Please find below guest contributions.
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/ruby/ch-2.rb) in **Ruby**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/scala/ch-2.scala) in **Scala**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/laurent-rosenfeld/tcl/ch-2.tcl) in **Tcl**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/lubos-kolouch/python/ch-2.py) in **Python**.
 
