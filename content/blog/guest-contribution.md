@@ -122,6 +122,8 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
+##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/walt-mankowski/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/walt-mankowski/python/ch-2.py) in **Python**.
+
 ----
 ## [The Weekly Challenge - 172](/blog/perl-weekly-challenge-172) {#172}
 <br>
