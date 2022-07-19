@@ -42,6 +42,12 @@ Please find below guest contributions.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
+##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/mohammad-anwar/java/theweeklychallenge/DisariumNumbers.java) in **Java**.
+
+##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/mohammad-anwar/python/ch-1.py) in **Python**.
+
+##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/mohammad-anwar/swift/ch-1.swift) in **Swift**.
+
 ##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/robert-dicicco/julia/ch-1.jl) in **Julia**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
