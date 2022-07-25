@@ -32,7 +32,7 @@ Let us all welcome, `Nicolas Mendoz` and thanks for the contribution in [**Perl*
 
 Thank you, `Gurunandan Bhat` for the first contribution in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-174/bhat_gurunandan/perl).
 
-`Laurent Rosenfeld` once again, the lead guest contributors with `21 solutions` in `17 different` languages. Thank you.
+`Laurent Rosenfeld` once again, the lead guest contributors with `22 solutions` in `18 different` languages. Thank you.
 
 Getting back on track with contributions, I have shared solutions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-174/mohammad-anwar/perl), [**Raku**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-174/mohammad-anwar/raku), [**Python**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-174/mohammad-anwar/python), [**Java**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-174/mohammad-anwar/java/theweeklychallenge) and [**Swift**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-174/mohammad-anwar/swift).
 
