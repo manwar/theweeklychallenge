@@ -38,6 +38,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 174](/blog/perl-weekly-challenge-174) {#174}
 <br>
 
+##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/adam-russell/prolog/ch-1.p) in **Prolog**.
+
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/cheok-yin-fung/node/ch-1.js) in **Node.js**.
 
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/conor-hoekstra/apl/ch-1.apl) in **APL**.
