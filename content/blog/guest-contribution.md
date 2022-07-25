@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-07-24T00:00:00+00:00
+date: 2022-07-25T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -59,6 +59,8 @@ Please find below guest contributions.
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/laurent-rosenfeld/d/ch-1.d) in **D**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/laurent-rosenfeld/dart/ch-1.dart) in **Dart**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/laurent-rosenfeld/dc/ch-1.dc) in **Dc**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/laurent-rosenfeld/go/ch-1.go) in **Go**.
 
