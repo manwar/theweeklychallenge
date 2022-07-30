@@ -44,6 +44,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Gurunandan Bhat** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bhat_gurunandan/go/ch-2.go) in **Go**.
+
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/awk/ch-2.awk) in **Awk**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/bc/ch-2.bc) in **Bc**.
