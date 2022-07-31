@@ -60,6 +60,8 @@ Please find below guest contributions.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/d/ch-2.d) in **D**.
 
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/dart/ch-2.dart) in **Dart**.
+
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/go/ch-2.go) in **Go**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/java/PerfectTotient.java) in **Java**.
@@ -76,9 +78,13 @@ Please find below guest contributions.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/ring/ch-2.ring) in **Ring**.
 
-##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/ruby/ch-2.rb) in **Ruby**.
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/ruby/ch-2.rb) in **Ruby**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/rust/ch-2.rs) in **Rust**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/scala/ch-2.scala) in **Scala**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/tcl/ch-2.tcl) in **Tcl**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
