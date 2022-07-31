@@ -38,6 +38,10 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 175](/blog/perl-weekly-challenge-175) {#175}
 <br>
 
+##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/fortran/ch-1.f) in **Fortran**.
+
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/java/ch-1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/java/ch-2.java) in **Java**.
+
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/cheok-yin-fung/java/LastFriday.java) in **Java**.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/cheok-yin-fung/julia/ch-1.jl) in **Julia**.
