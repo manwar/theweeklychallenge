@@ -167,7 +167,7 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
-Write a script to find the smallest integer `x` such that `x, 2x, 3x, 4x, 5x` and `6x` are permuted multiples of each other.
+Write a script to find the smallest positive integer `x` such that `x, 2x, 3x, 4x, 5x` and `6x` are permuted multiples of each other.
 
 For example, the integers `125874` and `251748` are permutated multiples of each other as
 
