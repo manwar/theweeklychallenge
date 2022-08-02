@@ -38,6 +38,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 176](/blog/perl-weekly-challenge-176) {#176}
 <br>
 
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/eric-cheung/python/ch-2.py) in **Python**.
+
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/mohammad-anwar/java/theweeklychallenge/LastSunday.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/mohammad-anwar/java/theweeklychallenge/FirstPerfectTotient.java) in **Java**.
