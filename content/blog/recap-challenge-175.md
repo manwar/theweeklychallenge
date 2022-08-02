@@ -49,7 +49,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 8550 (62%)
+#### 1. Perl: 8552 (62%)
 #### 2. Raku: 5090 (38%)
 #### 3. Blog: 2749
 
@@ -58,9 +58,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `106`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `108`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 51
+#### 1. Perl: 53
 #### 2. Raku: 32
 #### 3. Blog: 23
 
@@ -99,14 +99,14 @@ The total contributions in the week is `106`. Well done **Team PWC**. I would al
     APL (68), BQN (1), JavaScript (2), Python (2).
 #### 15. Cheok-Yin Fung (71)
     Awk (3), Bash (6), Befunge-93 (1), C++ (1), Dart (4), Java (15), JavaScript (1), Julia (13), Lisp (11), Node.js (3), Python (4), Smalltalk (9).
-#### 16. Mohammad S Anwar (66)
+#### 16. Ali Moradi (68)
+    Ada (2), C (8), C++ (12), D (8), Haskell (2), Lua (16), Modula 3 (4), Oberon (2), Pascal (14).
+#### 17. Mohammad S Anwar (66)
     Java (15), Python (21), Swift (30).
-#### 17. Luca Ferrari (63)
+#### 18. Luca Ferrari (63)
     PostgreSQL (63).
-#### 18. Robert DiCicco (59)
+#### 19. Robert DiCicco (59)
     Bash (1), Julia (20), Python (4), Ruby (28), Tcl (6).
-#### 19. Ali Moradi (58)
-    Ada (2), C (8), C++ (10), D (6), Haskell (2), Lua (14), Modula 3 (2), Oberon (2), Pascal (12).
 #### 20. Mohammad Meraj Zia (54)
     Java (46), Kotlin (8).
 #### 21. Nuno Vieira (44)
@@ -235,7 +235,7 @@ The total contributions in the week is `106`. Well done **Team PWC**. I would al
 ## LANGUAGES {#LANGUAGES}
 ***
 
-    Python (1035), Haskell (482), Ruby (362), Lua (359), C (251), C++ (248), Go (207), Rust (207), Node.js (191), Awk (181), Java (170), Clojure (140), JavaScript (128), Bash (125), APL (119), Postscript (114), Pascal (95), Prolog (91), Kotlin (88), Julia (84), Bc (83), Tcl (82), R (74), BASIC (66), Excel VBA (63), PostgreSQL (63), Scala (62), Forth (60), Scheme (58), Lisp (41), PHP (38), Befunge-93 (35), D (35), Fortran (31), Swift (30), OCaml (25), SQL (23), Ada (22), Erlang (21), C Shell (19), COBOL (18), M4 (18), Rexx (17), Sed (16), BQN (15), Elm (15), Dart (14), MMIX (14), Ring (14), Nim (12), Smalltalk (9), J (8), Brainfuck (6), TypeScript (4), CESIL (3), Crystal (3), Gembase (3), Janet (3), Nuweb (3), Zig (3), C3 (2), Coconut (2), Dc (2), HTML (2), Haxe (2), Idris (2), Miranda (2), Modula 3 (2), Myrddin (2), Nix (2), Oberon (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Adb (1), Bourne Shell (1), C# (1), Chef (1), Elixir (1), Fish (1), GNAT (1), IO (1), Logo (1), Mumps (1), Ook (1), SVG (1), Visual BASIC (1), XSLT (1).
+    Python (1035), Haskell (482), Ruby (362), Lua (361), C (251), C++ (250), Go (207), Rust (207), Node.js (191), Awk (181), Java (170), Clojure (140), JavaScript (128), Bash (125), APL (119), Postscript (114), Pascal (97), Prolog (91), Kotlin (88), Julia (84), Bc (83), Tcl (82), R (74), BASIC (66), Excel VBA (63), PostgreSQL (63), Scala (62), Forth (60), Scheme (58), Lisp (41), PHP (38), D (37), Befunge-93 (35), Fortran (31), Swift (30), OCaml (25), SQL (23), Ada (22), Erlang (21), C Shell (19), COBOL (18), M4 (18), Rexx (17), Sed (16), BQN (15), Elm (15), Dart (14), MMIX (14), Ring (14), Nim (12), Smalltalk (9), J (8), Brainfuck (6), Modula 3 (4), TypeScript (4), CESIL (3), Crystal (3), Gembase (3), Janet (3), Nuweb (3), Zig (3), C3 (2), Coconut (2), Dc (2), HTML (2), Haxe (2), Idris (2), Miranda (2), Myrddin (2), Nix (2), Oberon (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Adb (1), Bourne Shell (1), C# (1), Chef (1), Elixir (1), Fish (1), GNAT (1), IO (1), Logo (1), Mumps (1), Ook (1), SVG (1), Visual BASIC (1), XSLT (1).
 
 <br>
 
@@ -273,7 +273,13 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**BLOG #2**](https://adamcrussell.livejournal.com/37064.html)]
 
 ***
+### Ali Moradi
+![Ali Moradi](/images/team/user.jpg)
 
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/perl/ch-2.pl)]
+
+***
 ### Colin Crain
 ![Colin Crain](/images/team/user.jpg)
 
