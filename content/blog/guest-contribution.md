@@ -38,6 +38,16 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 176](/blog/perl-weekly-challenge-176) {#176}
 <br>
 
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/cpp/ch-2.cpp) in **C++**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/d/ch1.d) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/d/ch2.d) in **D**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/lua/ch-2.lua) in **Lua**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/modula-3/ch1/src/Ch1.m3) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/modula-3/ch2/src/Ch2.m3) in **Modula 3**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/pascal/ch1.pas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/pascal/ch2.pas) in **Pascal**.
+
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/conor-hoekstra/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/conor-hoekstra/apl/ch-2.apl) in **APL**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/eric-cheung/python/ch-2.py) in **Python**.
