@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-08-06T00:00:00+00:00
+date: 2022-08-07T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -60,7 +60,21 @@ Please find below guest contributions.
 
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/d/ch-1.d) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/d/ch-2.d) in **D**.
 
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/dart/ch-2.dart) in **Dart**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/go/ch-2.go) in **Go**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/java/ReversibleNumbers.java) in **Java**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/javascript/ch-2.js) in **JavaScript**.
+
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/julia/ch-2.jl) in **Julia**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/kotlin/ch-2.kt) in **Kotlin**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/lua/ch-2.lua) in **Lua**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/nim/ch-2.nim) in **Nim**.
 
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/python/ch-2.py) in **Python**.
 
