@@ -38,6 +38,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 177](/blog/perl-weekly-challenge-177) {#177}
 <br>
 
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/eric-cheung/python/ch-2.py) in **Python**.
+
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/java/theweeklychallenge/DammAlgorithm.java) in **Java**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/python/ch-1.py) in **Python**.
