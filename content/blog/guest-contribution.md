@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-08-09T00:00:00+00:00
+date: 2022-08-10T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -73,6 +73,8 @@ Please find below guest contributions.
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
+##### **W. Luis Mochan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/emacs-lisp/ch-1.el) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/emacs-lisp/ch-2.el) in **Emacs Lisp**.
 
 ----
 ## [The Weekly Challenge - 176](/blog/perl-weekly-challenge-176) {#176}
