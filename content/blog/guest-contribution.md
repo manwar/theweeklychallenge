@@ -80,6 +80,8 @@ Please find below guest contributions.
 
 ##### **W. Luis Mochan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/emacs-lisp/ch-1.el) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/emacs-lisp/ch-2.el) in **Emacs Lisp**.
 
+##### **W. Luis Mochan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/julia/ch-2.jl) in **Julia**.
+
 ----
 ## [The Weekly Challenge - 176](/blog/perl-weekly-challenge-176) {#176}
 <br>
