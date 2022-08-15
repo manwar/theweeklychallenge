@@ -879,7 +879,7 @@ A perhaps more elegant way to to this, and I think the most common in real-world
 
 [**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/e-choroba/perl/ch-2.pl)
 
-Choroba implements some basic input validation using `Ref::Util:is_palin_coderef`, to make sure the reference being passed is indeed a code reference. It is, after all, just another scalar and could be anything, or nothing.
+Choroba implements some basic input validation using `Ref::Util:is_plain_coderef`, to make sure the reference being passed is indeed a code reference. It is, after all, just another scalar and could be anything, or nothing.
 
 ```perl
     use Ref::Util qw{ is_plain_coderef };
