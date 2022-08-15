@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #171">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #171</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #171</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Aug 14, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-171.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-170/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 171</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So here we are then.</p>
+<p>I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>Before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-171/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-171/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one <em><strong>more</strong></em> thing before we finally get started:</p>
+<br>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<hr>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<hr>
+<br>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<br>
+<h3 id="enough-fine-so-without-even-further-ado">Enough? Fine. So without even further ado&hellip;</h3>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc171task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc171task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc171blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC171TASK1">Task 1</a>                 •             <a href="#PWC171TASK2">Task 2</a>                 •             <a href="#PWC171BLOGS">BLOGS</a>                  •</h2>
+<hr>
+<h1 id="PWC171TASK1">TASK 1</h1>
+<h1 id="abundant-number">Abundant Number</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to generate first 20 Abundant Odd Numbers.</p>
+<p>According to wikipedia,</p>
+<blockquote>
+<p>A number n for which the sum of divisors σ(n) &gt; 2n, or,
+equivalently, the sum of proper divisors (or aliquot sum) s(n) &gt;
+n.</p>
+</blockquote>
+<p>For example, 945 is the first Abundant Odd Number.</p>
+<p>Sum of divisors:</p>
+<pre><code>    1 + 3 + 5 + 7 + 9 + 15 + 21 + 27 + 35
+      + 45 + 63 + 105 + 135 + 189 + 315 = 975
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/perl/ch-1.pl"><strong>Bartosz Jarzyna</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>
+<strong>Dario Mazzeo</strong> dnw
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>
+<strong>Matthew Neleigh</strong> dnw
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brxfork/perl/ch-1.pl"><strong>Philippe Bricout</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
+<p>Be it digits or divisors, number theory has a fascination with summing things up and then cross-comparing the results with other stuff. Today it&rsquo;s divisors, and comparing the sum to the original value. Which is to say all divisors up to but not including the number itself, as that has been determined to be silly. This are also known as the <a href="https://en.wikipedia.org/wiki/Divisor#Further_notions_and_facts">aliquot parts</a>.</p>
+<p>Why would we do this? That&rsquo;s a more difficult question to answer. Because mathematically it makes no immediate sense, as is often the case in number theory. After all, the discipline isn&rsquo;t focused so much on <em>doing things</em> as figuring out why things are the way they are.</p>
+<p>Mathematics can be thought of as a unified thing, with an elusive shape that, like in the parable of the <a href="https://en.wikipedia.org/wiki/Blind_men_and_an_elephant">blind men and an elephant</a>, reveals itself in only partial forms depending on how you study it. Number theory attempts to get beyond the individual disciplines and see the elephant for what it is.</p>
+<p>One such facet to stare at is the way numbers recombine to make other numbers, which is where divisibility and factoring come into play. In a broad sense, summing the divisors serves as a sort of metric as to a number&rsquo;s divisibility: a large value means more divisors, a small, fewer. If the divisor sum exceeds the original value, it s known as <a href="https://en.wikipedia.org/wiki/Divisor#Further_notions_and_facts">abundant</a>. If it comes up short, it is <a href="https://en.wikipedia.org/wiki/Deficient_number">deficient</a>. If it nails it, it&rsquo; <a href="https://en.wikipedia.org/wiki/Perfect_number">perfect</a>. Then if we&rsquo;re really close but not-quite-there we get <a href="https://en.wikipedia.org/wiki/Almost_perfect_number">almost perfect numbers</a> and <a href="https://en.wikipedia.org/wiki/Attila_the_Stockbroker#Discography">668, the neighbor of the beast</a>.</p>
+<p>Most of the abundant numbers, as it works out, are even, which is to say they are divisible by two. This initial divisibility opens up the possibility that any multiple of two may also be a divisors, which obviously is going to help the sum grow larger. Consequently is is much more difficult for an odd number to become abundant, as all these even multiples are excluded from the onset. This difficulty mostly presents itself in the lower numbers; as numbers get larger more multiples of 3 and the next few primes are available and the difference smooths out somewhat. The smallest abundant number is 12, but the smallest odd abundant is 945. The smallest excluding both 2 <em>and</em> 3 is 5391411025.</p>
+<p>Interestingly, the caveat that the abundant number must be odd seems to have eluded the eyes of a few members, myself included. Oh well. We seem to have gotten the abundant part right, but accidentally answered the wrong question.</p>
+<p>There were thus 26 complete submissions for the first task this past week.</p>
+<h2 id="a-selection-of-submissions">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/perl/ch-1.pl"><strong>Bartosz Jarzyna</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Because of the inscrutable nature as to the positioning of primes, a fundamental randomness is built into the prime factorization of numbers. This in turn affects the list of all divisors, as these need to be produced from subsets of the same primes as the original value. Consequently there can be no hard and fast way to generate complete lists of abundant numbers. Or deficient, or perfect, for that matter. At its core the problem is irreducible and for the moment at least presumed unknowable. Not that will keep some folks from still trying, of course.</p>
+<p>However there are things we can learn about these numbers, such as that all multiples of an abundant number are themselves abundant. This allows us a certain selective predictability, but this insight can only built from specific existing knowledge and cannot be generalized outside that scope. The old chicken and egg problem, you know?</p>
+<p>In short, the way to check for abundance is to determine the aliquot parts of a candidate and sum them.</p>
+<p>An obvious way to proceed with this challenge, then — in the broadest sense — is to find abundant numbers and check them for divisibility by two. However that&rsquo;s already a bit redundant, as to determine a number&rsquo;s divisors we need to see whether 2 divides in, so in theory by the time we have a list of divisors to sum we&rsquo;ve already made that distinction.</p>
+<p>Or, you know, we could just check only odd numbers.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/07/03">Abundant Composition - Perl — RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/07/03">Abundant Composition - Prolog — RabbitFarm</a></p>
+<p>Adam will start the ball rolling with a straightforward presentation of technique. Two subroutines are employed, one to produce a list of divisors and one to search and find our odd abundant numbers.</p>
+<p>All divisors must multiply by some complement to produce the target, and the smallest complement we&rsquo;re considering is 2 — as we&rsquo;re not including the number as a divisor to itself — so consequently all divisors in the set must be less than or equal to one-half the target (one of course is given). This puts an upper bound on our search space. Candidate divisors are checked with a modulo function to see whether there is any remainder when they divide the target, and if not they are added to a list.</p>
+<p>In the second part Adam uses <code>unpack</code> as a <code>sum</code> function — using the <code>%32I*</code> template —  which is probably non-intuitive, even arcane, but gets the job done. For a clue as to what&rsquo;s going on with this, I&rsquo;ll refer you to the <a href="https://perldoc.perl.org/perlpacktut#Doing-Sums">Perl pack tutorial, and the section on sums</a>.</p>
+<p>Also note the loop construct is a bare block — the looping is performed within the block at the end using <code>redo</code>. Very interesting style choices here to start our day.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">proper_divisors</span>{
+        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @divisors;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>){
+            push @divisors, $x <span style="color:#66d9ef">if</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>x <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        }
+        <span style="color:#66d9ef">return</span> @divisors;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">n_abundant_odd</span>{
+        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> @odd_abundants;
+        {
+            push @odd_abundants, $x <span style="color:#66d9ef">if</span> $x % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> unpack(<span style="color:#e6db74">&#34;%32I*&#34;</span>, pack(<span style="color:#e6db74">&#34;I*&#34;</span>, proper_divisors($x))) <span style="color:#f92672">&gt;</span> $x;
+            $x<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @odd_abundants <span style="color:#f92672">&lt;</span> $n;
+        }
+        <span style="color:#66d9ef">return</span> @odd_abundants;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a></p>
+<p><code>unpack</code> is an amazing tool to peek inside structured data, and Adam&rsquo;s unusual template to sum the divisors is a perfectly legitimate use. However new member Kjetil offers us the more intuitive, sensibly self-named function, <code>sum</code>, from the core module <code>List::Util</code>.</p>
+<p>Unlike <code>unpack</code>, it is very much called what it do.</p>
+<p><em>[Note to everyone not a native English speaker: do not mistake everything I write as in any way proper English. It is a forgiving language, but many things I choose to write are just made up.]</em></p>
+<p>Anyhoo <em>[see note]</em>, here we have a delightfully compact solution from Kjetil which uses a <code>grep</code> statement to filter a list of all possible divisors and immediately sum them. If this number is abundant then we&rsquo;re good. No checks for oddness you say? That&rsquo;s because we start at 1 and skip by 2s, and will never see an even candidate.</p>
+<p>So no checks required. That&rsquo;s convenient. Evenness is overrated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;sum&#39;</span>;
+    <span style="color:#66d9ef">my</span> $want <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">20</span>;
+    <span style="color:#66d9ef">my</span>($have,$n)<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+    sum( grep $n % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) <span style="color:#f92672">&gt;</span> $n
+        <span style="color:#f92672">and</span> <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$n\n&#34;</span>
+        <span style="color:#f92672">and</span> $have<span style="color:#f92672">++</span>
+        <span style="color:#66d9ef">while</span> $have <span style="color:#f92672">&lt;</span> $want
+          <span style="color:#f92672">and</span> $n<span style="color:#f92672">+=</span><span style="color:#ae81ff">2</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/06/The_Weekly_Challenge_171__First_Class_Abundance.html">RogerBW&rsquo;s Blog: The Weekly Challenge 171: First-Class Abundance</a></p>
+<p>At the other end of the spectrum we have <code>Math::Prime::Util</code>, a module with several hundred functions relevant to number theory, primes and factoring. Among them is <code>divisor_sum</code>, which, as you might think, sums the divisor set.</p>
+<p>The function does however act on the <em>entire</em> divisor set, which includes the trivial divisor of the number itself. This is not a deal breaker, as the formula for abundance is easily modified for this case to those numbers whose sum exceeds twice the original value.</p>
+<p>Again we start looking at 1 and count by 2s, so that only odd numbers are checked.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(divisor_sum)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">oddabundant</span>($ct) {
+      <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">my</span> @o;
+      <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">if</span> (divisor_sum($n) <span style="color:#f92672">&gt;</span> $n <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>) {
+          push @o,$n;
+          <span style="color:#66d9ef">if</span> (scalar @o <span style="color:#f92672">&gt;=</span> $ct) {
+            <span style="color:#66d9ef">last</span>;
+          }
+        }
+        $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY provides us with a super-compact version of this solution using <code>divisor_sum</code>. As no single-digit abundant numbers exist she goes ahead and starts counting at 9, again skipping by 2s.</p>
+<p>I will note that don&rsquo;t want to tell anyone how to run their life, but I am skeptical of having two variables <code>$n</code> and <code>$N</code> in the same script. It seems like asking for trouble, not unlike having different data-types sharing the same symbol, only differentiated by a sigil. Permitted, sure, but confusing as the two variables are pronounced the same.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw/divisor_sum/</span>;
+
+    <span style="color:#66d9ef">while</span> (scalar @abunt <span style="color:#f92672">&lt;</span> $N) {
+        $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">if</span> (divisor_sum($n) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$n) {
+            push @abunt, $n;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>Summing divisors is a common enough operation in number theory that the writers of <code>Math::Prime::Util</code> saw fit to include a function tailor-made for the purpose, which to me says something about how weird number theory really is. But ultimately this is no concern, and I truly value their contributions to mathematics — don&rsquo;t get me wrong.</p>
+<p>Using this function does, however, make finding abundant numbers, odd, even or all, to be a straightforward and almost trivial task, hiding the actual process behind a layer of abstraction.</p>
+<p>Slightly less opaque we have, alternately, the function <code>divisors</code> which returns a list of divisors, leaving us to act on the data as we see fit.</p>
+<p>It is said when the first prepackaged cake-baking products were released — a dry mix of flour, suger, levening and flavor — it would have been trivial to add powdered egg and milk in with the other ingredients. But when the companies did this no one bought the product: it turns out the home bakers felt they were no longer doing anything. There was no satisfaction; it was <em>too</em> easy. So eggs and milk, common pantry staples everyone at the time would have, were taken out again so they could then be added in, and the cooks could feel like they were baking properly.</p>
+<p>It&rsquo;s an interesting piece of psychology, that.</p>
+<p>Here the monk Athanasius delivers solutions to use two ways: the easy way and the not-quite-as-easy way, the first using <code>divisor_sum</code>, the second a little less abstractly using <code>divisors</code>, both from <code>Math::Prime::Util</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solve_with_sum</span>
+    {
+        <span style="color:#66d9ef">my</span> @abundant;
+
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; scalar @abundant <span style="color:#f92672">&lt;</span> $TARGET; $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>)
+        {
+            push @abundant, $n <span style="color:#66d9ef">if</span> divisor_sum( $n ) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $n;
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@abundant;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solve_with_divisors</span>
+    {
+        <span style="color:#66d9ef">my</span> @abundant;
+        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $count <span style="color:#f92672">&lt;</span> $TARGET; $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>)
+        {
+            <span style="color:#66d9ef">my</span>  @divisors <span style="color:#f92672">=</span> divisors( $n );
+            pop @divisors;
+            <span style="color:#66d9ef">my</span>  $sum  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @divisors;
+
+            <span style="color:#66d9ef">if</span> ($sum <span style="color:#f92672">&gt;</span> $n)
+            {
+                push @abundant, sprintf <span style="color:#e6db74">&#34;%2d. %4d: %s = %d&#34;</span>,
+                                        <span style="color:#f92672">++</span>$count, $n, join( <span style="color:#e6db74">&#39;+&#39;</span>, @divisors ), $sum;
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@abundant;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/07/abundantly-odd-and-oh-dear.html">Abundantly odd and &hellip; Oh dear!</a></p>
+<p>Here&rsquo;s another one from Peter requiring a bit of egg and milk, using <code>divisors</code>. Note that summing the list is not a difficult operation or anything, dispatched here in a single line.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(divisors)</span>;
+    binmode(STDOUT, <span style="color:#e6db74">&#39;:utf8&#39;</span>);
+
+    <span style="color:#75715e"># Write a script to generate first 20 Abundant Odd Numbers.</span>
+    <span style="color:#75715e"># n is an abundant number if the sum of its divisors σ(n) &gt; 2n.</span>
+
+    <span style="color:#75715e"># Blog: https://pjcs-pwc.blogspot.com/2022/07/abundantly-odd-and-oh-dear.html</span>
+
+    <span style="color:#66d9ef">my</span> ($count, $i, @divisors, $sum);
+
+    <span style="color:#75715e"># loop over odd numbers</span>
+    $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> ($i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>) {
+
+        <span style="color:#75715e"># add the divisors</span>
+        @divisors <span style="color:#f92672">=</span> divisors($i);
+        $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @divisors;
+
+        <span style="color:#75715e"># we have an AON if the sum exceeds 2i</span>
+        <span style="color:#66d9ef">if</span> ($sum <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $i) {
+            $count <span style="color:#f92672">++</span>;
+            say <span style="color:#e6db74">qq[aon[$count] = $i because σ($i) = $sum which is more than 2 * $i = ]</span> <span style="color:#f92672">.</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $i);
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>It should be noted that <code>Math::Prime::Util</code> was not the only option available, either: here Niels &ldquo;PerlBoy&rdquo; van Dijke employs the services of the eponymous module from celebrated Hollywood cosmetologist <code>Math::Factor</code> to provide <code>factors()</code>. It should be noted that this module distinguishes simply between factors and prime factors, the one all-inclusive the second only the prime factorization. &ldquo;Factors&rdquo; in this context is equivalent to &ldquo;divisors&rdquo;.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum0)</span>;
+    <span style="color:#66d9ef">use</span> Math::Factor::XS <span style="color:#e6db74">qw(factors)</span>;
+
+    <span style="color:#75715e"># Prototype(s)</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isOddAbudant</span> ($);
+
+
+    <span style="color:#66d9ef">my</span> ($i,$n) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">20</span>) {
+      <span style="color:#66d9ef">if</span> (isOddAbudant($n)) {
+        say <span style="color:#e6db74">&#34;$i\t$n&#34;</span>; $i<span style="color:#f92672">++</span>;
+      }
+      $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+    }
+
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isOddAbudant</span> ($) {
+      <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>] % 2 <span style="color:#f92672">&amp;&amp;</span> sum0(factors($_[<span style="color:#ae81ff">0</span>])) <span style="color:#f92672">&gt;</span> $_[<span style="color:#ae81ff">0</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p>Back to basics, Ulrich demonstrates that obtaining a divisor list using trial division is not complicated either. Here he includes a <code>findDivisors()</code> function that checks candidates from 1 to half the target value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">findDivisors</span> {
+      <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> @divisors ;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> int( $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) ) {
+          <span style="color:#66d9ef">if</span> ( $number % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+              push @divisors , $i ;
+          }
+      }
+      <span style="color:#66d9ef">return</span> @divisors ;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/perl/ch-1.pl"><strong>Bartosz Jarzyna</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/pascal/ch-1.pas">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/raku/ch-1.raku">Raku</a></p>
+<p>Using the listwise filtering <code>grep</code> operation, trial division can be accomplished in a single line. Bartosz does chose to include the <code>List::Util</code> function <code>sum0</code> though.</p>
+<p><code>List::Util</code> contains two functions, <code>sum</code> and <code>sum0</code>, which are largely interchangeable, and in my experience it seems that most people pick one or the other and default to it. Both functions work on a list of values, performing sequential addition to return a single aggregate value. The only difference between them is that when given an empty list, <code>sum</code> will return undef, and <code>sum0</code> will return the real value 0. So your data, or lack thereof, should determine which to use. Practically speaking this in not lkely to come up, but might, and one should know both exist.</p>
+<p>This opens a banquet of existential questions as to the nature of nothingness that I will leave as an exercise to the reader. In my opinion, Jean-Paul Satre would be good place to start, avec <a href="https://en.wikipedia.org/wiki/Being_and_Nothingness"><em>L'Être et le néant : Essai d&rsquo;ontologie phénoménologique</em></a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum0)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_divisors</span> ($number)
+    {
+        <span style="color:#66d9ef">return</span> grep { $number % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_next_abundant_odd</span> ($current = 1)
+    {
+        <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;number is not abundant odd&#39;</span>) {
+            <span style="color:#66d9ef">return</span> $current
+                <span style="color:#66d9ef">if</span> $current % 2 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>
+                <span style="color:#f92672">&amp;&amp;</span> sum0(get_divisors $current) <span style="color:#f92672">&gt;</span> $current
+            ;
+
+            <span style="color:#f92672">++</span>$current;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/06/29/pwc171-abundant-number/">PWC171 - Abundant Number - ETOOBUSY</a></p>
+<p>Finally, we&rsquo;ll wrap up the discussion with Flavio, who presents us with an improved method of trial division.</p>
+<p>When searching for divisors, there are always two trivial solutions: 1 and the number itself. Depending on our definition of propriety we can either choose to include these in our list or not. Beyond that, the smallest divisor then is 2, and coupled with the fact that each divisor must have a complementary divisor to multiply with to produce the target value, it is pointless to examine candidates greater than 1/2 the target, as no possible complement exists.</p>
+<p>This is thus the default range to check in trial division.</p>
+<p>However if whenever a divisor is found, we also immediately calculate and add the complement, we can narrow this range to up to the square root of the target. The half-way point is the maximal complement value — discounting the trivial divisor of the target itself — and for any divisor greater than 2 the complement value will be less.</p>
+<p>But, on the other hand, the complement will also be greater than the square root. Circling the root, divisors come in pairs — one below, one above. The square root itself is where these pairs converge and become the same value.</p>
+<p>So if we use the square root as an upper bound we can reduce the range checked significantly, and consequently improve our efficiency. There is one problem though: if we&rsquo;re looking for an optimal method the square root operation itself requires a lot of division and is consequently rather expensive, computationally speaking. Pretty much the most expensive of the more common operations, in fact.</p>
+<p>Enter Flavio, who searches the same optimal range without ever computing the square root. How you ask? Well we can first generalize the statement we made earlier about divisors and their complements, so that a number divided by any (lets keep things positive here) number less than the square root will produce a number less than the target and greater than the square root, and as we approach the square root these two values will converge.</p>
+<p>So by tracking divisors and their complements together, we only need to continue until the complement divisor is less than the low value. At that point we know we have crossed the square root without needing to actually ever compute it.</p>
+<p>And finally, what of the square root itself? To keep the divisor list properly ordered two lists are compiled, a <code>@low</code> array, which low values are appended to, and a <code>@high</code> that has the ever-shrinking high values prepended. At the end the two lists are deliveded together as one, the low before the high. In the case of the square root, however, the divisor and the complement are the same. To avoid adding the root twice, the first, low, value is always added, but the second value is only added if the low and high values are different.</p>
+<p>Nice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;sum&#39;</span>;
+
+    <span style="color:#66d9ef">while</span> (@abundants <span style="color:#f92672">&lt;</span> $n) {
+       push @abundants, $candidate <span style="color:#66d9ef">if</span> is_abundant($candidate);
+       $candidate <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+    }
+    say join <span style="color:#e6db74">&#39;, &#39;</span>, @abundants;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_abundant</span> ($n) { $n <span style="color:#f92672">&lt;</span> sum(proper_positive_divisors($n)) }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">proper_positive_divisors</span> ($n) {
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $n;
+       $n <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>$n <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
+       <span style="color:#66d9ef">my</span> (@lows, @highs) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>);
+       <span style="color:#66d9ef">my</span> ($lo, $hi) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, $n);
+       <span style="color:#66d9ef">while</span> ($lo <span style="color:#f92672">&lt;</span> $hi) {
+          <span style="color:#66d9ef">if</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>lo <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+             push @lows, $lo;
+             $hi <span style="color:#f92672">=</span> int($n <span style="color:#f92672">/</span> $lo);
+             unshift @highs, $hi <span style="color:#66d9ef">if</span> $hi <span style="color:#f92672">!=</span> $lo;
+          }
+          <span style="color:#f92672">++</span>$lo;
+       }
+       <span style="color:#66d9ef">return</span> (@lows, @highs);
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/d/ch1.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/pascal/ch1.pas">Pascal</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/duncan-c-white/C/ch-1.c">C</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/07/perl_weekly_challenge_week_171.html">Perl Weekly Challenge: Week 171</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-171/james-smith">Perl Weekly Challenge #171</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/bc/ch-1.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/d/ch-1.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/dart/ch-1.dart">Dart</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/nim/ch-1.nim">Nim</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/pascal/ch-1.pas">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/ring/ch-1.ring">Ring</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/rust/ch-1.rs">Rust</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/scala/ch-1.scala">Scala</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/06/perl-weekly-challenge-171-abundant-numbers-and-first-class-functions.html"> Perl Weekly Challenge 171: Abundant Numbers and First-Class Functions</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/pokgopun/go/ch-1.go">Go</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/robert-dicicco/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/robert-dicicco/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/robert-dicicco/ruby/ch-1.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ryan-thompson/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/06/odd-abundant-numbers/">PWC 171 › Odd Abundant Numbers - Ryan J Thompson</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/raku/ch-1.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/06/pwc-171.html">PWC #171</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/06/27/PWC171/">Perl Weekly Challenge 171 – W. Luis Mochán</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/walt-mankowski/python/ch-1.py">Python</a></p>
+<hr>
+<hr>
+<h1 id="PWC171TASK2">TASK 2</h1>
+<h1 id="first-class-function">First-class Function</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Create sub compose($f, $g) which takes in two parameters $f and $g as subroutine refs and returns subroutine ref i.e. compose($f, $g)-&gt;($x) = $f-&gt;($g-&gt;($x))</p>
+<p><strong>e.g.</strong></p>
+<pre><code>    $f = (one or more parameters function)
+    $g = (one or more parameters function)
+
+    $h = compose($f, $g)
+    $f-&gt;($g-&gt;($x,$y, ..)) == $h-&gt;($x, $y, ..) for any $x, $y, ...
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/perl/ch-2.pl"><strong>Bartosz Jarzyna</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/kjetillll/perl/ch-2.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a></p>
+<p>Functions are first-class citizens in Perl: they hold jobs, they are upstanding pillars of the community, they pay their taxes, and are fully-qualified to be elected to public office.</p>
+<p>As such a reference to a function can be passed around between parts of a process the same  as any other variable; instead of directing access to a value, we are directed to a block of code. Much as we can use an external variable value to parameterize whatever we&rsquo;re doing, we can use an external coderef to flexibly alter the internal data state.</p>
+<p>A more serious definition of first-class functions is the basis of what is known as funcional programming, where complex tasks are broken down into discrete components that process data in well-defined operations, coupled together to make larger structures.</p>
+<p>In a manner akin to recursion, where a long journey is reduced to repeating a single step until completion, functional programing generalizes this idea: multi-step functions with multiple arguments can be reduced to individual discrete steps that perform one action, often on one variable. By combining these functions we can preform complex data processing and ensure that at each step along the way the fundamental logic is rigorous and sound.</p>
+<p>Formally, the act of taking the output of one function and using this as the input of a second, to make a new combined function, is known as composition, and a glyph is assigned to this operation, sometimes known as the ring operator: ∘</p>
+<p>The expression <em><strong>h</strong></em> = <em><strong>f</strong></em> ∘ <em><strong>g</strong></em> means that the function <em><strong>h</strong></em> is the same as the chain of  applying the function <em><strong>f</strong></em> to the result returned from applying function <em><strong>g</strong></em> to an input.</p>
+<p><em><strong>h</strong></em>(<em>x</em>) = <em><strong>f</strong></em>(<em><strong>g</strong></em>(<em>x</em>))</p>
+<p>There were 25 submissions for the second task this past week.</p>
+<h2 id="a-selection-of-submissions-1">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>Because of the necessity to pass around functions as code references, there really are not a whole lot of different ways to compose functions in Perl. The available syntax is both limited and effective, and doesn&rsquo;t really either require nor inspire any improvement. So we saw a lot of self-similarity in the solutions.</p>
+<p>With one glaring outlier. Just you wait.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a></p>
+<p>Walt will start us off with a demonstration the form. He creates two toy functions, <code>sum()</code>  and <code>double()</code> that serve as stand-in examples for any arbitrary subroutine.</p>
+<p>His <code>compose()</code> routine takes two coderef inputs and returns an anonymous subroutine that applies the first to the results of the second. Thus by calling <code>compose()</code> a third routine is created, as per spec, that can be called with arguments that will feed the chain of first the onte then the other.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>($f, $g) {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> { $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_)) };
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span> {
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @_;
+        <span style="color:#66d9ef">return</span> $sum;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">double</span> {
+        <span style="color:#66d9ef">return</span> map { $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> } @_;
+    }
+
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> compose(<span style="color:#f92672">\&amp;</span>sum, <span style="color:#f92672">\&amp;</span>double);
+    say $c<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/07/01/let-me-make-this-abundantly-clear">Let Me Make This Abundantly Clear - Programming Excursions in Perl and Raku</a></p>
+<p>For my own submission, I was a bit torn by how to provide the best example. Defining a named subroutine and taking an explicit reference to it allows the name to be a meaningful descriptive of what&rsquo;s happening, but I feel immediately assigning a scalar an anonymous subroutine reference is more pure to the spirit of what&rsquo;s going on when we compose the functions later.</p>
+<p>What to do?</p>
+<p>Originally I took the long road to obtain a subroutine reference, but by now I&rsquo;ve changed my mind. Conveniently I included code done both ways, and just commented some out.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $g <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $_[<span style="color:#ae81ff">1</span>] };
+    <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>    };
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> ($f, $g) {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {$f<span style="color:#f92672">-&gt;</span>( $g<span style="color:#f92672">-&gt;</span>( @_ ) )};
+    }
+
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> compose( $f, $g );
+
+    say $c<span style="color:#f92672">-&gt;</span>( <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> );
+</code></pre></div><p>The top coderef sums two arguments, the bottom squares one. The coderef returned by <code>compose</code> sums and then squares, in this case returning 25.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew give us an example using the old dereferencing syntax, stacking sigils:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>{
+        <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $g <span style="color:#f92672">=</span> shift();
+
+        <span style="color:#66d9ef">return</span>(
+            sub{
+
+                <span style="color:#75715e"># This @ARG is the one passed to</span>
+                <span style="color:#75715e"># the sub, not to compose()</span>
+                <span style="color:#66d9ef">return</span>(<span style="color:#f92672">&amp;</span>$f(<span style="color:#f92672">&amp;</span>$g(@ARG)));
+
+            }
+        );
+
+    }
+</code></pre></div><p>I find this quite noisy, personally (although I admit to being sometimes still seduced by the simplicity of <code>@$_</code>). Also braces are often required using this syntax to properly delineate where the reference starts, which makes things <em>really</em> noisy.</p>
+<p>I always encourage the modern post-dereferencing arrow, but that&rsquo;s just me. And yes, using</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#e6db74">&#34;@$__&#34;</span> <span style="color:#66d9ef">for</span> @arr
+</code></pre></div><p>to dump an array-of-arrays is quite easy, I admit. But I try and limit that to debugging.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>I generally find that when even Jorg can&rsquo;t find a way to either strip something down or spice it up then the answer is already in its lowest-energy state.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> ($f, $g) {
+        <span style="color:#66d9ef">sub</span> {$f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_))};
+    }
+</code></pre></div><p>This simple syntax is just kind of perfect as it is. Notice because there is no <code>return</code> statement elsewhere in the sub we automatically return the last thing evaluated, in this case the anonymous subroutine we create. So no <code>return</code> statement is required.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/d/ch2.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/pascal/ch2.pas">Pascal</a></p>
+<p>It is said that there are many ways up the mountain, but only one peak. Here to follow is Ali&rsquo;s submission to prove the point (so to speak):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>{
+      <span style="color:#66d9ef">my</span> ($f, $g) <span style="color:#f92672">=</span> @_;
+      <span style="color:#66d9ef">sub</span> {
+        $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(shift()));
+      }
+    }
+</code></pre></div><p>The only difference here is we aren&rsquo;t using the freshly-out-of-experimental <code>signatures</code> feature, so we need to assign our arguments from the stack manually.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/pokgopun/go/ch-2.go">Go</a></p>
+<p>PoGoPun&rsquo;s take on the constructor is quite interesting.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>{
+        <span style="color:#66d9ef">my</span> @f <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> shift @f;
+        <span style="color:#66d9ef">return</span> @f ? sub{ $f<span style="color:#f92672">-&gt;</span>(compose(@f)<span style="color:#f92672">-&gt;</span>(@_)) } : $f;
+    }
+</code></pre></div><p>What&rsquo;s happening here? Given a list of function coderefs, they recursively compose the head of the list into a new function until the list has been exhausted. Thus, if we add an example to PoGoPun&rsquo;s solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $doub <span style="color:#f92672">=</span> compose( <span style="color:#f92672">\&amp;</span>Square, <span style="color:#f92672">\&amp;</span>Square );
+    <span style="color:#66d9ef">my</span> $trip <span style="color:#f92672">=</span> compose( <span style="color:#f92672">\&amp;</span>Square, <span style="color:#f92672">\&amp;</span>Square, <span style="color:#f92672">\&amp;</span>Square );
+
+    say <span style="color:#e6db74">&#34;doub &#34;</span>, $doub<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">2</span>);
+    say <span style="color:#e6db74">&#34;trip &#34;</span>, $trip<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">2</span>);
+</code></pre></div><p>we get this:</p>
+<pre><code>    doub 16
+    trip 256
+</code></pre><p><code>Square()</code> does pretty much what you&rsquo;d think it does. Actually it works listwise and squares each element in a <em>list</em> of numbers, but we&rsquo;ll get to that. So composing that function with itself squares the number twice, as we see. However handing a third instance in the chain squares <em>that</em> result, yielding the eighth power. Neat, and we can give <code>compose()</code> as many coderefs as we wish, as it works recursively until finished.</p>
+<p>As we mentioned the toy functions PokGoPUn provides work on lists, and they
+also make a nice listwise presentation of their results, emphasizing that the compose function is not commutative — the ordering of the arguments very much matters.</p>
+<pre><code>    Sumdigit(19, 29, 39) = (10, 11, 12) =&gt; Square(10, 11, 12) = (100, 121, 144)
+    =&gt; SqaureAfterSumdigit(19, 29, 39) = (100, 121, 144)
+
+    Square(19, 29, 39) = (361, 841, 1521) =&gt; Sumdigit(361, 841, 1521) = (10, 13, 9)
+    =&gt; SumdigitAfterSquare(19, 29, 39) = (10, 13, 9)
+</code></pre><p>Capiche?</p>
+<p>Now we&rsquo;ll have a look at a bunch of ways to wrap the exact same syntactic core:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ryan-thompson/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/07/first-class-functions/">PWC 171 › First Class Functions - Ryan J Thompson</a></p>
+<p>As the core logic and syntax is pretty fixed, here Ryan demonstrates a few alternate ways to obtain a function coderef. We&rsquo;ve seen the syntax for taking an explicit reference to an existing named subroutine, using a backslash reference on the subroutine sigil: <code>\&amp;mysub()</code>. Note the <code>&amp;</code> sigil is required or the reference produced will be on whatever is returned by the subroutine, which is not what we want here. On the other hand the subroutine can be any code, anywhere — here Ryan takes a reference to <code>sum0</code> from <code>List::Util</code>. It doesn&rsquo;t even need to be in the same package, or even Perl code: <code>List::Util</code> defaults to compiled C written using XS.</p>
+<p>A perhaps more elegant way to to this, and I think the most common in real-world practice, is that if we know we want a reference to a subroutine then there is little reason to name it in the first place. In this case we can assign the constucter directly to a scalar and get the reference that way: <code>$coderef = sub { ... }</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt; sum0 &gt;</span>;
+
+    <span style="color:#66d9ef">my</span> $squares <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { map { $_ <span style="color:#f92672">*</span> $_ } @_ };
+    <span style="color:#66d9ef">my</span> $h <span style="color:#f92672">=</span> comp( <span style="color:#f92672">\&amp;</span>sum0, $squares );
+
+    say <span style="color:#e6db74">&#34;The sum of squares for 1..10 = &#34;</span> <span style="color:#f92672">.</span> $h<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>);
+
+    <span style="color:#75715e"># Demonstrate function composition</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">comp</span> {
+        <span style="color:#66d9ef">my</span> ($f, $g) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">sub</span> { $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_)) }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba implements some basic input validation using <code>Ref::Util:is_palin_coderef</code>, to make sure the reference being passed is indeed a code reference. It is, after all, just another scalar and could be anything, or nothing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Ref::Util <span style="color:#e6db74">qw{ is_plain_coderef }</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> ($f, $g) {
+        is_plain_coderef($_) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Not a CODE reference!&#34;</span>
+            <span style="color:#66d9ef">for</span> $f, $g;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> ($x) { $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>($x)) }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/06/27/PWC171/">Perl Weekly Challenge 171 – W. Luis Mochán</a></p>
+<p>Luis inputs his functions as strings from the command line (!) which are then evaled, which is of course completely, shockingly unsafe. But hey, we&rsquo;re all friends here, right? We know pwerfectly well not to touch the bare ends of the wires, right?</p>
+<p>When locked up tight this code is of course perfectly safe. Just don&rsquo;t let it out of your sight.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> ($f, $g)<span style="color:#f92672">=</span>map {eval $_ <span style="color:#f92672">or</span> die $@} <span style="color:#66d9ef">my</span> ($fs, $gs)<span style="color:#f92672">=</span>(shift, shift);
+    <span style="color:#66d9ef">my</span> $h<span style="color:#f92672">=</span>compose($f, $g);
+    say <span style="color:#e6db74">&#34;$fs ∘ $gs : &#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @ARGV), <span style="color:#e6db74">&#34; ↦ &#34;</span>, $h<span style="color:#f92672">-&gt;</span>(@ARGV);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>($f, $g){
+        <span style="color:#66d9ef">sub</span> {$f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_))};
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>As Duncan demonstrates, a function <code>fun</code>, from <code>Function::Parameters</code> is just a fancy subroutine with extra parts. Code references work the same for them as any other subroutine.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Function::Parameters;
+
+    fun compose( $f, $g )
+    {
+        <span style="color:#66d9ef">return</span> fun(@x) { <span style="color:#66d9ef">return</span> $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@x)); }
+    }
+
+
+    <span style="color:#66d9ef">my</span> $sum       <span style="color:#f92672">=</span> fun( @x ) { <span style="color:#66d9ef">return</span> sum0(@x); };
+    <span style="color:#66d9ef">my</span> $double    <span style="color:#f92672">=</span> fun( @x ) { <span style="color:#66d9ef">return</span> map { <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $_ } @x };
+    <span style="color:#66d9ef">my</span> $sumdouble <span style="color:#f92672">=</span> compose( $sum, $double );
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $sumdouble<span style="color:#f92672">-&gt;</span>( @ARGV );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/raku/ch-2.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/06/pwc-171.html">PWC #171</a></p>
+<p>Perhaps I did this to myself.</p>
+<p>I can&rsquo;t help feeling this is my fault.</p>
+<p>I got cocky. I saw a very repetitive list of solutions with only minor unessential syntactic variation. So I figured the rest, the ones I hadn&rsquo;t looked at, would be the same. It&rsquo;s compact, simple and perfect. Why would someone chose to do it differently.</p>
+<p><em>Oh Colin, you sweet summer child.</em></p>
+<p>Usually in this case I scan through all of the submissions to see if anything stands out. Normally, you know, I draw my selections out of a hat to get a random sample.</p>
+<p>Which is how I found Stephen&rsquo;s solution.</p>
+<p>Which is essentially in Perl 4.</p>
+<p><em>Let&rsquo;s take a moment to let that sink in. I will note to the reader that when Perl 5 came out I welcomed it with open arms and save for modernizing existing Perl 4 code, never, ever looked back.</em></p>
+<p>So how do you compose functions without references, you may ask? Typeglobs are sort of a pointer to a name in the symbol table, which can be attached to a variety of data types: scalars, arrays, hashes, filehandles or subroutines are the main group. There are I believe 9, including the typeglob. Typeglobs sort of point to all of these types simultaneously. It&rsquo;s confusing ab=nd they were mostly used for filehandles in my world. But to the point: using typeglobs we can hack into the argument stack for the <code>&amp;g</code> subroutine using <code>splice</code> and directly insert the output from <code>&amp;f</code>.</p>
+<p>That&rsquo;s the simplified version. Stephen&rsquo;s code is actually sneakier, and hackier (to use the historic, noble definition of the term)</p>
+<p>He provides two ways to do the deed. In the first, <code>compose</code> becomes the composed subroutine. In the second, a string is returned that needs to be evaled, containing the necessary code to create the composed function. In his second example, if we insert the line:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#e6db74">&#34;unevaled string: &#34;</span>, <span style="color:#f92672">&amp;</span>alt_compose(<span style="color:#f92672">*</span>sum,<span style="color:#f92672">*</span>factors);
+</code></pre></div><p>we add this to the output which might serve to clarify things somewhat. Or not, I don&rsquo;t know. I&rsquo;ll venture most people will have no idea what is going on here. Good luck.</p>
+<pre><code>    unevaled string: &amp;main::sum(2,3,5,6,10,15)
+</code></pre><p>See? And with that clue I&rsquo;m out. Here&rsquo;s the full text of Stephen&rsquo;s solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># This function &#34;composes&#34; subroutines using old features from perl 4:</span>
+    <span style="color:#75715e"># package vars, typeglobs, and the symbol table.</span>
+
+    <span style="color:#75715e">#-- The subroutine call &amp;compose(*g,*f) returns sub { &amp;g(@g) }</span>
+    <span style="color:#75715e">#-- where &amp;f(@f) is one of the arguments in @g</span>
+    <span style="color:#75715e">#-- and $g (int) indicates the position in which &amp;f is spliced into</span>
+    <span style="color:#75715e">#-- @g</span>
+
+
+    <span style="color:#75715e">#-- approach using typeglobs (perl 4 style)</span>
+    <span style="color:#75715e">#-- does not return a subroutine, evaluates g(f()) and returns the result</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> {
+        local (<span style="color:#f92672">*</span>g, <span style="color:#f92672">*</span>f)<span style="color:#f92672">=</span>@_;
+        splice(@g,$g,<span style="color:#ae81ff">0</span>,<span style="color:#f92672">&amp;</span>f(@f));
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>g(@g); <span style="color:#75715e">#-- not a subroutine ref</span>
+    }
+
+    <span style="color:#75715e">#-- alt (same as compose but returning a string to be eval&#39;ed)</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">alt_compose</span> {
+        local (<span style="color:#f92672">*</span>g, <span style="color:#f92672">*</span>f)<span style="color:#f92672">=</span>@_;
+        splice(@g,$g,<span style="color:#ae81ff">0</span>,<span style="color:#f92672">&amp;</span>f(@f));
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&amp;&#39;</span><span style="color:#f92672">.</span>substr(<span style="color:#f92672">*</span>g,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;(&#39;</span><span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;,&#39;</span>,@g)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;)&#39;</span>;
+    }
+
+
+    <span style="color:#75715e">#-- this is the direct solution to the challenge: modern Perl</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">alt_2_compose</span> { <span style="color:#75715e">#-- for the simple case g(f(x)) [no other g params]</span>
+        <span style="color:#66d9ef">my</span> ($rg, $rf, @x)<span style="color:#f92672">=</span>@_;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> { <span style="color:#f92672">&amp;</span>$rg(<span style="color:#f92672">&amp;</span>$rf(@x))  };
+    }
+
+
+    <span style="color:#75715e">#-- example find sum ( factors (30) ) using compose,etc.</span>
+
+    <span style="color:#66d9ef">use</span> Math::Factor::XS <span style="color:#e6db74">qw(factors)</span>;
+
+    {<span style="color:#75715e">#-- example: print sum (factors (30)) using compose</span>
+    local @factors<span style="color:#f92672">=</span>(<span style="color:#ae81ff">30</span>); <span style="color:#75715e">#-- @_ for factors</span>
+    local $sum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#75715e">#-- location to insert &amp;factors in sum @_</span>
+    local @sum<span style="color:#f92672">=</span>(); <span style="color:#75715e">#-- sum @_ excluding &amp;myfactors(..)</span>
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;compose: &#34;</span>,<span style="color:#f92672">&amp;</span>compose(<span style="color:#f92672">*</span>sum, <span style="color:#f92672">*</span>factors),<span style="color:#e6db74">&#34;\n&#34;</span>; <span style="color:#75715e">#-- 41</span>
+    @sum<span style="color:#f92672">=</span>(); <span style="color:#75715e">#-- reset before alternative compose</span>
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;alt_compose: &#34;</span>,eval(<span style="color:#f92672">&amp;</span>alt_compose(<span style="color:#f92672">*</span>sum,<span style="color:#f92672">*</span>factors)),<span style="color:#e6db74">&#34;\n&#34;</span>; <span style="color:#75715e">#--41</span>
+    }
+
+    <span style="color:#66d9ef">print</span> <span style="color:#f92672">&amp;</span>{<span style="color:#e6db74">&#34;alt_2_compose: &#34;</span>,<span style="color:#f92672">&amp;</span>alt_2_compose(<span style="color:#e6db74">&#39;sum&#39;</span>,<span style="color:#e6db74">&#39;factors&#39;</span>,<span style="color:#ae81ff">30</span>)},<span style="color:#e6db74">&#34;\n&#34;</span>; <span style="color:#75715e">#-- 41</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span> {
+    <span style="color:#75715e">#-- sum over an array</span>
+        <span style="color:#66d9ef">my</span> $sum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> ( (map {$sum <span style="color:#f92672">+=</span> $_} @_ ) [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] );
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/07/03">Abundant Composition - Perl — RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/07/03">Abundant Composition - Prolog — RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/06/30/pwc171-first-class-function/">PWC171 - First-class Function - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/07/perl_weekly_challenge_week_171.html">Perl Weekly Challenge: Week 171</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-171/james-smith">Perl Weekly Challenge #171</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/d/ch-2.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/nim/ch-2.nim">Nim</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/laurent-rosenfeld/scala/ch-2.scala">Scala</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/06/perl-weekly-challenge-171-abundant-numbers-and-first-class-functions.html"> Perl Weekly Challenge 171: Abundant Numbers and First-Class Functions</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/06/The_Weekly_Challenge_171__First_Class_Abundance.html">RogerBW&rsquo;s Blog: The Weekly Challenge 171: First-Class Abundance</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC171BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC171BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/07/03">Abundant Composition - Perl — RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/07/03">Abundant Composition - Prolog — RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/abundantly-first-class.html">Abundantly First Class with Raku - Arne Sommer</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/07/01/let-me-make-this-abundantly-clear">Let Me Make This Abundantly Clear - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/06/29/pwc171-abundant-number/">PWC171 - Abundant Number - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/06/30/pwc171-first-class-function/">PWC171 - First-class Function - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/07/perl_weekly_challenge_week_171.html">Perl Weekly Challenge: Week 171</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-171/james-smith">Perl Weekly Challenge #171</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/06/perl-weekly-challenge-171-abundant-numbers-and-first-class-functions.html"> Perl Weekly Challenge 171: Abundant Numbers and First-Class Functions</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/06/27/PerlWeeklyChallenge171.html#task1">Perl Weekly Challenge 171: numbers and references – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/06/27/PerlWeeklyChallenge171.html#task1plperl">Perl Weekly Challenge 171: numbers and references – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/Perl</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/06/27/PerlWeeklyChallenge171.html#task1plpgsql">Perl Weekly Challenge 171: numbers and references – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/PostgreSQL</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/07/abundantly-odd-and-oh-dear.html">Abundantly odd and &hellip; Oh dear!</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/06/The_Weekly_Challenge_171__First_Class_Abundance.html">RogerBW&rsquo;s Blog: The Weekly Challenge 171: First-Class Abundance</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Ryan Thompson</strong></p>
+<ul>
+<li><a href="https://ry.ca/2022/06/odd-abundant-numbers/">PWC 171 › Odd Abundant Numbers - Ryan J Thompson</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://ry.ca/2022/07/first-class-functions/">PWC 171 › First Class Functions - Ryan J Thompson</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Stephen G Lynn</strong></p>
+<ul>
+<li><a href="https://thiujiac.blogspot.com/2022/06/pwc-171.html">PWC #171</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/06/27/PWC171/">Perl Weekly Challenge 171 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
