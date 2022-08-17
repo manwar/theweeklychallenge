@@ -60,6 +60,8 @@ Please find below guest contributions.
 
 ##### **Stephen G Lynn** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/steve-g-lynn/julia/ch-1.jl) in **Julia**.
 
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
 ----
 ## [The Weekly Challenge - 177](/blog/perl-weekly-challenge-177) {#177}
 <br>
