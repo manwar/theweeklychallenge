@@ -38,6 +38,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 178](/blog/perl-weekly-challenge-178) {#178}
 <br>
 
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/eric-cheung/python/ch-2.py) in **Python**.
+
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/pokgopun/dart/ch-1.dart) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/pokgopun/dart/ch-2.dart) in **Dart**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/pokgopun/go/ch-2.go) in **Go**.
