@@ -38,9 +38,9 @@ Few days ago, `brain d foy`, contacted me with the offer of `50 coupons` for his
 
 So the `Token #1` is given to `Cheok-Yin Fung`. I will share the details with you separately in an email, congratulations.
 
-`Laurent Rosenfeld`, thank you for sharing the collection of guest contributions, `25 solutions` in `18 different` languages.
+`Laurent Rosenfeld`, thank you for sharing the collection of guest contributions, `26 solutions` in `19 different` languages.
 
-Altogether we received `72 solutions` by `14 contributors`.
+Altogether we received `73 solutions` by `14 contributors`.
 
 Happy to share my solutions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-177/mohammad-anwar/perl), [**Raku**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-177/mohammad-anwar/raku), [**Python**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-177/mohammad-anwar/python), [**Java**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-177/mohammad-anwar/java/theweeklychallenge) and [**Swift**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-177/mohammad-anwar/swift).
 
