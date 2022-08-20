@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-08-18T00:00:00+00:00
+date: 2022-08-20T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -37,6 +37,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 178](/blog/perl-weekly-challenge-178) {#178}
 <br>
+
+##### **AhmetEmre** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/aecepoglu/bqn/ch-1.bqn) in **BQN**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/eric-cheung/python/ch-2.py) in **Python**.
 
