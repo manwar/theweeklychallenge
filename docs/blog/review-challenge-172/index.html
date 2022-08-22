@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #172">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #172</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #172</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Aug 22, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-172.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-171/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 172</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So here we are then. I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>Before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-172/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-172/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one <em><strong>more</strong></em> thing before we finally get started:</p>
+<br>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<hr>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<hr>
+<br>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<br>
+<h3 id="enough-fine-so-without-even-further-ado">Enough? Fine. So without even further ado&hellip;</h3>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc172task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc172task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc172blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC172TASK1">Task 1</a>                 •             <a href="#PWC172TASK2">Task 2</a>                 •             <a href="#PWC172BLOGS">BLOGS</a>                  •</h2>
+<hr>
+<h1 id="PWC172TASK1">TASK 1</h1>
+<h1 id="prime-partition">Prime Partition</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given two positive integers, $m and $n.</p>
+<p>Write a script to find out the Prime Partition of the given number. No duplicates allowed.</p>
+<p>For example,</p>
+<pre><code>    Input: $m = 18, $n = 2
+    Output: 5, 13 or 7, 11
+
+    Input: $m = 19, $n = 3
+    Output: 3, 5, 11
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/brxfork/perl/ch-1.pl"><strong>Philippe Bricout</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
+<p>Prime partitioning is a decidely complex task when viewed mathematically.</p>
+<p>The primes themselves follow an unpredictable pattern, and as such we cannot use a set pattern to determine which combinations of primes will properly fit.</p>
+<p>It seems, then, that the only easily-managed, albeit computationally expensive solution is to investigate all combinations of value within the list of primes smaller than the target number to see whether they can be summed to resolve correctly. Bit of a slog, that, especially with larger values.</p>
+<p>Combinatorially speaking, the number of valid combinations blows up quite quickly into unmanageable territory, but for smaller values this approach works just fine. The runaway scaling of the possible solutions is somewhat mitigated by the constraint on the number of primes in the partitioning, which is a little detail left unmentioned in the original description.</p>
+<p>We are told we are given two values, but only by careful examination of the examples do we figure out that the second number is to be exactly the number of primes selected.</p>
+<p>There were 24 submissions for the first task this past week.</p>
+<h2 id="a-portion-of-partitioning-procedures">A PORTION of PARTITIONING PROCEDURES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>As suggested, various combinational schemes were seen across the field, but all were based around trying options that might work and noting the results.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-172-1h8i">Weekly Challenge 172</a></p>
+<p>Simon will start us off with a straightforward demonstation using the <code>Algorithm::Combinatorics</code> module, and specifically its function <code>combinations()</code>.</p>
+<p>This function returns in two ways, depending on what is requested. In list context, it returns an array of arrays, containing all combinations of the input according to specification. As the number of combinations grow factorially with increasing list length, this list can get huge fast.</p>
+<p>In a scalar context, however, the function returns a coderef iterator, a closure that when queried will generate and return the <em>next</em> combination, until all are exhausted. This is the form Simon uses.</p>
+<p>An important consideration to the challenge, however is that this function fully implements <em>n</em> choose <em>k</em>, or combinations from the set <em>n</em> containing exactly <em>k</em> elements. This allows us to easily specify, as per the second input value, how large our partion groups are to be. It also radically reduces the number of possible combinations, making the growth of the set of possible partitions much more manageable.</p>
+<p>Simon also brings a separate <code>is_prime()</code> function of his own construction, which uses trial divison to check divisors from 2 to the square root of the candidate.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> ( $m, $n ) {
+        <span style="color:#75715e"># Retrieve a list of all prime numbers &lt;= m</span>
+        <span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $m ; $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ; $i<span style="color:#f92672">--</span> ) {
+            push @primes, $i <span style="color:#66d9ef">if</span> is_prime($i);
+        }
+
+        <span style="color:#75715e"># Go through each combination of n length, and see if we have a solution</span>
+        <span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> combinations( <span style="color:#f92672">\</span>@primes, $n );
+        <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span> ) {
+            <span style="color:#66d9ef">if</span> ( sum(@$c) <span style="color:#f92672">==</span> $m ) {
+                say join <span style="color:#e6db74">&#39;, &#39;</span>, @$c;
+                <span style="color:#66d9ef">return</span>;
+            }
+        }
+
+        <span style="color:#75715e"># It is possible that no solution is found</span>
+        say <span style="color:#e6db74">&#39;No solution!&#39;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-172/james-smith">Perl Weekly Challenge #172</a></p>
+<p>The other basic strategy, represented here by James, is recursion over a list of primes.</p>
+<p>Actually in this case multiple lists of primes, as we are using <code>Math::Prime::Util</code> to provide them, and the results come absurdly fast. In standard form James strips the processing down to a minimal core, using two nested <code>map</code> functions.</p>
+<p>Most solutions used one or the other of these techniques.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime primes)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">partition</span> {
+      <span style="color:#66d9ef">my</span> ( $m, $n, $p ) <span style="color:#f92672">=</span> (@_,<span style="color:#ae81ff">0</span>);
+      $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>
+      ? map { $p <span style="color:#f92672">=</span> $_;
+              map { [ $p, @{$_} ] }
+                  partition( $m<span style="color:#f92672">-</span>$p, $n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $p )
+            } @{ primes $p<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, int( ($m<span style="color:#f92672">-</span>$n<span style="color:#e6db74">/2+1/</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">/</span>$n)  }
+      : $m <span style="color:#f92672">&gt;</span> $p <span style="color:#f92672">&amp;&amp;</span> is_prime $m ? [$m] : ();
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>The monk Athanasius, the scourge of Arius, the pitbull of Alexander and no friend to iotas, takes <code>Algorithm::Combinatorics</code> and combines the power of <code>Math::Prime::Util</code> to produce their list of permitted primes. The result is a compact solution that solicits combinations and sums them in a clean and readable style.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $primes <span style="color:#f92672">=</span> primes( $m );
+
+    <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&lt;=</span> scalar @$primes)
+    {
+        <span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> combinations( $primes, $n );
+
+        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $comb <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>)
+        {
+            <span style="color:#66d9ef">my</span> $sum  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+               $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @$comb;
+
+            push @prime_parts, $comb <span style="color:#66d9ef">if</span> $sum <span style="color:#f92672">==</span> $m;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/07/10">Partition the Summary — RabbitFarm</a></p>
+<p>In a variation for variety, here Adam beings us a solution usng a different module, <code>Math::Combinatorics</code>. He also derives his own list of primes using a <a href="https://en.wikipedia.org/wiki/Sieve_of_Atkin">sieve of Atkin</a>, a technique that promises some improvement over the already quite-efficient <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">sieve of Eratosthenes</a>.</p>
+<p>I encourage interested parties to look at his sieve code. It&rsquo;s a relatively modern technique, only about 20 years old. Cool, that.</p>
+<p>You can see the partition code works in much the same way as previous examples. The <code>pack</code> and <code>unpack</code> code, by the way, is a rather arcane method of summing a list of data, in this case a specific combination instance. Investigate the <a href="https://perldoc.perl.org/perlpacktut#Doing-Sums">perlpacktut</a> for more information.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Combinatorics;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_partition</span>{
+        <span style="color:#66d9ef">my</span>($n, $k) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @partitions;
+        <span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> sieve_atkin($n);
+        <span style="color:#66d9ef">my</span> $combinations <span style="color:#f92672">=</span> Math::Combinatorics<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(count <span style="color:#f92672">=&gt;</span> $k, data <span style="color:#f92672">=&gt;</span> [@primes]);
+        <span style="color:#66d9ef">while</span>(<span style="color:#66d9ef">my</span> @combination <span style="color:#f92672">=</span> $combinations<span style="color:#f92672">-&gt;</span>next_combination()){
+            push @partitions, [@combination] <span style="color:#66d9ef">if</span> unpack(<span style="color:#e6db74">&#34;%32I*&#34;</span>, pack(<span style="color:#e6db74">&#34;I*&#34;</span>, @combination)) <span style="color:#f92672">==</span> $n;
+        }
+        <span style="color:#66d9ef">return</span> @partitions;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/07/The_Weekly_Challenge_172__Partition_of_Five.html">RogerBW&rsquo;s Blog: The Weekly Challenge 172: Partition of Five</a></p>
+<p>Although most of the field out there building looping structures, myself included, reached for recursion to provide the framework, this was by no means the only way to go about it.</p>
+<p>Here Roger enters with, in his words, his &ldquo;standard depth-first search pattern&rdquo;. An array of arrays is built up, adding each prime to each previous list, excluding primes already in use in the sub-list under construction. The result is all combinations, which, when the desired length is reached, are then summed and those that equal the target value are selected.</p>
+<p>Easy peasy. Or at least he makes it look that way.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(primes)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">primepartition</span>($n, $divs) {
+      <span style="color:#66d9ef">my</span> @pl <span style="color:#f92672">=</span> @{primes($n)};
+      <span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> (<span style="color:#f92672">[]</span>);
+      <span style="color:#66d9ef">while</span> (scalar @p <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">my</span> $pa <span style="color:#f92672">=</span> pop @p;
+        <span style="color:#66d9ef">if</span> (scalar @{$pa} <span style="color:#f92672">==</span> $divs) {
+          <span style="color:#66d9ef">if</span> (sum(@{$pa}) <span style="color:#f92672">==</span> $n) {
+            <span style="color:#66d9ef">return</span> $pa;
+          }
+        } <span style="color:#66d9ef">else</span> {
+          <span style="color:#66d9ef">my</span> %px <span style="color:#f92672">=</span> map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>} @{$pa};
+          <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pq (@pl) {
+            <span style="color:#66d9ef">unless</span> (exists $px{$pq}) {
+              push @p,[@{$pa},$pq];
+            }
+          }
+        }
+      }
+      <span style="color:#66d9ef">return</span> [$n];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/07/perl-weekly-challenge-172-prime-partition-and-five-number-summary.html">Perl Weekly Challenge 172: Prime Partition and Five-Number Summary </a></p>
+<p>Laurent gives us an interesting improvement on a straight recursion method, with a short-circuit when there are only two values being searched. In this case the required complement value can be directly calculated using subtraction, and if the complement is prime and unique it is returned to complete the partition.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">partition</span>  {
+        <span style="color:#66d9ef">my</span> ($m, $n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@primes) {
+                <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;=</span> $m;
+                <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $m <span style="color:#f92672">-</span> $i;
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $j <span style="color:#f92672">==</span> $i;
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $seen{$i} <span style="color:#f92672">or</span> $seen{$j};
+                <span style="color:#66d9ef">return</span> $i, $j <span style="color:#66d9ef">if</span> is_prime($j);
+            }
+            <span style="color:#66d9ef">return</span>;
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@primes) {
+                <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;=</span> $m;
+                %seen <span style="color:#f92672">=</span> ($i <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+                <span style="color:#66d9ef">my</span> @sub_partition <span style="color:#f92672">=</span> partition($m <span style="color:#f92672">-</span> $i, $n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> @sub_partition <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>;
+                <span style="color:#66d9ef">return</span> ($i, @sub_partition);
+            }
+            <span style="color:#66d9ef">return</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Using the highly-tuned <code>is_prime</code> function from <code>Math::Prime::Util</code>, Choroba can afford to check a large number of values without preparing a list of primes beforehand. Being a staple of number-theoretical tasks, <code>is_prime</code> is extremely fast in operation. He also employs the same short-circuit as Laurent, above, when only two numbers are being searched for: picking one as prime and then using subtraction to find the other. The second value is then checked for primality.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw{ is_prime }</span>;
+
+    <span style="color:#75715e"># Run faster.</span>
+    <span style="color:#66d9ef">use</span> Memoize;
+    memoize <span style="color:#e6db74">&#39;_prime_partition&#39;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_partition</span> ($sum, $size) {
+        _prime_partition($sum, $size, <span style="color:#ae81ff">2</span>)
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_prime_partition</span> ($sum, $size, $min) {
+        <span style="color:#66d9ef">if</span> ($size <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p ($min <span style="color:#f92672">..</span> $sum <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>) {
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> is_prime($p);
+
+                <span style="color:#66d9ef">return</span> [$p, $sum <span style="color:#f92672">-</span> $p] <span style="color:#66d9ef">if</span> is_prime($sum <span style="color:#f92672">-</span> $p) <span style="color:#f92672">&amp;&amp;</span> $sum <span style="color:#f92672">!=</span> $p <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+            }
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p ($min <span style="color:#f92672">..</span> $sum <span style="color:#f92672">/</span> $size) {
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> is_prime($p);
+
+                <span style="color:#66d9ef">my</span> $rest <span style="color:#f92672">=</span> _prime_partition($sum <span style="color:#f92672">-</span> $p, $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+                <span style="color:#66d9ef">return</span> [$p, @$rest] <span style="color:#66d9ef">if</span> @$rest;
+            }
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/raku/ch-1.raku">Raku</a></p>
+<p>Mohammad is back with a submission this week, and seems to be enamored with the new <code>builtin</code> boolean types available in Perl 5.36.</p>
+<p>Today he gives us three functions: <code>is_prime</code>, <code>prime_upto</code>, and <code>prime_partition</code>. The first two, as expected, are used to produce a list of prime values, which are passed to the focus of our investigation, the partitioning. Here again we see <code>Algorithm::Combinatorics</code>, this time invoked in listwise mode, as an array source for a <code>foreach</code> loop. A quick summation in a single line determines whether our combination is a proper partition.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+    <span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(builtin)</span>;
+    <span style="color:#66d9ef">use</span> builtin   <span style="color:#e6db74">qw(true false)</span>;
+    <span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(combinations)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span>($n) {
+        <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">do</span> { <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">unless</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>_ } <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt $n);
+        <span style="color:#66d9ef">return</span> true;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_upto</span>($m) {
+        <span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> $m) {
+            $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> is_prime $i;
+            push @p, $i;
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@p;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_partition</span>($m, $n) {
+        <span style="color:#66d9ef">my</span> $primes <span style="color:#f92672">=</span> prime_upto $m;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $combination (combinations($primes, $n)) {
+            <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @$combination;
+            <span style="color:#66d9ef">return</span> $combination <span style="color:#66d9ef">if</span> $sum <span style="color:#f92672">==</span> $m;
+        }
+        <span style="color:#66d9ef">return</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>As Dave is known for recursion — it&rsquo;s sort of his thing, you know? — it would be a shame not to have a look at his solution. Noteworthy is his use of a common bag hash for a uniqueness check, which comes into play both to limit the primes selected within a particular recursion cycle but also to check the final value should it be prime.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_partitions</span> ( $m, $n ) {
+        say <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;END&#34;</span>;
+    M: $m
+    N: $n
+    <span style="color:#66d9ef">END</span>
+        _prime_partitions( $m, $n );
+        say <span style="color:#e6db74">&#39;&#39;</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_prime_partitions</span> ( $m, $n, $baggage = [] ) {
+        <span style="color:#66d9ef">if</span> ( $n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span> ) {
+            <span style="color:#66d9ef">if</span> ( is_prime($m) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> grep { <span style="color:#e6db74">/$m/</span> } $baggage<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+                <span style="color:#66d9ef">my</span> $bag <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39; &#39;</span>, sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } $baggage<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $m;
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $done<span style="color:#f92672">-&gt;</span>{$bag}<span style="color:#f92672">++</span>;
+                say <span style="color:#e6db74">qq{ $bag }</span>;
+                <span style="color:#66d9ef">return</span>;
+            }
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>is_prime($i);
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> grep { <span style="color:#e6db74">/$i/</span> } $baggage<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+                _prime_partitions( $m <span style="color:#f92672">-</span> $i, $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, [ sort $baggage<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $i ] );
+            }
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> ($n) {
+        die <span style="color:#e6db74">&#34;Bad number $n&#34;</span> <span style="color:#66d9ef">unless</span> length $n;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt $n ) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>_ }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/07/06/pwc172-prime-partition/">PWC172 - Prime Partition - ETOOBUSY</a></p>
+<p>Finally Flavio is here to save the day with his famous <code>combinations_iterator</code>. You can see here how it slots into a partitioning wrapper to generate combinations. Some people just want to do things for themselves, and Flavio does love his iterators.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_partition</span> ($n, $m) {
+       <span style="color:#66d9ef">if</span> ($m <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) { <span style="color:#66d9ef">return</span> is_prime($n) ? $n : () }
+       <span style="color:#66d9ef">my</span> $cit <span style="color:#f92672">=</span> combinations_iterator($m, primes_within(<span style="color:#ae81ff">2</span>, $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>));
+       <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> ($c) <span style="color:#f92672">=</span> $cit<span style="color:#f92672">-&gt;</span>()) {
+          <span style="color:#66d9ef">return</span> $c<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> if $n <span style="color:#f92672">==</span> sum $c<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+       <span style="color:#960050;background-color:#1e0010">}</span>
+       return;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">combinations_iterator</span> ($k, @items) {
+       <span style="color:#66d9ef">my</span> @indexes <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> ($k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
+       <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> @items;
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+          <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> @indexes;
+          <span style="color:#66d9ef">my</span> (@combination, @remaining);
+          <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+          <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> ($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)) {
+             <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">&lt;</span> $k <span style="color:#f92672">&amp;&amp;</span> $i <span style="color:#f92672">==</span> $indexes[$j]) {
+                push @combination, $items[$i];
+                <span style="color:#f92672">++</span>$j;
+             }
+             <span style="color:#66d9ef">else</span> {
+                push @remaining, $items[$i];
+             }
+          }
+          <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $incc (reverse(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> ($k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))) {
+             <span style="color:#66d9ef">if</span> ($incc <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+                @indexes <span style="color:#f92672">=</span> (); <span style="color:#75715e"># finished!</span>
+             }
+             <span style="color:#66d9ef">elsif</span> ((<span style="color:#66d9ef">my</span> $v <span style="color:#f92672">=</span> $indexes[$incc]) <span style="color:#f92672">&lt;</span> $incc <span style="color:#f92672">-</span> $k <span style="color:#f92672">+</span> $n) {
+                $indexes[$_] <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>$v <span style="color:#66d9ef">for</span> $incc <span style="color:#f92672">..</span> ($k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+                <span style="color:#66d9ef">last</span>;
+             }
+          }
+          <span style="color:#66d9ef">return</span> (<span style="color:#f92672">\</span>@combination, <span style="color:#f92672">\</span>@remaining);
+       }
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/07/10/five-finger-stat-punch">Five Finger Stat Punch - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/duncan-c-white/C/ch-1.c">C</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/07/perl_weekly_challenge_week_172.html">Perl Weekly Challenge: Week 172</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/07/tricky-partitions-and-easy-stats.html">Tricky partitions and easy stats</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/pokgopun/go/ch-1.go">Go</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/robert-dicicco/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/robert-dicicco/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/robert-dicicco/ruby/ch-1.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/steve-g-lynn/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/steve-g-lynn/raku/ch-1.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/07/pwc-172.html">PWC #172</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/07/04/PWC172/">Perl Weekly Challenge 172 – W. Luis Mochán</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/walt-mankowski/python/ch-1.py">Python</a></p>
+<hr>
+<hr>
+<h1 id="PWC172TASK2">TASK 2</h1>
+<h1 id="five-number-summary">Five-number Summary</h1>
+<p><em>Submitted by: Mohammad S Anwar</em>
+You are given an array of integers.</p>
+<p>Write a script to compute the five-number summary of the given set of integers.</p>
+<p>You can find the definition and example in the <a href="https://en.wikipedia.org/wiki/Five-number_summary">wikipedia page</a>.</p>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/dario-mazzeo/perl/ch-2.pl"><strong>Dario Mazzeo</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/kjetillll/perl/ch-2.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a></p>
+<p>The five-number summary is a quick look at a one-dimensional range of data, supplying the high and low bounds, the median and two further intermediate median-related points approximating 25% and 75% divisions, framing the data into roughly four quartiles.</p>
+<p>Because the data is assumed to be real-world and potentially unclean, the median is selected for its ability to surpress outlier points. The purpose of the five-number summary is less specific analysis, but rather to get a general feel for what&rsquo;s happening in the data set, and much more precise tools are available to a researcher should the need arise and the effort deemed useful and warranted.</p>
+<p>From this the idea arises of exactly how to meaningfully further subdivide the data set into four parts along similar lines to that of the median, and remarkably there is no one singular decided method for doing so. There are several, in fact, that, depending on the data set, deliver slightly different results for the two intermediate quartile points.</p>
+<p>This springs from the fact that the idea of fitting the data to quartiles is itself poorly defined, and ultimately a flexibility to tailor the definition to the data being processed is more useful than having a rigid, set algorithm. Cross-comparison between datasets is really only usually useful when the datasets are already related in some way, and so specifying a specific method to be used across several sets for the purposes of cross-comparison within the group makes quite a bit of sense. The actual placement of the quartile points is not a particularly useful metric when isolated, but taken together with the other points in the five-number summary across several sets of data can be very useful to identify changes and differences among the distributions.</p>
+<p>There seemed to be a wave (ok, a small wave, but a fair amount) of confusion about the median and various interpretations involving arithmetic means, or averages. Such is life. Consequently there were something like 22 working submissions for the second task this past week.</p>
+<h2 id="a-scatterplot-sampling-of-submissions">A SCATTERPLOT SAMPLING of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/kjetillll/perl/ch-2.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>As stated there are several competing methods used for computing the &ldquo;median&rdquo; quadrant points, with various additional schemes available for pre-filtering and purifying the data as well. The major distinction is whether to include the central mediam point, if distinctly present, in computing the sub-medians for the lower and upper quadrants. We saw both choices implemented within the field.</p>
+<p>Consequently, though, we&rsquo;ll be seeing some differing results even using the same data sets. This is not uncommon in the statistical world, defined by probabilities and carefully considered margins of error, trends and approximations.</p>
+<p>Visitors from the land of proof and rigorous mathematical certainty are likely to be in for a bit of a shock.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/kjetillll/perl/ch-2.pl"><strong>Kjetil Skotheim</strong></a></p>
+<p>Kjetil will start us off with a demonstration of the first common method of finding the nested medians for the quartile values. In this method, the list is divided in half, and if the center is a whole index, then that index defines the Q2 median element. If the calculated center spans between two points, however, they are averaged to find the value.</p>
+<p>For the Q1 and Q3 values, we will then need to take the median again within the spans above and below the center.</p>
+<p>One principle differentiation between the alternate methods of calculating the quartile values is whether to include the central median in the subdivision lists. The idea of a single &ldquo;correct&rdquo; answer is not at all clear: if a single center point exists, it will be included in all three calculations for instance. Should it?</p>
+<p>The method Kjetil uses calculates the median, and if it exists as a real point divides the list in two halves surrounding but not including the center. If the center median is an averaged point the list must have an even number of elements and can be divided cleanly into two equally-sized parts.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">five</span> {                            <span style="color:#75715e">#method 1 in https://en.wikipedia.org/wiki/Quartile</span>
+        @_<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> croak <span style="color:#e6db74">&#34;five: got no args&#34;</span>;
+        @_<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> (@_) x <span style="color:#ae81ff">5</span>;        <span style="color:#75715e">#same number five times if just one arg</span>
+        <span style="color:#66d9ef">my</span> @s    <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @_; <span style="color:#75715e">#input sorted</span>
+        <span style="color:#66d9ef">my</span> $n    <span style="color:#f92672">=</span> @s;                    <span style="color:#75715e">#number of elements</span>
+        <span style="color:#66d9ef">my</span> $q1   <span style="color:#f92672">=</span> int($n<span style="color:#e6db74">/2-1)/</span><span style="color:#ae81ff">2</span>;         <span style="color:#75715e">#index of q1, can be .5</span>
+        <span style="color:#66d9ef">my</span> $q3   <span style="color:#f92672">=</span> $n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>$q1;              <span style="color:#75715e">#index of q3</span>
+        <span style="color:#66d9ef">my</span> $odd  <span style="color:#f92672">=</span> $n%2;                  <span style="color:#75715e">#true if n is odd, odd number of elements overall</span>
+        <span style="color:#66d9ef">my</span> $oddh <span style="color:#f92672">=</span> $n%4<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>;                <span style="color:#75715e">#true if the halves have odd number of elements</span>
+        (                                 <span style="color:#75715e">#return the five numbers:</span>
+         $s[<span style="color:#ae81ff">0</span>],                                                 <span style="color:#75715e">#min</span>
+         $oddh  ?  $s[$q1]  :  ( $s[$q1]    <span style="color:#f92672">+</span> $s[$q1<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] ) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,  <span style="color:#75715e">#q1, first quartile</span>
+         $odd   ?  $s[$n<span style="color:#e6db74">/2] :  ( $s[$n/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $s[$n<span style="color:#e6db74">/2]  ) /</span> <span style="color:#ae81ff">2</span>,  <span style="color:#75715e">#q2, median</span>
+         $oddh  ?  $s[$q3]  :  ( $s[$q3]    <span style="color:#f92672">+</span> $s[$q3<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] ) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,  <span style="color:#75715e">#q3, third quartile</span>
+         $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]                                                 <span style="color:#75715e">#max</span>
+        )
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/07/tricky-partitions-and-easy-stats.html">Tricky partitions and easy stats</a></p>
+<p>Peter demonstrates a straightforward approach to calculating all the interior quartile points in one swoop. Using this method the center positions are directly derived, and may be fractional. A separate subroutine is then used to return either a whole-index value or the arithmetic mean should the median point fall between two values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># sort numerically and count</span>
+    @sorted <span style="color:#f92672">=</span> sort    {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @$test;
+    $count <span style="color:#f92672">=</span> scalar @sorted;
+
+    <span style="color:#75715e"># determine value at a position (which might not be integral)</span>
+    $median <span style="color:#f92672">=</span> value(($count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+    $first_quartile <span style="color:#f92672">=</span> value(($count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>);
+    $third_quartile <span style="color:#f92672">=</span> value(<span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> ($count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>);
+
+    <span style="color:#75715e"># show the answers</span>
+    say <span style="color:#e6db74">qq[\n]</span> <span style="color:#f92672">.</span> join(<span style="color:#e6db74">&#39;, &#39;</span>, @sorted);
+    say <span style="color:#e6db74">qq[minimum $sorted[0] first quartile $first_quartile median $median ]</span> <span style="color:#f92672">.</span>
+        <span style="color:#e6db74">qq[third quartile $third_quartile maximum $sorted[$count - 1]]</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">value</span> {
+
+        <span style="color:#66d9ef">my</span> ($position, $lower, $upper, $fraction);
+
+        <span style="color:#75715e"># returns the value at the given position</span>
+        <span style="color:#75715e"># if position is non-integral returns the weighted intermediate value</span>
+        $position <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#75715e"># integral position</span>
+        <span style="color:#66d9ef">return</span> $sorted[$position] <span style="color:#66d9ef">if</span> $position <span style="color:#f92672">==</span> int($position);
+
+        <span style="color:#75715e"># find intergral position below and above given position and</span>
+        <span style="color:#75715e"># calculate weighted intermediate value</span>
+        $lower <span style="color:#f92672">=</span> int($position);
+        $upper <span style="color:#f92672">=</span> $lower <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        $fraction <span style="color:#f92672">=</span> $position <span style="color:#f92672">-</span> $lower;
+        <span style="color:#66d9ef">return</span> $sorted[$lower] <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> $fraction) <span style="color:#f92672">+</span> $sorted[$upper] <span style="color:#f92672">*</span> $fraction;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/walt-mankowski/python/ch-2.py">Python</a></p>
+<p>Although it was common to separate out some sort of <code>median</code> routine to decide between the odd and even cases in calculating that value, exactly how this was done varied. Some passed an externally derived index, either a whole or fractional value, or perhaps the size of the list being used. Other techniques isolated the operation completely, and when passed a list of data took it from there and determined the median value.</p>
+<p>Walt took this latter route.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">median_sorted</span>(@a) {
+        <span style="color:#66d9ef">my</span> $len2 <span style="color:#f92672">=</span> int(@a <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+        <span style="color:#66d9ef">return</span> @a % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ? $a[$len2] : ($a[$len2<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $a[$len2]) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+    }
+
+    <span style="color:#75715e"># returns the 5 number summary of a list: minimum, lower quartile,</span>
+    <span style="color:#75715e"># median, upper quartile, maximum</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fivenum</span>(@a) {
+        <span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @a;
+        <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> $sorted[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> $sorted[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">my</span> $median <span style="color:#f92672">=</span> median_sorted(@sorted);
+
+        <span style="color:#66d9ef">my</span> $len2 <span style="color:#f92672">=</span> int(@sorted <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+        <span style="color:#66d9ef">my</span> $lower <span style="color:#f92672">=</span> median_sorted(@sorted[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$len2<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+        <span style="color:#66d9ef">my</span> $upper;
+        <span style="color:#66d9ef">if</span> (@sorted % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) { <span style="color:#75715e"># odd number of elements</span>
+            $upper <span style="color:#f92672">=</span> median_sorted(@sorted[$len2<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#sorted]);
+        } <span style="color:#66d9ef">else</span> {
+            $upper <span style="color:#f92672">=</span> median_sorted(@sorted[$len2<span style="color:#f92672">..</span>$#sorted]);
+        }
+        <span style="color:#66d9ef">return</span> ($min, $lower, $median, $upper, $max);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/duncan-c-white/C/ch-2.c">C</a></p>
+<p>Duncan also uses a separate routine to return either a whole or averaged median value, and also skips any real central median point in halving the array to find the first and third quartiles. This skipping choice is quite common, but one can see how in the case of having an odd number of data points the subdivision of the list to finds the upper and lower quartiles will result in a slight weighting away from the center. This weighting is mirrored should we include the point, so that does not present a fundamentally &ldquo;better&rdquo; solution.</p>
+<p>As we are extracting median points and not means (save when averaging between two points), it&rsquo;s not clear which choice is better. The median is not a perfect solution itself, and results in a very useful one-half <em>approximation</em> rather than a mathematically rigorous division point. The qualifying math comes into play when the <em>number</em> of data points is added to the analysis, supplying bounds of confidence in the conclusions drawn.</p>
+<p>Note as well Duncan presents the summary is a common geometric way, based around a tree structure: the median is at a centra peak, flanked by the first and third quartiles and the minimum and maximum below them:</p>
+<pre><code>    7.5
+ 0.5   44.0
+ 0.0   63.0
+</code></pre><p>Here is his core logic:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">median</span>
+    {
+        <span style="color:#66d9ef">my</span>( @n ) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $midpos <span style="color:#f92672">=</span> int(@n<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+        <span style="color:#66d9ef">my</span> $median <span style="color:#f92672">=</span> @n%2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? ($n[$midpos<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$n[$midpos])<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> : $n[$midpos];
+        <span style="color:#66d9ef">return</span> $median;
+    }
+
+
+    <span style="color:#66d9ef">my</span> $median <span style="color:#f92672">=</span> median( @n );
+
+    <span style="color:#66d9ef">my</span> $midpos <span style="color:#f92672">=</span> int(@n<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+    say <span style="color:#e6db74">&#34;debug: midpos=$midpos&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+
+    <span style="color:#66d9ef">my</span> @h1 <span style="color:#f92672">=</span> @n[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$midpos<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+
+    $midpos<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> @n%2 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @h2 <span style="color:#f92672">=</span> @n[$midpos<span style="color:#f92672">..</span>@n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+
+    say <span style="color:#e6db74">&#34;debug: h1 = &#34;</span>, join(<span style="color:#e6db74">&#39;,&#39;</span>,@h1), <span style="color:#e6db74">&#34;, h2 = &#34;</span>, join(<span style="color:#e6db74">&#39;,&#39;</span>,@h2)
+        <span style="color:#66d9ef">if</span> $debug;
+
+    <span style="color:#66d9ef">my</span> $firstq <span style="color:#f92672">=</span> median( @h1 );
+    <span style="color:#66d9ef">my</span> $thirdq <span style="color:#f92672">=</span> median( @h2 );
+
+    <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> $n[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> $n[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+
+    printf <span style="color:#e6db74">&#34;   %5.1f\n&#34;</span>, $median;
+    printf <span style="color:#e6db74">&#34;%5.1f  %5.1f\n&#34;</span>, $firstq, $thirdq;
+    printf <span style="color:#e6db74">&#34;%5.1f  %5.1f\n&#34;</span>, $min, $max;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/steve-g-lynn/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/steve-g-lynn/raku/ch-2.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/07/pwc-172.html">PWC #172</a></p>
+<p>Stephen brings the awesome power of the PDL, the Perl Data Language, to bear on the problem, treating the input as any other one-dimensional vector of data. There does not appear to be a prepackaged function for a five-number summary in the standard library, but a <code>median</code> method is included, which makes that step, along with the minimum and maximum values, easier.</p>
+<p>A case is made but not implemented for linear interpolation on the quartiles. This represents yet another method that is sometimes employed, but the added precision it brings to 4 divisions does not necessarily improve the informational content of the summary and may not be worth the added effort. A similar adjustment is also sometimes  made to the quartile median approximations, designed to compensate for the slight weighting shift imposed by either inclusion or removal of a centerpoint median value. Again, though, one-quarter fractional precision may not be a useful addition; its presence may in fact imply precision that simply isn&rsquo;t there.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fivenum</span> {
+        <span style="color:#66d9ef">my</span> ($data) <span style="color:#f92672">=</span> pdl @_;
+
+        <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> $data <span style="color:#f92672">-&gt;</span> dim(<span style="color:#ae81ff">0</span>);
+
+        <span style="color:#66d9ef">my</span> ($min, $quartile_1, $median, $quartile_3, $max);
+
+        <span style="color:#66d9ef">my</span> $indx <span style="color:#f92672">=</span> qsorti($data);
+
+        <span style="color:#75715e">#-- Quartiles</span>
+        <span style="color:#75715e">#-- If len divisible by 4, I take the midpoint of</span>
+        <span style="color:#75715e">#-- the two observations that embrace the quartile.</span>
+        <span style="color:#75715e">#-- (Recommended better practice is linear interpolation,</span>
+        <span style="color:#75715e">#-- but the calculation here is also theoretically okay)</span>
+
+        <span style="color:#66d9ef">if</span> ( ($len % 4) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+            $quartile_1 <span style="color:#f92672">=</span>
+                <span style="color:#ae81ff">0.5</span><span style="color:#f92672">*</span>($data($indx($len<span style="color:#e6db74">/4))+$data($indx($len/</span><span style="color:#ae81ff">4</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)));
+            $quartile_3 <span style="color:#f92672">=</span>
+                <span style="color:#ae81ff">0.5</span><span style="color:#f92672">*</span>($data($indx(<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$len<span style="color:#e6db74">/4))+$data($indx(3*$len/</span><span style="color:#ae81ff">4</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)));
+        } <span style="color:#66d9ef">else</span> {
+            $quartile_1 <span style="color:#f92672">=</span> $data($indx(int($len<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>));
+            $quartile_3 <span style="color:#f92672">=</span> $data($indx(int(<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$len<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>));
+        }
+
+        <span style="color:#66d9ef">return</span> pdl([$data<span style="color:#f92672">-&gt;</span>min, $quartile_1, $data<span style="color:#f92672">-&gt;</span>median, $quartile_3, $data<span style="color:#f92672">-&gt;</span>max]);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Unexpectedly Choroba also brings in the PDL, only this time employing the <code>pctover</code> method, which as configured delivers values for the 0, one-quater, one-half, three-quarters and end points along the data vector. This produces slightly different values depending on the number of data points presented.</p>
+<p>The commentary on his testing reflects this.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> PDL;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">five_number_summary</span> {
+        <span style="color:#66d9ef">my</span> ($data) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> map pdl(@$data)<span style="color:#f92672">-&gt;</span>pctover($_), <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.75</span>, <span style="color:#ae81ff">1</span>
+    }
+
+    <span style="color:#66d9ef">use</span> Test::More tests <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>;
+
+    <span style="color:#75715e"># This test fails. PDL doesn&#39;t use a simple interpolation.</span>
+    is_deeply [five_number_summary([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">13</span>])],
+        [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">7.5</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">63</span>];
+
+    <span style="color:#75715e"># This is the actual result. It corresponds to R&#39;s summary() rather</span>
+    <span style="color:#75715e"># than fivenum().</span>
+    is_deeply [five_number_summary([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">13</span>])],
+        [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.75</span>, <span style="color:#ae81ff">7.5</span>, <span style="color:#ae81ff">35.5</span>, <span style="color:#ae81ff">63</span>];
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg makes an interesting case for including a whole-index center median in each high and low subdivision of the data, in that given a data set of five ordered values, the five-number summary of this will produce the same five values. This does, I admit, have a certain aesthetic appeal to it. I&rsquo;m not sure if we should be taking aesthetics into account when engaging in scientific pursuits, but it would be foolish to deny that many a conclusion has been guided this way, whether consciously or unconsciously.</p>
+<p>I submit the observation of the golden ratio in natural forms as prima facie evidence to the assertion. Phi, φ, is a useful mathematical value. Finding it in the measurements of the ideal human is hubris.</p>
+<p>But I digress. Including the centerpoint in a five-number summary is just fine, for whatever reason, as long as the choice is consistently applied.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fivenum</span> {
+        <span style="color:#75715e"># numbers need to be sorted.</span>
+        <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @_;
+
+        <span style="color:#75715e"># non-integer index around the first quartile.</span>
+        <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> $#n <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>;
+        <span style="color:#75715e"># Offset for the exact (non-integer) indices of the first</span>
+        <span style="color:#75715e"># and third quartile.</span>
+        <span style="color:#66d9ef">my</span> $o <span style="color:#f92672">=</span> ($#n % 2) <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>;
+        <span style="color:#75715e"># zeroth (min), first, second (median), third and fourth (max)</span>
+        <span style="color:#75715e"># quartile. Interpolated if necessary by taking the mean of the</span>
+        <span style="color:#75715e"># surrounding values for non-integer indices.</span>
+        map <span style="color:#f92672">+</span>($n[floor $_] <span style="color:#f92672">+</span> $n[ceil $_]) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
+            <span style="color:#ae81ff">0</span>, $q <span style="color:#f92672">-</span> $o, $#n <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $q <span style="color:#f92672">+</span> $o, $#n;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>Ulrich also choses this second, inclusive method. It is nice to have this variety expressed, because as I noted there is, to the frustration of many, no consensus on the subject. After taking in a string of space-separated values from <code>STDIN</code>, the data is teased apart and processed. I&rsquo;ll mention it here, because I haven&rsquo;t elsewhere, that after sorting the data, the two ends of the sorted array will hold the minimum and maximum values, so there is no need to prepare functions to determine them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @numbers ;
+    say <span style="color:#e6db74">&#34;Minimum is $sorted[0]!&#34;</span> ;
+    <span style="color:#66d9ef">my</span> $median <span style="color:#f92672">=</span> findMedian( <span style="color:#f92672">\</span>@sorted ) ;
+    say <span style="color:#e6db74">&#34;Median is $median!&#34;</span> ;
+    <span style="color:#66d9ef">my</span> @slice ;
+    <span style="color:#66d9ef">my</span> @secondSlice ;
+    <span style="color:#66d9ef">if</span> ( $size % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+      @slice <span style="color:#f92672">=</span> @sorted[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $size <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] ;
+      @secondSlice <span style="color:#f92672">=</span> @sorted[ $size <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] ;
+    }
+    <span style="color:#66d9ef">else</span> {
+      @slice <span style="color:#f92672">=</span> @sorted[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> floor( $size <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> )] ;
+      @secondSlice <span style="color:#f92672">=</span> @sorted[floor( $size <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) <span style="color:#f92672">..</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] ;
+    }
+    <span style="color:#66d9ef">my</span> $firstQuartile <span style="color:#f92672">=</span> findMedian( <span style="color:#f92672">\</span>@slice ) ;
+    say <span style="color:#e6db74">&#34;First quartile is $firstQuartile!&#34;</span> ;
+    <span style="color:#66d9ef">my</span> $thirdQuartile <span style="color:#f92672">=</span> findMedian( <span style="color:#f92672">\</span>@secondSlice ) ;
+    say <span style="color:#e6db74">&#34;Third quartile is $thirdQuartile!&#34;</span> ;
+    say <span style="color:#e6db74">&#34;Maximum is $sorted[-1]!&#34;</span> ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/07/perl_weekly_challenge_week_172.html">Perl Weekly Challenge: Week 172</a></p>
+<p>In any of the methods involving nested medians — of first taking the whole-dataset median and then dividing the data into two halves somehow to then take the medians of these subgroups — a common decision tree exists to properly determine the datapoints selected for the results. If the master list is odd, we will have a central point, but otherwise we will average the two values bracketing the center. Whether the side lists are even or odd results in a similar reasoning.</p>
+<p>The nesting, however, can be unrolled into a decision at each of the three quartile points, and acted on sequentially.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @nums <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @ARGV;
+    <span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> scalar @nums;
+
+    say <span style="color:#e6db74">&#34;minimum:        &#34;</span>, $nums[<span style="color:#ae81ff">0</span>];
+    say <span style="color:#e6db74">&#34;lower quartile: &#34;</span>, $e % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? ($nums[$e <span style="color:#e6db74">/ 4 - 1] + $nums[$e /</span> <span style="color:#ae81ff">4</span>]) <span style="color:#e6db74">/ 2 : $nums[$e /</span> <span style="color:#ae81ff">4</span>];
+    say <span style="color:#e6db74">&#34;median:         &#34;</span>, $e % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? ($nums[$e <span style="color:#e6db74">/ 2 - 1] + $nums[$e /</span> <span style="color:#ae81ff">2</span>]) <span style="color:#e6db74">/ 2 : $nums[$e /</span> <span style="color:#ae81ff">2</span>];
+    say <span style="color:#e6db74">&#34;upper quartile: &#34;</span>, $e % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? ($nums[$e <span style="color:#e6db74">/ 4 * 3 - 1] + $nums[$e /</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>]) <span style="color:#e6db74">/ 2 : $nums[$e /</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>];
+    say <span style="color:#e6db74">&#34;maximum:        &#34;</span>, $nums[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/pokgopun/go/ch-2.go">Go</a></p>
+<p>These sequential evaluations can be further condensed to a single complex, listwise constructor for the entire summary, if we remove the calculation of the median value to a separate subroutine.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    printf <span style="color:#e6db74">&#34;Input: (%s)\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>,@a);
+    <span style="color:#66d9ef">my</span> @fn <span style="color:#f92672">=</span> ($a[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], @a<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span> ? $a[<span style="color:#ae81ff">0</span>] : median(@a[int(@a<span style="color:#e6db74">/2)+@a%2..$#a]), median(@a), @a==1 ? $a[0] : median(@a[0..int(@a/</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]), $a[<span style="color:#ae81ff">0</span>]);
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+    <span style="color:#66d9ef">foreach</span> (<span style="color:#e6db74">qw/sample_minimum lower_quartile median upper_quartile sample_maximum/</span>){
+        printf <span style="color:#e6db74">&#34;%s: %s\n&#34;</span>, $_, $fn[<span style="color:#f92672">--</span>$i];
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">median</span>{
+        <span style="color:#66d9ef">return</span> @_ % 2 ? $_[int(@_<span style="color:#e6db74">/2)] : ($_[@_/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $_[@_<span style="color:#e6db74">/2])/</span><span style="color:#ae81ff">2</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>Finally, faced with a wide variety of options for calculating the quartile points, CY has gone and decided to implement them all. Someone had to do it.</p>
+<p>Or&hellip; at least the four most common. I&rsquo;m unclear whether the procedure used in the <em>n</em>-value linear interpretation method, number 4 here, is exactly the same as that used in the PDL <code>pctover()</code> method we saw earlier. I mean, probably, as it has a pretty straightforward, well-defined basis. But I still wouldn&rsquo;t assume without a little more research into the specific implementation. [<em>ed note: I checked: it&rsquo;s different. Go figure.</em>]</p>
+<p>In any case when given a list on the command line, CY&rsquo;s submission will deliver the summary four ways.</p>
+<p>Variety is the spice of life.</p>
+<p>Her <code>_median()</code> function, referenced but not listed, is pretty self-explanatory at this point, I hope.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fns</span> ($inp , $quartile_method = 1) {
+    <span style="color:#75715e"># (definition of the methods follows en.wikipedia.org/wiki/Quartile)</span>
+        <span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> $inp<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        <span style="color:#960050;background-color:#1e0010">@</span>arr <span style="color:#f92672">=</span> sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} @arr;
+        <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> scalar @arr;
+        <span style="color:#66d9ef">if</span> ($quartile_method <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $s % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">return</span> [$arr[<span style="color:#ae81ff">0</span>],
+                    _median(@arr[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>($s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>]),
+                    $arr[($s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>],
+                    _median(@arr[($s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]),
+                    $arr[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]];
+        }
+        <span style="color:#66d9ef">if</span> ( ($quartile_method <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $quartile_method <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;&amp;</span> $s % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">return</span> [$arr[<span style="color:#ae81ff">0</span>],
+                    _median(@arr[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$s<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]),
+                    _median(@arr),
+                    _median(@arr[$s<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]),
+                    $arr[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]];
+        }
+        <span style="color:#66d9ef">if</span> ( $quartile_method <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $s % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">return</span> [$arr[<span style="color:#ae81ff">0</span>],
+                    _median(@arr[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>($s<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>]),
+                    $arr[($s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>],
+                    _median(@arr[($s<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]),
+                    $arr[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]];
+        }
+        <span style="color:#66d9ef">if</span> ( $quartile_method <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> ) {
+            <span style="color:#66d9ef">return</span> fns([@arr], <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">if</span> $s % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> _median(@arr);
+            <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> scalar @arr <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>;
+            <span style="color:#66d9ef">if</span> (scalar @arr % 4 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+                <span style="color:#66d9ef">return</span> [$arr[<span style="color:#ae81ff">0</span>],
+                        $arr[$f<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#e6db74">/4 + $arr[$f]*3/</span><span style="color:#ae81ff">4</span>,
+                        $m,
+                        $arr[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$f]<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#e6db74">/4 + $arr[3*$f+1]/</span><span style="color:#ae81ff">4</span>,
+                        $arr[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]];
+            }
+            <span style="color:#66d9ef">else</span> {     <span style="color:#75715e"># scalar @arr % 4 == 3</span>
+                <span style="color:#66d9ef">return</span> [$arr[<span style="color:#ae81ff">0</span>],
+                        $arr[$f]<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#e6db74">/4 + $arr[$f+1]/</span><span style="color:#ae81ff">4</span>,
+                        $m,
+                        $arr[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$f<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#e6db74">/4 + $arr[3*$f]*3/</span><span style="color:#ae81ff">4</span>,
+                        $arr[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]];
+            }
+        }
+        <span style="color:#66d9ef">if</span> ( $quartile_method <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> ) {
+            <span style="color:#66d9ef">my</span> $k1 <span style="color:#f92672">=</span> floor(($s<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>);
+            <span style="color:#66d9ef">my</span> $k3 <span style="color:#f92672">=</span> floor(($s<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>);
+            <span style="color:#66d9ef">my</span> $a1 <span style="color:#f92672">=</span> ($s<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">-</span> $k1;
+            <span style="color:#66d9ef">my</span> $a3 <span style="color:#f92672">=</span> ($s<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#f92672">/</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">-</span> $k3;
+            <span style="color:#66d9ef">return</span> [$arr[<span style="color:#ae81ff">0</span>],
+                    $arr[$k1<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$a1<span style="color:#f92672">*</span>($arr[$k1]<span style="color:#f92672">-</span>$arr[$k1<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]),
+                    _median(@arr),
+                    $arr[$k3<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$a3<span style="color:#f92672">*</span>($arr[$k3]<span style="color:#f92672">-</span>$arr[$k3<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]),
+                    $arr[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]];
+        }
+
+        <span style="color:#75715e"># if the quartile method parameter is set incorrectly</span>
+        <span style="color:#66d9ef">return</span> fns([@arr], <span style="color:#ae81ff">1</span>);
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/07/10">Partition the Summary — RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/07/10/five-finger-stat-punch">Five Finger Stat Punch - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/07/07/pwc172-five-number-summary/">PWC172 - Five-number Summary - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-172/james-smith">Perl Weekly Challenge #172</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/ring/ch-2.ring">Ring</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/laurent-rosenfeld/ruby/ch-2.rb">Ruby</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/07/perl-weekly-challenge-172-prime-partition-and-five-number-summary.html">Perl Weekly Challenge 172: Prime Partition and Five-Number Summary </a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/robert-dicicco/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/robert-dicicco/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/robert-dicicco/ruby/ch-2.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/07/The_Weekly_Challenge_172__Partition_of_Five.html">RogerBW&rsquo;s Blog: The Weekly Challenge 172: Partition of Five</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-172-1h8i">Weekly Challenge 172</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/07/04/PWC172/">Perl Weekly Challenge 172 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC172BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC172BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/07/10">Partition the Summary — RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/primary-five.html">Primary Five with Raku - Arne Sommer</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/07/10/five-finger-stat-punch">Five Finger Stat Punch - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/07/06/pwc172-prime-partition/">PWC172 - Prime Partition - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/07/07/pwc172-five-number-summary/">PWC172 - Five-number Summary - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/07/perl_weekly_challenge_week_172.html">Perl Weekly Challenge: Week 172</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-172/james-smith">Perl Weekly Challenge #172</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/07/perl-weekly-challenge-172-prime-partition-and-five-number-summary.html">Perl Weekly Challenge 172: Prime Partition and Five-Number Summary </a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/07/tricky-partitions-and-easy-stats.html">Tricky partitions and easy stats</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/07/The_Weekly_Challenge_172__Partition_of_Five.html">RogerBW&rsquo;s Blog: The Weekly Challenge 172: Partition of Five</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-172-1h8i">Weekly Challenge 172</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Stephen G Lynn</strong></p>
+<ul>
+<li><a href="https://thiujiac.blogspot.com/2022/07/pwc-172.html">PWC #172</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/07/04/PWC172/">Perl Weekly Challenge 172 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
