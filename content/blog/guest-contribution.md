@@ -54,7 +54,7 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
 
-##### **Roger Bell_West** shared solution to [***Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/rust/ch-2.rs) in **Rust**.
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/rust/ch-2.rs) in **Rust**.
 
 ----
 ## [The Weekly Challenge - 178](/blog/perl-weekly-challenge-178) {#178}
