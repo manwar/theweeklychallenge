@@ -56,6 +56,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/rust/ch-2.rs) in **Rust**.
 
+##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
 ----
 ## [The Weekly Challenge - 178](/blog/perl-weekly-challenge-178) {#178}
 <br>
