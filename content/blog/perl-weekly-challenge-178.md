@@ -74,7 +74,7 @@ Happy to share my solutions in [**Perl**](https://github.com/manwar/perlweeklych
      3. Ruby    (371)
      4. Lua     (370)
      5. C++     (258)
-     6. C       (256)
+     6. C       (258)
      7. Go      (217)
      8. Rust    (212)
      9. Node.js (191)
