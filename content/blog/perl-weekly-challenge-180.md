@@ -169,7 +169,7 @@ Write a script to trim the given list where element is `less than or equal to` t
 #### Example 1
 
     Input: @n = (1,4,2,3,5) and $i = 3
-    Output: (4,3,5)
+    Output: (4,5)
 
 #### Example 2
 
