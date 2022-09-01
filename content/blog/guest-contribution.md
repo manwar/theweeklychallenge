@@ -54,7 +54,7 @@ Please find below guest contributions.
 
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/julia/ch-2.jl) in **Julia**.
 
-##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/kotlin/ch-2.kt) in **Kotlin**.
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/kotlin/ch-2.kt) in **Kotlin**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/lua/ch-2.lua) in **Lua**.
 
@@ -71,6 +71,8 @@ Please find below guest contributions.
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ziameraj16/java/FirstUniqueCharacter.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ziameraj16/java/TrimList.java) in **Java**.
 
 ##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/julia/ch-2.jl) in **Julia**.
+
+##### **Robert DiCicco** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/lua/ch-2.lua) in **Lua**.
 
 ##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/ruby/ch-2.rb) in **Ruby**.
 
