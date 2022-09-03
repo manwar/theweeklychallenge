@@ -84,6 +84,8 @@ Please find below guest contributions.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/scala/ch-2.scala) in **Scala**.
 
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/lubos-kolouch/python/ch-2.py) in **Python**.
+
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ziameraj16/java/FirstUniqueCharacter.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ziameraj16/java/TrimList.java) in **Java**.
 
 ##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/java/theweeklychallenge/FirstUniqueCharacter.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/java/theweeklychallenge/TrimList.java) in **Java**.
