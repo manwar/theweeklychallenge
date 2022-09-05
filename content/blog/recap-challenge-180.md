@@ -472,7 +472,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Marton Polgar
-![Marton Polgar](/images/team/user.jpg)
+![Marton Polgar](/images/team/marton-polgar.jpg)
 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/2colours/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/2colours/raku/ch-2.raku)]
