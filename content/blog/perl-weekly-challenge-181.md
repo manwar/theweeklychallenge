@@ -152,7 +152,7 @@ Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) cr
 ## GUESTS {#GUESTS}
 ***
 
-Please checkout the guest contributions for the [**Week #180**](/blog/guest-contribution/#180).
+Please check out the guest contributions for the [**Week #180**](/blog/guest-contribution/#180).
 
 Please find [**past solutions**](/blog/guest-contribution) by respected **guests**. Please share your creative solutions in other languages.
 
