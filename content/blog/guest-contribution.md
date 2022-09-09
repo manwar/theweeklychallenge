@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-09-07T00:00:00+00:00
+date: 2022-09-09T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -59,6 +59,8 @@ Please find below guest contributions.
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
 
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/roger-bell-west/rust/ch-2.rs) in **Rust**.
+
+##### **Stephen G Lynn** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/steve-g-lynn/julia/ch-2.jl) in **Julia**.
 
 ----
 ## [The Weekly Challenge - 180](/blog/perl-weekly-challenge-180) {#180}
