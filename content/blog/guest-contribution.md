@@ -62,6 +62,10 @@ Please find below guest contributions.
 
 ##### **Stephen G Lynn** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/steve-g-lynn/julia/ch-2.jl) in **Julia**.
 
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/tyler-wardhaugh/fennel/t1.fnl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/tyler-wardhaugh/fennel/t2.fnl) in **Fennel**.
+
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/tyler-wardhaugh/clojure/src/c181/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/tyler-wardhaugh/clojure/src/c181/t2.clj) in **Clojure**.
+
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
