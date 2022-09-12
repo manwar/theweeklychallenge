@@ -534,7 +534,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Stephen G Lynn
-![Stephen G Lynn](/images/team/user.jpg)
+![Stephen G Lynn](/images/team/steve-g-lynn.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/steve-g-lynn/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-181/steve-g-lynn/perl/ch-2.pl)]
