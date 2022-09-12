@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #175">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #175</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #175</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Sep 12, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-175.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-174/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 175</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would come from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they personally find the most interesting and satisfying. Some team members will focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here: to try and figure out ways to do just that.</p>
+<p>So that&rsquo;s that&hellip; I&rsquo;m ready now — let’s go in and see what we can find.</p>
+<hr>
+<h3 id="for-added-context">For Added Context</h3>
+<p>Before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-175/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-175/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one <em><strong>more</strong></em> thing before we finally get started:</p>
+<br>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<hr>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<hr>
+<br>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<br>
+<h3 id="enough-fine-so-without-even-further-ado">Enough? Fine. So without even further ado&hellip;</h3>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc175task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc175task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc175blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC175TASK1">Task 1</a>                 •             <a href="#PWC175TASK2">Task 2</a>                 •             <a href="#PWC175BLOGS">BLOGS</a>                  •</h2>
+<hr>
+<h1 id="PWC175TASK1">TASK 1</h1>
+<h1 id="last-sunday">Last Sunday</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to list Last Sunday of every month in the given year.</p>
+<p>For example, for year 2022, we should get the following:</p>
+<pre><code>    2022-01-30
+    2022-02-27
+    2022-03-27
+    2022-04-24
+    2022-05-29
+    2022-06-26
+    2022-07-31
+    2022-08-28
+    2022-09-25
+    2022-10-30
+    2022-11-27
+    2022-12-25
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/dave-cross/perl/ch-1.pl"><strong>Dave Cross</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
+<p>Dates and times are uniquely human constructions. Their measurements are a product of necessity, evolved over aeons, by generations of cultures that have risen only to fall again into the dustbin of history.</p>
+<p>Dates and times, for all of that evolution, have retained a remarkable degree of similarity over the centuries due to the practicality of the divisions and inconvenience of altering them. A month is the cycle of the moon, give or take, and quadrisecting that into four weeks gives you half a month and half again, a simple concept apparently unaccounted for in some valiant yet doomed attempts to instill a decimal metric week of ten days.</p>
+<p>Although unrelated to the challenge at hand, the current time divisions are descended from Babylonian sexagesimal numbering and have remained sililarly resistant to change. Sixty is a highly-divisible number, with divisors 30, 20, 15, 12, 10, 6, 5, 4, 3, and 2, allowing for a wealth of fractional options to approximate a short span of hours, minutes or seconds. The 24 hours in the day are similarly highly divisible, and I believe the many options these divisions make available is what makes this non-decimal terminology so useful despite the complications to performing calculations on the figures.</p>
+<p>The last Sunday of every month is not exactly a trivial thing to figure out from scratch, as the assignment of days varies both between months and years according to arcane rules that have evolved over centuries. This is why it is generally regarded as wise when practicing the dark arts of computing dates to make use of the protection established in using libraries dedicated to the task, robustly constructed to navigate the forest of special cases that may arise.</p>
+<p>Although some solutions provided more direct computation than others, all the solutions reviewed made use of one library or another.</p>
+<p>There were 28 submissions for the first task this past week.</p>
+<h2 id="a-selection-of-submissions">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>The <code>DateTime</code> module was by far the most commonly imported, although we did see others more closely selected for the specific needs of the task. Every solution reviewed required a module of some sort, if only to acquire a base of seconds from the epoch to perform its arithmetic alterations on.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/swift/ch-1.swift">Swift</a></p>
+<p>Mohammad will start us off with an approach using a <code>DateTime</code> object to hold the last Sunday in question, repeated for each of the twelve months of the year.</p>
+<p>In his <code>last_sunday_of()</code> routine a new     <code>DateTime</code> object is built for the month and year entered, with computational steps at instantiation to move the date selected forward one month and backwards one day, to select the last day of the month. So far so good. He then employs a little modular arithmetic trick: the day of the week runs from 1 to 7, with 7 being Sunday. So if the day is not already Sunday, he subtracts the number of days of the day of the week from the <code>DateTime</code> object. This would produce a day_of_week equal to 0, which via the particular version of modular arithmetic used for weekday numbering rolls over to become 7, and you can see how this is the correct number of days to look back.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">all_last_sunday_of</span>($year) {
+        <span style="color:#66d9ef">my</span> @ls <span style="color:#f92672">=</span> ();
+        push @ls, last_sunday_of($_, $year) <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@ls;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">last_sunday_of</span>($month, $year) {
+        <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(year <span style="color:#f92672">=&gt;</span> $year, month <span style="color:#f92672">=&gt;</span> $month, day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>)
+                         <span style="color:#f92672">-&gt;</span>add(months <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>)
+                         <span style="color:#f92672">-&gt;</span>subtract(days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+
+        <span style="color:#66d9ef">my</span> $dow <span style="color:#f92672">=</span> $dt<span style="color:#f92672">-&gt;</span>day_of_week;
+        $dt<span style="color:#f92672">-&gt;</span>subtract(days <span style="color:#f92672">=&gt;</span> $dow) <span style="color:#66d9ef">if</span> $dow <span style="color:#f92672">!=</span> <span style="color:#ae81ff">7</span>;
+
+        <span style="color:#66d9ef">return</span> $dt<span style="color:#f92672">-&gt;</span>ymd(<span style="color:#e6db74">&#39;-&#39;</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>Dave rolls all of the logic into a single loop over all of the months for his solution, while taking a slightly different tack in the date arithmetic. After instantiating to the first day of the month he then adds 32 days, more than enough for any month. He then starts subtracting days, first until he is back within the frame of the month being searched, and then until the <code>day_of_week</code> value equals 7, indicating Sunday.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime;
+
+    <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> <span style="color:#ae81ff">2022</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $month ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">12</span> ) {
+        <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+            year      <span style="color:#f92672">=&gt;</span> $year,
+            month     <span style="color:#f92672">=&gt;</span> $month,
+            day       <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+            time_zone <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;floating&#39;</span>
+        );
+        $dt<span style="color:#f92672">-&gt;</span>add( days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">32</span> );
+
+        <span style="color:#75715e"># Remember that days of week are 1-7, and 0 doesn&#39;t match</span>
+        <span style="color:#75715e"># this isn&#39;t crontab</span>
+        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+            $dt<span style="color:#f92672">-&gt;</span>subtract( days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> );
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $dt<span style="color:#f92672">-&gt;</span>month <span style="color:#f92672">==</span> $month;
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $dt<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>;
+        }
+        say $dt<span style="color:#f92672">-&gt;</span>ymd;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p>I find it interesting how many slightly different approaches we saw to homing in on the last day of the month, before moving backwards to find the last Sunday.</p>
+<p>Here Ulrich uses a hard list of month spans, with alteration made for leap years, to instantiate a new DateTime object at the last day of each month. Once we have adjusted the day by subtracting until Sunday this object is stored in an array until we ultimately report the 12 last  Sundays.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime ;
+
+    <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] ;
+    <span style="color:#66d9ef">my</span> @lastDays <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">31</span> , <span style="color:#ae81ff">28</span> , <span style="color:#ae81ff">31</span> , <span style="color:#ae81ff">30</span> , <span style="color:#ae81ff">31</span> , <span style="color:#ae81ff">30</span> , <span style="color:#ae81ff">31</span> , <span style="color:#ae81ff">31</span> , <span style="color:#ae81ff">30</span> , <span style="color:#ae81ff">31</span> , <span style="color:#ae81ff">30</span> , <span style="color:#ae81ff">31</span>) ;
+    <span style="color:#66d9ef">my</span> $dt1 <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( year <span style="color:#f92672">=&gt;</span> $year , month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">12</span> , day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span> ) ;
+    <span style="color:#66d9ef">if</span> ( $dt1<span style="color:#f92672">-&gt;</span>is_leap_year ) {
+      $lastDays[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">29</span> ;
+    }
+    <span style="color:#66d9ef">my</span> @lastSundays ;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $month( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">12</span> ) {
+      <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( year <span style="color:#f92672">=&gt;</span> $year , month <span style="color:#f92672">=&gt;</span> $month , day <span style="color:#f92672">=&gt;</span>
+        $lastDays[ $month <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] ) ;
+      <span style="color:#66d9ef">while</span> ( $dt<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">!=</span> <span style="color:#ae81ff">7</span> ) {
+          $dt<span style="color:#f92672">-&gt;</span>subtract( days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> ) ;
+      }
+      push @lastSundays , $dt ;
+    }
+    map { say $_<span style="color:#f92672">-&gt;</span>ymd} @lastSundays ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p><code>DateTime</code>, as it turns out, does actually just come with a <code>last_day_of_month()</code> constructor, which Lubos used to determine the day number for each month. He then uses this to start making and looking at new <code>DateTime</code> objects until he finds the Sunday he is looking for.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_last_sunday</span> {
+        <span style="color:#66d9ef">my</span> ( $year, $month ) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $day <span style="color:#f92672">=</span>
+          DateTime<span style="color:#f92672">-&gt;</span>last_day_of_month( year <span style="color:#f92672">=&gt;</span> $year, month <span style="color:#f92672">=&gt;</span> $month )<span style="color:#f92672">-&gt;</span>day;
+
+        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+                year  <span style="color:#f92672">=&gt;</span> $year,
+                month <span style="color:#f92672">=&gt;</span> $month,
+                day   <span style="color:#f92672">=&gt;</span> $day
+            );
+
+            <span style="color:#66d9ef">if</span> ( $dt<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> ) {
+                <span style="color:#66d9ef">return</span> $dt<span style="color:#f92672">-&gt;</span>ymd;
+            }
+
+            $day<span style="color:#f92672">--</span>;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/d/ch1.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/modula-3/ch1">Modula-3</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/pascal/ch1.pas">Pascal</a></p>
+<p>My takeaway from this little foray is that not only are date and time calculations confusing, but even using the <code>DateTime</code> module has more than its share of complexity. I believe this is because the module, aiming to be general purpose, is required to perform so many different types of calculations.</p>
+<p>As mentioned above, <code>last_day_of_month</code> is a <em>constructor</em>. Meaning that it <em>already</em> returns a perfectly good <code>DateTime</code> object for that day. We can then simply subtract single days from that object until the <code>day_of_week</code> attribute reads 7.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">last_sunday</span>{
+      <span style="color:#66d9ef">my</span> ($year) <span style="color:#f92672">=</span> @_;
+      <span style="color:#66d9ef">foreach</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span>){
+        <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span>last_day_of_month(year <span style="color:#f92672">=&gt;</span> $year, month <span style="color:#f92672">=&gt;</span> $_);
+        <span style="color:#66d9ef">while</span>($dt<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">!=</span> <span style="color:#ae81ff">7</span>){
+          $dt <span style="color:#f92672">=</span> $dt<span style="color:#f92672">-&gt;</span>subtract(days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+        }
+        <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> $dt<span style="color:#f92672">-&gt;</span>date;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$date\n&#34;</span>;
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/07/The_Weekly_Challenge_175__Perfect_Sunday.html">RogerBW&rsquo;s Blog: The Weekly Challenge 175: Perfect Sunday</a></p>
+<p>Roger presents us with another version of this nicely compact form. Notice we have some options to for output formatting methods.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lastsunday</span>($year) {
+      <span style="color:#66d9ef">my</span> @o;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $month (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span>) {
+        <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span>last_day_of_month(year <span style="color:#f92672">=&gt;</span> $year,
+                                             month <span style="color:#f92672">=&gt;</span> $month);
+        <span style="color:#66d9ef">my</span> $dl <span style="color:#f92672">=</span> $dt<span style="color:#f92672">-&gt;</span>day_of_week();
+        <span style="color:#66d9ef">if</span> ($dl <span style="color:#f92672">!=</span> <span style="color:#ae81ff">7</span>) {
+          $dt<span style="color:#f92672">-&gt;</span>subtract(days <span style="color:#f92672">=&gt;</span> $dl);
+        }
+        push @o,$dt<span style="color:#f92672">-&gt;</span>strftime(<span style="color:#e6db74">&#39;%Y-%m-%d&#39;</span>);
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/07/30/i-know-what-you-did-last-sunday">I Know What You Did Last Sunday - Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution I used the Unicode Common Locale Data Repository formatting option for the output, which aims to handle anything you might throw at it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime ;
+    <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> shift @ARGV <span style="color:#e6db74">//</span> <span style="color:#ae81ff">2022</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $month ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span> ) {
+        <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span>last_day_of_month( year <span style="color:#f92672">=&gt;</span> $year, month <span style="color:#f92672">=&gt;</span> $month );
+        $dt<span style="color:#f92672">-&gt;</span>subtract( days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> ) <span style="color:#66d9ef">until</span> $dt<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>;
+        say $dt<span style="color:#f92672">-&gt;</span>format_cldr( <span style="color:#e6db74">&#34;MMM dd, YYYY&#34;</span> );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/walt-mankowski/c/ch-1.c">C</a></p>
+<p>Now let&rsquo;s wrap up our examination of the <code>DateTime</code> module. Walt also used the <code>last_day_of_month</code> constructor, but then does his own arithmetic in a similar way to what Mohammad started us off with in the first example above. As it works out, the <code>day_of_week</code> attribute is the offset from the last Sunday, with the caveat we take it modulo 7. So simply subtracting this offset directly calculates the date we want. Now we have a year, month and day, so we can use <code>printf</code> to format our output string.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $month (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span>) {
+        <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span>last_day_of_month(year <span style="color:#f92672">=&gt;</span> $year, month <span style="color:#f92672">=&gt;</span> $month);
+        <span style="color:#66d9ef">my</span> $days_to_sunday <span style="color:#f92672">=</span> $dt<span style="color:#f92672">-&gt;</span>day_of_week % 7;
+        <span style="color:#66d9ef">my</span> $final_sunday <span style="color:#f92672">=</span> $dt<span style="color:#f92672">-&gt;</span>day <span style="color:#f92672">-</span> $days_to_sunday;
+        printf <span style="color:#e6db74">&#34;%d-%02d-%02d\n&#34;</span>, $year, $month, $final_sunday;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/duncan-c-white/C/ch-1.c">C</a></p>
+<p>I suggested the size and complexity of the <code>DateTime</code> module may have contributed to the wide range of approaches we saw homing on the dates for each month. The <code>DateTime</code> module, as it is, desires to be all things to all jobs, and hace by necessity contains a large number of options to handle various contingencies. The downside of this is that it can be hard to navigate and find the optimal solution to a problem.</p>
+<p>Duncan avoids this by bringing in a much more lightweight package, in the form of the <code>Date::Simple</code> module, importing the constructor <code>ymd</code>.</p>
+<p>With each month, he then proceeds with a single C-style <code>for</code> loop. After creating a new object using <code>ymd</code>, the loop advances, adding a day at a time, until the month attribute on the object changes. At every turn, though, the day of the week is checked to see if it is Sunday, and if it is the date is recorded. When the loop finishes the last recorded Sunday will be the last Sunday.</p>
+<p>Nice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Date::Simple (<span style="color:#e6db74">&#39;ymd&#39;</span>);
+
+
+    <span style="color:#66d9ef">my</span> $debug<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    die <span style="color:#e6db74">&#34;Usage: last-sunday-in-every-month [--debug] YYYY\n&#34;</span>
+        <span style="color:#66d9ef">unless</span> GetOptions( <span style="color:#e6db74">&#34;debug&#34;</span><span style="color:#f92672">=&gt;\</span>$debug ) <span style="color:#f92672">&amp;&amp;</span> @ARGV<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $m (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span>)
+    {
+        <span style="color:#66d9ef">my</span> $sunday;
+        <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> ymd($y, $m, <span style="color:#ae81ff">1</span>); $d<span style="color:#f92672">-&gt;</span>month <span style="color:#f92672">==</span> $m; $d<span style="color:#f92672">++</span> )
+        {
+            $sunday <span style="color:#f92672">=</span> $d <span style="color:#66d9ef">if</span> $d<span style="color:#f92672">-&gt;</span>day_of_week() <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        }
+        say $sunday;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/totient-numbers-on-a-sunday-5fnc">Totient numbers on a Sunday</a></p>
+<p>Simon also brings us a more focused module to assist, this the aptly named <code>Date::Calc</code>. This module does not even create an object to be worked on, instead providing a variety of functions to perform calculations on dates kept as (year, month, day) data.</p>
+<p>After querying the last day of the month, the day of the week for that day is delivered as a number from 1 to 7, as in <code>DateTime</code>. The modular subtraction we saw with Walt above can then be done and the values formatted using <code>sprintf</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Date::Calc (<span style="color:#e6db74">qw(This_Year Days_in_Month Day_of_Week)</span>);
+
+    <span style="color:#75715e"># Use the year provided or the current year if it wasn&#39;t</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> ( $year = This_Year() ) {
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $month ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">12</span> ) {
+            <span style="color:#75715e"># Get the number of days in a month</span>
+            <span style="color:#66d9ef">my</span> $last_day <span style="color:#f92672">=</span> Days_in_Month( $year, $month );
+
+            <span style="color:#75715e"># Get the day of week of the last day (Monday is 1, Sunday is 7)</span>
+            <span style="color:#66d9ef">my</span> $dow <span style="color:#f92672">=</span> Day_of_Week( $year, $month, $last_day );
+
+            <span style="color:#75715e"># Take off the number of days to get last Sunday</span>
+            say sprintf <span style="color:#e6db74">&#39;%d-%02d-%02d&#39;</span>, $year, $month, $last_day <span style="color:#f92672">-</span> $dow % 7;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/07/dates-and-more-recursively-defined.html">Dates, and more recursively defined numbers</a></p>
+<p>In the same general vein of reasoning, Peter uses <code>Time::Local</code> to convert a data array onto a number of seconds since the epoch. Starting with a list of months from 1 to 12, a time to epoch for these values gives us the first day of the <em>following</em> month, as <code>localtime</code> months are indexed 0-11. He can then work backwards, subtracting the number of seconds in a day, which is 60 times 60 times 24, or 86400, times the computed number of days backward until we reach Sunday.</p>
+<p>Once we&rsquo;ve found our day in seconds, we an use <code>localtime</code> to get back to a array of associated date data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Local <span style="color:#e6db74">qw(timelocal_posix)</span>;
+
+       <span style="color:#66d9ef">for</span> $m (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">12</span>) {
+
+           <span style="color:#75715e"># last time reset year and month</span>
+           $year <span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $m <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>;
+           $month <span style="color:#f92672">=</span> $m % 12;
+
+           <span style="color:#75715e"># unix time on 1st of month</span>
+           $time <span style="color:#f92672">=</span> timelocal_posix(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">1</span>, $month, $year <span style="color:#f92672">-</span> <span style="color:#ae81ff">1900</span>);
+           @t <span style="color:#f92672">=</span> localtime($time);
+
+           <span style="color:#75715e"># move back 7 days if Sunday, 6 if Saturday ...</span>
+           $back <span style="color:#f92672">=</span> $t[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">7</span> : $t[<span style="color:#ae81ff">6</span>];
+           $time <span style="color:#f92672">-=</span> $back <span style="color:#f92672">*</span> <span style="color:#ae81ff">86400</span>;
+
+           <span style="color:#75715e"># and get the date</span>
+           @t <span style="color:#f92672">=</span> localtime($time);
+           say sprintf(<span style="color:#e6db74">&#39;%04d-%02d-%02d&#39;</span>, $t[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1900</span>, $t[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $t[<span style="color:#ae81ff">3</span>]);
+       }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Finally we have Matthew, who meticulously follows a similar route, manipulating seconds from the epoch. His scheme is to locate the first Sunday after New Years Day, then advance by weeks, recording the seconds and noting when we change months. The last record made then will be the last Sunday in that month, which is immediately converted into string form and output using <code>sprintf</code> for formatting. We stop when the year changes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">last_sundays_in_year</span>{
+        <span style="color:#66d9ef">use</span> Time::Local;
+        <span style="color:#66d9ef">use</span> constant SECONDS_PER_DAY  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">86400</span>;
+        <span style="color:#66d9ef">use</span> constant SECONDS_PER_WEEK <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">604800</span>;
+
+        <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> int(shift());
+
+        <span style="color:#75715e"># Not dealing with anything earlier than 1000</span>
+        <span style="color:#75715e"># due to the vagaries of timegm();</span>
+        <span style="color:#75715e"># timegm_modern() doesn&#39;t seem to be available</span>
+        <span style="color:#75715e"># on most of my systems, so eh...</span>
+        <span style="color:#66d9ef">return</span>(undef)
+            <span style="color:#66d9ef">if</span>($year <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1000</span>);
+
+        <span style="color:#66d9ef">my</span> $time;
+        <span style="color:#66d9ef">my</span> @time_fields;
+        <span style="color:#66d9ef">my</span> @dates;
+
+        <span style="color:#75715e"># Seconds since the start of the epoch at</span>
+        <span style="color:#75715e"># 00:01:00 GMT on January 1 in the specified</span>
+        <span style="color:#75715e"># year</span>
+        $time <span style="color:#f92672">=</span> timegm(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, $year);
+        @time_fields <span style="color:#f92672">=</span> gmtime($time);
+
+        <span style="color:#75715e"># Advance $time to the first Sunday AFTER</span>
+        <span style="color:#75715e"># New Year&#39;s Day (even if NYD is itself a</span>
+        <span style="color:#75715e"># Sunday)</span>
+        $time <span style="color:#f92672">+=</span> (<span style="color:#ae81ff">7</span> <span style="color:#f92672">-</span> $time_fields[<span style="color:#ae81ff">6</span>]) <span style="color:#f92672">*</span> SECONDS_PER_DAY;
+
+        <span style="color:#75715e"># Loop until we&#39;ve passed the end of the</span>
+        <span style="color:#75715e"># specified year</span>
+        $year <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1900</span>;
+        <span style="color:#66d9ef">while</span>($time_fields[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">==</span> $year){
+            <span style="color:#66d9ef">my</span> @prev_time_fields <span style="color:#f92672">=</span> @time_fields;
+
+            <span style="color:#75715e"># Advance the time by a week</span>
+            $time <span style="color:#f92672">+=</span> SECONDS_PER_WEEK;
+            @time_fields <span style="color:#f92672">=</span> gmtime($time);
+
+            <span style="color:#66d9ef">if</span>($time_fields[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">!=</span> $prev_time_fields[<span style="color:#ae81ff">4</span>]){
+                <span style="color:#75715e"># We changed months... store the previous</span>
+                <span style="color:#75715e"># Sunday</span>
+                push(
+                    @dates,
+                    sprintf(
+                        <span style="color:#e6db74">&#34;%04d-%02d-%02d&#34;</span>,
+                        $prev_time_fields[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1900</span>,
+                        $prev_time_fields[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>,
+                        $prev_time_fields[<span style="color:#ae81ff">3</span>],
+                    )
+                );
+            }
+        }
+
+        <span style="color:#66d9ef">return</span>(@dates);
+
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/fortran/ch-1.f">Fortran</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/java/ch-1.java">Java</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/07/30">Sunday Was Perfectly Totient   - RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://adamcrussell.livejournal.com/37064.html">The Weekly Challenge 175: Last Sunday (Fortran Solution): adamcrussell — LiveJournal</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bruce-gray/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/cheok-yin-fung/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/cheok-yin-fung/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://etoobusy.polettix.it/2022/07/27/pwc175-last-sunday/">PWC175 - Last Sunday - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/07/perl_weekly_challenge_week_175.html">Perl Weekly Challenge: Week 175</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-175/james-smith">Perl Weekly Challenge #175</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/ruby/ch-1.rb">Ruby</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/07/perl-weekly-challenge-175-last-sunday-and-perfect-totient-numbers.html">Perl Weekly Challenge 175: Last Sunday and Perfect Totient Numbers</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/robert-dicicco/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/robert-dicicco/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/robert-dicicco/ruby/ch-1.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/steve-g-lynn/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/steve-g-lynn/raku/ch-1.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/07/pwc-175.html">PWC 175</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/07/25/PWC175/">Perl Weekly Challenge 175 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC175TASK2">TASK 2</h1>
+<h1 id="perfect-totient-numbers">Perfect Totient Numbers</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to generate first 20 Perfect Totient Numbers. Please checkout <a href="https://en.wikipedia.org/wiki/Perfect_totient_number">wikipedia page</a> for more informations.</p>
+<p><strong>Output</strong></p>
+<pre><code>        3,    9,    15,   27,  39,   81,   111,  183,  243,  255,
+        327,  363,  471,  729, 2187, 2199, 3063, 4359, 4375, 5571
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/dave-cross/perl/ch-2.pl"><strong>Dave Cross</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bhat_gurunandan/perl/ch-2.pl"><strong>Gurunandan Bhat</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/kjetillll/perl/ch-2.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a></p>
+<p>The definition for a totient number is the count of positve integer values less than a given number that are also coprime with it: that is to say the two numbers do not share a common prime factor. A little analysis from this starting point might lead us to relationships between this function and prime factoring in general, and the totient&rsquo;s most visible practical application is in constructing the public and private key pairs in the well-known RSA encryption scheme.</p>
+<p>To find a &ldquo;perfect totient number&rdquo; we apply the totient function iteratively to a value — reapplying the function to the result of the previous application — until a value of 1 is reached. As the number of coprime values for number will always be less than the number itself this iterative chain of values always converges with downward pressure towards 1.</p>
+<p>If we keep around the intermediate values of this totient chain, we have a descending sequence from the first result to 1. We then sum this sequence and if it is equal to the original input than that numbers is a perfect totient.</p>
+<p>The process parallels that of finding a perfect number, where the factors that evenly divide a number are summed, only in this case we use a constructed list of related coprime counts. Yes the two are not completely analogous, but there are distinct similarities — enough that someone thought to carry over the name &ldquo;perfect&rdquo; without too much ridicule from their peers. The name stuck and here we are.</p>
+<p>There were 25 submissions for the second task this past week.</p>
+<h2 id="a-selection-of-submissions-1">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/kjetillll/perl/ch-2.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bhat_gurunandan/perl/ch-2.pl"><strong>Gurunandan Bhat</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/dave-cross/perl/ch-2.pl"><strong>Dave Cross</strong></a></p>
+<p>Testing for perfect totient numbers involves both calculating totients and iterating that function, gathering the intermediate steps and producing an aggregate sum. We saw thses steps preformed in a variety of ways, either directly through Perl code or indirectly through a module function. We even had some even more indirect methods that effectively use higher-level programming to produce code that produced the perfect totient values. The world of first-class functions is a wild place.</p>
+<p>Wheels within wheels, turtles all the way down. Take your pick.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/kjetillll/perl/ch-2.pl"><strong>Kjetil Skotheim</strong></a></p>
+<p>Kjetil will be happy to guide us into the morass today, boldly leading the way, while also pointing out a few alternate paths that with the right equipment could also lead us in the right direction.</p>
+<p>The test for totient perfection involves three essential components: a process for counting the totients themselves, which inside requires a test for being coprime, and outside an iterative wrapper to apply the function and sum until we reach 1.</p>
+<p>Note the final 1 is included in the sum, for perhaps less-than-obvious reasons that are outside the scope of our discussion.</p>
+<p>In Kjetil&rsquo;s solution two helper functions are created, <code>gcd</code> to create a filter allowing only coprimes, and <code>totient</code> to count the values this filter allows through. An outermost <code>while</code> loop is established to count the 20 requested values.</p>
+<p>Inside that wrapper the main work is done by an aggregate summation, where totient values are added until 1 is reached. The final 1 is then added and the sum compared to test for perfection.</p>
+<p>Totient values themselves are always even, for reasons again outside the scope here (the values always step in pairs). But given this (provable) fact the sum of any list of even numbers plus 1 will always be odd. Thus when Kjetil tries his next candidate value he can go ahead and add 2, as perfect totient numbers will always be odd.</p>
+<p>One more observation on Kjetil&rsquo;s solution is that if you notice he has memoized his totient function to speed multiple requests for the same value, but commented out a similar memoization for the gcd. This is because when evaluating a his totients the paired values sent to obtain the gcd will always differ, so once the totient in memoized those gcd calculations will never be repeated. Hence the memoization is useless overhead.</p>
+<p>Lastly, reference is made in the comments to two functions from <code>Math::Prime::Util::GMP</code> for the gcd and the totient itself, which, although Kjetil does not use them, I imagine we&rsquo;ll be seeing more of going forward, or the equivalent functions from <code>Math::Prime::Util</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># use Math::Prime::Util::GMP &#39;gcd&#39;;     # ...is faster, but not a core module</span>
+    <span style="color:#75715e"># use Math::Prime::Util::GMP &#39;totient&#39;; # ...is screamingly fast!</span>
+
+    <span style="color:#66d9ef">use</span> strict; <span style="color:#66d9ef">use</span> warnings;
+    <span style="color:#66d9ef">use</span> Memoize;
+    memoize(<span style="color:#e6db74">&#39;totient&#39;</span>);  <span style="color:#75715e">#good idea, unless using GMP</span>
+    <span style="color:#75715e">#memoize(&#39;gcd&#39;);     #bad idea, runs slower</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">totient</span> { <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift; <span style="color:#ae81ff">0</span><span style="color:#f92672">+</span>grep gcd($_,$n)<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">gcd</span> { <span style="color:#66d9ef">my</span>($a,$b)<span style="color:#f92672">=</span>@_;($a,$b)<span style="color:#f92672">=</span>($b,$a)<span style="color:#66d9ef">if</span>$a<span style="color:#f92672">&gt;</span>$b;($a,$b)<span style="color:#f92672">=</span>($b%$a,$a)<span style="color:#66d9ef">while</span>$a;$b }
+
+    <span style="color:#66d9ef">my</span> $want <span style="color:#f92672">=</span> shift() <span style="color:#e6db74">//</span> <span style="color:#ae81ff">20</span>;
+    <span style="color:#66d9ef">my</span> $try <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span>( $want <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ){
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $try;
+        $sum <span style="color:#f92672">+=</span> $n <span style="color:#f92672">=</span> totient($n) <span style="color:#66d9ef">while</span> $n<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$try\n&#34;</span> <span style="color:#f92672">and</span> $want<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> $sum <span style="color:#f92672">==</span> $try;
+        $try<span style="color:#f92672">+=</span><span style="color:#ae81ff">2</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/steve-g-lynn/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/steve-g-lynn/raku/ch-2.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/07/pwc-175.html">PWC 175</a></p>
+<p>Leading the, er, &ldquo;modular&rdquo; demonstration we have Stephen, who brings us the function <code>euler_phi()</code> from <code>Math::Prime::Util</code>. The totient function, without further qualification, refers to Euler&rsquo;s Totient Function, and this value is common enough to be given the greek letter phi: φ(<em>n</em>). Hence the name. There is also a generalized form of the function, Jordan&rsquo;s Totient function, which is why the distinction is sometimes made.</p>
+<p>With totient function in hand, Stephen writes a little recursive routine to call itself
+until the result equals 1, gathering an aggregate sum as the recursion collapses.</p>
+<p>From there we just need to test for equality.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(euler_phi)</span>;
+
+    <span style="color:#66d9ef">my</span> $ctr<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10_000</span>) {
+        <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">==</span> <span style="color:#f92672">&amp;</span>iterated_totient($i)){
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$i &#34;</span>;
+            $ctr<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $ctr <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">20</span>;
+    }
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+
+
+    <span style="color:#75715e"># referred to perl 5 code in https://oeis.org/A082897</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">iterated_totient</span> {
+        <span style="color:#66d9ef">my</span> ($n)<span style="color:#f92672">=</span>@_;
+
+        <span style="color:#66d9ef">my</span> $totient<span style="color:#f92672">=</span>euler_phi($n);
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $totient <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#66d9ef">return</span> $totient <span style="color:#f92672">+</span> iterated_totient($totient);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/cheok-yin-fung/raku/ch-2.raku">Raku</a></p>
+<p>Here&rsquo;s a slightly different example from CY. She sets up a C-style <code>for</code> loop to make only sampling odd numbers a breeze, saving on half the trials. An arbitrarily large number is set of an upper bound on searches, but the loop exits well before we get that large.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $n0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; $n0 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1_000_000_000</span>; $n0 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>) {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $n0;
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">do</span> {
+            $n <span style="color:#f92672">=</span> euler_phi($n);
+            $sum <span style="color:#f92672">+=</span> $n;
+        } <span style="color:#66d9ef">until</span> ($sum <span style="color:#f92672">&gt;</span> $n0 <span style="color:#f92672">||</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">if</span> ($sum <span style="color:#f92672">==</span> $n0) {
+            say $n0;
+            $p<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $p <span style="color:#f92672">&gt;=</span> ($ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#ae81ff">42</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>Breaking the problem down, we are the main logical complexity in this task is in deriving the iterated totient sum. This requires a totient function and a way to gather a sequence of results and total them.</p>
+<p>Using the <code>euler_phi</code> function takes care of the totient function, and here the monk creates an intermediate <code>iterated_totient_sum()</code> routine to gather the accumulated sum.</p>
+<p>Noice the <code>for</code> loop reappears to facilitate counting by 2s.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {
+        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>; $count <span style="color:#f92672">&lt;</span> $TARGET; $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>)
+        {
+            <span style="color:#66d9ef">if</span> (iterated_totient_sum( $n ) <span style="color:#f92672">==</span> $n)
+            {
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;, $n&#34;</span>;
+                <span style="color:#f92672">++</span>$count;
+            }
+        }
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">iterated_totient_sum</span>
+    {
+        <span style="color:#66d9ef">my</span> ($n)  <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">while</span> ($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>)
+        {
+            $n    <span style="color:#f92672">=</span> euler_phi( $n );
+            $sum <span style="color:#f92672">+=</span> $n;
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">++</span>$sum;      <span style="color:#75715e"># euler_phi(2) = 1</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bhat_gurunandan/perl/ch-2.pl"><strong>Gurunandan Bhat</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bhat_gurunandan/go/ch-2.go">Go</a></p>
+<p>But lets go back to directly calculating the totient values. Gurunandan gives us a <code>totient()</code> function, which accesses its own <code>_gcd()</code> helper. Of note he adds a short-circuiting check that first performs a basic check against divisibility for each value less than the target — if it divides out evenly then there is no point in checking the gcd and we move on.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_gcd</span> ($a , $b) {
+
+        <span style="color:#66d9ef">while</span> ($b <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+            ($a, $b) <span style="color:#f92672">=</span> ($b, $a % <span style="color:#960050;background-color:#1e0010">$</span>b);
+        }
+
+        <span style="color:#66d9ef">return</span> $a;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">totient</span> ($n) {
+
+        <span style="color:#66d9ef">my</span> $this <span style="color:#f92672">=</span> $n;
+        <span style="color:#66d9ef">my</span> $totient <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">--</span>$this <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+            <span style="color:#75715e">#</span>
+            <span style="color:#75715e"># if we have no remainder, then the number is NOT relative</span>
+            <span style="color:#75715e"># prime and no need to calculate the gcd so decrement $this</span>
+            <span style="color:#75715e"># and move on</span>
+            <span style="color:#75715e">#</span>
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>($n % <span style="color:#960050;background-color:#1e0010">$</span>this) <span style="color:#f92672">||</span>
+                    _gcd ($n, $this) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+
+            <span style="color:#f92672">++</span> $totient;
+        }
+
+        <span style="color:#66d9ef">return</span> $totient;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/d/ch-2.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/dart/ch-2.dart">Dart</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/nim/ch-2.nim">Nim</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/ring/ch-2.ring">Ring</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/rust/ch-2.rs">Rust</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/scala/ch-2.scala">Scala</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/laurent-rosenfeld/tcl/ch-2.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/07/perl-weekly-challenge-175-last-sunday-and-perfect-totient-numbers.html">Perl Weekly Challenge 175: Last Sunday and Perfect Totient Numbers</a></p>
+<p>Here&rsquo;s another example of the technique from Laurent. I have always found the Euclidean GCD algorithm to be the most elegant thing: based in a simple geometric principle it gracefully maps over into a repeated division process that quickly resolves.</p>
+<p>Here <code>grep</code> is used to filter a list of all possible values less than the target.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">gcd</span> {
+        <span style="color:#66d9ef">my</span> ($i, $j) <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @_;
+        <span style="color:#66d9ef">while</span> ($j) {
+            ($i, $j) <span style="color:#f92672">=</span> ($j, $i % <span style="color:#960050;background-color:#1e0010">$</span>j);
+        }
+        <span style="color:#66d9ef">return</span> $i;
+    }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_perfect_totient</span> {
+        <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $num;
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span> ($n <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>) {
+            $n <span style="color:#f92672">=</span> scalar grep { gcd( $n, $_) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+            $sum <span style="color:#f92672">+=</span> $n;
+        }
+        <span style="color:#66d9ef">return</span> $num <span style="color:#f92672">==</span> $sum;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/java/ch-2.java">Java</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/07/30">Sunday Was Perfectly Totient   - RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://adamcrussell.livejournal.com/37064.html">The Weekly Challenge 175: Last Sunday (Fortran Solution): adamcrussell — LiveJournal</a></p>
+<p>In the examples we have seen so far the totient has been determined by checking each value less than the number in question using the gcd, or greatest common divisor, to verify whether or not it is coprime. However the totient can be calculated directly using a mathematical product of a number&rsquo;s prime factors. Adam demonstrates this:</p>
+<p>Because of the repeated floating point values in the product an epsilon value is required to check that the totient gathered is in fact 1, or alternately some sort of rounding function. Adam uses an epsilon of 10<sup>-7</sup>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> constant EPSILON <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1e-7</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">distinct_prime_factors</span>{
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> shift(@_);
+        <span style="color:#66d9ef">my</span> %factors;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; $y <span style="color:#f92672">&lt;=</span> $x; $y<span style="color:#f92672">++</span>){
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $x % <span style="color:#960050;background-color:#1e0010">$</span>y;
+            $x <span style="color:#f92672">/=</span> $y;
+            $factors{$y} <span style="color:#f92672">=</span> undef;
+            <span style="color:#66d9ef">redo</span>;
+        }
+        <span style="color:#66d9ef">return</span> keys %factors;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">n_perfect_totients</span>{
+        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> @perfect_totients;
+        {
+            $x<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">my</span> $totient <span style="color:#f92672">=</span> $x;
+            <span style="color:#66d9ef">my</span> @totients;
+            map {$totient <span style="color:#f92672">*=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> $_))} distinct_prime_factors($x);
+            push @totients, $totient;
+            <span style="color:#66d9ef">while</span>(abs($totient <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&gt;</span> EPSILON){
+                map {$totient <span style="color:#f92672">*=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> $_))} distinct_prime_factors($totient);
+                push @totients, $totient;
+            }
+            push @perfect_totients, $x <span style="color:#66d9ef">if</span> unpack(<span style="color:#e6db74">&#34;%32I*&#34;</span>, pack(<span style="color:#e6db74">&#34;I*&#34;</span>, @totients)) <span style="color:#f92672">==</span> $x;
+            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @perfect_totients <span style="color:#f92672">&lt;</span> $n;
+        }
+        <span style="color:#66d9ef">return</span> @perfect_totients;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Conceptually, I&rsquo;m a big fan of what are known as list comprehensions: to be able to define a list by saying something like &ldquo;give me a list of integers squared, starting at 2&rdquo;. Being able to add additional qualifiers like &ldquo;make as many as I need&rdquo; only sweeten the deal.</p>
+<p>Jorg and I seems to be at least somewhat on the same page here, as he pretty consistently, given the option, prefers not to deliver a list of numbers but rather some <em>thing</em> that delivers the numbers one after another until you politely ask it to stop. Or stop asking it to start. Or, you know, whatever.</p>
+<p>In the spirt of this making-machines-to-build-machines spirit, he brings us today the <code>List::Gen</code> module, which is chock-full of tools to do things like this. A veritable list-generating, comprehending toolkit, or perhaps workshop would be a better analogy.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    perfect_totient()<span style="color:#f92672">-&gt;</span>say(shift);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perfect_totient</span> {
+        <span style="color:#75715e"># Build a generator for perfect totient numbers.  Here we use two</span>
+        <span style="color:#75715e"># nested generators to accomplish the task.</span>
+
+        <span style="color:#75715e"># Build a non-caching generator for odd numbers N starting with 3</span>
+        <span style="color:#75715e"># and filter for perfect totient numbers.</span>
+        iterate_stream {$_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>}<span style="color:#f92672">-&gt;</span>from(<span style="color:#ae81ff">3</span>)<span style="color:#f92672">-&gt;</span>filter_stream(<span style="color:#66d9ef">sub</span> {
+            <span style="color:#75715e"># Build a generator for the iterative sequence of totients for N</span>
+            <span style="color:#75715e"># and sum over the sequence&#39;s elements.  The generated sequence</span>
+            <span style="color:#75715e"># will start with N because of &#34;from($_)&#34; and will not include 1</span>
+            <span style="color:#75715e"># according to the chained &#34;until&#34; method.  Therefore the</span>
+            <span style="color:#75715e"># expected sum needs to be adjusted: There is an extra &#34;N&#34; and 1</span>
+            <span style="color:#75715e"># is missing. Thus we expect a sum of 2 * N - 1 for a perfect</span>
+            <span style="color:#75715e"># totient number.</span>
+            iterate {euler_phi($_)}<span style="color:#f92672">-&gt;</span>from($_)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">until</span>(<span style="color:#e6db74">&#39;== 1&#39;</span>)<span style="color:#f92672">-&gt;</span>sum <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        });
+    }
+</code></pre></div><p>Several generator functions are being used: <code>iterate</code>, <code>filter_stream</code> and <code>iterate_stream</code>, the last two both being variants of what the module calls &ldquo;stream generators&rdquo;. The generators are constructed with functions chained to add further qualifying statements, and furthermore all the functions from <code>List::Util</code> are also available for massaging the data produced.</p>
+<p>So the flow is, starting at the left, that we want to take a list of values that start at 3 and increase by 2 at every step, but are then filtered according to an anonymous coderef that qualifies the value as a perfect totient. Sounds easy when you put it like that. The coderef uses another iterator that constructs a list from the totient repeatedly, starting at the value and stopping when the totient is 1, then applying <code>sum</code> to the list. So fudging of the expected sum for a perfect totient is used, as explained, and we are left with a equality comparison, which is handed back to our filter (remember that?).</p>
+<p>Sort of like an industrial-strength <code>grep</code>, if you will, but that doesn&rsquo;t really do it justice.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/bruce-gray/raku/ch-2.raku">Raku</a></p>
+<p>Bruce is back, and brings us <code>List::Lazy</code> for our entertainment. I think it fitting to place this alongside Jorg&rsquo;s solution. List generators are the real deal, you know? I like &lsquo;em.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> ntheory    <span style="color:#e6db74">qw&lt;euler_phi  vecsum&gt;</span>;
+    <span style="color:#66d9ef">use</span> List::Lazy <span style="color:#e6db74">qw&lt;lazy_range lazy_list&gt;</span>; <span style="color:#75715e"># Just for fun, to mimic Raku</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">totients_sum</span> ( $n ) {
+        <span style="color:#66d9ef">my</span> $totients <span style="color:#f92672">=</span> lazy_list { $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ? $_ <span style="color:#f92672">=</span> euler_phi $_ : () } $n;
+
+        <span style="color:#66d9ef">return</span> vecsum $totients<span style="color:#f92672">-&gt;</span>all;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_perfect_totient</span> () { $_ <span style="color:#f92672">==</span> totients_sum($_) }
+
+    <span style="color:#66d9ef">my</span> $perfect_totients <span style="color:#f92672">=</span> lazy_range(<span style="color:#ae81ff">1</span>, undef)<span style="color:#f92672">-&gt;</span>grep(<span style="color:#f92672">\&amp;</span>is_perfect_totient);
+
+    say join <span style="color:#e6db74">&#39; &#39;</span>, $perfect_totients<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>(<span style="color:#ae81ff">20</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>In a more, perhaps, er, &ldquo;comprehensible&rdquo; vein, Choroba brings us back to iterating our totients by hand, without so many first-class function being bandied about. Which is not to say in any way those methods aren&rsquo;t totally cool. Because they are.</p>
+<p>Here, though, we use our new friend <code>euler_phi</code> inside a combined function to both calculate the iterated totient sum and compare it to the original value, returning an up/down verdict as to whether the sum is perfect.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw{ euler_phi }</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_perfect_totient</span> ($x) {
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $phi <span style="color:#f92672">=</span> $x;
+        $sum <span style="color:#f92672">+=</span> $phi <span style="color:#f92672">=</span> euler_phi($phi) <span style="color:#66d9ef">while</span> $phi <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> $sum <span style="color:#f92672">==</span> $x
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perfect_totient_numbers</span> ($size) {
+        <span style="color:#66d9ef">my</span> @numbers;
+        <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span> (@numbers <span style="color:#f92672">&lt;</span> $size) {
+            push @numbers, $candidate <span style="color:#66d9ef">if</span> is_perfect_totient($candidate);
+            <span style="color:#f92672">++</span>$candidate;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@numbers
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/07/31/no-touchy-no-totient">No Touchy, No Totient - Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution I chose to make the totient iteration the outboard routine, performing the comparison in the calling statement. This emphasizes the logic in the <code>iterate_phi</code> function, which is quite compact. Assignment as an operation returns the value being assigned, in this case the next totient, which is assigned to <code>$n</code> and added to the running sum. However if the result is 1 the <code>while</code> condition fails and we exit the loop. We never end up adding the trailing 1 that caused us to exit the loop, but because we know it will always be there we simply start with 1 instead, adding it in at the beginning.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">qw ( </span>euler_phi );
+
+    <span style="color:#75715e">## input</span>
+    <span style="color:#66d9ef">my</span> $limit <span style="color:#f92672">=</span> shift @ARGV <span style="color:#e6db74">//</span> <span style="color:#ae81ff">20</span>;
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @out;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">++</span>$i <span style="color:#f92672">and</span> $count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>) {
+        $count<span style="color:#f92672">++</span> <span style="color:#f92672">and</span> push @out, $i <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">==</span> iterate_phi($i);
+    }
+
+    <span style="color:#75715e">## output</span>
+    say <span style="color:#e6db74">&#34;@out&#34;</span>;
+
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">iterate_phi</span> ( $n, $s = 1 ) {
+    <span style="color:#75715e">## given a value we iterate Euler&#39;s totient function on it</span>
+    <span style="color:#75715e">## until we arrive at a totient of 1, compounding an aggregate sum of the results</span>
+    <span style="color:#75715e">## this technique skips the final totient, 1, so we add it at the beginning</span>
+    <span style="color:#75715e">## - it will always be there.</span>
+        $s <span style="color:#f92672">+=</span> $n <span style="color:#66d9ef">while</span> ($n <span style="color:#f92672">=</span> euler_phi($n)) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> $s;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/dave-cross/perl/ch-2.pl"><strong>Dave Cross</strong></a></p>
+<p>With a notable absence of snark, Dave touts the essential Perl virtue of laziness in his solution: others have calculated the list, so the correct way to reference it would be to look it up.</p>
+<p>Well he&rsquo;s not wrong, certainly. Although I will argue this does somewhat miss the point — that statement could be evaluated true for really most of what we do around here. One could argue that it&rsquo;s not likely that a single person solving this challenge really cares <em>what</em> the specific perfect totient numbers are, and seriously are unlikely to  actually ever need this knowledge. So it&rsquo;s not about the numbers, <em>per se</em>, but rather the journey acquiring them. Which in this case involves venturing into the aether and fetching a page from a the OEIS.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> HTTP::Tiny;
+
+    <span style="color:#75715e"># Laziness is good, right? Other people have calculated the sequence.</span>
+    <span style="color:#66d9ef">my</span> $url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://oeis.org/&#39;</span>;
+    <span style="color:#66d9ef">my</span> $seq_code <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;A082897&#39;</span>;
+    <span style="color:#66d9ef">my</span> $resp <span style="color:#f92672">=</span> HTTP::Tiny<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;$url$seq_code&#34;</span>);
+    <span style="color:#66d9ef">my</span> ($seq) <span style="color:#f92672">=</span> $resp<span style="color:#f92672">-&gt;</span>{content} <span style="color:#f92672">=~</span><span style="color:#e6db74"> /&lt;tt&gt;([\d,\s]+)/</span>;
+    <span style="color:#66d9ef">my</span> @seq <span style="color:#f92672">=</span> $seq <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(\d+)/g</span>;
+
+    <span style="color:#75715e"># Truncate to 20.</span>
+    $#seq <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>;
+    say join <span style="color:#e6db74">&#39;, &#39;</span>, @seq;
+</code></pre></div><p>Alternately I&rsquo;ve decided to go with a competing theory, that Dave was very busy that day.</p>
+<p>Note that this is completely unsupported by any actual evidence.</p>
+<h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/d/ch2.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/modula-3/ch2">Modula-3</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/pascal/ch2.pas">Pascal</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/duncan-c-white/C/ch-2.c">C</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://etoobusy.polettix.it/2022/07/28/pwc175-perfect-totient-numbers/">PWC175 - Perfect Totient Numbers - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/07/perl_weekly_challenge_week_175.html">Perl Weekly Challenge: Week 175</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-175/james-smith">Perl Weekly Challenge #175</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/swift/ch-2.swift">Swift</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/07/dates-and-more-recursively-defined.html">Dates, and more recursively defined numbers</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/07/The_Weekly_Challenge_175__Perfect_Sunday.html">RogerBW&rsquo;s Blog: The Weekly Challenge 175: Perfect Sunday</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/totient-numbers-on-a-sunday-5fnc">Totient numbers on a Sunday</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/07/25/PWC175/">Perl Weekly Challenge 175 – W. Luis Mochán</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/walt-mankowski/c/ch-2.c">C</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC175BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC175BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/07/30">Sunday Was Perfectly Totient   - RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="https://adamcrussell.livejournal.com/37064.html">The Weekly Challenge 175: Last Sunday (Fortran Solution): adamcrussell — LiveJournal</a> ( <em>Fortran</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/perfect-at-last.html">Perfect at Last with Raku - Arne Sommer</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/07/30/i-know-what-you-did-last-sunday">I Know What You Did Last Sunday - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+<li><a href="https://colincrain.com/2022/07/31/no-touchy-no-totient">No Touchy, No Totient - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://etoobusy.polettix.it/2022/07/27/pwc175-last-sunday/">PWC175 - Last Sunday - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://etoobusy.polettix.it/2022/07/28/pwc175-perfect-totient-numbers/">PWC175 - Perfect Totient Numbers - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/07/perl_weekly_challenge_week_175.html">Perl Weekly Challenge: Week 175</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-175/james-smith">Perl Weekly Challenge #175</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/07/perl-weekly-challenge-175-last-sunday-and-perfect-totient-numbers.html">Perl Weekly Challenge 175: Last Sunday and Perfect Totient Numbers</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/07/25/PerlWeeklyChallenge175.html#task1">Perl Weekly Challenge 175: Sunday Math! – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/07/25/PerlWeeklyChallenge175.html#task1plperl">Perl Weekly Challenge 175: Sunday Math! – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/Perl</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/07/25/PerlWeeklyChallenge175.html#task1plpgsql">Perl Weekly Challenge 175: Sunday Math! – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/PgSQL</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/07/dates-and-more-recursively-defined.html">Dates, and more recursively defined numbers</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/07/The_Weekly_Challenge_175__Perfect_Sunday.html">RogerBW&rsquo;s Blog: The Weekly Challenge 175: Perfect Sunday</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/totient-numbers-on-a-sunday-5fnc">Totient numbers on a Sunday</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Stephen G Lynn</strong></p>
+<ul>
+<li><a href="https://thiujiac.blogspot.com/2022/07/pwc-175.html">PWC 175</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/07/25/PWC175/">Perl Weekly Challenge 175 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
