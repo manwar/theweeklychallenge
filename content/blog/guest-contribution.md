@@ -42,6 +42,20 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/laurent-rosenfeld/awk/ch-1.awk) in **Awk**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/laurent-rosenfeld/julia/ch-1.jl) in **JavaScript**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/laurent-rosenfeld/julia/ch-1.jl) in **Julia**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/laurent-rosenfeld/python/ch-1.py) in **Python**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/laurent-rosenfeld/ring/ch-1.ring) in **Ring**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/laurent-rosenfeld/ruby/ch-1.rb) in **Ruby**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/laurent-rosenfeld/scala/ch-1.scala) in **Scala**.
+
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-182/ziameraj16/java/MaxIndex.java) in **Java**.
