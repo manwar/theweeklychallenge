@@ -58,6 +58,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-183/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-183/roger-bell-west/rust/ch-2.rs) in **Rust**.
 
+##### **Stephen G Lynn** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-183/steve-g-lynn/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-183/steve-g-lynn/julia/ch-2.jl) in **Julia**.
+
 ----
 ## [The Weekly Challenge - 182](/blog/perl-weekly-challenge-182) {#182}
 <br>
