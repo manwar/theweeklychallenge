@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #177">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #177</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #177</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Sep 26, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-177.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-176/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 177</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would come from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they personally find the most interesting and satisfying. Some team members will focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here: to try and figure out ways to do just that.</p>
+<p>So that&rsquo;s that&hellip; I&rsquo;m ready now — let’s go in and see what we can find.</p>
+<hr>
+<h3 id="for-added-context">For Added Context</h3>
+<p>Before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-177/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-177/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one <em><strong>more</strong></em> thing before we finally get started:</p>
+<br>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<hr>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<hr>
+<br>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<br>
+<h3 id="enough-fine-so-without-even-further-ado">Enough? Fine. So without even further ado&hellip;</h3>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc177task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc177task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc177blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC177TASK1">Task 1</a>                 •             <a href="#PWC177TASK2">Task 2</a>                 •             <a href="#PWC177BLOGS">BLOGS</a>                  •</h2>
+<hr>
+<h1 id="PWC177TASK1">TASK 1</h1>
+<h1 id="damm-algorithm">Damm Algorithm</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given a positive number, $n.</p>
+<p>Write a script to validate the given number against the included check digit.</p>
+<p>Please checkout the <a href="https://en.wikipedia.org/wiki/Damm_algorithm">wikipedia page</a> for information.</p>
+<p><strong>Example 1</strong></p>
+<pre><code>    Input: $n = 5724
+    Output: 1 as it is valid number
+</code></pre><p><strong>Example 2</strong></p>
+<pre><code>    Input: $n = 5727
+    Output: 0 as it is invalid number
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
+<p>The <a href="https://en.wikipedia.org/wiki/Damm_algorithm">Damm algorithm</a> describes an interesting approach to inserting check-digits into numeric data. It has the two advantages of being simple, and hence fast, and using the same process repeated for both encoding and verifying. The algorithm defines a mathematical basis that can be implemented in any specific manner that satisfies the requirements. Damm in his initial paper provides several specific lookup tables for the process as examples.</p>
+<p>There were 20 submissions for the first task this past week.</p>
+<h2 id="a-selection-of-submissions">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>The essence of the algorithm is to to break a numeric data stream into a sequence of digits, then use each digit and an interim temporary value to cross-index a two-dimensional lookup table, the result of which is used as a new interim value for the next lookup. After counting a predetermined number of digits, or some scheme such as all of the digits, the interim value is inserted into the stream. The intrim digit can then be reset to 0 and  the process restarted if any digits remain to be counted.</p>
+<p>Most submissions used one of Damm&rsquo;s example quasigroup tables, as they are known, for the lookup, as being a precomputed table the access time is fixed anyway. We did however see one novel counterexample, which is interesting (if not exactly illuminating, so don&rsquo;t get your hopes up).</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>The monk Athanasius will start with a demonstration of the algoritm. Their <code>check_digit()</code> routine shows the simplicity of the continually updated interim lookup index operation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Const::Fast;
+    const <span style="color:#66d9ef">my</span> @OP_TABLE <span style="color:#f92672">=&gt;</span>
+    (
+        [ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span> ],
+        [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span> ],
+        [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span> ],
+        [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span> ],
+        [ <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span> ],
+        [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span> ],
+        [ <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span> ],
+        [ <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span> ],
+        [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span> ],
+        [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span> ],
+    );
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_digit</span>
+    {
+        <span style="color:#66d9ef">my</span> ($number)       <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  $interim_digit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digit (split <span style="color:#e6db74">//</span>, $number)
+        {
+            $interim_digit <span style="color:#f92672">=</span> $OP_TABLE[ $interim_digit ][ $digit ];
+        }
+
+        <span style="color:#66d9ef">return</span> $interim_digit;
+    }
+</code></pre></div><p>The returned value is the check digit, and the beauty of this algorithm is that if we perform the exact same steps but <em>include</em> the trailing check digit the result will, if the lookup table is constructed on the proper underlying mathematics, always resolve to the value 0.</p>
+<p>This make validation quite simple.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $valid  <span style="color:#f92672">=</span> check_digit( $n ) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+</code></pre></div><p>A nice verbose option is provided as well, to walk us through the steps taken.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/08/perl_weekly_challenge_week_177.html">Perl Weekly Challenge: Week 177</a></p>
+<p>The algorithm itself adds no additional aritmetic, just performing a sequence of lookups in a precomputed table, once per digit. The mathematical basis is all taken care of when constructing the table, which is fixed and hard-coded.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">checkdigit</span> {
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $n;
+        <span style="color:#66d9ef">my</span> $interim <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@digits) {
+            $interim <span style="color:#f92672">=</span> lookup($i, $interim);
+        }
+
+        <span style="color:#66d9ef">return</span> $interim;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lookup</span> {
+        <span style="color:#66d9ef">my</span> ($col, $row) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> @table <span style="color:#f92672">=</span> (
+            [ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span> ],
+            [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span> ],
+            [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span> ],
+            [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span> ],
+            [ <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span> ],
+            [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span> ],
+            [ <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span> ],
+            [ <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span> ],
+            [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span> ],
+            [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span> ],
+        );
+
+        <span style="color:#66d9ef">return</span> $table[$row]<span style="color:#f92672">-&gt;</span>[$col];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/d/ch-1.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/dart/ch-1.dart">Dart</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/nim/ch-1.nim">Nim</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/pascal/ch-1.pas">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/ring/ch-1.ring">Ring</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/rust/ch-1.rs">Rust</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/scala/ch-1.scala">Scala</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/tcl/ch-1.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/08/perl-weekly-challenge-177-damm-algorithm-and-palindromic-prime-cyclops.html">Perl Weekly Challenge 177: Damm Algorithm and Palindromic Prime Cyclops</a></p>
+<p>Using repetition to drive a point home, notice that we have the same elements in Laurent&rsquo;s compact solution. The two-dimensional table, not shown here, is constructed in the same manner as we&rsquo;ve seen previously, hard-coded as an array of arrays. I find the steps elegantly simple.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_check</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $t <span style="color:#f92672">=</span> $damm[$t][$_] <span style="color:#66d9ef">for</span> split <span style="color:#e6db74">//</span>, $n;
+        <span style="color:#66d9ef">return</span> $t;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_valid</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">return</span> find_check($n) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/cheok-yin-fung/raku/ch-1.raku">Raku</a></p>
+<p>CY, as an alternative, iterates over the <em>indices</em> of the input number digits, but internally the reassignment of the intrim index value is the same.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">damm_check</span> {
+        <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+
+        <span style="color:#66d9ef">my</span> @operation_table <span style="color:#f92672">=</span> (
+            [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>],
+            [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>],
+            [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>],
+            [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>],
+            [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>],
+            [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>],
+            [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>],
+            [<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>],
+            [<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>],
+            [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span>]
+        );
+
+        <span style="color:#66d9ef">my</span> $interim <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">my</span> @digit <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, $num;
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;</span> scalar @digit <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+            $interim <span style="color:#f92672">=</span> $operation_table[$interim][$digit[$i]];
+            $i<span style="color:#f92672">++</span>;
+        }
+
+        <span style="color:#66d9ef">return</span> $digit[$i] <span style="color:#f92672">==</span> $interim;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/08/13/yet-another-damm-algorithm">Yet Another Damm Algorithm - Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution I conceptually broke it down into two entirely self-contained functions for a specific implementation, each with their own copy of the lookup table. This emphasizes that as long as the encoder and decoder use the same parameters — the contents of the selected lookup and the spacing of the check digits — the actions to get to the check digit in each process are not reversed but in fact repeated exactly the same. The validation function returns a simple up/down truth value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span> ( $num ) {
+        <span style="color:#66d9ef">my</span> $quasigroup <span style="color:#f92672">=</span>
+            [   [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">2</span>],
+                [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">3</span>],
+                [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">9</span>],
+                [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">6</span>],
+                [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">8</span>],
+                [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">1</span>],
+                [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">4</span>],
+                [<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">7</span>],
+                [<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">5</span>],
+                [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">0</span>]  ];
+        <span style="color:#66d9ef">my</span> $interim <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        $interim <span style="color:#f92672">=</span> $quasigroup<span style="color:#f92672">-&gt;</span>[$interim][$_] <span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">//</span>, $num) ;
+
+        <span style="color:#66d9ef">return</span> ($interim <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">addcheck</span> ( $num ) {
+        <span style="color:#66d9ef">my</span> $quasigroup <span style="color:#f92672">=</span>
+            [   [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">2</span>],
+                [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">3</span>],
+                [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">9</span>],
+                [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">6</span>],
+                [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">8</span>],
+                [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">1</span>],
+                [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">4</span>],
+                [<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">7</span>],
+                [<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">5</span>],
+                [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">0</span>]  ];
+        <span style="color:#66d9ef">my</span> $interim <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        $interim <span style="color:#f92672">=</span> $quasigroup<span style="color:#f92672">-&gt;</span>[$interim][$_] <span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">//</span>, $num) ;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$num$interim&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/emacs-lisp/ch-1.el">Emacs-lisp</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/08/08/PWC177/">Perl Weekly Challenge 177 – W. Luis Mochán</a></p>
+<p>Some observers will notice that looping a calculation across a list of values, reinserting the result of one calculation into the calculation for the next element, is the essence of the <code>reduce</code> primitive operation in functional programming.</p>
+<p>Here Luis imports <code>reduce</code> from <code>List::Util</code> to perform the action explicitly.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(reduce)</span>;
+    die <span style="color:#e6db74">&#34;Usage: $0 N1 [N2... ]\nTo check N_{i} with Damm&#39;s algorithm\n&#34;</span> <span style="color:#66d9ef">unless</span> @ARGV;
+
+    <span style="color:#75715e"># consecutive digits of a Damm table</span>
+    <span style="color:#66d9ef">my</span> @digits<span style="color:#f92672">=</span> map {split <span style="color:#e6db74">&#34;&#34;</span>, $_}
+        <span style="color:#e6db74">qw(0317598642 7092154863 4206871359 1750983426 6123045978
+</span><span style="color:#e6db74">           3674209581 5869720134 8945362017 9438617205 2581436790)</span>;
+
+    <span style="color:#75715e"># Organice the digits as a 2D array</span>
+    <span style="color:#66d9ef">my</span> $table<span style="color:#f92672">=</span>[map {[@digits[<span style="color:#ae81ff">10</span><span style="color:#f92672">*</span>$_<span style="color:#f92672">..</span><span style="color:#ae81ff">10</span><span style="color:#f92672">*</span>$_<span style="color:#f92672">+</span><span style="color:#ae81ff">9</span>]]}(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>)];
+
+    <span style="color:#75715e"># The group operation $n ∗ $m is given by $table-&gt;[$n][$m]</span>
+    say <span style="color:#e6db74">&#34;$_ &#34;</span>, (reduce {$table<span style="color:#f92672">-&gt;</span>[$a][$b]} (<span style="color:#ae81ff">0</span>,split <span style="color:#e6db74">&#34;&#34;</span>, $_))?<span style="color:#e6db74">&#34;isn&#39;t&#34;</span>:<span style="color:#e6db74">&#34;is&#34;</span>, <span style="color:#e6db74">&#34; correct&#34;</span>  <span style="color:#66d9ef">for</span> @ARGV;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://etoobusy.polettix.it/2022/08/10/pwc177-damm-algorithm/">PWC177 - Damm Algorithm - ETOOBUSY</a></p>
+<p>In fact, using <code>reduce</code> there&rsquo;s not whole lot left to do.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">damm_calculate</span> ($input) {
+       state $qs <span style="color:#f92672">=</span> [<span style="color:#e6db74">qw&lt;
+</span><span style="color:#e6db74">          0  3  1  7  5  9  8  6  4  2
+</span><span style="color:#e6db74">          7  0  9  2  1  5  4  8  6  3
+</span><span style="color:#e6db74">          4  2  0  6  8  7  1  3  5  9
+</span><span style="color:#e6db74">          1  7  5  0  9  8  3  4  2  6
+</span><span style="color:#e6db74">          6  1  2  3  0  4  5  9  7  8
+</span><span style="color:#e6db74">          3  6  7  4  2  0  9  5  8  1
+</span><span style="color:#e6db74">          5  8  6  9  7  2  0  1  3  4
+</span><span style="color:#e6db74">          8  9  4  5  3  6  2  0  1  7
+</span><span style="color:#e6db74">          9  4  3  8  6  1  7  2  0  5
+</span><span style="color:#e6db74">          2  5  8  1  4  3  6  7  9  0
+</span><span style="color:#e6db74">       &gt;</span>];
+       reduce {$qs<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> $a <span style="color:#f92672">+</span> $b]} <span style="color:#ae81ff">0</span>, split <span style="color:#e6db74">m{}mxs</span>, $input;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/08/damm-algorithm-take-care-to-spell-that.html">Damm and Cyclops</a></p>
+<p>Here Peter introduced the idea of matching out individual digits in the input number using a regular expression, which strikes me as a very Perlish way to proceed. The <code>split</code> function, I&rsquo;ve noticed, is kind of expensive, requiring the creation of a whole new variable type and related array allocated behind it. This avoids that, although firing up the regular expression engine has its own, not-insignificant overhead.</p>
+<p>It is, however, very cool, and very Perlish. So there&rsquo;s that.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">       <span style="color:#75715e"># start with zero</span>
+       $interim_digit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+       <span style="color:#75715e"># loop over digits</span>
+       <span style="color:#66d9ef">while</span> ($test <span style="color:#f92672">=~</span> m<span style="color:#f92672">|</span>(<span style="color:#f92672">\</span>d)<span style="color:#f92672">|</span>g) {
+           $interim_digit <span style="color:#f92672">=</span> $table[$interim_digit][$1];
+       }
+
+       <span style="color:#75715e"># number is valid if $interim_digit is zero</span>
+       say <span style="color:#e6db74">qq[$test is ]</span> <span style="color:#f92672">.</span> ($interim_digit ? <span style="color:#e6db74">&#39;not &#39;</span> : <span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">qq[valid]</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a></p>
+<p>Kjetil takes this a step further, and performs a <em>very</em> interesting tradeoff. Here he swaps the simplicity in using a multidimensional array of arrays — which directly models Damm&rsquo;s original algorithm — with the extremely fast Perl <code>substr</code> function and some arithmetic for the offset positions. In a strange way this is analogous to using pointer arithmetic on the underlying C-string inside the Perl string construct.</p>
+<p>I seem to recall saying last week when talking about references that you never need to do pointer math in Perl, but here we are. It just goes to show yet again how concepts in one language are often able to be mapped over and re-leveraged in another, sometimes in surprising ways.</p>
+<p>In Kjetil&rsquo;c method we avoid arrays entirely, which is pretty wild when you think about it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_damm_valid</span> {
+        state $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0317598642709215486342068713591750983426612304597836742095815869720134894536201794386172052581436790&#39;</span>;
+        <span style="color:#66d9ef">my</span>($n,$i)<span style="color:#f92672">=</span>(@_,<span style="color:#ae81ff">0</span>);
+        $n<span style="color:#f92672">=~</span><span style="color:#e6db74">s/^.//</span>                                  <span style="color:#75715e">#if digits left, gnaw off one into $&amp;</span>
+        ? is_damm_valid($n, substr($t,$i<span style="color:#f92672">*</span><span style="color:#ae81ff">10</span><span style="color:#f92672">+</span>$&amp;,<span style="color:#ae81ff">1</span>))  <span style="color:#75715e">#...and recurse with new shorter $n and new $i from table $t</span>
+        : <span style="color:#ae81ff">0</span><span style="color:#f92672">+!</span>$i                                     <span style="color:#75715e">#when no digts left, i==0 returns 1/true/valid</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/swift/ch-1.swift">Swift</a></p>
+<p>The lookup table is defined mathematically as a <a href="https://en.wikipedia.org/wiki/Quasigroup">quasigroup</a>, and is not limited to the single example implementation we have seen repeated so far. That one works and is easy and has a zeroed major diagonal so why not? But note it does not need to be, and any suitable quasigroup will do.</p>
+<p>In fact the selection of the table does not even require the major diagonal to consist of zeros, as in the example, although this is very convenient to validation. With a table that has some other major diagonal we can simply remove the appended digit and repeat the encoding to recompute the value and see if the two match. As we need to repeat the steps  in any case there is little practical difference to the techniques.</p>
+<p>Here Mohammad, although still using Damm&rsquo;s example table, demonstrates the latter technique for validation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_valid_check_digit</span>($n) {
+        <span style="color:#66d9ef">my</span> $op_table <span style="color:#f92672">=</span> [
+            [ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span> ],
+            [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span> ],
+            [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span> ],
+            [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span> ],
+            [ <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span> ],
+            [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span> ],
+            [ <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span> ],
+            [ <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span> ],
+            [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span> ],
+            [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span> ],
+        ];
+
+        <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $n;
+        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> pop @n;
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j (@n) {
+            $i <span style="color:#f92672">=</span> $op_table<span style="color:#f92672">-&gt;</span>[$i][$j];
+        }
+
+        <span style="color:#66d9ef">return</span> $i <span style="color:#f92672">==</span> $c;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/08/14">Cyclops Validation — Perl — RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/08/14">Cyclops Validation — Prolog — RabbitFarm</a></p>
+<p>I made passing mention at the beginning of the use of a different table. Here is Adam&rsquo;s submission with one such example. Unfortunately it&rsquo;s not made clear how this table is arrived at, so there&rsquo;s little to discuss.</p>
+<p>It also has the property of a major diagonal composed of zeros, so Adam checks the calculated value including the check digit against 0, returning a boolean truth because that&rsquo;s the sort of logic Adam deals in daily.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> boolean;
+
+    <span style="color:#66d9ef">my</span> @damm_matrix;
+    $damm_matrix[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span>];
+    $damm_matrix[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>];
+    $damm_matrix[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">8</span>];
+    $damm_matrix[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>];
+    $damm_matrix[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>];
+    $damm_matrix[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span> ,<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>];
+    $damm_matrix[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">6</span>];
+    $damm_matrix[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>];
+    $damm_matrix[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>];
+    $damm_matrix[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0</span>];
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">damm_validation</span>{
+        <span style="color:#66d9ef">my</span>($x) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $x);
+        <span style="color:#66d9ef">my</span> $interim_digit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span>(<span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> shift @digits){
+            $interim_digit <span style="color:#f92672">=</span> $damm_matrix[$d][$interim_digit];
+        }
+        <span style="color:#66d9ef">return</span> boolean($interim_digit <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/duncan-c-white/C/ch-1.c">C</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-177/james-smith">Perl Weekly Challenge #177</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_177__Damm_Cyclops.html">RogerBW&rsquo;s Blog: The Weekly Challenge 177: Damm Cyclops</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/the-palindromic-prime-cyclops-algorithm-4c0h">Weekly Challenge 177</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/steve-g-lynn/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/steve-g-lynn/raku/ch-1.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/08/pwc-177.html">PWC 177</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC177TASK2">TASK 2</h1>
+<h1 id="palindromic-prime-cyclops">Palindromic Prime Cyclops</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to generate first 20 Palindromic Prime Cyclops Numbers.</p>
+<p>A cyclops number is a number with an odd number of digits that has a zero in the center only.</p>
+<p><strong>Output</strong></p>
+<pre><code>    101, 16061, 31013, 35053, 38083, 73037, 74047, 91019, 94049,
+    1120211, 1150511, 1160611, 1180811, 1190911, 1250521, 1280821,
+    1360631, 1390931, 1490941, 1520251
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/aut0exec/perl/ch-2.pl"><strong>Aut0exec</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/kjetillll/perl/ch-2.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a></p>
+<p>One can find palindromes by looking at numbers and seeing whether they fit the requirement of seamless reversibility, but as it works out in practice, it&rsquo;s far easier to, with a little extra work around the middle, construct palindromes by reversing and joining up a generative kernel. Done that way we know from the start the result will be the same read backwards or forwards.</p>
+<p>In a Cyclops number, we have a palindrome that has further constraints, in that we they need to contain a central eye in the middle digit.</p>
+<p>It follows that all Cyclops numbers will have an odd number of digits to make the right shape. And this makes it even more appealing to construct the numbers from smaller values as no account need to be made for the differences between even- and odd-numbered lengths. We take any positive integer, reverse a copy, concatenate a 0 to the original and then affix the copy. Voilá! We have a Cyclops number.</p>
+<p>Now we just need to make sure it&rsquo;s prime. This actually proved a sticking point: that is, when to verify a candidate. Some people chose to start with known primes, making this whole constructive discussion moot. But let&rsquo;s continue anyway, so we can get to the next, confounding, point.</p>
+<p>We have made a Cyclops number, and if it is prime we have a Palindromic Prime Cyclops.</p>
+<p>Almost.</p>
+<p>There was a second constraint that was less clearly stated. For those unfamiliar with Homer&rsquo;s <em>Odyssey</em>, the Cyclops was a giant creature that lived in a cave and ate people, and was noted for having a single central eye. Hence the &ldquo;eye&rdquo; in the middle of a Cyclops number. However even with the essentail symmetry established, this still allows for odd-numbered multiples of zeros, as long as one is central. And the Cyclops, of course, only had <em>one</em> eye.</p>
+<p>Personally I found the wording of the description unclear, as the word &ldquo;only&rdquo; is dangling there at the end of the sentence and we are left unsure of what it is meant to modify. I find the result is linguistically ambiguous.</p>
+<blockquote>
+<p>&hellip;a number with an odd number of digits that has a zero in the center only.</p>
+</blockquote>
+<p>Is that only a zero in the center or only one zero, located in the center? The farther the modifier is moved away from whatever it is meant to modify the more uncertainty is introduced. In this case the options are modifying the center position or the count of the of zeros, or perhaps both. Sometimes, such as when a sentence has only one verb, moving an adverb for colorful effect can still remain clear as to what the adverb is modifying. As the word &ldquo;only&rdquo; can be used as either a adverb or an adjective in English, this particular word is more likely to confuse the reader.</p>
+<p>English, with it&rsquo;s poly-lingual roots, is unusually forgiving in its word order, but with great power comes great responsibility. To paraphrase William Safire, if you&rsquo;re having that much trouble trying to figure out whether to use &ldquo;who&rdquo; or &ldquo;whom&rdquo; as a pronoun, you should probably just rephrase.</p>
+<p>There were 23 submissions for the second task this past week.</p>
+<h2 id="a-selection-of-submissions-1">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>As it was, folks did catch the condition that there was only one zero allowed anywhere in the number and that it was located at the center of the digit string. The split between iterative and constructive approaches was about 50-50 in the end, and so we&rsquo;ll have a look into a variety of the various ways we saw to find the output values.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_177__Damm_Cyclops.html">RogerBW&rsquo;s Blog: The Weekly Challenge 177: Damm Cyclops</a></p>
+<p>Roger will start the discussion with a demonstration of a constructive approach. A candidate &ldquo;front half&rdquo; is selected and immediately discarded should it contain any 0s; this knowledge is provided by a regular expression. Moving on, we construct a string from the candidate, a central &ldquo;0&rdquo;, and the digits of the candidate reversed. Now we have a  Cyclops number with only one zero in it.</p>
+<p>The <code>is_prime()</code> function from <code>Math::Prime::Util</code> is then used to find Cyclops candidates that are also prime.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ppc</span>($ct) {
+      <span style="color:#66d9ef">my</span> @o;
+      <span style="color:#66d9ef">my</span> $fh <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">while</span> (scalar @o <span style="color:#f92672">&lt;</span> $ct) {
+        $fh<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">if</span> ($fh <span style="color:#f92672">=~</span><span style="color:#e6db74"> /0/</span>) {
+          <span style="color:#66d9ef">next</span>;
+        }
+        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $fh <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">.</span> reverse($fh);
+        <span style="color:#66d9ef">if</span> (is_prime($c)) {
+          push @o,$c;
+          <span style="color:#66d9ef">if</span> (scalar @o <span style="color:#f92672">&gt;=</span> $ct) {
+            <span style="color:#66d9ef">last</span>;
+          }
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://etoobusy.polettix.it/2022/08/11/pwc177-palindromic-prime-cyclops/">PWC177 - Palindromic Prime Cyclops - ETOOBUSY</a></p>
+<p>Flavio follows up with another constructive solution, with a few interesting variations. First, instead of just tossing out candidate half-numbers that contain an extra 0, he goes ahead and translates that 0 into a 1 and continues. As the candidates themselves are incremented at each iteration to get the next trial value, this will still yield a sequential list, while skipping over whole ranges when required.</p>
+<p>Nice.</p>
+<p>Next if the number <em>starts</em> with either 2, 4, 6 or 8 then when reversed it will be divisible by 2 and hence known to not be prime. Again he don&rsquo;t just skip the candidate but instead <em>modifies</em> the offending leading digit by adding 1 to it, again jumping over a whole intermediate range to get to the next viable value. For larger numbers this jump will become increasingly substantial.</p>
+<p>Double nice.</p>
+<p>Lastly we use <code>ntheory</code>, another name for <code>Math::Prime::Util</code>, to provide its blazing fast <code>is_prime()</code> validation function to isolate only the primes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">&#39;is_prime&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">20</span>;
+    <span style="color:#66d9ef">my</span> $it <span style="color:#f92672">=</span> cyclop_prime_factory();
+    say $it<span style="color:#f92672">-&gt;</span>() <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cyclop_prime_factory</span> {
+       <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+          <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;necessary&#39;</span>) {
+             <span style="color:#f92672">++</span>$n;
+             $n <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/0/</span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>;
+             $n <span style="color:#f92672">=</span> ($1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">.</span> $2 <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{\A ([2468]) (.*) }mxs</span>;
+             <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> $n <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">.</span> reverse($n);
+             <span style="color:#66d9ef">return</span> $candidate <span style="color:#66d9ef">if</span> is_prime($candidate);
+          }
+       };
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/the-palindromic-prime-cyclops-algorithm-4c0h">Weekly Challenge 177</a></p>
+<p>A frequently forgotten Perl function we have available to search within a string is <code>index</code>. This very efficiently returns the first index position of a given substring within a larger, or -1 should it not be found. As the match is strictly linear from left to right, and can always be completed in a single pass, this process is much quicker than firing up the whole regular expression engine —  albeit much more limited in its abilities.</p>
+<p>But for making sure there are no zeros in a working half-palindrome it really shines. Once a candidate passes the test it is then combined with a 0 and its own reverse to make a Cyclops palindrome. And this in turn is checked for primality using a hand-tooled <code>is_prime()</code> routine, which is plenty fast to find the 20 values requested.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span>() {
+        <span style="color:#66d9ef">my</span> @solutions <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">my</span> $number    <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#66d9ef">while</span> ( scalar(@solutions) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span> ) {
+            <span style="color:#66d9ef">my</span> $cn <span style="color:#f92672">=</span> cyclops_number($number);
+            <span style="color:#66d9ef">if</span> ( index($number, <span style="color:#e6db74">&#39;0&#39;</span>) <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> is_prime($cn) ) {
+                push @solutions, $cn;
+            }
+
+            $number<span style="color:#f92672">++</span>;
+        }
+
+        say join <span style="color:#e6db74">&#39;, &#39;</span>, @solutions;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> ($number) {
+        <span style="color:#75715e"># Return true or false if the number is a prime</span>
+        <span style="color:#66d9ef">if</span> ( $number <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> ) {
+            <span style="color:#66d9ef">return</span>;
+        }
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt($number) ) {
+            <span style="color:#66d9ef">if</span> ( $number % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+                <span style="color:#66d9ef">return</span>;
+            }
+        }
+
+        <span style="color:#75715e"># It&#39;s a prime</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew is know for his delightful and clear commentary, something I always encourage among the group and, well,  programmers as a whole. Not to put too fine a point on it, but I find a lot of arrogance among programmers in general — antisocial elitism kind of runs thick sometimes, for all of the kind and gentle people I know —  and I find &ldquo;the code should speak for itself&rdquo; a common expression of that mindset. You know what really speaks for itself? Words. Words do. That&rsquo;s what they&rsquo;re for.</p>
+<p>Feeling superior because you understand your architecture and someone else doesn&rsquo;t won&rsquo;t help you two years and a dozen projects later when you need to go back in and weld in some new functionality, or extract just that part there to use is somewhere else. When that happens, orderly notes will help you find what you need quickly because, hey look! It says right here what it does.</p>
+<p>Kudos to Matthew for keeping hope alive.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Loop until we have enough numbers</span>
+    <span style="color:#66d9ef">until</span>(scalar(@pal_cy_primes) <span style="color:#f92672">==</span> $q){
+        <span style="color:#66d9ef">my</span> $candidate;
+
+        <span style="color:#75715e"># Increment $n</span>
+        $n<span style="color:#f92672">++</span>;
+
+        <span style="color:#75715e"># Skip any $n that has zero in it</span>
+        <span style="color:#66d9ef">next</span>
+            <span style="color:#66d9ef">if</span>($n <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/0/</span>);
+
+        <span style="color:#75715e"># If $n&#39;s first digit is even, add 1 to that</span>
+        <span style="color:#75715e"># digit, skipping a series of otherwise-even</span>
+        <span style="color:#75715e"># candidate numbers...</span>
+        $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> floor(log($n) <span style="color:#f92672">/</span> log(<span style="color:#ae81ff">10</span>))
+            <span style="color:#66d9ef">unless</span>(substr($n, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) % 2);
+
+        <span style="color:#75715e"># Construct a new candidate out of the digits</span>
+        <span style="color:#75715e"># of $n and a zero...</span>
+        $candidate <span style="color:#f92672">=</span> $n <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">.</span> join(<span style="color:#e6db74">&#39;&#39;</span>, reverse(split(<span style="color:#e6db74">&#39;&#39;</span>, $n)));
+
+        <span style="color:#75715e"># Store this candidate if it&#39;s prime</span>
+        push(@pal_cy_primes, $candidate)
+            <span style="color:#66d9ef">if</span>(is_prime($candidate));
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/08/14">Cyclops Validation — Perl — RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/08/14">Cyclops Validation — Prolog — RabbitFarm</a></p>
+<p>But back to the challenge. Alternately, we could just brute-force it open. Hit it with values until it gives up the goods.</p>
+<p>Adam builds a simple recursive framework to test values to satisfy a cascading list of linked conditions — it must be prime; it must have an odd length; it must be equal with its component digits reversed in order; it must have exactly one 0 and that 0 must be located in the central position.</p>
+<p>We simply check increasing numbers until we have gathered a long enough list of values to satisfy the requested output.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Primality <span style="color:#e6db74">qw/is_prime/</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">n_cyclops_prime_r</span>{
+        <span style="color:#66d9ef">my</span>($i, $n, $cyclops_primes) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> @{$cyclops_primes} <span style="color:#66d9ef">if</span> @{$cyclops_primes} <span style="color:#f92672">==</span> $n;
+        push @{$cyclops_primes}, $i <span style="color:#66d9ef">if</span> is_prime($i) <span style="color:#f92672">&amp;&amp;</span>
+                                       length($i) % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span>
+                                       join(<span style="color:#e6db74">&#34;&#34;</span>, reverse(split(<span style="color:#e6db74">//</span>, $i))) <span style="color:#f92672">==</span> $i <span style="color:#f92672">&amp;&amp;</span>
+                                       (grep {$_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>} split(<span style="color:#e6db74">//</span>, $i))   <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span>
+                                       <span style="color:#66d9ef">do</span>{<span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $i);
+                                          $a[int(@a <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)]
+                                       } <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        n_cyclops_prime_r(<span style="color:#f92672">++</span>$i, $n, $cyclops_primes);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">n_cyclops_primes</span>{
+        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> n_cyclops_prime_r(<span style="color:#ae81ff">1</span>, $n, <span style="color:#f92672">[]</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/steve-g-lynn/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/steve-g-lynn/raku/ch-2.sh">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/08/pwc-177.html">PWC 177</a></p>
+<p>Stephen thinks this through in a very similarly structured, logical manner, creating a loop over ranges of values and testing each one. The amusing way Stephen avoids candidates with an even number of digits is to feed the function ranges of 3, 5, and 7-digit numbers, leaving out the evens. That&rsquo;s one way to do it.</p>
+<p>The <code>substr</code> function, I may note again, is a very good tool to open up and examine the insides of strings.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_cyclops</span> {
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@_) {
+            (is_prime $i) <span style="color:#f92672">||</span> <span style="color:#66d9ef">next</span>;
+            (substr($i, length($i)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;0&#39;</span>) <span style="color:#f92672">||</span> <span style="color:#66d9ef">next</span>;
+            (substr($i, <span style="color:#ae81ff">0</span>, length($i)<span style="color:#e6db74">/2-0.5) =~ /</span><span style="color:#ae81ff">0</span><span style="color:#f92672">/</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">next</span>;
+            (substr($i, length($i)<span style="color:#e6db74">/2+1.5 ) =~ /</span><span style="color:#ae81ff">0</span><span style="color:#f92672">/</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">next</span>;
+            (substr($i, <span style="color:#ae81ff">0</span>, length($i)<span style="color:#e6db74">/2-0.5) eq substr(reverse($i), 0, length($i)/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>)) <span style="color:#f92672">||</span> <span style="color:#66d9ef">next</span>;
+            push @retval, $i;
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> scalar(@retval) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">19</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>Ulrich introduces a few interesting optimizations to speed up the same general scheme: one is his use of the translation operator in a scalar context to count the number of translations made. We can use this to count 0s without using the entire regular exression engine, and considerably less overhead. The translation table for the operator is built at compilation and lodged deep into the interpreter, fixed and inviolate. Here all we want Perl to do is count the number of calls to the table, which is lighting-fast.</p>
+<p>In the second optimization when a candidate has an even number of digits it cannot possibly be a Cyclops, and nor can any other number with that length. So instead of iterating over a large set of values just to reject them, we skip the whole order of magnitude by mutiplying the candidate by 10 and proceeding as though nothing had happened. When looking at longer numbers this provides a considerable speedup.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isPrimeCyclops</span> {
+      <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> $zeroes <span style="color:#f92672">=</span> $number <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/0/</span><span style="color:#ae81ff">0</span><span style="color:#f92672">/</span> ;
+      <span style="color:#66d9ef">return</span> isPrime( $number ) <span style="color:#f92672">&amp;&amp;</span> ( $number <span style="color:#f92672">eq</span> reverse( $number ) )
+          <span style="color:#f92672">&amp;&amp;</span> ( $zeroes <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">&amp;&amp;</span> (substr( $number , int( (length $number) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) , <span style="color:#ae81ff">1</span> )
+          <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;0&#39;</span> ) ;
+    }
+
+    <span style="color:#66d9ef">my</span> @prime_cyclopses ;
+    <span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> ;
+    <span style="color:#66d9ef">while</span> ( scalar( @prime_cyclopses ) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">20</span> ) {
+      <span style="color:#66d9ef">if</span> ( isPrimeCyclops( $current ) ) {
+          push @prime_cyclopses , $current ;
+      }
+      $current<span style="color:#f92672">++</span> ;
+      <span style="color:#66d9ef">if</span> ( (length $current) % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) { <span style="color:#75715e">#we only admit an odd number of digits</span>
+          $current <span style="color:#f92672">*=</span> <span style="color:#ae81ff">10</span> ;
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>We&rsquo;ve seen by now how a brute force solution can be refined by selecting the mode of iteration to skip over candidates that could never work. Without, ideally, ever considering them.</p>
+<p>Choroba takes this approach further by drawing his candidates from a list of prime numbers, and then checking them to see if they fit the Cyclops criteria. This is done with a conditional to see if the candidate is both equal to its reverse and also matches a somewhat more complex regex than we have previously seen. In this we match a series of digits that are not a zero, followed by a zero, followed by another series of digits that don&rsquo;t contain a zero. As from the left side of the logical clause we already know the number is a palindrome, by the time this is evaluated we only need to establish the location of the central, solitary zero.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw{ next_prime }</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">palindromic_prime_cyclops</span> ($count) {
+        <span style="color:#66d9ef">my</span> @ppc;
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span> (@ppc <span style="color:#f92672">&lt;</span> $count) {
+            $n <span style="color:#f92672">=</span> next_prime($n);
+            push @ppc, $n <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> reverse($n) <span style="color:#f92672">&amp;&amp;</span> $n <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[^0]+0[^0]+$/</span>;
+            say $n;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@ppc
+    }
+</code></pre></div><p>I don&rsquo;t think its accurate to descibe the solution as using iterative brute force anymore. Although <code>Math::Prime::Util</code> is opaque on the subject, reserving the right to use any of a number of techniques, the most likely is some sort of a sieve combinesd with cached values. It is, though, still a fair number of primes, but far far less than the number of values surrounding them.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a></p>
+<p>Walt also limits his candidates to values already known to be prime, which he provides using his own sieve of Eratosthenes tucked away in a private module. This proves to be an effective strategy, although is may require some trial and error to find the correct upper bound. Walt then checks the primes for a central 0 — only one 0, mind you — and that the prime is equal to its reverse.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_cyclops</span>($n) {
+        <span style="color:#66d9ef">return</span> length($n) % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span>
+            substr($n, length($n)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span>
+            ($n <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/0/</span><span style="color:#f92672">/</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span>
+            $n <span style="color:#f92672">==</span> reverse($n);
+    }
+
+    <span style="color:#66d9ef">my</span> $primes <span style="color:#f92672">=</span> primes_to(<span style="color:#ae81ff">1600000</span>);
+    <span style="color:#66d9ef">my</span> @ppc;
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> (@ppc <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span> <span style="color:#f92672">&amp;&amp;</span> $i <span style="color:#f92672">&lt;</span> @$primes) {
+        <span style="color:#66d9ef">if</span> (is_cyclops($primes<span style="color:#f92672">-&gt;</span>[$i])) {
+            say $primes<span style="color:#f92672">-&gt;</span>[$i];
+            push @ppc, $primes<span style="color:#f92672">-&gt;</span>[$i];
+        }
+        $i<span style="color:#f92672">++</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/cheok-yin-fung/raku/ch-2.raku">Raku</a></p>
+<p>I&rsquo;ve mentioned before on how Perl&rsquo;s <code>reverse</code> function is probably them most likely to not do what you want it to. In fact I kind of go on about it. This is beause it is contextually aware, and does different things depending on what, a scalar or a list, is requested from it. Combine this with certain other functions not being super-obvious about what they want from life (sounds like some people I&rsquo;ve known, right?) and you get a situation where</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">print</span> reverse <span style="color:#e6db74">&#34;Hello, World!&#34;</span>;
+</code></pre></div><p>prints: &ldquo;Hello, World!&quot;. Why? Because it reversed the order of a list with one element, because <code>print</code> wants a list of stuff to print.</p>
+<p>One way to clarify matters is to use the <code>scalar</code> keyword.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">print</span> scalar reverse <span style="color:#e6db74">&#34;hello, World!&#34;</span>;
+</code></pre></div><p>This reverses the string characters, which is likely what you wanted.</p>
+<p>CY brings us this trick, along with a novel method for checking primality, based on the fact that all primes greater than 3 can be epreseed as (<em>n</em>)<em>k</em> ± 1. After some preliminary checks on a front-half-number candidate she assembles a Cyclops from the seed, a 0 and its reverse, which is then checked using her lovely <code>is_prime()</code> function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span> ($n % <span style="color:#960050;background-color:#1e0010">(</span>6<span style="color:#f92672">*</span>$k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;&amp;</span> $n % <span style="color:#960050;background-color:#1e0010">(</span>6<span style="color:#f92672">*</span>$k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#ae81ff">6</span><span style="color:#f92672">*</span>$k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> sqrt $n)) {
+            $k<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">return</span> $n % <span style="color:#960050;background-color:#1e0010">(</span>6<span style="color:#f92672">*</span>$k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;&amp;</span> $n % <span style="color:#960050;background-color:#1e0010">(</span>6<span style="color:#f92672">*</span>$k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+    }
+
+    <span style="color:#66d9ef">my</span> @arr;
+    <span style="color:#66d9ef">my</span> $pali <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span> (scalar @arr <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>) {
+        <span style="color:#66d9ef">if</span> ( (scalar reverse $pali) % 2 <span style="color:#f92672">&amp;&amp;</span> $pali % 3 <span style="color:#f92672">&amp;&amp;</span> $pali <span style="color:#f92672">!~</span> <span style="color:#e6db74">/0/</span> ) {
+            <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $pali<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">.</span>(scalar reverse $pali);
+            <span style="color:#66d9ef">if</span> (is_prime($n)) {
+                say $n;
+                push @arr, $n;
+            }
+        }
+        $pali<span style="color:#f92672">++</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-177/james-smith">Perl Weekly Challenge #177</a></p>
+<p>And now to James, who apparently has pulled out all the stops yet again to produce the absolute fastest solution he can concoct.</p>
+<p>After some discussion, he settles on a half-palindrome constructive approach, which he then takes and speeds up another 40% or so. Let&rsquo;s focus here on his second, optimized solution.</p>
+<p>In this, he composes a new value from an odd-parity head digit and a magnitude multiplier joined to a tail component. This pattern is used to construct a range of potentially viable candidates for a half-palindrome, of which those segments containing a 0 are tossed out.</p>
+<p>I think part of what&rsquo;s particularly confusing about this code is that within the <strong>O:</strong> loop — the label is a warning! — many actions are being performed implicitly or explicitly on <code>$_</code>, which is the topic designated by the <em>inner</em> loop, written as a statement modifier. Get that?</p>
+<p>Once you realize that and unwind everything it&rsquo;s less daunting, though.</p>
+<p>The extra handler code costs us some overhead, but the savings of only considering 4 lead digits instead of 9 is substantial and well worth the effort.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime)</span>;
+
+    <span style="color:#66d9ef">my</span> $K <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">//</span><span style="color:#ae81ff">20</span>;
+    <span style="color:#66d9ef">my</span> $flag <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>]<span style="color:#e6db74">//</span><span style="color:#ae81ff">3</span>;
+
+    <span style="color:#66d9ef">if</span>($flag <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">my</span>($t0,$i,$t)<span style="color:#f92672">=</span>(time,<span style="color:#ae81ff">0</span>);
+      <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$K) {
+        (<span style="color:#f92672">++</span>$i)<span style="color:#f92672">!~</span><span style="color:#e6db74">/0/</span> <span style="color:#f92672">&amp;&amp;</span> is_prime( $t <span style="color:#f92672">=</span> $i<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;0&#39;</span><span style="color:#f92672">.</span>reverse$i ) ? say $t : <span style="color:#66d9ef">redo</span>;
+      }
+    }
+
+    <span style="color:#66d9ef">if</span>( $flag <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">2</span> ) {
+      <span style="color:#66d9ef">my</span>( $magnitude, $ones, $start, $count,       $result ) <span style="color:#f92672">=</span>
+        (          <span style="color:#ae81ff">1</span>,     <span style="color:#ae81ff">0</span>,   time, $ARGV[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">//</span><span style="color:#ae81ff">20</span>, <span style="color:#e6db74">&#39;-&#39;</span>     );
+      O: <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $first (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">9</span>) {
+          <span style="color:#f92672">!</span><span style="color:#e6db74">/0/</span> <span style="color:#f92672">&amp;&amp;</span> is_prime( $_ <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">.</span> reverse $_ ) <span style="color:#f92672">&amp;&amp;</span>
+          say  <span style="color:#f92672">&amp;&amp;</span> ( <span style="color:#f92672">--</span>$count <span style="color:#f92672">||</span> ( $result <span style="color:#f92672">=</span> $_ ) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">last</span> O )
+            <span style="color:#66d9ef">for</span> $first <span style="color:#f92672">*</span> $magnitude <span style="color:#f92672">+</span> $ones <span style="color:#f92672">..</span> ( $first <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">*</span> $magnitude <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        }
+        $magnitude <span style="color:#f92672">*=</span> <span style="color:#ae81ff">10</span>;
+        $ones      <span style="color:#f92672">*=</span> <span style="color:#ae81ff">10</span>;
+        $ones<span style="color:#f92672">++</span>;
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/08/14/one-eye-on-the-primetime-slot">One Eye on the Primetime Slot - Programming Excursions in Perl and Raku</a></p>
+<p>My own solution works around the same plan — albeit hopefully a bit more readable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">qw( is_prime )</span>;
+
+    <span style="color:#66d9ef">my</span> @out;
+    <span style="color:#66d9ef">my</span> $tail_digits <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">while</span> ( @out <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">200</span> ) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $head ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span> ) {
+            <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0&#34;</span> x $tail_digits;
+            <span style="color:#66d9ef">my</span> $end   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;9&#34;</span> x $tail_digits;
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $tail ($start <span style="color:#f92672">..</span> $end) {
+                $tail <span style="color:#f92672">=~</span><span style="color:#e6db74"> /0/</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">next</span>;            <span style="color:#75715e">## only one eye!</span>
+                <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span>  <span style="color:#e6db74">&#34;$head$tail&#34;</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">.</span> reverse <span style="color:#e6db74">&#34;$head$tail&#34;</span>;
+                push @out, $candidate <span style="color:#66d9ef">if</span> is_prime( $candidate );
+            }
+        }
+        $tail_digits<span style="color:#f92672">++</span>;
+    }
+
+
+    say <span style="color:#66d9ef">for</span> @out;
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/duncan-c-white/C/ch-2.c">C</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/08/perl_weekly_challenge_week_177.html">Perl Weekly Challenge: Week 177</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/coconut/ch-2.coco">Coconut</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/ring/ch-2.ring">Ring</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/laurent-rosenfeld/ruby/ch-2.rb">Ruby</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/08/perl-weekly-challenge-177-damm-algorithm-and-palindromic-prime-cyclops.html">Perl Weekly Challenge 177: Damm Algorithm and Palindromic Prime Cyclops</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/mohammad-anwar/swift/ch-2.swift">Swift</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/08/damm-algorithm-take-care-to-spell-that.html">Damm and Cyclops</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/robert-dicicco/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/robert-dicicco/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/robert-dicicco/ruby/ch-2.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/emacs-lisp/ch-2.el">Emacs-lisp</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-177/wlmb/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/08/08/PWC177/">Perl Weekly Challenge 177 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC177BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC177BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/08/14">Cyclops Validation — Perl — RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/08/14">Cyclops Validation — Prolog — RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/cyclops-be-dammed.html">Cyclops Be Dammed with Raku - Arne Sommer</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/08/13/yet-another-damm-algorithm">Yet Another Damm Algorithm - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+<li><a href="https://colincrain.com/2022/08/14/one-eye-on-the-primetime-slot">One Eye on the Primetime Slot - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://etoobusy.polettix.it/2022/08/10/pwc177-damm-algorithm/">PWC177 - Damm Algorithm - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://etoobusy.polettix.it/2022/08/11/pwc177-palindromic-prime-cyclops/">PWC177 - Palindromic Prime Cyclops - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/08/perl_weekly_challenge_week_177.html">Perl Weekly Challenge: Week 177</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-177/james-smith">Perl Weekly Challenge #177</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/08/perl-weekly-challenge-177-damm-algorithm-and-palindromic-prime-cyclops.html">Perl Weekly Challenge 177: Damm Algorithm and Palindromic Prime Cyclops</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/08/10/PerlWeeklyChallenge177.html#task1">Perl Weekly Challenge 177: damn numbers! – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/08/10/PerlWeeklyChallenge177.html#task1plperl">Perl Weekly Challenge 177: damn numbers! – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/Perl</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/08/10/PerlWeeklyChallenge177.html#task1plpgsql">Perl Weekly Challenge 177: damn numbers! – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/PostgeSQL</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/08/damm-algorithm-take-care-to-spell-that.html">Damm and Cyclops</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_177__Damm_Cyclops.html">RogerBW&rsquo;s Blog: The Weekly Challenge 177: Damm Cyclops</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/the-palindromic-prime-cyclops-algorithm-4c0h">Weekly Challenge 177</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Stephen G Lynn</strong></p>
+<ul>
+<li><a href="https://thiujiac.blogspot.com/2022/08/pwc-177.html">PWC 177</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/08/08/PWC177/">Perl Weekly Challenge 177 – W. Luis Mochán</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+

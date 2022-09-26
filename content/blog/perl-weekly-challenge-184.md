@@ -112,6 +112,8 @@ Quick recap of **[The Weekly Challenge - 183](/blog/recap-challenge-183)** by `M
 ## PERL REVIEW {#PERLREVIEW}
 ***
 
+Please check out **Perl** solutions review of **[The Weekly Challenge - 177](/blog/review-challenge-177)** by `Colin Crain`.
+
 If you missed any past reviews then please check out the [**collection**](/p5-reviews).
 
 <br>
