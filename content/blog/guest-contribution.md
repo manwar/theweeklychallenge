@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-10-01T00:00:00+00:00
+date: 2022-10-02T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -65,7 +65,7 @@ Please find below guest contributions.
 
 ##### **Stephen G Lynn** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-184/steve-g-lynn/julia/ch-1.sh) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-184/steve-g-lynn/julia/ch-2.jl) in **Julia**.
 
-##### **Steven Wilson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-184/steven-wilson/python/ch-01.ipynb) in **Python**.
+##### **Steven Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-184/steven-wilson/python/ch-01.ipynb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-184/steven-wilson/python/ch-02.ipynb) in **Python**.
 
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-184/tyler-wardhaugh/clojure/src/c184/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-184/tyler-wardhaugh/clojure/src/c184/t2.clj) in **Clojure**.
 
