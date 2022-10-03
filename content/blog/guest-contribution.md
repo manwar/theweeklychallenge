@@ -40,6 +40,8 @@ Please find below guest contributions.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
+##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/ziameraj16/java/MacAddress.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/ziameraj16/java/MaskCode.java) in **Java**.
+
 ----
 ## [The Weekly Challenge - 184](/blog/perl-weekly-challenge-184) {#184}
 <br>
