@@ -44,6 +44,10 @@ Please find below guest contributions.
 
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/ziameraj16/java/MacAddress.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/ziameraj16/java/MaskCode.java) in **Java**.
 
+##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/robert-dicicco/julia/ch-1.jl) in **Julia**.
+
+##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/robert-dicicco/ruby/ch-1.rb) in **Ruby**.
+
 ##### **Steven Wilson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/steven-wilson/python/ch-01.ipynb) in **Python**.
 
 ----
