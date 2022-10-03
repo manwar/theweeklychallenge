@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #178">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #178</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #178</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Oct 3, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-178.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-177/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 178</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would come from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they personally find the most interesting and satisfying. Some team members will focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here: to try and figure out ways to do just that.</p>
+<p>So that&rsquo;s that&hellip; I&rsquo;m ready now — let’s go in and see what we can find.</p>
+<hr>
+<h3 id="for-added-context">For Added Context</h3>
+<p>Before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-178/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-178/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one <em><strong>more</strong></em> thing before we finally get started:</p>
+<br>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<hr>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<hr>
+<br>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<br>
+<h3 id="enough-fine-so-without-even-further-ado">Enough? Fine. So without even further ado&hellip;</h3>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc178task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc178task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc178blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC178TASK1">Task 1</a>                 •             <a href="#PWC178TASK2">Task 2</a>                 •             <a href="#PWC178BLOGS">BLOGS</a>                  •</h2>
+<hr>
+<h1 id="PWC178TASK1">TASK 1</h1>
+<h1 id="quater-imaginary-base">Quater-imaginary Base</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to convert a given number (base 10) to quater-imaginary base number and vice-versa. For more informations, please checkout wiki page.</p>
+<p><strong>For example:</strong></p>
+<pre><code>    $number_base_10 = 4
+    $number_quater_imaginary_base = 10300
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178//perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>I will begin with what I regard a perfectly reasonable assumption: that the many of our readers looked at this challenge and said: &ldquo;Huh. Never heard of that one.&rdquo; And then, after scanning the Wiki article, were physically overcome by a deep, shaking, existential dread.</p>
+<p>So what are we discussing then? What could be so terrible as to make grown adults pale and children weep?</p>
+<p>Quater-imaginary numbers are digital representations of numbers in the base of 2<em>i</em>, with <em>i</em> denoting the otherwise impossible square root of -1. So, in a positional expansion, the <em>powers</em> of imaginary coefficients alternate between imaginary and negative real components, and the powers of negative numbers alternate between positive and negative values. Expanding the representation of a quater-imaginary number will produce a sequence of base multipliers that resolve to cycles of four parts: negative imaginary, negative real, positive imaginary, and positive real.</p>
+<p>The first such group covers the span of</p>
+<p>(2<em>i</em>)<sup>3</sup>, (2<em>i</em>)<sup>2</sup>, (2<em>i</em>)<sup>1</sup>, (2<em>i</em>)<sup>0</sup></p>
+<p>and then in the fifth position, (2<em>i</em>)<sup>5</sup>, repeats again. By adding and subtracting values at each digit we can home in on (almost) any complex number. I think of it as somewhat in the manner of a binary search.</p>
+<p>Actually working with these numbers, or even understanding the idea of them for that matter, is&hellip; daunting, to say the least. Other useful adjectives here might be &ldquo;weird&rdquo;, &ldquo;bizarre&rdquo; and &ldquo;terrifying&rdquo;.</p>
+<p>H.P. Lovecraft would be proud.</p>
+<p>The idea was first entertained by Donald Knuth in the 1950s, with a practical application in mind: to encode complex numbers into computer memory without the need for denoting positive and negative values, nor real and complex parts.</p>
+<p>One number to bind them, to rule them all.</p>
+<p>Yes, they are remarkably difficult for humans to read. And they&rsquo;re wordy for representing numbers, using a lot of digits to home in on a value, with the number of digits required varying wildly between sequential values. Oh, and you can&rsquo;t really do division, which is a bit of a sticking point. But then again Knoth didn&rsquo;t know that last part when he thought them up. I mean sure, <em>he</em> couldn&rsquo;t figure out a way, but maybe someone else could? Someone smarter&hellip; than Donald Knuth. Let that sink in for a minute.</p>
+<p>Maybe Von Neumann? Sure thing.</p>
+<p>The division problem has not been solved, always collapsing into complex linear algebra which sometimes works and sometimes doesn&rsquo;t. I&rsquo;m reasonably sure the problem explodes in super-polynomial time. It seems like it should.</p>
+<p>There were 14 submissions for the first task this past week.</p>
+<h2 id="a-selection-of-submissions">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178//perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a></p>
+<p>The way I interpreted the task, along with a sizable number of others, was the the term &ldquo;base-10 number&rdquo; in the defintion denotes a real number, which is to say the real component of a complex number. Was this right? Who knows. As such to satisfy the requirements it was not necessary to create a pair of general-purpose conversion functions navigating the complex plane.</p>
+<p>Which in turn would mean we would only be dealing with the real portion of the quater-imaginary number, which it turns out can be pieced-out from every-other digit. Interesting.</p>
+<p>Of course not everyone took this interpretation, and hence the slightly easier path; it was about half, in the end. We also saw advanced solutions that could handle component complex numbers for input and output in varying degrees, both is translating to and from quater-imaginary notation.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178//perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/jaldhar-h-vyas/raku/ch-1.sh">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/08/perl_weekly_challenge_week_178.html">Perl Weekly Challenge: Week 178</a></p>
+<p>The real number components of base 2<em>i</em> arise at the even-numbered powers in the expansion. At these points the digits in a representational number are multiplied by 2<em>i</em> x 2<em>i</em> = -4, which in turn maps to base (-4). And as all real numbers are represented on the complex plane with an imaginary coefficient of 0, those imaginary positions of a quater-imaginary representation of a purely real number will all be 0.</p>
+<p>This means the slightly easier problem subset we are dealing with here is to convert to base (-4) and represent the imaginary positions with 0s.</p>
+<p>Perhaps surprisingly, converting from base-10 to base (-4) is not that different than converting to any other base. We simply need to divide out the base repeatedly and note the remainder for each digit position. The only problem that arises from using a negative base is that the possibility that remainder can also be negative. Should this occur, we need to &ldquo;carry&rdquo; a 4 backwards over from the quotient, reducing that value by 1 and adding 4 to the remainder to make it positive again.</p>
+<p>The result is an array of digits, which Jaldhar simply reverses and joins with the &ldquo;0&rdquo; digit to represent the zeroed-out imaginary portions.</p>
+<p>Jaldhar makes no bones about his not being a mathematician, so I find this effort particularly admirable. There is no corresponding function to convert back from quater-imaginary but you know what? I&rsquo;m going to let that slide. This will be more than enough to start the show.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw/ todigits /</span>;
+    <span style="color:#66d9ef">use</span> POSIX <span style="color:#e6db74">qw/ floor /</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">quaterImaginaryBase</span> {
+        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @result;
+        <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">while</span> ($n) {
+            $r <span style="color:#f92672">=</span> $n % <span style="color:#960050;background-color:#1e0010">-</span>4;
+            $n <span style="color:#f92672">=</span> floor($n <span style="color:#f92672">/</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>);
+            <span style="color:#66d9ef">if</span> ($r <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+                $n<span style="color:#f92672">++</span>;
+                $r <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;
+            }
+            push @result, todigits($r, <span style="color:#ae81ff">4</span>) <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;
+        }
+
+        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;0&#39;</span>, reverse @result;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/duncan-c-white/C/ch-1.c">C</a></p>
+<p>After an initial bout with shock and awe, Duncan quickly arrives at the same conclusion, &ldquo;all&rdquo; we need to do is convert to base (-4) and intersperse 0s between the digits.</p>
+<p>Yea, like any of us have willingly or unwillingly considered the mathematical consequences of a negative base before? Or more than likely whether it was even possible? Even for mathematicians this is unusual ground.</p>
+<p>Although  difficult to conceptualize, the rules for digital representation remain the same: each position has a base raised to the value of the position. Everything&rsquo;s the same as before, just weirder.</p>
+<p>To convert to base (-4) we can, as noted, divide down by -4s, with the caveat of forcing the remainder to become positive. To go the other way we need to keep track of the positions of the digits and multiply each by an ascending power of -4. By nature of the multiplication of negative numbers alternating digits will end up either adding to or subtracting from the final base-10 total.</p>
+<p>Duncan provides additional functions to interlace 0s in the complete quater-imaginary forms, and remove them when converting to decimal.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Function::Parameters;
+
+    fun convert_from_base_neg4( $bstr )
+    {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $currpow <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> length($bstr)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $pos<span style="color:#f92672">=</span>$len; $pos<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>; $pos<span style="color:#f92672">--</span> )
+        {
+            <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> substr($bstr,$pos,<span style="color:#ae81ff">1</span>);
+            $n <span style="color:#f92672">+=</span> $d <span style="color:#f92672">*</span> $currpow;
+            $currpow <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>;
+        }
+        <span style="color:#66d9ef">return</span> $n;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/quater-imaginary-business-date-58ln">Quater-imaginary Business Date</a></p>
+<p>Here is another straightforward implementation, converting solely from base-10 real numbers quater-imaginary ones. As I said before, I&rsquo;m not going to worry too much about that particulars of the challenge definition.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divmod</span> ( $num, $div ) {
+        <span style="color:#75715e"># Perl doesn&#39;t have a built-in divmod function</span>
+        <span style="color:#66d9ef">return</span> int( $num <span style="color:#f92672">/</span> $div ), $num % <span style="color:#960050;background-color:#1e0010">$</span>div;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> ($num) {
+        <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">my</span> $rem;
+
+        <span style="color:#66d9ef">while</span> ( $num <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">or</span> $num <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> ) {
+            ( $num, $rem ) <span style="color:#f92672">=</span> divmod( $num, <span style="color:#f92672">-</span><span style="color:#ae81ff">4</span> );
+
+            <span style="color:#66d9ef">if</span> ( $rem <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> ) {
+                $num <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+                $rem <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;
+            }
+
+            unshift @digits, $rem;
+        }
+
+        unshift @digits, $num;
+
+        <span style="color:#75715e"># The actual solution is the number reversed, separated by zeros</span>
+        say join( <span style="color:#e6db74">&#39;0&#39;</span>, @digits );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/08/21/the-imaginary-quartet">The Imaginary Quartet - Programming Excursions in Perl and Raku</a></p>
+<p>As Simon only provided one-directional travel, to complement his contribution I offer the companion function from my own, to convert back from quater-imaginary to a purely real value. Because we are known to be working in a more constrained problem space we will simply toss out the alternating 0s. We are working with real numbers, right?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">## converts quater-imaginary to non-imaginary base-10</span>
+    <span style="color:#75715e">## strips +i components (which will be zeros) and converts from base -4</span>
+
+        <span style="color:#75715e">## filter out every other position</span>
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> @num <span style="color:#f92672">=</span> grep { $i<span style="color:#f92672">++</span> <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> } split <span style="color:#e6db74">//</span>, $num;
+
+        <span style="color:#75715e">##  convert by computing expanded form</span>
+        <span style="color:#66d9ef">my</span> $out;
+        <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> ( reverse @num ) {
+            $out <span style="color:#f92672">+=</span> $_ <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>) <span style="color:#f92672">**</span> $pos<span style="color:#f92672">++</span>;
+        }
+
+        <span style="color:#66d9ef">return</span> $out;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY presents to us a curious recursive method for constructing quater-imaginary numbers from reals. Actually two methods in fact, both utilizing recursion.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">qib_tr</span> {
+        <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $num <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">if</span> ($num <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">return</span>
+                fmt_qibstr(qibneg(qib_tr(<span style="color:#f92672">-</span>$num))<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>);
+        }
+
+        <span style="color:#66d9ef">my</span> %hash;
+        $hash{sprintf(<span style="color:#e6db74">&#34;%0x&#34;</span>, $_)} <span style="color:#f92672">=</span> stepwise_tr($_) <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">15</span>);
+        <span style="color:#66d9ef">my</span> @hexstr <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, sprintf(<span style="color:#e6db74">&#34;%0x&#34;</span>, $num);
+        <span style="color:#66d9ef">my</span> @com <span style="color:#f92672">=</span> map {
+                    $hash{$hexstr[$_]}<span style="color:#f92672">.</span>(<span style="color:#e6db74">&#34;0000&#34;</span> x scalar @hexstr <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> $_)
+                  } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>scalar @hexstr<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> reduce {qibadd($a, $b)} @com;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">stepwise_tr</span> {
+        <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $num <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $ans;
+        <span style="color:#66d9ef">if</span> ($num <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+            $ans <span style="color:#f92672">=</span> stepwise_tr($num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, $ans;
+            unshift @arr, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">return</span> fmt_qibstr(@arr);
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> fmt_qibstr(qibneg(stepwise_tr(<span style="color:#f92672">-</span>$num))<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>);
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">qibadd</span> {
+        <span style="color:#66d9ef">my</span> @ans;
+        <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
+        ($m, $n) <span style="color:#f92672">=</span> ($n, $m) <span style="color:#66d9ef">if</span> (length $n <span style="color:#f92672">&gt;</span> length $m);
+        <span style="color:#66d9ef">my</span> @marr <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, $m;
+        <span style="color:#66d9ef">my</span> @narr <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, $n;
+        unshift @narr, (<span style="color:#ae81ff">0</span>) x (<span style="color:#ae81ff">4</span> <span style="color:#f92672">+</span> scalar @marr <span style="color:#f92672">-</span> scalar @narr);
+        unshift @marr, (<span style="color:#ae81ff">0</span>) x (<span style="color:#ae81ff">4</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>scalar @marr <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+            push @ans, $marr[$_]<span style="color:#f92672">+</span>$narr[$_];
+        }
+        <span style="color:#66d9ef">return</span> fmt_qibstr(@ans);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">qibneg</span> {
+        <span style="color:#66d9ef">my</span> @ans;
+        <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> @sarr <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, $s;
+        unshift @sarr, (<span style="color:#ae81ff">0</span>) x (<span style="color:#ae81ff">4</span>);
+        <span style="color:#66d9ef">my</span> @narr <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x (scalar @sarr);
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>scalar @sarr <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+            push @ans, $narr[$_]<span style="color:#f92672">-</span>$sarr[$_];
+        }
+        <span style="color:#66d9ef">return</span> [@ans];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p>Ulrich brings us <code>Math::Complex</code> to his implementation. His functions turn real numbers into quater-imaginary ones, but as consequence of using the module he can convert backwards from base 2<em>i</em> into proper complex numbers of the form <em>a</em> + <em>bi</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    perl <span style="color:#ae81ff">178</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>UlrichRieke<span style="color:#f92672">-</span>REVIEW<span style="color:#f92672">.</span>pl
+
+    Please enter a number string<span style="color:#f92672">!</span> If it is quater<span style="color:#f92672">-</span>imaginary, end with <span style="color:#ae81ff">2</span>i <span style="color:#f92672">!</span>
+    <span style="color:#ae81ff">3232</span>i
+    <span style="color:#f92672">-</span><span style="color:#ae81ff">9</span><span style="color:#f92672">+</span><span style="color:#ae81ff">4</span>i
+</code></pre></div><p>This opens us up to another set of far more complicated solutions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">from_quater_imaginary</span> {
+      <span style="color:#66d9ef">my</span> $numberstring <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> $quaterHash <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> Math::Complex<span style="color:#f92672">-&gt;</span>make( <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span> ) ;
+      <span style="color:#66d9ef">my</span> $reversed <span style="color:#f92672">=</span> reverse substr( $numberstring, <span style="color:#ae81ff">0</span> , (length $numberstring) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> ) ;
+      <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> length $reversed ;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $position (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+          <span style="color:#66d9ef">my</span> $firstFactor <span style="color:#f92672">=</span> Math::Complex<span style="color:#f92672">-&gt;</span>make( substr( $reversed, $position , <span style="color:#ae81ff">1</span> ) , <span style="color:#ae81ff">0</span> ) ;
+          $sum <span style="color:#f92672">=</span> $sum <span style="color:#f92672">+</span> $firstFactor <span style="color:#f92672">*</span> $quaterHash<span style="color:#f92672">-&gt;</span>{ $position } ;
+      }
+      <span style="color:#66d9ef">return</span> $sum ;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">into_quater_imaginary</span> {
+      <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> $quaterHash <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> @real_only_products ;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $num( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">4</span> ) {
+          push @real_only_products , $quaterHash<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $num} ;
+      }
+      <span style="color:#66d9ef">my</span> @solutions ;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $e ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">3</span> ) {
+          <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $f ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">3</span> ) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $g ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">3</span> ) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $h ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">3</span> ) {
+              <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">3</span> ) {
+              <span style="color:#66d9ef">if</span> (($real_only_products[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> $e <span style="color:#f92672">+</span> $real_only_products[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> $f <span style="color:#f92672">+</span>
+                $real_only_products[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">*</span> $g <span style="color:#f92672">+</span> $real_only_products[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">*</span> $h <span style="color:#f92672">+</span>
+                $real_only_products[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">*</span> $i) <span style="color:#f92672">==</span> $number) {
+                <span style="color:#66d9ef">my</span> $solution <span style="color:#f92672">=</span> reduce { $a <span style="color:#f92672">.</span> $b } ( $e , <span style="color:#ae81ff">0</span> , $f , <span style="color:#ae81ff">0</span> ,  $g , <span style="color:#ae81ff">0</span> ,
+                  $h , <span style="color:#ae81ff">0</span> , $i ) ;
+                $solution <span style="color:#f92672">=</span> (reverse $solution) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; 2i&#34;</span> ;
+                push @solutions , $solution ;
+              }
+              }
+            }
+        }
+          }
+      }
+      <span style="color:#66d9ef">return</span> @solutions ;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba also imports <code>Math::Complex</code>, to handle arbitrary conversions from quater-imaginary into the more standard component representation. For conversion <em>to</em> quater-imaginary, on the other hand, he employs a remarkable bitwise conversion to base (-4), using the magic number <code>0xCCCCCCCC</code>:</p>
+<pre><code>    (value + 0xCCCCCCCC) XOR 0xCCCCCCCC
+</code></pre><p>this conversion formula was first discovered by Richard Schroeppel in 1972.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Complex <span style="color:#e6db74">qw{ cplx }</span>;
+
+    <span style="color:#66d9ef">my</span> $B <span style="color:#f92672">=</span> cplx(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>);
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">from_quater_imaginary_base</span> ($q) {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span> (length $q) {
+            $n <span style="color:#f92672">+=</span> chop($q) <span style="color:#f92672">*</span> $e;
+            $e <span style="color:#f92672">*=</span> $B;
+        }
+        <span style="color:#66d9ef">return</span> $n
+    }
+
+    <span style="color:#66d9ef">my</span> $SCHROEPPEL4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xCCCCCCCC</span>;
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to_quater_imaginary_base</span> ($n) {
+        <span style="color:#66d9ef">my</span> $binary <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#39;%08b&#39;</span>, ($n <span style="color:#f92672">+</span> $SCHROEPPEL4) <span style="color:#f92672">^</span> $SCHROEPPEL4;
+        <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+        <span style="color:#66d9ef">while</span> ($binary <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(..)/g</span>) {
+            $q <span style="color:#f92672">.=</span> oct(<span style="color:#e6db74">&#34;0b$1&#34;</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+        }
+        $q <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^0+//</span>;
+        chop $q;
+        <span style="color:#66d9ef">return</span> $q
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/08/15/PWC178/">Perl Weekly Challenge 178 – W. Luis Mochán</a></p>
+<p>Luis presents us with another example of using Schroeppel&rsquo;s clever bit-flipping trick in his solution. Then, for the full complex treatment, he converts the real portion and then the imaginary part, multiplying it by -2 because that&rsquo;s what needs to happen to normalize it. This is done so we can use the same base (-4) conversion function, which also folds in the zeros for the alternate digits as we&rsquo;ve seen elsewhere.</p>
+<p>Then, offsetting the imaginary part one place he can just sum the two together — the zeroed portions dovetail into each other like the fingers of two hands. Sweet.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(pairmap)</span>;
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">st_to_reim</span>($string){ <span style="color:#75715e"># Parse string as X+Yi (with small variations)</span>
+        <span style="color:#66d9ef">my</span> $orig<span style="color:#f92672">=</span>$string;
+        <span style="color:#66d9ef">my</span> $re<span style="color:#f92672">=</span> $string<span style="color:#f92672">=~</span><span style="color:#e6db74">s/^(\s*([+-]?\d+))\s*(?!(\d|i))//</span>?$2:0;
+        <span style="color:#66d9ef">my</span> $im<span style="color:#f92672">=</span> $string<span style="color:#f92672">=~</span><span style="color:#e6db74">s/^(\s*([+-]?\d+)\s*i\s*)$//</span>?$2:0;
+        die(<span style="color:#e6db74">&#34;$orig has the wrong format\n&#34;</span>) <span style="color:#66d9ef">unless</span> $string<span style="color:#f92672">=~</span><span style="color:#e6db74">/^$/</span>;
+        die(<span style="color:#e6db74">&#34;$orig is too big\n&#34;</span>) <span style="color:#66d9ef">unless</span> abs($re)<span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1e5</span> <span style="color:#f92672">and</span> abs($im) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1e5</span>; <span style="color:#75715e"># to be safe</span>
+        <span style="color:#66d9ef">return</span> ($re, $im);
+    }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">re_to_qi</span>($X){ <span style="color:#75715e"># convert a real integer number to base 2i</span>
+        state $S<span style="color:#f92672">=</span><span style="color:#ae81ff">0xCCCCCCCC</span>; <span style="color:#75715e"># Schroeppel number, enough for upto 32 bits.</span>
+        <span style="color:#66d9ef">my</span> @bits<span style="color:#f92672">=</span>split <span style="color:#e6db74">&#34;&#34;</span>, sprintf <span style="color:#e6db74">&#34;%b&#34;</span>, ($S<span style="color:#f92672">+</span>$X)<span style="color:#f92672">^</span>$S;
+        unshift @bits,<span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> @bits%2; <span style="color:#75715e"># make length even</span>
+        join <span style="color:#e6db74">&#34;0&#34;</span>, pairmap {<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$a<span style="color:#f92672">+</span>$b} (@bits);
+    }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cmplx_to_qi</span>($X, $Y){    <span style="color:#75715e"># convert a complex integer number X+Yi to base 2i</span>
+        <span style="color:#66d9ef">my</span> $re<span style="color:#f92672">=</span>re_to_qi($X);    <span style="color:#75715e"># convert real part</span>
+        <span style="color:#66d9ef">my</span> $im<span style="color:#f92672">=</span>re_to_qi(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$Y); <span style="color:#75715e"># convert 2i*Yi=-2Y, with Y imaginary part</span>
+        substr $im,<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;&#39;</span>;        <span style="color:#75715e"># delete last digit</span>
+        $re<span style="color:#f92672">+</span>$im;            <span style="color:#75715e"># mix both parts together</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg&rsquo;s notes provide an exceptional guide into the the thicket of complexity we wander into, converting between quater-imaginary and more traditional complex notation. Such as why some quater-imaginary <em>integers</em> pass the radix point and end in &ldquo;.2&rdquo;, which really doesn&rsquo;t sound very integral to me, frankly. I would expect such behavior from fractional bases, but both 2 and <em>i</em> are integers, right? Ok that last part is actually disputable I suppose. It certainly seems pretty integral. How exactly Knuth intended to handle the decimal in machine memory I don&rsquo;t know.</p>
+<p>In any case the operation requires a lot of moving parts. Here are some excerpts from his conversions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># The task states: &#34;convert a given number (base 10)&#34;.  The kind of</span>
+    <span style="color:#75715e"># number is not specified.  As quater-imaginary numbers serve to</span>
+    <span style="color:#75715e"># represent complex numbers, here a complex number is expected.  In</span>
+    <span style="color:#75715e"># general this might be any complex number but for the sake of</span>
+    <span style="color:#75715e"># convenience only integer parts are converted into the quater-imaginary</span>
+    <span style="color:#75715e"># representation.  Unfortunately, these do not always map to &#34;integer&#34;</span>
+    <span style="color:#75715e"># quater-imaginary numbers because odd imaginary parts result in a</span>
+    <span style="color:#75715e"># broken place on the quater-imaginary side.  Therefore one broken place</span>
+    <span style="color:#75715e"># is allowed for the reverse conversion, too.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># To quater-imaginary:</span>
+    <span style="color:#75715e"># - convert the real and half the imaginary part of a given complex</span>
+    <span style="color:#75715e">#   number to negaquaternary.  This gives one broken place for odd</span>
+    <span style="color:#75715e">#   imaginary parts.</span>
+    <span style="color:#75715e"># - interleave the negaquternary digits from both parts.</span>
+
+    <span style="color:#75715e"># Get the quater-imaginary representation of a complex number from its</span>
+    <span style="color:#75715e"># integer real and imaginary parts.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cplx2qi</span> ($z) {
+        <span style="color:#66d9ef">my</span> ($re, $im) <span style="color:#f92672">=</span> map int, $z<span style="color:#f92672">-&gt;</span>Re, $z<span style="color:#f92672">-&gt;</span>Im;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $re <span style="color:#f92672">||</span> $im;
+        <span style="color:#75715e"># Get the reversed negaquaternary representation for the real part.</span>
+        <span style="color:#66d9ef">my</span> $renq <span style="color:#f92672">=</span> int2rnq($re);
+        <span style="color:#75715e"># We need the reversed negaquaterny representation of the imaginary</span>
+        <span style="color:#75715e"># part divided by two.  This may be obtained by converting the value</span>
+        <span style="color:#75715e"># multiplied by minus two and then taking the last digit as a broken</span>
+        <span style="color:#75715e"># place.</span>
+        <span style="color:#66d9ef">my</span> $imnq <span style="color:#f92672">=</span> int2rnq($im <span style="color:#f92672">*</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
+
+        <span style="color:#75715e"># As the real and imaginary parts are reversed, these are aligned at</span>
+        <span style="color:#75715e"># their least significant digit and thus may easily be zipped</span>
+        <span style="color:#75715e"># together starting with the broken place in the imaginary part.</span>
+        <span style="color:#75715e"># Replace &#39;undef&#39; with zero in the shorter part, join the resulting</span>
+        <span style="color:#75715e"># digits and reverse them.</span>
+        <span style="color:#66d9ef">my</span> $qi <span style="color:#f92672">=</span> reverse join <span style="color:#e6db74">&#39;&#39;</span>, map $_ <span style="color:#e6db74">//</span> <span style="color:#ae81ff">0</span>, zip @$imnq, @$renq;
+
+        <span style="color:#75715e"># Remove a leading zero and a trailing zero broken place and insert a</span>
+        <span style="color:#75715e"># dot in front of a nonzero broken part.</span>
+        $qi <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^0?(.*)(.)$/$1 . ($2 ? &#34;.$2&#34; : &#39;&#39;)/e</span>r
+    }
+</code></pre></div><p>He provides a similarly in-depth explanation for his conversion from quater-imaginary back into the language of normal, decent, right-thinking people.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/08/qibs-todays-first-fun-task-as-gabor.html">QIBs and days - fun tasks for a sunny day</a></p>
+<p>The big complication of converting a quater-imaginary number to standard representation is in parsing the individual digits and allocating each with its real and imaginary components to the final aggregate value.</p>
+<p>Peter&rsquo;s solution shows this problem. I&rsquo;m not sure &ldquo;clearly&rdquo; is the right word, although that&rsquo;s hardly Peter&rsquo;s fault. In any case he does do a good job with some extremely difficult material.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">from_qib</span> {
+
+        <span style="color:#75715e"># converts a quater-imaginary base number to a complex number with integer coefficients</span>
+
+        <span style="color:#66d9ef">my</span> ($qib, @digits, $real, $imag, $real_mult, $imag_mult, $hold, $digit);
+
+        $qib <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+
+        <span style="color:#75715e"># put the digits into an array</span>
+        @digits <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $qib);
+
+        <span style="color:#75715e"># loop over the digits from least significant upwards</span>
+        $imag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $real <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $real_mult <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;       <span style="color:#75715e"># these are the contributions of the digit after the point</span>
+        $imag_mult <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>;
+        <span style="color:#66d9ef">for</span> $digit (reverse @digits) {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $digit <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;.&#39;</span>;
+
+            <span style="color:#75715e"># add the (decimal) values of the digits to the answer</span>
+            $real <span style="color:#f92672">+=</span> $real_mult <span style="color:#f92672">*</span> $digit;
+            $imag <span style="color:#f92672">+=</span> $imag_mult <span style="color:#f92672">*</span> $digit;
+
+            <span style="color:#75715e"># and get the real and imag contributions from the next digit</span>
+            $hold <span style="color:#f92672">=</span> $real_mult;
+            $real_mult <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $imag_mult;
+            $imag_mult <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $hold;
+        }
+        say <span style="color:#e6db74">qq[[$qib]2i = $real + ${imag}i]</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a></p>
+<p>Deciphering Kjetil&rsquo;s solution shall be left as an exercise to the reader.</p>
+<p>You know what you did. Maybe when you&rsquo;ve finished you&rsquo;ll think twice before you misbehave.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">c2q</span> {                       <span style="color:#75715e">#complex to quater-imaginary</span>
+        <span style="color:#66d9ef">my</span>($r,$i) <span style="color:#f92672">=</span> @_;             <span style="color:#75715e">#real and imaginary part</span>
+        die <span style="color:#66d9ef">if</span> grep$_<span style="color:#f92672">!=</span>int,@_;      <span style="color:#75715e">#...which must be ints, challenge didnt specify</span>
+        <span style="color:#66d9ef">my</span> $qr <span style="color:#f92672">=</span> _qu($r);
+        <span style="color:#66d9ef">my</span> $qi <span style="color:#f92672">=</span> _qu(int $i<span style="color:#e6db74">/2 + $i%2/</span><span style="color:#ae81ff">2</span>);
+        <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        map { $q <span style="color:#f92672">=</span> ( <span style="color:#e6db74">s/.$//</span> ? $&amp; : <span style="color:#ae81ff">0</span> ) <span style="color:#f92672">.</span> $q } $qr, $qi <span style="color:#66d9ef">while</span> length $qr<span style="color:#f92672">.</span>$qi;
+        $q <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>length$q;
+        $q <span style="color:#f92672">=~</span> s,<span style="color:#f92672">^</span><span style="color:#ae81ff">0</span><span style="color:#f92672">\</span>B,,;
+        $q <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;.2&#39;</span> <span style="color:#66d9ef">if</span> $i % 2;
+        $q
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">q2c</span> {                       <span style="color:#75715e">#quater-imaginary to complex (real and imaginary part)</span>
+        <span style="color:#66d9ef">my</span>($q)<span style="color:#f92672">=</span>@_;
+        <span style="color:#66d9ef">my</span> $i1 <span style="color:#f92672">=</span> $q<span style="color:#f92672">=~</span><span style="color:#e6db74">s/\.2$//</span>;
+        die <span style="color:#66d9ef">if</span> $q <span style="color:#f92672">!~</span> <span style="color:#e6db74">/^[0-3]+$/</span>;    <span style="color:#75715e">#die if not quater-imaginary string</span>
+        <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> @c <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);              <span style="color:#75715e">#complex number returned, init to zero</span>
+        <span style="color:#66d9ef">my</span> @d <span style="color:#f92672">=</span> reverse split<span style="color:#e6db74">//</span>,$q; <span style="color:#75715e">#digits reversed</span>
+        $c[<span style="color:#f92672">++</span>$k%2] <span style="color:#f92672">+=</span> $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$k <span style="color:#f92672">*</span> ($k%4<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>?<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> @d;
+        $c[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-=</span> $i1;               <span style="color:#75715e">#decrease if .2</span>
+        @c
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_ediv</span> {                     <span style="color:#75715e">#https://en.wikipedia.org/wiki/Euclidean_division</span>
+        <span style="color:#66d9ef">use</span> integer;
+        <span style="color:#66d9ef">my</span>($n,$d)<span style="color:#f92672">=</span>@_;               <span style="color:#75715e">#numerator and denominator</span>
+        $d<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> ? die : $n<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $n%$d<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> ? ($n<span style="color:#e6db74">/$d,$n%$d) : ($n/</span>$d<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>($d<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>), $n%$d<span style="color:#f92672">+</span>abs$d)
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_qu</span> {
+        <span style="color:#66d9ef">my</span>($n,$qu)<span style="color:#f92672">=</span>(@_,<span style="color:#e6db74">&#39;&#39;</span>);
+        $n ? <span style="color:#66d9ef">do</span>{ <span style="color:#66d9ef">my</span>($q,$r)<span style="color:#f92672">=</span>_ediv($n,<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>); _qu($q,$r<span style="color:#f92672">.</span>$qu) } : $qu
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://etoobusy.polettix.it/2022/08/17/pwc178-quater-imaginary-base/">PWC178 - Quater-imaginary Base - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_178__Imaginary_Date.html">RogerBW&rsquo;s Blog: The Weekly Challenge 178: Imaginary Date</a></p>
+<hr>
+<hr>
+<h1 id="PWC178TASK2">TASK 2</h1>
+<h1 id="business-date">Business Date</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given $timestamp (date with time) and $duration in hours.</p>
+<p>Write a script to find the time that occurs $duration business hours after $timestamp. For the sake of this task, let us assume the working hours is 9am to 6pm, Monday to Friday. Please ignore timezone too.</p>
+<p>For example,</p>
+<p>Suppose the given timestamp is 2022-08-01 10:30 and the duration is 4 hours. Then the next business date would be 2022-08-01 14:30.</p>
+<p>Similar if the given timestamp is 2022-08-01 17:00 and the duration is 3.5 hours. Then the next business date would be 2022-08-02 11:30.</p>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178//perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/kjetillll/perl/ch-2.pl"><strong>Kjetil Skotheim</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/solathian/perl/ch-2.pl"><strong>Solathian</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>There were more submissions for the second task this week than the first, an unusual inversion of the norm. Although, the way this lovely 21st century is going, I fail to see how anything can be considered normal anymore. It&rsquo;s a logical paradox: if abnormal is normal, you&rsquo;re defining something by its own negation, and suddenly you&rsquo;re dividing by zero. This does not sound like a healthy situation, frankly.</p>
+<p>But I digress.</p>
+<p>Date and time manipulations are notoriously tricky around the the edges of the problem space, often requiring multiple cases to cover all possible conditions. This challenge is no exception. We are calculating a time differential, but only counting certain hours towards the elapsed total, with even that pattern subject to a weekend epicycle.</p>
+<p>The resulting scheme of which hours to count is both well-defined yet complicated and irregular. Furthermore, sometimes the elapsed total will occur within a single day, which further complicates matters.</p>
+<p>There were 16 submissions for the second task this past week.</p>
+<h2 id="a-selection-of-submissions-1">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/kjetillll/perl/ch-2.pl"><strong>Kjetil Skotheim</strong></a></p>
+<p>There are a variety of modules available to help us keep track of dates and times, and most submissions made use of one or the other, if only to parse the input timestamp. However even taking this small bit of outside help was not universal, as some members went in on their own, against medical advice. Their families have been notified and they will be missed.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/08/qibs-todays-first-fun-task-as-gabor.html">QIBs and days - fun tasks for a sunny day</a></p>
+<p>Peter presents us with with a very methodical solution, which will serve will to start the clock. Because the start time is an arbitrary selection from the valid working hours of a week, Peter has decided to normalize the start time by first shifting to 9am, and then again to Monday morning of the week in question. The shifted hours, in seconds, are added to the duration to make things work out.</p>
+<p>From there he advances forward, first adding complete weeks, then whole days, and finally the remainder comprises the hours, minutes and any seconds in the timestamp for the end date.</p>
+<p>The timestamps themselves are notably disassembled using a regex, then reassembled using <code>sprintf</code>.</p>
+<p>Weekends, as noted, provide an added kink in the pattern, and Peter has devised a separate function, <code>date10_add()</code> to accommodate the skips and keeping the date correct.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Local <span style="color:#e6db74">&#39;timelocal_posix&#39;</span>;
+
+       $start <span style="color:#f92672">=</span> $test<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+       $duration <span style="color:#f92672">=</span> $test<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];   <span style="color:#75715e"># hours</span>
+
+       $start <span style="color:#f92672">=~</span> m<span style="color:#f92672">|</span>(<span style="color:#f92672">....</span>)<span style="color:#f92672">.</span>(<span style="color:#f92672">..</span>)<span style="color:#f92672">.</span>(<span style="color:#f92672">..</span>)<span style="color:#f92672">.</span>(<span style="color:#f92672">..</span>)<span style="color:#f92672">.</span>(<span style="color:#f92672">..</span>)<span style="color:#f92672">.</span>(<span style="color:#f92672">..</span>)<span style="color:#f92672">|</span>;
+       ($y, $m, $d, $h, $i, $s) <span style="color:#f92672">=</span> ($1, $2, $3, $4, $5, $6);
+
+       <span style="color:#75715e"># move back to 9am on the starting day</span>
+       $date <span style="color:#f92672">=</span> substr($start, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>);
+       $duration <span style="color:#f92672">+=</span> $h <span style="color:#f92672">-</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">-</span> $i <span style="color:#e6db74">/ 60 - $s  /</span> <span style="color:#ae81ff">3600</span> ;   <span style="color:#75715e"># revised duration</span>
+
+       <span style="color:#75715e"># move back to preceding Monday 9am</span>
+       @t <span style="color:#f92672">=</span> localtime(timelocal_posix($s, $i, $h, $d, $m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1900</span>));
+       $day_of_week <span style="color:#f92672">=</span> $t[<span style="color:#ae81ff">6</span>];   <span style="color:#75715e"># 0 = Sunday</span>
+       $date <span style="color:#f92672">=</span> date10_add($start, <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> $day_of_week);
+       $duration <span style="color:#f92672">+=</span> ($day_of_week <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">9</span>;
+
+       <span style="color:#75715e"># move forward complete weeks</span>
+       $whole_weeks <span style="color:#f92672">=</span> int($duration <span style="color:#f92672">/</span> <span style="color:#ae81ff">45</span>);
+       $date <span style="color:#f92672">=</span> date10_add($date, <span style="color:#ae81ff">7</span> <span style="color:#f92672">*</span> $whole_weeks);
+       $duration <span style="color:#f92672">-=</span> $whole_weeks <span style="color:#f92672">*</span> <span style="color:#ae81ff">45</span>;
+
+       <span style="color:#75715e"># and whole days</span>
+       $whole_days <span style="color:#f92672">=</span> int($duration <span style="color:#f92672">/</span> <span style="color:#ae81ff">9</span>);
+       $date <span style="color:#f92672">=</span> date10_add($date, $whole_days);
+       $duration <span style="color:#f92672">-=</span> $whole_days <span style="color:#f92672">*</span> <span style="color:#ae81ff">9</span>;
+
+       <span style="color:#75715e"># and the time of day</span>
+       $h <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> int($duration);
+       $duration <span style="color:#f92672">-=</span> int($duration);
+       $duration <span style="color:#f92672">*=</span> <span style="color:#ae81ff">3600</span>;  <span style="color:#75715e"># seconds</span>
+       $i <span style="color:#f92672">=</span> int($duration <span style="color:#f92672">/</span> <span style="color:#ae81ff">60</span>);
+       $s <span style="color:#f92672">=</span> $duration <span style="color:#f92672">-</span> $i <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>;
+
+       $end <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#39;%s %02d:%02d:%02d&#39;</span>, $date, $h, $i, $s);
+       say <span style="color:#e6db74">qq[\ntimestamp = $start\nduration  = $test-&gt;[1]\nend       = $end]</span>;
+   }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">date10_add</span> {  <span style="color:#75715e">#  (date10a, days) -- returns date10 which is days after date10a</span>
+
+        <span style="color:#66d9ef">my</span> (@t);
+        <span style="color:#66d9ef">if</span> ($_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span> m<span style="color:#f92672">|^</span>(<span style="color:#f92672">....</span>)<span style="color:#f92672">-</span>(<span style="color:#f92672">..</span>)<span style="color:#f92672">-</span>(<span style="color:#f92672">..</span>)<span style="color:#f92672">|</span>) {
+            @t <span style="color:#f92672">=</span> localtime(timelocal_posix(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">12</span>, $3, $2 <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $1 <span style="color:#f92672">-</span> <span style="color:#ae81ff">1900</span>) <span style="color:#f92672">+</span> $_[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">86400</span>);
+            <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#39;%04d-%02d-%02d&#39;</span>, $t[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1900</span>, $t[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $t[<span style="color:#ae81ff">3</span>]);
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/duncan-c-white/C/ch-2.c">C</a></p>
+<p>With an alternate take, Duncan demonstrates that we can solve the problem simply, if we let the right module do it for us. Here Duncan brings in <code>Date::Manip::Date</code>, and its companion <code>Date::Manip::Delta</code>, which holds a (configurable) idea of &ldquo;business day&rdquo;. So in this case we make an object, tell it to add so many business hours, and we&rsquo;re in. It&rsquo;s very interesting that instead of a separate function, we literally tell the parser, in English, what we want it to do.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Date::Manip::Date;
+    <span style="color:#66d9ef">use</span> Date::Manip::Delta;
+
+    <span style="color:#66d9ef">my</span> $debug<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    die <span style="color:#e6db74">&#34;Usage: business-date [--debug] DATETIME DURATION\n&#34;</span>
+        <span style="color:#66d9ef">unless</span> GetOptions( <span style="color:#e6db74">&#34;debug&#34;</span><span style="color:#f92672">=&gt;\</span>$debug ) <span style="color:#f92672">&amp;&amp;</span> @ARGV<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>;
+
+    <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $duration <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date::Manip::Date;
+    $date<span style="color:#f92672">-&gt;</span>config( <span style="color:#e6db74">&#34;WorkDayBeg&#34;</span>, <span style="color:#e6db74">&#34;09:00:00&#34;</span>, <span style="color:#e6db74">&#34;WorkDayEnd&#34;</span>, <span style="color:#e6db74">&#34;18:00:00&#34;</span> );
+    <span style="color:#66d9ef">my</span> $err <span style="color:#f92672">=</span> $date<span style="color:#f92672">-&gt;</span>parse( $dt );
+    die <span style="color:#e6db74">&#34;business date: date $dt - parse error $err\n&#34;</span> <span style="color:#66d9ef">if</span> $err;
+    die <span style="color:#e6db74">&#34;business date: date $dt - is not a business day/time\n&#34;</span> <span style="color:#66d9ef">unless</span>
+        $date<span style="color:#f92672">-&gt;</span>is_business_day( <span style="color:#ae81ff">1</span> );
+
+    <span style="color:#66d9ef">my</span> $delta <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date::Manip::Delta;
+    $err <span style="color:#f92672">=</span> $delta<span style="color:#f92672">-&gt;</span>parse(<span style="color:#e6db74">&#34;in $duration business hours&#34;</span>);
+    die <span style="color:#e6db74">&#34;business date: duration $delta - parse error $err\n&#34;</span> <span style="color:#66d9ef">if</span> $err;
+
+    <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> $date<span style="color:#f92672">-&gt;</span>calc( $delta );
+    say $d<span style="color:#f92672">-&gt;</span>printf(<span style="color:#e6db74">&#34;%Y-%m-%d %H:%M&#34;</span>);
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_178__Imaginary_Date.html">RogerBW&rsquo;s Blog: The Weekly Challenge 178: Imaginary Date</a></p>
+<p>The <code>DateTime</code> family of modules is arguably the most famous of the date and time manipulation frameworks in Perl, and does its best to try and accomodate any need that may arise. As such is it a sprawling complex of interrelated parts that work well together in a pretty logical manner, considering.</p>
+<p>Here Roger brings us a fairly terse solution that handles all the necessary corner cases. Of which there are many.</p>
+<p>This is the core logic. Helper functions take care of the questions: &ldquo;Is this in a business day?&quot;, &ldquo;what is the start of the next business day? (making allowance for weekends)&rdquo; and &ldquo;what is the end of the next business day?&rdquo;</p>
+<p>The <code>$current</code> variable holds a <code>DateTime</code> object, to which we add time units, and deplete the duration, measured in seconds, to keep the two in sync.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">addbizhours</span>($start, $delta) {
+      <span style="color:#66d9ef">my</span> $strp <span style="color:#f92672">=</span> DateTime::Format::Strptime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+        pattern   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;%Y-%m-%d %H:%M&#39;</span>,
+        strict <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        time_zone <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;GMT&#39;</span>,
+          );
+      <span style="color:#66d9ef">my</span> $current<span style="color:#f92672">=</span>$strp<span style="color:#f92672">-&gt;</span>parse_datetime($start);
+      <span style="color:#66d9ef">my</span> $seconds <span style="color:#f92672">=</span> <span style="color:#ae81ff">3600</span> <span style="color:#f92672">*</span> $delta;
+      <span style="color:#66d9ef">my</span> $bizdaylength <span style="color:#f92672">=</span> <span style="color:#ae81ff">3600</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">9</span>;
+      <span style="color:#66d9ef">unless</span> (isbiz($current)) {
+        $current <span style="color:#f92672">=</span> nextbizstart($current);
+      }
+      <span style="color:#66d9ef">my</span> $ed <span style="color:#f92672">=</span> nextbizend($current);
+      <span style="color:#66d9ef">my</span> $remain <span style="color:#f92672">=</span> ($ed<span style="color:#f92672">-&gt;</span>subtract_datetime_absolute($current))<span style="color:#f92672">-&gt;</span>in_units(<span style="color:#e6db74">&#39;seconds&#39;</span>);
+      <span style="color:#66d9ef">if</span> ($remain <span style="color:#f92672">&lt;</span> $seconds) {
+        $seconds <span style="color:#f92672">-=</span> $remain;
+        $current <span style="color:#f92672">=</span> nextbizstart($ed);
+        <span style="color:#66d9ef">while</span> ($seconds <span style="color:#f92672">&gt;</span> $bizdaylength) {
+          $current <span style="color:#f92672">=</span> nextbizstart($current);
+          $seconds <span style="color:#f92672">-=</span> $bizdaylength;
+        }
+      }
+      $current<span style="color:#f92672">-&gt;</span>add(seconds <span style="color:#f92672">=&gt;</span> $seconds);
+      <span style="color:#66d9ef">return</span> $current<span style="color:#f92672">-&gt;</span>strftime(<span style="color:#e6db74">&#39;%Y-%m-%d %H:%M&#39;</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://etoobusy.polettix.it/2022/08/18/pwc178-business-date/">PWC178 - Business Date - ETOOBUSY</a></p>
+<p>Flavio gets by with only using <code>Time::Local</code> to supply a reverse function for the built-in <code>gmtime</code> function, so he can supply an array of values and generate epoch seconds, modify those seconds and convert back.</p>
+<p>That&rsquo;s enough.</p>
+<p>Again we have helper functions, this time for <code>is_in_business($dt)</code> and <code>next_business_day_start($dt)</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Local <span style="color:#e6db74">&#39;timegm&#39;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_bh</span> ($timestamp, $duration) {
+       state $sod_min <span style="color:#f92672">=</span>  <span style="color:#ae81ff">9</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>;
+       state $eod_min <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>;
+       <span style="color:#66d9ef">my</span> $duration_min <span style="color:#f92672">=</span> int($duration <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>); <span style="color:#75715e"># in minutes, rounded down</span>
+
+       <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> parse_datetime($timestamp);
+
+       <span style="color:#75715e"># cope with the possibility that the provided timestamp is</span>
+       <span style="color:#75715e"># *outside* the allowed range, move to the beginning of the</span>
+       <span style="color:#75715e"># next business day</span>
+       $dt <span style="color:#f92672">=</span> next_business_day_start($dt) <span style="color:#66d9ef">unless</span> is_in_business($dt);
+       <span style="color:#66d9ef">my</span> $start_min <span style="color:#f92672">=</span> $dt<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> $dt<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">4</span>];
+
+       <span style="color:#66d9ef">while</span> ($duration_min <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+          <span style="color:#66d9ef">my</span> $available_min <span style="color:#f92672">=</span> $eod_min <span style="color:#f92672">-</span> $start_min;
+          <span style="color:#66d9ef">if</span> ($duration_min <span style="color:#f92672">&gt;=</span> $available_min) {
+             $dt <span style="color:#f92672">=</span> next_business_day_start($dt);
+             $duration_min <span style="color:#f92672">-=</span> $available_min;
+             $start_min <span style="color:#f92672">=</span> $sod_min;
+          }
+          <span style="color:#66d9ef">else</span> { <span style="color:#75715e"># we&#39;re in the very day!</span>
+             <span style="color:#66d9ef">my</span> $stop_min <span style="color:#f92672">=</span> $start_min <span style="color:#f92672">+</span> $duration_min;
+             $dt<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $M <span style="color:#f92672">=</span> $stop_min % 60;
+             $dt<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> ($stop_min <span style="color:#f92672">-</span> $M) <span style="color:#f92672">/</span> <span style="color:#ae81ff">60</span>;
+             $duration_min <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+          }
+       }
+
+       <span style="color:#66d9ef">return</span> sprintf <span style="color:#e6db74">&#39;%04d-%02d-%02d %02d:%02d&#39;</span>, $dt<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+    <span style="color:#960050;background-color:#1e0010">}</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/08/22/a-very-busy-dating-service">A Very Busy Dating Service - Programming Excursions in Perl and Raku</a></p>
+<p>I&rsquo;m a big fan of back-of-the-envelope calculations, the important secret of which is keeping track of significant digits. In the spirit of this, I decided that when adding a duration listed in hours, keeping track of individual seconds was presumably pointless, as even time-clocks are not to my knowledge that granular. Lawyers bill by the minute, not the second.</p>
+<p>Ergo I performed my calculations in the minutes composing individual hours. Two sweeps of minutes could easily exceed an hour, in fact this will happen nearly half the time. But seconds incrementing a minute, which in turn itself increments an hour? Not so much.</p>
+<p>Again we build a <code>DateTime</code> object, and proceed in an orderly fashion:  first the remaining minutes of the initial day, then whole days until the remaining time is less than a day, skipping weekends, then using up what&rsquo;s left counting from 9am on the end date.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">## convert to minutes</span>
+    <span style="color:#66d9ef">my</span> $duration_minutes <span style="color:#f92672">=</span> $delta <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>;
+
+    <span style="color:#75715e">## parse input and create a DateTime object for the timestamp</span>
+    <span style="color:#66d9ef">my</span> $format <span style="color:#f92672">=</span> DateTime::Format::Strptime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+                     pattern   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;%F %H:%M&#39;</span>);
+    <span style="color:#66d9ef">my</span> $date  <span style="color:#f92672">=</span> $format<span style="color:#f92672">-&gt;</span>parse_datetime($timestamp);
+
+    <span style="color:#75715e">## calculate remaining minutes in current day</span>
+    <span style="color:#66d9ef">my</span> $day_end <span style="color:#f92672">=</span>  DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+        year       <span style="color:#f92672">=&gt;</span> $date<span style="color:#f92672">-&gt;</span>year,
+        month      <span style="color:#f92672">=&gt;</span> $date<span style="color:#f92672">-&gt;</span>month,
+        day        <span style="color:#f92672">=&gt;</span> $date<span style="color:#f92672">-&gt;</span>day,
+        hour       <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">18</span>,
+        minute     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>
+    );
+    <span style="color:#66d9ef">my</span> $date_remaining_duration <span style="color:#f92672">=</span> $day_end<span style="color:#f92672">-&gt;</span>subtract_datetime($date);
+    <span style="color:#66d9ef">my</span> $remaining_minutes_today <span style="color:#f92672">=</span> $date_remaining_duration<span style="color:#f92672">-&gt;</span>hours <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span>
+                                  $date_remaining_duration<span style="color:#f92672">-&gt;</span>minutes;
+
+    <span style="color:#75715e">## CASE 1: duration falls within current day</span>
+    <span style="color:#75715e">##</span>
+    <span style="color:#66d9ef">if</span> ($duration_minutes <span style="color:#f92672">&lt;=</span> $remaining_minutes_today) {
+        $date<span style="color:#f92672">-&gt;</span>add( minutes <span style="color:#f92672">=&gt;</span> $duration_minutes );
+    }
+
+    <span style="color:#75715e">## CASE 2: we finish this day and locate the ending day</span>
+    <span style="color:#75715e">##</span>
+    <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e">## subtract remaining time within current day</span>
+        $duration_minutes <span style="color:#f92672">-=</span> $remaining_minutes_today;
+
+        <span style="color:#75715e">## start a new day to the next business day</span>
+        $date<span style="color:#f92672">-&gt;</span>set_hour( <span style="color:#ae81ff">9</span> );
+        $date<span style="color:#f92672">-&gt;</span>set_minute( <span style="color:#ae81ff">0</span> );
+        $date<span style="color:#f92672">-&gt;</span>add( days <span style="color:#f92672">=&gt;</span> ($date<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span> ? <span style="color:#ae81ff">3</span> : <span style="color:#ae81ff">1</span>));
+
+        <span style="color:#75715e">## add any complete days, skipping weekends</span>
+        <span style="color:#66d9ef">while</span> ($duration_minutes <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">540</span>) {      <span style="color:#75715e">## 540 minutes in 9-hour day</span>
+            $date<span style="color:#f92672">-&gt;</span>add( days <span style="color:#f92672">=&gt;</span> ($date<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span> ? <span style="color:#ae81ff">3</span> : <span style="color:#ae81ff">1</span>));
+            $duration_minutes <span style="color:#f92672">-=</span> <span style="color:#ae81ff">540</span>;
+        }
+
+        <span style="color:#75715e">## add any remaining minutes forward from 9am on the end day</span>
+        $date<span style="color:#f92672">-&gt;</span>add( minutes <span style="color:#f92672">=&gt;</span> $duration_minutes );
+    }
+
+    <span style="color:#75715e">## output timestamp as per format</span>
+    $date<span style="color:#f92672">-&gt;</span>set_formatter($format);
+    say $date<span style="color:#f92672">-&gt;</span>stringify;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>All the kinks and wrinkles in the pattern of times within and without the agreed business hours make summarizing the submissions quite difficult, as leaving bits out leaves them noticeably  incomplete. Although this is always an issue, with this task it seems more pronounced.</p>
+<p>Here Jorg justifies the lengthy crop as he provides an extensive commentary as he goes along, clarifying his motivations. He&rsquo;s a good one, that Jorg.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">business_date</span> {
+        <span style="color:#75715e"># A &#39;yyyy-mm-dd hh:mm&#39; DateTime formatter/parser.</span>
+        state $date_fmt <span style="color:#f92672">=</span> DateTime::Format::Strptime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(pattern <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;%F %R&#39;</span>);
+
+        <span style="color:#75715e"># Business start and end hours per day of week.  These are stored as</span>
+        <span style="color:#75715e"># durations that will be added to a DateTime object representing the</span>
+        <span style="color:#75715e"># beginning of a day.</span>
+        state $business <span style="color:#f92672">=</span> [
+            <span style="color:#75715e"># Mon - Fri</span>
+            ([map duration($_), <span style="color:#e6db74">qw(09:00 18:00)</span>]) x <span style="color:#ae81ff">5</span>,
+            <span style="color:#75715e"># Sat + Sun</span>
+            ([map duration($_), <span style="color:#e6db74">qw(0:00 0:00)</span>]) x <span style="color:#ae81ff">2</span>
+        ];
+
+        <span style="color:#75715e"># Convert args from string to DateTime / Duration.</span>
+        <span style="color:#66d9ef">my</span> $timestamp <span style="color:#f92672">=</span> $date_fmt<span style="color:#f92672">-&gt;</span>parse_datetime(shift);
+        <span style="color:#66d9ef">my</span> $duration <span style="color:#f92672">=</span> duration(shift);
+
+        <span style="color:#75715e"># The formatter will be propagated to the remaining DateTime</span>
+        <span style="color:#75715e"># objects.</span>
+        $timestamp<span style="color:#f92672">-&gt;</span>set_formatter($date_fmt);
+
+        <span style="color:#66d9ef">while</span> () {
+            <span style="color:#75715e"># Get the beginning of the day from the timestamp.</span>
+            <span style="color:#66d9ef">my</span> $day <span style="color:#f92672">=</span> $timestamp<span style="color:#f92672">-&gt;</span>clone<span style="color:#f92672">-&gt;</span>truncate(to <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;day&#39;</span>);
+
+            <span style="color:#75715e"># Get the business starting and ending timestamps for the</span>
+            <span style="color:#75715e"># current day of week. Mon is zero.</span>
+            <span style="color:#66d9ef">my</span> ($start, $end) <span style="color:#f92672">=</span> map $day <span style="color:#f92672">+</span> $_,
+                $business<span style="color:#f92672">-&gt;</span>[$timestamp<span style="color:#f92672">-&gt;</span>day_of_week_0]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+            <span style="color:#960050;background-color:#1e0010">#</span> Adjust a timestamp prior to the business start<span style="color:#f92672">.</span>
+            $timestamp <span style="color:#f92672">=</span> $start <span style="color:#66d9ef">if</span> $timestamp <span style="color:#f92672">&lt;</span> $start;
+
+            <span style="color:#75715e"># We found the requested business hour if this day has business</span>
+            <span style="color:#75715e"># hours and the duration is exhausted before the business end.</span>
+            <span style="color:#75715e"># This covers an edge case: A timestamp after the business end</span>
+            <span style="color:#75715e"># with a zero duration is delayed to the next business start.</span>
+            <span style="color:#75715e"># See tests.</span>
+            <span style="color:#66d9ef">return</span> $timestamp <span style="color:#f92672">+</span> $duration
+                <span style="color:#66d9ef">if</span> $start <span style="color:#f92672">&lt;</span> $end <span style="color:#f92672">&amp;&amp;</span> $timestamp <span style="color:#f92672">+</span> $duration <span style="color:#f92672">&lt;=</span> $end;
+
+            <span style="color:#75715e"># Reduce the duration by todays remaining business hours.</span>
+            $duration<span style="color:#f92672">-&gt;</span>subtract_duration($end <span style="color:#f92672">-</span> $timestamp)
+                <span style="color:#66d9ef">if</span> $timestamp <span style="color:#f92672">&lt;=</span> $end;
+
+            <span style="color:#75715e"># Step to the next day.</span>
+            $timestamp <span style="color:#f92672">=</span> $day<span style="color:#f92672">-&gt;</span>add(days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+        }
+    }
+
+    <span style="color:#75715e"># Create a DateTime::Duration object from a string.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">duration</span> ($dur) {
+        <span style="color:#75715e"># A &#39;hh:mm&#39; duration formatter/parser.</span>
+        state $dur_fmt <span style="color:#f92672">=</span> DateTime::Format::Duration<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(pattern <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;%R&#39;</span>);
+
+        $dur_fmt<span style="color:#f92672">-&gt;</span>parse_duration($dur);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/08/15/PWC178/">Perl Weekly Challenge 178 – W. Luis Mochán</a></p>
+<p>In a stab at brevity, I&rsquo;ll detail Luis&rsquo; progression first, as we relentlessly move from the start time forward</p>
+<ul>
+<li>
+<p>Advance towards end of day</p>
+</li>
+<li>
+<p>Advance towards end of week</p>
+</li>
+<li>
+<p>Advance to next working morning</p>
+</li>
+<li>
+<p>Advance full weeks</p>
+</li>
+<li>
+<p>Advance full days</p>
+</li>
+<li>
+<p>Advance remaining time</p>
+</li>
+</ul>
+<p>It&rsquo;s a very orderly dispatch.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_available</span>($ts, $hours){
+        <span style="color:#66d9ef">my</span> $minutes<span style="color:#f92672">=</span>$hours<span style="color:#f92672">*</span>$minutes_per_hour;
+        <span style="color:#66d9ef">my</span> $initial<span style="color:#f92672">=</span>DateTime::Format::DateParse<span style="color:#f92672">-&gt;</span>parse_datetime($ts)<span style="color:#f92672">-&gt;</span>truncate(to<span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;minute&#34;</span>);
+        die <span style="color:#e6db74">&#34;Wrong timestamp&#34;</span> <span style="color:#66d9ef">unless</span> $initial<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">and</span> $initial<span style="color:#f92672">-&gt;</span>hour<span style="color:#f92672">&gt;=</span>$opening_time
+        <span style="color:#f92672">and</span> $initial<span style="color:#f92672">-&gt;</span>hour <span style="color:#f92672">&lt;</span> $closing_time;
+
+        <span style="color:#75715e"># Advance towards end of day</span>
+        <span style="color:#66d9ef">my</span> $target<span style="color:#f92672">=</span>$initial<span style="color:#f92672">-&gt;</span>clone;
+        <span style="color:#66d9ef">my</span> $closing<span style="color:#f92672">=</span>$target<span style="color:#f92672">-&gt;</span>clone<span style="color:#f92672">-&gt;</span>set(hour<span style="color:#f92672">=&gt;</span>$closing_time, minute<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">my</span> $minutes_to_close<span style="color:#f92672">=</span>$closing<span style="color:#f92672">-&gt;</span>subtract_datetime($target)<span style="color:#f92672">-&gt;</span>in_units(<span style="color:#e6db74">&#34;minutes&#34;</span>);
+        <span style="color:#66d9ef">my</span> $actual_minutes<span style="color:#f92672">=</span>min($minutes, $minutes_to_close);
+        $target<span style="color:#f92672">-&gt;</span>add(minutes<span style="color:#f92672">=&gt;</span>$actual_minutes);
+        $minutes<span style="color:#f92672">-=</span>$actual_minutes;
+        <span style="color:#66d9ef">return</span> $target<span style="color:#f92672">-&gt;</span>datetime(<span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">unless</span> $minutes<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>;
+
+        <span style="color:#75715e"># Advance towards end of week</span>
+        <span style="color:#66d9ef">my</span> $days_to_weekend<span style="color:#f92672">=</span>$days_per_week<span style="color:#f92672">-</span>$target<span style="color:#f92672">-&gt;</span>day_of_week;
+        <span style="color:#66d9ef">my</span> $actual_days<span style="color:#f92672">=</span>min($days_to_weekend, floor($minutes<span style="color:#f92672">/</span>$minutes_per_day));
+        $target<span style="color:#f92672">-&gt;</span>add(days<span style="color:#f92672">=&gt;</span>$actual_days);
+        $minutes<span style="color:#f92672">-=</span>$actual_days<span style="color:#f92672">*</span>$minutes_per_day;
+        <span style="color:#66d9ef">return</span>  $target<span style="color:#f92672">-&gt;</span>datetime(<span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">unless</span> $minutes<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>;
+
+        <span style="color:#75715e"># Advance to next working morning</span>
+        $target<span style="color:#f92672">-&gt;</span>add(days<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>set(hour<span style="color:#f92672">=&gt;</span>$opening_time, minute<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">0</span>); <span style="color:#75715e"># next morning</span>
+        $target<span style="color:#f92672">-&gt;</span>add(days<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">if</span> $target<span style="color:#f92672">-&gt;</span>day_of_week<span style="color:#f92672">==</span><span style="color:#ae81ff">6</span>; <span style="color:#75715e"># skip weekend</span>
+
+        <span style="color:#75715e"># Advance full weeks</span>
+        <span style="color:#66d9ef">my</span> $weeks<span style="color:#f92672">=</span>floor($minutes<span style="color:#f92672">/</span>$minutes_per_week);
+        $target<span style="color:#f92672">-&gt;</span>add(weeks<span style="color:#f92672">=&gt;</span>$weeks);
+        $minutes<span style="color:#f92672">-=</span>$weeks<span style="color:#f92672">*</span>$minutes_per_week;
+        <span style="color:#66d9ef">return</span>  $target<span style="color:#f92672">-&gt;</span>datetime(<span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">unless</span> $minutes<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>;
+
+        <span style="color:#75715e">#Advance full days</span>
+        <span style="color:#66d9ef">my</span> $days<span style="color:#f92672">=</span>floor($minutes<span style="color:#f92672">/</span>$minutes_per_day);
+        $target<span style="color:#f92672">-&gt;</span>add(days<span style="color:#f92672">=&gt;</span>$days);
+        $minutes<span style="color:#f92672">-=</span>$days<span style="color:#f92672">*</span>$minutes_per_day;
+        <span style="color:#66d9ef">return</span>  $target<span style="color:#f92672">-&gt;</span>datetime(<span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">unless</span> $minutes<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>;
+
+        <span style="color:#75715e">#Advance remaining time</span>
+        $target<span style="color:#f92672">-&gt;</span>add(minutes<span style="color:#f92672">=&gt;</span>$minutes);
+        <span style="color:#75715e">#$minutes=0</span>
+        <span style="color:#66d9ef">return</span>  $target<span style="color:#f92672">-&gt;</span>datetime(<span style="color:#e6db74">&#34; &#34;</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/quater-imaginary-business-date-58ln">Quater-imaginary Business Date</a></p>
+<p>I&rsquo;m glad someone else saw fit to exclude seconds from consideration. In my eyes once you include seconds you take on all the baggage they carry with them, up to including the distant possibility that a <em>leap</em> second will influence the outcome.</p>
+<p>I don&rsquo;t believe spacecraft operate on that level of precision, or at least the assumption of that precision. With opposite relativistic effects operating from both velocity and gravity wells I believe the Standard Operating Procedure is to make tiny corrections, to the courses and the clocks involved, to keep everything on track. The <a href="https://en.wikipedia.org/wiki/Three-body_problem">Three Body Problem</a> is reduced to <a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/FixItInPost">&ldquo;We&rsquo;ll fix it in post&rdquo;</a>.</p>
+<p>At least Simon appears to agree with me. Either that or it&rsquo;s easier, which it is, and a little less cluttered. Again he breaks down his process with line-by-line commentary, so I&rsquo;ll leave it intact so you can watch the action.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime;
+    <span style="color:#66d9ef">use</span> DateTime::Format::Strptime;
+
+    <span style="color:#75715e"># It&#39;s easier to work in minutes</span>
+    <span style="color:#66d9ef">my</span> $minutes <span style="color:#f92672">=</span> $hours <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>;
+
+    <span style="color:#66d9ef">my</span> $strp <span style="color:#f92672">=</span> DateTime::Format::Strptime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( pattern <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;%F %H:%M&#39;</span> );
+
+    <span style="color:#75715e"># Parse the date time input</span>
+    <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> $strp<span style="color:#f92672">-&gt;</span>parse_datetime($dt);
+
+    <span style="color:#75715e"># Can&#39;t start on a weekend</span>
+    <span style="color:#66d9ef">if</span> ( $start<span style="color:#f92672">-&gt;</span>day_of_week() <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">6</span> ) {
+        die <span style="color:#e6db74">&#34;You can&#39;t start in the weekend\n&#34;</span>;
+    }
+
+    <span style="color:#75715e"># Can&#39;t start outside office hours</span>
+    <span style="color:#66d9ef">if</span> ( $start<span style="color:#f92672">-&gt;</span>hour <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">or</span> $start<span style="color:#f92672">-&gt;</span>hour <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">18</span> <span style="color:#f92672">or</span> ( $start<span style="color:#f92672">-&gt;</span>hour <span style="color:#f92672">==</span> <span style="color:#ae81ff">18</span> <span style="color:#f92672">and</span> $start<span style="color:#f92672">-&gt;</span>minute <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) ) {
+        die <span style="color:#e6db74">&#34;You can&#39;t start out of hours!\n&#34;</span>;
+    }
+
+    <span style="color:#75715e"># Wind the clock back to 9am Monday</span>
+    $minutes <span style="color:#f92672">+=</span> ( $start<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">*</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> ( $start<span style="color:#f92672">-&gt;</span>hour <span style="color:#f92672">-</span> <span style="color:#ae81ff">9</span> ) <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> $start<span style="color:#f92672">-&gt;</span>minute;
+    <span style="color:#66d9ef">my</span> $monday <span style="color:#f92672">=</span> $start<span style="color:#f92672">-&gt;</span>clone<span style="color:#f92672">-&gt;</span>subtract(
+        days    <span style="color:#f92672">=&gt;</span> $start<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>,
+        hours   <span style="color:#f92672">=&gt;</span> $start<span style="color:#f92672">-&gt;</span>hour <span style="color:#f92672">-</span> <span style="color:#ae81ff">9</span>,
+        minutes <span style="color:#f92672">=&gt;</span> $start<span style="color:#f92672">-&gt;</span>minute
+    );
+
+    <span style="color:#75715e"># Split the time to go forward into days and minutes</span>
+    <span style="color:#66d9ef">my</span> $days <span style="color:#f92672">=</span> int( $minutes <span style="color:#f92672">/</span> ( <span style="color:#ae81ff">9</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> ) );
+    $minutes <span style="color:#f92672">=</span> $minutes % <span style="color:#960050;background-color:#1e0010">(</span> 9 <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> );
+
+    <span style="color:#75715e"># For every whole 5 days, we need to add the two weekend days</span>
+    $days <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> int( $days <span style="color:#f92672">/</span> <span style="color:#ae81ff">5</span> );
+
+    <span style="color:#75715e"># Add the offset from 9am Monday, and print the answer</span>
+    <span style="color:#66d9ef">my</span> $end <span style="color:#f92672">=</span> $monday<span style="color:#f92672">-&gt;</span>clone()<span style="color:#f92672">-&gt;</span>add( days <span style="color:#f92672">=&gt;</span> $days, minutes <span style="color:#f92672">=&gt;</span> $minutes );
+    say $end<span style="color:#f92672">-&gt;</span>strftime(<span style="color:#e6db74">&#39;%F %H:%M&#39;</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba brings us <code>Time::Piece</code>, which, when imported, quietly overrides Perl&rsquo;s sense of time. The functions <code>localtime</code> and <code>gmtime</code> suddenly return <code>Time::Piece</code> objects, which bring with them a raft of methods for working with them. It&rsquo;s all very convenient, really. You can even add and subtract objects using standard &ldquo;+&rdquo; and &ldquo;-&rdquo; signs, if we first involve a <code>Time::Seconds</code> object.</p>
+<p>That last part makes this module a little less intuitive and convenient for me, but it still rates highly, just not quite warrenting &ldquo;magical&rdquo;. So be it.</p>
+<p><code>_move_to_business_hours()</code> is  a little routine that finds the next business day to start the clock, if we don&rsquo;t initially fall within one.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Piece;
+    <span style="color:#66d9ef">use</span> Time::Seconds <span style="color:#e6db74">qw{ ONE_HOUR ONE_DAY ONE_WEEK }</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">business_date</span> ($timestamp, $duration) {
+        <span style="color:#66d9ef">my</span> $tp <span style="color:#f92672">=</span> _move_to_business_hours(
+            <span style="color:#e6db74">&#39;Time::Piece&#39;</span><span style="color:#f92672">-&gt;</span>strptime($timestamp, <span style="color:#e6db74">&#39;%Y-%m-%d %H:%M&#39;</span>));
+
+        <span style="color:#66d9ef">my</span> ($decimal) <span style="color:#f92672">=</span> $duration <span style="color:#f92672">-</span> int $duration;
+        $duration <span style="color:#f92672">=</span> int $duration;
+
+        <span style="color:#66d9ef">my</span> $weeks <span style="color:#f92672">=</span> int($duration <span style="color:#f92672">/</span> (<span style="color:#ae81ff">9</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>));
+        $tp <span style="color:#f92672">+=</span> ONE_WEEK <span style="color:#f92672">*</span> $weeks;
+        $duration %<span style="color:#960050;background-color:#1e0010">=</span> 9 <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>;
+
+        <span style="color:#66d9ef">my</span> $days <span style="color:#f92672">=</span> int($duration <span style="color:#f92672">/</span> <span style="color:#ae81ff">9</span>);
+        $duration %<span style="color:#960050;background-color:#1e0010">=</span> 9;
+        $days <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> ($tp<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">||</span> <span style="color:#ae81ff">7</span>) <span style="color:#f92672">+</span> $days <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">5</span>;
+        $tp <span style="color:#f92672">+=</span> ONE_DAY <span style="color:#f92672">*</span> $days;
+
+        $duration <span style="color:#f92672">+=</span> $decimal;
+
+        $tp <span style="color:#f92672">+=</span> ONE_HOUR <span style="color:#f92672">*</span> $duration;
+        $tp <span style="color:#f92672">+=</span> ONE_HOUR <span style="color:#f92672">*</span> <span style="color:#ae81ff">15</span> <span style="color:#66d9ef">if</span> $tp<span style="color:#f92672">-&gt;</span>hour <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">18</span> <span style="color:#f92672">||</span> $tp<span style="color:#f92672">-&gt;</span>hour <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">9</span>;
+        $tp <span style="color:#f92672">+=</span> ONE_DAY  <span style="color:#f92672">*</span>  <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> ($tp<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">||</span> <span style="color:#ae81ff">7</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">5</span>;
+
+        <span style="color:#66d9ef">return</span> $tp<span style="color:#f92672">-&gt;</span>strftime(<span style="color:#e6db74">&#39;%Y-%m-%d %H:%M&#39;</span>)
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/kjetillll/perl/ch-2.pl"><strong>Kjetil Skotheim</strong></a></p>
+<p>Finally we&rsquo;ll stop this madness with Kjetil, who delivers a curious recursive solution employing <code>Time::Local</code>.</p>
+<p>He notes he could have used <code>Business::Hours::add_seconds()</code> which sounds like it&rsquo;d do the trick quite nicely, but instead chose the hard way.</p>
+<p>As some of us always seem to.</p>
+<p>Such is life.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ts_plus</span> {
+        <span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">&#39;recursion&#39;</span>; <span style="color:#75715e">#no warn at dept 100</span>
+        <span style="color:#66d9ef">my</span>($ts, $hours, $min) <span style="color:#f92672">=</span> (@_,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
+        $hours <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>       ? die <span style="color:#e6db74">&#34;ts_plus: negative hours&#34;</span>
+       :$hours<span style="color:#f92672">+</span>$min <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? $ts
+       :$hours <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>       ? ts_plus( $ts, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">60</span><span style="color:#f92672">*</span>$hours <span style="color:#f92672">+</span> $min )
+       :                   ts_plus( ts_plus1min($ts), <span style="color:#ae81ff">0</span>, $min <span style="color:#f92672">-</span> ts_in_work_hours($ts) );
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ts_plus1min</span> {
+        <span style="color:#66d9ef">my</span> @ts <span style="color:#f92672">=</span> shift() <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\d+/g</span>;
+        <span style="color:#66d9ef">my</span> @nt <span style="color:#f92672">=</span> gmtime(<span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> timegm(<span style="color:#ae81ff">0</span>, @ts[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>], $ts[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $ts[<span style="color:#ae81ff">0</span>]));
+        sprintf <span style="color:#e6db74">&#34;%04d-%02d-%02d %02d:%02d&#34;</span>, $nt[<span style="color:#ae81ff">5</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1900</span>, $nt[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, @nt[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>];
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ts_in_work_hours</span> {
+        <span style="color:#66d9ef">my</span> @ts <span style="color:#f92672">=</span> shift() <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\d+/g</span>;
+        <span style="color:#66d9ef">my</span> @nt <span style="color:#f92672">=</span> gmtime( timegm(<span style="color:#ae81ff">0</span>, @ts[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>], $ts[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $ts[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1900</span>) );
+        <span style="color:#66d9ef">my</span>($hm, $wday) <span style="color:#f92672">=</span> ($nt[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span><span style="color:#f92672">+</span>$nt[<span style="color:#ae81ff">1</span>], $nt[<span style="color:#ae81ff">6</span>]);
+        $hm<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">900</span> <span style="color:#f92672">and</span> $hm<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1800</span> <span style="color:#f92672">and</span> $wday <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[1-5]$/</span>;
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178//perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/08/perl_weekly_challenge_week_178.html">Perl Weekly Challenge: Week 178</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/08/pwc-178.html">PWC 178</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-178/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC178BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC178BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/imaginary-date.html">An Imaginary Date with Raku - Arne Sommer</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/08/21/the-imaginary-quartet">The Imaginary Quartet - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+<li><a href="https://colincrain.com/2022/08/22/a-very-busy-dating-service">A Very Busy Dating Service - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://etoobusy.polettix.it/2022/08/17/pwc178-quater-imaginary-base/">PWC178 - Quater-imaginary Base - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://etoobusy.polettix.it/2022/08/18/pwc178-business-date/">PWC178 - Business Date - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/08/perl_weekly_challenge_week_178.html">Perl Weekly Challenge: Week 178</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/08/19/PerlWeeklyChallenge178.html#task1">Perl Weekly Challenge 178: damn numbers again! – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/08/19/PerlWeeklyChallenge178.html#task2">Perl Weekly Challenge 178: damn numbers again! – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/08/qibs-todays-first-fun-task-as-gabor.html">QIBs and days - fun tasks for a sunny day</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_178__Imaginary_Date.html">RogerBW&rsquo;s Blog: The Weekly Challenge 178: Imaginary Date</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/quater-imaginary-business-date-58ln">Quater-imaginary Business Date</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Stephen G Lynn</strong></p>
+<ul>
+<li><a href="https://thiujiac.blogspot.com/2022/08/pwc-178.html">PWC 178</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/08/15/PWC178/">Perl Weekly Challenge 178 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
