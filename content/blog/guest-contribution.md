@@ -50,7 +50,7 @@ Please find below guest contributions.
 
 ##### **Stephen G Lynn** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/steve-g-lynn/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/steve-g-lynn/julia/ch-2.jl) in **Julia**.
 
-##### **Steven Wilson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/steven-wilson/python/ch-01.ipynb) in **Python**.
+##### **Steven Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/steven-wilson/python/ch-01.ipynb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/steven-wilson/python/ch-02.ipynb) in **Python**.
 
 ----
 ## [The Weekly Challenge - 184](/blog/perl-weekly-challenge-184) {#184}
