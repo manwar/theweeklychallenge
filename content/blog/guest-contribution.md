@@ -76,7 +76,7 @@ Please find below guest contributions.
 
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/tyler-wardhaugh/fennel/t1.fnl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/tyler-wardhaugh/fennel/t2.fnl) in **Fennel**.
 
-##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/tyler-wardhaugh/clojure/src/c185/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/tyler-wardhaugh/clojure/src/c182/t2.clj) in **Clojure**.
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/tyler-wardhaugh/clojure/src/c185/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/tyler-wardhaugh/clojure/src/c185/t2.clj) in **Clojure**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
