@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-10-07T00:00:00+00:00
+date: 2022-10-08T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -73,6 +73,10 @@ Please find below guest contributions.
 ##### **Stephen G Lynn** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/steve-g-lynn/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/steve-g-lynn/julia/ch-2.jl) in **Julia**.
 
 ##### **Steven Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/steven-wilson/python/ch-01.ipynb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/steven-wilson/python/ch-02.ipynb) in **Python**.
+
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/tyler-wardhaugh/fennel/t1.fnl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/tyler-wardhaugh/fennel/t2.fnl) in **Fennel**.
+
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/tyler-wardhaugh/clojure/src/c185/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/tyler-wardhaugh/clojure/src/c182/t2.clj) in **Clojure**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
