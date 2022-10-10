@@ -40,6 +40,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/ziameraj16/java/ZipList.java) in **Java**.
+
 ----
 ## [The Weekly Challenge - 185](/blog/perl-weekly-challenge-185) {#185}
 <br>
