@@ -46,6 +46,8 @@ Please find below guest contributions.
 
 ##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/robert-dicicco/ruby/ch-1.rb) in **Ruby**.
 
+##### **Steven Wilson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/steven-wilson/python/ch-01.ipynb) in **Python**.
+
 ----
 ## [The Weekly Challenge - 185](/blog/perl-weekly-challenge-185) {#185}
 <br>
