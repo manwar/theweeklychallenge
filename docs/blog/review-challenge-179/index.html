@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #179">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #179</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #179</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Oct 10, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-179.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-178/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 179</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would come from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they personally find the most interesting and satisfying. Some team members will focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here: to try and figure out ways to do just that.</p>
+<p>So that&rsquo;s that&hellip; I&rsquo;m ready now — let’s go in and see what we can find.</p>
+<hr>
+<h3 id="for-added-context">For Added Context</h3>
+<p>Before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-179/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-179/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one <em><strong>more</strong></em> thing before we finally get started:</p>
+<br>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<hr>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<hr>
+<br>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<br>
+<h3 id="enough-fine-so-without-even-further-ado">Enough? Fine. So without even further ado&hellip;</h3>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc179task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc179task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc179blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC179TASK1">Task 1</a>                 •             <a href="#PWC179TASK2">Task 2</a>                 •             <a href="#PWC179BLOGS">BLOGS</a>                  •</h2>
+<hr>
+<h1 id="PWC179TASK1">TASK 1</h1>
+<h1 id="ordinal-number-spelling">Ordinal Number Spelling</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given a positive number, $n.</p>
+<p>Write a script to spell the ordinal number.</p>
+<p>For example,</p>
+<pre><code>    11 =&gt; eleventh
+    62 =&gt; sixty-second
+    99 =&gt; ninety-ninth
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/aut0exec/perl/ch-1.pl"><strong>Aut0exec</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/dario-mazzeo/perl/ch-1.pl"><strong>Dario Mazzeo</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>As readers of these pages will know, I am very fond of Natural Language Programming. I find the intersection between tightly defined computational structures and the hairy freeform evolution of human language fascinating. They really, really don&rsquo;t fit very well together and hence require a lot of effort to get right. But perhaps because of that essential dislocation between the ideas, when they do work seamlessly the results are quite beautiful, as we&rsquo;ve spanned the divide between two very different worlds. We are then no longer talking to computers, entering into and restricted by their domain, but rather talking with computer systems, in ours.</p>
+<p>It&rsquo;s outright wholesome I tell you. Cats and dogs sleeping together. Peace in the valley.</p>
+<p><em>(And please let&rsquo;s leave Skynet out of this for the moment. I&rsquo;m busy being the change I want in the world.)</em></p>
+<p>There were 15 submissions for the first task this past week.</p>
+<h2 id="a-selection-of-submissions">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/aut0exec/perl/ch-1.pl"><strong>Aut0exec</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/dario-mazzeo/perl/ch-1.pl"><strong>Dario Mazzeo</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>Natural Language Programming is not the stuff of compact, elegant algorithms that once figured out change everything. It&rsquo;s just not that sort of computing. Rather it lives with date and time manipulation, document translation and parsing CSV files in the land of seemingly endless edge and corner cases, accommodating ever-more-exotic combinations of nested conditions.</p>
+<p>As such, with its kin it is commonly collected into libraries, accessed as required through an API of some sort. Compartmentalization of code and all that.</p>
+<p>THe field of submissions was split nearly evenly down the middle between those who employed a module, interfacing through its API, and those who solved the logical puzzle of  English-language ordinal number construction.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/aut0exec/perl/ch-1.pl"><strong>Aut0exec</strong></a></p>
+<p>First at bat we have Aut0exec, stepping up for the home team. See what I did there? I&rsquo;ll see myself out the back now. Try the fish and don&rsquo;t forget to tip your waitress.</p>
+<p>Wait, wait. I have a review to write. Let&rsquo;s begin again.</p>
+<p>It seems fitting our first submission will be from Aut0exec, who gives us a decidedly ambiguous <em>nom de code</em>. Could be human, could be robot — with the proper simulation anything is possible, right? Half fish half bagel? It is the twenty-first century. I rule out nothing.</p>
+<p>Number construction is built on a set of rules, based mostly around the lower values of zero through one hundred. These first hundred terms are composed from either a single word or two words joined with a hyphen to form a single compound word. After that we can add a modifier for hundreds, and immediately another for thousands, and then each new order classification is one-thousand times the previous, into millions, billions and trillions if you are in the United States. In the UK a billion can mean a million millions, which can cause some confusion.</p>
+<p>We&rsquo;re <a href="https://en.wikipedia.org/wiki/Long_and_short_scales">not going to touch that right now</a>, but refocus instead on the ordinal forms. These are modified from the spoken terms using one of four possible suffixes, depending on the final digit: &ldquo;-st&rdquo;, &ldquo;-nd&rdquo;, &ldquo;-rd&rdquo;, and &ldquo;-th&rdquo;. First, second, third, fourth.</p>
+<p>Linguistically these words predate written text, evolving over time but by necessity never by much, as people from different regions would need to communicate these simple quantities and orderings often.</p>
+<p>Extending this reasoning, the smallest numbers are used the most, and reflective of this the first twenty numbers get their own words, and sometimes their own orinal forms: it&rsquo;s &ldquo;eleventh&rdquo;, not &ldquo;elevenst&rdquo; or &ldquo;ten-first&rdquo;.</p>
+<p>Despite the obvious underlying complexity, Aut0exec solves a subset of the problem space, naming the first hundred orderings.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ones</span> {
+        <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> %digit <span style="color:#f92672">=</span> (
+         <span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;First&#39;</span>, <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Second&#39;</span>, <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Third&#39;</span>, <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Fourth&#39;</span>,
+         <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Fifth&#39;</span>, <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Sixth&#39;</span>, <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Seventh&#39;</span>, <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Eighth&#39;</span>, <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Nineth&#39;</span>
+        );
+
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$digit{$value}\n&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">teens</span> {
+        <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> %digit <span style="color:#f92672">=</span> (
+         <span style="color:#ae81ff">11</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Eleventh&#39;</span>, <span style="color:#ae81ff">12</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Twelveth&#39;</span>, <span style="color:#ae81ff">13</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Thirteenth&#39;</span>, <span style="color:#ae81ff">14</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Fourteenth&#39;</span>,
+         <span style="color:#ae81ff">15</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Fifteenth&#39;</span>, <span style="color:#ae81ff">16</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Sixteenth&#39;</span>, <span style="color:#ae81ff">17</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Seventeenth&#39;</span>, <span style="color:#ae81ff">18</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Eighteenth&#39;</span>,
+         <span style="color:#ae81ff">19</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Nineteenth&#39;</span>
+        );
+
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$digit{$value}\n&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tens</span> {
+        <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> %digit <span style="color:#f92672">=</span> (
+        <span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Twenty&#39;</span>, <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Thirty&#39;</span>, <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Forty&#39;</span>, <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Fifty&#39;</span>,
+         <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Sixty&#39;</span>, <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Seventy&#39;</span>, <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Eighty&#39;</span>, <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Ninety&#39;</span>
+        );
+
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$digit{$value}&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">my</span> $ordinal_num <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @ordinal <span style="color:#f92672">=</span> split (<span style="color:#e6db74">//</span>,$ordinal_num);
+    <span style="color:#66d9ef">my</span> $dig_len <span style="color:#f92672">=</span> length($ordinal_num);
+
+    <span style="color:#66d9ef">if</span> ( $dig_len <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">or</span> $ordinal_num <span style="color:#f92672">lt</span> <span style="color:#ae81ff">1</span>)
+    { <span style="color:#66d9ef">print</span> (<span style="color:#e6db74">&#34;$ordinal_num is invalid for this program!\n&#34;</span>); exit <span style="color:#ae81ff">1</span>; }
+    <span style="color:#66d9ef">elsif</span> ( $dig_len <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
+    { <span style="color:#66d9ef">print</span> (ones($ordinal_num)); }
+    <span style="color:#66d9ef">elsif</span> ($ordinal[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> $dig_len <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>)
+    { <span style="color:#66d9ef">print</span> (teens ($ordinal_num)); }
+    <span style="color:#66d9ef">elsif</span> ($ordinal[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> $ordinal[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+    { <span style="color:#66d9ef">print</span> (tens ($ordinal[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>); }
+    <span style="color:#66d9ef">else</span>
+    { <span style="color:#66d9ef">print</span> ( tens($ordinal[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#f92672">.</span> ones($ordinal[<span style="color:#ae81ff">1</span>]) ); }
+</code></pre></div><p>Three hashes are constructed, mapping over the names for the one&rsquo;s place numbers, the teens, and the ten&rsquo;s prefix names. A switch of cases determines the exact construction chosen.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/robert-dicicco/raku/ch-1.raku">Raku</a></p>
+<p>Leading the charge for the modulists, we have Robert, demonstrating the excellent <code>Lingua::EN::Numbers</code>, currently maintained by fellow member Neil Bowers.</p>
+<p>Notice it is considerably simpler.</p>
+<p>This is of course ultimately not true, as all of the complexity has been off-loaded elsewhere. I myself am firmly in the camp that there are certain subjects that should be properly addressed from the shoulders of giants, and NLP is one of those subjects. One&rsquo;s own greatness can be measured in what one does with these tools.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Lingua::EN::Numbers <span style="color:#e6db74">qw/num2en_ordinal/</span>;
+
+    <span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> (<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">62</span>,<span style="color:#ae81ff">99</span>);
+
+    <span style="color:#66d9ef">foreach</span> (@arr) {
+      <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_ =&gt; &#34;</span>, num2en_ordinal($_), <span style="color:#e6db74">&#34;\n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://etoobusy.polettix.it/2022/08/24/pwc179-ordinal-number-spelling/">PWC179 - Ordinal Number Spelling - ETOOBUSY</a></p>
+<p>Back to the constructivist camp Flavio implements the hundreds and then the meta-cycles of extended magnitudes up to, let&rsquo;s see&hellip; octillions. That should do, I&rsquo;d hope. I would be puzzled to ever need to order the one octillion, one-hundred forty-five septillion, seven-hundred fifty-seven sextillion, three-hundred forty-nine quintillion, fifty-seven quatrillion, six-hundred fifty-four trillion, three-hundred seventy-four billion, four-hundred fifty-two million, eight-hundred seventy-six thousand, eight-hundred seventy-sixth item in front of the one octillion, one-hundred forty-five septillion, seven-hundred fifty-seven sextillion, three-hundred forty-nine quintillion, fifty-seven quatrillion, six-hundred fifty-four trillion, three-hundred seventy-four billion, four-hundred fifty-two million, eight-hundred seventy-six thousand, eight-hundred seventy-seventh.</p>
+<p>I constructed both of these numbers using Flavio&rsquo;s script.</p>
+<p>Notice in the larger phrases we need both ordinal and cardinal forms for the names, as the ordinal word construction will only be expressed in the tens and one&rsquo;s place.</p>
+<p>I&rsquo;ll also note that there really should be an &ldquo;and&rdquo; between the final tens-ones compound and the rest of the phrase:</p>
+<p>&ldquo;one octillion, one-hundred forty-five septillion, seven-hundred fifty-seven sextillion, three-hundred forty-nine quintillion, fifty-seven quatrillion, six-hundred fifty-four trillion, three-hundred seventy-four billion, four-hundred fifty-two million, eight-hundred seventy-six thousand, eight-hundred <strong>and</strong> seventy-sixth&rdquo;.</p>
+<p>But Flavio is Italian and I&rsquo;m already impressed with his mastery of the English language so I&rsquo;m going to point that out and let it go. It&rsquo;s an easy fix and highlights the pesky, hairy details inside this problem.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">spelled_ordinal</span> ($n) {
+       state $corrective_for <span style="color:#f92672">=</span> {
+          <span style="color:#e6db74">qw&lt;
+</span><span style="color:#e6db74">             one first
+</span><span style="color:#e6db74">             two second
+</span><span style="color:#e6db74">             three third
+</span><span style="color:#e6db74">             five fifth
+</span><span style="color:#e6db74">             eight eighth
+</span><span style="color:#e6db74">             nine ninth
+</span><span style="color:#e6db74">             twelve twelfth
+</span><span style="color:#e6db74">             twenty twentieth
+</span><span style="color:#e6db74">             thirty thirtieth
+</span><span style="color:#e6db74">             forty fortieth
+</span><span style="color:#e6db74">             fifty fiftieth
+</span><span style="color:#e6db74">             sixty sixtieth
+</span><span style="color:#e6db74">             seventy seventieth
+</span><span style="color:#e6db74">             eighty eightieth
+</span><span style="color:#e6db74">             ninety ninetieth
+</span><span style="color:#e6db74">          &gt;</span>
+       };
+       <span style="color:#66d9ef">my</span> $spelled <span style="color:#f92672">=</span> spelled_cardinal($n);
+       <span style="color:#66d9ef">my</span> ($pre, $last) <span style="color:#f92672">=</span> $spelled <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{\A (.*[-\s]) (\w+) \z}mxs</span>;
+       ($pre, $last) <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;&#39;</span>, $spelled) <span style="color:#66d9ef">unless</span> defined $last;
+
+       $last <span style="color:#f92672">=</span> exists $corrective_for<span style="color:#f92672">-&gt;</span>{$last}
+          ? $corrective_for<span style="color:#f92672">-&gt;</span>{$last}
+          : $last <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;th&#39;</span>;
+
+       <span style="color:#66d9ef">return</span> $pre <span style="color:#f92672">.</span> $last;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">spelled_cardinal</span> ($n) {
+       state $name_for <span style="color:#f92672">=</span> {
+          <span style="color:#e6db74">qw&lt;
+</span><span style="color:#e6db74">             1 one
+</span><span style="color:#e6db74">             2 two
+</span><span style="color:#e6db74">             3 three
+</span><span style="color:#e6db74">             4 four
+</span><span style="color:#e6db74">             5 five
+</span><span style="color:#e6db74">             6 six
+</span><span style="color:#e6db74">             7 seven
+</span><span style="color:#e6db74">             8 eight
+</span><span style="color:#e6db74">             9 nine
+</span><span style="color:#e6db74">             10 ten
+</span><span style="color:#e6db74">             11 eleven
+</span><span style="color:#e6db74">             12 twelve
+</span><span style="color:#e6db74">             13 thirteen
+</span><span style="color:#e6db74">             14 fourteen
+</span><span style="color:#e6db74">             15 fiftheen
+</span><span style="color:#e6db74">             16 sixteen
+</span><span style="color:#e6db74">             17 seventeen
+</span><span style="color:#e6db74">             18 eighteen
+</span><span style="color:#e6db74">             19 nineteen
+</span><span style="color:#e6db74">             20 twenty
+</span><span style="color:#e6db74">             30 thirty
+</span><span style="color:#e6db74">             40 forty
+</span><span style="color:#e6db74">             50 fifty
+</span><span style="color:#e6db74">             60 sixty
+</span><span style="color:#e6db74">             70 seventy
+</span><span style="color:#e6db74">             80 eighty
+</span><span style="color:#e6db74">             90 ninety
+</span><span style="color:#e6db74">          &gt;</span>
+       };
+       <span style="color:#66d9ef">my</span> @magnitudes <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">qw&lt;
+</span><span style="color:#e6db74">             thousand million billion trillion quatrillion
+</span><span style="color:#e6db74">             quintillion sextillion septillion octillion
+</span><span style="color:#e6db74">          &gt;</span>
+       );
+
+       <span style="color:#66d9ef">my</span> @spelling;
+       <span style="color:#66d9ef">while</span> ($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+          <span style="color:#66d9ef">my</span> $lower <span style="color:#f92672">=</span> $n % 100;
+          $n <span style="color:#f92672">=</span> int(($n <span style="color:#f92672">-</span> $lower) <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>);
+          <span style="color:#66d9ef">my</span> $hundredths <span style="color:#f92672">=</span> $n % 10;
+          $n <span style="color:#f92672">=</span> int(($n <span style="color:#f92672">-</span> $hundredths) <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>);
+
+          <span style="color:#66d9ef">my</span> @chunk;
+
+          push @chunk, <span style="color:#e6db74">&#34;$name_for-&gt;{$hundredths}-hundred&#34;</span> <span style="color:#66d9ef">if</span> $hundredths;
+
+          <span style="color:#66d9ef">if</span> ($lower) {
+             <span style="color:#66d9ef">if</span> (exists $name_for<span style="color:#f92672">-&gt;</span>{$lower}) {
+                   push @chunk, $name_for<span style="color:#f92672">-&gt;</span>{$lower};
+             }
+             <span style="color:#66d9ef">else</span> {
+                <span style="color:#66d9ef">my</span> $units <span style="color:#f92672">=</span> $lower % 10;
+                <span style="color:#66d9ef">my</span> $decs  <span style="color:#f92672">=</span> $lower <span style="color:#f92672">-</span> $units;
+                push @chunk, <span style="color:#e6db74">&#34;$name_for-&gt;{$decs}-$name_for-&gt;{$units}&#34;</span>;
+             }
+          }
+
+          <span style="color:#66d9ef">my</span> $magnitude <span style="color:#f92672">=</span> shift @magnitudes;
+          push @chunk, $magnitude <span style="color:#66d9ef">if</span> length($magnitude) <span style="color:#f92672">&amp;&amp;</span> @chunk;
+
+          unshift @spelling, join <span style="color:#e6db74">&#39; &#39;</span>, @chunk <span style="color:#66d9ef">if</span> @chunk;
+       }
+
+       <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;, &#39;</span>, @spelling;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/dario-mazzeo/perl/ch-1.pl"><strong>Dario Mazzeo</strong></a></p>
+<p>Not to be outdone, Dario writes out the first hundred ordinals in Italian. I love this! I am also completely unqualified to judge the accuracy of the results. Perhaps Flavio can chime in if required.</p>
+<p>There is no single, graceful <code>switch</code> statement in Perl, for a variety of reasons. There are however numerous alternate methods available, such as this recursive dispatch table.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>$ARGV[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">print</span> NumeroInTesto($n);
+    exit;
+
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">NumeroInTesto</span>{
+        <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>$_[<span style="color:#ae81ff">0</span>];
+
+        <span style="color:#66d9ef">if</span> (length($n)<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>){
+            <span style="color:#66d9ef">if</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;uno&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;due&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;tre&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;quattro&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">5</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;cinque&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">6</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;sei&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">7</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;sette&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">8</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;otto&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">9</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;nove&#34;</span>;}
+        }
+        <span style="color:#66d9ef">elsif</span> (length($n)<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>){
+            <span style="color:#66d9ef">if</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">10</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;dieci&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">11</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;undici&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">12</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;dodici&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">13</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;tredici&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">14</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;quattordici&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">15</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;quindici&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">16</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;sedici&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">17</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;diciassette&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">18</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;diciotto&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">19</span>){<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;diciannove&#34;</span>;}
+
+            <span style="color:#66d9ef">my</span> $n1<span style="color:#f92672">=</span>substr($n,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+            <span style="color:#66d9ef">my</span> $str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;
+            <span style="color:#66d9ef">if</span> ($n1<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>){$str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;venti&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n1<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>){$str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;trenta&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n1<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>){$str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;quaranta&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n1<span style="color:#f92672">==</span><span style="color:#ae81ff">5</span>){$str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cinquanta&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n1<span style="color:#f92672">==</span><span style="color:#ae81ff">6</span>){$str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sessanta&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n1<span style="color:#f92672">==</span><span style="color:#ae81ff">7</span>){$str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;settanta&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n1<span style="color:#f92672">==</span><span style="color:#ae81ff">8</span>){$str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ottanta&#34;</span>;}
+            <span style="color:#66d9ef">elsif</span> ($n1<span style="color:#f92672">==</span><span style="color:#ae81ff">9</span>){$str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;novanta&#34;</span>;}
+
+            <span style="color:#66d9ef">my</span> $str<span style="color:#f92672">=</span>$str<span style="color:#f92672">.</span>(NumeroInTesto(substr($n,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>)));
+            $str<span style="color:#f92672">=~</span><span style="color:#e6db74">s/[ia]([uo])/$1/</span>;
+            <span style="color:#66d9ef">return</span> $str;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>The monk does include the &ldquo;and&rdquo; in their solution. They do, after all, specialize in matters concerning the inclusion and exclusion of parts of texts going all the way back to 325. I&rsquo;m not sure if all of us taken together have comparable years of experience.</p>
+<p>There are a lot of parts to the puzzle, requiring placing commas between magnitude sections, creating cardinal names above one hundred, ordinal names below that and of course the conjunctive &ldquo;and&rdquo; to couple them.</p>
+<p>Component tasks are generally broken down into their own routines. Here are a few to look at:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">format_ordinal</span>
+    {
+        <span style="color:#66d9ef">my</span> ($ord_array, $ls_digs) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  $ordinal;
+
+        <span style="color:#66d9ef">if</span>    (scalar @$ord_array <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+        {
+            $ordinal <span style="color:#f92672">=</span> $ord_array<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">.</span> (($ls_digs % 100 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#e6db74">&#39;th&#39;</span> : <span style="color:#e6db74">&#39;&#39;</span>);
+        }
+        <span style="color:#66d9ef">elsif</span> ($ls_digs % 100 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+        {
+            $ordinal <span style="color:#f92672">=</span> join( <span style="color:#e6db74">&#39; &#39;</span>, reverse @$ord_array ) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;th&#39;</span>;
+        }
+        <span style="color:#66d9ef">elsif</span> ($ls_digs <span style="color:#f92672">=~</span><span style="color:#e6db74"> / ^ 0 /x</span>)
+        {
+            $ordinal <span style="color:#f92672">=</span> join( <span style="color:#e6db74">&#39; &#39;</span>, reverse @$ord_array[ <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#$ord_array ] ) <span style="color:#f92672">.</span>
+                       <span style="color:#e6db74">&#39; and &#39;</span> <span style="color:#f92672">.</span> $ord_array<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ];
+        }
+        <span style="color:#66d9ef">else</span>
+        {
+            $ordinal <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39; &#39;</span>, reverse @$ord_array;
+        }
+
+        <span style="color:#66d9ef">return</span> $ordinal;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_commas</span>
+    {
+        <span style="color:#66d9ef">my</span> ($number) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#75715e"># Regex from perlfaq5: &#34;How can I output my numbers with commas added?&#34;</span>
+
+        <span style="color:#66d9ef">return</span> $number <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/(^\d+?(?=(?&gt;(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g</span>r;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/08/26/glitter-bombs-and-sparkling-lines">Glitter Bombs and Sparkling Lines - Programming Excursions in Perl and Raku</a></p>
+<p>Writing out the same absurdly large number I came up with for Flavio using <code>Lingua::EN::Numbers</code>, we interestingly get a very different result:</p>
+<pre><code>    one point one four five seven five seven three four nine zero five seven six five times ten to the twenty-seventh
+</code></pre><p>This is more than likely more sensible. The changeover seems to occur at 2<sup>64</sup>, or around eighteen quintillion, four hundred and forty quadrillion.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Lingua::EN::Numbers <span style="color:#e6db74">qw (num2en_ordinal);
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span>   <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span><span style="color:#ae81ff">1145757349057654356734034892</span>;
+
+    say num2en_ordinal( $input );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg reduces the module form to a one-liner, which considering how useful these scripts have been in writing this review, I think I&rsquo;m going to go a head and install right now in my dotfiles.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    perl <span style="color:#f92672">-</span>MLingua::EN::Numbers<span style="color:#f92672">=</span>num2en_ordinal <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#34;say num2en_ordinal $1&#34;</span>
+</code></pre></div><p>Done. Works like a dream.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/raku/ch-1.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_179__Spark_and_Spell.html">RogerBW&rsquo;s Blog: The Weekly Challenge 179: Spark and Spell</a></p>
+<p>In a test-oriented workflow, we often envelop the logic of a script in a subroutine, that can then be delivered a variety of inputs to verify the resultant output, all in an orderly fashion.</p>
+<p>However when using the <code>Lingua::EN::Numbers</code> module, all interaction is entirely with the imported function, and it makes no sense to add another layer, wrapping that in an additional subroutine shell that adds nothing.</p>
+<p>With Roger&rsquo;s submission, we are left with an ontological quandary as to the essential nature of a script. I&rsquo;m not entirely sure we even have something properly labeled as such anymore. I&rsquo;m not really sure what it is.</p>
+<blockquote>
+<p>&ldquo;I dunno what the hell&rsquo;s in there, but it&rsquo;s weird and pissed off&rdquo;
+— John Carpenter, <em>The Thing</em> (1982)</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Lingua::EN::Numbers <span style="color:#e6db74">qw(num2en_ordinal)</span>;
+
+    <span style="color:#66d9ef">use</span> Test::More tests <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>;
+
+    is(num2en_ordinal(<span style="color:#ae81ff">11</span>),<span style="color:#e6db74">&#34;eleventh&#34;</span>,<span style="color:#e6db74">&#39;example 1&#39;</span>);
+    is(num2en_ordinal(<span style="color:#ae81ff">62</span>),<span style="color:#e6db74">&#34;sixty-second&#34;</span>,<span style="color:#e6db74">&#39;example 2&#39;</span>);
+    is(num2en_ordinal(<span style="color:#ae81ff">99</span>),<span style="color:#e6db74">&#34;ninety-ninth&#34;</span>,<span style="color:#e6db74">&#39;example 3&#39;</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba addresses this same dilemma in a novel manner: instead of explicitly making a new subroutine (indeed unnecessary and wasteful), he maps the imported module function to a new name directly in the symbol table, using typeglobs.</p>
+<p>This is a great solution and at least we have a script again. I can&rsquo;t imagine even needing to do this, but we shouldn&rsquo;t forget we can. In modern Perl typeglobs have largely been outmoded but they still have their place at the table.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Lingua::EN::Numbers ();
+
+    <span style="color:#f92672">*</span>ordinal_number_spelling <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>Lingua::EN::Numbers::num2en_ordinal;
+
+    <span style="color:#66d9ef">use</span> Test::More tests <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>;
+    is ordinal_number_spelling(<span style="color:#ae81ff">11</span>), <span style="color:#e6db74">&#39;eleventh&#39;</span>,     <span style="color:#e6db74">&#39;Example 1&#39;</span>;
+    is ordinal_number_spelling(<span style="color:#ae81ff">62</span>), <span style="color:#e6db74">&#39;sixty-second&#39;</span>, <span style="color:#e6db74">&#39;Example 2&#39;</span>;
+    is ordinal_number_spelling(<span style="color:#ae81ff">99</span>), <span style="color:#e6db74">&#39;ninety-ninth&#39;</span>, <span style="color:#e6db74">&#39;Example 3&#39;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-179/james-smith">Perl Weekly Challenge #179</a></p>
+<p>The English language is wonderfully expressive, and I feel that expression comes from its flexibility. It&rsquo;s not anchored by prescriptivist correct form, and as it has evolved from both Germanic and Latin roots over the centuries, with loan-words tossed in from around the world, there are often many ways of saying the same thing using completely different phrasing. Naturally, this spices things up.</p>
+<p>One of my favorite places to find myself is stuck in some extremely constrained,  unusual space and discovering there does not seem to a be a word for what I want to say. And mind you, I know a lot of words. On a number of occasions the right course of action is to modify or combine existing words in a manner they are not accustomed to. Molest them, as it were. Take liberties. Do as I please, and in doing so present to them new horizons they had never previously dreamed of.</p>
+<p>That, my friends, is some fun.</p>
+<p>So I was impressed to find that James has constructed for us an ordinal number naming machine without limits. Octillions are trivial to James.</p>
+<p>Apparently James is a geneticist of some sort, and we&rsquo;ll leave it at that without prying too much. Now there are approximately three billion nucleotides in the human genome, which gives us one billion 3-nucleotide codons to encode amino acids. With 64 codons available to choose from, we get roughly 2<sup>6,000,000,000</sup> positioning combinations available to us. Sure most are meaningless and only a few will create half-fish half-bagel plants to grow us breakfast but a man can dream, can&rsquo;t he?</p>
+<p>In any case a mere octillion is nothing, pshaw, peanuts to the unfathomable complexities of life.</p>
+<p>How about  &ldquo;ninety-nine novemnonagintillion nine-hundred and ninety-nine octononagintillion nine-hundred and ninety-nine septnonagintillion nine-hundred and ninety-nine sexnonagintillion nine-hundred and ninety-nine quinnonagintillion nine-hundred and ninety-nine quattuornonagintillion nine-hundred and ninety-nine trenonagintillion nine-hundred and ninety-nine duononagintillion nine-hundred and ninety-nine unnonagintillion nine-hundred and ninety-nine nonagintillion nine-hundred and ninety-nine novemoctagintillion nine-hundred and ninety-nine octooctagintillion nine-hundred and ninety-nine septoctagintillion nine-hundred and ninety-nine sexoctagintillion nine-hundred and ninety-nine quinoctagintillion nine-hundred and ninety-nine quattuoroctagintillion nine-hundred and ninety-nine treoctagintillion nine-hundred and ninety-nine duooctagintillion nine-hundred and ninety-nine unoctagintillion nine-hundred and ninety-nine octagintillion nine-hundred and ninety-nine novemseptuagintillion nine-hundred and ninety-nine octoseptuagintillion nine-hundred and ninety-nine septseptuagintillion nine-hundred and ninety-nine sexseptuagintillion nine-hundred and ninety-nine quinseptuagintillion nine-hundred and ninety-nine quattuorseptuagintillion nine-hundred and ninety-nine treseptuagintillion nine-hundred and ninety-nine duoseptuagintillion nine-hundred and ninety-nine unseptuagintillion nine-hundred and ninety-nine septuagintillion nine-hundred and ninety-nine novemsexagintillion nine-hundred and ninety-nine octosexagintillion nine-hundred and ninety-nine septsexagintillion nine-hundred and ninety-nine sexsexagintillion nine-hundred and ninety-nine quinsexagintillion nine-hundred and ninety-nine quattuorsexagintillion nine-hundred and ninety-nine tresexagintillion nine-hundred and ninety-nine duosexagintillion nine-hundred and ninety-nine unsexagintillion nine-hundred and ninety-nine sexagintillion nine-hundred and ninety-nine novemquinquagintillion nine-hundred and ninety-nine octoquinquagintillion nine-hundred and ninety-nine septquinquagintillion nine-hundred and ninety-nine sexquinquagintillion nine-hundred and ninety-nine quinquinquagintillion nine-hundred and ninety-nine quattuorquinquagintillion nine-hundred and ninety-nine trequinquagintillion nine-hundred and ninety-nine duoquinquagintillion nine-hundred and ninety-nine unquinquagintillion nine-hundred and ninety-nine quinquagintillion nine-hundred and ninety-nine novemquardagintillion nine-hundred and ninety-nine octoquardagintillion nine-hundred and ninety-nine septquardagintillion nine-hundred and ninety-nine sexquardagintillion nine-hundred and ninety-nine quinquardagintillion nine-hundred and ninety-nine quattuorquardagintillion nine-hundred and ninety-nine trequardagintillion nine-hundred and ninety-nine duoquardagintillion nine-hundred and ninety-nine unquardagintillion nine-hundred and ninety-nine quardagintillion nine-hundred and ninety-nine novemtrigintillion nine-hundred and ninety-nine octotrigintillion nine-hundred and ninety-nine septtrigintillion nine-hundred and ninety-nine sextrigintillion nine-hundred and ninety-nine quintrigintillion nine-hundred and ninety-nine quattuortrigintillion nine-hundred and ninety-nine tretrigintillion nine-hundred and ninety-nine duotrigintillion nine-hundred and ninety-nine untrigintillion nine-hundred and ninety-nine trigintillion nine-hundred and ninety-nine novemvigintillion nine-hundred and ninety-nine octovigintillion nine-hundred and ninety-nine septvigintillion nine-hundred and ninety-nine sexvigintillion nine-hundred and ninety-nine quinvigintillion nine-hundred and ninety-nine quattuorvigintillion nine-hundred and ninety-nine trevigintillion nine-hundred and ninety-nine duovigintillion nine-hundred and ninety-nine unvigintillion nine-hundred and ninety-nine vigintillion nine-hundred and ninety-nine novemdecillion nine-hundred and ninety-nine octodecillion nine-hundred and ninety-nine septdecillion nine-hundred and ninety-nine sexdecillion nine-hundred and ninety-nine quindecillion nine-hundred and ninety-nine quattuordecillion nine-hundred and ninety-nine tredecillion nine-hundred and ninety-nine duodecillion nine-hundred and ninety-nine undecillion nine-hundred and ninety-nine decillion nine-hundred and ninety-nine novillion nine-hundred and ninety-nine <strong>octillion</strong> nine-hundred and ninety-nine septillion nine-hundred and ninety-nine sextillion nine-hundred and ninety-nine quinillion nine-hundred and ninety-nine quadillion nine-hundred and ninety-nine trillion nine-hundred and ninety-nine billion nine-hundred and ninety-nine million nine-hundred and ninety-nine thousand nine-hundred and ninety-ninth&rdquo; ?</p>
+<p>I don&rsquo;t believe I have ever seen, or imagined, the word &ldquo;novemnonagintillion&rdquo; before. I&rsquo;m not convinced it even was a word before James said it was, and as far as I am concerned it is now.</p>
+<p>James has devised a scheme to name any number and I love it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @ord    <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(x first second third fourth fifth sixth seventh eighth ninth tenth eleventh twelfth thirteenth
+</span><span style="color:#e6db74">                    forteenth fifteenth sixteenth seventeenth eighteeinth nineteenth)</span>;
+    <span style="color:#66d9ef">my</span> @ord_10 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(z tenth twentieth thirtieth fortieth fiftieth sixtieth seventiet eightieth ninetieth hundredth)</span>;
+    <span style="color:#66d9ef">my</span> @power  <span style="color:#f92672">=</span> map { [$_,$_<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;th&#39;</span>] } <span style="color:#e6db74">qw(x thousand)</span>, map { $_<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;illion&#39;</span> } <span style="color:#e6db74">qw(m b tr quad quin sext sept oct nov)</span>,
+                  ( map { $a<span style="color:#f92672">=</span>$_, map { $_<span style="color:#f92672">.</span>$a } <span style="color:#e6db74">qw(un duo tre quattuor quin sex sept octo novem)</span> }
+                  <span style="color:#e6db74">qw(dec vigint trigint quardagint quinquagint sexagint septuagint octagint nonagint)</span> );
+    <span style="color:#66d9ef">my</span> @nat    <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(a one two three four five six seven eight nine ten eleven twelve thirteen forteen fifteen
+</span><span style="color:#e6db74">                    sixteen seventeen eighteen nineteen)</span>;
+    <span style="color:#66d9ef">my</span> @nat_10 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(b ten twenty thirty fourty fifty sixty seventy eighty ninety)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ordinal</span> {
+      <span style="color:#66d9ef">my</span> ($ptr,$last,@parts,@result) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, map { scalar reverse } ((reverse pop) <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{(\d{1,3}</span>)}g));
+      @result <span style="color:#f92672">=</span> _ordinal($last, <span style="color:#f92672">!</span>@parts ) <span style="color:#66d9ef">if</span> <span style="color:#f92672">-</span>$last;
+      $ptr<span style="color:#f92672">++</span>, <span style="color:#f92672">-</span>$_ <span style="color:#f92672">&amp;&amp;</span> (unshift @result, _natural($_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39; &#39;</span><span style="color:#f92672">.</span>$power[$ptr][ @result ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span> ] ) <span style="color:#66d9ef">for</span> @parts;
+      <span style="color:#e6db74">&#34;@result&#34;</span> <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+/ /g</span>r
+    }
+
+    <span style="color:#75715e">## Create a natural triple of 1s, 10, 100s</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_natural</span> {
+      <span style="color:#66d9ef">my</span> $v <span style="color:#f92672">=</span> pop;
+      join <span style="color:#e6db74">&#39; and &#39;</span>,
+        ($v       <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">99</span>) ? $nat[$v<span style="color:#f92672">/</span><span style="color:#ae81ff">100</span>]<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;-hundred&#39;</span> : (),
+        $v%100 ? ( $v%100 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">19</span> ? $nat_10[($v%100)<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>]<span style="color:#f92672">.</span>( $v%10 ? <span style="color:#e6db74">&#39;-&#39;</span><span style="color:#f92672">.</span>$nat[$v%10] : <span style="color:#e6db74">&#39;&#39;</span> )
+                 : $v%100 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>  ? $nat[$v%100] : () ) : ();
+    }
+
+    <span style="color:#75715e">## Create an ordinal triple</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_ordinal</span> {
+      <span style="color:#66d9ef">my</span>($v,$flag) <span style="color:#f92672">=</span> @_;
+
+      join <span style="color:#e6db74">&#39; and &#39;</span>,
+        (<span style="color:#f92672">!</span>$flag <span style="color:#f92672">&amp;&amp;</span> $v <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span>) ? <span style="color:#e6db74">&#39;&#39;</span> : (),
+        ($v       <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">99</span>) ? $nat[$v<span style="color:#f92672">/</span><span style="color:#ae81ff">100</span>]<span style="color:#f92672">.</span>($v%100?<span style="color:#e6db74">&#39;-hundred&#39;</span>:<span style="color:#e6db74">&#39;-hundredth&#39;</span>) : (),
+        $v%100 ? ( $v%100 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">19</span> ? ( $v%10 ? $nat_10[($v%100)<span style="color:#e6db74">/10].&#39;-&#39;.$ord[$v%10] : $ord_10[($v%100)/</span><span style="color:#ae81ff">10</span>] )
+                 : $v%100 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>  ? $ord[$v%100] : () ) : ();
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/duncan-c-white/C/ch-1.c">C</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/08/perl-weekly-challenge-179-ordinal-numbers-and-unicode-sparkline.html">Perl Weekly Challenge 179: Ordinal Numbers and Unicode Sparkline</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/the-ordinal-sparkline-dn5">The Ordinal Sparkline</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/steve-g-lynn/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/steve-g-lynn/raku/ch-1.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/08/pwc-179.html">PWC 179</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/08/22/PWC179/">Perl Weekly Challenge 179 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC179TASK2">TASK 2</h1>
+<h1 id="unicode-sparkline">Unicode Sparkline</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given a list of positive numbers, @n.</p>
+<p>Write a script to print sparkline in Unicode for the given list of numbers.</p>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/solathian/perl/ch-2.pl"><strong>Solathian</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Sparklines are an information design element originally a creation of Edward Tuffe, where small pieces of graphical information — say a set of data points trending upwards — are placed directly within a line of text, rather than in an auxiliary space alongside it. In this way the the reader&rsquo;s attention remains fixed and does not require switching locations and refocusing. Although the informational content of a small graphic is necessarily limited — compared to a proper sidebox — sometimes that is all that is required for the moment: that a value is going up, down or staying the same, without getting bogged down with unnecessary details. Large graphics cam provide a great deal of detail, but this is done at the cost of requiring the reader to consider the big picture and extract the information. With sparklines, small parts of a complex idea can be isolated and highlighted, allowing us to stay with the story, or analysis, that is being made.</p>
+<p>&ldquo;Sparklines&rdquo;, Tufte says, &ldquo;can be placed anywhere that words or numbers or graphics can be placed: in sentences, maps, graphics, tables.&rdquo;</p>
+<p>With the introduction of Unicode character sets, we now have access to selected graphical primitives as text characters in a font. Although there are no specific bar-graph characters, or any others specifically made for the purpose, we do have a set of eight bottom-aligned rectangles of varying heights that will serve. These are a common choice for those wishing to implement Unicode sparklines.</p>
+<p>It should be noted bar graphs are not the only thing that can be modeled in Unicode characters, and for instance boxes of varying shades of grey have also been used to express data change. With the introduction of more and more emoji other avenues involving color and pattern have opened up as well. I see a future for colored Unicode sparklines, especially in dynamic web content.</p>
+<p>There were 14 submissions for the second task this past week.</p>
+<h2 id="a-selection-of-submissions-1">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/solathian/perl/ch-2.pl"><strong>Solathian</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>A simple bar graph with eight possible levels was the overwhelming choice among the submissions. The form is capable of transmitting a small amount of information well and looks pretty nice doing it. However that choice was not, perhaps surprisingly, universal. We did have a few brave souls who strayed from the path and we will be sure to comment on their approaches.</p>
+<p>Sparklines, after all, are not exclusively simple bar graphs.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/the-ordinal-sparkline-dn5">The Ordinal Sparkline</a></p>
+<p>Simon will start today with a demonstration of some core logic we will see repeated quite a lot going forward. In essence, the sparkline itself is a cosmetic afterthought, the proper selections from a set of characters to construct a normal Perl string. And, I feel I should add, that although Unicode strings are, yes, a different type of Perl string internally, you do not need to know that and have not needed to for quite some time. They are, albeit different, perfectly <em>normal</em>.</p>
+<p>The underlying abstract logic is to take an arbitrary list of values and slot each of them  into one of eight categories. This will require identifying the range and subdividing it according to a formula so we can assign each element a category, and from that map a character.</p>
+<p>Here Simon imports <code>min</code> and <code>max</code> from <code>List::Util</code> to quickly get those values,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min max)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> (@numbers) {
+        <span style="color:#66d9ef">my</span> @bar      <span style="color:#f92672">=</span> (<span style="color:#e6db74">qw&#39;▁ ▂ ▃ ▄ ▅ ▆ ▇ █&#39;</span>);
+        <span style="color:#66d9ef">my</span> $barcount <span style="color:#f92672">=</span> scalar(@bar);
+
+        <span style="color:#66d9ef">my</span> $mn        <span style="color:#f92672">=</span> min(@numbers);
+        <span style="color:#66d9ef">my</span> $mx        <span style="color:#f92672">=</span> max(@numbers);
+        <span style="color:#66d9ef">my</span> $extent    <span style="color:#f92672">=</span> $mx <span style="color:#f92672">-</span> $mn;
+        <span style="color:#66d9ef">my</span> $sparkline <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (@numbers) {
+            $sparkline <span style="color:#f92672">.=</span> $bar[ min( $barcount <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, int( ( $n <span style="color:#f92672">-</span> $mn ) <span style="color:#f92672">/</span> $extent <span style="color:#f92672">*</span> $barcount ) ) ];
+        }
+
+        say $sparkline;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/08/22/PWC179/">Perl Weekly Challenge 179 – W. Luis Mochán</a></p>
+<p>Although Unicode support was added to Perl internally more than 20 years ago, the interpreter can still get suspicious using UTF-8 to communicate with the outside world, and in response start throwing around warnings that something might not be right. If you keep warnings enabled, as has recently become the default, this can get annoying.</p>
+<p>One surefire way to sidestep all this nervousness is to explicitly tell Perl what to expect. The first two lines of Luis&rsquo; script tell Perl that the script it is reading contains Unicode characters and that the output device connected to STDOUT also is quite comfortable accepting Unicode.</p>
+<p>That&rsquo;ll shut &lsquo;em up.</p>
+<p>To do the data massaging he brings in the powers of the PDL, the Perl Data Language extensions.  First he slides the range intact to start at 0, then fits the values into the range 0-7, or 8 slots. These new values can be used as indices in an array of asecnding blocks.</p>
+<p>Even though we&rsquo;re using the PDL we&rsquo;re performing that same normalization operation we did before. Even how we do it is essentially the same.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> utf8;
+    binmode STDOUT, <span style="color:#e6db74">&#39;:utf8&#39;</span>;
+    <span style="color:#66d9ef">my</span> @blocks <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;▁▂▃▄▅▆▇█&#34;</span>; <span style="color:#75715e"># Array of blocks of different heights</span>
+    die <span style="color:#e6db74">&#34;Usage: $0 N1 [N2...]\nto make a sparkline with the data N1 N2...\n&#34;</span>
+        <span style="color:#66d9ef">unless</span> @ARGV;
+    <span style="color:#66d9ef">my</span> $small <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-7</span>;
+    <span style="color:#66d9ef">my</span> $indices <span style="color:#f92672">=</span> pdl([@ARGV]);                       <span style="color:#75715e"># slurp data into ndarray</span>
+    $indices <span style="color:#f92672">-=</span> $indices<span style="color:#f92672">-&gt;</span>min;                       <span style="color:#75715e"># start at 0</span>
+    $indices <span style="color:#f92672">*=</span> @blocks<span style="color:#f92672">/</span>($indices<span style="color:#f92672">-&gt;</span>max<span style="color:#f92672">+</span>$small);    <span style="color:#75715e"># Normalize to 0..number of blocks-1</span>
+    say join <span style="color:#e6db74">&#34;&#34;</span>, map {$blocks[$_]} $indices<span style="color:#f92672">-&gt;</span>list; <span style="color:#75715e"># Use as indices into block array</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/laurent-rosenfeld/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/laurent-rosenfeld/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/laurent-rosenfeld/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/laurent-rosenfeld/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/laurent-rosenfeld/scala/ch-2.scala">Scala</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/08/perl-weekly-challenge-179-ordinal-numbers-and-unicode-sparkline.html">Perl Weekly Challenge 179: Ordinal Numbers and Unicode Sparkline</a></p>
+<p>Cutting and pasting the black Unicode rectangles directly into the script isn&rsquo;t necessary, either, as Laurent demonstrates. Simply knowing in advance their hexidecimal codes will suffice. Feeding these to the <code>chr</code> function will produce the proper characters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    binmode(STDOUT, <span style="color:#e6db74">&#34;:utf8&#34;</span>);
+    <span style="color:#66d9ef">my</span> @bars <span style="color:#f92672">=</span> map chr, <span style="color:#ae81ff">0x2581</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">0x2588</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $test ([<span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span>],
+        [<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">20</span><span style="color:#f92672">&gt;</span>], [<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">999</span> <span style="color:#ae81ff">4000</span> <span style="color:#ae81ff">4999</span> <span style="color:#ae81ff">7000</span> <span style="color:#ae81ff">7999</span><span style="color:#f92672">&gt;</span>]) {
+        <span style="color:#66d9ef">my</span> @test <span style="color:#f92672">=</span> @$test;
+        <span style="color:#66d9ef">my</span> ($min, $max) <span style="color:#f92672">=</span> (sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @$test)[<span style="color:#ae81ff">0</span>, $#test];
+        <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $item (@test) {
+            <span style="color:#66d9ef">my</span> $h <span style="color:#f92672">=</span> @bars <span style="color:#f92672">*</span> ($item <span style="color:#f92672">-</span> $min) <span style="color:#f92672">/</span> ($max <span style="color:#f92672">-</span> $min);
+            $h <span style="color:#f92672">=</span> $#bars <span style="color:#66d9ef">if</span> $h <span style="color:#f92672">&gt;</span> $#bars;
+            $out <span style="color:#f92672">.=</span> $bars[int($h)];
+        }
+        say <span style="color:#e6db74">&#34;@test; min: $min; max: $max.&#34;</span>;
+        say $out, <span style="color:#e6db74">&#34;\n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>The monk, in a typically well-reasoned way, presents some limitations on the information content of a sparkline, and even that this necessarily-simplified snapshot of the data brings with it the possibility of being outright misleading.</p>
+<p>That, however, is not the fault of the sparkline. Given the low bandwidth available to us there is no internal room for explanation in the graphic, so we are reliant on the narrative context to accurately describe what is happening.</p>
+<p>Perhaps I am extrapolating too much from the monk&rsquo;s commentary, but all of this does follow from the idea that we have no room to display the axis origins and must, given the limited range of expression normallize the data into octants, or however many categories we choose to muster.</p>
+<p>I will however disagree with their assumption #1, that the Rosetta Code definition of &ldquo;Sparklines in Unicode&rdquo; is definitive — that this means we need to use the eight Unicode characters <code>▁ ▂ ▃ ▄ ▅ ▆ ▇ █</code> to construct a bar graph. That is only the Rosetta Code definition for their particular programming challenge. Although the eight characters U+2581 through U+2588 are convenient and visually appealing, Unicode sparklines can be constructed from any selection of characters. Take for instance <a href="https://seanstuber.com/2019/04/24/simple-sparklines-with-unicode-characters/">this example from Sean D. Stuber</a></p>
+<p>░████████████████████████████░░░█░░█████████████░░░░▒░█████░██▒░░</p>
+<p>I believe a trend of intensification is well protrayed by this data using shades of grey.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util     <span style="color:#e6db74">qw( max min )</span>;
+    const <span style="color:#66d9ef">my</span> @CHARS <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw( ▁ ▂ ▃ ▄ ▅ ▆ ▇ █ )</span>;
+    const <span style="color:#66d9ef">my</span> $USAGE <span style="color:#f92672">=&gt;</span>
+
+    MAIN:
+    {
+        <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> parse_command_line();
+
+        printf <span style="color:#e6db74">&#34;Input:  %s\n\n&#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, @n;
+
+        <span style="color:#66d9ef">my</span> @sparkline;
+        <span style="color:#66d9ef">my</span> $min   <span style="color:#f92672">=</span> min @n;
+        <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> max @n;
+        <span style="color:#66d9ef">my</span> $range <span style="color:#f92672">=</span> $max <span style="color:#f92672">-</span> $min;
+
+        <span style="color:#66d9ef">if</span> ($range <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+        {
+            @sparkline <span style="color:#f92672">=</span> ($CHARS[ <span style="color:#ae81ff">0</span> ]) x scalar( @n );
+        }
+        <span style="color:#66d9ef">else</span>
+        {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (@n)
+            {
+                <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>;
+
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">7</span>)
+                {
+                    <span style="color:#66d9ef">if</span> (($n <span style="color:#f92672">-</span> $min) <span style="color:#f92672">&lt;</span> ($i <span style="color:#f92672">*</span> $range <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span>))
+                    {
+                        $idx <span style="color:#f92672">=</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+                        <span style="color:#66d9ef">last</span>;
+                    }
+                }
+
+                push @sparkline, $CHARS[ $idx ];
+            }
+        }
+
+        printf <span style="color:#e6db74">&#34;Output: %s\n&#34;</span>,   join <span style="color:#e6db74">&#39;&#39;</span>, @sparkline;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/solathian/perl/ch-2.pl"><strong>Solathian</strong></a></p>
+<p>New member Solathian brings us an excellent breakdown of their process using a sequence of subroutines: printing the input; get the minimum and maximum values; normalize the data; round the data; and finally print the sparkline.</p>
+<p>Here is their nomalizing routine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">normalizeData</span>
+    {
+        <span style="color:#66d9ef">my</span> ($arrayRef, $lowest, $highest) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#75715e"># if the lowest is not zero move every item down, this way the interval is utilized in a better way</span>
+        <span style="color:#66d9ef">if</span>( $lowest <span style="color:#f92672">!=</span> SCALE_MIN )
+        {
+            <span style="color:#75715e"># decrement each element by the lowest</span>
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @$arrayRef; $i<span style="color:#f92672">++</span>)
+            {
+                $arrayRef<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">-=</span> $lowest;
+            }
+
+            <span style="color:#75715e"># alter the extreme values</span>
+            $highest <span style="color:#f92672">-=</span> $lowest;
+            $lowest <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        }
+
+        <span style="color:#75715e"># if the highest is still greater than scale max scale everything down</span>
+        <span style="color:#66d9ef">if</span>( $highest <span style="color:#f92672">&gt;</span> SCALE_MAX )
+        {
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $j <span style="color:#f92672">&lt;</span> @$arrayRef; $j<span style="color:#f92672">++</span>)
+            {
+                <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> ($arrayRef<span style="color:#f92672">-&gt;</span>[$j]);
+
+                <span style="color:#75715e"># scaling down linearly to the new interval</span>
+                $arrayRef<span style="color:#f92672">-&gt;</span>[$j] <span style="color:#f92672">=</span>  SCALE_MAX  <span style="color:#f92672">*</span> ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> $highest)  <span style="color:#f92672">*</span> $value;
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg&rsquo;s extremely stripped-down implementation of the logic demonstrates the normalizating required to fit an arbitrary range of points into the eight possible categories we can display in a bar chart. As the character set is all sequential values, the Unicode character values can be generated on the fly.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">barchart</span> {
+        <span style="color:#66d9ef">my</span> ($min, $max) <span style="color:#f92672">=</span> minmax @_;
+        <span style="color:#66d9ef">my</span> $scale <span style="color:#f92672">=</span> <span style="color:#ae81ff">7.999</span> <span style="color:#f92672">/</span> (($max <span style="color:#f92672">-</span> $min) <span style="color:#f92672">||</span> <span style="color:#ae81ff">1</span>);
+        map chr(<span style="color:#ae81ff">0x2581</span> <span style="color:#f92672">+</span> floor(($_ <span style="color:#f92672">-</span> $min) <span style="color:#f92672">*</span> $scale)), @_;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>I think perhaps the best way to definitively lock down preferences in the I/O layer these days is by using the <code>open</code> pragma, here demonstrated by Ulrich. Not to be confused with the <code>open</code> file open command, the <code>open</code> pragma is a one-stop shop to define  <code>STDIN</code>, <code>STDOUT</code> and <code>STDERR</code>.</p>
+<p>Amongst other things, of course.</p>
+<p>Here we tell Perl all of these will be using UTF-8.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> open <span style="color:#e6db74">&#34;:std&#34;</span>, <span style="color:#e6db74">&#34;:encoding(UTF-8)&#34;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">findOctal</span> {
+      <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> $octals <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ;
+      <span style="color:#66d9ef">while</span> ( $octals<span style="color:#f92672">-&gt;</span>[$current] <span style="color:#f92672">&lt;</span> $number ) {
+          $current<span style="color:#f92672">++</span> ;
+          <span style="color:#66d9ef">if</span> ( $current <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> ) {
+        <span style="color:#66d9ef">last</span> ;
+          }
+      }
+      <span style="color:#66d9ef">if</span> ( $current <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> ) {
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">7</span> ;
+      }
+      <span style="color:#66d9ef">else</span> {
+          <span style="color:#66d9ef">return</span> $current ;
+      }
+    }
+
+    say <span style="color:#e6db74">&#34;Enter some numbers , separated by blanks!&#34;</span> ;
+    <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span> ;
+    chomp $line ;
+    <span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> split(<span style="color:#e6db74"> /\s+/</span> , $line ) ;
+    <span style="color:#66d9ef">my</span> $maximum <span style="color:#f92672">=</span> max( @numbers ) ;
+    <span style="color:#66d9ef">my</span> $minimum <span style="color:#f92672">=</span> min( @numbers ) ;
+    <span style="color:#66d9ef">my</span> $range <span style="color:#f92672">=</span> $maximum <span style="color:#f92672">-</span> $minimum ;
+
+    <span style="color:#75715e"># @octals holds the limits of all the octile , that is from the smallest</span>
+    <span style="color:#75715e"># number to the first octile, from the first octile to the second octile and</span>
+    <span style="color:#75715e"># so on to the biggest number. We choose octile because we use the</span>
+    <span style="color:#75715e"># 8 subsequent Unicode codepoints for growing black bars</span>
+    <span style="color:#66d9ef">my</span> @octals ;
+    push @octals, $minimum ;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">7</span> ) {
+      push @octals, $range <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> $i ;
+    }
+    push @octals, $maximum ;
+    <span style="color:#66d9ef">my</span> @blockCodePoints <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">0x2581</span> , <span style="color:#ae81ff">0x2582</span>, <span style="color:#ae81ff">0x2583</span> , <span style="color:#ae81ff">0x2584</span> ,
+          <span style="color:#ae81ff">0x2585</span> , <span style="color:#ae81ff">0x2586</span> , <span style="color:#ae81ff">0x2587</span> , <span style="color:#ae81ff">0x2588</span>) ;
+    <span style="color:#66d9ef">my</span> @octalQuantiles <span style="color:#f92672">=</span> map { findOctal( $_ , <span style="color:#f92672">\</span>@octals ) } @numbers ;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $octal( @octalQuantiles[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> (scalar @octalQuantiles) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>] ) {
+      <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> chr( $blockCodePoints[ $octal ] ) ;
+      <span style="color:#66d9ef">print</span> $str ;
+    }
+    say chr( $blockCodePoints[ $octalQuantiles[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]] ) ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>I think a lot of the beauty of this challenge lies in the methods used to map the data into octants. Here Choroba gives us a nice, compact form.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> POSIX <span style="color:#e6db74">qw{ round }</span>;
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ min max }</span>;
+
+    <span style="color:#66d9ef">my</span> @BLOCKS <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, <span style="color:#e6db74">&#39;▁▂▃▄▅▆▇█&#39;</span>;
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">unicode_sparkline</span> (@n) {
+        <span style="color:#66d9ef">my</span> ($min, $max) <span style="color:#f92672">=</span> (min(@n), max(@n));
+        <span style="color:#66d9ef">my</span> $step <span style="color:#f92672">=</span> ($max <span style="color:#f92672">-</span> $min) <span style="color:#f92672">/</span> <span style="color:#ae81ff">7</span>;
+        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>, @BLOCKS[map round(($_ <span style="color:#f92672">-</span> $min) <span style="color:#f92672">/</span> $step), @n]
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/steve-g-lynn/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/steve-g-lynn/raku/ch-2.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/08/pwc-179.html">PWC 179</a></p>
+<p>So far the sparklines we have seen all follow the same core logic: given an ordered list of values, present a simple graphical representation of that data with the elements graphed relative to the the data set taken as a whole. To do that we categorize the data into octants and use varying sized black rectangles to portray it.</p>
+<p>This is all well and good, and demonstrates a practical use of sparklines. However repeating this same form over and over may give that false impression that that is what a sparkline <em>is</em>, rather than that miniature bar graphs drawn in Unicode is an excellent example of one form a sparkline can exist in.</p>
+<p>For instance, we are not limited to using the set of eight rectangular primitives to communicate, nor for that matter are we constrained to display our data in an equal, linear breakdown.</p>
+<p>To illustrate this last point I bring you Stephen, who has chosen to display his data using only three categories: within one standard deviation of the median value, above one standard deviation, and below one standard deviation. That&rsquo;s it. These are mapped to three rectangles, with the middle size representing the median bloc. This visualization can quickly show the concentration of the data around the median, or a tendency towards either low or high outliers.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Statistics::Lite <span style="color:#e6db74">qw(median stddev)</span>;
+
+    <span style="color:#66d9ef">my</span> @data<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>);
+    <span style="color:#f92672">&amp;</span>sparkline(@data);
+    <span style="color:#75715e">#▁▂▂▂▃▂▂▂▁</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sparkline</span> {
+        <span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $median<span style="color:#f92672">=</span>median(@data);
+        <span style="color:#66d9ef">my</span> $stddev<span style="color:#f92672">=</span>stddev(@data);
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $data (@data) {
+            <span style="color:#66d9ef">if</span> ( ($data <span style="color:#f92672">&gt;=</span> ($median<span style="color:#f92672">-</span>$stddev)) <span style="color:#f92672">&amp;&amp;</span>
+            ($data <span style="color:#f92672">&lt;=</span> ($median<span style="color:#f92672">+</span>$stddev)) ) {
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;▂&#39;</span>;
+            }
+            <span style="color:#66d9ef">elsif</span> ( $data <span style="color:#f92672">&lt;</span> ($median<span style="color:#f92672">-</span>$stddev) ) {
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;▁&#39;</span>;
+            }
+            <span style="color:#66d9ef">elsif</span> ( $data <span style="color:#f92672">&gt;</span> ($median<span style="color:#f92672">+</span>$stddev) ) {
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;▃&#39;</span>;
+            }
+            <span style="color:#66d9ef">else</span> {
+                die <span style="color:#e6db74">&#34;Something wrong.\n&#34;</span>;
+            }
+        }
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+        <span style="color:#66d9ef">return</span>;
+    }
+</code></pre></div><p>This got me thinking about the design aspect, and several thoughts come to mind. First, I&rsquo;d recommend using rectangles with more pronounced differences, such as the <code>LOWER ONE EIGHTH BLOCK</code>, <code>LOWER FIVE EIGHTHS BLOCK</code>, and <code>FULL BLOCK</code> for our triplet to emphasis the differences. This produces a more visually striking <code>▁▅▅▅█▅▅▅▁</code> sparkline.</p>
+<p>Or — and here we get really interesting — how about getting away from rectangles entirely? We&rsquo;re showing <em>divergence</em>, so the three characters <code>LOWER ONE EIGHTH BLOCK</code>, <code>BOX DRAWINGS HEAVY HORIZONTAL</code>, and <code>UPPER ONE EIGHTH BLOCK</code> can be used instead to construct the line <code>▁━━━▔━━━▁</code>. Now we clearly show the median zone and the incidence of straying data points.</p>
+<p>I like that I&rsquo;m using inline sparklines to talk about using sparklines.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-179/james-smith">Perl Weekly Challenge #179</a></p>
+<p>Finally we will end with James again, whose submission challenges many of the common assumptions made so far about what a sparkline even <em>is</em>.</p>
+<p>The fact is, the idea of a sparkline is not not so much <em>defined</em> as <em>described</em>. We are not exactly naming what it is, but rather what it does. Even the word itself is ambiguous: a spark is a both a small component of a larger fire and also a verb, the act of initiating that fire which then is allowed to spead.</p>
+<p>That&rsquo;s a very poetic name you&rsquo;ve got there, Mr. Tuffe. It has what I refer to as &ldquo;resonance&rdquo;. That&rsquo;s good work and as a professional communicator very on-brand.</p>
+<p>There&rsquo;s no rigid constraint that a sparkline can only be a single line, either. The only important part is conveying useful supporting information within the flow of text in a minimal graphic that illustrates the necessary information and nothing more.</p>
+<p>James eschews the more common bar graph of linear-values-and positions today for a different vision: a multiline histogram of values on one axis and incidence on the other. They look something like this:</p>
+<pre><code>   ╷
+  ╷│╷                                              ╷
+─┴┴┴┴──────────────────────────────┴────────────┴─┴┴┴
+</code></pre><p>I think that could easily be embedded to demonstrate the polarization of values towards the high and low extremes in a data set. No axis labels required.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">spark_line</span> {
+      <span style="color:#66d9ef">my</span>($mx,$k,$l,%x)<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $x{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @{$_}; ($_<span style="color:#f92672">&gt;</span>$mx) <span style="color:#f92672">&amp;&amp;</span> ($mx<span style="color:#f92672">=</span>$_) <span style="color:#66d9ef">for</span> values %x;
+      <span style="color:#75715e">## Top of lines if 2 or more matching values....</span>
+      map( {
+        ($l,$k) <span style="color:#f92672">=</span> ($_<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>); join <span style="color:#e6db74">&#39;&#39;</span>,
+                              map { <span style="color:#e6db74">&#39; &#39;</span> x ($_<span style="color:#f92672">-</span>$k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>( $x{$_}<span style="color:#f92672">&lt;</span>$l ? <span style="color:#e6db74">&#39; &#39;</span> : $x{$_} <span style="color:#f92672">==</span> $l ? $FULL : $HALF ), ($k<span style="color:#f92672">=</span>$_)x <span style="color:#ae81ff">0</span> }
+                              sort    { $a <span style="color:#e6db74">&lt;=&gt;</span> $b }
+                              keys    %x
+      } reverse <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $mx <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ),
+      <span style="color:#75715e">## Base line ...</span>
+      ($k<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)x <span style="color:#ae81ff">0</span>,join( <span style="color:#e6db74">&#39;&#39;</span>, map { $LINE x ($_<span style="color:#f92672">-</span>$k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">.</span> $START,($k<span style="color:#f92672">=</span>$_)x <span style="color:#ae81ff">0</span> } sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} keys %x )
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/08/26/glitter-bombs-and-sparkling-lines">Glitter Bombs and Sparkling Lines - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://etoobusy.polettix.it/2022/08/25/pwc179-unicode-sparkline/">PWC179 - Unicode Sparkline - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_179__Spark_and_Spell.html">RogerBW&rsquo;s Blog: The Weekly Challenge 179: Spark and Spell</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC179BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC179BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/ordinal-spark.html">Ordinal Spark with Raku - Arne Sommer</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/08/26/glitter-bombs-and-sparkling-lines">Glitter Bombs and Sparkling Lines - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://etoobusy.polettix.it/2022/08/24/pwc179-ordinal-number-spelling/">PWC179 - Ordinal Number Spelling - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://etoobusy.polettix.it/2022/08/25/pwc179-unicode-sparkline/">PWC179 - Unicode Sparkline - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-179/james-smith">Perl Weekly Challenge #179</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/08/perl-weekly-challenge-179-ordinal-numbers-and-unicode-sparkline.html">Perl Weekly Challenge 179: Ordinal Numbers and Unicode Sparkline</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/08/22/PerlWeeklyChallenge179.html#task1">Perl Weekly Challenge 179: graphs and spelled numbers – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/08/22/PerlWeeklyChallenge179.html#task1plperl">Perl Weekly Challenge 179: graphs and spelled numbers – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/08/22/PerlWeeklyChallenge179.html#task1plpgsql">Perl Weekly Challenge 179: graphs and spelled numbers – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_179__Spark_and_Spell.html">RogerBW&rsquo;s Blog: The Weekly Challenge 179: Spark and Spell</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/the-ordinal-sparkline-dn5">The Ordinal Sparkline</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Stephen G Lynn</strong></p>
+<ul>
+<li><a href="https://thiujiac.blogspot.com/2022/08/pwc-179.html">PWC 179</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/08/22/PWC179/">Perl Weekly Challenge 179 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
