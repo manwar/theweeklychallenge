@@ -39,8 +39,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 #### 1. Flavio Poletti
 #### 2. Jaldhar H. Vyas
-#### 3. Roger Bell_West
-#### 4. Stephen G. Lynn
+#### 3. Laurent Rosenfeld
+#### 4. Roger Bell_West
+#### 5. Stephen G. Lynn
 
 <br>
 
@@ -48,8 +49,8 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 9029 (62%)
-#### 2. Raku: 5396 (38%)
+#### 1. Perl: 9030 (62%)
+#### 2. Raku: 5397 (38%)
 #### 3. Blog: 2918
 
 <br>
@@ -57,10 +58,10 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `111`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `113`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 58
-#### 2. Raku: 34
+#### 1. Perl: 59
+#### 2. Raku: 35
 #### 3. Blog: 19
 
 <br>
@@ -251,7 +252,7 @@ The total contributions in the week is `111`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1862), Roger Bell_West (1606), Jaldhar H. Vyas (1544), Arne Sommer (1408), Colin Crain (1232), Luca Ferrari (1182), Flavio Poletti (1164), Athanasius (1134), Ulrich Rieke (972), Adam Russell (946), Dave Jacoby (868), E. Choroba (832), Abigail (794), Duncan C. White (676), Mohammad S Anwar (676), James Smith (668), Paulo Custodio (650), Stuart Little (644), Cheok-Yin Fung (608), W. Luis Mochan (574), Mark Anderson (546), Simon Green (532), Simon Proctor (512), Jorg Sommrey (472), Javier Luque (460), Ruben Westerberg (452), Lubos Kolouch (420), Jan Krnavek (394), Niels van Dijke (392), Ryan Thompson (390), Pete Houston (362), Wanderdoc (358), Feng Chang (342), Joelle Maslak (334), Peter Campbell Smith (292), Andrezgz (260), Bruce Gray (260), Robert DiCicco (232), Yet Ebreo (226), Matthew Neleigh (220), Steven Wilson (218), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Alexander Pankoff (184), Andrew Shitov (182), Kevin Colyer (176), Stephen G. Lynn (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Shahed Nooshmand (140), Dave Cross (136), Robert Ransbottom (130), Cristina Heredia (126), Marton Polgar (120), Andinus (120), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Bob Lied (108), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (1866), Roger Bell_West (1606), Jaldhar H. Vyas (1544), Arne Sommer (1408), Colin Crain (1232), Luca Ferrari (1182), Flavio Poletti (1164), Athanasius (1134), Ulrich Rieke (972), Adam Russell (946), Dave Jacoby (868), E. Choroba (832), Abigail (794), Duncan C. White (676), Mohammad S Anwar (676), James Smith (668), Paulo Custodio (650), Stuart Little (644), Cheok-Yin Fung (608), W. Luis Mochan (574), Mark Anderson (546), Simon Green (532), Simon Proctor (512), Jorg Sommrey (472), Javier Luque (460), Ruben Westerberg (452), Lubos Kolouch (420), Jan Krnavek (394), Niels van Dijke (392), Ryan Thompson (390), Pete Houston (362), Wanderdoc (358), Feng Chang (342), Joelle Maslak (334), Peter Campbell Smith (292), Andrezgz (260), Bruce Gray (260), Robert DiCicco (232), Yet Ebreo (226), Matthew Neleigh (220), Steven Wilson (218), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Alexander Pankoff (184), Andrew Shitov (182), Kevin Colyer (176), Stephen G. Lynn (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Shahed Nooshmand (140), Dave Cross (136), Robert Ransbottom (130), Cristina Heredia (126), Marton Polgar (120), Andinus (120), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Bob Lied (108), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -577,7 +578,9 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/laurent-rosenfeld/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/laurent-rosenfeld/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/laurent-rosenfeld/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/laurent-rosenfeld/raku/ch-2.raku)]
 [[**BLOG #1**](http://blogs.perl.org/users/laurent_r/2022/10/perl-weekly-challenge-185-mac-address-and-mask-code.html)]
 
 ***

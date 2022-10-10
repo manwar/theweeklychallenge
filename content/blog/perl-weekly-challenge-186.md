@@ -36,7 +36,7 @@ We are into the second week of `Hacktoberfest 2022`. I am not surprised the rise
     Perl: 55 Raku: 31 Blog: 17
 
 ### Week #2
-    Perl: 58 Raku: 34 Blog: 19
+    Perl: 59 Raku: 35 Blog: 19
 
 <br>
 
