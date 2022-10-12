@@ -76,6 +76,8 @@ Please find below guest contributions.
 
 ##### **Duncan C. White** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/duncan-c-white/C/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/duncan-c-white/C/ch-2.c) in **C**.
 
+##### **E. Alvarez** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/ealvar3z/python/ch-1.py) in **Python**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Joao Felipe** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-185/joaofel/apl/ch-1.apl) in **APL**.
