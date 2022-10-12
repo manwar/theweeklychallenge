@@ -125,7 +125,7 @@ Natural Language Programming is not the stuff of compact, elegant algorithms tha
 
 As such, with its kin it is commonly collected into libraries, accessed as required through an API of some sort. Compartmentalization of code and all that.
 
-THe field of submissions was split nearly evenly down the middle between those who employed a module, interfacing through its API, and those who solved the logical puzzle of  English-language ordinal number construction.
+The field of submissions was split nearly evenly down the middle between those who employed a module, interfacing through its API, and those who solved the logical puzzle of  English-language ordinal number construction.
 
 
 [**Aut0exec**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-179/aut0exec/perl/ch-1.pl)
@@ -142,7 +142,7 @@ We're [not going to touch that right now](https://en.wikipedia.org/wiki/Long_and
 
 Linguistically these words predate written text, evolving over time but by necessity never by much, as people from different regions would need to communicate these simple quantities and orderings often.
 
-Extending this reasoning, the smallest numbers are used the most, and reflective of this the first twenty numbers get their own words, and sometimes their own orinal forms: it's "eleventh", not "elevenst" or "ten-first".
+Extending this reasoning, the smallest numbers are used the most, and reflective of this the first twenty numbers get their own words, and sometimes their own original forms: it's "eleventh", not "elevenst" or "ten-first".
 
 Despite the obvious underlying complexity, Aut0exec solves a subset of the problem space, naming the first hundred orderings.
 
@@ -680,7 +680,7 @@ Write a script to print sparkline in Unicode for the given list of numbers.
 
 Sparklines are an information design element originally a creation of Edward Tuffe, where small pieces of graphical information — say a set of data points trending upwards — are placed directly within a line of text, rather than in an auxiliary space alongside it. In this way the the reader's attention remains fixed and does not require switching locations and refocusing. Although the informational content of a small graphic is necessarily limited — compared to a proper sidebox — sometimes that is all that is required for the moment: that a value is going up, down or staying the same, without getting bogged down with unnecessary details. Large graphics cam provide a great deal of detail, but this is done at the cost of requiring the reader to consider the big picture and extract the information. With sparklines, small parts of a complex idea can be isolated and highlighted, allowing us to stay with the story, or analysis, that is being made.
 
-"Sparklines", Tufte says, "can be placed anywhere that words or numbers or graphics can be placed: in sentences, maps, graphics, tables."
+"Sparklines", Tuffe says, "can be placed anywhere that words or numbers or graphics can be placed: in sentences, maps, graphics, tables."
 
 With the introduction of Unicode character sets, we now have access to selected graphical primitives as text characters in a font. Although there are no specific bar-graph characters, or any others specifically made for the purpose, we do have a set of eight bottom-aligned rectangles of varying heights that will serve. These are a common choice for those wishing to implement Unicode sparklines.
 
@@ -809,13 +809,13 @@ The monk, in a typically well-reasoned way, presents some limitations on the inf
 
 That, however, is not the fault of the sparkline. Given the low bandwidth available to us there is no internal room for explanation in the graphic, so we are reliant on the narrative context to accurately describe what is happening.
 
-Perhaps I am extrapolating too much from the monk's commentary, but all of this does follow from the idea that we have no room to display the axis origins and must, given the limited range of expression normallize the data into octants, or however many categories we choose to muster.
+Perhaps I am extrapolating too much from the monk's commentary, but all of this does follow from the idea that we have no room to display the axis origins and must, given the limited range of expression normalize the data into octants, or however many categories we choose to muster.
 
 I will however disagree with their assumption #1, that the Rosetta Code definition of "Sparklines in Unicode" is definitive — that this means we need to use the eight Unicode characters `▁ ▂ ▃ ▄ ▅ ▆ ▇ █` to construct a bar graph. That is only the Rosetta Code definition for their particular programming challenge. Although the eight characters U+2581 through U+2588 are convenient and visually appealing, Unicode sparklines can be constructed from any selection of characters. Take for instance [this example from Sean D. Stuber](https://seanstuber.com/2019/04/24/simple-sparklines-with-unicode-characters/)
 
 ░████████████████████████████░░░█░░█████████████░░░░▒░█████░██▒░░
 
-I believe a trend of intensification is well protrayed by this data using shades of grey.
+I believe a trend of intensification is well portrayed by this data using shades of grey.
 
 ```perl
     use List::Util     qw( max min );
@@ -864,7 +864,7 @@ I believe a trend of intensification is well protrayed by this data using shades
 
 New member Solathian brings us an excellent breakdown of their process using a sequence of subroutines: printing the input; get the minimum and maximum values; normalize the data; round the data; and finally print the sparkline.
 
-Here is their nomalizing routine:
+Here is their normalizing routine:
 
 ```perl
     sub normalizeData
@@ -1050,7 +1050,7 @@ I like that I'm using inline sparklines to talk about using sparklines.
 
 Finally we will end with James again, whose submission challenges many of the common assumptions made so far about what a sparkline even *is*.
 
-The fact is, the idea of a sparkline is not not so much *defined* as *described*. We are not exactly naming what it is, but rather what it does. Even the word itself is ambiguous: a spark is a both a small component of a larger fire and also a verb, the act of initiating that fire which then is allowed to spead.
+The fact is, the idea of a sparkline is not not so much *defined* as *described*. We are not exactly naming what it is, but rather what it does. Even the word itself is ambiguous: a spark is a both a small component of a larger fire and also a verb, the act of initiating that fire which then is allowed to spread.
 
 That's a very poetic name you've got there, Mr. Tuffe. It has what I refer to as "resonance". That's good work and as a professional communicator very on-brand.
 
