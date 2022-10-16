@@ -52,6 +52,8 @@ Please find below guest contributions.
 
 ##### **izem** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/izem/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/izem/python/ch-2.py) in **Python**.
 
+##### **Kueppo Wesley** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/kueppo-wesley/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/kueppo-wesley/node/ch-2.js) in **Node.js**.
+
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/ziameraj16/java/ZipList.java) in **Java**.
