@@ -38,6 +38,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 186](/blog/perl-weekly-challenge-186) {#186}
 <br>
 
+##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/adam-russell/prolog/ch-1.p) in **Prolog**.
+
 ##### **Cheok-Yin Fung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/cheok-yin-fung/java/UnicodeMakeover.java) in **Java**.
 
 ##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/ealvar3z/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/ealvar3z/python/ch-2.py) in **Python**.
