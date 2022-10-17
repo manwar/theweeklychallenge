@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #180">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #180</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #180</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Oct 17, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-180.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-179/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 180</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would come from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they personally find the most interesting and satisfying. Some team members will focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here: to try and figure out ways to do just that.</p>
+<p>So that&rsquo;s that&hellip; I&rsquo;m ready now — let’s go in and see what we can find.</p>
+<hr>
+<h3 id="for-added-context">For Added Context</h3>
+<p>Before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-180/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-180/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one <em><strong>more</strong></em> thing before we finally get started:</p>
+<br>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<hr>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<hr>
+<br>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<br>
+<h3 id="enough-fine-so-without-even-further-ado">Enough? Fine. So without even further ado&hellip;</h3>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc180task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc180task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc180blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC180TASK1">Task 1</a>                 •             <a href="#PWC180TASK2">Task 2</a>                 •             <a href="#PWC180BLOGS">BLOGS</a>                  •</h2>
+<hr>
+<h1 id="PWC180TASK1">TASK 1</h1>
+<h1 id="first-unique-character">First Unique Character</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given a string, <code>$s</code>.</p>
+<p>Write a script to find out the first unique character in the
+given string and print its index (0-based).</p>
+<p><strong>Example 1</strong></p>
+<pre><code>        Input:  $s = &quot;Perl Weekly Challenge&quot;
+        Output: 0 as 'P' is the first unique character
+</code></pre><p><strong>Example 2</strong></p>
+<pre><code>        Input:  $s = &quot;Long Live Perl&quot;
+        Output: 1 as 'o' is the first unique character
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/aut0exec/perl/ch-1.pl"><strong>Aut0exec</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/bejoy-mathews/perl/ch-1.pl"><strong>Bejoy Mathews</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/dario-mazzeo/perl/ch-1.pl"><strong>Dario Mazzeo</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/kueppo-wesley/perl/ch-1.pl"><strong>Kueppo Wesley</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/solathian/perl/ch-1.pl"><strong>Solathian</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Arrays and strings are two rather closely-related data structures, although one might not immediately realize this. In Perl they are held in very different containers: either an indexed Array or, in the case of a string, a simple Scalar. Internally, though, the string component of a scalar holds, in an invisibly complicated way hidden from the user, a pointer to a C-array of characters.</p>
+<p>Consequently string characters can be referred to by index, just like an array. In the C language strings and arrays are essentially the same, but in Perl an Array data type has a bunch of clever additional metadata attached to it, such as its length, and first position.</p>
+<p>Wait, <em>first</em> position? Don&rsquo;t you mean <em>last</em> postion? No, we get that from the length if we know the first, and  Perl arrays always allocate a bit more memory than they strictly need to make adding (and removing) elements easier. So on a canvas of apportioned memory we overlay a sequence of scalar values, and hence we will need to know where to start. Clever, no?</p>
+<p>Trust me, it&rsquo;s intensely clever. There&rsquo;s cleverness all over the &ldquo;simple&rdquo; Perl data types.</p>
+<p>Strings, in fact, also use a similar device of allocating extra space in front of the first character but you really don&rsquo;t need to know that right now.</p>
+<p>Suffice to say strings and arrays at the deepest levels boil down to sequential slots in memory that can be managed arithmetically. Which is also the essence of a list in Perl, which can be thought of as an array without the data structure backing it up: a list is a sequence of scalars often contained in a stack.</p>
+<p>Sure, there&rsquo;s lots of hand-waving in that explanation but also I feel that&rsquo;s a pretty good gist of the situation. This is all just provided as a public service, giving background as to why you can go the same sort of things one might think to do with an array, with strings, and why converting between the two forms has its own set of specialized functions to go about this. They&rsquo;re kind of welded at the hip, when it comes down to it.</p>
+<p>There were 31 submissions for the first task this past week.</p>
+<h2 id="finding-a-needle-in-a-pile-of-string">FINDING a NEEDLE in a PILE of STRING</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/bejoy-mathews/perl/ch-1.pl"><strong>Bejoy Mathews</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/dario-mazzeo/perl/ch-1.pl"><strong>Dario Mazzeo</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/aut0exec/perl/ch-1.pl"><strong>Aut0exec</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/solathian/perl/ch-1.pl"><strong>Solathian</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>In the first of two list-based tasks this week we are asked to locate the position of the first unique value within the list. In order to do this will by necessity need to look at every position within the list at least once, to know for sure our final selection is unique,</p>
+<p>Using two passes over the data makes te task fairly straightforward: in the first we count the incidence of each component element, and in the second find the first character that shows up only once. The first counting does not even need to be complete, as all we really care about is &ldquo;once&rdquo; or &ldquo;more than once&rdquo;.</p>
+<p>The task can also be accomplished in a single pass, if we collect and update the necessary information as we go along. By the time we get to the end of the line we will, with a little care, know everything we need to make the call.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/steve-g-lynn/perl/ch-1.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/steve-g-lynn/raku/ch-1.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/08/pwc-180.html">PWC 180</a></p>
+<p>We&rsquo;ll start the ball rolling with Stephen, who appears to be quite fond of the letter &lsquo;s&rsquo;.</p>
+<p>Alternately, having forcibly secured a foothold in the symbol table, he has chosen to fully develop his postion there under that name before venturing further. Exploring code can be fraught with peril, and hence solidifying a strong base camp can be a very prudent course to pursue. And bonus if you also just happen to <em>really</em> like the letter &lsquo;s&rsquo;.</p>
+<p>In any case here we are with a scalar, an array and a hash all named &lsquo;s&rsquo; with differing sigils. The string &lsquo;s&rsquo; is chopped into an array of characters &lsquo;s&rsquo; that are processed into a frequency hash &lsquo;s&rsquo;. We can then iterate over the index values of the array, and, examining each character as a hash key, check its count. The first key whose count is 1 is unique, and hence our winner.</p>
+<p>Further processing can now stop after the result is reported.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">print_1st_unique_char_indx</span> {
+        <span style="color:#75715e">#-- parsimonious use of a single stash entry *s</span>
+        local ($s) <span style="color:#f92672">=</span> shift;
+        local (@s, %s);
+        @s <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $s;
+        <span style="color:#66d9ef">for</span> $s (@s) {$s{$s}<span style="color:#f92672">++</span>;}
+        <span style="color:#66d9ef">for</span> $s (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar(@s)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">if</span> ($s{$s[$s]}<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>) {
+                <span style="color:#66d9ef">print</span> $s,<span style="color:#e6db74">&#34;\n&#34;</span>;
+                <span style="color:#66d9ef">last</span>;
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/bejoy-mathews/perl/ch-1.pl"><strong>Bejoy Mathews</strong></a></p>
+<p>An interesting approach is given by Bejoy, who makes a single top-level pass across the data. He examines for each letter position and then, using <code>grep</code>, tests the prevalence of one-or-more second appearances in the array slice following it..</p>
+<p>Or in other words, look at the first letter, and see if it occurs again. If it does then try the second, and see if the string following <em>that</em> contains a repeat. Continue until we find one that doesn&rsquo;t, and note its position.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @pwc <span style="color:#f92672">=</span> split(<span style="color:#e6db74">&#39;&#39;</span>, $s);
+    <span style="color:#66d9ef">my</span> $pos<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">foreach</span>(@pwc)
+    {
+     $pos<span style="color:#f92672">++</span>;
+     <span style="color:#66d9ef">if</span> (grep(<span style="color:#e6db74">/$pwc[$pos]/</span>, @pwc[$pos<span style="color:#f92672">..</span>@pwc<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) { <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;The first unique character in &#39;$s&#39; is &#39;$pwc[$pos]&#39;\n&#34;</span>; exit }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>In Dave&rsquo;s <code>first_uniq_char</code> we perform much the same action, yet use a second loop to replace the <code>grep</code>. One tradeoff here is that once we find a single second instance we can short-circuit out of the inner loop and move on the next string index immediately.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">first_uniq_char</span>( $string ) {
+        <span style="color:#66d9ef">my</span> @string <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $string;
+    OUTER: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar @string ) {
+            <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $string[$i];
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar @string ) {
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">==</span> $j;
+                <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> $string[$j];
+                <span style="color:#66d9ef">next</span> OUTER <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">eq</span> $d;
+            }
+            <span style="color:#66d9ef">return</span> $i;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_180__Unique_Trim.html">RogerBW&rsquo;s Blog: The Weekly Challenge 180: Unique Trim</a></p>
+<p>Now Roger returns us to performing two discrete passes over the elements of a listified string, the first to bag the frequencies and the second to find the lowest index with a hashed count of 1.</p>
+<p>A <code>map</code> is used to make our bag, and a <code>foreach</code> loop iterates over the index values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">firstunique</span>($s) {
+      <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#39;&#39;</span>,$s;
+      <span style="color:#66d9ef">my</span> %cc;
+      map {$cc{$_}<span style="color:#f92672">++</span>} @s;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#s) {
+        <span style="color:#66d9ef">if</span> ($cc{$s[$i]} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+          <span style="color:#66d9ef">return</span> $i;
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/dario-mazzeo/perl/ch-1.pl"><strong>Dario Mazzeo</strong></a></p>
+<p>Here is another example of making a frequency hash, then using a C-style <code>for</code> loop to traverse the string letter-by-letter using <code>substr</code>, landing on the first character with a hash value of 1.</p>
+<p>The difference here being that Dario does it in Italian.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Long Live Perl&#34;</span>;
+    <span style="color:#66d9ef">my</span> %freq<span style="color:#f92672">=</span>();
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">&lt;</span>length($s); $i<span style="color:#f92672">++</span>){
+        $freq{substr($s,$i,<span style="color:#ae81ff">1</span>)}<span style="color:#f92672">++</span>;
+    }
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">&lt;</span>length($s); $i<span style="color:#f92672">++</span>){
+        <span style="color:#66d9ef">my</span> $c<span style="color:#f92672">=</span>substr($s,$i,<span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">if</span> ($freq{$c}<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>){
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$i &#39;$c&#39; e&#39; il primo carattere univoco\n&#34;</span>;
+            <span style="color:#66d9ef">last</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/swift/ch-1.swift">Swift</a></p>
+<p>Mohammad introduces an interpretative twist we haven&rsquo;t seen before, in standardizing the case before counting their frequencies. This brings to light an ontological ambiguity on the nature of a &ldquo;character&rdquo;. If a character is an encoded numeric entity on a computer system, then &ldquo;A&rdquo; and &ldquo;a&rdquo; are different, as their bits are not the same. Any semantic similarities in the meaning of the glyphs is irrelevant. However looking at it another way strings are presumed to be textual, and texts are composed of letters, giving credence to the idea that &ldquo;A&rdquo; and &ldquo;a&rdquo; are minor grammatical variations on a single vowel that does not change, and hence in essence the same thing.</p>
+<p>By lowercasing before counting, Mohammad places himself in the latter camp.</p>
+<p>Interesting.</p>
+<p>A quick search through the submissions reveals he is not alone.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">first_unique_character</span>($str) {
+        <span style="color:#66d9ef">my</span> @c <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">my</span> %c <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (split <span style="color:#e6db74">//</span>, $str) {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39; &#39;</span>;
+            $c <span style="color:#f92672">=</span> lc $c;
+            <span style="color:#66d9ef">if</span> (exists $c{$c}) {
+                $c{$c}<span style="color:#f92672">++</span>;
+            }
+            <span style="color:#66d9ef">else</span> {
+                push @c, $c;
+                $c{$c} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            }
+        }
+
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (@c) {
+            <span style="color:#66d9ef">if</span> ($c{$c} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+                <span style="color:#66d9ef">return</span> $i;
+            }
+            $i<span style="color:#f92672">++</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>For example, the monk Athanasius makes the same assumption, quite explicitly in their notes, along with caveats on ignoring whitespace. Frankly this whole line of reasoning never occurred to me.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_index</span>
+    {
+        <span style="color:#66d9ef">my</span> ($s) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  %chars;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char (split <span style="color:#e6db74">//</span>, $s)
+        {
+            <span style="color:#f92672">++</span>$chars{ lc $char } <span style="color:#66d9ef">if</span> $char <span style="color:#f92672">=~</span><span style="color:#e6db74"> / ^ [[:alpha:]] $ /x</span>;
+        }
+
+        <span style="color:#66d9ef">my</span> $index;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length( $s ) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+        {
+            <span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> lc substr( $s, $i, <span style="color:#ae81ff">1</span> );
+
+            <span style="color:#66d9ef">if</span> (exists $chars{ $key } <span style="color:#f92672">&amp;&amp;</span> $chars{ $key } <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+            {
+                $index <span style="color:#f92672">=</span> $i;
+                <span style="color:#66d9ef">last</span>;
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> $index;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/aut0exec/perl/ch-1.pl"><strong>Aut0exec</strong></a></p>
+<p>Member Aut0exec delivers a compact and direct solution that uses a regular expression to match out occurrences of each letter. The string is broken into an array of characters, then each is matched globally within the unaltered string.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $letter (split(<span style="color:#e6db74">//</span>, $String)) {
+        <span style="color:#66d9ef">my</span> @matches <span style="color:#f92672">=</span> $String <span style="color:#f92672">=~</span><span style="color:#e6db74"> /$letter/g</span>;
+        <span style="color:#66d9ef">if</span> ( scalar(@matches) <span style="color:#f92672">eq</span> <span style="color:#ae81ff">1</span> )
+        {
+            <span style="color:#66d9ef">print</span> (<span style="color:#e6db74">&#34;The first unique letter is: $letter at index: $i\n&#34;</span>);
+            <span style="color:#66d9ef">last</span>;
+        }
+        $i<span style="color:#f92672">++</span>;
+    }
+</code></pre></div><p>This approach makes me think that by using the <code>/e</code> switch, a counter, and a toggle the whole thing could be done within a single expression.</p>
+<p>Hmmm&hellip;</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/solathian/perl/ch-1.pl"><strong>Solathian</strong></a></p>
+<p>Member Solathian also employs a global match to find all occurrences of each letter, combining the whole operation into the conditional clause.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $char (@characters)
+    {
+        <span style="color:#75715e"># skip spaces</span>
+        <span style="color:#66d9ef">if</span>($char <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39; &#39;</span>)
+        {
+            <span style="color:#75715e">#count the characters in the string</span>
+            <span style="color:#66d9ef">if</span>( <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> ($string <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/$char//g</span> ) )
+            {
+                <span style="color:#75715e"># if it is one then it is unique</span>
+                say( <span style="color:#e6db74">&#34;Output: $i as &#39;$char&#39; is the first unique character&#34;</span>);
+
+                $returnVal <span style="color:#f92672">=</span> $i;
+                <span style="color:#66d9ef">last</span>;
+            }
+        }
+        $i<span style="color:#f92672">++</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-180-4mi5">Weekly Challenge 180</a></p>
+<p>The Perl regular expression engine is an awesome machine of sometimes incomprehensible power. Or perhaps just dangerously incomprehensible.</p>
+<p>Ok, sure, that might be a little hyperbolic but frankly, not a lot. It is its own DSL and interpreter combo that may not be Turing complete, but certainly feels as through it is. The actual status, to my knowledge, remains unproven.</p>
+<p>But with great power comes great complexity, and with complexity comes overhead. And overhead, in a general sense, is to be avoided.</p>
+<p>Enter <code>index</code>, which searches for a subpattern within a string. Because no backtracking is involved it doesn&rsquo;t need the whole RE engine, and hence is very fast. Combined with <code>substr</code> instead of making a new array to iterate over and we have a recipe for speed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span>($phrase) {
+    <span style="color:#75715e"># Go through each character</span>
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length($phrase)<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) {
+
+            <span style="color:#75715e"># If the letter in that position does not occur  later, print the index</span>
+            <span style="color:#66d9ef">if</span> (index($phrase, substr($phrase, $i, <span style="color:#ae81ff">1</span>), $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+                say $i;
+                <span style="color:#66d9ef">return</span>;
+            }
+        }
+
+        <span style="color:#75715e"># Oh dear. Nothing unique!</span>
+        say <span style="color:#e6db74">&#39;No unique characters!&#39;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Although Choroba gives us a very nice comparative solution, with a tasting plate of subroutines served four ways, it was his regular expression version that really caught my eye:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">first_unique_character_regex</span> ($s) {
+        local $_ <span style="color:#f92672">=</span> $s;
+        <span style="color:#e6db74">s/\Q$1//g</span> <span style="color:#66d9ef">while</span> <span style="color:#e6db74">/(.).*\1/g</span>;
+
+        <span style="color:#66d9ef">return</span> length ? index $s, substr $_, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p>What&rsquo;s happening here? It&rsquo;s important to realize the conditional match in the <code>while</code> will be executed first, which will match the first character in the string, capturing it into $1, just as long as a second occurence is found later in the string. Shoud a match be found, the earlier substitution will remove all traces of that character from the string and we will go around again.</p>
+<p>The conditional fails at the first non-repeating character, at which point we move to the <code>return</code> statement. If the target string still has characters then we use <code>index</code> to find the offset, which would be the number of characters we have stripped off the head before we finally found our unique value.</p>
+<p>This is our index, or -1 is returned if we can&rsquo;t find a non-repeating character.</p>
+<p>Choroba provides several other solutions that are also very much worth a look, as always. Using two hashes, one recording uniqueness and the other positions of the first occurrences, proved the quickest in a shoot-out. I personally find this very interesting because <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/colin-crain/perl/ch-1.pl">I used two hashes myself in a very similar fashion</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ min }</span>;
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">first_unique_character_hash</span> ($s) {
+        <span style="color:#66d9ef">my</span> %pos;
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> %is_unique;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $ch (split <span style="color:#e6db74">//</span>, $s) {
+            $is_unique{$ch} <span style="color:#f92672">=</span> <span style="color:#f92672">!</span> exists $pos{$ch};
+            $pos{$ch} <span style="color:#f92672">=</span> $i<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">return</span> min(@pos{ grep $is_unique{$_}, keys %pos }) <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Finally, what about a module function?</p>
+<p>The <code>List::Util</code> function <code>uniq</code> did not prove useful to this particular task, as this only removes duplicates without preserving any original properties of uniqueness among array elements. There was, however, another function over in <code>List::MoreUtils</code> that proved more promising.</p>
+<p>This function is <code>singleton</code>, and Niels is here to demonstrate it to us.</p>
+<p>What <code>singleton</code> does is <em>filter</em> a list, and only allow unique, solitary values through. The result is a list of unique elements with non-unique values completely removed. By splitting a string, applying the function and rejoining the filtered result he constructs a string of only the unique characters from the original.</p>
+<p>This sting is then used to construct a character class, which when inserted into a regular expression minimally matching everything from the front of the original string up to the first single member of the character class. The magic then is that the length of this match, returned, will be the offset of the first unique character.</p>
+<p>Yes it is kind of convoluted but also great.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(singleton)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">firstUniqueChar</span>($) {
+      <span style="color:#66d9ef">my</span> $re <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#39;(?i)(.*?)([%s])&#39;</span>, join <span style="color:#e6db74">&#39;&#39;</span>,singleton split <span style="color:#e6db74">//</span>,lc $_[<span style="color:#ae81ff">0</span>];
+      <span style="color:#66d9ef">my</span> (@r) <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span> m<span style="color:#75715e">#$re#;</span>
+
+      <span style="color:#66d9ef">return</span> [length $r[<span style="color:#ae81ff">0</span>], $r[<span style="color:#ae81ff">1</span>]];
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<h2 id="notes">NOTES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/09/04">First Uniquely Trimmed Index – Perl – RabbitFarm</a> ( <em>Perl</em> )</p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/09/04">First Uniquely Trimmed Index – Prolog – RabbitFarm</a> ( <em>Prolog</em> )</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/d/ch1.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/modula-3/ch1">Modula-3</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/nim/ch1.nim">Nim</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/pascal/ch1.pas">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/python/ch1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/unique-trim.html">Unique Trim with Raku and Perl - Arne Sommer</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/cheok-yin-fung/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/09/03/second-to-none">Second to None - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/duncan-c-white/C/ch-1.c">C</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://etoobusy.polettix.it/2022/09/01/pwc180-first-unique-character/">PWC180 - First Unique Character - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/09/perl_weekly_challenge_week_180.html">Perl Weekly Challenge: Week 180</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-180/james-smith">Perl Weekly Challenge #180</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/d/ch-1.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/ring/ch-1.ring">Ring</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/scala/ch-1.scala">Scala</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/08/perl-weekly-challenge-180-first-unique-character-and-trim-list.html">Perl Weekly Challenge 180:  First Unique Character and Trim List</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/ruby/ch-1.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/rust/ch-1.rs">Rust</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/08/29/PWC180/">Perl Weekly Challenge 180 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC180TASK2">TASK 2</h1>
+<h1 id="trim-list">Trim List</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given list of numbers, @n and an integer $i.</p>
+<p>Write a script to trim the given list where element is less than or equal to the given integer.</p>
+<p><strong>Example 1</strong></p>
+<pre><code>        Input: @n = (1,4,2,3,5) and $i = 3
+        Output: (4,3,5)
+</code></pre><p><strong>Example 2</strong></p>
+<pre><code>        Input: @n = (9,0,6,2,3,8,5) and $i = 4
+        Output: (9,6,8,5)
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/aut0exec/perl/ch-2.pl"><strong>Aut0exec</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/bejoy-mathews/perl/ch-2.pl"><strong>Bejoy Mathews</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/dario-mazzeo/perl/ch-2.pl"><strong>Dario Mazzeo</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/kueppo-wesley/perl/ch-2.pl"><strong>Kueppo Wesley</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/solathian/perl/ch-2.pl"><strong>Solathian</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/steven-wilson/perl/ch-2.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>The <a href="https://en.wikipedia.org/wiki/Grep">UNIX utility <code>grep</code></a> is an acronym from the three terms &ldquo;Global&rdquo;,  &ldquo;Regular Expression&rdquo;, and &ldquo;Print&rdquo;. It&rsquo;s a handy search tool created by Ken Thompson that selects terms from all items in an input list — originally filenames — that match a given expression, printing the positive results.</p>
+<p>This idea, of taking a large pool of data and extracting only those parts that match certain criteria, is known as a filter. In Perl, the regular expression component is generalized to a block of code that returns either true of false for a given input. This generalized idea, in turn, of applying a code block, or function, to a list or stream of data to determine a result, is a basic component of the functional programming paradigm.</p>
+<p>There were 30 submissions for the second task this past week.</p>
+<h2 id="a-selection-of-submissions">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/dario-mazzeo/perl/ch-2.pl"><strong>Dario Mazzeo</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/aut0exec/perl/ch-2.pl"><strong>Aut0exec</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>Basically what we are being asked to do here is implement <code>grep</code>, either calling it directly or by reproducing the functionality in a filter. As it is already a built-in function integral to the language just using <code>grep</code> was by far the most common approach. However some submissions chose more elemental reconstructive solutions, sequentially processing and comparing the input iist items.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/d/ch2.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/modula-3/ch2">Modula-3</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/nim/ch2.nim">Nim</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/pascal/ch2.pas">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/python/ch2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/raku/ch-2.raku">Raku</a></p>
+<p>Ali will start us off with a demonstration on the use of <code>grep</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">trim_list</span>{
+      <span style="color:#66d9ef">my</span> ($arr, $i) <span style="color:#f92672">=</span> @_;
+      grep {$_ <span style="color:#f92672">&gt;</span> $i} @$arr;
+    }
+</code></pre></div><p>The block we are applying is <code>{$_ &gt; $i}</code>, which sets the special variable <code>$_</code>, known as the topic, to each element in the input subroutine stack in turn.</p>
+<p><code>grep</code> returns a list of all elements that resolve to true within the block. This, because it is the last operation in a subroutine that does not otherwise explicitly return, is passed through and returned by the subroutine.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew takes a lower-level approach, and a more strict interpretation of the directive to &ldquo;trim the given list&rdquo;. In this he operates on a reference for his input, and alters the original array in-place rather than returning a copy.</p>
+<p>A while loop is used with an external index variable. At each cycle the list element at the index is examined, and if it satisfies the condition it is left alone, the index incremented and the next element selected. If the condition fails, however, <code>splice</code> is used to remove the element from the list. As the list is now one element shorter, the index now points to the next element already.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">trim_list_by_value</span>{
+        <span style="color:#66d9ef">my</span> $list <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> int(shift());
+
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#75715e"># Loop while $i is within the array</span>
+        <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&lt;=</span> $#$list){
+            <span style="color:#66d9ef">if</span>($list<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">&gt;</span> $n){
+                <span style="color:#75715e"># This value doesn&#39;t meet search criteria;</span>
+                <span style="color:#75715e"># move on (increment $i)</span>
+                $i<span style="color:#f92672">++</span>;
+            } <span style="color:#66d9ef">else</span>{
+                <span style="color:#75715e"># This value meets search criteria; remove</span>
+                <span style="color:#75715e"># it (and shrink the list)</span>
+                splice(@{$list}, $i, <span style="color:#ae81ff">1</span>);
+            }
+        }
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/duncan-c-white/C/ch-2.c">C</a></p>
+<p>It&rsquo;s not clear whether recopying or in-place alteration of the actual input list is the purest expression of the operation. Each has its own virtue, either to preserve memory or to be able to  return to the unaltered list later. Ultimately the best choice will depend on the final application.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    @list <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">&gt;=</span> $i } @list;
+    say <span style="color:#e6db74">&#39;(&#39;</span><span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;,&#39;</span>, @list )<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;)&#39;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>In an unexpected twist Niels covers all bases, and depending on what is being assigned from the function returns either a newly-minted array of values or simply overwrites the input reference with new data from the filtered list.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">trimList</span> (\@$) {
+      <span style="color:#66d9ef">my</span> ($ar,$v) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#66d9ef">if</span> (wantarray) {
+        grep { $_ <span style="color:#f92672">&gt;</span> $v } @$ar;
+      } <span style="color:#66d9ef">else</span> {
+        @$ar <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">&gt;</span> $v } @$ar;
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/08/29/PWC180/">Perl Weekly Challenge 180 – W. Luis Mochán</a></p>
+<p>Using <code>grep</code> the combined actions can be placed into one compact line. Even if we include some verbose commentary, as Luis has done here.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#e6db74">&#34;The elements of (&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @list),
+        <span style="color:#e6db74">&#34;) larger than or equal to $N are (&#34;</span>,
+        join(<span style="color:#e6db74">&#34;, &#34;</span>, grep {$_ <span style="color:#f92672">&gt;=</span> $N} @list), <span style="color:#e6db74">&#34;)&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/dario-mazzeo/perl/ch-2.pl"><strong>Dario Mazzeo</strong></a></p>
+<p>To avoid just repeating the <code>grep</code> form of example over and over, I&rsquo;ll try and seek out any variations where they lie.</p>
+<p>Here Dario constructs his own loop, examining each element in turn and either pushing it onto a new output list or passing it by. This is, after all, the essential action behind <code>grep</code>, albeit that producing an anonymous array to be assigned.</p>
+<p>Dario pretty-prints the output array and a comma-separated list within parentheses, which is both clear and has a nice look.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @out<span style="color:#f92672">=</span>();
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j (@n){
+        <span style="color:#66d9ef">if</span> ($j<span style="color:#f92672">&gt;</span>$i){
+            push(@out, $j);
+        }
+    }
+
+    <span style="color:#66d9ef">my</span> $output<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(@out)&#34;</span>;
+    $output<span style="color:#f92672">=~</span><span style="color:#e6db74">s/ /,/g</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$output\n&#34;</span>;
+</code></pre></div><p>A regular expression is used to swap the spaces placed by the double-quote operator for commas, which works fine, but something many people do not seem to know is that the behavior of the double quotes when given an array is configurable! Buried within the noisy glyph-scape that holds the many <a href="https://perldoc.perl.org/perlvar">Perl special variables</a> we find <code>$&quot;</code>, which is easy to remember because it&rsquo;s the variable for double quotes. Its formal, long name is <code>$LIST_SEPARATOR</code>, and it specifies the character placed between elements of a list when interpolated. Remember all arrays are lists but not all lists are arrays.</p>
+<p>Because the configuration is by default global, it&rsquo;s commonly redefined using the <code>local</code> declaration, limiting its scope to the current block.</p>
+<p>And furthermore the more modern <code>say</code> is just like <code>print</code> but adds a linefeed. So the output section could be compactly rewritten using Perl idioms as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    local $&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;, &#39;</span>;
+    say <span style="color:#e6db74">&#34;($output)&#34;</span>;
+</code></pre></div><p>Nice, right?</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/aut0exec/perl/ch-2.pl"><strong>Aut0exec</strong></a></p>
+<p>The use of <code>local</code> is not necessary, nor is any declarative statement in fact, as the special variable <code>$&quot;</code> comes pre-defined. The main purpose of using <code>local</code> is that in more complex environments a global change may break some other interpolation placed far away, potentially bringing in a had-to-trace bug.</p>
+<p>Here Aut0exec provides a more stripped down example, with most of the processing encapsulated in a single line of code.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @List <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/,/</span>, $ARGV[<span style="color:#ae81ff">0</span>]);
+    <span style="color:#66d9ef">my</span> $Int <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">my</span> @Filtered;
+
+    <span style="color:#66d9ef">foreach</span> (@List) { push(@Filtered, $_) <span style="color:#66d9ef">unless</span> $_ <span style="color:#f92672">&lt;=</span> $Int; }
+
+    $&#34;<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;,&#39;</span>;
+    <span style="color:#66d9ef">print</span> (<span style="color:#e6db74">&#34;Filtered list is: @Filtered \n&#34;</span>);
+</code></pre></div><p>But since I seem to be discussing conventions, I will mention those capitalized variable names, although perfectly legal, throw me off. <code>$Int</code> scans to me like a type declaration, making me question where I am and many of the dubious life choices I have made over the years. And I don&rsquo;t particularly like that train of thought. There&rsquo;s a time and a place for that, like for instance my therapist&rsquo;s office. Lowercase and underscores, &ldquo;snake_case&rdquo; is the convention, and I&rsquo;m honestly not a fan of single letters except in the most obvious throw-away cases.</p>
+<p>Obviously in a language that prides itself on TIMTOWTDI these particulars will be in some dispute, and YMMV.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://etoobusy.polettix.it/2022/09/02/pwc180-trim-list/">PWC180 - Trim List - ETOOBUSY</a></p>
+<p>Here Flavio demonstrates proper safe-coding procedures by explicitly placing his output within its own containing block.</p>
+<p>We also have a really interesting replacement for some of the generalized functionality of <code>grep</code>, with the function <code>trim_le</code>, for &ldquo;less-than or equal to&rdquo;. Or maybe &ldquo;learner&rsquo;s edition&rdquo;, but I doubt it.</p>
+<p>This function in turn calls the function <code>trim</code> handing it a coderef containing a  conditional block, which can happen by benefit of the function prototype <code>&amp;@</code>.  This says to take a reference to,  passing a coderef and an array reference. Done this way we can pass the wrapper function a low shelf value and the array to be trimmed, all without parentheses.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">trim</span> (&amp;@) { <span style="color:#66d9ef">my</span> $cond <span style="color:#f92672">=</span> shift; grep { <span style="color:#f92672">!</span> $cond<span style="color:#f92672">-&gt;</span>($_) } @_ }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">trim_le</span> ($@) { <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> shift; trim { $_ <span style="color:#f92672">&lt;=</span> $i } @_ }
+
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">3</span>;
+    <span style="color:#66d9ef">my</span> @start <span style="color:#f92672">=</span> @ARGV ? @ARGV : (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>);
+    <span style="color:#66d9ef">my</span> @trimmed <span style="color:#f92672">=</span> trim_le $i, @start;
+    {local $&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;,&#39;</span>; say <span style="color:#e6db74">&#34;(@trimmed)&#34;</span> }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>With the inherent structural brevity of the <code>grep</code> solution, some people took in on themselves to make that an end in itself.</p>
+<p>CY has crafted her <code>grep</code> code to fit on a single line, to be used from the shell under <code>perl -nE</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    @a <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\D/</span>, $_; say join <span style="color:#e6db74">&#34; &#34;</span>, grep { $_ <span style="color:#f92672">&gt;</span> $a[<span style="color:#ae81ff">0</span>]} @a    <span style="color:#75715e">#perl -nE</span>
+
+
+    <span style="color:#75715e"># perl -nE &#39;@a = split /\D/, $_; say join &#34; &#34;, grep { $_ &gt; $a[0]} @a&#39;</span>
+    <span style="color:#75715e"># [input] 3 1 4 2 3 5</span>
+    <span style="color:#75715e"># [output] 4 5</span>
+    <span style="color:#75715e"># [input] 4 9 0 6 2 3 8 5</span>
+    <span style="color:#75715e"># [output] 9 6 8 5</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-180/james-smith">Perl Weekly Challenge #180</a></p>
+<p>When inscribing monuments in stone, the Romans eschewed punctuation and interstitial spacing between letters, only grudgingly acquiescing to divid sentence-level concepts into separate lines. The argument was that when literally chiseling granite plinths you really wanted to be terse and direct, and did <em>not</em> want to run out of space and have to start over. Punctuation in that context is a frivolous luxury.</p>
+<p>As goeth the Romans, so goes James. He does helpfully provide us with a pre-compacted version first, which is nice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">filter</span> {
+      grep { $_ <span style="color:#f92672">&gt;</span> $_[<span style="color:#ae81ff">0</span>] } @{ $_[<span style="color:#ae81ff">1</span>] }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">f</span>{grep{$_<span style="color:#f92672">&gt;</span>$_[<span style="color:#ae81ff">0</span>]}@{$_[<span style="color:#ae81ff">1</span>]}}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/steve-g-lynn/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/steve-g-lynn/raku/ch-2.p6">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://thiujiac.blogspot.com/2022/08/pwc-180.html">PWC 180</a></p>
+<p>And finally, we have a different method to review! But talk about bringing a bomb to a knife-fight: Stephen hauls in the PDL, the Perl Data Language extensions, to do his work.</p>
+<p>And short work that is. As it turns out the PDL has a list comprehension function <code>where</code> that works much the same as <code>grep</code> or a <code>WHERE</code> clause in SQL. Or set theory, for that matter, with its vertical bar. Or any of a gamut of other languages that offer a formal list comprehension scheme.</p>
+<p>Anyhoo, <code>where</code> it is, and what it is is all elements of the piddle <code>$n</code> that are greater than <code>$i</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> PDL;
+    <span style="color:#66d9ef">use</span> PDL::NiceSlice;
+    <span style="color:#66d9ef">use</span> PDL::AutoLoader;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">trim</span> {
+        <span style="color:#66d9ef">my</span> ($i,@n)<span style="color:#f92672">=</span>@_;
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> pdl @n;
+        <span style="color:#66d9ef">return</span> $n<span style="color:#f92672">-&gt;</span>where($n <span style="color:#f92672">&gt;=</span> $i);
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/09/04">First Uniquely Trimmed Index – Perl – RabbitFarm</a> ( <em>Perl</em> )</p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/09/04">First Uniquely Trimmed Index – Prolog – RabbitFarm</a> ( <em>Prolog</em> )</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/unique-trim.html">Unique Trim with Raku and Perl - Arne Sommer</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/09/03/second-to-none">Second to None - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/09/perl_weekly_challenge_week_180.html">Perl Weekly Challenge: Week 180</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/d/ch-2.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/pascal/ch-2.pas">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/ring/ch-2.ring">Ring</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/laurent-rosenfeld/scala/ch-2.scala">Scala</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/08/perl-weekly-challenge-180-first-unique-character-and-trim-list.html">Perl Weekly Challenge 180:  First Unique Character and Trim List</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/lubos-kolouch/python/ch-2.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/mohammad-anwar/swift/ch-2.swift">Swift</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/robert-dicicco/ruby/ch-2.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_180__Unique_Trim.html">RogerBW&rsquo;s Blog: The Weekly Challenge 180: Unique Trim</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-180-4mi5">Weekly Challenge 180</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/ulrich-rieke/rust/ch-2.rs">Rust</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC180BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC180BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/09/04">First Uniquely Trimmed Index – Perl – RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/09/04">First Uniquely Trimmed Index – Prolog – RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/unique-trim.html">Unique Trim with Raku and Perl - Arne Sommer</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/09/03/second-to-none">Second to None - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://etoobusy.polettix.it/2022/09/01/pwc180-first-unique-character/">PWC180 - First Unique Character - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://etoobusy.polettix.it/2022/09/02/pwc180-trim-list/">PWC180 - Trim List - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/09/perl_weekly_challenge_week_180.html">Perl Weekly Challenge: Week 180</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-180/james-smith">Perl Weekly Challenge #180</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/08/perl-weekly-challenge-180-first-unique-character-and-trim-list.html">Perl Weekly Challenge 180:  First Unique Character and Trim List</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_180__Unique_Trim.html">RogerBW&rsquo;s Blog: The Weekly Challenge 180: Unique Trim</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-180-4mi5">Weekly Challenge 180</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Stephen G Lynn</strong></p>
+<ul>
+<li><a href="https://thiujiac.blogspot.com/2022/08/pwc-180.html">PWC 180</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/08/29/PWC180/">Perl Weekly Challenge 180 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
