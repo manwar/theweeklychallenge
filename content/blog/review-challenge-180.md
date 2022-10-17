@@ -129,7 +129,7 @@ Arrays and strings are two rather closely-related data structures, although one 
 
 Consequently string characters can be referred to by index, just like an array. In the C language strings and arrays are essentially the same, but in Perl an Array data type has a bunch of clever additional metadata attached to it, such as its length, and first position.
 
-Wait, *first* position? Don't you mean *last* postion? No, we get that from the length if we know the first, and  Perl arrays always allocate a bit more memory than they strictly need to make adding (and removing) elements easier. So on a canvas of apportioned memory we overlay a sequence of scalar values, and hence we will need to know where to start. Clever, no?
+Wait, *first* position? Don't you mean *last* position? No, we get that from the length if we know the first, and  Perl arrays always allocate a bit more memory than they strictly need to make adding (and removing) elements easier. So on a canvas of apportioned memory we overlay a sequence of scalar values, and hence we will need to know where to start. Clever, no?
 
 Trust me, it's intensely clever. There's cleverness all over the "simple" Perl data types.
 
@@ -157,7 +157,7 @@ There were 31 submissions for the first task this past week.
 
 In the first of two list-based tasks this week we are asked to locate the position of the first unique value within the list. In order to do this will by necessity need to look at every position within the list at least once, to know for sure our final selection is unique,
 
-Using two passes over the data makes te task fairly straightforward: in the first we count the incidence of each component element, and in the second find the first character that shows up only once. The first counting does not even need to be complete, as all we really care about is "once" or "more than once".
+Using two passes over the data makes the task fairly straightforward: in the first we count the incidence of each component element, and in the second find the first character that shows up only once. The first counting does not even need to be complete, as all we really care about is "once" or "more than once".
 
 The task can also be accomplished in a single pass, if we collect and update the necessary information as we go along. By the time we get to the end of the line we will, with a little care, know everything we need to make the call.
 
@@ -172,7 +172,7 @@ The task can also be accomplished in a single pass, if we collect and update the
 
 We'll start the ball rolling with Stephen, who appears to be quite fond of the letter 's'.
 
-Alternately, having forcibly secured a foothold in the symbol table, he has chosen to fully develop his postion there under that name before venturing further. Exploring code can be fraught with peril, and hence solidifying a strong base camp can be a very prudent course to pursue. And bonus if you also just happen to *really* like the letter 's'.
+Alternately, having forcibly secured a foothold in the symbol table, he has chosen to fully develop his position there under that name before venturing further. Exploring code can be fraught with peril, and hence solidifying a strong base camp can be a very prudent course to pursue. And bonus if you also just happen to *really* like the letter 's'.
 
 In any case here we are with a scalar, an array and a hash all named 's' with differing sigils. The string 's' is chopped into an array of characters 's' that are processed into a frequency hash 's'. We can then iterate over the index values of the array, and, examining each character as a hash key, check its count. The first key whose count is 1 is unique, and hence our winner.
 
@@ -452,7 +452,7 @@ Although Choroba gives us a very nice comparative solution, with a tasting plate
     }
 ```
 
-What's happening here? It's important to realize the conditional match in the `while` will be executed first, which will match the first character in the string, capturing it into $1, just as long as a second occurence is found later in the string. Shoud a match be found, the earlier substitution will remove all traces of that character from the string and we will go around again.
+What's happening here? It's important to realize the conditional match in the `while` will be executed first, which will match the first character in the string, capturing it into $1, just as long as a second occurrence is found later in the string. Should a match be found, the earlier substitution will remove all traces of that character from the string and we will go around again.
 
 The conditional fails at the first non-repeating character, at which point we move to the `return` statement. If the target string still has characters then we use `index` to find the offset, which would be the number of characters we have stripped off the head before we finally found our unique value.
 
@@ -719,7 +719,7 @@ There were 30 submissions for the second task this past week.
 
 
 
-Basically what we are being asked to do here is implement `grep`, either calling it directly or by reproducing the functionality in a filter. As it is already a built-in function integral to the language just using `grep` was by far the most common approach. However some submissions chose more elemental reconstructive solutions, sequentially processing and comparing the input iist items.
+Basically what we are being asked to do here is implement `grep`, either calling it directly or by reproducing the functionality in a filter. As it is already a built-in function integral to the language just using `grep` was by far the most common approach. However some submissions chose more elemental reconstructive solutions, sequentially processing and comparing the input list items.
 
 [**Ali Moradi**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-180/deadmarshal/perl/ch-2.pl)
 
