@@ -233,6 +233,10 @@ Write a script to find the triplets `(a, b, c)` from the given list that satisfi
     3. a + c > b
     4. a + b + c is maximum.
 
+In case, you end up with more than one triplets having the maximum then pick the triplet where `a >= b >= c`.
+
+<br>
+
 #### Example 1
 
         Input: @n = (1, 2, 3, 2);
