@@ -38,6 +38,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 187](/blog/perl-weekly-challenge-187) {#187}
 <br>
 
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/eric-cheung/python/ch-2.py) in **Python**.
+
 ##### **izem** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/izem/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/izem/python/ch-2.py) in **Python**.
 
 ##### **Joao Felipe** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/joaofel/python/ch-2.py) in **Python**.
