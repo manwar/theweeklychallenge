@@ -47,7 +47,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 9127 (62%)
+#### 1. Perl: 9128 (62%)
 #### 2. Raku: 5471 (38%)
 #### 3. Blog: 2955
 
@@ -56,9 +56,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `86`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `87`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 41
+#### 1. Perl: 42
 #### 2. Raku: 27
 #### 3. Blog: 18
 
@@ -355,6 +355,13 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/peter-campbell-smith/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/peter-campbell-smith/perl/ch-2.pl)]
 [[**BLOG #1**](https://pjcs-pwc.blogspot.com/2022/10/foo-meets-bar-and-wizardly-trio.html)]
+
+***
+
+### Robbie Hatley
+![Robbie Hatley](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/robbie-hatley/perl/ch-1.pl)]
 
 ***
 

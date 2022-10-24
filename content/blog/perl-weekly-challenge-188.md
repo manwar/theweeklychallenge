@@ -34,7 +34,7 @@ We are into the fourth week of `Hacktoberfest 2022`. Although, the contributions
 
     Week: #1  #2  #3  #4
     --------------------
-    Perl: 55  59  56  41
+    Perl: 55  59  56  42
     Raku: 31  35  32  27
     Blog: 17  19  19  18
 
@@ -111,7 +111,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ***
 
 #### 1. Commits: 28,574 (+114)
-#### 2. Pull Requests: 6,941 (+29)
+#### 2. Pull Requests: 6,942 (+30)
 #### 3. Contributors: 208
 #### 4. Fork: 265
 #### 5. Stars: 144
