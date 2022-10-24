@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-10-23T00:00:00+00:00
+date: 2022-10-24T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -8719,6 +8719,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 001](/blog/perl-weekly-challenge-001) {#001}
 <br>
+
+##### **Aaryan Rastogi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/aaryan-r/javascript/ch-1.js) in **JavaScript**.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/abigail/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/abigail/awk/ch-2.awk) in **Awk**.
 
