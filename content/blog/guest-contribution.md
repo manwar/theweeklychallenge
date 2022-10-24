@@ -40,6 +40,8 @@ Please find below guest contributions.
 
 ##### **Adam Russell** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/adam-russell/prolog/ch-2.p) in **Prolog**.
 
+##### **Duncan C. White** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/duncan-c-white/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/duncan-c-white/c/ch-2.c) in **C**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **izem** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/izem/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/izem/python/ch-2.py) in **Python**.
