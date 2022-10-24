@@ -38,8 +38,9 @@ Thank you **Team PWC** for your continuous support and encouragement.
 Following members shared solutions to both tasks in `Perl` and `Raku` as well as blogged about it.
 
 #### 1. Flavio Poletti
-#### 2. Roger Bell_West
-#### 3. Stephen G. Lynn
+#### 2. Jaldhar H. Vyas
+#### 3. Roger Bell_West
+#### 4. Stephen G. Lynn
 
 <br>
 
@@ -47,20 +48,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 9128 (62%)
-#### 2. Raku: 5471 (38%)
-#### 3. Blog: 2955
+#### 1. Perl: 9130 (62%)
+#### 2. Raku: 5474 (38%)
+#### 3. Blog: 2956
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `87`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `93`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 42
-#### 2. Raku: 27
-#### 3. Blog: 18
+#### 1. Perl: 44
+#### 2. Raku: 30
+#### 3. Blog: 19
 
 <br>
 
@@ -435,6 +436,13 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 ***
 
+### Jan Krnavek
+![Jan Krnavek](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/wambash/raku/ch-1.raku)]
+
+***
+
 ### Laurent Rosenfeld
 ![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
 
@@ -495,6 +503,17 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/polettix/raku/ch-2.raku)]
 [[**BLOG #1**](https://etoobusy.polettix.it/2022/10/20/pwc187-days-together/)]
 [[**BLOG #2**](https://etoobusy.polettix.it/2022/10/21/pwc187-magical-triplets/)]
+
+***
+
+### Jaldhar H. Vyas
+![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/jaldhar-h-vyas/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/jaldhar-h-vyas/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/jaldhar-h-vyas/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/jaldhar-h-vyas/raku/ch-2.raku)]
+[[**BLOG #1**](https://www.braincells.com/perl/2022/10/perl_weekly_challenge_week_187.html)]
 
 ***
 
