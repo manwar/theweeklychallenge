@@ -39,8 +39,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 #### 1. Flavio Poletti
 #### 2. Jaldhar H. Vyas
-#### 3. Roger Bell_West
-#### 4. Stephen G. Lynn
+#### 3. Laurent Rosenfeld
+#### 4. Roger Bell_West
+#### 5. Stephen G. Lynn
 
 <br>
 
@@ -48,8 +49,8 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 9132 (62%)
-#### 2. Raku: 5474 (38%)
+#### 1. Perl: 9136 (62%)
+#### 2. Raku: 5475 (38%)
 #### 3. Blog: 2956
 
 <br>
@@ -57,10 +58,10 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `95`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `100`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 46
-#### 2. Raku: 30
+#### 1. Perl: 50
+#### 2. Raku: 31
 #### 3. Blog: 19
 
 <br>
@@ -358,6 +359,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 ***
 
+### Paul Fajman
+![Paul Fajman](/images/team/paul-fajman.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/paul-fajman/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/paul-fajman/perl/ch-2.pl)]
+
+***
+
 ### Peter Campbell Smith
 ![Peter Campbell Smith](/images/team/peter-campbell-smith.jpg)
 
@@ -451,14 +460,6 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 ***
 
-### Laurent Rosenfeld
-![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
-
-[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/laurent-rosenfeld/raku/ch-1.raku)]
-[[**BLOG #1**](http://blogs.perl.org/users/laurent_r/2022/10/perl-weekly-challenge-187-days-together.html)]
-
-***
-
 ### Luca Ferrari
 ![Luca Ferrari](/images/team/luca-ferrari.jpg)
 
@@ -522,6 +523,17 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/jaldhar-h-vyas/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/jaldhar-h-vyas/raku/ch-2.raku)]
 [[**BLOG #1**](https://www.braincells.com/perl/2022/10/perl_weekly_challenge_week_187.html)]
+
+***
+
+### Laurent Rosenfeld
+![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/laurent-rosenfeld/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/laurent-rosenfeld/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/laurent-rosenfeld/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/laurent-rosenfeld/raku/ch-2.raku)]
+[[**BLOG #1**](http://blogs.perl.org/users/laurent_r/2022/10/perl-weekly-challenge-187-days-together.html)]
 
 ***
 
