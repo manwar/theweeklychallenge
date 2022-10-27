@@ -44,12 +44,12 @@ We are into the third week of `Hacktoberfest 2022`. I am not surprised the rise 
 
 ### Week #3
     Perl: 56
-    Raku: 32
-    Blog: 19
+    Raku: 33
+    Blog: 20
 
 <br>
 
-Last week, we had `37` regular contributors and `17` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `38` regular contributors and `17` guest contributors. Thank you everyone for the support and encouragement.
 
 `Kjetil Skotheim` if you are reading this message, please get in touch with us so that we can send the `FREE` token for the book.
 

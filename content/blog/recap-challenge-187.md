@@ -50,19 +50,19 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 <br>
 
 #### 1. Perl: 9136 (62%)
-#### 2. Raku: 5477 (38%)
-#### 3. Blog: 2956
+#### 2. Raku: 5478 (38%)
+#### 3. Blog: 2957
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `102`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `104`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 #### 1. Perl: 50
-#### 2. Raku: 33
-#### 3. Blog: 19
+#### 2. Raku: 34
+#### 3. Blog: 20
 
 <br>
 
@@ -256,7 +256,7 @@ The total contributions in the week is `102`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1886), Roger Bell_West (1624), Jaldhar H. Vyas (1554), Arne Sommer (1424), Colin Crain (1238), Luca Ferrari (1214), Flavio Poletti (1188), Athanasius (1150), Ulrich Rieke (984), Adam Russell (962), Dave Jacoby (872), E. Choroba (840), Abigail (794), Mohammad S Anwar (688), Duncan C. White (682), James Smith (680), Paulo Custodio (650), Stuart Little (644), Cheok-Yin Fung (616), W. Luis Mochan (586), Mark Anderson (554), Simon Green (538), Simon Proctor (512), Jorg Sommrey (480), Javier Luque (460), Ruben Westerberg (452), Lubos Kolouch (424), Niels van Dijke (398), Jan Krnavek (398), Ryan Thompson (390), Feng Chang (380), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Peter Campbell Smith (304), Bruce Gray (264), Andrezgz (260), Robert DiCicco (248), Matthew Neleigh (228), Yet Ebreo (226), Steven Wilson (218), Markus Holzer (198), Stephen G. Lynn (196), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Alexander Pankoff (184), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Robert Ransbottom (138), Cristina Heredia (126), Marton Polgar (124), Andinus (120), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Bob Lied (108), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (1886), Roger Bell_West (1624), Jaldhar H. Vyas (1554), Arne Sommer (1424), Colin Crain (1238), Luca Ferrari (1214), Flavio Poletti (1188), Athanasius (1150), Ulrich Rieke (984), Adam Russell (962), Dave Jacoby (872), E. Choroba (840), Abigail (794), Mohammad S Anwar (688), Duncan C. White (682), James Smith (680), Paulo Custodio (650), Stuart Little (644), Cheok-Yin Fung (616), W. Luis Mochan (586), Mark Anderson (554), Simon Green (538), Simon Proctor (512), Jorg Sommrey (480), Javier Luque (460), Ruben Westerberg (452), Lubos Kolouch (424), Niels van Dijke (398), Jan Krnavek (398), Ryan Thompson (390), Feng Chang (380), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Peter Campbell Smith (304), Bruce Gray (264), Andrezgz (260), Robert DiCicco (248), Matthew Neleigh (228), Yet Ebreo (226), Steven Wilson (218), Markus Holzer (198), Stephen G. Lynn (196), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Alexander Pankoff (184), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Robert Ransbottom (138), Andinus (128), Cristina Heredia (126), Marton Polgar (124), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Bob Lied (108), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -426,6 +426,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 <br>
 
 ## RAKU SOLUTIONS {#RAKUSOLUTIONS}
+***
+
+### Andinus
+![Andinus](/images/team/andinus.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/andinus/raku/ch-1.raku)]
+[[**BLOG #1**](https://andinus.unfla.me/pwc/challenge-187/)]
+
 ***
 
 ### Arne Sommer

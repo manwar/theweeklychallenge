@@ -35,12 +35,12 @@ We are into the fourth week of `Hacktoberfest 2022`. At last, we made it, little
     Week: #1  #2  #3  #4
     --------------------
     Perl: 55  59  56  50
-    Raku: 31  35  32  33
-    Blog: 17  19  19  19
+    Raku: 31  35  33  34
+    Blog: 17  19  20  20
 
 <br>
 
-Last week, we had `35` regular contributors and `13` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `36` regular contributors and `13` guest contributors. Thank you everyone for the support and encouragement.
 
 Today, we are giving away `Token #11` to `Duncan C. White` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
