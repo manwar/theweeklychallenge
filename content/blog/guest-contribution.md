@@ -64,6 +64,12 @@ Please find below guest contributions.
 
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/ziameraj16/java/DivisiblePair.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/ziameraj16/java/TotalZero.java) in **Java**.
 
+##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/mohammad-anwar/java/theweeklychallenge/DivisiblePairs.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/mohammad-anwar/java/theweeklychallenge/TotalZero.java) in **Java**.
+
+##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/mohammad-anwar/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/mohammad-anwar/python/ch-2.py) in **Python**.
+
+##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/mohammad-anwar/swift/ch-2.swift) in **Swift**.
+
 ##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/robert-dicicco/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/robert-dicicco/julia/ch-2.jl) in **Julia**.
 
 ##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/robert-dicicco/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/robert-dicicco/ruby/ch-2.rb) in **Ruby**.
