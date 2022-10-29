@@ -102,6 +102,8 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
+##### **Vamsi Meenavilli** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/vamsi-meenavilli/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/vamsi-meenavilli/python/ch-2.py) in **Python**.
+
 ----
 ## [The Weekly Challenge - 187](/blog/perl-weekly-challenge-187) {#187}
 <br>
