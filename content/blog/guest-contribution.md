@@ -66,6 +66,8 @@ Please find below guest contributions.
 
 ##### **izem** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/izem/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/izem/python/ch-2.py) in **Python**.
 
+##### **Kueppo Wesley** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/kueppo-wesley/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/kueppo-wesley/node/ch-2.js) in **Node.js**.
+
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/ziameraj16/java/DivisiblePair.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/ziameraj16/java/TotalZero.java) in **Java**.
 
 ##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/mohammad-anwar/java/theweeklychallenge/DivisiblePairs.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/mohammad-anwar/java/theweeklychallenge/TotalZero.java) in **Java**.
