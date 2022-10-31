@@ -40,6 +40,8 @@ Please find below guest contributions.
 
 ##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/adam-russell/prolog/ch-2.p) in **Prolog**.
 
+##### **AhmetEmre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/aecepoglu/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/aecepoglu/bqn/ch-2.bqn) in **BQN**.
+
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/deadmarshal/ada/ch1.adb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/deadmarshal/ada/ch2.adb) in **Ada**.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/deadmarshal/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/deadmarshal/c/ch-2.c) in **C**.
@@ -121,6 +123,8 @@ Please find below guest contributions.
 <br>
 
 ##### **Adam Russell** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/adam-russell/prolog/ch-2.p) in **Prolog**.
+
+##### **AhmetEmre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/aecepoglu/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/aecepoglu/bqn/ch-2.bqn) in **BQN**.
 
 ##### **Duncan C. White** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/duncan-c-white/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-187/duncan-c-white/c/ch-2.c) in **C**.
 
