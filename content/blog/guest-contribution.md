@@ -66,6 +66,8 @@ Please find below guest contributions.
 
 ##### **Andrew Grangaard** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/spazm/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/spazm/python/ch-2.py) in **Python**.
 
+##### **Andrew Grangaard** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/spazm/rust/q1/src/lib.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/spazm/rust/q2/src/lib.rs) in **Rust**.
+
 ##### **Duncan C. White** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/duncan-c-white/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/duncan-c-white/c/ch-2.c) in **C**.
 
 ##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/ealvar3z/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/ealvar3z/go/ch-2.go) in **Go**.
