@@ -41,14 +41,14 @@ We are into the last week of `Hacktoberfest 2022`. Well done `Team PWC` for maki
 | | | | | |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `184` &nbsp;&nbsp;|&nbsp;&nbsp; `185` &nbsp;&nbsp; |&nbsp;&nbsp; `186` &nbsp;&nbsp; |&nbsp;&nbsp; `187` &nbsp;&nbsp;|&nbsp;&nbsp; `188` &nbsp;&nbsp;|
 | | | | | |
-| `Perl` | 55 | 59 | 56 | 51 | 61 |
-| `Raku` | 31 | 35 | 33 | 34 | 34 |
-| `Blog` | 17 | 19 | 20 | 20 | 14 |
+| `Perl` | 55 | 59 | 56 | 51 | 63 |
+| `Raku` | 31 | 35 | 33 | 34 | 36 |
+| `Blog` | 17 | 19 | 20 | 20 | 16 |
 | | | | | |
 
 <br>
 
-Last week, we had `40` regular contributors and `18` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `41` regular contributors and `18` guest contributors. Thank you everyone for the support and encouragement.
 
 Today, we are giving away `Token #12` to `Ali Moradi` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
@@ -90,7 +90,7 @@ Today, we are giving away `Token #12` to `Ali Moradi` for the book, [**Learning 
 
 I would like to thank every guest contributors for making it special this time as we received `84 contributions` in `26 languages`.
 
-Thank you, `Ali Moradi`, for introducing new language [**Nelua**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-188/deadmarshal/nelua). As of today, we now have overall guest contributions in `92 languages`.
+Thank you, `Ali Moradi`, for introducing new language [**Nelua**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-188/deadmarshal/nelua). As of today, we now have overall guest contributions in `92 languages` on top of main contributing languages, `Perl` and `Raku`.
 
 Last week, I managed to contribute in `Perl`, `Raku`, `Python`, `Java` and `Swift` after a long time.
 
@@ -143,7 +143,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ***
 
 #### 1. Commits: 28,776 (+191)
-#### 2. Pull Requests: 6,993 (+48)
+#### 2. Pull Requests: 6,994 (+49)
 #### 3. Contributors: 211 (+3)
 #### 4. Fork: 268 (+3)
 #### 5. Stars: 144
