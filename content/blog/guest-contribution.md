@@ -906,6 +906,8 @@ Please find below guest contributions.
 
 ##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/java/ch-1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/adam-russell/java/ch-2.java) in **Java**.
 
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/ada/ch1.adb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/ada/ch2.adb) in **Ada**.
+
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/cpp/ch-2.cpp) in **C++**.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/d/ch1.d) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/d/ch2.d) in **D**.
@@ -914,7 +916,15 @@ Please find below guest contributions.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/modula-3/ch1/src/Ch1.m3) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/modula-3/ch2/src/Ch2.m3) in **Modula 3**.
 
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/nelua/ch-1.nelua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/nelua/ch-2.nelua) in **Nelua**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/nim/ch1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/nim/ch2.nim) in **Nim**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/oberon/Ch1.Mod) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/oberon/Ch2.Mod) in **Oberon**.
+
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/pascal/ch1.pas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/pascal/ch2.pas) in **Pascal**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/python/ch1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/deadmarshal/python/ch2.py) in **Python**.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/cheok-yin-fung/java/LastFriday.java) in **Java**.
 
