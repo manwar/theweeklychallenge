@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-11-02T00:00:00+00:00
+date: 2022-11-03T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -91,6 +91,8 @@ Please find below guest contributions.
 ##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/ulrich-rieke/java/Challenge189.java) in **Java**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+
+##### **Vamsi Meenavilli** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/vamsi-meenavilli/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/vamsi-meenavilli/python/ch-2.py) in **Python**.
 
 ----
 ## [The Weekly Challenge - 188](/blog/perl-weekly-challenge-188) {#188}
