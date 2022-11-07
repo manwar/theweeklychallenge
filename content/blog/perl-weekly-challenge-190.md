@@ -117,10 +117,11 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 
 #### 1. [To a Greater Degree](http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/11/06) by Adam Russell.
 #### 2. [To a Greater Degree](https://raku-musings.com/greater-degree.html) by Arne Sommer.
-#### 3. [The Degree of Difficulty is the Difficulty of the Degree](https://colincrain.com/2022/11/05/the-degree-of-difficulty-is-the-difficulty-of-the-degree) by Colin Crain.
-#### 4. [The smallest greater and the shortest slice](https://pjcs-pwc.blogspot.com/2022/10/the-smallest-greater-and-shortest-slice.html) by Peter Campbell Smith.
-#### 5. [Degree of Character](https://blog.firedrake.org/archive/2022/11/The_Weekly_Challenge_189__Degree_of_Character.html) by Roger Bell_West.
-#### 6. [Letter and numbers](https://dev.to/simongreennet/letter-and-numbers-4jg0) by Simon Green.
+#### 3. [Saving your Degree by Great Character!](http://blogs.perl.org/users/bruce_gray/2022/11/twc-189-saving-your-degree-by-great-character.html) by Bruce Gray.
+#### 4. [The Degree of Difficulty is the Difficulty of the Degree](https://colincrain.com/2022/11/05/the-degree-of-difficulty-is-the-difficulty-of-the-degree) by Colin Crain.
+#### 5. [The smallest greater and the shortest slice](https://pjcs-pwc.blogspot.com/2022/10/the-smallest-greater-and-shortest-slice.html) by Peter Campbell Smith.
+#### 6. [Degree of Character](https://blog.firedrake.org/archive/2022/11/The_Weekly_Challenge_189__Degree_of_Character.html) by Roger Bell_West.
+#### 7. [Letter and numbers](https://dev.to/simongreennet/letter-and-numbers-4jg0) by Simon Green.
 
 <br>
 
@@ -239,7 +240,7 @@ Write a script to find the all valid different decodings in sorted order.
 #### Example 1
 
     Input: $s = 11
-    Ouput: AA, K
+    Output: AA, K
 
     11 can be decoded as (1 1) or (11) i.e. AA or K
 
