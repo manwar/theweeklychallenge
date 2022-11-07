@@ -35,14 +35,14 @@ For the first time ever, we have received `100+` contributions back to back for 
 | | | | | |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `184` &nbsp;&nbsp;|&nbsp;&nbsp; `185` &nbsp;&nbsp; |&nbsp;&nbsp; `186` &nbsp;&nbsp; |&nbsp;&nbsp; `187` &nbsp;&nbsp;|&nbsp;&nbsp; `188` &nbsp;&nbsp;|&nbsp;&nbsp; `189` &nbsp;&nbsp;|
 | | | | | |
-| `Perl` | 55 | 59 | 56 | 51 | 63 | 58 |
-| `Raku` | 31 | 35 | 33 | 34 | 36 | 33 |
-| `Blog` | 17 | 19 | 20 | 20 | 16 | 17 |
+| `Perl` | 55 | 59 | 56 | 51 | 63 | 60 |
+| `Raku` | 31 | 35 | 33 | 34 | 36 | 35 |
+| `Blog` | 17 | 19 | 20 | 20 | 16 | 18 |
 | | | | | | |
 
 <br>
 
-Last week, we had `38` regular contributors and `14` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `39` regular contributors and `14` guest contributors. Thank you everyone for the support and encouragement.
 
 Today, we are giving away `Token #13` to `Jorg Sommrey` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
@@ -128,7 +128,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ***
 
 #### 1. Commits: 28,932 (+156)
-#### 2. Pull Requests: 7,036 (+42)
+#### 2. Pull Requests: 7,037 (+43)
 #### 3. Contributors: 211
 #### 4. Fork: 267
 #### 5. Stars: 145 (+1)
