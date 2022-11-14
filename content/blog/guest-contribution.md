@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-11-13T00:00:00+00:00
+date: 2022-11-14T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -37,6 +37,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 190](/blog/perl-weekly-challenge-190) {#190}
 <br>
+
+##### **Duncan C. White** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/duncan-c-white/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/duncan-c-white/c/ch-2.c) in **C**.
 
 ##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/ealvar3z/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/ealvar3z/python/ch-2.py) in **Python**.
 
