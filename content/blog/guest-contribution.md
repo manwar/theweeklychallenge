@@ -46,6 +46,12 @@ Please find below guest contributions.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/ziameraj16/java/TwiceLargest.java) in **Java**.
 
+##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/mohammad-anwar/java/theweeklychallenge/TwiceLargest.java) in **Java**.
+
+##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/mohammad-anwar/python/ch-1.py) in **Python**.
+
+##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/mohammad-anwar/swift/ch-1.swift) in **Swift**.
+
 ##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/robert-dicicco/julia/ch-1.jl) in **Julia**.
 
 ##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/robert-dicicco/ruby/ch-1.rb) in **Ruby**.
