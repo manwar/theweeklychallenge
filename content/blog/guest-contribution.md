@@ -40,6 +40,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 191](/blog/perl-weekly-challenge-191) {#191}
 <br>
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/ealvar3z/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/ealvar3z/go/ch-2.go) in **Go**.
 
 ##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/ealvar3z/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/ealvar3z/python/ch-2.py) in **Python**.
