@@ -39,14 +39,14 @@ Another busy week with `100+` contributions. This is the record in the history o
 | | | | | | | |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `184` &nbsp;&nbsp;|&nbsp;&nbsp; `185` &nbsp;&nbsp; |&nbsp;&nbsp; `186` &nbsp;&nbsp; |&nbsp;&nbsp; `187` &nbsp;&nbsp;|&nbsp;&nbsp; `188` &nbsp;&nbsp;|&nbsp;&nbsp; `189` &nbsp;&nbsp;|&nbsp;&nbsp; `190` &nbsp;&nbsp;|
 | | | | | |
-| `Perl` | 55 | 59 | 56 | 51 | 63 | 60 | 51 |
+| `Perl` | 55 | 59 | 56 | 51 | 63 | 60 | 53 |
 | `Raku` | 31 | 35 | 33 | 34 | 36 | 35 | 32 |
 | `Blog` | 17 | 19 | 20 | 20 | 16 | 18 | 23 |
 | | | | | | | |
 
 <br>
 
-Last week, we had `36` regular contributors and `12` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `37` regular contributors and `12` guest contributors. Thank you everyone for the support and encouragement.
 
 Today, we are giving away `Token #14` to `James Smith` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
