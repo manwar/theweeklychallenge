@@ -74,6 +74,8 @@ Please find below guest contributions.
 
 ##### **Vamsi Meenavilli** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/vamsi-meenavilli/java/ch_1.java) in **Java**.
 
+##### **Vamsi Meenavilli** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/vamsi-meenavilli/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/vamsi-meenavilli/python/ch-2.py) in **Python**.
+
 ----
 ## [The Weekly Challenge - 191](/blog/perl-weekly-challenge-191) {#191}
 <br>
