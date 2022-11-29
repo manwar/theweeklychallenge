@@ -38,13 +38,13 @@ Another busy week with `100+` contributions. This is the record in the history o
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `184` &nbsp;&nbsp;|&nbsp;&nbsp; `185` &nbsp;&nbsp; |&nbsp;&nbsp; `186` &nbsp;&nbsp; |&nbsp;&nbsp; `187` &nbsp;&nbsp;|&nbsp;&nbsp; `188` &nbsp;&nbsp;|&nbsp;&nbsp; `189` &nbsp;&nbsp;|&nbsp;&nbsp; `190` &nbsp;&nbsp;|&nbsp;&nbsp; `191` &nbsp;&nbsp;|&nbsp;&nbsp; `192` &nbsp;&nbsp;|
 | | | | | | | | | |
 | `Perl` | 55 | 59 | 56 | 51 | 63 | 60 | 53 | 54 | 57 |
-| `Raku` | 31 | 35 | 33 | 34 | 36 | 35 | 32 | 38 | 37 |
-| `Blog` | 17 | 19 | 20 | 20 | 16 | 18 | 23 | 21 | 22 |
+| `Raku` | 31 | 35 | 33 | 34 | 36 | 35 | 32 | 38 | 39 |
+| `Blog` | 17 | 19 | 20 | 20 | 16 | 18 | 23 | 21 | 23 |
 | | | | | | | | | |
 
 <br>
 
-Last week, we had `36` regular contributors and `14` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `37` regular contributors and `14` guest contributors. Thank you everyone for the support and encouragement.
 
 Today, we are giving away `Coupon #16` to `Simon Green` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
@@ -123,12 +123,13 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 
 #### 1. [Flipping to Redistribute](http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/11/27) by Adam Russell.
 #### 2. [Flipped Equilibrium](https://pankoff.net/pages/perl-weekly-challenge/challenge-192.html) by Alexander Pankoff.
-#### 3. [Frosting a cake without flipping the spatula](http://blogs.perl.org/users/bruce_gray/2022/11/twc-192-frosting-a-cake-without-flipping-the-spatula.html) by Bruce Gray.
-#### 4. [Liberté, Égalité, Fraternité](https://colincrain.com/2022/11/27/liberte-egalite-fraternite) by Colin Crain.
-#### 5. [The Counter to Equilibrium](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/jo-37/ch-2.pdf) by Jorg Sommrey.
-#### 6. [distribute and flip](https://fluca1978.github.io/2022/11/21/PerlWeeklyChallenge192.html) by Luca Ferrari.
-#### 7. [Flipping easy and distributing fairly](https://pjcs-pwc.blogspot.com/2022/11/flipping-easy-and-distributing-fairly.html) by Peter Campbell Smith.
-#### 8. [Equal Flips For All](https://blog.firedrake.org/archive/2022/11/The_Weekly_Challenge_192__Equal_Flips_For_All.html) by Roger Bell_West.
+#### 3. [Equal Flip](https://raku-musings.com/equal-flip.html) by Arne Sommer.
+#### 4. [Frosting a cake without flipping the spatula](http://blogs.perl.org/users/bruce_gray/2022/11/twc-192-frosting-a-cake-without-flipping-the-spatula.html) by Bruce Gray.
+#### 5. [Liberté, Égalité, Fraternité](https://colincrain.com/2022/11/27/liberte-egalite-fraternite) by Colin Crain.
+#### 6. [The Counter to Equilibrium](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/jo-37/ch-2.pdf) by Jorg Sommrey.
+#### 7. [distribute and flip](https://fluca1978.github.io/2022/11/21/PerlWeeklyChallenge192.html) by Luca Ferrari.
+#### 8. [Flipping easy and distributing fairly](https://pjcs-pwc.blogspot.com/2022/11/flipping-easy-and-distributing-fairly.html) by Peter Campbell Smith.
+#### 9. [Equal Flips For All](https://blog.firedrake.org/archive/2022/11/The_Weekly_Challenge_192__Equal_Flips_For_All.html) by Roger Bell_West.
 
 <br>
 
