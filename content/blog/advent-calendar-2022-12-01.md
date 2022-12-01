@@ -204,4 +204,4 @@ Since words are chosen completely at random the process to generate a valid pang
 
 If you have any suggestion then please do share with us <perlweeklychallenge@yahoo.com>.
 
-[**Advent Calendar 2022**](/blog/advent-calendar-2022)
+| &nbsp; [**Advent Calendar 2022**](/blog/advent-calendar-2022) &nbsp; |
