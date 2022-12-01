@@ -18,9 +18,10 @@ The gift is presented by [**Arne Sommer**](/blog/meet-the-champion-019). Today h
 
 ***
 We can start with the numbers (the size of the pieces), which is suitable job for a sequence with «**gather**/**take**»:
-\
-\
+
 [**pythagoras-pie-all**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/pythagoras-pie-all)
+
+<br>
 
 ```perl6
 my $pythagoras-pie := gather  # [1]
@@ -38,8 +39,9 @@ my $pythagoras-pie := gather  # [1]
 
 say "{ $_ + 1 } ->  $pythagoras-pie[$_]%" for ^100; [9]
 ```
-\
-\
+
+<br>
+
 ### [1] We set up the sequence with binding (:=) to ensure that it stays lazy (as evaluating an inifinite list doesn't work out).
 
 ### [2] The size of the pie (in %), starting with 100.
@@ -57,43 +59,56 @@ say "{ $_ + 1 } ->  $pythagoras-pie[$_]%" for ^100; [9]
 ### [8] Return the current size.
 
 ### [9] Print the 100 first values from the sequence. (Any values after this are all zero.)
-\
+
+<br>
+
 Running it (with just some of the lines shown):
 
-    $ perl6 pythagoras-pie-all
-    1 ->  1%
-    2 ->  1.98%
-    3 ->  2.9106%
-    4 ->  3.764376%
-    5 ->  4.5172512%
-    6 ->  5.149666368%
-    7 ->  5.64746745024%
-    8 ->  6.002451118541%
-    9 ->  6.21253690768973%
-    10 ->  6.281565095552947%
-    11 ->  6.21874944459741773%
-    12 ->  6.037840369845492849%
-    13 ->  5.75607448591936984904%
-    14 ->  5.392999018345995%
-    15 ->  4.969263381190237%
-    ...
-    96 ->  3.7330486177577654e-34%
-    97 ->  1.5087738163437654e-35%
-    98 ->  4.572984556753267e-37%
-    99 ->  9.239295328950519e-39%
-    100 ->  9.332621544394437e-41%
-\
+```perl
+$ perl6 pythagoras-pie-all
+1 ->  1%
+2 ->  1.98%
+3 ->  2.9106%
+4 ->  3.764376%
+5 ->  4.5172512%
+6 ->  5.149666368%
+7 ->  5.64746745024%
+8 ->  6.002451118541%
+9 ->  6.21253690768973%
+10 ->  6.281565095552947%
+11 ->  6.21874944459741773%
+12 ->  6.037840369845492849%
+13 ->  5.75607448591936984904%
+14 ->  5.392999018345995%
+15 ->  4.969263381190237%
+...
+96 ->  3.7330486177577654e-34%
+97 ->  1.5087738163437654e-35%
+98 ->  4.572984556753267e-37%
+99 ->  9.239295328950519e-39%
+100 ->  9.332621544394437e-41%
+```
+
+<br>
+
 We can see that the answer is **10**; i.e. **guest number 10** gets the largest piece of cake. But the task was for the program to figure it out, so let's do just that.
 
 Finding the largest value is easy, as long as we chop off the sequence after the first **100** elements. (The rest of them, **ad infinitum**, are zero. Trying to access all elements in an infinite list is not a good idea.)
 
-    say $pythagoras-pie[^100].max; # -> 6.281565095552947
-\
+<br>
+
+```perl6
+say $pythagoras-pie[^100].max; # -> 6.281565095552947
+```
+
+<br>
+
 But this doesn't tell us the position (or index), and thus which guest.
-\
-\
+
 [**pythagoras-pie**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/ch-1.p6)
-\
+
+<br>
+
 ```perl6
 my $pythagoras-pie := gather
 {
@@ -107,7 +122,7 @@ my $pythagoras-pie := gather
     take $part;
   }
 }
-\
+
 my $largest = $pythagoras-pie[^100].max;                          # [1]
 
 for (^100).grep({ $pythagoras-pie[$_] == $largest }) -> $guest    # [2]
@@ -115,19 +130,26 @@ for (^100).grep({ $pythagoras-pie[$_] == $largest }) -> $guest    # [2]
   say "Guest #{ $guest + 1 } got the largest piece of cake ({ $largest }%).";
 }                # [3]
 ```
-\
-\
+
+<br>
+
 ### [1] Get the highest value in the first 100 elements of the sequence. (We had to get rid of the infinite sequence, as «max» obviously cannot reach the end.)
 
 ### [2] Iterate over the indeces (0 to 99), select the ones (with «grep») where the value in the list is equal to the highest value. Note that this would give all matches, if there had been more than one (but there isn't).
 
 ### [3] Compensate for the numbering discrepancy; the guests are given as 1..100, but the indeces are 0..99.
-\
+
 # Running it:
 
-    $ perl6 pythagoras-pie
-    Guest #10 got the largest piece of cake (6.281565095552947%).
-\
+<br>
+
+```perl6
+$ perl6 pythagoras-pie
+Guest #10 got the largest piece of cake (6.281565095552947%).
+```
+
+<br>
+
 ***
 If you have any suggestion then please do share with us <perlweeklychallenge@yahoo.com>.
 

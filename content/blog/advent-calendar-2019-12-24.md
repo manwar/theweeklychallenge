@@ -24,19 +24,37 @@ These kinds of operations are called **modulo operations** or **mods**. Most pro
 
 To find the individual digits of a number we use the **.comb method**. That returns a list with the individual digits (I’ve used **.comb** on earlier challenges as well, but then to divide strings into their individual characters). On the **combed list** we use something called a **reduction operator**, specifically **[+]**. What this does is that it loops through the list and adds all of the numbers within. Where you once would have written something like
 
-    my $result = 0;
-    $result += $_ for 1, 2, 3, 4, 5;
-    say $result;
+<br>
+
+```perl
+my $result = 0;
+$result += $_ for 1, 2, 3, 4, 5;
+say $result;
+```
+
+<br>
 
 you can now do the same with a simple
 
-    say [+] 1, 2, 3, 4, 5 .
+<br>
+
+```perl
+say [+] 1, 2, 3, 4, 5 .
+```
+
+<br>
 
 There are lots of these reduction operators. They save time, so look into them.
 
 Knowing these two things it becomes apparaent that calculating Niven numbers with **Raku** can be done with a simple and reasonably readable one-liner.
 
-    .say if $_ %% [+] .comb for 0..50;
+<br>
+
+```perl
+.say if $_ %% [+] .comb for 0..50;
+```
+
+<br>
 
 That’s it.
 

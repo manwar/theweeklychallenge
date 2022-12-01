@@ -209,17 +209,20 @@
 <p>After a week’s hiatus I’ve returned to the <strong>Perl Weekly Challenge</strong>. This is the <strong>seventh challenge</strong> so far. As before there are <strong>two excercises</strong>. The first one is to calculate all <strong>Niven Numbers</strong> between <strong>0</strong> and <strong>50</strong>. Niven numbers are integers that are divisible by the sum of its digits. I.e. 47 is a niven number if 47 / (4 + 7) is an integer without remainder (it’s not, as the result is 4.2727; 48 is, as 48/(4+8) is 4).</p>
 <p>These kinds of operations are called <strong>modulo operations</strong> or <strong>mods</strong>. Most programming languages use the operator <strong>%</strong> for this, so that you can check for this by testing whether 47 % (4 + 7) == 0. But <strong>Raku</strong> has an additional operator, a shorthand for the former, and is written as 47 %% (4 + 7). <strong>%%</strong> returns True or False and lets you ignore the == 0 part.</p>
 <p>To find the individual digits of a number we use the <strong>.comb method</strong>. That returns a list with the individual digits (I’ve used <strong>.comb</strong> on earlier challenges as well, but then to divide strings into their individual characters). On the <strong>combed list</strong> we use something called a <strong>reduction operator</strong>, specifically <strong>[+]</strong>. What this does is that it loops through the list and adds all of the numbers within. Where you once would have written something like</p>
-<pre><code>my $result = 0;
-$result += $_ for 1, 2, 3, 4, 5;
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+$result <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>;
 say $result;
-</code></pre>
+</code></pre></div><br>
 <p>you can now do the same with a simple</p>
-<pre><code>say [+] 1, 2, 3, 4, 5 .
-</code></pre>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say [<span style="color:#f92672">+</span>] <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> <span style="color:#f92672">.</span>
+</code></pre></div><br>
 <p>There are lots of these reduction operators. They save time, so look into them.</p>
 <p>Knowing these two things it becomes apparaent that calculating Niven numbers with <strong>Raku</strong> can be done with a simple and reasonably readable one-liner.</p>
-<pre><code>.say if $_ %% [+] .comb for 0..50;
-</code></pre>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#f92672">.</span>say <span style="color:#66d9ef">if</span> $_ %% <span style="color:#960050;background-color:#1e0010">[+]</span> <span style="color:#960050;background-color:#1e0010">.</span>comb <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>;
+</code></pre></div><br>
 <p>That’s it.</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>

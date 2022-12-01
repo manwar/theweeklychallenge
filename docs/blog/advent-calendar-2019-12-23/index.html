@@ -220,20 +220,23 @@
 <h2 id="lazily-we-mersenne">Lazily we Mersenne</h2>
 <p>A <strong>Mersenne Prime</strong> is of the form 2p - 1 where p is a prime number. So we lazily gather a list of all prime numbers up to ∞, check if they’re prime, apply the formula, and then check if the result is prime as well, because the sequence can produce composite numbers, but Mersenne numbers / primes are always prime.</p>
 <p>I bound this to the term M:</p>
-<pre><code>my \M := (^∞)
-       .grep(*.is-prime)
-       .map(-&gt; $n { 2 ** $n - 1})
-       .grep(*.is-prime);
-</code></pre>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>M :<span style="color:#f92672">=</span> (<span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">∞</span>)
+         <span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime)
+         <span style="color:#f92672">.</span>map(<span style="color:#f92672">-&gt;</span> $n { <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>})
+         <span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime);
+</code></pre></div><br>
 <h2 id="perfect-map">Perfect Map</h2>
 <p>The next step is to bind a mapping of the Mersenne primes to the corresponding perfect number:</p>
-<pre><code>my \P := M.map: -&gt; $q { $q * ($q + 1) div 2 };
-</code></pre>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>P :<span style="color:#f92672">=</span> M<span style="color:#f92672">.</span>map: <span style="color:#f92672">-&gt;</span> $q { $q <span style="color:#f92672">*</span> ($q <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) div <span style="color:#ae81ff">2</span> };
+</code></pre></div><br>
 <p>I used div so the result is Int not Rat.</p>
 <h2 id="finally-get-the-results">Finally, get the results</h2>
 <p>P is now a lazily generated array that will find the nth Perfect number as P[n]. ^5 gives a list of the first 5, so</p>
-<pre><code>P[^5]».put
-</code></pre>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">P[<span style="color:#f92672">^</span><span style="color:#ae81ff">5</span>]<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>put
+</code></pre></div><br>
 <p>Gets the first 5 perfect numbers, then prints each one on its own line.</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>

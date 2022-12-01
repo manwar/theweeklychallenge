@@ -24,6 +24,8 @@ If we’re looking for a month with five **Fridays**, **Saturdays** and **Sunday
 
 So, the problem simplifies to “Find months with **31 days** where the **1st** is a **Friday**”. And here’s the code I wrote to do that:
 
+<br>
+
 ```perl
 #!/usr/bin/perl
 
@@ -47,6 +49,8 @@ for my $y (1900 .. 2019) {
     }
 }
 ```
+
+<br>
 
 ***
 If you have any suggestion then please do share with us <perlweeklychallenge@yahoo.com>.

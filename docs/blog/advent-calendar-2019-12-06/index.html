@@ -206,10 +206,9 @@
 <p>The gift is presented by <a href="/blog/meet-the-champion-019"><strong>Arne Sommer</strong></a>. Today he is talking about his solutions to <strong>Task #1: Pythagoras Pie Puzzle</strong> of <strong><a href="/blog/perl-weekly-challenge-016">&ldquo;The Weekly Challenge - 016&rdquo;</a></strong>.</p>
 <h4 id="at-a-party-a-pie-is-to-be-shared-by-100-guest-the-first-guest-gets-1-of-the-pie-the-second-guest-gets-2-of-the-remaining-pie-the-third-gets-3-of-the-remaining-pie-the-fourth-gets-4-and-so-on-write-a-script-that-figures-out-which-guest-gets-the-largest-piece-of-pie">At a party a pie is to be shared by 100 guest. The first guest gets 1% of the pie, the second guest gets 2% of the remaining pie, the third gets 3% of the remaining pie, the fourth gets 4% and so on. Write a script that figures out which guest gets the largest piece of pie.</h4>
 <hr>
-<p>We can start with the numbers (the size of the pieces), which is suitable job for a sequence with «<strong>gather</strong>/<strong>take</strong>»:
+<p>We can start with the numbers (the size of the pieces), which is suitable job for a sequence with «<strong>gather</strong>/<strong>take</strong>»:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/pythagoras-pie-all"><strong>pythagoras-pie-all</strong></a></p>
 <br>
-<br>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/pythagoras-pie-all"><strong>pythagoras-pie-all</strong></a></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">my</span> $pythagoras<span style="color:#f92672">-</span>pie :<span style="color:#f92672">=</span> gather  <span style="color:#75715e"># [1]</span>
 {
   <span style="color:#66d9ef">my</span> $remainder <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;        <span style="color:#75715e"># [2]</span>
@@ -224,8 +223,7 @@
 }
 
 say <span style="color:#e6db74">&#34;{ $_ + 1 } -&gt;  $pythagoras-pie[$_]%&#34;</span> <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">100</span>; [<span style="color:#ae81ff">9</span>]
-</code></pre></div><p><br>
-\</p>
+</code></pre></div><br>
 <h3 id="1-we-set-up-the-sequence-with-binding--to-ensure-that-it-stays-lazy-as-evaluating-an-inifinite-list-doesnt-work-out">[1] We set up the sequence with binding (:=) to ensure that it stays lazy (as evaluating an inifinite list doesn&rsquo;t work out).</h3>
 <h3 id="2-the-size-of-the-pie-in--starting-with-100">[2] The size of the pie (in %), starting with 100.</h3>
 <h3 id="3-the-position-in-the-sequence-we-need-this-as-the-portion-is-defined-related-to-this-variable">[3] The position in the sequence. We need this as the portion is defined related to this variable.</h3>
@@ -235,42 +233,39 @@ say <span style="color:#e6db74">&#34;{ $_ + 1 } -&gt;  $pythagoras-pie[$_]%&#34;
 <h3 id="7-increase-the-position-ready-for-the-next-iteration-of-the-loop-4">[7] Increase the position, ready for the next iteration of the loop (#4).</h3>
 <h3 id="8-return-the-current-size">[8] Return the current size.</h3>
 <h3 id="9-print-the-100-first-values-from-the-sequence-any-values-after-this-are-all-zero">[9] Print the 100 first values from the sequence. (Any values after this are all zero.)</h3>
-<p><br>
-Running it (with just some of the lines shown):</p>
-<pre><code>$ perl6 pythagoras-pie-all
-1 -&gt;  1%
-2 -&gt;  1.98%
-3 -&gt;  2.9106%
-4 -&gt;  3.764376%
-5 -&gt;  4.5172512%
-6 -&gt;  5.149666368%
-7 -&gt;  5.64746745024%
-8 -&gt;  6.002451118541%
-9 -&gt;  6.21253690768973%
-10 -&gt;  6.281565095552947%
-11 -&gt;  6.21874944459741773%
-12 -&gt;  6.037840369845492849%
-13 -&gt;  5.75607448591936984904%
-14 -&gt;  5.392999018345995%
-15 -&gt;  4.969263381190237%
-...
-96 -&gt;  3.7330486177577654e-34%
-97 -&gt;  1.5087738163437654e-35%
-98 -&gt;  4.572984556753267e-37%
-99 -&gt;  9.239295328950519e-39%
-100 -&gt;  9.332621544394437e-41%
-</code></pre>
-<p><br>
-We can see that the answer is <strong>10</strong>; i.e. <strong>guest number 10</strong> gets the largest piece of cake. But the task was for the program to figure it out, so let&rsquo;s do just that.</p>
+<br>
+<p>Running it (with just some of the lines shown):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl6 pythagoras<span style="color:#f92672">-</span>pie<span style="color:#f92672">-</span>all
+<span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">1</span>%
+2 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">1.98</span>%
+3 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">2.9106</span>%
+4 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">3.764376</span>%
+5 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">4.5172512</span>%
+6 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">5.149666368</span>%
+7 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">5.64746745024</span>%
+8 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">6.002451118541</span>%
+9 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">6.21253690768973</span>%
+10 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">6.281565095552947</span>%
+11 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">6.21874944459741773</span>%
+12 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">6.037840369845492849</span>%
+13 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">5.75607448591936984904</span>%
+14 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">5.392999018345995</span>%
+15 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">4.969263381190237</span>%
+<span style="color:#960050;background-color:#1e0010">...</span>
+96 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">3.7330486177577654e-34</span>%
+97 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">1.5087738163437654e-35</span>%
+98 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">4.572984556753267e-37</span>%
+99 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">9.239295328950519e-39</span>%
+100 <span style="color:#f92672">-&gt;</span>  <span style="color:#ae81ff">9.332621544394437e-41</span>%
+</code></pre></div><br>
+<p>We can see that the answer is <strong>10</strong>; i.e. <strong>guest number 10</strong> gets the largest piece of cake. But the task was for the program to figure it out, so let&rsquo;s do just that.</p>
 <p>Finding the largest value is easy, as long as we chop off the sequence after the first <strong>100</strong> elements. (The rest of them, <strong>ad infinitum</strong>, are zero. Trying to access all elements in an infinite list is not a good idea.)</p>
-<pre><code>say $pythagoras-pie[^100].max; # -&gt; 6.281565095552947
-</code></pre>
-<p><br>
-But this doesn&rsquo;t tell us the position (or index), and thus which guest.
 <br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">say $pythagoras<span style="color:#f92672">-</span>pie[<span style="color:#f92672">^</span><span style="color:#ae81ff">100</span>]<span style="color:#f92672">.</span>max; <span style="color:#75715e"># -&gt; 6.281565095552947</span>
+</code></pre></div><br>
+<p>But this doesn&rsquo;t tell us the position (or index), and thus which guest.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/ch-1.p6"><strong>pythagoras-pie</strong></a></p>
 <br>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/ch-1.p6"><strong>pythagoras-pie</strong></a>
-\</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">my</span> $pythagoras<span style="color:#f92672">-</span>pie :<span style="color:#f92672">=</span> gather
 {
   <span style="color:#66d9ef">my</span> $remainder <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
@@ -283,24 +278,22 @@ But this doesn&rsquo;t tell us the position (or index), and thus which guest.
     take $part;
   }
 }
-<span style="color:#f92672">\</span>
+
 <span style="color:#66d9ef">my</span> $largest <span style="color:#f92672">=</span> $pythagoras<span style="color:#f92672">-</span>pie[<span style="color:#f92672">^</span><span style="color:#ae81ff">100</span>]<span style="color:#f92672">.</span>max;                          <span style="color:#75715e"># [1]</span>
 
 <span style="color:#66d9ef">for</span> (<span style="color:#f92672">^</span><span style="color:#ae81ff">100</span>)<span style="color:#f92672">.</span>grep({ $pythagoras<span style="color:#f92672">-</span>pie[$_] <span style="color:#f92672">==</span> $largest }) <span style="color:#f92672">-&gt;</span> $guest    <span style="color:#75715e"># [2]</span>
 {
   say <span style="color:#e6db74">&#34;Guest #{ $guest + 1 } got the largest piece of cake ({ $largest }%).&#34;</span>;
 }                <span style="color:#75715e"># [3]</span>
-</code></pre></div><p><br>
-\</p>
+</code></pre></div><br>
 <h3 id="1-get-the-highest-value-in-the-first-100-elements-of-the-sequence-we-had-to-get-rid-of-the-infinite-sequence-as-max-obviously-cannot-reach-the-end">[1] Get the highest value in the first 100 elements of the sequence. (We had to get rid of the infinite sequence, as «max» obviously cannot reach the end.)</h3>
 <h3 id="2-iterate-over-the-indeces-0-to-99-select-the-ones-with-grep-where-the-value-in-the-list-is-equal-to-the-highest-value-note-that-this-would-give-all-matches-if-there-had-been-more-than-one-but-there-isnt">[2] Iterate over the indeces (0 to 99), select the ones (with «grep») where the value in the list is equal to the highest value. Note that this would give all matches, if there had been more than one (but there isn&rsquo;t).</h3>
 <h3 id="3-compensate-for-the-numbering-discrepancy-the-guests-are-given-as-1100-but-the-indeces-are-099">[3] Compensate for the numbering discrepancy; the guests are given as 1..100, but the indeces are 0..99.</h3>
-<p>\</p>
 <h1 id="running-it">Running it:</h1>
-<pre><code>$ perl6 pythagoras-pie
-Guest #10 got the largest piece of cake (6.281565095552947%).
-</code></pre>
-<p>\</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">$ perl6 pythagoras<span style="color:#f92672">-</span>pie
+Guest <span style="color:#75715e">#10 got the largest piece of cake (6.281565095552947%).</span>
+</code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>

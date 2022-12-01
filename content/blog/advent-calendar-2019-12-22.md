@@ -22,9 +22,15 @@ I haven't looked at the other solutions that have been published, but I'm pretty
 
 This was easy and almost straight out of the **Raku** documentation: [**StrDistance**](https://docs.raku.org/type/StrDistance).
 
-    my $changes = (my $pwc = ‘Perl Weekly Challenge’) ~~ tr/e/E/;
-    say $pwc;
-    say +$changes;
+<br>
+
+```perl
+my $changes = (my $pwc = ‘Perl Weekly Challenge’) ~~ tr/e/E/;
+say $pwc;
+say +$changes;
+```
+
+<br>
 
 It could be **golfed**, but also **ungolfed**. Basic trick here is that I'm defining a variable **$pwc** on the fly so that I can apply **tr** to it. I could use **.trans**, because in **Perl** there is always more than one way to do it, but then I couldn't get the secondary effect of counting changes. I can do that with **tr**, which has the (**Rakudo**-only, whatever that means, because there's only one **Perl 6** compiler, and that's **Rakudo**) nice secondary effect of returning an **StrDistance** object that can, in number context, return the number of changes. That's why we hold the changed string in **$pwc** and the change object in **$changes**. The last line is number-contextualized by putting a **+** in front.
 

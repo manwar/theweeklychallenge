@@ -15,14 +15,22 @@ tags: ["Perl"]
 The gift is presented by [**Adam Russell**](/blog/meet-the-champion-016). Today he is talking about his solutions to **Task #2: Priority Queue** of **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)**.
 
 #### Write a script to implement Priority Queue. It is like regular queue except each element has a priority associated with it. In a priority queue, an element with high priority is served before an element with low priority. Please check this [wiki page](https://en.wikipedia.org/wiki/Priority_queue) for more informations. It should serve the following operations:
-\
+
+<br>
+
 ##### 1) is_empty: check whether the queue has no elements.
 ##### 2) insert_with_priority: add an element to the queue with an associated priority.
 ##### 3) pull_highest_priority_element: remove the element from the queue that has the highest priority, and return it. If two elements have the same priority, then return element added first.
-\
+
+<br>
+
 ***
-\
+
+<br>
+
 **PriorityQueue.pm** is doing all the work for the task.
+
+<br>
 
 ```perl
 
@@ -111,40 +119,53 @@ package PriorityQueue{
     }
     true;
 }
-
 ```
+
+<br>
 
 **Node** and **Heap** are packages defined within the **PriorityQueue** package. All packages use **Class::Struct**, even the **PriorityQueue** package. The implementation of a **PriorityQueue** follows the **classic C** style approach which inspired the use of **Class::Struct** to begin with. It turns out **Class::Struct** is quite **versatile** and works with use **overload**.
 
 The script **ch-2.pl** looks like below:
 
-    use PriorityQueue;
+<br>
 
-    my $pq = new PriorityQueue();
-    $pq->initialize();
-    $pq->insert_with_priority(7, "sleep");
-    $pq->insert_with_priority(4, "go to the gym");
-    $pq->insert_with_priority(3, "work on blog");
-    $pq->insert_with_priority(5, "drink water");
-    $pq->insert_with_priority(1, "eat pizza");
-    $pq->insert_with_priority(2, "work on perl weekly challenge");
-    $pq->insert_with_priority(6, "clean dishes");
+```perl
+use PriorityQueue;
 
-    for(0 .. 6){
-        my $data = $pq->pull_highest_priority_element();
-        printf("$data\n");
-    }
+my $pq = new PriorityQueue();
+$pq->initialize();
+$pq->insert_with_priority(7, "sleep");
+$pq->insert_with_priority(4, "go to the gym");
+$pq->insert_with_priority(3, "work on blog");
+$pq->insert_with_priority(5, "drink water");
+$pq->insert_with_priority(1, "eat pizza");
+$pq->insert_with_priority(2, "work on perl weekly challenge");
+$pq->insert_with_priority(6, "clean dishes");
+
+for(0 .. 6){
+    my $data = $pq->pull_highest_priority_element();
+    printf("$data\n");
+}
+```
+
+<br>
 
 ## SAMPLE RUN
 
-    $ perl -I. ch-2.pl
-    eat pizza
-    work on perl weekly challenge
-    work on blog
-    go to the gym
-    drink water
-    clean dishes
-    sleep
+<br>
+
+```perl
+$ perl -I. ch-2.pl
+eat pizza
+work on perl weekly challenge
+work on blog
+go to the gym
+drink water
+clean dishes
+sleep
+```
+
+<br>
 
 ***
 If you have any suggestion then please do share with us <perlweeklychallenge@yahoo.com>.

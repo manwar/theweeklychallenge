@@ -38,16 +38,28 @@ A **Mersenne Prime** is of the form 2p - 1 where p is a prime number. So we lazi
 
 I bound this to the term M:
 
-    my \M := (^∞)
-           .grep(*.is-prime)
-           .map(-> $n { 2 ** $n - 1})
-           .grep(*.is-prime);
+<br>
+
+```perl
+my \M := (^∞)
+         .grep(*.is-prime)
+         .map(-> $n { 2 ** $n - 1})
+         .grep(*.is-prime);
+```
+
+<br>
 
 ## Perfect Map
 
 The next step is to bind a mapping of the Mersenne primes to the corresponding perfect number:
 
-    my \P := M.map: -> $q { $q * ($q + 1) div 2 };
+<br>
+
+```perl
+my \P := M.map: -> $q { $q * ($q + 1) div 2 };
+```
+
+<br>
 
 I used div so the result is Int not Rat.
 
@@ -55,7 +67,13 @@ I used div so the result is Int not Rat.
 
 P is now a lazily generated array that will find the nth Perfect number as P[n]. ^5 gives a list of the first 5, so
 
-    P[^5]».put
+<br>
+
+```perl
+P[^5]».put
+```
+
+<br>
 
 Gets the first 5 perfect numbers, then prints each one on its own line.
 

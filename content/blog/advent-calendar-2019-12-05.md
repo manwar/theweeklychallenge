@@ -104,7 +104,8 @@ That line's a bit hairy, so my next thought was to use **uniqstr()** from **List
 
 This removes **20 words** that were found by the first solution.
 
-***
+<br>
+
 ***
 If you have any suggestion then please do share with us <perlweeklychallenge@yahoo.com>.
 

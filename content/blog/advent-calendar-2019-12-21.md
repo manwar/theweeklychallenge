@@ -71,28 +71,36 @@ sub to_base {
 say to_base($to_base, from_base($from_base, $number));
 ```
 
+<br>
+
 And this is how it works:
 
-    $ ./ch-1.pl 35 10 GUSTAVO
-    61183826754
+<br>
 
-    $ ./ch-1.pl 10 35 61183826754
-    GUSTAVO
+```perl
+$ ./ch-1.pl 35 10 GUSTAVO
+61183826754
 
-    $ ./ch-1.pl 36 18 GUSTAVO
-    G674BB7G4
+$ ./ch-1.pl 10 35 61183826754
+GUSTAVO
 
-    $ ./ch-1.pl 18 9 G674BB7G4
-    742882356461
+$ ./ch-1.pl 36 18 GUSTAVO
+G674BB7G4
 
-    $ ./ch-1.pl 9 3 742882356461
-    12112022222001210211021
+$ ./ch-1.pl 18 9 G674BB7G4
+742882356461
 
-    $ ./ch-1.pl 3 2 12112022222001210211021
-    000100101011101100011101010110010011
+$ ./ch-1.pl 9 3 742882356461
+12112022222001210211021
 
-    $ ./ch-1.pl 2 36 000100101011101100011101010110010011
-    GUSTAVO
+$ ./ch-1.pl 3 2 12112022222001210211021
+000100101011101100011101010110010011
+
+$ ./ch-1.pl 2 36 000100101011101100011101010110010011
+GUSTAVO
+```
+
+<br>
 
 ***
 If you have any suggestion then please do share with us <perlweeklychallenge@yahoo.com>.

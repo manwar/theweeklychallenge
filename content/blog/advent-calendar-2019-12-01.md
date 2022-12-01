@@ -394,7 +394,8 @@ Running the script with the words **"warm"** and **"cold"** produces the followi
     $ perl6  ladder.p6 cold warm
     cold->wold->word->worm->warm
 
-***
+<br>
+
 ***
 If you have any suggestion then please do share with us <perlweeklychallenge@yahoo.com>.
 

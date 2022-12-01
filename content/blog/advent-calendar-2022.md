@@ -28,8 +28,8 @@ tags: ["Perl", "Raku"]
 | | | | | | | |
 |  ![Day 12](/images/blog/2022-12-12-thumbnail.jpg)<br>**`12`** |  ![Day 13](/images/blog/2022-12-13-thumbnail.jpg)<br>**`13`** |  ![Day 14](/images/blog/2022-12-14-thumbnail.jpg)<br>**`14`** |  ![Day 15](/images/blog/2022-12-15-thumbnail.jpg)<br>**`15`** |  ![Day 16](/images/blog/2022-12-16-thumbnail.jpg)<br>**`16`** |  ![Day 17](/images/blog/2022-12-17-thumbnail.jpg)<br>**`17`** |  ![Day 18](/images/blog/2022-12-18-thumbnail.jpg)<br>**`18`** |
 | | | | | | | |
-|  ![Day 19](/images/blog/2022-12-19-thumbnail.jpg)<br>**`19`** |  ![Day 20](/images/blog/2022-12-20-thumbnail.jpg)<br>**`20`** |  ![Day 21](/images/blog/2022-12-21-thumbnail.jpg)<br>**`21`** | ![Day 22](/images/blog/2022-12-22-thumbnail.jpg)<br>**`22`** | ![Day 23](/images/blog/2022-12-23-thumbnail.jpg)<br>**`23`** | ![Day 24](/images/blog/2022-12-24-thumbnail.jpg)<br>**`24`** |  <br><br>**25**<br> |
+|  ![Day 19](/images/blog/2022-12-19-thumbnail.jpg)<br>**`19`** |  ![Day 20](/images/blog/2022-12-20-thumbnail.jpg)<br>**`20`** |  ![Day 21](/images/blog/2022-12-21-thumbnail.jpg)<br>**`21`** | ![Day 22](/images/blog/2022-12-22-thumbnail.jpg)<br>**`22`** | ![Day 23](/images/blog/2022-12-23-thumbnail.jpg)<br>**`23`** | ![Day 24](/images/blog/2022-12-24-thumbnail.jpg)<br>**`24`** |  <br><br>**`25`**<br> |
 | | | | | | | |
-|  <br><br>**26**<br> |  <br><br>**27**<br> |  <br><br>**28**<br> |  <br><br>**29**<br> |  <br><br>**30**<br> |  <br><br>**31**<br> | <br><br><br> |
+|  <br><br>**`26`**<br> |  <br><br>**`27`**<br> |  <br><br>**`28`**<br> |  <br><br>**`29`**<br> |  <br><br>**`30`**<br> |  <br><br>**`31`**<br> | <br><br><br> |
 | | | | | | | |
 ***
