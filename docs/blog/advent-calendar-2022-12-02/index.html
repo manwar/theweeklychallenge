@@ -207,10 +207,10 @@
 <hr>
 <br>
 <h2 id="task-1-binary-string">Task #1: Binary String</h2>
-<p>You are given an integer, $n &gt; 0. Write a script to find all possible binary numbers of size $n.</p>
+<p>You are given an integer, <code>$n &gt; 0</code>. Write a script to find all possible binary numbers of size <code>$n</code>.</p>
 <h2 id="solution">Solution</h2>
 <p>This weeks task 1 is relatively simple. (1) We need to work out what the minimum and maximum integers are and then just print them padded to the right length. Thankfully Perl is great at this as it is integral to it&rsquo;s design.</p>
-<p>The largest value is &lsquo;(2^n)-1&rsquo; and the template for sprintf is <code>'%0{n}b'</code>. Which gives us</p>
+<p>The largest value is <code>'(2^n)-1'</code> and the template for sprintf is <code>'%0{n}b'</code>. Which gives us</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">all_binary</span> {                             <span style="color:#75715e">## Make a template so we don&#39;t have</span>
   <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;%0$_[0]b&#34;</span>;                        <span style="color:#75715e">## to do interpolation everytime</span>
@@ -218,10 +218,13 @@
 }
 </code></pre></div><br>
 <h2 id="task-2-odd-string">Task #2: Odd String</h2>
-<p>You are given a list of strings of same length, @s. Write a script to find the odd string in the given list. Use positional value of alphabet starting with 0, i.e. a = 0, b = 1, &hellip; z = 25.</p>
+<p>You are given a list of strings of same length, <code>@s</code>. Write a script to find the odd string in the given list. Use positional value of alphabet starting with <code>0, i.e. a = 0, b = 1, ... z = 25</code>.</p>
+<br>
 <h2 id="solution-1">Solution</h2>
+<br>
 <p>To find the unique string we note:</p>
 <p>If word one isn&rsquo;t equivalent to word 2 then the word we are looking for is one of these two (the one which doesn&rsquo;t match the 3rd word) o/w we are looking for the first word that is not equivalent.</p>
+<br>
 <h3 id="try-1---for-every-string-compute-a-string-signature">Try 1 - for every string compute a string signature</h3>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sig_str</span> {
@@ -236,7 +239,7 @@
   $x <span style="color:#f92672">eq</span> sig_str( $_ ) <span style="color:#f92672">||</span> <span style="color:#66d9ef">return</span> $_ <span style="color:#66d9ef">for</span> @_
 }
 </code></pre></div><br>
-<h3 id="try-2---replace-signature-with-an-array-ref-here-we-write-an-sig_check-which-compares-a-string-against-arrayref">Try 2 - replace signature with an array ref, here we write an sig_check which compares a string against arrayref.</h3>
+<h3 id="try-2---replace-signature-with-an-array-ref-here-we-write-an-sig_check-which-compares-a-string-against-arrayref">Try 2 - replace signature with an array ref, here we write an <code>sig_check</code> which compares a string against arrayref.</h3>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sig</span> {
   <span style="color:#66d9ef">my</span> @Q <span style="color:#f92672">=</span> map { ord $_ } split <span style="color:#e6db74">//</span>,$_[<span style="color:#ae81ff">0</span>];

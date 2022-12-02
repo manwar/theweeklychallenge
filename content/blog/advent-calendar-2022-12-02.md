@@ -20,13 +20,13 @@ The gift is presented by `James Smith`. Today he is talking about his solution t
 
 ## Task #1: Binary String
 
-You are given an integer, $n > 0. Write a script to find all possible binary numbers of size $n.
+You are given an integer, `$n > 0`. Write a script to find all possible binary numbers of size `$n`.
 
 ## Solution
 
 This weeks task 1 is relatively simple. (1) We need to work out what the minimum and maximum integers are and then just print them padded to the right length. Thankfully Perl is great at this as it is integral to it's design.
 
-The largest value is '(2^n)-1' and the template for sprintf is `'%0{n}b'`. Which gives us
+The largest value is `'(2^n)-1'` and the template for sprintf is `'%0{n}b'`. Which gives us
 
 <br>
 
@@ -41,13 +41,19 @@ sub all_binary {                             ## Make a template so we don't have
 
 ## Task #2: Odd String
 
-You are given a list of strings of same length, @s. Write a script to find the odd string in the given list. Use positional value of alphabet starting with 0, i.e. a = 0, b = 1, ... z = 25.
+You are given a list of strings of same length, `@s`. Write a script to find the odd string in the given list. Use positional value of alphabet starting with `0, i.e. a = 0, b = 1, ... z = 25`.
+
+<br>
 
 ## Solution
+
+<br>
 
 To find the unique string we note:
 
 If word one isn't equivalent to word 2 then the word we are looking for is one of these two (the one which doesn't match the 3rd word) o/w we are looking for the first word that is not equivalent.
+
+<br>
 
 ### Try 1 - for every string compute a string signature
 
@@ -69,7 +75,7 @@ sub odd_string_sig {
 
 <br>
 
-### Try 2 - replace signature with an array ref, here we write an sig_check which compares a string against arrayref.
+### Try 2 - replace signature with an array ref, here we write an `sig_check` which compares a string against arrayref.
 
 <br>
 
