@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | **Day 1** |
+### | &nbsp; **Day 1** &nbsp; | &nbsp; [**Day 2**](/blog/advent-calendar-2022-12-02) &nbsp; |
 ***
 
 The gift is presented by `Adam Russell`. Today he is talking about his solution to [**"The Weekly Challenge - 161"**](/blog/perl-weekly-challenge-161). This is re-produced for **Advent Calendar 2022** from the original [**post**](http://www.rabbitfarm.com/cgi-bin/blosxom/2022/04/24) by him.
