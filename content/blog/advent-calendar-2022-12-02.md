@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 1**](/blog/advent-calendar-2022-12-01) &nbsp; | &nbsp; **Day 2** &nbsp; |
+### | &nbsp; [**Day 1**](/blog/advent-calendar-2022-12-01) &nbsp; | &nbsp; **Day 2** &nbsp; | &nbsp; [**Day 3**](/blog/advent-calendar-2022-12-03) &nbsp; |
 ***
 
 The gift is presented by `James Smith`. Today he is talking about his solution to [**"The Weekly Challenge - 193"**](/blog/perl-weekly-challenge-193). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-193/james-smith#readme) by him.
