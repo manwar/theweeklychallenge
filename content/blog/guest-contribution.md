@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-12-03T00:00:00+00:00
+date: 2022-12-04T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -39,6 +39,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 193](/blog/perl-weekly-challenge-193) {#193}
 <br>
+
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-193/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-193/adam-russell/prolog/ch-2.p) in **Prolog**.
 
 ##### **E. Alvarez** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-193/ealvar3z/go/ch-1.go) in **Go**.
 
