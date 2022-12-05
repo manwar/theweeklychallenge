@@ -28,7 +28,7 @@ tags: ["Perl", "Raku"]
 
 Welcome to the `Week #194` of `The Weekly Challenge`.
 
-Today is the first `Monday` of the month and time to declare our next champion. With great pleasure, we announce `Bruce Gray` as the next `Champion of The Weekly Challenge`. We don't have the email address of `Bruce`, unfortunately. If you are reading the message then please share your email with us.
+Today is the first `Monday` of the month and time to declare our next champion. With great pleasure, we announce `Bruce Gray` as the next `Champion of The Weekly Challenge`. We don't have the email address of `Bruce`, unfortunately. If you are reading this message then please share your email address with us.
 
 Two new members joined the `Team PWC` last week, [**Thomas Köhler**](https://github.com/jeanluc2020) and  [**David Ferrone**](https://github.com/zapwai). Welcome on board, we hope you enjoy the fun every week with us.
 
