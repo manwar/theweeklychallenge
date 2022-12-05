@@ -100,7 +100,7 @@ Today, we are giving away `Coupon #17` to `Robbie Hatley` for the book, [**Learn
 
 <br>
 
-I would like to thank every guest contributors for making it special every week. Last week we received `12 guest contributions` in `15 languages`.
+I would like to thank every guest contributors for making it special every week. Last week we received `43 guest contributions` in `15 languages`.
 
 Please checkout the [**blog post**](https://alvar3z.com/posts/lambdas--printf/) by `E. Alvarez`. Being a guest contributor, it doesn't get space in the [**Weekly Recaps**](/recaps) sections, so I decided to mention it here.
 
