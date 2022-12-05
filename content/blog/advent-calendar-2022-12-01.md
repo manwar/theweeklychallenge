@@ -4,7 +4,7 @@ date: 2022-12-01T00:00:00+00:00
 description: "Advent Calendar - December 1, 2022."
 type: post
 image: images/blog/2022-12-01.jpg
-author: Abigail
+author: Adam Russell
 tags: ["Perl"]
 ---
 

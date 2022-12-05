@@ -4,12 +4,12 @@ date: 2022-12-04T00:00:00+00:00
 description: "Advent Calendar - December 4, 2022."
 type: post
 image: images/blog/2022-12-04.jpg
-author: Abigail
+author: Alexander Pankoff
 tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 3**](/blog/advent-calendar-2022-12-03) &nbsp; | &nbsp; **Day 4** &nbsp; |
+### | &nbsp; [**Day 3**](/blog/advent-calendar-2022-12-03) &nbsp; | &nbsp; **Day 4** &nbsp; | &nbsp; [**Day 5**](/blog/advent-calendar-2022-12-05) &nbsp; |
 ***
 
 The gift is presented by `Alexander Pankoff`. Today he is talking about his solution to [**"The Weekly Challenge - 160"**](/blog/perl-weekly-challenge-160). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://pankoff.net/pages/perl-weekly-challenge/challenge-160-task-1.html) by him.
