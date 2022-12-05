@@ -37,14 +37,14 @@ Another busy week with `100+` contributions. This is the record in the history o
 | | | | | | | | | |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `184` &nbsp;&nbsp;|&nbsp;&nbsp; `185` &nbsp;&nbsp; |&nbsp;&nbsp; `186` &nbsp;&nbsp; |&nbsp;&nbsp; `187` &nbsp;&nbsp;|&nbsp;&nbsp; `188` &nbsp;&nbsp;|&nbsp;&nbsp; `189` &nbsp;&nbsp;|&nbsp;&nbsp; `190` &nbsp;&nbsp;|&nbsp;&nbsp; `191` &nbsp;&nbsp;|&nbsp;&nbsp; `192` &nbsp;&nbsp;|
 | | | | | | | | | |
-| `Perl` | 55 | 59 | 56 | 51 | 63 | 60 | 53 | 54 | 57 |
+| `Perl` | 55 | 59 | 56 | 51 | 63 | 60 | 53 | 54 | 59 |
 | `Raku` | 31 | 35 | 33 | 34 | 36 | 35 | 32 | 38 | 41 |
 | `Blog` | 17 | 19 | 20 | 20 | 16 | 18 | 23 | 21 | 23 |
 | | | | | | | | | |
 
 <br>
 
-Last week, we had `38` regular contributors and `14` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `39` regular contributors and `15` guest contributors. Thank you everyone for the support and encouragement.
 
 Today, we are giving away `Coupon #16` to `Simon Green` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
@@ -101,16 +101,14 @@ Last week, I could only find time to do just one task.
 ### TOP 10 Guest Languages
 ***
 
-`C++` moved one place up this week.
-
 Do you see your favourite language in the `Top 10`? If not then why not contribute regularly and make it to the top.
 
      1. Python  (1214)
      2. Haskell (514)
      3. Ruby    (425)
      4. Lua     (411)
-     5. C++     (294)
-     6. C       (292)
+     5. C       (294)
+     6. C++     (294)
      7. BQN     (267)
      8. Rust    (265)
      9. Go      (232)
