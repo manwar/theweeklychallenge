@@ -56,6 +56,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/roger-bell-west/rust/ch-2.rs) in **Rust**.
 
+##### **Vamsi Meenavilli** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/vamsi-meenavilli/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/vamsi-meenavilli/python/ch-2.py) in **Python**.
+
 ----
 ## [The Weekly Challenge - 193](/blog/perl-weekly-challenge-193) {#193}
 <br>
