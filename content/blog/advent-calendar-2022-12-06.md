@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 5**](/blog/advent-calendar-2022-12-05) &nbsp; | &nbsp; **Day 6** &nbsp; |
+### | &nbsp; [**Day 5**](/blog/advent-calendar-2022-12-05) &nbsp; | &nbsp; **Day 6** &nbsp; | &nbsp; [**Day 7**](/blog/advent-calendar-2022-12-07) &nbsp; |
 ***
 
 The gift is presented by `Dave Jacoby`. Today he is talking about his solution to [**"The Weekly Challenge - 158"**](/blog/perl-weekly-challenge-158). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://jacoby.github.io/2022/03/28/in-our-primes-weekly-challenge-158.html) by him.
