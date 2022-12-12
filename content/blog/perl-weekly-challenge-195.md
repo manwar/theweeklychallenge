@@ -133,7 +133,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 #### 1. [Digital Frequalizer](https://raku-musings.com/digital-frequalizer.html) by Arne Sommer.
 #### 2. [Bag Time!](https://blogs.perl.org/users/bruce_gray/2022/12/twc-194-bag-time.html) by Bruce Gray.
 #### 3. [Freq Out, Man!](https://colincrain.com/2022/12/12/freq-out-man/) by Colin Crain.
-#### 4. [iffy solutions](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-194/james-smith#readme)
+#### 4. [iffy solutions](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-194/james-smith#readme) by James Smith.
 #### 5. [regular expressions everywhere!](https://fluca1978.github.io/2022/12/05/PerlWeeklyChallenge194.html) by Luca Ferrari.
 #### 6. [Completing the time and levelling the letters](https://pjcs-pwc.blogspot.com/2022/12/completing-time-and-levelling-letters.html) by Peter Campbell Smith.
 #### 7. [Digital Equaliser](https://blog.firedrake.org/archive/2022/12/The_Weekly_Challenge_194__Digital_Equaliser.html) by Roger Bell_West.
