@@ -32,7 +32,7 @@ Welcome to the `Week #195` of `The Weekly Challenge`.
 
 | | | |
 | :---: | :---: | :---: |
-| `Day`   | `Article` | `Authors` |
+| `Day`   | `Article` | `Author` |
 | | | |
 | &nbsp;&nbsp; `1` &nbsp;&nbsp; | &nbsp;[**Are Abecedarians from Abecedaria?**](/blog/advent-calendar-2022-12-01) &nbsp; | &nbsp; `Adam Russell` &nbsp; |
 | &nbsp;&nbsp; `2` &nbsp;&nbsp; | &nbsp;[**Binary String / Odd String**](/blog/advent-calendar-2022-12-02) &nbsp; | &nbsp; `James Smith` &nbsp; |
