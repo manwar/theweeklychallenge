@@ -9,7 +9,7 @@ tags: ["Perl", "Raku", "Python"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 9**](/blog/advent-calendar-2022-12-09) &nbsp; | &nbsp; **Day 10** &nbsp; |
+### | &nbsp; [**Day 9**](/blog/advent-calendar-2022-12-09) &nbsp; | &nbsp; **Day 10** &nbsp; | &nbsp; [**Day 11**](/blog/advent-calendar-2022-12-11) &nbsp; |
 ***
 
 The gift is presented by `Bruce Gray`. Today he is talking about his solution to [**"The Weekly Challenge - 154"**](/blog/perl-weekly-challenge-154). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://blogs.perl.org/users/bruce_gray/2022/03/twc-episode-154---padawan-missing.html) by him.
