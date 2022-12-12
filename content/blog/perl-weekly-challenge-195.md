@@ -49,7 +49,7 @@ Welcome to the `Week #195` of `The Weekly Challenge`.
 
 <br>
 
-Finally we reached the milestone one more time last time. Thank you `Team PWC` for the support and encouragement.
+Finally we reached the milestone one more time last week. Thank you `Team PWC` for the support and encouragement.
 
 | | | | | | | | | | | |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
