@@ -145,7 +145,7 @@ while ($test = shift @tests) {
     # format and output the answers
     $string = '';
     for $answer (sort keys %answers) {
-    	$string .= $answer . ', ';
+        $string .= $answer . ', ';
     }
     say qq[Output: ] . substr($string, 0, -2);
 }
@@ -166,29 +166,29 @@ sub analyse {
 
     # if anything remains in $test, analyse(the new $so_far, the rest of $test)
     if ($test_length > 1) {
-    	analyse($so_far, substr($test, 1)) if length($test) > 1;
+        analyse($so_far, substr($test, 1)) if length($test) > 1;
 
     # else we've exhausted $test and found an answer
     } else {
-    	$answers{$so_far} = 1;
-    	return;
+        $answers{$so_far} = 1;
+        return;
     }
 
     # if $test is >= 2 digits and they are 10-26 then add them as a character to $so_far
     $so_far = $_[0];
     $first_two = substr($test, 0, 2);
     if ($test_length >= 2 and $first_two ge '10' and $first_two le '26') {
-    	$so_far .= chr($base + $first_two);
+        $so_far .= chr($base + $first_two);
 
-    	# if anything remains in $test analyse(the new $so_far, the rest of $test)
-    	if (length($test) > 2) {
-    		analyse($so_far, substr($test, 2));
+        # if anything remains in $test analyse(the new $so_far, the rest of $test)
+        if (length($test) > 2) {
+        	analyse($so_far, substr($test, 2));
 
-    	# else we've exhausted $test and found an answer
-    	} else {
-    		$answers{$so_far} = 1;
-    		return;
-    	}
+        # else we've exhausted $test and found an answer
+        } else {
+        	$answers{$so_far} = 1;
+        	return;
+        }
     }
 }
 ```
@@ -196,16 +196,6 @@ sub analyse {
 <br>
 
 That will find all the possible decodings of the input string.  They are all stored as keys in the hash %answers, and all that remains is to sort the hash by key and output the answers.
-
-
-
-
-
-
-
-
-
-
 
 <br>
 

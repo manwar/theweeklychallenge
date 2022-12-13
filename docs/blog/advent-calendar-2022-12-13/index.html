@@ -301,7 +301,7 @@ $base <span style="color:#f92672">=</span> ord(<span style="color:#e6db74">&#39;
     <span style="color:#75715e"># format and output the answers</span>
     $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
     <span style="color:#66d9ef">for</span> $answer (sort keys %answers) {
-    	$string <span style="color:#f92672">.=</span> $answer <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;, &#39;</span>;
+        $string <span style="color:#f92672">.=</span> $answer <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;, &#39;</span>;
     }
     say <span style="color:#e6db74">qq[Output: ]</span> <span style="color:#f92672">.</span> substr($string, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
 }
@@ -322,29 +322,29 @@ $base <span style="color:#f92672">=</span> ord(<span style="color:#e6db74">&#39;
 
     <span style="color:#75715e"># if anything remains in $test, analyse(the new $so_far, the rest of $test)</span>
     <span style="color:#66d9ef">if</span> ($test_length <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
-    	analyse($so_far, substr($test, <span style="color:#ae81ff">1</span>)) <span style="color:#66d9ef">if</span> length($test) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+        analyse($so_far, substr($test, <span style="color:#ae81ff">1</span>)) <span style="color:#66d9ef">if</span> length($test) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
 
     <span style="color:#75715e"># else we&#39;ve exhausted $test and found an answer</span>
     } <span style="color:#66d9ef">else</span> {
-    	$answers{$so_far} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    	<span style="color:#66d9ef">return</span>;
+        $answers{$so_far} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span>;
     }
 
     <span style="color:#75715e"># if $test is &gt;= 2 digits and they are 10-26 then add them as a character to $so_far</span>
     $so_far <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
     $first_two <span style="color:#f92672">=</span> substr($test, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>);
     <span style="color:#66d9ef">if</span> ($test_length <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">and</span> $first_two <span style="color:#f92672">ge</span> <span style="color:#e6db74">&#39;10&#39;</span> <span style="color:#f92672">and</span> $first_two <span style="color:#f92672">le</span> <span style="color:#e6db74">&#39;26&#39;</span>) {
-    	$so_far <span style="color:#f92672">.=</span> chr($base <span style="color:#f92672">+</span> $first_two);
+        $so_far <span style="color:#f92672">.=</span> chr($base <span style="color:#f92672">+</span> $first_two);
 
-    	<span style="color:#75715e"># if anything remains in $test analyse(the new $so_far, the rest of $test)</span>
-    	<span style="color:#66d9ef">if</span> (length($test) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>) {
-    		analyse($so_far, substr($test, <span style="color:#ae81ff">2</span>));
+        <span style="color:#75715e"># if anything remains in $test analyse(the new $so_far, the rest of $test)</span>
+        <span style="color:#66d9ef">if</span> (length($test) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>) {
+        	analyse($so_far, substr($test, <span style="color:#ae81ff">2</span>));
 
-    	<span style="color:#75715e"># else we&#39;ve exhausted $test and found an answer</span>
-    	} <span style="color:#66d9ef">else</span> {
-    		$answers{$so_far} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    		<span style="color:#66d9ef">return</span>;
-    	}
+        <span style="color:#75715e"># else we&#39;ve exhausted $test and found an answer</span>
+        } <span style="color:#66d9ef">else</span> {
+        	$answers{$so_far} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        	<span style="color:#66d9ef">return</span>;
+        }
     }
 }
 </code></pre></div><br>
