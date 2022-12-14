@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 12**](/blog/advent-calendar-2022-12-12) &nbsp; | &nbsp; **Day 13** &nbsp; |
+### | &nbsp; [**Day 12**](/blog/advent-calendar-2022-12-12) &nbsp; | &nbsp; **Day 13** &nbsp; | &nbsp; [**Day 14**](/blog/advent-calendar-2022-12-14) &nbsp; |
 ***
 
 The gift is presented by `Peter Campbell Smith`. Today he is talking about his solution to [**"The Weekly Challenge - 190"**](/blog/perl-weekly-challenge-190). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://pjcs-pwc.blogspot.com/2022/11/capital-test-and-ambiguous-encoding.html) by him.
@@ -182,12 +182,12 @@ sub analyse {
 
         # if anything remains in $test analyse(the new $so_far, the rest of $test)
         if (length($test) > 2) {
-        	analyse($so_far, substr($test, 2));
+            analyse($so_far, substr($test, 2));
 
         # else we've exhausted $test and found an answer
         } else {
-        	$answers{$so_far} = 1;
-        	return;
+            $answers{$so_far} = 1;
+            return;
         }
     }
 }
