@@ -56,14 +56,14 @@ Finally we reached the milestone one more time last week. Thank you `Team PWC` f
 | | | | | | | | | | | |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `184` &nbsp;&nbsp;|&nbsp;&nbsp; `185` &nbsp;&nbsp; |&nbsp;&nbsp; `186` &nbsp;&nbsp; |&nbsp;&nbsp; `187` &nbsp;&nbsp;|&nbsp;&nbsp; `188` &nbsp;&nbsp;|&nbsp;&nbsp; `189` &nbsp;&nbsp;|&nbsp;&nbsp; `190` &nbsp;&nbsp;|&nbsp;&nbsp; `191` &nbsp;&nbsp;|&nbsp;&nbsp; `192` &nbsp;&nbsp;|&nbsp;&nbsp; `193` &nbsp;&nbsp;|&nbsp;&nbsp; `194` &nbsp;&nbsp;|
 | | | | | | | | | | | |
-| `Perl` | 55 | 59 | 56 | 51 | 63 | 60 | 53 | 54 | 59 | 55 | 54 |
-| `Raku` | 31 | 35 | 33 | 34 | 36 | 35 | 32 | 38 | 41 | 31 | 30 |
+| `Perl` | 55 | 59 | 56 | 51 | 63 | 60 | 53 | 54 | 59 | 55 | 56 |
+| `Raku` | 31 | 35 | 33 | 34 | 36 | 35 | 32 | 38 | 41 | 31 | 32 |
 | `Blog` | 17 | 19 | 20 | 20 | 16 | 18 | 23 | 21 | 23 | 22 | 19 |
 | | | | | | | | | | | |
 
 <br>
 
-Last week, we had `33` regular contributors and `10` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `34` regular contributors and `11` guest contributors. Thank you everyone for the support and encouragement.
 
 Today, we are giving away `Coupon #18` to `Bob Lied` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. Unfortunately we don't have your email address, can you please share with us so that we can send you the coupon?
 
@@ -103,7 +103,7 @@ Today, we are giving away `Coupon #18` to `Bob Lied` for the book, [**Learning P
 
 <br>
 
-I would like to thank every guest contributors for making it special every week. Last week we received `38 guest contributions` in `13 languages`.
+I would like to thank every guest contributors for making it special every week. Last week we received `39 guest contributions` in `18 languages`.
 
 With so much going on in the recent weeks, I hardly find time to contribute my solutions. I will try my best in coming weeks to get back on track.
 
@@ -114,12 +114,12 @@ With so much going on in the recent weeks, I hardly find time to contribute my s
 
 Do you see your favourite language in the `Top 10`? If not then why not contribute regularly and make it to the top.
 
-     1. Python  (1236)
+     1. Python  (1238)
      2. Haskell (518)
      3. Ruby    (433)
-     4. Lua     (415)
-     5. C       (298)
-     6. C++     (298)
+     4. Lua     (417)
+     5. C       (300)
+     6. C++     (300)
      7. Rust    (272)
      8. BQN     (267)
      9. Go      (233)
@@ -145,7 +145,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ***
 
 #### 1. Commits: 29,685 (`+138`)
-#### 2. Pull Requests: 7,235 (`+36`)
+#### 2. Pull Requests: 7,236 (`+37`)
 #### 3. Contributors: 213
 #### 4. Fork: 268
 #### 5. Stars: 149
