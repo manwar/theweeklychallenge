@@ -9,7 +9,7 @@ tags: ["Raku"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 13**](/blog/advent-calendar-2022-12-13) &nbsp; | &nbsp; **Day 14** &nbsp; |
+### | &nbsp; [**Day 13**](/blog/advent-calendar-2022-12-13) &nbsp; | &nbsp; **Day 14** &nbsp; | &nbsp; [**Day 15**](/blog/advent-calendar-2022-12-15) &nbsp; |
 ***
 
 The gift is presented by `Andinus`. Today he is talking about his solution to [**"The Weekly Challenge - 187"**](/blog/perl-weekly-challenge-187). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://andinus.unfla.me/pwc/challenge-187) by him.
