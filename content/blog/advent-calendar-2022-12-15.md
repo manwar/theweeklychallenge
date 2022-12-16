@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 14**](/blog/advent-calendar-2022-12-14) &nbsp; | &nbsp; **Day 15** &nbsp; |
+### | &nbsp; [**Day 14**](/blog/advent-calendar-2022-12-14) &nbsp; | &nbsp; **Day 15** &nbsp; | &nbsp; [**Day 16**](/blog/advent-calendar-2022-12-16) &nbsp; |
 ***
 
 The gift is presented by `E. Choroba`. Today he is talking about his solution to [**"The Weekly Challenge - 189"**](/blog/perl-weekly-challenge-189). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://blogs.perl.org/users/e_choroba/2022/11/array-degree.html) by him.
