@@ -9,7 +9,7 @@ tags: ["Perl", "Raku"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 16**](/blog/advent-calendar-2022-12-16) &nbsp; | &nbsp; **Day 17** &nbsp; |
+### | &nbsp; [**Day 16**](/blog/advent-calendar-2022-12-16) &nbsp; | &nbsp; **Day 17** &nbsp; | &nbsp; [**Day 18**](/blog/advent-calendar-2022-12-18) &nbsp; |
 ***
 
 The gift is presented by `Laurent Rosenfeld`. Today he is talking about his solution to [**"The Weekly Challenge - 194"**](/blog/perl-weekly-challenge-194). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://blogs.perl.org/users/laurent_r/2022/12/perl-weekly-challenge-194-digital-clock-and-frequency-equalizer.html) by him.
