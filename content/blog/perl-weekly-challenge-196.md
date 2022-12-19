@@ -58,21 +58,21 @@ Welcome `2 new members` to the `Team PWC`, [**Pip Stuart**](https://github.com/p
 
 <br>
 
-We are little behind the magic number. I am confident by Monday lunch time (UK),  we would breach the target. Thank you `Team PWC` for the support and encouragement.
+Another week another achievement. Thank you `Team PWC` for the support and encouragement.
 
 | | | | | | | | | | | | |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | | | | | | | | | | | | |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `184` &nbsp;&nbsp;|&nbsp;&nbsp; `185` &nbsp;&nbsp; |&nbsp;&nbsp; `186` &nbsp;&nbsp; |&nbsp;&nbsp; `187` &nbsp;&nbsp;|&nbsp;&nbsp; `188` &nbsp;&nbsp;|&nbsp;&nbsp; `189` &nbsp;&nbsp;|&nbsp;&nbsp; `190` &nbsp;&nbsp;|&nbsp;&nbsp; `191` &nbsp;&nbsp;|&nbsp;&nbsp; `192` &nbsp;&nbsp;|&nbsp;&nbsp; `193` &nbsp;&nbsp;|&nbsp;&nbsp; `194` &nbsp;&nbsp;|&nbsp;&nbsp; `195` &nbsp;&nbsp;|
 | | | | | | | | | | | | |
-| `Perl` | 55 | 59 | 56 | 51 | 63 | 60 | 53 | 54 | 59 | 55 | 58 | 52 |
-| `Raku` | 31 | 35 | 33 | 34 | 36 | 35 | 32 | 38 | 41 | 31 | 32 | 25 |
-| `Blog` | 17 | 19 | 20 | 20 | 16 | 18 | 23 | 21 | 23 | 22 | 19 | 18 |
+| `Perl` | 55 | 59 | 56 | 51 | 63 | 60 | 53 | 54 | 59 | 55 | 58 | 54 |
+| `Raku` | 31 | 35 | 33 | 34 | 36 | 35 | 32 | 38 | 41 | 31 | 32 | 27 |
+| `Blog` | 17 | 19 | 20 | 20 | 16 | 18 | 23 | 21 | 23 | 22 | 19 | 19 |
 | | | | | | | | | | | | |
 
 <br>
 
-Last week, we had `33` regular contributors and `9` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `34` regular contributors and `9` guest contributors. Thank you everyone for the support and encouragement.
 
 Today, we are giving away `Coupon #19` to `Athanasius` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
@@ -153,7 +153,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ***
 
 #### 1. Commits: 29,788 (`+103`)
-#### 2. Pull Requests:,268 (`+37`)
+#### 2. Pull Requests:,269 (`+38`)
 #### 3. Contributors: 214 (`+1`)
 #### 4. Fork: 271 (`+3`)
 #### 5. Stars: 148
