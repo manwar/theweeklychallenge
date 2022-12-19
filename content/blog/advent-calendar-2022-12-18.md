@@ -9,7 +9,7 @@ tags: ["Perl", "Raku"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 17**](/blog/advent-calendar-2022-12-17) &nbsp; | &nbsp; **Day 18** &nbsp; |
+### | &nbsp; [**Day 17**](/blog/advent-calendar-2022-12-17) &nbsp; | &nbsp; **Day 18** &nbsp; | &nbsp; [**Day 19**](/blog/advent-calendar-2022-12-19) &nbsp; |
 ***
 
 The gift is presented by `Ryan Thompson`. Today he is talking about his solution to [**"The Weekly Challenge - 171"**](/blog/perl-weekly-challenge-171). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://ry.ca/2022/07/odd-abundant-numbers) by him.
