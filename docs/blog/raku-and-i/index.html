@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Story about my journey with Raku.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Raku and I: Journey begin ...</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Raku and I: Journey begin ...</h2>
+                    <div class="portfolio-meta">
+                        <span>Tuesday, Dec 20, 2022</span>|
+                        <span> Tags:
+                            Raku
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/raku-and-i.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h2 id="raku-and-i-journey-begin-">Raku and I: Journey begin &hellip;</h2>
+<hr>
+<br>
+<p>It has been ages since I last blogged about <code>Raku</code>. The only time, I have blogged about when I took part in <a href="https://theweeklychallenge.org"><strong>The Weekly Challenge</strong></a>. But then this also changed recently as I finally found time to contribute to the weekly fun challenges but no blogging still.</p>
+<p>I would say it is all about my mental state, since I have so much to talk about. Recently I was approached by a very dear friend and senior member of <code>Raku Community</code> if I am interested in contributing to the <a href="https://raku-advent.blog/category/2022"><strong>Raku Advent Calendar 2022</strong></a>. So as you guessed it rightly so, I have a compelling reason to get back to blogging.</p>
+<br>
+<p><strong>But then you know &hellip;.</strong></p>
+<br>
+<p>I always have too many things on my plate, so getting done something new is always tricky. However I had made up my mind, no matter what I would give it my best shot.</p>
+<br>
+<p><strong>Here I am &hellip;</strong></p>
+<br>
+<p><strong>So what am I going to talk about then?</strong></p>
+<br>
+<p>Those who know me personally, are aware that I am a <code>Perl</code> guy by nature. Having said, I started playing with other languages recently thanks to the vibrant group of <code>Team PWC</code>. In this blog post, I would like to talk about some of my contributions to the weekly challenge in the new found love <code>Raku</code> language.</p>
+<br>
+<h2 id="1-prime-sum">1: Prime Sum</h2>
+<p>You are given a number <code>$N</code>. Write a script to find the minimum number of prime numbers required, whose summation gives you <code>$N</code>.</p>
+<hr>
+<p>With the power of <code>Raku</code> built-in features, it is a piece of cake, if you know what you are doing. For me, the official <a href="https://docs.raku.org"><strong>Raku Documentation</strong></a> is the answer to all my questions. And if I can&rsquo;t find what I am looking for then I ask my friends on various social platform. <code>9 out of 10 times</code>, I get the answer instantly.</p>
+<p>So in this case, all the hard work in done by <code>is-prime</code>. I am a big fan of method chaining as you can see below. Just for the sake of the reader, I go through the list <code>2..$sum</code> and <code>grep</code> everything that <code>is-prime</code>.</p>
+<br>
+<p><strong>Isn&rsquo;t beautiful? For me, it is.</strong></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find</span>-prime-upto(Int $sum) {
+    <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$sum)<span style="color:#f92672">.</span>grep: { <span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime };
+}
+</code></pre></div><br>
+<p>Now with the handy subroutine ready, we are read to solve the task as below:</p>
+<p>For my <code>Perl</code> friends new to <code>Raku</code>, the only thing might trouble you is the use of <code>[+]</code>, right?</p>
+<p>It is the <code>Reduction Operator []</code> that works on lists of values.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime</span>-sum(Int $sum) {
+
+    <span style="color:#66d9ef">my</span> @prime <span style="color:#f92672">=</span> find<span style="color:#f92672">-</span>prime<span style="color:#f92672">-</span>upto($sum);
+    <span style="color:#66d9ef">my</span> @prime<span style="color:#f92672">-</span>sum <span style="color:#f92672">=</span> Empty;
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$sum <span style="color:#f92672">-&gt;</span> $i {
+        <span style="color:#66d9ef">for</span> @prime<span style="color:#f92672">.</span>combinations: $i <span style="color:#f92672">-&gt;</span> $j {
+            <span style="color:#66d9ef">my</span> $_sum <span style="color:#f92672">=</span> [<span style="color:#f92672">+</span>] $j;
+            @prime<span style="color:#f92672">-</span>sum<span style="color:#f92672">.</span>push: $j <span style="color:#66d9ef">if</span> $_sum <span style="color:#f92672">==</span> $sum;
+        }
+    }
+
+    <span style="color:#66d9ef">return</span> @prime<span style="color:#f92672">-</span>sum;
+}
+</code></pre></div><br>
+<p>Now glue together everything as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $SUM where $SUM &gt; 0) {
+    prime<span style="color:#f92672">-</span>sum($SUM)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>)<span style="color:#f92672">.</span>say;
+}
+</code></pre></div><br>
+<p>Still not done yet as unit test is nice to have.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test;
+
+is<span style="color:#f92672">-</span>deeply prime<span style="color:#f92672">-</span>sum(<span style="color:#ae81ff">6</span>)<span style="color:#f92672">.&lt;&gt;</span>,  <span style="color:#f92672">[]</span>,                  <span style="color:#e6db74">&#34;prime sum = 6&#34;</span>;
+is<span style="color:#f92672">-</span>deeply prime<span style="color:#f92672">-</span>sum(<span style="color:#ae81ff">9</span>)<span style="color:#f92672">.&lt;&gt;</span>,  [(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>),],           <span style="color:#e6db74">&#34;prime sum = 9&#34;</span>;
+is<span style="color:#f92672">-</span>deeply prime<span style="color:#f92672">-</span>sum(<span style="color:#ae81ff">12</span>)<span style="color:#f92672">.&lt;&gt;</span>, [(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>), (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>)], <span style="color:#e6db74">&#34;prime sum = 12&#34;</span>;
+
+done<span style="color:#f92672">-</span>testing;
+</code></pre></div><br>
+<h2 id="2-fibonacci-sum">2: Fibonacci Sum</h2>
+<p>Write a script to find out all possible combination of <code>Fibonacci Numbers</code> required to get <code>$N</code> on addition.</p>
+<p>You are <code>NOT</code> allowed to repeat a number. Print <code>0</code> if none found.</p>
+<hr>
+<br>
+<p>You may find the solution below somewhat similar to the above work but there is something new for <code>Perl</code> fans. In <code>Perl</code> we can get the last element of a list <code>$list[-1]</code> but in <code>Raku</code> it is slightly different as you see below.</p>
+<p>One more thing, if you look at closely the parameter checks done in the signature itself which we don&rsquo;t have in <code>Perl</code>.</p>
+<p><code>Raku</code> rocks !!!</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fibonacci</span>-series-upto(Int $num where $num &gt; 0) {
+    <span style="color:#66d9ef">my</span> @fibonacci <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+    <span style="color:#66d9ef">while</span> @fibonacci<span style="color:#f92672">.</span>[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @fibonacci<span style="color:#f92672">.</span>[<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;=</span> $num {
+        @fibonacci<span style="color:#f92672">.</span>push: @fibonacci<span style="color:#f92672">.</span>[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @fibonacci<span style="color:#f92672">.</span>[<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>];
+    }
+
+    <span style="color:#66d9ef">return</span> @fibonacci;
+}
+</code></pre></div><br>
+<p>Now we are ready to solve the task as below:</p>
+<p><strong>Did you notice something special here?</strong></p>
+<p>Yes, <code>.combinations</code>. Again all built-in, no need to import any library. It generates all possible combinations of given size.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fibonacci</span>-sum(Int $sum where $sum &gt; 0) {
+
+    <span style="color:#66d9ef">my</span> @fibonacci     <span style="color:#f92672">=</span> fibonacci<span style="color:#f92672">-</span>series<span style="color:#f92672">-</span>upto($sum);
+    <span style="color:#66d9ef">my</span> @fibonacci_sum <span style="color:#f92672">=</span> Empty;
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $sum <span style="color:#f92672">-&gt;</span> $i {
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> @fibonacci<span style="color:#f92672">.</span>elems;
+        <span style="color:#66d9ef">for</span> @fibonacci<span style="color:#f92672">.</span>combinations: $i <span style="color:#f92672">-&gt;</span> $comb {
+            <span style="color:#66d9ef">my</span> $_sum <span style="color:#f92672">=</span> [<span style="color:#f92672">+</span>] $comb;
+            @fibonacci_sum<span style="color:#f92672">.</span>push: $comb <span style="color:#66d9ef">if</span> $_sum <span style="color:#f92672">==</span> $sum;
+        }
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">|</span>@fibonacci_sum;
+}
+</code></pre></div><br>
+<p>Final application.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int :$N where $N &gt; 0) {
+    fibonacci<span style="color:#f92672">-</span>sum($N)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>)<span style="color:#f92672">.</span>say;
+}
+</code></pre></div><br>
+<p>Time for some unit test too.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test;
+
+is<span style="color:#f92672">-</span>deeply fibonacci<span style="color:#f92672">-</span>sum(<span style="color:#ae81ff">6</span>), ((<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>), (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)), <span style="color:#e6db74">&#34;fibonacci sum = 6&#34;</span>;
+is<span style="color:#f92672">-</span>deeply fibonacci<span style="color:#f92672">-</span>sum(<span style="color:#ae81ff">9</span>), ((<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>), (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>)), <span style="color:#e6db74">&#34;fibonacci sum = 9&#34;</span>;
+
+done<span style="color:#f92672">-</span>testing;
+</code></pre></div><br>
+<h2 id="3-count-set-bits">3: Count Set Bits</h2>
+<p>You are given a positive number <code>$N</code>.</p>
+<p>Write a script to count the total numbrer of set bits of the binary representations of all numbers from <code>1</code> to <code>$N</code> and return <code>$total_count_set_bit % 1000000007</code>.</p>
+<hr>
+<br>
+<p>For this task, <code>Raku</code> has most of the funtions built-in, so nothing to be invented.</p>
+<p>As you see, it is one-liner, <code>(1..$n).map( -&gt; $i { $c += [+] $i.base(2).comb; });</code> where all the work is done.</p>
+<p><code>.map()</code> works same as in <code>Perl</code>. In this case each element gets assigned to <code>$i</code>. Further on <code>$i</code> gets converted to <code>base 2</code> i.e. binary form then finally split into individual digits using <code>.comb</code>.</p>
+<p>How can you not fall in love with <code>Raku</code>?</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count</span>-set-bits(Int $n) {
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n)<span style="color:#f92672">.</span>map( <span style="color:#f92672">-&gt;</span> $i { $c <span style="color:#f92672">+=</span> [<span style="color:#f92672">+</span>] $i<span style="color:#f92672">.</span>base(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>comb; });
+    <span style="color:#66d9ef">return</span> $c % 1000000007;
+}
+</code></pre></div><br>
+<p>Unit test to go with it.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test;
+
+is count<span style="color:#f92672">-</span>set<span style="color:#f92672">-</span>bits(<span style="color:#ae81ff">4</span>), <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#34;testing example 1&#34;</span>;
+is count<span style="color:#f92672">-</span>set<span style="color:#f92672">-</span>bits(<span style="color:#ae81ff">3</span>), <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#34;testing example 2&#34;</span>;
+
+done<span style="color:#f92672">-</span>testing;
+</code></pre></div><br>
+<h2 id="4-smallest-positive-number">4: Smallest Positive Number</h2>
+<p>You are given unsorted list of integers <code>@N</code>.</p>
+<p>Write a script to find out the smallest positive number missing.</p>
+<hr>
+<br>
+<p>This task introduced me something new that I wasn&rsquo;t aware of earlier.</p>
+<p>I always wanted to put check on the elements of input list. In this task, I am checking every elements in the given input list is integer. Also the return value is of type integer too. All these done with one line <code>@n where .all ~~ Int --&gt; Int</code>. This is the power of <code>Raku</code> we can have the power in our script.</p>
+<p>Also to sort a list, just use <code>.sort</code> together with <code>.grep</code> makes it very powerful.</p>
+<p>The <code>.elems</code> gives me the total number of elements in the list.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">smallest</span>-positive-number(@n where .all ~~ Int --&gt; Int) {
+
+    <span style="color:#66d9ef">my</span> @positive<span style="color:#f92672">-</span>numbers <span style="color:#f92672">=</span> @n<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>grep: { $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> };
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">unless</span> @positive<span style="color:#f92672">-</span>numbers<span style="color:#f92672">.</span>elems;
+
+    <span style="color:#66d9ef">my</span> Int $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @positive<span style="color:#f92672">-</span>numbers<span style="color:#f92672">.</span>tail)<span style="color:#f92672">.</span>map: <span style="color:#f92672">-&gt;</span> $n {
+        <span style="color:#66d9ef">return</span> $n <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;</span> @positive<span style="color:#f92672">-</span>numbers[$i<span style="color:#f92672">++</span>]
+    };
+
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">++</span>@positive<span style="color:#f92672">-</span>numbers<span style="color:#f92672">.</span>tail;
+}
+</code></pre></div><br>
+<p>Final application looks like below.</p>
+<p><strong>Did you see something new?</strong></p>
+<p>Well, it shows how to set the default parameter values.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(:@N where .all ~~ Int = (2, 3, 7, 6, 8, -1, -10, 15)) {
+    say smallest<span style="color:#f92672">-</span>positive<span style="color:#f92672">-</span>number(@N);
+}
+</code></pre></div><br>
+<p>Time for unit test again.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test;
+
+is smallest<span style="color:#f92672">-</span>positive<span style="color:#f92672">-</span>number((<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>)),  <span style="color:#ae81ff">1</span>,
+   <span style="color:#e6db74">&#34;testing (5, 2, -2, 0)&#34;</span>;
+is smallest<span style="color:#f92672">-</span>positive<span style="color:#f92672">-</span>number((<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)),     <span style="color:#ae81ff">2</span>,
+   <span style="color:#e6db74">&#34;testing (1, 8, -1)&#34;</span>;
+is smallest<span style="color:#f92672">-</span>positive<span style="color:#f92672">-</span>number((<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)),     <span style="color:#ae81ff">1</span>,
+   <span style="color:#e6db74">&#34;testing (2, 0, -1)&#34;</span>;
+
+done<span style="color:#f92672">-</span>testing;
+</code></pre></div><br>
+<h2 id="conclusion">CONCLUSION</h2>
+<br>
+<p>Learning <code>Raku</code> is an ongoing journey and I am loving it. I haven&rsquo;t shared everything to be honest. If you are interested then you can checkout the rest in my <a href="https://theweeklychallenge.org/blogs"><strong>collections</strong></a>.</p>
+<p>Enjoy the break and stay safe.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
