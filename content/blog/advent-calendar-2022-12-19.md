@@ -9,7 +9,7 @@ tags: ["Perl", "Raku", "Julia"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 18**](/blog/advent-calendar-2022-12-18) &nbsp; | &nbsp; **Day 19** &nbsp; |
+### | &nbsp; [**Day 18**](/blog/advent-calendar-2022-12-18) &nbsp; | &nbsp; **Day 19** &nbsp; | &nbsp; [**Day 20**](/blog/advent-calendar-2022-12-20) &nbsp; |
 ***
 
 The gift is presented by `Stephen G. Lynn`. Today he is talking about his solution to [**"The Weekly Challenge - 186"**](/blog/perl-weekly-challenge-186). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://thiujiac.blogspot.com/2022/10/pwc-186.html) by him.

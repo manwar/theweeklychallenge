@@ -14,14 +14,14 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Advent Calendar - December 19, 2022.">
+    <meta name="description" content="Advent Calendar - December 20, 2022.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Advent Calendar - December 19, 2022</title>
+    <title>Advent Calendar - December 20, 2022</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -177,11 +177,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Advent Calendar - December 19, 2022</h2>
+                    <h2>Advent Calendar - December 20, 2022</h2>
                     <div class="portfolio-meta">
-                        <span>Monday, Dec 19, 2022</span>|
+                        <span>Tuesday, Dec 20, 2022</span>|
                         <span> Tags:
-                            Perl, Raku, Julia
+                            Raku, JavaScript
                         </span>
                     </div>
                 </div>
@@ -196,66 +196,96 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2022-12-19.jpg">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2022-12-20.jpg">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
                     <h2 id="advent-calendar-2022blogadvent-calendar-2022"><a href="/blog/advent-calendar-2022"><strong>Advent Calendar 2022</strong></a></h2>
-<h3 id="-nbsp-day-18blogadvent-calendar-2022-12-18-nbsp--nbsp-day-19-nbsp--nbsp-day-20blogadvent-calendar-2022-12-20-nbsp-">|   <a href="/blog/advent-calendar-2022-12-18"><strong>Day 18</strong></a>   |   <strong>Day 19</strong>   |   <a href="/blog/advent-calendar-2022-12-20"><strong>Day 20</strong></a>   |</h3>
+<h3 id="-nbsp-day-19blogadvent-calendar-2022-12-19-nbsp--nbsp-day-20-nbsp-">|   <a href="/blog/advent-calendar-2022-12-19"><strong>Day 19</strong></a>   |   <strong>Day 20</strong>   |</h3>
 <hr>
-<p>The gift is presented by <code>Stephen G. Lynn</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-186"><strong>&ldquo;The Weekly Challenge - 186&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2022</strong> from the original <a href="https://thiujiac.blogspot.com/2022/10/pwc-186.html"><strong>post</strong></a> by him.</p>
+<p>The gift is presented by <code>Roger Bell_West</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-192"><strong>&ldquo;The Weekly Challenge - 192&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2022</strong> from the original <a href="https://blog.firedrake.org/archive/2022/11/The_Weekly_Challenge_192__Equal_Flips_For_All.html"><strong>post</strong></a> by him.</p>
 <hr>
 <br>
-<h2 id="challenge-1-zip-list">Challenge 1 (Zip List)</h2>
+<h2 id="equal-flips-for-all">Equal Flips For All</h2>
 <br>
-<p>Challenge 1 requires <code>&quot;zipping&quot;</code> two lists <code>a</code> and <code>b</code> say, by creating a combined list in which the elements are: <code>(a[0] b[0] a[1] b[1] a[2] b[2] ...).</code> The lists are of equal length.</p>
-<p>There are ready-made functions to do this in all three languages I submit. In <code>Perl 5</code>, <a href="https://metacpan.org/pod/List::MoreUtils#zip-ARRAY1-ARRAY2-%5B-ARRAY3-...-%5D"><strong>List::MoreUtils has a zip function</strong></a> that does exactly this. <code>Raku</code> has the <a href="https://docs.raku.org/routine/Z"><strong>Z operator</strong></a>, so it is as simple as <code>@a Z @b</code>. <code>Julia</code> has a zip function named <code>zip</code>, though the output is not quite what is requested. It returns an array of tuples: <code>[(a[0] b[0]), (a[1] b[1]), ...].</code></p>
-<p>I wrote my own function for the task, using straightforward logic. I just push the elements of the two arrays into a new array in the prescribed order. The key snippet:</p>
+<p>I’ve been doing the <a href="http://theweeklychallenge.org"><strong>Weekly Challenges</strong></a>.</p>
+<p><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-192"><strong>The latest</strong></a> involved a binary negation and list division. (Note that this is open until <code>27 November 2022</code>.)</p>
 <br>
-<h3 id="perl-5">Perl 5</h3>
+<h2 id="task-1-binary-flip">Task 1: Binary Flip</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">push @c, ($$ra_a[$_], $$ra_b[$_]) <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @$ra_a<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+<p>You are given a positive integer, <code>$n</code>.</p>
+<p>Write a script to find the binary flip.</p>
+<hr>
+<br>
+<p>This turns out to be: take the binary representation (with no leading zeroes), then exchange all <code>0s</code> and <code>1s</code> to get an inverse value.</p>
+<p>This is clearly intended to be a problem about binary representations. But we don&rsquo;t need to do that. Instead, I find the value of the <code>leftmost set bit</code> in the input by counting repeated shift rights until there&rsquo;s nothing left – e.g. <code>5</code> is processed as <code>101</code>, <code>10</code>, <code>1</code>, <code>0</code>, so <code>three</code> shifts. (i.e. <code>log base 2</code>.) Then shift <code>1</code> left that many times (getting <code>8</code>). Subtract 1: <code>7</code>, which gives me what in binary would be a series of <code>&quot;1&quot;</code> of the same length as the original number. Then subtract the input from that (gosh, an actual legitimate <code>&quot;take away the number you first thought of&quot;</code>).</p>
+<p>This sequence is <a href="https://oeis.org/A035327"><strong>in the OEIS</strong></a> and the graph makes this approach particularly obvious.</p>
+<p>Some languages have access to <code>CPU functions</code> to count leading zeroes and thus get a binary magnitude that way, but I did this the same way throughout. <code>JavaScript</code>:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">function binaryflip(n) {
+    let m <span style="color:#f92672">=</span> n;
+    let r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> (m <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        m <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
+        r <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+    }
+    <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> r) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> n;
+}
 </code></pre></div><br>
-<h3 id="raku">Raku</h3>
+<h2 id="task-2-equal-distribution">Task 2: Equal Distribution</h2>
+<p>You are given a list of integers greater than or equal to zero, <code>@list</code>.</p>
+<p>Write a script to distribute the number so that each members are same. If you succeed then print the total moves otherwise print -1.</p>
+<hr>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">@c<span style="color:#f92672">.</span>append(@a[$_], @b[$_]) <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @a<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+<p><code>&quot;Distribute&quot;</code> turns out to mean <code>&quot;subtract one from a list value, adding it to another adjacent list value&quot;</code>. So this has to be done iteratively <code>[0 3 0] → [1 2 0] → [1 1 1] = 2 steps</code> , adding and subtracting <code>1</code> each time. If a number is higher than both its neighbours, the process is not immediately obvious, but this one seemed to work.</p>
+<br>
+<h2 id="raku">Raku</h2>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">equaldistribution</span>(@list) {
 </code></pre></div><br>
-<h3 id="julia">Julia</h3>
+<p>Check that an even distribution is possible.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> i in <span style="color:#ae81ff">1</span>:length(b)
-    append<span style="color:#f92672">!</span>(c, a[i], b[i])
-end
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> @list<span style="color:#f92672">.</span>sum;
+    <span style="color:#66d9ef">if</span> ($s % <span style="color:#960050;background-color:#1e0010">@</span>list<span style="color:#f92672">.</span>elems <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
 </code></pre></div><br>
-<h3 id="here-is-my-perl-5-scripthttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-186steve-g-lynnperlch-1pl"><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/steve-g-lynn/perl/ch-1.pl"><strong>Here is my Perl 5 script</strong></a>.</h3>
-<h3 id="here-is-my-raku-scripthttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-186steve-g-lynnrakuch-1p6"><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/steve-g-lynn/raku/ch-1.p6"><strong>Here is my Raku script</strong></a>.</h3>
-<h3 id="here-is-my-julia-scripthttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-186steve-g-lynnjuliach-1jl"><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/steve-g-lynn/julia/ch-1.jl"><strong>Here is my Julia script</strong></a>.</h3>
+<p>Get a target value for each element.</p>
 <br>
-<h2 id="challenge-2-unicode-makeover">Challenge 2 (Unicode makeover)</h2>
-<br>
-<p>This challenge requires replacing a string of accented alphabets say <code>'âÊíÒÙ'</code> with the unaccented equivalent say <code>'aEiOU'</code>.</p>
-<p>I was under the impression that accented alphabets were formed by two-character sequences where the second character was in the range <code>U+0300</code> to <code>U+036F</code>. If so, one could use a regex to strip the input string of characters in this range and we are through.</p>
-<p>This is not how it works though, as I found out when I tried and failed with the regex, and peeked at the codes for the accented characters in the test string.</p>
-<p>I finally wound up using a ready-made <code>UNIX</code> utility <code>iconv</code>. I embed a call to iconv in my <code>Perl 5</code> and <code>Raku </code>subroutines using the backtick quoting in <code>Perl 5</code>, and the equivalent qqx quotes in <code>Raku</code>.</p>
-<p>The key snippet:</p>
-<br>
-<h3 id="perl-5-1">Perl 5</h3>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">return</span> <span style="color:#e6db74">`echo $string | iconv -f utf-8 -t ascii//translit`</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> $s div @list<span style="color:#f92672">.</span>elems;
+    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @w <span style="color:#f92672">=</span> @list;
+    <span style="color:#66d9ef">while</span> (True) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@w<span style="color:#f92672">.</span>elems<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">-&gt;</span> $i {
 </code></pre></div><br>
-<h3 id="raku-1">Raku</h3>
+<p>Going through the list, if this value is higher than it needs to be, move any surplus into the next element.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">return</span> qqx{echo $string <span style="color:#f92672">|</span> iconv <span style="color:#f92672">-</span>f utf<span style="color:#f92672">-</span><span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span>t ascii<span style="color:#e6db74">//</span>translit};
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">            <span style="color:#66d9ef">if</span> (@w[$i] <span style="color:#f92672">&gt;</span> $m) {
+                <span style="color:#66d9ef">my</span> $v <span style="color:#f92672">=</span> @w[$i] <span style="color:#f92672">-</span> $m;
+                @w[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> $v;
+                $out <span style="color:#f92672">+=</span> $v;
+                @w[$i] <span style="color:#f92672">=</span> $m;
 </code></pre></div><br>
-<p>I tried to do the same in <code>Julia</code>, but could not get the piping to work correctly. <code>Julia</code> however has an easy way to do this via the <code>Unicode.normalize</code> function.</p>
-<p>The key snippet from my <code>Julia</code> script:</p>
+<p>If it&rsquo;s lower, take as much as possible from the next element (without letting it go below zero.)</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">return</span> Unicode<span style="color:#f92672">.</span>normalize(str, stripmark<span style="color:#f92672">=</span>true)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">            } <span style="color:#66d9ef">elsif</span> (@w[$i] <span style="color:#f92672">&lt;</span> $m) {
+                <span style="color:#66d9ef">my</span> $v <span style="color:#f92672">=</span> min($m <span style="color:#f92672">-</span> @w[$i], @w[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]);
+                @w[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-=</span> $v;
+                $out <span style="color:#f92672">+=</span> $v;
+                @w[$i] <span style="color:#f92672">+=</span> $v;
+            }
+        }
 </code></pre></div><br>
-<p><code>Raku</code> also has an instant built-in way to do this via the <a href="https://docs.raku.org/routine/samemark"><strong>samemark</strong></a> routine.</p>
+<p>If the job&rsquo;s done, exit, otherwise loop again.</p>
 <br>
-<h3 id="here-is-my-perl-5-scripthttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-186steve-g-lynnperlch-2pl"><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/steve-g-lynn/perl/ch-2.pl"><strong>Here is my Perl 5 script</strong></a>.</h3>
-<h3 id="here-is-my-raku-scripthttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-186steve-g-lynnrakuch-2p6"><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/steve-g-lynn/raku/ch-2.p6"><strong>Here is my Raku script</strong></a>.</h3>
-<h3 id="here-is-my-julia-scripthttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-186steve-g-lynnjuliach-2jl"><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-186/steve-g-lynn/julia/ch-2.jl"><strong>Here is my Julia script</strong></a>.</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        <span style="color:#66d9ef">if</span> (@w<span style="color:#f92672">.</span>all <span style="color:#f92672">==</span> $m) {
+            <span style="color:#66d9ef">last</span>;
+        }
+    }
+    <span style="color:#66d9ef">return</span> $out;
+}
+</code></pre></div><br>
+<p>Full code on <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-192/roger-bell-west"><strong>GitHub</strong></a>.</p>
 <br>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
