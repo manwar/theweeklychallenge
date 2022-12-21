@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar 2022"
-date: 2022-12-20T00:00:00+00:00
+date: 2022-12-21T00:00:00+00:00
 description: "Advent Calendar 2022."
 type: post
 image: images/blog/advent-calendar-2022.jpg
@@ -28,7 +28,7 @@ tags: ["Perl", "Raku"]
 | | | | | | | |
 | [![Day 12](/images/blog/2022-12-12-thumbnail.jpg "Triangle Sum Path / Rectangle Area by W. Luis Mochan")](/blog/advent-calendar-2022-12-12)<br>[**`12`**](/blog/advent-calendar-2022-12-12) | [![Day 13](/images/blog/2022-12-13-thumbnail.jpg "Capital test and ambiguous encoding by Peter Campbell Smith")](/blog/advent-calendar-2022-12-13)<br>[**`13`**](/blog/advent-calendar-2022-12-13) | [![Day 14](/images/blog/2022-12-14-thumbnail.jpg "Days Together / Mask Code by Andinus")](/blog/advent-calendar-2022-12-14)<br>[**`14`**](/blog/advent-calendar-2022-12-14) | [![Day 15](/images/blog/2022-12-15-thumbnail.jpg "Array Degree by E. Choroba")](/blog/advent-calendar-2022-12-15)<br>[**`15`**](/blog/advent-calendar-2022-12-15) | [![Day 16](/images/blog/2022-12-16-thumbnail.jpg "Divisible Pairs / Total Zero by Jaldhar H. Vyas")](/blog/advent-calendar-2022-12-16)<br>[**`16`**](/blog/advent-calendar-2022-12-16) | [![Day 17](/images/blog/2022-12-17-thumbnail.jpg "Digital Clock and Frequency Equalizer by Laurent Rosenfeld")](/blog/advent-calendar-2022-12-17)<br>[**`17`**](/blog/advent-calendar-2022-12-17) | [![Day 18](/images/blog/2022-12-18-thumbnail.jpg "Odd Abundant Numbers by Ryan Thompson")](/blog/advent-calendar-2022-12-18)<br>[**`18`**](/blog/advent-calendar-2022-12-18) |
 | | | | | | | |
-| [![Day 19](/images/blog/2022-12-19-thumbnail.jpg "Zip List / Unicode makeover by Stephen G. Lynn")](/blog/advent-calendar-2022-12-19)<br>[**`19`**](/blog/advent-calendar-2022-12-19) | [![Day 20](/images/blog/2022-12-20-thumbnail.jpg "Equal Flips For All by Roger Bell_West")](/blog/advent-calendar-2022-12-20)<br>[**`20`**](/blog/advent-calendar-2022-12-20) | ![Day 21](/images/blog/2022-12-21-thumbnail.jpg)<br>**`21`** | ![Day 22](/images/blog/2022-12-22-thumbnail.jpg)<br>**`22`** | ![Day 23](/images/blog/2022-12-23-thumbnail.jpg)<br>**`23`** | ![Day 24](/images/blog/2022-12-24-thumbnail.jpg)<br>**`24`** |  <br><br>**`25`**<br> |
+| [![Day 19](/images/blog/2022-12-19-thumbnail.jpg "Zip List / Unicode makeover by Stephen G. Lynn")](/blog/advent-calendar-2022-12-19)<br>[**`19`**](/blog/advent-calendar-2022-12-19) | [![Day 20](/images/blog/2022-12-20-thumbnail.jpg "Equal Flips For All by Roger Bell_West")](/blog/advent-calendar-2022-12-20)<br>[**`20`**](/blog/advent-calendar-2022-12-20) | [![Day 21](/images/blog/2022-12-21-thumbnail.jpg "Intersection on a Sunday Afternoon by Jared Martin")](/blog/advent-calendar-2022-12-21)<br>[**`21`**](/blog/advent-calendar-2022-12-21) | ![Day 22](/images/blog/2022-12-22-thumbnail.jpg)<br>**`22`** | ![Day 23](/images/blog/2022-12-23-thumbnail.jpg)<br>**`23`** | ![Day 24](/images/blog/2022-12-24-thumbnail.jpg)<br>**`24`** |  <br><br>**`25`**<br> |
 | | | | | | | |
 |  <br><br>**`26`**<br> |  <br><br>**`27`**<br> |  <br><br>**`28`**<br> |  <br><br>**`29`**<br> |  <br><br>**`30`**<br> |  <br><br>**`31`**<br> | <br><br><br> |
 | | | | | | | |

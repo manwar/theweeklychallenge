@@ -9,7 +9,7 @@ tags: ["Raku", "JavaScript"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 19**](/blog/advent-calendar-2022-12-19) &nbsp; | &nbsp; **Day 20** &nbsp; |
+### | &nbsp; [**Day 19**](/blog/advent-calendar-2022-12-19) &nbsp; | &nbsp; **Day 20** &nbsp; | &nbsp; [**Day 21**](/blog/advent-calendar-2022-12-21) &nbsp; |
 ***
 
 The gift is presented by `Roger Bell_West`. Today he is talking about his solution to [**"The Weekly Challenge - 192"**](/blog/perl-weekly-challenge-192). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://blog.firedrake.org/archive/2022/11/The_Weekly_Challenge_192__Equal_Flips_For_All.html) by him.
