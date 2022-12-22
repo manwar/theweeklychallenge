@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 20**](/blog/advent-calendar-2022-12-20) &nbsp; | &nbsp; **Day 21** &nbsp; |
+### | &nbsp; [**Day 20**](/blog/advent-calendar-2022-12-20) &nbsp; | &nbsp; **Day 21** &nbsp; | &nbsp; [**Day 22**](/blog/advent-calendar-2022-12-22) &nbsp; |
 ***
 
 The gift is presented by `Jared Martin`. Today he is talking about his solution to [**"The Weekly Challenge - 127"**](/blog/perl-weekly-challenge-127). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://blogs.perl.org/users/jared_martin/2021/08/twc-127-intersection-on-a-sunday-afternoon.html) by him.
