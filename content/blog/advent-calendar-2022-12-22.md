@@ -9,7 +9,7 @@ tags: ["Perl", "Go"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 21**](/blog/advent-calendar-2022-12-21) &nbsp; | &nbsp; **Day 22** &nbsp; |
+### | &nbsp; [**Day 21**](/blog/advent-calendar-2022-12-21) &nbsp; | &nbsp; **Day 22** &nbsp; | &nbsp; [**Day 23**](/blog/advent-calendar-2022-12-23) &nbsp; |
 ***
 
 The gift is presented by `Lance Wicks`. Today he is talking about his solution to [**"The Weekly Challenge - 119"**](/blog/perl-weekly-challenge-119). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://perl.kiwi/tales/2021/07/04/perl-flexibility-for-the-win) by him.
