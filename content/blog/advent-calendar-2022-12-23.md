@@ -9,7 +9,7 @@ tags: ["Python"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 22**](/blog/advent-calendar-2022-12-22) &nbsp; | &nbsp; **Day 23** &nbsp; |
+### | &nbsp; [**Day 22**](/blog/advent-calendar-2022-12-22) &nbsp; | &nbsp; **Day 23** &nbsp; | &nbsp; [**Day 24**](/blog/advent-calendar-2022-12-24) &nbsp; |
 ***
 
 The gift is presented by `E. Alvarez`. Today he is talking about his solution to [**"The Weekly Challenge - 191"**](/blog/perl-weekly-challenge-191). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://alvar3z.com/posts/lambdas--printf) by him.
