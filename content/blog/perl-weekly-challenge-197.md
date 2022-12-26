@@ -1,7 +1,7 @@
 ---
-title: "The Weekly Challenge - 196"
-date: 2022-12-19T00:00:00+00:00
-description: "The Weekly Challenge - 196"
+title: "The Weekly Challenge - 197"
+date: 2022-12-26T00:00:00+00:00
+description: "The Weekly Challenge - 197"
 type: post
 image: images/twc-logo.png
 author: Mohammad S Anwar
@@ -19,18 +19,18 @@ tags: ["Perl", "Raku"]
 ### 06. [CHART](#CHART)
 ### 07. [NEW MEMBERS](#NEWMEMBERS)
 ### 08. [GUESTS](#GUESTS)
-### 09. [TASK #1: Pattern 132](#TASK1)
-### 10. [TASK #2: Range List](#TASK2)
+### 09. [TASK #1: Move Zero](#TASK1)
+### 10. [TASK #2: Wiggle Sort](#TASK2)
 <br>
 
 ## HEADLINES {#HEADLINES}
 ***
 
-Welcome to the `Week #196` of `The Weekly Challenge`.
+Welcome to the `Week #197` of `The Weekly Challenge`.
 
-Welcome `2 new members` to the `Team PWC`, [**Pip Stuart**](https://github.com/pip) and [**Carlos Oliveira**](https://github.com/carlos157oliveira). They are both experienced `Perl` hacker.
+[**Advent Calendar 2022**](/blog/advent-calendar-2022) celebration is finally over, thanks to the contributions by the members of `Team PWC`.
 
-[**Advent Calendar 2022**](/blog/advent-calendar-2022) is going on with full swing, thanks to the contributions by the members of `Team PWC`.
+By the way, did you know that our `Advent Calendar` is now live on [**DEV.to**](https://dev.to/manwar/the-weekly-challenge-advent-calendar-2022-6ad). Please do like the post.
 
 | | | |
 | :---: | :---: | :---: |
@@ -55,10 +55,15 @@ Welcome `2 new members` to the `Team PWC`, [**Pip Stuart**](https://github.com/p
 | &nbsp;&nbsp; `17` &nbsp;&nbsp; | &nbsp;[**Digital Clock and Frequency Equalizer**](/blog/advent-calendar-2022-12-17) &nbsp; | &nbsp; `Laurent Rosenfeld` &nbsp; |
 | &nbsp;&nbsp; `18` &nbsp;&nbsp; | &nbsp;[**Odd Abundant Numbers**](/blog/advent-calendar-2022-12-18) &nbsp; | &nbsp; `Ryan Thompson` &nbsp; |
 | &nbsp;&nbsp; `19` &nbsp;&nbsp; | &nbsp;[**Zip List / Unicode makeover**](/blog/advent-calendar-2022-12-19) &nbsp; | &nbsp; `Stephen G. Lynn` &nbsp; |
+| &nbsp;&nbsp; `20` &nbsp;&nbsp; | &nbsp;[**Equal Flips For All**](/blog/advent-calendar-2022-12-20) &nbsp; | &nbsp; `Roger Bell_West` &nbsp; |
+| &nbsp;&nbsp; `21` &nbsp;&nbsp; | &nbsp;[**Intersection on a Sunday Afternoon**](/blog/advent-calendar-2022-12-21) &nbsp; | &nbsp; `Jared Martin` &nbsp; |
+| &nbsp;&nbsp; `22` &nbsp;&nbsp; | &nbsp;[**Perl flexibility for the win**](/blog/advent-calendar-2022-12-22) &nbsp; | &nbsp; `Lance Wicks` &nbsp; |
+| &nbsp;&nbsp; `23` &nbsp;&nbsp; | &nbsp;[**Lambdas & Printf**](/blog/advent-calendar-2022-12-23) &nbsp; | &nbsp; `E. Alvarez` &nbsp; |
+| &nbsp;&nbsp; `24` &nbsp;&nbsp; | &nbsp;[**Merry Christmas**](/blog/advent-calendar-2022-12-24) &nbsp; | &nbsp; `Mohammad S Anwar` &nbsp; |
 
 <br>
 
-Another week another achievement. Thank you `Team PWC` for the support and encouragement.
+Holiday season kicks-in and as expected `Team PWC` members taking well deserved break from the weekly challenge. I am pleasantly surprised that some managed to submit the solutions even during the break. During holiday season, we still managed to get to `97`. Thank you `Team PWC` for the support and encouragement.
 
 | | | | | | | | | | | | |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -72,9 +77,9 @@ Another week another achievement. Thank you `Team PWC` for the support and encou
 
 <br>
 
-Last week, we had `36` regular contributors and `10` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `32` regular contributors and `7` guest contributors. Thank you everyone for the support and encouragement.
 
-Today, we are giving away `Coupon #19` to `Athanasius` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
+Today, we are giving away `Coupon #20` to `David Ferrone` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
 ### Past Winners
 
@@ -92,7 +97,7 @@ Today, we are giving away `Coupon #19` to `Athanasius` for the book, [**Learning
 | 13. | Jorg Sommrey         | 14. | James Smith       |
 | 15. | Alexander Pankoff    | 16. | Simon Green       |
 | 17. | Robbie Hatley        | 18. | Bob Lied          |
-| 19. |                      | 20. |                   |
+| 19. | Athanasius           | 20. |                   |
 | 21. |                      | 22. |                   |
 | 23. |                      | 24. |                   |
 | 25. |                      | 26. |                   |
@@ -112,9 +117,7 @@ Today, we are giving away `Coupon #19` to `Athanasius` for the book, [**Learning
 
 <br>
 
-I would like to thank every guest contributors for making it special every week. Last week we received `53 guest contributions` in `18 languages`.
-
-With so much going on in the recent weeks, I hardly find time to contribute my solutions. I will try my best in coming weeks to get back on track.
+I would like to thank every guest contributors for making it special every week. Last week we received `29 guest contributions` in `12 languages`.
 
 <br>
 
@@ -123,13 +126,13 @@ With so much going on in the recent weeks, I hardly find time to contribute my s
 
 Do you see your favourite language in the `Top 10`? If not then why not contribute regularly and make it to the top.
 
-     1. Python  (1247)
-     2. Haskell (520)
-     3. Ruby    (436)
-     4. Lua     (421)
-     5. C       (304)
-     6. C++     (304)
-     7. Rust    (276)
+     1. Python  (1254)
+     2. Haskell (521)
+     3. Ruby    (439)
+     4. Lua     (423)
+     5. C       (306)
+     6. C++     (305)
+     7. Rust    (280)
      8. BQN     (267)
      9. Go      (233)
     10. Java    (211)
@@ -139,24 +142,23 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ### Blogs with Creative Title
 ***
 
-#### 1. [Especially Frequent Even](http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/12/18) by Adam Russell.
-#### 2. [Especially Even](https://raku-musings.com/especially-even.html) by Arne Sommer.
-#### 3. [Special Speedy Frequency](https://blogs.perl.org/users/bruce_gray/2022/12/twc-195-special-speedy-frequency.html) by Bruce Gray.
-#### 4. [Well Ain’t That Special](https://colincrain.com/2022/12/19/well-aint-that-special/) by Colin Crain.
-#### 5. [Bags to the rescue!](https://fluca1978.github.io/2022/12/12/PerlWeeklyChallenge195.html) by Luca Ferrari.
-#### 6. [Some numbers are special and others are frequent and even](https://pjcs-pwc.blogspot.com/2022/12/some-numbers-are-special-and-others-are.html) by Peter Campbell Smith.
-#### 7. [Frequently Special](https://blog.firedrake.org/archive/2022/12/The_Weekly_Challenge_195__Frequently_Special.html) by Roger Bell_West.
+#### 1. [132 Lists](https://raku-musings.com/132-lists.html) by Arne Sommer.
+#### 2. [Range Rover, Over Clover](https://colincrain.com/2022/12/25/range-rover-over-clover) by Colin Crain.
+#### 3. [Insert Clever Title Here](https://jacoby.github.io/2022/12/19/insert-clever-title-here-weekly-challenge-196.html) by Dave Jacoby.
+#### 4. [Merry Christmas!](https://fluca1978.github.io/2022/12/19/PerlWeeklyChallenge196.html) by Luca Ferrari.
+#### 5. [Pattern 132 and sequential runs](https://pjcs-pwc.blogspot.com/2022/12/pattern-132-and-sequential-runs.html) by Peter Campbell Smith.
+#### 6. [Pattern and Range](https://blog.firedrake.org/archive/2022/12/The_Weekly_Challenge_196__Pattern_and_Range.html) by Roger Bell_West.
 
 <br>
 
 ### [GitHub](https://github.com/manwar/perlweeklychallenge-club) Repository Stats
 ***
 
-#### 1. Commits: 29,788 (`+103`)
-#### 2. Pull Requests: 7,269 (`+38`)
-#### 3. Contributors: 214 (`+1`)
-#### 4. Fork: 271 (`+3`)
-#### 5. Stars: 148
+#### 1. Commits: 29,884 (`+96`)
+#### 2. Pull Requests: 7,299 (`+30`)
+#### 3. Contributors: 215 (`+1`)
+#### 4. Fork: 271
+#### 5. Stars: 149 (`+1`)
 
 <br>
 
@@ -170,7 +172,7 @@ Our solo sponsor `Pete Sergeant` has been a great support to keep us motivated. 
 ## RECAP {#RECAP}
 ***
 
-Quick recap of **[The Weekly Challenge - 195](/blog/recap-challenge-195)** by `Mohammad S Anwar`.
+Quick recap of **[The Weekly Challenge - 196](/blog/recap-challenge-196)** by `Mohammad S Anwar`.
 
 <br>
 
@@ -200,12 +202,6 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 ## NEW MEMBERS {#NEWMEMBERS}
 ***
 
-#### [**Pip Stuart**](https://github.com/pip), an experienced `Perl` hacker from `Oshkosh, Wisconsin, USA` joined `Team PWC`.
-
-#### [**Carlos Oliveira**](https://github.com/carlos157oliveira), an experienced `Perl` hacker joined `Team PWC`.
-
-<br>
-
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
 Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) created by respected member `Saif Ahmed` of **Team PWC**.
@@ -215,81 +211,67 @@ Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) cr
 ## GUESTS {#GUESTS}
 ***
 
-Please check out the guest contributions for the [**Week #195**](/blog/guest-contribution/#195).
+Please check out the guest contributions for the [**Week #196**](/blog/guest-contribution/#196).
 
 Please find [**past solutions**](/blog/guest-contribution) by respected **guests**. Please share your creative solutions in other languages.
 
 <br>
 
-## Task 1: Pattern 132 {#TASK1}
+## Task 1: Move Zero {#TASK1}
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
 You are given a list of integers, `@list`.
 
-Write a script to find out subsequence that respect `Pattern 132`. Return empty array if none found.
-
-<br>
-
-> Pattern 132 in a sequence (a[i], a[j], a[k]) such that `i < j < k and a[i] < a[k] < a[j]`.
+Write a script to move all zero, if exists, to the end while maintaining the relative order of `non-zero` elements.
 
 <br>
 
 ### Example 1
 
-    Input:  @list = (3, 1, 4, 2)
-    Output: (1, 4, 2) respect the Pattern 132.
+    Input:  @list = (1, 0, 3, 0, 0, 5)
+    Output: (1, 3, 5, 0, 0, 0)
 
 ### Example 2
 
-    Input: @list = (1, 2, 3, 4)
-    Output: () since no susbsequence can be found.
+    Input: @list = (1, 6, 4)
+    Output: (1, 6, 4)
 
 ### Example 3
 
-    Input: @list = (1, 3, 2, 4, 6, 5)
-    Output: (1, 3, 2) if more than one subsequence found then return the first.
-
-### Example 4
-
-    Input: @list = (1, 3, 4, 2)
-    Output: (1, 3, 2)
+    Input: @list = (0, 1, 0, 2, 0
+    Output: (1, 2, 0, 0, 0)
 
 <br>
 
-## Task 2: Range List {#TASK2}
+## Task 2: Wiggle Sort {#TASK2}
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
-You are given a sorted unique integer array, `@array`.
+You are given a list of integers, `@list`.
 
-Write a script to find all possible `Number Range` i.e [x, y] represent range all integers from `x` and `y` (both inclusive).
+Write a script to perform `Wiggle Sort` on the given list.
 
 <br>
 
-> Each subsequence of two or more contiguous integers
+> Wiggle sort would be such as list[0] < list[1] > list[2] < list[3]....
 
 <br>
 
 ### Example 1
 
-    Input: @array = (1,3,4,5,7)
-    Output: [3,5]
+    Input: @list = (1,5,1,1,6,4)
+    Output: (1,6,1,5,1,4)
 
 ### Example 2
 
-    Input: @array = (1,2,3,6,7,9)
-    Output: [1,3], [6,7]
-
-### Example 3
-
-    Input: @array = (0,1,2,4,5,6,8,9)
-    Output: [0,2], [4,6], [8,9]
+    Input: @list = (1,3,2,2,3,1)
+    Output: (2,3,1,3,1,2)
 
 <br>
 
 ***
 
-Last date to submit the solution **23:59 (UK Time) Sunday 25th December 2022**.
+Last date to submit the solution **23:59 (UK Time) Sunday 1st January 2023**.
 
 ***
