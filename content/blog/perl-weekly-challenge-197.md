@@ -77,7 +77,7 @@ Holiday season kicks-in and as expected `Team PWC` members taking well deserved 
 
 <br>
 
-Last week, we had `32` regular contributors and `7` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `33` regular contributors and `7` guest contributors. Thank you everyone for the support and encouragement.
 
 Today, we are giving away `Coupon #20` to `David Ferrone` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
