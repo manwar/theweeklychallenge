@@ -88,23 +88,23 @@ Last week, we had `34` regular contributors and `7` guest contributors. Thank yo
 
 Today, we are giving away `Coupon #20` to `David Ferrone` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
-### Past Winners
+### PAST WINNERS
 
 | | | | |
-| :---: | :---: | :---: | :---: |
+| :---: | --- | :---: | --- |
 | | | | |
-| &nbsp;&nbsp;`S. No.`&nbsp;&nbsp; | `Name`              | `S. No.` | `Name` |
+| &nbsp;&nbsp;`S. No.`&nbsp;&nbsp; | &nbsp;`Name`              | `S. No.` | &nbsp;`Name` |
 | | | |
-|  1. | Cheok-Yin Fung       |  2. | W. Luis Mochan    |
-|  3. | Robert DiCicco       |  4. | Kueppo Wesley     |
-|  5. | Solathian            |  6. | Dario Mazzeo      |
-|  7. |&nbsp; Peter Campbell Smith &nbsp;|  8. | Kjetil Skotheim   |
-|  9. | Neils van Dijke      | 10. |&nbsp; Laurent Rosenfeld &nbsp;|
-| 11. | Duncan C. White      | 12. | Ali Moradi        |
-| 13. | Jorg Sommrey         | 14. | James Smith       |
-| 15. | Alexander Pankoff    | 16. | Simon Green       |
-| 17. | Robbie Hatley        | 18. | Bob Lied          |
-| 19. | Athanasius           | 20. |                   |
+|  1. | &nbsp;`Cheok-Yin Fung`       |  2. | &nbsp;`W. Luis Mochan`    |
+|  3. | &nbsp;`Robert DiCicco`       |  4. | &nbsp;`Kueppo Wesley`     |
+|  5. | &nbsp;`Solathian`            |  6. | &nbsp;`Dario Mazzeo`      |
+|  7. | &nbsp;`Peter Campbell Smith` &nbsp;|  8. | &nbsp;`Kjetil Skotheim`   |
+|  9. | &nbsp;`Neils van Dijke`      | 10. | &nbsp;`Laurent Rosenfeld` &nbsp;|
+| 11. | &nbsp;`Duncan C. White`      | 12. | &nbsp;`Ali Moradi`        |
+| 13. | &nbsp;`Jorg Sommrey`         | 14. | &nbsp;`James Smith`       |
+| 15. | &nbsp;`Alexander Pankoff`    | 16. | &nbsp;`Simon Green`       |
+| 17. | &nbsp;`Robbie Hatley`        | 18. | &nbsp;`Bob Lied`          |
+| 19. | &nbsp;`Athanasius`           | 20. |                   |
 | 21. |                      | 22. |                   |
 | 23. |                      | 24. |                   |
 | 25. |                      | 26. |                   |
