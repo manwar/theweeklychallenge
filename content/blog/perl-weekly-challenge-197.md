@@ -63,7 +63,7 @@ By the way, did you know that our `Advent Calendar` is now live on [**DEV.to**](
 
 <br>
 
-Holiday season kicks-in and as expected `Team PWC` members taking well deserved break from the weekly challenge. I am pleasantly surprised that some managed to submit the solutions even during the break. During holiday season, we still managed to get to `97`. Thank you `Team PWC` for the support and encouragement.
+Holiday season kicks-in and as expected `Team PWC` members taking well deserved break from the weekly challenge. I am pleasantly surprised that some managed to submit the solutions even during the break. During holiday season, we still managed to get to `99`. Thank you `Team PWC` for the support and encouragement.
 
 | | | | | | | | | | | | |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
