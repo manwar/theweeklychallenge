@@ -246,7 +246,7 @@ Write a script to move all zero, if exists, to the end while maintaining the rel
 
 ### Example 3
 
-    Input: @list = (0, 1, 0, 2, 0
+    Input: @list = (0, 1, 0, 2, 0)
     Output: (1, 2, 0, 0, 0)
 
 <br>
