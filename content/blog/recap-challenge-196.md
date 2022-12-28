@@ -337,7 +337,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### David Ferrone
-![David Ferrone](/images/team/user.jpg)
+![David Ferrone](/images/team/david-ferrone.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-196/zapwai/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-196/zapwai/perl/ch-2.pl)]
