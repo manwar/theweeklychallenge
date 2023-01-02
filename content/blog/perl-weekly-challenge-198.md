@@ -38,7 +38,7 @@ Today we are going to announce the last `Champion of the Year 2022` as today is 
 
 So, with great pride we announce, `Ali Moradi`, as the `Champion of the Month`. He joined the `Team PWC` in the `Week 096`. As of today, he has contributed `43 Perl` and `23 Raku` solutions. He hasn't made to the `Top 50` in the `Leaders Board` yet. However he is currently `Ranked #8` in the `Guest Leaders Board`. He has been a prolific guest contributors and contributed in `12 languages` as well as `Perl` and `Raku`.
 
-Last week of holiday ending now. Time to start new year with fresh energy. As of now, we couldn't reach the magic number. It is still possible to get there if there is any late submission. So far, we have received `94 contributions`. Thank you `Team PWC` for the support and encouragement.
+Last week of holiday ending now. Time to start new year with fresh energy. As of now, we couldn't reach the magic number. It is still possible to get there if there is any late submission. So far, we have received `95 contributions`. Thank you `Team PWC` for the support and encouragement.
 
 | | | | |
 | :---: | :---: | :---: | :---: |
@@ -129,7 +129,8 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 #### 1. [Zero Wiggle](https://raku-musings.com/zero-wiggle.html) by Arne Sommer.
 #### 2. [Add a Little Wiggle Room](https://colincrain.com/2023/01/02/add-a-little-wiggle-room) by Colin Crain.
 #### 3. [Lists everywhere!](https://fluca1978.github.io/2022/12/27/PerlWeeklyChallenge197.html) by Luca Ferrari.
-#### 4. [Sorting Lists](https://dev.to/simongreennet/sorting-lists-35fh) by Simon Green.
+#### 4. [Move with a Wiggle](https://blog.firedrake.org/archive/2022/12/The_Weekly_Challenge_197__Move_with_a_Wiggle.html) by Roger Bell_West.
+#### 5. [Sorting Lists](https://dev.to/simongreennet/sorting-lists-35fh) by Simon Green.
 
 <br>
 
@@ -137,7 +138,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ***
 
 #### 1. Commits: 29,980 (`+96`)
-#### 2. Pull Requests: 7,330 (`+31`)
+#### 2. Pull Requests: 7,331 (`+32`)
 #### 3. Contributors: 215
 #### 4. Fork: 271
 #### 5. Stars: 150 (`+1`)
