@@ -40,7 +40,13 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 198](/blog/perl-weekly-challenge-198) {#198}
 <br>
 
-##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/ziameraj16/java/MaxGap.java) in **Java**.
+##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/ziameraj16/java/MaxGap.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/ziameraj16/java/PrimeCount.java) in **Java**.
+
+##### **Robert DiCicco** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/robert-dicicco/julia/ch-2.jl) in **Julia**.
+
+##### **Robert DiCicco** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/robert-dicicco/python/ch-2.py) in **Python**.
+
+##### **Robert DiCicco** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/robert-dicicco/ruby/ch-2.rb) in **Ruby**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
 
