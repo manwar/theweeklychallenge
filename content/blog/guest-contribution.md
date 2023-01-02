@@ -40,6 +40,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 198](/blog/perl-weekly-challenge-198) {#198}
 <br>
 
+##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/zapwai/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/zapwai/rust/ch-2.rs) in **Rust**.
+
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/ziameraj16/java/MaxGap.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/ziameraj16/java/PrimeCount.java) in **Java**.
 
 ##### **Robert DiCicco** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/robert-dicicco/julia/ch-2.jl) in **Julia**.
