@@ -38,7 +38,7 @@ Today we are going to announce the last `Champion of the Year 2022` as today is 
 
 So, with great pride we announce, `Ali Moradi`, as the `Champion of the Month`. He joined the `Team PWC` in the `Week 096`. As of today, he has contributed `43 Perl` and `23 Raku` solutions. He hasn't made to the `Top 50` in the `Leaders Board` yet. However he is currently `Ranked #8` in the `Guest Leaders Board`. He has been a prolific guest contributors and contributed in `12 languages` as well as `Perl` and `Raku`.
 
-Last week of holiday ending now. Time to start new year with fresh energy. As of now, we couldn't reach the magic number. It is still possible to get there if there is any late submission. So far, we have received `91 contributions`. Thank you `Team PWC` for the support and encouragement.
+Last week of holiday ending now. Time to start new year with fresh energy. As of now, we couldn't reach the magic number. It is still possible to get there if there is any late submission. So far, we have received `94 contributions`. Thank you `Team PWC` for the support and encouragement.
 
 | | | | |
 | :---: | :---: | :---: | :---: |
@@ -59,7 +59,7 @@ Last week of holiday ending now. Time to start new year with fresh energy. As of
 
 <br>
 
-Last week, we had `30` regular contributors and `11` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `31` regular contributors and `11` guest contributors. Thank you everyone for the support and encouragement.
 
 Today, we are giving away `Coupon #21` to `Thomas Kohler` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
@@ -127,8 +127,9 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ***
 
 #### 1. [Zero Wiggle](https://raku-musings.com/zero-wiggle.html) by Arne Sommer.
-#### 2. [Lists everywhere!](https://fluca1978.github.io/2022/12/27/PerlWeeklyChallenge197.html) by Luca Ferrari.
-#### 3. [Sorting Lists](https://dev.to/simongreennet/sorting-lists-35fh) by Simon Green.
+#### 2. [Add a Little Wiggle Room](https://colincrain.com/2023/01/02/add-a-little-wiggle-room) by Colin Crain.
+#### 3. [Lists everywhere!](https://fluca1978.github.io/2022/12/27/PerlWeeklyChallenge197.html) by Luca Ferrari.
+#### 4. [Sorting Lists](https://dev.to/simongreennet/sorting-lists-35fh) by Simon Green.
 
 <br>
 

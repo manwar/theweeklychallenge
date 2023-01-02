@@ -47,20 +47,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 9696 (62%)
+#### 1. Perl: 9698 (62%)
 #### 2. Raku: 5815 (38%)
-#### 3. Blog: 3154
+#### 3. Blog: 3155
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `91`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `94`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 45
+#### 1. Perl: 47
 #### 2. Raku: 29
-#### 3. Blog: 17
+#### 3. Blog: 18
 
 <br>
 
@@ -264,7 +264,7 @@ The total contributions in the week is `91`. Well done **Team PWC**. I would als
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1986), Roger Bell_West (1722), Jaldhar H. Vyas (1654), Arne Sommer (1484), Luca Ferrari (1358), Flavio Poletti (1296), Colin Crain (1292), Athanasius (1226), Ulrich Rieke (1062), Adam Russell (1030), Dave Jacoby (918), E. Choroba (882), Abigail (794), James Smith (740), Duncan C. White (718), Mohammad S Anwar (718), Cheok-Yin Fung (650), Paulo Custodio (650), W. Luis Mochan (646), Stuart Little (644), Simon Green (596), Mark Anderson (592), Jorg Sommrey (522), Simon Proctor (522), Javier Luque (460), Ruben Westerberg (452), Niels van Dijke (434), Jan Krnavek (432), Lubos Kolouch (424), Feng Chang (420), Ryan Thompson (390), Pete Houston (362), Peter Campbell Smith (358), Wanderdoc (358), Bruce Gray (334), Joelle Maslak (334), Robert DiCicco (306), Stephen G. Lynn (298), Andrezgz (260), Matthew Neleigh (238), Yet Ebreo (226), Alexander Pankoff (220), Steven Wilson (218), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Robert Ransbottom (178), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Marton Polgar (148), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Ali Moradi (132), Bob Lied (128), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (1986), Roger Bell_West (1722), Jaldhar H. Vyas (1654), Arne Sommer (1484), Luca Ferrari (1358), Colin Crain (1298), Flavio Poletti (1296), Athanasius (1226), Ulrich Rieke (1062), Adam Russell (1030), Dave Jacoby (918), E. Choroba (882), Abigail (794), James Smith (740), Duncan C. White (718), Mohammad S Anwar (718), Cheok-Yin Fung (650), Paulo Custodio (650), W. Luis Mochan (646), Stuart Little (644), Simon Green (596), Mark Anderson (592), Jorg Sommrey (522), Simon Proctor (522), Javier Luque (460), Ruben Westerberg (452), Niels van Dijke (434), Jan Krnavek (432), Lubos Kolouch (424), Feng Chang (420), Ryan Thompson (390), Pete Houston (362), Peter Campbell Smith (358), Wanderdoc (358), Bruce Gray (334), Joelle Maslak (334), Robert DiCicco (306), Stephen G. Lynn (298), Andrezgz (260), Matthew Neleigh (238), Yet Ebreo (226), Alexander Pankoff (220), Steven Wilson (218), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Robert Ransbottom (178), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Marton Polgar (148), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Ali Moradi (132), Bob Lied (128), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -315,6 +315,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-197/cheok-yin-fung/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-197/cheok-yin-fung/perl/ch-2.pl)]
+
+***
+
+### Colin Crain
+![Colin Crain](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-197/colin-crain/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-197/colin-crain/perl/ch-2.pl)]
+[[**BLOG #1**](https://colincrain.com/2023/01/02/add-a-little-wiggle-room/)]
 
 ***
 
