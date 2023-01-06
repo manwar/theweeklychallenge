@@ -49,7 +49,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 9652 (62%)
+#### 1. Perl: 9654 (62%)
 #### 2. Raku: 5786 (38%)
 #### 3. Blog: 3137
 
