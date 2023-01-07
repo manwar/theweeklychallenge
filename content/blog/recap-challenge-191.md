@@ -49,7 +49,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 9367 (62%)
+#### 1. Perl: 9369 (62%)
 #### 2. Raku: 5624 (38%)
 #### 3. Blog: 3035
 
@@ -58,9 +58,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `114`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `116`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 54
+#### 1. Perl: 56
 #### 2. Raku: 38
 #### 3. Blog: 22
 
@@ -264,7 +264,7 @@ The total contributions in the week is `114`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1926), Roger Bell_West (1664), Jaldhar H. Vyas (1604), Arne Sommer (1448), Colin Crain (1262), Luca Ferrari (1262), Flavio Poletti (1236), Athanasius (1182), Ulrich Rieke (1014), Adam Russell (994), Dave Jacoby (892), E. Choroba (858), Abigail (794), Mohammad S Anwar (710), James Smith (704), Duncan C. White (698), Paulo Custodio (650), Stuart Little (644), Cheok-Yin Fung (630), W. Luis Mochan (610), Mark Anderson (568), Simon Green (562), Simon Proctor (516), Jorg Sommrey (496), Javier Luque (460), Ruben Westerberg (452), Lubos Kolouch (424), Niels van Dijke (410), Jan Krnavek (410), Feng Chang (396), Ryan Thompson (390), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Peter Campbell Smith (328), Bruce Gray (286), Robert DiCicco (272), Andrezgz (260), Matthew Neleigh (238), Stephen G. Lynn (236), Yet Ebreo (226), Steven Wilson (218), Alexander Pankoff (204), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Robert Ransbottom (154), Marton Polgar (140), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Bob Lied (108), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104), Ali Moradi (100).
+    Laurent Rosenfeld (1926), Roger Bell_West (1664), Jaldhar H. Vyas (1604), Arne Sommer (1448), Colin Crain (1262), Luca Ferrari (1262), Flavio Poletti (1236), Athanasius (1182), Ulrich Rieke (1014), Adam Russell (994), Dave Jacoby (892), E. Choroba (858), Abigail (794), Mohammad S Anwar (710), James Smith (704), Duncan C. White (698), Paulo Custodio (650), Stuart Little (644), Cheok-Yin Fung (630), W. Luis Mochan (610), Mark Anderson (568), Simon Green (562), Simon Proctor (516), Jorg Sommrey (496), Javier Luque (460), Ruben Westerberg (452), Lubos Kolouch (424), Niels van Dijke (410), Jan Krnavek (410), Feng Chang (396), Ryan Thompson (390), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Peter Campbell Smith (328), Bruce Gray (286), Robert DiCicco (272), Andrezgz (260), Matthew Neleigh (238), Stephen G. Lynn (236), Yet Ebreo (226), Steven Wilson (218), Alexander Pankoff (204), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Robert Ransbottom (154), Marton Polgar (140), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Bob Lied (112), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104), Ali Moradi (100).
 
 <br>
 
@@ -301,6 +301,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/alexander-pankoff/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/alexander-pankoff/perl/ch-2.pl)]
+
+***
+
+### Bob Lied
+![Bob Lied](/images/team/bob-lied.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/bob-lied/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/bob-lied/perl/ch-2.pl)]
 
 ***
 
