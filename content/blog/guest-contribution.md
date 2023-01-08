@@ -40,6 +40,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 198](/blog/perl-weekly-challenge-198) {#198}
 <br>
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/deadmarshal/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/deadmarshal/c/ch-2.c) in **C**.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/deadmarshal/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/deadmarshal/cpp/ch-2.cpp) in **C++**.
