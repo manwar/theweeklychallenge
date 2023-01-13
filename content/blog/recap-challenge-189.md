@@ -263,7 +263,7 @@ The total contributions in the week is `113`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1906), Roger Bell_West (1644), Jaldhar H. Vyas (1584), Arne Sommer (1436), Colin Crain (1250), Luca Ferrari (1230), Flavio Poletti (1212), Athanasius (1166), Ulrich Rieke (1000), Adam Russell (978), Dave Jacoby (884), E. Choroba (850), Abigail (794), Mohammad S Anwar (702), James Smith (692), Duncan C. White (690), Paulo Custodio (650), Stuart Little (644), Cheok-Yin Fung (622), W. Luis Mochan (598), Mark Anderson (562), Simon Green (550), Simon Proctor (512), Jorg Sommrey (488), Javier Luque (460), Ruben Westerberg (452), Lubos Kolouch (424), Jan Krnavek (404), Niels van Dijke (402), Ryan Thompson (390), Feng Chang (388), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Peter Campbell Smith (316), Bruce Gray (274), Andrezgz (260), Robert DiCicco (260), Matthew Neleigh (236), Yet Ebreo (226), Steven Wilson (218), Stephen G. Lynn (216), Markus Holzer (198), Walt Mankowski (196), Alexander Pankoff (192), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Robert Ransbottom (146), Dave Cross (140), Shahed Nooshmand (140), Marton Polgar (132), Andinus (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Bob Lied (108), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (1906), Roger Bell_West (1644), Jaldhar H. Vyas (1584), Arne Sommer (1436), Colin Crain (1250), Luca Ferrari (1230), Flavio Poletti (1212), Athanasius (1166), Ulrich Rieke (1000), Adam Russell (978), Dave Jacoby (884), E. Choroba (850), Abigail (794), Mohammad S Anwar (702), James Smith (692), Duncan C. White (690), Paulo Custodio (650), Stuart Little (644), Cheok-Yin Fung (622), W. Luis Mochan (598), Mark Anderson (562), Simon Green (550), Simon Proctor (512), Jorg Sommrey (488), Javier Luque (460), Ruben Westerberg (452), Lubos Kolouch (424), Jan Krnavek (404), Niels van Dijke (402), Ryan Thompson (390), Feng Chang (388), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Peter Campbell Smith (316), Bruce Gray (274), Andrezgz (260), Robert DiCicco (260), Matthew Neleigh (236), Yet Ebreo (226), Steven Wilson (218), Stephen G. Lynn (216), Markus Holzer (198), Walt Mankowski (196), Alexander Pankoff (192), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Robert Ransbottom (146), Dave Cross (140), Shahed Nooshmand (140), Marton Polgar (132), Andinus (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Bob Lied (112), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -308,6 +308,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/spazm/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/spazm/perl/ch-2.pl)]
+
+***
+
+### Bob Lied
+![Bob Lied](/images/team/bob-lied.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/bob-lied/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/bob-lied/perl/ch-2.pl)]
 
 ***
 
