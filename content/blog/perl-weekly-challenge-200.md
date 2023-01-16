@@ -238,7 +238,7 @@ A seven segment display is an electronic component, usually used to display digi
 
 The encoding of each digit can thus be represented compactly as a truth table:
 
-    my @truth = qw<abcdef bc abdeg abcdg bcfg acdfg a cdefg abc abcdefg abcfg>;
+    my @truth = qw<abcdef bc abdeg abcdg bcfg acdfg acdefg abc abcdefg abcfg>;
 
 For example, $truth[1] = 'bc'. The digit 1 would have segments 'b' and 'c' enabled.
 
