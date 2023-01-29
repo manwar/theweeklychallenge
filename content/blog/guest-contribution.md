@@ -20,7 +20,7 @@ Please find below guest contributions.
 
 #### &nbsp; * &nbsp; [[163](#163)] &nbsp; * &nbsp; [[162](#162)] &nbsp; * &nbsp; [[161](#161)] &nbsp; * &nbsp; [[160](#160)] &nbsp; * &nbsp; [[159](#159)] &nbsp; * &nbsp; [[158](#158)] &nbsp; * &nbsp; [[157](#157)] &nbsp; * &nbsp; [[156](#156)] &nbsp; * &nbsp; [[155](#155)] &nbsp; * &nbsp; [[154](#154)] &nbsp; * &nbsp; [[153](#153)] &nbsp; * &nbsp; [[152](#152)] &nbsp; * &nbsp; [[151](#151)] &nbsp; * &nbsp; [[150](#150)] &nbsp; * &nbsp; [[149](#149)] &nbsp; * &nbsp; [[148](#148)] &nbsp; * &nbsp; [[147](#147)] &nbsp; * &nbsp; [[146](#146)] &nbsp; * &nbsp; [[145](#145)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[144](#144)] &nbsp; * &nbsp; [[143](#143)] &nbsp; * &nbsp; [[[142](#142)] &nbsp; * &nbsp; [141](#141)] &nbsp; * &nbsp; [[140](#140)] &nbsp; * &nbsp; [[139](#139)] &nbsp; * &nbsp; [[138](#138)] &nbsp; * &nbsp; [[137](#137)] &nbsp; * &nbsp; [[136](#136)] &nbsp; * &nbsp; [[135](#135)] &nbsp; * &nbsp; [[134](#134)] &nbsp; * &nbsp; [[133](#133)] &nbsp; * &nbsp; [[132](#132)] &nbsp; * &nbsp; [[131](#131)] &nbsp; * &nbsp; [[130](#130)] &nbsp; * &nbsp; [[129](#129)] &nbsp; * &nbsp; [[128](#128)] &nbsp; * &nbsp; [[127](#127)] &nbsp; * &nbsp; [[126](#126)] &nbsp; *
+#### &nbsp; * &nbsp; [[144](#144)] &nbsp; * &nbsp; [[143](#143)] &nbsp; * &nbsp; [[142](#142)] &nbsp; * &nbsp; [[141](#141)] &nbsp; * &nbsp; [[140](#140)] &nbsp; * &nbsp; [[139](#139)] &nbsp; * &nbsp; [[138](#138)] &nbsp; * &nbsp; [[137](#137)] &nbsp; * &nbsp; [[136](#136)] &nbsp; * &nbsp; [[135](#135)] &nbsp; * &nbsp; [[134](#134)] &nbsp; * &nbsp; [[133](#133)] &nbsp; * &nbsp; [[132](#132)] &nbsp; * &nbsp; [[131](#131)] &nbsp; * &nbsp; [[130](#130)] &nbsp; * &nbsp; [[129](#129)] &nbsp; * &nbsp; [[128](#128)] &nbsp; * &nbsp; [[127](#127)] &nbsp; * &nbsp; [[126](#126)] &nbsp; *
 
 #### &nbsp; * &nbsp; [[125](#125)] &nbsp; * &nbsp; [[124](#124)] &nbsp; * &nbsp; [[123](#123)] &nbsp; * &nbsp; [[122](#122)] &nbsp; * &nbsp; [[121](#121)] &nbsp; * &nbsp; [[120](#120)] &nbsp; * &nbsp; [[119](#119)] &nbsp; * &nbsp; [[118](#118)] &nbsp; * &nbsp; [[117](#117)] &nbsp; * &nbsp; [[116](#116)] &nbsp; * &nbsp; [[115](#115)] &nbsp; * &nbsp; [[114](#114)] &nbsp; * &nbsp; [[113](#113)] &nbsp; * &nbsp; [[112](#112)] &nbsp; * &nbsp; [[111](#111)] &nbsp; * &nbsp; [[110](#110)] &nbsp; * &nbsp; [[109](#109)] &nbsp; * &nbsp; [[108](#108)] &nbsp; * &nbsp; [[107](#107)] &nbsp; *
 
@@ -36,7 +36,7 @@ Please find below guest contributions.
 
 #### &nbsp; * &nbsp; [[011](#011)] &nbsp; * &nbsp; [[010](#010)] &nbsp; * &nbsp; [[009](#009)] &nbsp; * &nbsp; [[008](#008)] &nbsp; * &nbsp; [[007](#007)] &nbsp; * &nbsp; [[006](#006)] &nbsp; * &nbsp; [[005](#005)] &nbsp; * &nbsp; [[004](#004)] &nbsp; * &nbsp; [[003](#003)] &nbsp; * &nbsp; [[002](#002)] &nbsp; * &nbsp; [[001](#001)] &nbsp; *
 
---
+----
 ## [The Weekly Challenge - 201](/blog/perl-weekly-challenge-201) {#201}
 <br>
 
@@ -98,7 +98,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-201/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-201/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
---
+----
 ## [The Weekly Challenge - 200](/blog/perl-weekly-challenge-200) {#200}
 <br>
 
