@@ -41,7 +41,7 @@ We are into the last week of `Hacktoberfest 2022`. Well done `Team PWC` for maki
 | | | | | |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `184` &nbsp;&nbsp;|&nbsp;&nbsp; `185` &nbsp;&nbsp; |&nbsp;&nbsp; `186` &nbsp;&nbsp; |&nbsp;&nbsp; `187` &nbsp;&nbsp;|&nbsp;&nbsp; `188` &nbsp;&nbsp;|
 | | | | | |
-| `Perl` | 55 | 59 | 56 | 51 | 63 |
+| `Perl` | 55 | 59 | 58 | 51 | 63 |
 | `Raku` | 31 | 35 | 33 | 34 | 36 |
 | `Blog` | 17 | 19 | 20 | 20 | 16 |
 | | | | | |
