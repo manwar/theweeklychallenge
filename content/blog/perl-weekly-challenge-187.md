@@ -33,12 +33,12 @@ Please welcome [**izem**](https://github.com/izmirli) to the `Team PWC`. Thanks 
 We are into the third week of `Hacktoberfest 2022`. I am not surprised the rise of popularity of `The Weekly Challenge`. Three weeks in a row, we recceived `100+` contributions. Please find below the weekly contributions breakdown.
 
 ### Week #1
-    Perl: 55
+    Perl: 57
     Raku: 31
     Blog: 17
 
 ### Week #2
-    Perl: 59
+    Perl: 61
     Raku: 35
     Blog: 19
 

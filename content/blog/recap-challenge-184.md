@@ -50,7 +50,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 8971 (62%)
+#### 1. Perl: 8973 (62%)
 #### 2. Raku: 5362 (38%)
 #### 3. Blog: 2899
 
@@ -59,9 +59,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `103`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `105`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 55
+#### 1. Perl: 57
 #### 2. Raku: 31
 #### 3. Blog: 17
 
@@ -270,6 +270,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 <br>
 
 ## PERL SOLUTIONS {#PERLSOLUTIONS}
+
+***
+
+### Bob Lied
+![Bob Lied](/images/team/bob-lied.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-184/bob-lied/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-184/bob-lied/perl/ch-2.pl)]
 
 ***
 

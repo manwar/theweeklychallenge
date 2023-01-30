@@ -33,14 +33,14 @@ Welcome back `Andinus` after the break. Thank you for contributions in [**Raku**
 We are into the second week of `Hacktoberfest 2022`. I am not surprised the rise of popularity of `The Weekly Challenge`. Please find below the weekly contributions breakdown.
 
 ### Week #1
-    Perl: 55 Raku: 31 Blog: 17
+    Perl: 57 Raku: 31 Blog: 17
 
 ### Week #2
-    Perl: 59 Raku: 35 Blog: 19
+    Perl: 61 Raku: 35 Blog: 19
 
 <br>
 
-Last week, we had `39` regular contributors and `15` guest contributors. Thank you everyone for the support and encouragement.
+Last week, we had `40` regular contributors and `15` guest contributors. Thank you everyone for the support and encouragement.
 
 Let us all welcome another guest contributor, [**Joao Felipe**](https://github.com/JoaoFelipe3), an experienced `APL` hacker.
 

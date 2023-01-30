@@ -35,7 +35,7 @@ Another busy week with `100+` contributions. This is the record in the history o
 | | | | | | | | |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `184` &nbsp;&nbsp;|&nbsp;&nbsp; `185` &nbsp;&nbsp; |&nbsp;&nbsp; `186` &nbsp;&nbsp; |&nbsp;&nbsp; `187` &nbsp;&nbsp;|&nbsp;&nbsp; `188` &nbsp;&nbsp;|&nbsp;&nbsp; `189` &nbsp;&nbsp;|&nbsp;&nbsp; `190` &nbsp;&nbsp;|&nbsp;&nbsp; `191` &nbsp;&nbsp;|
 | | | | | | | | |
-| `Perl` | 55 | 59 | 58 | 51 | 63 | 62 | 55 | 56 |
+| `Perl` | 57 | 61 | 58 | 51 | 63 | 62 | 55 | 56 |
 | `Raku` | 31 | 35 | 33 | 34 | 36 | 35 | 32 | 38 |
 | `Blog` | 17 | 19 | 20 | 20 | 16 | 18 | 23 | 21 |
 | | | | | | | | |

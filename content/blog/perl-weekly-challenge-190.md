@@ -35,7 +35,7 @@ For the first time ever, we have received `100+` contributions back to back for 
 | | | | | |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `184` &nbsp;&nbsp;|&nbsp;&nbsp; `185` &nbsp;&nbsp; |&nbsp;&nbsp; `186` &nbsp;&nbsp; |&nbsp;&nbsp; `187` &nbsp;&nbsp;|&nbsp;&nbsp; `188` &nbsp;&nbsp;|&nbsp;&nbsp; `189` &nbsp;&nbsp;|
 | | | | | |
-| `Perl` | 55 | 59 | 58 | 51 | 63 | 62 |
+| `Perl` | 57 | 61 | 58 | 51 | 63 | 62 |
 | `Raku` | 31 | 35 | 33 | 34 | 36 | 35 |
 | `Blog` | 17 | 19 | 20 | 20 | 16 | 18 |
 | | | | | | |

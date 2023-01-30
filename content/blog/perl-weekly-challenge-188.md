@@ -34,7 +34,7 @@ We are into the fourth week of `Hacktoberfest 2022`. At last, we made it, little
 
     Week: #1  #2  #3  #4
     --------------------
-    Perl: 55  59  58  51
+    Perl: 57  61  58  51
     Raku: 31  35  33  34
     Blog: 17  19  20  20
 
