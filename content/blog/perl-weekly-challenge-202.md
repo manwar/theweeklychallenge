@@ -211,7 +211,7 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 
 You are given an array of integers.
 
-Write a script to print `1` if there are `THREE` consecutive odss in the given array otherwise print `0`.
+Write a script to print `1` if there are `THREE` consecutive odds in the given array otherwise print `0`.
 
 <br>
 
