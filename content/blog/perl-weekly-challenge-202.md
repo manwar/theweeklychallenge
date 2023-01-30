@@ -143,7 +143,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ***
 
 #### 1. Commits:30,444 (`+124`)
-#### 2. Pull Requests: 7,487 (`+41`)
+#### 2. Pull Requests: 7,488 (`+42`)
 #### 3. Contributors: 216
 #### 4. Fork: 274
 #### 5. Stars: 151
