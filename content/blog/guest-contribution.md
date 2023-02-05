@@ -56,6 +56,20 @@ Please find below guest contributions.
 
 ##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/robert-dicicco/ruby/ch-1.rb) in **Ruby**.
 
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/kotlin/ch-1.kt) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/kotlin/ch-2.kt) in **Kotlin**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/lua/ch-2.lua) in **Lua**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/postscript/ch-1.ps) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/python/ch-2.py) in **Python**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/roger-bell-west/rust/ch-2.rs) in **Rust**.
+
 ##### **Simon Green** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/sgreen/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/sgreen/python/ch-2.py) in **Python**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-202/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
