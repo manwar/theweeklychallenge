@@ -273,7 +273,7 @@ Write a script to reshape the given matrix in form (r x c) with the original val
 
     Input: [ 1 2 ]
 
-           $matrix = [ 1, 2 ] ]
+           $matrix = [ [ 1, 2 ] ]
            $r = 3
            $c = 2
 
