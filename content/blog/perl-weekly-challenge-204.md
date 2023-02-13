@@ -223,7 +223,7 @@ Write a script to find out if the given array is Monotonic. Print 1 if it is oth
 
 ### Example 2
 
-    Input: @nums (1,3,2)
+    Input: @nums = (1,3,2)
     Output: 0
 
 ### Example 3
