@@ -1,14 +1,14 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2023-02-14T00:00:00+00:00
+date: 2023-02-17T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["Ada", "APL", "Awk", "BASIC", "Bash", "Bc", "Befunge-93", "Bourne Shell", "BQN", "Brainfuck", "C3", "C", "CESIL", "Chef", "COBOL", "Coconut", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Dc", "Elixir", "Elm", "Emacs Lisp", "Erlang", "Excel VBA", "Fennel", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "IO", "J", "Janet", "Java", "JavaScript", "Julia", "Kotlin", "Lisp", "Logo", "Lua", "M4", "Maxima", "Miranda", "Modula 3", "MMIX", "Mumps", "Myrddin", "Nelua", "Nim", "Nix", "Node.js", "Nuweb", "Oberon", "OCaml", "Odin", "Ook", "Pascal", "PHP", "Python", "PostgreSQL", "Postscript", "Prolog", "R", "Rexx", "Ring", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "SVG", "Swift", "Tcl", "TypeScript", "Visual BASIC", "WebAssembly", "Wolfram", "XSLT", "YaBasic", "Zig"]
+tags: ["Ada", "APL", "Awk", "BASIC", "Bash", "Bc", "Befunge-93", "Bourne Shell", "BQN", "Brainfuck", "C3", "C", "CESIL", "Chef", "COBOL", "Coconut", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Dc", "Elixir", "Elm", "Emacs Lisp", "Erlang", "Excel VBA", "Fennel", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "IO", "J", "Janet", "Java", "JavaScript", "Julia", "Kotlin", "Lisp", "Logo", "Lua", "M4", "Maxima", "Miranda", "Modula 3", "MMIX", "Mumps", "Myrddin", "Nelua", "Nim", "Nix", "Node.js", "Nuweb", "Oberon", "Octave", "OCaml", "Odin", "Ook", "Pascal", "PHP", "Python", "PostgreSQL", "Postscript", "Prolog", "R", "Rexx", "Ring", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "SVG", "Swift", "Tcl", "TypeScript", "Visual BASIC", "WebAssembly", "Wolfram", "XSLT", "YaBasic", "Zig"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **[The Weekly Challenge - 018](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **BASIC**, **Bash**, **Bc**, **Befunge-93**, **Bourne Shell**, **BQN**, **Brainfuck**, **C3**, **C**, **CESIL**, **Chef**, **COBOL**, **Coconut**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Dc**, **Elixir**, **Elm**, **Emacs Lisp**, **Erlang**, **Excel VBA**, **Fennel**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **IO**, **J**, **Janet**, **Java**, **JavaScript**, **Julia**, **Korn Shell**, **Kotlin**, **Lisp**, **Logo**, **Lua**, **M4**, **Maxima**, **Miranda**, **Modula 3**, **MMIX**, **Mumps**, **Myrddin**, **Nelua**, **Nim**, **Nix**, **Node.js**, **Nuweb**, **Oberon**, **OCaml**, **Odin**, **Ook**, **Pascal**, **PHP**, **Python**, **PostgreSQL**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ring**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **SVG**, **Swift**, **Tcl**, **TypeScript**, **Visual BASIC**, **WebAssembly**, **Wolfram**, **XSLT**, **YaBasic** and **Zig**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **[The Weekly Challenge - 018](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **BASIC**, **Bash**, **Bc**, **Befunge-93**, **Bourne Shell**, **BQN**, **Brainfuck**, **C3**, **C**, **CESIL**, **Chef**, **COBOL**, **Coconut**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Dc**, **Elixir**, **Elm**, **Emacs Lisp**, **Erlang**, **Excel VBA**, **Fennel**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **IO**, **J**, **Janet**, **Java**, **JavaScript**, **Julia**, **Korn Shell**, **Kotlin**, **Lisp**, **Logo**, **Lua**, **M4**, **Maxima**, **Miranda**, **Modula 3**, **MMIX**, **Mumps**, **Myrddin**, **Nelua**, **Nim**, **Nix**, **Node.js**, **Nuweb**, **Oberon**, **Octave**, **OCaml**, **Odin**, **Ook**, **Pascal**, **PHP**, **Python**, **PostgreSQL**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ring**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **SVG**, **Swift**, **Tcl**, **TypeScript**, **Visual BASIC**, **WebAssembly**, **Wolfram**, **XSLT**, **YaBasic** and **Zig**.
 
 Please find below guest contributions.
 
@@ -46,6 +46,36 @@ Please find below guest contributions.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
+##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/spadacciniweb/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/spadacciniweb/go/ch-2.go) in **Go**.
+
+##### **Mariano Spadaccini** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/spadacciniweb/ksh/ch-2.ksh) in **Korn Shell**.
+
+##### **Mariano Spadaccini** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/spadacciniweb/octave/ch-2.oct) in **Octave**.
+
+##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/spadacciniweb/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/spadacciniweb/python/ch-2.py) in **Python**.
+
+##### **Mariano Spadaccini** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/spadacciniweb/R/ch-2.r) in **R**.
+
+##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/robert-dicicco/julia/ch-1.jl) in **Julia**.
+
+##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/robert-dicicco/ruby/ch-1.rb) in **Ruby**.
+
+##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/robert-dicicco/ruby/ch-1.rb) in **Ruby**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/kotlin/ch-1.kt) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/kotlin/ch-2.kt) in **Kotlin**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/lua/ch-2.lua) in **Lua**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/postscript/ch-1.ps) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/python/ch-2.py) in **Python**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/roger-bell-west/rust/ch-2.rs) in **Rust**.
+
 ----
 ## [The Weekly Challenge - 203](/blog/perl-weekly-challenge-203) {#203}
 <br>
@@ -62,9 +92,9 @@ Please find below guest contributions.
 
 ##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-203/spadacciniweb/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-203/spadacciniweb/python/ch-2.py) in **Python**.
 
-##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-203/robert-dicicco/julia/ch-2.jl) in **Julia**.
+##### **Robert DiCicco** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-203/robert-dicicco/julia/ch-2.jl) in **Julia**.
 
-##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-203/robert-dicicco/ruby/ch-2.rb) in **Ruby**.
+##### **Robert DiCicco** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-203/robert-dicicco/ruby/ch-2.rb) in **Ruby**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-203roger-bell-west/javascript/ch-1.js) in **JavaScript**.
 
