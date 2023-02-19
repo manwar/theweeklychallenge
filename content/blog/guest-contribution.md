@@ -80,6 +80,8 @@ Please find below guest contributions.
 
 ##### **Shawn Wagner** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/shawn-wagner/prolog/ch-1.p) in **Prolog**.
 
+##### **Simon Green** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-204/sgreen/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-2042/sgreen/python/ch-2.py) in **Python**.
+
 ----
 ## [The Weekly Challenge - 203](/blog/perl-weekly-challenge-203) {#203}
 <br>
@@ -115,6 +117,8 @@ Please find below guest contributions.
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-203/roger-bell-west/rust/ch-1.rs) in **Rust**.
 
 ##### **Shawn Wagner** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-203/shawn-wagner/prolog/ch-1.p) in **Prolog**.
+
+##### **Simon Green** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-203/sgreen/python/ch-1.py) in **Python**.
 
 ##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-203/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
 
