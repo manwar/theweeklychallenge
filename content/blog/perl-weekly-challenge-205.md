@@ -233,7 +233,7 @@ Write a script to find out the `Third Highest` if found otherwise return the max
 
     First highest is 6. Second highest is 5. Third highest is missing, so maximum is returned.
 
-### Example 2
+### Example 3
 
     Input: @array = (5,4,4,3)
     Output: 3
@@ -267,7 +267,7 @@ Write a script to find the highest value obtained by XORing any two distinct mem
 ### Example 3
 
     Input: @array = (10,5,7,12,8)
-    Output: 7
+    Output: 15
 
     The maximum result of 10 xor 5 = 15.
 
