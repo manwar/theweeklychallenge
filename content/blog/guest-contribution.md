@@ -56,7 +56,7 @@ Please find below guest contributions.
 
 ##### **Carlos Oliveira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/carlos-oliveira/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/carlos-oliveira/c/ch-2.c) in **C**.
 
-##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/challenge-202/ealvar3z/rust/src/main.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/challenge-202/ealvar3z/rust/src/main.rs) in **Rust**.
+##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/ealvar3z/rust/src/main.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/ealvar3z/rust/src/main.rs) in **Rust**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/eric-cheung/python/ch-2.py) in **Python**.
 
