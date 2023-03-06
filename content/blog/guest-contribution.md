@@ -40,6 +40,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 206](/blog/perl-weekly-challenge-206) {#206}
 <br>
 
+##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-206/ealvar3z/rust/src/main.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-206/ealvar3z/rust/src/main.rs) in **Rust**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-206/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-206/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-206/lubos-kolouch/bash/ch-1.sh) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-206/lubos-kolouch/bash/ch-2.sh) in **Bash**.
@@ -105,6 +107,8 @@ Please find below guest contributions.
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/deadmarshal/python/ch1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/deadmarshal/python/ch2.py) in **Python**.
 
 ##### **Carlos Oliveira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/carlos-oliveira/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/carlos-oliveira/c/ch-2.c) in **C**.
+
+##### **Duncan C. White** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/duncan-c-white/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/duncan-c-white/c/ch-2.c) in **C**.
 
 ##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/ealvar3z/rust/src/main.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-205/ealvar3z/rust/src/main.rs) in **Rust**.
 
