@@ -30,7 +30,7 @@ Welcome to the `Week #207` of `The Weekly Challenge`.
 
 `E. Alvarez` [**blog post**](https://eax.bearblog.dev/perl-challenge-weekly-206) for you to keep you engaged.
 
-First `Monday` of the month and time to declare next champion. With great pleasure, I announce `Matthew Neleigh` as our next champion. He joined the `Team PWC` in the `Week #122`. As of today he has contributed `45 solutions` in `Perl`.
+First `Monday` of the month and time to declare next champion. With great pleasure, I announce `Solathian` as our next champion. He joined the `Team PWC` in the `Week #122`. As of today he has contributed `45 solutions` in `Perl`.
 
 Today, we are giving away `Coupon #30` to `Matthew Neleigh` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
