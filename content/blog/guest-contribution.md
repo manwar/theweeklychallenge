@@ -90,6 +90,8 @@ Please find below guest contributions.
 
 ##### **Simon Dueck** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-208/simon-dueck/fsharp/ch-1.fsx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-208/simon-dueck/fsharp/ch-2.fsx) in **F#**.
 
+##### **Simon Green** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-208/sgreen/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-208/sgreen/python/ch-2.py) in **Python**.
+
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-208/ulrich-rieke/awk/ch-2.awk) in **Awk**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-208/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-208/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
