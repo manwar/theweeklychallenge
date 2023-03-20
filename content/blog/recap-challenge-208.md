@@ -57,10 +57,10 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `115`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `116`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 #### 1. Perl: 60
-#### 2. Raku: 32
+#### 2. Raku: 33
 #### 3. Blog: 23
 
 <br>
@@ -277,7 +277,7 @@ The total contributions in the week is `115`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2092), Roger Bell_West (1834), Jaldhar H. Vyas (1764), Arne Sommer (1550), Luca Ferrari (1534), Flavio Poletti (1428), Colin Crain (1332), Athanasius (1298), Ulrich Rieke (1136), Adam Russell (1062), Dave Jacoby (978), E. Choroba (926), James Smith (806), Abigail (794), Duncan C. White (762), Mohammad S Anwar (718), W. Luis Mochan (712), Paulo Custodio (694), Cheok-Yin Fung (686), Simon Green (658), Stuart Little (644), Mark Anderson (634), Jorg Sommrey (568), Simon Proctor (522), Lubos Kolouch (512), Jan Krnavek (468), Feng Chang (460), Javier Luque (460), Ruben Westerberg (452), Niels van Dijke (450), Peter Campbell Smith (426), Ryan Thompson (390), Bruce Gray (372), Robert DiCicco (366), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Stephen G. Lynn (328), Matthew Neleigh (262), Andrezgz (260), Bob Lied (248), Yet Ebreo (226), Alexander Pankoff (220), Robert Ransbottom (218), Steven Wilson (218), Andrew Shitov (198), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Kevin Colyer (176), Aaron Smith (174), Ali Moradi (172), Marton Polgar (166), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Cristina Heredia (126), Robbie Hatley (122), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Thomas Kohler (114), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (2092), Roger Bell_West (1834), Jaldhar H. Vyas (1764), Arne Sommer (1550), Luca Ferrari (1534), Flavio Poletti (1428), Colin Crain (1332), Athanasius (1298), Ulrich Rieke (1136), Adam Russell (1062), Dave Jacoby (978), E. Choroba (926), James Smith (806), Abigail (794), Duncan C. White (762), Mohammad S Anwar (718), W. Luis Mochan (712), Paulo Custodio (694), Cheok-Yin Fung (686), Simon Green (658), Stuart Little (644), Mark Anderson (634), Jorg Sommrey (568), Simon Proctor (522), Lubos Kolouch (512), Jan Krnavek (470), Feng Chang (460), Javier Luque (460), Ruben Westerberg (452), Niels van Dijke (450), Peter Campbell Smith (426), Ryan Thompson (390), Bruce Gray (372), Robert DiCicco (366), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Stephen G. Lynn (328), Matthew Neleigh (262), Andrezgz (260), Bob Lied (248), Yet Ebreo (226), Alexander Pankoff (220), Robert Ransbottom (218), Steven Wilson (218), Andrew Shitov (198), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Kevin Colyer (176), Aaron Smith (174), Ali Moradi (172), Marton Polgar (166), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Cristina Heredia (126), Robbie Hatley (122), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Thomas Kohler (114), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -527,6 +527,13 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-208/feng-chang/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-208/feng-chang/raku/ch-2.raku)]
+
+***
+
+### Jan Krnavek
+![Jan Krnavek](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-208/wambash/raku/ch-1.raku)]
 
 ***
 
