@@ -258,7 +258,7 @@ Example 2:
     Input: @accounts = [ ["A", "a1@a.com", "a2@a.com"],
                          ["B", "b1@b.com"],
                          ["A", "a3@a.com"],
-                         ["B"m "b2@b.com", "b1@b.com"] ]
+                         ["B", "b2@b.com", "b1@b.com"] ]
 
     Output: [ ["A", "a1@a.com", "a2@a.com"],
               ["A", "a3@a.com"],
