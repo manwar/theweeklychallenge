@@ -45,20 +45,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 10628 (63%)
-#### 2. Raku: 6221 (37%)
-#### 3. Blog: 3444
+#### 1. Perl: 10631 (63%)
+#### 2. Raku: 6223 (37%)
+#### 3. Blog: 3445
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `82`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `88`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 46
-#### 2. Raku: 20
-#### 3. Blog: 16
+#### 1. Perl: 49
+#### 2. Raku: 22
+#### 3. Blog: 17
 
 <br>
 
@@ -99,8 +99,8 @@ The total contributions in the week is `82`. Well done **Team PWC**. I would als
     Java (27), Python (35), Swift (41).
 #### 17. Simon Green (101)
     Python (101).
-#### 18. Duncan C. White (89)
-    C (80), Pascal (6), Postscript (3).
+#### 18. Duncan C. White (91)
+    C (82), Pascal (6), Postscript (3).
 #### 19. Conor Hoekstra (87)
     APL (55), BQN (16), C++ (2), Haskell (5), J (8), Python (1).
 #### 20. Myoungjin Jeon (85)
@@ -267,14 +267,14 @@ The total contributions in the week is `82`. Well done **Team PWC**. I would als
 ## LANGUAGES {#LANGUAGES}
 ***
 
-    Python (1427), Haskell (545), Ruby (488), Lua (455), C (383), C++ (366), Rust (340), BQN (269), Go (251), Java (221), JavaScript (201), Node.js (196), Awk (189), Postscript (180), Julia (178), Clojure (176), Kotlin (156), Pascal (133), Bash (131), APL (126), Prolog (123), PostgreSQL (121), BASIC (100), Forth (92), Tcl (89), Bc (84), R (75), D (70), Scala (70), Excel VBA (63), Scheme (58), Lisp (41), Swift (41), Dart (40), PHP (40), Nim (38), Befunge-93 (35), Ada (34), Fortran (33), Modula 3 (30), Oberon (27), OCaml (25), SQL (23), Erlang (22), Ring (20), C Shell (19), COBOL (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), Nelua (12), J (9), Smalltalk (9), Fennel (8), Brainfuck (6), F# (6), Emacs Lisp (4), Racket (4), TypeScript (4), CESIL (3), Coconut (3), Crystal (3), Gembase (3), Janet (3), Nuweb (3), Zig (3), C3 (2), Dc (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Adb (1), Bourne Shell (1), C# (1), Chef (1), Elixir (1), Fish (1), GNAT (1), IO (1), Logo (1), Maxima (1), Mumps (1), Node (1), Octave (1), Ook (1), SVG (1), Visual BASIC (1), XSLT (1).
+    Python (1427), Haskell (545), Ruby (488), Lua (455), C (385), C++ (366), Rust (340), BQN (269), Go (251), Java (221), JavaScript (201), Node.js (196), Awk (189), Postscript (180), Julia (178), Clojure (176), Kotlin (156), Pascal (133), Bash (131), APL (126), Prolog (123), PostgreSQL (121), BASIC (100), Forth (92), Tcl (89), Bc (84), R (75), D (70), Scala (70), Excel VBA (63), Scheme (58), Lisp (41), Swift (41), Dart (40), PHP (40), Nim (38), Befunge-93 (35), Ada (34), Fortran (33), Modula 3 (30), Oberon (27), OCaml (25), SQL (23), Erlang (22), Ring (20), C Shell (19), COBOL (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), Nelua (12), J (9), Smalltalk (9), Fennel (8), Brainfuck (6), F# (6), Emacs Lisp (4), Racket (4), TypeScript (4), CESIL (3), Coconut (3), Crystal (3), Gembase (3), Janet (3), Nuweb (3), Zig (3), C3 (2), Dc (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Adb (1), Bourne Shell (1), C# (1), Chef (1), Elixir (1), Fish (1), GNAT (1), IO (1), Logo (1), Maxima (1), Mumps (1), Node (1), Octave (1), Ook (1), SVG (1), Visual BASIC (1), XSLT (1).
 
 <br>
 
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2102), Roger Bell_West (1852), Jaldhar H. Vyas (1764), Luca Ferrari (1566), Arne Sommer (1562), Flavio Poletti (1452), Colin Crain (1332), Athanasius (1308), Ulrich Rieke (1150), Adam Russell (1062), Dave Jacoby (984), E. Choroba (934), Paulo Custodio (842), James Smith (818), Abigail (794), Duncan C. White (766), W. Luis Mochan (724), Mohammad S Anwar (718), Cheok-Yin Fung (690), Jorg Sommrey (672), Simon Green (670), Stuart Little (644), Mark Anderson (642), Lubos Kolouch (548), Simon Proctor (522), Jan Krnavek (476), Feng Chang (464), Javier Luque (460), Niels van Dijke (454), Ruben Westerberg (452), Peter Campbell Smith (438), Ryan Thompson (390), Robert DiCicco (378), Bruce Gray (376), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Stephen G. Lynn (328), Matthew Neleigh (270), Andrezgz (260), Bob Lied (260), Robert Ransbottom (226), Yet Ebreo (226), Alexander Pankoff (220), Steven Wilson (218), Andrew Shitov (198), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Kevin Colyer (176), Aaron Smith (174), Ali Moradi (172), Marton Polgar (170), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Robbie Hatley (134), Andinus (132), Thomas Kohler (130), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Pip Stuart (108), Alicia Bielsa (106), Nuno Vieira (104), Solathian (104).
+    Laurent Rosenfeld (2110), Roger Bell_West (1852), Jaldhar H. Vyas (1764), Luca Ferrari (1566), Arne Sommer (1562), Flavio Poletti (1452), Colin Crain (1332), Athanasius (1308), Ulrich Rieke (1150), Adam Russell (1062), Dave Jacoby (984), E. Choroba (934), Paulo Custodio (842), James Smith (818), Abigail (794), Duncan C. White (770), W. Luis Mochan (724), Mohammad S Anwar (718), Cheok-Yin Fung (690), Jorg Sommrey (672), Simon Green (670), Stuart Little (644), Mark Anderson (642), Lubos Kolouch (548), Simon Proctor (522), Jan Krnavek (476), Feng Chang (464), Javier Luque (460), Niels van Dijke (454), Ruben Westerberg (452), Peter Campbell Smith (438), Ryan Thompson (390), Robert DiCicco (378), Bruce Gray (376), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Stephen G. Lynn (328), Matthew Neleigh (270), Andrezgz (260), Bob Lied (260), Robert Ransbottom (226), Yet Ebreo (226), Alexander Pankoff (220), Steven Wilson (218), Andrew Shitov (198), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Kevin Colyer (176), Aaron Smith (174), Ali Moradi (172), Marton Polgar (170), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Robbie Hatley (134), Andinus (132), Thomas Kohler (130), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Pip Stuart (108), Alicia Bielsa (106), Nuno Vieira (104), Solathian (104).
 
 <br>
 
@@ -332,6 +332,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/zapwai/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/zapwai/perl/ch-2.pl)]
+
+***
+
+### Duncan C. White
+![Duncan C. White](/images/team/duncan_white.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/duncan-c-white/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/duncan-c-white/perl/ch-2.pl)]
 
 ***
 
@@ -530,6 +538,16 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/polettix/raku/ch-2.raku)]
 [[**BLOG #1**](https://etoobusy.polettix.it/2023/03/30/pwc210-kill-and-win/)]
 [[**BLOG #2**](https://etoobusy.polettix.it/2023/03/31/pwc210-number-collision/)]
+
+***
+
+### Laurent Rosenfeld
+![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/laurent-rosenfeld/perl/ch-1.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/laurent-rosenfeld/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/laurent-rosenfeld/raku/ch-2.raku)]
+[[**BLOG #1**](https://blogs.perl.org/users/laurent_r/2023/04/perl-weekly-challenge-210-kill-and-win-and-number-collision.html)]
 
 ***
 
