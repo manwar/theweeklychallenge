@@ -249,7 +249,7 @@ Write a script to split the list into equal groups of the given size where integ
 
 #### Example 3:
 
-    Input: @list = (1,2,4,3,5,3) and $size = 2
+    Input: @list = (1,2,4,3,5,3) and $size = 3
     Output: (1,2,3), (3,4,5)
 
 #### Example 4:
