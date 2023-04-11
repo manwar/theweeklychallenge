@@ -98,11 +98,11 @@ Well done `Team PWC`, you bounced back after the not so well contributions the w
 |&nbsp;&nbsp; `208` &nbsp;&nbsp;|&nbsp;&nbsp; 60 &nbsp;&nbsp;|&nbsp;&nbsp; 33 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `209` &nbsp;&nbsp;|&nbsp;&nbsp; 53 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `210` &nbsp;&nbsp;|&nbsp;&nbsp; 51 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `211` &nbsp;&nbsp;|&nbsp;&nbsp; 53 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `211` &nbsp;&nbsp;|&nbsp;&nbsp; 55 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
 
 <br>
 
-I would like to thank every guest contributors for making it special every week. Last week we received `36 guest contributions` in `12 languages`
+I would like to thank every guest contributors for making it special every week. Last week we received `38 guest contributions` in `12 languages`
 
 <br>
 
