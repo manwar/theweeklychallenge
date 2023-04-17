@@ -1,7 +1,7 @@
 ---
-title: "The Weekly Challenge - 212"
-date: 2023-04-10T00:00:00+00:00
-description: "The Weekly Challenge - 212"
+title: "The Weekly Challenge - 213"
+date: 2023-04-17T00:00:00+00:00
+description: "The Weekly Challenge - 213"
 type: post
 image: images/twc-logo.png
 author: Mohammad S Anwar
@@ -19,16 +19,16 @@ tags: ["Perl", "Raku"]
 ### 06. [CHART](#CHART)
 ### 07. [NEW MEMBERS](#NEWMEMBERS)
 ### 08. [GUESTS](#GUESTS)
-### 09. [TASK #1: Jumping Letters](#TASK1)
-### 10. [TASK #2: Rearrange Groups](#TASK2)
+### 09. [TASK #1: Fun Sort](#TASK1)
+### 10. [TASK #2: Shortest Route](#TASK2)
 <br>
 
 ## HEADLINES {#HEADLINES}
 ***
 
-Welcome to the `Week #212` of `The Weekly Challenge`.
+Welcome to the `Week #213` of `The Weekly Challenge`.
 
-Today, we are giving away `Coupon #35` to `Matthias Muth` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
+Today, we are giving away `Coupon #36` to `Leo Manfredi` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
 ### PAST WINNERS
 
@@ -54,7 +54,7 @@ Today, we are giving away `Coupon #35` to `Matthias Muth` for the book, [**Learn
 | 29. | &nbsp;`Lubos Kolouch`        | 30. | &nbsp;`Matthew Neleigh`   |
 | 31. | &nbsp;`Paulo Custodio`       | 32. | &nbsp;`Tyler Bird`        |
 | 33. | &nbsp;`Carlos Oliveira`      | 34. | &nbsp;`Avery Adams`       |
-| 35. |                      | 36. |                   |
+| 35. | &nbsp;`Matthias Muth`        | 36. |                   |
 | 37. |                      | 38. |                   |
 | 39. |                      | 40. |                   |
 | 41. |                      | 42. |                   |
@@ -66,7 +66,7 @@ Today, we are giving away `Coupon #35` to `Matthias Muth` for the book, [**Learn
 
 <br>
 
-Well done `Team PWC`, you bounced back after the not so well contributions the week before. We crossed the magic figure once again last week.
+Well done `Team PWC` and thank you for your support and encouragements. We are just one behind the magic figure. I am pretty sure we would get past soon with some late submissions.
 
 | | | | |
 | :---: | :---: | :---: | :---: |
@@ -99,10 +99,11 @@ Well done `Team PWC`, you bounced back after the not so well contributions the w
 |&nbsp;&nbsp; `209` &nbsp;&nbsp;|&nbsp;&nbsp; 53 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `210` &nbsp;&nbsp;|&nbsp;&nbsp; 51 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `211` &nbsp;&nbsp;|&nbsp;&nbsp; 55 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `212` &nbsp;&nbsp;|&nbsp;&nbsp; 52 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
 
 <br>
 
-I would like to thank every guest contributors for making it special every week. Last week we received `38 guest contributions` in `12 languages`
+I would like to thank every guest contributors for making it special every week. Last week we received `30 guest contributions` in `11 languages`
 
 <br>
 
@@ -111,15 +112,15 @@ I would like to thank every guest contributors for making it special every week.
 
 Do you see your favourite language in the `Top 10`? If not then why not contribute regularly and make it to the top.
 
-     1. Python  (1438)
+     1. Python  (1463)
      2. Haskell (545)
-     3. Ruby    (494)
-     4. Lua     (457)
-     5. C       (403)
+     3. Ruby    (498)
+     4. Lua     (459)
+     5. C       (405)
      6. C++     (366)
-     7. Rust    (342)
+     7. Rust    (344)
      8. BQN     (269)
-     9. Go      (252)
+     9. Go      (253)
     10. Java    (221)
 
 <br>
@@ -127,20 +128,21 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ### Blogs with Creative Title
 ***
 
-#### 1. [The Same Toeplitz](https://raku-musings.com/same-toeplitz.html) by Arne Sommer.
-#### 2. [Geared toward the average rather than the exceptional](https://dev.to/boblied/pwc-211-2-geared-to-the-average-rather-than-the-exceptional-2hcg) by Bob Lied.
-#### 3. [Striped arrays and balanced splits](http://ccgi.campbellsmiths.force9.co.uk/challenge/211) by Peter Campbell Smith.
-#### 4. [Splitting Toeplitz](https://blog.firedrake.org/archive/2023/04/The_Weekly_Challenge_211__Splitting_Toeplitz.html) by Roger Bell_West.
+#### 1. [Letters and Groups](https://raku-musings.com/letters-groups.html) by Arne Sommer.
+#### 2. [Jumping words and Batching arrays](https://fluca1978.github.io/2023/04/11/PerlWeeklyChallenge212.html) by Luca Ferrari.
+#### 3. [Lead to Gold and 1 2 3](http://ccgi.campbellsmiths.force9.co.uk/challenge/212) by Peter Campbell Smith.
+#### 4. [Rearrange by Jumps](https://blog.firedrake.org/archive/2023/04/The_Weekly_Challenge_212__Rearrange_by_Jumps.html) by Roger Bell_West.
+#### 5. [Jumping Groups](https://dev.to/simongreennet/jumping-groups-2ld2) by Simon Green.
 
 <br>
 
 ### [GitHub](https://github.com/manwar/perlweeklychallenge-club) Repository Stats
 ***
 
-#### 1. Commits: 31,758 (`+124`)
-#### 2. Pull Requests: 7,869 (`+37`)
+#### 1. Commits: 31,880 (`+122`)
+#### 2. Pull Requests: 7,909 (`+40`)
 #### 3. Contributors: 222
-#### 4. Fork: 277 (`+7`)
+#### 4. Fork: 277
 #### 5. Stars: 152
 
 <br>
@@ -155,7 +157,7 @@ Our solo sponsor `Pete Sergeant` has been a great support to keep us motivated. 
 ## RECAP {#RECAP}
 ***
 
-Quick recap of **[The Weekly Challenge - 211](/blog/recap-challenge-211)** by `Mohammad S Anwar`.
+Quick recap of **[The Weekly Challenge - 212](/blog/recap-challenge-212)** by `Mohammad S Anwar`.
 
 <br>
 
@@ -194,73 +196,101 @@ Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) cr
 ## GUESTS {#GUESTS}
 ***
 
-Please check out the guest contributions for the [**Week #211**](/blog/guest-contribution/#211).
+Please check out the guest contributions for the [**Week #212**](/blog/guest-contribution/#212).
 
 Please find [**past solutions**](/blog/guest-contribution) by respected **guests**. Please share your creative solutions in other languages.
 
 <br>
 
-## Task 1: Jumping Letters {#TASK1}
+## Task 1: Fun Sort {#TASK1}
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
-You are given a word having alphabetic characters only, and a list of positive integers of the same length
+You are given a list of bidirectional routes defining a network of nodes, as well as source and destination node numbers.
 
-Write a script to print the new word generated after jumping forward each letter in the given word by the integer in the list. The given list would have exactly the number as the total alphabets in the given word.
-
-<br>
-
-#### Example 1
-
-    Input: $word = 'Perl' and @jump = (2,22,19,9)
-    Output: Raku
-
-    'P' jumps 2 place forward and becomes 'R'.
-    'e' jumps 22 place forward and becomes 'a'. (jump is cyclic i.e. after 'z' you go back to 'a')
-    'r' jumps 19 place forward and becomes 'k'.
-    'l' jumps 9 place forward and becomes 'u'.
-
-#### Example 2
-
-    Input: $word = 'Raku' and @jump = (24,4,7,17)
-    Output: 'Perl'
-
-<br>
-
-## Task 2: Rearrange Groups {#TASK2}
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
-***
-
-You are given a list of integers and group size greater than zero.
-
-Write a script to split the list into equal groups of the given size where integers are in sequential order. If it can't be done then print `-1`.
+Write a script to find the route from source to destination that passes through fewest nodes.
 
 <br>
 
 #### Example 1:
 
-    Input: @list = (1,2,3,5,1,2,7,6,3) and $size = 3
-    Output: (1,2,3), (1,2,3), (5,6,7)
+    Input: @routes = ([1,2,6], [5,6,7])
+           $source = 1
+           $destination = 7
+
+    Output: (1,2,6,7)
+
+    Source (1) is part of route [1,2,6] so the journey looks like 1 -> 2 -> 6
+    then jump to route [5,6,7] and takes the route 6 -> 7.
+    So the final route is (1,2,6,7)
 
 #### Example 2:
 
-    Input: @list = (1,2,3) and $size = 2
+    Input: @routes = ([1,2,3], [4,5,6])
+           $source = 2
+           $destination = 5
+
     Output: -1
 
 #### Example 3:
 
-    Input: @list = (1,2,4,3,5,3) and $size = 3
-    Output: (1,2,3), (3,4,5)
+    Input: @routes = ([1,2,3], [4,5,6], [3,8,9], [7,8])
+           $source = 1
+           $destination = 7
+    Output: (1,2,3,8,7)
 
-#### Example 4:
-
-    Input: @list = (1,5,2,6,4,7) and $size = 3
-    Output: -1
+    Source (1) is part of route [1,2,3] so the journey looks like 1 -> 2 -> 3
+    then jump to route [3,8,9] and takes the route 3 -> 8
+    then jump to route [7,8] and takes the route 8 -> 7
+    So the final route is (1,2,3,8,7)
 
 <br>
 
+## Task 2: Shortest Route {#TASK2}
+##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
-Last date to submit the solution **23:59 (UK Time) Sunday 16th April 2023**.
+You are given a list of bidirectional routes defining a network of nodes, as well as source and destination node numbers.
+
+Write a script to find the route from source to destination that passes through fewest nodes.
+
+#### Example 1:
+
+    Input: @routes = ([1,2,6], [5,6,7])
+           $source = 1
+           $destination = 7
+
+    Output: (1,2,6,7)
+
+    Source (1) is part of route [1,2,6] so the journey looks like 1 -> 2 -> 6
+    then jump to route [5,6,7] and takes the route 6 -> 7.
+    So the final route is (1,2,6,7)
+
+#### Example 2:
+
+    Input: @routes = ([1,2,3], [4,5,6])
+           $source = 2
+           $destination = 5
+
+    Output: -1
+
+#### Example 3:
+
+    Input: @routes = ([1,2,3], [4,5,6], [3,8,9], [7,8])
+           $source = 1
+           $destination = 7
+    Output: (1,2,3,8,7)
+
+    Source (1) is part of route [1,2,3] so the journey looks like 1 -> 2 -> 3
+    then jump to route [3,8,9] and takes the route 3 -> 8
+    then jump to route [7,8] and takes the route 8 -> 7
+    So the final route is (1,2,3,8,7)
+
+<br>
+
+
+***
+
+Last date to submit the solution **23:59 (UK Time) Sunday 23rd April 2023**.
 
 ***
