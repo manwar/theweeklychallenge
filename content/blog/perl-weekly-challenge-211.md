@@ -101,7 +101,7 @@ As expected the team made it finally, thank you. Having said, the following `Wee
 |&nbsp;&nbsp; `207` &nbsp;&nbsp;|&nbsp;&nbsp; 59 &nbsp;&nbsp;|&nbsp;&nbsp; 34 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `208` &nbsp;&nbsp;|&nbsp;&nbsp; 60 &nbsp;&nbsp;|&nbsp;&nbsp; 33 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `209` &nbsp;&nbsp;|&nbsp;&nbsp; 53 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `210` &nbsp;&nbsp;|&nbsp;&nbsp; 51 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `210` &nbsp;&nbsp;|&nbsp;&nbsp; 51 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
 
 <br>
 
@@ -133,7 +133,8 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 #### 1. [Killing Numbers](https://raku-musings.com/killing-numbers.html) by Arne Sommer.
 #### 2. [I didn't get very well](https://fluca1978.github.io/2023/03/30/PerlWeeklyChallenge210.html) by Luca Ferrari.
 #### 3. [Kill and collide!](http://ccgi.campbellsmiths.force9.co.uk/challenge/210) by Peter Campbell Smith.
-#### 4. [Number Challenges](https://dev.to/simongreennet/numbers-challenges-32k1) by Simon Green.
+#### 4. [Collisions Kill](https://blog.firedrake.org/archive/2023/04/The_Weekly_Challenge_210__Collisions_Kill.html) by Roger Bell_West.
+#### 5. [Number Challenges](https://dev.to/simongreennet/numbers-challenges-32k1) by Simon Green.
 
 <br>
 
