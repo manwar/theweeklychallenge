@@ -42,6 +42,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 213](/blog/perl-weekly-challenge-213) {#213}
 <br>
 
+##### **Duncan C. White** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-213/duncan-c-white/c/ch-1.c) in **C**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-213/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-213/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Leo Manfredi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-213/manfredi/python/ch-1.py) in **Python**.
