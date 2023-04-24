@@ -49,7 +49,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 <br>
 
 #### 1. Perl: 10758 (63%)
-#### 2. Raku: 6277 (37%)
+#### 2. Raku: 6279 (37%)
 #### 3. Blog: 3489
 
 <br>
@@ -57,10 +57,10 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `101`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `103`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 #### 1. Perl: 54
-#### 2. Raku: 25
+#### 2. Raku: 27
 #### 3. Blog: 22
 
 <br>
@@ -491,6 +491,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-212/arne-sommer/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-212/arne-sommer/raku/ch-2.raku)]
 [[**BLOG #1**](https://raku-musings.com/letters-groups.html)]
+
+***
+
+### BarrOff
+![BarrOff](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-212/barroff/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-212/barroff/raku/ch-2.raku)]
 
 ***
 
