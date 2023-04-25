@@ -32,8 +32,7 @@ Last week we decided to give away `FREE` book coupon to `Leo Manfredi` but unfor
 
 I noticed something that most of the recently declared champions either not keen to share tech side of their life or a private person. I know it is optional but I find it really interesting to know the tech side of the champions. For example, if you checkout interview with [**Joelle Maslak**](/blog/meet-the-champion-015), [**Adam Russell**](/blog/meet-the-champion-016) etc then you will understand what I mean. I really miss it.
 
-We have new guest language, [**GP**](https://link.springer.com/chapter/10.1007/978-3-642-03564-7_6) introduced by fellow `Team PWC` member `BarrOff` sharing solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-213/barroff/gp/ch-1.gp). With this addition, we now have `99 guest languages`, just one short to another milestone.
-
+We have new guest language, [**GP**](https://pari.math.u-bordeaux.fr/) introduced by fellow `Team PWC` member `BarrOff` sharing solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-213/barroff/gp/ch-1.gp). With this addition, we now have `99 guest languages`, just one short to another milestone.
 
 Today, we are giving away `Coupon #37` to `Peter Meszaros` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email.
 
