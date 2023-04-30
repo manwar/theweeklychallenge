@@ -79,7 +79,7 @@ Today we are talking to `Solathian`, the winner of **February 2023** of `The Wee
 
 **Mohammad:** Anything else you would to like to share with us?
 
-**Solathian:** I have to admint that I like regular expressions. I'm not an expert, though.
+**Solathian:** I have to admit that I like regular expressions. I'm not an expert, though.
 
 ---
 
