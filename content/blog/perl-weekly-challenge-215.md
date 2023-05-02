@@ -124,7 +124,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
      2. Haskell (545)
      3. Ruby    (505)
      4. Lua     (463)
-     5. C       (412)
+     5. C       (413)
      6. C++     (367)
      7. Rust    (348)
      8. BQN     (269)

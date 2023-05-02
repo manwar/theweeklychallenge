@@ -101,8 +101,8 @@ The total contributions in the week is `61`. Well done **Team PWC**. I would als
     Python (107).
 #### 17. Mohammad S Anwar (103)
     Java (27), Python (35), Swift (41).
-#### 18. Duncan C. White (98)
-    C (89), Pascal (6), Postscript (3).
+#### 18. Duncan C. White (99)
+    C (90), Pascal (6), Postscript (3).
 #### 19. Conor Hoekstra (88)
     APL (56), BQN (16), C++ (2), Haskell (5), J (8), Python (1).
 #### 20. Myoungjin Jeon (85)
