@@ -55,10 +55,10 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `92`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `94`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 #### 1. Perl: 51
-#### 2. Raku: 22
+#### 2. Raku: 24
 #### 3. Blog: 19
 
 <br>
@@ -481,6 +481,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/arne-sommer/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/arne-sommer/raku/ch-2.raku)]
 [[**BLOG #1**](https://raku-musings.com/killing-numbers.html)]
+
+***
+
+### Feng Chang
+![Feng Chang](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/feng-chang/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/feng-chang/raku/ch-2.raku)]
 
 ***
 
