@@ -56,9 +56,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `67`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `69`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 36
+#### 1. Perl: 38
 #### 2. Raku: 18
 #### 3. Blog: 13
 
@@ -410,6 +410,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ![Robbie Hatley](/images/team/user.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-214/robbie-hatley/perl/ch-1.pl)]
+
+***
+
+### Simon Green
+![Simon Green](/images/team/simon-green.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-214/sgreen/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-214/sgreen/perl/ch-2.pl)]
 
 ***
 
