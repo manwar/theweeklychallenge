@@ -28,9 +28,11 @@ tags: ["Perl", "Raku"]
 
 Welcome to the `Week #216` of `The Weekly Challenge`.
 
-We have new member `RibTips` in the `Team PWC` sharing the first contributions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-215/ribtips/perl).
+We have a new member `RibTips` in the `Team PWC` sharing the first contributions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-215/ribtips/perl).
 
-Welcome back `Lance Wicks` after the break. We all missed you. Thank you for contributions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-215/lance-wicks/perl), [**Go**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-215/lance-wicks/go) and [**Python**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-215/lance-wicks/python).
+Welcome back `Lance Wicks` after the break. We all missed you. Thank you for your contributions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-215/lance-wicks/perl), [**Go**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-215/lance-wicks/go) and [**Python**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-215/lance-wicks/python).
+
+Finally we have managed to interview the champion [**Ali Moradi**](/blog/meet-the-champion-2022-12). Please do checkout it out, it was fun. There are still few pending ones, I would like to get it over.
 
 `Leo Manfredi`, I am still waiting for you. Please share your email to `perlweeklychallenge@yahoo.com` so that the `FREE` book coupon can be shared with you.
 
@@ -76,6 +78,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 
 | | | | |
 | :---: | :---: | :---: | :---: |
+|&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `Perl` &nbsp;&nbsp;|&nbsp;&nbsp; `Raku` &nbsp;&nbsp; |&nbsp;&nbsp; `Blog` &nbsp;&nbsp; |
 |&nbsp;&nbsp; `211` &nbsp;&nbsp;|&nbsp;&nbsp; 55 &nbsp;&nbsp;|&nbsp;&nbsp; 31 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `212` &nbsp;&nbsp;|&nbsp;&nbsp; 54 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `213` &nbsp;&nbsp;|&nbsp;&nbsp; 49 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
@@ -128,8 +131,8 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ### [GitHub](https://github.com/manwar/perlweeklychallenge-club) Repository Stats
 ***
 
-#### 1. Commits: 32,299 (`+144`)
-#### 2. Pull Requests: 8,029 (`+45`)
+#### 1. Commits: 32,302 (`+147`)
+#### 2. Pull Requests: 8,030 (`+46`)
 #### 3. Contributors: 222
 #### 4. Fork: 279 (`+1`)
 #### 5. Stars: 152
