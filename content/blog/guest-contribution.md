@@ -42,6 +42,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 216](/blog/perl-weekly-challenge-216) {#216}
 <br>
 
+##### **Duncan C. White** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-216/duncan-c-white/c/ch-1.c) in **C**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-216/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-216/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Jorg Sommrey** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-216/jo-37/octave/ch-2.m) in **Octave**.
