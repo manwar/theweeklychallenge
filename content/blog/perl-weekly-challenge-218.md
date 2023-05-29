@@ -30,7 +30,7 @@ Welcome to the `Week #218` of `The Weekly Challenge`.
 
 Let us all welcome a new member to `Team PWC`, [**Israel C. Batista**](https://github.com/rozcovo). Thank you for your first contributions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-217/rozcovo/perl).
 
-Today, we are giving away `Coupon #41` to `Aut0exec` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email. Just now I noticed we don't have your email address, can you please share with us here `perlweeklychallenge@yahoo.com`?
+Today, we are giving away `Coupon #41` to `Rob Turner` for the book, [**Learning Perl Exercises**](https://leanpub.com/learning_perl_exercises) by `brian d foy`. I will share the details with you in a separate email. Just now I noticed we don't have your email address, can you please share with us here `perlweeklychallenge@yahoo.com`?
 
 ### PAST WINNERS
 
