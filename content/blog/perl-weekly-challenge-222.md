@@ -244,7 +244,7 @@ Write a script to find the total matching members after sorting the list increas
 
 You are given an array of positive integers, @ints.
 
-Write a script to find the last member if found otherwise return 0. Each turn pick any 2 members (x, y) then decide based on the following conditions, continue this until you are left with 1 member or none.
+Write a script to find the last member if found otherwise return 0. Each turn pick 2 biggest members (x, y) then decide based on the following conditions, continue this until you are left with 1 member or none.
 
 > a) if x == y then remove both members
 
