@@ -445,8 +445,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-220/wlmb/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-220/wlmb/perl/ch-2.pl)]
-[[**BLOG #1**](https://wlmb.github.io/2023/06/05/PWC220/
-)]
+[[**BLOG #1**](https://wlmb.github.io/2023/06/05/PWC220/)]
 
 <br>
 
