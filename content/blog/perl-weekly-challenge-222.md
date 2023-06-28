@@ -30,7 +30,7 @@ Welcome to the `Week #222` of `The Weekly Challenge`.
 
 Just a quick update about my dad, I lost him last **Monday**. May his soul `Rest in Peace`. Thank you everyone for the kind messages.
 
-Let us all welcome `Andreas Vogele`, an expert `Perl` hacker from `Stuttgart, Germany` to the `Team PWC`.
+Let us all welcome `Andreas Voegele`, an expert `Perl` hacker from `Stuttgart, Germany` to the `Team PWC`.
 
 Finally, it is time to announce the next champion, little late though. So we declare `Matthias Muth` as our **Champion** of the month `May 2023`. As of today, he has contributed `34 Perl` solutions and `14 blogs`.
 
@@ -179,7 +179,7 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 ## NEW MEMBERS {#NEWMEMBERS}
 ***
 
-[**Andreas Vogele**](https://github.com/voegelas), an expert `Perl` hacker from `Stuttgart, Germany` joined the `Team PWC`.
+[**Andreas Voegele**](https://github.com/voegelas), an expert `Perl` hacker from `Stuttgart, Germany` joined the `Team PWC`.
 
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 

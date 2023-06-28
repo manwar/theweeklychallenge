@@ -228,7 +228,7 @@ The total contributions in the week is `82`. Well done **Team PWC**. I would als
     C++ (1), PHP (1), Python (1).
 #### 80. Rage311 (3)
     Rust (3).
-#### 81. Andreas Vogele (2)
+#### 81. Andreas Voegele (2)
     Kotlin (2).
 #### 82. Carlos Oliveira (2)
     C (2).

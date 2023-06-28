@@ -180,7 +180,7 @@ The total contributions in the week is `83`. Well done **Team PWC**. I would als
     Python (8).
 #### 56. Shawak (8)
     Ruby (8).
-#### 57. Andreas Vogele (6)
+#### 57. Andreas Voegele (6)
     Kotlin (6).
 #### 58. Andrew Grangaard (6)
     Python (4), Rust (2).

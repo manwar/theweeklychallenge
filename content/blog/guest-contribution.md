@@ -42,7 +42,7 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 223](/blog/perl-weekly-challenge-223) {#223}
 <br>
 
-##### **Andreas Vogele** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/andreas-voegele/kotlin/ch-1.kts) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/andreas-voegele/kotlin/ch-2.kts) in **Kotlin**.
+##### **Andreas Voegele** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/andreas-voegele/kotlin/ch-1.kts) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/andreas-voegele/kotlin/ch-2.kts) in **Kotlin**.
 
 ##### **David Ferrone** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/zapwai/c/ch-1.c) in **C**.
 
@@ -90,7 +90,7 @@ Please find below guest contributions.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/deadmarshal/ocaml/ch1.ml) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/deadmarshal/ocaml/ch2.ml) in **OCaml**.
 
-##### **Andreas Vogele** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/andreas-voegele/kotlin/ch-1.kts) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/andreas-voegele/kotlin/ch-2.kts) in **Kotlin**.
+##### **Andreas Voegele** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/andreas-voegele/kotlin/ch-1.kts) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/andreas-voegele/kotlin/ch-2.kts) in **Kotlin**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/eric-cheung/python/ch-2.py) in **Python**.
 
@@ -136,7 +136,7 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 221](/blog/perl-weekly-challenge-221) {#221}
 <br>
 
-##### **Andreas Vogele** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/andreas-voegele/kotlin/ch-1.kts) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/andreas-voegele/kotlin/ch-2.kts) in **Kotlin**.
+##### **Andreas Voegele** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/andreas-voegele/kotlin/ch-1.kts) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/andreas-voegele/kotlin/ch-2.kts) in **Kotlin**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/zapwai/c/ch-2.c) in **C**.
 
