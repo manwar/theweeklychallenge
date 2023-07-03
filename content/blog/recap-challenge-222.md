@@ -194,7 +194,7 @@ The total contributions in the week is `105`. Well done **Team PWC**. I would al
     Bash (1), Node.js (1), PHP (1), Python (1), Ruby (1).
 #### 63. Joao Felipe (5)
     APL (3), Python (2).
-#### 64. Andreas Vogele (4)
+#### 64. Andreas Voegele (4)
     Kotlin (4).
 #### 65. Bartosz Jarzyna (4)
     C (1), PHP (2), Pascal (1).
