@@ -74,7 +74,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-224/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-224/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
-##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-224/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-224/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-224/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-224/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
 ----
 ## [The Weekly Challenge - 223](/blog/perl-weekly-challenge-223) {#223}
@@ -120,7 +120,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
-##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
 ----
 ## [The Weekly Challenge - 222](/blog/perl-weekly-challenge-222) {#222}
@@ -168,7 +168,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
-##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-222/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
 ----
 ## [The Weekly Challenge - 221](/blog/perl-weekly-challenge-221) {#221}
@@ -198,7 +198,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
-##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-221/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
 ----
 ## [The Weekly Challenge - 220](/blog/perl-weekly-challenge-220) {#220}
@@ -234,7 +234,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-220/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-220/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
-##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-220/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-220/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-220/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-220/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
 ----
 ## [The Weekly Challenge - 219](/blog/perl-weekly-challenge-219) {#219}
@@ -286,7 +286,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-219/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
 
-##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-219/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-219/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-219/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-219/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
 ----
 ## [The Weekly Challenge - 218](/blog/perl-weekly-challenge-218) {#218}
@@ -374,7 +374,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-217/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-217/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
-##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-217/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-217/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-217/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-217/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
 ----
 ## [The Weekly Challenge - 216](/blog/perl-weekly-challenge-216) {#216}
@@ -480,7 +480,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-215/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-215/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
-##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-215/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-215/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-215/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-215/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
 ----
 ## [The Weekly Challenge - 214](/blog/perl-weekly-challenge-214) {#214}
@@ -698,7 +698,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
-##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
 ----
 ## [The Weekly Challenge - 209](/blog/perl-weekly-challenge-209) {#209}
