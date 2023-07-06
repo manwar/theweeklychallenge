@@ -57,9 +57,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `83`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `85`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 42
+#### 1. Perl: 44
 #### 2. Raku: 25
 #### 3. Blog: 16
 
@@ -285,7 +285,7 @@ The total contributions in the week is `83`. Well done **Team PWC**. I would als
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2222), Roger Bell_West (1984), Jaldhar H. Vyas (1910), Luca Ferrari (1678), Arne Sommer (1640), Flavio Poletti (1608), Athanasius (1376), Colin Crain (1338), Ulrich Rieke (1220), Adam Russell (1062), Dave Jacoby (998), E. Choroba (986), Paulo Custodio (874), James Smith (860), Jorg Sommrey (834), W. Luis Mochan (802), Duncan C. White (798), Abigail (794), Lubos Kolouch (766), Simon Green (732), Cheok-Yin Fung (718), Mohammad S Anwar (718), Mark Anderson (690), Stuart Little (644), Simon Proctor (538), Peter Campbell Smith (516), Jan Krnavek (516), Feng Chang (496), Niels van Dijke (484), Javier Luque (460), Ruben Westerberg (452), Robert DiCicco (448), Bruce Gray (436), Ryan Thompson (390), Pete Houston (362), Stephen G. Lynn (358), Wanderdoc (358), Joelle Maslak (334), Bob Lied (304), Matthew Neleigh (278), Robert Ransbottom (268), Andrezgz (260), Thomas Kohler (234), Yet Ebreo (226), Steven Wilson (222), Alexander Pankoff (220), Ali Moradi (204), Robbie Hatley (204), Andrew Shitov (198), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Kevin Colyer (176), Marton Polgar (174), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), David Ferrone (152), Solathian (142), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Avery Adams (108), Burkhard Nickels (108), Matthias Muth (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (2222), Roger Bell_West (1984), Jaldhar H. Vyas (1910), Luca Ferrari (1678), Arne Sommer (1640), Flavio Poletti (1608), Athanasius (1376), Colin Crain (1338), Ulrich Rieke (1220), Adam Russell (1062), Dave Jacoby (998), E. Choroba (986), Paulo Custodio (874), James Smith (860), Jorg Sommrey (834), W. Luis Mochan (802), Duncan C. White (798), Abigail (794), Lubos Kolouch (766), Simon Green (732), Cheok-Yin Fung (718), Mohammad S Anwar (718), Mark Anderson (690), Stuart Little (644), Simon Proctor (538), Peter Campbell Smith (516), Jan Krnavek (516), Feng Chang (496), Niels van Dijke (484), Javier Luque (460), Ruben Westerberg (452), Robert DiCicco (448), Bruce Gray (436), Ryan Thompson (390), Pete Houston (362), Stephen G. Lynn (358), Wanderdoc (358), Joelle Maslak (334), Bob Lied (308), Matthew Neleigh (278), Robert Ransbottom (268), Andrezgz (260), Thomas Kohler (234), Yet Ebreo (226), Steven Wilson (222), Alexander Pankoff (220), Ali Moradi (204), Robbie Hatley (204), Andrew Shitov (198), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Kevin Colyer (176), Marton Polgar (174), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), David Ferrone (152), Solathian (142), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Avery Adams (108), Burkhard Nickels (108), Matthias Muth (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -321,6 +321,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/avery-adams/perl/ch-1.pl)]
 [[**BLOG #1**](https://blogs.perl.org/users/oldtechaa/2023/06/perl-weekly-challenge-223---count-primes-ive-never-met-the-man.html)]
 [[**BLOG #2**](https://dev.to/oldtechaa/perl-weekly-challenge-223-count-primes-ive-never-met-the-man-1o9i)]
+
+***
+
+### Bob Lied
+![Bob Lied](/images/team/bob-lied.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/bob-lied/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-223/bob-lied/perl/ch-2.pl)]
 
 ***
 
