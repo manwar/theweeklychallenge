@@ -211,16 +211,16 @@ Write a script to find out the maximum number of words that appear in a single s
 
 #### Example 1
 
-    Input: @list = (qw/Perl and Raku belong to the same family./,
-                    qw/I love Perl./,
-                    qw/The Perl and Raku Conference./)
+    Input: @list = ("Perl and Raku belong to the same family.",
+                    "I love Perl.",
+                    "The Perl and Raku Conference.")
     Output: 8
 
 #### Example 2
 
-    Input: @list = (qw/The Weekly Challenge./,
-                    qw/Python is the most popular guest language./,
-                    qw/Team PWC has over 300 members./)
+    Input: @list = ("The Weekly Challenge.",
+                    "Python is the most popular guest language.",
+                    "Team PWC has over 300 members.")
     Output: 7
 
 <br>
