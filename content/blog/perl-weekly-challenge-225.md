@@ -270,7 +270,7 @@ Write a script to return left right sum diff array as shown below:
 #### Example 3:
 
     Input: @ints = (1, 2, 3, 4, 5)
-    Output: (14, 11, 6, 1, 19)
+    Output: (14, 11, 6, 1, 10)
 
     @left  = (0, 1, 3, 6, 10)
     @right = (14, 12, 9, 5, 0)
