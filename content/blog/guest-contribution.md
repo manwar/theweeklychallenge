@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2023-07-18T00:00:00+00:00
+date: 2023-07-20T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -44,13 +44,17 @@ Please find below guest contributions.
 
 ##### **Andreas Voegele** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/andreas-voegele/kotlin/ch-1.kts) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/andreas-voegele/kotlin/ch-2.kts) in **Kotlin**.
 
-##### **E. Alvarez** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/ealvar3z/ruby/ch-1.rb) in **Ruby**.
+##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/ealvar3z/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/ealvar3z/ruby/ch-2.rb) in **Ruby**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
+
+##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/robert-dicicco/julia/ch-1.jl) in **Julia**.
+
+##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/robert-dicicco/python/ch-1.py) in **Python**.
 
 ##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/robert-dicicco/ruby/ch-1.rb) in **Ruby**.
 
