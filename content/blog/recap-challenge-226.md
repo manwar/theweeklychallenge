@@ -49,20 +49,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 11581 (63%)
+#### 1. Perl: 11583 (63%)
 #### 2. Raku: 6662 (37%)
-#### 3. Blog: 3764
+#### 3. Blog: 3765
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `116`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `119`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 59
+#### 1. Perl: 61
 #### 2. Raku: 32
-#### 3. Blog: 25
+#### 3. Blog: 26
 
 <br>
 
@@ -286,7 +286,7 @@ The total contributions in the week is `116`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2252), Roger Bell_West (2014), Jaldhar H. Vyas (1940), Luca Ferrari (1710), Arne Sommer (1658), Flavio Poletti (1644), Athanasius (1392), Colin Crain (1338), Ulrich Rieke (1244), Adam Russell (1082), Dave Jacoby (1008), E. Choroba (998), Paulo Custodio (874), James Smith (860), Jorg Sommrey (846), W. Luis Mochan (820), Lubos Kolouch (818), Duncan C. White (798), Abigail (794), Simon Green (744), Cheok-Yin Fung (726), Mohammad S Anwar (718), Mark Anderson (702), Stuart Little (644), Simon Proctor (540), Peter Campbell Smith (534), Jan Krnavek (528), Feng Chang (496), Niels van Dijke (488), Robert DiCicco (468), Javier Luque (460), Ruben Westerberg (452), Bruce Gray (444), Ryan Thompson (390), Pete Houston (362), Stephen G. Lynn (358), Wanderdoc (358), Joelle Maslak (338), Bob Lied (330), Matthew Neleigh (286), Robert Ransbottom (280), Andrezgz (260), Thomas Kohler (258), Steven Wilson (230), Yet Ebreo (226), Robbie Hatley (222), Alexander Pankoff (220), Ali Moradi (220), Andrew Shitov (202), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Kevin Colyer (176), Marton Polgar (174), Aaron Smith (174), David Ferrone (166), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Solathian (148), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Avery Adams (124), Matthias Muth (120), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), BarrOff (108), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (2252), Roger Bell_West (2014), Jaldhar H. Vyas (1940), Luca Ferrari (1710), Arne Sommer (1658), Flavio Poletti (1644), Athanasius (1392), Colin Crain (1338), Ulrich Rieke (1244), Adam Russell (1082), Dave Jacoby (1008), E. Choroba (998), Paulo Custodio (874), James Smith (860), Jorg Sommrey (846), W. Luis Mochan (820), Lubos Kolouch (818), Duncan C. White (798), Abigail (794), Simon Green (744), Cheok-Yin Fung (726), Mohammad S Anwar (718), Mark Anderson (702), Stuart Little (644), Simon Proctor (540), Peter Campbell Smith (534), Jan Krnavek (528), Feng Chang (496), Niels van Dijke (488), Robert DiCicco (468), Javier Luque (460), Ruben Westerberg (452), Bruce Gray (444), Ryan Thompson (390), Pete Houston (362), Stephen G. Lynn (358), Wanderdoc (358), Joelle Maslak (338), Bob Lied (330), Matthew Neleigh (286), Robert Ransbottom (280), Andrezgz (260), Thomas Kohler (258), Steven Wilson (230), Yet Ebreo (226), Robbie Hatley (222), Alexander Pankoff (220), Ali Moradi (220), Andrew Shitov (202), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Kevin Colyer (176), Marton Polgar (174), Aaron Smith (174), David Ferrone (166), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Solathian (148), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Matthias Muth (126), Avery Adams (124), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), BarrOff (108), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -404,6 +404,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/mattneleigh/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/mattneleigh/perl/ch-2.pl)]
+
+***
+
+### Matthias Muth
+![Matthias Muth](/images/team/matthias-muth.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/matthias-muth/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-226/matthias-muth/perl/ch-2.pl)]
+[[**BLOG #1**](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-226/challenge-226/matthias-muth#readme)]
 
 ***
 
