@@ -48,6 +48,8 @@ Please find below guest contributions.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/deadmarshal/ruby/ch1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/deadmarshal/ruby/ch2.rb) in **Ruby**.
 
+##### **Andreas Voegele** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/andreas-voegele/kotlin/ch-1.kts) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/andreas-voegele/kotlin/ch-2.kts) in **Kotlin**.
+
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/conor-hoekstra/apl/ch-1.apl) in **APL**.
 
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/conor-hoekstra/bqn/ch-1.bqn) in **BQN**.
@@ -62,11 +64,13 @@ Please find below guest contributions.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
-##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/robert-dicicco/julia/ch-1.jl) in **Julia**.
+##### **Mariano Spadaccini** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/spadacciniweb/python/ch-1.py) in **Python**.
 
-##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/robert-dicicco/python/ch-1.py) in **Python**.
+##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/robert-dicicco/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/robert-dicicco/julia/ch-2.jl) in **Julia**.
 
-##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/robert-dicicco/ruby/ch-1.rb) in **Ruby**.
+##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/robert-dicicco/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/robert-dicicco/python/ch-2.py) in **Python**.
+
+##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/robert-dicicco/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/robert-dicicco/ruby/ch-2.rb) in **Ruby**.
 
 ##### **Steven Wilson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/steven-wilson/javascript/ch-01.html) in **JavaScript**.
 
