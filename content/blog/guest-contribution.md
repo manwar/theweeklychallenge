@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2023-08-01T00:00:00+00:00
+date: 2023-08-02T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -72,7 +72,7 @@ Please find below guest contributions.
 
 ##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/robert-dicicco/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/robert-dicicco/ruby/ch-2.rb) in **Ruby**.
 
-##### **Steven Wilson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/steven-wilson/javascript/ch-01.html) in **JavaScript**.
+##### **Steven Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/steven-wilson/javascript/ch-01.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/steven-wilson/javascript/ch-02.js) in **JavaScript**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
