@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2023-08-05T00:00:00+00:00
+date: 2023-08-14T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -14,29 +14,94 @@ Please find below guest contributions.
 
 ***
 
-#### &nbsp; * &nbsp; [[228](#228)] &nbsp; * &nbsp; [[227](#227)] &nbsp; * &nbsp; [[226](#226)] &nbsp; * &nbsp; [[225](#225)] &nbsp; * &nbsp; [[224](#224)] &nbsp; * &nbsp; [[223](#223)] &nbsp; * &nbsp; [[222](#222)] &nbsp; * &nbsp; [[221](#221)] &nbsp; * &nbsp; [[220](#220)] &nbsp; * &nbsp; [[219](#219)] &nbsp; * &nbsp; [[218](#218)] &nbsp; * &nbsp; [[217](#217)] &nbsp; * &nbsp; [[216](#216)] &nbsp; * &nbsp; [[215](#215)] &nbsp; * &nbsp; [[214](#214)] &nbsp; * &nbsp; [[213](#213)] &nbsp; * &nbsp; [[212](#212)] &nbsp; * &nbsp; [[211](#211)] &nbsp; * &nbsp; [[210](#210)] &nbsp; *
+#### &nbsp; * &nbsp; [[229](#229)] &nbsp; * &nbsp; [[228](#228)] &nbsp; * &nbsp; [[227](#227)] &nbsp; * &nbsp; [[226](#226)] &nbsp; * &nbsp; [[225](#225)] &nbsp; * &nbsp; [[224](#224)] &nbsp; * &nbsp; [[223](#223)] &nbsp; * &nbsp; [[222](#222)] &nbsp; * &nbsp; [[221](#221)] &nbsp; * &nbsp; [[220](#220)] &nbsp; * &nbsp; [[219](#219)] &nbsp; * &nbsp; [[218](#218)] &nbsp; * &nbsp; [[217](#217)] &nbsp; * &nbsp; [[216](#216)] &nbsp; * &nbsp; [[215](#215)] &nbsp; * &nbsp; [[214](#214)] &nbsp; * &nbsp; [[213](#213)] &nbsp; * &nbsp; [[212](#212)] &nbsp; * &nbsp; [[211](#211)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[209](#209)] &nbsp; * &nbsp; [[208](#208)] &nbsp; * &nbsp; [[207](#207)] &nbsp; * &nbsp; [[206](#206)] &nbsp; * &nbsp; [[205](#205)] &nbsp; * &nbsp; [[204](#204)] &nbsp; * &nbsp; [[203](#203)] &nbsp; * &nbsp; [[202](#202)] &nbsp; * &nbsp; [[201](#201)] &nbsp; * &nbsp; [[200](#200)] &nbsp; * &nbsp; [[199](#199)] &nbsp; * &nbsp; [[198](#198)] &nbsp; * &nbsp; [[197](#197)] &nbsp; * &nbsp; [[196](#196)] &nbsp; * &nbsp; [[195](#195)] &nbsp; * &nbsp; [[194](#194)] &nbsp; * &nbsp; [[193](#193)] &nbsp; * &nbsp; [[192](#192)] &nbsp; * &nbsp; [[191](#191)] &nbsp; *
+#### &nbsp; * &nbsp; [[210](#210)] &nbsp; * &nbsp; [[209](#209)] &nbsp; * &nbsp; [[208](#208)] &nbsp; * &nbsp; [[207](#207)] &nbsp; * &nbsp; [[206](#206)] &nbsp; * &nbsp; [[205](#205)] &nbsp; * &nbsp; [[204](#204)] &nbsp; * &nbsp; [[203](#203)] &nbsp; * &nbsp; [[202](#202)] &nbsp; * &nbsp; [[201](#201)] &nbsp; * &nbsp; [[200](#200)] &nbsp; * &nbsp; [[199](#199)] &nbsp; * &nbsp; [[198](#198)] &nbsp; * &nbsp; [[197](#197)] &nbsp; * &nbsp; [[196](#196)] &nbsp; * &nbsp; [[195](#195)] &nbsp; * &nbsp; [[194](#194)] &nbsp; * &nbsp; [[193](#193)] &nbsp; * &nbsp; [[192](#192)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[190](#190)] &nbsp; * &nbsp; [[189](#189)] &nbsp; * &nbsp; [[188](#188)] &nbsp; * &nbsp; [[187](#187)] &nbsp; * &nbsp; [[186](#186)] &nbsp; * &nbsp; [[185](#185)] &nbsp; * &nbsp; [[184](#184)] &nbsp; * &nbsp; [[183](#183)] &nbsp; * &nbsp; [[182](#182)] &nbsp; * &nbsp; [[181](#181)] &nbsp; * &nbsp; [[180](#180)] &nbsp; * &nbsp; [[179](#179)] &nbsp; * &nbsp; [[178](#178)] &nbsp; * &nbsp; [[177](#177)] &nbsp; * &nbsp; [[176](#176)] &nbsp; * &nbsp; [[175](#175)] &nbsp; * &nbsp; [[174](#174)] &nbsp; * &nbsp; [[173](#173)] &nbsp; * &nbsp; [[172](#172)] &nbsp; *
+#### &nbsp; * &nbsp; [[191](#191)] &nbsp; * &nbsp; [[190](#190)] &nbsp; * &nbsp; [[189](#189)] &nbsp; * &nbsp; [[188](#188)] &nbsp; * &nbsp; [[187](#187)] &nbsp; * &nbsp; [[186](#186)] &nbsp; * &nbsp; [[185](#185)] &nbsp; * &nbsp; [[184](#184)] &nbsp; * &nbsp; [[183](#183)] &nbsp; * &nbsp; [[182](#182)] &nbsp; * &nbsp; [[181](#181)] &nbsp; * &nbsp; [[180](#180)] &nbsp; * &nbsp; [[179](#179)] &nbsp; * &nbsp; [[178](#178)] &nbsp; * &nbsp; [[177](#177)] &nbsp; * &nbsp; [[176](#176)] &nbsp; * &nbsp; [[175](#175)] &nbsp; * &nbsp; [[174](#174)] &nbsp; * &nbsp; [[173](#173)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[171](#171)] &nbsp; * &nbsp; [[170](#170)] &nbsp; * &nbsp; [[169](#169)] &nbsp; * &nbsp; [[168](#168)] &nbsp; * &nbsp; [[167](#167)] &nbsp; * &nbsp; [[166](#166)] &nbsp; * &nbsp; [[165](#165)] &nbsp; * &nbsp; [[164](#164)] &nbsp; * &nbsp; [[163](#163)] &nbsp; * &nbsp; [[162](#162)] &nbsp; * &nbsp; [[161](#161)] &nbsp; * &nbsp; [[160](#160)] &nbsp; * &nbsp; [[159](#159)] &nbsp; * &nbsp; [[158](#158)] &nbsp; * &nbsp; [[157](#157)] &nbsp; * &nbsp; [[156](#156)] &nbsp; * &nbsp; [[155](#155)] &nbsp; * &nbsp; [[154](#154)] &nbsp; * &nbsp; [[153](#153)] &nbsp; *
+#### &nbsp; * &nbsp; [[172](#172)] &nbsp; * &nbsp; [[171](#171)] &nbsp; * &nbsp; [[170](#170)] &nbsp; * &nbsp; [[169](#169)] &nbsp; * &nbsp; [[168](#168)] &nbsp; * &nbsp; [[167](#167)] &nbsp; * &nbsp; [[166](#166)] &nbsp; * &nbsp; [[165](#165)] &nbsp; * &nbsp; [[164](#164)] &nbsp; * &nbsp; [[163](#163)] &nbsp; * &nbsp; [[162](#162)] &nbsp; * &nbsp; [[161](#161)] &nbsp; * &nbsp; [[160](#160)] &nbsp; * &nbsp; [[159](#159)] &nbsp; * &nbsp; [[158](#158)] &nbsp; * &nbsp; [[157](#157)] &nbsp; * &nbsp; [[156](#156)] &nbsp; * &nbsp; [[155](#155)] &nbsp; * &nbsp; [[154](#154)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[152](#152)] &nbsp; * &nbsp; [[151](#151)] &nbsp; * &nbsp; [[150](#150)] &nbsp; * &nbsp; [[149](#149)] &nbsp; * &nbsp; [[148](#148)] &nbsp; * &nbsp; [[147](#147)] &nbsp; * &nbsp; [[146](#146)] &nbsp; * &nbsp; [[145](#145)] &nbsp; * &nbsp; [[144](#144)] &nbsp; * &nbsp; [[143](#143)] &nbsp; * &nbsp; [[142](#142)] &nbsp; * &nbsp; [[141](#141)] &nbsp; * &nbsp; [[140](#140)] &nbsp; * &nbsp; [[139](#139)] &nbsp; * &nbsp; [[138](#138)] &nbsp; * &nbsp; [[137](#137)] &nbsp; * &nbsp; [[136](#136)] &nbsp; * &nbsp; [[135](#135)] &nbsp; * &nbsp; [[134](#134)] &nbsp; *
+#### &nbsp; * &nbsp; [[153](#153)] &nbsp; * &nbsp; [[152](#152)] &nbsp; * &nbsp; [[151](#151)] &nbsp; * &nbsp; [[150](#150)] &nbsp; * &nbsp; [[149](#149)] &nbsp; * &nbsp; [[148](#148)] &nbsp; * &nbsp; [[147](#147)] &nbsp; * &nbsp; [[146](#146)] &nbsp; * &nbsp; [[145](#145)] &nbsp; * &nbsp; [[144](#144)] &nbsp; * &nbsp; [[143](#143)] &nbsp; * &nbsp; [[142](#142)] &nbsp; * &nbsp; [[141](#141)] &nbsp; * &nbsp; [[140](#140)] &nbsp; * &nbsp; [[139](#139)] &nbsp; * &nbsp; [[138](#138)] &nbsp; * &nbsp; [[137](#137)] &nbsp; * &nbsp; [[136](#136)] &nbsp; * &nbsp; [[135](#135)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[133](#133)] &nbsp; * &nbsp; [[132](#132)] &nbsp; * &nbsp; [[131](#131)] &nbsp; * &nbsp; [[130](#130)] &nbsp; * &nbsp; [[129](#129)] &nbsp; * &nbsp; [[128](#128)] &nbsp; * &nbsp; [[127](#127)] &nbsp; * &nbsp; [[126](#126)] &nbsp; * &nbsp; [[125](#125)] &nbsp; * &nbsp; [[124](#124)] &nbsp; * &nbsp; [[123](#123)] &nbsp; * &nbsp; [[122](#122)] &nbsp; * &nbsp; [[121](#121)] &nbsp; * &nbsp; [[120](#120)] &nbsp; * &nbsp; [[119](#119)] &nbsp; * &nbsp; [[118](#118)] &nbsp; * &nbsp; [[117](#117)] &nbsp; * &nbsp; [[116](#116)] &nbsp; * &nbsp; [[115](#115)] &nbsp; *
+#### &nbsp; * &nbsp; [[134](#134)] &nbsp; * &nbsp; [[133](#133)] &nbsp; * &nbsp; [[132](#132)] &nbsp; * &nbsp; [[131](#131)] &nbsp; * &nbsp; [[130](#130)] &nbsp; * &nbsp; [[129](#129)] &nbsp; * &nbsp; [[128](#128)] &nbsp; * &nbsp; [[127](#127)] &nbsp; * &nbsp; [[126](#126)] &nbsp; * &nbsp; [[125](#125)] &nbsp; * &nbsp; [[124](#124)] &nbsp; * &nbsp; [[123](#123)] &nbsp; * &nbsp; [[122](#122)] &nbsp; * &nbsp; [[121](#121)] &nbsp; * &nbsp; [[120](#120)] &nbsp; * &nbsp; [[119](#119)] &nbsp; * &nbsp; [[118](#118)] &nbsp; * &nbsp; [[117](#117)] &nbsp; * &nbsp; [[116](#116)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[114](#114)] &nbsp; * &nbsp; [[113](#113)] &nbsp; * &nbsp; [[112](#112)] &nbsp; * &nbsp; [[111](#111)] &nbsp; * &nbsp; [[110](#110)] &nbsp; * &nbsp; [[109](#109)] &nbsp; * &nbsp; [[108](#108)] &nbsp; * &nbsp; [[107](#107)] &nbsp; * &nbsp; [[106](#106)] &nbsp; * &nbsp; [[105](#105)] &nbsp; * &nbsp; [[104](#104)] &nbsp; * &nbsp; [[103](#103)] &nbsp; * &nbsp; [[102](#102)] &nbsp; * &nbsp; [[101](#101)] &nbsp; * &nbsp; [[100](#100)] &nbsp; * &nbsp; [[099](#099)] &nbsp; * &nbsp; [[098](#098)] &nbsp; * &nbsp; [[097](#097)] &nbsp; * &nbsp; [[096](#096)] &nbsp; *
+#### &nbsp; * &nbsp; [[115](#115)] &nbsp; * &nbsp; [[114](#114)] &nbsp; * &nbsp; [[113](#113)] &nbsp; * &nbsp; [[112](#112)] &nbsp; * &nbsp; [[111](#111)] &nbsp; * &nbsp; [[110](#110)] &nbsp; * &nbsp; [[109](#109)] &nbsp; * &nbsp; [[108](#108)] &nbsp; * &nbsp; [[107](#107)] &nbsp; * &nbsp; [[106](#106)] &nbsp; * &nbsp; [[105](#105)] &nbsp; * &nbsp; [[104](#104)] &nbsp; * &nbsp; [[103](#103)] &nbsp; * &nbsp; [[102](#102)] &nbsp; * &nbsp; [[101](#101)] &nbsp; * &nbsp; [[100](#100)] &nbsp; * &nbsp; [[099](#099)] &nbsp; * &nbsp; [[098](#098)] &nbsp; * &nbsp; [[097](#097)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[095](#095)] &nbsp; * &nbsp; [[094](#094)] &nbsp; * &nbsp; [[093](#093)] &nbsp; * &nbsp; [[092](#092)] &nbsp; * &nbsp; [[091](#091)] &nbsp; * &nbsp; [[090](#090)] &nbsp; * &nbsp; [[089](#089)] &nbsp; * &nbsp; [[088](#088)] &nbsp; * &nbsp; [[087](#087)] &nbsp; * &nbsp; [[086](#086)] &nbsp; * &nbsp; [[085](#085)] &nbsp; * &nbsp; [[084](#084)] &nbsp; * &nbsp; [[083](#083)] &nbsp; * &nbsp; [[082](#082)] &nbsp; * &nbsp; [[081](#081)] &nbsp; * &nbsp; [[080](#080)] &nbsp; * &nbsp; [[079](#079)] &nbsp; * &nbsp; [[078](#078)] &nbsp; * &nbsp; [[077](#077)] &nbsp; *
+#### &nbsp; * &nbsp; [[096](#096)] &nbsp; * &nbsp; [[095](#095)] &nbsp; * &nbsp; [[094](#094)] &nbsp; * &nbsp; [[093](#093)] &nbsp; * &nbsp; [[092](#092)] &nbsp; * &nbsp; [[091](#091)] &nbsp; * &nbsp; [[090](#090)] &nbsp; * &nbsp; [[089](#089)] &nbsp; * &nbsp; [[088](#088)] &nbsp; * &nbsp; [[087](#087)] &nbsp; * &nbsp; [[086](#086)] &nbsp; * &nbsp; [[085](#085)] &nbsp; * &nbsp; [[084](#084)] &nbsp; * &nbsp; [[083](#083)] &nbsp; * &nbsp; [[082](#082)] &nbsp; * &nbsp; [[081](#081)] &nbsp; * &nbsp; [[080](#080)] &nbsp; * &nbsp; [[079](#079)] &nbsp; * &nbsp; [[078](#078)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[076](#076)] &nbsp; * &nbsp; [[075](#075)] &nbsp; * &nbsp; [[074](#074)] &nbsp; * &nbsp; [[073](#073)] &nbsp; * &nbsp; [[072](#072)] &nbsp; * &nbsp; [[071](#071)] &nbsp; * &nbsp; [[070](#070)] &nbsp; * &nbsp; [[069](#069)] &nbsp; * &nbsp; [[068](#068)] &nbsp; * &nbsp; [[067](#067)] &nbsp; * &nbsp; [[066](#066)] &nbsp; * &nbsp; [[065](#065)] &nbsp; * &nbsp; [[064](#064)] &nbsp; * &nbsp; [[063](#063)] &nbsp; * &nbsp; [[062](#062)] &nbsp; * &nbsp; [[061](#061)] &nbsp; * &nbsp; [[060](#060)] &nbsp; * &nbsp; [[059](#059)] &nbsp; * &nbsp; [[058](#058)] &nbsp; *
+#### &nbsp; * &nbsp; [[077](#077)] &nbsp; * &nbsp; [[076](#076)] &nbsp; * &nbsp; [[075](#075)] &nbsp; * &nbsp; [[074](#074)] &nbsp; * &nbsp; [[073](#073)] &nbsp; * &nbsp; [[072](#072)] &nbsp; * &nbsp; [[071](#071)] &nbsp; * &nbsp; [[070](#070)] &nbsp; * &nbsp; [[069](#069)] &nbsp; * &nbsp; [[068](#068)] &nbsp; * &nbsp; [[067](#067)] &nbsp; * &nbsp; [[066](#066)] &nbsp; * &nbsp; [[065](#065)] &nbsp; * &nbsp; [[064](#064)] &nbsp; * &nbsp; [[063](#063)] &nbsp; * &nbsp; [[062](#062)] &nbsp; * &nbsp; [[061](#061)] &nbsp; * &nbsp; [[060](#060)] &nbsp; * &nbsp; [[059](#059)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[057](#057)] &nbsp; * &nbsp; [[056](#056)] &nbsp; * &nbsp; [[055](#055)] &nbsp; * &nbsp; [[054](#054)] &nbsp; * &nbsp; [[053](#053)] &nbsp; * &nbsp; [[052](#052)] &nbsp; * &nbsp; [[051](#051)] &nbsp; * &nbsp; [[050](#050)] &nbsp; * &nbsp; [[049](#049)] &nbsp; * &nbsp; [[048](#048)] &nbsp; * &nbsp; [[047](#047)] &nbsp; * &nbsp; [[046](#046)] &nbsp; * &nbsp; [[045](#045)] &nbsp; * &nbsp; [[044](#044)] &nbsp; * &nbsp; [[043](#043)] &nbsp; * &nbsp; [[042](#042)] &nbsp; * &nbsp; [[041](#041)] &nbsp; * &nbsp; [[040](#040)] &nbsp; * &nbsp; [[039](#039)] &nbsp; *
+#### &nbsp; * &nbsp; [[058](#058)] &nbsp; * &nbsp; [[057](#057)] &nbsp; * &nbsp; [[056](#056)] &nbsp; * &nbsp; [[055](#055)] &nbsp; * &nbsp; [[054](#054)] &nbsp; * &nbsp; [[053](#053)] &nbsp; * &nbsp; [[052](#052)] &nbsp; * &nbsp; [[051](#051)] &nbsp; * &nbsp; [[050](#050)] &nbsp; * &nbsp; [[049](#049)] &nbsp; * &nbsp; [[048](#048)] &nbsp; * &nbsp; [[047](#047)] &nbsp; * &nbsp; [[046](#046)] &nbsp; * &nbsp; [[045](#045)] &nbsp; * &nbsp; [[044](#044)] &nbsp; * &nbsp; [[043](#043)] &nbsp; * &nbsp; [[042](#042)] &nbsp; * &nbsp; [[041](#041)] &nbsp; * &nbsp; [[040](#040)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[038](#038)] &nbsp; * &nbsp; [[037](#037)] &nbsp; * &nbsp; [[036](#036)] &nbsp; * &nbsp; [[035](#035)] &nbsp; * &nbsp; [[034](#034)] &nbsp; * &nbsp; [[033](#033)] &nbsp; * &nbsp; [[032](#032)] &nbsp; * &nbsp; [[031](#031)] &nbsp; * &nbsp; [[030](#030)] &nbsp; * &nbsp; [[029](#029)] &nbsp; * &nbsp; [[028](#028)] &nbsp; * &nbsp; [[027](#027)] &nbsp; * &nbsp; [[026](#026)] &nbsp; * &nbsp; [[025](#025)] &nbsp; * &nbsp; [[024](#024)] &nbsp; * &nbsp; [[023](#023)] &nbsp; * &nbsp; [[022](#022)] &nbsp; * &nbsp; [[021](#021)] &nbsp; * &nbsp; [[020](#020)] &nbsp; *
+#### &nbsp; * &nbsp; [[039](#039)] &nbsp; * &nbsp; [[038](#038)] &nbsp; * &nbsp; [[037](#037)] &nbsp; * &nbsp; [[036](#036)] &nbsp; * &nbsp; [[035](#035)] &nbsp; * &nbsp; [[034](#034)] &nbsp; * &nbsp; [[033](#033)] &nbsp; * &nbsp; [[032](#032)] &nbsp; * &nbsp; [[031](#031)] &nbsp; * &nbsp; [[030](#030)] &nbsp; * &nbsp; [[029](#029)] &nbsp; * &nbsp; [[028](#028)] &nbsp; * &nbsp; [[027](#027)] &nbsp; * &nbsp; [[026](#026)] &nbsp; * &nbsp; [[025](#025)] &nbsp; * &nbsp; [[024](#024)] &nbsp; * &nbsp; [[023](#023)] &nbsp; * &nbsp; [[022](#022)] &nbsp; * &nbsp; [[021](#021)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[019](#019)] &nbsp; * &nbsp; [[018](#018)] &nbsp; * &nbsp; [[017](#017)] &nbsp; * &nbsp; [[016](#016)] &nbsp; * &nbsp; [[015](#015)] &nbsp; * &nbsp; [[014](#014)] &nbsp; * &nbsp; [[013](#013)] &nbsp; * &nbsp; [[012](#012)] &nbsp; * &nbsp; [[011](#011)] &nbsp; * &nbsp; [[010](#010)] &nbsp; * &nbsp; [[009](#009)] &nbsp; * &nbsp; [[008](#008)] &nbsp; * &nbsp; [[007](#007)] &nbsp; * &nbsp; [[006](#006)] &nbsp; * &nbsp; [[005](#005)] &nbsp; * &nbsp; [[004](#004)] &nbsp; * &nbsp; [[003](#003)] &nbsp; * &nbsp; [[002](#002)] &nbsp; * &nbsp; [[001](#001)] &nbsp; *
+#### &nbsp; * &nbsp; [[020](#020)] &nbsp; * &nbsp; [[019](#019)] &nbsp; * &nbsp; [[018](#018)] &nbsp; * &nbsp; [[017](#017)] &nbsp; * &nbsp; [[016](#016)] &nbsp; * &nbsp; [[015](#015)] &nbsp; * &nbsp; [[014](#014)] &nbsp; * &nbsp; [[013](#013)] &nbsp; * &nbsp; [[012](#012)] &nbsp; * &nbsp; [[011](#011)] &nbsp; * &nbsp; [[010](#010)] &nbsp; * &nbsp; [[009](#009)] &nbsp; * &nbsp; [[008](#008)] &nbsp; * &nbsp; [[007](#007)] &nbsp; * &nbsp; [[006](#006)] &nbsp; * &nbsp; [[005](#005)] &nbsp; * &nbsp; [[004](#004)] &nbsp; * &nbsp; [[003](#003)] &nbsp; * &nbsp; [[002](#002)] &nbsp; *
+
+#### &nbsp; * &nbsp; [[001](#001)]
+
+----
+## [The Weekly Challenge - 229](/blog/perl-weekly-challenge-229) {#229}
+<br>
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/deadmarshal/cl/ch1.lisp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/deadmarshal/cl/ch1.lisp) in **Lisp**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/deadmarshal/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/deadmarshal/lua/ch-2.lua) in **Lua**.
+
+##### **Andreas Voegele** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/andreas-voegele/kotlin/ch-1.kts) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/andreas-voegele/kotlin/ch-2.kts) in **Kotlin**.
+
+##### **BarrOff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/barroff/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/barroff/julia/ch-2.jl) in **Julia**.
+
+##### **BarrOff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/barroff/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/barroff/nim/ch_2.nim) in **Nim**.
+
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
+
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/lubos-kolouch/python/ch-2.py) in **Python**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/pokgopun/go/ch-2.go) in **Go**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/pokgopun/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/pokgopun/python/ch-2.py) in **Python**.
+
+##### **Robert DiCicco** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/robert-dicicco/julia/ch-2.jl) in **Julia**.
+
+##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/robert-dicicco/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/robert-dicicco/python/ch-2.py) in **Python**.
+
+##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/robert-dicicco/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/robert-dicicco/ruby/ch-2.rb) in **Ruby**.
+
+##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/robert-dicicco/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/robert-dicicco/tcl/ch-2.tcl) in **Tcl**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/kotlin/ch-1.kt) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/kotlin/ch-2.kt) in **Kotlin**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/lua/ch-2.lua) in **Lua**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/postscript/ch-1.ps) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/python/ch-2.py) in **Python**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/roger-bell-west/rust/ch-2.rs) in **Rust**.
+
+##### **Steven Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/steven-wilson/javascript/ch-01.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/steven-wilson/javascript/ch-02.js) in **JavaScript**.
+
+##### **Steven Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/steven-wilson/python/ch-01.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/steven-wilson/python/ch-02.py) in **Python**.
+
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/tyler-wardhaugh/clojure/src/c229/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/tyler-wardhaugh/clojure/src/c229/t2.clj) in **Clojure**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-229/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+
+
+
 
 ----
 ## [The Weekly Challenge - 228](/blog/perl-weekly-challenge-228) {#228}
@@ -49,6 +114,8 @@ Please find below guest contributions.
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/deadmarshal/ruby/ch1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/deadmarshal/ruby/ch2.rb) in **Ruby**.
 
 ##### **Andreas Voegele** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/andreas-voegele/kotlin/ch-1.kts) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/andreas-voegele/kotlin/ch-2.kts) in **Kotlin**.
+
+##### **Cheok-Yin Fung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/cheok-yin-fung/common-lisp/ch-1.lsp) [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/cheok-yin-fung/common-lisp/ch-2.lsp) in **Lisp**.
 
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/conor-hoekstra/apl/ch-1.apl) in **APL**.
 
@@ -902,6 +969,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/lubos-kolouch/python/ch-2.py) in **Python**.
+
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Mariano Spadaccini** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-210/spadacciniweb/go/ch-1.go) in **Go**.
@@ -1528,6 +1597,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-200/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-200/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-200/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-200/lubos-kolouch/python/ch-2.py) in **Python**.
+
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-200/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-200/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-200/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-200/paulo-custodio/basic/ch-2.bas) in **BASIC**.
@@ -1593,6 +1664,8 @@ Please find below guest contributions.
 ##### **E. Alvarez** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-199/ealvar3z/python/ch-2.py) in **Python**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-199/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-199/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-199/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-199/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-199/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-199/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
@@ -1668,6 +1741,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/lubos-kolouch/python/ch-2.py) in **Python**.
+
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/ziameraj16/java/MaxGap.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-198/ziameraj16/java/PrimeCount.java) in **Java**.
@@ -1732,6 +1807,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-197/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-197/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-197/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-197/lubos-kolouch/python/ch-2.py) in **Python**.
+
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-197/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-197/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-197/ziameraj16/java/MoveZero.java) in **Java**.
@@ -1783,6 +1860,8 @@ Please find below guest contributions.
 ##### **Duncan C. White** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-196/duncan-c-white/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-196/duncan-c-white/c/ch-2.c) in **C**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-196/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-196/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-196/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-196/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-196/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-196/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
@@ -1849,6 +1928,8 @@ Please find below guest contributions.
 ##### **Duncan C. White** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-195/duncan-c-white/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-195/duncan-c-white/c/ch-2.c) in **C**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-195/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-195/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-195/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-195/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-195/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-195/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
@@ -1919,6 +2000,8 @@ Please find below guest contributions.
 ##### **Duncan C. White** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/duncan-c-white/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/duncan-c-white/c/ch-2.c) in **C**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-194/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
@@ -2048,6 +2131,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/lubos-kolouch/python/ch-2.py) in **Python**.
+
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-192/mohammad-anwar/java/theweeklychallenge/BinaryFlip.java) in **Java**.
@@ -2130,6 +2215,8 @@ Please find below guest contributions.
 
 ##### **Jorg Sommrey** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/jo-37/maxima/ch-2.wxm) in **Maxima**.
 
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/lubos-kolouch/python/ch-2.py) in **Python**.
+
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-191/ziameraj16/java/TwiceLargest.java) in **Java**.
@@ -2187,6 +2274,8 @@ Please find below guest contributions.
 ##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/ealvar3z/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/ealvar3z/python/ch-2.py) in **Python**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
@@ -2265,6 +2354,8 @@ Please find below guest contributions.
 ##### **E. Alvarez** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/ealvar3z/python/ch-1.py) in **Python**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-189/ziameraj16/java/GreaterCharacter.java) in **Java**.
 
@@ -2347,6 +2438,8 @@ Please find below guest contributions.
 ##### **izem** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/izem/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/izem/python/ch-2.py) in **Python**.
 
 ##### **Kueppo Wesley** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/kueppo-wesley/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/kueppo-wesley/node/ch-2.js) in **Node.js**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/ziameraj16/java/DivisiblePair.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-188/ziameraj16/java/TotalZero.java) in **Java**.
 
