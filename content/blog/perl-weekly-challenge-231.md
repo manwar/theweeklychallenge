@@ -81,13 +81,11 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ### Blogs with Creative Title
 ***
 
-#### 1. []() by Andreas Voegele.
-#### 2. []() by Arne Sommer.
-#### 3. []() by Dave Jacoby.
-#### 4. []() by Matthias Muth.
-#### 5. []() by Packy Anderson.
-#### 6. []() by Peter Campbell Smith.
-#### 7. []() by Roger Bell_West.
+#### 1. [Words and Digits](https://raku-musings.com/words-digits.html) by Arne Sommer.
+#### 2. [Two One-Liners and Short Programs](https://jacoby.github.io/2023/08/14/two-oneliners-and-short-programs-weekly-challenge-230.html) by Dave Jacoby.
+#### 3. [On Perl's Home Ground](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-230/challenge-230/matthias-muth#readme) by Matthias Muth.
+#### 4. [Not the Stated Problem](http://packy.dardan.com/2023/08/18/perl-weekly-challenge-not-the-stated-problem/) by Packy Anderson.
+#### 5. [The Count of Separation](https://blog.firedrake.org/archive/2023/08/The_Weekly_Challenge_230__The_Count_of_Separation.html) by Roger Bell_West.
 
 <br>
 
