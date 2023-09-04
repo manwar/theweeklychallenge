@@ -233,8 +233,6 @@ Write a script to sort the given array in increasing order based on the frequenc
     Input: @ints = (-1,1,-6,4,5,-6,1,4,1)
     Ouput: (5,-1,4,4,-6,-6,1,1,1)
 
-You are given a list of passenger details in the form "9999999999A1122", where 9 denotes the phone number, A the sex, 1 the age and 2 the seat number.
-
 <br>
 
 ***
