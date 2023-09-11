@@ -3,6 +3,7 @@
 use v5.36;
 
 my $week = $ARGV[0];
+my $skip = $ARGV[1];
 die "ERROR: Invalid week $week.\n" unless ($week > 0);
 
 my $max     = 19;
@@ -11,6 +12,11 @@ my $links   = "";
 
 my $wk = $week;
 while ($week >= 1) {
+
+    if (defined $skip && ($skip == $week)) {
+        $week--;
+        next;
+    }
 
     $links .= "####" if ($counter == 1);
 
