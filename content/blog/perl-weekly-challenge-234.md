@@ -182,7 +182,7 @@ Write a script to return all alphabetic characters that show up in all words inc
 
 <br>
 
-## Task 2: Frequencyl Triplets Sort {#TASK2}
+## Task 2: Unequal Triplets {#TASK2}
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
