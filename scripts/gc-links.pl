@@ -3,7 +3,7 @@
 use v5.36;
 
 my $week = $ARGV[0];
-my $skip = $ARGV[1];
+my $skip = $ARGV[1] || 232;
 die "ERROR: Invalid week $week.\n" unless ($week > 0);
 
 my $max     = 19;
@@ -32,7 +32,7 @@ while ($week >= 1) {
     $week--;
 }
 
-$links .= "\n\n----\n## ";
+$links .= " &nbsp; *\n\n----\n## ";
 $links .= sprintf("[The Weekly Challenge - %03d](/blog/perl-weekly-challenge-%03d) {#%03d}", $wk, $wk, $wk);
 $links .= "\n<br>\n";
 say $links;
