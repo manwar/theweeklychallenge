@@ -47,8 +47,8 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 12032 (63%)
-#### 2. Raku: 6919 (37%)
+#### 1. Perl: 12034 (63%)
+#### 2. Raku: 6921 (37%)
 #### 3. Blog: 3955
 
 <br>
@@ -56,10 +56,10 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `100`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `104`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 46
-#### 2. Raku: 31
+#### 1. Perl: 48
+#### 2. Raku: 33
 #### 3. Blog: 23
 
 <br>
@@ -67,8 +67,8 @@ The total contributions in the week is `100`. Well done **Team PWC**. I would al
 ## GUESTS {#GUESTS}
 ***
 
-#### 1. Roger Bell_West (1578)
-    Bash (1), JavaScript (164), Kotlin (169), Lua (160), Postscript (205), Python (304), Ruby (292), Rust (283).
+#### 1. Roger Bell_West (1592)
+    Bash (1), JavaScript (166), Kotlin (171), Lua (162), Postscript (207), Python (306), Ruby (294), Rust (285).
 #### 2. Abigail (1540)
     Awk (122), BASIC (22), Bash (110), Bc (58), Befunge-93 (34), Brainfuck (1), C (124), C Shell (19), COBOL (18), Chef (1), Erlang (19), Forth (18), Fortran (20), Go (66), Java (63), Lua (110), M4 (18), MMIX (14), Mumps (1), Node.js (129), OCaml (17), Ook (1), PHP (17), Pascal (66), Postscript (16), Python (114), R (61), Rexx (17), Ruby (108), SQL (23), Scheme (58), Sed (15), Tcl (60).
 #### 3. Paulo Custodio (735)
@@ -292,7 +292,7 @@ The total contributions in the week is `100`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2328), Roger Bell_West (2076), Jaldhar H. Vyas (2000), Luca Ferrari (1822), Arne Sommer (1700), Flavio Poletti (1668), Athanasius (1448), Colin Crain (1338), Ulrich Rieke (1298), Adam Russell (1108), Dave Jacoby (1052), E. Choroba (1026), Lubos Kolouch (938), Jorg Sommrey (874), Paulo Custodio (874), W. Luis Mochan (862), James Smith (860), Duncan C. White (798), Abigail (794), Simon Green (778), Cheok-Yin Fung (748), Mark Anderson (734), Mohammad S Anwar (718), Stuart Little (644), Peter Campbell Smith (574), Feng Chang (554), Jan Krnavek (554), Simon Proctor (542), Robert DiCicco (520), Niels van Dijke (506), Bruce Gray (472), Javier Luque (460), Ruben Westerberg (452), Stephen G. Lynn (400), Ryan Thompson (390), Wanderdoc (370), Bob Lied (364), Pete Houston (362), Joelle Maslak (338), Thomas Kohler (314), Matthew Neleigh (310), Robert Ransbottom (304), Ali Moradi (286), Robbie Hatley (264), Andrezgz (260), Steven Wilson (250), Yet Ebreo (226), Andrew Shitov (224), Alexander Pankoff (220), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), David Ferrone (192), Noud Aldenhoven (188), Marton Polgar (178), Kevin Colyer (176), Aaron Smith (174), Solathian (172), Matthias Muth (168), Duane Powell (164), Kian-Meng Ang (162), Avery Adams (156), Mark Senn (156), BarrOff (150), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (2328), Roger Bell_West (2084), Jaldhar H. Vyas (2000), Luca Ferrari (1822), Arne Sommer (1700), Flavio Poletti (1668), Athanasius (1448), Colin Crain (1338), Ulrich Rieke (1298), Adam Russell (1108), Dave Jacoby (1052), E. Choroba (1026), Lubos Kolouch (938), Jorg Sommrey (874), Paulo Custodio (874), W. Luis Mochan (862), James Smith (860), Duncan C. White (798), Abigail (794), Simon Green (778), Cheok-Yin Fung (748), Mark Anderson (734), Mohammad S Anwar (718), Stuart Little (644), Peter Campbell Smith (574), Feng Chang (554), Jan Krnavek (554), Simon Proctor (542), Robert DiCicco (520), Niels van Dijke (506), Bruce Gray (472), Javier Luque (460), Ruben Westerberg (452), Stephen G. Lynn (400), Ryan Thompson (390), Wanderdoc (370), Bob Lied (364), Pete Houston (362), Joelle Maslak (338), Thomas Kohler (314), Matthew Neleigh (310), Robert Ransbottom (304), Ali Moradi (286), Robbie Hatley (264), Andrezgz (260), Steven Wilson (250), Yet Ebreo (226), Andrew Shitov (224), Alexander Pankoff (220), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), David Ferrone (192), Noud Aldenhoven (188), Marton Polgar (178), Kevin Colyer (176), Aaron Smith (174), Solathian (172), Matthias Muth (168), Duane Powell (164), Kian-Meng Ang (162), Avery Adams (156), Mark Senn (156), BarrOff (150), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -604,6 +604,17 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-234/robert-dicicco/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-234/robert-dicicco/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-234/robert-dicicco/raku/ch-2.raku)]
+
+***
+
+### Roger Bell_West
+![Roger Bell_West](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-234/roger-bell-west/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-234/roger-bell-west/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-234/roger-bell-west/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-234/roger-bell-west/raku/ch-2.p6)]
+[[**BLOG #1**](https://blog.firedrake.org/archive/2023/09/The_Weekly_Challenge_234__Triplets_with_Character.html)]
 
 ***
 
