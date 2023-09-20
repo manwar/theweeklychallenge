@@ -60,6 +60,14 @@ Please find below guest contributions.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/deadmarshal/ruby/ch1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/deadmarshal/ruby/ch2.rb) in **Ruby**.
 
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/asherbhs/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/asherbhs/apl/ch-2.apl) in **APL**.
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/asherbhs/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/asherbhs/bqn/ch-2.bqn) in **BQN**.
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/asherbhs/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/asherbhs/haskell/ch-2.hs) in **Haskell**.
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/asherbhs/j/ch-1.ijs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/asherbhs/j/ch-2.ijs) in **J**.
+
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-235/eric-cheung/python/ch-2.py) in **Python**.
