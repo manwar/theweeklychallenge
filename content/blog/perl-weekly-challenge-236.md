@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - 236"
-date: 2023-09-24T00:00:00+00:00
+date: 2023-09-25T00:00:00+00:00
 description: "The Weekly Challenge - 236"
 type: post
 image: images/twc-logo.png

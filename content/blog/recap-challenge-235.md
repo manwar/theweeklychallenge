@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 235"
-date: 2023-09-24T00:00:00+00:00
+date: 2023-09-25T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 235."
 type: post
 image: images/blog/recap-challenge-235.jpg
