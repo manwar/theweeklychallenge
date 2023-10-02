@@ -100,8 +100,8 @@ The total contributions in the week is `103`. Well done **Team PWC**. I would al
     Dart (24), Go (122), Python (16).
 #### 15. Luca Ferrari (157)
     PostgreSQL (157).
-#### 16. Simon Green (141)
-    Python (141).
+#### 16. Simon Green (143)
+    Python (143).
 #### 17. Conor Hoekstra (105)
     APL (62), BQN (24), C++ (2), Haskell (6), J (8), Pytho (1), Python (1), Rust (1).
 #### 18. Duncan C. White (103)
@@ -299,7 +299,7 @@ The total contributions in the week is `103`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2352), Roger Bell_West (2104), Jaldhar H. Vyas (2030), Luca Ferrari (1854), Arne Sommer (1712), Flavio Poletti (1680), Athanasius (1464), Colin Crain (1338), Ulrich Rieke (1306), Adam Russell (1114), Dave Jacoby (1062), E. Choroba (1034), Lubos Kolouch (958), Jorg Sommrey (882), Paulo Custodio (874), W. Luis Mochan (874), James Smith (860), Duncan C. White (798), Abigail (794), Simon Green (784), Cheok-Yin Fung (756), Mark Anderson (742), Mohammad S Anwar (718), Stuart Little (644), Peter Campbell Smith (586), Jan Krnavek (562), Feng Chang (554), Simon Proctor (542), Robert DiCicco (536), Niels van Dijke (518), Bruce Gray (480), Javier Luque (460), Ruben Westerberg (452), Stephen G. Lynn (406), Ryan Thompson (390), Bob Lied (382), Wanderdoc (378), Pete Houston (362), Joelle Maslak (338), Thomas Kohler (330), Matthew Neleigh (318), Ali Moradi (306), Robert Ransbottom (304), Robbie Hatley (270), Andrezgz (260), Steven Wilson (250), Yet Ebreo (226), Andrew Shitov (224), Alexander Pankoff (220), David Ferrone (200), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Matthias Muth (180), Marton Polgar (178), Kevin Colyer (176), Solathian (176), Aaron Smith (174), Avery Adams (170), Duane Powell (164), Kian-Meng Ang (162), BarrOff (158), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (2352), Roger Bell_West (2104), Jaldhar H. Vyas (2030), Luca Ferrari (1854), Arne Sommer (1712), Flavio Poletti (1680), Athanasius (1464), Colin Crain (1338), Ulrich Rieke (1306), Adam Russell (1114), Dave Jacoby (1062), E. Choroba (1034), Lubos Kolouch (958), Jorg Sommrey (882), Paulo Custodio (874), W. Luis Mochan (874), James Smith (860), Duncan C. White (798), Abigail (794), Simon Green (790), Cheok-Yin Fung (756), Mark Anderson (742), Mohammad S Anwar (718), Stuart Little (644), Peter Campbell Smith (586), Jan Krnavek (562), Feng Chang (554), Simon Proctor (542), Robert DiCicco (536), Niels van Dijke (518), Bruce Gray (480), Javier Luque (460), Ruben Westerberg (452), Stephen G. Lynn (406), Ryan Thompson (390), Bob Lied (382), Wanderdoc (378), Pete Houston (362), Joelle Maslak (338), Thomas Kohler (330), Matthew Neleigh (318), Ali Moradi (306), Robert Ransbottom (304), Robbie Hatley (270), Andrezgz (260), Steven Wilson (250), Yet Ebreo (226), Andrew Shitov (224), Alexander Pankoff (220), David Ferrone (200), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Matthias Muth (180), Marton Polgar (178), Kevin Colyer (176), Solathian (176), Aaron Smith (174), Avery Adams (170), Duane Powell (164), Kian-Meng Ang (162), BarrOff (158), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -420,6 +420,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-236/peter-campbell-smith/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-236/peter-campbell-smith/perl/ch-2.pl)]
 [[**BLOG #1**](http://ccgi.campbellsmiths.force9.co.uk/challenge/236)]
+
+***
+
+### Simon Green
+![Simon Green](/images/team/simon-green.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-236/sgreen/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-236/sgreen/perl/ch-2.pl)]
+[[**BLOG #1**](https://dev.to/simongreennet/juicy-loops-2di2)]
 
 ***
 
