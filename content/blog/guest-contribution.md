@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2023-10-03T00:00:00+00:00
+date: 2023-10-04T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -51,6 +51,12 @@ Please find below guest contributions.
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-237/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-237/pokgopun/go/ch-2.go) in **Go**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-237/pokgopun/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-237/pokgopun/python/ch-2.py) in **Python**.
+
+##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-237/robert-dicicco/powershell/ch-1.psl) in **PowerShell**.
+
+##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-237/robert-dicicco/python/ch-1.py) in **Python**.
+
+##### **Robert DiCicco** shared solutios to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-237/robert-dicicco/ruby/ch-1.rb) in **Ruby**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-237/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-237/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
 
