@@ -1,7 +1,7 @@
 ---
 title: "The Weekly Challenge - 237"
 date: 2023-10-02T00:00:00+00:00
-description: "The Weekly Challenge - 236"
+description: "The Weekly Challenge - 237"
 type: post
 image: images/twc-logo.png
 author: Mohammad S Anwar
