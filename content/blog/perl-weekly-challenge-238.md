@@ -210,7 +210,7 @@ Write a script to sort the given array in increasing order with respect to the c
 
     50 => 5 x 0 => 0 (1 step)
     25 => 2 x 5 => 10 => 1 x 0 => 0 (2 steps)
-    33 => 3 x 3 => 6 (1 step)
+    33 => 3 x 3 => 9 (1 step)
     22 => 2 x 2 => 4 (1 step)
 
 <br>
