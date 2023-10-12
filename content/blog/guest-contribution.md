@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2023-10-11T00:00:00+00:00
+date: 2023-10-12T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -44,6 +44,32 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 238](/blog/perl-weekly-challenge-238) {#238}
 <br>
 
+##### **Ali Moradi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/apl/ch1.dws) in **APL**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/c/ch-2.c) in **C**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/cpp/ch-2.cpp) in **C++**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/d/ch1.d) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/d/ch2.d) in **D**.
+
+##### **Ali Moradi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/go/ch1.go) in **Go**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/haskell/ch1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/haskell/ch2.hs) in **Haskell**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/java/Ch1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/java/Ch2.java) in **Java**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/cl/ch1.lisp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/cl/ch1.lisp) in **Lisp**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/lua/ch-2.lua) in **Lua**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/modula-3/ch1/src/Ch1.m3) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/modula-3/ch2/src/Ch2.m3) in **Modula 3**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/oberon/Ch1.Mod) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/oberon/Ch2.Mod) in **Oberon**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/ocaml/ch1.ml) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/deadmarshal/ocaml/ch2.ml) in **OCaml**.
+
+##### **Andrew Grangaard** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/spazm/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/spazm/python/ch-2.py) in **Python**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/lubos-kolouch/python/ch-2.py) in **Python**.
@@ -58,9 +84,9 @@ Please find below guest contributions.
 
 ##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/robert-dicicco/julia/ch-1.jl) in **Julia**.
 
-##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/robert-dicicco/powershell/ch-1.psl) in **PowerShell**.
+##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/robert-dicicco/powershell/ch-1.psl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/robert-dicicco/powershell/ch-2.psl) in **PowerShell**.
 
-##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/robert-dicicco/python/ch-1.py) in **Python**.
+##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/robert-dicicco/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/robert-dicicco/python/ch-2.py) in **Python**.
 
 ##### **Robert DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/robert-dicicco/tcl/ch-1.tcl) in **Tcl**.
 
@@ -83,6 +109,8 @@ Please find below guest contributions.
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/roger-bell-west/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/roger-bell-west/scala/ch-2.scala) in **Scala**.
 
 ##### **Steven Wilson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/steven-wilson/python/ch-1.py) in **Python**.
+
+##### **Thomas Kohler** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/jeanluc2020/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/jeanluc2020/python/ch-2.py) in **Python**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
