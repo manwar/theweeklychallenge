@@ -122,6 +122,12 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
+##### **Yves Orton** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/demerphq/C/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/demerphq/C/ch-2.c) in **C**.
+
+##### **Yves Orton** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/demerphq/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/demerphq/js/ch-2.js) in **JavaScript**.
+
+##### **Yves Orton** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/demerphq/rust/src/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/demerphq/rust/src/ch-2.rs) in **Rust**.
+
 ----
 ## [The Weekly Challenge - 237](/blog/perl-weekly-challenge-237) {#237}
 <br>
