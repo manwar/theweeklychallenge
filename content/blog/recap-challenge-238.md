@@ -59,10 +59,10 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `118`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `120`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 #### 1. Perl: 58
-#### 2. Raku: 33
+#### 2. Raku: 35
 #### 3. Blog: 27
 
 <br>
@@ -303,7 +303,7 @@ The total contributions in the week is `118`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2364), Roger Bell_West (2124), Jaldhar H. Vyas (2050), Luca Ferrari (1888), Arne Sommer (1724), Flavio Poletti (1692), Athanasius (1480), Colin Crain (1338), Ulrich Rieke (1322), Adam Russell (1114), Dave Jacoby (1074), E. Choroba (1042), Lubos Kolouch (978), Jorg Sommrey (890), W. Luis Mochan (886), Paulo Custodio (874), James Smith (860), Simon Green (802), Duncan C. White (798), Abigail (794), Cheok-Yin Fung (760), Mark Anderson (750), Mohammad S Anwar (718), Stuart Little (644), Peter Campbell Smith (598), Jan Krnavek (566), Feng Chang (554), Robert DiCicco (552), Simon Proctor (542), Niels van Dijke (522), Bruce Gray (488), Javier Luque (460), Ruben Westerberg (452), Stephen G. Lynn (406), Bob Lied (398), Ryan Thompson (390), Wanderdoc (378), Pete Houston (362), Thomas Kohler (346), Joelle Maslak (338), Ali Moradi (326), Matthew Neleigh (324), Robert Ransbottom (316), Robbie Hatley (282), Andrezgz (260), Steven Wilson (250), Yet Ebreo (226), Andrew Shitov (224), Alexander Pankoff (220), David Ferrone (208), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Matthias Muth (192), Noud Aldenhoven (188), Marton Polgar (178), Avery Adams (176), Kevin Colyer (176), Solathian (176), Aaron Smith (174), BarrOff (166), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Packy Anderson (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (2364), Roger Bell_West (2124), Jaldhar H. Vyas (2050), Luca Ferrari (1888), Arne Sommer (1724), Flavio Poletti (1692), Athanasius (1480), Colin Crain (1338), Ulrich Rieke (1322), Adam Russell (1114), Dave Jacoby (1074), E. Choroba (1042), Lubos Kolouch (978), Jorg Sommrey (890), W. Luis Mochan (886), Paulo Custodio (874), James Smith (860), Simon Green (802), Duncan C. White (798), Abigail (794), Cheok-Yin Fung (760), Mark Anderson (750), Mohammad S Anwar (718), Stuart Little (644), Peter Campbell Smith (598), Jan Krnavek (570), Feng Chang (554), Robert DiCicco (552), Simon Proctor (542), Niels van Dijke (522), Bruce Gray (488), Javier Luque (460), Ruben Westerberg (452), Stephen G. Lynn (406), Bob Lied (398), Ryan Thompson (390), Wanderdoc (378), Pete Houston (362), Thomas Kohler (346), Joelle Maslak (338), Ali Moradi (326), Matthew Neleigh (324), Robert Ransbottom (316), Robbie Hatley (282), Andrezgz (260), Steven Wilson (250), Yet Ebreo (226), Andrew Shitov (224), Alexander Pankoff (220), David Ferrone (208), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Matthias Muth (192), Noud Aldenhoven (188), Marton Polgar (178), Avery Adams (176), Kevin Colyer (176), Solathian (176), Aaron Smith (174), BarrOff (166), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Packy Anderson (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -521,6 +521,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/massa/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/massa/raku/ch-2.raku)]
+
+***
+
+### Jan Krnavek
+![Jan Krnavek](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/wambash/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-238/wambash/raku/ch-2.raku)]
 
 ***
 
