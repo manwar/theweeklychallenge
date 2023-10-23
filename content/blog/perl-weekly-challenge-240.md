@@ -414,7 +414,7 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
-You are given two arrays of strings and a check string.
+You are given an array of strings and a check string.
 
 Write a script to find out if the check string is the acronym of the words in the given array.
 
