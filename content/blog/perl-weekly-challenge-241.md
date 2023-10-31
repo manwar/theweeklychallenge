@@ -39,7 +39,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `237` &nbsp;&nbsp;|&nbsp;&nbsp; 48 &nbsp;&nbsp;|&nbsp;&nbsp; 34 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `238` &nbsp;&nbsp;|&nbsp;&nbsp; 60 &nbsp;&nbsp;|&nbsp;&nbsp; 37 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `239` &nbsp;&nbsp;|&nbsp;&nbsp; 59 &nbsp;&nbsp;|&nbsp;&nbsp; 41 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `240` &nbsp;&nbsp;|&nbsp;&nbsp; 58 &nbsp;&nbsp;|&nbsp;&nbsp; 34 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `240` &nbsp;&nbsp;|&nbsp;&nbsp; 60 &nbsp;&nbsp;|&nbsp;&nbsp; 36 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 
 <br>
 
@@ -52,7 +52,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `237` &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|&nbsp;&nbsp; 54 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `238` &nbsp;&nbsp;|&nbsp;&nbsp; 15 &nbsp;&nbsp;|&nbsp;&nbsp; 79 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `239` &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|&nbsp;&nbsp; 84 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `240` &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|&nbsp;&nbsp; 83 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `240` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 85 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 
 <br>
 
@@ -61,7 +61,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 
 Do you see your favourite language in the `Top 10`? If not then why not contribute regularly and make it to the top.
 
-     1. Python     (1929)
+     1. Python     (1931)
      2. Ruby       (613)
      3. Haskell    (602)
      4. Lua        (536)
@@ -83,8 +83,9 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 #### 4. [Just a slice. No loop, please. I'll eat it here.](https://dev.to/boblied/pwc-240-just-a-slice-no-loop-please-ill-eat-it-here-3l0l) by Bob Lied.
 #### 5. [A.A.B.A. (Acronym And Build Array)](https://github.com/ianrifkin/perlweeklychallenge-club/blob/ianrifkin-challenge-240/challenge-240/ianrifkin/README.md) by Ian Rifkin.
 #### 6. [Short Acronyms, and Short Solutions](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-240/challenge-240/matthias-muth#readme) by Matthias Muth.
-#### 7. [Initialisms and contorted arrays](http://ccgi.campbellsmiths.force9.co.uk/challenge/240/1) by Peter Campbell Smith.
-#### 8. [Building Acronyms](https://blog.firedrake.org/archive/2023/10/The_Weekly_Challenge_240__Building_Acronyms.html) by Roger Bell_West.
+#### 7. [Building Acronym Arrays](https://packy.dardan.com/2023/10/25/perl-weekly-challenge-building-acronym-arrays/) by Packy Anderson.
+#### 8. [Initialisms and contorted arrays](http://ccgi.campbellsmiths.force9.co.uk/challenge/240/1) by Peter Campbell Smith.
+#### 9. [Building Acronyms](https://blog.firedrake.org/archive/2023/10/The_Weekly_Challenge_240__Building_Acronyms.html) by Roger Bell_West.
 
 <br>
 
