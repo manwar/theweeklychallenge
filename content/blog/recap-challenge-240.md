@@ -42,7 +42,8 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 #### 3. Ian Rifkin
 #### 4. Jaldhar H. Vyas
 #### 5. Lubos Kolouch
-#### 6. Roger Bell_West
+#### 6. Packy Anderson
+#### 7. Roger Bell_West
 
 <br>
 
@@ -458,7 +459,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Robbie Hatley
-![Robbie Hatley](/images/team/user.jpg)
+![Robbie Hatley](/images/team/robbie-hatley.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/robbie-hatley/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/robbie-hatley/perl/ch-2.pl)]
