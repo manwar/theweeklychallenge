@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2023-10-31T00:00:00+00:00
+date: 2023-11-01T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -67,6 +67,12 @@ Please find below guest contributions.
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/luca-ferrari/python/ch-2.py) in **Python**.
 
 ##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/packy-anderson/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/packy-anderson/python/ch-2.py) in **Python**.
+
+##### **Raghu R** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/razetime/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/razetime/bqn/ch-2.bqn) in **BQN**.
+
+##### **Raghu R** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/razetime/factor/ch-1.factor) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/razetime/factor/ch-2.factor) in **Factor**.
+
+##### **Raghu R** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/razetime/prolog/ch-1.P) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/razetime/prolog/ch-2.P) in **Prolog**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-241/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
 
