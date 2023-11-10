@@ -1,7 +1,7 @@
 ---
 title: "The Weekly Challenge - 242"
 date: 2023-11-06T00:00:00+00:00
-description: "The Weekly Challenge - 241"
+description: "The Weekly Challenge - 242"
 type: post
 image: images/twc-logo.png
 author: Mohammad S Anwar
