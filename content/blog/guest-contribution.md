@@ -72,6 +72,8 @@ Please find below guest contributions.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-243/deadmarshal/zig/ch1.zig) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-243/deadmarshal/zig/ch2.zig) in **Zig**.
 
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-243/barroff/julia/ch-1.jl) in **Julia**.
+
 ##### **Bruce Gray** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-243/bruce-gray/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-243/bruce-gray/javascript/ch-2.js) in **JavaScript**.
 
 ##### **E. Choroba** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-243/e-choroba/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-243/e-choroba/python/ch-2.py) in **Python**.
