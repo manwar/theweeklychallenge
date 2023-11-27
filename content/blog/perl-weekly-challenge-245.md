@@ -202,19 +202,19 @@ Write a script to return the largest number formed by concatenating some of the 
 
 #### Example 1
 
-    Input: @digits = (8, 1, 9)
+    Input: @ints = (8, 1, 9)
     Output: 981
 
     981 % 3 == 0
 
 #### Example 2
 
-    Input: @digits = (8, 6, 7, 1, 0)
+    Input: @ints = (8, 6, 7, 1, 0)
     Output: 8760
 
 #### Example 3
 
-    Input: @digits = (1)
+    Input: @ints = (1)
     Output: -1
 
 <br>
