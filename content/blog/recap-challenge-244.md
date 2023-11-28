@@ -74,8 +74,8 @@ The total contributions in the week is `120`. Well done **Team PWC**. I would al
     Bash (1), JavaScript (186), Kotlin (191), Lua (182), Postscript (227), Python (326), Ruby (314), Rust (305), Scala (20).
 #### 2. Abigail (1540)
     Awk (122), BASIC (22), Bash (110), Bc (58), Befunge-93 (34), Brainfuck (1), C (124), C Shell (19), COBOL (18), Chef (1), Erlang (19), Forth (18), Fortran (20), Go (66), Java (63), Lua (110), M4 (18), MMIX (14), Mumps (1), Node.js (129), OCaml (17), Ook (1), PHP (17), Pascal (66), Postscript (16), Python (114), R (61), Rexx (17), Ruby (108), SQL (23), Scheme (58), Sed (15), Tcl (60).
-#### 3. Paulo Custodio (758)
-    Ada (20), Adb (1), Awk (28), BASIC (76), Bc (17), Brainfuck (5), C (139), C++ (99), D (14), Forth (77), Fortran (8), Lua (38), Pascal (6), Python (230).
+#### 3. Paulo Custodio (752)
+    Ada (21), Awk (28), BASIC (76), Bc (17), Brainfuck (5), C (139), C++ (99), D (14), Forth (79), Fortran (8), Lua (38), Pascal (6), Python (230).
 #### 4. Ulrich Rieke (635)
     Awk (3), C (2), C++ (234), Haskell (271), Java (9), Julia (1), Lisp (7), Python (1), Ruby (1), Rust (106).
 #### 5. Ali Moradi (555)
