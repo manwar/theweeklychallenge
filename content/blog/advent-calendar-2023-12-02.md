@@ -4,7 +4,7 @@ date: 2023-12-02T00:00:00+00:00
 description: "Advent Calendar - December 2, 2023."
 type: post
 image: images/blog/2023-12-02.jpg
-author: Bobby Lied
+author: Bob Lied
 tags: ["Perl"]
 ---
 
