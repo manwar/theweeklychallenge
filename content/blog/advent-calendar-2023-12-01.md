@@ -9,7 +9,7 @@ tags: ["Perl", "Raku"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
-### | &nbsp; **Day 1** &nbsp; |
+### | &nbsp; **Day 1** &nbsp; | &nbsp; [**Day 2**](/blog/advent-calendar-2023-12-02) &nbsp; |
 ***
 
 The gift is presented by `Laurent Rosenfeld`. Today he is talking about his solution to [**The Weekly Challenge - 205**](/blog/perl-weekly-challenge-205). This is re-produced for `Advent Calendar 2023` from the original [**post**](https://blogs.perl.org/users/laurent_r/2023/02/perl-weekly-challenge-205-third-highest-and-maximum-bit-wise-xor.html).
