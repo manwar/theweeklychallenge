@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
-### | &nbsp; [**Day 1**](/blog/advent-calendar-2023-12-01) &nbsp; | &nbsp; **Day 2** &nbsp; |
+### | &nbsp; [**Day 1**](/blog/advent-calendar-2023-12-01) &nbsp; | &nbsp; **Day 2** &nbsp; | &nbsp; [**Day 3**](/blog/advent-calendar-2023-12-03) &nbsp; |
 ***
 
 The gift is presented by `Bob Lied`. Today he is talking about his solution to [**The Weekly Challenge - 206**](/blog/perl-weekly-challenge-206). This is re-produced for `Advent Calendar 2023` from the original [**post**](https://dev.to/boblied/max-sum-of-minimum-pairs-35i7).
