@@ -38,10 +38,10 @@ Today is the first monday of the month and time to declare next champion. With g
 | --- | --- | --- |
 | &nbsp;`Day`   | `Article` | &nbsp;&nbsp;`Author` |
 | | | |
-| &nbsp;&nbsp; `1` &nbsp;&nbsp; | &nbsp;[**Third Highest and Maximum (Bit-Wise) XOR**](/blog/advent-calendar-2022-12-01) &nbsp; | &nbsp; `Laurent Rosenfeld` &nbsp; |
-| &nbsp;&nbsp; `2` &nbsp;&nbsp; | &nbsp;[**Maximum sum of pair minimums**](/blog/advent-calendar-2022-12-02) &nbsp; | &nbsp; `Bob Lied` &nbsp; |
-| &nbsp;&nbsp; `3` &nbsp;&nbsp; | &nbsp;[**Minimum Index Sum / Duplicate and Missing**](/blog/advent-calendar-2022-12-03) &nbsp; | &nbsp; `James Smith` &nbsp; |
-| &nbsp;&nbsp; `4` &nbsp;&nbsp; | &nbsp;[**Give A Little Bit**](/blog/advent-calendar-2022-12-04) &nbsp; | &nbsp; `Dave Jacoby` &nbsp; |
+| &nbsp;&nbsp; `1` &nbsp;&nbsp; | &nbsp;[**Third Highest and Maximum (Bit-Wise) XOR**](/blog/advent-calendar-2023-12-01) &nbsp; | &nbsp; `Laurent Rosenfeld` &nbsp; |
+| &nbsp;&nbsp; `2` &nbsp;&nbsp; | &nbsp;[**Maximum sum of pair minimums**](/blog/advent-calendar-2023-12-02) &nbsp; | &nbsp; `Bob Lied` &nbsp; |
+| &nbsp;&nbsp; `3` &nbsp;&nbsp; | &nbsp;[**Minimum Index Sum / Duplicate and Missing**](/blog/advent-calendar-2023-12-03) &nbsp; | &nbsp; `James Smith` &nbsp; |
+| &nbsp;&nbsp; `4` &nbsp;&nbsp; | &nbsp;[**Give A Little Bit**](/blog/advent-calendar-2023-12-04) &nbsp; | &nbsp; `Dave Jacoby` &nbsp; |
 
 <br>
 
