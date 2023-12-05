@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar 2023"
-date: 2023-12-04T00:00:00+00:00
+date: 2023-12-05T00:00:00+00:00
 description: "Advent Calendar 2023."
 type: post
 image: images/blog/advent-calendar-2023.jpg
@@ -24,7 +24,7 @@ tags: ["Perl", "Raku"]
 | | | | | | | |
 | <br><br><br> | <br><br><br> | <br><br><br> | <br><br><br> | [![Day 1](/images/blog/2023-12-01-thumbnail.jpg "Perl Weekly Challenge 205: Third Highest and Maximum (Bit-Wise) XOR by Laurent Rosenfeld")](/blog/advent-calendar-2023-12-01)<br>[**`1`**](/blog/advent-calendar-2023-12-01) | [![Day 2](/images/blog/2023-12-02-thumbnail.jpg "Maximum sum of pair minimums by Bob Lied")](/blog/advent-calendar-2023-12-02)<br>[**`2`**](/blog/advent-calendar-2023-12-02) | [![Day 3](/images/blog/2023-12-03-thumbnail.jpg "Minimum Index Sum / Duplicate and Missing by James Smith")](/blog/advent-calendar-2023-12-03)<br>[**`3`**](/blog/advent-calendar-2023-12-03)<br> |
 | | | | | | | |
-| [![Day 4](/images/blog/2023-12-04-thumbnail.jpg "Give A Little Bit by Dave Jacoby")](/blog/advent-calendar-2023-12-04)<br>[**`4`**](/blog/advent-calendar-2023-12-04) | ![Day 5](/images/blog/2023-12-05-thumbnail.jpg)<br>**`5`**<br> | ![Day 6](/images/blog/2023-12-06-thumbnail.jpg)<br>**`6`**<br> | ![Day 7](/images/blog/2023-12-07-thumbnail.jpg)<br>**`7`**<br> | ![Day 8](/images/blog/2023-12-08-thumbnail.jpg)<br>**`8`**<br> | ![Day 9](/images/blog/2023-12-09-thumbnail.jpg)<br>**`9`**<br> | ![Day 10](/images/blog/2023-12-10-thumbnail.jpg)<br>**`10`**<br> |
+| [![Day 4](/images/blog/2023-12-04-thumbnail.jpg "Give A Little Bit by Dave Jacoby")](/blog/advent-calendar-2023-12-04)<br>[**`4`**](/blog/advent-calendar-2023-12-04) | [![Day 5](/images/blog/2023-12-05-thumbnail.jpg "Kill And Win / Number Collision by Avery Adams")](/blog/advent-calendar-2023-12-05)<br>[**`5`**](/blog/advent-calendar-2023-12-05) | ![Day 6](/images/blog/2023-12-06-thumbnail.jpg)<br>**`6`**<br> | ![Day 7](/images/blog/2023-12-07-thumbnail.jpg)<br>**`7`**<br> | ![Day 8](/images/blog/2023-12-08-thumbnail.jpg)<br>**`8`**<br> | ![Day 9](/images/blog/2023-12-09-thumbnail.jpg)<br>**`9`**<br> | ![Day 10](/images/blog/2023-12-10-thumbnail.jpg)<br>**`10`**<br> |
 | | | | | | | |
 | ![Day 11](/images/blog/2023-12-11-thumbnail.jpg)<br>**`11`**<br> | ![Day 12](/images/blog/2023-12-12-thumbnail.jpg)<br>**`12`**<br> | ![Day 13](/images/blog/2023-12-13-thumbnail.jpg)<br>**`13`**<br> | ![Day 14](/images/blog/2023-12-14-thumbnail.jpg)<br>**`14`**<br> | ![Day 15](/images/blog/2023-12-15-thumbnail.jpg)<br>**`15`**<br> | ![Day 16](/images/blog/2023-12-16-thumbnail.jpg)<br>**`16`**<br> | ![Day 17](/images/blog/2023-12-17-thumbnail.jpg)<br>**`17`**<br> |
 | | | | | | | |
