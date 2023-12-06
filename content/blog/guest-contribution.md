@@ -72,6 +72,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/roger-bell-west/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/roger-bell-west/scala/ch-2.scala) in **Scala**.
 
+##### **Thomas Kohler** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/jeanluc2020/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/jeanluc2020/python/ch-2.py) in **Python**.
+
 ----
 ## [The Weekly Challenge - 245](/blog/perl-weekly-challenge-245) {#245}
 <br>
