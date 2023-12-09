@@ -44,7 +44,15 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 246](/blog/perl-weekly-challenge-246) {#246}
 <br>
 
+##### **Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/arne-sommer/bash/ch-1.sh) in **Bash**.
+
+##### **Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/arne-sommer/ruby/ch-1.rb) in **Ruby**.
+
+##### **Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/arne-sommer/sql/ch-1.sql) in **SQL**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
