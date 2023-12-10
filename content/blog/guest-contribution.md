@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2023-12-09T00:00:00+00:00
+date: 2023-12-10T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -49,6 +49,10 @@ Please find below guest contributions.
 ##### **Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/arne-sommer/ruby/ch-1.rb) in **Ruby**.
 
 ##### **Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/arne-sommer/sql/ch-1.sql) in **SQL**.
+
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/barroff/julia/ch-1.jl) in **Julia**.
+
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/barroff/nim/ch_1.nim) in **Nim**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-246/eric-cheung/python/ch-2.py) in **Python**.
 
