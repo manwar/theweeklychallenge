@@ -13,7 +13,7 @@ tags: ["Perl"]
 
 Welcome to the monthly series `Meet The Champion`.
 
-Last month we declared `BarrOff`, the winner of `August 2023`.
+Last month we declared `BarrOff`, the winner of [**August 2023**](/blog/meet-the-champion-2023-08).
 
 Today we are talking to `Robbie Hatley`, the winner of **September 2023** of `The Weekly Challenge`. I hope you are going to enjoy the interview.
 
