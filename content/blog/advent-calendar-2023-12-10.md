@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
-### | &nbsp; [**Day 9**](/blog/advent-calendar-2023-12-09) &nbsp; | &nbsp; **Day 10** &nbsp; |
+### | &nbsp; [**Day 9**](/blog/advent-calendar-2023-12-09) &nbsp; | &nbsp; **Day 10** &nbsp; | &nbsp; [**Day 11**](/blog/advent-calendar-2023-12-11) &nbsp; |
 ***
 
 The gift is presented by `Stephen G Lynn`. Today he is talking about his solution to [**The Weekly Challenge - 217**](/blog/perl-weekly-challenge-217). This is re-produced for `Advent Calendar 2023` from the original [**post**](https://thiujiac.blogspot.com/2023/05/pwc-217.html).

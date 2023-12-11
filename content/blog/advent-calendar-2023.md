@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar 2023"
-date: 2023-12-10T00:00:00+00:00
+date: 2023-12-11T00:00:00+00:00
 description: "Advent Calendar 2023."
 type: post
 image: images/blog/advent-calendar-2023.jpg
@@ -26,7 +26,7 @@ tags: ["Perl", "Raku"]
 | | | | | | | |
 | [![Day 4](/images/blog/2023-12-04-thumbnail.jpg "Give A Little Bit by Dave Jacoby")](/blog/advent-calendar-2023-12-04)<br>[**`4`**](/blog/advent-calendar-2023-12-04) | [![Day 5](/images/blog/2023-12-05-thumbnail.jpg "Kill And Win / Number Collision by Avery Adams")](/blog/advent-calendar-2023-12-05)<br>[**`5`**](/blog/advent-calendar-2023-12-05) | [![Day 6](/images/blog/2023-12-06-thumbnail.jpg "Lead to Gold and 1 2 3 by Peter Campbell Smith")](/blog/advent-calendar-2023-12-06)<br>[**`6`**](/blog/advent-calendar-2023-12-06) | [![Day 7](/images/blog/2023-12-07-thumbnail.jpg "Wow: Another oneliner! But also a complete BFS...! by Matthias Muth")](/blog/advent-calendar-2023-12-07)<br>[**`7`**](/blog/advent-calendar-2023-12-07) | [![Day 8](/images/blog/2023-12-08-thumbnail.jpg "Collect Points by Flavio Poletti")](/blog/advent-calendar-2023-12-08)<br>[**`8`**](/blog/advent-calendar-2023-12-08) | [![Day 9](/images/blog/2023-12-09-thumbnail.jpg "Odd one Out / Number Placement by Robbie Hatley")](/blog/advent-calendar-2023-12-09)<br>[**`9`**](/blog/advent-calendar-2023-12-09) | [![Day 10](/images/blog/2023-12-10-thumbnail.jpg "Sorted Matrix / Max Number by Stephen G Lynn")](/blog/advent-calendar-2023-12-10)<br>[**`10`**](/blog/advent-calendar-2023-12-10) |
 | | | | | | | |
-| ![Day 11](/images/blog/2023-12-11-thumbnail.jpg)<br>**`11`**<br> | ![Day 12](/images/blog/2023-12-12-thumbnail.jpg)<br>**`12`**<br> | ![Day 13](/images/blog/2023-12-13-thumbnail.jpg)<br>**`13`**<br> | ![Day 14](/images/blog/2023-12-14-thumbnail.jpg)<br>**`14`**<br> | ![Day 15](/images/blog/2023-12-15-thumbnail.jpg)<br>**`15`**<br> | ![Day 16](/images/blog/2023-12-16-thumbnail.jpg)<br>**`16`**<br> | ![Day 17](/images/blog/2023-12-17-thumbnail.jpg)<br>**`17`**<br> |
+| [![Day 11](/images/blog/2023-12-11-thumbnail.jpg "Sorted Squares / Travel Expenditure by W. Luis Mochan")](/blog/advent-calendar-2023-12-11)<br>[**`11`**](/blog/advent-calendar-2023-12-11) | ![Day 12](/images/blog/2023-12-12-thumbnail.jpg)<br>**`12`**<br> | ![Day 13](/images/blog/2023-12-13-thumbnail.jpg)<br>**`13`**<br> | ![Day 14](/images/blog/2023-12-14-thumbnail.jpg)<br>**`14`**<br> | ![Day 15](/images/blog/2023-12-15-thumbnail.jpg)<br>**`15`**<br> | ![Day 16](/images/blog/2023-12-16-thumbnail.jpg)<br>**`16`**<br> | ![Day 17](/images/blog/2023-12-17-thumbnail.jpg)<br>**`17`**<br> |
 | | | | | | | |
 | ![Day 18](/images/blog/2023-12-18-thumbnail.jpg)<br>**`18`**<br> | ![Day 19](/images/blog/2023-12-19-thumbnail.jpg)<br>**`19`**<br> | ![Day 20](/images/blog/2023-12-20-thumbnail.jpg)<br>**`20`**<br> | ![Day 21](/images/blog/2023-12-21-thumbnail.jpg)<br>**`21`**<br> | ![Day 22](/images/blog/2023-12-22-thumbnail.jpg)<br>**`22`**<br> | ![Day 23](/images/blog/2023-12-23-thumbnail.jpg)<br>**`23`**<br> | ![Day 24](/images/blog/2023-12-24-thumbnail.jpg)<br>**`24`**<br> |
 | | | | | | | |
