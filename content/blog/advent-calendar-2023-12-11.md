@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
-### | &nbsp; [**Day 10**](/blog/advent-calendar-2023-12-10) &nbsp; | &nbsp; **Day 11** &nbsp; |
+### | &nbsp; [**Day 10**](/blog/advent-calendar-2023-12-10) &nbsp; | &nbsp; **Day 11** &nbsp; | &nbsp; [**Day 12**](/blog/advent-calendar-2023-12-12) &nbsp; |
 ***
 
 The gift is presented by `W. Luis Mochan`. Today he is talking about his solution to [**The Weekly Challenge - 219**](/blog/perl-weekly-challenge-219). This is re-produced for `Advent Calendar 2023` from the original [**post**](https://wlmb.github.io/2023/05/29/PWC219/).
