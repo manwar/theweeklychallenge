@@ -65,7 +65,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `243` &nbsp;&nbsp;|&nbsp;&nbsp; 63 &nbsp;&nbsp;|&nbsp;&nbsp; 34 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `244` &nbsp;&nbsp;|&nbsp;&nbsp; 55 &nbsp;&nbsp;|&nbsp;&nbsp; 36 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `245` &nbsp;&nbsp;|&nbsp;&nbsp; 49 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `246` &nbsp;&nbsp;|&nbsp;&nbsp; 41 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `246` &nbsp;&nbsp;|&nbsp;&nbsp; 41 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
 
 <br>
 
@@ -111,6 +111,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 #### 6. [Brute Force Math!](https://fluca1978.github.io/2023/12/04/PerlWeeklyChallenge246.html) by Luca Ferrari.
 #### 7. [25 or 6 out of four… ty-nine](https://packy.dardan.com/2023/12/05/perl-weekly-challenge-25-or-6-out-of-four-ty-nine) by Packy Anderson.
 #### 8. [Lotteries and sequences](http://ccgi.campbellsmiths.force9.co.uk/challenge/246) by Peter Campbell Smith.
+#### 9. [Linear 49](https://blog.firedrake.org/archive/2023/12/The_Weekly_Challenge_246__Linear_49.html) by Roger Bell_West.
 
 <br>
 
