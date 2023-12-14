@@ -30,6 +30,6 @@ tags: ["Perl", "Raku"]
 | | | | | | | |
 | ![Day 18](/images/blog/2023-12-18-thumbnail.jpg)<br>**`18`**<br> | ![Day 19](/images/blog/2023-12-19-thumbnail.jpg)<br>**`19`**<br> | ![Day 20](/images/blog/2023-12-20-thumbnail.jpg)<br>**`20`**<br> | ![Day 21](/images/blog/2023-12-21-thumbnail.jpg)<br>**`21`**<br> | ![Day 22](/images/blog/2023-12-22-thumbnail.jpg)<br>**`22`**<br> | ![Day 23](/images/blog/2023-12-23-thumbnail.jpg)<br>**`23`**<br> | ![Day 24](/images/blog/2023-12-24-thumbnail.jpg)<br>**`24`**<br> |
 | | | | | | | |
-| <br><br>**`25`**<br> | <br><br>**`26`**<br> | <br><br>**`27`**<br> | <br><br>**`28`**<br>  | <br><br>**`29`**<br> | <br><br>**`30`**<br> | <br><br>**`31`**<br> |
+| ![Day 25](/images/blog/2023-12-25-thumbnail.jpg)<br>**`25`**<br> | <br><br>**`26`**<br> | <br><br>**`27`**<br> | <br><br>**`28`**<br>  | <br><br>**`29`**<br> | <br><br>**`30`**<br> | <br><br>**`31`**<br> |
 | | | | | | | |
 ***
