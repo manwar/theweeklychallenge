@@ -4,43 +4,138 @@ date: 2022-12-24T00:00:00+00:00
 description: "Advent Calendar - December 24, 2022."
 type: post
 image: images/blog/2022-12-24.jpg
-author: Mohammad S Anwar
+author: Flavio Poletti
 tags: ["Perl", "Raku"]
 ---
 
 ## [**Advent Calendar 2022**](/blog/advent-calendar-2022)
-### | &nbsp; [**Day 23**](/blog/advent-calendar-2022-12-23) &nbsp; | &nbsp; **Day 24** &nbsp; |
+### | &nbsp; [**Day 23**](/blog/advent-calendar-2022-12-23) &nbsp; | &nbsp; **Day 24** &nbsp; | &nbsp; [**Day 25**](/blog/advent-calendar-2022-12-25) &nbsp; |
 ***
 
-## Merry Christmas
-<br>
-
-Finally we reached to the end of `Advent Calendar`. It was a hectic `24 days`. Not an easy task to manage/run the `Advent Calendar`. I would to take this opportunity to thank each and every contributors. Please accept my apology if I missed anyone. I tried to give equal opportunity to those who blog about their contributions.
-
-As you all know, I hardly blog about my contributions. I even stopped taking part in the weekly challenge during the `Advent Calendar` period. Too much to handle and too less time in hand. Last time, I blogged about my contribution was in the [**Week 081**](/blog/weekly-challenge-081) on `Mon, Oct 12, 2020`. It is something I would like to get back to in the new year.
-
-It is not that I haven't blogged at all. Below is the list that I can compile.
-
-| | |
-| :---: | --- |
-| | |
-|`Wed, Jun 08, 2022`|&nbsp; [**Memory Leak in Perl**](/blog/memory-leak) &nbsp;|
-|`Thu, Jun 09, 2022`|&nbsp; [**Taint in Perl**](/blog/taint) &nbsp;|
-|`Sat, Jun 11, 2022`|&nbsp; [**Get started with Perl v5.36**](/blog/get-started-with-perl-v536) &nbsp;|
-|`Mon, Jun 13, 2022`|&nbsp; [**Strawberry Perl**](/blog/strawberry-perl) &nbsp;|
-|`Sat, Jun 18, 2022`|&nbsp; [**Decode Hexdump**](/blog/decode-hexdump) &nbsp;|
-|`Sat, Jul 02, 2022`|&nbsp; [**Perl Question???**](/blog/perl-question) &nbsp;|
-|`Sun, Jul 03, 2022`|&nbsp; [**Test::Excel**](/blog/test-excel) &nbsp;|
-| | |
+The gift is presented by `Flavio Poletti`. Today he is talking about his solution to [**"The Weekly Challenge - 160"**](/blog/perl-weekly-challenge-160). This is re-produced for **Advent Calendar 2022** from the original [**post**](https://github.polettix.it/ETOOBUSY/2022/04/13/pwc160-equilibrium-index/) by him.
 
 ***
-<br>
-
-I was supposed to contribute to [**Perl Advent Calendar 2022**](https://perladvent.org/2022) and [**Raku Advent Calendar 2022**](https://raku-advent.blog/category/2022). As it turned out, I could only get the article ready in the last minute. Thanks to the dear friend, `JJ Merelo`, I made it in the end. You can checkout the post, [**Raku and I**](https://raku-advent.blog/2022/12/21/day-21-raku-and-i-journey-begin).
-
-With the regard to my contribution to `Perl Advent Calendar 2022`, it was too late to find a slot, unfortunately. You can still checkout my post, [**App::Timer**](/blog/app-timer).
 
 <br>
+
+## PWC160 - Equilibrium Index
+
+<br>
+
+### TL;DR
+
+<br>
+
+On with [**TASK #2**](https://theweeklychallenge.org/blog/perl-weekly-challenge-160/#TASK2) from [**The Weekly Challenge**](https://theweeklychallenge.org/) `#160`. Enjoy!
+
+<br>
+
+## The challenge
+
+<br>
+
+You are give an array of integers, @n.
+
+Write a script to find out the Equilibrium Index of the given array, if found.
+
+<br>
+
+> For an array A consisting n elements, index i is an equilibrium index if the sum of elements of subarray A[0…i-1] is equal to the sum of elements of subarray A[i+1…n-1].
+
+<br>
+
+### Example 1
+
+    Input: @n = (1, 3, 5, 7, 9)
+    Output: 3
+
+### Example 2
+
+    Input: @n = (1, 2, 3, 4, 5)
+    Output: -1 as no Equilibrium Index found.
+
+### Example 2
+
+    Input: @n = (2, 4, 2)
+    Output: 1
+
+<br>
+
+## The questions
+
+<br>
+
+No real question, but maybe…
+
+<br>
+
+    * are there constraints on the input range, e.g. we have to use “big” stuff or multiple precision libraries?
+    *is there a constraint on the size of the input array?
+
+<br>
+
+## The solution
+
+<br>
+
+This challenge reminded me of the exercises we did while practicing for the Computer Science 1 course at the University, way too long ago.
+
+Let’s see the `Perl` solution first:
+
+<br>
+
+```perl
+#!/usr/bin/env perl
+use v5.24;
+use warnings;
+use experimental 'signatures';
+no warnings 'experimental::signatures';
+
+my @n = @ARGV ? @ARGV : (1, 3, 5, 7, 9);
+say equilibrium_index(@n);
+
+sub equilibrium_index (@n) {
+   my $i_lo = 0;
+   my $i_hi = $#n;
+   my $diff = 0;
+   $diff += ($diff <= 0 ? $n[$i_lo++] : -$n[$i_hi--]) while $i_lo < $i_hi;
+   return @n && $diff == 0 ? $i_lo : -1;
+}
+```
+
+<br>
+
+The idea is to keep two indexes, one scanning the array from below (aptly named `$i_low`) and the other one from above (`$i_hi`). When the two meet, it’s time to call it a day and see how the two sums compare with one another.
+
+Well, sort of. We can just keep track of the difference between the two sums, which is easy if we add stuff from below and subtract stuff from above. The difference is kept in variable `$diff`.
+
+Last thing to discuss is how to move `$i_lo` and `$i_hi`. When `$diff` is positive, it means that there is an imbalance from below, which we have to compensate from above. When $diff is negative, the imbalance is from above, and we compensate from below. When `$diff` is zero we have to move on from either side (in this case, we get a new element from below).
+
+The `Raku` version is the same, with slight changes in syntax:
+
+<br>
+
+```perl
+#!/usr/bin/env raku
+use v6;
+sub MAIN (*@args) { put equilibrium-index(@args) }
+
+sub equilibrium-index (@n) {
+   my $i_lo = 0;
+   my $i_hi = @n.end;
+   my $diff = 0;
+   $diff += ($diff <= 0 ?? @n[$i_lo++] !! -@n[$i_hi--]) while $i_lo < $i_hi;
+   return @n && $diff == 0 ?? $i_lo !! -1;
+}
+```
+
+<br>
+
+Stay safe!
+
+<br>
+
+***
 
 If you have any suggestion then please do share with us <perlweeklychallenge@yahoo.com>.
 

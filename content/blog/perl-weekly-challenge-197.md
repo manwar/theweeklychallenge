@@ -59,7 +59,8 @@ By the way, did you know that our `Advent Calendar` is now live on [**DEV.to**](
 | &nbsp;&nbsp; `21` &nbsp;&nbsp; | &nbsp;[**Intersection on a Sunday Afternoon**](/blog/advent-calendar-2022-12-21) &nbsp; | &nbsp; `Jared Martin` &nbsp; |
 | &nbsp;&nbsp; `22` &nbsp;&nbsp; | &nbsp;[**Perl flexibility for the win**](/blog/advent-calendar-2022-12-22) &nbsp; | &nbsp; `Lance Wicks` &nbsp; |
 | &nbsp;&nbsp; `23` &nbsp;&nbsp; | &nbsp;[**Lambdas & Printf**](/blog/advent-calendar-2022-12-23) &nbsp; | &nbsp; `E. Alvarez` &nbsp; |
-| &nbsp;&nbsp; `24` &nbsp;&nbsp; | &nbsp;[**Merry Christmas**](/blog/advent-calendar-2022-12-24) &nbsp; | &nbsp; `Mohammad S Anwar` &nbsp; |
+| &nbsp;&nbsp; `24` &nbsp;&nbsp; | &nbsp;[**Equilibrium Index**](/blog/advent-calendar-2022-12-24) &nbsp; | &nbsp; `Flavio Poletti` &nbsp; |
+| &nbsp;&nbsp; `25` &nbsp;&nbsp; | &nbsp;[**Merry Christmas**](/blog/advent-calendar-2022-12-25) &nbsp; | &nbsp; `Mohammad S Anwar` &nbsp; |
 
 <br>
 
