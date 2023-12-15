@@ -55,7 +55,8 @@ Small improvement to the `Advent Calendar`, it now shows the topic and author on
 #### Day 21: [Product SubArray](/blog/advent-calendar-2021-12-21) by E. Choroba.
 #### Day 22: [Word Search](/blog/advent-calendar-2021-12-22) by Javier Luque.
 #### Day 23: [Transpose CSV File](/blog/advent-calendar-2021-12-23) by Ryan Thompson.
-#### Day 24: [Swap Odd/Even bits](/blog/advent-calendar-2021-12-24) by Mohammad S Anwar.
+#### Day 24: [Group Anagrams](/blog/advent-calendar-2021-12-24) by Flavio Poletti.
+#### Day 25: [Swap Odd/Even bits](/blog/advent-calendar-2021-12-25) by Mohammad S Anwar.
 
 <br>
 
