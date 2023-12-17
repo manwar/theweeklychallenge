@@ -23,6 +23,28 @@ The gift is presented by `Luca Ferrari`. Today he is talking about his solution 
 
 ### PWC 228 - Task 1 - Raku Implementation
 
+    You are given an array of integers.
+
+    Write a script to find out the sum of unique elements in the given array.
+
+    Example 1
+        Input: @int = (2, 1, 3, 2)
+        Output: 4
+
+        In the given array we have 2 unique elements (1, 3).
+
+    Example 2
+        Input: @int = (1, 1, 1, 1)
+        Output: 0
+
+        In the given array no unique element found.
+
+    Example 3
+        Input: @int = (2, 1, 3, 4)
+        Output: 10
+
+        In the given array every element is unique.
+
 <br>
 
 The first task was about `summing` only the `non-repeated` numbers given as input.
@@ -44,6 +66,30 @@ My solution is to classify the input array as a `Bag`, then to `grep` only those
 
 ### PWC 228 - Task 2 - Raku Implementation
 
+    You are given an array of integers in which all elements are unique.
+
+    Write a script to perform the following operations until the array is empty and return the total count of operations.
+
+    If the first element is the smallest then remove it otherwise move it to the end.
+
+    Example 1
+        Input: @int = (3, 4, 2)
+        Ouput: 5
+
+        Operation 1: move 3 to the end: (4, 2, 3)
+        Operation 2: move 4 to the end: (2, 3, 4)
+        Operation 3: remove element 2: (3, 4)
+        Operation 4: remove element 3: (4)
+        Operation 5: remove element 4: ()
+
+    Example 2
+        Input: @int = (1, 2, 3)
+        Ouput: 3
+
+        Operation 1: remove element 1: (2, 3)
+        Operation 2: remove element 2: (3)
+        Operation 3: remove element 3: ()
+
 <br>
 
 This task was about doing a kind of `bubble sort` on an array, removing the `smallest one` if it is the `leftmost`, and counting the operations required to `empty` the array.
@@ -51,7 +97,7 @@ This task was about doing a kind of `bubble sort` on an array, removing the `sma
 <br>
 
 ```perl
-isub MAIN( *@nums where { @nums.grep( * ~~ Int ).elems == @nums.elems } ) {
+sub MAIN( *@nums where { @nums.grep( * ~~ Int ).elems == @nums.elems } ) {
     my @current = @nums;
     my $moves = 0;
 
