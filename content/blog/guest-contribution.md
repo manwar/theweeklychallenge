@@ -44,6 +44,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 247](/blog/perl-weekly-challenge-247) {#247}
 <br>
 
+##### **BarrOff** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-247/barroff/julia/ch-2.jl) in **Julia**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-247/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-247/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-247/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-247/lubos-kolouch/python/ch-2.py) in **Python**.
