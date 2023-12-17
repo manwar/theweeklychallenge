@@ -9,7 +9,7 @@ tags: ["Raku"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
-### | &nbsp; [**Day 15**](/blog/advent-calendar-2023-12-15) &nbsp; | &nbsp; **Day 16** &nbsp; |
+### | &nbsp; [**Day 15**](/blog/advent-calendar-2023-12-15) &nbsp; | &nbsp; **Day 16** &nbsp; | &nbsp; [**Day 17**](/blog/advent-calendar-2023-12-17) &nbsp; |
 ***
 
 The gift is presented by `Andrew Shitov`. Today he is talking about his solution to [**The Weekly Challenge - 227**](/blog/perl-weekly-challenge-227). This is re-produced for `Advent Calendar 2023` from the original [**post**](https://andrewshitov.com/2023/07/24/counting-friday-the-13th-in-raku).
