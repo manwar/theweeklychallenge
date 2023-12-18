@@ -56,11 +56,11 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `77`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `80`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 38
+#### 1. Perl: 40
 #### 2. Raku: 19
-#### 3. Blog: 20
+#### 3. Blog: 21
 
 <br>
 
@@ -308,7 +308,7 @@ The total contributions in the week is `77`. Well done **Team PWC**. I would als
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2428), Roger Bell_West (2214), Jaldhar H. Vyas (2110), Luca Ferrari (2070), Arne Sommer (1786), Flavio Poletti (1716), Athanasius (1548), Ulrich Rieke (1386), Colin Crain (1338), Adam Russell (1174), Dave Jacoby (1116), E. Choroba (1078), Lubos Kolouch (1066), W. Luis Mochan (940), Jorg Sommrey (936), Paulo Custodio (898), James Smith (860), Simon Green (844), Duncan C. White (798), Cheok-Yin Fung (796), Abigail (794), Mark Anderson (786), Mohammad S Anwar (718), Peter Campbell Smith (652), Stuart Little (644), Jan Krnavek (600), Robert DiCicco (570), Niels van Dijke (558), Feng Chang (554), Simon Proctor (544), Bruce Gray (524), Javier Luque (460), Ruben Westerberg (452), Bob Lied (448), Thomas Kohler (418), Stephen G. Lynn (418), Ali Moradi (402), Ryan Thompson (390), Wanderdoc (386), Pete Houston (362), Matthew Neleigh (358), Robert Ransbottom (338), Joelle Maslak (338), Robbie Hatley (324), Andrezgz (260), Steven Wilson (250), David Ferrone (244), Matthias Muth (228), Yet Ebreo (226), Andrew Shitov (224), Alexander Pankoff (220), Packy Anderson (210), BarrOff (206), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Solathian (188), Marton Polgar (178), Avery Adams (176), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Kjetil Skotheim (112), Humberto Massa (112), Burkhard Nickels (108), Peter Meszaros (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (2428), Roger Bell_West (2214), Jaldhar H. Vyas (2110), Luca Ferrari (2070), Arne Sommer (1786), Flavio Poletti (1716), Athanasius (1548), Ulrich Rieke (1386), Colin Crain (1338), Adam Russell (1174), Dave Jacoby (1122), E. Choroba (1078), Lubos Kolouch (1066), W. Luis Mochan (940), Jorg Sommrey (936), Paulo Custodio (898), James Smith (860), Simon Green (844), Duncan C. White (798), Cheok-Yin Fung (796), Abigail (794), Mark Anderson (786), Mohammad S Anwar (718), Peter Campbell Smith (652), Stuart Little (644), Jan Krnavek (600), Robert DiCicco (570), Niels van Dijke (558), Feng Chang (554), Simon Proctor (544), Bruce Gray (524), Javier Luque (460), Ruben Westerberg (452), Bob Lied (448), Thomas Kohler (418), Stephen G. Lynn (418), Ali Moradi (402), Ryan Thompson (390), Wanderdoc (386), Pete Houston (362), Matthew Neleigh (358), Robert Ransbottom (338), Joelle Maslak (338), Robbie Hatley (324), Andrezgz (260), Steven Wilson (250), David Ferrone (244), Matthias Muth (228), Yet Ebreo (226), Andrew Shitov (224), Alexander Pankoff (220), Packy Anderson (210), BarrOff (206), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Solathian (188), Marton Polgar (178), Avery Adams (176), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Kjetil Skotheim (112), Humberto Massa (112), Burkhard Nickels (108), Peter Meszaros (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -342,6 +342,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ![Cheok-Yin Fung](/images/team/cheok-yin-fung.jpg)
 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-247/cheok-yin-fung/perl/ch-2.pl)]
+
+***
+
+### Dave Jacoby
+![Dave Jacoby](/images/team/dave_jacoby.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-247/dave-jacoby/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-247/dave-jacoby/perl/ch-2.pl)]
+[[**BLOG #1**](https://jacoby.github.io/2023/12/11/partidges-and-pair-trees-weekly-challenge-247.html)]
 
 ***
 

@@ -70,7 +70,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `244` &nbsp;&nbsp;|&nbsp;&nbsp; 55 &nbsp;&nbsp;|&nbsp;&nbsp; 36 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `245` &nbsp;&nbsp;|&nbsp;&nbsp; 51 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|&nbsp;&nbsp; 27 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `246` &nbsp;&nbsp;|&nbsp;&nbsp; 42 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `247` &nbsp;&nbsp;|&nbsp;&nbsp; 38 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `247` &nbsp;&nbsp;|&nbsp;&nbsp; 40 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
 
 <br>
 
@@ -109,12 +109,13 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ***
 
 #### 1. [The Santa Letters](https://raku-musings.com/santa-letters.html) by Arne Sommer.
-#### 2. [Weighing and Counting Pairs](https://github.sommrey.de/blog/pwc/challenge-247) by Jorg Sommrey.
-#### 3. [arrays everywhere!](https://fluca1978.github.io/2023/12/11/PerlWeeklyChallenge247.html) by Luca Ferrari.
-#### 4. [Writing Letter Pairs to Santa](https://packy.dardan.com/2023/12/13/perl-weekly-challenge/) by Packy Anderson.
-#### 5. [Santa’s letters](http://ccgi.campbellsmiths.force9.co.uk/challenge/247) by Peter Campbell Smith.
-#### 6. [Most Frequent Santa](https://blog.firedrake.org/archive/2023/12/The_Weekly_Challenge_247__Most_Frequent_Santa.html) by Roger Bell_West.
-#### 7. [The one about frequency](https://dev.to/simongreennet/the-one-about-frequency-la6) by Simon Green.
+#### 2. [Partridges and Pair Trees](https://jacoby.github.io/2023/12/11/partidges-and-pair-trees-weekly-challenge-247.html) by Dave Jacoby.
+#### 3. [Weighing and Counting Pairs](https://github.sommrey.de/blog/pwc/challenge-247) by Jorg Sommrey.
+#### 4. [arrays everywhere!](https://fluca1978.github.io/2023/12/11/PerlWeeklyChallenge247.html) by Luca Ferrari.
+#### 5. [Writing Letter Pairs to Santa](https://packy.dardan.com/2023/12/13/perl-weekly-challenge/) by Packy Anderson.
+#### 6. [Santa’s letters](http://ccgi.campbellsmiths.force9.co.uk/challenge/247) by Peter Campbell Smith.
+#### 7. [Most Frequent Santa](https://blog.firedrake.org/archive/2023/12/The_Weekly_Challenge_247__Most_Frequent_Santa.html) by Roger Bell_West.
+#### 8. [The one about frequency](https://dev.to/simongreennet/the-one-about-frequency-la6) by Simon Green.
 
 <br>
 
