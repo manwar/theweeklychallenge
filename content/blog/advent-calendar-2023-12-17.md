@@ -9,7 +9,7 @@ tags: ["Raku"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
-### | &nbsp; [**Day 16**](/blog/advent-calendar-2023-12-16) &nbsp; | &nbsp; **Day 17** &nbsp; |
+### | &nbsp; [**Day 16**](/blog/advent-calendar-2023-12-16) &nbsp; | &nbsp; **Day 17** &nbsp; | &nbsp; [**Day 18**](/blog/advent-calendar-2023-12-18) &nbsp; |
 ***
 
 The gift is presented by `Luca Ferrari`. Today he is talking about his solution to [**The Weekly Challenge - 228**](/blog/perl-weekly-challenge-228). This is re-produced for `Advent Calendar 2023` from the original [**post**](https://fluca1978.github.io/2023/07/31/PerlWeeklyChallenge228.html).
