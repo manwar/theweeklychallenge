@@ -9,7 +9,7 @@ tags: ["Perl", "Python"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
-### | &nbsp; [**Day 17**](/blog/advent-calendar-2023-12-17) &nbsp; | &nbsp; **Day 18** &nbsp; |
+### | &nbsp; [**Day 17**](/blog/advent-calendar-2023-12-17) &nbsp; | &nbsp; **Day 18** &nbsp; | &nbsp; [**Day 19**](/blog/advent-calendar-2023-12-19) &nbsp; |
 ***
 
 The gift is presented by `Lubos Kolouch`. Today he is talking about his solution to [**The Weekly Challenge - 233**](/blog/perl-weekly-challenge-233). This is re-produced for `Advent Calendar 2023` from the original [**post**](https://egroup.kolouch.org/nextcloud/sites/lubos/2023-09-04_Weekly_challenge_233).
