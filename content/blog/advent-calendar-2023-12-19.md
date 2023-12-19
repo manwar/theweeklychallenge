@@ -5,7 +5,7 @@ description: "Advent Calendar - December 19, 2023."
 type: post
 image: images/blog/2023-12-19.jpg
 author: Packy Anderson
-tags: ["Raku", "Raku", "Python"]
+tags: ["Perl", "Raku", "Python"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
