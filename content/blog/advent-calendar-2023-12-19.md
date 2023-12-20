@@ -9,7 +9,7 @@ tags: ["Perl", "Raku", "Python"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
-### | &nbsp; [**Day 18**](/blog/advent-calendar-2023-12-18) &nbsp; | &nbsp; **Day 19** &nbsp; |
+### | &nbsp; [**Day 18**](/blog/advent-calendar-2023-12-18) &nbsp; | &nbsp; **Day 19** &nbsp; | &nbsp; [**Day 20**](/blog/advent-calendar-2023-12-20) &nbsp; |
 ***
 
 The gift is presented by `Packy Anderson`. Today he is talking about his solution to [**The Weekly Challenge - 234**](/blog/perl-weekly-challenge-234). This is re-produced for `Advent Calendar 2023` from the original [**post**](https://packy.dardan.com/2023/09/12/perl-weekly-challenge-common-but-unequal-triplet-characters).
