@@ -134,8 +134,6 @@ This task sounded more complicated so I will be curious to see if others took a 
  &nbsp; [**Raku**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/raku/ch-2.raku) &nbsp; |
  &nbsp; [**Python**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/python/ch-2.py) &nbsp; ]
 
-<br>
-
 ***
 
 If you have any suggestion then please do share with us <perlweeklychallenge@yahoo.com>.
