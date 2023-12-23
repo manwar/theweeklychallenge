@@ -14,7 +14,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Advent Calendar - December 22, 2023.">
+    <meta name="description" content="Advent Calendar - December 23, 2023.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
@@ -23,7 +23,7 @@
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Advent Calendar - December 22, 2023</title>
+    <title>Advent Calendar - December 23, 2023</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -179,11 +179,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Advent Calendar - December 22, 2023</h2>
+                    <h2>Advent Calendar - December 23, 2023</h2>
                     <div class="portfolio-meta">
-                        <span>Friday, Dec 22, 2023</span>|
+                        <span>Saturday, Dec 23, 2023</span>|
                         <span> Tags:
-                            Perl
+                            Perl, Raku, Python
                         </span>
                     </div>
                 </div>
@@ -198,131 +198,94 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2023-12-22.jpg">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2023-12-23.jpg">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
                     <h2 id="advent-calendar-2023blogadvent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
-<h3 id="-nbsp-day-21blogadvent-calendar-2023-12-21-nbsp--nbsp-day-22-nbsp--nbsp-day-23blogadvent-calendar-2023-12-23-nbsp-">|   <a href="/blog/advent-calendar-2023-12-21"><strong>Day 21</strong></a>   |   <strong>Day 22</strong>   |   <a href="/blog/advent-calendar-2023-12-23"><strong>Day 23</strong></a>   |</h3>
+<h3 id="-nbsp-day-22blogadvent-calendar-2023-12-22-nbsp--nbsp-day-23-nbsp-">|   <a href="/blog/advent-calendar-2023-12-22"><strong>Day 22</strong></a>   |   <strong>Day 23</strong>   |</h3>
 <hr>
-<p>The gift is presented by <code>Augie De Blieck Jr.</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-238"><strong>The Weekly Challenge - 238</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://variousandsundry.com/running-sum-or-i-love-recursion/"><strong>post</strong></a>.</p>
+<p>The gift is presented by <code>Ian Rifkin</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-240"><strong>The Weekly Challenge - 240</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://github.com/ianrifkin/perlweeklychallenge-club/blob/ianrifkin-challenge-240/challenge-240/ianrifkin/README.md"><strong>post</strong></a>.</p>
 <hr>
 <br>
-<p><a href="https://theweeklychallenge.org"><strong>The Weekly Challenge began as a Perl-focused exercise</strong></a> but has since expanded to let any and all languages in. It’s still mostly <code>Perl</code>, but I’ll be using it as an avenue to explore other languages, as well.</p>
-<br>
-<h2 id="running-sum">Running Sum</h2>
+<h2 id="aaba-acronym-and-build-array">A.A.B.A. (Acronym And Build Array)</h2>
 <hr>
-<p>This week’s challenge is to write a script that takes an array and outputs an array where each value is a sum of the numbers before it.</p>
-<p>For example:</p>
-<pre><code>Input: (1, 2, 3, 4, 5)
-Output: (1, 3, 6, 10, 15)
+<h3 id="task-1-acronym">Task 1: Acronym</h3>
+<pre><code>You are given an array of strings and a check string.
+Write a script to find out if the check string is the acronym of the words in the given array.
+
+Example 1
+
+    Input: @str = (&quot;Perl&quot;, &quot;Python&quot;, &quot;Pascal&quot;)
+           $chk = &quot;ppp&quot;
+       Output: true
+
+Example 2
+
+       Input: @str = (&quot;Perl&quot;, &quot;Raku&quot;)
+           $chk = &quot;rp&quot;
+         Output: false
+
+Example 3
+
+    Input: @str = (&quot;Oracle&quot;, &quot;Awk&quot;, &quot;C&quot;)
+           $chk = &quot;oac&quot;
+    Output: true
 </code></pre>
 <br>
-<p>This one is fairly straightforward. You can loop right over it and add the numbers as you go pretty quickly:</p>
+<p>I am sure there are plenty of more interesting ways to solve this but the way my mind works is to create a real acronym by looping through each word in the in the input array to get the first letter.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Data::Dumper <span style="color:#e6db74">qw/Dumper/</span>;
-
-<span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
-<span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">my</span> @sum_array <span style="color:#f92672">=</span> map{ $sum <span style="color:#f92672">+=</span> $_; } @array;
-
-<span style="color:#66d9ef">print</span> Dumper <span style="color:#f92672">\</span>@sum_array;
-</code></pre></div><br>
-<p><code>That’s pretty simple, I think</code>. I also have a <code>&quot;use strict&quot;</code> and <code>&quot;use warnings&quot;</code> bit at the top, but didn’t think it was necessary for this presentation.</p>
-<p><code>The variable names are pretty direct</code>, also. In a real world scenario, I wouldn’t name an array <code>@array</code>, but in a challenge like this, it’s fine.</p>
-<p><code>I love using Data::Dumper</code> to easily print out all kinds of variables in <code>Perl</code>, but especially <code>hashes of hashes</code> and <code>arrays of hashes</code> and all that second level kind of craziness.</p>
-<p>I spent just enough time learning functional programming to take any excuse to use <code>map{}</code> or <code>grep{}</code> in <code>Perl</code>. In my first version of this script, I was updating <code>@sum_array</code> inside the <code>map</code> statement. Then I realized how silly that was. If you’re mapping over something, the <code>map</code> command will produce a new array — just capture that!</p>
-<p>There is some advice out there about not using <code>map</code> in place of a <code>for</code> or <code>foreach</code> loop. It’s meant as a data filter. I don’t always follow that advice, but I try to. That’s what I did here.</p>
-<p><code>Two related hills I’ll die on</code>: Don’t take the increment/decrement counter away from me, and let me have <code>“+=”</code> and <code>“*=”</code> and all the rest. It always throws me off when a language doesn’t have that.</p>
-<br>
-<h2 id="refactor-for-prettiness">Refactor for Prettiness</h2>
-<hr>
-<p>Having solved the issue, I took the challenge literally. <code>Data::Dumper</code> doesn’t print out an array like this:</p>
-<br>
-<pre><code>(1, 3, 6, 10, 15)
-</code></pre>
-<br>
-<p>It shows it like this:</p>
-<br>
-<pre><code>$VAR1 = [
-      1,
-      3,
-      6,
-      10,
-      15
-    ];
-</code></pre>
-<br>
-<p><code>So I had to create a prettier printer</code>. While I’m sure there are a hundred good <code>Perl</code> modules I could download from <code>CPAN</code> to do it, I wanted to code something myself for this challenge.</p>
-<p>That’s how I ended up with this code at the end, including a bit of code to run all three examples from the challenge:</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Test Data:</span>
-<span style="color:#66d9ef">my</span> @test1 <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
-<span style="color:#66d9ef">my</span> @test2 <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
-<span style="color:#66d9ef">my</span> @test3 <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
-<span style="color:#66d9ef">my</span> @array_examples <span style="color:#f92672">=</span> (<span style="color:#f92672">\</span>@test1, <span style="color:#f92672">\</span>@test2, <span style="color:#f92672">\</span>@test3);
-
-
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Running Sum Code Results:\n&#34;</span>;
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;=========================\n\n&#34;</span>;
-
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $array_ref (@array_examples) {
-
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Array: &#34;</span> ;
-    pretty_print_array( $array_ref );
-
-    <span style="color:#66d9ef">my</span> @results <span style="color:#f92672">=</span> show_running_sum($array_ref);
-
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Results: &#34;</span>;
-    pretty_print_array(<span style="color:#f92672">\</span>@results);
-
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
-
-}
-
-<span style="color:#75715e">##</span>
-<span style="color:#75715e">## Subroutines</span>
-<span style="color:#75715e">##</span>
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_running_sum</span> {
-
-    <span style="color:#75715e">## Ultimately, this is the heart of the solution</span>
-
-    <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> @{ shift() };
-    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-    <span style="color:#66d9ef">return</span> map{ $sum <span style="color:#f92672">+=</span> $_ } @array;
-
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pretty_print_array</span> {
-
-    <span style="color:#75715e">## Total overkill, but I&#39;m new and over-enthusiastic.</span>
-    <span style="color:#75715e">## In reality, I&#39;d find something on CPAN for this.</span>
-
-
-    <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> @{ shift() };
-    <span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> scalar @array;
-    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;(&#34;</span>;
-
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $value(@array) {
-        <span style="color:#66d9ef">print</span> $value;
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;, &#34;</span> <span style="color:#66d9ef">if</span> $count <span style="color:#f92672">&lt;</span> $length;
-        $count<span style="color:#f92672">++</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_acronym</span> {
+    <span style="color:#66d9ef">my</span> ($acronym, $words) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $real_acronym;
+    <span style="color:#66d9ef">foreach</span> (@{$words}) {
+        $real_acronym <span style="color:#f92672">.=</span> substr($_, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>);
     }
+</code></pre></div><br>
+<p>With that in place just compare the strings, forcing them both into uppercase so that it&rsquo;s a case insensitive comparison. You could also do this with a simple <code>RegEx</code> compare but this feels simpler to write/read to my brain.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">uc($acronym) <span style="color:#f92672">eq</span> uc($real_acronym) ? <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;true\n&#34;</span> : <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;false\n&#34;</span>;
+</code></pre></div><br>
+<p>I did a similar approach with <code>Raku</code> and <code>Python</code>. With <code>Perl</code> the final print statement is a conditional so that it will print the words <code>&quot;true&quot;</code> or <code>&quot;false&quot;</code> instead of <code>0</code> or <code>1</code> but that&rsquo;s not needed with <code>Python</code> and <code>Raku</code>.</p>
+<br>
+<h3 id="source-code">Source Code</h3>
+<hr>
+<p>[   <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/perl/ch-1.pl"><strong>Perl</strong></a>   |
+  <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/raku/ch-1.raku"><strong>Raku</strong></a>   |
+  <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/python/ch-1.py"><strong>Python</strong></a>   ]</p>
+<br>
+<h3 id="task-2-build-array">Task 2: Build Array</h3>
+<pre><code>You are given an array of integers.
+Write a script to create an array such that new[i] = old[old[i]] where 0 &lt;= i &lt; new.length.
 
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;)\n&#34;</span>;
+Example 1
+    Input: @int = (0, 2, 1, 5, 3, 4)
+    Output: (0, 1, 2, 4, 5, 3)
 
-    <span style="color:#66d9ef">return</span>;
+Example 2
+    Input: @int = (5, 0, 1, 2, 3, 4)
+    Output: (4, 5, 0, 1, 2, 3)
+</code></pre>
+<br>
+<p>Doing <code>new[i] = old[old[i]]</code> seemed simple enough but I do have trouble mentally processing where <code>0 &lt;= i &lt; new.length</code>. If <code>i</code> is a postion of the input array it is always going to be equal to or greater than <code>0</code> because of how arrays are numbered. Since each <code>new[i]</code> is mapped to a value calculated from the old array they should naturally end up the same length, so <code>i</code> should never be longer than <code>new.length</code> because <code>i</code> shouldn&rsquo;t be less than <code>old.length</code> either.</p>
+<p>With that out of the way, I did a simple for loop using the iterator variable <code>$i</code> &ndash; within the loop I am literally just doing the exact mapping from the question: <code>new[i] = old[old[i]]</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @ints; $i<span style="color:#f92672">++</span>) {
+    $new_ints[$i] <span style="color:#f92672">=</span> $ints[$ints[$i]];
 }
 </code></pre></div><br>
-<p>Turns out, making the final output look prettier took more coding than the challenge, itself. Such is life sometimes…</p>
-<p>I’m also sure there are shorter, less readable ways to do it. I’ll take this way. I’ll take readability over <code>Perl Golf</code>, though I do enjoy those efforts.</p>
-<p>Putting everything in new neat subroutines makes testing easier, also, though I didn’t test for this example. I’m sure I’ll do some <code>TDD</code> in a future weekly challenge, though.</p>
-<p><a href="https://github.com/augiedb/perlweeklychallenge-club/blob/new-branch/challenge-238/augiedb/perl/ch-1.pl"><strong>You can find the full script on my Github</strong></a>.</p>
-<p>I also solved this challenge in <a href="https://github.com/augiedb/perlweeklychallenge-club/blob/new-branch/challenge-238/augiedb/elixir/ch-1.exs"><strong>Elixir</strong></a>, in case you are functionally-curious.</p>
+<p>That&rsquo;s it! After the loop I print the new array in the desired format:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;(&#34;</span> <span style="color:#f92672">.</span> join(<span style="color:#e6db74">&#39;, &#39;</span>, @new_ints) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;)\n&#34;</span>;
+</code></pre></div><br>
+<p>This task sounded more complicated so I will be curious to see if others took a more interesting approach.</p>
+<br>
+<h3 id="source-code-1">Source Code</h3>
+<hr>
+<p>[   <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/perl/ch-2.pl"><strong>Perl</strong></a>   |
+  <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/raku/ch-2.raku"><strong>Raku</strong></a>   |
+  <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/python/ch-2.py"><strong>Python</strong></a>   ]</p>
+<br>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p>|   <a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a>   |</p>

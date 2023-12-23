@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
-### | &nbsp; [**Day 21**](/blog/advent-calendar-2023-12-21) &nbsp; | &nbsp; **Day 22** &nbsp; |
+### | &nbsp; [**Day 21**](/blog/advent-calendar-2023-12-21) &nbsp; | &nbsp; **Day 22** &nbsp; | &nbsp; [**Day 23**](/blog/advent-calendar-2023-12-23) &nbsp; |
 ***
 
 The gift is presented by `Augie De Blieck Jr.`. Today he is talking about his solution to [**The Weekly Challenge - 238**](/blog/perl-weekly-challenge-238). This is re-produced for `Advent Calendar 2023` from the original [**post**](https://variousandsundry.com/running-sum-or-i-love-recursion/).
