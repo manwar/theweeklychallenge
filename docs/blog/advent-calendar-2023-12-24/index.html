@@ -14,7 +14,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Advent Calendar - December 23, 2023.">
+    <meta name="description" content="Advent Calendar - December 24, 2023.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
@@ -23,7 +23,7 @@
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Advent Calendar - December 23, 2023</title>
+    <title>Advent Calendar - December 24, 2023</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -179,11 +179,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Advent Calendar - December 23, 2023</h2>
+                    <h2>Advent Calendar - December 24, 2023</h2>
                     <div class="portfolio-meta">
-                        <span>Saturday, Dec 23, 2023</span>|
+                        <span>Sunday, Dec 24, 2023</span>|
                         <span> Tags:
-                            Perl, Raku, Python
+                            Perl
                         </span>
                     </div>
                 </div>
@@ -198,94 +198,278 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2023-12-23.jpg">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2023-12-24.jpg">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
                     <h2 id="advent-calendar-2023blogadvent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
-<h3 id="-nbsp-day-22blogadvent-calendar-2023-12-22-nbsp--nbsp-day-23-nbsp--nbsp-day-24blogadvent-calendar-2023-12-24-nbsp-">|   <a href="/blog/advent-calendar-2023-12-22"><strong>Day 22</strong></a>   |   <strong>Day 23</strong>   |   <a href="/blog/advent-calendar-2023-12-24"><strong>Day 24</strong></a>   |</h3>
+<h3 id="-nbsp-day-23blogadvent-calendar-2023-12-23-nbsp--nbsp-day-24-nbsp-">|   <a href="/blog/advent-calendar-2023-12-23"><strong>Day 23</strong></a>   |   <strong>Day 24</strong>   |</h3>
 <hr>
-<p>The gift is presented by <code>Ian Rifkin</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-240"><strong>The Weekly Challenge - 240</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://github.com/ianrifkin/perlweeklychallenge-club/blob/ianrifkin-challenge-240/challenge-240/ianrifkin/README.md"><strong>post</strong></a>.</p>
+<p>The gift is presented by <code>Jorg Sommrey</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-243"><strong>The Weekly Challenge - 243</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-243/jo-37/blog/Blog.md"><strong>post</strong></a>.</p>
 <hr>
 <br>
-<h2 id="aaba-acronym-and-build-array">A.A.B.A. (Acronym And Build Array)</h2>
+<h2 id="count-the-pairs-on-the-floor">Count the Pairs on the Floor</h2>
 <hr>
-<h3 id="task-1-acronym">Task 1: Acronym</h3>
-<pre><code>You are given an array of strings and a check string.
-Write a script to find out if the check string is the acronym of the words in the given array.
-
-Example 1
-
-    Input: @str = (&quot;Perl&quot;, &quot;Python&quot;, &quot;Pascal&quot;)
-           $chk = &quot;ppp&quot;
-       Output: true
-
-Example 2
-
-       Input: @str = (&quot;Perl&quot;, &quot;Raku&quot;)
-           $chk = &quot;rp&quot;
-         Output: false
-
-Example 3
-
-    Input: @str = (&quot;Oracle&quot;, &quot;Awk&quot;, &quot;C&quot;)
-           $chk = &quot;oac&quot;
-    Output: true
-</code></pre>
-<br>
-<p>I am sure there are plenty of more interesting ways to solve this but the way my mind works is to create a real acronym by looping through each word in the in the input array to get the first letter.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_acronym</span> {
-    <span style="color:#66d9ef">my</span> ($acronym, $words) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $real_acronym;
-    <span style="color:#66d9ef">foreach</span> (@{$words}) {
-        $real_acronym <span style="color:#f92672">.=</span> substr($_, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>);
-    }
-</code></pre></div><br>
-<p>With that in place just compare the strings, forcing them both into uppercase so that it&rsquo;s a case insensitive comparison. You could also do this with a simple <code>RegEx</code> compare but this feels simpler to write/read to my brain.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">uc($acronym) <span style="color:#f92672">eq</span> uc($real_acronym) ? <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;true\n&#34;</span> : <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;false\n&#34;</span>;
-</code></pre></div><br>
-<p>I did a similar approach with <code>Raku</code> and <code>Python</code>. With <code>Perl</code> the final print statement is a conditional so that it will print the words <code>&quot;true&quot;</code> or <code>&quot;false&quot;</code> instead of <code>0</code> or <code>1</code> but that&rsquo;s not needed with <code>Python</code> and <code>Raku</code>.</p>
-<br>
-<h3 id="source-code">Source Code</h3>
-<hr>
-<p>[   <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/perl/ch-1.pl"><strong>Perl</strong></a>   |
-  <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/raku/ch-1.raku"><strong>Raku</strong></a>   |
-  <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/python/ch-1.py"><strong>Python</strong></a>   ]</p>
-<br>
-<h3 id="task-2-build-array">Task 2: Build Array</h3>
+<h3 id="task-1-reverse-pairs">Task 1: Reverse Pairs</h3>
 <pre><code>You are given an array of integers.
-Write a script to create an array such that new[i] = old[old[i]] where 0 &lt;= i &lt; new.length.
 
-Example 1
-    Input: @int = (0, 2, 1, 5, 3, 4)
-    Output: (0, 1, 2, 4, 5, 3)
+Write a script to return the number of reverse pairs in the given array.
 
-Example 2
-    Input: @int = (5, 0, 1, 2, 3, 4)
-    Output: (4, 5, 0, 1, 2, 3)
+A reverse pair is a pair (i, j) where: a) 0 &lt;= i &lt; j &lt; nums.length and b) nums[i] &gt; 2 * nums[j].
+
+Example 1:
+    Input: @nums = (1, 3, 2, 3, 1)
+    Output: 2
+
+    (1, 4) =&gt; nums[1] = 3, nums[4] = 1, 3 &gt; 2 * 1
+    (3, 4) =&gt; nums[3] = 3, nums[4] = 1, 3 &gt; 2 * 1
+
+Example 2:
+    Input: @nums = (2, 4, 3, 5, 1)
+    Output: 3
+
+    (1, 4) =&gt; nums[1] = 4, nums[4] = 1, 4 &gt; 2 * 1
+    (2, 4) =&gt; nums[2] = 3, nums[4] = 1, 3 &gt; 2 * 1
+    (3, 4) =&gt; nums[3] = 5, nums[4] = 1, 5 &gt; 2 * 1
 </code></pre>
 <br>
-<p>Doing <code>new[i] = old[old[i]]</code> seemed simple enough but I do have trouble mentally processing where <code>0 &lt;= i &lt; new.length</code>. If <code>i</code> is a postion of the input array it is always going to be equal to or greater than <code>0</code> because of how arrays are numbered. Since each <code>new[i]</code> is mapped to a value calculated from the old array they should naturally end up the same length, so <code>i</code> should never be longer than <code>new.length</code> because <code>i</code> shouldn&rsquo;t be less than <code>old.length</code> either.</p>
-<p>With that out of the way, I did a simple for loop using the iterator variable <code>$i</code> &ndash; within the loop I am literally just doing the exact mapping from the question: <code>new[i] = old[old[i]]</code></p>
+<h3 id="solution">Solution</h3>
+<p>Using the <code>Perl Data Language</code> to solve this task.</p>
+<p>First we create a <code>1-d long ndarray</code> from the given numbers.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @ints; $i<span style="color:#f92672">++</span>) {
-    $new_ints[$i] <span style="color:#f92672">=</span> $ints[$ints[$i]];
+<pre><code>$nums = long 1, 3, 2, 3, 1;
+</code></pre>
+<br>
+<p>Then we create a sequence in the same shape as <code>$nums</code>, i.e. a <code>1-d ndarray</code> holding the column indices of <code>$nums</code> and a second sequence as a single column holding the row indices. When combining these index <code>ndarrays</code>, according to <code>PDL</code>'s broadcasting rules both will be extended by replicating along a dimension to fit each other. For visualization, these replications may be performed explicitly:</p>
+<br>
+<h3 id="a-add-a-dummy-dimension-1-to-the-row-and-replicate-it-five-times">A) Add a dummy dimension 1 to the row and replicate it five times.</h3>
+<br>
+<pre><code>say sequence(5)-&gt;dup(1, 5);
+[
+  [0 1 2 3 4]
+ [0 1 2 3 4]
+ [0 1 2 3 4]
+ [0 1 2 3 4]
+ [0 1 2 3 4]
+]
+</code></pre>
+<br>
+<h3 id="b-replicate-dimension-0-of-the-column-five-times">B) Replicate dimension 0 of the column five times.</h3>
+<br>
+<pre><code>say sequence(1, 5)-&gt;dup(0, 5);
+[
+  [0 0 0 0 0]
+ [1 1 1 1 1]
+ [2 2 2 2 2]
+ [3 3 3 3 3]
+ [4 4 4 4 4]
+]
+</code></pre>
+<br>
+<p>Hence we get an upper right triangular matrix of ones when comparing the indices:</p>
+<br>
+<pre><code>say sequence($nums) &gt; sequence(1, $nums-&gt;dim(0));
+[
+ [0 1 1 1 1]
+ [0 0 1 1 1]
+ [0 0 0 1 1]
+ [0 0 0 0 1]
+ [0 0 0 0 0]
+]
+</code></pre>
+<br>
+<p>In the same manner we can compare <code>$nums</code> as a column with itself as a doubled row:</p>
+<br>
+<pre><code>say $nums-&gt;dummy(0) &gt; 2 * $nums
+[
+ [0 0 0 0 0]
+ [1 0 0 0 1]
+ [0 0 0 0 0]
+ [1 0 0 0 1]
+ [0 0 0 0 0]
+]
+</code></pre>
+<br>
+<p>The <code>&quot;bit and&quot;</code> of both matrices literally follows the definition of reverse pairs. The sum over the and&rsquo;ed matrices yields the total number of reverse pairs:</p>
+<br>
+<pre><code>((sequence($nums) &gt; sequence(1, $nums-&gt;dim(0)))
+&amp; ($nums-&gt;dummy(0) &gt; 2 * $nums))-&gt;sum;
+</code></pre>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl -s</span>
+
+<span style="color:#66d9ef">use</span> Test2::V0 <span style="color:#e6db74">&#39;!float&#39;</span>;
+<span style="color:#66d9ef">use</span> PDL;
+
+<span style="color:#66d9ef">our</span> ($tests, $examples);
+
+run_tests() <span style="color:#66d9ef">if</span> $tests <span style="color:#f92672">||</span> $examples;    <span style="color:#75715e"># does not return</span>
+
+die <span style="color:#f92672">&lt;&lt;</span>EOS <span style="color:#66d9ef">unless</span> @ARGV;
+usage: $0 [<span style="color:#f92672">-</span>examples] [<span style="color:#f92672">-</span>tests] [<span style="color:#f92672">--</span>] [N<span style="color:#f92672">...</span>]
+
+<span style="color:#f92672">-</span>examples
+    run the examples from the challenge
+
+<span style="color:#f92672">-</span>tests
+    run some tests
+
+N<span style="color:#f92672">...</span>
+    list of integers
+
+EOS
+
+
+<span style="color:#75715e">### Input and Output</span>
+
+say count_reverse_pairs(@ARGV);
+
+
+<span style="color:#75715e">### Implementation</span>
+
+<span style="color:#75715e"># Count element pairs where $j &gt; $i and $nums[$i] &gt; 2 * $nums[$j].</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_reverse_pairs</span> {
+    <span style="color:#66d9ef">my</span> $nums <span style="color:#f92672">=</span> long @_;
+
+    ((sequence($nums) <span style="color:#f92672">&gt;</span> sequence(<span style="color:#ae81ff">1</span>, $nums<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">0</span>)))
+        <span style="color:#f92672">&amp;</span> ($nums<span style="color:#f92672">-&gt;</span>dummy(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $nums))<span style="color:#f92672">-&gt;</span>sum;
+}
+
+
+<span style="color:#75715e">### Examples and tests</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run_tests</span> {
+    SKIP: {
+        skip <span style="color:#e6db74">&#34;examples&#34;</span> <span style="color:#66d9ef">unless</span> $examples;
+
+        is count_reverse_pairs(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;example 1&#39;</span>;
+        is count_reverse_pairs(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;example 2&#39;</span>;
+    }
+
+    SKIP: {
+        skip <span style="color:#e6db74">&#34;tests&#34;</span> <span style="color:#66d9ef">unless</span> $tests;
+
+        is count_reverse_pairs(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;zero and negative&#39;</span>;
+    }
+
+    done_testing;
+    exit;
 }
 </code></pre></div><br>
-<p>That&rsquo;s it! After the loop I print the new array in the desired format:</p>
+<h3 id="task-2-floor-sum">Task 2: Floor Sum</h3>
+<pre><code>You are given an array of positive integers (&gt;=1).
+
+Write a script to return the sum of floor(nums[i] / nums[j]) where 0 &lt;= i,j &lt; nums.length.
+The floor() function returns the integer part of the division.
+
+Example 1
+
+    Input: @nums = (2, 5, 9)
+    Output: 10
+
+    floor(2 / 5) = 0
+    floor(2 / 9) = 0
+    floor(5 / 9) = 0
+    floor(2 / 2) = 1
+    floor(5 / 5) = 1
+    floor(9 / 9) = 1
+    floor(5 / 2) = 2
+    floor(9 / 2) = 4
+    floor(9 / 5) = 1
+
+Example 2
+
+    Input: @nums = (7, 7, 7, 7, 7, 7, 7)
+    Output: 49
+</code></pre>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;(&#34;</span> <span style="color:#f92672">.</span> join(<span style="color:#e6db74">&#39;, &#39;</span>, @new_ints) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;)\n&#34;</span>;
-</code></pre></div><br>
-<p>This task sounded more complicated so I will be curious to see if others took a more interesting approach.</p>
+<h3 id="solution-1">Solution</h3>
+<p>Again, using <code>PDL</code>.</p>
+<p>Creating a <code>1-d double ndarray</code> from the given numbers:</p>
 <br>
-<h3 id="source-code-1">Source Code</h3>
-<hr>
-<p>[   <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/perl/ch-2.pl"><strong>Perl</strong></a>   |
-  <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/raku/ch-2.raku"><strong>Raku</strong></a>   |
-  <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-240/ianrifkin/python/ch-2.py"><strong>Python</strong></a>   ]</p>
-<hr>
+<pre><code>$nums = pdl 2, 5, 9;
+</code></pre>
+<br>
+<p>Divide <code>$nums</code> as row by <code>$nums</code> as column in the same manner as in <code>task 1</code> and apply <code>floor()</code>:</p>
+<br>
+<pre><code>say floor $nums / $nums-&gt;dummy(0);
+[
+  [1 2 4]
+ [0 1 1]
+ [0 0 1]
+]
+</code></pre>
+<br>
+<p>Finally, sum over this matrix:</p>
+<br>
+<pre><code>floor($nums / $nums-&gt;dummy(0))-&gt;sum;
+</code></pre>
+<br>
+<p>This works not only for positive integers but for all non-zero integers.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl -s</span>
+
+<span style="color:#66d9ef">use</span> Test2::V0 <span style="color:#e6db74">&#39;!float&#39;</span>;
+<span style="color:#66d9ef">use</span> PDL;
+
+<span style="color:#66d9ef">our</span> ($tests, $examples);
+
+run_tests() <span style="color:#66d9ef">if</span> $tests <span style="color:#f92672">||</span> $examples;    <span style="color:#75715e"># does not return</span>
+
+die <span style="color:#f92672">&lt;&lt;</span>EOS <span style="color:#66d9ef">unless</span> @ARGV;
+usage: $0 [<span style="color:#f92672">-</span>examples] [<span style="color:#f92672">-</span>tests] [N<span style="color:#f92672">...</span>]
+
+<span style="color:#f92672">-</span>examples
+    run the examples from the challenge
+
+<span style="color:#f92672">-</span>tests
+    run some tests
+
+N<span style="color:#f92672">...</span>
+    list of positive integers
+
+EOS
+
+
+<span style="color:#75715e">### Input and Output</span>
+
+say floor_sum(@ARGV);
+
+
+<span style="color:#75715e">### Implementation</span>
+
+<span style="color:#75715e"># Sum over floor($nums[$i] / $nums[$j]).</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">floor_sum</span> {
+    <span style="color:#66d9ef">my</span> $nums <span style="color:#f92672">=</span> pdl @_;
+
+    floor($nums <span style="color:#f92672">/</span> $nums<span style="color:#f92672">-&gt;</span>dummy(<span style="color:#ae81ff">0</span>))<span style="color:#f92672">-&gt;</span>sum;
+}
+
+
+<span style="color:#75715e">### Examples and tests</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run_tests</span> {
+    SKIP: {
+        skip <span style="color:#e6db74">&#34;examples&#34;</span> <span style="color:#66d9ef">unless</span> $examples;
+
+        is floor_sum(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>), <span style="color:#ae81ff">10</span>, <span style="color:#e6db74">&#39;example 1&#39;</span>;
+        is floor_sum(<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>), <span style="color:#ae81ff">49</span>, <span style="color:#e6db74">&#39;example 2&#39;</span>;
+    }
+
+    SKIP: {
+        skip <span style="color:#e6db74">&#34;tests&#34;</span> <span style="color:#66d9ef">unless</span> $tests;
+
+        <span style="color:#75715e"># floor(3 / (-2)) = -2</span>
+        <span style="color:#75715e"># floor((-2) / 3) = -1</span>
+        is floor_sum(<span style="color:#ae81ff">3</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;negative elements&#39;</span>;
+    }
+
+    done_testing;
+    exit;
+}
+</code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p>|   <a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a>   |</p>
 

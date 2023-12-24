@@ -9,7 +9,7 @@ tags: ["Perl", "Raku", "Python"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
-### | &nbsp; [**Day 22**](/blog/advent-calendar-2023-12-22) &nbsp; | &nbsp; **Day 23** &nbsp; |
+### | &nbsp; [**Day 22**](/blog/advent-calendar-2023-12-22) &nbsp; | &nbsp; **Day 23** &nbsp; | &nbsp; [**Day 24**](/blog/advent-calendar-2023-12-24) &nbsp; |
 ***
 
 The gift is presented by `Ian Rifkin`. Today he is talking about his solution to [**The Weekly Challenge - 240**](/blog/perl-weekly-challenge-240). This is re-produced for `Advent Calendar 2023` from the original [**post**](https://github.com/ianrifkin/perlweeklychallenge-club/blob/ianrifkin-challenge-240/challenge-240/ianrifkin/README.md).
