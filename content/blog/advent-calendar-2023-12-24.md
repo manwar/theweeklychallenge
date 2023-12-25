@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2023**](/blog/advent-calendar-2023)
-### | &nbsp; [**Day 23**](/blog/advent-calendar-2023-12-23) &nbsp; | &nbsp; **Day 24** &nbsp; |
+### | &nbsp; [**Day 23**](/blog/advent-calendar-2023-12-23) &nbsp; | &nbsp; **Day 24** &nbsp; | &nbsp; [**Day 25**](/blog/advent-calendar-2023-12-25) &nbsp; |
 ***
 
 The gift is presented by `Jorg Sommrey`. Today he is talking about his solution to [**The Weekly Challenge - 243**](/blog/perl-weekly-challenge-243). This is re-produced for `Advent Calendar 2023` from the original [**post**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-243/jo-37/blog/Blog.md).

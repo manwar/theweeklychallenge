@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar 2023"
-date: 2023-12-24T00:00:00+00:00
+date: 2023-12-25T00:00:00+00:00
 description: "Advent Calendar 2023."
 type: post
 image: images/blog/advent-calendar-2023.jpg
@@ -30,6 +30,6 @@ tags: ["Perl", "Raku"]
 | | | | | | | |
 | [![Day 18](/images/blog/2023-12-18-thumbnail.jpg "Similar Words / Frequency Sort by Lubos Kolouch")](/blog/advent-calendar-2023-12-18)<br>[**`18`**](/blog/advent-calendar-2023-12-18) | [![Day 19](/images/blog/2023-12-19-thumbnail.jpg "Common, but Unequal, Triplet Characters by Packy Anderson")](/blog/advent-calendar-2023-12-19)<br>[**`19`**](/blog/advent-calendar-2023-12-19) | [![Day 20](/images/blog/2023-12-20-thumbnail.jpg "Remove One / Duplicate Zeros by Jaldhar H. Vyas")](/blog/advent-calendar-2023-12-20)<br>[**`20`**](/blog/advent-calendar-2023-12-20) | [![Day 21](/images/blog/2023-12-21-thumbnail.jpg "Seize The Day and Maximise Greatness by Yves Orton")](/blog/advent-calendar-2023-12-21)<br>[**`21`**](/blog/advent-calendar-2023-12-21) | [![Day 22](/images/blog/2023-12-22-thumbnail.jpg "Running Sum by Augie De Blieck Jr.")](/blog/advent-calendar-2023-12-22)<br>[**`22`**](/blog/advent-calendar-2023-12-22) | [![Day 23](/images/blog/2023-12-23-thumbnail.jpg "A.A.B.A. (Acronym And Build Array) by Ian Rifkin")](/blog/advent-calendar-2023-12-23)<br>[**`23`**](/blog/advent-calendar-2023-12-23) | [![Day 24](/images/blog/2023-12-24-thumbnail.jpg "Count the Pairs on the Floor by Jorg Sommrey")](/blog/advent-calendar-2023-12-24)<br>[**`24`**](/blog/advent-calendar-2023-12-24) |
 | | | | | | | |
-| ![Day 25](/images/blog/2023-12-25-thumbnail.jpg)<br>**`25`**<br> | <br><br>**`26`**<br> | <br><br>**`27`**<br> | <br><br>**`28`**<br>  | <br><br>**`29`**<br> | <br><br>**`30`**<br> | <br><br>**`31`**<br> |
+| [![Day 25](/images/blog/2023-12-25-thumbnail.jpg "Uniqueness by Cheok-Yin Fung")](/blog/advent-calendaer-2023-12-25)<br>[**`25`**](/blog/advent-calendar-2023-12-25) | <br><br>**`26`**<br> | <br><br>**`27`**<br> | <br><br>**`28`**<br>  | <br><br>**`29`**<br> | <br><br>**`30`**<br> | <br><br>**`31`**<br> |
 | | | | | | | |
 ***
