@@ -196,7 +196,7 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 
 <br>
 
-## Task 1: Shortest Distance {#TASK1}
+## Task 1: Equal Pairs {#TASK1}
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
