@@ -196,7 +196,7 @@ Write a script to find the smallest index `i` such that `i mod 10 == $ints[i]` o
 
 #### Example 3
 
-    Input: @ints = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+    Input: @ints = (1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
     Output: -1
     Explanation: No index satisfies i mod 10 == $ints[i].
 
