@@ -47,7 +47,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 12850 (63%)
+#### 1. Perl: 12851 (63%)
 #### 2. Raku: 7406 (37%)
 #### 3. Blog: 4352
 
@@ -56,9 +56,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `95`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `96`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 48
+#### 1. Perl: 49
 #### 2. Raku: 24
 #### 3. Blog: 23
 
@@ -336,6 +336,13 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-249/deadmarshal/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-249/deadmarshal/perl/ch-2.pl)]
 [[**BLOG #1**](https://deadmarshal.blogspot.com/2023/12/twc249.html)]
+
+***
+
+### Andrew Mehta
+![Andrew Mehta](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-249/andrew_mehta/perl/ch-1.pl)]
 
 ***
 
