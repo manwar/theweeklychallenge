@@ -340,7 +340,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Andrew Mehta
-![Andrew Mehta](/images/team/user.jpg)
+![Andrew Mehta](/images/team/andrew-mehta.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-249/andrew_mehta/perl/ch-1.pl)]
 
