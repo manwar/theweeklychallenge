@@ -615,9 +615,9 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/laurent-rosenfeld/perl/ch-1.pl)]
-[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/laurent-rosenfeld/perl/ch-2.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/laurent-rosenfeld/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/laurent-rosenfeld/raku/ch-1.raku)]
-[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/laurent-rosenfeld/raku/ch-2.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/laurent-rosenfeld/raku/ch-2.raku)]
 [[**BLOG #1**](https://blogs.perl.org/users/laurent_r/2024/01/perl-weekly-challenge-250-smallest-index.html)]
 [[**BLOG #2**](https://blogs.perl.org/users/laurent_r/2024/01/perl-weekly-challenge-250-alphanumeric-string-value.html)]
 
