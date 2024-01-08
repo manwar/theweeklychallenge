@@ -90,7 +90,7 @@ Please find below guest contributions.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/luca-ferrari/python/ch-2.py) in **Python**.
 
-##### **Mustafa Aydın** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/witawayar/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/witawayar/cpp/ch-2.cpp) in **C++**.
+##### **Mustafa Aydin** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/witawayar/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/witawayar/cpp/ch-2.cpp) in **C++**.
 
 ##### **Nelo Tovar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/nelo-tovar/bash/ch-1.sh) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-250/nelo-tovar/bash/ch-2.sh) in **Bash**.
 
