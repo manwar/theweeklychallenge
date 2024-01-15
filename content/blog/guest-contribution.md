@@ -46,6 +46,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 251](/blog/perl-weekly-challenge-251) {#251}
 <br>
 
+##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-251/adam-russell/prolog/ch-1.p) in **Prolog**.
+
 ##### **Bruce Gray** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-251/bruce-gray/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-251/bruce-gray/scala/ch-2.scala) in **Scala**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-251/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-251/zapwai/c/ch-2.c) in **C**.
