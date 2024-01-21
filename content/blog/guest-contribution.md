@@ -64,6 +64,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Jan Krnavek** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/wambash/julia/ch-1.jl) in **Julia**.
+
 ##### **Joao Felipe** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/joaofel/uiua/ch-1.ua) and [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/joaofel/uiua/ch-2.ua) in **Uiua**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/lubos-kolouch/python/ch-2.py) in **Python**.
@@ -73,6 +75,8 @@ Please find below guest contributions.
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/luca-ferrari/python/ch-2.py) in **Python**.
+
+##### **Mustafa Aydin** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/witawayar/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/witawayar/cpp/ch-2.cpp) in **C++**.
 
 ##### **Nelo Tovar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/nelo-tovar/bash/ch-1.sh) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/nelo-tovar/bash/ch-2.sh) in **Bash**.
 
