@@ -62,6 +62,8 @@ Please find below guest contributions.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/pokgopun/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/pokgopun/python/ch-2.py) in **Python**.
 
+##### **Thomas Kohler** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/jeanluc2020/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/jeanluc2020/python/ch-2.py) in **Python**.
+
 ----
 ## [The Weekly Challenge - 252](/blog/perl-weekly-challenge-252) {#252}
 <br>
