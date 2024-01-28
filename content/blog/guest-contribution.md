@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-01-26T00:00:00+00:00
+date: 2024-01-28T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -45,6 +45,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 253](/blog/perl-weekly-challenge-253) {#253}
 <br>
+
+##### **Alex Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/probablyfine/uiua/ch-1.ua) and [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/probablyfine/uiua/ch-2.ua) in **Uiua**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/zapwai/c/ch-2.c) in **C**.
 
