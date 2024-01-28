@@ -46,7 +46,7 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 253](/blog/perl-weekly-challenge-253) {#253}
 <br>
 
-##### **Alex Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/probablyfine/uiua/ch-1.ua) and [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/probablyfine/uiua/ch-2.ua) in **Uiua**.
+##### **Alex Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/probablyfine/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/probablyfine/uiua/ch-2.ua) in **Uiua**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-253/zapwai/c/ch-2.c) in **C**.
 
@@ -126,7 +126,7 @@ Please find below guest contributions.
 
 ##### **Jan Krnavek** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/wambash/julia/ch-1.jl) in **Julia**.
 
-##### **Joao Felipe** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/joaofel/uiua/ch-1.ua) and [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/joaofel/uiua/ch-2.ua) in **Uiua**.
+##### **Joao Felipe** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/joaofel/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/joaofel/uiua/ch-2.ua) in **Uiua**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/lubos-kolouch/python/ch-2.py) in **Python**.
 
