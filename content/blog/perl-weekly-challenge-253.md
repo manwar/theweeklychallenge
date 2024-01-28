@@ -1,7 +1,7 @@
 ---
 title: "The Weekly Challenge - 253"
 date: 2024-01-22T00:00:00+00:00
-description: "The Weekly Challenge - 2523"
+description: "The Weekly Challenge - 253"
 type: post
 image: images/twc-logo.png
 author: Mohammad S Anwar
