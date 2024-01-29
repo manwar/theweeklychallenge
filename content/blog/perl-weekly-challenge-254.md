@@ -93,13 +93,14 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ### Blogs with Creative Title
 ***
 
-#### 1. [Split String Soup](https://jacoby.github.io/2024/01/22/split-string-soup-weekly-challenge-253.html) by Dave Jacoby.
-#### 2. [Weakest Strings](https://github.sommrey.de/blog/pwc/challenge-253) by Jorg Sommrey.
-#### 3. [not so easy handling multidimensional arrays](https://fluca1978.github.io/2024/01/22/PerlWeeklyChallenge253.html) by Luca Ferrari.
-#### 4. [The Weakest Split](https://packy.dardan.com/2024/01/22/perl-weekly-challenge-3/) by Packy Anderson.
-#### 5. [Split the weakest](http://ccgi.campbellsmiths.force9.co.uk/challenge/253) by Peter Campbell Smith.
-#### 6. [You Are the Weakest String](https://blog.firedrake.org/archive/2024/01/The_Weekly_Challenge_253__You_Are_the_Weakest_String.html) by Roger Bell_West.
-#### 7. [The weakest split](https://dev.to/simongreennet/the-weakest-split-5ad7) by Simon Green.
+#### 1. [Weakest Split](https://raku-musings.com/weakest-split.html) by Arne Sommer.
+#### 2. [Split String Soup](https://jacoby.github.io/2024/01/22/split-string-soup-weekly-challenge-253.html) by Dave Jacoby.
+#### 3. [Weakest Strings](https://github.sommrey.de/blog/pwc/challenge-253) by Jorg Sommrey.
+#### 4. [not so easy handling multidimensional arrays](https://fluca1978.github.io/2024/01/22/PerlWeeklyChallenge253.html) by Luca Ferrari.
+#### 5. [The Weakest Split](https://packy.dardan.com/2024/01/22/perl-weekly-challenge-3/) by Packy Anderson.
+#### 6. [Split the weakest](http://ccgi.campbellsmiths.force9.co.uk/challenge/253) by Peter Campbell Smith.
+#### 7. [You Are the Weakest String](https://blog.firedrake.org/archive/2024/01/The_Weekly_Challenge_253__You_Are_the_Weakest_String.html) by Roger Bell_West.
+#### 8. [The weakest split](https://dev.to/simongreennet/the-weakest-split-5ad7) by Simon Green.
 
 <br>
 
