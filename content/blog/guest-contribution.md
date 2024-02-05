@@ -76,6 +76,14 @@ Please find below guest contributions.
 
 ##### **Archar Gelod** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-254/archargelod/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-254/archargelod/nim/ch_2.nim) in **Nim**.
 
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-254/barroff/d/ch_1.d) in **D**.
+
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-254/barroff/julia/ch-1.jl) in **Julia**.
+
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-254/barroff/nim/ch_1.nim) in **Nim**.
+
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-254/barroff/v/ch-1.v) in **V**.
+
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-254/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-254/zapwai/c/ch-2.c) in **C**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-254/zapwai/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-254/zapwai/rust/ch-2.rs) in **Rust**.

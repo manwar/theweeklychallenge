@@ -47,7 +47,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `251` &nbsp;&nbsp;|&nbsp;&nbsp; 51 &nbsp;&nbsp;|&nbsp;&nbsp; 33 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `252` &nbsp;&nbsp;|&nbsp;&nbsp; 54 &nbsp;&nbsp;|&nbsp;&nbsp; 35 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `253` &nbsp;&nbsp;|&nbsp;&nbsp; 53 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `254` &nbsp;&nbsp;|&nbsp;&nbsp; 50 &nbsp;&nbsp;|&nbsp;&nbsp; 30 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `254` &nbsp;&nbsp;|&nbsp;&nbsp; 51 &nbsp;&nbsp;|&nbsp;&nbsp; 32 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 
 <br>
 
@@ -60,7 +60,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `251` &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|&nbsp;&nbsp; 53 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `252` &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|&nbsp;&nbsp; 72 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `253` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 60 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `254` &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|&nbsp;&nbsp; 58 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `254` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 62 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
 
 <br>
 
