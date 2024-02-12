@@ -178,7 +178,7 @@ Write a script to find the maximum pairs in the given array. The words `$words[i
 
 #### Example 3
 
-    Input: @words = ("uv", "qp", "st", "vu", "mn", "pq"))
+    Input: @words = ("uv", "qp", "st", "vu", "mn", "pq")
     Output: 2
 
 <br>
