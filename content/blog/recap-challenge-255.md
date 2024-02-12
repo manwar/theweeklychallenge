@@ -116,10 +116,10 @@ The total contributions in the week is `111`. Well done **Team PWC**. I would al
     APL (68), BQN (1), JavaScript (2), Python (2).
 #### 24. BarrOff (60)
     Awk (1), D (3), GP (2), Julia (30), Nim (21), V (3).
-#### 25. Mariano Spadaccini (57)
+#### 25. Steven Wilson (59)
+    Haskell (1), JavaScript (13), Python (44), Rust (1).
+#### 26. Mariano Spadaccini (57)
     Bash (1), Go (19), Korn Shell (2), Octave (1), Python (24), R (1), Ruby (9).
-#### 26. Steven Wilson (57)
-    Haskell (1), JavaScript (13), Python (42), Rust (1).
 #### 27. Stephen G Lynn (56)
     Julia (46), Python (10).
 #### 28. Packy Anderson (54)
