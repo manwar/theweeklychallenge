@@ -47,7 +47,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `253` &nbsp;&nbsp;|&nbsp;&nbsp; 53 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `254` &nbsp;&nbsp;|&nbsp;&nbsp; 53 &nbsp;&nbsp;|&nbsp;&nbsp; 32 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `255` &nbsp;&nbsp;|&nbsp;&nbsp; 55 &nbsp;&nbsp;|&nbsp;&nbsp; 30 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `256` &nbsp;&nbsp;|&nbsp;&nbsp; 55 &nbsp;&nbsp;|&nbsp;&nbsp; 30 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `256` &nbsp;&nbsp;|&nbsp;&nbsp; 57 &nbsp;&nbsp;|&nbsp;&nbsp; 30 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 
 <br>
 
@@ -88,12 +88,13 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 ***
 
 #### 1. [Merged Maximum](https://raku-musings.com/merged-maximum.html) by Arne Sommer.
-#### 2. [Zippairs](https://github.sommrey.de/blog/pwc/challenge-256) by Jorg Sommrey.
-#### 3. [Valentine's Challenge](https://fluca1978.github.io/2024/02/14/PerlWeeklyChallenge256.html) by Luca Ferrari.
-#### 4. [Merge the Maximum String Pairs](https://packy.dardan.com/2024/02/15/perl-weekly-challenge-5/) by Packy Anderson.
-#### 5. [Pairs, sriap and MsEtRrGiEngs](http://ccgi.campbellsmiths.force9.co.uk/challenge/256) by Peter Campbell Smith.
-#### 6. [Maximum Strings](https://blog.firedrake.org/archive/2024/02/The_Weekly_Challenge_256__Maximum_Strings.html) by Roger Bell_West.
-#### 7. [Matching and zipping](https://dev.to/simongreennet/matching-and-zipping-3bl7) by Simon Green.
+#### 2. [A Perfect Square Perfectly Squared](https://jacoby.github.io/2024/02/12/a-perfect-square-perfectly-squared-weekly-challenge-256.html) by Dave Jacoby.
+#### 3. [Zippairs](https://github.sommrey.de/blog/pwc/challenge-256) by Jorg Sommrey.
+#### 4. [Valentine's Challenge](https://fluca1978.github.io/2024/02/14/PerlWeeklyChallenge256.html) by Luca Ferrari.
+#### 5. [Merge the Maximum String Pairs](https://packy.dardan.com/2024/02/15/perl-weekly-challenge-5/) by Packy Anderson.
+#### 6. [Pairs, sriap and MsEtRrGiEngs](http://ccgi.campbellsmiths.force9.co.uk/challenge/256) by Peter Campbell Smith.
+#### 7. [Maximum Strings](https://blog.firedrake.org/archive/2024/02/The_Weekly_Challenge_256__Maximum_Strings.html) by Roger Bell_West.
+#### 8. [Matching and zipping](https://dev.to/simongreennet/matching-and-zipping-3bl7) by Simon Green.
 
 <br>
 
