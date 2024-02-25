@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-02-24T00:00:00+00:00
+date: 2024-02-25T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -91,6 +91,10 @@ Please find below guest contributions.
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/roger-bell-west/rust/ch-2.rs) in **Rust**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/roger-bell-west/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/roger-bell-west/scala/ch-2.scala) in **Scala**.
+
+##### **Ruth Holloway** shared solutions to [**Task #1**](https://github.com//manwar/perlweeklychallenge-club/blob/master/challenge-257/geekruthie/cobol/ch-1.cob) and [**Task #2**](https://github.com//manwar/perlweeklychallenge-club/blob/master/challenge-257/geekruthie/cobol/ch-2.cob) in **COBOL**.
+
+##### **Simon Green** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/sgreen/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/sgreen/python/ch-2.py) in **Python**.
 
 ##### **Steven Wilson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/steven-wilson/python/ch-1.py) in **Python**.
 
