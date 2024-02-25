@@ -48,6 +48,12 @@ Please find below guest contributions.
 
 ##### **Archar Gelod** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/archargelod/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/archargelod/nim/ch_2.nim) in **Nim**.
 
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/barroff/bqn/ch-1.bqn) in **BQN**.
+
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/barroff/julia/ch-1.jl) in **Julia**.
+
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/barroff/nim/ch_1.nim) in **Nim**.
+
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/zapwai/c/ch-2.c) in **C**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/zapwai/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/zapwai/javascript/ch-2.js) in **JavaScript**.
@@ -95,6 +101,8 @@ Please find below guest contributions.
 ##### **Ruth Holloway** shared solutions to [**Task #1**](https://github.com//manwar/perlweeklychallenge-club/blob/master/challenge-257/geekruthie/cobol/ch-1.cob) and [**Task #2**](https://github.com//manwar/perlweeklychallenge-club/blob/master/challenge-257/geekruthie/cobol/ch-2.cob) in **COBOL**.
 
 ##### **Simon Green** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/sgreen/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/sgreen/python/ch-2.py) in **Python**.
+
+##### **Stephen G Lynn** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/steve-g-lynn/python/ch-1.py) in **Python**.
 
 ##### **Steven Wilson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-257/steven-wilson/python/ch-1.py) in **Python**.
 
