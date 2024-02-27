@@ -47,7 +47,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `254` &nbsp;&nbsp;|&nbsp;&nbsp; 53 &nbsp;&nbsp;|&nbsp;&nbsp; 32 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `255` &nbsp;&nbsp;|&nbsp;&nbsp; 55 &nbsp;&nbsp;|&nbsp;&nbsp; 30 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `256` &nbsp;&nbsp;|&nbsp;&nbsp; 57 &nbsp;&nbsp;|&nbsp;&nbsp; 32 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `257` &nbsp;&nbsp;|&nbsp;&nbsp; 39 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `257` &nbsp;&nbsp;|&nbsp;&nbsp; 41 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
 
 <br>
 
@@ -60,7 +60,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `254` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 62 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `255` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 60 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `256` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 63 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `257` &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|&nbsp;&nbsp; 59 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `257` &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|&nbsp;&nbsp; 61 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
 
 <br>
 
@@ -69,7 +69,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 
 Do you see your favourite language in the `Top 10`? If not then why not contribute regularly and make it to the top.
 
-     1. Python     (2254)
+     1. Python     (2256)
      2. Ruby       (654)
      3. Haskell    (635)
      4. Lua        (580)
@@ -89,9 +89,10 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 #### 2. [Lesser, Inferior, Lower, Junior](https://jacoby.github.io/2024/02/19/lesser-inferior-lower-junior-weekly-challenge-257.html) by Dave Jacoby.
 #### 3. [Ranked Echelons](https://github.sommrey.de/the-bears-den/2024/02/23/ch-257.html) by Jorg Sommrey.
 #### 4. [Post-Valentine Challenge](https://fluca1978.github.io/2024/02/19/PerlWeeklyChallenge257.html) by Luca Ferrari.
-#### 5. [Smaller and reduced](http://ccgi.campbellsmiths.force9.co.uk/challenge/257) by Peter Campbell Smith.
-#### 6. [Smaller than Echelon](https://blog.firedrake.org/archive/2024/02/The_Weekly_Challenge_257__Smaller_than_Echelon.html) by Roger Bell_West.
-#### 7. [The current echelon](https://dev.to/simongreennet/the-current-echelon-33gn) by Simon Green.
+#### 5. [Reduced is Smaller!](https://packy.dardan.com/2024/02/20/perl-weekly-challenge-6) by Packy Anderson.
+#### 6. [Smaller and reduced](http://ccgi.campbellsmiths.force9.co.uk/challenge/257) by Peter Campbell Smith.
+#### 7. [Smaller than Echelon](https://blog.firedrake.org/archive/2024/02/The_Weekly_Challenge_257__Smaller_than_Echelon.html) by Roger Bell_West.
+#### 8. [The current echelon](https://dev.to/simongreennet/the-current-echelon-33gn) by Simon Green.
 
 <br>
 
@@ -210,7 +211,7 @@ Write a script to find the sum of values whose index binary representation has e
     Binary representation of index 4 = 100
 
     So the indices 1, 2 and 4 have total one 1-bit sets.
-    Therefore the sum, $ints[1] + $ints[2] + $ints[3] = 17
+    Therefore the sum, $ints[1] + $ints[2] + $ints[4] = 17
 
 #### Example 2
 
