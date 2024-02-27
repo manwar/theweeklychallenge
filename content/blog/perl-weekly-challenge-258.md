@@ -226,6 +226,6 @@ Write a script to find the sum of values whose index binary representation has e
 
 ***
 
-Last date to submit the solution **23:59 (UK Time) Sunday 1st March 2024**.
+Last date to submit the solution **23:59 (UK Time) Sunday 3rd March 2024**.
 
 ***
