@@ -47,20 +47,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 11020 (63%)
+#### 1. Perl: 11021 (63%)
 #### 2. Raku: 6389 (37%)
-#### 3. Blog: 3573
+#### 3. Blog: 3574
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `83`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `85`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 39
+#### 1. Perl: 40
 #### 2. Raku: 22
-#### 3. Blog: 22
+#### 3. Blog: 23
 
 <br>
 
@@ -278,7 +278,7 @@ The total contributions in the week is `83`. Well done **Team PWC**. I would als
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2154), Roger Bell_West (1914), Jaldhar H. Vyas (1840), Luca Ferrari (1646), Arne Sommer (1598), Flavio Poletti (1524), Athanasius (1340), Colin Crain (1332), Ulrich Rieke (1170), Adam Russell (1062), Dave Jacoby (988), E. Choroba (958), Paulo Custodio (862), James Smith (854), Jorg Sommrey (808), Abigail (794), Duncan C. White (794), W. Luis Mochan (760), Mohammad S Anwar (718), Cheok-Yin Fung (704), Simon Green (702), Mark Anderson (666), Stuart Little (644), Lubos Kolouch (636), Simon Proctor (522), Jan Krnavek (496), Feng Chang (492), Peter Campbell Smith (474), Niels van Dijke (466), Javier Luque (460), Ruben Westerberg (452), Robert DiCicco (406), Bruce Gray (396), Ryan Thompson (390), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Stephen G. Lynn (334), Bob Lied (288), Matthew Neleigh (278), Andrezgz (260), Robert Ransbottom (240), Yet Ebreo (226), Alexander Pankoff (220), Steven Wilson (218), Andrew Shitov (198), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Ali Moradi (180), Thomas Kohler (178), Kevin Colyer (176), Marton Polgar (174), Aaron Smith (174), Robbie Hatley (166), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Solathian (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), David Ferrone (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (2154), Roger Bell_West (1914), Jaldhar H. Vyas (1840), Luca Ferrari (1646), Arne Sommer (1598), Flavio Poletti (1524), Athanasius (1340), Colin Crain (1332), Ulrich Rieke (1170), Adam Russell (1062), Dave Jacoby (988), E. Choroba (958), Paulo Custodio (862), James Smith (854), Jorg Sommrey (812), Abigail (794), Duncan C. White (794), W. Luis Mochan (760), Mohammad S Anwar (718), Cheok-Yin Fung (704), Simon Green (702), Mark Anderson (666), Stuart Little (644), Lubos Kolouch (636), Simon Proctor (522), Jan Krnavek (496), Feng Chang (492), Peter Campbell Smith (474), Niels van Dijke (466), Javier Luque (460), Ruben Westerberg (452), Robert DiCicco (406), Bruce Gray (396), Ryan Thompson (390), Pete Houston (362), Wanderdoc (358), Joelle Maslak (334), Stephen G. Lynn (334), Bob Lied (288), Matthew Neleigh (278), Andrezgz (260), Robert Ransbottom (240), Yet Ebreo (226), Alexander Pankoff (220), Steven Wilson (218), Andrew Shitov (198), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Ali Moradi (180), Thomas Kohler (178), Kevin Colyer (176), Marton Polgar (174), Aaron Smith (174), Robbie Hatley (166), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Solathian (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), David Ferrone (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -346,6 +346,8 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ![Jorg Sommrey](/images/team/jorg-sommrey.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-216/jo-37/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-216/jo-37/perl/ch-2.pl)]
+[[**BLOG #1**](https://github.sommrey.de/the-bears-den/2024/02/27/ch-216.html)]
 
 ***
 

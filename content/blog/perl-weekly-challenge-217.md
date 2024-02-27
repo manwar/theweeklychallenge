@@ -75,7 +75,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `213` &nbsp;&nbsp;|&nbsp;&nbsp; 49 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `214` &nbsp;&nbsp;|&nbsp;&nbsp; 38 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `215` &nbsp;&nbsp;|&nbsp;&nbsp; 60 &nbsp;&nbsp;|&nbsp;&nbsp; 32 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `216` &nbsp;&nbsp;|&nbsp;&nbsp; 39 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `216` &nbsp;&nbsp;|&nbsp;&nbsp; 40 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
 
 <br>
 
@@ -116,10 +116,11 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 #### 1. [Sticky Numbers](https://raku-musings.com/sticky-numbers.html) by Arne Sommer.
 #### 2. [Car Nicknaming](https://dev.to/oldtechaa/perl-weekly-challenge-216-car-nicknaming-4hko) by Avery Adams.
 #### 3. [The Weekly Challenge 6^3](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-216/james-smith#readme) by James Smith.
-#### 4. [words, grep and letters!](https://fluca1978.github.io/2023/05/08/PerlWeeklyChallenge216.html) by Luca Ferrari.
-#### 5. [Alphabetical exercises](http://ccgi.campbellsmiths.force9.co.uk/challenge/216) by Peter Campbell Smith.
-#### 6. [Word Registration](https://blog.firedrake.org/archive/2023/05/The_Weekly_Challenge_216__Word_Registration.html) by Roger Bell_West.
-#### 7. [Letter frequency](https://dev.to/simongreennet/letter-frequency-338m) by Simon Green.
+#### 4. [New Kit in Town](https://github.sommrey.de/the-bears-den/2024/02/27/ch-216.html) by Jorg Sommrey.
+#### 5. [words, grep and letters!](https://fluca1978.github.io/2023/05/08/PerlWeeklyChallenge216.html) by Luca Ferrari.
+#### 6. [Alphabetical exercises](http://ccgi.campbellsmiths.force9.co.uk/challenge/216) by Peter Campbell Smith.
+#### 7. [Word Registration](https://blog.firedrake.org/archive/2023/05/The_Weekly_Challenge_216__Word_Registration.html) by Roger Bell_West.
+#### 8. [Letter frequency](https://dev.to/simongreennet/letter-frequency-338m) by Simon Green.
 
 <br>
 

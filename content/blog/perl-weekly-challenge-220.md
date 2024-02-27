@@ -76,10 +76,10 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 | :---: | :---: | :---: | :---: |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `Perl` &nbsp;&nbsp;|&nbsp;&nbsp; `Raku` &nbsp;&nbsp; |&nbsp;&nbsp; `Blog` &nbsp;&nbsp; |
 |&nbsp;&nbsp; `215` &nbsp;&nbsp;|&nbsp;&nbsp; 60 &nbsp;&nbsp;|&nbsp;&nbsp; 32 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `216` &nbsp;&nbsp;|&nbsp;&nbsp; 39 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `216` &nbsp;&nbsp;|&nbsp;&nbsp; 40 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `217` &nbsp;&nbsp;|&nbsp;&nbsp; 60 &nbsp;&nbsp;|&nbsp;&nbsp; 32 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `218` &nbsp;&nbsp;|&nbsp;&nbsp; 43 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `219` &nbsp;&nbsp;|&nbsp;&nbsp; 35 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `219` &nbsp;&nbsp;|&nbsp;&nbsp; 36 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
 
 <br>
 
@@ -119,11 +119,12 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 
 #### 1. [Sorted Expenditure](https://raku-musings.com/sorted-expenditure.html) by Arne Sommer.
 #### 2. [Squaring Up](https://blogs.perl.org/users/oldtechaa/2023/06/perl-weekly-challenge-219---squaring-up.html) by Avery Adams.
-#### 3. [building a tree using a stack](https://fluca1978.github.io/2023/05/29/PerlWeeklyChallenge219.html) by Luca Ferrari.
-#### 4. [This is Perl! We got this, no problem!](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-219/matthias-muth#readme) by Matthias Muth.
-#### 5. [Any more fares, please?](http://ccgi.campbellsmiths.force9.co.uk/challenge/219) by Peter Campbell Smith.
-#### 6. [Travel for Squares](https://blog.firedrake.org/archive/2023/06/The_Weekly_Challenge_219__Travel_for_Squares.html) by Roger Bell_West.
-#### 7. [The cheapest way to the square](https://dev.to/simongreennet/the-cheapest-way-to-the-square-1mhb) by Simon Green.
+#### 3. [Return of the Kit](https://github.sommrey.de/the-bears-den/2024/02/27/ch-219.html) by Jorg Sommrey.
+#### 4. [building a tree using a stack](https://fluca1978.github.io/2023/05/29/PerlWeeklyChallenge219.html) by Luca Ferrari.
+#### 5. [This is Perl! We got this, no problem!](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-219/matthias-muth#readme) by Matthias Muth.
+#### 6. [Any more fares, please?](http://ccgi.campbellsmiths.force9.co.uk/challenge/219) by Peter Campbell Smith.
+#### 7. [Travel for Squares](https://blog.firedrake.org/archive/2023/06/The_Weekly_Challenge_219__Travel_for_Squares.html) by Roger Bell_West.
+#### 8. [The cheapest way to the square](https://dev.to/simongreennet/the-cheapest-way-to-the-square-1mhb) by Simon Green.
 
 <br>
 
