@@ -200,8 +200,8 @@ Where
     a) "id" can be \w+.
     b) There can be 0  or more field-value pairs.
     c) The name of the fields are \w+.
-    b) The values are either number in which case we don't need parentheses or string in
-       which case we need parentheses around them.
+    b) The values are either number in which case we don't need double quotes or string in
+       which case we need double quotes around them.
 
 The line parser should return structure like below:
 
