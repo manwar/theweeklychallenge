@@ -155,7 +155,7 @@ Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) cr
 ## GUESTS {#GUESTS}
 ***
 
-Please check out the guest contributions for the [**Week #257**](/blog/guest-contribution/#257).
+Please check out the guest contributions for the [**Week #258**](/blog/guest-contribution/#258).
 
 Please find [**past solutions**](/blog/guest-contribution) by respected **guests**. Please share your creative solutions in other languages.
 
@@ -193,7 +193,11 @@ Non-banking days are:
 ***
 You are given a line like below:
 
+<br>
+
     {%  id   field1="value1"    field2="value2"  field3=42 %}
+
+<br>
 
 Where
 
@@ -203,7 +207,11 @@ Where
     b) The values are either number in which case we don't need double quotes or string in
        which case we need double quotes around them.
 
+<br>
+
 The line parser should return structure like below:
+
+<br>
 
     {
            name => id,
@@ -214,21 +222,37 @@ The line parser should return structure like below:
            }
     }
 
+<br>
+
 It should be able to parse the following edge cases too:
+
+<br>
 
     {%  youtube title="Title \"quoted\" done" %}
 
-and
+<br>
+
+**and**
+
+<br>
 
     {%  youtube title="Title with escaped backslash \\" %}
 
-BONUS: Extend it to be able to handle multiline tags:
+<br>
+
+**BONUS**: Extend it to be able to handle multiline tags:
+
+<br>
 
     {% id  filed1="value1" ... %}
     LINES
     {% endid %}
 
+<br>
+
 You should expect the following structure from your line parser:
+
+<br>
 
     {
            name => id,
