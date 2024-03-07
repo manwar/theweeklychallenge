@@ -86,6 +86,12 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-259/roger-bell-west/scala/ch-1.scala) in **Scala**.
 
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-259/ulrich-rieke/cpp/ch-1.cpp) in **C++**.
+
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-259/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
+
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-259/ulrich-rieke/rust/ch-1.rs) in **Rust**.
+
 ----
 ## [The Weekly Challenge - 258](/blog/perl-weekly-challenge-258) {#258}
 <br>
