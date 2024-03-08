@@ -28,7 +28,7 @@ git clone https://github.com/manwar/theweeklychallenge.git
 
 # Contributing
 
-We welcome contributions to The Weekly Challenge! If you have an idea for a new feature, want to fix a bug, or improve the website, please feel free to create a pull request. Refer to the (CONTRIBUTING GUIGE)[CONTRIBUTING.md) for more details
+We welcome contributions to The Weekly Challenge! If you have an idea for a new feature, want to fix a bug, or improve the website, please feel free to create a pull request. Refer to the [CONTRIBUTING GUIDE][CONTRIBUTING.md) for more details
 
 # License
 
