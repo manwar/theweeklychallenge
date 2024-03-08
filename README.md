@@ -36,5 +36,5 @@ This project is licensed under the `Artistic License 2.0` license. Please refer 
 
 ---
 
-[![Join us on Slack](https://img.shields.io/badge/Join_us-Slack-informational?style=for-the-badge&logo=slack&logoColor=white)](https://slack.openfoodfacts.org/)
+[![Join us on Slack](https://img.shields.io/badge/Join_us-Slack-informational?style=for-the-badge&logo=slack&logoColor=white)](https://join.slack.com/share/enQtNjc1MzQ1OTU1Mjc3NS1iMDFmMzNjMDFkN2U4Y2MwY2E1MWU4M2U1YmYxNWFjNmRiMDI4MDZjNTJjYWIwYmY0MDIxMTc4OWMyNWU0ZGI1)
 [![Visit Website](https://img.shields.io/badge/Visit_Website-brightgreen?style=for-the-badge)](https://theweeklychallenge.org)
