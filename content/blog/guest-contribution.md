@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-03-08T00:00:00+00:00
+date: 2024-03-09T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -71,6 +71,8 @@ Please find below guest contributions.
 ##### **Mariano Spadaccini** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-259/spadacciniweb/python/ch-1.py) in **Python**.
 
 ##### **Mariano Spadaccini** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-259/spadacciniweb/ruby/ch-1.rb) in **Ruby**.
+
+##### **Nelo Tovar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-259/nelo-tovar/bash/ch-1.sh) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-259/nelo-tovar/bash/ch-2.sh) in **Bash**.
 
 ##### **Packy Anderson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-259/packy-anderson/python/ch-1.py) in **Python**.
 
