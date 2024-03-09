@@ -191,6 +191,7 @@ Non-banking days are:
 ## Task 2: Line Parser {#TASK2}
 ##### **Submitted by:** [Gabor Szabo](https://github.com/szabgab)
 ***
+
 You are given a line like below:
 
 <br>
