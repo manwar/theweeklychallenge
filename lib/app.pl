@@ -20,5 +20,4 @@ get '/' => sub {
 };
 
 # Define other routes as needed...
-
 start;
