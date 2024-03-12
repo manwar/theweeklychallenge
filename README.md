@@ -36,5 +36,5 @@ This project is licensed under the `Artistic License 2.0` license. Please refer 
 
 ---
 
-[![Join us on Slack](https://img.shields.io/badge/Join_us-Slack-informational?style=for-the-badge&logo=slack&logoColor=white)](https://join.slack.com/share/enQtNjc1MzQ1OTU1Mjc3NS1iMDFmMzNjMDFkN2U4Y2MwY2E1MWU4M2U1YmYxNWFjNmRiMDI4MDZjNTJjYWIwYmY0MDIxMTc4OWMyNWU0ZGI1)
+[![Join us on Slack](https://img.shields.io/badge/Join_us-Slack-informational?style=for-the-badge&logo=slack&logoColor=white)](https://join.slack.com/t/theweeklychal-udf4770/shared_invite/zt-2em4g2m29-WGd9LQc1YnNLyn_qHi6xLA)
 [![Visit Website](https://img.shields.io/badge/Visit_Website-brightgreen?style=for-the-badge)](https://theweeklychallenge.org)
