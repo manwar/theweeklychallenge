@@ -61,7 +61,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `256` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 63 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `257` &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|&nbsp;&nbsp; 61 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `258` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 67 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `259` &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|&nbsp;&nbsp; 40 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `259` &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|&nbsp;&nbsp; 44 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
 
 <br>
 
@@ -70,7 +70,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 
 Do you see your favourite language in the `Top 10`? If not then why not contribute regularly and make it to the top.
 
-     1. Python     (2288)
+     1. Python     (2290)
      2. Ruby       (658)
      3. Haskell    (638)
      4. Lua        (582)
@@ -78,7 +78,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
      6. C          (487)
      7. C++        (485)
      8. JavaScript (344)
-     9. Go         (334)
+     9. Go         (336)
     10. BQN        (318)
 
 <br>
