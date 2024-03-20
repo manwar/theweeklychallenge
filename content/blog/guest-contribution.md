@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-03-19T00:00:00+00:00
+date: 2024-03-20T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -46,6 +46,12 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 261](/blog/perl-weekly-challenge-261) {#261}
 <br>
 
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/asherbhs/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/asherbhs/apl/ch-2.apl) in **APL**.
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/asherbhs/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/asherbhs/bqn/ch-2.bqn) in **BQN**.
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/asherbhs/j/ch-1.ijs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/asherbhs/j/ch-2.ijs) in **J**.
+
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/zapwai/c/ch-2.c) in **C**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/zapwai/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/zapwai/javascript/ch-2.js) in **JavaScript**.
@@ -55,6 +61,22 @@ Please find below guest contributions.
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/zapwai/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/zapwai/rust/ch-2.rs) in **Rust**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/luca-ferrari/pljava/src/main/java/Task1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/luca-ferrari/pljava/src/main/java/Task2.java) in **Java**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/luca-ferrari/python/ch-2.py) in **Python**.
+
+##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/elixir/ch-1.exs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/elixir/ch-2.exs) in **Elixir**.
+
+##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/go/ch-2.go) in **Go**.
+
+##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/python/ch-2.py) in **Python**.
+
+##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/ruby/ch-2.rb) in **Ruby**.
+
+##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/packy-anderson/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/packy-anderson/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
 
@@ -71,6 +93,8 @@ Please find below guest contributions.
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/roger-bell-west/rust/ch-2.rs) in **Rust**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/roger-bell-west/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/roger-bell-west/scala/ch-2.scala) in **Scala**.
+
+##### **Steven Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/steven-wilson/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/steven-wilson/python/ch-2.py) in **Python**.
 
 ##### **Thomas Kohler** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/jeanluc2020/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/jeanluc2020/python/ch-2.py) in **Python**.
 
