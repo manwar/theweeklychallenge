@@ -117,7 +117,7 @@ In the year `2024`, we are looking for new sponsor for monthly winner. If anyone
 ## RECAP {#RECAP}
 ***
 
-Quick recap of **[The Weekly Challenge - 260](/blog/recap-challenge-269)** by `Mohammad Sajid Anwar`.
+Quick recap of **[The Weekly Challenge - 260](/blog/recap-challenge-260)** by `Mohammad Sajid Anwar`.
 
 <br>
 
