@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-03-21T00:00:00+00:00
+date: 2024-03-23T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -46,6 +46,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 261](/blog/perl-weekly-challenge-261) {#261}
 <br>
 
+##### **Archar Gelod** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/archargelod/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/archargelod/nim/ch_2.nim) in **Nim**.
+
 ##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/asherbhs/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/asherbhs/apl/ch-2.apl) in **APL**.
 
 ##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/asherbhs/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/asherbhs/bqn/ch-2.bqn) in **BQN**.
@@ -75,6 +77,8 @@ Please find below guest contributions.
 ##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/python/ch-2.py) in **Python**.
 
 ##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/spadacciniweb/ruby/ch-2.rb) in **Ruby**.
+
+##### **Nelo Tovar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/nelo-tovar/bash/ch-1.sh) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/nelo-tovar/bash/ch-2.sh) in **Bash**.
 
 ##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/packy-anderson/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-261/packy-anderson/python/ch-2.py) in **Python**.
 
@@ -111,6 +115,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 260](/blog/perl-weekly-challenge-260) {#260}
 <br>
+
+##### **Archar Gelod** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-260/archargelod/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-260/archargelod/nim/ch_2.nim) in **Nim**.
 
 ##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-260/barroff/bqn/ch-1.bqn) in **BQN**.
 
@@ -12751,6 +12757,8 @@ Please find below guest contributions.
 
 ##### **AhmetEmre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/aecepoglu/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/aecepoglu/bqn/ch-2.bqn) in **BQN**.
 
+##### **Archar Gelod** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/archargelod/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/archargelod/nim/ch_2.nim) in **Nim**.
+
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/cheok-yin-fung/smalltalk/ch-1.st) in **Smalltalk**.
 
 ##### **Duncan C. White** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/duncan-c-white/postscript/ch-2.ps) in **Postscript**.
@@ -12770,6 +12778,8 @@ Please find below guest contributions.
 <br>
 
 ##### **AhmetEmre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/aecepoglu/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/aecepoglu/bqn/ch-2.bqn) in **BQN**.
+
+##### **Archar Gelod** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/archargelod/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/archargelod/nim/ch_2.nim) in **Nim**.
 
 ##### **Duncan C. White** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/duncan-c-white/postscript/ch-2.ps) in **Postscript**.
 
@@ -12791,6 +12801,8 @@ Please find below guest contributions.
 
 ##### **AhmetEmre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/aecepoglu/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/aecepoglu/bqn/ch-2.bqn) in **BQN**.
 
+##### **Archar Gelod** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/archargelod/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/archargelod/nim/ch_2.nim) in **Nim**.
+
 ##### **Burkhard Nickels** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/python/ch-2.py) in **Python**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/lubos-kolouch/python/ch-2.py) in **Python**.
@@ -12809,6 +12821,8 @@ Please find below guest contributions.
 
 ##### **AhmetEmre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/aecepoglu/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/aecepoglu/bqn/ch-2.bqn) in **BQN**.
 
+##### **Archar Gelod** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/archargelod/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/archargelod/nim/ch_2.nim) in **Nim**.
+
 ##### **Darren Bottin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/darren-bottin/prolog/ch-1.pro) in **Prolog**.
 
 ##### **Jaldhar H. Vyas** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/jaldhar-h-vyas/c%2B%2B/ch-2.cpp) in **C++**.
@@ -12825,6 +12839,8 @@ Please find below guest contributions.
 
 ##### **AhmetEmre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/aecepoglu/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/aecepoglu/bqn/ch-2.bqn) in **BQN**.
 
+##### **Archar Gelod** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/archargelod/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/archargelod/nim/ch_2.nim) in **Nim**.
+
 ##### **Burkhard Nickels** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/burkhard-nickels/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/burkhard-nickels/python/ch-2.py) in **Python**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/lubos-kolouch/python/ch-2.py) in **Python**.
@@ -12838,6 +12854,8 @@ Please find below guest contributions.
 <br>
 
 ##### **AhmetEmre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/aecepoglu/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/aecepoglu/bqn/ch-2.bqn) in **BQN**.
+
+##### **Archar Gelod** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/archargelod/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/archargelod/nim/ch_2.nim) in **Nim**.
 
 ##### **Burkhard Nickels** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/python/ch-2.py) in **Python**.
 
@@ -12862,6 +12880,8 @@ Please find below guest contributions.
 <br>
 
 ##### **AhmetEmre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/aecepoglu/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/aecepoglu/bqn/ch-2.bqn) in **BQN**.
+
+##### **Archar Gelod** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/archargelod/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/archargelod/nim/ch_2.nim) in **Nim**.
 
 ##### **Kivanc Yazan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/kivanc-yazan/python3/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/kivanc-yazan/python3/ch-2.py) in **Python**.
 
