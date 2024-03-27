@@ -452,7 +452,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ![Reinier Maliepaard](/images/team/reinier-maliepaard.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-260/reinier-maliepaard/perl/ch-1.pl)]
-[[**BLOG #1**](https://www.reiniermaliepaard.nl/perl/twc260/index.php?id=twc260)]
+[[**BLOG #1**](https://reiniermaliepaard.nl/perl/pwc/index.php?id=pwc260)]
 
 ***
 
