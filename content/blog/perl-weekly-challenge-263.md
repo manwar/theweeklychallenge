@@ -181,7 +181,7 @@ Write a script to return the list of indices in the sorted array where the eleme
     Output: (1, 2)
 
     Sorted array: (1, 2, 2, 3, 4, 5)
-    Target indices: (1, 2) as $ints[1] = 2 and $k[2] = 2
+    Target indices: (1, 2) as $ints[1] = 2 and $ints[2] = 2
 
 #### Example 2
 
