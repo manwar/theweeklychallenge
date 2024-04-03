@@ -1,14 +1,14 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-04-02T00:00:00+00:00
+date: 2024-04-03T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["Ada", "APL", "Awk", "BASIC", "Bash", "Bc", "Befunge-93", "Bourne Shell", "BQN", "Brainfuck", "C3", "C", "CESIL", "Chef", "COBOL", "Coconut", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Dc", "Elixir", "Elm", "Emacs Lisp", "Erlang", "Excel VBA", "F#", "Factor", "Fennel", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "GP", "Haskell", "Haxe", "HTML", "Idris", "IO", "J", "Janet", "Java", "JavaScript", "Julia", "Kotlin", "Lisp", "Logo", "Lua", "M4", "Maxima", "Miranda", "Modula 3", "MMIX", "Mumps", "Myrddin", "Nelua", "Nim", "Nix", "Node.js", "Nuweb", "Oberon", "Octave", "OCaml", "Odin", "Ook", "Pascal", "PHP", "Python", "PostgreSQL", "Postscript", "PowerShell", "Prolog", "R", "Racket", "Rexx", "Ring", "Roc", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "Standard ML", "SVG", "Swift", "Tcl", "TypeScript", "Uiua", "V", "Visual BASIC", "WebAssembly", "Wolfram", "XSLT", "YaBasic", "Zig"]
+tags: ["Ada", "APL", "Awk", "BASIC", "Bash", "Bc", "Befunge-93", "Bourne Shell", "BQN", "Brainfuck", "C3", "C", "CESIL", "Chef", "COBOL", "Coconut", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Dc", "Elixir", "Elm", "Emacs Lisp", "Erlang", "Excel VBA", "F#", "Factor", "Fennel", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "GP", "Haskell", "Haxe", "HTML", "Hy", "Idris", "IO", "J", "Janet", "Java", "JavaScript", "Julia", "Kotlin", "Lisp", "Logo", "Lua", "M4", "Maxima", "Miranda", "Modula 3", "MMIX", "Mumps", "Myrddin", "Nelua", "Nim", "Nix", "Node.js", "Nuweb", "Oberon", "Octave", "OCaml", "Odin", "Ook", "Pascal", "PHP", "Python", "PostgreSQL", "Postscript", "PowerShell", "Prolog", "R", "Racket", "Rexx", "Ring", "Roc", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "Standard ML", "SVG", "Swift", "Tcl", "TypeScript", "Uiua", "V", "Visual BASIC", "WebAssembly", "Wolfram", "XSLT", "YaBasic", "Zig"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **[The Weekly Challenge - 018](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **BASIC**, **Bash**, **Bc**, **Befunge-93**, **Bourne Shell**, **BQN**, **Brainfuck**, **C3**, **C**, **CESIL**, **Chef**, **COBOL**, **Coconut**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Dc**, **Elixir**, **Elm**, **Emacs Lisp**, **Erlang**, **Excel VBA**, **F#**, **Factor**, **Fennel**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **GP**, **Haskell**, **Haxe**, **HTML**, **Idris**, **IO**, **J**, **Janet**, **Java**, **JavaScript**, **Julia**, **Korn Shell**, **Kotlin**, **Lisp**, **Logo**, **Lua**, **M4**, **Maxima**, **Miranda**, **Modula 3**, **MMIX**, **Mumps**, **Myrddin**, **Nelua**, **Nim**, **Nix**, **Node.js**, **Nuweb**, **Oberon**, **Octave**, **OCaml**, **Odin**, **Ook**, **Pascal**, **PHP**, **Python**, **PostgreSQL**, **Postscript**, **PowerShell**, **Prolog**, **R**, **Racket**, **Rexx**, **Ring**, **Roc**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **Standard ML**, **SVG**, **Swift**, **Tcl**, **TypeScript**, **Uiua**, **V**, **Visual BASIC**, **WebAssembly**, **Wolfram**, **XSLT**, **YaBasic** and **Zig**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **[The Weekly Challenge - 018](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **BASIC**, **Bash**, **Bc**, **Befunge-93**, **Bourne Shell**, **BQN**, **Brainfuck**, **C3**, **C**, **CESIL**, **Chef**, **COBOL**, **Coconut**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Dc**, **Elixir**, **Elm**, **Emacs Lisp**, **Erlang**, **Excel VBA**, **F#**, **Factor**, **Fennel**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **GP**, **Haskell**, **Haxe**, **HTML**, **Hy**, **Idris**, **IO**, **J**, **Janet**, **Java**, **JavaScript**, **Julia**, **Korn Shell**, **Kotlin**, **Lisp**, **Logo**, **Lua**, **M4**, **Maxima**, **Miranda**, **Modula 3**, **MMIX**, **Mumps**, **Myrddin**, **Nelua**, **Nim**, **Nix**, **Node.js**, **Nuweb**, **Oberon**, **Octave**, **OCaml**, **Odin**, **Ook**, **Pascal**, **PHP**, **Python**, **PostgreSQL**, **Postscript**, **PowerShell**, **Prolog**, **R**, **Racket**, **Rexx**, **Ring**, **Roc**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **Standard ML**, **SVG**, **Swift**, **Tcl**, **TypeScript**, **Uiua**, **V**, **Visual BASIC**, **WebAssembly**, **Wolfram**, **XSLT**, **YaBasic** and **Zig**.
 
 Please find below guest contributions.
 
@@ -58,6 +58,18 @@ Please find below guest contributions.
 
 ##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/ash/typescript/ch-1.ts) in **Typescript**.
 
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/asherbhs/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/asherbhs/apl/ch-2.apl) in **APL**.
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/asherbhs/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/asherbhs/bqn/ch-2.bqn) in **BQN**.
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/asherbhs/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/asherbhs/haskell/ch-2.hs) in **Haskell**.
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/asherbhs/hy/ch-1.hy) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/asherbhs/hy/ch-2.hy) in **Hy**.
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/asherbhs/j/ch-1.ijs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/asherbhs/j/ch-2.ijs) in **J**.
+
+##### **Dave Jacoby** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/dave-jacoby/python/ch-1.py) in **Python**.
+
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/zapwai/c/ch-2.c) in **C**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/zapwai/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/zapwai/javascript/ch-2.js) in **JavaScript**.
@@ -67,6 +79,10 @@ Please find below guest contributions.
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/zapwai/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/zapwai/rust/ch-2.rs) in **Rust**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/pokgopun/go/ch-2.go) in **Go**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/pokgopun/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/pokgopun/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
 
