@@ -64,7 +64,7 @@ Quick recap of the [**"The Weekly Challenge - 084"**](/blog/recap-challenge-084)
 ## PERL REVIEW {#PERLREVIEW}
 ***
 
-Please checkout **Perl** solutions review of the **["The Weekly Challenge - 083"](/blog/review-challenge-083)** by `Colin Crain`.
+Please checkout **Perl** solutions review of the **["The Weekly Challenge - 084"](/blog/review-challenge-084)** by `Colin Crain`.
 
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
@@ -72,6 +72,8 @@ If you missed any past reviews then please checkout the [**collection**](/p5-rev
 
 ## RAKU REVIEW {#RAKUREVIEW}
 ***
+
+Please checkout **Raku** solutions review of the **["The Weekly Challenge - 084"](/blog/p6-review-challenge-084)** by `Andrew Shitov`.
 
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 
