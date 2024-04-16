@@ -416,7 +416,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Nelo Tovar
-![Nelo Tovar](/images/team/user.jpg)
+![Nelo Tovar](/images/team/nelo-tovar.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-264/nelo-tovar/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-264/nelo-tovar/perl/ch-2.pl)]
