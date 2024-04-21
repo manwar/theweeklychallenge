@@ -129,8 +129,6 @@ If you missed any past reviews then please check out the [**collection**](/p5-re
 ## RAKU REVIEW {#RAKUREVIEW}
 ***
 
-Please checkout **Raku** solutions review of **[The Weekly Challenge - 263](/blog/p6-review-challenge-263)** by `Andrew Shitov`.
-
 If you missed any past reviews then please check out the [**collection**](/p6-reviews).
 
 <br>
