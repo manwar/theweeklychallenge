@@ -42,8 +42,6 @@ Please find below guest contributions.
 
 #### &nbsp; * &nbsp; [[019](#019)] &nbsp; * &nbsp; [[018](#018)] &nbsp; * &nbsp; [[017](#017)] &nbsp; * &nbsp; [[016](#016)] &nbsp; * &nbsp; [[015](#015)] &nbsp; * &nbsp; [[014](#014)] &nbsp; * &nbsp; [[013](#013)] &nbsp; * &nbsp; [[012](#012)] &nbsp; * &nbsp; [[011](#011)] &nbsp; * &nbsp; [[010](#010)] &nbsp; * &nbsp; [[009](#009)] &nbsp; * &nbsp; [[008](#008)] &nbsp; * &nbsp; [[007](#007)] &nbsp; * &nbsp; [[006](#006)] &nbsp; * &nbsp; [[005](#005)] &nbsp; * &nbsp; [[004](#004)] &nbsp; * &nbsp; [[003](#003)] &nbsp; * &nbsp; [[002](#002)] &nbsp; * &nbsp; [[001](#001)] &nbsp; *
 
- &nbsp; *
-
 ----
 ## [The Weekly Challenge - 267](/blog/perl-weekly-challenge-267) {#267}
 <br>
