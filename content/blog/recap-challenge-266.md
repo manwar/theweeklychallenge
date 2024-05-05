@@ -241,36 +241,36 @@ The total contributions in the week is `108`. Well done **Team PWC**. I would al
     Node.js (4).
 #### 86. Macy TY (4)
     JavaScript (4).
-#### 87. Mohammad Foda (4)
+#### 87. Marton Polgar (4)
+    Prolog (2), PHP (2).
+#### 88. Mohammad Foda (4)
     Haxe (2), Nim (2).
-#### 88. Philip Hood (4)
+#### 89. Philip Hood (4)
     C (1), C++ (2), GNAT (1).
-#### 89. Yet Ebreo (4)
+#### 90. Yet Ebreo (4)
     Python (2), Ruby (2).
-#### 90. Andinus (3)
+#### 91. Andinus (3)
     C (3).
-#### 91. Gabor Szabo (3)
+#### 92. Gabor Szabo (3)
     Crystal (3).
-#### 92. Guillermo Ramos (3)
+#### 93. Guillermo Ramos (3)
     Go (3).
-#### 93. Jorg Sommrey (3)
+#### 94. Jorg Sommrey (3)
     Maxima (1), Octave (2).
-#### 94. Mohammad Khalid Anwar (3)
+#### 95. Mohammad Khalid Anwar (3)
     C++ (1), PHP (1), Python (1).
-#### 95. Rage311 (3)
+#### 96. Rage311 (3)
     Rust (3).
-#### 96. Carlos Oliveira (2)
+#### 97. Carlos Oliveira (2)
     C (2).
-#### 97. Daniel Mita (2)
+#### 98. Daniel Mita (2)
     Go (1), JavaScript (1).
-#### 98. Humberto Massa (2)
+#### 99. Humberto Massa (2)
     C++ (2).
-#### 99. Mark Anderson (2)
+#### 100. Mark Anderson (2)
     PowerShell (2).
-#### 100. Mark Senn (2)
+#### 101. Mark Senn (2)
     Wolfram (2).
-#### 101. Marton Polgar (2)
-    Prolog (2).
 #### 102. Ruth Holloway (2)
     COBOL (2).
 #### 103. Tejas (2)
@@ -313,7 +313,7 @@ The total contributions in the week is `108`. Well done **Team PWC**. I would al
 ## LANGUAGES {#LANGUAGES}
 ***
 
-    Python (2460), Ruby (676), Haskell (658), Rust (616), Lua (596), C (532), C++ (502), JavaScript (402), Go (355), BQN (331), Java (300), Postscript (289), Kotlin (285), Julia (273), PostgreSQL (217), Clojure (202), Node.js (196), Awk (190), Nim (186), Bash (171), Pascal (159), Prolog (154), APL (145), Scala (137), Tcl (102), BASIC (100), Forth (97), D (91), Bc (84), R (81), Lisp (66), Excel VBA (63), Scheme (60), Modula 3 (58), Oberon (47), PHP (41), Swift (41), Dart (40), Ada (35), Befunge-93 (35), Fortran (33), OCaml (33), SQL (24), Erlang (22), COBOL (20), Ring (20), C Shell (19), J (19), F# (18), M4 (18), Rexx (17), Sed (16), Uiua (16), Elixir (15), Elm (15), MMIX (14), PowerShell (13), Nelua (12), Smalltalk (9), Fennel (8), Zig (7), Brainfuck (6), Emacs Lisp (4), Factor (4), Hy (4), Racket (4), TypeScript (4), CESIL (3), Coconut (3), Crystal (3), Gembase (3), Janet (3), Nuweb (3), Octave (3), V (3), C3 (2), Dc (2), GP (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), Roc (2), Standard ML (2), WebAssembly (2), Wolfram (2), YaBasic (2), Bourne Shell (1), C# (1), Chef (1), Fish (1), GNAT (1), IO (1), Javascript (1), Logo (1), Maxima (1), Mumps (1), Node (1), Ook (1), Pytho (1), SVG (1), Typescript (1), VBA (1), Visual BASIC (1), XSLT (1).
+    Python (2460), Ruby (676), Haskell (658), Rust (616), Lua (596), C (532), C++ (502), JavaScript (402), Go (355), BQN (331), Java (300), Postscript (289), Kotlin (285), Julia (273), PostgreSQL (217), Clojure (202), Node.js (196), Awk (190), Nim (186), Bash (171), Pascal (159), Prolog (154), APL (145), Scala (137), Tcl (102), BASIC (100), Forth (97), D (91), Bc (84), R (81), Lisp (66), Excel VBA (63), Scheme (60), Modula 3 (58), Oberon (47), PHP (43), Swift (41), Dart (40), Ada (35), Befunge-93 (35), Fortran (33), OCaml (33), SQL (24), Erlang (22), COBOL (20), Ring (20), C Shell (19), J (19), F# (18), M4 (18), Rexx (17), Sed (16), Uiua (16), Elixir (15), Elm (15), MMIX (14), PowerShell (13), Nelua (12), Smalltalk (9), Fennel (8), Zig (7), Brainfuck (6), Emacs Lisp (4), Factor (4), Hy (4), Racket (4), TypeScript (4), CESIL (3), Coconut (3), Crystal (3), Gembase (3), Janet (3), Nuweb (3), Octave (3), V (3), C3 (2), Dc (2), GP (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), Roc (2), Standard ML (2), WebAssembly (2), Wolfram (2), YaBasic (2), Bourne Shell (1), C# (1), Chef (1), Fish (1), GNAT (1), IO (1), Javascript (1), Logo (1), Maxima (1), Mumps (1), Node (1), Ook (1), Pytho (1), SVG (1), Typescript (1), VBA (1), Visual BASIC (1), XSLT (1).
 
 <br>
 
