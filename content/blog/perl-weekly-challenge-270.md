@@ -201,7 +201,7 @@ Write a script to return the number of special positions in the given binary mat
                      ]
     Output: 1
 
-    There is only special position (1, 2) as $matrix[1][2] == 1
+    There is only one special position (1, 2) as $matrix[1][2] == 1
     and all other elements in row 1 and column 2 are 0.
 
 #### Example 2
