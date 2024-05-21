@@ -272,7 +272,7 @@ In the end return the minimum cost to get the work done.
     @ints = (5, 5, 5, 5, 5)
 
     We perforned operation Level 1, 1 time and Level 2, 4 times.
-    So the total cost would be (1 x $x) + (3 x $y) => (1 x 2) + (4 x 1) => 6
+    So the total cost would be (1 x $x) + (4 x $y) => (1 x 2) + (4 x 1) => 6
 
 <br>
 
