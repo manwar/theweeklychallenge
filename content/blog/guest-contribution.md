@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-05-21T00:00:00+00:00
+date: 2024-05-24T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -57,6 +57,12 @@ Please find below guest contributions.
 ##### **David Ferrone** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-270/zapwai/rust/ch-1.rs) in **Rust**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-270/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-270/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-270/luca-ferrari/pljava/src/main/java/Task1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-270/luca-ferrari/pljava/src/main/java/Task2.java) in **Java**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-270/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-270/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-270/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-270/luca-ferrari/python/ch-2.py) in **Python**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-270/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-270/pokgopun/go/ch-2.go) in **Go**.
 
