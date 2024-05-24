@@ -216,7 +216,7 @@ Write a script to return the number of special positions in the given binary mat
 
 <br>
 
-## Task 2: Distribute Elements {#TASK2}
+## Task 2: Equalize Array {#TASK2}
 ##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)
 ***
 
