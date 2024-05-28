@@ -46,7 +46,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `267` &nbsp;&nbsp;|&nbsp;&nbsp; 50 &nbsp;&nbsp;|&nbsp;&nbsp; 27 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `268` &nbsp;&nbsp;|&nbsp;&nbsp; 48 &nbsp;&nbsp;|&nbsp;&nbsp; 31 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `269` &nbsp;&nbsp;|&nbsp;&nbsp; 44 &nbsp;&nbsp;|&nbsp;&nbsp; 30 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `270` &nbsp;&nbsp;|&nbsp;&nbsp; 39 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `270` &nbsp;&nbsp;|&nbsp;&nbsp; 39 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|
 
 <br>
 
@@ -87,11 +87,12 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 #### 1. [Distribute Positions](https://raku-musings.com/distribute-positions.html) by Arne Sommer.
 #### 2. [When A Decision Must Be Made](https://jacoby-lpwk.onrender.com/2024/05/22/when-a-decision-must-be-made-weekly-challenge-270.html) by Dave Jacoby.
 #### 3. [Special Levels](https://github.sommrey.de/the-bears-den/2024/05/24/ch-270.html) by Jorg Sommrey.
-#### 4. [no passion this week!](https://fluca1978.github.io/2024/05/20/PerlWeeklyChallenge270.html) by Luca Ferrari.
-#### 5. [Hidden loops. Or no loops at all.](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-270/challenge-270/matthias-muth#readme) by Matthias Muth.
-#### 6. [Lonely ones and equalities](http://ccgi.campbellsmiths.force9.co.uk/challenge/270) by Peter Campbell Smith.
-#### 7. [Special Distribtions Position the Elements](https://blog.firedrake.org/archive/2024/05/The_Weekly_Challenge_270__Special_Distribtions_Position_the_Elements.html) by Roger Bell_West.
-#### 8. [Equalizing positions](https://dev.to/simongreennet/equalizing-positions-2057) by Simon Green.
+#### 4. [Even More Special Levels](https://github.sommrey.de/the-bears-den/2024/05/27/ch-270.html) by Jorg Sommrey.
+#### 5. [no passion this week!](https://fluca1978.github.io/2024/05/20/PerlWeeklyChallenge270.html) by Luca Ferrari.
+#### 6. [Hidden loops. Or no loops at all.](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-270/challenge-270/matthias-muth#readme) by Matthias Muth.
+#### 7. [Lonely ones and equalities](http://ccgi.campbellsmiths.force9.co.uk/challenge/270) by Peter Campbell Smith.
+#### 8. [Special Distribtions Position the Elements](https://blog.firedrake.org/archive/2024/05/The_Weekly_Challenge_270__Special_Distribtions_Position_the_Elements.html) by Roger Bell_West.
+#### 9. [Equalizing positions](https://dev.to/simongreennet/equalizing-positions-2057) by Simon Green.
 
 <br>
 
