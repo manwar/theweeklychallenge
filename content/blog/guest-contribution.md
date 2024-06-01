@@ -54,7 +54,7 @@ Please find below guest contributions.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-271/deadmarshal/ruby/ch1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-271/deadmarshal/ruby/ch2.rb) in **Ruby**.
 
-##### **ATSchneider** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-271/atschneider/haskell/ch-1.lhs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-271/atschneider/haskell/ch-2.lhs) in **Haskell**.
+##### **ATSchneider** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-271/atschneid/haskell/ch-1.lhs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-271/atschneid/haskell/ch-2.lhs) in **Haskell**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-271/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-271/zapwai/c/ch-2.c) in **C**.
 
