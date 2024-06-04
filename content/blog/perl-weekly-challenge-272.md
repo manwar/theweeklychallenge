@@ -19,7 +19,7 @@ tags: ["Perl", "Raku"]
 ### 06. [CHART](#CHART)
 ### 07. [NEW MEMBERS](#NEWMEMBERS)
 ### 08. [GUESTS](#GUESTS)
-### 09. [TASK #1: Defrang IP Address](#TASK1)
+### 09. [TASK #1: Defang IP Address](#TASK1)
 ### 10. [TASK #2: String Score](#TASK2)
 <br>
 
@@ -168,15 +168,15 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 
 <br>
 
-## Task 1: Defrang IP Address {#TASK1}
+## Task 1: Defang IP Address {#TASK1}
 ##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)
 ***
 
 You are given a valid `IPv4` address.
 
-Write a script to return the defranged version of the given IP address.
+Write a script to return the defanged version of the given IP address.
 
->    A defranged IP address replaces every period "." with "[.]".
+>    A defanged IP address replaces every period "." with "[.]".
 
 #### Example 1
 
