@@ -344,8 +344,8 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 ***
 
-### ATSchneider
-![ATSchneider](/images/team/user.jpg)
+### Andrew Schneider
+![Andrew Schneider](/images/team/user.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-271/atschneid/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-271/atschneid/perl/ch-2.pl)]

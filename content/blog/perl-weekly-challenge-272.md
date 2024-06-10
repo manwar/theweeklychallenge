@@ -28,7 +28,7 @@ tags: ["Perl", "Raku"]
 
 Welcome to the `Week #272` of `The Weekly Challenge`.
 
-Let us all welcome new member `ATSchneider`, an experienced `Perl` hacker. Thank you for sharing solutions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-271/atschneid/perl) and [**Haskell**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-271/atschneid/haskell) in the very first week.
+Let us all welcome new member `Andrew Schneider`, an experienced `Perl` hacker. Thank you for sharing solutions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-271/atschneid/perl) and [**Haskell**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-271/atschneid/haskell) in the very first week.
 
 I would like to take this opportunity to thank `Nelo Tovar` for getting back to me with regard to the prize money. Happy to share that the payment gone without any trouble as confirmed by `Nelo`.
 
@@ -151,7 +151,7 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 ## NEW MEMBERS {#NEWMEMBERS}
 ***
 
-[**ATSchneider**](https://github.com/atschneid), an experienced `Perl` hacker joined the `Team PWC`.
+[**Andrew Schneider**](https://github.com/atschneid), an experienced `Perl` hacker joined the `Team PWC`.
 
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
