@@ -72,6 +72,8 @@ Please find below guest contributions.
 
 ##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/spadacciniweb/elixir/ch-1.exs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/spadacciniweb/elixir/ch-2.exs) in **Elixir**.
 
+##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/spadacciniweb/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/spadacciniweb/go/ch-2.go) in **Go**.
+
 ##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/spadacciniweb/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/spadacciniweb/python/ch-2.py) in **Python**.
 
 ##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/packy-anderson/elixir/ch-1.exs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/packy-anderson/elixir/ch-2.exs) in **Elixir**.
