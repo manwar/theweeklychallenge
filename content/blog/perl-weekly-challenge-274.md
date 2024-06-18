@@ -222,7 +222,7 @@ An input timetable consists of the service interval, the offset within the hour,
 
 #### Example 2
 
-    Input: [ [[12, 3, 41], [15, 9, 35], [30, 5, 25] ]
+    Input: [ [12, 3, 41], [15, 9, 35], [30, 5, 25] ]
     Output: [ 0, 1, 2, 3, 25, 26, 27, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 55, 56, 57, 58, 59 ]
 
 <br>
