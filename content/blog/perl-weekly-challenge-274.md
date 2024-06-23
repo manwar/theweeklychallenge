@@ -171,7 +171,7 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 ##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)
 ***
 
-You are given a sentence, `$sentance`.
+You are given a sentence, `$sentence`.
 
 Write a script to convert the given sentence to `Goat Latin`, a made up language similar to `Pig Latin`.
 
