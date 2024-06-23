@@ -1,7 +1,7 @@
 ---
 title: "The Weekly Challenge - 274"
 date: 2024-06-17T00:00:00+00:00
-description: "The Weekly Challenge - 275"
+description: "The Weekly Challenge - 274"
 type: post
 image: images/twc-logo.png
 author: Mohammad Sajid Anwar
@@ -50,7 +50,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `270` &nbsp;&nbsp;|&nbsp;&nbsp; 39 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `271` &nbsp;&nbsp;|&nbsp;&nbsp; 52 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `272` &nbsp;&nbsp;|&nbsp;&nbsp; 54 &nbsp;&nbsp;|&nbsp;&nbsp; 30 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `273` &nbsp;&nbsp;|&nbsp;&nbsp; 62 &nbsp;&nbsp;|&nbsp;&nbsp; 32 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `273` &nbsp;&nbsp;|&nbsp;&nbsp; 62 &nbsp;&nbsp;|&nbsp;&nbsp; 34 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 
 <br>
 
