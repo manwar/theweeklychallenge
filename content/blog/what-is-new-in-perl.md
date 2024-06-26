@@ -1,5 +1,5 @@
 ---
-title: "What is new in Perl v5.40?"
+title: "What's new in Perl v5.40?"
 date: 2024-06-26T00:00:00+00:00
 description: "Discussion about core enhancements in Perl v5.40."
 type: post
