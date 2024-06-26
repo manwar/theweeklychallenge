@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about core enhancements in Perl v5.40.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>What is new in Perl v5.40?</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>What is new in Perl v5.40?</h2>
+                    <div class="portfolio-meta">
+                        <span>Wednesday, Jun 26, 2024</span>|
+                        <span> Tags:
+                            Perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/what-is-new-in-perl.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p><code>Perl</code>, the most versatile and powerful programming language, continues to evolve. With the addition of <a href="https://github.com/Perl-Apollo/Corinna"><strong>Corinna</strong></a> to the core <code>Perl</code>, I look forward to every release for new features. On <code>9th June 2024</code>, we had the latest release <code>Perl v5.40</code> public. There have been significant enhancements in this release. You can checkout the <a href="https://perldoc.perl.org/perl5400delta"><strong>main attraction</strong></a> yourself.</p>
+<p>In this post, I would like to share my personal favourites.</p>
+<h3 id="1-new-__class__-keywordnew_class_keyword">1. <a href="#new_class_keyword">New <code>__CLASS__</code> keyword</a></h3>
+<h3 id="2-reader-attribute-for-field-variablesreader_attribute">2. <a href="#reader_attribute"><code>:reader</code> attribute for field variables</a></h3>
+<h3 id="3-permit-a-space-in--m-command-line-optionm_switch">3. <a href="#m_switch">Permit a space in <code>-M</code> command-line option</a></h3>
+<h3 id="4-new--logical-xor-operatorxor_operator">4. <a href="#xor_operator">New <code>^^</code> logical xor operator</a></h3>
+<h3 id="5-trycatch-feature-is-no-longer-experimentaltry_catch">5. <a href="#try_catch"><code>try/catch</code> feature is no longer experimental</a></h3>
+<h3 id="6-for-iterating-over-multiple-values-at-a-time-is-no-longer-experimentallist_for">6. <a href="#list_for">for iterating over multiple values at a time is no longer experimental</a></h3>
+<br>
+<h2 id="new_class_keyword">New <code>__CLASS__</code> keyword</h2>
+<hr>
+<p>Do you remember the good old friend, <code>__PACKAGE__</code>? Well it is special token that returns the name of the package in which it occurs. Most commonly, you will find this <code>__PACKAGE__-&gt;meta-&gt;make_immutable</code> in a <code>Moose</code> class.</p>
+<p>Similar to the <code>__PACKAGE__</code>, we now have a special token <code>__CLASS__</code> for the new <code>core OO</code>. In most cases, it would behave same as <code>__PACKAGE__</code>. Having said, it shines when you are dealing with <code>subclass</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+
+class Example1 {
+    field $x <span style="color:#f92672">=</span> __CLASS__<span style="color:#f92672">-&gt;</span>default_x;
+    field $y <span style="color:#f92672">=</span> __CLASS__<span style="color:#f92672">-&gt;</span>default_y;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">default_x</span> { <span style="color:#ae81ff">10</span> }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">default_y</span> { <span style="color:#ae81ff">20</span> }
+    method sum { <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y }
+}
+
+class Example2 :isa(Example1) {
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">default_x</span> { <span style="color:#ae81ff">1</span> }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">default_y</span> { <span style="color:#ae81ff">2</span> }
+}
+
+say Example1<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>sum;  <span style="color:#75715e"># 30</span>
+say Example2<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>sum;  <span style="color:#75715e"># 3</span>
+</code></pre></div><br>
+<h2 id="reader_attribute">:reader attribute for field variables</h2>
+<hr>
+<p>With the introduction of new <code>OO</code> in <code>Perl v5.38</code>, this is how one can create a class.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+
+class Employee {
+    field $name :param;
+    field $age  :param;
+
+    method name { <span style="color:#66d9ef">return</span> $name }
+    method age  { <span style="color:#66d9ef">return</span> $age  }
+}
+
+<span style="color:#66d9ef">my</span> $emp <span style="color:#f92672">=</span> Employee<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Joe&#34;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">40</span>);
+say $emp<span style="color:#f92672">-&gt;</span>name;      <span style="color:#75715e"># Joe</span>
+say $emp<span style="color:#f92672">-&gt;</span>get_age;   <span style="color:#75715e"># 40</span>
+</code></pre></div><br>
+<p>If you noticed the method <code>name()</code> and <code>age()</code> is just a generic <code>getter</code> method.</p>
+<p>Luckily in the latest release, the same can be achieved like below with the use of <code>:reader</code> without having to explicitly define the <code>getter</code> methods.</p>
+<p>I must admit, it looks a lot cleaner definition of class comparatively.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+
+class Employee {
+    field $name :param :reader;
+    field $age  :param :reader(get_age);
+}
+
+<span style="color:#66d9ef">my</span> $emp <span style="color:#f92672">=</span> Employee<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Joe&#34;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">40</span>);
+say $emp<span style="color:#f92672">-&gt;</span>name;      <span style="color:#75715e"># Joe</span>
+say $emp<span style="color:#f92672">-&gt;</span>get_age;   <span style="color:#75715e"># 40</span>
+</code></pre></div><br>
+<p>There are two variants, one that would give you regular getter and the second where you can provide your own method name.</p>
+<p>You may be wondering, <code>how about setter?</code>.</p>
+<p>Well I am hoping in the next release we might get that too.</p>
+<br>
+<h2 id="m_switch">Permit a space in -M command-line option</h2>
+<hr>
+<p>Prior to <code>Perl v5.40</code>, this is how you would use <code>-M</code> switch.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ p538 <span style="color:#f92672">-</span>MList::Util<span style="color:#f92672">=</span>sum <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;say sum(1, 2, 3, 4)&#39;</span>
+<span style="color:#ae81ff">10</span>
+</code></pre></div><br>
+<p>However if you force space in earlier Perl, you would get error <code>Missing argument to -M</code> like below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ p538 <span style="color:#f92672">-</span>M List::Util<span style="color:#f92672">=</span>sum <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;say sum(1, 2, 3, 4)&#39;</span>
+Missing argument to <span style="color:#f92672">-</span>M
+</code></pre></div><br>
+<p>With the release of <code>Perl v5.40</code>, you no longer get error.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ p540 <span style="color:#f92672">-</span>M List::Util<span style="color:#f92672">=</span>sum <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;say sum(1, 2, 3, 4)&#39;</span>
+<span style="color:#ae81ff">10</span>
+</code></pre></div><br>
+<h2 id="xor_operator">New ^^ logical xor operator</h2>
+<hr>
+<p>Prior to <code>Perl v5.40</code>, we had 3 low-precedence logical operators <code>and</code>, <code>or</code> and <code>xor</code>. Also we had 2 medium-precedence logical operators <code>&amp;&amp;</code> and <code>||</code>.</p>
+<p>In the earlier release of <code>Perl</code>, this is how one would use low-precedence <code>xor</code> operator.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+
+<span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+($x xor $y) <span style="color:#f92672">and</span> say <span style="color:#e6db74">&#39;Either $x or $y is true but not both.&#39;</span>;
+</code></pre></div><br>
+<p>With the addition of new medium-precedence xor operator <code>^^</code>, the same can be achieved like below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+
+<span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+$x <span style="color:#f92672">^^</span> $y <span style="color:#f92672">and</span> say <span style="color:#e6db74">&#39;Either $x or $y is true but not both.&#39;</span>;
+</code></pre></div><br>
+<h2 id="try_catch">try/catch feature is no longer experimental</h2>
+<hr>
+<p>We all know <code>try/catch</code> was added to the core <code>Perl v5.34</code> as experimental.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.34</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(try)</span>;
+
+try {
+    <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>;
+} catch ($e) {
+    say <span style="color:#e6db74">&#34;try/catch exception: $e&#34;</span>;
+}
+</code></pre></div><br>
+<p>It stayed experimental even in <code>Perl v5.36</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(try)</span>;
+
+try {
+    <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>;
+} catch ($e) {
+    say <span style="color:#e6db74">&#34;try/catch exception: $e&#34;</span>;
+}
+</code></pre></div><br>
+<p>However it is no longer experimental in <code>Perl v5.40</code>. <strong>Hurrah !!!</strong></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+
+try {
+    <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>;
+} catch ($e) {
+    say <span style="color:#e6db74">&#34;try/catch exception: $e&#34;</span>;
+}
+</code></pre></div><br>
+<h2 id="list_for">for iterating over multiple values at a time is no longer experimental</h2>
+<hr>
+<p>Do you remember iterating over multiple values at a time experimental feature added to the core <code>Perl v5.36</code>?</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(for_list)</span>;
+
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> ($p, $q) (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>) {
+    say $p, $q;
+}
+</code></pre></div><br>
+<p>It is no longer experimental in <code>Perl v5.40</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> ($p, $q) (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>) {
+    say $p, $q;
+}
+</code></pre></div><p>I have only scratched the surface so far, may be in the post I will try to explore further enhancements.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2024
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
