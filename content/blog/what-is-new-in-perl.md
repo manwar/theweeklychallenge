@@ -193,7 +193,7 @@ We all know `try/catch` was added to the core `Perl v5.34` as experimental.
 
 ```perl
 use v5.34;
-use experimental qw(try);
+use experimental 'try';
 
 try {
     1/0;
@@ -210,7 +210,7 @@ It stayed experimental even in `Perl v5.36`.
 
 ```perl
 use v5.36;
-use experimental qw(try);
+use experimental 'try';
 
 try {
     1/0;
@@ -246,7 +246,7 @@ Do you remember iterating over multiple values at a time experimental feature ad
 
 ```perl
 use v5.36;
-use experimental qw(for_list);
+use experimental 'for_list';
 
 for my ($p, $q) (1,2,3,4) {
     say $p, $q;
