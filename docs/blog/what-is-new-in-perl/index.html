@@ -209,11 +209,12 @@
 <h3 id="3-permit-a-space-in--m-command-line-optionm_switch">3. <a href="#m_switch">Permit a space in <code>-M</code> command-line option</a></h3>
 <h3 id="4-new--logical-xor-operatorxor_operator">4. <a href="#xor_operator">New <code>^^</code> logical xor operator</a></h3>
 <h3 id="5-trycatch-feature-is-no-longer-experimentaltry_catch">5. <a href="#try_catch"><code>try/catch</code> feature is no longer experimental</a></h3>
-<h3 id="6-for-iterating-over-multiple-values-at-a-time-is-no-longer-experimentallist_for">6. <a href="#list_for">for iterating over multiple values at a time is no longer experimental</a></h3>
+<h3 id="6-for-iterating-over-multiple-values-at-a-time-is-no-longer-experimentallist_for">6. <a href="#list_for"><code>for</code> iterating over multiple values at a time is no longer experimental</a></h3>
 <br>
-<h2 id="new_class_keyword">New <code>__CLASS__</code> keyword</h2>
+<h2 id="new_class_keyword">1. New <code>__CLASS__</code> keyword</h2>
 <hr>
-<p>Do you remember the good old friend, <code>__PACKAGE__</code>? Well it is special token that returns the name of the package in which it occurs. Most commonly, you will find this <code>__PACKAGE__-&gt;meta-&gt;make_immutable</code> in a <code>Moose</code> class.</p>
+<p>Do you remember the good old friend, <code>__PACKAGE__</code>?</p>
+<p>Well it is special token that returns the name of the package in which it occurs. Most commonly, you will find this <code>__PACKAGE__-&gt;meta-&gt;make_immutable</code> in a <code>Moose</code> class.</p>
 <p>Similar to the <code>__PACKAGE__</code>, we now have a special token <code>__CLASS__</code> for the new <code>core OO</code>. In most cases, it would behave same as <code>__PACKAGE__</code>. Having said, it shines when you are dealing with <code>subclass</code>.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
@@ -237,7 +238,7 @@ class Example2 :isa(Example1) {
 say Example1<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>sum;  <span style="color:#75715e"># 30</span>
 say Example2<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>sum;  <span style="color:#75715e"># 3</span>
 </code></pre></div><br>
-<h2 id="reader_attribute">:reader attribute for field variables</h2>
+<h2 id="reader_attribute">2. <code>:reader</code> attribute for field variables</h2>
 <hr>
 <p>With the introduction of new <code>OO</code> in <code>Perl v5.38</code>, this is how one can create a class.</p>
 <br>
@@ -273,10 +274,10 @@ say $emp<span style="color:#f92672">-&gt;</span>name;      <span style="color:#7
 say $emp<span style="color:#f92672">-&gt;</span>get_age;   <span style="color:#75715e"># 40</span>
 </code></pre></div><br>
 <p>There are two variants, one that would give you regular getter and the second where you can provide your own method name.</p>
-<p>You may be wondering, <code>how about setter?</code>.</p>
+<p>You may be wondering, <code>how about setter?</code></p>
 <p>Well I am hoping in the next release we might get that too.</p>
 <br>
-<h2 id="m_switch">Permit a space in -M command-line option</h2>
+<h2 id="m_switch">3. Permit a space in <code>-M</code> command-line option</h2>
 <hr>
 <p>Prior to <code>Perl v5.40</code>, this is how you would use <code>-M</code> switch.</p>
 <br>
@@ -293,7 +294,7 @@ Missing argument to <span style="color:#f92672">-</span>M
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ p540 <span style="color:#f92672">-</span>M List::Util<span style="color:#f92672">=</span>sum <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;say sum(1, 2, 3, 4)&#39;</span>
 <span style="color:#ae81ff">10</span>
 </code></pre></div><br>
-<h2 id="xor_operator">New ^^ logical xor operator</h2>
+<h2 id="xor_operator">4. New <code>^^</code> logical xor operator</h2>
 <hr>
 <p>Prior to <code>Perl v5.40</code>, we had 3 low-precedence logical operators <code>and</code>, <code>or</code> and <code>xor</code>. Also we had 2 medium-precedence logical operators <code>&amp;&amp;</code> and <code>||</code>.</p>
 <p>In the earlier release of <code>Perl</code>, this is how one would use low-precedence <code>xor</code> operator.</p>
@@ -314,7 +315,7 @@ Missing argument to <span style="color:#f92672">-</span>M
 
 $x <span style="color:#f92672">^^</span> $y <span style="color:#f92672">and</span> say <span style="color:#e6db74">&#39;Either $x or $y is true but not both.&#39;</span>;
 </code></pre></div><br>
-<h2 id="try_catch">try/catch feature is no longer experimental</h2>
+<h2 id="try_catch">5. <code>try/catch</code> feature is no longer experimental</h2>
 <hr>
 <p>We all know <code>try/catch</code> was added to the core <code>Perl v5.34</code> as experimental.</p>
 <br>
@@ -348,7 +349,7 @@ try {
     say <span style="color:#e6db74">&#34;try/catch exception: $e&#34;</span>;
 }
 </code></pre></div><br>
-<h2 id="list_for">for iterating over multiple values at a time is no longer experimental</h2>
+<h2 id="list_for">6. <code>for</code> iterating over multiple values at a time is no longer experimental</h2>
 <hr>
 <p>Do you remember iterating over multiple values at a time experimental feature added to the core <code>Perl v5.36</code>?</p>
 <br>
@@ -366,7 +367,7 @@ try {
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> ($p, $q) (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>) {
     say $p, $q;
 }
-</code></pre></div><p>I have only scratched the surface so far, may be in the post I will try to explore further enhancements.</p>
+</code></pre></div><p>I have only scratched the surface so far, may be in the next post I will try to explore further enhancements.</p>
 
                 </div>
             </div>

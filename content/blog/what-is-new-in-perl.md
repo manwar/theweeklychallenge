@@ -17,14 +17,16 @@ In this post, I would like to share my personal favourites.
 ### 3. [Permit a space in `-M` command-line option](#m_switch)
 ### 4. [New `^^` logical xor operator](#xor_operator)
 ### 5. [`try/catch` feature is no longer experimental](#try_catch)
-### 6. [for iterating over multiple values at a time is no longer experimental](#list_for)
+### 6. [`for` iterating over multiple values at a time is no longer experimental](#list_for)
 
 <br>
 
-## New `__CLASS__` keyword {#new_class_keyword}
+## 1. New `__CLASS__` keyword {#new_class_keyword}
 ***
 
-Do you remember the good old friend, `__PACKAGE__`? Well it is special token that returns the name of the package in which it occurs. Most commonly, you will find this `__PACKAGE__->meta->make_immutable` in a `Moose` class.
+Do you remember the good old friend, `__PACKAGE__`?
+
+Well it is special token that returns the name of the package in which it occurs. Most commonly, you will find this `__PACKAGE__->meta->make_immutable` in a `Moose` class.
 
 Similar to the `__PACKAGE__`, we now have a special token `__CLASS__` for the new `core OO`. In most cases, it would behave same as `__PACKAGE__`. Having said, it shines when you are dealing with `subclass`.
 
@@ -55,7 +57,7 @@ say Example2->new->sum;  # 3
 
 <br>
 
-## :reader attribute for field variables {#reader_attribute}
+## 2. `:reader` attribute for field variables {#reader_attribute}
 ***
 
 With the introduction of new `OO` in `Perl v5.38`, this is how one can create a class.
@@ -107,13 +109,13 @@ say $emp->get_age;   # 40
 
 There are two variants, one that would give you regular getter and the second where you can provide your own method name.
 
-You may be wondering, `how about setter?`.
+You may be wondering, `how about setter?`
 
 Well I am hoping in the next release we might get that too.
 
 <br>
 
-## Permit a space in -M command-line option {#m_switch}
+## 3. Permit a space in `-M` command-line option {#m_switch}
 ***
 
 Prior to `Perl v5.40`, this is how you would use `-M` switch.
@@ -149,7 +151,7 @@ $ p540 -M List::Util=sum -E 'say sum(1, 2, 3, 4)'
 
 <br>
 
-## New ^^ logical xor operator {#xor_operator}
+## 4. New `^^` logical xor operator {#xor_operator}
 ***
 
 Prior to `Perl v5.40`, we had 3 low-precedence logical operators `and`, `or` and `xor`. Also we had 2 medium-precedence logical operators `&&` and `||`.
@@ -184,7 +186,7 @@ $x ^^ $y and say 'Either $x or $y is true but not both.';
 
 <br>
 
-## try/catch feature is no longer experimental {#try_catch}
+## 5. `try/catch` feature is no longer experimental {#try_catch}
 ***
 
 We all know `try/catch` was added to the core `Perl v5.34` as experimental.
@@ -237,7 +239,7 @@ try {
 
 <br>
 
-## for iterating over multiple values at a time is no longer experimental {#list_for}
+## 6. `for` iterating over multiple values at a time is no longer experimental {#list_for}
 ***
 
 Do you remember iterating over multiple values at a time experimental feature added to the core `Perl v5.36`?
@@ -267,4 +269,4 @@ for my ($p, $q) (1,2,3,4) {
 }
 ```
 
-I have only scratched the surface so far, may be in the post I will try to explore further enhancements.
+I have only scratched the surface so far, may be in the next post I will try to explore further enhancements.
