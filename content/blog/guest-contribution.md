@@ -48,6 +48,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 275](/blog/perl-weekly-challenge-275) {#275}
 <br>
 
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/barroff/julia/ch-1.jl) in **Julia**.
+
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/zapwai/c/ch-2.c) in **C**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/zapwai/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/zapwai/javascript/ch-2.js) in **JavaScript**.
