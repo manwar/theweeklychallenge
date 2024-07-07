@@ -60,6 +60,8 @@ Please find below guest contributions.
 
 ##### **Andrew Schneider** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/atschneid/prolog/ch-1.pro) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/atschneid/prolog/ch-2.pro) in **Prolog**.
 
+##### **BarrOff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/barroff/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/barroff/julia/ch-2.jl) in **Julia**.
+
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/zapwai/c/ch-2.c) in **C**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/zapwai/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/zapwai/javascript/ch-2.js) in **JavaScript**.
