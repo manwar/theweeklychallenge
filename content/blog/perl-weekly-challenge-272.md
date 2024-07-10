@@ -49,7 +49,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `267` &nbsp;&nbsp;|&nbsp;&nbsp; 50 &nbsp;&nbsp;|&nbsp;&nbsp; 27 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `268` &nbsp;&nbsp;|&nbsp;&nbsp; 48 &nbsp;&nbsp;|&nbsp;&nbsp; 31 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `269` &nbsp;&nbsp;|&nbsp;&nbsp; 44 &nbsp;&nbsp;|&nbsp;&nbsp; 30 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `270` &nbsp;&nbsp;|&nbsp;&nbsp; 39 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `270` &nbsp;&nbsp;|&nbsp;&nbsp; 41 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|&nbsp;&nbsp; 27 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `271` &nbsp;&nbsp;|&nbsp;&nbsp; 54 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
 
 <br>

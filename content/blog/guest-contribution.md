@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-07-09T00:00:00+00:00
+date: 2024-07-10T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -48,6 +48,10 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 277](/blog/perl-weekly-challenge-277) {#277}
 <br>
 
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/deadmarshal/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/deadmarshal/ruby/ch-2.rb) in **Ruby**.
+
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
+
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/zapwai/c/ch-2.c) in **C**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/zapwai/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/zapwai/javascript/ch-2.js) in **JavaScript**.
@@ -91,6 +95,8 @@ Please find below guest contributions.
 ##### **Andrew Schneider** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/atschneid/prolog/ch-1.pro) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/atschneid/prolog/ch-2.pro) in **Prolog**.
 
 ##### **BarrOff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/barroff/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/barroff/julia/ch-2.jl) in **Julia**.
+
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-276/zapwai/c/ch-2.c) in **C**.
 
@@ -164,6 +170,8 @@ Please find below guest contributions.
 
 ##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/barroff/julia/ch-1.jl) in **Julia**.
 
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
+
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/zapwai/c/ch-2.c) in **C**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/zapwai/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-275/zapwai/javascript/ch-2.js) in **JavaScript**.
@@ -229,6 +237,8 @@ Please find below guest contributions.
 ##### **Andrew Schneider** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-274/atschneid/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-274/atschneid/julia/ch-2.jl) in **Julia**.
 
 ##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-274/barroff/julia/ch-1.jl) in **Julia**.
+
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-274/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-274/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-274/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-274/zapwai/c/ch-2.c) in **C**.
 
@@ -305,6 +315,8 @@ Please find below guest contributions.
 ##### **BarrOff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/barroff/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/barroff/julia/ch-2.jl) in **Julia**.
 
 ##### **Bruce Gray** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/bruce-gray/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/bruce-gray/python/ch-2.py) in **Python**.
+
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-273/zapwai/c/ch-2.c) in **C**.
 
@@ -391,6 +403,8 @@ Please find below guest contributions.
 ##### **BarrOff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-272/barroff/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-272/barroff/julia/ch-2.jl) in **Julia**.
 
 ##### **Chazzka** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-272/chazzka/coconut/ch-2.coco) in **Coconut**.
+
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-272/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-272/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-272/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-272/zapwai/c/ch-2.c) in **C**.
 
