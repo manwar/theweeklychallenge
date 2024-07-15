@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - 278"
-date: 2024-07-14T00:00:00+00:00
+date: 2024-07-15T00:00:00+00:00
 description: "The Weekly Challenge - 278"
 type: post
 image: images/twc-logo.png
@@ -108,11 +108,11 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 ### [GitHub](https://github.com/manwar/perlweeklychallenge-club) Repository Stats
 ***
 
-#### 1. Commits: 38,888 (`+117`)
-#### 2. Pull Requests: 10,374 (`+42`)
-#### 3. Contributors: 248 (`+1`)
-#### 4. Fork: 313 (`+2`)
-#### 5. Stars: 173
+#### 1. Commits: 38,999 (`+111`)
+#### 2. Pull Requests: 10,415 (`+41`)
+#### 3. Contributors: 249 (`+1`)
+#### 4. Fork: 314 (`+1`)
+#### 5. Stars: 174 (`+1`)
 
 <br>
 
