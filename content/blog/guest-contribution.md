@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-07-19T00:00:00+00:00
+date: 2024-07-20T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -48,6 +48,14 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 278](/blog/perl-weekly-challenge-278) {#278}
 <br>
 
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/deadmarshal/java/Ch1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/deadmarshal/java/Ch2.java) in **Java**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/deadmarshal/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/deadmarshal/lua/ch-2.lua) in **Lua**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/deadmarshal/modula-3/ch1/src/Ch1.m3) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/deadmarshal/modula-3/ch2/src/Ch2.m3) in **Modula 3**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/deadmarshal/ruby/ch1.rb and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/deadmarshal/ruby/ch2.rb) in **Ruby**.
+
 ##### **Cheok-Yin Fung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/cheok-yin-fung/lisp/ch-1.lsp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/cheok-yin-fung/lisp/ch-2.lsp) in **Lisp**.
 
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
@@ -67,6 +75,10 @@ Please find below guest contributions.
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/luca-ferrari/python/ch-2.py) in **Python**.
+
+##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/packy-anderson/elixir/ch-1.exs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/packy-anderson/elixir/ch-2.exs) in **Elixir**.
+
+##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/packy-anderson/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/packy-anderson/python/ch-2.py) in **Python**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/pokgopun/go/ch-2.go) in **Go**.
 
