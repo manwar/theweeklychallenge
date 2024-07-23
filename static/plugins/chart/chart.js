@@ -328,6 +328,108 @@ $("#pwc_language_breakdown").click(function() {
     $('#pwc-language-breakdown-spinner').hide();
 });
 
+$("#pwc_language_breakdown_2019").click(function() {
+    $('#pwc-language-breakdown-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-language-breakdown-2019.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_language_breakdown_stats_2019').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-language-breakdown-spinner').hide();
+});
+
+$("#pwc_language_breakdown_2020").click(function() {
+    $('#pwc-language-breakdown-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-language-breakdown-2020.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_language_breakdown_stats_2020').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-language-breakdown-spinner').hide();
+});
+
+$("#pwc_language_breakdown_2021").click(function() {
+    $('#pwc-language-breakdown-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-language-breakdown-2021.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_language_breakdown_stats_2021').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-language-breakdown-spinner').hide();
+});
+
+$("#pwc_language_breakdown_2022").click(function() {
+    $('#pwc-language-breakdown-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-language-breakdown-2022.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_language_breakdown_stats_2022').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-language-breakdown-spinner').hide();
+});
+
+$("#pwc_language_breakdown_2023").click(function() {
+    $('#pwc-language-breakdown-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-language-breakdown-2023.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_language_breakdown_stats_2023').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-language-breakdown-spinner').hide();
+});
+
+$("#pwc_language_breakdown_2024").click(function() {
+    $('#pwc-language-breakdown-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-language-breakdown-2024.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_language_breakdown_stats_2024').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-language-breakdown-spinner').hide();
+});
+
 $("#guest_lang_breakdown").click(function() {
     $('#guest-leaders-spinner').show();
 
