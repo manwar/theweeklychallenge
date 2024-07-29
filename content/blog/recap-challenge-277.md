@@ -59,11 +59,11 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `108`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `119`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
 #### 1. Perl: 62
-#### 2. Raku: 28
-#### 3. Blog: 18
+#### 2. Raku: 30
+#### 3. Blog: 27
 
 <br>
 
@@ -580,6 +580,24 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/wambash/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/wambash/raku/ch-2.raku)]
+
+***
+
+### Luca Ferrari
+![Luca Ferrari](/images/team/luca-ferrari.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/luca-ferrari/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/luca-ferrari/raku/ch-2.raku)]
+[[**BLOG #1**](https://fluca1978.github.io/2024/07/11/PerlWeeklyChallenge277.html#task1)]
+[[**BLOG #2**](https://fluca1978.github.io/2024/07/11/PerlWeeklyChallenge277.html#task2)]
+[[**BLOG #3**](https://fluca1978.github.io/2024/07/11/PerlWeeklyChallenge277.html#task1plperl)]
+[[**BLOG #4**](https://fluca1978.github.io/2024/07/11/PerlWeeklyChallenge277.html#task2plperl)]
+[[**BLOG #5**](https://fluca1978.github.io/2024/07/11/PerlWeeklyChallenge277.html#task1plpgsql)]
+[[**BLOG #6**](https://fluca1978.github.io/2024/07/11/PerlWeeklyChallenge277.html#task2plpgsql)]
+[[**BLOG #7**](https://fluca1978.github.io/2024/07/11/PerlWeeklyChallenge277.html#task1python)]
+[[**BLOG #8**](https://fluca1978.github.io/2024/07/11/PerlWeeklyChallenge277.html#task2python)]
+[[**BLOG #9**](https://fluca1978.github.io/2024/07/11/PerlWeeklyChallenge277.html#task1pljava)]
+[[**BLOG #10**](https://fluca1978.github.io/2024/07/11/PerlWeeklyChallenge277.html#task2pljava)]
 
 ***
 
