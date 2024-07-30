@@ -463,3 +463,122 @@ $("#guest_lang_breakdown").click(function() {
 
     $('#guest-leaders-spinner').hide();
 });
+
+$("#yearly_guest_lang_summary").click(function() {
+    $('#guest-leaders-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'yearly-guest-language-summary.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#yearly_guest_lang_summary_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#guest-leaders-spinner').hide();
+});
+
+$("#yearly_guest_lang_breakdown_2019").click(function() {
+    $('#guest-leaders-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'guest-language-breakdown-2019.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#yearly_guest_lang_breakdown_2019_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#guest-leaders-spinner').hide();
+});
+
+$("#yearly_guest_lang_breakdown_2020").click(function() {
+    $('#guest-leaders-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'guest-language-breakdown-2020.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#yearly_guest_lang_breakdown_2020_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#guest-leaders-spinner').hide();
+});
+
+$("#yearly_guest_lang_breakdown_2021").click(function() {
+    $('#guest-leaders-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'guest-language-breakdown-2021.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#yearly_guest_lang_breakdown_2021_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#guest-leaders-spinner').hide();
+});
+
+$("#yearly_guest_lang_breakdown_2022").click(function() {
+    $('#guest-leaders-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'guest-language-breakdown-2022.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#yearly_guest_lang_breakdown_2022_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#guest-leaders-spinner').hide();
+});
+
+$("#yearly_guest_lang_breakdown_2023").click(function() {
+    $('#guest-leaders-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'guest-language-breakdown-2023.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#yearly_guest_lang_breakdown_2023_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#guest-leaders-spinner').hide();
+});
+
+$("#yearly_guest_lang_breakdown_2024").click(function() {
+    $('#guest-leaders-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'guest-language-breakdown-2024.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#yearly_guest_lang_breakdown_2024_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#guest-leaders-spinner').hide();
+});
