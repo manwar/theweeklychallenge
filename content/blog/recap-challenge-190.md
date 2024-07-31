@@ -289,8 +289,6 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/adam-russell/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-190/adam-russell/perl/ch-2.pl)]
-[[**BLOG #1**]()]
-[[**BLOG #2**]()]
 
 ***
 

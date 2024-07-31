@@ -61,9 +61,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 The total contributions in the week is `119`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 62
+#### 1. Perl: 64
 #### 2. Raku: 30
-#### 3. Blog: 27
+#### 3. Blog: 28
 
 <br>
 
@@ -331,7 +331,7 @@ The total contributions in the week is `119`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2738), Luca Ferrari (2684), Roger Bell_West (2510), Jaldhar H. Vyas (2444), Arne Sommer (1966), Athanasius (1782), Flavio Poletti (1716), Ulrich Rieke (1602), Colin Crain (1338), Dave Jacoby (1282), Adam Russell (1224), Lubos Kolouch (1212), E. Choroba (1200), Jorg Sommrey (1124), W. Luis Mochan (1120), Simon Green (1004), Paulo Custodio (918), Mark Anderson (908), James Smith (882), Cheok-Yin Fung (862), Peter Campbell Smith (832), Duncan C. White (798), Abigail (794), Feng Chang (734), Mohammad Sajid Anwar (718), Jan Krnavek (716), Bruce Gray (666), Niels van Dijke (660), Thomas Kohler (658), Stuart Little (644), Bob Lied (590), Ali Moradi (584), Robert DiCicco (574), Simon Proctor (562), Packy Anderson (510), Robbie Hatley (492), Stephen G. Lynn (484), Matthew Neleigh (474), Robert Ransbottom (464), Wanderdoc (462), Javier Luque (460), Ruben Westerberg (452), David Ferrone (424), Ryan Thompson (412), Joelle Maslak (374), Pete Houston (362), Matthias Muth (338), BarrOff (332), Andrew Shitov (262), Nelo Tovar (262), Andrezgz (260), Peter Meszaros (252), Steven Wilson (250), Yet Ebreo (226), Alexander Pankoff (220), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Solathian (192), Noud Aldenhoven (188), Marton Polgar (182), Avery Adams (176), Kevin Colyer (176), Aaron Smith (174), Kjetil Skotheim (168), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Mariano Spadaccini (130), Humberto Massa (128), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (2738), Luca Ferrari (2684), Roger Bell_West (2510), Jaldhar H. Vyas (2444), Arne Sommer (1966), Athanasius (1782), Flavio Poletti (1716), Ulrich Rieke (1602), Colin Crain (1338), Dave Jacoby (1282), Adam Russell (1224), Lubos Kolouch (1212), E. Choroba (1200), Jorg Sommrey (1124), W. Luis Mochan (1120), Simon Green (1004), Paulo Custodio (918), Mark Anderson (908), James Smith (882), Cheok-Yin Fung (862), Peter Campbell Smith (832), Duncan C. White (798), Abigail (794), Feng Chang (734), Mohammad Sajid Anwar (718), Jan Krnavek (716), Bruce Gray (666), Niels van Dijke (660), Thomas Kohler (658), Stuart Little (644), Bob Lied (590), Ali Moradi (584), Robert DiCicco (574), Simon Proctor (562), Packy Anderson (510), Robbie Hatley (492), Stephen G. Lynn (484), Matthew Neleigh (474), Robert Ransbottom (464), Wanderdoc (462), Javier Luque (460), Ruben Westerberg (452), David Ferrone (424), Ryan Thompson (418), Joelle Maslak (374), Pete Houston (362), Matthias Muth (338), BarrOff (332), Andrew Shitov (262), Nelo Tovar (262), Andrezgz (260), Peter Meszaros (252), Steven Wilson (250), Yet Ebreo (226), Alexander Pankoff (220), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Solathian (192), Noud Aldenhoven (188), Marton Polgar (182), Avery Adams (176), Kevin Colyer (176), Aaron Smith (174), Kjetil Skotheim (168), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Mariano Spadaccini (130), Humberto Massa (128), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -500,6 +500,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/robbie-hatley/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/robbie-hatley/perl/ch-2.pl)]
 [[**BLOG #1**](https://hatley-software.blogspot.com/2024/07/robbie-hatleys-solutions-to-weekly.html)]
+
+***
+
+### Ryan Thompson
+![Ryan Thompson](/images/team/ryan-thompson.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/ryan-thompson/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-277/ryan-thompson/perl/ch-2.pl)]
+[[**BLOG #1**](https://ry.ca/2024/07/pwc-277-strong-pair-counting-common)]
 
 ***
 
