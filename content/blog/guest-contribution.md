@@ -52,6 +52,10 @@ Please find below guest contributions.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-281/deadmarshal/modula-3/ch1/src/Ch1.m3) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-281/deadmarshal/modula-3/ch2/src/Ch2.m3) in **Modula 3**.
 
+##### **Andrew Schneider** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-281/atschneid/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-281/atschneid/julia/ch-2.jl) in **Julia**.
+
+##### **Andrew Schneider** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-281/atschneid/racket/ch-1.rkt) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-281/atschneid/racket/ch-2.rkt) in **Racket**.
+
 ##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-281/barroff/julia/ch-1.jl) in **Julia**.
 
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-281/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-281/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
