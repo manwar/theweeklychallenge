@@ -54,6 +54,8 @@ Please find below guest contributions.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-282/pokgopun/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-282/pokgopun/python/ch-2.py) in **Python**.
 
+##### **Tymoteusz Moryto** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-282/pieviero/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-282/pieviero/uiua/ch-2.ua) in **Uiua**.
+
 ----
 ## [The Weekly Challenge - 281](/blog/perl-weekly-challenge-281) {#281}
 <br>
