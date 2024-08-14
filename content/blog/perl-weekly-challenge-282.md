@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - 282"
-date: 2024-08-11T00:00:00+00:00
+date: 2024-08-12T00:00:00+00:00
 description: "The Weekly Challenge - 282"
 type: post
 image: images/twc-logo.png
