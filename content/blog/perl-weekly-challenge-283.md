@@ -34,7 +34,7 @@ Thank you, `Santiago Leyva`, for sharing solution to `Task #1` of [**Week #281**
 
 Welcome back, `Niels van Dijke` and thanks for your contributions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-282/perlboy1967/perl).
 
-Thank you, `David Ferrone`, for sharing solutiona in [**R**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-282/zapwai/r) for the first time. I hope and wish you continue alongwith other guest languages like `C`, `JavaScript`, `Python` and `Rust`.
+Thank you, `David Ferrone`, for sharing solutions in [**R**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-282/zapwai/r) for the first time. I hope and wish you continue alongwith other guest languages like `C`, `JavaScript`, `Python` and `Rust`.
 
 Those who don't know about `Early Bird Club`, I want to inform you all that anyone can join the club by just sending one line email request. Once you join the club then you would get to try to the future challenges in advance. In return I would get your review to improve the task. This is very handy for me. I just throw challenges and request club member to review it for me. I get instant response from the club member most of the time. It has helped me in making task descriptive and easy to follow with good examples. If anyone interested to help me then they are more than welcome.
 
