@@ -76,7 +76,7 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
      7. C++        (540)
      8. JavaScript (473)
      9. Go         (398)
-    10. BQN        (358)
+    10. BQN        (360)
 
 <br>
 
