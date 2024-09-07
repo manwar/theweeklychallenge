@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+<head>
+    {{ "<!-- Basic Page Needs -->" | safeHTML }}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+    {{ hugo.Generator }}
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+
+    {{ "<!-- Mobile Specific Metas -->" | safeHTML }}
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ .Title }}</title>
+    <link rel="icon" href="{{ "images/favicon.ico" | absURL }}">
+
+    <!-- This is needed for Chart Tab -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    {{ "<!-- Twitter Bootstrs CSS -->" | safeHTML }}
+    <link rel="stylesheet" href="{{ "plugins/bootstrap/bootstrap.min.css" | absURL }}">
+    {{ "<!-- Ionicons Fonts Css -->" | safeHTML }}
+    <link rel="stylesheet" href="{{ "plugins/ionicons/ionicons.min.css" | absURL }}">
+    {{ "<!-- animate css -->" | safeHTML }}
+    <link rel="stylesheet" href="{{ "plugins/animate-css/animate.css" | absURL }}">
+    {{ "<!-- Hero area slider css-->" | safeHTML }}
+    <link rel="stylesheet" href="{{ "plugins/slider/slider.css" | absURL }}">
+    {{ "<!-- slick slider -->" | safeHTML }}
+    <link rel="stylesheet" href="{{ "plugins/slick/slick.css" | absURL }}">
+    {{ "<!-- Fancybox -->" | safeHTML }}
+    <link rel="stylesheet" href="{{ "plugins/facncybox/jquery.fancybox.css" | absURL }}">
+    {{ "<!-- hover -->" | safeHTML }}
+    <link rel="stylesheet" href="{{ "plugins/hover/hover-min.css" | absURL }}">
+    {{ "<!-- Google fonts -->" | safeHTML }}
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    {{ "<!-- template main css file -->" | safeHTML }}
+    {{ $styles := resources.Get "css/style.css" | minify}}
+    <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;         /* Hidden by default */
+            position: fixed;       /* Fixed/sticky position */
+            bottom: 20px;          /* Place the button at the bottom of the page */
+            right: 30px;           /* Place the button 30px from the right */
+            z-index: 99;           /* Make sure it does not overlap */
+            border: none;          /* Remove borders */
+            outline: none;         /* Remove outline */
+            background-color: red; /* Set a background color */
+            color: white;          /* Text color */
+            cursor: pointer;       /* Add a mouse pointer on hover */
+            padding: 15px;         /* Some padding */
+            border-radius: 10px;   /* Rounded corners */
+            font-size: 18px;       /* Increase font size */
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+<!-- Start: New Chart Settings -->
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            scroll-behavior: smooth; /* Smooth scrolling */
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .nav-link {
+            color: #000 !important;
+        }
+
+        .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        .chart-container {
+            margin-top: 20px;
+        }
+
+        .tab-content {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+            margin-bottom: 40px; /* Increased spacing between sections */
+        }
+
+        .chart-tab {
+            margin-top: 20px;
+        }
+    </style>
+
+<!-- End: New Chart Settings -->
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    // When the user scrolls down 40px from the top of the document, show the button
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function goTop() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="{{ .Site.BaseURL }}">
+                        <img src="{{ .Site.Params.logo | absURL }}" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ .Site.BaseURL }}">{{ with .Site.Params.home }}{{ . }}{{ end }}</a>
+                            </li>
+                            {{ range .Site.Menus.nav }}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>
+                            </li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
