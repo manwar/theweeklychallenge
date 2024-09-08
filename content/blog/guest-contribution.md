@@ -98,6 +98,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-285/roger-bell-west/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-285/roger-bell-west/scala/ch-2.scala) in **Scala**.
 
+##### **Simon Green** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-285/sgreen/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-285/sgreen/python/ch-2.py) in **Python**.
+
 ##### **Tim King** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-285/jtimothyking/csharp/ch-1.cs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-285/jtimothyking/csharp/ch-2.cs) in **C#**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-285/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-285/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
