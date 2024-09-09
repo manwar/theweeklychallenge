@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 285"
-date: 2024-09-08T00:00:00+00:00
+date: 2024-09-09T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 285."
 type: post
 image: images/blog/recap-challenge-285.jpg
