@@ -62,6 +62,24 @@ Please find below guest contributions.
 
 ##### **PokGoPun** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-286/pokgopun/python/ch-2.py) in **Python**.
 
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-286/roger-bell-west/crystal/ch-2.cr) in **Crystal**.
+
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-286/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
+
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-286/roger-bell-west/kotlin/ch-2.kt) in **Kotlin**.
+
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-286/roger-bell-west/lua/ch-2.lua) in **Lua**.
+
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-286/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
+
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-286/roger-bell-west/python/ch-2.py) in **Python**.
+
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-286/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
+
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-286/roger-bell-west/rust/ch-2.rs) in **Rust**.
+
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-286/roger-bell-west/scala/ch-2.scala) in **Scala**.
+
 ----
 ## [The Weekly Challenge - 285](/blog/perl-weekly-challenge-285) {#285}
 <br>
