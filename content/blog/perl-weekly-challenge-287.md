@@ -207,7 +207,7 @@ Following can be considered as one step:
 #### Example 5
 
     Input: $str = "aaaaa"
-    Output: 3
+    Output: 2
 
 <br>
 
