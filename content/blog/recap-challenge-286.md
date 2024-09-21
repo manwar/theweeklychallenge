@@ -59,9 +59,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 The total contributions in the week is `102`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 55
+#### 1. Perl: 57
 #### 2. Raku: 25
-#### 3. Blog: 22
+#### 3. Blog: 20
 
 <br>
 
