@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-09-20T00:00:00+00:00
+date: 2024-09-21T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -4223,7 +4223,7 @@ Please find below guest contributions.
 
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/conor-hoekstra/bqn/ch-1.bqn) in **BQN**.
 
-##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/conor-hoekstra/python/ch-1.py) in **Pytho**.
+##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/conor-hoekstra/python/ch-1.py) in **Python**.
 
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-228/conor-hoekstra/rust/ch-1.rs) in **Rust**.
 
@@ -13751,6 +13751,8 @@ Please find below guest contributions.
 
 ##### **AhmetEmre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/aecepoglu/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/aecepoglu/bqn/ch-2.bqn) in **BQN**.
 
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
+
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/elm/src/Ch1.elm) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/elm/src/Ch2.elm) in **Elm**.
@@ -13936,6 +13938,10 @@ Please find below guest contributions.
 ##### **Aviral Goel** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/aviral-goel/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/aviral-goel/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Cheok-Yin Fung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/cheok-yin-fung/common-lisp/ch-1.lsp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/cheok-yin-fung/common-lisp/ch-2.lsp) in **Lisp**.
+
+##### **Conor Hoekstra** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/conor-hoekstra/apl/ch-2.apl) in **APL**.
+
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/lubos-kolouch/python/ch-2.py) in **Python**.
 
