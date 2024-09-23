@@ -48,20 +48,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 15070 (63%)
+#### 1. Perl: 15072 (63%)
 #### 2. Raku: 8555 (37%)
-#### 3. Blog: 5296
+#### 3. Blog: 5297
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `95`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `98`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 48
+#### 1. Perl: 50
 #### 2. Raku: 21
-#### 3. Blog: 26
+#### 3. Blog: 27
 
 <br>
 
@@ -272,57 +272,59 @@ The total contributions in the week is `95`. Well done **Team PWC**. I would als
     C++ (1), PHP (1), Python (1).
 #### 102. Rage311 (3)
     Rust (3).
-#### 103. Carlos Oliveira (2)
-    C (2).
-#### 104. Daniel Mita (2)
-    Go (1), JavaScript (1).
-#### 105. Humberto Massa (2)
-    C++ (2).
-#### 106. Joelle Maslak (2)
+#### 103. Andre Ploger (2)
     Go (2).
-#### 107. Mark Anderson (2)
-    PowerShell (2).
-#### 108. Mark Senn (2)
-    Wolfram (2).
-#### 109. Richard Loveland (2)
-    K (2).
-#### 110. Ruth Holloway (2)
-    COBOL (2).
-#### 111. Ryan Thompson (2)
-    Python (2).
-#### 112. Tejas (2)
+#### 104. Carlos Oliveira (2)
+    C (2).
+#### 105. Daniel Mita (2)
+    Go (1), JavaScript (1).
+#### 106. Humberto Massa (2)
     C++ (2).
-#### 113. mauke (2)
+#### 107. Joelle Maslak (2)
+    Go (2).
+#### 108. Mark Anderson (2)
+    PowerShell (2).
+#### 109. Mark Senn (2)
+    Wolfram (2).
+#### 110. Richard Loveland (2)
+    K (2).
+#### 111. Ruth Holloway (2)
+    COBOL (2).
+#### 112. Ryan Thompson (2)
+    Python (2).
+#### 113. Tejas (2)
+    C++ (2).
+#### 114. mauke (2)
     Haskell (2).
-#### 114. Aaryan Rastogi (1)
+#### 115. Aaryan Rastogi (1)
     JavaScript (1).
-#### 115. Andrea Piseri (1)
+#### 116. Andrea Piseri (1)
     BQN (1).
-#### 116. Avery Adams (1)
+#### 117. Avery Adams (1)
     Python (1).
-#### 117. Bob Lied (1)
+#### 118. Bob Lied (1)
     C (1).
-#### 118. Chazzka (1)
+#### 119. Chazzka (1)
     Coconut (1).
-#### 119. Christian Jaeger (1)
+#### 120. Christian Jaeger (1)
     Haskell (1).
-#### 120. Daniel Aberger (1)
+#### 121. Daniel Aberger (1)
     Go (1).
-#### 121. Darren Bottin (1)
+#### 122. Darren Bottin (1)
     Prolog (1).
-#### 122. David Schwartz (1)
+#### 123. David Schwartz (1)
     Python (1).
-#### 123. Gurunandan Bhat (1)
+#### 124. Gurunandan Bhat (1)
     Go (1).
-#### 124. Jaldhar H. Vyas (1)
+#### 125. Jaldhar H. Vyas (1)
     C++ (1).
-#### 125. Maxim Kolodyazhny (1)
+#### 126. Maxim Kolodyazhny (1)
     Elixir (1).
-#### 126. Robbie Hatley (1)
+#### 127. Robbie Hatley (1)
     C (1).
-#### 127. Roman Kotelnikov (1)
+#### 128. Roman Kotelnikov (1)
     J (1).
-#### 128. Stephen G. Lynn (1)
+#### 129. Stephen G. Lynn (1)
     Julia (1).
 
 <br>
@@ -330,7 +332,7 @@ The total contributions in the week is `95`. Well done **Team PWC**. I would als
 ## LANGUAGES {#LANGUAGES}
 ***
 
-    Python (2863), Rust (750), Ruby (728), Haskell (708), Lua (641), C (583), C++ (548), JavaScript (488), Go (408), BQN (372), Java (348), Postscript (329), Kotlin (324), Julia (307), PostgreSQL (243), Clojure (202), Bash (200), Node.js (196), Awk (190), Nim (187), Scala (176), Prolog (166), Pascal (159), APL (153), Tcl (118), BASIC (100), Forth (98), R (95), D (93), Modula 3 (86), Bc (84), Lisp (75), Elixir (63), Excel VBA (63), Scheme (60), PHP (51), Oberon (47), Swift (41), Crystal (40), Dart (40), Ada (35), Befunge-93 (35), Fortran (33), OCaml (33), Uiua (28), Erlang (24), J (24), SQL (24), COBOL (20), Ring (20), C Shell (19), F# (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), PowerShell (13), Nelua (12), Hy (10), Racket (10), Smalltalk (9), Fennel (8), C# (7), Zig (7), Brainfuck (6), TypeScript (6), Coconut (4), Emacs Lisp (4), Factor (4), Groovy (4), Nu (4), Standard ML (4), CESIL (3), Gembase (3), Janet (3), K (3), Nuweb (3), Octave (3), Roc (3), V (3), C3 (2), Dc (2), GP (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Bourne Shell (1), Chef (1), Fish (1), GNAT (1), IO (1), Javascript (1), Logo (1), Maxima (1), Mumps (1), Node (1), Ook (1), SVG (1), Typescript (1), VBA (1), Visual BASIC (1), XSLT (1).
+    Python (2863), Rust (750), Ruby (728), Haskell (708), Lua (641), C (583), C++ (548), JavaScript (488), Go (410), BQN (372), Java (348), Postscript (329), Kotlin (324), Julia (307), PostgreSQL (243), Clojure (202), Bash (200), Node.js (196), Awk (190), Nim (187), Scala (176), Prolog (166), Pascal (159), APL (153), Tcl (118), BASIC (100), Forth (98), R (95), D (93), Modula 3 (86), Bc (84), Lisp (75), Elixir (63), Excel VBA (63), Scheme (60), PHP (51), Oberon (47), Swift (41), Crystal (40), Dart (40), Ada (35), Befunge-93 (35), Fortran (33), OCaml (33), Uiua (28), Erlang (24), J (24), SQL (24), COBOL (20), Ring (20), C Shell (19), F# (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), PowerShell (13), Nelua (12), Hy (10), Racket (10), Smalltalk (9), Fennel (8), C# (7), Zig (7), Brainfuck (6), TypeScript (6), Coconut (4), Emacs Lisp (4), Factor (4), Groovy (4), Nu (4), Standard ML (4), CESIL (3), Gembase (3), Janet (3), K (3), Nuweb (3), Octave (3), Roc (3), V (3), C3 (2), Dc (2), GP (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Bourne Shell (1), Chef (1), Fish (1), GNAT (1), IO (1), Javascript (1), Logo (1), Maxima (1), Mumps (1), Node (1), Ook (1), SVG (1), Typescript (1), VBA (1), Visual BASIC (1), XSLT (1).
 
 <br>
 
@@ -356,6 +358,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 <br>
 
 ## PERL SOLUTIONS {#PERLSOLUTIONS}
+
+***
+
+### Andre Ploger
+![Andre Ploger](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-287/aplgr/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-287/aplgr/perl/ch-2.pl)]
+[[**BLOG #1**](https://dev.to/aplgr/exploring-password-strength-and-number-validation-in-perl-and-go-529p)]
 
 ***
 

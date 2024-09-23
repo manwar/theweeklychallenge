@@ -51,7 +51,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `284` &nbsp;&nbsp;|&nbsp;&nbsp; 68 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `285` &nbsp;&nbsp;|&nbsp;&nbsp; 61 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `286` &nbsp;&nbsp;|&nbsp;&nbsp; 57 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `287` &nbsp;&nbsp;|&nbsp;&nbsp; 48 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `287` &nbsp;&nbsp;|&nbsp;&nbsp; 50 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|&nbsp;&nbsp; 27 &nbsp;&nbsp;|
 
 <br>
 
@@ -64,7 +64,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `284` &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|&nbsp;&nbsp; 74 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `285` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 72 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `286` &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|&nbsp;&nbsp; 50 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `287` &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|&nbsp;&nbsp; 61 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `287` &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|&nbsp;&nbsp; 63 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
 
 <br>
 
@@ -81,7 +81,7 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
      6. C          (583)
      7. C++        (548)
      8. JavaScript (488)
-     9. Go         (408)
+     9. Go         (410)
     10. BQN        (372)
 
 <br>

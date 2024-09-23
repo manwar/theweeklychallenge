@@ -56,6 +56,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 287](/blog/perl-weekly-challenge-287) {#287}
 <br>
 
+##### **Andre Ploger** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-287/aplgr/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-287/aplgr/go/ch-2.go) in **Go**.
+
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-287/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-287/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-287/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-287/zapwai/c/ch-2.c) in **C**.
