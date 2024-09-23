@@ -50,6 +50,16 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 288](/blog/perl-weekly-challenge-288) {#288}
 <br>
 
+##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/zapwai/c/ch-2.c) in **C**.
+
+##### **David Ferrone** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/zapwai/javascript/ch-1.js) in **JavaScript**.
+
+##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/zapwai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/zapwai/python/ch-2.py) in **Python**.
+
+##### **David Ferrone** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/zapwai/r/ch-1.r) in **R**.
+
+##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-287/zapwai/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/zapwai/rust/ch-2.rs) in **Rust**.
+
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ----
