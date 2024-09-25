@@ -68,6 +68,10 @@ Please find below guest contributions.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/lubos-kolouch/python/ch-2.py) in **Python**.
 
+##### **Packy Anderson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/packy-anderson/elixir/ch-1.exs) in **Elixir**.
+
+##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/packy-anderson/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/packy-anderson/python/ch-2.py) in **Python**.
+
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/paulo-custodio/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/roger-bell-west/crystal/ch-1.cr) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/roger-bell-west/crystal/ch-2.cr) in **Crystal**.
