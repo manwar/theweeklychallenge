@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-09-25T00:00:00+00:00
+date: 2024-09-26T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -49,6 +49,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 288](/blog/perl-weekly-challenge-288) {#288}
 <br>
+
+##### **Andre Ploger** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/aplgr/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/aplgr/go/ch-2.go) in **Go**.
 
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-288/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
