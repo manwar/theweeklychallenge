@@ -122,7 +122,7 @@ With start of `Week #268`, we have a new sponsor `Lance Wicks` for the entire ye
 ## RECAP {#RECAP}
 ***
 
-Quick recap of **[The Weekly Challenge - 287](/blog/recap-challenge-287)** by `Mohammad Sajid Anwar`.
+Quick recap of **[The Weekly Challenge - 288](/blog/recap-challenge-288)** by `Mohammad Sajid Anwar`.
 
 <br>
 
@@ -163,7 +163,7 @@ Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) cr
 ## GUESTS {#GUESTS}
 ***
 
-Please check out the guest contributions for the [**Week #287**](/blog/guest-contribution/#287).
+Please check out the guest contributions for the [**Week #288**](/blog/guest-contribution/#288).
 
 Please find [**past solutions**](/blog/guest-contribution) by respected **guests**. Please share your creative solutions in other languages.
 
