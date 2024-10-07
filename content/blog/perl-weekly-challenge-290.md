@@ -224,11 +224,11 @@ It was originally posted on [**reddit**](https://www.reddit.com/r/coolguides/com
 
     7 * 2 = 14, sum = 5
     9 = 9
-    9 * 2 = 18, sum = 19
+    9 * 2 = 18, sum = 9
     2 = 2
     7 * 2 = 14, sum = 5
     3 = 3
-    9 * 2 = 18, sum = 19
+    9 * 2 = 18, sum = 9
     8 = 8
     7 * 2 = 14, sum = 5
     1 = 1
