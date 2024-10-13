@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-10-12T00:00:00+00:00
+date: 2024-10-13T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -51,6 +51,8 @@ Please find below guest contributions.
 <br>
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-290/deadmarshal/java/Ch1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-285/deadmarshal/java/Ch2.java) in **Java**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-290/deadmarshal/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-290/deadmarshal/lua/ch-2.lua) in **Lua**.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-290/deadmarshal/modula-3/ch1/src/Ch1.m3) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-290/deadmarshal/modula-3/ch2/src/Ch2.m3) in **Modula 3**.
 
