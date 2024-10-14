@@ -46,8 +46,8 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `286` &nbsp;&nbsp;|&nbsp;&nbsp; 59 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `287` &nbsp;&nbsp;|&nbsp;&nbsp; 52 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `288` &nbsp;&nbsp;|&nbsp;&nbsp; 44 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `289` &nbsp;&nbsp;|&nbsp;&nbsp; 66 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|&nbsp;&nbsp; 31 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `290` &nbsp;&nbsp;|&nbsp;&nbsp; 58 &nbsp;&nbsp;|&nbsp;&nbsp; 27 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `289` &nbsp;&nbsp;|&nbsp;&nbsp; 66 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|&nbsp;&nbsp; 31 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `290` &nbsp;&nbsp;|&nbsp;&nbsp; 60 &nbsp;&nbsp;|&nbsp;&nbsp; 27 &nbsp;&nbsp;|&nbsp;&nbsp; 30 &nbsp;&nbsp;|
 
 <br>
 
@@ -60,7 +60,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `287` &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|&nbsp;&nbsp; 63 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `288` &nbsp;&nbsp;|&nbsp;&nbsp; 10 &nbsp;&nbsp;|&nbsp;&nbsp; 46 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `289` &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|&nbsp;&nbsp; 72 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `290` &nbsp;&nbsp;|&nbsp;&nbsp; 15 &nbsp;&nbsp;|&nbsp;&nbsp; 72 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `290` &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|&nbsp;&nbsp; 74 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
 
 <br>
 
@@ -69,7 +69,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 
 Do you see your favourite language in the `Top #10`? If not then why not contribute regularly and make it to the top.
 
-     1. Python     (2980)
+     1. Python     (2984)
      2. Rust       (772)
      3. Ruby       (734)
      4. Haskell    (713)
