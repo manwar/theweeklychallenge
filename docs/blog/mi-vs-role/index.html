@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Comparison between multiple inheritance and role.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Multiple Inheritance vs Role</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Multiple Inheritance vs Role</h2>
+                    <div class="portfolio-meta">
+                        <span>Thursday, Nov 7, 2024</span>|
+                        <span> Tags:
+                            Perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/mi-vs-role.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>In the world of <code>Perl</code>, we all believe in this philosophy for <code>Multiple Inheritance</code> in general:</p>
+<blockquote>
+<p>Don&rsquo;t use multiple inheritance if you can do it in any other way.</p>
+</blockquote>
+<p>To address this, there is a general consensus to use <code>roles</code>. Personally, I have never had to deal with multiple inheritance. Being a big fan of <code>roles</code>, I want to simplify the comparison for my own understanding. With the inclusion of <code>Corinna</code> in core <code>Perl v5.38</code>, I was hoping to see support for roles. Unfortunately, it didn’t make it into the initial release, nor into the subsequent release of <code>Perl v5.40</code>. However, there’s positive buzz that it might be included in the next release, <code>Perl v5.42</code> but please don’t quote me on this, though!</p>
+<br>
+<h2 id="multiple-inheritance">Multiple Inheritance</h2>
+<hr>
+<p>Let us prepare the ground for the battle, here we have two parent classes <code>Dumper</code> and <code>Logger</code> alongwith one child class <code>Application</code> inherits from both parent classes.</p>
+<pre><code>    Dumper          Logger
+      \               /
+       \             /
+        v           v
+         Application
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+
+<span style="color:#66d9ef">package</span> Dumper;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
+    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
+}
+
+<span style="color:#66d9ef">package</span> Logger;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
+    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
+}
+
+<span style="color:#66d9ef">package</span> Application;
+
+<span style="color:#66d9ef">use</span> parent <span style="color:#f92672">-</span>norequire, <span style="color:#e6db74">qw/Dumper Logger/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>($class) {
+    <span style="color:#66d9ef">return</span> bless {}, $class;
+}
+
+<span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);     <span style="color:#75715e"># DUMP: this</span>
+$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);      <span style="color:#75715e"># LOG: that</span>
+</code></pre></div><p>In the above implementation, the use of <code>-norequire</code> is needed because of package defined in the same script, please ignore this for now.</p>
+<p><strong>So far so good, right?</strong></p>
+<p>The child class, <code>Application</code>, inherits two unique methods i.e. <code>dump()</code> and <code>log()</code> from two parent classes <code>Dumper</code> and <code>Logger</code> respectively..</p>
+<p>However the trouble starts when the parent classes shared common method.</p>
+<p>Let&rsquo;s add a method <code>d()</code> to both parent classes as below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+
+<span style="color:#66d9ef">package</span> Dumper;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
+    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
+    say <span style="color:#e6db74">&#34;DUMP: $m.&#34;</span>;
+}
+
+<span style="color:#66d9ef">package</span> Logger;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
+    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
+    say <span style="color:#e6db74">&#34;LOG: $m.&#34;</span>;
+}
+
+<span style="color:#66d9ef">package</span> Application;
+
+<span style="color:#66d9ef">use</span> parent <span style="color:#f92672">-</span>norequire, <span style="color:#e6db74">qw/Dumper Logger/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>($class) {
+    <span style="color:#66d9ef">return</span> bless {}, $class;
+}
+
+<span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);     <span style="color:#75715e"># DUMP: this.</span>
+$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);      <span style="color:#75715e"># LOG: that.</span>
+$app<span style="color:#f92672">-&gt;</span>d(<span style="color:#e6db74">&#34;what&#34;</span>);        <span style="color:#75715e"># DUMP: what.</span>
+</code></pre></div><br>
+<p><strong>Did you notice the output of <code>$app-&gt;d(&quot;what&quot;)</code>?</strong></p>
+<p><strong>But why?</strong></p>
+<p>Because of the order of inheritance in the line: <code>use parent -norequire, qw/Dumper Logger/;</code></p>
+<p>If we change the order like: <code>use parent -norequire, qw/Logger Dumper/;</code> then you should see <code>LOG: what.</code> as the output.</p>
+<p>In the above example, we are only talking about single layer of multiple inheritance. This gets messier if we have to deal with multi-layers multiple inheritance.</p>
+<br>
+<h3 id="two-big-issues-with-multiple-inheritance">Two big issues with multiple inheritance</h3>
+<hr>
+<h4 id="1-method-conflict">1. Method Conflict</h4>
+<h4 id="2-tight-coupling-ie-child-class-tightly-coupled-to-both-parent-classes">2. Tight Coupling i.e. child class tightly coupled to both parent classes.</h4>
+<br>
+<h3 id="can-we-resolve-these-with-the-help-of-role">Can we resolve these with the help of <code>Role</code>?</h3>
+<hr>
+<p>Let&rsquo;s redefine the above implementation with the help of <code>Moo::Role</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+
+<span style="color:#66d9ef">package</span> Dumper;
+
+<span style="color:#66d9ef">use</span> Moo::Role;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
+    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
+    say <span style="color:#e6db74">&#34;DUMP: $m.&#34;</span>;
+}
+
+<span style="color:#66d9ef">package</span> Logger;
+
+<span style="color:#66d9ef">use</span> Moo::Role;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
+    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
+    say <span style="color:#e6db74">&#34;LOG: $m.&#34;</span>;
+}
+
+<span style="color:#66d9ef">package</span> Application;
+
+<span style="color:#66d9ef">use</span> Moo;
+with <span style="color:#e6db74">qw/Dumper Logger/</span>;
+
+<span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);
+$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);
+$app<span style="color:#f92672">-&gt;</span>d(<span style="color:#e6db74">&#34;what&#34;</span>);
+</code></pre></div><br>
+<p>If we run the above the script, it would throw error as below:</p>
+<blockquote>
+<p>Due to a method name conflict between roles &lsquo;Dumper&rsquo; and &lsquo;Logger&rsquo;, the method &lsquo;d&rsquo; must be implemented by &lsquo;Application&rsquo; &hellip;</p>
+</blockquote>
+<p>The error is self explanatory and reported the first issue of <code>method conflict</code> straight back to the user during the design stage.</p>
+<p>Another benefit with role is <code>flexible composition</code> as it can be applied to any class allowing cleaner and modular design.</p>
+<p>The biggest advantage is that it <strong>doesn&rsquo;t</strong> impose a <code>strict inheritance hierarchy</code>.</p>
+<p>Just for the sake of completion, let&rsquo;s fix the reported issue.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+
+<span style="color:#66d9ef">package</span> Dumper;
+
+<span style="color:#66d9ef">use</span> Moo::Role;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
+    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
+}
+
+<span style="color:#66d9ef">package</span> Logger;
+
+<span style="color:#66d9ef">use</span> Moo::Role;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
+    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
+}
+
+<span style="color:#66d9ef">package</span> Application;
+
+<span style="color:#66d9ef">use</span> Moo;
+with <span style="color:#e6db74">qw/Dumper Logger/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
+    say <span style="color:#e6db74">&#34;APP: $m.&#34;</span>;
+}
+
+<span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);     <span style="color:#75715e"># DUMP: this.</span>
+$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);      <span style="color:#75715e"># LOG: that.</span>
+$app<span style="color:#f92672">-&gt;</span>d(<span style="color:#e6db74">&#34;what&#34;</span>);        <span style="color:#75715e"># APP: what.</span>
+</code></pre></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2024
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
