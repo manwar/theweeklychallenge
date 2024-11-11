@@ -162,7 +162,7 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 
 You are given a string, `$str`, and list of words, `@words`.
 
-Write a script to return `true` or `false` whether the given string can be segmented into a space separated sequnce of one or more words from the given list.
+Write a script to return `true` or `false` whether the given string can be segmented into a space separated sequence of one or more words from the given list.
 
 #### Example 1
 
