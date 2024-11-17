@@ -1,0 +1,145 @@
+#!/usr/bin/perl
+
+package PerlWeeklyChallengeRSS;
+
+use XML::RSS;
+use File::Find;
+use File::Basename;
+use HTML::TreeBuilder;
+use POSIX qw(strftime);
+
+use Moo;
+use MooX::Options;
+
+option 'docs'   => (is => 'ro', order => 1, format => 's', required => 1, doc => 'PWC docs root folder');
+option 'src'    => (is => 'ro', order => 2, format => 's', required => 1, doc => 'PWC src folder');
+option 'domain' => (is => 'ro', order => 3, format => 's', required => 'PWC domain name');
+option 'title'  => (is => 'ro', order => 4, format => 's', required => 'RSS doc title');
+option 'desc'   => (is => 'ro', order => 5, format => 's', required => 'RSS doc description');
+
+sub run {
+    print shift->generate_rss_feed;
+}
+
+sub generate_rss_feed {
+    my ($self) = @_;
+
+    return unless defined $self->docs;
+
+    my $docs = $self->docs;
+    my ($file_history, $files) = $self->fetch_files;
+
+    my $rss         = new XML::RSS(version => '2.0');
+    my $domain      = $self->domain;
+    my $title       = $self->title;
+    my $description = $self->desc;
+
+    $rss->channel(
+        title => $title,
+        link  => "https://$domain/",
+        description => $description,
+        # Thu, 23 Aug 1999 07:00:00 GMT
+        pubDate => strftime("%a, %d %b %Y %H:%M:%S %Z", gmtime time),
+    );
+
+    foreach my $file (@$files) {
+        next unless ($file =~ /docs\/blog/);
+        my ($title, $description) = get_file_meta($file);
+        my $link = "https://$domain/" . substr $file, length $docs;
+        $link =~ s/index\.html?$//;
+        my $modified_date = format_date_time($file_history->{$file});
+
+        $rss->add_item(
+            title       => $title,
+            link        => $link,
+            description => $description,
+            pubDate     => $modified_date,
+            dc          => { date => $modified_date },
+        );
+    }
+
+    $self->{rss} = $rss->as_string;
+}
+
+sub fetch_files {
+    my ($self) = @_;
+
+    my $src = fetch_source_files($self->src);
+    my $dir = $self->docs;
+
+    my $file_history;
+    find sub {
+        -f         or return;
+        /\.html?$/ or return;
+        my $file_name = $File::Find::name;
+        if ($file_name =~ /docs\/blog\/(.*)\/index\.html/) {
+            $src->{$1} or return;
+            $file_history->{$File::Find::name} = $src->{$1};
+        }
+    }, $dir;
+
+    # Sort the file on modification time, descending.
+    my @file_names = sort {
+        $file_history->{$b} <=> $file_history->{$a}
+    } keys %$file_history;
+
+    return ($file_history, \@file_names);
+}
+
+sub fetch_source_files {
+    my ($dir) = @_;
+
+    my $now  = time;
+    my $time = $now - (60 * 60 * 24 * 60); # 2 months
+
+    my $source_files = {};
+    find sub {
+        -f       or return;
+        /\.md?$/ or return;
+        my $mtime = (stat($_))[9];
+        if ($mtime >= $time) {
+            my $file_name = basename $File::Find::name;
+            $file_name =~ /(.*)\.md/;
+            $source_files->{$1} = $mtime;
+        }
+    }, $dir;
+
+    return $source_files;
+}
+
+sub format_date_time {
+    my ($time) = @_;
+
+    my @time = gmtime $time;
+    return sprintf "%4d-%02d-%02dT%02d:%02d:%02d",
+        $time[5] + 1900, $time[4] + 1, $time[3],
+        $time[2], $time[1], $time[0];
+}
+
+sub get_file_meta {
+    my ($file_name) = @_;
+
+    my $root = HTML::TreeBuilder->new;
+    $root->parse_file($file_name);
+
+    my $title_element = $root->look_down(_tag => 'title');
+    my $title = defined $title_element
+        ? $title_element->as_text
+        : 'N/A';
+
+    my $p_element = $root->look_down(_tag => 'p');
+    my $description = defined $p_element
+        ? $p_element->as_text
+        : ( defined $title_element
+            ? $title
+            : 'N/A'
+        );
+
+    $root->delete;
+
+    return ($title, $description);
+}
+
+package main;
+
+PerlWeeklyChallengeRSS->new_with_options->run;
