@@ -56,7 +56,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `292` &nbsp;&nbsp;|&nbsp;&nbsp; 7 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `293` &nbsp;&nbsp;|&nbsp;&nbsp; 11 &nbsp;&nbsp;|&nbsp;&nbsp; 50 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `294` &nbsp;&nbsp;|&nbsp;&nbsp; 10 &nbsp;&nbsp;|&nbsp;&nbsp; 46 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `295` &nbsp;&nbsp;|&nbsp;&nbsp; 8 &nbsp;&nbsp;|&nbsp;&nbsp; 41 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `295` &nbsp;&nbsp;|&nbsp;&nbsp; 9 &nbsp;&nbsp;|&nbsp;&nbsp; 43 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
 
 <br>
 
@@ -74,7 +74,7 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
      7. C++        (563)
      8. JavaScript (508)
      9. Go         (424)
-    10. BQN        (385)
+    10. BQN        (387)
 
 <br>
 
