@@ -187,7 +187,7 @@ A compressed unit can be either a single character or a count followed by a char
 
 <br>
 
-## Task 2:  Matchstick Square{#TASK2}
+## Task 2: Matchstick Square {#TASK2}
 ##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)
 ***
 
