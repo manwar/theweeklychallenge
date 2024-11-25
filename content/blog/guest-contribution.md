@@ -104,6 +104,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 295](/blog/perl-weekly-challenge-295) {#295}
 <br>
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-295/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-295/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-295/barroff/gnat/ch_1/src/ch_1.adb) in **Ada**.
 
 ##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-295/barroff/julia/ch-1.jl) in **Julia**.
