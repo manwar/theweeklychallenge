@@ -43,7 +43,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `293` &nbsp;&nbsp;|&nbsp;&nbsp; 57 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|&nbsp;&nbsp; 15 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `294` &nbsp;&nbsp;|&nbsp;&nbsp; 37 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|&nbsp;&nbsp; 10 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `295` &nbsp;&nbsp;|&nbsp;&nbsp; 45 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `296` &nbsp;&nbsp;|&nbsp;&nbsp; 47 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `296` &nbsp;&nbsp;|&nbsp;&nbsp; 49 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 15 &nbsp;&nbsp;|
 
 <br>
 
@@ -81,14 +81,15 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 ### Blogs with Creative Title
 ***
 
-#### 1. [Squared String](https://raku-musings.com/squared-string.html) by Arne Sommer.
-#### 2. [Pictures of Matchstick Men](https://jacoby-lpwk.onrender.com/2024/11/18/pictures-of-matchstick-men-weekly-challenge-296.html) by Dave Jacoby.
-#### 3. [Compressed Matchsticks](https://github.sommrey.de/the-bears-den/2024/11/22/ch-296.html) by Jorg Sommrey.
-#### 4. [The Run-Length of Matchsticks](https://dev.to/muthm/the-run-length-of-matchsticks-pwc-296-24b4) by Matthias Muth.
-#### 5. [Compression and Matchsticks](https://packy.dardan.com/b/TB) by Packy Anderson.
-#### 6. [Squeezing and Squaring](http://ccgi.campbellsmiths.force9.co.uk/challenge/296) by Peter Campbell Smith.
-#### 7. [Matchstick Compression](https://blog.firedrake.org/archive/2024/11/The_Weekly_Challenge_296__Matchstick_Compression.html) by Roger Bell_West.
-#### 8. [Matchstick compression](https://dev.to/simongreennet/matchstick-compression-2d83) by Simon Green.
+#### 1. [String Together a Square](http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2024/11/25) by Adam Russell.
+#### 2. [Squared String](https://raku-musings.com/squared-string.html) by Arne Sommer.
+#### 3. [Pictures of Matchstick Men](https://jacoby-lpwk.onrender.com/2024/11/18/pictures-of-matchstick-men-weekly-challenge-296.html) by Dave Jacoby.
+#### 4. [Compressed Matchsticks](https://github.sommrey.de/the-bears-den/2024/11/22/ch-296.html) by Jorg Sommrey.
+#### 5. [The Run-Length of Matchsticks](https://dev.to/muthm/the-run-length-of-matchsticks-pwc-296-24b4) by Matthias Muth.
+#### 6. [Compression and Matchsticks](https://packy.dardan.com/b/TB) by Packy Anderson.
+#### 7. [Squeezing and Squaring](http://ccgi.campbellsmiths.force9.co.uk/challenge/296) by Peter Campbell Smith.
+#### 8. [Matchstick Compression](https://blog.firedrake.org/archive/2024/11/The_Weekly_Challenge_296__Matchstick_Compression.html) by Roger Bell_West.
+#### 9. [Matchstick compression](https://dev.to/simongreennet/matchstick-compression-2d83) by Simon Green.
 
 <br>
 
@@ -96,7 +97,7 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 ***
 
 #### 1. Commits: 41,285 (`+114`)
-#### 2. Pull Requests: 11,198 (`+38`)
+#### 2. Pull Requests: 11,199 (`+39`)
 #### 3. Contributors: 253
 #### 4. Fork: 320
 #### 5. Stars: 177
