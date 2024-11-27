@@ -54,7 +54,7 @@ Please find below guest contributions.
 
 ##### **Dave Jacoby** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/dave-jacoby/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/dave-jacoby/python/ch-2.py) in **Python**.
 
-##### **Dorian Mateusz Oszczeda** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/vxern/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/vxern/uiua/ch-2.ua) in **Uiua**.
+##### **Dorian 'vxern' Oszczeda** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/vxern/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/vxern/uiua/ch-2.ua) in **Uiua**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/eric-cheung/python/ch-2.py) in **Python**.
 
