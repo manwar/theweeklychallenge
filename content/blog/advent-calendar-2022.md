@@ -9,7 +9,8 @@ tags: ["Perl", "Raku"]
 ---
 ***
 
-## | &nbsp; [**2019**](/blog/advent-calendar-2019) &nbsp; | &nbsp; [**2020**](/blog/advent-calendar-2020) &nbsp; | &nbsp; [**2021**](/blog/advent-calendar-2021) &nbsp; | &nbsp; **2022** &nbsp; | &nbsp; [**2023**](/blog/advent-calendar-2023) &nbsp; |
+## | &nbsp; [**2019**](/blog/advent-calendar-2019) &nbsp; | &nbsp; [**2020**](/blog/advent-calendar-2020) &nbsp; | &nbsp; [**2021**](/blog/advent-calendar-2021) &nbsp; | &nbsp; **2022** &nbsp; | &nbsp; [**2023**](/blog/advent-calendar-2023) &nbsp; | &nbsp; [**2024**](/blog/advent-calendar-2024) &nbsp; |
+
 
 
 ***
