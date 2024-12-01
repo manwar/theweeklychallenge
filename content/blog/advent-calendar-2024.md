@@ -13,7 +13,7 @@ tags: ["Perl", "Raku"]
 
 ***
 
-### Welcome to our `6th Advent Calendar`. It doesn't look real to be very honest. Coming this far is a collective efforts of every `Team PWC` members.
+### Welcome to our `6th Advent Calendar`. It doesn't look real to be very honest, coming this far is a collective efforts of every `Team PWC` members.
 
 ***
 
@@ -22,7 +22,7 @@ tags: ["Perl", "Raku"]
 | | | | | | | |
 | `MON`<br> |  `TUE`<br> | `WED`<br> |  `THU`<br>| `FRI`<br>|  `SAT`<br> |  `SUN`<br> |
 | | | | | | | |
-| <br><br><br> | <br><br><br> | <br><br><br> | <br><br><br> | <br><br><br> | <br><br><br> | ![Day 1](/images/blog/2024-12-01-thumbnail.jpg "")<br>**`1`**<br> |
+| <br><br><br> | <br><br><br> | <br><br><br> | <br><br><br> | <br><br><br> | <br><br><br> | [![Day 1](/images/blog/2024-12-01-thumbnail.jpg "Leaping from Tree to Tree as They Float Down the Mighty Rivers of British Columbia by Dave Jacoby")](/blog/advent-calendar-2024-12-01)<br>[**`1`**](/blog/advent-calendar-2024-12-01)<br> |
 | | | | | | | |
 | ![Day 2](/images/blog/2024-12-02-thumbnail.jpg "")<br>**`2`** | ![Day 3](/images/blog/2024-12-03-thumbnail.jpg "")<br>**`3`** | ![Day 4](/images/blog/2024-12-04-thumbnail.jpg "")<br>**`4`** | ![Day 5](/images/blog/2024-12-05-thumbnail.jpg "")<br>**`5`** | ![Day 6](/images/blog/2024-12-06-thumbnail.jpg "")<br>**`6`** | ![Day 7](/images/blog/2024-12-07-thumbnail.jpg "")<br>**`7`** | ![Day 8](/images/blog/2024-12-08-thumbnail.jpg "")<br>**`8`** |
 | | | | | | | |
