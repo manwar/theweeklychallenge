@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2024-11-28T00:00:00+00:00
+date: 2024-12-01T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -95,6 +95,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 296](/blog/perl-weekly-challenge-296) {#296}
 <br>
+
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-296/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-296/adam-russell/prolog/ch-2.p) in **Prolog**.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-296/deadmarshal/java/Ch1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-296/deadmarshal/java/Ch2.java) in **Java**.
 
