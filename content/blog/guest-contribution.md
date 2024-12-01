@@ -50,6 +50,12 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 297](/blog/perl-weekly-challenge-297) {#297}
 <br>
 
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/barroff/julia/ch-1.jl) in **Julia**.
+
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/barroff/nim/ch_1.nim) in **Nim**.
+
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/barroff/pascal/ch-1.pas) in **Pascal**.
+
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **Dave Jacoby** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/dave-jacoby/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-297/dave-jacoby/python/ch-2.py) in **Python**.
