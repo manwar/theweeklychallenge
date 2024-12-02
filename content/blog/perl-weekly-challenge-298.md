@@ -30,13 +30,13 @@ Welcome to the `Week #298` of `The Weekly Challenge`.
 
 Let us all welcome a new guest contributor, [**Dorian 'vxern' Oszczeda**](https://github.com/vxern) to `Team PWC`. Thank you, `Dorian`, for sharing your first contributions in [**Uiua**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-297/vxern/uiua).
 
-Today is the first `Monday` of the month and time to declare the next champion. We are proud to announce, `E. Choroba`, once again the champion of the month. Thank you for the being the most consistent contributor. You have been one of the greatest `Perl` enthusiasts in the `Team PWC`. Congratulation once again.
+Today is the first `Monday` of the month, which means it's time to announce the next champion. We are proud to declare, `E. Choroba`, once again, the Champion of the Month! Thank you for being the most consistent contributor. You have been one of the greatest `Perl` enthusiasts in the `Team PWC`. Congratulations once again.
 
-Finally we entered the festive month of `Advent Calendar`. For many, it is the time to reflect on past whole year achievements, good or bad. But for me, it is completely opposite, I just want it go away as quickly as possible. In fact, personally the time between the start of `October` and end of `January` period is the most scariest time. I am lucky so far this time, I survived the initial two months. I am hoping the remaining two months would go without any trouble. I wish you all a very happy festive month.
+Finally we have entered the festive month of `Advent Calendar`. For many, it's a time to reflect on on the achievements - both good or bad - of the past year. However, for me, it feels quite the opposite, I just want this period to pass as quickly as possible. Personally, the time between the start of `October` and the end of `January` period is the most challenging of the year. So far, I feel lucky to have survived the first two months, and I hope the remaining two go smoothly as well. I wish you all a very happy festive season!
 
-I would like to mention a very kind gesture by some members who regularly writes kind and motivating words to me. It is a private conversation otherwise I would have shared the message. Please accept my apology for never replying to your message. I do appreciate your kind efforts. Your words bring a big smile on my face every time. I am very emotional person by nature and find it hard to control when it comes to showing in public. I rather keep it private. May be one day when I meet in person then I can share my feelings.
+I would also like to highlight a kind gesture from some members who regularly send me encouraging and motivating messages. These are private conversation, so I won't share the details, but I deeply appreciate your effots. Please accept my apologies for not responding to your messages. I truly value your words, as they bring a big smile to my face every time. Being an emotional person by nature, I find it difficult to express my feelings publicly, so I prefer to keep such moments private. Perhaps one day, when we meet, I'll have the chance to share my gratitude more openly.
 
-The month of `December` is always the busiest time of the year because of daily post of `Advent Calendar`. Having said, I do enjoy going back and revisit the coolest work of the team members.
+`December` is always the busiest time of the year due to the daily posts for `Advent Calendar`. That said, I thoroughly enjoy revisiting the amazing work contributed by team members throughout the year.
 
 <br>
 
