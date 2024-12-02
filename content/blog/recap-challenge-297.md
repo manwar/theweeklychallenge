@@ -46,20 +46,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 15568 (63%)
+#### 1. Perl: 15570 (63%)
 #### 2. Raku: 8778 (37%)
-#### 3. Blog: 5495
+#### 3. Blog: 5496
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `84`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `87`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 42
+#### 1. Perl: 44
 #### 2. Raku: 20
-#### 3. Blog: 22
+#### 3. Blog: 23
 
 <br>
 
