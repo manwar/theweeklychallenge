@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; **Day 1** &nbsp; |
+### | &nbsp; **Day 1** &nbsp; | &nbsp; [**Day 2**](/blog/advent-calendar-2024-12-02) &nbsp; |
 ***
 
 The gift is presented by `Dave Jacoby`. Today he is talking about his solution to [**The Weekly Challenge - 250**](/blog/perl-weekly-challenge-250). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://jacoby.github.io/2024/01/01/leaping-from-tree-to-tree-as-they-float-down-the-mighty-rivers-of-british-columbia-weekly-challenge-250.html).
