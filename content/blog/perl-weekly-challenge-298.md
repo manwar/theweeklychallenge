@@ -30,7 +30,7 @@ Welcome to the `Week #298` of `The Weekly Challenge`.
 
 Let us all welcome a new guest contributor, [**Dorian 'vxern' Oszczeda**](https://github.com/vxern) to `Team PWC`. Thank you, `Dorian`, for sharing your first contributions in [**Uiua**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-297/vxern/uiua).
 
-Today is the first `Monday` of the month and time to declare the next champion. We are proud to announce, `E. Choroba`, once again the champion of the month. Thank you for the being the most consistent contributor. You have been one of the greatest `Perl` enthusiasta in the `Team PWC`. Congratulation once again.
+Today is the first `Monday` of the month and time to declare the next champion. We are proud to announce, `E. Choroba`, once again the champion of the month. Thank you for the being the most consistent contributor. You have been one of the greatest `Perl` enthusiasts in the `Team PWC`. Congratulation once again.
 
 Finally we entered the festive month of `Advent Calendar`. For many, it is the time to reflect on past whole year achievements, good or bad. But for me, it is completely opposite, I just want it go away as quickly as possible. In fact, personally the time between the start of `October` and end of `January` period is the most scariest time. I am lucky so far this time, I survived the initial two months. I am hoping the remaining two months would go without any trouble. I wish you all a very happy festive month.
 

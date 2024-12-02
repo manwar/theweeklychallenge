@@ -30,8 +30,9 @@ The gift is presented by `Jorg Sommrey`. Today he is talking about his solution 
 
     Write a script to find the sum of the squares of all special elements of the given array.
 
-    An element $int[i] of @ints is called special if i divides n, i.e. n % i == 0. Where n is
-    the length of the given array. Also the array is 1-indexed for the task.
+    An element $int[i] of @ints is called special if i divides n, i.e. n % i == 0.
+    Where n is the length of the given array.
+    Also the array is 1-indexed for the task.
 
 <br>
 
