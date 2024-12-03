@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 1**](/blog/advent-calendar-2024-12-01) &nbsp; | &nbsp; **Day 2** &nbsp; |
+### | &nbsp; [**Day 1**](/blog/advent-calendar-2024-12-01) &nbsp; | &nbsp; **Day 2** &nbsp; | &nbsp; [**Day 3**](/blog/advent-calendar-2024-12-03) &nbsp; |
 ***
 
 The gift is presented by `Jorg Sommrey`. Today he is talking about his solution to [**The Weekly Challenge - 252**](/blog/perl-weekly-challenge-252). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://github.sommrey.de/the-bears-den/2024/01/16/ch-252.html).
