@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 3, 2024"
-date: 2024-12-02T00:00:00+00:00
+date: 2024-12-03T00:00:00+00:00
 description: "Advent Calendar - December 3, 2024."
 type: post
 image: images/blog/2024-12-03.jpg
@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 2**](/blog/advent-calendar-2024-12-02) &nbsp; | &nbsp; **Day 3** &nbsp; |
+### | &nbsp; [**Day 2**](/blog/advent-calendar-2024-12-02) &nbsp; | &nbsp; **Day 3** &nbsp; | &nbsp; [**Day 4**](/blog/advent-calendar-2024-12-04) &nbsp;
 ***
 
 The gift is presented by `Peter Campbell Smith`. Today he is talking about his solution to [**The Weekly Challenge - 253**](/blog/perl-weekly-challenge-253). This is re-produced for `Advent Calendar 2024` from the original [**post**](http://ccgi.campbellsmiths.force9.co.uk/challenge/253).
