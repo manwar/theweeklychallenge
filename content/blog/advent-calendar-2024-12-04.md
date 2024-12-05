@@ -9,7 +9,7 @@ tags: ["Raku"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 3**](/blog/advent-calendar-2024-12-03) &nbsp; | &nbsp; **Day 4** &nbsp; |
+### | &nbsp; [**Day 3**](/blog/advent-calendar-2024-12-03) &nbsp; | &nbsp; **Day 4** &nbsp; | &nbsp; [**Day 5**](/blog/advent-calendar-2024-12-05) &nbsp; |
 ***
 
 The gift is presented by `Arne Sommer`. Today he is talking about his solution to [**The Weekly Challenge - 254**](/blog/perl-weekly-challenge-254). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://raku-musings.com/reverse-power.html).
