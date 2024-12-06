@@ -9,7 +9,7 @@ tags: ["Perl", "Raku"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 4**](/blog/advent-calendar-2024-12-04) &nbsp; | &nbsp; **Day 5** &nbsp; |
+### | &nbsp; [**Day 4**](/blog/advent-calendar-2024-12-04) &nbsp; | &nbsp; **Day 5** &nbsp; | &nbsp; [**Day 6**](/blog/advent-calendar-2024-12-06) &nbsp; |
 ***
 
 The gift is presented by `Laurent Rosenfeld`. Today he is talking about his solution to [**The Weekly Challenge - 255**](/blog/perl-weekly-challenge-255). This is re-produced for `Advent Calendar 2024` from the original [**post 1**](https://blogs.perl.org/users/laurent_r/2024/02/perl-weekly-challenge-255-odd-character.html). and [**post 2**](https://blogs.perl.org/users/laurent_r/2024/02/perl-weekly-challenge-255-most-frequent-word.html).
