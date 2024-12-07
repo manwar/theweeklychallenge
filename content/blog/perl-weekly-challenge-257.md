@@ -168,7 +168,7 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 ##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)
 ***
 
-You are given a array of integers, `@ints`.
+You are given an array of integers, `@ints`.
 
 Write a script to find out how many integers are smaller than current i.e. foreach `ints[i]`, count `ints[j] < ints[i]` where `i != j`.
 
