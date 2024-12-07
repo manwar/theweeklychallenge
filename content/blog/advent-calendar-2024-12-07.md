@@ -113,7 +113,7 @@ sub reducedrowechelon(@a) {
 
 <br>
 
-We'll be using the position of the first 1 in each row quite a bit. That goes in @leadingone.
+We'll be using the position of the `first 1` in each row quite a bit. That goes in `@leadingone`.
 
 <br>
 
@@ -133,7 +133,7 @@ Inspect each row:
 
 <br>
 
-Set the leading-one position to -1, indiciating no 1 found.
+Set the leading-one position to `-1`, indiciating `no 1 found`.
 
 <br>
 
@@ -154,7 +154,7 @@ For each item in the row:
 
 <br>
 
-If it's a 1, store that position and exit.
+If it's a `1`, store that position and `exit`.
 
 <br>
 
@@ -166,7 +166,7 @@ If it's a 1, store that position and exit.
 
 <br>
 
-If it's not a zero, bail out (rule 1).
+If it's not a `zero`, bail out (`rule 1`).
 
 <br>
 
@@ -190,7 +190,7 @@ Add this row's leading-one position to the list.
 
 <br>
 
-If there are trailing rows of all-zero, ignore them.
+If there are trailing rows of `all-zero`, ignore them.
 
 <br>
 
@@ -202,7 +202,7 @@ If there are trailing rows of all-zero, ignore them.
 
 <br>
 
-Now sort the remaining leading-one positions.
+Now `sort` the remaining leading-one positions.
 
 <br>
 
@@ -212,7 +212,7 @@ Now sort the remaining leading-one positions.
 
 <br>
 
-If there are any all-zero rows, they weren't trailing. Bail out by rule 2.
+If there are any all-zero rows, they weren't trailing. Bail out by `rule 2`.
 
 <br>
 
@@ -224,7 +224,7 @@ If there are any all-zero rows, they weren't trailing. Bail out by rule 2.
 
 <br>
 
-If the sorted list doesn't match the original, the leading ones aren't progressively to the right. Bail out by rule 3.
+If the sorted list doesn't match the original, the leading ones aren't progressively to the right. Bail out by `rule 3`.
 
 <br>
 
@@ -236,7 +236,7 @@ If the sorted list doesn't match the original, the leading ones aren't progressi
 
 <br>
 
-Finally take a columnwise slice of each column that has a leading 1 in it. Test for 1s and 0s in the right places (rule 4).
+Finally take a `columnwise slice` of each column that has a leading `1` in it. Test for `1s` and `0s` in the right places (`rule 4`).
 
 <br>
 
@@ -255,11 +255,11 @@ Finally take a columnwise slice of each column that has a leading 1 in it. Test 
 
 <br>
 
-I spot two possible problems here:
+I spot `two` possible problems here:
 
-(1) the rule-3 test will pass two leading-ones of equal value. But the rule-4 test will remove those because they won't be unique in the column. I'd rather rule 3 be fully tested in its own segment of the codex.
+(1) the `rule-3` test will pass `two leading-ones` of equal value. But the rule-4 test will remove those because they won't be unique in the column. I'd rather `rule 3` be fully tested in its own segment of the codex.
 
-(2) the rule-4 test should reject a negative value found in the same column as a leading 1 (@col[0] != 0 above). The existing test cases don't fail in that case (this is my fault since I proposed most of them).
+(2) the `rule-4` test should reject `a negative value` found in the same column as a `leading 1` (`@col[0] != 0` above). The existing test cases don't fail in that case (this is my fault since I proposed most of them).
 
 Full code on [**github**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-257/roger-bell-west).
 

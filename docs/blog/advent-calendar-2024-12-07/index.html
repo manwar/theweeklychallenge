@@ -263,7 +263,7 @@ A matrix must have the following properties to be in reduced row echelon form:
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reducedrowechelon</span>(@a) {
 </code></pre></div><br>
-<p>We&rsquo;ll be using the position of the first 1 in each row quite a bit. That goes in @leadingone.</p>
+<p>We&rsquo;ll be using the position of the <code>first 1</code> in each row quite a bit. That goes in <code>@leadingone</code>.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @leadingone;
 </code></pre></div><br>
@@ -271,7 +271,7 @@ A matrix must have the following properties to be in reduced row echelon form:
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> @a <span style="color:#f92672">-&gt;</span> @row {
 </code></pre></div><br>
-<p>Set the leading-one position to -1, indiciating no 1 found.</p>
+<p>Set the leading-one position to <code>-1</code>, indiciating <code>no 1 found</code>.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        <span style="color:#66d9ef">my</span> $lp <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 </code></pre></div><br>
@@ -280,13 +280,13 @@ A matrix must have the following properties to be in reduced row echelon form:
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @row<span style="color:#f92672">.</span>end <span style="color:#f92672">-&gt;</span> $cn {
             <span style="color:#66d9ef">my</span> $cell <span style="color:#f92672">=</span> @row[$cn];
 </code></pre></div><br>
-<p>If it&rsquo;s a 1, store that position and exit.</p>
+<p>If it&rsquo;s a <code>1</code>, store that position and <code>exit</code>.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">            <span style="color:#66d9ef">if</span> ($cell <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
                 $lp <span style="color:#f92672">=</span> $cn;
                 <span style="color:#66d9ef">last</span>;
 </code></pre></div><br>
-<p>If it&rsquo;s not a zero, bail out (rule 1).</p>
+<p>If it&rsquo;s not a <code>zero</code>, bail out (<code>rule 1</code>).</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">            } <span style="color:#66d9ef">elsif</span> ($cell <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
                 <span style="color:#66d9ef">return</span> False;
@@ -298,29 +298,29 @@ A matrix must have the following properties to be in reduced row echelon form:
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        @leadingone<span style="color:#f92672">.</span>push($lp);
     }
 </code></pre></div><br>
-<p>If there are trailing rows of all-zero, ignore them.</p>
+<p>If there are trailing rows of <code>all-zero</code>, ignore them.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (@leadingone[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
         @leadingone<span style="color:#f92672">.</span>pop;
     }
 </code></pre></div><br>
-<p>Now sort the remaining leading-one positions.</p>
+<p>Now <code>sort</code> the remaining leading-one positions.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @c <span style="color:#f92672">=</span> @leadingone<span style="color:#f92672">.</span>sort({$<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b});
 </code></pre></div><br>
-<p>If there are any all-zero rows, they weren&rsquo;t trailing. Bail out by rule 2.</p>
+<p>If there are any all-zero rows, they weren&rsquo;t trailing. Bail out by <code>rule 2</code>.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> (@c[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
         <span style="color:#66d9ef">return</span> False;
     }
 </code></pre></div><br>
-<p>If the sorted list doesn&rsquo;t match the original, the leading ones aren&rsquo;t progressively to the right. Bail out by rule 3.</p>
+<p>If the sorted list doesn&rsquo;t match the original, the leading ones aren&rsquo;t progressively to the right. Bail out by <code>rule 3</code>.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(@c eqv @leadingone)) {
         <span style="color:#66d9ef">return</span> False;
     }
 </code></pre></div><br>
-<p>Finally take a columnwise slice of each column that has a leading 1 in it. Test for 1s and 0s in the right places (rule 4).</p>
+<p>Finally take a <code>columnwise slice</code> of each column that has a leading <code>1</code> in it. Test for <code>1s</code> and <code>0s</code> in the right places (<code>rule 4</code>).</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> @c <span style="color:#f92672">-&gt;</span> $i {
         <span style="color:#66d9ef">my</span> @col <span style="color:#f92672">=</span> @a<span style="color:#f92672">.</span>map({$_[$i]})<span style="color:#f92672">.</span>sort({$<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b});
@@ -333,9 +333,9 @@ A matrix must have the following properties to be in reduced row echelon form:
     <span style="color:#66d9ef">return</span> True;
 }
 </code></pre></div><br>
-<p>I spot two possible problems here:</p>
-<p>(1) the rule-3 test will pass two leading-ones of equal value. But the rule-4 test will remove those because they won&rsquo;t be unique in the column. I&rsquo;d rather rule 3 be fully tested in its own segment of the codex.</p>
-<p>(2) the rule-4 test should reject a negative value found in the same column as a leading 1 (@col[0] != 0 above). The existing test cases don&rsquo;t fail in that case (this is my fault since I proposed most of them).</p>
+<p>I spot <code>two</code> possible problems here:</p>
+<p>(1) the <code>rule-3</code> test will pass <code>two leading-ones</code> of equal value. But the rule-4 test will remove those because they won&rsquo;t be unique in the column. I&rsquo;d rather <code>rule 3</code> be fully tested in its own segment of the codex.</p>
+<p>(2) the <code>rule-4</code> test should reject <code>a negative value</code> found in the same column as a <code>leading 1</code> (<code>@col[0] != 0</code> above). The existing test cases don&rsquo;t fail in that case (this is my fault since I proposed most of them).</p>
 <p>Full code on <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-257/roger-bell-west"><strong>github</strong></a>.</p>
 <br>
 <hr>
