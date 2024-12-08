@@ -9,7 +9,7 @@ tags: ["Raku", "Scala"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 6**](/blog/advent-calendar-2024-12-06) &nbsp; | &nbsp; **Day 7** &nbsp; |
+### | &nbsp; [**Day 6**](/blog/advent-calendar-2024-12-06) &nbsp; | &nbsp; **Day 7** &nbsp; | &nbsp; [**Day 8**](/blog/advent-calendar-2024-12-08) &nbsp; |
 ***
 
 The gift is presented by `Roger Bell_West`. Today he is talking about his solution to [**The Weekly Challenge - 257**](/blog/perl-weekly-challenge-257). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://blog.firedrake.org/archive/2024/02/The_Weekly_Challenge_257__Smaller_than_Echelon.html).
