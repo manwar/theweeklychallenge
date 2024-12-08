@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 8, 2024"
-date: 2024-12-07T00:00:00+00:00
+date: 2024-12-08T00:00:00+00:00
 description: "Advent Calendar - December 8, 2024."
 type: post
 image: images/blog/2024-12-08.jpg
