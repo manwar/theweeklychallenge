@@ -344,6 +344,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 ### Bob Lied
 ![Bob Lied](/images/team/bob-lied.jpg)
+
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-265/bob-lied/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-265/bob-lied/perl/ch-2.pl)]
 
