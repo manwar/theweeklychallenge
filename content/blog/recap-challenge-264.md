@@ -507,6 +507,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 ### Andrew Shitov
 ![Andrew Shitov](/images/team/andrew-shitov.jpg)
+
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-264/ash/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-264/ash/raku/ch-2.raku)]
 
