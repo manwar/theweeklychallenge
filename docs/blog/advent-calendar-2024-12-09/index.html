@@ -14,7 +14,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Advent Calendar - December 8, 2024.">
+    <meta name="description" content="Advent Calendar - December 9, 2024.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
@@ -23,7 +23,7 @@
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Advent Calendar - December 8, 2024</title>
+    <title>Advent Calendar - December 9, 2024</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -179,9 +179,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Advent Calendar - December 8, 2024</h2>
+                    <h2>Advent Calendar - December 9, 2024</h2>
                     <div class="portfolio-meta">
-                        <span>Sunday, Dec 8, 2024</span>|
+                        <span>Monday, Dec 9, 2024</span>|
                         <span> Tags:
                             Perl
                         </span>
@@ -198,101 +198,70 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2024-12-08.jpg">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2024-12-09.jpg">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
                     <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-7blogadvent-calendar-2024-12-07-nbsp--nbsp-day-8-nbsp--nbsp-day-9blogadvent-calendar-2024-12-09-nbsp-">|   <a href="/blog/advent-calendar-2024-12-07"><strong>Day 7</strong></a>   |   <strong>Day 8</strong>   |   <a href="/blog/advent-calendar-2024-12-09"><strong>Day 9</strong></a>   |</h3>
+<h3 id="-nbsp-day-8blogadvent-calendar-2024-12-08-nbsp--nbsp-day-9-nbsp-">|   <a href="/blog/advent-calendar-2024-12-08"><strong>Day 8</strong></a>   |   <strong>Day 9</strong>   |</h3>
 <hr>
-<p>The gift is presented by <code>Adam Russell</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-258"><strong>The Weekly Challenge - 258</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2024/03/03"><strong>post</strong></a>.</p>
-<hr>
-<br>
-<h2 id="count-sumofvaluacula">Count Sumofvaluacula</h2>
+<p>The gift is presented by <code>James Smith</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-263"><strong>The Weekly Challenge - 263</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://challenges.jamessmith.me.uk/weekly/weekly-challenge-263/"><strong>post</strong></a>.</p>
 <hr>
 <br>
-<h3 id="part-1-count-even-digits-number">Part 1: Count Even Digits Number</h3>
+<h2 id="the-weekly-challenge---263">The Weekly Challenge - 263</h2>
 <hr>
 <br>
-<pre><code>You are given an array of positive integers, @ints.
+<h3 id="task-1-target-index">Task #1: Target Index</h3>
+<hr>
+<br>
+<pre><code>You are given an array of integers, @ints and a target element $k.
 
-Write a script to find out how many integers have even number of digits.
+Write a script to return the list of indices in the sorted array where the element is same as the given target element.
 </code></pre>
 <br>
-<p>The majory of the work can be done in a single line. Conveniently the <code>tr</code> function returns the number of characters effected by the command. For our purposes that means telling tr to delete all numerals. We then check if the number of numerals removed is even inside of a <code>grep</code> block. The number of matches is then returned. Note the one catch, in order to use <code>tr</code> we need to assign <code>$_</code> to a temporary value, <code>$x</code>. Otherwise we would get an <code>error</code> Modification of a read-only value.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_even_digits</span>{
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span>
-        grep {
-          <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $_; $x <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/[0-9]/</span><span style="color:#f92672">/</span>d % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
-        } @_;
-}
-</code></pre></div><br>
-<p>The rest of the code just tests this function.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-
-
-MAIN:{
-    say count_even_digits <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">1000</span>;
-    say count_even_digits <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">11111</span>;
-    say count_even_digits <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1024</span>, <span style="color:#ae81ff">256</span>;
-}
-</code></pre></div><br>
-<p>Sample Run</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl perl<span style="color:#f92672">/</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl
-<span style="color:#ae81ff">3</span>
-<span style="color:#ae81ff">0</span>
-<span style="color:#ae81ff">1</span>
-</code></pre></div><br>
-<h3 id="part-2-sum-of-values">Part 2: Sum of Values</h3>
+<h3 id="solution">Solution</h3>
 <hr>
 <br>
-<pre><code>You are given an array of integers, @int and an integer $k.
+<p>It looks like we need to sort - <code>BUT WE DON'T</code> - we know that the first index will be the number of numbers less than <code>$k</code>, and the number of matching numbers is the number of numbers equal to <code>$k</code>.</p>
+<p>Like last week, we use the <code>spaceship operator</code> to compute the values larger/smaller than <code>$k</code>.</p>
+<p>If we create the <code>counts array (0) x 3</code>, then the number smaller are in <code>$c[-1] OR $c[2]</code>, the number the same are in <code>$c[0]</code>.</p>
+<p>So we just need to output the list of numbers starting at <code>$c[2]</code> of length <code>$c[0]</code>&hellip;</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">target_index</span> {
+  <span style="color:#66d9ef">my</span>( $k, @c ) <span style="color:#f92672">=</span> ( pop, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span> );
+  $c[ $_ <span style="color:#e6db74">&lt;=&gt;</span> $k ]<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @_;
+  $c[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">..</span> $c[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> $c[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+}
+</code></pre></div><br>
+<p>Spaceship operator <code>&lt;=&gt;</code> returns values <code>-1,0,1</code> depending on the <code>sign of the difference</code>.</p>
+<br>
+<h3 id="task-2-merge-items">Task #2: Merge Items</h3>
+<hr>
+<br>
+<pre><code>You are given two 2-D array of positive integers, $items1 and $items2 where element is pair of (item_id, item_quantity).
 
-Write a script to find the sum of values whose index binary representation has exactly $k number of 1-bit set.
+Write a script to return the merged items.
 </code></pre>
 <br>
-<p>First, let’s concern ourselves with counting <code>set bits</code>. Here we can re-use some code that we’ve used before. This is a pretty standard way to count bits. This procedure is to do a <code>bitwise AND</code> operation for the <code>least significant bit</code> and check if it is <code>set</code>. We then <code>right shift</code> and <code>repeat until no bits remain</code>. This code is actually a modification of code used in <code>TWC 079</code>!</p>
+<h3 id="solution-1">Solution</h3>
+<hr>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_bits</span>{
-    <span style="color:#66d9ef">my</span>($x) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $total_count_set_bit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span>($x){
-      <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> $x <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;
-      $total_count_set_bit<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $b;
-      $x <span style="color:#f92672">=</span> $x <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
-    }
-    <span style="color:#66d9ef">return</span> $total_count_set_bit;
-  }
+<p>We don&rsquo;t need to know which group the count is from - in fact the code below works if you have <code>1, 2, 3 or even 100</code> lists.</p>
+<p>We loop through every pair in every list updating the count for the key&hellip;</p>
+<p>We code simplify the code to use:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$code{ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } <span style="color:#f92672">+=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> map { @{$_} } @_;
 </code></pre></div><br>
-<p>With that necessary work taken care of we need to <code>loop</code> over the given <code>array of integers</code> and (1) check to see if the <code>index</code> contains the correct number of <code>set bits</code> and, if that is the case, <code>add</code> to the <code>rolling sum</code>. Finally, <code>return the sum</code>.</p>
+<p>but this could have memory issues as you have to create a new array and loop over it. So we use two loops instead. One example of where code golf can cause a major inefficiency.</p>
+<p>We store the values of the hash and return the keys and values as a list of pairs rather than the normal hash structure.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_of_values</span>{
-      <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> shift;
-      <span style="color:#66d9ef">my</span>(@n) <span style="color:#f92672">=</span> @_;
-      <span style="color:#66d9ef">my</span> $sum;
-      <span style="color:#66d9ef">do</span>{
-          $sum <span style="color:#f92672">+=</span> $_[$_] <span style="color:#66d9ef">if</span> count_bits($_) <span style="color:#f92672">==</span> $k;
-      } <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-      <span style="color:#66d9ef">return</span> $sum;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">merge_items</span> {
+  <span style="color:#66d9ef">my</span> %c;
+  <span style="color:#66d9ef">for</span>( @_ ) {
+    $c{ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } <span style="color:#f92672">+=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> @{$_}
   }
-</code></pre></div><br>
-<p>The rest of the code drives some tests.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  MAIN:{
-    say sum_of_values <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">3</span>;
-    say sum_of_values <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">3</span>;
-    say sum_of_values <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">3</span>;
-  }
-</code></pre></div><br>
-<p>Sample Run</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl perl<span style="color:#f92672">/</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>pl
-<span style="color:#ae81ff">17</span>
-<span style="color:#ae81ff">11</span>
-<span style="color:#ae81ff">2</span>
+  map { [ <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> $_ <span style="color:#f92672">=&gt;</span> $c{$_} ] } keys %c
+}
 </code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>

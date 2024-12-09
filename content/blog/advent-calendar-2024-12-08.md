@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 7**](/blog/advent-calendar-2024-12-07) &nbsp; | &nbsp; **Day 8** &nbsp; |
+### | &nbsp; [**Day 7**](/blog/advent-calendar-2024-12-07) &nbsp; | &nbsp; **Day 8** &nbsp; | &nbsp; [**Day 9**](/blog/advent-calendar-2024-12-09) &nbsp; |
 ***
 
 The gift is presented by `Adam Russell`. Today he is talking about his solution to [**The Weekly Challenge - 258**](/blog/perl-weekly-challenge-258). This is re-produced for `Advent Calendar 2024` from the original [**post**](http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2024/03/03).
