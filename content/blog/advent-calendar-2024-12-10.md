@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 9**](/blog/advent-calendar-2024-12-09) &nbsp; | &nbsp; **Day 10** &nbsp; |
+### | &nbsp; [**Day 9**](/blog/advent-calendar-2024-12-09) &nbsp; | &nbsp; **Day 10** &nbsp; | &nbsp; [**Day 11**](/blog/advent-calendar-2024-12-11) &nbsp; |
 ***
 
 The gift is presented by `Robbie Hatley`. Today he is talking about his solution to [**The Weekly Challenge - 260**](/blog/perl-weekly-challenge-260). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://hatley-software.blogspot.com/2024/03/robbie-hatleys-solutions-to-weekly.html).
