@@ -9,7 +9,7 @@ tags: ["Perl", "Python"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 10**](/blog/advent-calendar-2024-12-10) &nbsp; | &nbsp; **Day 11** &nbsp; |
+### | &nbsp; [**Day 10**](/blog/advent-calendar-2024-12-10) &nbsp; | &nbsp; **Day 11** &nbsp; | &nbsp; [**Day 12**](/blog/advent-calendar-2024-12-12) &nbsp; |
 ***
 
 The gift is presented by `Simon Green`. Today he is talking about his solution to [**The Weekly Challenge - 261**](/blog/perl-weekly-challenge-261). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://dev.to/simongreennet/weekly-challenge-261-3pg1).

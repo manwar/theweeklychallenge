@@ -14,7 +14,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Advent Calendar - December 11, 2024.">
+    <meta name="description" content="Advent Calendar - December 12, 2024.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
@@ -23,7 +23,7 @@
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Advent Calendar - December 11, 2024</title>
+    <title>Advent Calendar - December 12, 2024</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -179,11 +179,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Advent Calendar - December 11, 2024</h2>
+                    <h2>Advent Calendar - December 12, 2024</h2>
                     <div class="portfolio-meta">
-                        <span>Wednesday, Dec 11, 2024</span>|
+                        <span>Thursday, Dec 12, 2024</span>|
                         <span> Tags:
-                            Perl, Python
+                            Perl
                         </span>
                     </div>
                 </div>
@@ -198,103 +198,75 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2024-12-11.jpg">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2024-12-12.jpg">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
                     <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-10blogadvent-calendar-2024-12-10-nbsp--nbsp-day-11-nbsp--nbsp-day-12blogadvent-calendar-2024-12-12-nbsp-">|   <a href="/blog/advent-calendar-2024-12-10"><strong>Day 10</strong></a>   |   <strong>Day 11</strong>   |   <a href="/blog/advent-calendar-2024-12-12"><strong>Day 12</strong></a>   |</h3>
+<h3 id="-nbsp-day-11blogadvent-calendar-2024-12-11-nbsp--nbsp-day-12-nbsp-">|   <a href="/blog/advent-calendar-2024-12-11"><strong>Day 11</strong></a>   |   <strong>Day 12</strong>   |</h3>
 <hr>
-<p>The gift is presented by <code>Simon Green</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-261"><strong>The Weekly Challenge - 261</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://dev.to/simongreennet/weekly-challenge-261-3pg1"><strong>post</strong></a>.</p>
-<hr>
-<br>
-<h2 id="weekly-challenge-261">Weekly Challenge 261</h2>
+<p>The gift is presented by <code>Ali Moradi</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-262"><strong>The Weekly Challenge - 262</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://deadmarshal.blogspot.com/2024/03/twc262.html"><strong>post</strong></a>.</p>
 <hr>
 <br>
-<h3 id="task-1-element-digit-sum">Task #1: Element Digit Sum</h3>
+<h2 id="weekly-challenge-262">Weekly Challenge 262</h2>
+<hr>
+<br>
+<h3 id="task-1-max-positive-negative">Task #1: Max Positive Negative</h3>
 <hr>
 <br>
 <pre><code>You are given an array of integers, @ints.
 
-Write a script to evaluate the absolute difference between element and digit sum of the given arra
+Write a script to return the maximum number of either positive or negative integers in the given array.
 </code></pre>
 <br>
-<h3 id="my-solution">My solution</h3>
+<p>We count the number of <code>negative</code> and <code>positive</code> numbers in the array and return the <code>maximum</code>:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(max)</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">max_positive_negative</span>{
+  <span style="color:#66d9ef">my</span> ($neg,$pos) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> x <span style="color:#ae81ff">2</span>;
+  map{$neg<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $_ <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;$pos<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>}@{$_[<span style="color:#ae81ff">0</span>]};
+  max $neg,$pos
+}
+
+printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,max_positive_negative([<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>]);
+printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,max_positive_negative([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>]);
+printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,max_positive_negative([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]);
+</code></pre></div><br>
+<h3 id="task-2-count-equal-divisible">Task #2: Count Equal Divisible</h3>
 <hr>
-<p>Given that <code>Perl</code> doesn&rsquo;t care (most of the time) between numbers and strings, this is one of those challenges that is easier to do in <code>Perl</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $element_sum <span style="color:#f92672">=</span> sum(@ints);
-<span style="color:#66d9ef">my</span> $digit_sum   <span style="color:#f92672">=</span> sum( map { split <span style="color:#e6db74">//</span> } @ints );
-say abs( $element_sum <span style="color:#f92672">-</span> $digit_sum );
-</code></pre></div><br>
-<p>The <code>sum</code> function comes from <code>List::Util</code>. The first line gets the sum of the elements. The second line splits the integers by the digits and calculates the sum. The final line calculates and display the absolute difference.</p>
-<p>My <code>Python</code> solution is as follows</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">def element_digit_sum(ints: list) <span style="color:#f92672">-&gt;</span> int:
-    element_sum <span style="color:#f92672">=</span> sum(ints)
-    digit_sum <span style="color:#f92672">=</span> sum(int(i) <span style="color:#66d9ef">for</span> s in map(str, ints) <span style="color:#66d9ef">for</span> i in s)
-    <span style="color:#66d9ef">return</span> abs(element_sum <span style="color:#f92672">-</span> digit_sum)
-</code></pre></div><br>
-<p>It follows the same logic and the <code>Perl</code> code. The second line does the following</p>
-<br>
-<pre><code>- map(str, ints) turns the list of integers into a generator of strings
-- for s in iterates over the generator
-- for i in s iterates over each character in the string
-- int(i) turns that character into an integer
-- sum() turns the list of integers into a sum of the values
+<pre><code>You are given an array of integers, @ints and an integer $k.
+
+Write a script to return the number of pairs (i, j) where
+
+    a) 0 &lt;= i &lt; j &lt; size of @ints
+    b) ints[i] == ints[j]
+    c) i x j is divisible by k
 </code></pre>
 <br>
-<h3 id="examples">Examples</h3>
-<hr>
+<p>For each <code>(i,j)</code> pair we check if the condition <code>(i * j mod k == 0)</code> holds and <code>count</code> them:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>py <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">45</span>
-<span style="color:#ae81ff">36</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>py <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">3</span>
-<span style="color:#ae81ff">9</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_equal_divisible</span>{
+  <span style="color:#66d9ef">my</span> ($arr,$k) <span style="color:#f92672">=</span> @_;
+  <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@$arr<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>){
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j($i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>@$arr<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>){
+      <span style="color:#f92672">++</span>$count <span style="color:#66d9ef">if</span> $arr<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">==</span> $arr<span style="color:#f92672">-&gt;</span>[$j] <span style="color:#f92672">&amp;&amp;</span> ($i<span style="color:#f92672">*</span>$j) % <span style="color:#960050;background-color:#1e0010">$</span>k <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+    }
+  }
+  $count
+}
 
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>py <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>
-<span style="color:#ae81ff">0</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>py <span style="color:#ae81ff">236</span> <span style="color:#ae81ff">416</span> <span style="color:#ae81ff">336</span> <span style="color:#ae81ff">350</span>
-<span style="color:#ae81ff">1296</span>
-</code></pre></div><br>
-<h3 id="task-2-dictionary-rank">Task #2: Dictionary Rank</h3>
-<hr>
-<br>
-<pre><code>You are given an array of integers, @ints and an integer $start..
-
-Write a script to do the following:
-
-    1) Look for $start in the array @ints, if found multiply the number by 2
-    2) If not found stop the process otherwise repeat
-
-In the end return the final value.
-</code></pre>
-<br>
-<h3 id="my-solution-1">My solution</h3>
-<hr>
-<br>
-<p>This seems relatively straight forward. I keep multiplying the start by two until the value does not appear in the list. For performance, I could have converted the list into a set (hash in <code>Perl</code>), as checking in-ness (is that a word?) is faster that way. However, we are dealing with a small list, so it is not required.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">def multiple_by_two(ints: list, start: int) <span style="color:#f92672">-&gt;</span> int:
-    solution <span style="color:#f92672">=</span> start
-    <span style="color:#66d9ef">while</span> solution in ints:
-        solution <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>
-
-    <span style="color:#66d9ef">return</span> solution
-</code></pre></div><br>
-<h3 id="examples-1">Examples</h3>
-<hr>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>py <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">3</span>
-<span style="color:#ae81ff">24</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>py <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">1</span>
-<span style="color:#ae81ff">8</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>py <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">2</span>
-<span style="color:#ae81ff">2</span>
+printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,count_equal_divisible([<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],<span style="color:#ae81ff">2</span>);
+printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,count_equal_divisible([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>],<span style="color:#ae81ff">1</span>);
 </code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
