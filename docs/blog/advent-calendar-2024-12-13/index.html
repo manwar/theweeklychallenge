@@ -14,7 +14,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Advent Calendar - December 12, 2024.">
+    <meta name="description" content="Advent Calendar - December 13, 2024.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
@@ -23,7 +23,7 @@
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Advent Calendar - December 12, 2024</title>
+    <title>Advent Calendar - December 13, 2024</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -179,9 +179,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Advent Calendar - December 12, 2024</h2>
+                    <h2>Advent Calendar - December 13, 2024</h2>
                     <div class="portfolio-meta">
-                        <span>Thursday, Dec 12, 2024</span>|
+                        <span>Friday, Dec 13, 2024</span>|
                         <span> Tags:
                             Perl
                         </span>
@@ -198,76 +198,69 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2024-12-12.jpg">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2024-12-13.jpg">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
                     <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-11blogadvent-calendar-2024-12-11-nbsp--nbsp-day-12-nbsp--nbsp-day-13blogadvent-calendar-2024-12-13-nbsp-">|   <a href="/blog/advent-calendar-2024-12-11"><strong>Day 11</strong></a>   |   <strong>Day 12</strong>   |   <a href="/blog/advent-calendar-2024-12-13"><strong>Day 13</strong></a>   |</h3>
+<h3 id="-nbsp-day-12blogadvent-calendar-2024-12-12-nbsp--nbsp-day-13-nbsp-">|   <a href="/blog/advent-calendar-2024-12-12"><strong>Day 12</strong></a>   |   <strong>Day 13</strong>   |</h3>
 <hr>
-<p>The gift is presented by <code>Ali Moradi</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-262"><strong>The Weekly Challenge - 262</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://deadmarshal.blogspot.com/2024/03/twc262.html"><strong>post</strong></a>.</p>
-<hr>
-<br>
-<h2 id="weekly-challenge-262">Weekly Challenge 262</h2>
+<p>The gift is presented by <code>Bob Lied</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-263"><strong>The Weekly Challenge - 263</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://dev.to/boblied/pwc-2631-dont-sort-it-be-happy-537i"><strong>post</strong></a>.</p>
 <hr>
 <br>
-<h3 id="task-1-max-positive-negative">Task #1: Max Positive Negative</h3>
+<h2 id="dont-sort-it-be-happy">Don&rsquo;t Sort It, Be Happy</h2>
 <hr>
 <br>
-<pre><code>You are given an array of integers, @ints.
+<h3 id="task-1-target-index">Task #1: Target Index</h3>
+<hr>
+<br>
+<pre><code>You are given an array of integers, @ints, and a target element $k.
 
-Write a script to return the maximum number of either positive or negative integers in the given array.
+Write a script to return the list of indices in the sorted array where the element is the same as the given target element.
 </code></pre>
 <br>
-<p>We count the number of <code>negative</code> and <code>positive</code> numbers in the array and return the <code>maximum</code>:</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(max)</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">max_positive_negative</span>{
-  <span style="color:#66d9ef">my</span> ($neg,$pos) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> x <span style="color:#ae81ff">2</span>;
-  map{$neg<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $_ <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;$pos<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>}@{$_[<span style="color:#ae81ff">0</span>]};
-  max $neg,$pos
-}
-
-printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,max_positive_negative([<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>]);
-printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,max_positive_negative([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>]);
-printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,max_positive_negative([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]);
-</code></pre></div><br>
-<h3 id="task-2-count-equal-divisible">Task #2: Count Equal Divisible</h3>
+<h3 id="dive-right-in">Dive right in</h3>
 <hr>
 <br>
-<pre><code>You are given an array of integers, @ints and an integer $k.
-
-Write a script to return the number of pairs (i, j) where
-
-    a) 0 &lt;= i &lt; j &lt; size of @ints
-    b) ints[i] == ints[j]
-    c) i x j is divisible by k
-</code></pre>
+<p>Well, the example gives it away, doesn&rsquo;t it? Sort the array and waddle up the list to the first index where <code>$k</code> exists. Then, because the array is sorted, all the other places where <code>$k</code> exists must be adjacent.</p>
 <br>
-<p>For each <code>(i,j)</code> pair we check if the condition <code>(i * j mod k == 0)</code> holds and <code>count</code> them:</p>
+<h3 id="or-not">Or not</h3>
+<hr>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_equal_divisible</span>{
-  <span style="color:#66d9ef">my</span> ($arr,$k) <span style="color:#f92672">=</span> @_;
-  <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@$arr<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>){
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j($i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>@$arr<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>){
-      <span style="color:#f92672">++</span>$count <span style="color:#66d9ef">if</span> $arr<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">==</span> $arr<span style="color:#f92672">-&gt;</span>[$j] <span style="color:#f92672">&amp;&amp;</span> ($i<span style="color:#f92672">*</span>$j) % <span style="color:#960050;background-color:#1e0010">$</span>k <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+<p>But hold on. In every algorithm we have some trouble, but when you sort you make it double.</p>
+<p>All the <code>$k</code> together means we&rsquo;ve effectively partitioned the array into three sets: elements that are less than <code>$k</code>, elements equal to <code>$k</code>, and the rest.</p>
+<p>We don&rsquo;t have to sort the array at all. We just have to traverse the array and count the elements in the first two partitions.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">targetIndex</span>($k, @ints)
+{
+    <span style="color:#66d9ef">my</span> ($below, $same) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">foreach</span> ( @ints )
+    {
+        <span style="color:#66d9ef">if</span>    ( $_ <span style="color:#f92672">&lt;</span> $k )  { $below<span style="color:#f92672">++</span> }
+        <span style="color:#66d9ef">elsif</span> ( $_ <span style="color:#f92672">==</span> $k ) { $same<span style="color:#f92672">++</span> }
     }
-  }
-  $count
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">if</span> $same <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">return</span> [ $below <span style="color:#f92672">..</span> ($same <span style="color:#f92672">+</span> $below <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) ];
 }
-
-printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,count_equal_divisible([<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],<span style="color:#ae81ff">2</span>);
-printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,count_equal_divisible([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>],<span style="color:#ae81ff">1</span>);
 </code></pre></div><br>
+<p>If <code>$k</code> doesn&rsquo;t appear at all, we can bail out by returning an empty list. <code>$below</code> and <code>$same</code> tell us the range of numbers we need in the answer.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$below <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e"># 1 element less than $k</span>
+$same  <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e"># 2 elements equal to $k</span>
+      {         }
+   <span style="color:#ae81ff">1</span>  {  <span style="color:#ae81ff">2</span>   <span style="color:#ae81ff">2</span>  }   <span style="color:#ae81ff">3</span>   <span style="color:#ae81ff">4</span>   <span style="color:#ae81ff">5</span>
+  [<span style="color:#ae81ff">0</span>] { [<span style="color:#ae81ff">1</span>] [<span style="color:#ae81ff">2</span>] }  [<span style="color:#ae81ff">3</span>] [<span style="color:#ae81ff">4</span>] [<span style="color:#ae81ff">5</span>]
+         <span style="color:#f92672">^</span>   <span style="color:#f92672">^</span>
+         <span style="color:#f92672">|</span>   <span style="color:#f92672">+----</span> $below <span style="color:#f92672">+</span> $same <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+  $below<span style="color:#f92672">-+</span>
+</code></pre></div><br>
+<p>The <code>..</code> range operator makes short work of creating the sequence of numbers we want.</p>
+<p>Put that range of numbers into an array, and we have our answer. This function is returning array references, not arrays, so the calling function will have to de-reference. In context, it might look like</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say <span style="color:#e6db74">&#34;(&#34;</span>, join(<span style="color:#e6db74">&#34;,&#34;</span>, targetIndex($Target, @ARGV)<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>), <span style="color:#e6db74">&#34;)&#34;</span>;
+</code></pre></div><br>
+<p>Now there is the blog I wrote. I hope you liked the way I code. Don&rsquo;t worry, be hacker.</p>
+<br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
 <p>|   <a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a>   |</p>
