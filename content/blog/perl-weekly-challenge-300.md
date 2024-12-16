@@ -114,8 +114,8 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 ### [GitHub](https://github.com/manwar/perlweeklychallenge-club) Repository Stats
 ***
 
-#### 1. Commits: 41,552 (`+73`)
-#### 2. Pull Requests: 11,292 (`+23`)
+#### 1. Commits: 41,556 (`+77`)
+#### 2. Pull Requests: 11,293 (`+24`)
 #### 3. Contributors: 254
 #### 4. Fork: 321
 #### 5. Stars: 178
