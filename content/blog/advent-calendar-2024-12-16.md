@@ -9,7 +9,7 @@ tags: ["Perl", "Python"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 15**](/blog/advent-calendar-2024-12-15) &nbsp; | &nbsp; **Day 16** &nbsp; |
+### | &nbsp; [**Day 15**](/blog/advent-calendar-2024-12-15) &nbsp; | &nbsp; **Day 16** &nbsp; | &nbsp; [**Day 17**](/blog/advent-calendar-2024-12-17) &nbsp; |
 ***
 
 The gift is presented by `Ryan Thompson`. Today he is talking about his solution to [**The Weekly Challenge - 276**](/blog/perl-weekly-challenge-276). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://ry.ca/2024/07/pwc-276-complete-day-and-maximum-frequency/).
