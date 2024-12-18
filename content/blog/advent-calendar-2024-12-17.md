@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 16**](/blog/advent-calendar-2024-12-16) &nbsp; | &nbsp; **Day 17** &nbsp; |
+### | &nbsp; [**Day 16**](/blog/advent-calendar-2024-12-16) &nbsp; | &nbsp; **Day 17** &nbsp; | &nbsp; [**Day 18**](/blog/advent-calendar-2024-12-18) &nbsp; |
 ***
 
 The gift is presented by `E. Choroba`. Today he is talking about his solution to [**The Weekly Challenge - 287**](/blog/perl-weekly-challenge-287). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://blogs.perl.org/users/e_choroba/2024/09/strong-password.html).
