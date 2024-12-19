@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 17**](/blog/advent-calendar-2024-12-17) &nbsp; | &nbsp; **Day 18** &nbsp; |
+### | &nbsp; [**Day 17**](/blog/advent-calendar-2024-12-17) &nbsp; | &nbsp; **Day 18** &nbsp; | &nbsp; [**Day 19**](/blog/advent-calendar-2024-12-19) &nbsp; |
 ***
 
 The gift is presented by `Cheok-Yin Fung`. Today he is talking about his solution to [**The Weekly Challenge - 281**](/blog/perl-weekly-challenge-281). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://cylivesstem.wordpress.com/2024/08/10/where-is-the-chess-piece-going-to/).
