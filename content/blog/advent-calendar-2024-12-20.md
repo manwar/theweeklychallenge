@@ -45,9 +45,7 @@ This task is well suited for `BQN` to show its’ array processing strength:
 
 <br>
 
-```perl
-UniqueOccurrences ← ∧´∘∊(+´˘(∊/⊢)=⌜⊢)
-```
+`UniqueOccurrences ← ∧´∘∊(+´˘(∊/⊢)=⌜⊢)`
 
 <br>
 

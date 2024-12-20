@@ -227,8 +227,8 @@ Write a script to return 1 if the number of occurrences of each value in the giv
 <br>
 <p>This task is well suited for <code>BQN</code> to show its’ array processing strength:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">UniqueOccurrences <span style="color:#960050;background-color:#1e0010">←</span> <span style="color:#960050;background-color:#1e0010">∧´∘∊</span>(<span style="color:#f92672">+</span><span style="color:#960050;background-color:#1e0010">´˘</span>(<span style="color:#960050;background-color:#1e0010">∊</span><span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">⊢</span>)<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">⌜⊢</span>)
-</code></pre></div><br>
+<p><code>UniqueOccurrences ← ∧´∘∊(+´˘(∊/⊢)=⌜⊢)</code></p>
+<br>
 <p>The first step of the algorithm is represented by the innermost brackets <code>(∊/⊢)</code>. Here I used an instrument of tacit programming, a train. The argument gets passed to classify, returning a list of the same length. However, the first occurrence of each number in the original argument is replaced with a one, otherwise a zero. The right function of this train is simply the right identity function and returns its argument unaltered. Replicate takes both results and filters the list. This function is itself a left part of the train <code>(∊/⊢)=⌜⊢</code> which implements step two. Now that a suitable matrix has been created, <code>+´˘</code> sums them up. Notice the need to use the Cells modifier to sum row wise. Step four is just applying classify to the occurrence counts. The atop combinator is necessary, else the logical reduction, classify and the right bracket expression would form a train. Then the last step is achieved by applying the fold modifier to the and function.</p>
 <p>In contrast a Raku implementation:</p>
 <br>
