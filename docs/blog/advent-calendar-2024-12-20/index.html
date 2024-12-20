@@ -14,7 +14,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Advent Calendar - December 19, 2024.">
+    <meta name="description" content="Advent Calendar - December 20, 2024.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
@@ -23,7 +23,7 @@
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Advent Calendar - December 19, 2024</title>
+    <title>Advent Calendar - December 20, 2024</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -179,11 +179,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Advent Calendar - December 19, 2024</h2>
+                    <h2>Advent Calendar - December 20, 2024</h2>
                     <div class="portfolio-meta">
-                        <span>Thursday, Dec 19, 2024</span>|
+                        <span>Friday, Dec 20, 2024</span>|
                         <span> Tags:
-                            Perl
+                            Raku, BQN
                         </span>
                     </div>
                 </div>
@@ -198,99 +198,58 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2024-12-19.jpg">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2024-12-20.jpg">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
                     <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-18blogadvent-calendar-2024-12-18-nbsp--nbsp-day-19-nbsp--nbsp-day-20blogadvent-calendar-2024-12-20-nbsp-">|   <a href="/blog/advent-calendar-2024-12-18"><strong>Day 18</strong></a>   |   <strong>Day 19</strong>   |   <a href="/blog/advent-calendar-2024-12-20"><strong>Day 20</strong></a>   |</h3>
+<h3 id="-nbsp-day-19blogadvent-calendar-2024-12-19-nbsp--nbsp-day-20-nbsp-">|   <a href="/blog/advent-calendar-2024-12-19"><strong>Day 19</strong></a>   |   <strong>Day 20</strong>   |</h3>
 <hr>
-<p>The gift is presented by <code>David Ferrone</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-285"><strong>The Weekly Challenge - 285</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://dev.to/zapwai/lost-connections-and-making-changes-anp"><strong>post</strong></a>.</p>
-<hr>
-<br>
-<h2 id="lost-connections-and-making-changes">Lost Connections and Making Changes</h2>
+<p>The gift is presented by <code>BarrOff</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-260"><strong>The Weekly Challenge - 260</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://barroff.codeberg.page/2024/03/occurrences-with-bqn"><strong>post</strong></a>.</p>
 <hr>
 <br>
-<h3 id="task-1-no-connection">Task #1: No Connection</h3>
-<pre><code>Given a list of routes, find the destination with no outgoing connection.
+<h2 id="occurrences-with-bqn">Occurrences with BQN</h2>
+<hr>
+<br>
+<h3 id="task-1-unique-occurrences">Task #1: Unique Occurrences</h3>
+<pre><code>You are given an array of integers, @ints.
 
-For example, given [B, C] [D, B] [C, A] we have routes
-B -&gt; C -&gt; A
-D -&gt; B -&gt; C -&gt; A
-C -&gt; A
-
-Output: A
+Write a script to return 1 if the number of occurrences of each value in the given array is unique or 0 otherwise.
 </code></pre>
 <br>
-<p>I make two lists, in-routes and out-routes, and then I see if there is an out that is not also an in.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">my</span> @routes <span style="color:#f92672">=</span> ([<span style="color:#e6db74">&#34;B&#34;</span>,<span style="color:#e6db74">&#34;C&#34;</span>], [<span style="color:#e6db74">&#34;D&#34;</span>,<span style="color:#e6db74">&#34;B&#34;</span>], [<span style="color:#e6db74">&#34;C&#34;</span>,<span style="color:#e6db74">&#34;A&#34;</span>]);
-proc(@routes);
-@routes <span style="color:#f92672">=</span> ([<span style="color:#e6db74">&#34;A&#34;</span>,<span style="color:#e6db74">&#34;Z&#34;</span>]);
-proc(@routes);
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">proc</span>(@routes) {
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Input: &#34;</span>;
-    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;,&#34;</span>, @{$routes[$_]}),<span style="color:#e6db74">&#34; &#34;</span> <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#routes);
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
-    <span style="color:#66d9ef">my</span> @in;
-    <span style="color:#66d9ef">my</span> @out;
-    <span style="color:#66d9ef">foreach</span> (@routes) {
-        push @in, ${$_}[<span style="color:#ae81ff">0</span>];
-        push @out, ${$_}[<span style="color:#ae81ff">1</span>];
-    }
-    <span style="color:#66d9ef">my</span> $ans <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;a&#34;</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $needle (@out) {
-        <span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $hay (@in) {
-            <span style="color:#66d9ef">if</span> ($needle <span style="color:#f92672">eq</span> $hay) {
-                $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-                <span style="color:#66d9ef">last</span>;
-            }
-        }
-        <span style="color:#66d9ef">if</span> ($found <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-            $ans <span style="color:#f92672">=</span> $needle;
-        }
-    }
-    say <span style="color:#e6db74">&#34;Output: $ans&#34;</span>;
-}
-</code></pre></div><br>
-<h3 id="task-2-making-change">Task #2: Making Change</h3>
-<pre><code>Compute the number of distinct ways to make change for a given amount. (Using Pennies, Nickels, Dimes, Quarters, and Half-Dollars.)
-
-There are two ways to make change for 9 cents (N + 4P or 9P).
-There are three ways to make change for 10 cents (2N, N + 5P, or 10P).
+<p>The following algorithm solves the problem:</p>
+<pre><code>1. get a list of all available numbers
+2. for each number compare it to each list element, creating a matrix
+3. sum up each row to get the count per number
+4. classify this list
+5. reduce the classified list with a logical and
 </code></pre>
 <br>
-<p>This challenge was inspired by an analysis book of <code>Pólya</code>. (<code>Problems and Theorems in Analysis</code>) The first question is to count the number of ways to make change for a dollar, which is arduous. It&rsquo;s a trivial task for a computer, though.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">my</span> $amt <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">100</span>;
-<span style="color:#66d9ef">my</span> $cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $h (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">50</span>) {
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $q (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">25</span>) {
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $d (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>) {
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">5</span>) {
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt) {
-            <span style="color:#66d9ef">if</span> (tally($p, $n, $d, $q, $h) <span style="color:#f92672">==</span> $amt) {
-            $cnt<span style="color:#f92672">++</span>;
-            }
-        }
-        }
-    }
-    }
-}
-say <span style="color:#e6db74">&#34;There are $cnt ways to make change for $amt cents&#34;</span>;
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tally</span>($p, $n, $d, $q, $h) { $p <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">*</span>$n <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">*</span>$d <span style="color:#f92672">+</span> <span style="color:#ae81ff">25</span><span style="color:#f92672">*</span>$q <span style="color:#f92672">+</span> <span style="color:#ae81ff">50</span><span style="color:#f92672">*</span>$h
-</code></pre></div><br>
-<p>I have used a for loop for each coin, in a stunning display of brute force.</p>
-<h3 id="ps">P.S.</h3>
-<hr>
-<p>The original question was to be done by hand; In a manner similar to the above code, you could first divide to find the max possible number of pennies, nickels, etc that can be used. Then split into cases (i.e. H = 0, 1, or 2; Q = 0, 1, 2, 3, or 4; etc.)</p>
-<p>The second question in Pólya&rsquo;s book asks for a function whose coefficients A_n (in a series expansion) would equal the number of ways to make change for n cents.</p>
-<p>The concept there is that if you took a product like (1 + x + x^2 + x^3 + &hellip; )(1 + x^5 + x^10 + x^15 + &hellip;) the resulting series has coefficients which provide the number of ways to &ldquo;make change&rdquo; using pennies and nickels. (That is, a term like x^6 in our product could only have come from x * x^5 or from x^6 * 1, coinciding with the two unique ways we can make change for 6 cents.)</p>
-<p>So theoretically, one could form the correct product (using five such factors, since there are five coins) - then expand and find the coefficient of the 100th term in order to find the number of ways to make change for 100 cents. That&rsquo;s easier said than done, however.</p>
+<p>This task is well suited for <code>BQN</code> to show its’ array processing strength:</p>
 <br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">UniqueOccurrences <span style="color:#960050;background-color:#1e0010">←</span> <span style="color:#960050;background-color:#1e0010">∧´∘∊</span>(<span style="color:#f92672">+</span><span style="color:#960050;background-color:#1e0010">´˘</span>(<span style="color:#960050;background-color:#1e0010">∊</span><span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">⊢</span>)<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">⌜⊢</span>)
+</code></pre></div><br>
+<p>The first step of the algorithm is represented by the innermost brackets <code>(∊/⊢)</code>. Here I used an instrument of tacit programming, a train. The argument gets passed to classify, returning a list of the same length. However, the first occurrence of each number in the original argument is replaced with a one, otherwise a zero. The right function of this train is simply the right identity function and returns its argument unaltered. Replicate takes both results and filters the list. This function is itself a left part of the train <code>(∊/⊢)=⌜⊢</code> which implements step two. Now that a suitable matrix has been created, <code>+´˘</code> sums them up. Notice the need to use the Cells modifier to sum row wise. Step four is just applying classify to the occurrence counts. The atop combinator is necessary, else the logical reduction, classify and the right bracket expression would form a train. Then the last step is achieved by applying the fold modifier to the and function.</p>
+<p>In contrast a Raku implementation:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">unique</span>-occurrences(@ints --&gt; Int:D) {
+    <span style="color:#66d9ef">my</span> @bag_values <span style="color:#f92672">=</span> Bag(@ints)<span style="color:#f92672">.</span>values;
+    @bag_values<span style="color:#f92672">.</span>unique<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> @bag_values<span style="color:#f92672">.</span>elems ?? <span style="color:#ae81ff">1</span> <span style="color:#f92672">!!</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><br>
+<p>Raku’s <code>Bag</code> class makes this task a breeze. It automatically sums up each occurrences for each element and makes the result easily accessible in a dictionary like manner. If each value is unique, applying .unique.elems is the same as directly using the method <code>.elems</code>. The function uses this to determine the return value.</p>
+<br>
+<h3 id="task-2-dictionary-rank">Task #2: Dictionary Rank</h3>
+<pre><code>You are given a word, $word.
+
+Write a script to compute the dictionary rank of the given word.
+</code></pre>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dictionary</span>-rank(Str:D $word --&gt; Int:D) {
+    <span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> $word<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>permutations<span style="color:#f92672">.</span>map({ $_<span style="color:#f92672">.</span>join })<span style="color:#f92672">.</span>unique<span style="color:#f92672">.</span>sort;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> @words<span style="color:#f92672">.</span>first: <span style="color:#f92672">*</span> <span style="color:#f92672">eq</span> $word, :k;
+}
+</code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
 <p>|   <a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a>   |</p>

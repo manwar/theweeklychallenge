@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 18**](/blog/advent-calendar-2024-12-18) &nbsp; | &nbsp; **Day 19** &nbsp; |
+### | &nbsp; [**Day 18**](/blog/advent-calendar-2024-12-18) &nbsp; | &nbsp; **Day 19** &nbsp; | &nbsp; [**Day 20**](/blog/advent-calendar-2024-12-20) &nbsp; |
 ***
 
 The gift is presented by `David Ferrone`. Today he is talking about his solution to [**The Weekly Challenge - 285**](/blog/perl-weekly-challenge-285). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://dev.to/zapwai/lost-connections-and-making-changes-anp).
