@@ -9,7 +9,7 @@ tags: ["Raku", "BQN"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 19**](/blog/advent-calendar-2024-12-19) &nbsp; | &nbsp; **Day 20** &nbsp; |
+### | &nbsp; [**Day 19**](/blog/advent-calendar-2024-12-19) &nbsp; | &nbsp; **Day 20** &nbsp; | &nbsp; [**Day 21**](/blog/advent-calendar-2024-12-21) &nbsp; |
 ***
 
 The gift is presented by `BarrOff`. Today he is talking about his solution to [**The Weekly Challenge - 260**](/blog/perl-weekly-challenge-260). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://barroff.codeberg.page/2024/03/occurrences-with-bqn).
