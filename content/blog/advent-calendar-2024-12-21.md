@@ -102,18 +102,23 @@ sub task1 ( @LoLists ) {
 <br>
 
 ### Observations:
+***
 
 `Example 2` says input `(5, 7, 1, 7)` has output `1`, which implies that the two `(5,7)` pairs (because the `7 occurs twice`) must count only `once`. This further implies that we must either `de-duplicate` the input array, or `accumulate` a list of all the `strong pairs` and `de-duplicate` that list before summarizing in into the count of strong pairs. Since de-duplicate the input array is simpler, I will do that, via `List::Util::uniq` in `Perl`, and either `.unique` or `.squish-after-sorting` in `Raku`.
 
 More observations are embedded between solutions, for narrative flow.
 
 ### Perl
+***
 
 Translation of the slowest and fastest `Raku` solutions, with no notable changes. More than half the total runtime is just task2a grinding through all the combinations of the final EXTRA test: `1..4096`.
 
 ### Raku
+***
 
 Straight translation of the task.
+
+<br>
 
 ```perl
 sub task2_combo_unique ( @ns --> UInt ) {
