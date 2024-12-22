@@ -9,7 +9,7 @@ tags: ["Perl", "Raku"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 20**](/blog/advent-calendar-2024-12-20) &nbsp; | &nbsp; **Day 21** &nbsp; |
+### | &nbsp; [**Day 20**](/blog/advent-calendar-2024-12-20) &nbsp; | &nbsp; **Day 21** &nbsp; | &nbsp; [**Day 22**](/blog/advent-calendar-2024-12-22) &nbsp; |
 ***
 
 The gift is presented by `Bruce Gray`. Today he is talking about his solution to [**The Weekly Challenge - 277**](/blog/perl-weekly-challenge-277). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://blogs.perl.org/users/bruce_gray/2024/07/twc-277-strength-uncombined.html).
