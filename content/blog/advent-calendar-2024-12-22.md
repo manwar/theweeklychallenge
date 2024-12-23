@@ -9,7 +9,7 @@ tags: ["Perl", "Raku", "Python", "Elixir"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 21**](/blog/advent-calendar-2024-12-21) &nbsp; | &nbsp; **Day 22** &nbsp; |
+### | &nbsp; [**Day 21**](/blog/advent-calendar-2024-12-21) &nbsp; | &nbsp; **Day 22** &nbsp; | &nbsp; [**Day 23**](/blog/advent-calendar-2024-12-23) &nbsp; |
 ***
 
 The gift is presented by `Packy Anderson`. Today he is talking about his solution to [**The Weekly Challenge - 286**](/blog/perl-weekly-challenge-286). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://packy.dardan.com/2024/09/09/perl-weekly-challenge-spammer-game/).
