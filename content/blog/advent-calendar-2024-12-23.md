@@ -9,7 +9,7 @@ tags: ["Java", "PostgreSQL", "Raku", "Python"]
 ---
 
 ## [**Advent Calendar 2024**](/blog/advent-calendar-2024)
-### | &nbsp; [**Day 22**](/blog/advent-calendar-2024-12-22) &nbsp; | &nbsp; **Day 23** &nbsp; |
+### | &nbsp; [**Day 22**](/blog/advent-calendar-2024-12-22) &nbsp; | &nbsp; **Day 23** &nbsp; | &nbsp; [**Day 24**](/blog/advent-calendar-2024-12-24) &nbsp; |
 ***
 
 The gift is presented by `Luca Ferrari`. Today he is talking about his solution to [**The Weekly Challenge - 298**](/blog/perl-weekly-challenge-298). This is re-produced for `Advent Calendar 2024` from the original [**post**](https://fluca1978.github.io/2024/12/02/PerlWeeklyChallenge298.html).
@@ -47,31 +47,31 @@ sub MAIN() {
     my @sizes;
 
     for 0 ..^ @matrix.elems  -> $row {
-    	for 0 ..^ @matrix[ $row ].elems  -> $col {
-    	    next if @matrix[ $row ][ $col ] != 1;
+        for 0 ..^ @matrix[ $row ].elems  -> $col {
+            next if @matrix[ $row ][ $col ] != 1;
 
-    	    my $size = 1;
-    	    my $found = True;
+            my $size = 1;
+            my $found = True;
 
-    	    while ( $found ) {
-    			if ( $col + $size >= @matrix[ $row ].elems || $row + $size >= @matrix.elems ) {
-    			    $found = False;
-    			    $size--;
-    			    last;
-    			}
+            while ( $found ) {
+        		if ( $col + $size >= @matrix[ $row ].elems || $row + $size >= @matrix.elems ) {
+        		    $found = False;
+        		    $size--;
+        		    last;
+        		}
 
-    			if ( @matrix[ $row .. $row + $size ][ $col .. $col + $size ].grep( * !~~ 1 ) ) {
-    			    $found = False;
-    			    $size = $size - 1;
-    			    last;
-    			}
-    			else {
-    			    $size++;
-    			}
-    	    }
+        		if ( @matrix[ $row .. $row + $size ][ $col .. $col + $size ].grep( * !~~ 1 ) ) {
+        		    $found = False;
+        		    $size = $size - 1;
+        		    last;
+        		}
+        		else {
+        		    $size++;
+        		}
+            }
 
-    	    @sizes.push: $size;
-    	}
+            @sizes.push: $size;
+        }
     }
 
     @sizes.max.say;
@@ -95,23 +95,23 @@ The second task was about finding the index of interval that has a beginning pos
 ```perl
 sub MAIN() {
     my @intervals = [ 3, 4 ],
-    	    [ 2, 3 ],
-    	    [ 1, 2 ];
+            [ 2, 3 ],
+            [ 1, 2 ];
 
     my @right;
 
     for 0 ..^ @intervals.elems -> $current {
-    	my %found;
+        my %found;
 
-    	for 0 ..^ @intervals.elems -> $next {
-    	    next if ( @intervals[ $current ][ 0 ] == @intervals[ $next ][ 0 ]
-    						      && @intervals[ $current ][ 1 ] == @intervals[ $next ][ 1 ] );
+        for 0 ..^ @intervals.elems -> $next {
+            next if ( @intervals[ $current ][ 0 ] == @intervals[ $next ][ 0 ]
+        					      && @intervals[ $current ][ 1 ] == @intervals[ $next ][ 1 ] );
 
-    	    %found{ @intervals[ $next ][ 0 ] }.push: $next if ( @intervals[ $next ][ 0 ] >= @intervals[ $current ][ 1 ] );
-    	}
+            %found{ @intervals[ $next ][ 0 ] }.push: $next if ( @intervals[ $next ][ 0 ] >= @intervals[ $current ][ 1 ] );
+        }
 
-    	@right.push: -1 and next if ( ! %found );
-    	@right.push: %found{ %found.keys.min };
+        @right.push: -1 and next if ( ! %found );
+        @right.push: %found{ %found.keys.min };
     }
 
     @right.join( ',' ).say;
@@ -147,20 +147,20 @@ AS $CODE$
 
        my ( $size, $found ) = ( 2, 1 );
        while ( $found ) {
-       	 if ( $col + $size >= $matrix->[ $row ]->@* || $row + $size >= $matrix->@* ) {
-    	    $found = 0;
-    	    $size--;
-    	    last;
-    	 }
+            if ( $col + $size >= $matrix->[ $row ]->@* || $row + $size >= $matrix->@* ) {
+            $found = 0;
+            $size--;
+            last;
+         }
 
-    	 if ( grep( { $_ != 1 } $matrix->@[ $row .. $row + $size ]->@[ $col .. $col + $size ] ) ) {
-    	    $found = 0;
-    	    $size--;
-    	    last;
-    	 }
-    	 else {
-    	      $size++;
-    	 }
+         if ( grep( { $_ != 1 } $matrix->@[ $row .. $row + $size ]->@[ $col .. $col + $size ] ) ) {
+            $found = 0;
+            $size--;
+            last;
+         }
+         else {
+              $size++;
+         }
 
        }
 
@@ -201,8 +201,8 @@ AS $CODE$
 
        if ( $intervals->[ $other ]->[ 0 ] >= $intervals->[ $current ]->[ 1 ] ) {
           if ( ! $min || $min > $intervals->[ $other ]->[ 0 ] ) {
-          	 $min = $intervals->[ $other ]->[ 0 ];
-    	 $found_index = $other;
+               $min = $intervals->[ $other ]->[ 0 ];
+         $found_index = $other;
           }
        }
        }
@@ -243,38 +243,38 @@ BEGIN
 
         for c in 1 .. array_length( matrix, 2 ) loop
 
-        	if matrix[ r ][ c ] <> 1 then
-    	   continue;
-    	end if;
+            if matrix[ r ][ c ] <> 1 then
+           continue;
+        end if;
 
 
-    	square := 1;
-    	ok := true;
-    	<<restart>>
+        square := 1;
+        ok := true;
+        <<restart>>
 
-    	while ok and r + square < array_length( matrix, 1 ) and c + square < array_length( matrix, 2 ) loop
-    	      for rr in r .. r + square loop
-    	      	  if not ok then
-    		     exit;
-    		  end if;
+        while ok and r + square < array_length( matrix, 1 ) and c + square < array_length( matrix, 2 ) loop
+              for rr in r .. r + square loop
+              	  if not ok then
+        	     exit;
+        	  end if;
 
-    	      	  for cc in c .. c + square loop
-    		      if matrix[ rr ][ cc ] <> 1 then
-    		      	 ok := false;
-    			 square := square - 1;
-    			 exit;
-    		      end if;
-    		  end loop;
+              	  for cc in c .. c + square loop
+        	      if matrix[ rr ][ cc ] <> 1 then
+        	      	 ok := false;
+        		 square := square - 1;
+        		 exit;
+        	      end if;
+        	  end loop;
 
-    	      end loop;
+              end loop;
 
-    	     insert into t_squares
-    	     values( square + 1, r, c );
+             insert into t_squares
+             values( square + 1, r, c );
 
-    	     square := square + 1;
+             square := square + 1;
 
-    	end loop restart;
-    	      raise info 'Fine while';
+        end loop restart;
+              raise info 'Fine while';
         end loop;
     end loop;
 
@@ -336,39 +336,39 @@ public static final int task1_pljava(int[] plain_matrix, int cols ) throws SQLEx
     // convert the plain matrix in a two dimensional matrix
     for ( int r = 0; r < plain_matrix.length / cols; r++ )
         for ( int c = 0; c < cols; c++ )
-    	matrix[ r ][ c ] = plain_matrix[ r * cols + c ];
+        matrix[ r ][ c ] = plain_matrix[ r * cols + c ];
 
 
     for ( int r = 0; r < matrix.length; r++ ) {
         for ( int c = 0; c < matrix[ r ].length; c++ ) {
 
-    	if ( matrix[ r ][ c ] != 1 )
-    	    continue;
+        if ( matrix[ r ][ c ] != 1 )
+            continue;
 
-    	int size = 1;
-    	boolean ok = true;
+        int size = 1;
+        boolean ok = true;
 
-    	while ( ok
-    		&& r + size  < matrix.length
-    		&& c + size < matrix[ r ].length ) {
+        while ( ok
+        	&& r + size  < matrix.length
+        	&& c + size < matrix[ r ].length ) {
 
-    	    for ( int rr = r; rr <= r + size; rr++ ) {
-    			if ( ! ok )
-    			    break;
+            for ( int rr = r; rr <= r + size; rr++ ) {
+        		if ( ! ok )
+        		    break;
 
-    			for ( int cc = c; cc <= c + size; cc++ ) {
-    			    if ( matrix[ rr ][ cc ] != 1 ) {
-    				ok = false;
-    				break;
-    			    }
-    			}
-    	    }
+        		for ( int cc = c; cc <= c + size; cc++ ) {
+        		    if ( matrix[ rr ][ cc ] != 1 ) {
+        			ok = false;
+        			break;
+        		    }
+        		}
+            }
 
-    	    if ( size > max_size )
-    			max_size = size;
+            if ( size > max_size )
+        		max_size = size;
 
-    	    size++;
-    	}
+            size++;
+        }
       }
     }
 
@@ -410,16 +410,16 @@ public static final int[] task2_pljava( int[] plain_intervals ) throws SQLExcept
 
 
         for ( int other = 0; other < intervals.length; other++ ) {
-    	    if ( other == current )
-    	        continue;
+            if ( other == current )
+                continue;
 
-    	    if ( intervals[ other ][ 0 ] >= intervals[ current ][ 1 ] ) {
+            if ( intervals[ other ][ 0 ] >= intervals[ current ][ 1 ] ) {
 
-    	        if ( current_min_value > intervals[ other ][ 0 ] ) {
-    		        current_min_value = intervals[ other ][ 0 ];
-    		        current_min_index = other;
-    	        }
-    	    }
+                if ( current_min_value > intervals[ other ][ 0 ] ) {
+        	        current_min_value = intervals[ other ][ 0 ];
+        	        current_min_index = other;
+                }
+            }
 
         }
 

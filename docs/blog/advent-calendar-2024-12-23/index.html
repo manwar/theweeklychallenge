@@ -203,7 +203,7 @@
                 
                 <div style="text-align: justify" class="post-content">
                     <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-22blogadvent-calendar-2024-12-22-nbsp--nbsp-day-23-nbsp-">|   <a href="/blog/advent-calendar-2024-12-22"><strong>Day 22</strong></a>   |   <strong>Day 23</strong>   |</h3>
+<h3 id="-nbsp-day-22blogadvent-calendar-2024-12-22-nbsp--nbsp-day-23-nbsp--nbsp-day-24blogadvent-calendar-2024-12-24-nbsp-">|   <a href="/blog/advent-calendar-2024-12-22"><strong>Day 22</strong></a>   |   <strong>Day 23</strong>   |   <a href="/blog/advent-calendar-2024-12-24"><strong>Day 24</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Luca Ferrari</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-298"><strong>The Weekly Challenge - 298</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://fluca1978.github.io/2024/12/02/PerlWeeklyChallenge298.html"><strong>post</strong></a>.</p>
 <hr>
@@ -228,31 +228,31 @@
     <span style="color:#66d9ef">my</span> @sizes;
 
     <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @matrix<span style="color:#f92672">.</span>elems  <span style="color:#f92672">-&gt;</span> $row {
-    	<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @matrix[ $row ]<span style="color:#f92672">.</span>elems  <span style="color:#f92672">-&gt;</span> $col {
-    	    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> @matrix[ $row ][ $col ] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @matrix[ $row ]<span style="color:#f92672">.</span>elems  <span style="color:#f92672">-&gt;</span> $col {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> @matrix[ $row ][ $col ] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>;
 
-    	    <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    	    <span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> True;
+            <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> True;
 
-    	    <span style="color:#66d9ef">while</span> ( $found ) {
-    			<span style="color:#66d9ef">if</span> ( $col <span style="color:#f92672">+</span> $size <span style="color:#f92672">&gt;=</span> @matrix[ $row ]<span style="color:#f92672">.</span>elems <span style="color:#f92672">||</span> $row <span style="color:#f92672">+</span> $size <span style="color:#f92672">&gt;=</span> @matrix<span style="color:#f92672">.</span>elems ) {
-    			    $found <span style="color:#f92672">=</span> False;
-    			    $size<span style="color:#f92672">--</span>;
-    			    <span style="color:#66d9ef">last</span>;
-    			}
+            <span style="color:#66d9ef">while</span> ( $found ) {
+        		<span style="color:#66d9ef">if</span> ( $col <span style="color:#f92672">+</span> $size <span style="color:#f92672">&gt;=</span> @matrix[ $row ]<span style="color:#f92672">.</span>elems <span style="color:#f92672">||</span> $row <span style="color:#f92672">+</span> $size <span style="color:#f92672">&gt;=</span> @matrix<span style="color:#f92672">.</span>elems ) {
+        		    $found <span style="color:#f92672">=</span> False;
+        		    $size<span style="color:#f92672">--</span>;
+        		    <span style="color:#66d9ef">last</span>;
+        		}
 
-    			<span style="color:#66d9ef">if</span> ( @matrix[ $row <span style="color:#f92672">..</span> $row <span style="color:#f92672">+</span> $size ][ $col <span style="color:#f92672">..</span> $col <span style="color:#f92672">+</span> $size ]<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*</span> <span style="color:#f92672">!~~</span> <span style="color:#ae81ff">1</span> ) ) {
-    			    $found <span style="color:#f92672">=</span> False;
-    			    $size <span style="color:#f92672">=</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-    			    <span style="color:#66d9ef">last</span>;
-    			}
-    			<span style="color:#66d9ef">else</span> {
-    			    $size<span style="color:#f92672">++</span>;
-    			}
-    	    }
+        		<span style="color:#66d9ef">if</span> ( @matrix[ $row <span style="color:#f92672">..</span> $row <span style="color:#f92672">+</span> $size ][ $col <span style="color:#f92672">..</span> $col <span style="color:#f92672">+</span> $size ]<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*</span> <span style="color:#f92672">!~~</span> <span style="color:#ae81ff">1</span> ) ) {
+        		    $found <span style="color:#f92672">=</span> False;
+        		    $size <span style="color:#f92672">=</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        		    <span style="color:#66d9ef">last</span>;
+        		}
+        		<span style="color:#66d9ef">else</span> {
+        		    $size<span style="color:#f92672">++</span>;
+        		}
+            }
 
-    	    @sizes<span style="color:#f92672">.</span>push: $size;
-    	}
+            @sizes<span style="color:#f92672">.</span>push: $size;
+        }
     }
 
     @sizes<span style="color:#f92672">.</span>max<span style="color:#f92672">.</span>say;
@@ -267,23 +267,23 @@
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
     <span style="color:#66d9ef">my</span> @intervals <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span> ],
-    	    [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ],
-    	    [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span> ];
+            [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ],
+            [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span> ];
 
     <span style="color:#66d9ef">my</span> @right;
 
     <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @intervals<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> $current {
-    	<span style="color:#66d9ef">my</span> %found;
+        <span style="color:#66d9ef">my</span> %found;
 
-    	<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @intervals<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> $next {
-    	    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> ( @intervals[ $current ][ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">==</span> @intervals[ $next ][ <span style="color:#ae81ff">0</span> ]
-    						      <span style="color:#f92672">&amp;&amp;</span> @intervals[ $current ][ <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">==</span> @intervals[ $next ][ <span style="color:#ae81ff">1</span> ] );
+        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @intervals<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> $next {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> ( @intervals[ $current ][ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">==</span> @intervals[ $next ][ <span style="color:#ae81ff">0</span> ]
+        					      <span style="color:#f92672">&amp;&amp;</span> @intervals[ $current ][ <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">==</span> @intervals[ $next ][ <span style="color:#ae81ff">1</span> ] );
 
-    	    %found{ @intervals[ $next ][ <span style="color:#ae81ff">0</span> ] }<span style="color:#f92672">.</span>push: $next <span style="color:#66d9ef">if</span> ( @intervals[ $next ][ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">&gt;=</span> @intervals[ $current ][ <span style="color:#ae81ff">1</span> ] );
-    	}
+            %found{ @intervals[ $next ][ <span style="color:#ae81ff">0</span> ] }<span style="color:#f92672">.</span>push: $next <span style="color:#66d9ef">if</span> ( @intervals[ $next ][ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">&gt;=</span> @intervals[ $current ][ <span style="color:#ae81ff">1</span> ] );
+        }
 
-    	@right<span style="color:#f92672">.</span>push: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span> %found );
-    	@right<span style="color:#f92672">.</span>push: %found{ %found<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>min };
+        @right<span style="color:#f92672">.</span>push: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span> %found );
+        @right<span style="color:#f92672">.</span>push: %found{ %found<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>min };
     }
 
     @right<span style="color:#f92672">.</span>join( <span style="color:#e6db74">&#39;,&#39;</span> )<span style="color:#f92672">.</span>say;
@@ -310,20 +310,20 @@ AS $CODE$
 
        <span style="color:#66d9ef">my</span> ( $size, $found ) <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span> );
        <span style="color:#66d9ef">while</span> ( $found ) {
-       	 <span style="color:#66d9ef">if</span> ( $col <span style="color:#f92672">+</span> $size <span style="color:#f92672">&gt;=</span> $matrix<span style="color:#f92672">-&gt;</span>[ $row ]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">||</span> <span style="color:#960050;background-color:#1e0010">$</span>row <span style="color:#f92672">+</span> $size <span style="color:#f92672">&gt;=</span> $matrix<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
-    	    $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    	    $size<span style="color:#f92672">--</span>;
-    	    <span style="color:#66d9ef">last</span>;
-    	 }
+            <span style="color:#66d9ef">if</span> ( $col <span style="color:#f92672">+</span> $size <span style="color:#f92672">&gt;=</span> $matrix<span style="color:#f92672">-&gt;</span>[ $row ]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">||</span> <span style="color:#960050;background-color:#1e0010">$</span>row <span style="color:#f92672">+</span> $size <span style="color:#f92672">&gt;=</span> $matrix<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+            $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            $size<span style="color:#f92672">--</span>;
+            <span style="color:#66d9ef">last</span>;
+         }
 
-    	 <span style="color:#66d9ef">if</span> ( grep( { $_ <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> } $matrix<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[</span> <span style="color:#960050;background-color:#1e0010">$</span>row <span style="color:#f92672">..</span> $row <span style="color:#f92672">+</span> $size ]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[</span> <span style="color:#960050;background-color:#1e0010">$</span>col <span style="color:#f92672">..</span> $col <span style="color:#f92672">+</span> $size ] ) ) {
-    	    $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    	    $size<span style="color:#f92672">--</span>;
-    	    <span style="color:#66d9ef">last</span>;
-    	 }
-    	 <span style="color:#66d9ef">else</span> {
-    	      $size<span style="color:#f92672">++</span>;
-    	 }
+         <span style="color:#66d9ef">if</span> ( grep( { $_ <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> } $matrix<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[</span> <span style="color:#960050;background-color:#1e0010">$</span>row <span style="color:#f92672">..</span> $row <span style="color:#f92672">+</span> $size ]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[</span> <span style="color:#960050;background-color:#1e0010">$</span>col <span style="color:#f92672">..</span> $col <span style="color:#f92672">+</span> $size ] ) ) {
+            $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            $size<span style="color:#f92672">--</span>;
+            <span style="color:#66d9ef">last</span>;
+         }
+         <span style="color:#66d9ef">else</span> {
+              $size<span style="color:#f92672">++</span>;
+         }
 
        }
 
@@ -357,8 +357,8 @@ AS $CODE$
 
        <span style="color:#66d9ef">if</span> ( $intervals<span style="color:#f92672">-&gt;</span>[ $other ]<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">&gt;=</span> $intervals<span style="color:#f92672">-&gt;</span>[ $current ]<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">1</span> ] ) {
           <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span> $min <span style="color:#f92672">||</span> $min <span style="color:#f92672">&gt;</span> $intervals<span style="color:#f92672">-&gt;</span>[ $other ]<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ] ) {
-          	 $min <span style="color:#f92672">=</span> $intervals<span style="color:#f92672">-&gt;</span>[ $other ]<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ];
-    	 $found_index <span style="color:#f92672">=</span> $other;
+               $min <span style="color:#f92672">=</span> $intervals<span style="color:#f92672">-&gt;</span>[ $other ]<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ];
+         $found_index <span style="color:#f92672">=</span> $other;
           }
        }
        }
@@ -393,38 +393,38 @@ DECLARE
 
         <span style="color:#66d9ef">for</span> c in <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> array_length( matrix, <span style="color:#ae81ff">2</span> ) loop
 
-        	<span style="color:#66d9ef">if</span> matrix[ r ][ c ] <span style="color:#f92672">&lt;&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">then</span>
-    	   <span style="color:#66d9ef">continue</span>;
-    	end <span style="color:#66d9ef">if</span>;
+            <span style="color:#66d9ef">if</span> matrix[ r ][ c ] <span style="color:#f92672">&lt;&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">then</span>
+           <span style="color:#66d9ef">continue</span>;
+        end <span style="color:#66d9ef">if</span>;
 
 
-    	square :<span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    	ok :<span style="color:#f92672">=</span> true;
-    	<span style="color:#e6db74">&lt;&lt;restart&gt;</span><span style="color:#f92672">&gt;</span>
+        square :<span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        ok :<span style="color:#f92672">=</span> true;
+        <span style="color:#e6db74">&lt;&lt;restart&gt;</span><span style="color:#f92672">&gt;</span>
 
-    	<span style="color:#66d9ef">while</span> ok <span style="color:#f92672">and</span> r <span style="color:#f92672">+</span> square <span style="color:#f92672">&lt;</span> array_length( matrix, <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">and</span> c <span style="color:#f92672">+</span> square <span style="color:#f92672">&lt;</span> array_length( matrix, <span style="color:#ae81ff">2</span> ) loop
-    	      <span style="color:#66d9ef">for</span> rr in r <span style="color:#f92672">..</span> r <span style="color:#f92672">+</span> square loop
-    	      	  <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> ok <span style="color:#66d9ef">then</span>
-    		     exit;
-    		  end <span style="color:#66d9ef">if</span>;
+        <span style="color:#66d9ef">while</span> ok <span style="color:#f92672">and</span> r <span style="color:#f92672">+</span> square <span style="color:#f92672">&lt;</span> array_length( matrix, <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">and</span> c <span style="color:#f92672">+</span> square <span style="color:#f92672">&lt;</span> array_length( matrix, <span style="color:#ae81ff">2</span> ) loop
+              <span style="color:#66d9ef">for</span> rr in r <span style="color:#f92672">..</span> r <span style="color:#f92672">+</span> square loop
+              	  <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> ok <span style="color:#66d9ef">then</span>
+        	     exit;
+        	  end <span style="color:#66d9ef">if</span>;
 
-    	      	  <span style="color:#66d9ef">for</span> cc in c <span style="color:#f92672">..</span> c <span style="color:#f92672">+</span> square loop
-    		      <span style="color:#66d9ef">if</span> matrix[ rr ][ cc ] <span style="color:#f92672">&lt;&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">then</span>
-    		      	 ok :<span style="color:#f92672">=</span> false;
-    			 square :<span style="color:#f92672">=</span> square <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-    			 exit;
-    		      end <span style="color:#66d9ef">if</span>;
-    		  end loop;
+              	  <span style="color:#66d9ef">for</span> cc in c <span style="color:#f92672">..</span> c <span style="color:#f92672">+</span> square loop
+        	      <span style="color:#66d9ef">if</span> matrix[ rr ][ cc ] <span style="color:#f92672">&lt;&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">then</span>
+        	      	 ok :<span style="color:#f92672">=</span> false;
+        		 square :<span style="color:#f92672">=</span> square <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        		 exit;
+        	      end <span style="color:#66d9ef">if</span>;
+        	  end loop;
 
-    	      end loop;
+              end loop;
 
-    	     insert into t_squares
-    	     values( square <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, r, c );
+             insert into t_squares
+             values( square <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, r, c );
 
-    	     square :<span style="color:#f92672">=</span> square <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+             square :<span style="color:#f92672">=</span> square <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 
-    	end loop restart;
-    	      raise info <span style="color:#e6db74">&#39;Fine while&#39;</span>;
+        end loop restart;
+              raise info <span style="color:#e6db74">&#39;Fine while&#39;</span>;
         end loop;
     end loop;
 
@@ -470,39 +470,39 @@ public static final int task1_pljava(int<span style="color:#f92672">[]</span> pl
     <span style="color:#e6db74">//</span> convert the plain matrix in a two dimensional matrix
     <span style="color:#66d9ef">for</span> ( int r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; r <span style="color:#f92672">&lt;</span> plain_matrix<span style="color:#f92672">.</span>length <span style="color:#f92672">/</span> cols; r<span style="color:#f92672">++</span> )
         <span style="color:#66d9ef">for</span> ( int c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; c <span style="color:#f92672">&lt;</span> cols; c<span style="color:#f92672">++</span> )
-    	matrix[ r ][ c ] <span style="color:#f92672">=</span> plain_matrix[ r <span style="color:#f92672">*</span> cols <span style="color:#f92672">+</span> c ];
+        matrix[ r ][ c ] <span style="color:#f92672">=</span> plain_matrix[ r <span style="color:#f92672">*</span> cols <span style="color:#f92672">+</span> c ];
 
 
     <span style="color:#66d9ef">for</span> ( int r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; r <span style="color:#f92672">&lt;</span> matrix<span style="color:#f92672">.</span>length; r<span style="color:#f92672">++</span> ) {
         <span style="color:#66d9ef">for</span> ( int c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; c <span style="color:#f92672">&lt;</span> matrix[ r ]<span style="color:#f92672">.</span>length; c<span style="color:#f92672">++</span> ) {
 
-    	<span style="color:#66d9ef">if</span> ( matrix[ r ][ c ] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> )
-    	    <span style="color:#66d9ef">continue</span>;
+        <span style="color:#66d9ef">if</span> ( matrix[ r ][ c ] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> )
+            <span style="color:#66d9ef">continue</span>;
 
-    	int size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    	boolean ok <span style="color:#f92672">=</span> true;
+        int size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        boolean ok <span style="color:#f92672">=</span> true;
 
-    	<span style="color:#66d9ef">while</span> ( ok
-    		<span style="color:#f92672">&amp;&amp;</span> r <span style="color:#f92672">+</span> size  <span style="color:#f92672">&lt;</span> matrix<span style="color:#f92672">.</span>length
-    		<span style="color:#f92672">&amp;&amp;</span> c <span style="color:#f92672">+</span> size <span style="color:#f92672">&lt;</span> matrix[ r ]<span style="color:#f92672">.</span>length ) {
+        <span style="color:#66d9ef">while</span> ( ok
+        	<span style="color:#f92672">&amp;&amp;</span> r <span style="color:#f92672">+</span> size  <span style="color:#f92672">&lt;</span> matrix<span style="color:#f92672">.</span>length
+        	<span style="color:#f92672">&amp;&amp;</span> c <span style="color:#f92672">+</span> size <span style="color:#f92672">&lt;</span> matrix[ r ]<span style="color:#f92672">.</span>length ) {
 
-    	    <span style="color:#66d9ef">for</span> ( int rr <span style="color:#f92672">=</span> r; rr <span style="color:#f92672">&lt;=</span> r <span style="color:#f92672">+</span> size; rr<span style="color:#f92672">++</span> ) {
-    			<span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span> ok )
-    			    break;
+            <span style="color:#66d9ef">for</span> ( int rr <span style="color:#f92672">=</span> r; rr <span style="color:#f92672">&lt;=</span> r <span style="color:#f92672">+</span> size; rr<span style="color:#f92672">++</span> ) {
+        		<span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span> ok )
+        		    break;
 
-    			<span style="color:#66d9ef">for</span> ( int cc <span style="color:#f92672">=</span> c; cc <span style="color:#f92672">&lt;=</span> c <span style="color:#f92672">+</span> size; cc<span style="color:#f92672">++</span> ) {
-    			    <span style="color:#66d9ef">if</span> ( matrix[ rr ][ cc ] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> ) {
-    				ok <span style="color:#f92672">=</span> false;
-    				break;
-    			    }
-    			}
-    	    }
+        		<span style="color:#66d9ef">for</span> ( int cc <span style="color:#f92672">=</span> c; cc <span style="color:#f92672">&lt;=</span> c <span style="color:#f92672">+</span> size; cc<span style="color:#f92672">++</span> ) {
+        		    <span style="color:#66d9ef">if</span> ( matrix[ rr ][ cc ] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> ) {
+        			ok <span style="color:#f92672">=</span> false;
+        			break;
+        		    }
+        		}
+            }
 
-    	    <span style="color:#66d9ef">if</span> ( size <span style="color:#f92672">&gt;</span> max_size )
-    			max_size <span style="color:#f92672">=</span> size;
+            <span style="color:#66d9ef">if</span> ( size <span style="color:#f92672">&gt;</span> max_size )
+        		max_size <span style="color:#f92672">=</span> size;
 
-    	    size<span style="color:#f92672">++</span>;
-    	}
+            size<span style="color:#f92672">++</span>;
+        }
       }
     }
 
@@ -537,16 +537,16 @@ public static final int task1_pljava(int<span style="color:#f92672">[]</span> pl
 
 
         <span style="color:#66d9ef">for</span> ( int other <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; other <span style="color:#f92672">&lt;</span> intervals<span style="color:#f92672">.</span>length; other<span style="color:#f92672">++</span> ) {
-    	    <span style="color:#66d9ef">if</span> ( other <span style="color:#f92672">==</span> current )
-    	        <span style="color:#66d9ef">continue</span>;
+            <span style="color:#66d9ef">if</span> ( other <span style="color:#f92672">==</span> current )
+                <span style="color:#66d9ef">continue</span>;
 
-    	    <span style="color:#66d9ef">if</span> ( intervals[ other ][ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">&gt;=</span> intervals[ current ][ <span style="color:#ae81ff">1</span> ] ) {
+            <span style="color:#66d9ef">if</span> ( intervals[ other ][ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">&gt;=</span> intervals[ current ][ <span style="color:#ae81ff">1</span> ] ) {
 
-    	        <span style="color:#66d9ef">if</span> ( current_min_value <span style="color:#f92672">&gt;</span> intervals[ other ][ <span style="color:#ae81ff">0</span> ] ) {
-    		        current_min_value <span style="color:#f92672">=</span> intervals[ other ][ <span style="color:#ae81ff">0</span> ];
-    		        current_min_index <span style="color:#f92672">=</span> other;
-    	        }
-    	    }
+                <span style="color:#66d9ef">if</span> ( current_min_value <span style="color:#f92672">&gt;</span> intervals[ other ][ <span style="color:#ae81ff">0</span> ] ) {
+        	        current_min_value <span style="color:#f92672">=</span> intervals[ other ][ <span style="color:#ae81ff">0</span> ];
+        	        current_min_index <span style="color:#f92672">=</span> other;
+                }
+            }
 
         }
 
