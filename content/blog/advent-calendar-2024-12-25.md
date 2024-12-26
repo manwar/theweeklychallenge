@@ -26,6 +26,8 @@ The gift is presented by `Mohammad Sajid Anwar`. Today I am looking back at the 
 - [REVIEWERS](#reviewers)
 - [REGULAR CONTRIBUTORS](#regular-contributors)
 - [GUEST CONTRIBUTORS](#guest-contributors)
+- [CONTRIBUTIONS](#contributions)
+- [GUEST LANGUAGES](#guest-languages)
 
 ***
 
@@ -265,42 +267,66 @@ In the history of weekly challenge, we had many reviewers for `Perl`, `Raku` or 
     Standard ML: 4
     Zig        : 2
 
+<br>
 
+## CONTRIBUTIONS
+***
 
+The year `2024` is not done yet but if we look at the numbers so far, I am satisfied to be honest. Although we couldn't match the year `2023` figures, still we reached very close.
 
+### **Year 2024:** `5339`
 
+    Perl: 2752
+    Raku: 1398
+    Blog: 1189
 
+### **Year 2023:** `5702`
 
+    Perl: 2875
+    Raku: 1630
+    Blog: 1197
 
+### **Year 2022:** `5375`
 
+    Perl: 2763
+    Raku: 1602
+    Blog: 1010
 
+### **Year 2021:** `4976`
 
+    Perl: 2663
+    Raku: 1392
+    Blog: 921
 
+### **Year 2020:** `5187`
 
+    Perl: 2689
+    Raku: 1718
+    Blog: 780
 
+### **Year 2019:** `3511`
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    Perl: 1959
+    Raku: 1100
+    Blog: 452
 
 <br>
+
+## GUEST LANGUAGES
+***
+
+Below is the `TOP 10` guest languages i.e. programming languages other than `Perl` and `Raku`.
+
+     1. Python     (3113)
+     2. Rust       (816)
+     3. Ruby       (755)
+     4. Haskell    (731)
+     5. Lua        (672)
+     6. C          (589)
+     7. C++        (573)
+     8. JavaScript (518)
+     9. Go         (442)
+    10. BQN        (400)
 
 ***
 
