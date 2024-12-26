@@ -40,7 +40,7 @@ The gift is presented by `Mohammad Sajid Anwar`. Today I am looking back at the 
 
 Being a practice muslim, I don't celebrate `Christmas` but I do wish all my friends (`Christian` by faith) on this occassion. I am sure we have many members in the `Team PWC` who celebrate the festival. I wish all of them a very joyous christmas with their loved ones.
 
-As of today, there are `319` members in `Team PWC`. Out of those, `17` members never contributed even once. We also have `26` guest members who contributed in languages other than `Perl` and `Raku` only. I must confess, we have regular members who regularly contributes in guest languages every week too.
+As of today, there are `319` members in `Team PWC`. Out of those, `17` members never contributed even once. We also have `26` guest members who contributed in languages other than `Perl` and `Raku` only. I must confess, we have regular members who contributes in guest languages every week too.
 
 <br>
 
