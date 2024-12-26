@@ -28,6 +28,7 @@ The gift is presented by `Mohammad Sajid Anwar`. Today I am looking back at the 
 - [GUEST CONTRIBUTORS](#guest-contributors)
 - [CONTRIBUTIONS](#contributions)
 - [GUEST LANGUAGES](#guest-languages)
+- [GITHUB REPOSITORY](#github-repository)
 
 ***
 
@@ -329,6 +330,21 @@ Below is the `TOP 10` guest languages i.e. programming languages other than `Per
      8. JavaScript (518)
      9. Go         (442)
     10. BQN        (400)
+
+<br>
+
+## GITHUB REPOSITORY
+***
+
+The central `GitHub` repository that stores the weekly contribution: **https://github.com/manwar/perlweeklychallenge-club**
+
+    1. Commits: 41,699
+    2. Pull Requests: 11,342
+    3. Contributors: 254
+    4. Fork: 322
+    5. Stars: 180
+
+For the weekly challenge website (`https://theweeklychallenge.org`), we have `GitHub Page` repository:  **https://github.com/manwar/theweeklychallenge**
 
 ***
 
