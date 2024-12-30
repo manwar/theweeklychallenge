@@ -46,7 +46,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 15679 (63%)
+#### 1. Perl: 15681 (63%)
 #### 2. Raku: 8828 (37%)
 #### 3. Blog: 5543
 
@@ -55,9 +55,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `74`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `76`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 39
+#### 1. Perl: 41
 #### 2. Raku: 19
 #### 3. Blog: 16
 
@@ -454,6 +454,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-300/ryan-thompson/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-300/ryan-thompson/perl/ch-2.pl)]
 [[**BLOG #1**](https://ry.ca/2024/12/pwc-300-you-there-perl/)]
+
+***
+
+### Santiago Leyva
+![Santiago Leyva](/images/team/santiago-leyva.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-300/santiago-leyva/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-300/santiago-leyva/perl/ch-2.pl)]
 
 ***
 
