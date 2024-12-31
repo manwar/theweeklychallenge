@@ -46,7 +46,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 15722 (63%)
+#### 1. Perl: 15724 (63%)
 #### 2. Raku: 8846 (37%)
 #### 3. Blog: 5555
 
@@ -55,9 +55,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `71`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `73`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 41
+#### 1. Perl: 43
 #### 2. Raku: 18
 #### 3. Blog: 12
 
@@ -460,6 +460,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-301/ryan-thompson/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-301/ryan-thompson/perl/ch-2.pl)]
 [[**BLOG #1**](https://ry.ca/2024/12/pwc-301-hamming-distance-and-large-numbers/)]
+
+***
+
+### Santiago Leyva
+![Santiago Leyva](/images/team/santiago-leyva.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-301/santiago-leyva/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-301/santiago-leyva/perl/ch-2.pl)]
 
 ***
 
