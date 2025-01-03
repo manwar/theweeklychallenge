@@ -82,7 +82,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `298` &nbsp;&nbsp;|&nbsp;&nbsp; 35 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `299` &nbsp;&nbsp;|&nbsp;&nbsp; 37 &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|&nbsp;&nbsp; 10 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `300` &nbsp;&nbsp;|&nbsp;&nbsp; 41 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `301` &nbsp;&nbsp;|&nbsp;&nbsp; 43 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `301` &nbsp;&nbsp;|&nbsp;&nbsp; 45 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|
 
 <br>
 
@@ -122,8 +122,9 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 
 #### 1. [Hamming Largest](https://raku-musings.com/hamming-largest.html) by Arne Sommer.
 #### 2. [Auld Lang Comparison](https://jacoby-lpwk.onrender.com/2024/12/27/auld-lang-comparison-weekly-challenge-301.html) by Dave Jacoby.
-#### 3. [Hamming it Large](https://blog.firedrake.org/archive/2024/12/The_Weekly_Challenge_301__Hamming_it_Large.html) by Roger Bell_West.
-#### 4. [Hammering lists](https://dev.to/simongreennet/hammering-lists-40cc) by Simon Green.
+#### 3. [Distant Sorting](https://github.sommrey.de/the-bears-den/2025/01/03/ch-301.html) by Jorg Sommrey.
+#### 4. [Hamming it Large](https://blog.firedrake.org/archive/2024/12/The_Weekly_Challenge_301__Hamming_it_Large.html) by Roger Bell_West.
+#### 5. [Hammering lists](https://dev.to/simongreennet/hammering-lists-40cc) by Simon Green.
 
 <br>
 
