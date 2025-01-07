@@ -447,6 +447,23 @@ $("#pwc_language_breakdown_2024").click(function() {
     $('#pwc-language-breakdown-spinner').hide();
 });
 
+$("#pwc_language_breakdown_2025").click(function() {
+    $('#pwc-language-breakdown-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-language-breakdown-2025.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_language_breakdown_stats_2025').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-language-breakdown-spinner').hide();
+});
+
 $("#guest_lang_breakdown").click(function() {
     $('#guest-leaders-spinner').show();
 
