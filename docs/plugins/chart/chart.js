@@ -599,3 +599,20 @@ $("#yearly_guest_lang_breakdown_2024").click(function() {
 
     $('#guest-leaders-spinner').hide();
 });
+
+$("#yearly_guest_lang_breakdown_2025").click(function() {
+    $('#guest-leaders-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'guest-language-breakdown-2025.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#yearly_guest_lang_breakdown_2025_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#guest-leaders-spinner').hide();
+});
