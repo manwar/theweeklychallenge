@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2025-01-14T00:00:00+00:00
+date: 2025-01-19T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -49,6 +49,12 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 304](/blog/perl-weekly-challenge-304) {#304}
 <br>
+
+##### **BarrOff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-304/barroff/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-304/barroff/julia/ch-2.jl) in **Julia**.
+
+##### **BarrOff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-304/barroff/nim/ch_1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-304/barroff/nim/ch_2.nim) in **Nim**.
+
+##### **BarrOff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-304/barroff/pascal/ch1.lps) in [**Pascal**.
 
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-304/conor-hoekstra/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-304/conor-hoekstra/apl/ch-2.apl) in **APL**.
 
