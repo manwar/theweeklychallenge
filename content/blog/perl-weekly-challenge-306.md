@@ -39,8 +39,8 @@ The `Week #305` turned out to be the best week of the year `2025` as you can see
 | | | | |
 | :---: | :---: | :---: | :---: |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `303` &nbsp;&nbsp;|&nbsp;&nbsp; `304` &nbsp;&nbsp; |&nbsp;&nbsp; `305` &nbsp;&nbsp; |
-|&nbsp;&nbsp; `Contributions` &nbsp;&nbsp;|&nbsp;&nbsp; 70 &nbsp;&nbsp;|&nbsp;&nbsp; 70 &nbsp;&nbsp;|&nbsp;&nbsp; 84 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `Participants` &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `Contributions` &nbsp;&nbsp;|&nbsp;&nbsp; 70 &nbsp;&nbsp;|&nbsp;&nbsp; 72 &nbsp;&nbsp;|&nbsp;&nbsp; 84 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `Participants` &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|&nbsp;&nbsp; 26 &nbsp;&nbsp;|&nbsp;&nbsp; 28 &nbsp;&nbsp;|
 
 <br>
 
@@ -49,8 +49,8 @@ Even for guest contributions, `Week #305` is the best week too.
 | | | | |
 | :---: | :---: | :---: | :---: |
 |&nbsp;&nbsp;`Week`&nbsp;&nbsp;|&nbsp;&nbsp; `303` &nbsp;&nbsp;|&nbsp;&nbsp; `304` &nbsp;&nbsp; |&nbsp;&nbsp; `305` &nbsp;&nbsp; |
-|&nbsp;&nbsp; `Contributions` &nbsp;&nbsp;|&nbsp;&nbsp; 37 &nbsp;&nbsp;|&nbsp;&nbsp; 43 &nbsp;&nbsp;|&nbsp;&nbsp; 46 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `Participants` &nbsp;&nbsp;|&nbsp;&nbsp; 8 &nbsp;&nbsp;|&nbsp;&nbsp; 7 &nbsp;&nbsp;|&nbsp;&nbsp; 9 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `Contributions` &nbsp;&nbsp;|&nbsp;&nbsp; 37 &nbsp;&nbsp;|&nbsp;&nbsp; 45 &nbsp;&nbsp;|&nbsp;&nbsp; 46 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `Participants` &nbsp;&nbsp;|&nbsp;&nbsp; 8 &nbsp;&nbsp;|&nbsp;&nbsp; 8 &nbsp;&nbsp;|&nbsp;&nbsp; 9 &nbsp;&nbsp;|
 
 <br>
 
