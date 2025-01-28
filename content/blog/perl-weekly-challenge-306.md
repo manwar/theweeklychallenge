@@ -91,7 +91,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 
 Do you see your favourite language in the `Top #10`? If not then why not contribute regularly and make it to the top.
 
-     1. Python     (3159)
+     1. Python     (3161)
      2. Rust       (836)
      3. Ruby       (765)
      4. Haskell    (741)
