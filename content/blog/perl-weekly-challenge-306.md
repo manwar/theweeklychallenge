@@ -255,6 +255,6 @@ Return the last element if found otherwise return 0.
 
 ***
 
-Last date to submit the solution **23:59 (UK Time) Sunday 2<sup>nd</sup> January 2025**.
+Last date to submit the solution **23:59 (UK Time) Sunday 2<sup>nd</sup> February 2025**.
 
 ***
