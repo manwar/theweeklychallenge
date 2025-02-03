@@ -52,6 +52,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 307](/blog/perl-weekly-challenge-307) {#307}
 <br>
 
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/eric-cheung/python/ch-2.py) in **Python**.
+
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/richard-park/apl/CheckOrder.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/richard-park/apl/FindAnagrams.aplf) in **APL**.
