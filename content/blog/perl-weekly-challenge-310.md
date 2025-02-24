@@ -28,12 +28,6 @@ tags: ["Perl", "Raku"]
 
 Welcome to the `Week #310` of `The Weekly Challenge`.
 
-
-
-
-
-
-
 ***
 
 Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your support and encouragements.
@@ -185,7 +179,7 @@ Write a script to return the common elements in all the arrays.
 
 <br>
 
-## Task 2:  {#TASK2}
+## Task 2: Sort Odd Even {#TASK2}
 ##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)
 ***
 
