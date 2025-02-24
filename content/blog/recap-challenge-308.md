@@ -46,20 +46,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 16012 (64%)
+#### 1. Perl: 16010 (64%)
 #### 2. Raku: 8986 (36%)
-#### 3. Blog: 5660
+#### 3. Blog: 5658
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `86`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `82`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 46
+#### 1. Perl: 44
 #### 2. Raku: 22
-#### 3. Blog: 18
+#### 3. Blog: 16
 
 <br>
 
@@ -98,8 +98,8 @@ The total contributions in the week is `86`. Well done **Team PWC**. I would als
     Python (263).
 #### 16. Tyler Wardhaugh (262)
     Clojure (202), Fennel (8), Lua (36), Python (16).
-#### 17. Adam Russell (215)
-    C++ (26), Fortran (3), Java (16), JavaScript (6), Nuweb (3), Prolog (153), Python (2), R (6).
+#### 17. Adam Russell (213)
+    C++ (26), Fortran (3), Java (16), JavaScript (6), Nuweb (3), Prolog (151), Python (2), R (6).
 #### 18. Conor Hoekstra (194)
     APL (65), BQN (101), C++ (2), Haskell (6), J (8), Kap (2), Python (3), Rust (1), Uiua (6).
 #### 19. Packy Anderson (185)
@@ -360,16 +360,6 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 <br>
 
 ## PERL SOLUTIONS {#PERLSOLUTIONS}
-
-***
-
-### Adam Russell
-![Adam Russell](/images/team/adam_russell.jpg)
-
-[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-308/adam-russell/perl/ch-1.pl)]
-[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-308/adam-russell/perl/ch-2.pl)]
-[[**BLOG #1**](http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2025/02/23)
-[[**BLOG #2**](http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2025/02/23)
 
 ***
 
