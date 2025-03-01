@@ -104,7 +104,7 @@ How about without `-g` then?
 
 Isn't it magical?
 
-Let' go back to the magical numbers: `-0777`, `-0400` and `-1000`.
+Let's go back to the magical numbers: `-0777`, `-0400` and `-1000`.
 
 We will use the magical numbers this time:
 
