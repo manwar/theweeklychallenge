@@ -12,7 +12,7 @@ tags: ["Perl"]
 
 We all know, in `Perl v5.36`, a new command line flag `-g` was introduced. For more information you can checkout [**PPC-0011**](https://perl.github.io/PPCs/ppc0011-slurp-argument)
 
-The new flag sets `$/ (record searator)` to `undef` and therefore enables slurp mode.
+The new flag sets `$/ (input record separator)` to `undef` and therefore enables slurp mode.
 
 It's simply an alias for `-0777`.
 
