@@ -38,7 +38,7 @@ The short answer is `No`.
 
 There are couple more that I remember for now: `0400` and `01000`.
 
-So technically, we can use any of these to enable slurp mode: `-0777`, `-0400` or `-1000`.
+So technically, we can use any of these to enable slurp mode: `-0777`, `-0400` or `-01000`.
 
 Let's see some action now.
 
