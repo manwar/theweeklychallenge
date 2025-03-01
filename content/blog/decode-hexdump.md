@@ -151,6 +151,6 @@ Time to find out the `endian` of my current system.
 
 Before I end this discussion, I would like share another post that explains [**Byte Order Mark (BOM)**](https://www.ionos.co.uk/digitalguide/websites/web-development/byte-order-mark), if you are interested.
 
-Last but not the least, I would to thank everyone who helped in this.
+Last but not the least, I would like to thank everyone who helped me in this journey.
 
 That's it for now.
