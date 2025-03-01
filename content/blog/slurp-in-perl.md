@@ -16,7 +16,7 @@ The new flag sets `$/ (input record separator)` to `undef` and therefore enables
 
 It's simply an alias for `-0777`.
 
-Those who are old enough, might remember this `-0777` magic number.
+Those who are old enough, might remember this `-0777` magical number.
 
 So what is `-0777`?
 
@@ -32,7 +32,7 @@ As per the official documentation:
 
 It ensures that the input record separator (`$/`) will never match anything in the input data.
 
-Is that the only magic number that can be used?
+Is that the only magical number that can be used?
 
 The short answer is `No`.
 
