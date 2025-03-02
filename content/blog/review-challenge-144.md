@@ -1,4 +1,3 @@
-
 ---
 author:       Colin Crain
 date:         2022-01-24T00:00:00
