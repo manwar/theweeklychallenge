@@ -7,6 +7,9 @@ use File::Find;
 use File::Basename;
 use HTML::TreeBuilder;
 use POSIX qw(strftime);
+use Text::FrontMatter::YAML;
+use Path::Tiny;
+use Time::Piece;
 
 use Moo;
 use MooX::Options;
@@ -96,7 +99,24 @@ sub fetch_source_files {
     find sub {
         -f       or return;
         /\.md?$/ or return;
-        my $mtime = (stat($_))[9];
+
+        my $file_contents = path($_)->slurp;
+        my $front_matter  = Text::FrontMatter::YAML->new(
+          document_string => $file_contents,
+        );
+
+        return unless $front_matter->frontmatter_hashref;
+
+        my $date_string = $front_matter->frontmatter_hashref->{date};
+        # HACK: Remove timezone for easier parsing
+        $date_string =~ s/\+\d\d:\d\d$//;
+
+        my $date_tp = Time::Piece->strptime($date_string, '%Y-%m-%dT%H:%M:%S');
+
+        return unless $date_tp;
+
+        my $mtime = $date_tp->epoch;
+
         if ($mtime >= $time) {
             my $file_name = basename $File::Find::name;
             $file_name =~ /(.*)\.md/;
