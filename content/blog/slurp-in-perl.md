@@ -8,6 +8,9 @@ author: Mohammad Sajid Anwar
 tags: ["Perl"]
 ---
 
+#### **DISCLAIMER:** Image is generated using `FREE` version of `ChatGPT`.
+***
+
 <br>
 
 We all know, in `Perl v5.36`, a new command line flag `-g` was introduced. For more information you can checkout [**PPC-0011**](https://perl.github.io/PPCs/ppc0011-slurp-argument).
