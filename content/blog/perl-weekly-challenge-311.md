@@ -1,5 +1,5 @@
 ---
-title: "The Weekly Challenge - 311"
+title: "311"
 date: 2025-03-02T00:00:00+00:00
 description: "The Weekly Challenge - 311"
 type: post
