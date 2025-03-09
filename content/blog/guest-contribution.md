@@ -52,6 +52,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 311](/blog/perl-weekly-challenge-311) {#311}
 <br>
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/deadmarshal/java/Ch1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/deadmarshal/java/Ch2.java) in **Java**.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/deadmarshal/modula-3/Ch1/src/Ch1.m3) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/deadmarshal/modula-3/Ch2/src/Ch2.m3) in **Modula 3**.
