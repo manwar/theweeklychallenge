@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2025-03-10T00:00:00+00:00
+date: 2025-03-11T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -67,6 +67,8 @@ Please find below guest contributions.
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/luca-ferrari/python/ch-2.py) in **Python**.
 
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
+
+##### **Peter Pentchev** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/ppentchev/dart/lib/ch_1.dart) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/ppentchev/dart/lib/ch_2.dart) in **Dart**.
 
 ##### **Peter Pentchev** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/ppentchev/python/src/pwc_312/min_time.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/ppentchev/python/src/pwc_312/balls_and_boxes.py) in **Python**.
 
