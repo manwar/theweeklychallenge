@@ -76,9 +76,7 @@ sub fetch {
     return $future;
 }
 
-sub process {
-    my ($data) = @_;
-
+sub process($data) {
     my $future = $loop->new_future;
     $loop->delay_future(after => 1)->on_done(sub {
         $data->{processed} = "Processed: " . $data->{data};
@@ -87,9 +85,7 @@ sub process {
     return $future;
 }
 
-sub save {
-    my ($data) = @_;
-
+sub save($data) {
     my $future = $loop->new_future;
     $loop->delay_future(after => 1)->on_done(sub {
         $data->{saved} = "Saved: " . $data->{processed};
@@ -98,25 +94,21 @@ sub save {
     return $future;
 }
 
-sub display {
-    my ($data) = @_;
-
+sub display($data) {
     say "Displaying data: " . $data->{saved};
     return Future->done;
 }
 
-sub error {
-    my ($error) = @_;
-
-    say "Error: $error";
+sub error($message) {
+    say "Error: $message";
     return Future->done;
 }
 
 $loop->await(
     fetch()
-    ->then(sub  { return process(@_); })
-    ->then(sub  { return save(@_);    })
-    ->then(sub  { return display(@_); })
+    ->then( sub { return process(@_); })
+    ->then( sub { return save(@_);    })
+    ->then( sub { return display(@_); })
     ->catch(sub { return error(@_);   })
 );
 ```
