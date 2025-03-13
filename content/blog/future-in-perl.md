@@ -24,7 +24,7 @@ Having said this exercise, gave me an opportunity to try key features and docume
 
 In the series, today I am talking about `Futures` in my favourite programming language `Perl`.
 
-`Futures`, also caled `Promises` represent the result of some async operation that will become available.
+`Futures`, also called `Promises` represent the result of some async operation that will become available.
 
 This helps us to carry on executing while awaiting the results of the said operation.
 
