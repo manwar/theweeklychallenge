@@ -28,7 +28,7 @@ None worked for me, I would partially blame it on my local development environme
 
 Now I have a rather stable environment i.e. `Ubuntu 24.04.1 LTS` running on `WSL2`.
 
-The first obstacle was to find a suitable `OCR Engine` that is easy to install in my local environment.
+The first task is to find a suitable `OCR Engine` that is easy to install in my local environment.
 
 Luckily, it didn't take long to find one, i.e. [**Tesseract OCR**](https://github.com/tesseract-ocr/tesseract).
 
