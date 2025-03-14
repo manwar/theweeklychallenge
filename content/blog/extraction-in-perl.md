@@ -36,7 +36,16 @@ Time to install the `Ubuntu` package for the `OCR Engine`.
 
 <br>
 
-     $ sudo apt install tesseract-ocr
+    $ sudo apt install tesseract-ocr
+
+<br>
+
+Let's verify if everything installed properly, first thing:
+
+<br>
+
+    $ tesseract -v
+    tesseract 5.3.4
 
 <br>
 
