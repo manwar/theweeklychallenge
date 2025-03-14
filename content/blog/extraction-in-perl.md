@@ -111,7 +111,7 @@ Still not happy, too much typing.
 
 Finally checked the documentation of the `CPAN` module [**Image::OCR::Tesseract**](https://metacpan.org/dist/Image-OCR-Tesseract) and noticed it comes with a cute little program `ocr`.
 
-Now you can't beat this, can you?:
+Now you can't beat this, can you?
 
 <br>
 
