@@ -61,7 +61,7 @@ The `Perl` programmer inside me, quickly jumped and wrote this cute little scrip
 <br>
 
 ```perl
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use v5.38;
 use Image::OCR::Tesseract qw/get_ocr/;
