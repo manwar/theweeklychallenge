@@ -42,7 +42,7 @@ Time to install the `Ubuntu` package for the `OCR Engine`.
 
 Having done the hard bit, now we want `Perl` interface to the `Tesseract OCR Engine`.
 
-The good old friend `CPAN` comes handy as always.
+The good old friend `CPAN` came handy as always.
 
 Quick search and I found this module [**Image::OCR::Tesseract**](https://metacpan.org/dist/Image-OCR-Tesseract).
 
