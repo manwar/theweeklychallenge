@@ -16,7 +16,9 @@ tags: ["Perl"]
 ## Scientist in Perl
 ***
 
-The `CPAN` module [**Scientist**](https://metacpan.org/dist/Scientist) first came to my notice in the year `2017` and it turned out be created by a very dear friend of mine, `Lance Wicks`.
+It was in the year `2017`, I found out about The `CPAN` module [**Scientist**](https://metacpan.org/dist/Scientist) and guess what?
+
+It turned out be created by a very dear friend of mine, `Lance Wicks`.
 
 I submitted few pull requests, mostly low hanging fruits, during that period and it was kindly accepted and merged.
 
@@ -50,7 +52,7 @@ Actually I was going through my old notes and came across this.
 
 I thought it is worth re-visiting and sharing it with fellow hackers.
 
-The core idea is to help you refactor crtical path code with confidence.
+The core idea behind the `Scientist` is to help you refactor crtical path code with confidence.
 
 I decided to install the latest version from `CPAN`.
 
