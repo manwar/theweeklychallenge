@@ -135,9 +135,9 @@ I fixed my local copy and I am good to go now.
 
 Before I move on, it would be nice if I submit the proposed change as [**pull request**](https://github.com/lancew/Scientist/pull/36) and wait for the review.
 
-I will wait for few days and if I don't hear from `Lance` then I will ping him.
+I would wait for few days and if I don't hear from `Lance Wicks` then I'll ping him through my private channel.
 
-What next now as the code from `SYNOPSIS` ran without any error.
+What's next now as the code from `SYNOPSIS` ran without any error.
 
 Let's take a step back and come up with easy to follow simple use case.
 
