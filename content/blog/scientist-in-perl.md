@@ -137,7 +137,7 @@ Before I move on, it would be nice if I submit the proposed change as [**pull re
 
 I would wait for few days and if I don't hear from `Lance Wicks` then I'll ping him through my private channel.
 
-What's next now as the code from `SYNOPSIS` ran without any error.
+What's next now as the code from `SYNOPSIS` ran without any error?
 
 Let's take a step back and come up with easy to follow simple use case.
 
