@@ -133,7 +133,7 @@ I fixed my local copy and I am good to go now.
 
 <br>
 
-Before I move on, it would be nice if I submit the [**pull request**](https://github.com/lancew/Scientist/pull/36) and wait for the review.
+Before I move on, it would be nice if I submit the proposed change as [**pull request**](https://github.com/lancew/Scientist/pull/36) and wait for the review.
 
 I will wait for few days and if I don't hear from `Lance` then I will ping him.
 
