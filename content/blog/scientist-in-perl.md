@@ -110,7 +110,7 @@ Not sure, I just installed the latest copy from `CPAN` without any issue..
 
 What could go wrong?
 
-I decided to look into source code and found [**this line**](https://metacpan.org/dist/Scientist/source/lib/Scientist.pm#L114).
+I decided to look into the source code and found [**this line**](https://metacpan.org/dist/Scientist/source/lib/Scientist.pm#L114).
 
 Quick fix would be to explicitly import `Test2::Compare::Delta`, right?
 
