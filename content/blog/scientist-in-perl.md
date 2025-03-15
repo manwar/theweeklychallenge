@@ -166,9 +166,9 @@ sub publish($self) {
 
 <br>
 
-Now we will try happy path first.
+Now we'll try the `happy path` first.
 
-Remember, two important factors we are interested in `return values` and `processing times`.
+Remember, the two important factors we are interested in is `return values` and `processing times`.
 
 <br>
 
@@ -203,7 +203,9 @@ Let's run the code now:
 
 <br>
 
-How about the not so happy path?
+How about the `not so happy path`?
+
+We can easily mock that too.
 
 <br>
 
@@ -245,4 +247,4 @@ Time to test the code:
 
 ***
 
-Keep Hacking!!!
+`Keep Hacking!!!`
