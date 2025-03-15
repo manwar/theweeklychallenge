@@ -52,7 +52,7 @@ Actually I was going through my old notes and came across this.
 
 I thought it is worth re-visiting and sharing it with fellow hackers.
 
-The core idea behind the `Scientist` is to help you refactor crtical path code with confidence.
+The core idea behind the `Scientist` is to help you refactor critical path code with confidence.
 
 I decided to install the latest version from `CPAN`.
 
