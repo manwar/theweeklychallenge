@@ -99,6 +99,7 @@ When I ran the above code, I got the following error, `ouch`.
 
 <br>
 
+    $ perl synopsis.pl
     Can't locate object method "set_column_alias" via package "Test2::Compare::Delta"
     (perhaps you forgot to load "Test2::Compare::Delta"?)
 
