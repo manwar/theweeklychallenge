@@ -66,7 +66,7 @@ Everything went smooth without any issues.
 
 So am I good to go, right?
 
-Well, quick and easy way to test is to try running code as documented in the [**SYNOPSIS**](https://metacpan.org/pod/Scientist#SYNOPSIS).
+Well, the quick and easy way to test is to try running code as documented in the [**SYNOPSIS**](https://metacpan.org/pod/Scientist#SYNOPSIS).
 
 <br>
 
