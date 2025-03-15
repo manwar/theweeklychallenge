@@ -168,7 +168,7 @@ sub publish($self) {
 
 Now we'll try the `happy path` first.
 
-Remember, the two important factors we are interested in is `return values` and `processing times`.
+Remember, the two most important factors we are interested in is `return values` and `processing times`.
 
 <br>
 
