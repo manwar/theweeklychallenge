@@ -1,6 +1,6 @@
 ---
 title: "Scientist in Perl"
-date: 2025-03-14T00:00:00+00:00
+date: 2025-03-15T00:00:00+00:00
 description: "Discussion about Scientist in Perl."
 type: post
 image: images/blog/scientist-in-perl.png
