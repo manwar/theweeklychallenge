@@ -141,7 +141,7 @@ What's next now as the code from `SYNOPSIS` ran without any error?
 
 Let's take a step back and come up with easy to follow simple use case.
 
-I decided to extend the `Scientist` module as below to keep it smooth sailing.
+I decided to extend the `Scientist` module as below to keep the interface clean and easy to follow.
 
 <br>
 
