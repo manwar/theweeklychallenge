@@ -16,7 +16,7 @@ tags: ["Perl"]
 ## Scientist in Perl
 ***
 
-It was in the year `2017`, I found out about The `CPAN` module [**Scientist**](https://metacpan.org/dist/Scientist) and guess what?
+It was in the year `2017`, I found out about the `CPAN` module [**Scientist**](https://metacpan.org/dist/Scientist) and guess what?
 
 It turned out be created by a very dear friend of mine, `Lance Wicks`.
 
