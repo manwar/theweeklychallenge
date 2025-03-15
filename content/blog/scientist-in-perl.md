@@ -95,7 +95,7 @@ say 'Candidate code: ', $experiment->result->{candidate}{duration}, ' microsecon
 
 <br>
 
-When I ran the script, I got the error below, `ouch`.
+When I ran the above code, I got the following error, `ouch`.
 
 <br>
 
