@@ -160,7 +160,7 @@ sub publish($self) {
     say "Candidate result  : ", $result->{observation}->{candidate};
     say "Candidate duration: ", $result->{candidate}->{duration};
     say "Matched           : ", $result->{matched} ? 'Yes' : 'No';
-    say "Diagnostis        : ";
+    say "Diagnostic        : ";
     say $result->{observation}->{diagnostic};
 }
 ```
@@ -200,7 +200,7 @@ Let's run the code now:
     Candidate result  : 10
     Candidate duration: 4.05311584472656e-06
     Matched           : Yes
-    Diagnostis        :
+    Diagnostic        :
 
 <br>
 
@@ -237,7 +237,7 @@ Time to test the code:
     Candidate result  : 7
     Candidate duration: 2.86102294921875e-06
     Matched           : No
-    Diagnostis        :
+    Diagnostic        :
     +------+---------+----+-----------+
     | PATH | CONTROL | OP | CANDIDATE |
     +------+---------+----+-----------+
