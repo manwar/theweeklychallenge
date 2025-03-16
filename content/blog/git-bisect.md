@@ -511,7 +511,7 @@ Let's begin the journey ...
 
 <br>
 
-    $  git bisect run prove -Ilib t/
+    $ git bisect run prove -Ilib t/
     running 'prove' '-Ilib' 't/'
     t/calc.t .. 1/?
     #   Failed test at t/calc.t line 10.
