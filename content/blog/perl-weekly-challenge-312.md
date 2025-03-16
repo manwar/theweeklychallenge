@@ -112,7 +112,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `308` &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|&nbsp;&nbsp; 56 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `309` &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|&nbsp;&nbsp; 56 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `310` &nbsp;&nbsp;|&nbsp;&nbsp; 11 &nbsp;&nbsp;|&nbsp;&nbsp; 44 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `311` &nbsp;&nbsp;|&nbsp;&nbsp; 11 &nbsp;&nbsp;|&nbsp;&nbsp; 46 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `311` &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|&nbsp;&nbsp; 48 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
 
 <br>
 
@@ -121,7 +121,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 
 Do you see your favourite language in the `Top #10`? If not then why not contribute regularly and make it to the top.
 
-     1. Python     (3239)
+     1. Python     (3241)
      2. Rust       (860)
      3. Ruby       (777)
      4. Haskell    (755)
