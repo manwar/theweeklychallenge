@@ -570,6 +570,6 @@ When you are done with the operation then do this:
 
 So far, I have only scratched the surface.
 
-If you are interested then look closely at this: `git bisect --help`
+If you want to find out more about it then look closely at this: `git bisect --help`
 
 `Happy Hacking!!`
