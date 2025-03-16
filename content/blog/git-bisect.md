@@ -27,7 +27,7 @@ I noticed all the devs were working on the production code directly, so I follow
 
 One day, while working on a particular page, I made a silly mistake in the production code.
 
-The client noticed it before anyone of us in the team. As you can imagine, handling client wasn't easy.
+The client noticed it before anyone of us in the team, as you can imagine, handling client wasn't easy.
 
 That incident made us do two things straight away:
 
