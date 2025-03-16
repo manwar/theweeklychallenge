@@ -49,7 +49,7 @@ sub fetch {
         my $timer;
         $timer = AE::timer $delay, 0, sub {
             undef $timer;
-            $resolve->("Fetched: data");
+            $resolve->("Fetch: data");
         };
     });
 }
@@ -62,7 +62,7 @@ sub process($data) {
         my $timer;
         $timer = AE::timer $delay, 0, sub {
             undef $timer;
-            $resolve->("Processed: $data");
+            $resolve->("Process: $data");
         };
     });
 }
@@ -75,7 +75,7 @@ sub save($data) {
         my $timer;
         $timer = AE::timer $delay, 0, sub {
             undef $timer;
-            $resolve->("Saved: $data");
+            $resolve->("Save: $data");
         };
     });
 }
@@ -107,7 +107,7 @@ $ae->recv;
 <br>
 
     $ perl promise.pl
-    Display: Saved: Processed: Fetched: data
+    Display: Save: Process: Fetch: data
 
 ***
 

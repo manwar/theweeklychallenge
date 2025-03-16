@@ -71,7 +71,7 @@ my $loop = IO::Async::Loop->new;
 sub fetch {
     my $future = $loop->new_future;
     $loop->delay_future(after => 1)->on_done(sub {
-        $future->done("Fetched: data");
+        $future->done("Fetch: data");
     });
     return $future;
 }
@@ -79,7 +79,7 @@ sub fetch {
 sub process($data) {
     my $future = $loop->new_future;
     $loop->delay_future(after => 1)->on_done(sub {
-        $future->done("Processed: $data");
+        $future->done("Process: $data");
     });
     return $future;
 }
@@ -87,7 +87,7 @@ sub process($data) {
 sub save($data) {
     my $future = $loop->new_future;
     $loop->delay_future(after => 1)->on_done(sub {
-        $future->done("Saved: $data");
+        $future->done("Save: $data");
     });
     return $future;
 }
@@ -119,4 +119,4 @@ $loop->await(
 <br>
 
     $ perl future.pl
-    Display: Saved: Processed: Fetched: data
+    Display: Save: Process: Fetch: data
