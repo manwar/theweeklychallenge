@@ -91,7 +91,7 @@ Let's get the hand dirty:
 <br>
 
     $ mkdir playground
-    $ cd playgroung
+    $ cd playground
     $ echo "Demo of git bisect command." > README
     $ mkdir lib
     $ mkdir t
