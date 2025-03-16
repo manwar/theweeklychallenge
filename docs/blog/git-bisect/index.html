@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="git bisect ..."/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/git-bisect/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about the git bisect command."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about the git bisect command.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/git-bisect/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>git bisect ...</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>git bisect ...</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Mar 16, 2025</span>|
+                        <span> Tags:
+                            Perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/git-bisect.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h2 id="git-bisect-">git bisect &hellip;</h2>
+<br>
+<p>If you lead life of <code>a programmer</code>, no matter what language you use, you must have used one of the many versioning systems.</p>
+<p><code>CVS</code> was my first introduction to the life saving tool. I think it was <code>early 2000s</code> time period.</p>
+<p>I remember a real life incident, I was working as a consultant for a web portal firm.</p>
+<p>I noticed all the devs were working on the production code directly, so I followed the footsteps of team.</p>
+<p>One day, while working on a particular page, I made a silly mistake in the production code.</p>
+<p>The client noticed it before anyone of us in the team. As you can imagine, handling client wasn&rsquo;t easy.</p>
+<p>That incident made us do two things straight away:</p>
+<br>
+<pre><code>- Setup two separate environments: dev and prod
+- Use of versioning system
+</code></pre>
+<br>
+<p>And that is when I was introduced to <code>CVS</code>.</p>
+<p>I struggled initially a bit but when I got my head around it, it became piece of cake.</p>
+<p>Life took many turns and I ended up at another client using <code>SVN</code>.</p>
+<p>I didn&rsquo;t like it, to be honest but I had no choice.</p>
+<p>Then came a day in my life when I was introduced to <code>git</code> that changed everything for good.</p>
+<p>Nearly more than <code>2 decades</code> now, I am still using and loving <code>git</code>.</p>
+<p>I am learning new things in <code>git</code> every day, even now.</p>
+<p>Like fews day ago, I shared <code>git grep</code> special use case with fellow hackers.</p>
+<p>As most of us, use the <code>git grep</code> command to search a text in the code base, but then you can do way more than that as shown below:</p>
+<p>The command below returns all files that contain either the word <code>&quot;TODO&quot;</code> or <code>&quot;FIXME&quot;</code>.</p>
+<br>
+<pre><code>$ git grep &quot;TODO&quot; --or &quot;FIXME&quot;
+</code></pre>
+<br>
+<p>And the following would return all files that contain both the word <code>&quot;TODO&quot;</code> and <code>&quot;FIXME&quot;</code>.</p>
+<br>
+<pre><code>$ git grep &quot;TODO&quot; --and &quot;FIXME&quot;
+</code></pre>
+<br>
+<p>Let&rsquo;s come back to the main topic of the post, <code>git bisect</code>.</p>
+<p>As per the documentation: <code>Use binary search to find the commit that introduced a bug.</code></p>
+<p>That sounds very handy when you are in the middle of a mess.</p>
+<p>A friend of mine at work, introduced this to me, I must confess.</p>
+<p>I immediately fell for it and decided to write about it but then life takes it&rsquo;s own time.</p>
+<p>After such a long wait, I finally found time to share my experience on a fine <code>Sunday</code> morning.</p>
+<p>We need to prepare the ground to make it easy to understand the underlying magics.</p>
+<p>Let&rsquo;s get the hand dirty:</p>
+<br>
+<pre><code>$ mkdir playground
+$ cd playgroung
+$ echo &quot;Demo of git bisect command.&quot; &gt; README
+$ mkdir lib
+$ mkdir t
+</code></pre>
+<br>
+<p>Now I need code with unit test. I am a very well behave programmer, trust me.</p>
+<p>Here is the main code: <code>lib/Calc.pm</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+
+class Calc {
+    field $x :param;
+    field $y :param;
+
+    method plus {
+        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
+    }
+}
+</code></pre></div><br>
+<p>And unit test: <code>t/calc.t</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> Calc;
+
+<span style="color:#66d9ef">my</span> $calc <span style="color:#f92672">=</span> Calc<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>);
+
+is ($calc<span style="color:#f92672">-&gt;</span>plus(), <span style="color:#ae81ff">5</span>);
+
+done_testing;
+</code></pre></div><br>
+<p>Time to test the code:</p>
+<br>
+<pre><code>$ prove -Ilib/ t/
+t/calc.t .. ok
+All tests successful.
+Files=1, Tests=1,  0 wallclock secs ( 0.01 usr  0.00 sys +  0.02 cusr  0.00 csys =  0.03 CPU)
+Result: PASS
+</code></pre>
+<br>
+<p>So far so good, time to bring <code>git</code> into the picture.</p>
+<br>
+<pre><code>$ git init
+$ git add .
+$ git commit -m &quot;#1 commit.&quot;
+[master (root-commit) 5089803] #1 commit.
+3 files changed, 23 insertions(+)
+create mode 100644 README
+create mode 100644 lib/Calc.pm
+create mode 100644 t/calc.t
+</code></pre>
+<br>
+<p>Now we would ask <code>git</code> what the log looks like.</p>
+<br>
+<pre><code>$ git log
+commit 50898030ae671eafea66c899da562e37f3a758ad (HEAD -&gt; master)
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Mar 16 11:42:25 2025 +0000
+
+#1 commit.
+</code></pre>
+<br>
+<p>Seems fine, right?</p>
+<p>Let&rsquo;s add another method to the class <code>Calc</code> in <code>lib/Calc.pm</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+
+class Calc {
+    field $x :param;
+    field $y :param;
+
+    method plus {
+        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
+    }
+
+    method minus {
+        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">-</span> $y;
+    }
+}
+</code></pre></div><br>
+<p>Then update the unit test <code>t/calc.t</code> too.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> Calc;
+
+<span style="color:#66d9ef">my</span> $calc <span style="color:#f92672">=</span> Calc<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>);
+is ($calc<span style="color:#f92672">-&gt;</span>plus(),  <span style="color:#ae81ff">5</span>);
+is ($calc<span style="color:#f92672">-&gt;</span>minus(), <span style="color:#ae81ff">1</span>);
+
+done_testing;
+</code></pre></div><br>
+<p>Time to test the change:</p>
+<br>
+<pre><code>$ prove -Ilib/ t/
+t/calc.t .. ok
+All tests successful.
+Files=1, Tests=2,  0 wallclock secs ( 0.01 usr  0.00 sys +  0.02 cusr  0.00 csys =  0.03 CPU)
+Result: PASS
+</code></pre>
+<br>
+<p>Let&rsquo;s commit the change now.</p>
+<br>
+<pre><code>$ git add lib/Calc.pm
+$ git add t/calc.t
+$ git commit -m &quot;#2 commit.&quot;
+[master b5891d9] #2 commit.
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+</code></pre>
+<br>
+<p>Let&rsquo;s peek into the log:</p>
+<br>
+<pre><code>$ git log
+commit b5891d9c7b5d0b60940119b15d00b5e9b4de1917 (HEAD -&gt; master)
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Mar 16 11:48:20 2025 +0000
+
+#2 commit.
+
+commit 50898030ae671eafea66c899da562e37f3a758ad
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Mar 16 11:42:25 2025 +0000
+
+#1 commit.
+</code></pre>
+<br>
+<p>Now the fun begins, we will introduce <code>a bug</code> in the code: <code>lib/Calc.pm</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+
+class Calc {
+    field $x :param;
+    field $y :param;
+
+    method plus {
+        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
+    }
+
+    method minus {
+        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">-</span> $y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    }
+}
+</code></pre></div><br>
+<p>As you noticed, the <code>method minus()</code> now returns one less than the actual result.</p>
+<p>I purposely commit the change without testing the updated code.</p>
+<br>
+<pre><code>$ git add lib/Calc.pm
+$ git commit -m &quot;#3 commit.&quot;
+[master a83715f] #3 commit.
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre>
+<br>
+<p>Let&rsquo;s peek into the git log:</p>
+<br>
+<pre><code>$ git log
+commit a83715f48bd5c0d0ad41ef40eee6108d05d2aab0 (HEAD -&gt; master)
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Mar 16 11:50:44 2025 +0000
+
+#3 commit.
+
+commit b5891d9c7b5d0b60940119b15d00b5e9b4de1917
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Mar 16 11:48:20 2025 +0000
+
+#2 commit.
+
+commit 50898030ae671eafea66c899da562e37f3a758ad
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Mar 16 11:42:25 2025 +0000
+
+#1 commit.
+</code></pre>
+<br>
+<p>We will make one more change before the showdown of <code>git bisect</code>.</p>
+<p>As you can see, we now have a new <code>method multiply()</code>:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+
+class Calc {
+    field $x :param;
+    field $y :param;
+
+    method plus {
+        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
+    }
+
+    method minus {
+        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">-</span> $y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    }
+
+    method multiply {
+        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">*</span> $y;
+    }
+}
+</code></pre></div><br>
+<p>We would now update the unit test as well:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> Calc;
+
+<span style="color:#66d9ef">my</span> $calc <span style="color:#f92672">=</span> Calc<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>);
+is ($calc<span style="color:#f92672">-&gt;</span>plus(),     <span style="color:#ae81ff">5</span>);
+is ($calc<span style="color:#f92672">-&gt;</span>minus(),    <span style="color:#ae81ff">1</span>);
+is ($calc<span style="color:#f92672">-&gt;</span>multiply(), <span style="color:#ae81ff">6</span>);
+
+done_testing;
+</code></pre></div><br>
+<p>We will now commit the changes without running the test.</p>
+<br>
+<pre><code>$ git add lib/Calc.pm
+$ git add t/calc.t
+$ git commit -m &quot;#4 commit.&quot;
+[master d27d5c6] #4 commit.
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+</code></pre>
+<br>
+<p>Check the git log:</p>
+<br>
+<pre><code>$ git log
+commit d27d5c6e4fbc6470fa707bc1f93a97049fcddbc2 (HEAD -&gt; master)
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Mar 16 11:56:41 2025 +0000
+
+#4 commit.
+
+commit a83715f48bd5c0d0ad41ef40eee6108d05d2aab0
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Mar 16 11:50:44 2025 +0000
+
+#3 commit.
+
+commit b5891d9c7b5d0b60940119b15d00b5e9b4de1917
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Mar 16 11:48:20 2025 +0000
+
+#2 commit.
+
+commit 50898030ae671eafea66c899da562e37f3a758ad
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Mar 16 11:42:25 2025 +0000
+
+#1 commit.
+</code></pre>
+<br>
+<p>Let&rsquo;s pause here for a moment.</p>
+<p>So far, we have <code>4 commits</code> as shown above.</p>
+<p>And we know the good and bad commits as it is all done under supervision.</p>
+<p>In our demo, this is all we know:</p>
+<br>
+<pre><code>#4 commit: good
+#3 commit: bad
+#2 commit: good
+#1 commit: good
+</code></pre>
+<br>
+<p>Imagine a situation, where you have, say <code>5 programmers</code>, making changes to the code base.</p>
+<p>On the day of production release, you noticed something is broke.</p>
+<br>
+<pre><code>$ prove -Ilib/ t/
+t/calc.t .. 1/?
+#   Failed test at t/calc.t line 10.
+#          got: '0'
+#     expected: '1'
+# Looks like you failed 1 test of 3.
+t/calc.t .. Dubious, test returned 1 (wstat 256, 0x100)
+Failed 1/3 subtests
+
+Test Summary Report
+-------------------
+t/calc.t (Wstat: 256 (exited 1) Tests: 3 Failed: 1)
+  Failed test:  2
+  Non-zero exit status: 1
+Files=1, Tests=3,  0 wallclock secs ( 0.01 usr  0.01 sys +  0.02 cusr  0.00 csys =  0.04 CPU)
+Result: FAIL
+</code></pre>
+<br>
+<p>In the flood of commits, how would you know which commit introduced the bug?</p>
+<p>This is when the <code>git bisect</code> comes handy.</p>
+<p>Let&rsquo;s begin the journey &hellip;</p>
+<br>
+<h2 id="1-start-the-operation">#1 Start the operation</h2>
+<hr>
+<br>
+<pre><code>$ git bisect start
+status: waiting for both good and bad commits
+</code></pre>
+<br>
+<h2 id="2-mark-the-known-bad-commit-which-is-the-current-commit">#2 Mark the known bad commit, which is the current commit</h2>
+<hr>
+<br>
+<pre><code>$ git bisect bad
+status: waiting for good commit(s), bad commit known
+</code></pre>
+<br>
+<h2 id="3-mark-the-first-known-good-commit">#3 Mark the first known good commit</h2>
+<hr>
+<br>
+<pre><code>$ git bisect good 50898030ae671eafea66c899da562e37f3a758ad
+Bisecting: 0 revisions left to test after this (roughly 1 step)
+[a83715f48bd5c0d0ad41ef40eee6108d05d2aab0] #3 commit.
+</code></pre>
+<br>
+<h2 id="4-run-the-bisect-operation">#4 Run the bisect operation</h2>
+<hr>
+<br>
+<pre><code>$  git bisect run prove -Ilib t/
+running 'prove' '-Ilib' 't/'
+t/calc.t .. 1/?
+#   Failed test at t/calc.t line 10.
+#          got: '0'
+#     expected: '1'
+# Looks like you failed 1 test of 2.
+t/calc.t .. Dubious, test returned 1 (wstat 256, 0x100)
+Failed 1/2 subtests
+
+Test Summary Report
+-------------------
+t/calc.t (Wstat: 256 (exited 1) Tests: 2 Failed: 1)
+  Failed test:  2
+  Non-zero exit status: 1
+Files=1, Tests=2,  0 wallclock secs ( 0.01 usr  0.00 sys +  0.01 cusr  0.00 csys =  0.02 CPU)
+Result: FAIL
+Bisecting: 0 revisions left to test after this (roughly 0 steps)
+[b5891d9c7b5d0b60940119b15d00b5e9b4de1917] #2 commit.
+running 'prove' '-Ilib' 't/'
+t/calc.t .. ok
+All tests successful.
+Files=1, Tests=2,  0 wallclock secs ( 0.01 usr  0.00 sys +  0.01 cusr  0.01 csys =  0.03 CPU)
+Result: PASS
+a83715f48bd5c0d0ad41ef40eee6108d05d2aab0 is the first bad commit
+commit a83715f48bd5c0d0ad41ef40eee6108d05d2aab0
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Mar 16 11:50:44 2025 +0000
+
+    #3 commit.
+
+ lib/Calc.pm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+bisect found first bad commit
+</code></pre>
+<br>
+<p>Too much information thrown to us, right?</p>
+<p>But you are only interested in the line: <code>a83715f48bd5c0d0ad41ef40eee6108d05d2aab0 is the first bad commit</code></p>
+<p>Now you know what change introduced the bug.</p>
+<p>You can deal with it accordingly.</p>
+<p>When you are done with the operation then do this:</p>
+<br>
+<pre><code>$ git bisect reset
+Previous HEAD position was b5891d9 #2 commit.
+Switched to branch 'master'
+</code></pre>
+<hr>
+<br>
+<p>So far, I have only scratched the surface.</p>
+<p>If you are interested then look closely at this: <code>git bisect --help</code></p>
+<p><code>Happy Hacking!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
