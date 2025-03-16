@@ -246,7 +246,7 @@
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch</span> {
     <span style="color:#66d9ef">my</span> $future <span style="color:#f92672">=</span> $loop<span style="color:#f92672">-&gt;</span>new_future;
     $loop<span style="color:#f92672">-&gt;</span>delay_future(after <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>on_done(<span style="color:#66d9ef">sub</span> {
-        $future<span style="color:#f92672">-&gt;</span>done({ data <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Fetched data&#34;</span> });
+        $future<span style="color:#f92672">-&gt;</span>done(<span style="color:#e6db74">&#34;Fetched: data&#34;</span>);
     });
     <span style="color:#66d9ef">return</span> $future;
 }
@@ -254,8 +254,7 @@
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">process</span>($data) {
     <span style="color:#66d9ef">my</span> $future <span style="color:#f92672">=</span> $loop<span style="color:#f92672">-&gt;</span>new_future;
     $loop<span style="color:#f92672">-&gt;</span>delay_future(after <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>on_done(<span style="color:#66d9ef">sub</span> {
-        $data<span style="color:#f92672">-&gt;</span>{processed} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Processed: &#34;</span> <span style="color:#f92672">.</span> $data<span style="color:#f92672">-&gt;</span>{data};
-        $future<span style="color:#f92672">-&gt;</span>done($data);
+        $future<span style="color:#f92672">-&gt;</span>done(<span style="color:#e6db74">&#34;Processed: $data&#34;</span>);
     });
     <span style="color:#66d9ef">return</span> $future;
 }
@@ -263,14 +262,13 @@
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">save</span>($data) {
     <span style="color:#66d9ef">my</span> $future <span style="color:#f92672">=</span> $loop<span style="color:#f92672">-&gt;</span>new_future;
     $loop<span style="color:#f92672">-&gt;</span>delay_future(after <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>on_done(<span style="color:#66d9ef">sub</span> {
-        $data<span style="color:#f92672">-&gt;</span>{saved} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Saved: &#34;</span> <span style="color:#f92672">.</span> $data<span style="color:#f92672">-&gt;</span>{processed};
-        $future<span style="color:#f92672">-&gt;</span>done($data);
+        $future<span style="color:#f92672">-&gt;</span>done(<span style="color:#e6db74">&#34;Saved: $data&#34;</span>);
     });
     <span style="color:#66d9ef">return</span> $future;
 }
 
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display</span>($data) {
-    say <span style="color:#e6db74">&#34;Displaying data: &#34;</span> <span style="color:#f92672">.</span> $data<span style="color:#f92672">-&gt;</span>{saved};
+    say <span style="color:#e6db74">&#34;Display: $data&#34;</span>;
     <span style="color:#66d9ef">return</span> Future<span style="color:#f92672">-&gt;</span>done;
 }
 
@@ -291,7 +289,7 @@ $loop<span style="color:#f92672">-&gt;</span>await(
 <hr>
 <br>
 <pre><code>$ perl future.pl
-Displaying data: Saved: Processed: Fetched data
+Display: Saved: Processed: Fetched: data
 </code></pre>
 
                 </div>

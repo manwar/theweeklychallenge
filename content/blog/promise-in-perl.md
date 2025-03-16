@@ -49,7 +49,7 @@ sub fetch {
         my $timer;
         $timer = AE::timer $delay, 0, sub {
             undef $timer;
-            $resolve->("Fetched data");
+            $resolve->("Fetched: data");
         };
     });
 }
@@ -81,7 +81,7 @@ sub save($data) {
 }
 
 sub display($data) {
-    say "Displaying data: $data";
+    say "Display: $data";
     $ae->send;
 }
 
@@ -107,7 +107,7 @@ $ae->recv;
 <br>
 
     $ perl promise.pl
-    Displaying data: Saved: Processed: Fetched data
+    Display: Saved: Processed: Fetched: data
 
 ***
 
