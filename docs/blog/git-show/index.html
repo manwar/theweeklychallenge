@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="git show ..."/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/git-show/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about the git show command."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about the git show command.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/git-show/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>git show ...</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>git show ...</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Mar 17, 2025</span>|
+                        <span> Tags:
+                            Perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/git-show.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h2 id="git-show-">git show &hellip;</h2>
+<br>
+<p>I would say, <code>git show</code>, is the most used git command in the life of a programmer after <code>git commit</code>.</p>
+<p>Believe it or not, we do so many commits in a day and we peek into a commit if we are investigating an issue.</p>
+<p>This is what we do actually: <code>git commit &lt;commit_id&gt;</code>, to be precise.</p>
+<p>Yeah, so we all know that, what&rsquo;s the point of this post?</p>
+<p>Well, you <code>may</code> or <code>may not</code> know this special use of <code>git show</code> command, I only found out last night.</p>
+<p>Let me prepare the ground, so that I can show you <code>live action</code>.</p>
+<br>
+<pre><code>$ mkdir -p playgound
+$ cd playgound
+$ git init
+</code></pre>
+<br>
+<p>Now we would create <code>3 text files</code> in the folder <code>playground</code>:</p>
+<br>
+<pre><code>$ echo &quot;File 1.&quot; &gt; file1.txt
+$ echo &quot;File 2.&quot; &gt; file2.txt
+$ echo &quot;File 3.&quot; &gt; file3.txt
+</code></pre>
+<br>
+<p>We would now add the files and commit the changes.</p>
+<br>
+<pre><code>$ git add file1.txt file2.txt file3.txt
+$ git commit -m &quot;initial commit&quot;
+</code></pre>
+<br>
+<p>Let&rsquo;s check log now:</p>
+<br>
+<pre><code>$ git log --oneline
+c7e9320 (HEAD -&gt; master) initial commit
+</code></pre>
+<br>
+<p>Now we would change <code>file1.txt</code> and <code>file3.txt</code> only as below:</p>
+<br>
+<pre><code>$ echo &quot;UPDATE: File 1.&quot; &gt; file1.txt
+$ echo &quot;UPDATE: File 3.&quot; &gt; file3.txt
+</code></pre>
+<br>
+<p>Commit the follow up changes.</p>
+<br>
+<pre><code>$ git add file1.txt file3.txt
+$ git commit -m &quot;follow up commit&quot;
+</code></pre>
+<br>
+<p>Let&rsquo;s check log again:</p>
+<br>
+<pre><code>$ git log --oneline
+59a59fe (HEAD -&gt; master) follow up commit
+c7e9320 initial commit
+</code></pre>
+<br>
+<p><code>Now the fun starts ...</code></p>
+<p>Usually if we are looking for all the changes in a given commit, this is what we do:</p>
+<br>
+<pre><code>$ git show 59a59fe
+commit 59a59fe838d783db14ab6b7650922a98da9d4734 (HEAD -&gt; master)
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Mon Mar 17 13:18:00 2025 +0000
+
+    follow up commit
+
+diff --git a/file1.txt b/file1.txt
+index 757e51a..3cd8782 100644
+--- a/file1.txt
++++ b/file1.txt
+@@ -1 +1 @@
+-File 1.
++UPDATE: File 1.
+diff --git a/file3.txt b/file3.txt
+index 642c879..57b392c 100644
+--- a/file3.txt
++++ b/file3.txt
+@@ -1 +1 @@
+-File 3.
++UPDATE: File 3.
+</code></pre>
+<br>
+<p>In the above example, it serves the purpose as not many files changed.</p>
+<p>Too much noise in the log, even though not many files were changed.</p>
+<p>But think of a situation where say, <code>10 files</code> were affected.</p>
+<p>What would you do then?</p>
+<p>You can&rsquo;t just search the entire log, if you are only interested in the change to a particular file.</p>
+<p>This is where the magic happens as show below:</p>
+<br>
+<pre><code>$ git show 59a59fe:file1.txt
+UPDATE: File 1.
+</code></pre>
+<br>
+<p>So this is the command: <code>git show &lt;commit_id&gt;:&lt;file_name&gt;</code></p>
+<p>Isn&rsquo;t it much better than before?</p>
+<p>It is for me, I am just loving it.</p>
+<p>You might ask, what if I don&rsquo;t know how many files have changed and their names in the given commit?</p>
+<p>Well we have an answer to that as well, the following command would list all of them:</p>
+<br>
+<pre><code>$ git show --name-only 59a59fe
+commit 59a59fe838d783db14ab6b7650922a98da9d4734 (HEAD -&gt; master)
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Mon Mar 17 13:18:00 2025 +0000
+
+    follow up commit
+
+file1.txt
+file3.txt
+</code></pre>
+<br>
+<hr>
+<br>
+<p>Now you pick and choose, which file you want to look at first.</p>
+<br>
+<p><code>Enjoy !!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
