@@ -125,9 +125,9 @@ Usually if we are looking for all the changes in a given commit, this is what we
 
 In the above example, it serves the purpose as not many files changed.
 
-Too much noise in the log, even though not many files were changed.
+It's still too much noise for me in the log, even though not many files were changed.
 
-But think of a situation where say, `10 files` were affected.
+But think of a situation where say, `10 files`, were affected.
 
 What would you do then?
 
