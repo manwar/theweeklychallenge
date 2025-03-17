@@ -133,7 +133,7 @@ What would you do then?
 
 You can't just search the entire log, if you are only interested in the change to a particular file.
 
-This is where the magic happens as show below:
+This is where the magic happens as shown below:
 
 <br>
 
