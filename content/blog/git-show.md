@@ -21,7 +21,7 @@ I would say, `git show`, is the most used git command in the life of a programme
 
 Believe it or not, we do so many commits in a day and we peek into a commit if we are investigating an issue.
 
-This is what we do actually: `git commit <commit_id>`, to be precise.
+This is what we do actually: `git show <commit_id>`, to be precise.
 
 Yeah, so we all know that, what's the point of this post?
 
