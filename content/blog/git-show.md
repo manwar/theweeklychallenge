@@ -31,8 +31,8 @@ Let me prepare the ground, so that I can show you `live action`.
 
 <br>
 
-    $ mkdir -p playgound
-    $ cd playgound
+    $ mkdir -p playground
+    $ cd playground
     $ git init
 
 <br>
