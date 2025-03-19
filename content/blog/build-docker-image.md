@@ -99,7 +99,7 @@ WORKDIR /theweeklychallenge
 
 <br>
 
-However, changing the base imag made things worse, as now I couldn't even start the container.
+However, changing the base image made things worse, as now I couldn't even start the container.
 
 Earlier, starting the container worked fine, but accessing it was the issue.
 
