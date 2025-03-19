@@ -25,7 +25,7 @@ I didn't get through the interview, not sure because of my response to the above
 
 When I say large file, I mean it.
 
-How about `1GB` size?
+How about `1GB` in size?
 
 I think that would do the job.
 
