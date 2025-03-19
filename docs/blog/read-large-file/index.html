@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Read Large File"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/read-large-file/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about reading a large file."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about reading a large file.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/read-large-file/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Read Large File</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Read Large File</h2>
+                    <div class="portfolio-meta">
+                        <span>Tuesday, Mar 18, 2025</span>|
+                        <span> Tags:
+                            Perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/read-large-file.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h2 id="read-large-file">Read Large File</h2>
+<br>
+<p>I remember during my early days, I was asked in one job interview, <code>how would I process a really large text file?</code>.</p>
+<p>And I answered, <code>by reading line by line</code>.</p>
+<p>I didn&rsquo;t get through the interview, not sure because of my response to the above question.</p>
+<p>When I say large file, I mean it.</p>
+<p>How about <code>1GB</code> size?</p>
+<p>I think that would do the job.</p>
+<p>We can easily extend it, if we want to quickly.</p>
+<p>First thing first, let&rsquo;s generate a large file, say <code>1GB</code>, in size.</p>
+<p>Here is a quick hack <code>gen-large-file.pl</code>:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+
+<span style="color:#66d9ef">my</span> $FILE   <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;large-file.txt&#39;</span>;
+<span style="color:#66d9ef">my</span> $size   <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+<span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> <span style="color:#ae81ff">80</span>;
+<span style="color:#66d9ef">my</span> $line   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;X&#39;</span> x $length;
+
+open(<span style="color:#66d9ef">my</span> $out, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $FILE)
+    <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Could not open $FILE: $!&#34;</span>;
+
+<span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">while</span> ($current <span style="color:#f92672">&lt;</span> $size) {
+    <span style="color:#66d9ef">print</span> $out $line,<span style="color:#e6db74">&#34;\n&#34;</span>;
+    $current <span style="color:#f92672">+=</span> length($line);
+}
+close($out);
+
+say <span style="color:#e6db74">&#34;Generated $FILE: &#34;</span> <span style="color:#f92672">.</span> int($current <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>)) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;MB&#34;</span>;
+</code></pre></div><br>
+<p>Time to generate <code>large-file.txt</code>:</p>
+<br>
+<pre><code>$ time perl gen-large-file.pl
+Generated large-file.txt: 1024MB
+
+real    0m1.219s
+user    0m0.594s
+sys     0m0.420s
+</code></pre>
+<br>
+<p>In this post, we are going to do comparative analysis of reading a very large file.</p>
+<p>Two important factors, we are going to consider in this regard:</p>
+<br>
+<pre><code>- Time
+- Memory
+</code></pre>
+<br>
+<p>Let&rsquo;s create helper functions for this task first.</p>
+<p>Here we are using <code>CPAN</code> module <a href="https://metacpan.org/pod/Linux::Smaps"><strong>Linux::Smaps</strong></a> for memory usage data.</p>
+<p>And for time, the good old friend, <a href="https://metacpan.org/pod/Time::HiRes"><strong>Time::HiRes</strong></a>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Linux::Smaps;
+<span style="color:#66d9ef">use</span> Time::HiRes <span style="color:#e6db74">qw(gettimeofday tv_interval)</span>;
+
+
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># Helper Functions</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perform</span>($operation, $file) {
+    <span style="color:#66d9ef">my</span> $start_time   <span style="color:#f92672">=</span> [gettimeofday];
+    <span style="color:#66d9ef">my</span> $start_memory <span style="color:#f92672">=</span> memory_usage();
+
+    $operation<span style="color:#f92672">-&gt;</span>($file);
+
+    <span style="color:#66d9ef">my</span> $end_memory <span style="color:#f92672">=</span> memory_usage();
+    <span style="color:#66d9ef">my</span> $end_time   <span style="color:#f92672">=</span> [gettimeofday];
+
+    <span style="color:#66d9ef">return</span> {
+        time   <span style="color:#f92672">=&gt;</span> tv_interval($start_time, $end_time),
+        memory <span style="color:#f92672">=&gt;</span> $end_memory <span style="color:#f92672">-</span> $start_memory,
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">memory_usage</span> {
+    <span style="color:#66d9ef">return</span> Linux::Smaps<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($$)<span style="color:#f92672">-&gt;</span>size;
+}
+</code></pre></div><br>
+<p>Now we need another function to display the performance analysis.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display_performance_analysis</span>($results) {
+    say <span style="color:#e6db74">&#34;\n## Comparative Analysis&#34;</span>;
+    say sprintf <span style="color:#e6db74">&#34;%-20s %-10s %-10s&#34;</span>, <span style="color:#e6db74">&#34;Approach&#34;</span>, <span style="color:#e6db74">&#34;Time (s)&#34;</span>, <span style="color:#e6db74">&#34;Memory (MB)&#34;</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $approach (@$results) {
+        say sprintf <span style="color:#e6db74">&#34;%-20s %-10.2f %-10.2f&#34;</span>,
+            $approach<span style="color:#f92672">-&gt;</span>{title},
+            $approach<span style="color:#f92672">-&gt;</span>{stats}<span style="color:#f92672">-&gt;</span>{time},
+            $approach<span style="color:#f92672">-&gt;</span>{stats}<span style="color:#f92672">-&gt;</span>{memory} <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>);
+    }
+}
+</code></pre></div><br>
+<p>We have prepared the ground for the big battle.</p>
+<p>Let&rsquo;s decide the different paths we would take to perform the task.</p>
+<p>One thing is for sure, we are <code>NOT</code> going to do <code>file slurping</code>, right?</p>
+<p>So here is the plan:</p>
+<br>
+<pre><code>1. Line by Line Reading
+2. Buffered Reading
+3. Memory Mapping
+4. Parallel Processing
+</code></pre>
+<br>
+<p>Let&rsquo;s start with the first approach i.e. <code>line by line reading</code>.</p>
+<p>It should be pretty straight forward, we do this day-in day-out.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">line_by_line_reading</span>($file) {
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file)
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Could not open $file: $!&#34;</span>;
+    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
+        <span style="color:#75715e"># simulate processing</span>
+    }
+    close($fh);
+}
+</code></pre></div><br>
+<p>Now we would do <code>buffered reading</code> as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">buffered_reading</span>($file) {
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file)
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Could not open $file: $!&#34;</span>;
+    <span style="color:#66d9ef">my</span> $buffer;
+    <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+    <span style="color:#66d9ef">while</span> (read($fh, $buffer, $size)) {
+        <span style="color:#75715e"># simulate processing</span>
+        <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $buffer;
+    }
+    close($fh);
+}
+</code></pre></div><br>
+<p>Next is <code>memory mapping</code> like below:</p>
+<p>For this task, we are going to use <code>CPAN</code> module <a href="https://metacpan.org/pod/Sys::Mmap"><strong>Sys::Mmap</strong></a>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">memory_mapping</span>($file) {
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file) <span style="color:#f92672">or</span>
+        die <span style="color:#e6db74">&#34;ERROR: Could not open $file: $!&#34;</span>;
+    mmap(<span style="color:#66d9ef">my</span> $mapped_file, <span style="color:#ae81ff">0</span>, PROT_READ, MAP_SHARED, $fh);
+    <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $mapped_file;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $line (@lines) {
+        <span style="color:#75715e"># simulate processing</span>
+    }
+    munmap($mapped_file);
+    close($fh);
+}
+</code></pre></div><br>
+<p>Now the last approach i.e. <code>parallel processing</code>.</p>
+<p>Here we are going to create <code>10 workers</code> to do the task.</p>
+<p>For parallel processing, we are using <code>CPAN</code> module <a href="https://metacpan.org/dist/Parallel-ForkManager"><strong>Parallel::ForkManager</strong></a>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parallel_processing</span>($file) {
+    <span style="color:#66d9ef">my</span> $pfm  <span style="color:#f92672">=</span> Parallel::ForkManager<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">10</span>);
+    <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+    <span style="color:#66d9ef">my</span> $buffer;
+    <span style="color:#66d9ef">my</span> $remaining <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file)
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Could not open $file: $!&#34;</span>;
+    <span style="color:#66d9ef">while</span> (read($fh, $buffer, $size)) {
+        $buffer <span style="color:#f92672">=</span> $remaining <span style="color:#f92672">.</span> $buffer;
+        <span style="color:#66d9ef">my</span> $last_newline <span style="color:#f92672">=</span> rindex($buffer, <span style="color:#e6db74">&#34;\n&#34;</span>);
+
+        <span style="color:#66d9ef">if</span> ($last_newline <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            $remaining <span style="color:#f92672">=</span> $buffer;
+            <span style="color:#66d9ef">next</span>;
+        }
+
+        <span style="color:#66d9ef">my</span> $complete_chunk <span style="color:#f92672">=</span> substr($buffer, <span style="color:#ae81ff">0</span>, $last_newline <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+        $remaining <span style="color:#f92672">=</span> substr($buffer, $last_newline <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+
+        $pfm<span style="color:#f92672">-&gt;</span>start <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span>;
+        process_chunk($complete_chunk);
+        $pfm<span style="color:#f92672">-&gt;</span>finish;
+    }
+
+    <span style="color:#66d9ef">if</span> ($remaining) {
+        $pfm<span style="color:#f92672">-&gt;</span>start <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span>;
+        process_chunk($remaining);
+        $pfm<span style="color:#f92672">-&gt;</span>finish;
+    }
+
+    $pfm<span style="color:#f92672">-&gt;</span>wait_all_children;
+    close($fh);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">process_chunk</span>($chunk) {
+    <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $chunk;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $line (@lines) {
+        <span style="color:#75715e"># simulate processing</span>
+    }
+}
+</code></pre></div><br>
+<p>Finally we would bind all the operations together as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $file <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;large-file.txt&#39;</span>;
+
+<span style="color:#66d9ef">my</span> $operations <span style="color:#f92672">=</span> [
+    { title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Line-by-Line Reading&#39;</span>, method <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>line_by_line_reading },
+    { title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Buffered Reading&#39;</span>,     method <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>buffered_reading     },
+    { title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory Mapping&#39;</span>,       method <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>memory_mapping       },
+    { title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Parallel Processing&#39;</span>,  method <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>parallel_processing  },
+];
+
+<span style="color:#66d9ef">my</span> $results <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $operation (@$operations) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$operation-&gt;{title} ... &#34;</span>;
+    push @$results, {
+        title <span style="color:#f92672">=&gt;</span> $operation<span style="color:#f92672">-&gt;</span>{title},
+        stats <span style="color:#f92672">=&gt;</span> perform($operation<span style="color:#f92672">-&gt;</span>{method}, $file)
+    };
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;done.\n&#34;</span>;
+}
+
+display_performance_analysis($results);
+</code></pre></div><br>
+<p>Last but not least, the complete solution, <code>read-large-file.pl</code>:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Sys::Mmap;
+<span style="color:#66d9ef">use</span> Linux::Smaps;
+<span style="color:#66d9ef">use</span> Parallel::ForkManager;
+<span style="color:#66d9ef">use</span> Time::HiRes <span style="color:#e6db74">qw(gettimeofday tv_interval)</span>;
+
+<span style="color:#66d9ef">my</span> $file <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;large-file.txt&#39;</span>;
+
+<span style="color:#66d9ef">my</span> $operations <span style="color:#f92672">=</span> [
+    { title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Line-by-Line Reading&#39;</span>, method <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>line_by_line_reading },
+    { title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Buffered Reading&#39;</span>,     method <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>buffered_reading     },
+    { title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory Mapping&#39;</span>,       method <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>memory_mapping       },
+    { title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Parallel Processing&#39;</span>,  method <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>parallel_processing  },
+];
+
+<span style="color:#66d9ef">my</span> $results <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $operation (@$operations) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$operation-&gt;{title} ... &#34;</span>;
+    push @$results, {
+        title <span style="color:#f92672">=&gt;</span> $operation<span style="color:#f92672">-&gt;</span>{title},
+        stats <span style="color:#f92672">=&gt;</span> perform($operation<span style="color:#f92672">-&gt;</span>{method}, $file)
+    };
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;done.\n&#34;</span>;
+}
+
+display_performance_analysis($results);
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># Helper Functions</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perform</span>($operation, $file) {
+    <span style="color:#66d9ef">my</span> $start_time <span style="color:#f92672">=</span> [gettimeofday];
+    <span style="color:#66d9ef">my</span> $start_memory <span style="color:#f92672">=</span> memory_usage();
+
+    $operation<span style="color:#f92672">-&gt;</span>($file);
+
+    <span style="color:#66d9ef">my</span> $end_memory <span style="color:#f92672">=</span> memory_usage();
+    <span style="color:#66d9ef">my</span> $end_time <span style="color:#f92672">=</span> [gettimeofday];
+
+    <span style="color:#66d9ef">return</span> {
+        time <span style="color:#f92672">=&gt;</span> tv_interval($start_time, $end_time),
+        memory <span style="color:#f92672">=&gt;</span> $end_memory <span style="color:#f92672">-</span> $start_memory,
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">memory_usage</span> {
+    <span style="color:#66d9ef">return</span> Linux::Smaps<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($$)<span style="color:#f92672">-&gt;</span>size;
+    <span style="color:#75715e">#return $smaps-&gt;size;</span>
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">line_by_line</span>($file) {
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file)
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Could not open $file: $!&#34;</span>;
+    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
+        <span style="color:#75715e"># simulate processing</span>
+    }
+    close($fh);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">buffered_reading</span>($file) {
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file)
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Could not open $file: $!&#34;</span>;
+    <span style="color:#66d9ef">my</span> $buffer;
+    <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+    <span style="color:#66d9ef">while</span> (read($fh, $buffer, $size)) {
+        <span style="color:#75715e"># Simulate processing</span>
+        <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $buffer;
+    }
+    close($fh);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">memory_mapping</span>($file) {
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file)
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Could not open $file: $!&#34;</span>;
+    mmap(<span style="color:#66d9ef">my</span> $mapped_file, <span style="color:#ae81ff">0</span>, PROT_READ, MAP_SHARED, $fh);
+    <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $mapped_file;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $line (@lines) {
+         <span style="color:#75715e"># Simulate processing</span>
+    }
+    munmap($mapped_file);
+    close($fh);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parallel_processing</span>($file) {
+    <span style="color:#66d9ef">my</span> $pfm  <span style="color:#f92672">=</span> Parallel::ForkManager<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">10</span>);
+    <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+    <span style="color:#66d9ef">my</span> $buffer;
+    <span style="color:#66d9ef">my</span> $remaining <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file)
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Could not open $file: $!&#34;</span>;
+    <span style="color:#66d9ef">while</span> (read($fh, $buffer, $size)) {
+        $buffer <span style="color:#f92672">=</span> $remaining <span style="color:#f92672">.</span> $buffer;
+        <span style="color:#66d9ef">my</span> $last_newline <span style="color:#f92672">=</span> rindex($buffer, <span style="color:#e6db74">&#34;\n&#34;</span>);
+
+        <span style="color:#66d9ef">if</span> ($last_newline <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            $remaining <span style="color:#f92672">=</span> $buffer;
+            <span style="color:#66d9ef">next</span>;
+        }
+
+        <span style="color:#66d9ef">my</span> $complete_chunk <span style="color:#f92672">=</span> substr($buffer, <span style="color:#ae81ff">0</span>, $last_newline <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+        $remaining <span style="color:#f92672">=</span> substr($buffer, $last_newline <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+
+        $pfm<span style="color:#f92672">-&gt;</span>start <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span>;
+        process_chunk($complete_chunk);
+        $pfm<span style="color:#f92672">-&gt;</span>finish;
+    }
+
+    <span style="color:#66d9ef">if</span> ($remaining) {
+        $pfm<span style="color:#f92672">-&gt;</span>start <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span>;
+        process_chunk($remaining);
+        $pfm<span style="color:#f92672">-&gt;</span>finish;
+    }
+
+    $pfm<span style="color:#f92672">-&gt;</span>wait_all_children;
+    close($fh);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">process_chunk</span>($chunk) {
+    <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $chunk;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $line (@lines) {
+        <span style="color:#75715e"># simulate processing</span>
+    }
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display_performance_analysis</span>($results) {
+    say <span style="color:#e6db74">&#34;\n## Comparative Analysis&#34;</span>;
+    say sprintf <span style="color:#e6db74">&#34;%-20s %-10s %-10s&#34;</span>, <span style="color:#e6db74">&#34;Approach&#34;</span>, <span style="color:#e6db74">&#34;Time (s)&#34;</span>, <span style="color:#e6db74">&#34;Memory (MB)&#34;</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $approach (@$results) {
+        say sprintf <span style="color:#e6db74">&#34;%-20s %-10.2f %-10.2f&#34;</span>,
+            $approach<span style="color:#f92672">-&gt;</span>{title},
+            $approach<span style="color:#f92672">-&gt;</span>{stats}<span style="color:#f92672">-&gt;</span>{time},
+            $approach<span style="color:#f92672">-&gt;</span>{stats}<span style="color:#f92672">-&gt;</span>{memory} <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>);
+    }
+}
+</code></pre></div><br>
+<p>Time for some action:</p>
+<br>
+<pre><code>$ perl read-large-file.pl
+Line-by-Line Reading ... done.
+Buffered Reading ... done.
+Memory Mapping ... done.
+Parallel Processing ... done.
+
+## Comparative Analysis
+Approach             Time (s)   Memory (MB)
+Line-by-Line Reading 1.12       0.00
+Buffered Reading     0.79       0.00
+Memory Mapping       1.90       1.91
+Parallel Processing  109.23     0.00
+</code></pre>
+<br>
+<p>Does this number surprise you?</p>
+<p>Please do let me know, if I can improve my approach.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
