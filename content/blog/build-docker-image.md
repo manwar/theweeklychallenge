@@ -77,13 +77,13 @@ With this, I was able to build the image and start the container.
 
 But, I had trouble accessing the site.
 
-I knew, `Dave Cross`, has played with `Docker` a lot as he wrote [**4 part series**](https://dev.to/davorg/docker-and-dancer-4m82) post.
+I knew that `Dave Cross`, had extensive experience with `Docker` a lot as he had written a [**four-part series**](https://dev.to/davorg/docker-and-dancer-4m82) on it.
 
 I decided to reach out to him for help.
 
-He replied instantly but unfortunately, he also had the similar issue.
+He replied instantly but unfortunately, he was facing a similar issue.
 
-In the meantime, I decided to change the base image to `alpine` as suggested by `Dave`.
+In the meantime, I decided to switch the base image to `alpine` as `Dave` had suggested.
 
 <br>
 
@@ -99,15 +99,15 @@ WORKDIR /theweeklychallenge
 
 <br>
 
-But changing the base image, made it worst as now I can't even start the container.
+However, changing the base imag made things worse, as now I couldn't even start the container.
 
-Earlier, starting was good only accessing the container was the issue.
+Earlier, starting the container worked fine, but accessing it was the issue.
 
 After few days, I contacted him again for help.
 
-He instantly found the issue and shared the solution as well.
+He instantly identified the issue and shared the solution as well.
 
-This is his words:
+These are his words:
 
 <br>
 
@@ -144,13 +144,15 @@ WORKDIR /theweeklychallenge
 
 This indeed solved the issue of not being able to run the container.
 
-It was a big relief, thank you `Dave Cross` for the help.
+It was a huge relief, thank you `Dave Cross` for your help.
 
 However, I am still having trouble accessing the site.
 
-Few moments later, I got another response from `Dave Cross`, this time he found the solution to the main issue.
+A few moments later, I received another message from `Dave Cross`.
 
-His advise was:
+This time he found the solution to the main issue.
+
+His advice was:
 
 <br>
 
@@ -228,21 +230,21 @@ services:
 
 <br>
 
-So now, I wanted to build the image and push to `Docker Hub` so that it's available to general public.
+So now, I wanted to build the image and push it to `Docker Hub` to make it available to general public.
 
-I had an account [**manwardock**](https://hub.docker.com/repositories/manwardock) on `Docker Hub` before.
+I already had an account [**manwardock**](https://hub.docker.com/repositories/manwardock) on `Docker Hub`.
 
-So I created a new public repository [**theweeklychallenge**](https://hub.docker.com/repository/docker/manwardock/theweeklychallenge/general) on `Docker Hub`.
+I created a new public repository [**theweeklychallenge**](https://hub.docker.com/repository/docker/manwardock/theweeklychallenge/general) on `Docker Hub`.
 
-Now, it's just a matter of creating image with tag and push to this repository.
+Now, it's just a matter of creating an image with a tag and pushing it to this repository.
 
-Without any more blockage, I managed to pushed the image successfully.
+Without any further issues, I successfully pushed the image.
 
-As of today, we have `v3.13` as the latest tag. It represents the current week `313`.
+As of today, we have `v3.13` as the latest tag, which represents the current week `313`.
 
-The plan is, every `Monday` when I release new challenge, I would also push the updated image as well.
+The plan is that every `Monday` when I release a new challenge, I will also push the updated image.
 
-From now onwards, if anyone wants to play with the website locally, they can just grab the [**configuration file**](https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml) and the job done.
+From now on, if anyone wants to run the website locally, they can simply grab the [**configuration file**](https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml) and the job is done.
 
 <br>
 

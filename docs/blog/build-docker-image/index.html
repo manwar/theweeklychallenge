@@ -241,10 +241,10 @@ WORKDIR /theweeklychallenge
 </code></pre><br>
 <p>With this, I was able to build the image and start the container.</p>
 <p>But, I had trouble accessing the site.</p>
-<p>I knew, <code>Dave Cross</code>, has played with <code>Docker</code> a lot as he wrote <a href="https://dev.to/davorg/docker-and-dancer-4m82"><strong>4 part series</strong></a> post.</p>
+<p>I knew that <code>Dave Cross</code>, had extensive experience with <code>Docker</code> a lot as he had written a <a href="https://dev.to/davorg/docker-and-dancer-4m82"><strong>four-part series</strong></a> on it.</p>
 <p>I decided to reach out to him for help.</p>
-<p>He replied instantly but unfortunately, he also had the similar issue.</p>
-<p>In the meantime, I decided to change the base image to <code>alpine</code> as suggested by <code>Dave</code>.</p>
+<p>He replied instantly but unfortunately, he was facing a similar issue.</p>
+<p>In the meantime, I decided to switch the base image to <code>alpine</code> as <code>Dave</code> had suggested.</p>
 <br>
 <pre><code>FROM alpine:latest
 
@@ -254,11 +254,11 @@ CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;,
 COPY . /theweeklychallenge
 WORKDIR /theweeklychallenge
 </code></pre><br>
-<p>But changing the base image, made it worst as now I can&rsquo;t even start the container.</p>
-<p>Earlier, starting was good only accessing the container was the issue.</p>
+<p>However, changing the base imag made things worse, as now I couldn&rsquo;t even start the container.</p>
+<p>Earlier, starting the container worked fine, but accessing it was the issue.</p>
 <p>After few days, I contacted him again for help.</p>
-<p>He instantly found the issue and shared the solution as well.</p>
-<p>This is his words:</p>
+<p>He instantly identified the issue and shared the solution as well.</p>
+<p>These are his words:</p>
 <br>
 <pre><code>It's because Alpine uses libc, not glibc. And your executable is built for glibc.
 </code></pre>
@@ -282,10 +282,11 @@ COPY . /theweeklychallenge
 WORKDIR /theweeklychallenge
 </code></pre><br>
 <p>This indeed solved the issue of not being able to run the container.</p>
-<p>It was a big relief, thank you <code>Dave Cross</code> for the help.</p>
+<p>It was a huge relief, thank you <code>Dave Cross</code> for your help.</p>
 <p>However, I am still having trouble accessing the site.</p>
-<p>Few moments later, I got another response from <code>Dave Cross</code>, this time he found the solution to the main issue.</p>
-<p>His advise was:</p>
+<p>A few moments later, I received another message from <code>Dave Cross</code>.</p>
+<p>This time he found the solution to the main issue.</p>
+<p>His advice was:</p>
 <br>
 <pre><code>Adding the &quot;--bind&quot; parameter to the Dockerfile seems to fix the problem.
 </code></pre>
@@ -336,14 +337,14 @@ services:
     ports:
       - &quot;1414:1414&quot;
 </code></pre><br>
-<p>So now, I wanted to build the image and push to <code>Docker Hub</code> so that it&rsquo;s available to general public.</p>
-<p>I had an account <a href="https://hub.docker.com/repositories/manwardock"><strong>manwardock</strong></a> on <code>Docker Hub</code> before.</p>
-<p>So I created a new public repository <a href="https://hub.docker.com/repository/docker/manwardock/theweeklychallenge/general"><strong>theweeklychallenge</strong></a> on <code>Docker Hub</code>.</p>
-<p>Now, it&rsquo;s just a matter of creating image with tag and push to this repository.</p>
-<p>Without any more blockage, I managed to pushed the image successfully.</p>
-<p>As of today, we have <code>v3.13</code> as the latest tag. It represents the current week <code>313</code>.</p>
-<p>The plan is, every <code>Monday</code> when I release new challenge, I would also push the updated image as well.</p>
-<p>From now onwards, if anyone wants to play with the website locally, they can just grab the <a href="https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml"><strong>configuration file</strong></a> and the job done.</p>
+<p>So now, I wanted to build the image and push it to <code>Docker Hub</code> to make it available to general public.</p>
+<p>I already had an account <a href="https://hub.docker.com/repositories/manwardock"><strong>manwardock</strong></a> on <code>Docker Hub</code>.</p>
+<p>I created a new public repository <a href="https://hub.docker.com/repository/docker/manwardock/theweeklychallenge/general"><strong>theweeklychallenge</strong></a> on <code>Docker Hub</code>.</p>
+<p>Now, it&rsquo;s just a matter of creating an image with a tag and pushing it to this repository.</p>
+<p>Without any further issues, I successfully pushed the image.</p>
+<p>As of today, we have <code>v3.13</code> as the latest tag, which represents the current week <code>313</code>.</p>
+<p>The plan is that every <code>Monday</code> when I release a new challenge, I will also push the updated image.</p>
+<p>From now on, if anyone wants to run the website locally, they can simply grab the <a href="https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml"><strong>configuration file</strong></a> and the job is done.</p>
 <br>
 <pre><code>$ wget https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml
 $ docker-compose up -d
