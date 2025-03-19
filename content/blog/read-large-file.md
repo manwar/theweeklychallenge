@@ -366,6 +366,17 @@ sub memory_usage {
     return Linux::Smaps->new($$)->size;
 }
 
+sub display_performance_analysis($results) {
+    say "\n## Comparative Analysis";
+    say sprintf "%-20s %-10s %-10s", "Approach", "Time (s)", "Memory (MB)";
+    foreach my $approach (@$results) {
+        say sprintf "%-20s %-10.2f %-10.2f",
+            $approach->{title},
+            $approach->{stats}->{time},
+            $approach->{stats}->{memory} / (1024 * 1024);
+    }
+}
+
 sub line_by_line_reading($file) {
     open(my $fh, '<', $file)
         or die "ERROR: Could not open $file: $!";
@@ -438,17 +449,6 @@ sub process_chunk($chunk) {
     my @lines = split /\n/, $chunk;
     foreach my $line (@lines) {
         # simulate processing
-    }
-}
-
-sub display_performance_analysis($results) {
-    say "\n## Comparative Analysis";
-    say sprintf "%-20s %-10s %-10s", "Approach", "Time (s)", "Memory (MB)";
-    foreach my $approach (@$results) {
-        say sprintf "%-20s %-10.2f %-10.2f",
-            $approach->{title},
-            $approach->{stats}->{time},
-            $approach->{stats}->{memory} / (1024 * 1024);
     }
 }
 ```
