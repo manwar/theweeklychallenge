@@ -146,7 +146,7 @@ This indeed solved the issue of not being able to run the container.
 
 It was a huge relief, thank you `Dave Cross` for your help.
 
-However, I am still having trouble accessing the site.
+However, I was still having trouble accessing the site.
 
 A few moments later, I received another message from `Dave Cross`.
 
@@ -160,7 +160,7 @@ His advice was:
 
 <br>
 
-So now my Dockerfile looks like below:
+So now my `Dockerfile` looks like below:
 
 <br>
 
