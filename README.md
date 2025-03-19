@@ -1,4 +1,4 @@
-![github-header-image (1)](https://github.com/baimamboukar/theweeklychallenge/assets/49169158/38b15a3c-8754-4f5f-bcb5-7142cb8e08b6)
+![github-header-image (1)](https://theweeklychallenge.org/images/header.png)
 
 [![Hugo](https://img.shields.io/badge/Hugo-FF4088?style=for-the-badge&logo=Hugo&logoColor=white)](https://gohugo.io/) [![Markdown](https://img.shields.io/badge/Markdown-E34F26?style=for-the-badge&logo=Markdown&logoColor=white)](https://daringfireball.net/projects/markdown/) [![JSON](https://img.shields.io/badge/JSON-EDD07A?style=for-the-badge&logo=JSON&logoColor=white)](https://json.org/) [![YAML](https://img.shields.io/badge/YAML-A9B7C6?style=for-the-badge&logo=YAML&logoColor=white)](https://yaml.org/) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white)](https://developer.mozilla.org/docs/Web/JavaScript) [![CSS](https://img.shields.io/badge/CSS-2EC4B6?style=for-the-badge&logo=CSS3&logoColor=white)](https://developer.mozilla.org/docs/Web/CSS)
 
