@@ -31,13 +31,13 @@ This project is a fun and welcoming space for developers of all skill levels to 
 Start the container, say the version `v3.13`:
 ```Bash
  $ cd theweeklychallenge
- $ IMAGE_TAG=v3.13 docker-compose up -d
+ $ docker-compose up -d
 ```
 
 Stop the container:
 ```Bash
  $ cd theweeklychallenge
- $ IMAGE_TAG=v3.13 docker-compose down
+ $ docker-compose down
 ```
 
 
