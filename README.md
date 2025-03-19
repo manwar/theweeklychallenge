@@ -28,7 +28,7 @@ This project is a fun and welcoming space for developers of all skill levels to 
 ```
 
 - ## Run the Development Server
-Start the container, say the version `v3.13`:
+Start the container, the latest version by default:
 ```Bash
  $ cd theweeklychallenge
  $ docker-compose up -d
