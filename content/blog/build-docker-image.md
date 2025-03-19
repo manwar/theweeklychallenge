@@ -210,7 +210,7 @@ CMD ["bin/hugo", "server", "-p", "1414", "-D", "--bind", "0.0.0.0"]
 
 <br>
 
-Also added the configuration file, [**docker-compose.yml**](https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml), for `docker-compose` as below:
+Also added the configuration file, [**docker-compose.yml**](https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml), as below:
 
 <br>
 
