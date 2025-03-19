@@ -381,7 +381,7 @@ sub buffered_reading($file) {
     my $buffer;
     my $size = 1024 * 1024;
     while (read($fh, $buffer, $size)) {
-        # Simulate processing
+        # simulate processing
         my @lines = split /\n/, $buffer;
     }
     close($fh);
@@ -393,7 +393,7 @@ sub memory_mapping($file) {
     mmap(my $mapped_file, 0, PROT_READ, MAP_SHARED, $fh);
     my @lines = split /\n/, $mapped_file;
     foreach my $line (@lines) {
-         # Simulate processing
+         # simulate processing
     }
     munmap($mapped_file);
     close($fh);
