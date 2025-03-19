@@ -7,24 +7,39 @@
 
 This project is a fun and welcoming space for developers of all skill levels to explore Perl and Raku. We provide weekly challenges to encourage learning, collaboration, and knowledge sharing. Whether you're an expert or a curious beginner, you'll find challenges to suit your skillset. We believe in fostering a supportive community where everyone can learn from each other. Feel free to ask questions, share your progress, and help fellow challengers on their coding journey.
 
-# Features
-
-- Weekly challenges
-- Perl Review
-- Raku Review
-
-
 # Getting Started
 
  - ## Prerequisites
+ Ideally you need to have `docker` and `docker-compose` installed.
+ 
+ If you don't have the `docker` environment setup then you can follow the steps below:
+
+ ```Bash
+ $ sudo apt update
+ $ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+ $ sudo usermod -aG docker $USER
+ $ sudo apt install -y docker-compose
+ ```
 
 - ## Clone
  Use git to clone this repository
 ```Bash
-git clone https://github.com/manwar/theweeklychallenge.git
+ $ git clone https://github.com/manwar/theweeklychallenge.git
 ```
 
 - ## Run the Development Server
+Start the container, say the version `v3.13`:
+```Bash
+ $ cd theweeklychallenge
+ $ IMAGE_TAG=v3.13 docker-compose up -d
+```
+
+Stop the container:
+```Bash
+ $ cd theweeklychallenge
+ $ IMAGE_TAG=v3.13 docker-compose down
+```
+
 
 # Contributing
 
