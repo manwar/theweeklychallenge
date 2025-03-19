@@ -77,7 +77,7 @@ With this, I was able to build the image and start the container.
 
 But, I had trouble accessing the site.
 
-I knew that `Dave Cross`, had extensive experience with `Docker` a lot as he had written a [**four-part series**](https://dev.to/davorg/docker-and-dancer-4m82) on it.
+I knew that `Dave Cross`, had extensive experience with `Docker` as he had written a [**four-part series**](https://dev.to/davorg/docker-and-dancer-4m82) on it.
 
 I decided to reach out to him for help.
 
