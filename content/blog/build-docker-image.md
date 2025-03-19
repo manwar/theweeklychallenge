@@ -26,21 +26,21 @@ I know the post title is a little vague, what I meant is `building docker image 
 
 <br>
 
-If you are new to [**The Weekly Challenge**](https://theweeklychallenge.org) then this is the platform for all geeks who wants to try their favourite programming language to solve the two challenges we throw at them every week. Well, you don't need to be an expert in the programming language, as there is always one simple challenge for beginners level and the second is for someone more senior.
+If you are new to [**The Weekly Challenge**](https://theweeklychallenge.org) then this is the perfect platform for all geeks who want to use their favourite programming language to solve the two challenges we present every week. You don't need to be an expert in the programming language, as there is always one simple challenge for beginners and a second, more advanced challenge for those with greater experience.
 
-It was started on `March 25, 2019`.
+It was launched on `March 25, 2019`.
 
-Yes it has been running for nearly `6 years` now.
+Yes, it has been running for nearly `6 years` now.
 
-The main programming languages are `Perl` and `Raku` but you are free to choose your favourite programming language.
+The primary programming languages are `Perl` and `Raku` but you are free to choose your favourite programming language.
 
-We have so far received solutions in `100+` different programming languages.
+So far, we have received solutions in `over 100` different programming languages.
 
-We have a dedicated repository where members contributions are stored and it is called [**Perl Weekly Challenge Club**](https://github.com/manwar/perlweeklychallenge-club).
+We have a dedicated repository called [**Perl Weekly Challenge Club**](https://github.com/manwar/perlweeklychallenge-club) where member's contributions are stored.
 
-For the website, we have another [**GitHub repository**](https://github.com/manwar/theweeklychallenge).
+For the website, we maintain  a separate [**GitHub repository**](https://github.com/manwar/theweeklychallenge).
 
-It is a static site built by `Hugo` and presented as `GitHub Page`.
+The site is static, built using `Hugo`, hosted as `GitHub Page`.
 
 <br>
 
@@ -49,15 +49,15 @@ It is a static site built by `Hugo` and presented as `GitHub Page`.
 
 <br>
 
-In the past, I have had complaint from the user that they can't run the site locally as it relies on the custom built [**Hugo**](https://github.com/manwar/theweeklychallenge/blob/master/bin/hugo) binary.
+In the past, I received complaints from users that they couldn't run the site locally as it relies on a custom-built [**Hugo**](https://github.com/manwar/theweeklychallenge/blob/master/bin/hugo) binary.
 
 To solve this issue, `Docker image` would have been an ideal solution.
 
-But I never played with `Docker` before in details, so the lack of experience with the toy was stopping me.
+However, I had never worked with `Docker` in detail before, so my lack of experience with the tool held me back.
 
-Sudden change of heart, I started digging into `Docker` and enjoying too.
+After a sudden change of heart, I started exploring `Docker` and found myself enjoying it.
 
-This the `Dockerfile`, I came up with initially:
+Here's the `Dockerfile`, I came up with initially:
 
 <br>
 
