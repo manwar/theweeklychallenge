@@ -30,13 +30,12 @@ This project is a fun and welcoming space for developers of all skill levels to 
 - ## Run the Development Server
 Start the container, the latest version by default:
 ```Bash
- $ cd theweeklychallenge
+ $ wget https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml
  $ docker-compose up -d
 ```
 
 Stop the container:
 ```Bash
- $ cd theweeklychallenge
  $ docker-compose down
 ```
 
