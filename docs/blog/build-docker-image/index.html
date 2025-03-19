@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Build Docker Image"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/build-docker-image/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about the journey of building docker image for the weekly challenge website."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about the journey of building docker image for the weekly challenge website.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/build-docker-image/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Build Docker Image</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Build Docker Image</h2>
+                    <div class="portfolio-meta">
+                        <span>Wednesday, Mar 19, 2025</span>|
+                        <span> Tags:
+                            Perl, Docker
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/build-docker-image.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h2 id="build-docker-image">Build Docker Image</h2>
+<br>
+<p>I know the post title is a little vague, what I meant is <code>building docker image for the weekly challenge website</code>.</p>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<br>
+<p>If you are new to <a href="https://theweeklychallenge.org"><strong>The Weekly Challenge</strong></a> then this is the platform for all geeks who wants to try their favourite programming language to solve the two challenges we throw at them every week. Well, you don&rsquo;t need to be an expert in the programming language, as there is always one simple challenge for beginners level and the second is for someone more senior.</p>
+<p>It was started on <code>March 25, 2019</code>.</p>
+<p>Yes it has been running for nearly <code>6 years</code> now.</p>
+<p>The main programming languages are <code>Perl</code> and <code>Raku</code> but you are free to choose your favourite programming language.</p>
+<p>We have so far received solutions in <code>100+</code> different programming languages.</p>
+<p>We have a dedicated repository where members contributions are stored and it is called <a href="https://github.com/manwar/perlweeklychallenge-club"><strong>Perl Weekly Challenge Club</strong></a>.</p>
+<p>For the website, we have another <a href="https://github.com/manwar/theweeklychallenge"><strong>GitHub repository</strong></a>.</p>
+<p>It is a static site built by <code>Hugo</code> and presented as <code>GitHub Page</code>.</p>
+<br>
+<h2 id="journey">Journey</h2>
+<hr>
+<br>
+<p>In the past, I have had complaint from the user that they can&rsquo;t run the site locally as it relies on the custom built <a href="https://github.com/manwar/theweeklychallenge/blob/master/bin/hugo"><strong>Hugo</strong></a> binary.</p>
+<p>To solve this issue, <code>Docker image</code> would have been an ideal solution.</p>
+<p>But I never played with <code>Docker</code> before in details, so the lack of experience with the toy was stopping me.</p>
+<p>Sudden change of heart, I started digging into <code>Docker</code> and enjoying too.</p>
+<p>This the <code>Dockerfile</code>, I came up with initially:</p>
+<br>
+<pre><code>FROM perl:5.38.0
+
+EXPOSE 1414
+CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;, &quot;-D&quot;]
+
+COPY . /theweeklychallenge
+WORKDIR /theweeklychallenge
+</code></pre><br>
+<p>With this, I was able to build the image and start the container.</p>
+<p>But, I had trouble accessing the site.</p>
+<p>I knew, <code>Dave Cross</code>, has played with <code>Docker</code> a lot as he wrote <a href="https://dev.to/davorg/docker-and-dancer-4m82"><strong>4 part series</strong></a> post.</p>
+<p>I decided to reach out to him for help.</p>
+<p>He replied instantly but unfortunately, he also had the similar issue.</p>
+<p>In the meantime, I decided to change the base image to <code>alpine</code> as suggested by <code>Dave</code>.</p>
+<br>
+<pre><code>FROM alpine:latest
+
+EXPOSE 1414
+CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;, &quot;-D&quot;]
+
+COPY . /theweeklychallenge
+WORKDIR /theweeklychallenge
+</code></pre><br>
+<p>But changing the base image, made it worst as now I can&rsquo;t even start the container.</p>
+<p>Earlier, starting was good only accessing the container was the issue.</p>
+<p>After few days, I contacted him again for help.</p>
+<p>He instantly found the issue and shared the solution as well.</p>
+<p>This is his words:</p>
+<br>
+<pre><code>It's because Alpine uses libc, not glibc. And your executable is built for glibc.
+</code></pre>
+<br>
+<p>His advice was:</p>
+<br>
+<pre><code>Just add this to your Dockerfile.
+RUN apk add --no-cache libc6-compat
+</code></pre>
+<br>
+<p>So as per his suggestion, my <code>Dockerfile</code> now looks like below:</p>
+<br>
+<pre><code>FROM alpine:latest
+
+RUN apk add --no-cache libc6-compat
+
+EXPOSE 1414
+CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;, &quot;-D&quot;]
+
+COPY . /theweeklychallenge
+WORKDIR /theweeklychallenge
+</code></pre><br>
+<p>This indeed solved the issue of not being able to run the container.</p>
+<p>It was a big relief, thank you <code>Dave Cross</code> for the help.</p>
+<p>However, I am still having trouble accessing the site.</p>
+<p>Few moments later, I got another response from <code>Dave Cross</code>, this time he found the solution to the main issue.</p>
+<p>His advise was:</p>
+<br>
+<pre><code>Adding the &quot;--bind&quot; parameter to the Dockerfile seems to fix the problem.
+</code></pre>
+<br>
+<p>So now my Dockerfile looks like below:</p>
+<br>
+<pre><code>FROM alpine:latest
+
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /theweeklychallenge
+COPY . /theweeklychallenge
+
+EXPOSE 1414
+CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;, &quot;-D&quot;, &quot;--bind&quot;, &quot;0.0.0.0&quot;]
+</code></pre><br>
+<p>Finally I can now access the site: <code>http://localhost:1414</code></p>
+<p>I can&rsquo;t thank <code>Dave</code> enough for his help and support.</p>
+<p>May be next time when I meet him, I will present him a box of chocolate.</p>
+<br>
+<h2 id="setup">Setup</h2>
+<hr>
+<br>
+<p>I added the following <code>Dockerfile</code> to the <a href="https://github.com/manwar/theweeklychallenge/blob/master/Dockerfile"><strong>main repository</strong></a></p>
+<br>
+<pre><code>FROM alpine:latest
+LABEL maintainer=&quot;mohammad.anwar@yahoo.com&quot;
+
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /theweeklychallenge
+COPY . /theweeklychallenge
+
+EXPOSE 1414
+CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;, &quot;-D&quot;, &quot;--bind&quot;, &quot;0.0.0.0&quot;]
+</code></pre><br>
+<p>Also added the configuration file, <a href="https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml"><strong>docker-compose.yml</strong></a>, for <code>docker-compose</code> as below:</p>
+<br>
+<pre><code>version: '3.8'
+services:
+  theweeklychallenge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: manwardock/theweeklychallenge:${IMAGE_TAG:-latest}
+    container_name: theweeklychallenge
+    restart: unless-stopped
+    ports:
+      - &quot;1414:1414&quot;
+</code></pre><br>
+<p>So now, I wanted to build the image and push to <code>Docker Hub</code> so that it&rsquo;s available to general public.</p>
+<p>I had an account <a href="https://hub.docker.com/repositories/manwardock"><strong>manwardock</strong></a> on <code>Docker Hub</code> before.</p>
+<p>So I created a new public repository <a href="https://hub.docker.com/repository/docker/manwardock/theweeklychallenge/general"><strong>theweeklychallenge</strong></a> on <code>Docker Hub</code>.</p>
+<p>Now, it&rsquo;s just a matter of creating image with tag and push to this repository.</p>
+<p>Without any more blockage, I managed to pushed the image successfully.</p>
+<p>As of today, we have <code>v3.13</code> as the latest tag. It represents the current week <code>313</code>.</p>
+<p>The plan is, every <code>Monday</code> when I release new challenge, I would also push the updated image as well.</p>
+<p>From now onwards, if anyone wants to play with the website locally, they can just grab the <a href="https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml"><strong>configuration file</strong></a> and the job done.</p>
+<br>
+<pre><code>$ wget https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml
+$ docker-compose up -d
+</code></pre>
+<br>
+<p>You now have access to your local website: <code>http://localhost:1414</code></p>
+<p>And when done with it, simply do this:</p>
+<br>
+<pre><code>$ docker-compose down
+</code></pre>
+<br>
+<p>This journey has been amazing and great learning process, thanks to <code>Dave Cross</code>.</p>
+<hr>
+<p><code>Keep Hacking !!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
