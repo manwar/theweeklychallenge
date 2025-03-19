@@ -461,16 +461,16 @@ display_performance_analysis($results);
 <span style="color:#75715e"># Helper Functions</span>
 
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perform</span>($operation, $file) {
-    <span style="color:#66d9ef">my</span> $start_time <span style="color:#f92672">=</span> [gettimeofday];
+    <span style="color:#66d9ef">my</span> $start_time   <span style="color:#f92672">=</span> [gettimeofday];
     <span style="color:#66d9ef">my</span> $start_memory <span style="color:#f92672">=</span> memory_usage();
 
     $operation<span style="color:#f92672">-&gt;</span>($file);
 
     <span style="color:#66d9ef">my</span> $end_memory <span style="color:#f92672">=</span> memory_usage();
-    <span style="color:#66d9ef">my</span> $end_time <span style="color:#f92672">=</span> [gettimeofday];
+    <span style="color:#66d9ef">my</span> $end_time   <span style="color:#f92672">=</span> [gettimeofday];
 
     <span style="color:#66d9ef">return</span> {
-        time <span style="color:#f92672">=&gt;</span> tv_interval($start_time, $end_time),
+        time   <span style="color:#f92672">=&gt;</span> tv_interval($start_time, $end_time),
         memory <span style="color:#f92672">=&gt;</span> $end_memory <span style="color:#f92672">-</span> $start_memory,
     };
 }

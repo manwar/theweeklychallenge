@@ -348,16 +348,16 @@ display_performance_analysis($results);
 # Helper Functions
 
 sub perform($operation, $file) {
-    my $start_time = [gettimeofday];
+    my $start_time   = [gettimeofday];
     my $start_memory = memory_usage();
 
     $operation->($file);
 
     my $end_memory = memory_usage();
-    my $end_time = [gettimeofday];
+    my $end_time   = [gettimeofday];
 
     return {
-        time => tv_interval($start_time, $end_time),
+        time   => tv_interval($start_time, $end_time),
         memory => $end_memory - $start_memory,
     };
 }
