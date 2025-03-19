@@ -364,7 +364,6 @@ sub perform($operation, $file) {
 
 sub memory_usage {
     return Linux::Smaps->new($$)->size;
-    #return $smaps->size;
 }
 
 sub line_by_line($file) {
