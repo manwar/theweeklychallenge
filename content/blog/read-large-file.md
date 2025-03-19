@@ -366,7 +366,7 @@ sub memory_usage {
     return Linux::Smaps->new($$)->size;
 }
 
-sub line_by_line($file) {
+sub line_by_line_reading($file) {
     open(my $fh, '<', $file)
         or die "ERROR: Could not open $file: $!";
     while (my $line = <$fh>) {
