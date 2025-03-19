@@ -160,8 +160,9 @@ So here is the plan:
 
     1. Line by Line Reading
     2. Buffered Reading
-    3. Memory Mapping
-    4. Parallel Processing
+    3. Memory Mapping using Sys::Mmap
+    4. Memory Mapping using File::Map (suggested by Tom Hukins)
+    5. Parallel Processing
 
 <br>
 
@@ -206,12 +207,12 @@ sub buffered_reading($file) {
 
 Next is `memory mapping` like below:
 
-For this task, we are going to use `CPAN` module [**Sys::Mmap**](https://metacpan.org/pod/Sys::Mmap).
+For this task, we are going to use `CPAN` module: [**Sys::Mmap**](https://metacpan.org/pod/Sys::Mmap)
 
 <br>
 
 ```perl
-sub memory_mapping($file) {
+sub memory_mapping_mmap($file) {
     open(my $fh, '<', $file) or
         die "ERROR: Could not open $file: $!";
     mmap(my $mapped_file, 0, PROT_READ, MAP_SHARED, $fh);
@@ -221,6 +222,23 @@ sub memory_mapping($file) {
     }
     munmap($mapped_file);
     close($fh);
+}
+```
+
+<br>
+
+**UPDATE**: `Tom Hukins` suggested another memory mapping option using `CPAN` module: [**File::Map**](https://metacpan.org/pod/File::Map)
+
+<br>
+
+```perl
+sub memory_mapping_fmap($file) {
+    map_file my $mapped_file, $file, '<';
+    my @lines = split /\n/, $mapped_file;
+    foreach my $line (@lines) {
+         # simulate processing
+    }
+    unmap $mapped_file;
 }
 ```
 
@@ -288,10 +306,11 @@ Finally we would bind all the operations together as below:
 my $file = $ARGV[0] || 'large-file.txt';
 
 my $operations = [
-    { title => 'Line-by-Line Reading', method => \&line_by_line_reading },
-    { title => 'Buffered Reading',     method => \&buffered_reading     },
-    { title => 'Memory Mapping',       method => \&memory_mapping       },
-    { title => 'Parallel Processing',  method => \&parallel_processing  },
+    { title => 'Line-by-Line Reading',       method => \&line_by_line_reading },
+    { title => 'Buffered Reading',           method => \&buffered_reading     },
+    { title => 'Memory Mapping (Sys::Mmap)', method => \&memory_mapping_mmap  },
+    { title => 'Memory Mapping (File::Map)', method => \&memory_mapping_fmap  },
+    { title => 'Parallel Processing',        method => \&parallel_processing  },
 ];
 
 my $results = [];
@@ -320,15 +339,17 @@ use v5.38;
 use Sys::Mmap;
 use Linux::Smaps;
 use Parallel::ForkManager;
+use File::Map qw/map_file unmap/;
 use Time::HiRes qw(gettimeofday tv_interval);
 
 my $file = $ARGV[0] || 'large-file.txt';
 
 my $operations = [
-    { title => 'Line-by-Line Reading', method => \&line_by_line_reading },
-    { title => 'Buffered Reading',     method => \&buffered_reading     },
-    { title => 'Memory Mapping',       method => \&memory_mapping       },
-    { title => 'Parallel Processing',  method => \&parallel_processing  },
+    { title => 'Line-by-Line Reading',       method => \&line_by_line_reading },
+    { title => 'Buffered Reading',           method => \&buffered_reading     },
+    { title => 'Memory Mapping (Sys::Mmap)', method => \&memory_mapping_mmap  },
+    { title => 'Memory Mapping (File::Map)', method => \&memory_mapping_fmap  },
+    { title => 'Parallel Processing',        method => \&parallel_processing  },
 ];
 
 my $results = [];
@@ -368,9 +389,9 @@ sub memory_usage {
 
 sub display_performance_analysis($results) {
     say "\n## Comparative Analysis";
-    say sprintf "%-20s %-10s %-10s", "Approach", "Time (s)", "Memory (MB)";
+    say sprintf "%-26s %-10s %-10s", "Approach", "Time (s)", "Memory (MB)";
     foreach my $approach (@$results) {
-        say sprintf "%-20s %-10.2f %-10.2f",
+        say sprintf "%-26s %-10.2f %-10.2f",
             $approach->{title},
             $approach->{stats}->{time},
             $approach->{stats}->{memory} / (1024 * 1024);
@@ -398,16 +419,25 @@ sub buffered_reading($file) {
     close($fh);
 }
 
-sub memory_mapping($file) {
+sub memory_mapping_mmap($file) {
     open(my $fh, '<', $file)
         or die "ERROR: Could not open $file: $!";
     mmap(my $mapped_file, 0, PROT_READ, MAP_SHARED, $fh);
     my @lines = split /\n/, $mapped_file;
     foreach my $line (@lines) {
-         # simulate processing
+         # Simulate processing
     }
     munmap($mapped_file);
     close($fh);
+}
+
+sub memory_mapping_fmap($file) {
+    map_file my $mapped_file, $file, '<';
+    my @lines = split /\n/, $mapped_file;
+    foreach my $line (@lines) {
+         # Simulate processing
+    }
+    unmap $mapped_file;
 }
 
 sub parallel_processing($file) {
@@ -462,15 +492,17 @@ Time for some action:
     $ perl read-large-file.pl
     Line-by-Line Reading ... done.
     Buffered Reading ... done.
-    Memory Mapping ... done.
+    Memory Mapping (Sys::Mmap) ... done.
+    Memory Mapping (File::Map) ... done.
     Parallel Processing ... done.
 
     ## Comparative Analysis
-    Approach             Time (s)   Memory (MB)
-    Line-by-Line Reading 1.12       0.00
-    Buffered Reading     0.79       0.00
-    Memory Mapping       1.90       1.91
-    Parallel Processing  109.23     0.00
+    Approach                   Time (s)   Memory (MB)
+    Line-by-Line Reading       1.05       0.00
+    Buffered Reading           0.74       0.00
+    Memory Mapping (Sys::Mmap) 1.65       1.91
+    Memory Mapping (File::Map) 1.04       0.10
+    Parallel Processing        113.64     0.00
 
 <br>
 
