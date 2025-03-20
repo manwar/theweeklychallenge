@@ -208,15 +208,15 @@
 <br>
 <h2 id="docker-secret">Docker Secret</h2>
 <br>
-<p>Before we do anything, let&rsquo;s make sure we have foundation setup properly.</p>
-<p>If you don&rsquo;t have <code>docker</code> and <code>docker-compose</code> installed then please follow the steps below otherwise move to the next section.</p>
+<p>Before we do anything, let&rsquo;s make sure we have the foundation setup properly.</p>
+<p>If you don&rsquo;t have <code>docker</code> and <code>docker-compose</code> installed, please follow the steps below. Otherwise, proceed to the next section.</p>
 <br>
 <pre><code>$ sudo apt update
 
 $ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 </code></pre>
 <br>
-<p>Add your user to the <code>docker</code> group to avoid the need to use sudo on every <code>docker</code> command:</p>
+<p>Add your user to the <code>docker</code> group to avoid the need to use sudo for every <code>docker</code> command:</p>
 <br>
 <pre><code>$ sudo usermod -aG docker $USER
 </code></pre>
@@ -246,13 +246,13 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose version 1.29.2, build unknown
 </code></pre>
 <br>
-<p>I am going to create an alias for <code>docker ps</code> in the <code>~/.bashrc</code> so that the output is well formatted.</p>
+<p>I am going to create an alias for <code>docker ps</code> in the <code>~/.bashrc</code> file so that the output is well-formatted.</p>
 <br>
 <pre><code>alias dps='docker ps --format &quot;Container ID: {{.ID}}\nImage: {{.Image}}\nCommand: {{.Command}}\nCreated: {{.CreatedAt}}\nStatus: {{.Status}}\nPorts: {{.Ports}}\nNames: {{.Names}}\n&quot;'
 </code></pre>
 <br>
-<p>For the demo purpose, I am going to use <code>mongo</code> db latest image.</p>
-<p>In the post, I will explore the following options:</p>
+<p>For the demo, I am going to use the latest <code>MongoDB</code> image.</p>
+<p>In this post, I will explore the following options:</p>
 <br>
 <pre><code>1. Hard wired secrets
 2. Use of environment variables
@@ -262,7 +262,7 @@ docker-compose version 1.29.2, build unknown
 <br>
 <h2 id="hard-wired-secrets">Hard wired secrets</h2>
 <hr>
-<p>Well, in this case, we just save the secrets in the configuration, not a good idea, though.</p>
+<p>Well, in this case, we save the secrets in the configuration, though it&rsquo;s not a good idea.</p>
 <p>Here is the configuration file, <code>docker-compose-open.yml</code>:</p>
 <br>
 <pre><code>version: '3.8'

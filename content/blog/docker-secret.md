@@ -17,9 +17,9 @@ tags: ["Docker"]
 
 <br>
 
-Before we do anything, let's make sure we have foundation setup properly.
+Before we do anything, let's make sure we have the foundation setup properly.
 
-If you don't have `docker` and `docker-compose` installed then please follow the steps below otherwise move to the next section.
+If you don't have `docker` and `docker-compose` installed, please follow the steps below. Otherwise, proceed to the next section.
 
 <br>
 
@@ -29,7 +29,7 @@ If you don't have `docker` and `docker-compose` installed then please follow the
 
 <br>
 
-Add your user to the `docker` group to avoid the need to use sudo on every `docker` command:
+Add your user to the `docker` group to avoid the need to use sudo for every `docker` command:
 
 <br>
 
@@ -74,7 +74,7 @@ Verify the `docker-compose` installation:
 
 <br>
 
-I am going to create an alias for `docker ps` in the `~/.bashrc` so that the output is well formatted.
+I am going to create an alias for `docker ps` in the `~/.bashrc` file so that the output is well-formatted.
 
 <br>
 
@@ -82,9 +82,9 @@ I am going to create an alias for `docker ps` in the `~/.bashrc` so that the out
 
 <br>
 
-For the demo purpose, I am going to use `mongo` db latest image.
+For the demo, I am going to use the latest `MongoDB` image.
 
-In the post, I will explore the following options:
+In this post, I will explore the following options:
 
 <br>
 
@@ -98,7 +98,7 @@ In the post, I will explore the following options:
 ## Hard wired secrets
 ***
 
-Well, in this case, we just save the secrets in the configuration, not a good idea, though.
+Well, in this case, we save the secrets in the configuration, though it's not a good idea.
 
 Here is the configuration file, `docker-compose-open.yml`:
 
