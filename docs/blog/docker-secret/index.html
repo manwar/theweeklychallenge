@@ -212,6 +212,7 @@
 <p>If you don&rsquo;t have <code>docker</code> and <code>docker-compose</code> installed then please follow the steps below otherwise move to the next section.</p>
 <br>
 <pre><code>$ sudo apt update
+
 $ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 </code></pre>
 <br>
@@ -245,6 +246,11 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose version 1.29.2, build unknown
 </code></pre>
 <br>
+<p>I am going to create an alias for <code>docker ps</code> in the <code>~/.bashrc</code> so that the output is well formatted.</p>
+<br>
+<pre><code>alias dps='docker ps --format &quot;Container ID: {{.ID}}\nImage: {{.Image}}\nCommand: {{.Command}}\nCreated: {{.CreatedAt}}\nStatus: {{.Status}}\nPorts: {{.Ports}}\nNames: {{.Names}}\n&quot;'
+</code></pre>
+<br>
 <p>For the demo purpose, I am going to use <code>mongo</code> db latest image.</p>
 <p>In the post, I will explore the following options:</p>
 <br>
@@ -276,12 +282,16 @@ services:
 Creating docker-secret_mongodb_1 ... done
 </code></pre>
 <br>
-<p>Check the container status:</p>
+<p>Check the container status, <code>docker ps</code>:</p>
 <br>
-<pre><code>$ docker ps
-CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                       NAMES
-e753a5985c96   mongo     &quot;docker-entrypoint.s…&quot;   34 seconds ago   Up 33 seconds   0.0.0.0:27017-&gt;27017/tcp,   docker-secret_mongodb_1
-                                                                                   [::]:27017-&gt;27017/tcp
+<pre><code>$ dps
+Container ID: e753a5985c96
+Image: mongo
+Command: &quot;docker-entrypoint.s…&quot;
+Created: 2025-03-20 09:29:16 +0000 GMT
+Status: Up 2 seconds
+Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
+Names: docker-secret_mongodb_1
 </code></pre>
 <br>
 <p>So the container is up and running, so far so good.</p>
@@ -303,6 +313,7 @@ test&gt;
 <br>
 <pre><code>$ docker stop e753a5985c96
 e753a5985c96
+
 $ docker rm e753a5985c96
 e753a5985c96
 </code></pre>
@@ -324,6 +335,7 @@ services:
 <p>You have two choices to create the environment variables, either use <code>EXPORT key=value</code> or just use when creating container:</p>
 <br>
 <pre><code>$ export MONGO_ADMIN_USER=admin
+
 $ export MONGO_ADMIN_PASS=supersecret
 
 $ docker-compose -f docker-compose-env.yml up -d
@@ -337,12 +349,16 @@ docker-compose -f docker-compose-env.yml up -d
 Creating docker-secret_mongodb_1 ... done
 </code></pre>
 <br>
-<p>Check the container status:</p>
+<p>Check the container status, <code>docker ps</code>:</p>
 <br>
-<pre><code>$ docker ps
-CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                       NAMES
-ce431be25019   mongo     &quot;docker-entrypoint.s…&quot;   50 seconds ago   Up 33 seconds   0.0.0.0:27017-&gt;27017/tcp,   docker-secret_mongodb_1
-                                                                                   [::]:27017-&gt;27017/tcp
+<pre><code>$ dps
+Container ID: e753a5985c96
+Image: mongo
+Command: &quot;docker-entrypoint.s…&quot;
+Created: 2025-03-20 09:32:10 +0000 GMT
+Status: Up 33 seconds
+Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
+Names: docker-secret_mongodb_1
 </code></pre>
 <br>
 <p>So all good, let&rsquo;s connect to the <code>mongo</code> db now:</p>
@@ -361,6 +377,7 @@ test&gt;
 <br>
 <pre><code>$ docker stop ce431be25019
 ce431be25019
+
 $ docker rm ce431be25019
 ce431be25019
 </code></pre>
@@ -370,6 +387,7 @@ ce431be25019
 <p>Let&rsquo;s create env file first, <code>docker-compose.env</code> as below:</p>
 <br>
 <pre><code>$ echo &quot;MONGO_ADMIN_USER=admin&quot; &gt; docker-compose.env
+
 $ echo &quot;MONGO_ADMIN_PASS=supersecret&quot; &gt;&gt; docker-compose.env
 </code></pre>
 <br>
@@ -379,12 +397,16 @@ $ echo &quot;MONGO_ADMIN_PASS=supersecret&quot; &gt;&gt; docker-compose.env
 Creating docker-secret_mongodb_1 ... done
 </code></pre>
 <br>
-<p>Check the container status:</p>
+<p>Check the container status, <code>docker ps</code>:</p>
 <br>
-<pre><code>$ docker ps
-CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                       NAMES
-d61324270839   mongo     &quot;docker-entrypoint.s…&quot;   31 seconds ago   Up 33 seconds   0.0.0.0:27017-&gt;27017/tcp,   docker-secret_mongodb_1
-                                                                                   [::]:27017-&gt;27017/tcp
+<pre><code>$ dps
+Container ID: d61324270839
+Image: mongo
+Command: &quot;docker-entrypoint.s…&quot;
+Created: 2025-03-20 09:35:11 +0000 GMT
+Status: Up 31 seconds
+Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
+Names: docker-secret_mongodb_1
 </code></pre>
 <br>
 <p>So it&rsquo;s up and running, good.</p>
@@ -403,6 +425,7 @@ test&gt;
 <br>
 <pre><code>$ docker stop d61324270839
 d61324270839
+
 $ docker rm d61324270839
 d61324270839
 </code></pre>
@@ -431,6 +454,7 @@ Swarm: active
 <p>There are two ways, you can create secrets as shown below:</p>
 <br>
 <pre><code>$ echo &quot;admin&quot; &gt; mongo-user.txt
+
 $ docker secret create mongo_user mongo-user.txt
 x3lswvc8mkwh0x5opoyvkucca
 </code></pre>
@@ -486,11 +510,16 @@ Creating network mongo_stack_mongo_network
 Creating service mongo_stack_mongo
 </code></pre>
 <br>
-<p>Check the container status</p>
+<p>Check the container status, <code>docker ps</code>:</p>
 <br>
-<pre><code>$ docker ps
-CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS       NAMES
-f85e4c9be83a   mongo:latest   &quot;docker-entrypoint.s…&quot;   19 seconds ago   Up 19 seconds   27017/tcp   mongo_stack_mongo.1.8961hbyc0d02ykwscdhzl4pq2
+<pre><code>$ dps
+Container ID: f85e4c9be83a
+Image: mongo
+Command: &quot;docker-entrypoint.s…&quot;
+Created: 2025-03-20 09:37:31 +0000 GMT
+Status: Up 19 seconds
+Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
+Names: docker-secret_mongodb_1
 </code></pre>
 <br>
 <p>We will try to connect to the <code>mongo</code> db now:</p>
@@ -510,6 +539,7 @@ test&gt;
 <pre><code>$ docker service ls
 ID             NAME                MODE         REPLICAS   IMAGE          PORTS
 qg8b7aq1a3q3   mongo_stack_mongo   replicated   1/1        mongo:latest   *:27017-&gt;27017/tcp
+
 
 $ docker service rm qg8b7aq1a3q3
 qg8b7aq1a3q3

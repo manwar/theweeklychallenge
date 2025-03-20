@@ -24,6 +24,7 @@ If you don't have `docker` and `docker-compose` installed then please follow the
 <br>
 
     $ sudo apt update
+
     $ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 <br>
@@ -73,6 +74,14 @@ Verify the `docker-compose` installation:
 
 <br>
 
+I am going to create an alias for `docker ps` in the `~/.bashrc` so that the output is well formatted.
+
+<br>
+
+    alias dps='docker ps --format "Container ID: {{.ID}}\nImage: {{.Image}}\nCommand: {{.Command}}\nCreated: {{.CreatedAt}}\nStatus: {{.Status}}\nPorts: {{.Ports}}\nNames: {{.Names}}\n"'
+
+<br>
+
 For the demo purpose, I am going to use `mongo` db latest image.
 
 In the post, I will explore the following options:
@@ -119,14 +128,18 @@ Let's start the container now:
 
 <br>
 
-Check the container status:
+Check the container status, `docker ps`:
 
 <br>
 
-    $ docker ps
-    CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                       NAMES
-    e753a5985c96   mongo     "docker-entrypoint.s…"   34 seconds ago   Up 33 seconds   0.0.0.0:27017->27017/tcp,   docker-secret_mongodb_1
-                                                                                       [::]:27017->27017/tcp
+    $ dps
+    Container ID: e753a5985c96
+    Image: mongo
+    Command: "docker-entrypoint.s…"
+    Created: 2025-03-20 09:29:16 +0000 GMT
+    Status: Up 2 seconds
+    Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
+    Names: docker-secret_mongodb_1
 
 <br>
 
@@ -157,6 +170,7 @@ Let's do the clean up so that we can move to the next option.
 
     $ docker stop e753a5985c96
     e753a5985c96
+
     $ docker rm e753a5985c96
     e753a5985c96
 
@@ -188,6 +202,7 @@ You have two choices to create the environment variables, either use `EXPORT key
 <br>
 
     $ export MONGO_ADMIN_USER=admin
+
     $ export MONGO_ADMIN_PASS=supersecret
 
     $ docker-compose -f docker-compose-env.yml up -d
@@ -205,14 +220,18 @@ You have two choices to create the environment variables, either use `EXPORT key
 
 <br>
 
-Check the container status:
+Check the container status, `docker ps`:
 
 <br>
 
-    $ docker ps
-    CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                       NAMES
-    ce431be25019   mongo     "docker-entrypoint.s…"   50 seconds ago   Up 33 seconds   0.0.0.0:27017->27017/tcp,   docker-secret_mongodb_1
-                                                                                       [::]:27017->27017/tcp
+    $ dps
+    Container ID: e753a5985c96
+    Image: mongo
+    Command: "docker-entrypoint.s…"
+    Created: 2025-03-20 09:32:10 +0000 GMT
+    Status: Up 33 seconds
+    Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
+    Names: docker-secret_mongodb_1
 
 <br>
 
@@ -238,6 +257,7 @@ We will do the clean up as before:
 
     $ docker stop ce431be25019
     ce431be25019
+
     $ docker rm ce431be25019
     ce431be25019
 
@@ -251,6 +271,7 @@ Let's create env file first, `docker-compose.env` as below:
 <br>
 
     $ echo "MONGO_ADMIN_USER=admin" > docker-compose.env
+
     $ echo "MONGO_ADMIN_PASS=supersecret" >> docker-compose.env
 
 <br>
@@ -264,14 +285,18 @@ Time to start the container with `--env-file` flag:
 
 <br>
 
-Check the container status:
+Check the container status, `docker ps`:
 
 <br>
 
-    $ docker ps
-    CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                       NAMES
-    d61324270839   mongo     "docker-entrypoint.s…"   31 seconds ago   Up 33 seconds   0.0.0.0:27017->27017/tcp,   docker-secret_mongodb_1
-                                                                                       [::]:27017->27017/tcp
+    $ dps
+    Container ID: d61324270839
+    Image: mongo
+    Command: "docker-entrypoint.s…"
+    Created: 2025-03-20 09:35:11 +0000 GMT
+    Status: Up 31 seconds
+    Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
+    Names: docker-secret_mongodb_1
 
 <br>
 
@@ -297,6 +322,7 @@ Just type `exit` at the prompt and come out of it, so that we can do the last op
 
     $ docker stop d61324270839
     d61324270839
+
     $ docker rm d61324270839
     d61324270839
 
@@ -341,6 +367,7 @@ There are two ways, you can create secrets as shown below:
 <br>
 
     $ echo "admin" > mongo-user.txt
+
     $ docker secret create mongo_user mongo-user.txt
     x3lswvc8mkwh0x5opoyvkucca
 
@@ -412,13 +439,18 @@ In order to create container in `swarm` mode so that we can use the secrets, we 
 
 <br>
 
-Check the container status
+Check the container status, `docker ps`:
 
 <br>
 
-    $ docker ps
-    CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS       NAMES
-    f85e4c9be83a   mongo:latest   "docker-entrypoint.s…"   19 seconds ago   Up 19 seconds   27017/tcp   mongo_stack_mongo.1.8961hbyc0d02ykwscdhzl4pq2
+    $ dps
+    Container ID: f85e4c9be83a
+    Image: mongo
+    Command: "docker-entrypoint.s…"
+    Created: 2025-03-20 09:37:31 +0000 GMT
+    Status: Up 19 seconds
+    Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
+    Names: docker-secret_mongodb_1
 
 <br>
 
@@ -445,6 +477,7 @@ We will now remove the service:
     $ docker service ls
     ID             NAME                MODE         REPLICAS   IMAGE          PORTS
     qg8b7aq1a3q3   mongo_stack_mongo   replicated   1/1        mongo:latest   *:27017->27017/tcp
+
 
     $ docker service rm qg8b7aq1a3q3
     qg8b7aq1a3q3
