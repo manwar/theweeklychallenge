@@ -352,7 +352,7 @@ First we need to enable `Swarm` mode.
 
 <br>
 
-Check if the swarm mode is active:
+Check if `Swarm` mode is active:
 
 
     $ docker info | grep -i swarm
@@ -384,7 +384,7 @@ There are two ways to create secrets as shown below:
 
 <br>
 
-We have created the two secrets, let's list them first:
+We have created two secrets, let's list them first:
 
 <br>
 
