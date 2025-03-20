@@ -248,7 +248,7 @@ From now on, if anyone wants to run the website locally, they can simply grab th
 
 <br>
 
-    $ wget https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml
+    $ wget https://raw.githubusercontent.com/manwar/theweeklychallenge/refs/heads/master/docker-compose.yml
     $ docker-compose up -d
 
 <br>
