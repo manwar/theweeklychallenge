@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Docker Secret"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/docker-secret/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about the docker secret."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about the docker secret.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/docker-secret/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Docker Secret</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Docker Secret</h2>
+                    <div class="portfolio-meta">
+                        <span>Thursday, Mar 20, 2025</span>|
+                        <span> Tags:
+                            Docker
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/docker-secret.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h2 id="docker-secret">Docker Secret</h2>
+<br>
+<p>Before we do anything, let&rsquo;s make sure we have foundation setup properly.</p>
+<p>If you don&rsquo;t have <code>docker</code> and <code>docker-compose</code> installed then please follow the steps below otherwise move to the next section.</p>
+<br>
+<pre><code>$ sudo apt update
+$ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</code></pre>
+<br>
+<p>Add your user to the <code>Docker</code> group to avoid the need to use sudo on every <code>Docker</code> command:</p>
+<br>
+<pre><code>$ sudo usermod -aG docker $USER
+</code></pre>
+<br>
+<p>Check the installation:</p>
+<br>
+<pre><code>$ docker --version
+Docker version 28.0.1, build 068a01e
+</code></pre>
+<br>
+<p>Now install the <code>docker-compose</code>:</p>
+<br>
+<pre><code>$ sudo apt install -y docker-compose
+</code></pre>
+<br>
+<p><code>OR</code></p>
+<br>
+<pre><code>$ sudo curl -L &quot;https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)&quot; \
+-o /usr/local/bin/docker-compose
+
+$ sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<br>
+<p>Verify the <code>docker-compose</code> installation:</p>
+<br>
+<pre><code>$ docker-compose --version
+docker-compose version 1.29.2, build unknown
+</code></pre>
+<br>
+<p>For the demo purpose, I am going to use <code>mongo</code> db latest image.</p>
+<p>In the post, I will explore the following options:</p>
+<br>
+<pre><code>1. Hard wired secrets
+2. Use of environment variables
+3. Use of --env-file flag
+4. Secret in swarm mode
+</code></pre>
+<br>
+<h2 id="hard-wired-secrets">Hard wired secrets</h2>
+<hr>
+<p>Well, in this case, we just save the secrets in the configuration, not a good idea, though.</p>
+<p>Here is the configuration file, <code>docker-compose-open.yml</code>:</p>
+<br>
+<pre><code>version: '3.8'
+
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=supersecret
+</code></pre><br>
+<p>Let&rsquo;s start the container now:</p>
+<br>
+<pre><code>$ docker-compose -f docker-compose-open.yml up -d
+Creating docker-secret_mongodb_1 ... done
+</code></pre>
+<br>
+<p>Check the container status:</p>
+<br>
+<pre><code>$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                             NAMES
+e753a5985c96   mongo     &quot;docker-entrypoint.s…&quot;   34 seconds ago   Up 33 seconds   0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp   docker-secret_mongodb_1
+</code></pre>
+<br>
+<p>So the container is up and running, so far so good.</p>
+<p>Let&rsquo;s connect to the <code>mongo</code> db using the same credentials as in the configuration file above:</p>
+<br>
+<pre><code>$ docker exec -it e753a5985c96 mongosh --username admin --password supersecret
+
+Current Mongosh Log ID: 67dbc40b54e05a0e5e6b140a
+Connecting to:          mongodb://&lt;credentials&gt;@127.0.0.1:27017/?directConnection=true&amp;serverSelectionTimeoutMS=2000&amp;appName=mongosh+2.4.2
+Using MongoDB:          8.0.5
+Using Mongosh:          2.4.2
+
+test&gt;
+</code></pre>
+<br>
+<p>So we have gone pass the first hurdle, we are inside the container and connected to the <code>mongo</code> db.</p>
+<p>Just type <code>exit</code> at the prompt and come out of it.</p>
+<p>Let&rsquo;s do the clean up so that we can move to the next option.</p>
+<br>
+<pre><code>$ docker stop e753a5985c96
+e753a5985c96
+$ docker rm e753a5985c96
+e753a5985c96
+</code></pre>
+<br>
+<h2 id="use-of-environment-variables">Use of environment variables</h2>
+<hr>
+<p>For this, we would create another configuration file, <code>docker-compose-env.yml</code>:</p>
+<br>
+<pre><code>version: '3.8'
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ADMIN_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ADMIN_PASS}
+</code></pre><br>
+<p>You have two choices to create the environment variables, either use <code>EXPORT key=value</code> or just use when creating container:</p>
+<br>
+<pre><code>$ export MONGO_ADMIN_USER=admin
+$ export MONGO_ADMIN_PASS=supersecret
+
+$ docker-compose -f docker-compose-env.yml up -d
+Creating docker-secret_mongodb_1 ... done
+</code></pre>
+<br>
+<p><code>OR</code></p>
+<br>
+<pre><code>$ MONGO_ADMIN_USER=admin MONGO_ADMIN_PASS=supersecret \
+docker-compose -f docker-compose-env.yml up -d
+Creating docker-secret_mongodb_1 ... done
+</code></pre>
+<br>
+<p>Check the container status:</p>
+<br>
+<pre><code>$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                             NAMES
+ce431be25019   mongo     &quot;docker-entrypoint.s…&quot;   50 seconds ago   Up 50 seconds   0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp   docker-secret_mongodb_1
+</code></pre>
+<br>
+<p>So all good, let&rsquo;s connect to the <code>mongo</code> db now:</p>
+<br>
+<pre><code>$ docker exec -it ce431be25019 mongosh --username admin --password supersecret
+Current Mongosh Log ID: 67dbc7f7b8d8dedf8d6b140a
+Connecting to:          mongodb://&lt;credentials&gt;@127.0.0.1:27017/?directConnection=true&amp;serverSelectionTimeoutMS=2000&amp;appName=mongosh+2.4.2
+Using MongoDB:          8.0.5
+Using Mongosh:          2.4.2
+
+test&gt;
+</code></pre>
+<br>
+<p>So that&rsquo;s done too, just type <code>exit</code> at the prompt and come out of it.</p>
+<p>We will do the clean up as before:</p>
+<br>
+<pre><code>$ docker stop ce431be25019
+ce431be25019
+$ docker rm ce431be25019
+ce431be25019
+</code></pre>
+<br>
+<h2 id="use-of---env-file-flag">Use of &ndash;env-file flag</h2>
+<hr>
+<p>Let&rsquo;s create env file first, <code>docker-compose.env</code> as below:</p>
+<br>
+<pre><code>$ echo &quot;MONGO_ADMIN_USER=admin&quot; &gt; docker-compose.env
+$ echo &quot;MONGO_ADMIN_PASS=supersecret&quot; &gt;&gt; docker-compose.env
+</code></pre>
+<br>
+<p>Time to start the container with <code>--env-file</code> flag:</p>
+<br>
+<pre><code>$ docker-compose --env-file docker-compose.env -f docker-compose-env.yml up -d
+Creating docker-secret_mongodb_1 ... done
+</code></pre>
+<br>
+<p>Check the container status:</p>
+<br>
+<pre><code>$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                             NAMES
+d61324270839   mongo     &quot;docker-entrypoint.s…&quot;   31 seconds ago   Up 30 seconds   0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp   docker-secret_mongodb_1
+</code></pre>
+<br>
+<p>So it&rsquo;s up and running, good.</p>
+<p>Let&rsquo;s connect to the <code>mongo</code> db again.</p>
+<br>
+<pre><code>$ docker exec -it d61324270839 mongosh --username admin --password supersecret
+Current Mongosh Log ID: 67dbca84408a363eff6b140a
+Connecting to:          mongodb://&lt;credentials&gt;@127.0.0.1:27017/?directConnection=true&amp;serverSelectionTimeoutMS=2000&amp;appName=mongosh+2.4.2
+Using MongoDB:          8.0.5
+Using Mongosh:          2.4.2
+
+test&gt;
+</code></pre>
+<br>
+<p>Just type <code>exit</code> at the prompt and come out of it, so that we can do the last option.</p>
+<br>
+<pre><code>$ docker stop d61324270839
+d61324270839
+$ docker rm d61324270839
+d61324270839
+</code></pre>
+<br>
+<h2 id="secret-in-swarm-mode">Secret in swarm mode</h2>
+<hr>
+<p>I find this a bit tricky as you will see now.</p>
+<p>We have to enable the <code>swarm</code> mode first.</p>
+<br>
+<pre><code>$ docker swarm init
+</code></pre>
+<br>
+<p><code>OR</code></p>
+<br>
+<pre><code>$ docker swarm init --advertise-addr 172.19.28.199
+Swarm initialized: current node (qz8w8ns05xvtmpsewhhsp9qiq) is now a manager.
+</code></pre>
+<br>
+<p>Check if the swarm mode is active:</p>
+<pre><code>$ docker info | grep -i swarm
+Swarm: active
+</code></pre>
+<br>
+<p>Good, the <code>swarm</code> mode is now active.</p>
+<p>We would now create two secrets one for <code>user</code> and another for <code>password</code>.</p>
+<p>There are two ways, you can create secrets as shown below:</p>
+<br>
+<pre><code>$ echo &quot;admin&quot; &gt; mongo-user.txt
+$ docker secret create mongo_user mongo-user.txt
+x3lswvc8mkwh0x5opoyvkucca
+</code></pre>
+<br>
+<p><code>and</code></p>
+<br>
+<pre><code>$ echo &quot;supersecret&quot; | docker secret create mongo_pass -
+5efjagekw2driudrs5z7j6ezc
+</code></pre>
+<br>
+<p>We have created the two secrets, let&rsquo;s list them first:</p>
+<br>
+<pre><code>$ docker secret ls
+ID                          NAME         DRIVER    CREATED              UPDATED
+5efjagekw2driudrs5z7j6ezc   mongo_pass             42 seconds ago       42 seconds ago
+x3lswvc8mkwh0x5opoyvkucca   mongo_user             About a minute ago   About a minute ago
+</code></pre>
+<br>
+<p>Time to create the configuration, <code>docker-compose-secret.yml</code> as below:</p>
+<br>
+<pre><code>version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    secrets:
+      - mongo_user
+      - mongo_pass
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/mongo_user
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_pass
+    networks:
+      - mongo_network
+
+secrets:
+  mongo_user:
+    external: true
+  mongo_pass:
+    external: true
+
+networks:
+  mongo_network:
+    driver: overlay
+    attachable: true
+</code></pre><br>
+<p>In order to create container in <code>swarm</code> mode so that we can use the secrets, we have to create the stack as below:</p>
+<br>
+<pre><code>$ docker stack deploy -c docker-compose-secret.yml mongo_stack
+In a future release, --detach=false will become the default.
+Creating network mongo_stack_mongo_network
+Creating service mongo_stack_mongo
+</code></pre>
+<br>
+<p>Check the container status</p>
+<br>
+<pre><code>$ docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS       NAMES
+f85e4c9be83a   mongo:latest   &quot;docker-entrypoint.s…&quot;   19 seconds ago   Up 19 seconds   27017/tcp   mongo_stack_mongo.1.8961hbyc0d02ykwscdhzl4pq2
+</code></pre>
+<br>
+<p>We will try to connect to the <code>mongo</code> db now:</p>
+<br>
+<pre><code>$ docker exec -it f85e4c9be83a mongosh --username admin --password supersecret
+Current Mongosh Log ID: 67dbcef14a1ae204cf6b140a
+Connecting to:          mongodb://&lt;credentials&gt;@127.0.0.1:27017/?directConnection=true&amp;serverSelectionTimeoutMS=2000&amp;appName=mongosh+2.4.2
+Using MongoDB:          8.0.5
+Using Mongosh:          2.4.2
+
+test&gt;
+</code></pre>
+<br>
+<p>Just type <code>exit</code> at the prompt and come out of it.</p>
+<p>We will now remove the service:</p>
+<br>
+<pre><code>$ docker service ls
+ID             NAME                MODE         REPLICAS   IMAGE          PORTS
+qg8b7aq1a3q3   mongo_stack_mongo   replicated   1/1        mongo:latest   *:27017-&gt;27017/tcp
+
+$ docker service rm qg8b7aq1a3q3
+qg8b7aq1a3q3
+</code></pre>
+<br>
+<p>Last but not least, leave the <code>swarm</code> mode:</p>
+<br>
+<pre><code>$ docker swarm leave
+</code></pre>
+<hr>
+<br>
+<p><code>Keep Hacking !!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
