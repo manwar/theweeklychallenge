@@ -294,8 +294,8 @@ Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
 Names: docker-secret_mongodb_1
 </code></pre>
 <br>
-<p>So the container is up and running, so far so good.</p>
-<p>Let&rsquo;s connect to the <code>mongo</code> db using the same credentials as in the configuration file above:</p>
+<p>The container is up and running, so far so good.</p>
+<p>Let&rsquo;s connect to the <code>MongoDB</code> using the same credentials as in the configuration file above:</p>
 <br>
 <pre><code>$ docker exec -it e753a5985c96 mongosh --username admin --password supersecret
 
@@ -307,9 +307,9 @@ Using Mongosh:          2.4.2
 test&gt;
 </code></pre>
 <br>
-<p>So we have gone pass the first hurdle, we are inside the container and connected to the <code>mongo</code> db.</p>
-<p>Just type <code>exit</code> at the prompt and come out of it.</p>
-<p>Let&rsquo;s do the clean up, <code>stop and remove container</code>, so that we can move to the next option.</p>
+<p>We&rsquo;ve passed the first hurdle, we&rsquo;re inside the container and connected to <code>MongoDB</code>.</p>
+<p>To exit, simply type <code>exit</code> at the prompt.</p>
+<p>Let&rsquo;s clean up by <code>stopping and removing the container</code>, so we can move to the next option.</p>
 <br>
 <pre><code>$ docker stop e753a5985c96
 e753a5985c96
@@ -332,7 +332,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_ADMIN_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ADMIN_PASS}
 </code></pre><br>
-<p>You have two choices to create the environment variables, either use <code>EXPORT key=value</code> or just use when creating container:</p>
+<p>You have two choices for creating environment variables: either use <code>EXPORT key=value</code> or define them when creating container:</p>
 <br>
 <pre><code>$ export MONGO_ADMIN_USER=admin
 
@@ -372,8 +372,8 @@ Using Mongosh:          2.4.2
 test&gt;
 </code></pre>
 <br>
-<p>So that&rsquo;s done too, just type <code>exit</code> at the prompt and come out of it.</p>
-<p>We will do the clean up i.e. <code>stop and remove container</code>, as before:</p>
+<p>Once that&rsquo;s done, type <code>exit</code> at the prompt to exit.</p>
+<p>We&rsquo;ll clean up as before i.e. <code>stop and remove the container</code>.</p>
 <br>
 <pre><code>$ docker stop ce431be25019
 ce431be25019
@@ -409,8 +409,8 @@ Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
 Names: docker-secret_mongodb_1
 </code></pre>
 <br>
-<p>So it&rsquo;s up and running, good.</p>
-<p>Let&rsquo;s connect to the <code>mongo</code> db again.</p>
+<p>Now it&rsquo;s up and running. Good.</p>
+<p>Let&rsquo;s connect to <code>MongoDB</code> again.</p>
 <br>
 <pre><code>$ docker exec -it d61324270839 mongosh --username admin --password supersecret
 Current Mongosh Log ID: 67dbca84408a363eff6b140a
@@ -421,8 +421,8 @@ Using Mongosh:          2.4.2
 test&gt;
 </code></pre>
 <br>
-<p>Just type <code>exit</code> at the prompt and come out of it, so that we can do the last option.</p>
-<p>Finally, <code>stop and remove container</code>:</p>
+<p>Type <code>exit</code> at the prompt to exit so that we can proceed to the final option.</p>
+<p>Finally, <code>stop and remove the container</code>:</p>
 <br>
 <pre><code>$ docker stop d61324270839
 d61324270839
@@ -433,8 +433,8 @@ d61324270839
 <br>
 <h2 id="secret-in-swarm-mode">Secret in swarm mode</h2>
 <hr>
-<p>I find this a bit tricky as you will see now.</p>
-<p>We have to enable the <code>swarm</code> mode first.</p>
+<p>This next part is a bit tricky as you&rsquo;ll see.</p>
+<p>First we need to enable <code>Swarm</code> mode.</p>
 <br>
 <pre><code>$ docker swarm init
 </code></pre>
@@ -450,9 +450,9 @@ Swarm initialized: current node (qz8w8ns05xvtmpsewhhsp9qiq) is now a manager.
 Swarm: active
 </code></pre>
 <br>
-<p>Good, the <code>swarm</code> mode is now active.</p>
-<p>We would now create two secrets one for <code>user</code> and another for <code>password</code>.</p>
-<p>There are two ways, you can create secrets as shown below:</p>
+<p>Good, <code>Swarm</code> mode is now active.</p>
+<p>Next, we&rsquo;ll create two secrets one for the <code>user</code> and another for the <code>password</code>.</p>
+<p>There are two ways to create secrets as shown below:</p>
 <br>
 <pre><code>$ echo &quot;admin&quot; &gt; mongo-user.txt
 
@@ -474,7 +474,7 @@ ID                          NAME         DRIVER    CREATED              UPDATED
 x3lswvc8mkwh0x5opoyvkucca   mongo_user             About a minute ago   About a minute ago
 </code></pre>
 <br>
-<p>Time to create the configuration, <code>docker-compose-secret.yml</code> as below:</p>
+<p>It&rsquo;s time to create the configuration, <code>docker-compose-secret.yml</code> as below:</p>
 <br>
 <pre><code>version: '3.8'
 
@@ -503,7 +503,7 @@ networks:
     driver: overlay
     attachable: true
 </code></pre><br>
-<p>In order to create container in <code>swarm</code> mode so that we can use the secrets, we have to create the stack as below:</p>
+<p>To create a container in <code>Swarm</code> mode and use the secrets, we need to create the stack as follows:</p>
 <br>
 <pre><code>$ docker stack deploy -c docker-compose-secret.yml mongo_stack
 In a future release, --detach=false will become the default.
@@ -523,7 +523,7 @@ Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
 Names: docker-secret_mongodb_1
 </code></pre>
 <br>
-<p>We will try to connect to the <code>mongo</code> db now:</p>
+<p>Let;s try to connect to <code>MongoDB</code>:</p>
 <br>
 <pre><code>$ docker exec -it f85e4c9be83a mongosh --username admin --password supersecret
 Current Mongosh Log ID: 67dbcef14a1ae204cf6b140a
@@ -534,8 +534,8 @@ Using Mongosh:          2.4.2
 test&gt;
 </code></pre>
 <br>
-<p>Just type <code>exit</code> at the prompt and come out of it.</p>
-<p>We will now remove the service:</p>
+<p>Type <code>exit</code> at the prompt and to exit.</p>
+<p>Finally, we&rsquo;ll now remove the service.</p>
 <br>
 <pre><code>$ docker service ls
 ID             NAME                MODE         REPLICAS   IMAGE          PORTS
@@ -546,7 +546,7 @@ $ docker service rm qg8b7aq1a3q3
 qg8b7aq1a3q3
 </code></pre>
 <br>
-<p>Last but not least, leave the <code>swarm</code> mode:</p>
+<p>Last but not least, leave <code>Swarm</code> mode:</p>
 <br>
 <pre><code>$ docker swarm leave
 </code></pre>

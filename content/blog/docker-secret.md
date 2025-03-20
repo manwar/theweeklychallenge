@@ -143,9 +143,9 @@ Check the container status, `docker ps`:
 
 <br>
 
-So the container is up and running, so far so good.
+The container is up and running, so far so good.
 
-Let's connect to the `mongo` db using the same credentials as in the configuration file above:
+Let's connect to the `MongoDB` using the same credentials as in the configuration file above:
 
 <br>
 
@@ -160,11 +160,11 @@ Let's connect to the `mongo` db using the same credentials as in the configurati
 
 <br>
 
-So we have gone pass the first hurdle, we are inside the container and connected to the `mongo` db.
+We've passed the first hurdle, we're inside the container and connected to `MongoDB`.
 
-Just type `exit` at the prompt and come out of it.
+To exit, simply type `exit` at the prompt.
 
-Let's do the clean up, `stop and remove container`, so that we can move to the next option.
+Let's clean up by `stopping and removing the container`, so we can move to the next option.
 
 <br>
 
@@ -197,7 +197,7 @@ services:
 
 <br>
 
-You have two choices to create the environment variables, either use `EXPORT key=value` or just use when creating container:
+You have two choices for creating environment variables: either use `EXPORT key=value` or define them when creating container:
 
 <br>
 
@@ -249,9 +249,9 @@ So all good, let's connect to the `mongo` db now:
 
 <br>
 
-So that's done too, just type `exit` at the prompt and come out of it.
+Once that's done, type `exit` at the prompt to exit.
 
-We will do the clean up i.e. `stop and remove container`, as before:
+We'll clean up as before i.e. `stop and remove the container`.
 
 <br>
 
@@ -300,9 +300,9 @@ Check the container status, `docker ps`:
 
 <br>
 
-So it's up and running, good.
+Now it's up and running. Good.
 
-Let's connect to the `mongo` db again.
+Let's connect to `MongoDB` again.
 
 <br>
 
@@ -316,9 +316,9 @@ Let's connect to the `mongo` db again.
 
 <br>
 
-Just type `exit` at the prompt and come out of it, so that we can do the last option.
+Type `exit` at the prompt to exit so that we can proceed to the final option.
 
-Finally, `stop and remove container`:
+Finally, `stop and remove the container`:
 
 <br>
 
@@ -333,9 +333,9 @@ Finally, `stop and remove container`:
 ## Secret in swarm mode
 ***
 
-I find this a bit tricky as you will see now.
+This next part is a bit tricky as you'll see.
 
-We have to enable the `swarm` mode first.
+First we need to enable `Swarm` mode.
 
 <br>
 
@@ -360,11 +360,11 @@ Check if the swarm mode is active:
 
 <br>
 
-Good, the `swarm` mode is now active.
+Good, `Swarm` mode is now active.
 
-We would now create two secrets one for `user` and another for `password`.
+Next, we'll create two secrets one for the `user` and another for the `password`.
 
-There are two ways, you can create secrets as shown below:
+There are two ways to create secrets as shown below:
 
 <br>
 
@@ -395,7 +395,7 @@ We have created the two secrets, let's list them first:
 
 <br>
 
-Time to create the configuration, `docker-compose-secret.yml` as below:
+It's time to create the configuration, `docker-compose-secret.yml` as below:
 
 <br>
 
@@ -430,7 +430,7 @@ networks:
 
 <br>
 
-In order to create container in `swarm` mode so that we can use the secrets, we have to create the stack as below:
+To create a container in `Swarm` mode and use the secrets, we need to create the stack as follows:
 
 <br>
 
@@ -456,7 +456,7 @@ Check the container status, `docker ps`:
 
 <br>
 
-We will try to connect to the `mongo` db now:
+Let;s try to connect to `MongoDB`:
 
 <br>
 
@@ -470,9 +470,9 @@ We will try to connect to the `mongo` db now:
 
 <br>
 
-Just type `exit` at the prompt and come out of it.
+Type `exit` at the prompt and to exit.
 
-We will now remove the service:
+Finally, we'll now remove the service.
 
 <br>
 
@@ -486,7 +486,7 @@ We will now remove the service:
 
 <br>
 
-Last but not least, leave the `swarm` mode:
+Last but not least, leave `Swarm` mode:
 
 <br>
 
