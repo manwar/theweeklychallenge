@@ -16,7 +16,7 @@ tags: ["Docker"]
 ## Docker Compose
 ***
 
-For this post, we will need `docker` and `docker compose`.
+For this post, we will need `docker`.
 
 <br>
 
@@ -30,7 +30,6 @@ Let’s quickly set up the environment and verify the installation.
     $ sudo apt update
     $ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     $ sudo usermod -aG docker $USER
-    $ sudo apt install -y docker-compose
 
 <br>
 
@@ -40,9 +39,6 @@ Verify the installation:
 
     $ docker --version
     Docker version 28.0.1, build 068a01e
-
-    $ docker-compose --version
-    docker-compose version 1.29.2, build unknown
 
 <br>
 
