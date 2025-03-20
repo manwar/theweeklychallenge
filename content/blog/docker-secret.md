@@ -136,7 +136,7 @@ Check the container status, `docker ps`:
     Container ID: e753a5985c96
     Image: mongo
     Command: "docker-entrypoint.s…"
-    Created: 2025-03-20 09:29:16 +0000 GMT
+    Created: 2025-03-20 04:29:16 +0000 GMT
     Status: Up 2 seconds
     Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
     Names: docker-secret_mongodb_1
@@ -228,7 +228,7 @@ Check the container status, `docker ps`:
     Container ID: e753a5985c96
     Image: mongo
     Command: "docker-entrypoint.s…"
-    Created: 2025-03-20 09:32:10 +0000 GMT
+    Created: 2025-03-20 04:32:10 +0000 GMT
     Status: Up 33 seconds
     Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
     Names: docker-secret_mongodb_1
@@ -293,7 +293,7 @@ Check the container status, `docker ps`:
     Container ID: d61324270839
     Image: mongo
     Command: "docker-entrypoint.s…"
-    Created: 2025-03-20 09:35:11 +0000 GMT
+    Created: 2025-03-20 04:35:11 +0000 GMT
     Status: Up 31 seconds
     Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
     Names: docker-secret_mongodb_1
@@ -395,7 +395,7 @@ We have created two secrets, let's list them first:
 
 <br>
 
-It's time to create the configuration, `docker-compose-secret.yml` as below:
+It's time to create the configuration file, `docker-compose-secret.yml` as below:
 
 <br>
 
@@ -449,7 +449,7 @@ Check the container status, `docker ps`:
     Container ID: f85e4c9be83a
     Image: mongo
     Command: "docker-entrypoint.s…"
-    Created: 2025-03-20 09:37:31 +0000 GMT
+    Created: 2025-03-20 04:37:31 +0000 GMT
     Status: Up 19 seconds
     Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
     Names: docker-secret_mongodb_1
