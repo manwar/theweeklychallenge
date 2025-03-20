@@ -28,7 +28,7 @@ If you don't have `docker` and `docker-compose` installed then please follow the
 
 <br>
 
-Add your user to the `Docker` group to avoid the need to use sudo on every `Docker` command:
+Add your user to the `docker` group to avoid the need to use sudo on every `docker` command:
 
 <br>
 
@@ -124,8 +124,9 @@ Check the container status:
 <br>
 
     $ docker ps
-    CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                             NAMES
-    e753a5985c96   mongo     "docker-entrypoint.s…"   34 seconds ago   Up 33 seconds   0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   docker-secret_mongodb_1
+    CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                       NAMES
+    e753a5985c96   mongo     "docker-entrypoint.s…"   34 seconds ago   Up 33 seconds   0.0.0.0:27017->27017/tcp,   docker-secret_mongodb_1
+                                                                                       [::]:27017->27017/tcp
 
 <br>
 
@@ -209,8 +210,9 @@ Check the container status:
 <br>
 
     $ docker ps
-    CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                             NAMES
-    ce431be25019   mongo     "docker-entrypoint.s…"   50 seconds ago   Up 50 seconds   0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   docker-secret_mongodb_1
+    CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                       NAMES
+    ce431be25019   mongo     "docker-entrypoint.s…"   50 seconds ago   Up 33 seconds   0.0.0.0:27017->27017/tcp,   docker-secret_mongodb_1
+                                                                                       [::]:27017->27017/tcp
 
 <br>
 
@@ -267,8 +269,9 @@ Check the container status:
 <br>
 
     $ docker ps
-    CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                             NAMES
-    d61324270839   mongo     "docker-entrypoint.s…"   31 seconds ago   Up 30 seconds   0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   docker-secret_mongodb_1
+    CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                       NAMES
+    d61324270839   mongo     "docker-entrypoint.s…"   31 seconds ago   Up 33 seconds   0.0.0.0:27017->27017/tcp,   docker-secret_mongodb_1
+                                                                                       [::]:27017->27017/tcp
 
 <br>
 
