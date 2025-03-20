@@ -235,7 +235,7 @@ Check the container status, `docker ps`:
 
 <br>
 
-So all good, let's connect to the `mongo` db now:
+So all good, let's connect to `MongoDB`:
 
 <br>
 
