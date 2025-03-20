@@ -16,7 +16,7 @@ tags: ["Docker"]
 ## Docker Compose
 ***
 
-For this post, we will need `docker` and `docker-compose`.
+For this post, we will need `docker` and `docker compose`.
 
 <br>
 
@@ -167,7 +167,7 @@ Imagine if you had to create multiple containers manually, it would quickly beco
 ## Enter Docker Compose
 ***
 
-To make your life easy and comfortable, `docker-compose`, comes into the picture.
+To make your life easy and comfortable, `docker compose`, comes into the picture.
 
 <br>
 
@@ -199,7 +199,7 @@ Let's stop and remove both containers.
 
 <br>
 
-Re-creating `MongoDB` and `Mongo Express` containers using `docker-compose`.
+Re-creating `MongoDB` and `Mongo Express` containers using `docker compose`.
 
 First, we will create the configuration file: `docker-compose.yml`
 
@@ -237,10 +237,10 @@ To start the containers, simply run one command:
 
 <br>
 
-    $ docker-compose up -d
-    Creating network "docker-compose_default" with the default driver
-    Creating docker-compose_mongo-express_1 ... done
-    Creating docker-compose_mongodb_1       ... done
+    $ docker compose up -d
+    ✔ Network docker-compose_default            Created             0.1s
+    ✔ Container docker-compose-mongodb-1        Started             0.3s
+    ✔ Container docker-compose-mongo-express-1  Started             0.3s
 
 <br>
 
@@ -277,7 +277,10 @@ To stop both the containers, simply run one command:
 
 <br>
 
-    $ docker-compose down
+    $ docker compose down
+    ✔ Container docker-compose-mongodb-1        Removed             0.7s
+    ✔ Container docker-compose-mongo-express-1  Removed             0.9s
+    ✔ Network docker-compose_default            Removed             0.6s
 
 <br>
 
@@ -286,7 +289,7 @@ To stop both the containers, simply run one command:
 
 Isn't it a lot simple and easy to manage?
 
-This is just the `tip of the iceberg` when it comes to `docker-compose`.
+This is just the `tip of the iceberg` when it comes to `docker compose`.
 
 <br>
 
