@@ -164,7 +164,7 @@ So we have gone pass the first hurdle, we are inside the container and connected
 
 Just type `exit` at the prompt and come out of it.
 
-Let's do the clean up so that we can move to the next option.
+Let's do the clean up, `stop and remove container`, so that we can move to the next option.
 
 <br>
 
@@ -251,7 +251,7 @@ So all good, let's connect to the `mongo` db now:
 
 So that's done too, just type `exit` at the prompt and come out of it.
 
-We will do the clean up as before:
+We will do the clean up i.e. `stop and remove container`, as before:
 
 <br>
 
@@ -317,6 +317,8 @@ Let's connect to the `mongo` db again.
 <br>
 
 Just type `exit` at the prompt and come out of it, so that we can do the last option.
+
+Finally, `stop and remove container`:
 
 <br>
 
