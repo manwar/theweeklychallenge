@@ -50,7 +50,7 @@ All I knew was `docker-compose`, standalone tool for managing multi-container `D
 
 Just for fun, I am using the `docker compose` command in this post.
 
-Having said this will also work with `docker-compose` without any change.
+Having said, this will also work with `docker-compose` without any change.
 
 ## Difference between 'docker-compose' and 'docker compose'
 ***
