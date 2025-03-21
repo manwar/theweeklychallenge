@@ -237,7 +237,7 @@ It is a very useful for managing data, `independently` of a container's lifecycl
 
 `Docker Volume` works seamlessly across different environments such as `development`, `testing`, `production` and across platforms like `Linux`, `Windows` etc.
 
-It can be used to `isolate sensitive data` e.g. `configuration files`, `certificates` from the container's filesystem.
+It can also be used to `isolate sensitive data` e.g. `configuration files`, `certificates` from the container's filesystem.
 
 This adds an extra layer of security by limiting access to the data.
 
