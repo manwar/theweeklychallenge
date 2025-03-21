@@ -85,10 +85,11 @@ Let's build the container and bind mount the folder in the host environment: `ht
 
 <br>
 
-    $ docker run -d \
-      --name nginx_bind_mount \
-      -v ./html:/usr/share/nginx/html \
+    $ docker run \
+      -d \
       -p 8080:80 \
+      -v ./html:/usr/share/nginx/html \
+      --name nginx_bind_mount \
       nginx
     1e90a6a226c8b4f65b597bd85480a1d1f64bff1a02fe7407462fd3c351c2bd57
 
@@ -330,10 +331,11 @@ Next, we will re-use the same docker volume, `nginx_volume` in a new container, 
 
 <br>
 
-    $ docker run -d \
-    --name new_nginx_docker_volume \
+    $ docker run \
+    -d \
     -p 8080:80 \
     -v nginx_volume:/usr/share/nginx/html \
+    --name new_nginx_docker_volume \
     nginx
     119d6dd7704463891b54cc1005daa466c903c1a681740d0a9c73d3ce87a1a4db
 
