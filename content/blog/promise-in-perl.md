@@ -13,6 +13,17 @@ tags: ["Perl"]
 
 <br>
 
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <a href="/blog/future-in-perl" title="Future in Perl">
+        <img src="/images/blog/future-in-perl-mini.png" width="250">
+    </a>
+    <a href="/blog/mce-how-to" title="MCE - How to?">
+        <img src="/images/blog/mce-how-to-mini.png" width="250">
+    </a>
+</div>
+
+<br>
+
 ## Promise in Perl
 ***
 

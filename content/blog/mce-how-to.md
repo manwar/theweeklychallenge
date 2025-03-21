@@ -13,6 +13,20 @@ tags: ["Perl"]
 
 <br>
 
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <a href="/blog/promise-in-perl" title="Promise in Perl">
+        <img src="/images/blog/promise-in-perl-mini.png" width="250">
+    </a>
+    <a href="/blog/future-in-perl" title="Future in Perl">
+        <img src="/images/blog/future-in-perl-mini.png" width="250">
+    </a>
+</div>
+
+<br>
+
+## MCE - How to?
+***
+
 [**MCE**](https://metacpan.org/pod/MCE), Many-Core Engine provides parallel processing capabilities in `Perl`.
 
 It is now one of my favourite `CPAN` module when it comes to parallel processing.
