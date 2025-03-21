@@ -13,6 +13,20 @@ tags: ["Perl"]
 
 <br>
 
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <a href="/blog/slurp-in-perl" title="Slurp in Perl">
+        <img src="/images/blog/slurp-mini.png" width="250">
+    </a>
+    <a href="/blog/scientist-in-perl" title="Scientist in Perl">
+        <img src="/images/blog/scientist-in-perl-mini.png" width="250">
+    </a>
+    <a href="/blog/read-large-file" title="Read Large File">
+        <img src="/images/blog/read-large-file-mini.png" width="250">
+    </a>
+</div>
+
+<br>
+
 ## Text Extraction in Perl
 ***
 

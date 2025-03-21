@@ -13,6 +13,23 @@ tags: ["Perl"]
 
 <br>
 
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <a href="/blog/read-large-file" title="Read Large File">
+        <img src="/images/blog/read-large-file-mini.png" width="250">
+    </a>
+    <a href="/blog/scientist-in-perl" title="Scientist in Perl">
+        <img src="/images/blog/scientist-in-perl-mini.png" width="250">
+    </a>
+    <a href="/blog/extraction-in-perl" title="Text Extraction in Perl">
+        <img src="/images/blog/extraction-in-perl-mini.png" width="250">
+    </a>
+</div>
+
+<br>
+
+## Slurp in Perl
+***
+
 We all know, in `Perl v5.36`, a new command line flag `-g` was introduced. For more information you can checkout [**PPC-0011**](https://perl.github.io/PPCs/ppc0011-slurp-argument).
 
 The new flag sets `$/ (input record separator)` to `undef` and therefore enables slurp mode.
