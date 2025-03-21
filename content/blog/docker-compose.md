@@ -42,6 +42,43 @@ Verify the installation:
 
 <br>
 
+`Edward J. Sabol`, on `Facebook` reminded me that if I am using recent version of `docker` then I can use the `compose` sub-command of the `docker` also in my examples.
+
+Honestly speaking this was news to me, I had no clue if it was existed.
+
+All I knew was `docker-compose`, standalone tool for managing multi-container `Docker` applications.
+
+Just for fun, I am using the `docker compose` commmand in this post.
+
+Having said this will also work with `docker-compose` without any change.
+
+## Difference between 'docker-compose' and 'docker compose'
+***
+
+### docker-compose
+
+<br>
+
+    1. It is commonly referred as 'Compose V1'.
+    2. It is Python-based tool.
+    3. It needs separate installation e.g. sudo apt install docker-compose.
+    4. It is slower comparative to 'docker compose'.
+
+<br>
+
+### docker compose
+
+<br>
+
+    1. It is referred as 'Compose V2'.
+    2. It is Go-based tool.
+    3. It is integrated with Docker CLI since Docker v20.10.0.
+    4. It is much faster than 'docker-compose'.
+
+<br>
+
+There is a [**stackoverflow post**](https://stackoverflow.com/questions/66514436/difference-between-docker-compose-and-docker-compose) that goes into the details, if you are interested.
+
 I have created an alias `dps` for the command `docker ps`, as shown below:
 
 <br>
