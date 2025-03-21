@@ -48,7 +48,7 @@ Honestly speaking this was news to me, I had no clue if it was existed.
 
 All I knew was `docker-compose`, standalone tool for managing multi-container `Docker` applications.
 
-Just for fun, I am using the `docker compose` commmand in this post.
+Just for fun, I am using the `docker compose` command in this post.
 
 Having said this will also work with `docker-compose` without any change.
 
