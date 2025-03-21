@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Docker Volume"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/docker-volume/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about the docker volume."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about the docker volume.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/docker-volume/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Docker Volume</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Docker Volume</h2>
+                    <div class="portfolio-meta">
+                        <span>Friday, Mar 21, 2025</span>|
+                        <span> Tags:
+                            Docker
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/docker-volume.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h2 id="docker-volume">Docker Volume</h2>
+<hr>
+<p>For this post, we just need <code>docker</code>.</p>
+<br>
+<h3 id="setting-up-the-environment">Setting Up the Environment</h3>
+<hr>
+<p>Let’s quickly set up the environment and verify the installation.</p>
+<br>
+<pre><code>$ sudo apt update
+$ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+$ sudo usermod -aG docker $USER
+</code></pre>
+<br>
+<p>Verify the installation:</p>
+<br>
+<pre><code>$ docker --version
+Docker version 28.0.1, build 068a01e
+</code></pre>
+<br>
+<p>I have created a very handy alias <code>dps</code> for the command <code>docker ps</code>, as shown below:</p>
+<br>
+<pre><code>alias dps='docker ps --format &quot;Container ID: {{.ID}}\nImage: {{.Image}}\nCommand: {{.Command}}\nCreated: {{.CreatedAt}}\nStatus: {{.Status}}\nPorts: {{.Ports}}\nNames: {{.Names}}\n&quot;'
+</code></pre>
+<br>
+<p>For this demo, I am going to use the <code>ngnix</code> image.</p>
+<br>
+<h2 id="1-bind-mount">1. Bind Mount</h2>
+<hr>
+<h3 id="what-is-bind-mount">What is bind mount?</h3>
+<br>
+<pre><code>Bind mount directly map a directory or file from the host machine into the container.
+The host directory is referenced by its absolute path and the container has direct
+access to it.
+</code></pre>
+<br>
+<p>Nothing complicated according to the definition.</p>
+<p>Let&rsquo;s see in action.</p>
+<p>We will prepare the ground first:</p>
+<br>
+<pre><code>$ mkdir -p html
+$ cat html/index.html
+&lt;h1&gt;Hello from Docker Bind Mount!!&lt;/h1&gt;
+</code></pre>
+<br>
+<p>Let&rsquo;s build the container and bind mount the folder in the host environment: <code>html/</code></p>
+<br>
+<pre><code>$ docker run -d \
+  --name nginx_bind_mount \
+  -v ./html:/usr/share/nginx/html \
+  -p 8080:80 \
+  nginx
+1e90a6a226c8b4f65b597bd85480a1d1f64bff1a02fe7407462fd3c351c2bd57
+</code></pre>
+<br>
+<p>Check the container status first:</p>
+<br>
+<pre><code>$ dps
+Container ID: 1e90a6a226c8
+Image: nginx
+Command: &quot;/docker-entrypoint.…&quot;
+Created: 2025-03-21 06:00:34 +0000 GMT
+Status: Up 8 seconds
+Ports: 0.0.0.0:8080-&gt;80/tcp, [::]:8080-&gt;80/tcp
+Names: nginx_bind_mount
+</code></pre>
+<br>
+<p>We are ready to test <code>bind mount</code>.</p>
+<br>
+<pre><code>$ curl http://localhost:8080
+&lt;h1&gt;Hello from Docker Bind Mount!!&lt;/h1&gt;
+</code></pre>
+<br>
+<p>How about doing the same using configuration file: <code>docker-compose.yml</code> as below?</p>
+<br>
+<p>Before we do that, let&rsquo;s stop and remove the container we created above:</p>
+<br>
+<pre><code>$ docker stop nginx_bind_mount
+nginx_bind_mount
+$ docker rm nginx_bind_mount
+nginx_bind_mount
+</code></pre>
+<br>
+<p>We will now create the configuration file.</p>
+<br>
+<pre><code>services:
+  nginx:
+    image: nginx
+    container_name: ngnix_bind_mount
+    volumes:
+      - ./html:/usr/share/nginx/html
+    ports:
+      - 8080:80
+</code></pre><br>
+<p>Did you notice, I removed the line <code>version: '3.8'</code> from the configuration file?</p>
+<p>That&rsquo;s because the <code>docker compose</code> command doesn&rsquo;t like it and throws a warning like this:</p>
+<br>
+<pre><code>the attribute `version` is obsolete, it will be ignored, please remove it
+to avoid potential confusion
+</code></pre>
+<br>
+<p>However the <code>docker-compose</code> command is fine with it and doesn&rsquo;t complain.</p>
+<p>So it&rsquo;s up to you to pick and choose.</p>
+<p>Since we are going to use the <code>docker compose</code> command, I have removed the line from the configuration file.</p>
+<p>Now, let&rsquo;s create the container using the configuration file this time:</p>
+<br>
+<pre><code>$ docker compose up -d
+[+] Running 2/2
+✔ Network docker-volume_default  Created                            0.0s
+✔ Container ngnix_bind_mount     Started                            0.2s
+</code></pre>
+<br>
+<p>Test the container:</p>
+<br>
+<pre><code>$ curl http://localhost:8080
+&lt;h1&gt;Hello from Docker Bind Mount!!&lt;/h1&gt;
+</code></pre>
+<br>
+<p>We&rsquo;re about to do some magic now.</p>
+<p>Let&rsquo;s update <code>html/index.html</code> on the host while the container is still running.</p>
+<br>
+<pre><code>$ cat html/index.html
+&lt;h1&gt;Hello again from Docker Bind Mount!!&lt;/h1&gt;
+</code></pre>
+<br>
+<p>We&rsquo;ll see, if the <code>ngnix</code> server running inside the container detects the changes.</p>
+<br>
+<pre><code>$ curl http://localhost:8080
+&lt;h1&gt;Hello again from Docker Bind Mount!!&lt;/h1&gt;
+</code></pre>
+<br>
+<p>Isn&rsquo;t it magical?</p>
+<p>I am definitely loving it.</p>
+<p>But wait, the fun doesn&rsquo;t stop here.</p>
+<p>We have even more tricks up our sleeve.</p>
+<p>And the next one is called <code>Docker Volume</code>.</p>
+<p>Before we proceed, let&rsquo;s stop and remove the container we just created.</p>
+<br>
+<pre><code>$ docker compose down
+[+] Running 2/2
+✔ Container ngnix_bind_mount     Removed                            0.7s
+✔ Network docker-volume_default  Removed                            0.5s
+</code></pre>
+<br>
+<h2 id="2-docker-volume">2. Docker Volume</h2>
+<hr>
+<p>The main use of <code>Docker Volume</code> is to <code>persist and share data</code> between containers and the host system or among multiple containers.</p>
+<p>It is a very useful for managing data, <code>independently</code> of a container&rsquo;s lifecycle.</p>
+<p><code>Docker Volume</code> works seamlessly across different environments such as <code>development</code>, <code>testing</code>, <code>production</code> and across platforms like <code>Linux</code>, <code>Windows</code> etc.</p>
+<p>It can be used to <code>isolate sensitive data</code> e.g. <code>configuration files</code>, <code>certificates</code> from the container&rsquo;s filesystem.</p>
+<p>This adds an extra layer of security by limiting access to the data.</p>
+<p>Time for some action now:</p>
+<p>First we will create a docker volume:</p>
+<br>
+<pre><code>$ docker volume create nginx_volume
+nginx_volume
+</code></pre>
+<br>
+<p>Then let&rsquo;s list all the docker volumes:</p>
+<br>
+<pre><code>$ docker volume ls
+....
+....
+....
+local     nginx_volume
+</code></pre>
+<br>
+<p>Next, we will create a container using just the <code>docker</code> command like before:</p>
+<br>
+<pre><code>$ docker run -d \
+--name nginx_docker_volume \
+-p 8080:80 \
+-v nginx_volume:/usr/share/nginx/html \
+nginx
+3bf6e6cbcd5c3029702737856ddf6cba59800f155e96e44278c98fd1dcd34846
+</code></pre>
+<br>
+<p>Check the status of the container:</p>
+<br>
+<pre><code>$ dps
+Container ID: 3bf6e6cbcd5c
+Image: nginx
+Command: &quot;/docker-entrypoint.…&quot;
+Created: 2025-03-21 07:06:04 +0000 GMT
+Status: Up 4 seconds
+Ports: 0.0.0.0:8080-&gt;80/tcp, [::]:8080-&gt;80/tcp
+Names: nginx_docker_volume
+</code></pre>
+<br>
+<p>Now, we will jump inside the container and create a file <code>index.html</code> like this:</p>
+<br>
+<pre><code>$ docker exec -it nginx_docker_volume bash
+root@3bf6e6cbcd5c:/# echo '&lt;h1&gt;Welcome to Docker Volume!!&lt;/h1&gt;' &gt; /usr/share/nginx/html/index.html
+root@3bf6e6cbcd5c:/# cat /usr/share/nginx/html/index.html
+&lt;h1&gt;Welcome to Docker Volume!!&lt;/h1&gt;
+root@3bf6e6cbcd5c:/# exit
+</code></pre>
+<br>
+<p>After that, let&rsquo;s test what the <code>ngnix</code> server serves:</p>
+<br>
+<pre><code>$ curl http://localhost:8080
+&lt;h1&gt;Welcome to Docker Volume!!&lt;/h1&gt;
+</code></pre>
+<br>
+<p>Time for some real action.</p>
+<p>Now, we will stop and remove the container to see if the data is still safe.</p>
+<br>
+<pre><code>$ docker stop nginx_docker_volume
+nginx_docker_volume
+$ docker rm nginx_docker_volume
+nginx_docker_volume
+</code></pre>
+<br>
+<p>Next, we will re-use the same docker volume, <code>nginx_volume</code> in a new container, and the data should still be there.</p>
+<br>
+<pre><code>$ docker run -d \
+--name new_nginx_docker_volume \
+-p 8080:80 \
+-v nginx_volume:/usr/share/nginx/html \
+nginx
+119d6dd7704463891b54cc1005daa466c903c1a681740d0a9c73d3ce87a1a4db
+</code></pre>
+<br>
+<p>Let&rsquo;s check the status of new container:</p>
+<br>
+<pre><code>$ dps
+Container ID: 119d6dd77044
+Image: nginx
+Command: &quot;/docker-entrypoint.…&quot;
+Created: 2025-03-21 07:24:10 +0000 GMT
+Status: Up About a minute
+Ports: 0.0.0.0:8080-&gt;80/tcp, [::]:8080-&gt;80/tcp
+Names: new_nginx_docker_volume
+</code></pre>
+<br>
+<p>Now, let&rsquo;s access the <code>nginx</code> server inside the new container:</p>
+<br>
+<pre><code>$ curl http://localhost:8080
+&lt;h1&gt;Welcome to Docker Volume!!&lt;/h1&gt;
+</code></pre>
+<br>
+<p>Super cool, right?</p>
+<p>Let&rsquo;s stop and remove the container:</p>
+<br>
+<pre><code>$ docker stop new_nginx_docker_volume
+new_nginx_docker_volume
+
+$ docker rm new_nginx_docker_volume
+new_nginx_docker_volume
+</code></pre>
+<br>
+<p>One last time, we will create a container using the configuration file with docker volume.</p>
+<br>
+<pre><code>services:
+  nginx:
+    image: nginx
+    container_name: ngnix_docker_volume
+    volumes:
+      - nginx_volume:/usr/share/nginx/html
+    ports:
+      - 8080:80
+
+volumes:
+  nginx_volume:
+</code></pre><br>
+<p>Start the container now:</p>
+<br>
+<pre><code>$ docker compose up -d
+[+] Running 3/3
+✔ Network docker-volume_default        Created                      0.0s
+✔ Volume &quot;docker-volume_nginx_volume&quot;  Created                      0.0s
+✔ Container ngnix_docker_volume        Started                      0.2s
+</code></pre>
+<br>
+<p>Check the container&rsquo;s status:</p>
+<br>
+<pre><code>$ dps
+Container ID: 0b8281ed3347
+Image: nginx
+Command: &quot;/docker-entrypoint.…&quot;
+Created: 2025-03-21 07:48:04 +0000 GMT
+Status: Up 48 seconds
+Ports: 0.0.0.0:8080-&gt;80/tcp, [::]:8080-&gt;80/tcp
+Names: ngnix_docker_volume
+</code></pre>
+<br>
+<p>Let&rsquo;s access the <code>nginx</code> server inside the new container:</p>
+<br>
+<pre><code>$ curl http://localhost:8080
+&lt;h1&gt;Welcome to Docker Volume!!&lt;/h1&gt;
+</code></pre>
+<br>
+<p>Once we&rsquo;re done, we can now remove the container and the docker volume.</p>
+<br>
+<pre><code>$ docker compose down
+[+] Running 2/2
+✔ Container ngnix_docker_volume  Removed                            0.6s
+✔ Network docker-volume_default  Removed                            0.5s
+
+$ docker volume rm nginx_volume
+nginx_volume
+</code></pre>
+<br>
+<hr>
+<p><code>Keep Hacking !!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
