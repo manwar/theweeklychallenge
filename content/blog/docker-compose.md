@@ -237,7 +237,7 @@ To make your life easy and comfortable, `docker compose`, comes into the picture
 ### Cleanup
 ***
 
-Let's stop and remove both containers.
+Let's stop and remove both containers including the network, so that we have a clean setup.
 
 <br>
 
