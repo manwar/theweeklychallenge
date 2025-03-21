@@ -52,6 +52,8 @@ Just for fun, I am using the `docker compose` command in this post.
 
 Having said, this will also work with `docker-compose` without any change.
 
+<br>
+
 ## Difference between 'docker-compose' and 'docker compose'
 ***
 
