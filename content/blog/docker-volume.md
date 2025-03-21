@@ -50,7 +50,7 @@ I have created a very handy alias `dps` for the command `docker ps`, as shown be
 
 <br>
 
-For this demo, I am going to use the `ngnix` image.
+For this demo, I am going to use the `nginx` image.
 
 <br>
 
