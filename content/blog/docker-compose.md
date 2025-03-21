@@ -337,7 +337,7 @@ To stop both the containers, simply run one command:
 ## Conclusion
 ***
 
-Isn't it a lot simple and easy to manage?
+Isn't it much simpler and easier to manage?
 
 This is just the `tip of the iceberg` when it comes to `docker compose`.
 
