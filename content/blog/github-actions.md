@@ -19,10 +19,15 @@ tags: ["Docker"]
 ### [1. Introduction](#introduction)
 ### [2. Workflow](#workflow)
 ### [3. Top Level Keys](#top-level-keys)
+### [ &nbsp;&nbsp;&nbsp; a) Required Key](#required-keys)
+### [ &nbsp;&nbsp;&nbsp; b) Optional Key](#optional-keys)
 ### [4. Event Types](#event-types)
 ### [5. Repository Events](#repository-events)
 ### [6. Job Components](#job-components)
+### [ &nbsp;&nbsp;&nbsp; a) Required Components](#required-components)
+### [ &nbsp;&nbsp;&nbsp; b) Optional Components](#optional-components)
 ### [7. Example](#example)
+### [ &nbsp;&nbsp;&nbsp; a) Proof of Concept](#proof-of-concept)
 
 <br>
 
