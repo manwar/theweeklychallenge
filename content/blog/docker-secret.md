@@ -256,7 +256,7 @@ So all good, let's connect to `MongoDB`:
 
 <br>
 
-    $ docker exec -it ce431be25019 mongosh --username admin --password supersecret
+    $ docker exec -it mongodb mongosh --username admin --password supersecret
     Current Mongosh Log ID: 67dbc7f7b8d8dedf8d6b140a
     ...
     ...
@@ -324,7 +324,7 @@ Let's connect to `MongoDB` again.
 
 <br>
 
-    $ docker exec -it d61324270839 mongosh --username admin --password supersecret
+    $ docker exec -it mongodb mongosh --username admin --password supersecret
     Current Mongosh Log ID: 67dbca84408a363eff6b140a
     ...
     ...
