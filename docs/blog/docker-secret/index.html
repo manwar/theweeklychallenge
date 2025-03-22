@@ -283,6 +283,7 @@ docker-compose version 1.29.2, build unknown
 services:
   mongodb:
     image: mongo
+    container_name: mongodb
     ports:
       - 27017:27017
     environment:
@@ -292,7 +293,7 @@ services:
 <p>Let&rsquo;s start the container now:</p>
 <br>
 <pre><code>$ docker-compose -f docker-compose-open.yml up -d
-Creating docker-secret_mongodb_1 ... done
+Creating mongodb ... done
 </code></pre>
 <br>
 <p>Check the container status, <code>docker ps</code>:</p>
@@ -304,13 +305,13 @@ Command: &quot;docker-entrypoint.s…&quot;
 Created: 2025-03-20 04:29:16 +0000 GMT
 Status: Up 2 seconds
 Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
-Names: docker-secret_mongodb_1
+Names: mongodb
 </code></pre>
 <br>
 <p>The container is up and running, so far so good.</p>
 <p>Let&rsquo;s connect to the <code>MongoDB</code> using the same credentials as in the configuration file above:</p>
 <br>
-<pre><code>$ docker exec -it e753a5985c96 mongosh --username admin --password supersecret
+<pre><code>$ docker exec -it mongodb mongosh --username admin --password supersecret
 
 Current Mongosh Log ID: 67dbc40b54e05a0e5e6b140a
 Connecting to:          mongodb://&lt;credentials&gt;@127.0.0.1:27017/?directConnection=true&amp;serverSelectionTimeoutMS=2000&amp;appName=mongosh+2.4.2
@@ -324,11 +325,11 @@ test&gt;
 <p>To exit, simply type <code>exit</code> at the prompt.</p>
 <p>Let&rsquo;s clean up by <code>stopping and removing the container</code>, so we can move to the next option.</p>
 <br>
-<pre><code>$ docker stop e753a5985c96
-e753a5985c96
+<pre><code>$ docker stop mongodb
+mongodb
 
-$ docker rm e753a5985c96
-e753a5985c96
+$ docker rm mongodb
+mongodb
 </code></pre>
 <br>
 <h2 id="use-of-environment-variables">Use of environment variables</h2>
@@ -339,6 +340,7 @@ e753a5985c96
 services:
   mongodb:
     image: mongo
+    container_name: mongodb
     ports:
       - 27017:27017
     environment:
@@ -352,14 +354,14 @@ services:
 $ export MONGO_ADMIN_PASS=supersecret
 
 $ docker-compose -f docker-compose-env.yml up -d
-Creating docker-secret_mongodb_1 ... done
+Creating mongodb ... done
 </code></pre>
 <br>
 <p><code>OR</code></p>
 <br>
 <pre><code>$ MONGO_ADMIN_USER=admin MONGO_ADMIN_PASS=supersecret \
 docker-compose -f docker-compose-env.yml up -d
-Creating docker-secret_mongodb_1 ... done
+Creating mongodb ... done
 </code></pre>
 <br>
 <p>Check the container status, <code>docker ps</code>:</p>
@@ -371,7 +373,7 @@ Command: &quot;docker-entrypoint.s…&quot;
 Created: 2025-03-20 04:32:10 +0000 GMT
 Status: Up 33 seconds
 Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
-Names: docker-secret_mongodb_1
+Names: mongodb
 </code></pre>
 <br>
 <p>So all good, let&rsquo;s connect to <code>MongoDB</code>:</p>
@@ -388,11 +390,11 @@ test&gt;
 <p>Once that&rsquo;s done, type <code>exit</code> at the prompt to exit.</p>
 <p>We&rsquo;ll clean up as before i.e. <code>stop and remove the container</code>.</p>
 <br>
-<pre><code>$ docker stop ce431be25019
-ce431be25019
+<pre><code>$ docker stop mongodb
+mongodb
 
-$ docker rm ce431be25019
-ce431be25019
+$ docker rm mongodb
+mongodb
 </code></pre>
 <br>
 <h2 id="use-of---env-file-flag">Use of &ndash;env-file flag</h2>
@@ -407,7 +409,7 @@ $ echo &quot;MONGO_ADMIN_PASS=supersecret&quot; &gt;&gt; docker-compose.env
 <p>Time to start the container with <code>--env-file</code> flag:</p>
 <br>
 <pre><code>$ docker-compose --env-file docker-compose.env -f docker-compose-env.yml up -d
-Creating docker-secret_mongodb_1 ... done
+Creating mongodb ... done
 </code></pre>
 <br>
 <p>Check the container status, <code>docker ps</code>:</p>
@@ -419,7 +421,7 @@ Command: &quot;docker-entrypoint.s…&quot;
 Created: 2025-03-20 04:35:11 +0000 GMT
 Status: Up 31 seconds
 Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
-Names: docker-secret_mongodb_1
+Names: mongodb
 </code></pre>
 <br>
 <p>Now it&rsquo;s up and running. Good.</p>
@@ -427,7 +429,10 @@ Names: docker-secret_mongodb_1
 <br>
 <pre><code>$ docker exec -it d61324270839 mongosh --username admin --password supersecret
 Current Mongosh Log ID: 67dbca84408a363eff6b140a
-Connecting to:          mongodb://&lt;credentials&gt;@127.0.0.1:27017/?directConnection=true&amp;serverSelectionTimeoutMS=2000&amp;appName=mongosh+2.4.2
+
+...
+...
+
 Using MongoDB:          8.0.5
 Using Mongosh:          2.4.2
 
@@ -437,11 +442,11 @@ test&gt;
 <p>Type <code>exit</code> at the prompt to exit so that we can proceed to the final option.</p>
 <p>Finally, <code>stop and remove the container</code>:</p>
 <br>
-<pre><code>$ docker stop d61324270839
-d61324270839
+<pre><code>$ docker stop mongodb
+mongodb
 
-$ docker rm d61324270839
-d61324270839
+$ docker rm mongodb
+mongodb
 </code></pre>
 <br>
 <h2 id="secret-in-swarm-mode">Secret in swarm mode</h2>
@@ -494,6 +499,7 @@ x3lswvc8mkwh0x5opoyvkucca   mongo_user             About a minute ago   About a 
 services:
   mongo:
     image: mongo
+    container_name: mongodb
     secrets:
       - mongo_user
       - mongo_pass
@@ -533,14 +539,17 @@ Command: &quot;docker-entrypoint.s…&quot;
 Created: 2025-03-20 04:37:31 +0000 GMT
 Status: Up 19 seconds
 Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
-Names: docker-secret_mongodb_1
+Names: mongodb
 </code></pre>
 <br>
 <p>Let;s try to connect to <code>MongoDB</code>:</p>
 <br>
-<pre><code>$ docker exec -it f85e4c9be83a mongosh --username admin --password supersecret
+<pre><code>$ docker exec -it mongodb mongosh --username admin --password supersecret
 Current Mongosh Log ID: 67dbcef14a1ae204cf6b140a
-Connecting to:          mongodb://&lt;credentials&gt;@127.0.0.1:27017/?directConnection=true&amp;serverSelectionTimeoutMS=2000&amp;appName=mongosh+2.4.2
+
+...
+...
+
 Using MongoDB:          8.0.5
 Using Mongosh:          2.4.2
 

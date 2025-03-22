@@ -125,6 +125,7 @@ version: '3.8'
 services:
   mongodb:
     image: mongo
+    container_name: mongodb
     ports:
       - 27017:27017
     environment:
@@ -139,7 +140,7 @@ Let's start the container now:
 <br>
 
     $ docker-compose -f docker-compose-open.yml up -d
-    Creating docker-secret_mongodb_1 ... done
+    Creating mongodb ... done
 
 <br>
 
@@ -154,7 +155,7 @@ Check the container status, `docker ps`:
     Created: 2025-03-20 04:29:16 +0000 GMT
     Status: Up 2 seconds
     Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
-    Names: docker-secret_mongodb_1
+    Names: mongodb
 
 <br>
 
@@ -164,7 +165,7 @@ Let's connect to the `MongoDB` using the same credentials as in the configuratio
 
 <br>
 
-    $ docker exec -it e753a5985c96 mongosh --username admin --password supersecret
+    $ docker exec -it mongodb mongosh --username admin --password supersecret
 
     Current Mongosh Log ID: 67dbc40b54e05a0e5e6b140a
     Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.4.2
@@ -183,11 +184,11 @@ Let's clean up by `stopping and removing the container`, so we can move to the n
 
 <br>
 
-    $ docker stop e753a5985c96
-    e753a5985c96
+    $ docker stop mongodb
+    mongodb
 
-    $ docker rm e753a5985c96
-    e753a5985c96
+    $ docker rm mongodb
+    mongodb
 
 <br>
 
@@ -203,6 +204,7 @@ version: '3.8'
 services:
   mongodb:
     image: mongo
+    container_name: mongodb
     ports:
       - 27017:27017
     environment:
@@ -221,7 +223,7 @@ You have two choices for creating environment variables: either use `EXPORT key=
     $ export MONGO_ADMIN_PASS=supersecret
 
     $ docker-compose -f docker-compose-env.yml up -d
-    Creating docker-secret_mongodb_1 ... done
+    Creating mongodb ... done
 
 <br>
 
@@ -231,7 +233,7 @@ You have two choices for creating environment variables: either use `EXPORT key=
 
     $ MONGO_ADMIN_USER=admin MONGO_ADMIN_PASS=supersecret \
     docker-compose -f docker-compose-env.yml up -d
-    Creating docker-secret_mongodb_1 ... done
+    Creating mongodb ... done
 
 <br>
 
@@ -246,7 +248,7 @@ Check the container status, `docker ps`:
     Created: 2025-03-20 04:32:10 +0000 GMT
     Status: Up 33 seconds
     Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
-    Names: docker-secret_mongodb_1
+    Names: mongodb
 
 <br>
 
@@ -270,11 +272,11 @@ We'll clean up as before i.e. `stop and remove the container`.
 
 <br>
 
-    $ docker stop ce431be25019
-    ce431be25019
+    $ docker stop mongodb
+    mongodb
 
-    $ docker rm ce431be25019
-    ce431be25019
+    $ docker rm mongodb
+    mongodb
 
 <br>
 
@@ -296,7 +298,7 @@ Time to start the container with `--env-file` flag:
 <br>
 
     $ docker-compose --env-file docker-compose.env -f docker-compose-env.yml up -d
-    Creating docker-secret_mongodb_1 ... done
+    Creating mongodb ... done
 
 <br>
 
@@ -311,7 +313,7 @@ Check the container status, `docker ps`:
     Created: 2025-03-20 04:35:11 +0000 GMT
     Status: Up 31 seconds
     Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
-    Names: docker-secret_mongodb_1
+    Names: mongodb
 
 <br>
 
@@ -323,7 +325,10 @@ Let's connect to `MongoDB` again.
 
     $ docker exec -it d61324270839 mongosh --username admin --password supersecret
     Current Mongosh Log ID: 67dbca84408a363eff6b140a
-    Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.4.2
+
+    ...
+    ...
+
     Using MongoDB:          8.0.5
     Using Mongosh:          2.4.2
 
@@ -337,11 +342,11 @@ Finally, `stop and remove the container`:
 
 <br>
 
-    $ docker stop d61324270839
-    d61324270839
+    $ docker stop mongodb
+    mongodb
 
-    $ docker rm d61324270839
-    d61324270839
+    $ docker rm mongodb
+    mongodb
 
 <br>
 
@@ -420,6 +425,7 @@ version: '3.8'
 services:
   mongo:
     image: mongo
+    container_name: mongodb
     secrets:
       - mongo_user
       - mongo_pass
@@ -467,7 +473,7 @@ Check the container status, `docker ps`:
     Created: 2025-03-20 04:37:31 +0000 GMT
     Status: Up 19 seconds
     Ports: 0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp
-    Names: docker-secret_mongodb_1
+    Names: mongodb
 
 <br>
 
@@ -475,9 +481,12 @@ Let;s try to connect to `MongoDB`:
 
 <br>
 
-    $ docker exec -it f85e4c9be83a mongosh --username admin --password supersecret
+    $ docker exec -it mongodb mongosh --username admin --password supersecret
     Current Mongosh Log ID: 67dbcef14a1ae204cf6b140a
-    Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.4.2
+
+    ...
+    ...
+
     Using MongoDB:          8.0.5
     Using Mongosh:          2.4.2
 
