@@ -243,6 +243,10 @@ Let's count the lines as we read:
 <br>
 
 ```perl
+#!/usr/bin/env perl
+
+use v5.38;
+
 my $FILE = $ARGV[0] || 'large-file.txt';
 buffered_reading($FILE);
 
