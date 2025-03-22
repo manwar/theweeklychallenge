@@ -220,6 +220,127 @@ sub buffered_reading($file) {
 
 <br>
 
+## [2025-03-22] UPDATE
+***
+
+`Ferenc Erki` noticed a comment on [**Reddit**](https://www.reddit.com/r/perl/comments/1jgenwp/comment/mj37f8d/?rdt=53633) about a potential bug in the `sub buffered_reading()` implementation as it is above.
+
+I decided to work on it, in isolation to investigate.
+
+The sample large text file, `large-file.txt` has a total `13421773 lines`.
+
+<br>
+
+    $ wc -l large-file.txt
+    13421773
+
+<br>
+
+So the new implementation should read that many lines, right?
+
+Let's count the lines as we read:
+
+<br>
+
+```perl
+my $FILE = $ARGV[0] || 'large-file.txt';
+buffered_reading($FILE);
+
+sub buffered_reading($file) {
+    open(my $fh, '<', $file)
+        or die "ERROR: Could not open $file: $!";
+    my $buffer;
+    my $size  = 1024 * 1024;
+    my $lines = 0;
+    while (read($fh, $buffer, $size)) {
+        # simulate processing
+        my @lines = split /\n/, $buffer;
+        $lines    = @lines;
+    }
+    close($fh);
+    say "Total lines read: $lines";
+}
+```
+
+<br>
+
+Let's see what do we get:
+
+<br>
+
+    $ perl buffered-reading.pl
+    Total lines read: 13422797
+
+<br>
+
+This number doesn't match with real line count `13421773`.
+
+So what's going on?
+
+Could it be we ignoring the incomplete or blank lines?
+
+Let's catch that too.
+
+<br>
+
+```perl
+my $FILE = $ARGV[0] || 'large-file.txt';
+buffered_reading($FILE);
+
+sub buffered_reading($file) {
+    open(my $fh, '<', $file)
+        or die "ERROR: Could not open $file: $!";
+    my $buffer;
+    my $size  = 1024 * 1024;
+    my $lines = 0;
+    my $line  = '';
+    while (read($fh, $buffer, $size)) {
+        # simulate processing
+        $buffer   = $line . $buffer;
+        my @lines = split /\n/, $buffer, -1;
+        $line     = pop @lines;
+        $lines    = @lines;
+    }
+    close($fh);
+    say "Total lines read: $lines";
+}
+```
+
+<br>
+
+Let me explain what has changed now:
+
+We now have a new scalar `$line` which would hold any incomplete line.
+
+And inside the `while loop`, I am adding the incomplete line to buffer before `split` happens.
+
+Last but very important change, added `-1`, the third parameter to `split` function.
+
+What does that do?
+
+Well, it helps to keep empty line.
+
+After the split happens, take the last line element, `$line = pop @lines`, as it might be an incomplete line.
+
+Let's re-run the code one more time:
+
+<br>
+
+    $ perl buffered-reading.pl
+    Total lines read: 13421773
+
+<br>
+
+So this matches the real line count of the `large-file.txt`.
+
+So now it's better, if I use the new implementation of `sub burrered_reading()`.
+
+`Mission accomplished`.
+
+***
+
+<br>
+
 Next is `memory mapping` like below:
 
 For this task, we are going to use `CPAN` module: [**Sys::Mmap**](https://metacpan.org/pod/Sys::Mmap)
@@ -426,10 +547,13 @@ sub buffered_reading($file) {
     open(my $fh, '<', $file)
         or die "ERROR: Could not open $file: $!";
     my $buffer;
-    my $size = 1024 * 1024;
+    my $size  = 1024 * 1024;
+    my $line  = '';
     while (read($fh, $buffer, $size)) {
         # simulate processing
-        my @lines = split /\n/, $buffer;
+        $buffer   = $line . $buffer;
+        my @lines = split /\n/, $buffer, -1;
+        $line     = pop @lines;
     }
     close($fh);
 }

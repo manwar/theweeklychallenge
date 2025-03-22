@@ -355,6 +355,87 @@ sys     0m0.420s
     close($fh);
 }
 </code></pre></div><br>
+<h2 id="2025-03-22-update">[2025-03-22] UPDATE</h2>
+<hr>
+<p><code>Ferenc Erki</code> noticed a comment on <a href="https://www.reddit.com/r/perl/comments/1jgenwp/comment/mj37f8d/?rdt=53633"><strong>Reddit</strong></a> about a potential bug in the <code>sub buffered_reading()</code> implementation as it is above.</p>
+<p>I decided to work on it, in isolation to investigate.</p>
+<p>The sample large text file, <code>large-file.txt</code> has a total <code>13421773 lines</code>.</p>
+<br>
+<pre><code>$ wc -l large-file.txt
+13421773
+</code></pre>
+<br>
+<p>So the new implementation should read that many lines, right?</p>
+<p>Let&rsquo;s count the lines as we read:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $FILE <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;large-file.txt&#39;</span>;
+buffered_reading($FILE);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">buffered_reading</span>($file) {
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file)
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Could not open $file: $!&#34;</span>;
+    <span style="color:#66d9ef">my</span> $buffer;
+    <span style="color:#66d9ef">my</span> $size  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+    <span style="color:#66d9ef">my</span> $lines <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> (read($fh, $buffer, $size)) {
+        <span style="color:#75715e"># simulate processing</span>
+        <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $buffer;
+        $lines    <span style="color:#f92672">=</span> @lines;
+    }
+    close($fh);
+    say <span style="color:#e6db74">&#34;Total lines read: $lines&#34;</span>;
+}
+</code></pre></div><br>
+<p>Let&rsquo;s see what do we get:</p>
+<br>
+<pre><code>$ perl buffered-reading.pl
+Total lines read: 13422797
+</code></pre>
+<br>
+<p>This number doesn&rsquo;t match with real line count <code>13421773</code>.</p>
+<p>So what&rsquo;s going on?</p>
+<p>Could it be we ignoring the incomplete or blank lines?</p>
+<p>Let&rsquo;s catch that too.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $FILE <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;large-file.txt&#39;</span>;
+buffered_reading($FILE);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">buffered_reading</span>($file) {
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file)
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Could not open $file: $!&#34;</span>;
+    <span style="color:#66d9ef">my</span> $buffer;
+    <span style="color:#66d9ef">my</span> $size  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+    <span style="color:#66d9ef">my</span> $lines <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $line  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">while</span> (read($fh, $buffer, $size)) {
+        <span style="color:#75715e"># simulate processing</span>
+        $buffer   <span style="color:#f92672">=</span> $line <span style="color:#f92672">.</span> $buffer;
+        <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $buffer, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        $line     <span style="color:#f92672">=</span> pop @lines;
+        $lines    <span style="color:#f92672">=</span> @lines;
+    }
+    close($fh);
+    say <span style="color:#e6db74">&#34;Total lines read: $lines&#34;</span>;
+}
+</code></pre></div><br>
+<p>Let me explain what has changed now:</p>
+<p>We now have a new scalar <code>$line</code> which would hold any incomplete line.</p>
+<p>And inside the <code>while loop</code>, I am adding the incomplete line to buffer before <code>split</code> happens.</p>
+<p>Last but very important change, added <code>-1</code>, the third parameter to <code>split</code> function.</p>
+<p>What does that do?</p>
+<p>Well, it helps to keep empty line.</p>
+<p>After the split happens, take the last line element, <code>$line = pop @lines</code>, as it might be an incomplete line.</p>
+<p>Let&rsquo;s re-run the code one more time:</p>
+<br>
+<pre><code>$ perl buffered-reading.pl
+Total lines read: 13421773
+</code></pre>
+<br>
+<p>So this matches the real line count of the <code>large-file.txt</code>.</p>
+<p>So now it&rsquo;s better, if I use the new implementation of <code>sub burrered_reading()</code>.</p>
+<p><code>Mission accomplished</code>.</p>
+<hr>
+<br>
 <p>Next is <code>memory mapping</code> like below:</p>
 <p>For this task, we are going to use <code>CPAN</code> module: <a href="https://metacpan.org/pod/Sys::Mmap"><strong>Sys::Mmap</strong></a></p>
 <br>
@@ -531,10 +612,13 @@ display_performance_analysis($results);
     open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file)
         <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Could not open $file: $!&#34;</span>;
     <span style="color:#66d9ef">my</span> $buffer;
-    <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+    <span style="color:#66d9ef">my</span> $size  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+    <span style="color:#66d9ef">my</span> $line  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
     <span style="color:#66d9ef">while</span> (read($fh, $buffer, $size)) {
         <span style="color:#75715e"># simulate processing</span>
-        <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $buffer;
+        $buffer   <span style="color:#f92672">=</span> $line <span style="color:#f92672">.</span> $buffer;
+        <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $buffer, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        $line     <span style="color:#f92672">=</span> pop @lines;
     }
     close($fh);
 }
