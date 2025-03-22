@@ -124,7 +124,7 @@ In this post, I will focus on just `repository events`.
 ## Job Components
 ***
 
-For the required top-level key. `jobs`, there are two required key components and seven optional components.
+For the required top-level key: `jobs`, there are two required key components and seven optional components.
 
 <br>
 
