@@ -529,6 +529,19 @@ Creating network mongo_stack_mongo_network
 Creating service mongo_stack_mongo
 </code></pre>
 <br>
+<p><strong>NOTE:</strong> The service name <code>mongo_stack_mongo</code>, it was autogenerate by <code>Docker</code>, which is the combination of stack name, <code>mongo_stack</code> and service name <code>mongo</code>.</p>
+<p>Hang on, why isn&rsquo;t the service name exactly as in the configuration file?</p>
+<p>Well, if <code>Docker</code> used the service name exactly as defined in the configuration file, it would lead to naming conflicts in a multi-stack environment.</p>
+<p>For example:</p>
+<br>
+<pre><code>- Stack A has a service named db.
+- Stack B also has a service named db.
+</code></pre>
+<br>
+<p>If <code>Docker</code> didn&rsquo;t prefix the service name with the stack name, both services would be named <code>db</code>, making it impossible to distinguish them in the <code>Swarm</code> cluster.</p>
+<p>Can you change this behaviour?</p>
+<p>No, <code>Docker</code> doesn&rsquo;t provide a way to override this behaviour when using <code>docker stack deploy</code>.</p>
+<p>The <code>&lt;stack&gt;_&lt;service&gt;</code> naming convention is enforced by design.</p>
 <p>Check the container status, <code>docker ps</code>:</p>
 <br>
 <pre><code>$ dps

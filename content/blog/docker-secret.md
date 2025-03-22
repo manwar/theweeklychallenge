@@ -461,6 +461,29 @@ To create a container in `Swarm` mode and use the secrets, we need to create the
 
 <br>
 
+**NOTE:** The service name `mongo_stack_mongo`, it was autogenerate by `Docker`, which is the combination of stack name, `mongo_stack` and service name `mongo`.
+
+Hang on, why isn't the service name exactly as in the configuration file?
+
+Well, if `Docker` used the service name exactly as defined in the configuration file, it would lead to naming conflicts in a multi-stack environment.
+
+For example:
+
+<br>
+
+    - Stack A has a service named db.
+    - Stack B also has a service named db.
+
+<br>
+
+If `Docker` didn't prefix the service name with the stack name, both services would be named `db`, making it impossible to distinguish them in the `Swarm` cluster.
+
+Can you change this behaviour?
+
+No, `Docker` doesn't provide a way to override this behaviour when using `docker stack deploy`.
+
+The `<stack>_<service>` naming convention is enforced by design.
+
 Check the container status, `docker ps`:
 
 <br>
