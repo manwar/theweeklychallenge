@@ -31,9 +31,9 @@ tags: ["Docker"]
 
 I have been planning to learn `GitHub Actions` for a long time. I attended a [**talk**](https://www.youtube.com/watch?v=ol_Qk31v17g) by `Dave Cross` in `2023` at the `Perl Conference` in `Toronto` but when I came back home, I got distracted. Then came the book, [**GitHub Actions Essentials**](https://leanpub.com/githubactionsessentials) by `Dave Cross`, which reminded me again to get my act together and learn the tool.
 
-Now, in `2025`, I have finally decided to crack the nut or at least famiiliarise myself with it. I haven't bought `Dave Cross`'s book yet, so I can't comment on it. However, I am pretty confident, it must be good since it is written by `Dave Cross`. If you have read the book then please let me know your thoughts.
+Now, in `2025`, I have finally decided to crack the nut or at least familiarise myself with it. I haven't bought `Dave Cross`'s book yet, so I can't comment on it. However, I am pretty confident, it must be good since it is written by `Dave Cross`. If you have read the book then please let me know your thoughts.
 
-In this post, I am sharing my learing process and documenting it for future reference.
+In this post, I am sharing my learning process and documenting it for future reference.
 
 <br>
 
