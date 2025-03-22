@@ -288,6 +288,10 @@ Let's catch that too.
 <br>
 
 ```perl
+#!/usr/bin/env perl
+
+use v5.38;
+
 my $FILE = $ARGV[0] || 'large-file.txt';
 buffered_reading($FILE);
 
