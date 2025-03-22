@@ -371,7 +371,10 @@ sub memory_mapping_mmap($file) {
 
 <br>
 
-**UPDATE**: `Tom Hukins` suggested another memory mapping option using `CPAN` module: [**File::Map**](https://metacpan.org/pod/File::Map)
+## [2025-03-19] UPDATE
+***
+
+`Tom Hukins` suggested another memory mapping option using `CPAN` module: [**File::Map**](https://metacpan.org/pod/File::Map)
 
 <br>
 
