@@ -56,7 +56,7 @@ A workflow can include multiple jobs and each job can contain multiple steps. A 
 ## Top Level Keys
 ***
 
-There are three required top-level key and five optional top-level keys in a workflow file.
+There are three required top-level keys and five optional top-level keys in a workflow file.
 
 <br>
 
