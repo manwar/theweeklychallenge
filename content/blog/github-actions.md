@@ -61,10 +61,6 @@ There are three required top-level keys and five optional top-level keys in a wo
 <br>
 
 ### Required Keys
-***
-
-<br>
-
     1. name        : It defines the name of the workflow.
     2. on          : It defines the events that trigger the workflow.
     3. jobs        : The jobs that make up the workflow.
@@ -72,10 +68,6 @@ There are three required top-level keys and five optional top-level keys in a wo
 <br>
 
 ### Optional Keys
-***
-
-<br>
-
     1. env         : Environment variables available to all jobs and steps.
     2. defaults    : Default settings for all jobs.
     3. concurrency : Controls concurrent runs of the workflow or job.
