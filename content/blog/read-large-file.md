@@ -227,7 +227,7 @@ sub buffered_reading($file) {
 
 I decided to work on it, in isolation to investigate.
 
-The sample large text file, `large-file.txt` has a total `13421773 lines`.
+The sample large text file, `large-file.txt` has a total `13421773` lines.
 
 <br>
 
