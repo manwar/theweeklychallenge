@@ -166,9 +166,9 @@ Let's connect to the `MongoDB` using the same credentials as in the configuratio
 <br>
 
     $ docker exec -it mongodb mongosh --username admin --password supersecret
-
     Current Mongosh Log ID: 67dbc40b54e05a0e5e6b140a
-    Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.4.2
+    ...
+    ...
     Using MongoDB:          8.0.5
     Using Mongosh:          2.4.2
 
