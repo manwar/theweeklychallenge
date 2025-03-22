@@ -87,10 +87,10 @@ There are four main type of events that can be part of top-level key `on`.
 
 <br>
 
-    1. Repository events
-    2. Scheduled events
-    3. Manual events
-    4. Webhook events
+    1. Repository Events
+    2. Scheduled Events
+    3. Manual Events
+    4. Webhook Events
 
 <br>
 
