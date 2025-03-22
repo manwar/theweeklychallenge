@@ -281,7 +281,7 @@ This number doesn't match with real line count `13421773`.
 
 So what's going on?
 
-Could it be we ignoring the incomplete or blank lines?
+Could it be that we are ignoring the incomplete or blank lines?
 
 Let's catch that too.
 
