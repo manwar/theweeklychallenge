@@ -97,8 +97,6 @@ There are four main type of events that can be part of top-level key `on`.
 ## Repository Events
 ***
 
-<br>
-
 In this post, I will focus on just `repository events`.
 
 <br>
