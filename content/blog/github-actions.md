@@ -89,7 +89,7 @@ Well, as far as, `name` is concerned, there is nothing to talk about except that
 
 Then there are basically two left: `on` and `jobs`
 
-The following sections would address the two top-level keys.
+The following sections would address the two top-level required keys.
 
 <br>
 
