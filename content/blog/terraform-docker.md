@@ -299,8 +299,6 @@ Let's verify that:
 
 Indeed, we now have a `Docker` image.
 
-<br>
-
 Let's run the container now:
 
 <br>
