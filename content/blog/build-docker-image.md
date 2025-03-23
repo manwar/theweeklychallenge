@@ -322,6 +322,18 @@ jobs:
 
 <br>
 
+## [2025-03-23] UPDATE
+***
+
+Another quick suggestions from `Dave Cross` with [**reference**](https://docs.docker.com/reference/cli/docker/image/push).
+
+<br>
+
+    docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:latest .
+    docker push -a ${{ secrets.DOCKER_HUB_USERNAME }}/my-app
+
+<br>
+
 For this, first I created token in `Docker Hub` as below:
 
 <br>
