@@ -204,7 +204,7 @@ output "image_id" {
 
 Let's start the process.
 
-As soon as I fired the first command: `terraform init`, I got encountered the following error:
+As soon as I fired the first command: `terraform init`, I encountered the following error:
 
 <br>
 
