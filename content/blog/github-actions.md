@@ -83,7 +83,7 @@ There are three required top-level keys and five optional top-level keys in a wo
 
 I am skipping optional top-level keys for now.
 
-In this post, I will discuss the three top-level keys: `name`, `on` and `jobs`
+In this post, I will discuss the three top-level required keys: `name`, `on` and `jobs`
 
 Well, as far as, `name` is concerned, there is nothing to talk about except that it is used to define the workflow's name.
 
