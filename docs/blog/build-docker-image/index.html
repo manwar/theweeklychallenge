@@ -406,7 +406,8 @@ jobs:
 <hr>
 <p>Another quick suggestions from <code>Dave Cross</code> with <a href="https://docs.docker.com/reference/cli/docker/image/push"><strong>reference</strong></a>.</p>
 <br>
-<pre><code>docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:latest .
+<pre><code>docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:${{ github.ref_name }} \
+             -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:latest .
 docker push -a ${{ secrets.DOCKER_HUB_USERNAME }}/my-app
 </code></pre>
 <br>
