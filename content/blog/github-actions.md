@@ -96,7 +96,7 @@ The following sections would address the two top-level required keys.
 ## Event Types
 ***
 
-There are four main type of events that can be part of top-level key `on`.
+There are four main type of events that can be part of top-level required key: `on`.
 
 <br>
 
@@ -137,7 +137,7 @@ In this post, I will focus on just `repository events`.
 ## Job Components
 ***
 
-For the required top-level key: `jobs`, there are two required key components and seven optional components.
+For the top-level required key: `jobs`, there are two required key components and seven optional components.
 
 <br>
 
