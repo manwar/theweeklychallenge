@@ -2,6 +2,7 @@ FROM alpine:latest
 LABEL maintainer="mohammad.anwar@yahoo.com"
 
 RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libstdc++ libgcc
 
 WORKDIR /theweeklychallenge
 COPY . /theweeklychallenge

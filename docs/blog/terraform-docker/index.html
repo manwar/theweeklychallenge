@@ -4,27 +4,27 @@
     <!-- Basic Page Needs -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title"       content="Docker Secret"/>
+    <meta property="og:title"       content="Terraform with Docker"/>
     <meta property="og:type"        content="website"/>
-    <meta property="og:url"         content="https://theweeklychallenge.org/blog/docker-secret/"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/terraform-docker/"/>
     <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
-    <meta property="og:description" content="Discussion about the docker secret."/>
+    <meta property="og:description" content="Discussion about Terraform with Docker."/>
     <meta name="twitter:card"       content="summary" />
     <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Discussion about the docker secret.">
+    <meta name="description" content="Discussion about Terraform with Docker.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <link rel="me" href="https://fosstodon.org/@manwar">
-    <link rel="canonical" href="https://theweeklychallenge.org/blog/docker-secret/" />
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/terraform-docker/" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Docker Secret</title>
+    <title>Terraform with Docker</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -180,11 +180,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Docker Secret</h2>
+                    <h2>Terraform with Docker</h2>
                     <div class="portfolio-meta">
-                        <span>Thursday, Mar 20, 2025</span>|
+                        <span>Sunday, Mar 23, 2025</span>|
                         <span> Tags:
-                            Docker
+                            Terraform, Docker
                         </span>
                     </div>
                 </div>
@@ -199,7 +199,7 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/docker-secret.png">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/terraform-docker.png">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
@@ -207,8 +207,8 @@
 <hr>
 <br>
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <a href="/blog/build-docker-image" title="Build Docker Image">
-        <img src="/images/blog/build-docker-image-mini.png" width="200">
+    <a href="/blog/docker-secret" title="Docker Secret">
+        <img src="/images/blog/docker-secret-mini.png" width="200">
     </a>
     <a href="/blog/docker-compose" title="Docker Compose">
         <img src="/images/blog/docker-compose-mini.png" width="200">
@@ -216,377 +216,260 @@
     <a href="/blog/docker-volume" title="Docker Volume">
         <img src="/images/blog/docker-volume-mini.png" width="200">
     </a>
-    <a href="/blog/terraform-docker" title="Terraform with Docker">
-        <img src="/images/blog/terraform-docker-mini.png" width="200">
+    <a href="/blog/build-docker-image" title="Build Docker Image">
+        <img src="/images/blog/build-docker-image-mini.png" width="200">
     </a>
 </div>
 <br>
-<h2 id="docker-secret">Docker Secret</h2>
+<h2 id="terraform-with-docker">Terraform with Docker</h2>
 <hr>
+<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-objectivesobjectives"><a href="#objectives">2. Objectives</a></h3>
+<h3 id="3-what-is-terraformwhat-is-terraform"><a href="#what-is-terraform">3. What is Terraform?</a></h3>
+<h3 id="4-why-terraformwhy-terraform"><a href="#why-terraform">4. Why Terraform?</a></h3>
+<h3 id="5-terraform-configuration-fileterraform-configuration-file"><a href="#terraform-configuration-file">5. Terraform Configuration File</a></h3>
+<h3 id="6-terraform-workflowterraform-workflow"><a href="#terraform-workflow">6. Terraform Workflow</a></h3>
+<h3 id="7-setupsetup"><a href="#setup">7. Setup</a></h3>
+<h3 id="8-actionaction"><a href="#action">8. Action</a></h3>
+<h3 id="9-cleanupcleanup"><a href="#cleanup">9. Cleanup</a></h3>
 <br>
-<p>Before we do anything, let&rsquo;s make sure we have the foundation setup properly.</p>
-<p>If you don&rsquo;t have <code>docker</code> and <code>docker-compose</code> installed, please follow the steps below. Otherwise, proceed to the next section.</p>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<p>A few days ago, I shared my story about creating a <code>Docker</code> image for <a href="https://theweeklychallenge.org"><strong>The Weekly Challenge</strong></a> website in this <a href="https://theweeklychallenge.org/blog/build-docker-image"><strong>blog post</strong></a>.</p>
+<p>It was a great learning experience for me, I had never done it before.</p>
+<p>Recently at work, I got the opportunity to work with <code>Terraform</code>.</p>
+<p>Once again, it was my first time using it.</p>
+<p>I decided to learn the basics of <code>Terraform</code> so that at least I understand what I&rsquo;m doing.</p>
+<br>
+<h2 id="objectives">Objectives</h2>
+<hr>
+<p>The plan is to familiarise myself with <code>Terraform</code> and then use the tool to build the <code>Docker</code> image for <code>The Weekly Challenge</code> website.</p>
+<p>Sounds easy, right?</p>
+<p>Not for me, at least not yet, but we will see.</p>
+<br>
+<h2 id="what-is-terraform">What is Terraform?</h2>
+<hr>
+<p><code>Terraform</code> is an open-source <code>Infrastructure as Code (IaC)</code> tool developed by <code>HashiCorp</code>.</p>
+<p>It allows you to define, provision and manage infrastructure using a declarative configuration language.</p>
+<p>Not bad so far.</p>
+<br>
+<h2 id="why-terraform">Why Terraform?</h2>
+<hr>
+<p>It automates infrastructure, eliminating manual steps.</p>
+<p>It supports various cloud providers e.g. <code>AWS</code>, <code>Azure</code>.</p>
+<p>It follows a declarative approach i.e. we define what we want and it figures out how to do it.</p>
+<p>It also keeps track of the infrastructure state. Last but not least, it automatically handles dependencies.</p>
+<p>That&rsquo;s enough reason for me to give <code>Terraform</code> a try.</p>
+<p>How about you?</p>
+<br>
+<h2 id="terraform-configuration-file">Terraform Configuration File</h2>
+<hr>
+<p><code>Terraform</code> uses <code>HCL (HashiCorp Configuration Language)</code> to define infrastructure.</p>
+<p>The most commonly used configuration file: <code>main.tf</code></p>
+<br>
+<h2 id="terraform-workflow">Terraform Workflow</h2>
+<hr>
+<pre><code>1. Initialise             : terraform init
+2. Preview Changes        : terraform plan
+3. Apply Configuration    : terraform apply
+4. Destroy Infrastructure : terraform destroy
+</code></pre>
+<p>Terraform tracks infrastructure using a state file: <code>terraform.tfstate</code></p>
+<br>
+<h2 id="setup">Setup</h2>
+<hr>
+<p>Since, I&rsquo;m doing this for the first time, I had to setup my environment.</p>
+<p>On my personal laptop, running <code>Ubuntu 24.04.1 LTS</code> under <code>WSL2</code>, here is what I did.</p>
+<br>
+<pre><code>$ wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+$ echo &quot;deb [arch=$(dpkg \
+  --print-architecture) \
+  --signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+  https://apt.releases.hashicorp.com \
+  $(lsb_release -cs) main&quot; | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+$ sudo apt update &amp;&amp; sudo apt install terraform
+</code></pre>
+<br>
+<p>Test the installation:</p>
+<br>
+<pre><code>$ terraform --version
+Terraform v1.11.2
+on linux_amd64
+</code></pre>
+<br>
+<p>I already have <code>Docker</code> on my machine, so I skipped that bit.</p>
+<p>But in case you need it, please find the instructions below:</p>
 <br>
 <pre><code>$ sudo apt update
-
 $ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+$ sudo usermod -aG docker $USER
+$ docker --version
 </code></pre>
 <br>
-<p>Add your user to the <code>docker</code> group to avoid the need to use sudo for every <code>docker</code> command:</p>
-<br>
-<pre><code>$ sudo usermod -aG docker $USER
-</code></pre>
-<br>
-<p>Check the installation:</p>
-<br>
-<pre><code>$ docker --version
-Docker version 28.0.1, build 068a01e
-</code></pre>
-<br>
-<p>Now install the <code>docker-compose</code>:</p>
-<br>
-<pre><code>$ sudo apt install -y docker-compose
-</code></pre>
-<br>
-<p><code>OR</code></p>
-<br>
-<pre><code>$ sudo curl -L &quot;https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)&quot; \
--o /usr/local/bin/docker-compose
+<h2 id="action">Action</h2>
+<hr>
+<p>Time for some real action.</p>
+<p>I am going to create my <code>Terraform</code> configuration file: <code>main.tf</code> in the <a href="https://github.com/manwar/theweeklychallenge"><strong>GItHub repository</strong></a> where I already have the <a href="https://github.com/manwar/theweeklychallenge/blob/master/Dockerfile"><strong>Dockerfile</strong></a> saved.</p>
+<p>Here is my basic configuration file:</p>
+<pre><code># Configure the Docker provider
+terraform {
+  required_providers {
+    docker = {
+      source = &quot;kreuzwerker/docker&quot;
+      version = &quot;3.0.2&quot;
+    }
+  }
+}
 
-$ sudo chmod +x /usr/local/bin/docker-compose
+# Define the Docker image to be built
+resource &quot;docker_image&quot; &quot;theweeklychallenge&quot; {
+  name = &quot;theweeklychallenge:latest&quot;
+  build {
+    context = &quot;.&quot;
+    tag     = [&quot;theweeklychallenge:latest&quot;]
+  }
+}
+
+# Output the image ID after creation
+output &quot;image_id&quot; {
+  value = docker_image.theweeklychallenge.image_id
+}
+</code></pre><br>
+<p>Let&rsquo;s start the process.</p>
+<p>As soon as I fired the first command: <code>terraform init</code>, I got encountered the following error:</p>
+<br>
+<pre><code>Error loading shared library libstdc++.so.6: No such file or directory (needed by /theweeklychallenge/bin/hugo)
+Error loading shared library libgcc_s.so.1: No such file or directory (needed by /theweeklychallenge/bin/hugo)
 </code></pre>
 <br>
-<p>Verify the <code>docker-compose</code> installation:</p>
+<p>It turned out that my <code>Dockerfile</code> was missing some libraries: <code>libstdc++</code>, <code>libgcc</code></p>
+<p>So I updated the <code>Dockerfile</code> and now it looks like below:</p>
 <br>
-<pre><code>$ docker-compose --version
-docker-compose version 1.29.2, build unknown
+<pre><code>FROM alpine:latest
+LABEL maintainer=&quot;mohammad.anwar@yahoo.com&quot;
+
+RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libstdc++ libgcc
+
+WORKDIR /theweeklychallenge
+COPY . /theweeklychallenge
+
+EXPOSE 1414
+CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;, &quot;-D&quot;, &quot;--bind&quot;, &quot;0.0.0.0&quot;]
+</code></pre><br>
+<p>Let&rsquo;s re-run the command:</p>
+<br>
+<pre><code>$ terraform init
+Initializing the backend...
+Initializing provider plugins...
+- Finding kreuzwerker/docker versions matching &quot;3.0.2&quot;...
+- Installing kreuzwerker/docker v3.0.2...
+- Installed kreuzwerker/docker v3.0.2 (self-signed, key ID BD080C4571C6104C)
+Partner and community providers are signed by their developers.
+If you'd like to know more about provider signing, you can read about it here:
+https://www.terraform.io/docs/cli/plugins/signing.html
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run &quot;terraform init&quot; in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running &quot;terraform plan&quot; to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
 </code></pre>
 <br>
-<p>I am going to create an alias for <code>docker ps</code> in the <code>~/.bashrc</code> file so that the output is well-formatted.</p>
+<p>So far so good, passed the init stage.</p>
+<p>Now move to next stage:</p>
+<br>
+<pre><code>$ terraform apply
+...
+...
+...
+docker_image.theweeklychallenge: Creating...
+...
+...
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+image_id = &quot;sha256:055c55d698c6455c108ead190cbd06773066c3d50dc9eceb673a006a785a4a75&quot;
+</code></pre>
+<br>
+<p>Cool, the <code>Docker</code> image has been created.</p>
+<p>Let&rsquo;s verify that:</p>
+<br>
+<pre><code>$ docker images
+REPOSITORY                      TAG       IMAGE ID       CREATED         SIZE
+theweeklychallenge              latest    055c55d698c6   5 seconds ago   1.09GB
+</code></pre>
+<br>
+<p>Indeed, we now have a <code>Docker</code> image.</p>
+<br>
+<p>Let&rsquo;s run the container now:</p>
+<br>
+<pre><code>$ docker run\
+--name theweeklychallenge \
+-p 1414:1414 \
+-d theweeklychallenge:latest
+06a5f07b26dcc1909ffa837ab507483892cf7daf2b2bd673ba50c0793e0d86de
+</code></pre>
+<hr>
+<br>
+<p>We will check the status of container:</p>
+<br>
+<pre><code>$ dps
+Container ID: 06a5f07b26dc
+Image: theweeklychallenge:latest
+Command: &quot;bin/hugo server -p …&quot;
+Created: 2025-03-23 05:09:04 +0000 GMT
+Status: Up 6 seconds
+Ports: 0.0.0.0:1414-&gt;1414/tcp, [::]:1414-&gt;1414/tcp
+</code></pre>
+<br>
+<p><code>dps</code> is the alias. I created earlier for nice formatted output of the command: <code>docker ps</code>.</p>
 <br>
 <pre><code>alias dps='docker ps --format &quot;Container ID: {{.ID}}\nImage: {{.Image}}\nCommand: {{.Command}}\nCreated: {{.CreatedAt}}\nStatus: {{.Status}}\nPorts: {{.Ports}}\nNames: {{.Names}}\n&quot;'
 </code></pre>
 <br>
-<p>For the demo, I am going to use the latest <code>MongoDB</code> image.</p>
-<p>In this post, I will explore the following options:</p>
+<p>Time to access the weekly challenge site running inside the container using the image built by <code>Terraform</code>:</p>
+<p><code>http://localhost:1414</code></p>
+<p>I got lucky, everything works fine.</p>
 <br>
-<pre><code>1. Hard wired secrets
-2. Use of environment variables
-3. Use of --env-file flag
-4. Secret in swarm mode
-</code></pre>
-<br>
-<h2 id="hard-wired-secrets">Hard wired secrets</h2>
+<h2 id="cleanup">Cleanup</h2>
 <hr>
-<p>Well, in this case, we save the secrets in the configuration, though it&rsquo;s not a good idea.</p>
-<p>Here is the configuration file, <code>docker-compose-open.yml</code>:</p>
+<p>Let&rsquo;s do the cleaning.</p>
+<p>We need to stop the container and then remove it too first.</p>
 <br>
-<pre><code>version: '3.8'
-
-services:
-  mongodb:
-    image: mongo
-    container_name: mongodb
-    ports:
-      - 27017:27017
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=supersecret
-</code></pre><br>
-<p>Let&rsquo;s start the container now:</p>
-<br>
-<pre><code>$ docker-compose -f docker-compose-open.yml up -d
-Creating mongodb ... done
+<pre><code>$ docker stop theweeklychallenge
+theweeklychallenge
+$ docker rm theweeklychallenge
+theweeklychallenge
 </code></pre>
 <br>
-<p>Check the container status, <code>docker ps</code>:</p>
+<p>Now we will ask, <code>Terraform</code> to do the destruction for me.</p>
 <br>
-<pre><code>$ dps
-Container ID: e753a5985c96
-Image: mongo
-Command: &quot;docker-entrypoint.s…&quot;
-Created: 2025-03-20 04:29:16 +0000 GMT
-Status: Up 2 seconds
-Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
-Names: mongodb
-</code></pre>
-<br>
-<p>The container is up and running, so far so good.</p>
-<p>Let&rsquo;s connect to the <code>MongoDB</code> using the same credentials as in the configuration file above:</p>
-<br>
-<pre><code>$ docker exec -it mongodb mongosh --username admin --password supersecret
-Current Mongosh Log ID: 67dbc40b54e05a0e5e6b140a
+<pre><code>$ terraform destroy
 ...
 ...
-Using MongoDB:          8.0.5
-Using Mongosh:          2.4.2
-
-test&gt;
+docker_image.theweeklychallenge: Destruction complete after 0s
+Destroy complete! Resources: 1 destroyed.
 </code></pre>
 <br>
-<p>We&rsquo;ve passed the first hurdle, we&rsquo;re inside the container and connected to <code>MongoDB</code>.</p>
-<p>To exit, simply type <code>exit</code> at the prompt.</p>
-<p>Let&rsquo;s clean up by <code>stopping and removing the container</code>, so we can move to the next option.</p>
+<p>However I still see some leftovers.</p>
+<p>So I did the manually cleaning:</p>
 <br>
-<pre><code>$ docker stop mongodb
-mongodb
-
-$ docker rm mongodb
-mongodb
+<pre><code>$ rm -rf .terraform/ terraform.tfstate* .terraform.lock.hcl
 </code></pre>
 <br>
-<h2 id="use-of-environment-variables">Use of environment variables</h2>
+<p>Everything back to original state. I hope you had fun with me in this journey.</p>
 <hr>
-<p>For this, we would create another configuration file, <code>docker-compose-env.yml</code>:</p>
-<br>
-<pre><code>version: '3.8'
-services:
-  mongodb:
-    image: mongo
-    container_name: mongodb
-    ports:
-      - 27017:27017
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ADMIN_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ADMIN_PASS}
-</code></pre><br>
-<p>You have two choices for creating environment variables: either use <code>EXPORT key=value</code> or define them when creating container:</p>
-<br>
-<pre><code>$ export MONGO_ADMIN_USER=admin
-
-$ export MONGO_ADMIN_PASS=supersecret
-
-$ docker-compose -f docker-compose-env.yml up -d
-Creating mongodb ... done
-</code></pre>
-<br>
-<p><code>OR</code></p>
-<br>
-<pre><code>$ MONGO_ADMIN_USER=admin MONGO_ADMIN_PASS=supersecret \
-docker-compose -f docker-compose-env.yml up -d
-Creating mongodb ... done
-</code></pre>
-<br>
-<p>Check the container status, <code>docker ps</code>:</p>
-<br>
-<pre><code>$ dps
-Container ID: e753a5985c96
-Image: mongo
-Command: &quot;docker-entrypoint.s…&quot;
-Created: 2025-03-20 04:32:10 +0000 GMT
-Status: Up 33 seconds
-Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
-Names: mongodb
-</code></pre>
-<br>
-<p>So all good, let&rsquo;s connect to <code>MongoDB</code>:</p>
-<br>
-<pre><code>$ docker exec -it mongodb mongosh --username admin --password supersecret
-Current Mongosh Log ID: 67dbc7f7b8d8dedf8d6b140a
-...
-...
-Using MongoDB:          8.0.5
-Using Mongosh:          2.4.2
-
-test&gt;
-</code></pre>
-<br>
-<p>Once that&rsquo;s done, type <code>exit</code> at the prompt to exit.</p>
-<p>We&rsquo;ll clean up as before i.e. <code>stop and remove the container</code>.</p>
-<br>
-<pre><code>$ docker stop mongodb
-mongodb
-
-$ docker rm mongodb
-mongodb
-</code></pre>
-<br>
-<h2 id="use-of---env-file-flag">Use of &ndash;env-file flag</h2>
-<hr>
-<p>Let&rsquo;s create env file first, <code>docker-compose.env</code> as below:</p>
-<br>
-<pre><code>$ echo &quot;MONGO_ADMIN_USER=admin&quot; &gt; docker-compose.env
-
-$ echo &quot;MONGO_ADMIN_PASS=supersecret&quot; &gt;&gt; docker-compose.env
-</code></pre>
-<br>
-<p>Time to start the container with <code>--env-file</code> flag:</p>
-<br>
-<pre><code>$ docker-compose --env-file docker-compose.env -f docker-compose-env.yml up -d
-Creating mongodb ... done
-</code></pre>
-<br>
-<p>Check the container status, <code>docker ps</code>:</p>
-<br>
-<pre><code>$ dps
-Container ID: d61324270839
-Image: mongo
-Command: &quot;docker-entrypoint.s…&quot;
-Created: 2025-03-20 04:35:11 +0000 GMT
-Status: Up 31 seconds
-Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
-Names: mongodb
-</code></pre>
-<br>
-<p>Now it&rsquo;s up and running. Good.</p>
-<p>Let&rsquo;s connect to <code>MongoDB</code> again.</p>
-<br>
-<pre><code>$ docker exec -it mongodb mongosh --username admin --password supersecret
-Current Mongosh Log ID: 67dbca84408a363eff6b140a
-...
-...
-Using MongoDB:          8.0.5
-Using Mongosh:          2.4.2
-
-test&gt;
-</code></pre>
-<br>
-<p>Type <code>exit</code> at the prompt to exit so that we can proceed to the final option.</p>
-<p>Finally, <code>stop and remove the container</code>:</p>
-<br>
-<pre><code>$ docker stop mongodb
-mongodb
-
-$ docker rm mongodb
-mongodb
-</code></pre>
-<br>
-<h2 id="secret-in-swarm-mode">Secret in swarm mode</h2>
-<hr>
-<p>This next part is a bit tricky as you&rsquo;ll see.</p>
-<p>First we need to enable <code>Swarm</code> mode.</p>
-<br>
-<pre><code>$ docker swarm init
-</code></pre>
-<br>
-<p><code>OR</code></p>
-<br>
-<pre><code>$ docker swarm init --advertise-addr 172.19.28.199
-Swarm initialized: current node (qz8w8ns05xvtmpsewhhsp9qiq) is now a manager.
-</code></pre>
-<br>
-<p>Check if <code>Swarm</code> mode is active:</p>
-<pre><code>$ docker info | grep -i swarm
-Swarm: active
-</code></pre>
-<br>
-<p>Good, <code>Swarm</code> mode is now active.</p>
-<p>Next, we&rsquo;ll create two secrets one for the <code>user</code> and another for the <code>password</code>.</p>
-<p>There are two ways to create secrets as shown below:</p>
-<br>
-<pre><code>$ echo &quot;admin&quot; &gt; mongo-user.txt
-
-$ docker secret create mongo_user mongo-user.txt
-x3lswvc8mkwh0x5opoyvkucca
-</code></pre>
-<br>
-<p><code>and</code></p>
-<br>
-<pre><code>$ echo &quot;supersecret&quot; | docker secret create mongo_pass -
-5efjagekw2driudrs5z7j6ezc
-</code></pre>
-<br>
-<p>We have created two secrets, let&rsquo;s list them first:</p>
-<br>
-<pre><code>$ docker secret ls
-ID                          NAME         DRIVER    CREATED              UPDATED
-5efjagekw2driudrs5z7j6ezc   mongo_pass             42 seconds ago       42 seconds ago
-x3lswvc8mkwh0x5opoyvkucca   mongo_user             About a minute ago   About a minute ago
-</code></pre>
-<br>
-<p>It&rsquo;s time to create the configuration file, <code>docker-compose-secret.yml</code> as below:</p>
-<br>
-<pre><code>version: '3.8'
-
-services:
-  mongo:
-    image: mongo
-    container_name: mongodb
-    secrets:
-      - mongo_user
-      - mongo_pass
-    ports:
-      - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/mongo_user
-      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_pass
-    networks:
-      - mongo_network
-
-secrets:
-  mongo_user:
-    external: true
-  mongo_pass:
-    external: true
-
-networks:
-  mongo_network:
-    driver: overlay
-    attachable: true
-</code></pre><br>
-<p>To create a container in <code>Swarm</code> mode and use the secrets, we need to create the stack as follows:</p>
-<br>
-<pre><code>$ docker stack deploy -c docker-compose-secret.yml mongo_stack
-In a future release, --detach=false will become the default.
-Creating network mongo_stack_mongo_network
-Creating service mongo_stack_mongo
-</code></pre>
-<br>
-<p><strong>NOTE:</strong> The service name <code>mongo_stack_mongo</code>, it was auto-generated by <code>Docker</code>, which is the combination of stack name, <code>mongo_stack</code> and service name <code>mongo</code>.</p>
-<p>Hang on, why isn&rsquo;t the service name exactly as in the configuration file?</p>
-<p>Well, if <code>Docker</code> used the service name exactly as defined in the configuration file, it would lead to naming conflicts in a multi-stack environment.</p>
-<p>For example:</p>
-<br>
-<pre><code>- Stack A has a service named db.
-- Stack B also has a service named db.
-</code></pre>
-<br>
-<p>If <code>Docker</code> didn&rsquo;t prefix the service name with the stack name, both services would be named <code>db</code>, making it impossible to distinguish them in the <code>Swarm</code> cluster.</p>
-<p>Can you change this behaviour?</p>
-<p>No, <code>Docker</code> doesn&rsquo;t provide a way to override this behaviour when using <code>docker stack deploy</code>.</p>
-<p>The <code>&lt;stack&gt;_&lt;service&gt;</code> naming convention is enforced by design.</p>
-<p>Check the container status, <code>docker ps</code>:</p>
-<br>
-<pre><code>$ dps
-Container ID: f85e4c9be83a
-Image: mongo
-Command: &quot;docker-entrypoint.s…&quot;
-Created: 2025-03-20 04:37:31 +0000 GMT
-Status: Up 19 seconds
-Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
-Names: mongodb
-</code></pre>
-<br>
-<p>Let;s try to connect to <code>MongoDB</code>:</p>
-<br>
-<pre><code>$ docker exec -it mongodb mongosh --username admin --password supersecret
-Current Mongosh Log ID: 67dbcef14a1ae204cf6b140a
-...
-...
-Using MongoDB:          8.0.5
-Using Mongosh:          2.4.2
-
-test&gt;
-</code></pre>
-<br>
-<p>Type <code>exit</code> at the prompt and to exit.</p>
-<p>Finally, we&rsquo;ll now remove the service.</p>
-<br>
-<pre><code>$ docker service ls
-ID             NAME                MODE         REPLICAS   IMAGE          PORTS
-qg8b7aq1a3q3   mongo_stack_mongo   replicated   1/1        mongo:latest   *:27017-&gt;27017/tcp
-
-
-$ docker service rm qg8b7aq1a3q3
-qg8b7aq1a3q3
-</code></pre>
-<br>
-<p>Last but not least, leave <code>Swarm</code> mode:</p>
-<br>
-<pre><code>$ docker swarm leave
-</code></pre>
-<hr>
-<br>
 <p><code>Keep Hacking !!</code></p>
 
                 </div>
