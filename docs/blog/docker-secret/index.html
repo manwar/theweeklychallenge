@@ -221,9 +221,16 @@
     </a>
 </div>
 <br>
-<h2 id="docker-secret">Docker Secret</h2>
+<h2 id="dockeri-secret">Dockeri Secret</h2>
 <hr>
+<h3 id="1-setupsetup"><a href="#setup">1. Setup</a></h3>
+<h3 id="2-hard-wired-secretshard-wired-secrets"><a href="#hard-wired-secrets">2. Hard Wired Secrets</a></h3>
+<h3 id="3-environment-variablesenvironment-variables"><a href="#environment-variables">3. Environment Variables</a></h3>
+<h3 id="4-env-fileenv-file"><a href="#env-file">4. Env File</a></h3>
+<h3 id="5-swarm-modeswarm-mode"><a href="#swarm-mode">5. Swarm Mode</a></h3>
 <br>
+<h2 id="setup">Setup</h2>
+<hr>
 <p>Before we do anything, let&rsquo;s make sure we have the foundation setup properly.</p>
 <p>If you don&rsquo;t have <code>docker</code> and <code>docker-compose</code> installed, please follow the steps below. Otherwise, proceed to the next section.</p>
 <br>
@@ -276,7 +283,7 @@ docker-compose version 1.29.2, build unknown
 4. Secret in swarm mode
 </code></pre>
 <br>
-<h2 id="hard-wired-secrets">Hard wired secrets</h2>
+<h2 id="hard-wired-secrets">Hard Wired Secrets</h2>
 <hr>
 <p>Well, in this case, we save the secrets in the configuration, though it&rsquo;s not a good idea.</p>
 <p>Here is the configuration file, <code>docker-compose-open.yml</code>:</p>
@@ -335,7 +342,7 @@ $ docker rm mongodb
 mongodb
 </code></pre>
 <br>
-<h2 id="use-of-environment-variables">Use of environment variables</h2>
+<h2 id="environment-variables">Environment Variables</h2>
 <hr>
 <p>For this, we would create another configuration file, <code>docker-compose-env.yml</code>:</p>
 <br>
@@ -401,7 +408,7 @@ $ docker rm mongodb
 mongodb
 </code></pre>
 <br>
-<h2 id="use-of---env-file-flag">Use of &ndash;env-file flag</h2>
+<h2 id="env-file">Env File</h2>
 <hr>
 <p>Let&rsquo;s create env file first, <code>docker-compose.env</code> as below:</p>
 <br>
@@ -451,7 +458,7 @@ $ docker rm mongodb
 mongodb
 </code></pre>
 <br>
-<h2 id="secret-in-swarm-mode">Secret in swarm mode</h2>
+<h2 id="swarm-mode">Swarm Mode</h2>
 <hr>
 <p>This next part is a bit tricky as you&rsquo;ll see.</p>
 <p>First we need to enable <code>Swarm</code> mode.</p>
@@ -575,7 +582,6 @@ test&gt;
 <pre><code>$ docker service ls
 ID             NAME                MODE         REPLICAS   IMAGE          PORTS
 qg8b7aq1a3q3   mongo_stack_mongo   replicated   1/1        mongo:latest   *:27017-&gt;27017/tcp
-
 
 $ docker service rm qg8b7aq1a3q3
 qg8b7aq1a3q3

@@ -33,12 +33,25 @@ tags: ["Docker"]
 ## Docker Compose
 ***
 
-For this post, we will need `docker`.
+### [1. Setup](#setup)
+### [2. docker-compose vs docker compose](#docker-compose-vs-docker-compose)
+### [3. Plan](#plan)
+### [ &nbsp;&nbsp;&nbsp; a) Create a Docker Network](#create-a-docker-network)
+### [ &nbsp;&nbsp;&nbsp; b) Create the MongoDB Container](#create-the-mongodb-container)
+### [ &nbsp;&nbsp;&nbsp; c) Create the Mongo Express Container](#create-the-mongo-express-container)
+### [ &nbsp;&nbsp;&nbsp; d) Verify Containers](#verify-containers)
+### [ &nbsp;&nbsp;&nbsp; e) Test Connection](#test-connection)
+### [4. Observations](#observations)
+### [5. Docker Compose](#docker-compose)
+### [6. Cleanup](#cleanup)
+### [7. Conclusion](#conclusion)
 
 <br>
 
-### Setting Up the Environment
+### Setup
 ***
+
+For this post, we will need `docker`.
 
 Let’s quickly set up the environment and verify the installation.
 
@@ -71,7 +84,7 @@ Having said, this will also work with `docker-compose` without any change.
 
 <br>
 
-## Difference between 'docker-compose' and 'docker compose'
+## 'docker-compose' vs 'docker compose'
 ***
 
 ### docker-compose
@@ -134,7 +147,7 @@ We will start with a simple straight forward approach using just `docker` comman
 
 <br>
 
-### Step 1: Create a Docker Network
+### Create a Docker Network
 ***
 
 First, let's create a docker network named: `mongo-network`
@@ -152,7 +165,7 @@ First, let's create a docker network named: `mongo-network`
 
 <br>
 
-### Step 2: Create the MongoDB Container
+### Create the MongoDB Container
 ***
 
 Next, We will create a `MongoDB` container:
@@ -170,7 +183,7 @@ Next, We will create a `MongoDB` container:
 
 <br>
 
-### Step 3: Create the Mongo Express Container
+### Create the Mongo Express Container
 ***
 
 Now, we will create the `Mongo Express` container.
@@ -189,7 +202,7 @@ Now, we will create the `Mongo Express` container.
 
 <br>
 
-### Step 4: Verify Both Containers
+### Verify Containers
 ***
 
 Check the status of both containers:
@@ -215,7 +228,7 @@ Check the status of both containers:
 
 <br>
 
-### Step 5: Test the Containers and Network Connection
+### Test Connection
 ***
 
 `Mongo Express` should be accessible at `http://localhost:8081` using the credential `admin/pass`.
@@ -231,7 +244,7 @@ Imagine if you had to create multiple containers manually, it would quickly beco
 
 <br>
 
-## Enter Docker Compose
+## Docker Compose
 ***
 
 To make your life easy and comfortable, `docker compose`, comes into the picture.
@@ -253,7 +266,7 @@ To make your life easy and comfortable, `docker compose`, comes into the picture
 
 <br>
 
-### Cleanup
+## Cleanup
 ***
 
 Let's stop and remove both containers including the network, so that we have a clean setup.

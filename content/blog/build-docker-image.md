@@ -33,9 +33,9 @@ tags: ["Perl", "Docker"]
 ## Build Docker Image
 ***
 
-<br>
-
-I know the post title is a little vague, what I meant is `building docker image for the weekly challenge website`.
+### [1. Introduction](#introduction)
+### [2. Journey](#journey)
+### [3. Setup](#setup)
 
 <br>
 
@@ -43,6 +43,8 @@ I know the post title is a little vague, what I meant is `building docker image 
 ***
 
 <br>
+
+I know the post title is a little vague, what I meant is `building docker image for the weekly challenge website`.
 
 If you are new to [**The Weekly Challenge**](https://theweeklychallenge.org) then this is the perfect platform for all geeks who want to use their favourite programming language to solve the two challenges we present every week. You don't need to be an expert in the programming language, as there is always one simple challenge for beginners and a second, more advanced challenge for those with greater experience.
 

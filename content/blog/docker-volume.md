@@ -33,12 +33,16 @@ tags: ["Docker"]
 ## Docker Volume
 ***
 
-For this post, we just need `docker`.
+### [1. Setup](#setup)
+### [2. Bind Mount](#bind-mount)
+### [3. Use of Docker Volume](#use-of-docker-volume)
 
 <br>
 
-### Setting Up the Environment
+## Setup
 ***
+
+For this post, we just need `docker`.
 
 Let’s quickly set up the environment and verify the installation.
 
@@ -71,7 +75,7 @@ For this demo, I am going to use the `nginx` image.
 
 <br>
 
-## 1. Bind Mount
+## Bind Mount
 ***
 
 ### What is bind mount?
@@ -246,7 +250,7 @@ Before we proceed, let's stop and remove the container we just created.
 
 <br>
 
-## 2. Docker Volume
+## Use of Docker Volume
 ***
 
 The main use of `Docker Volume` is to `persist and share data` between containers and the host system or among multiple containers.

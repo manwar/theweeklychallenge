@@ -223,10 +223,22 @@
 <br>
 <h2 id="docker-compose">Docker Compose</h2>
 <hr>
-<p>For this post, we will need <code>docker</code>.</p>
+<h3 id="1-setupsetup"><a href="#setup">1. Setup</a></h3>
+<h3 id="2-docker-compose-vs-docker-composedocker-compose-vs-docker-compose"><a href="#docker-compose-vs-docker-compose">2. docker-compose vs docker compose</a></h3>
+<h3 id="3-planplan"><a href="#plan">3. Plan</a></h3>
+<h3 id="-nbspnbspnbsp-a-create-a-docker-networkcreate-a-docker-network"><a href="#create-a-docker-network">     a) Create a Docker Network</a></h3>
+<h3 id="-nbspnbspnbsp-b-create-the-mongodb-containercreate-the-mongodb-container"><a href="#create-the-mongodb-container">     b) Create the MongoDB Container</a></h3>
+<h3 id="-nbspnbspnbsp-c-create-the-mongo-express-containercreate-the-mongo-express-container"><a href="#create-the-mongo-express-container">     c) Create the Mongo Express Container</a></h3>
+<h3 id="-nbspnbspnbsp-d-verify-containersverify-containers"><a href="#verify-containers">     d) Verify Containers</a></h3>
+<h3 id="-nbspnbspnbsp-e-test-connectiontest-connection"><a href="#test-connection">     e) Test Connection</a></h3>
+<h3 id="4-observationsobservations"><a href="#observations">4. Observations</a></h3>
+<h3 id="5-docker-composedocker-compose"><a href="#docker-compose">5. Docker Compose</a></h3>
+<h3 id="6-cleanupcleanup"><a href="#cleanup">6. Cleanup</a></h3>
+<h3 id="7-conclusionconclusion"><a href="#conclusion">7. Conclusion</a></h3>
 <br>
-<h3 id="setting-up-the-environment">Setting Up the Environment</h3>
+<h3 id="setup">Setup</h3>
 <hr>
+<p>For this post, we will need <code>docker</code>.</p>
 <p>Let’s quickly set up the environment and verify the installation.</p>
 <br>
 <pre><code>$ sudo apt update
@@ -246,7 +258,7 @@ Docker version 28.0.1, build 068a01e
 <p>Just for fun, I am using the <code>docker compose</code> command in this post.</p>
 <p>Having said, this will also work with <code>docker-compose</code> without any change.</p>
 <br>
-<h2 id="difference-between-docker-compose-and-docker-compose">Difference between &lsquo;docker-compose&rsquo; and &lsquo;docker compose&rsquo;</h2>
+<h2 id="docker-compose-vs-docker-compose">&lsquo;docker-compose&rsquo; vs &lsquo;docker compose&rsquo;</h2>
 <hr>
 <h3 id="docker-compose-1">docker-compose</h3>
 <br>
@@ -289,7 +301,7 @@ OpenSSL version: OpenSSL 3.0.13 30 Jan 2024
 <p>The goal is to create a container running <code>Mongo Express</code>, linked to a <code>MongoDB</code> container.</p>
 <p>We will start with a simple straight forward approach using just <code>docker</code> command.</p>
 <br>
-<h3 id="step-1-create-a-docker-network">Step 1: Create a Docker Network</h3>
+<h3 id="create-a-docker-network">Create a Docker Network</h3>
 <hr>
 <p>First, let&rsquo;s create a docker network named: <code>mongo-network</code></p>
 <br>
@@ -303,7 +315,7 @@ d0b60d358dfb   host            host      local
 7ca8d14845c6   mongo-network   bridge    local
 </code></pre>
 <br>
-<h3 id="step-2-create-the-mongodb-container">Step 2: Create the MongoDB Container</h3>
+<h3 id="create-the-mongodb-container">Create the MongoDB Container</h3>
 <hr>
 <p>Next, We will create a <code>MongoDB</code> container:</p>
 <br>
@@ -317,7 +329,7 @@ d0b60d358dfb   host            host      local
 048833d02f2693bf7bae641611cc466698fb5857b6503ef5743054e9a5518a31
 </code></pre>
 <br>
-<h3 id="step-3-create-the-mongo-express-container">Step 3: Create the Mongo Express Container</h3>
+<h3 id="create-the-mongo-express-container">Create the Mongo Express Container</h3>
 <hr>
 <p>Now, we will create the <code>Mongo Express</code> container.</p>
 <br>
@@ -332,7 +344,7 @@ d0b60d358dfb   host            host      local
 a82c59ffbee01f0b1d466b747e8288846c1e11f187205e10fddc6637f864c878
 </code></pre>
 <br>
-<h3 id="step-4-verify-both-containers">Step 4: Verify Both Containers</h3>
+<h3 id="verify-containers">Verify Containers</h3>
 <hr>
 <p>Check the status of both containers:</p>
 <br>
@@ -354,7 +366,7 @@ Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
 Names: mongodb
 </code></pre>
 <br>
-<h3 id="step-5-test-the-containers-and-network-connection">Step 5: Test the Containers and Network Connection</h3>
+<h3 id="test-connection">Test Connection</h3>
 <hr>
 <p><code>Mongo Express</code> should be accessible at <code>http://localhost:8081</code> using the credential <code>admin/pass</code>.</p>
 <br>
@@ -363,7 +375,7 @@ Names: mongodb
 <p>I found this process tedious and time consuming.</p>
 <p>Imagine if you had to create multiple containers manually, it would quickly become a nightmare.</p>
 <br>
-<h2 id="enter-docker-compose">Enter Docker Compose</h2>
+<h2 id="docker-compose-3">Docker Compose</h2>
 <hr>
 <p>To make your life easy and comfortable, <code>docker compose</code>, comes into the picture.</p>
 <br>
@@ -385,7 +397,7 @@ Names: mongodb
 </li>
 </ul>
 <br>
-<h3 id="cleanup">Cleanup</h3>
+<h2 id="cleanup">Cleanup</h2>
 <hr>
 <p>Let&rsquo;s stop and remove both containers including the network, so that we have a clean setup.</p>
 <br>

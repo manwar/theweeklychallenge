@@ -30,10 +30,19 @@ tags: ["Docker"]
 
 <br>
 
-## Docker Secret
+## Dockeri Secret
 ***
 
+### [1. Setup](#setup)
+### [2. Hard Wired Secrets](#hard-wired-secrets)
+### [3. Environment Variables](#environment-variables)
+### [4. Env File](#env-file)
+### [5. Swarm Mode](#swarm-mode)
+
 <br>
+
+## Setup
+***
 
 Before we do anything, let's make sure we have the foundation setup properly.
 
@@ -113,7 +122,7 @@ In this post, I will explore the following options:
 
 <br>
 
-## Hard wired secrets
+## Hard Wired Secrets
 ***
 
 Well, in this case, we save the secrets in the configuration, though it's not a good idea.
@@ -195,7 +204,7 @@ Let's clean up by `stopping and removing the container`, so we can move to the n
 
 <br>
 
-## Use of environment variables
+## Environment Variables
 ***
 
 For this, we would create another configuration file, `docker-compose-env.yml`:
@@ -284,7 +293,7 @@ We'll clean up as before i.e. `stop and remove the container`.
 
 <br>
 
-## Use of --env-file flag
+## Env File
 ***
 
 Let's create env file first, `docker-compose.env` as below:
@@ -352,7 +361,7 @@ Finally, `stop and remove the container`:
 
 <br>
 
-## Secret in swarm mode
+## Swarm Mode
 ***
 
 This next part is a bit tricky as you'll see.
@@ -526,7 +535,6 @@ Finally, we'll now remove the service.
     $ docker service ls
     ID             NAME                MODE         REPLICAS   IMAGE          PORTS
     qg8b7aq1a3q3   mongo_stack_mongo   replicated   1/1        mongo:latest   *:27017->27017/tcp
-
 
     $ docker service rm qg8b7aq1a3q3
     qg8b7aq1a3q3
