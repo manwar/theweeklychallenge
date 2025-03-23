@@ -19,8 +19,8 @@ tags: ["Docker"]
 ### [1. Introduction](#introduction)
 ### [2. Workflow](#workflow)
 ### [3. Top Level Keys](#top-level-keys)
-### [ &nbsp;&nbsp;&nbsp; a) Required Key](#required-keys)
-### [ &nbsp;&nbsp;&nbsp; b) Optional Key](#optional-keys)
+### [ &nbsp;&nbsp;&nbsp; a) Required Keys](#required-keys)
+### [ &nbsp;&nbsp;&nbsp; b) Optional Keys](#optional-keys)
 ### [4. Event Types](#event-types)
 ### [5. Repository Events](#repository-events)
 ### [6. Job Components](#job-components)
@@ -82,6 +82,14 @@ There are three required top-level keys and five optional top-level keys in a wo
 <br>
 
 I am skipping optional top-level keys for now.
+
+In this post, I will discuss the three top-level keys: `name`, `on` and `jobs`
+
+Well, as far as, `name` is concerned, there is nothing to talk about except that it is used to define the workflow's name.
+
+Then there are basically two left: `on` and `jobs`
+
+The following sections would address the two top-level keys.
 
 <br>
 
