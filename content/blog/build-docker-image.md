@@ -329,7 +329,8 @@ Another quick suggestions from `Dave Cross` with [**reference**](https://docs.do
 
 <br>
 
-    docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:latest .
+    docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:${{ github.ref_name }} \
+                 -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:latest .
     docker push -a ${{ secrets.DOCKER_HUB_USERNAME }}/my-app
 
 <br>
