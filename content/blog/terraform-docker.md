@@ -91,7 +91,9 @@ It supports various cloud providers e.g. `AWS`, `Azure`.
 
 It follows a declarative approach i.e. we define what we want and it figures out how to do it.
 
-It also keeps track of the infrastructure state. Last but not least, it automatically handles dependencies.
+It also keeps track of the infrastructure state.
+
+Last but not least, it automatically handles dependencies.
 
 That's enough reason for me to give `Terraform` a try.
 
