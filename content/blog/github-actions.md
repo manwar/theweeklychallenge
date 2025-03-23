@@ -291,6 +291,56 @@ jobs:
 
 <br>
 
+## [2025-03-23] UPDATE
+***
+
+If you don't want to create your own secret, `WORKFLOW_PAT`, like above then you can use the special secret `GITHUB_TOKEN` provided by `GitHub` automatically.
+
+It expires after the workflow run completes. In order to be able to create release, we need to give `write` permission explicitly.
+
+So the configuration would look like below using `GITHUB_TOKEN`:
+
+```
+name: Release on Tag
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+```
+
+<br>
+
 I am all set now. Next time I push a new release to `CPAN`, I will tag it and see if the workflow automatically creates a release for me, `fingers crossed`.
 
 <br>
