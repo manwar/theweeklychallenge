@@ -264,6 +264,107 @@ As of today, we have `v3.13` as the latest tag, which represents the current wee
 
 The plan is that every `Monday` when I release a new challenge, I will also push the updated image.
 
+<br>
+
+## [2025-03-23] UPDATE
+***
+
+As I shared my plan above, `Dave Cross` suggested I can automate the process of building new image and pushing to `Docker Hub` on tag push.
+
+I used my `Sunday` moring hours to figure out.
+
+I created `GitHub` repository just to try things: `https://github.com/manwar/Test-Workflow`
+
+I have a simple `Dockerfile` in the repository.
+
+<br>
+
+```
+FROM alpine:latest
+CMD echo "Hello, World!"
+```
+
+<br>
+
+And then I created workflow configuration file: `.github/workflow/dockerhub.yml`
+
+<br>
+
+```
+name: Docker Build and Push
+
+on:
+  push:
+    tags:
+      - 'dhub*'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build and Push
+        run: |
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:${{ github.ref_name }} .
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:${{ github.ref_name }}
+```
+
+<br>
+
+For this, first I created token in `Docker Hub` as below:
+
+<br>
+
+    1. Once logged in, click on your profile icon in the top-right corner.
+    2. From the dropdown menu, select Account Settings.
+    3. In the left-hand menu, click on Personal access tokens.
+    4. Click on Generate new token.
+    5. Enter a description for your token (e.g., "GitHub Actions Token").
+    6. Choose expires: Never
+    7. Choose permission: read and write
+
+<br>
+
+Now time to create secrets in the `GitHub` repository:
+
+<br>
+
+    1. Go to repository settings page
+    2. Click: Secrets and variables
+    3. Click: Actions
+    4. Click: New repository secret
+    5. Give secret name: DOCKER_HUB_USERNAME
+    6. Give value: manwardock
+    7. Click: Add secret
+
+Similarly add another secret, `DOCKER_HUB_TOKEN` and set the token you created in `Docker Hub`.
+
+We are read to test the changed i.e tag the repository and push as below:
+
+<br>
+
+    $ git tag dhubv1.0
+    $ git push origin dhubv1.0
+
+<br>
+
+Go to `GitHub` repository and check if everything went OK.
+
+When it is done without error, goto `Docker Hub` check the repository, you should have the tag listed there.
+
+***
+
+<br>
+
 From now on, if anyone wants to run the website locally, they can simply grab the [**configuration file**](https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml) and the job is done.
 
 <br>
