@@ -271,7 +271,9 @@ The plan is that every `Monday` when I release a new challenge, I will also push
 
 As I shared my plan above, `Dave Cross` suggested I can automate the process of building new image and pushing to `Docker Hub` on tag push.
 
-I used my `Sunday` moring hours to figure out.
+I used my `Sunday` morning hours to figure out the process.
+
+It took me few attempts to nail down the process, I must confess.
 
 I created `GitHub` repository just to try things: `https://github.com/manwar/Test-Workflow`
 
