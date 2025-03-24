@@ -22,7 +22,7 @@ I have been following the Perl releases closely for some time now. I don't just 
 
 It gives me immense pleasure to see how the language has evolved over the last two decades. With so much happening, keeping up with the pace isn't easy. That's why, I created a dedicated [**GitHub repository**](https://github.com/manwar/perl-cool-snippets) where I record changes as I come across them. This helps me refer back whenever I need to cross-check something.
 
-Have you heard of the book [**Perl New Features**](https://leanpub.com/perl_new_features) by `brian d foy` and published by [**Perl School**](https://perlschool.com) run by `Dave Cross`?
+Have you heard of the book [**Perl New Features**](https://leanpub.com/perl_new_features) by `brian d foy` and published by [**Perl School**](https://perlschool.com)?
 
 When it was first released, I received a `FREE` copy of the book by `brian d foy`. Since I was already working on documenting `Perl` features, the book helped me fill in the missing details. Having read it from start to finish multiple times, I now have a solid grasp of all the important changes in `Perl`. The book doesn't just highlights improvements but also explains the reasoning behind them.
 
