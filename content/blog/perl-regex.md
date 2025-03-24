@@ -196,7 +196,7 @@ Running the code now:
 <br>
 
     city matched
-    Use of uninitialized value $^LAST_SUCCESSFUL_PATTERN in regexp compilation at ex2.pl line 24.
+    Use of uninitialized value $^LAST_SUCCESSFUL_PATTERN in regexp compilation at .... line 24.
     #2 name matched
 
 <br>
