@@ -91,7 +91,7 @@ The empty pattern didn't match in the first context but it did in the second.
 
 Because the empty pattern attempts to match against the last successful pattern in the current context.
 
-I must admit, This implicit behaviour can be quite confusing.
+I must admit, this implicit behaviour can be quite confusing.
 
 In `Perl v5.38`, this confusion is eliminated with the introduction of the special variable `${^LAST_SUCCESSFUL_PATTERN}`
 
