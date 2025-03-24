@@ -209,13 +209,13 @@
 <h2 id="special-variable-last_successful_pattern-in-perl-v538">Special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38</h2>
 <hr>
 <br>
-<p>I have been following the Perl releases very closely for sometimes now. I don&rsquo;t just look at the <code>Maintenance releases</code> but also the <code>Development release</code> which comes more frequently with smaller updates.</p>
-<p>I get immense pleasure to see how the language has moved forward in the last 2 decades. With so much going on, it is not easy to keep up with the pace. Having said, I created a dedicated <a href="https://github.com/manwar/perl-cool-snippets"><strong>GitHub repository</strong></a> where I record the changes as I come across. It helps me to go back when I need cross checking.</p>
-<p>Do you know about the book <a href="https://leanpub.com/perl_new_features"><strong>Perl New Features</strong></a> by <code>brian d foy</code> and published by <a href="https://perlschool.com"><strong>Perl School</strong></a> run by <code>Dave Cross</code>?</p>
-<p>Well, when it was first published, I received a <code>FREE</code> copy of the book by <code>brian d foy</code>. Since I was working on the <code>Perl</code> features, it helped me to add the missing bits. As I have read the book start to end multiple times, I now know all important changes in <code>Perl</code>. It doesn&rsquo;t just talk about the improvements but also the reason.</p>
-<p>Few days ago, <code>brian d foy</code>, updated the book to cover <code>Perl v5.38</code>. The first edition only covered up to <code>Perl v5.32</code>.</p>
-<p>Today I am going to talk about the new <code>${^LAST_SUCCESSFUL_PATTERN}</code> variable added to <code>Perl v5.38</code>. For some reason, I missed this feature when it was released. I normally go with the delta page of each release. Here is the the <a href="https://perldoc.perl.org/perl5380delta"><strong>delta page</strong></a> for <code>Perl v5.38</code>, just in case you are looking for it.</p>
-<p>Having read about it in the book, I have better understandings about the new <code>${^LAST_SUCCESSFUL_PATTERN}</code> variable now.</p>
+<p>I have been following the Perl releases closely for some time now. I don&rsquo;t just track the <code>maintenance releases</code> but also the <code>development releases</code>, which comes more frequently with smaller updates.</p>
+<p>It gives me immense pleasure to see how the language has evolved over the last two decades. With so much happening, keeping up with the pace isn&rsquo;t easy. That&rsquo;s why, I created a dedicated <a href="https://github.com/manwar/perl-cool-snippets"><strong>GitHub repository</strong></a> where I record changes as I come across them. This helps me refer back whenever I need to cross-check something.</p>
+<p>Have you heard of the book <a href="https://leanpub.com/perl_new_features"><strong>Perl New Features</strong></a> by <code>brian d foy</code> and published by <a href="https://perlschool.com"><strong>Perl School</strong></a> run by <code>Dave Cross</code>?</p>
+<p>When it was first released, I received a <code>FREE</code> copy of the book by <code>brian d foy</code>. Since I was already working on documenting <code>Perl</code> features, the book helped me fill in the missing details. Having read it from start to finish multiple times, I now have a solid grasp of all the important changes in <code>Perl</code>. The book doesn&rsquo;t just highlights improvements but also explains the reasoning behind them.</p>
+<p>A few days ago, <code>brian d foy</code>, updated the book to cover <code>Perl v5.38</code>. The first edition only covered up to <code>Perl v5.32</code>.</p>
+<p>Today I am going to talk about the new <code>${^LAST_SUCCESSFUL_PATTERN}</code> variable added to <code>Perl v5.38</code>. For some reason, I missed this feature when it was first released. Normally, I follow the delta page of each release. Here is the the <a href="https://perldoc.perl.org/perl5380delta"><strong>delta page</strong></a> for <code>Perl v5.38</code>, just in case you are looking for it.</p>
+<p>Having read about it in the book, I now have a much better understandings of the <code>${^LAST_SUCCESSFUL_PATTERN}</code>.</p>
 <p>In this post, I will give you a quick demo.</p>
 <p>Here is a simple regex example:</p>
 <br>
@@ -247,8 +247,8 @@
     }
 }
 </code></pre></div><br>
-<p>Here we have two context, in the first context we have a match followed by an empty pattern matching.</p>
-<p>And in the second context, we have a failed match followed by the same empty pattern matching.</p>
+<p>Here we have two context, in the first, there is a successfull match followed by an empty pattern matching.</p>
+<p>In the second context, we have a failed match followed by the same empty pattern matching.</p>
 <p>When you run the above code, what do you expect?</p>
 <p>This is what we got:</p>
 <br>
@@ -256,11 +256,11 @@
 #2 name matched
 </code></pre>
 <br>
-<p>The empty pattern didn&rsquo;t match in the first context but it did in the second context.</p>
+<p>The empty pattern didn&rsquo;t match in the first context but it did in the second.</p>
 <p><code>Why?</code></p>
-<p>Because the empty pattern tries to match against the previous successful pattern in the current context.</p>
-<p>This implicit behaviour is very confusing, I must admit.</p>
-<p>So now in <code>Perl v5.38</code>, this confusion is removed by the use of special variable <code>${^LAST_SUCCESSFUL_PATTERN}</code></p>
+<p>Because the empty pattern attempts to match against the last successful pattern in the current context.</p>
+<p>I must admit, This implicit behaviour can be quite confusing.</p>
+<p>In <code>Perl v5.38</code>, this confusion is eliminated with the introduction of the special variable <code>${^LAST_SUCCESSFUL_PATTERN}</code></p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
 
