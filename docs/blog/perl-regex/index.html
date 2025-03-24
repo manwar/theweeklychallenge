@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Perl Regex"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/perl-regex/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about the special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about the special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/perl-regex/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Perl Regex</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Perl Regex</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Mar 24, 2025</span>|
+                        <span> Tags:
+                            Perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/perl-regex.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h2 id="special-variable-last_successful_pattern-in-perl-v538">Special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38</h2>
+<hr>
+<br>
+<p>I have been following the Perl releases very closely for sometimes now. I don&rsquo;t just look at the <code>Maintenance releases</code> but also the <code>Development release</code> which comes more frequently with smaller updates.</p>
+<p>I get immense pleasure to see how the language has moved forward in the last 2 decades. With so much going on, it is not easy to keep up with the pace. Having said, I created a dedicated <a href="https://github.com/manwar/perl-cool-snippets"><strong>GitHub repository</strong></a> where I record the changes as I come across. It helps me to go back when I need cross checking.</p>
+<p>Do you know about the book <a href="https://leanpub.com/perl_new_features"><strong>Perl New Features</strong></a> by <code>brian d foy</code> and published by <a href="https://perlschool.com"><strong>Perl School</strong></a> run by <code>Dave Cross</code>?</p>
+<p>Well, when it was first published, I received a <code>FREE</code> copy of the book by <code>brian d foy</code>. Since I was working on the <code>Perl</code> features, it helped me to add the missing bits. As I have read the book start to end multiple times, I now know all important changes in <code>Perl</code>. It doesn&rsquo;t just talk about the improvements but also the reason.</p>
+<p>Few days ago, <code>brian d foy</code>, updated the book to cover <code>Perl v5.38</code>. The first edition only covered up to <code>Perl v5.32</code>.</p>
+<p>Today I am going to talk about the new <code>${^LAST_SUCCESSFUL_PATTERN}</code> variable added to <code>Perl v5.38</code>. For some reason, I missed this feature when it was released. I normally go with the delta page of each release. Here is the the <a href="https://perldoc.perl.org/perl5380delta"><strong>delta page</strong></a> for <code>Perl v5.38</code>, just in case you are looking for it.</p>
+<p>Having read about it in the book, I have better understandings about the new <code>${^LAST_SUCCESSFUL_PATTERN}</code> variable now.</p>
+<p>In this post, I will give you a quick demo.</p>
+<p>Here is a simple regex example:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.30</span>;
+
+<span style="color:#66d9ef">my</span> $city <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;London&#34;</span>;
+<span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Perl&#34;</span>;
+<span style="color:#66d9ef">my</span> $game <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cricket&#34;</span>;
+
+<span style="color:#75715e"># context #1</span>
+{
+    <span style="color:#66d9ef">if</span> ($city <span style="color:#f92672">=~</span><span style="color:#e6db74"> /ON$/i</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;city matched\n&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">if</span> ($name <span style="color:#f92672">=~</span><span style="color:#e6db74"> //</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;#1 name matched\n&#34;</span>;
+    }
+}
+
+<span style="color:#75715e"># context #2</span>
+{
+    <span style="color:#66d9ef">if</span> ($game <span style="color:#f92672">=~</span><span style="color:#e6db74"> /kat$/</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;game matched\n&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">if</span> ($name <span style="color:#f92672">=~</span><span style="color:#e6db74"> //</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;#2 name matched\n&#34;</span>;
+    }
+}
+</code></pre></div><br>
+<p>Here we have two context, in the first context we have a match followed by an empty pattern matching.</p>
+<p>And in the second context, we have a failed match followed by the same empty pattern matching.</p>
+<p>When you run the above code, what do you expect?</p>
+<p>This is what we got:</p>
+<br>
+<pre><code>city matched
+#2 name matched
+</code></pre>
+<br>
+<p>The empty pattern didn&rsquo;t match in the first context but it did in the second context.</p>
+<p><code>Why?</code></p>
+<p>Because the empty pattern tries to match against the previous successful pattern in the current context.</p>
+<p>This implicit behaviour is very confusing, I must admit.</p>
+<p>So now in <code>Perl v5.38</code>, this confusion is removed by the use of special variable <code>${^LAST_SUCCESSFUL_PATTERN}</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+
+<span style="color:#66d9ef">my</span> $city <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;London&#34;</span>;
+
+{
+    <span style="color:#66d9ef">if</span> ($city <span style="color:#f92672">=~</span><span style="color:#e6db74"> /ON$/i</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;city matched\n&#34;</span>;
+    }
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;last successfull pattern: ${^LAST_SUCCESSFUL_PATTERN}\n&#34;</span>;
+}
+</code></pre></div><br>
+<p>If noticed, the special variable <code>${^LAST_SUCCESSFUL_PATTERN}</code> not only capture the last successfull pattern but also all the options along with it.</p>
+<br>
+<pre><code>city matched
+last successfull pattern: (?^ui:ON)
+</code></pre>
+<br>
+<p>Let&rsquo;s see how this behaves:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+
+<span style="color:#66d9ef">my</span> $city <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;London&#34;</span>;
+<span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Python&#34;</span>;
+
+{
+    <span style="color:#66d9ef">if</span> ($city <span style="color:#f92672">=~</span><span style="color:#e6db74"> /ON$/i</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;city matched\n&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">if</span> ($name <span style="color:#f92672">=~</span><span style="color:#e6db74"> /${^LAST_SUCCESSFUL_PATTERN}/</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;name matched\n&#34;</span>;
+    }
+}
+</code></pre></div><br>
+<p>This is what we get after running the code:</p>
+<br>
+<pre><code>city matched
+name matched
+</code></pre>
+<br>
+<p>The name matched because, <code>${^LAST_SUCCESSFUL_PATTERN}</code> has the pattern and options together.</p>
+<p>Let&rsquo;s re-create the complete example in <code>Perl v5.38</code>:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+
+<span style="color:#66d9ef">my</span> $city <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;London&#34;</span>;
+<span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Perl&#34;</span>;
+<span style="color:#66d9ef">my</span> $game <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cricket&#34;</span>;
+
+<span style="color:#75715e"># context #1</span>
+{
+    <span style="color:#66d9ef">if</span> ($city <span style="color:#f92672">=~</span><span style="color:#e6db74"> /ON$/i</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;city matched\n&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">if</span> ($name <span style="color:#f92672">=~</span><span style="color:#e6db74"> /${^LAST_SUCCESSFUL_PATTERN}/</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;#1 name matched\n&#34;</span>;
+    }
+}
+
+<span style="color:#75715e"># context #2</span>
+{
+    <span style="color:#66d9ef">if</span> ($game <span style="color:#f92672">=~</span><span style="color:#e6db74"> /kat$/</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;game matched\n&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">if</span> ($name <span style="color:#f92672">=~</span><span style="color:#e6db74"> /${^LAST_SUCCESSFUL_PATTERN}/</span>) {      <span style="color:#75715e"># Line 24</span>
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;#2 name matched\n&#34;</span>;
+    }
+}
+</code></pre></div><br>
+<p>Running the code now:</p>
+<br>
+<pre><code>city matched
+Use of uninitialized value $^LAST_SUCCESSFUL_PATTERN in regexp compilation at ex2.pl line 24.
+#2 name matched
+</code></pre>
+<br>
+<p>I am not sure about the warning, if it&rsquo;s intentional.</p>
+<hr>
+<br>
+<p><code>Happy Hacking!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+

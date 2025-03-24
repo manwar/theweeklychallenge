@@ -1,0 +1,210 @@
+---
+title: "Perl Regex"
+date: 2025-03-24T00:00:00+00:00
+description: "Discussion about the special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38."
+type: post
+image: images/blog/perl-regex.png
+author: Mohammad Sajid Anwar
+tags: ["Perl"]
+---
+
+#### **DISCLAIMER:** Image is generated using `FREE` version of `ChatGPT`.
+***
+
+<br>
+
+## Special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38
+***
+
+<br>
+
+I have been following the Perl releases very closely for sometimes now. I don't just look at the `Maintenance releases` but also the `Development release` which comes more frequently with smaller updates.
+
+I get immense pleasure to see how the language has moved forward in the last 2 decades. With so much going on, it is not easy to keep up with the pace. Having said, I created a dedicated [**GitHub repository**](https://github.com/manwar/perl-cool-snippets) where I record the changes as I come across. It helps me to go back when I need cross checking.
+
+Do you know about the book [**Perl New Features**](https://leanpub.com/perl_new_features) by `brian d foy` and published by [**Perl School**](https://perlschool.com) run by `Dave Cross`?
+
+Well, when it was first published, I received a `FREE` copy of the book by `brian d foy`. Since I was working on the `Perl` features, it helped me to add the missing bits. As I have read the book start to end multiple times, I now know all important changes in `Perl`. It doesn't just talk about the improvements but also the reason.
+
+Few days ago, `brian d foy`, updated the book to cover `Perl v5.38`. The first edition only covered up to `Perl v5.32`.
+
+Today I am going to talk about the new `${^LAST_SUCCESSFUL_PATTERN}` variable added to `Perl v5.38`. For some reason, I missed this feature when it was released. I normally go with the delta page of each release. Here is the the [**delta page**](https://perldoc.perl.org/perl5380delta) for `Perl v5.38`, just in case you are looking for it.
+
+Having read about it in the book, I have better understandings about the new `${^LAST_SUCCESSFUL_PATTERN}` variable now.
+
+In this post, I will give you a quick demo.
+
+Here is a simple regex example:
+
+<br>
+
+```perl
+use v5.30;
+
+my $city = "London";
+my $name = "Perl";
+my $game = "Cricket";
+
+# context #1
+{
+    if ($city =~ /ON$/i) {
+        print "city matched\n";
+    }
+
+    if ($name =~ //) {
+        print "#1 name matched\n";
+    }
+}
+
+# context #2
+{
+    if ($game =~ /kat$/) {
+        print "game matched\n";
+    }
+
+    if ($name =~ //) {
+        print "#2 name matched\n";
+    }
+}
+```
+
+<br>
+
+Here we have two context, in the first context we have a match followed by an empty pattern matching.
+
+And in the second context, we have a failed match followed by the same empty pattern matching.
+
+When you run the above code, what do you expect?
+
+This is what we got:
+
+<br>
+
+    city matched
+    #2 name matched
+
+<br>
+
+The empty pattern didn't match in the first context but it did in the second context.
+
+`Why?`
+
+Because the empty pattern tries to match against the previous successful pattern in the current context.
+
+This implicit behaviour is very confusing, I must admit.
+
+So now in `Perl v5.38`, this confusion is removed by the use of special variable `${^LAST_SUCCESSFUL_PATTERN}`
+
+<br>
+
+```perl
+use v5.38;
+
+my $city = "London";
+
+{
+    if ($city =~ /ON$/i) {
+        print "city matched\n";
+    }
+    print "last successfull pattern: ${^LAST_SUCCESSFUL_PATTERN}\n";
+}
+```
+
+<br>
+
+If noticed, the special variable `${^LAST_SUCCESSFUL_PATTERN}` not only capture the last successfull pattern but also all the options along with it.
+
+<br>
+
+    city matched
+    last successfull pattern: (?^ui:ON)
+
+<br>
+
+Let's see how this behaves:
+
+<br>
+
+```perl
+use v5.38;
+
+my $city = "London";
+my $name = "Python";
+
+{
+    if ($city =~ /ON$/i) {
+        print "city matched\n";
+    }
+
+    if ($name =~ /${^LAST_SUCCESSFUL_PATTERN}/) {
+        print "name matched\n";
+    }
+}
+```
+
+<br>
+
+This is what we get after running the code:
+
+<br>
+
+    city matched
+    name matched
+
+<br>
+
+The name matched because, `${^LAST_SUCCESSFUL_PATTERN}` has the pattern and options together.
+
+Let's re-create the complete example in `Perl v5.38`:
+
+<br>
+
+```perl
+use v5.38;
+
+my $city = "London";
+my $name = "Perl";
+my $game = "Cricket";
+
+# context #1
+{
+    if ($city =~ /ON$/i) {
+        print "city matched\n";
+    }
+
+    if ($name =~ /${^LAST_SUCCESSFUL_PATTERN}/) {
+        print "#1 name matched\n";
+    }
+}
+
+# context #2
+{
+    if ($game =~ /kat$/) {
+        print "game matched\n";
+    }
+
+    if ($name =~ /${^LAST_SUCCESSFUL_PATTERN}/) {      # Line 24
+        print "#2 name matched\n";
+    }
+}
+```
+
+<br>
+
+Running the code now:
+
+<br>
+
+    city matched
+    Use of uninitialized value $^LAST_SUCCESSFUL_PATTERN in regexp compilation at ex2.pl line 24.
+    #2 name matched
+
+<br>
+
+I am not sure about the warning, if it's intentional.
+
+***
+
+<br>
+
+`Happy Hacking!!`
