@@ -28,7 +28,7 @@ When it was first released, I received a `FREE` copy of the book by `brian d foy
 
 A few days ago, `brian d foy`, updated the book to cover `Perl v5.38`. The first edition only covered up to `Perl v5.32`.
 
-Today I am going to talk about the new `${^LAST_SUCCESSFUL_PATTERN}` variable added to `Perl v5.38`. For some reason, I missed this feature when it was first released. Normally, I follow the delta page of each release. Here is the the [**delta page**](https://perldoc.perl.org/perl5380delta) for `Perl v5.38`, just in case you are looking for it.
+Today I am going to talk about the new special variable `${^LAST_SUCCESSFUL_PATTERN}` added to `Perl v5.38`. For some reason, I missed this feature when it was first released. Normally, I follow the delta page of each release. Here is the the [**delta page**](https://perldoc.perl.org/perl5380delta) for `Perl v5.38`, just in case you are looking for it.
 
 Having read about it in the book, I now have a much better understandings of the `${^LAST_SUCCESSFUL_PATTERN}`.
 
