@@ -140,6 +140,22 @@ Random number : 0.483446575076417
 
 In `Perl v5.38`, we can set the seed value with the new environment variable: `PERL_RAND_SEED`
 
+First without the use of environment variable:
+
+<br>
+
+``` perl
+$ perl -Mv5.38 -E 'say rand'
+0.796259729963825
+
+$ perl -Mv5.38 -E 'say rand'
+0.539082965188758
+```
+
+<br>
+
+Now with environment variable:
+
 <br>
 
 ```perl
