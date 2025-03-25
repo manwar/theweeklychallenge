@@ -56,7 +56,7 @@ This definition is loaded but makes it very clear what it is.
 
 Remember, computers cannot generate truly random numbers without external entropy.
 
-So, if you use the same seed, the `PRNG` will produce the exact same sequence of "random" numbers.
+So, if you use the same seed, the `PRNG` will produce the exact same sequence of `random` numbers.
 
 Enough talk, let's see some action.
 
