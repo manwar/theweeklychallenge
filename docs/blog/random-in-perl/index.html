@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Random in Perl"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/random-in-perl/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about the random in Perl v5.38."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about the random in Perl v5.38.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/random-in-perl/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Random in Perl</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Random in Perl</h2>
+                    <div class="portfolio-meta">
+                        <span>Tuesday, Mar 25, 2025</span>|
+                        <span> Tags:
+                            Perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/random-in-perl.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h2 id="environment-variable-perl_rand_seed-in-perl-v538">Environment variable PERL_RAND_SEED in Perl v5.38</h2>
+<hr>
+<br>
+<p>How many of you have generated random numbers in <code>Perl</code>?</p>
+<p>I guess almost everyone.</p>
+<p>Let me ask another question: What function do you use to generate random numbers in <code>Perl</code>?</p>
+<p>Well, no prize for the correct answer.</p>
+<p>The answer is <code>rand</code>. You all got it right.</p>
+<p>Now for a trick question: How does <code>rand</code> generate a random number every time?</p>
+<p>Do you think, there is another player in this game?</p>
+<p>Once again, you guessed it right.</p>
+<p>You&rsquo;re a smart audience!</p>
+<p>The <code>partner in crime</code> is <code>srand</code>.</p>
+<p>So what is <code>srand</code>?</p>
+<p>Well it&rsquo;s a random seed generator.</p>
+<p>Wait, what is this <code>seed</code> business now?</p>
+<br>
+<pre><code>In computer science and mathematics, a seed is an initial value used
+by a  pseudo-random number generator (PRNG) to produce a sequence of
+numbers that appear random but are actually deterministic.
+</code></pre>
+<br>
+<p>This definition is loaded but makes it very clear what it is.</p>
+<p>Remember, computers cannot generate truly random numbers without external entropy.</p>
+<p>So, if you use the same seed, the <code>PRNG</code> will produce the exact same sequence of &ldquo;random&rdquo; numbers.</p>
+<p>Enough talk, let&rsquo;s see some action.</p>
+<p>As I mentioned earlier, we use <code>rand</code> to generate random numbers. Here&rsquo;s how it looks:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl <span style="color:#f92672">-</span>Mv5<span style="color:#ae81ff">.14</span> <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#34;print rand&#34;</span>
+<span style="color:#ae81ff">0.449823787975223</span>
+
+$ perl <span style="color:#f92672">-</span>Mv5<span style="color:#ae81ff">.14</span> <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#34;print rand&#34;</span>
+<span style="color:#ae81ff">0.0417291764906658</span>
+
+$ perl <span style="color:#f92672">-</span>Mv5<span style="color:#ae81ff">.14</span> <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#34;print rand&#34;</span>
+<span style="color:#ae81ff">0.0634949901877953</span>
+</code></pre></div><br>
+<p>So we&rsquo;re getting random numbers every time. That means we&rsquo;re using a different seed each time, right?</p>
+<p>I&rsquo;m curious to find out which seed was used.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl <span style="color:#f92672">-</span>Mv5<span style="color:#ae81ff">.14</span> <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#34;print rand; print &#39;---&#39;; print srand;&#34;</span>
+<span style="color:#ae81ff">0.927663794792355</span><span style="color:#f92672">---</span><span style="color:#ae81ff">3368917688</span>
+
+$ perl <span style="color:#f92672">-</span>Mv5<span style="color:#ae81ff">.14</span> <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#34;print rand; print &#39;---&#39;; print srand;&#34;</span>
+<span style="color:#ae81ff">0.894359557963075</span><span style="color:#f92672">---</span><span style="color:#ae81ff">3759042874</span>
+
+$ perl <span style="color:#f92672">-</span>Mv5<span style="color:#ae81ff">.14</span> <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#34;print rand; print &#39;---&#39;; print srand;&#34;</span>
+<span style="color:#ae81ff">0.482739364569174</span><span style="color:#f92672">---</span><span style="color:#ae81ff">1623001244</span>
+</code></pre></div><br>
+<p>Pretty cool, right?</p>
+<p>By the way, the ability for <code>srand</code> to return the seed was added in <code>Perl v5.14</code>.</p>
+<p>That was quite a while ago, not many of you might remember that, I guess.</p>
+<p>In my opinion, it&rsquo;s one of the best feature added to <code>Perl</code>.</p>
+<p>Want to see how?</p>
+<p>Check this out: <code>random.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.14</span>;
+
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Random number : &#34;</span>, rand, <span style="color:#e6db74">&#34;\n&#34;</span>;
+<span style="color:#66d9ef">my</span> $auto_seed <span style="color:#f92672">=</span> srand;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Used Auto Seed: $auto_seed\n&#34;</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Random number : &#34;</span>, rand, <span style="color:#e6db74">&#34;\n&#34;</span>;
+<span style="color:#75715e"># Reseed with the same seed used above</span>
+srand($auto_seed);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Random number : &#34;</span>, rand, <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><br>
+<p>Run the code now:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl random<span style="color:#f92672">.</span>pl
+Random number : <span style="color:#ae81ff">0.97473596602595</span>
+Used Auto Seed: <span style="color:#ae81ff">3333813029</span>
+Random number : <span style="color:#ae81ff">0.483446575076417</span>
+Random number : <span style="color:#ae81ff">0.483446575076417</span>
+</code></pre></div><br>
+<p>In <code>Perl v5.38</code>, we can set the seed value with the new environment variable: <code>PERL_RAND_SEED</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ PERL_RAND_SEED<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> perl <span style="color:#f92672">-</span>Mv5<span style="color:#ae81ff">.38</span> <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;say rand&#39;</span>
+<span style="color:#ae81ff">0.0416303447718782</span>
+
+$ PERL_RAND_SEED<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> perl <span style="color:#f92672">-</span>Mv5<span style="color:#ae81ff">.38</span> <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;say rand&#39;</span>
+<span style="color:#ae81ff">0.0416303447718782</span>
+</code></pre></div><br>
+<p>Now no need to get your hand dirty, you got all the power in your hand.</p>
+<hr>
+<br>
+<p><code>Happy Hacking!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
