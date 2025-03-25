@@ -151,9 +151,9 @@ Now we need another function to display the performance analysis.
 ```perl
 sub display_performance_analysis($results) {
     say "\n## Comparative Analysis";
-    say sprintf "%-26s %-10s %-10s", "Approach", "Time (s)", "Memory (MB)";
+    say sprintf "%-44s %-10s %-10s", "Approach", "Time (s)", "Memory (MB)";
     foreach my $approach (@$results) {
-        say sprintf "%-26s %-10.2f %-10.2f",
+        say sprintf "%-44s %-10.2f %-10.2f",
             $approach->{title},
             $approach->{stats}->{time},
             $approach->{stats}->{memory} / (1024 * 1024);
@@ -177,7 +177,8 @@ So here is the plan:
     2. Buffered Reading
     3. Memory Mapping using Sys::Mmap
     4. Memory Mapping using File::Map (suggested by Tom Hukins)
-    5. Parallel Processing
+    5. Parallel Processing using Parallel::ForkManager
+    6. Parallel Processing using MCE::Loop (suggested by Wil Blake)
 
 <br>
 
@@ -400,7 +401,7 @@ For parallel processing, we are using `CPAN` module [**Parallel::ForkManager**](
 <br>
 
 ```perl
-sub parallel_processing($file) {
+sub parallel_processing_pfm($file) {
     my $pfm  = Parallel::ForkManager->new(10);
     my $size = 1024 * 1024;
     my $buffer;
@@ -445,6 +446,33 @@ sub process_chunk($chunk) {
 
 <br>
 
+## [2025-03-25] UPDATE
+***
+
+`Wil Blake` suggested in `The Perl Community` Facebook group about the use of `MCE::Loop` for parallel processing.
+
+You can find his comment [**here**](https://www.facebook.com/groups/perlcommunity/permalink/1889120141895603).
+
+Here I am going to create `10 workers` similar to `Parallel::ForkManager` to have similar ground.
+
+<br>
+
+```perl
+sub parallel_processing_mce_loop($file) {
+    MCE::Loop->init(max_workers => 10, chunk_size => '1m');
+    mce_loop_f {
+        my ($mce, $chunk_ref, $chunk_id) = @_;
+            foreach my $line (@$chunk_ref) {
+                # Simulate processing
+            }
+        }
+    } $file;
+    MCE::Loop->finish;
+}
+```
+
+<br>
+
 Finally we would bind all the operations together as below:
 
 <br>
@@ -453,11 +481,30 @@ Finally we would bind all the operations together as below:
 my $file = $ARGV[0] || 'large-file.txt';
 
 my $operations = [
-    { title => 'Line-by-Line Reading',       method => \&line_by_line_reading },
-    { title => 'Buffered Reading',           method => \&buffered_reading     },
-    { title => 'Memory Mapping (Sys::Mmap)', method => \&memory_mapping_mmap  },
-    { title => 'Memory Mapping (File::Map)', method => \&memory_mapping_fmap  },
-    { title => 'Parallel Processing',        method => \&parallel_processing  },
+    {
+      title  => 'Line-by-Line Reading',
+      method => \&line_by_line_reading
+    },
+    {
+      title  => 'Buffered Reading',
+      method => \&buffered_reading
+    },
+    {
+      title  => 'Memory Mapping (Sys::Mmap)',
+      method => \&memory_mapping_mmap
+    },
+    {
+      title  => 'Memory Mapping (File::Map)',
+      method => \&memory_mapping_fmap
+    },
+    {
+      title  => 'Parallel Processing (Parallel::ForkManager)',
+      method => \&parallel_processing_pfm
+    },
+    {
+      title  => 'Parallel Processing (MCE::Loop)',
+      method => \&parallel_processing_mce_loop
+    },
 ];
 
 my $results = [];
@@ -484,6 +531,7 @@ Last but not least, the complete solution, `read-large-file.pl`:
 
 use v5.38;
 use Sys::Mmap;
+use MCE::Loop;
 use Linux::Smaps;
 use Parallel::ForkManager;
 use File::Map qw/map_file unmap/;
@@ -492,11 +540,30 @@ use Time::HiRes qw(gettimeofday tv_interval);
 my $file = $ARGV[0] || 'large-file.txt';
 
 my $operations = [
-    { title => 'Line-by-Line Reading',       method => \&line_by_line_reading },
-    { title => 'Buffered Reading',           method => \&buffered_reading     },
-    { title => 'Memory Mapping (Sys::Mmap)', method => \&memory_mapping_mmap  },
-    { title => 'Memory Mapping (File::Map)', method => \&memory_mapping_fmap  },
-    { title => 'Parallel Processing',        method => \&parallel_processing  },
+    {
+        title  => 'Line-by-Line Reading',
+        method => \&line_by_line_reading,
+    },
+    {
+        title  => 'Buffered Reading',
+        method => \&buffered_reading,
+    },
+    {
+        title  => 'Memory Mapping (Sys::Mmap)',
+        method => \&memory_mapping_mmap,
+    },
+    {
+        title  => 'Memory Mapping (File::Map)',
+        method => \&memory_mapping_fmap,
+    },
+    {
+        title  => 'Parallel Processing (Parallel::ForkManager)',
+        method => \&parallel_processing_pfm,
+    },
+    {
+        title  => 'Parallel Processing (MCE::Loop)',
+        method => \&parallel_processing_mce_loop,
+    }
 ];
 
 my $results = [];
@@ -536,9 +603,9 @@ sub memory_usage {
 
 sub display_performance_analysis($results) {
     say "\n## Comparative Analysis";
-    say sprintf "%-26s %-10s %-10s", "Approach", "Time (s)", "Memory (MB)";
+    say sprintf "%-44s %-10s %-10s", "Approach", "Time (s)", "Memory (MB)";
     foreach my $approach (@$results) {
-        say sprintf "%-26s %-10.2f %-10.2f",
+        say sprintf "%-44s %-10.2f %-10.2f",
             $approach->{title},
             $approach->{stats}->{time},
             $approach->{stats}->{memory} / (1024 * 1024);
@@ -590,7 +657,7 @@ sub memory_mapping_fmap($file) {
     unmap $mapped_file;
 }
 
-sub parallel_processing($file) {
+sub parallel_processing_pfm($file) {
     my $pfm  = Parallel::ForkManager->new(10);
     my $size = 1024 * 1024;
     my $buffer;
@@ -631,6 +698,18 @@ sub process_chunk($chunk) {
         # simulate processing
     }
 }
+
+sub parallel_processing_mce_loop($file) {
+    MCE::Loop->init(max_workers => 10, chunk_size => '1m');
+    mce_loop_f {
+        my ($mce, $chunk_ref, $chunk_id) = @_;
+            foreach my $line (@$chunk_ref) {
+                # Simulate processing
+            }
+        }
+    } $file;
+    MCE::Loop->finish;
+}
 ```
 
 <br>
@@ -644,15 +723,17 @@ Time for some action:
     Buffered Reading ... done.
     Memory Mapping (Sys::Mmap) ... done.
     Memory Mapping (File::Map) ... done.
-    Parallel Processing ... done.
+    Parallel Processing (Parallel::ForkManager) ... done.
+    Parallel Processing (MCE::Loop) ... done.
 
     ## Comparative Analysis
-    Approach                   Time (s)   Memory (MB)
-    Line-by-Line Reading       1.05       0.00
-    Buffered Reading           0.74       0.00
-    Memory Mapping (Sys::Mmap) 1.65       1.91
-    Memory Mapping (File::Map) 1.04       0.10
-    Parallel Processing        113.64     0.00
+    Approach                                     Time (s)   Memory (MB)
+    Line-by-Line Reading                         1.40       0.00
+    Buffered Reading                             0.74       0.00
+    Memory Mapping (Sys::Mmap)                   1.85       1.91
+    Memory Mapping (File::Map)                   1.29       0.10
+    Parallel Processing (Parallel::ForkManager)  113.78     0.00
+    Parallel Processing (MCE::Loop)              1.11       0.00
 
 <br>
 
