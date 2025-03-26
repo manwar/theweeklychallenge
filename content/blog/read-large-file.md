@@ -462,9 +462,8 @@ sub parallel_processing_mce_loop($file) {
     MCE::Loop->init(max_workers => 10, chunk_size => '1m');
     mce_loop_f {
         my ($mce, $chunk_ref, $chunk_id) = @_;
-            foreach my $line (@$chunk_ref) {
-                # Simulate processing
-            }
+        foreach my $line (@$chunk_ref) {
+            # Simulate processing
         }
     } $file;
     MCE::Loop->finish;
@@ -703,9 +702,8 @@ sub parallel_processing_mce_loop($file) {
     MCE::Loop->init(max_workers => 10, chunk_size => '1m');
     mce_loop_f {
         my ($mce, $chunk_ref, $chunk_id) = @_;
-            foreach my $line (@$chunk_ref) {
-                # Simulate processing
-            }
+        foreach my $line (@$chunk_ref) {
+            # Simulate processing
         }
     } $file;
     MCE::Loop->finish;
