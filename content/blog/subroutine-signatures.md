@@ -87,8 +87,8 @@ You would typically see one of the two common approaches in old `Perl` code.
 
 ```perl
 sub greet {
-  my ($name) = @_;
-  print "Hello $name!!\n";
+    my ($name) = @_;
+    print "Hello $name!!\n";
 }
 
 greet("Joe");    # Hello Joe!!
@@ -101,8 +101,8 @@ Or like this:
 
 ```perl
 sub greet {
-  my $name = shift;
-  print "Hello $name!!\n";
+    my $name = shift;
+    print "Hello $name!!\n";
 }
 
 greet("Joe");    # Hello Joe!!
@@ -128,7 +128,7 @@ use v5.20;
 use experimental qw(signatures);
 
 sub greet($name) {
-  print "Hello $name!!\n";
+    say "Hello $name!!";
 }
 
 greet("Joe");    # Hello Joe!!
@@ -153,7 +153,7 @@ Now we can create subroutine with signatures like this:
 use v5.36;
 
 sub greet($name) {
-  print "Hello $name!!\n";
+    say "Hello $name!!";
 }
 
 greet("Joe");    # Hello Joe!!
@@ -182,7 +182,7 @@ In this post, I'll focus on handling default values in parameters.
 use v5.36;
 
 sub greet($name = "World") {
-  print "Hello $name!!\n";
+    say "Hello $name!!";
 }
 
 greet("Joe");    # Hello Joe!!
@@ -201,7 +201,7 @@ Let's make it more interesting with another example:
 use v5.36;
 
 sub sum($x, $y = 1) {
-  print $x + $y, "\n";
+    say $x + $y;
 }
 
 sum(2, 2);       # 4
@@ -220,7 +220,7 @@ How about this one?
 use v5.36;
 
 sub sum($x, $y = 1) {
-  print $x + $y, "\n";
+    say $x + $y;
 }
 
 sum(2, 2);       # 4
@@ -241,7 +241,7 @@ With `Perl v5.38`, handling default `undef` or `false` values become more effici
 use v5.38;
 
 sub sum($x, $y //= 1) {
-  say $x + $y;
+    say $x + $y;
 }
 
 sum(2, 2);       # 4
@@ -261,7 +261,7 @@ What about false values?
 use v5.38;
 
 sub sum($x, $y ||= 1) {
-  say $x + $y;
+    say $x + $y;
 }
 
 sum(2, 2);       # 4
