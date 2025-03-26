@@ -113,7 +113,7 @@ greet("Joe");    # Hello Joe!!
 ## The Arrival of Subroutine Signatures
 ***
 
-Fast forward, `Perl v5.20` which brought the first glimpse of subroutine signature.
+Fast forward, `Perl v5.20` which brought the first glimpse of subroutine signatures.
 
 Although, they were experimental, it was still a step in the right direction.
 
