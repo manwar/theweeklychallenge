@@ -13,16 +13,47 @@ tags: ["Perl"]
 
 <br>
 
-<div style="display: flex; justify-content: center; gap: 10px;">
-    <a href="/blog/slurp-in-perl" title="Slurp in Perl">
-        <img src="/images/blog/slurp-mini.png" width="250">
-    </a>
-    <a href="/blog/scientist-in-perl" title="Scientist in Perl">
-        <img src="/images/blog/scientist-in-perl-mini.png" width="250">
-    </a>
-    <a href="/blog/extraction-in-perl" title="Text Extraction in Perl">
-        <img src="/images/blog/extraction-in-perl-mini.png" width="250">
-    </a>
+<div class="container">
+    <div class="row" align="center">
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/slurp-in-perl" title="Slurp in Perl">
+                    <img src="/images/blog/slurp-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/scientist-in-perl" title="Scientist in Perl">
+                    <img src="/images/blog/scientist-in-perl-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/extraction-in-perl" title="Text Extraction in Perl">
+                    <img src="/images/blog/extraction-in-perl-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    <div class="row" align="center">
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/random-in-perl" title="Random in Perl">
+                    <img src="/images/blog/random-in-perl-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/perl-regex" title="Perl Regex">
+                    <img src="/images/blog/perl-regex-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <br>
