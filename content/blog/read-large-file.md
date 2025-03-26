@@ -152,6 +152,7 @@ Now we need another function to display the performance analysis.
 sub display_performance_analysis($results) {
     say "\n## Comparative Analysis";
     say sprintf "%-44s %-10s %-10s", "Approach", "Time (s)", "Memory (MB)";
+    say '-'x 67;
     foreach my $approach (@$results) {
         say sprintf "%-44s %-10.2f %-10.2f",
             $approach->{title},
@@ -603,6 +604,7 @@ sub memory_usage {
 sub display_performance_analysis($results) {
     say "\n## Comparative Analysis";
     say sprintf "%-44s %-10s %-10s", "Approach", "Time (s)", "Memory (MB)";
+    say '-'x 67;
     foreach my $approach (@$results) {
         say sprintf "%-44s %-10.2f %-10.2f",
             $approach->{title},
@@ -726,6 +728,7 @@ Time for some action:
 
     ## Comparative Analysis
     Approach                                     Time (s)   Memory (MB)
+    -------------------------------------------------------------------
     Line-by-Line Reading                         1.40       0.00
     Buffered Reading                             0.74       0.00
     Memory Mapping (Sys::Mmap)                   1.85       1.91
