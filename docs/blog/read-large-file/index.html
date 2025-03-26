@@ -385,7 +385,7 @@ buffered_reading($FILE);
     <span style="color:#66d9ef">while</span> (read($fh, $buffer, $size)) {
         <span style="color:#75715e"># simulate processing</span>
         <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $buffer;
-        $lines    <span style="color:#f92672">=</span> @lines;
+        $lines   <span style="color:#f92672">+=</span> @lines;
     }
     close($fh);
     say <span style="color:#e6db74">&#34;Total lines read: $lines&#34;</span>;
@@ -421,7 +421,7 @@ buffered_reading($FILE);
         $buffer   <span style="color:#f92672">=</span> $line <span style="color:#f92672">.</span> $buffer;
         <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\n/</span>, $buffer, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
         $line     <span style="color:#f92672">=</span> pop @lines;
-        $lines    <span style="color:#f92672">=</span> @lines;
+        $lines   <span style="color:#f92672">+=</span> @lines;
     }
     close($fh);
     say <span style="color:#e6db74">&#34;Total lines read: $lines&#34;</span>;

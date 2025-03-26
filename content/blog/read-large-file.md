@@ -260,7 +260,7 @@ sub buffered_reading($file) {
     while (read($fh, $buffer, $size)) {
         # simulate processing
         my @lines = split /\n/, $buffer;
-        $lines    = @lines;
+        $lines   += @lines;
     }
     close($fh);
     say "Total lines read: $lines";
@@ -308,7 +308,7 @@ sub buffered_reading($file) {
         $buffer   = $line . $buffer;
         my @lines = split /\n/, $buffer, -1;
         $line     = pop @lines;
-        $lines    = @lines;
+        $lines   += @lines;
     }
     close($fh);
     say "Total lines read: $lines";
