@@ -464,7 +464,7 @@ sub parallel_processing_mce_loop($file) {
     mce_loop_f {
         my ($mce, $chunk_ref, $chunk_id) = @_;
         foreach my $line (@$chunk_ref) {
-            # Simulate processing
+            # simulate processing
         }
     } $file;
     MCE::Loop->finish;
@@ -643,7 +643,7 @@ sub memory_mapping_mmap($file) {
     mmap(my $mapped_file, 0, PROT_READ, MAP_SHARED, $fh);
     my @lines = split /\n/, $mapped_file;
     foreach my $line (@lines) {
-         # Simulate processing
+         # simulate processing
     }
     munmap($mapped_file);
     close($fh);
@@ -653,7 +653,7 @@ sub memory_mapping_fmap($file) {
     map_file my $mapped_file, $file, '<';
     my @lines = split /\n/, $mapped_file;
     foreach my $line (@lines) {
-         # Simulate processing
+         # simulate processing
     }
     unmap $mapped_file;
 }
@@ -705,7 +705,7 @@ sub parallel_processing_mce_loop($file) {
     mce_loop_f {
         my ($mce, $chunk_ref, $chunk_id) = @_;
         foreach my $line (@$chunk_ref) {
-            # Simulate processing
+            # simulate processing
         }
     } $file;
     MCE::Loop->finish;
