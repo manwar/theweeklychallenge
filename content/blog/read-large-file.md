@@ -53,6 +53,13 @@ tags: ["Perl"]
                 </a>
             </div>
         </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/subroutine-signatures" title="Subroutine Signatures in Perl">
+                    <img src="/images/blog/subroutine-signatures-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 

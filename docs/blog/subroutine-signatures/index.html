@@ -4,27 +4,27 @@
     <!-- Basic Page Needs -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title"       content="Perl Regex"/>
+    <meta property="og:title"       content="Subroutine Signatures in Perl"/>
     <meta property="og:type"        content="website"/>
-    <meta property="og:url"         content="https://theweeklychallenge.org/blog/perl-regex/"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/subroutine-signatures/"/>
     <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
-    <meta property="og:description" content="Discussion about the special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38."/>
+    <meta property="og:description" content="Discussion about subroutine signatures in Perl v5.38."/>
     <meta name="twitter:card"       content="summary" />
     <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Discussion about the special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38.">
+    <meta name="description" content="Discussion about subroutine signatures in Perl v5.38.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <link rel="me" href="https://fosstodon.org/@manwar">
-    <link rel="canonical" href="https://theweeklychallenge.org/blog/perl-regex/" />
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/subroutine-signatures/" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Perl Regex</title>
+    <title>Subroutine Signatures in Perl</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -180,9 +180,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Perl Regex</h2>
+                    <h2>Subroutine Signatures in Perl</h2>
                     <div class="portfolio-meta">
-                        <span>Monday, Mar 24, 2025</span>|
+                        <span>Wednesday, Mar 26, 2025</span>|
                         <span> Tags:
                             Perl
                         </span>
@@ -199,7 +199,7 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/perl-regex.png">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/subroutine-signatures.png">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
@@ -241,8 +241,8 @@
         </div>
         <div class="col-md-3 col-sm-6">
             <div class="team-img">
-                <a href="/blog/subroutine-signatures" title="Subroutine Signatures in Perl">
-                    <img src="/images/blog/subroutine-signatures-mini.png" class="rounded border border-primary" width="220">
+                <a href="/blog/perl-regex" title="Perl Regex">
+                    <img src="/images/blog/perl-regex-mini.png" class="rounded border border-primary" width="220">
                 </a>
             </div>
         </div>
@@ -256,141 +256,135 @@
     </div>
 </div>
 <br>
-<h2 id="special-variable-last_successful_pattern-in-perl-v538">Special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38</h2>
+<h2 id="subroutine-signatures-in-perl">Subroutine Signatures in Perl</h2>
 <hr>
+<p>Have you ever missed subroutine signatures in <code>Perl</code>?</p>
+<p>I missed it a lot when I used to program in <code>Java</code>.</p>
+<p>Then when <code>Raku</code> introduced its coolest subroutine signatures, I started wondering, when would <code>Perl</code> get subroutine signatures?</p>
 <br>
-<p>I have been following the Perl releases closely for some time now. I don&rsquo;t just track the <code>maintenance releases</code> but also the <code>development releases</code>, which comes more frequently with smaller updates.</p>
-<p>It gives me immense pleasure to see how the language has evolved over the last two decades. With so much happening, keeping up with the pace isn&rsquo;t easy. That&rsquo;s why, I created a dedicated <a href="https://github.com/manwar/perl-cool-snippets"><strong>GitHub repository</strong></a> where I record changes as I come across them. This helps me refer back whenever I need to cross-check something.</p>
-<p>Have you heard of the book <a href="https://leanpub.com/perl_new_features"><strong>Perl New Features</strong></a> by <code>brian d foy</code> and published by <a href="https://perlschool.com"><strong>Perl School</strong></a>?</p>
-<p>When it was first released, I received a <code>FREE</code> copy of the book by <code>brian d foy</code>. Since I was already working on documenting <code>Perl</code> features, the book helped me fill in the missing details. Having read it from start to finish multiple times, I now have a solid grasp of all the important changes in <code>Perl</code>. The book doesn&rsquo;t just highlights improvements but also explains the reasoning behind them.</p>
-<p>A few days ago, <code>brian d foy</code>, updated the book to cover <code>Perl v5.38</code>. The first edition only covered up to <code>Perl v5.32</code>.</p>
-<p>Today I am going to talk about the new special variable <code>${^LAST_SUCCESSFUL_PATTERN}</code> added to <code>Perl v5.38</code>. For some reason, I missed this feature when it was first released. Normally, I follow the delta page of each release. Here is the <a href="https://perldoc.perl.org/perl5380delta"><strong>delta page</strong></a> for <code>Perl v5.38</code>, just in case you are looking for it.</p>
-<p>Having read about it in the book, I now have a much better understandings of the <code>${^LAST_SUCCESSFUL_PATTERN}</code>.</p>
-<p>In this post, I will give you a quick demo.</p>
-<p>Here is a simple regex example:</p>
+<h2 id="early-days">Early Days</h2>
+<hr>
+<p>This is how we used to create subroutines and handle parameters in the early days.</p>
+<p>You would typically see one of the two common approaches in old <code>Perl</code> code.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.30</span>;
-
-<span style="color:#66d9ef">my</span> $city <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;London&#34;</span>;
-<span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Perl&#34;</span>;
-<span style="color:#66d9ef">my</span> $game <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cricket&#34;</span>;
-
-<span style="color:#75715e"># context #1</span>
-{
-    <span style="color:#66d9ef">if</span> ($city <span style="color:#f92672">=~</span><span style="color:#e6db74"> /ON$/i</span>) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;city matched\n&#34;</span>;
-    }
-
-    <span style="color:#66d9ef">if</span> ($name <span style="color:#f92672">=~</span><span style="color:#e6db74"> //</span>) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;#1 name matched\n&#34;</span>;
-    }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">greet</span> {
+  <span style="color:#66d9ef">my</span> ($name) <span style="color:#f92672">=</span> @_;
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Hello $name!!\n&#34;</span>;
 }
 
-<span style="color:#75715e"># context #2</span>
-{
-    <span style="color:#66d9ef">if</span> ($game <span style="color:#f92672">=~</span><span style="color:#e6db74"> /kat$/</span>) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;game matched\n&#34;</span>;
-    }
-
-    <span style="color:#66d9ef">if</span> ($name <span style="color:#f92672">=~</span><span style="color:#e6db74"> //</span>) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;#2 name matched\n&#34;</span>;
-    }
-}
+greet(<span style="color:#e6db74">&#34;Joe&#34;</span>);    <span style="color:#75715e"># Hello Joe!!</span>
 </code></pre></div><br>
-<p>Here we have two context, in the first, there is a successfull match followed by an empty pattern matching.</p>
-<p>In the second context, we have a failed match followed by the same empty pattern matching.</p>
-<p>When you run the above code, what do you expect?</p>
-<p>This is what we got:</p>
+<p>Or like this:</p>
 <br>
-<pre><code>city matched
-#2 name matched
-</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">greet</span> {
+  <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> shift;
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Hello $name!!\n&#34;</span>;
+}
+
+greet(<span style="color:#e6db74">&#34;Joe&#34;</span>);    <span style="color:#75715e"># Hello Joe!!</span>
+</code></pre></div><br>
+<h2 id="the-arrival-of-subroutine-signatures">The Arrival of Subroutine Signatures</h2>
+<hr>
+<p>Fast forward, <code>Perl v5.20</code> which brought the first glimpse of subroutine signature.</p>
+<p>Although, they were experimental, it was still a step in the right direction.</p>
+<p>Now the old code has transformed into something much cleaner.</p>
+<p>Looks better, right?</p>
 <br>
-<p>The empty pattern didn&rsquo;t match in the first context but it did in the second.</p>
-<p><code>Why?</code></p>
-<p>Because the empty pattern attempts to match against the last successful pattern in the current context.</p>
-<p>I must admit, this implicit behaviour can be quite confusing.</p>
-<p>In <code>Perl v5.38</code>, this confusion is eliminated with the introduction of the special variable <code>${^LAST_SUCCESSFUL_PATTERN}</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.20</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(signatures)</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">greet</span>($name) {
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Hello $name!!\n&#34;</span>;
+}
+
+greet(<span style="color:#e6db74">&#34;Joe&#34;</span>);    <span style="color:#75715e"># Hello Joe!!</span>
+</code></pre></div><br>
+<p>For those, who prefer the traditional way, subroutine signatures are optional, you can still use the old method.</p>
+<br>
+<h2 id="stability-in-perl-v536">Stability in Perl v5.36</h2>
+<hr>
+<p>With <code>Perl v5.36</code>, subroutine signatures became stable.</p>
+<p>Now we can create subroutine with signatures like this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">greet</span>($name) {
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Hello $name!!\n&#34;</span>;
+}
+
+greet(<span style="color:#e6db74">&#34;Joe&#34;</span>);    <span style="color:#75715e"># Hello Joe!!</span>
+</code></pre></div><br>
+<p>This is what I call a complete makeover!</p>
+<p>With time, we got used to the new subroutine signatures.</p>
+<p>Over time, we have become accustomed to the new subroutine signatures.</p>
+<br>
+<h2 id="default-values-in-parameters">Default Values in Parameters</h2>
+<hr>
+<p>There are many variations and use cases for subroutine signatures.</p>
+<p>In this post, I&rsquo;ll focus on handling default values in parameters.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">greet</span>($name = &#34;World&#34;) {
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Hello $name!!\n&#34;</span>;
+}
+
+greet(<span style="color:#e6db74">&#34;Joe&#34;</span>);    <span style="color:#75715e"># Hello Joe!!</span>
+greet();         <span style="color:#75715e"># Hello World!!</span>
+</code></pre></div><br>
+<p>Remember: If you have multiple parameters, the one with default values should always come after all required parameters.</p>
+<p>Let&rsquo;s make it more interesting with another example:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span>($x, $y = 1) {
+  <span style="color:#66d9ef">print</span> $x <span style="color:#f92672">+</span> $y, <span style="color:#e6db74">&#34;\n&#34;</span>;
+}
+
+sum(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>);       <span style="color:#75715e"># 4</span>
+sum(<span style="color:#ae81ff">2</span>);          <span style="color:#75715e"># 3</span>
+</code></pre></div><br>
+<p>So far so, good.</p>
+<p>How about this one?</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span>($x, $y = 1) {
+  <span style="color:#66d9ef">print</span> $x <span style="color:#f92672">+</span> $y, <span style="color:#e6db74">&#34;\n&#34;</span>;
+}
+
+sum(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>);       <span style="color:#75715e"># 4</span>
+sum(<span style="color:#ae81ff">2</span>);          <span style="color:#75715e"># 3</span>
+sum(<span style="color:#ae81ff">2</span>, undef);   <span style="color:#75715e"># 2</span>
+</code></pre></div><br>
+<h2 id="enhancements-in-perl-v538">Enhancements in Perl v5.38</h2>
+<hr>
+<p>With <code>Perl v5.38</code>, handling default <code>undef</code> or <code>false</code> values become more efficient using the <code>//=</code> or <code>||=</code> operator.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
 
-<span style="color:#66d9ef">my</span> $city <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;London&#34;</span>;
-
-{
-    <span style="color:#66d9ef">if</span> ($city <span style="color:#f92672">=~</span><span style="color:#e6db74"> /ON$/i</span>) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;city matched\n&#34;</span>;
-    }
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;last successfull pattern: ${^LAST_SUCCESSFUL_PATTERN}\n&#34;</span>;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span>($x, $y //= 1) {
+  say $x <span style="color:#f92672">+</span> $y;
 }
+
+sum(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>);       <span style="color:#75715e"># 4</span>
+sum(<span style="color:#ae81ff">2</span>);          <span style="color:#75715e"># 3</span>
+sum(<span style="color:#ae81ff">2</span>, undef);   <span style="color:#75715e"># 3</span>
 </code></pre></div><br>
-<p>If noticed, the special variable <code>${^LAST_SUCCESSFUL_PATTERN}</code> not only capture the last successfull pattern but also all the options along with it.</p>
-<br>
-<pre><code>city matched
-last successfull pattern: (?^ui:ON)
-</code></pre>
-<br>
-<p>Let&rsquo;s see how this behaves:</p>
+<p>If a parameter is undef, the default value now kicks in.</p>
+<p>What about false values?</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
 
-<span style="color:#66d9ef">my</span> $city <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;London&#34;</span>;
-<span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Python&#34;</span>;
-
-{
-    <span style="color:#66d9ef">if</span> ($city <span style="color:#f92672">=~</span><span style="color:#e6db74"> /ON$/i</span>) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;city matched\n&#34;</span>;
-    }
-
-    <span style="color:#66d9ef">if</span> ($name <span style="color:#f92672">=~</span><span style="color:#e6db74"> /${^LAST_SUCCESSFUL_PATTERN}/</span>) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;name matched\n&#34;</span>;
-    }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span>($x, $y ||= 1) {
+  say $x <span style="color:#f92672">+</span> $y;
 }
+
+sum(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>);       <span style="color:#75715e"># 4</span>
+sum(<span style="color:#ae81ff">2</span>);          <span style="color:#75715e"># 3</span>
+sum(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>);       <span style="color:#75715e"># 3</span>
 </code></pre></div><br>
-<p>This is what we get after running the code:</p>
-<br>
-<pre><code>city matched
-name matched
-</code></pre>
-<br>
-<p>The name matched because, <code>${^LAST_SUCCESSFUL_PATTERN}</code> has the pattern and options together.</p>
-<p>Let&rsquo;s re-create the complete example in <code>Perl v5.38</code>:</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-
-<span style="color:#66d9ef">my</span> $city <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;London&#34;</span>;
-<span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Perl&#34;</span>;
-<span style="color:#66d9ef">my</span> $game <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cricket&#34;</span>;
-
-<span style="color:#75715e"># context #1</span>
-{
-    <span style="color:#66d9ef">if</span> ($city <span style="color:#f92672">=~</span><span style="color:#e6db74"> /ON$/i</span>) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;city matched\n&#34;</span>;
-    }
-
-    <span style="color:#66d9ef">if</span> ($name <span style="color:#f92672">=~</span><span style="color:#e6db74"> /${^LAST_SUCCESSFUL_PATTERN}/</span>) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;#1 name matched\n&#34;</span>;
-    }
-}
-
-<span style="color:#75715e"># context #2</span>
-{
-    <span style="color:#66d9ef">if</span> ($game <span style="color:#f92672">=~</span><span style="color:#e6db74"> /kat$/</span>) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;game matched\n&#34;</span>;
-    }
-
-    <span style="color:#66d9ef">if</span> ($name <span style="color:#f92672">=~</span><span style="color:#e6db74"> /${^LAST_SUCCESSFUL_PATTERN}/</span>) {      <span style="color:#75715e"># Line 24</span>
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;#2 name matched\n&#34;</span>;
-    }
-}
-</code></pre></div><br>
-<p>Running the code now:</p>
-<br>
-<pre><code>city matched
-Use of uninitialized value $^LAST_SUCCESSFUL_PATTERN in regexp compilation at .... line 24.
-#2 name matched
-</code></pre>
-<br>
-<p>I am not sure about the warning, if it&rsquo;s intentional.</p>
+<p>As per the subroutine signature behaviour, even a false-value parameter receives the default value.</p>
 <hr>
 <br>
 <p><code>Happy Hacking!!</code></p>

@@ -13,6 +13,58 @@ tags: ["Perl"]
 
 <br>
 
+<div class="container">
+    <div class="row" align="center">
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/slurp-in-perl" title="Slurp in Perl">
+                    <img src="/images/blog/slurp-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/scientist-in-perl" title="Scientist in Perl">
+                    <img src="/images/blog/scientist-in-perl-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/extraction-in-perl" title="Text Extraction in Perl">
+                    <img src="/images/blog/extraction-in-perl-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    <div class="row" align="center">
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/random-in-perl" title="Random in Perl">
+                    <img src="/images/blog/random-in-perl-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/subroutine-signatures" title="Subroutine Signatures in Perl">
+                    <img src="/images/blog/subroutine-signatures-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="team-img">
+                <a href="/blog/read-large-file" title="Read Large File">
+                    <img src="/images/blog/read-large-file-mini.png" class="rounded border border-primary" width="220">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
 ## Special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38
 ***
 
