@@ -13,9 +13,27 @@ tags: ["Perl"]
 
 <br>
 
-## git bisect ...
+<div class="container">
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/github-actions" title="GitHub Actions">
+                <img src="/images/blog/github-actions-mini.png" class="img-fluid"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/git-show" title="git show ...">
+                <img src="/images/blog/git-show-mini.png" class="img-fluid rounded-3 border border-3"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+    </div>
+</div>
 
 <br>
+
+## git bisect ...
+***
 
 If you lead life of `a programmer`, no matter what language you use, you must have used one of the many versioning systems.
 
