@@ -13,13 +13,21 @@ tags: ["Perl"]
 
 <br>
 
-<div style="display: flex; justify-content: center; gap: 10px;">
-    <a href="/blog/promise-in-perl" title="Promise in Perl">
-        <img src="/images/blog/promise-in-perl-mini.png" width="250">
-    </a>
-    <a href="/blog/future-in-perl" title="Future in Perl">
-        <img src="/images/blog/future-in-perl-mini.png" width="250">
-    </a>
+<div class="container">
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 text-center">
+            <a href="/blog/promise-in-perl" title="Promise in Perl">
+                <img src="/images/blog/promise-in-perl-mini.png" class="img-fluid w-100 p-2"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 text-center">
+            <a href="/blog/future-in-perl" title="Future in Perl">
+                <img src="/images/blog/future-in-perl-mini.png" class="img-fluid w-100 p-2"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+    </div>
 </div>
 
 <br>
