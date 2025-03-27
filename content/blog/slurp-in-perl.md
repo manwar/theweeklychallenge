@@ -16,7 +16,7 @@ tags: ["Perl"]
 <div class="container">
     <div class="row">
         <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-3 text-center">
-            <a href="/blog/subroutine-signatures" title="Method Signatures in Perl">
+            <a href="/blog/subroutine-signatures" title="Subroutine Signatures in Perl">
                 <img src="/images/blog/subroutine-signatures-mini.png" class="img-fluid">
             </a>
         </div>

@@ -53,7 +53,7 @@ tags: ["Perl"]
 ## Environment variable PERL_RAND_SEED in Perl v5.38
 ***
 
-<br>
+`NOTE`: All credit for this article goes to the book [**Perl New Features**](https://leanpub.com/perl_new_features) by `brian d foy`.
 
 How many of you have generated random numbers in `Perl`?
 

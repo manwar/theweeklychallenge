@@ -53,6 +53,8 @@ tags: ["Perl"]
 ## Subroutine Signatures in Perl
 ***
 
+`NOTE`: All credit for this article goes to the book [**Perl New Features**](https://leanpub.com/perl_new_features) by `brian d foy`.
+
 Have you ever missed subroutine signatures in `Perl`?
 
 I missed it a lot when I used to program in `Java`.

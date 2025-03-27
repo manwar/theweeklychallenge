@@ -53,7 +53,7 @@ tags: ["Perl"]
 ## Special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38
 ***
 
-<br>
+`NOTE`: All credit for this article goes to the book [**Perl New Features**](https://leanpub.com/perl_new_features) by `brian d foy`.
 
 I have been following the Perl releases closely for some time now. I don't just track the `maintenance releases` but also the `development releases`, which comes more frequently with smaller updates.
 
