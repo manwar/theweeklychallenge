@@ -14,51 +14,36 @@ tags: ["Perl"]
 <br>
 
 <div class="container">
-    <div class="row" align="center">
-        <div class="col-md-3 col-sm-6">
-            <div class="team-img">
-                <a href="/blog/slurp-in-perl" title="Slurp in Perl">
-                    <img src="/images/blog/slurp-mini.png" class="rounded border border-primary" width="220">
-                </a>
-            </div>
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/slurp-in-perl" title="Slurp in Perl">
+                <img src="/images/blog/slurp-mini.png" class="img-fluid">
+            </a>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="team-img">
-                <a href="/blog/scientist-in-perl" title="Scientist in Perl">
-                    <img src="/images/blog/scientist-in-perl-mini.png" class="rounded border border-primary" width="220">
-                </a>
-            </div>
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/scientist-in-perl" title="Scientist in Perl">
+                <img src="/images/blog/scientist-in-perl-mini.png" class="img-fluid">
+            </a>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="team-img">
-                <a href="/blog/subroutine-signatures" title="Subroutine Signatures in Perl">
-                    <img src="/images/blog/subroutine-signatures-mini.png" class="rounded border border-primary" width="220">
-                </a>
-            </div>
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/extraction-in-perl" title="Text Extraction in Perl">
+                <img src="/images/blog/subroutine-signatures-mini.png" class="img-fluid">
+            </a>
         </div>
-    </div>
-    </br>
-    <div class="row" align="center">
-        <div class="col-md-3 col-sm-6">
-            <div class="team-img">
-                <a href="/blog/random-in-perl" title="Random in Perl">
-                    <img src="/images/blog/random-in-perl-mini.png" class="rounded border border-primary" width="220">
-                </a>
-            </div>
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/random-in-perl" title="Random in Perl">
+                <img src="/images/blog/random-in-perl-mini.png" class="img-fluid">
+            </a>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="team-img">
-                <a href="/blog/perl-regex" title="Perl Regex">
-                    <img src="/images/blog/perl-regex-mini.png" class="rounded border border-primary" width="220">
-                </a>
-            </div>
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/perl-regex" title="Perl Regex">
+                <img src="/images/blog/perl-regex-mini.png" class="img-fluid rounded-3 border border-3">
+            </a>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="team-img">
-                <a href="/blog/read-large-file" title="Read Large File">
-                    <img src="/images/blog/read-large-file-mini.png" class="rounded border border-primary" width="220">
-                </a>
-            </div>
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/read-large-file" title="Read Large File">
+                <img src="/images/blog/read-large-file-mini.png" class="img-fluid">
+            </a>
         </div>
     </div>
 </div>
@@ -137,7 +122,13 @@ I created a very basic image, `tesseract.png` using `Paint` app.
 
 <br>
 
-![Sample Image](/images/blog/tesseract.png)
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/tesseract.png" class="img-fluid">
+        </div>
+    </div>
+</div>
 
 <br>
 

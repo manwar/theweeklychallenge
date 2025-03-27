@@ -15,13 +15,13 @@ tags: ["Perl"]
 
 <div class="container">
     <div class="row g-4 justify-content-center">
-        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 text-center">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
             <a href="/blog/promise-in-perl" title="Promise in Perl">
                 <img src="/images/blog/promise-in-perl-mini.png" class="img-fluid w-100 p-2"
                 style="object-fit: cover; aspect-ratio: 16/9;">
             </a>
         </div>
-        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 text-center">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
             <a href="/blog/future-in-perl" title="Future in Perl">
                 <img src="/images/blog/future-in-perl-mini.png" class="img-fluid w-100 p-2"
                 style="object-fit: cover; aspect-ratio: 16/9;">
