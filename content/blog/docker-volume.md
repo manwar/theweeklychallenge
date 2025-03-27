@@ -13,19 +13,33 @@ tags: ["Docker"]
 
 <br>
 
-<div style="display: flex; justify-content: center; gap: 10px;">
-    <a href="/blog/build-docker-image" title="Build Docker Image">
-        <img src="/images/blog/build-docker-image-mini.png" width="200">
-    </a>
-    <a href="/blog/docker-compose" title="Docker Compose">
-        <img src="/images/blog/docker-compose-mini.png" width="200">
-    </a>
-    <a href="/blog/docker-secret" title="Docker Secret">
-        <img src="/images/blog/docker-secret-mini.png" width="200">
-    </a>
-    <a href="/blog/terraform-docker" title="Terraform with Docker">
-        <img src="/images/blog/terraform-docker-mini.png" width="200">
-    </a>
+<div class="container">
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/build-docker-image" title="Build Docker Image">
+                <img src="/images/blog/build-docker-image-mini.png" class="img-fluid"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/docker-compose" title="Docker Compose">
+                <img src="/images/blog/docker-compose-mini.png" class="img-fluid"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/docker-secret" title="Docker Secret">
+                <img src="/images/blog/docker-secret-mini.png" class="img-fluid"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/terraform-docker" title="Terraform with Docker">
+                <img src="/images/blog/terraform-docker-mini.png" class="img-fluid"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+    </div>
 </div>
 
 <br>
