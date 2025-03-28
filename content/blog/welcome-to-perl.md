@@ -279,7 +279,7 @@ The compiled bytecode is executed line by line:
 a) Variables are initialized.
 b) Functions (e.g., say) are called.
 c) System calls (if any) are executed.
-b) External modules (if loaded via use or require) are initialized.
+d) External modules (if loaded via use or require) are initialized.
 ```
 
 <br>
