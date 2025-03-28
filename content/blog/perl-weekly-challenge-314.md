@@ -44,7 +44,7 @@ As you can imagine, this is a time-consuming exercise. I do this while also prep
 
 The downside?, I don't get to check contributions without a blog post. Trust me, I hate this! I truly want to go through all submissions because I know personally how brilliant each one of you is.
 
-Take, for example, `James Smith`, our former member he always comes up brilliant solutions every week but we never got to capture them in our knowledge bank, not because he stopped us from doing so, but simply because of how he shared them.
+Take, for example, `James Smith`, our former member he always came up with brilliant solutions every week but we never captured them in our knowledge bank, not because he stopped us from doing so, but simply because of how he shared them.
 
 Why?
 
