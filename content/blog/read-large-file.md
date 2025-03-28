@@ -45,6 +45,11 @@ tags: ["Perl"]
                 <img src="/images/blog/subroutine-signatures-mini.png" class="img-fluid">
             </a>
         </div>
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/welcome-to-perl" title="Welcome to Perl">
+                <img src="/images/blog/welcome-to-perl-mini.png" class="img-fluid">
+            </a>
+        </div>
     </div>
 </div>
 
