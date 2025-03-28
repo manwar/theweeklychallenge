@@ -5,7 +5,7 @@ description: "Discussion about the git show command."
 type: post
 image: images/blog/git-show.png
 author: Mohammad Sajid Anwar
-tags: ["Perl"]
+tags: ["git"]
 ---
 
 #### **DISCLAIMER:** Image is generated using `FREE` version of `ChatGPT`.
@@ -24,6 +24,12 @@ tags: ["Perl"]
         <div class="col-12 col-sm mb-4 p-2 text-center">
             <a href="/blog/git-bisect" title="git bisect ...">
                 <img src="/images/blog/git-bisect-mini.png" class="img-fluid rounded-3 border border-3"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <a href="/blog/github-meets-gitlab" title="GitHub meets GitLab">
+                <img src="/images/blog/github-meets-gitlab-mini.png" class="img-fluid rounded-3 border border-3"
                 style="object-fit: cover; aspect-ratio: 16/9;">
             </a>
         </div>
