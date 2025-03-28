@@ -364,6 +364,15 @@ I am all set now. Next time I push a new release to `CPAN`, I will tag it and se
 
 <br>
 
+## [2025-03-27] UPDATE
+***
+
+Finally, I had some usefull changes to [**Map::Tube**](https://metacpan.org/release/MANWAR/Map-Tube-4.03), thanks to the contributor `Gisbert W. Selke`. As per the tradition, I tagged the main branch `v4.03` and pushed. This now triggered the workflow as I created above earlier.
+
+We now have the first release automatically created by the workflow: [**Releave v4.03**](https://github.com/manwar/Map-Tube/releases).
+
+<br>
+
 ### Proof of Concept
 ***
 
