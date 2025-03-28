@@ -243,7 +243,7 @@ If the file doesn’t exist, `Perl` throws an error e.g. `Can't open perl script
 
 The source code is broken into tokens.
 
-For example: `say "Hello World!!";` is tokenized into:
+For example: `say "Hello World!!";` is tokenised into:
 
 <br>
 
@@ -276,10 +276,10 @@ The compiled bytecode is executed line by line:
 <br>
 
 ```perl
-a) Variables are initialized.
+a) Variables are initialised.
 b) Functions (e.g., say) are called.
 c) System calls (if any) are executed.
-d) External modules (if loaded via use or require) are initialized.
+d) External modules (if loaded via use or require) are initialised.
 ```
 
 <br>
