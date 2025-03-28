@@ -89,7 +89,9 @@ By the way, what `GitHub` calls a repository, `GitLab` calls a `project`.
 ## Teams
 ***
 
-In `GitHub Organisation`, you can create multiple teams and each team can be granted access to one or more repositories within the `GitHub Organisation`.
+In `GitHub Organisation`, you can create multiple teams.
+
+And each team can be granted access to one or more repositories within the `GitHub Organisation`.
 
 Similarly, in `GitLab`, within a group, you can have multiple subgroups (forming a nested hierarchy).
 
