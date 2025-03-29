@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2025-03-27T00:00:00+00:00
+date: 2025-03-29T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -59,6 +59,8 @@ Please find below guest contributions.
 ##### **Ashwin Shenoy** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/ashwin-shenoy/dart/ch-1.dart) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/ashwin-shenoy/dart/ch-2.dart) in **Dart**.
 
 ##### **Ashwin Shenoy** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/ashwin-shenoy/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/ashwin-shenoy/python/ch-2.py) in **Python**.
+
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/eric-cheung/python/ch-2.py) in **Python**.
 
