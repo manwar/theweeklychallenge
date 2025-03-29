@@ -28,7 +28,7 @@ $ echo "Hello World!!" > hello.txt
 
 <br>
 
-This is what one do as a quick win, right?
+This is what one does as a quick win, right?
 
 What would you expect?
 
