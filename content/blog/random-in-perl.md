@@ -138,6 +138,24 @@ $ perl -Mv5.14 -e "print rand; print '---'; print srand;"
 
 <br>
 
+## [2025-03-31] UPDATE
+***
+
+I noticed a comment by a reddit member, `scottchiefbaker`, with regard to the above one-liner to fetch the seed used.
+
+You can find more information in this [**thread**](https://www.reddit.com/r/perl/comments/1jjluda/comment/mke3zzq/?context=3).
+
+The proposed fix is below:
+
+<br>
+
+```perl
+$ perl -Mv5.14 -e "print rand; print '---'; print srand;"
+0.0564214629857851---3734158212
+```
+
+<br>
+
 Pretty cool, right?
 
 By the way, the ability for `srand` to return the seed was added in `Perl v5.14`.
