@@ -150,8 +150,8 @@ The proposed fix is below:
 <br>
 
 ```perl
-$ perl -Mv5.14 -e "print rand; print '---'; print srand;"
-0.0564214629857851---3734158212
+$ perl -E '$seed = srand(); say "$seed => " . rand();'
+2479823586 => 0.943006580303521
 ```
 
 <br>
