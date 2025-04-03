@@ -71,6 +71,32 @@
         #goTopButton:hover {
               background-color: #555;
         }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
     </style>
 
 
@@ -100,6 +126,33 @@
         document.body.scrollTop = 0; 
         document.documentElement.scrollTop = 0; 
     }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const showMoreLink = document.querySelector('.show-more');
+        const showLessLink = document.querySelector('.show-less');
+        const hiddenLinks = document.querySelectorAll('.hidden-link');
+
+        showMoreLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            hiddenLinks.forEach(link  => {
+                link.style.display = 'list-item';
+            });
+            showMoreLink.style.display = 'none';
+            showLessLink.style.display = 'inline-flex';
+        });
+
+        showLessLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            hiddenLinks.forEach(link  => {
+                link.style.display = 'none';
+            });
+            showLessLink.style.display = 'none';
+            showMoreLink.style.display = 'inline-flex';
+        });
+    });
 
 </script>
 
