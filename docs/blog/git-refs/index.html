@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="git refs ..."/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/git-refs/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about the git refs command."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about the git refs command.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/git-refs/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>git refs ...</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>git refs ...</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Apr 6, 2025</span>|
+                        <span> Tags:
+                            git
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/git-refs.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<div class="container">
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-sm mb-3 p-2 text-center">
+            <a href="/blog/github-actions" title="GitHub Actions">
+                <img src="/images/blog/github-actions-mini.png" class="img-fluid"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+        <div class="col-12 col-sm mb-3 p-2 text-center">
+            <a href="/blog/git-bisect" title="git bisect ...">
+                <img src="/images/blog/git-bisect-mini.png" class="img-fluid rounded-3 border border-3"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+        <div class="col-12 col-sm mb-3 p-2 text-center">
+            <a href="/blog/github-meets-gitlab" title="GitHub meets GitLab">
+                <img src="/images/blog/github-meets-gitlab-mini.png" class="img-fluid rounded-3 border border-3"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+        <div class="col-12 col-sm mb-3 p-2 text-center">
+            <a href="/blog/git-show" title="git show ...">
+                <img src="/images/blog/git-show-mini.png" class="img-fluid rounded-3 border border-3"
+                style="object-fit: cover; aspect-ratio: 16/9;">
+            </a>
+        </div>
+    </div>
+</div>
+<hr>
+<h2 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h2>
+<h2 id="2-types-of-refstypes-of-refs"><a href="types-of-refs">2. Types of refs</a></h2>
+<h2 id="3-list-refslist-refs"><a href="#list-refs">3. List refs</a></h2>
+<h2 id="4-useful-commandsuseful-command"><a href="#useful-command">4. Useful Commands</a></h2>
+<h2 id="5-head-shortcutshead-shortcuts"><a href="#head-shortcuts">5. HEAD shortcuts</a></h2>
+<h2 id="6-types-of-headtypes-of-head"><a href="#types-of-head">6. Types of HEAD</a></h2>
+<h2 id="7-trunk-in-gittrunk-in-git"><a href="#trunk-in-git">7. trunk in Git</a></h2>
+<h2 id="8-git-remotesgit-remotes"><a href="#git-remotes">8. Git Remotes</a></h2>
+<h2 id="9-types-of-remote-refstypes-of-remote-refs"><a href="#types-of-remote-refs">9. Types of Remote Refs</a></h2>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<p>Today is such a fine and sunny <code>Sunday</code> morning to do some brain dumping and share it with you.</p>
+<p>It&rsquo;s exactly one week since the end of <code>Ramadan</code> and this is my first blog after <code>Ramadan</code>.</p>
+<p>As predicted, I went into my shell after <code>Ramadan</code>, which isn&rsquo;t a good sign.</p>
+<p>I&rsquo;ll try and keep breaking the cycle and come out of it as much as I can.</p>
+<p>This is something I never bothered to look into in detail and because of that, I’ve ended up in a big mess a few times.</p>
+<p>Today, I decided to understand it from the ground up, so that during difficult times, I’ll be able to navigate my way out.</p>
+<p>So, what are <code>git references</code> or <code>git refs</code>?</p>
+<p>As the name suggests, they are pointers to commits in your repository.</p>
+<p>They are fundamental to how <code>Git</code> tracks and organizes changes.</p>
+<br>
+<h2 id="types-of-refs">Types of refs</h2>
+<hr>
+<br>
+<h3 id="1-branches">1. Branches</h3>
+<br>
+<p>These are refs that move forward as you commit e.g. <code>.git/refs/heads/master</code></p>
+<br>
+<h3 id="2-tags">2. Tags</h3>
+<br>
+<p>These are typically static refs that mark specific points e.g. <code>.git/refs/tags/wk-001</code></p>
+<br>
+<h3 id="3-remotes">3. Remotes</h3>
+<br>
+<p>These track branches from remote repositories e.g. <code>.git/refs/remotes/origin/master</code></p>
+<br>
+<h2 id="list-refs">List refs</h2>
+<hr>
+<br>
+<p>I am using the <a href="https://github.com/manwar/perlweeklychallenge-club"><strong>repository</strong></a> for reference in this post.</p>
+<p>The command <code>git show-ref</code> lists all refs in the repository.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git show-ref
+aca905aa8d68c769bcd9a8fd532458398024ed11 refs/heads/master
+aca905aa8d68c769bcd9a8fd532458398024ed11 refs/remotes/origin/HEAD
+aca905aa8d68c769bcd9a8fd532458398024ed11 refs/remotes/origin/master
+9f6decc59edcef202bfddc3d662400a0ad611156 refs/tags/wk-001
+7f358d36c3f71f78707ea2149d05a8a646a95282 refs/tags/wk-002
+...
+...
+</code></pre></div><br>
+<p>All refs are stored in the <code>.git/refs/</code> subfolder as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tree .git/refs/
+.git/refs/
+├── heads
+│   └── master
+├── remotes
+│   └── origin
+│       ├── HEAD
+│       └── master
+└── tags
+    ├── wk-306
+    ├── wk-307
+    ├── wk-308
+    ├── wk-309
+    ├── wk-310
+    ├── wk-311
+    ├── wk-312
+    ├── wk-313
+    ├── wk-314
+    └── wk-315
+</code></pre></div><br>
+<p>There is a special ref i.e. <code>HEAD</code>, which points to your current branch or commit: <code>.git/HEAD</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat .git/HEAD
+ref: refs/heads/master
+</code></pre></div><br>
+<h2 id="useful-commands">Useful Commands</h2>
+<hr>
+<br>
+<h3 id="git-show-head">git show HEAD</h3>
+<br>
+<p>It shows the commit that <code>HEAD</code> currently points to.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git show HEAD
+commit aca905aa8d68c769bcd9a8fd532458398024ed11 <span style="color:#f92672">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span style="color:#f92672">)</span>
+Author: Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+Date:   Sun Apr <span style="color:#ae81ff">6</span> 01:37:15 <span style="color:#ae81ff">2025</span> +0100
+
+    - Added solutions by Arne Sommer.
+    - Added solutions by Jan Krnavek.
+    - Added solutions by Kjetil Skotheim.
+
+diff --git a/stats/pwc-challenge-310.json b/stats/pwc-challenge-310.json
+index 89a729bc16..8c017f3efb <span style="color:#ae81ff">100644</span>
+--- a/stats/pwc-challenge-310.json
++++ b/stats/pwc-challenge-310.json
+@@ -1,184 +1,30 @@
+ <span style="color:#f92672">{</span>
++   <span style="color:#e6db74">&#34;legend&#34;</span> : <span style="color:#f92672">{</span>
++      <span style="color:#e6db74">&#34;enabled&#34;</span> : <span style="color:#ae81ff">0</span>
++   <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;yAxis&#34;</span> : <span style="color:#f92672">{</span>
+       <span style="color:#e6db74">&#34;title&#34;</span> : <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#34;text&#34;</span> : <span style="color:#e6db74">&#34;Total Solutions&#34;</span>
+       <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>,
+</code></pre></div><br>
+<p>The first line: <code>commit aca905aa8d68c769bcd9a8fd532458398024ed11 (HEAD -&gt; master, origin/master, origin/HEAD)</code> is particularly very handy.</p>
+<p>It tells the <code>HEAD</code> is currently pointing to local <code>master</code> branch as well as remote <code>master</code> and <code>HEAD</code>.</p>
+<p>This mean, my local repository is in good health.</p>
+<br>
+<h3 id="git-symbolic-ref-head">git symbolic-ref HEAD</h3>
+<br>
+<p>It shows which branch <code>HEAD</code> is pointing to.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git symbolic-ref HEAD
+refs/heads/master
+</code></pre></div><br>
+<br>
+<h3 id="git-diff-head1-head">git diff HEAD~1 HEAD</h3>
+<br>
+<p>It compares the previous commit with the current one.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git diff HEAD~1 HEAD
+diff --git a/stats/pwc-challenge-310.json b/stats/pwc-challenge-310.json
+index 89a729bc16..8c017f3efb <span style="color:#ae81ff">100644</span>
+--- a/stats/pwc-challenge-310.json
++++ b/stats/pwc-challenge-310.json
+@@ -1,184 +1,30 @@
+ <span style="color:#f92672">{</span>
++   <span style="color:#e6db74">&#34;legend&#34;</span> : <span style="color:#f92672">{</span>
++      <span style="color:#e6db74">&#34;enabled&#34;</span> : <span style="color:#ae81ff">0</span>
++   <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;yAxis&#34;</span> : <span style="color:#f92672">{</span>
+       <span style="color:#e6db74">&#34;title&#34;</span> : <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#34;text&#34;</span> : <span style="color:#e6db74">&#34;Total Solutions&#34;</span>
+       <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>,
+...
+...
+...
+</code></pre></div><br>
+<p>You can also use this instead to get the same result: <code>git diff HEAD^1 HEAD</code></p>
+<br>
+<h2 id="head-shortcuts">HEAD shortcuts</h2>
+<hr>
+<br>
+<p><strong>HEAD~ / HEAD^</strong> - Parent of <code>HEAD</code>.</p>
+<p><strong>HEAD@{n}</strong> - The <code>nth</code> prior position of <code>HEAD</code> (useful with <code>reflog</code>).</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git diff HEAD@<span style="color:#f92672">{</span>7<span style="color:#f92672">}</span> HEAD
+diff --git a/challenge-310/kjetillll/perl/ch-1.pl b/challenge-310/kjetillll/perl/ch-1.pl
+new file mode <span style="color:#ae81ff">100644</span>
+index 0000000000..c6fa2056a2
+--- /dev/null
++++ b/challenge-310/kjetillll/perl/ch-1.pl
+@@ -0,0 +1,13 @@
++sub f <span style="color:#f92672">{</span>
++    my @arr <span style="color:#f92672">=</span> @_;
++    my %elem;
++    <span style="color:#66d9ef">for</span> my $i <span style="color:#f92672">(</span> <span style="color:#ae81ff">0</span> .. $#arr <span style="color:#f92672">){</span>
++        $elem<span style="color:#f92672">{</span>$_<span style="color:#f92672">}{</span>$i<span style="color:#f92672">}</span>++ <span style="color:#66d9ef">for</span> @<span style="color:#f92672">{</span> $arr<span style="color:#f92672">[</span>$i<span style="color:#f92672">]</span> <span style="color:#f92672">}</span>;
++    <span style="color:#f92672">}</span>
++    sort<span style="color:#f92672">{</span> $a &lt;<span style="color:#f92672">=</span>&gt; $b <span style="color:#f92672">}</span> grep @_ <span style="color:#f92672">==</span> keys %<span style="color:#f92672">{</span> $elem<span style="color:#f92672">{</span>$_<span style="color:#f92672">}</span> <span style="color:#f92672">}</span>, keys %elem
++<span style="color:#f92672">}</span>
++
++use Test::More tests <span style="color:#f92672">=</span>&gt; 3;
++is_deeply <span style="color:#f92672">[</span> f<span style="color:#f92672">(</span> <span style="color:#f92672">[</span>1, 2, 3, 4<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4, 5, 6, 1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4, 2, 1, 3<span style="color:#f92672">]</span> <span style="color:#f92672">)</span> <span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>1, 4<span style="color:#f92672">]</span>;
++is_deeply <span style="color:#f92672">[</span> f<span style="color:#f92672">(</span> <span style="color:#f92672">[</span>1, 0, 2, 3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2, 4, 5<span style="color:#f92672">]</span> <span style="color:#f92672">)</span>                  <span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>;
++is_deeply <span style="color:#f92672">[</span> f<span style="color:#f92672">(</span> <span style="color:#f92672">[</span>1, 2, 3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4, 5<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span> <span style="color:#f92672">)</span>                   <span style="color:#f92672">]</span>, <span style="color:#f92672">[]</span>;
+</code></pre></div><br>
+<p>The command: <code>git reflog</code> keeps track of changes to the tips of branches and other references in the local repository.</p>
+<p>It is essentially a safety net that records when the tips of branches were updated in the local repository.</p>
+<p>It maintains history of:</p>
+<br>
+<pre><code>- Branch checkouts
+- Resets
+- Rebases
+- Commits
+</code></pre>
+<br>
+<p>Unlike <code>git log</code>, which shows the commit history, the <code>reflog</code> shows the history of your <code>refs</code> and <code>HEAD</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git reflog
+aca905aa8d <span style="color:#f92672">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span style="color:#f92672">)</span> HEAD@<span style="color:#f92672">{</span>0<span style="color:#f92672">}</span>: checkout: moving from 68323c4b8f9cd1240b453d353c019470086799a4 to master
+68323c4b8f HEAD@<span style="color:#f92672">{</span>1<span style="color:#f92672">}</span>: checkout: moving from master to 68323c4b8
+aca905aa8d <span style="color:#f92672">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span style="color:#f92672">)</span> HEAD@<span style="color:#f92672">{</span>2<span style="color:#f92672">}</span>: commit: - Added solutions by Arne Sommer.
+68323c4b8f HEAD@<span style="color:#f92672">{</span>3<span style="color:#f92672">}</span>: merge refs/remotes/origin/master: Fast-forward
+d077b4b0d2 HEAD@<span style="color:#f92672">{</span>4<span style="color:#f92672">}</span>: commit: - Added solutions by Jorg Sommrey.
+9c04e8a9a8 HEAD@<span style="color:#f92672">{</span>5<span style="color:#f92672">}</span>: merge refs/remotes/origin/master: Fast-forward
+...
+...
+</code></pre></div><br>
+<p>Always remember, it exists only in your local repository and isn&rsquo;t shared when you <code>push</code>/<code>pull</code>.</p>
+<p>It expires after <code>90 days</code> by default and configurable.</p>
+<p>It helps recover lost commits and branches.</p>
+<br>
+<h3 id="common-use-cases">Common Use Cases</h3>
+<br>
+<p><strong>Recover Lost Work</strong></p>
+<br>
+<p>Use <code>git reflog</code> to find the commit before the error then use this to recover: <code>git reset --hard HEAD@{3}</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git reflog
+aca905aa8d <span style="color:#f92672">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span style="color:#f92672">)</span> HEAD@<span style="color:#f92672">{</span>0<span style="color:#f92672">}</span>: checkout: moving from 68323c4b8f9cd1240b453d353c019470086799a4 to master
+68323c4b8f HEAD@<span style="color:#f92672">{</span>1<span style="color:#f92672">}</span>: checkout: moving from master to 68323c4b8
+aca905aa8d <span style="color:#f92672">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span style="color:#f92672">)</span> HEAD@<span style="color:#f92672">{</span>2<span style="color:#f92672">}</span>: commit: - Added solutions by Arne Sommer.
+68323c4b8f HEAD@<span style="color:#f92672">{</span>3<span style="color:#f92672">}</span>: merge refs/remotes/origin/master: Fast-forward
+d077b4b0d2 HEAD@<span style="color:#f92672">{</span>4<span style="color:#f92672">}</span>: commit: - Added solutions by Jorg Sommrey.
+9c04e8a9a8 HEAD@<span style="color:#f92672">{</span>5<span style="color:#f92672">}</span>: merge refs/remotes/origin/master: Fast-forward
+...
+...
+</code></pre></div><br>
+<p><strong>Reflog of Branch</strong></p>
+<br>
+<p>Show <code>reflog</code> for a specific branch: <code>git reflog show &lt;branch_name&gt;</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git reflog show master
+aca905aa8d <span style="color:#f92672">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span style="color:#f92672">)</span> master@<span style="color:#f92672">{</span>0<span style="color:#f92672">}</span>: commit: - Added solutions by Arne Sommer.
+68323c4b8f master@<span style="color:#f92672">{</span>1<span style="color:#f92672">}</span>: merge refs/remotes/origin/master: Fast-forward
+d077b4b0d2 master@<span style="color:#f92672">{</span>2<span style="color:#f92672">}</span>: commit: - Added solutions by Jorg Sommrey.
+9c04e8a9a8 master@<span style="color:#f92672">{</span>3<span style="color:#f92672">}</span>: merge refs/remotes/origin/master: Fast-forward
+1be16da34e master@<span style="color:#f92672">{</span>4<span style="color:#f92672">}</span>: commit: - Added solutions by Peter Pentchev.
+fc88fe7ab3 master@<span style="color:#f92672">{</span>5<span style="color:#f92672">}</span>: merge refs/remotes/origin/master: Fast-forward
+c458ab51a3 master@<span style="color:#f92672">{</span>6<span style="color:#f92672">}</span>: merge refs/remotes/origin/master: Fast-forward
+...
+...
+</code></pre></div><br>
+<p><strong>More details than the <code>git log</code></strong></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git reflog --format<span style="color:#f92672">=</span>fuller
+commit aca905aa8d <span style="color:#f92672">(</span>HEAD -&gt; master, origin/master, origin/HEAD<span style="color:#f92672">)</span>
+Reflog: HEAD@<span style="color:#f92672">{</span>0<span style="color:#f92672">}</span> <span style="color:#f92672">(</span>Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;<span style="color:#f92672">)</span>
+Reflog message: checkout: moving from 68323c4b8f9cd1240b453d353c019470086799a4 to master
+Author:     Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+AuthorDate: Sun Apr <span style="color:#ae81ff">6</span> 01:37:15 <span style="color:#ae81ff">2025</span> +0100
+Commit:     Mohammad Sajid Anwar &lt;mohammad.anwar@yahoo.com&gt;
+CommitDate: Sun Apr <span style="color:#ae81ff">6</span> 01:37:15 <span style="color:#ae81ff">2025</span> +0100
+
+    - Added solutions by Arne Sommer.
+    - Added solutions by Jan Krnavek.
+    - Added solutions by Kjetil Skotheim.
+
+...
+...
+</code></pre></div><br>
+<h2 id="types-of-head">Types of HEAD</h2>
+<hr>
+<br>
+<h3 id="1-attached-head">1. Attached HEAD</h3>
+<br>
+<p>When <code>HEAD</code> points to a branch, it is called <code>attached HEAD</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git status
+On branch master
+Your branch is up to date with <span style="color:#e6db74">&#39;origin/master&#39;</span>.
+nothing to commit, working tree clean
+</code></pre></div><br>
+<h3 id="2-detached-head">2. Detached HEAD</h3>
+<br>
+<p>When <code>HEAD</code> points directly to a commit, it is called <code>detached HEAD</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git checkout 68323c4b8
+Note: switching to <span style="color:#e6db74">&#39;68323c4b8&#39;</span>.
+
+You are in <span style="color:#e6db74">&#39;detached HEAD&#39;</span> state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+<span style="color:#66d9ef">do</span> so <span style="color:#f92672">(</span>now or later<span style="color:#f92672">)</span> by using -c with the switch command. Example:
+
+  git switch -c &lt;new-branch-name&gt;
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 68323c4b8f Merge pull request <span style="color:#75715e">#11828 from arnesom/branch-for-challenge-315</span>
+</code></pre></div><br>
+<h2 id="trunk-in-git">trunk in Git</h2>
+<hr>
+<br>
+<p>Have you heard of the <code>trunk</code> in <code>Git</code>?</p>
+<p>The term <code>trunk</code> refers to the <code>primary branch</code> where main development happens.</p>
+<p>It’s borrowed from older version control systems like <code>Subversion (SVN)</code>.</p>
+<p>In <code>Git</code>, there&rsquo;s no official branch called <code>trunk</code>, but the idea maps to the <code>main</code> or <code>master</code> branch, the default <code>primary branch</code> in most repositories.</p>
+<br>
+<h2 id="git-remotes">Git Remotes</h2>
+<hr>
+<br>
+<p><code>Remotes</code> (or <code>remote repositories</code>) are references to versions of your project hosted on another server.</p>
+<p>They allow collaboration by <code>pushing</code> and <code>pulling</code> changes between your <code>local</code> repo and the <code>remote</code>.</p>
+<p>The <code>default remote</code> name is <code>origin</code>, which is created when you <code>clone</code> a repository.</p>
+<p>Remote configurations are stored in <code>.git/config</code> and <code>.git/refs/remotes/</code>.</p>
+<p>Common <code>remote hosts</code> include <code>GitHub</code>, <code>GitLab</code>, <code>Bitbucket</code> etc.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat .git/config
+<span style="color:#f92672">[</span>core<span style="color:#f92672">]</span>
+        repositoryformatversion <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        filemode <span style="color:#f92672">=</span> true
+        bare <span style="color:#f92672">=</span> false
+        logallrefupdates <span style="color:#f92672">=</span> true
+<span style="color:#f92672">[</span>remote <span style="color:#e6db74">&#34;origin&#34;</span><span style="color:#f92672">]</span>
+        url <span style="color:#f92672">=</span> https://github.com/manwar/perlweeklychallenge-club
+        fetch <span style="color:#f92672">=</span> +refs/heads/*:refs/remotes/origin/*
+<span style="color:#f92672">[</span>branch <span style="color:#e6db74">&#34;master&#34;</span><span style="color:#f92672">]</span>
+        remote <span style="color:#f92672">=</span> origin
+        vscode-merge-base <span style="color:#f92672">=</span> origin/master
+        merge <span style="color:#f92672">=</span> refs/heads/master
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tree .git/refs/remotes/
+.git/refs/remotes/
+└── origin
+    ├── HEAD
+    └── master
+
+<span style="color:#ae81ff">2</span> directories, <span style="color:#ae81ff">2</span> files
+</code></pre></div><br>
+<h2 id="types-of-remote-refs">Types of Remote Refs</h2>
+<hr>
+<br>
+<h3 id="1-remote-branch">1. Remote Branch</h3>
+<br>
+<p>These track the state of branches on the remote server.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat .git/refs/remotes/origin/master
+aca905aa8d68c769bcd9a8fd532458398024ed11
+</code></pre></div><br>
+<h3 id="2-remote-head">2. Remote HEAD</h3>
+<br>
+<p>It points to the default branch on the remote repository.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat .git/refs/remotes/origin/HEAD
+ref: refs/remotes/origin/master
+</code></pre></div><br>
+<h3 id="common-remote-commands">Common remote commands</h3>
+<br>
+<p>To lists all remotes and their URLs: <code>git remote -v</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git remote -v
+origin  https://github.com/manwar/perlweeklychallenge-club <span style="color:#f92672">(</span>fetch<span style="color:#f92672">)</span>
+origin  https://github.com/manwar/perlweeklychallenge-club <span style="color:#f92672">(</span>push<span style="color:#f92672">)</span>
+</code></pre></div><br>
+<p>To add new remote: <code>git remote add &lt;remote_name&gt; &lt;remote_url&gt;</code></p>
+<p>To remove a remote: <code>git remote remove &lt;remote_name&gt;</code></p>
+<p>To fetch changes from a remote: <code>git fetch &lt;remote_name&gt;</code></p>
+<p>To Fetch and merge changes from a remote branch into your current branch: <code>git pull &lt;remote_name&gt; &lt;branch&gt;</code></p>
+<br>
+<hr>
+<br>
+<p><code>Don't stop learning !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
