@@ -52,7 +52,7 @@ tags: ["git"]
 ## [6. Types of HEAD](#types-of-head)
 ## [7. trunk in Git](#trunk-in-git)
 ## [8. Git Remotes](#git-remotes)
-## [9. Types of Remote Refs](#types-of-remote-refs)
+## [9. Types of Remote refs](#types-of-remote-refs)
 
 <br>
 
@@ -537,7 +537,7 @@ $ tree .git/refs/remotes/
 
 <br>
 
-## Types of Remote Refs
+## Types of Remote refs
 ***
 
 <br>
