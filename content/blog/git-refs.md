@@ -110,7 +110,7 @@ These track branches from remote repositories e.g. `.git/refs/remotes/origin/mas
 
 <br>
 
-I am using the [**repository**](https://github.com/manwar/perlweeklychallenge-club) for reference in this post.
+I am using this [**repository**](https://github.com/manwar/perlweeklychallenge-club) for reference in the post below.
 
 The command `git show-ref` lists all refs in the repository.
 
