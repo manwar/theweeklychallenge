@@ -14,6 +14,10 @@ Please find below guest contributions.
 
 ***
 
+
+<div class="links-container">
+  <div class="links-visible">
+
 #### &nbsp; * &nbsp; [[316](#316)] &nbsp; * &nbsp; [[315](#315)] &nbsp; * &nbsp; [[314](#314)] &nbsp; * &nbsp; [[313](#313)] &nbsp; * &nbsp; [[312](#312)] &nbsp; * &nbsp; [[311](#311)] &nbsp; * &nbsp; [[310](#310)] &nbsp; * &nbsp; [[309](#309)] &nbsp; * &nbsp; [[308](#308)] &nbsp; * &nbsp; [[307](#307)] &nbsp; * &nbsp; [[306](#306)] &nbsp; * &nbsp; [[305](#305)] &nbsp; * &nbsp; [[304](#304)] &nbsp; * &nbsp; [[303](#303)] &nbsp; * &nbsp; [[302](#302)] &nbsp; * &nbsp; [[301](#301)] &nbsp; * &nbsp; [[300](#300)] &nbsp; * &nbsp; [[299](#299)] &nbsp; * &nbsp; [[298](#298)] &nbsp; *
 
 #### &nbsp; * &nbsp; [[297](#297)] &nbsp; * &nbsp; [[296](#296)] &nbsp; * &nbsp; [[295](#295)] &nbsp; * &nbsp; [[294](#294)] &nbsp; * &nbsp; [[293](#293)] &nbsp; * &nbsp; [[292](#292)] &nbsp; * &nbsp; [[291](#291)] &nbsp; * &nbsp; [[290](#290)] &nbsp; * &nbsp; [[289](#289)] &nbsp; * &nbsp; [[288](#288)] &nbsp; * &nbsp; [[287](#287)] &nbsp; * &nbsp; [[286](#286)] &nbsp; * &nbsp; [[285](#285)] &nbsp; * &nbsp; [[284](#284)] &nbsp; * &nbsp; [[283](#283)] &nbsp; * &nbsp; [[282](#282)] &nbsp; * &nbsp; [[281](#281)] &nbsp; * &nbsp; [[280](#280)] &nbsp; * &nbsp; [[279](#279)] &nbsp; *
@@ -21,6 +25,9 @@ Please find below guest contributions.
 #### &nbsp; * &nbsp; [[278](#278)] &nbsp; * &nbsp; [[277](#277)] &nbsp; * &nbsp; [[276](#276)] &nbsp; * &nbsp; [[275](#275)] &nbsp; * &nbsp; [[274](#274)] &nbsp; * &nbsp; [[273](#273)] &nbsp; * &nbsp; [[272](#272)] &nbsp; * &nbsp; [[271](#271)] &nbsp; * &nbsp; [[270](#270)] &nbsp; * &nbsp; [[269](#269)] &nbsp; * &nbsp; [[268](#268)] &nbsp; * &nbsp; [[267](#267)] &nbsp; * &nbsp; [[266](#266)] &nbsp; * &nbsp; [[265](#265)] &nbsp; * &nbsp; [[264](#264)] &nbsp; * &nbsp; [[263](#263)] &nbsp; * &nbsp; [[262](#262)] &nbsp; * &nbsp; [[261](#261)] &nbsp; * &nbsp; [[260](#260)] &nbsp; *
 
 #### &nbsp; * &nbsp; [[259](#259)] &nbsp; * &nbsp; [[258](#258)] &nbsp; * &nbsp; [[257](#257)] &nbsp; * &nbsp; [[256](#256)] &nbsp; * &nbsp; [[255](#255)] &nbsp; * &nbsp; [[254](#254)] &nbsp; * &nbsp; [[253](#253)] &nbsp; * &nbsp; [[252](#252)] &nbsp; * &nbsp; [[251](#251)] &nbsp; * &nbsp; [[250](#250)] &nbsp; * &nbsp; [[249](#249)] &nbsp; * &nbsp; [[248](#248)] &nbsp; * &nbsp; [[247](#247)] &nbsp; * &nbsp; [[246](#246)] &nbsp; * &nbsp; [[245](#245)] &nbsp; * &nbsp; [[244](#244)] &nbsp; * &nbsp; [[243](#243)] &nbsp; * &nbsp; [[242](#242)] &nbsp; * &nbsp; [[241](#241)] &nbsp; *
+
+  </div>
+  <div class="links-hidden" style="display: none;">
 
 #### &nbsp; * &nbsp; [[240](#240)] &nbsp; * &nbsp; [[239](#239)] &nbsp; * &nbsp; [[238](#238)] &nbsp; * &nbsp; [[237](#237)] &nbsp; * &nbsp; [[236](#236)] &nbsp; * &nbsp; [[235](#235)] &nbsp; * &nbsp; [[234](#234)] &nbsp; * &nbsp; [[233](#233)] &nbsp; * &nbsp; [[231](#231)] &nbsp; * &nbsp; [[230](#230)] &nbsp; * &nbsp; [[229](#229)] &nbsp; * &nbsp; [[228](#228)] &nbsp; * &nbsp; [[227](#227)] &nbsp; * &nbsp; [[226](#226)] &nbsp; * &nbsp; [[225](#225)] &nbsp; * &nbsp; [[224](#224)] &nbsp; * &nbsp; [[223](#223)] &nbsp; * &nbsp; [[222](#222)] &nbsp; * &nbsp; [[221](#221)] &nbsp; *
 
@@ -47,6 +54,51 @@ Please find below guest contributions.
 #### &nbsp; * &nbsp; [[030](#030)] &nbsp; * &nbsp; [[029](#029)] &nbsp; * &nbsp; [[028](#028)] &nbsp; * &nbsp; [[027](#027)] &nbsp; * &nbsp; [[026](#026)] &nbsp; * &nbsp; [[025](#025)] &nbsp; * &nbsp; [[024](#024)] &nbsp; * &nbsp; [[023](#023)] &nbsp; * &nbsp; [[022](#022)] &nbsp; * &nbsp; [[021](#021)] &nbsp; * &nbsp; [[020](#020)] &nbsp; * &nbsp; [[019](#019)] &nbsp; * &nbsp; [[018](#018)] &nbsp; * &nbsp; [[017](#017)] &nbsp; * &nbsp; [[016](#016)] &nbsp; * &nbsp; [[015](#015)] &nbsp; * &nbsp; [[014](#014)] &nbsp; * &nbsp; [[013](#013)] &nbsp; * &nbsp; [[012](#012)] &nbsp; *
 
 #### &nbsp; * &nbsp; [[011](#011)] &nbsp; * &nbsp; [[010](#010)] &nbsp; * &nbsp; [[009](#009)] &nbsp; * &nbsp; [[008](#008)] &nbsp; * &nbsp; [[007](#007)] &nbsp; * &nbsp; [[006](#006)] &nbsp; * &nbsp; [[005](#005)] &nbsp; * &nbsp; [[004](#004)] &nbsp; * &nbsp; [[003](#003)] &nbsp; * &nbsp; [[002](#002)] &nbsp; * &nbsp; [[001](#001)] &nbsp; *
+
+  </div>
+
+  <a href="#" class="toggle-links" onclick="toggleLinks(event)">Show more</a>
+
+</div>
+
+<script>
+  function toggleLinks(event) {
+    event.preventDefault();
+    const hiddenLinks = document.querySelector('.links-hidden');
+    const visibleLinks = document.querySelector('.links-visible');
+    const toggleButton = event.target;
+
+    if (hiddenLinks.style.display === 'none') {
+      hiddenLinks.style.display = 'block';
+      toggleButton.textContent = 'Show less';
+    } else {
+      hiddenLinks.style.display = 'none';
+      toggleButton.textContent = 'Show more';
+    }
+  }
+</script>
+
+<style>
+    .toggle-links {
+        margin: 15px 0;
+        padding-left: 15px;
+    }
+    .toggle-links a {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 16px;
+        border-radius: 20px;
+        background-color: #4285f4;
+        color: white !important;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.2s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .toggle-links:hover {
+        text-decoration: underline;
+    }
+</style>
 
 ----
 ## [The Weekly Challenge - 316](/blog/perl-weekly-challenge-316) {#316}
