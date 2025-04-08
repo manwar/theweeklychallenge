@@ -10,10 +10,7 @@ tags: ["Ada", "APL", "Awk", "BASIC", "Bash", "Bc", "Befunge-93", "Bourne Shell",
 
 As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **[The Weekly Challenge - 018](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **BASIC**, **Bash**, **Bc**, **Befunge-93**, **Bourne Shell**, **BQN**, **Brainfuck**, **C3**, **C**, **CESIL**, **Chef**, **COBOL**, **Coconut**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Dc**, **Elixir**, **Elm**, **Emacs Lisp**, **Erlang**, **Excel VBA**, **F#**, **Factor**, **Fennel**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **GP**, **Groovy**, **Haskell**, **Haxe**, **HTML**, **Hy**, **Idris**, **IO**, **J**, **Janet**, **Java**, **JavaScript**, **Julia**, **K**, **Kap**, **Korn Shell**, **Kotlin**, **Lisp**, **Logo**, **Lua**, **M4**, **Maxima**, **Miranda**, **Modula 3**, **MMIX**, **Mumps**, **Myrddin**, **Nelua**, **Nim**, **Nix**, **Node.js**, **Nuweb**, **Oberon**, **Octave**, **OCaml**, **Odin**, **Ook**, **Pascal**, **PHP**, **Python**, **PostgreSQL**, **Postscript**, **PowerShell**, **Prolog**, **R**, **Racket**, **Rexx**, **Ring**, **Roc**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **Standard ML**, **SVG**, **Swift**, **Tcl**, **TypeScript**, **Uiua**, **V**, **Visual BASIC**, **WebAssembly**, **Wolfram**, **XSLT**, **YaBasic** and **Zig**.
 
-Please find below guest contributions.
-
 ***
-
 
 <div class="links-container">
   <div class="links-visible">
@@ -57,46 +54,63 @@ Please find below guest contributions.
 
   </div>
 
-  <a href="#" class="toggle-links" onclick="toggleLinks(event)">Show more</a>
+  <a href="#" class="toggle-links" onclick="toggleLinks(event)">
+        <span class="toggle-text">Show more weeks...</span>
+        <span class="arrow">↓</span>
+  </a>
 
 </div>
 
 <script>
-  function toggleLinks(event) {
-    event.preventDefault();
-    const hiddenLinks = document.querySelector('.links-hidden');
-    const visibleLinks = document.querySelector('.links-visible');
-    const toggleButton = event.target;
+    function toggleLinks(event) {
+        event.preventDefault();
+        const hiddenLinks = document.querySelector('.links-hidden');
+        const visibleLinks = document.querySelector('.links-visible');
+        const toggleButton = event.target.closest('.toggle-links');
+        const toggleText = toggleButton.querySelector('.toggle-text');
+        const arrow = toggleButton.querySelector('.arrow');
 
-    if (hiddenLinks.style.display === 'none') {
-      hiddenLinks.style.display = 'block';
-      toggleButton.textContent = 'Show less';
-    } else {
-      hiddenLinks.style.display = 'none';
-      toggleButton.textContent = 'Show more';
+        if (hiddenLinks.style.display === 'none') {
+            hiddenLinks.style.display = 'block';
+            toggleText.textContent = 'Show less weeks...';
+            arrow.textContent = '↑';
+        } else {
+            hiddenLinks.style.display = 'none';
+            toggleText.textContent = 'Show more weeks...';
+            arrow.textContent = '↓';
+        }
     }
-  }
 </script>
 
 <style>
     .toggle-links {
-        margin: 15px 0;
-        padding-left: 15px;
-    }
-    .toggle-links a {
         display: inline-flex;
         align-items: center;
         padding: 8px 16px;
         border-radius: 20px;
         background-color: #4285f4;
-        color: white !important;
+        color: white;
         text-decoration: none;
         font-weight: 500;
-        transition: background-color 0.2s ease;
+        transition: all 0.2s ease;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin: 15px 0;
+        border: none;
+        cursor: pointer;
     }
+
     .toggle-links:hover {
-        text-decoration: underline;
+        background-color: #3367d6;
+        text-decoration: none;
+    }
+
+    .arrow {
+        margin-left: 8px;
+        font-size: 0.9em;
+        color: white !important;
+    }
+    .toggle-text {
+        color: white !important;
     }
 </style>
 
