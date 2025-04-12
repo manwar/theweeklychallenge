@@ -44,15 +44,15 @@ tags: ["git"]
 
 ***
 
-## [1. Introduction](#introduction)
-## [2. Types of refs](types-of-refs)
-## [3. List refs](#list-refs)
-## [4. Useful Commands](#useful-command)
-## [5. HEAD shortcuts](#head-shortcuts)
-## [6. Types of HEAD](#types-of-head)
-## [7. trunk in Git](#trunk-in-git)
-## [8. Git Remotes](#git-remotes)
-## [9. Types of Remote refs](#types-of-remote-refs)
+### [1. Introduction](#introduction)
+### [2. Types of refs](types-of-refs)
+### [3. List refs](#list-refs)
+### [4. Useful Commands](#useful-command)
+### [5. HEAD shortcuts](#head-shortcuts)
+### [6. Types of HEAD](#types-of-head)
+### [7. trunk in Git](#trunk-in-git)
+### [8. Git Remotes](#git-remotes)
+### [9. Types of Remote refs](#types-of-remote-refs)
 
 <br>
 
