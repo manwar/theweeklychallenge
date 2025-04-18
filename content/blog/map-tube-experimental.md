@@ -123,7 +123,18 @@ For example, consider a station `L01` that is linked to two stations `L02` and `
 
 <br>
 
-would become something like below:
+The linked stations of `L01` now looks like below:
+
+<br>
+
+```bash
+    Before: "link": "L02,L03"
+    After : "link": "L02|D-1.5|T-30,L03|D-1.2|T-25"
+```
+
+<br>
+
+The whole definition would now look like below:
 
 <br>
 
@@ -132,8 +143,6 @@ would become something like below:
 ```
 
 <br>
-
-`L02` becomes `L02|D-1.5|T-30`, right?
 
 What does this mean?
 
