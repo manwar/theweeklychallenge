@@ -107,7 +107,9 @@ And the same in `JSON` format looks like below:
 
 Going back to the original question, how do I allow station metadata in the map file?
 
-My first instinct was to include it in the `"link"` attribute of `"station"` element. Since a station can be linked one or more other stations, we could easily attach metadata related to each linked station.
+My first instinct was to include it in the `"link"` attribute of `"station"` element.
+
+Since a station can be linked to one or more other stations, we could easily attach metadata related to each linked station.
 
 The next question then becomes how do we add metadata for the `distance` and `duration` of each linked station?
 
