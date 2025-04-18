@@ -295,13 +295,14 @@
                     <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
 <hr>
 <br>
-<p><a href="https://metacpan.org/dist/Map-Tube"><strong>Map::Tube</strong></a> is one of my earliest creation. It was made public on <code>25th October 2010</code> to be precise.</p>
-<p>I have given talks at various <code>Perl</code> conference on the topic and even contributed an article for <a href="https://perladvent.org/2024/2024-12-11.html"><strong>Perl Advent Calendar 2024</strong></a>.</p>
-<p>There is even <code>5-part series post</code> initiated by <code>Pual Cochrane</code> on the subjet. You can check out the <a href="https://peateasea.de/building-map-tube-whatever-maps-a-howto-first-steps"><strong>part one</strong></a>. I would highly recommend you follow through the series as it becomes public.</p>
-<p>On <code>Apr 15, 2025</code>, I received an email asking if there had been any plan to add metadata to stations links like phyiscal distance or estimated tansit times. Honestly it never crossed my mind before.</p>
-<p>Having said, the question had been bothering me ever since. I couldn&rsquo;t stop thinking how this can be implemented without making too much changes and not breaking any existing maps.</p>
-<p>My initial thought was how to allow the metadata in the map file. I was looking for simplistic solution.</p>
-<p>Those who are new to <code>Map::Tube</code>, this is the sample map, from the <a href="https://metacpan.org/pod/Map::Tube::Cookbook"><strong>cookbook</strong></a>:</p>
+<p><a href="https://metacpan.org/dist/Map-Tube"><strong>Map::Tube</strong></a> is one of my earliest creations. It was made public on <code>25th October 2010</code> to be precise.</p>
+<p>I&rsquo;ve given talks on the topic at various <code>Perl</code> conferences and even contributed an article to the <a href="https://perladvent.org/2024/2024-12-11.html"><strong>Perl Advent Calendar 2024</strong></a>.</p>
+<p>There&rsquo;s also a <code>5-part blog series</code> initiated by <code>Pual Cochrane</code> on the subject. You can check out <a href="https://peateasea.de/building-map-tube-whatever-maps-a-howto-first-steps"><strong>part one</strong></a> and I highly recommend following the rest of the series as it gets published.</p>
+<p>On <code>Apr 15th, 2025</code>, I received an email asking whether there were any plans to add metadata to stations links such as phyiscal distance or estimated tansit times. Honestly the idea never crossed my mind before.</p>
+<p>That question has been on my mind ever since. I couldn&rsquo;t stop thinking how this could be implemented without requiring too many changes or breaking existing maps.</p>
+<p>My initial thought was how can metadata be allowed in the map file in the simplest way possible?</p>
+<p>I was looking for a minimalist solution.</p>
+<p>For those who are new to <code>Map::Tube</code>, here&rsquo;s a sample map, from the <a href="https://metacpan.org/pod/Map::Tube::Cookbook"><strong>cookbook</strong></a>:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    A &lt;-&gt; B &lt;-&gt; F &lt;-&gt; G &lt;-&gt; H
     A &lt;-&gt; C &lt;-&gt; F
@@ -355,9 +356,9 @@
 <span style="color:#f92672">}</span>
 </code></pre></div><br>
 <p>Going back to the original question, how do I allow station metadata in the map file?</p>
-<p>My first instinct was to have it in the <code>&quot;link&quot;</code> attribute of <code>&quot;station&quot;</code> item. Since a station can be linked one or more stations, we could easily add metadata related to each linked stations.</p>
-<p>Now next question is how to add metadata for <code>distance</code> and <code>duration</code> of each linked station?</p>
-<p>So this link where station <code>L01</code> is linked to two stations <code>L02</code> and <code>L03</code>:</p>
+<p>My first instinct was to include it in the <code>&quot;link&quot;</code> attribute of <code>&quot;station&quot;</code> element. Since a station can be linked one or more other stations, we could easily attach metadata related to each linked station.</p>
+<p>The next question then becomes how do we add metadata for the <code>distance</code> and <code>duration</code> of each linked station?</p>
+<p>For example, consider a station <code>L01</code> that is linked to two stations <code>L02</code> and <code>L03</code>:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L01&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:1&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02,L03&#34;</span> <span style="color:#f92672">}</span>
 </code></pre></div><br>
@@ -365,15 +366,15 @@
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L01&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:1&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02|D-1.5|T-30,L03|D-1.2|T-25&#34;</span> <span style="color:#f92672">}</span>
 </code></pre></div><br>
-<p><code>L02</code> became <code>L02|D-1.5|T-30</code>, right?</p>
+<p><code>L02</code> becomes <code>L02|D-1.5|T-30</code>, right?</p>
 <p>What does this mean?</p>
-<p>It means the distance from station <code>L01</code> to <code>L02</code> is <code>1.5 km</code> and time takes to reach is <code>30 minutes</code>.</p>
-<p>I am not worried about the unit for now.</p>
-<p>This looks scary to be honest.</p>
-<p>There is every possibility it would break existing maps.</p>
-<p>I have a rather large and very complicated <a href="https://metacpan.org/dist/Map-Tube-London"><strong>London Tube Map</strong></a> to test any changes.</p>
-<p>I should make this change optional as not every map would provide this information.</p>
-<p>I decided to take the above sample map as base and convert it into the new structure as below:</p>
+<p>It means the distance from station <code>L01</code> to <code>L02</code> is <code>1.5 km</code> and the estimated time to reach it is <code>30 minutes</code>.</p>
+<p>I&rsquo;m not too concerned about the unit for now.</p>
+<p>To be honest, this approach looks a bit scary.</p>
+<p>There&rsquo;s a real possibility it could break existing maps.</p>
+<p>Luckily, I have a rather large and very complicated <a href="https://metacpan.org/dist/Map-Tube-London"><strong>London Tube Map</strong></a> that I can us to test any changes.</p>
+<p>To avoid issues, I should make this change optional as not every map will include this kind of metadata.</p>
+<p>So, I decided to take the sample map above as a base and convert it into this new structure shown below:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&lt;?xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>?&gt;
 &lt;tube name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Sample&#34;</span>&gt;
@@ -486,11 +487,13 @@
    <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><br>
-<p>Since this is experimental feature, I didn&rsquo;t want to touch the <a href="https://github.com/manwar/Map-Tube"><strong>master copy</strong></a>.</p>
-<p>I could have created a branch and made the changes there but I decided not to.</p>
-<p>Reason, I am not sure about the future of this experiment as of today.</p>
-<p>Therefore, I decided to create separate repository for experiment purpose in the <a href="https://github.com/manwar/Map-Tube-Experimental"><strong>GitHub</strong></a> which is a copy of <code>Map::Tube v4.07</code>.</p>
-<p>Let&rsquo;s do the real work, we have added a new optional attribute <code>units</code> to the <code>Map::Tube</code> package.</p>
+<p>Since this is an experimental feature, I didn&rsquo;t want to touch the <a href="https://github.com/manwar/Map-Tube"><strong>master copy</strong></a>.</p>
+<p>I could have created a branch and made the changes there but I decided against it.</p>
+<p>Why? Because as of today, I&rsquo;m not sure what the future holds for this experiment.</p>
+<p>Instead, I chose to create a separate repository on <a href="https://github.com/manwar/Map-Tube-Experimental"><strong>GitHub</strong></a> purely for experimental purposes.</p>
+<p>It&rsquo;s based on <code>Map::Tube v4.07</code>.</p>
+<p>Let&rsquo;s get to the real work.</p>
+<p>We&rsquo;ve added a new optional attribute <code>units</code> to the <code>Map::Tube</code> package.</p>
 <br>
 <p><img src="/images/blog/map-tube-1.png" alt="map-tube-1"></p>
 <br>

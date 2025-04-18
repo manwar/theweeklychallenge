@@ -13,19 +13,21 @@ tags: ["perl"]
 
 <br>
 
-[**Map::Tube**](https://metacpan.org/dist/Map-Tube) is one of my earliest creation. It was made public on `25th October 2010` to be precise.
+[**Map::Tube**](https://metacpan.org/dist/Map-Tube) is one of my earliest creations. It was made public on `25th October 2010` to be precise.
 
-I have given talks at various `Perl` conference on the topic and even contributed an article for [**Perl Advent Calendar 2024**](https://perladvent.org/2024/2024-12-11.html).
+I've given talks on the topic at various `Perl` conferences and even contributed an article to the [**Perl Advent Calendar 2024**](https://perladvent.org/2024/2024-12-11.html).
 
-There is even `5-part series post` initiated by `Pual Cochrane` on the subjet. You can check out the [**part one**](https://peateasea.de/building-map-tube-whatever-maps-a-howto-first-steps). I would highly recommend you follow through the series as it becomes public.
+There's also a `5-part blog series` initiated by `Pual Cochrane` on the subject. You can check out [**part one**](https://peateasea.de/building-map-tube-whatever-maps-a-howto-first-steps) and I highly recommend following the rest of the series as it gets published.
 
-On `Apr 15, 2025`, I received an email asking if there had been any plan to add metadata to stations links like phyiscal distance or estimated tansit times. Honestly it never crossed my mind before.
+On `Apr 15th, 2025`, I received an email asking whether there were any plans to add metadata to stations links such as phyiscal distance or estimated tansit times. Honestly the idea never crossed my mind before.
 
-Having said, the question had been bothering me ever since. I couldn't stop thinking how this can be implemented without making too much changes and not breaking any existing maps.
+That question has been on my mind ever since. I couldn't stop thinking how this could be implemented without requiring too many changes or breaking existing maps.
 
-My initial thought was how to allow the metadata in the map file. I was looking for simplistic solution.
+My initial thought was how can metadata be allowed in the map file in the simplest way possible?
 
-Those who are new to `Map::Tube`, this is the sample map, from the [**cookbook**](https://metacpan.org/pod/Map::Tube::Cookbook):
+I was looking for a minimalist solution.
+
+For those who are new to `Map::Tube`, here's a sample map, from the [**cookbook**](https://metacpan.org/pod/Map::Tube::Cookbook):
 
 <br>
 
@@ -105,11 +107,11 @@ And the same in `JSON` format looks like below:
 
 Going back to the original question, how do I allow station metadata in the map file?
 
-My first instinct was to have it in the `"link"` attribute of `"station"` item. Since a station can be linked one or more stations, we could easily add metadata related to each linked stations.
+My first instinct was to include it in the `"link"` attribute of `"station"` element. Since a station can be linked one or more other stations, we could easily attach metadata related to each linked station.
 
-Now next question is how to add metadata for `distance` and `duration` of each linked station?
+The next question then becomes how do we add metadata for the `distance` and `duration` of each linked station?
 
-So this link where station `L01` is linked to two stations `L02` and `L03`:
+For example, consider a station `L01` that is linked to two stations `L02` and `L03`:
 
 <br>
 
@@ -129,23 +131,23 @@ would become something like below:
 
 <br>
 
-`L02` became `L02|D-1.5|T-30`, right?
+`L02` becomes `L02|D-1.5|T-30`, right?
 
 What does this mean?
 
-It means the distance from station `L01` to `L02` is `1.5 km` and time takes to reach is `30 minutes`.
+It means the distance from station `L01` to `L02` is `1.5 km` and the estimated time to reach it is `30 minutes`.
 
-I am not worried about the unit for now.
+I'm not too concerned about the unit for now.
 
-This looks scary to be honest.
+To be honest, this approach looks a bit scary.
 
-There is every possibility it would break existing maps.
+There's a real possibility it could break existing maps.
 
-I have a rather large and very complicated [**London Tube Map**](https://metacpan.org/dist/Map-Tube-London) to test any changes.
+Luckily, I have a rather large and very complicated [**London Tube Map**](https://metacpan.org/dist/Map-Tube-London) that I can us to test any changes.
 
-I should make this change optional as not every map would provide this information.
+To avoid issues, I should make this change optional as not every map will include this kind of metadata.
 
-I decided to take the above sample map as base and convert it into the new structure as below:
+So, I decided to take the sample map above as a base and convert it into this new structure shown below:
 
 <br>
 
@@ -278,15 +280,19 @@ In my experiment today, I am going to use the `XML` formatted data but in case y
 
 <br>
 
-Since this is experimental feature, I didn't want to touch the [**master copy**](https://github.com/manwar/Map-Tube).
+Since this is an experimental feature, I didn't want to touch the [**master copy**](https://github.com/manwar/Map-Tube).
 
-I could have created a branch and made the changes there but I decided not to.
+I could have created a branch and made the changes there but I decided against it.
 
-Reason, I am not sure about the future of this experiment as of today.
+Why? Because as of today, I'm not sure what the future holds for this experiment.
 
-Therefore, I decided to create separate repository for experiment purpose in the [**GitHub**](https://github.com/manwar/Map-Tube-Experimental) which is a copy of `Map::Tube v4.07`.
+Instead, I chose to create a separate repository on [**GitHub**](https://github.com/manwar/Map-Tube-Experimental) purely for experimental purposes.
 
-Let's do the real work, we have added a new optional attribute `units` to the `Map::Tube` package.
+It's based on `Map::Tube v4.07`.
+
+Let's get to the real work.
+
+We've added a new optional attribute `units` to the `Map::Tube` package.
 
 <br>
 
