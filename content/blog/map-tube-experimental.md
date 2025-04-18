@@ -302,7 +302,7 @@ We've added a new optional attribute `units` to the `Map::Tube` package.
 
 <br>
 
-This attribute would capture the units for the `distamce` and the `duration`, something like below:
+This attribute would capture the units for the `distance` and the `duration`, something like below:
 
 <br>
 
