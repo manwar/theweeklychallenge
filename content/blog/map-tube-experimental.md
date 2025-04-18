@@ -145,7 +145,7 @@ To be honest, this approach looks a bit scary.
 
 There's a real possibility it could break existing maps.
 
-Luckily, I have a rather large and very complicated [**London Tube Map**](https://metacpan.org/dist/Map-Tube-London) that I can us to test any changes.
+Luckily, I have a rather large and very complicated [**London Tube Map**](https://metacpan.org/dist/Map-Tube-London) that I can use to test any changes.
 
 To avoid issues, I should make this change optional as not every map will include this kind of metadata.
 
