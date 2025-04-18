@@ -1,0 +1,451 @@
+---
+title: "Map::Tube experimental"
+date: 2025-04-18T00:00:00+00:00
+description: "Discussion about the experimental features in Map::Tube."
+type: post
+image: images/blog/map-tube-experimental.png
+author: Mohammad Sajid Anwar
+tags: ["perl"]
+---
+
+#### **DISCLAIMER:** Image is generated using `FREE` version of `ChatGPT`.
+***
+
+<br>
+
+[**Map::Tube**](https://metacpan.org/dist/Map-Tube) is one of my earliest creation. It was made public on `25th October 2010` to be precise.
+
+I have given talks at various `Perl` conference on the topic and even contributed an article for [**Perl Advent Calendar 2024**](https://perladvent.org/2024/2024-12-11.html).
+
+There is even `5-part series post` initiated by `Pual Cochrane` on the subjet. You can check out the [**part one**](https://peateasea.de/building-map-tube-whatever-maps-a-howto-first-steps). I would highly recommend you follow through the series as it becomes public.
+
+On `Apr 15, 2025`, I received an email asking if there had been any plan to add metadata to stations links like phyiscal distance or estimated tansit times. Honestly it never crossed my mind before.
+
+Having said, the question had been bothering me ever since. I couldn't stop thinking how this can be implemented without making too much changes and not breaking any existing maps.
+
+My initial thought was how to allow the metadata in the map file. I was looking for simplistic solution.
+
+Those who are new to `Map::Tube`, this is the sample map, from the [**cookbook**](https://metacpan.org/pod/Map::Tube::Cookbook):
+
+<br>
+
+```bash
+    A <-> B <-> F <-> G <-> H
+    A <-> C <-> F
+    A <-> C <-> D <-> E <-> F
+```
+
+<br>
+
+The same represented in a diagram as below:
+
+<br>
+
+```bash
+
+             A(1)  -----  B(2)
+             /               \
+          C(3)   --------  F(6) --- G(7) ---- H(8)
+             \               /
+             D(4)  -----  E(5)
+
+```
+
+<br>
+
+To keep it simple, we have used single line connecting all the stations.
+
+The data file for the above map in `XML` format looks like below:
+
+<br>
+
+```bash
+<?xml version="1.0" encoding="UTF-8"?>
+<tube name="Sample">
+    <lines>
+       <line id="L1" name="L1" />
+    </lines>
+    <stations>
+       <station id="L01" name="A" line="L1:1" link="L02,L03"         />
+       <station id="L02" name="B" line="L1:2" link="L01,L06"         />
+       <station id="L03" name="C" line="L1:3" link="L01,L04,L06"     />
+       <station id="L04" name="D" line="L1:4" link="L03,L05"         />
+       <station id="L05" name="E" line="L1:5" link="L04,L06"         />
+       <station id="L06" name="F" line="L1:6" link="L02,L03,L05,L07" />
+       <station id="L07" name="G" line="L1:7" link="L06,L08"         />
+       <station id="L08" name="H" line="L1:8" link="L07"             />
+    </stations>
+</tube>
+```
+
+<br>
+
+And the same in `JSON` format looks like below:
+
+<br>
+
+```bash
+{
+    "name"     : "Sample",
+    "lines"    : { "line"    : [ { "id" : "L1", "name" : "L1" } ] },
+    "stations" : { "station" : [ { "id" : "L01", "name": "A", "line": "L1:1", "link": "L02,L03"         },
+                                 { "id" : "L02", "name": "B", "line": "L1:2", "link": "L01,L06"         },
+                                 { "id" : "L03", "name": "C", "line": "L1:3", "link": "L01,L04,L06"     },
+                                 { "id" : "L04", "name": "D", "line": "L1:4", "link": "L03,L05"         },
+                                 { "id" : "L05", "name": "E", "line": "L1:5", "link": "L04,L06"         },
+                                 { "id" : "L06", "name": "F", "line": "L1:6", "link": "L02,L03,L05,L07" },
+                                 { "id" : "L07", "name": "G", "line": "L1:7", "link": "L06,L08"         },
+                                 { "id" : "L08", "name": "H", "line": "L1:8", "link": "L07"             }
+                               ]
+                 }
+}
+```
+
+<br>
+
+Going back to the original question, how do I allow station metadata in the map file?
+
+My first instinct was to have it in the `"link"` attribute of `"station"` item. Since a station can be linked one or more stations, we could easily add metadata related to each linked stations.
+
+Now next question is how to add metadata for `distance` and `duration` of each linked station?
+
+So this link where station `L01` is linked to two stations `L02` and `L03`:
+
+<br>
+
+```bash
+    { "id" : "L01", "name": "A", "line": "L1:1", "link": "L02,L03" }
+```
+
+<br>
+
+would become something like below:
+
+<br>
+
+```bash
+    { "id" : "L01", "name": "A", "line": "L1:1", "link": "L02|D-1.5|T-30,L03|D-1.2|T-25" }
+```
+
+<br>
+
+`L02` became `L02|D-1.5|T-30`, right?
+
+What does this mean?
+
+It means the distance from station `L01` to `L02` is `1.5 km` and time takes to reach is `30 minutes`.
+
+I am not worried about the unit for now.
+
+This looks scary to be honest.
+
+There is every possibility it would break existing maps.
+
+I have a rather large and very complicated [**London Tube Map**](https://metacpan.org/dist/Map-Tube-London) to test any changes.
+
+I should make this change optional as not every map would provide this information.
+
+I decided to take the above sample map as base and convert it into the new structure as below:
+
+<br>
+
+```bash
+<?xml version="1.0" encoding="UTF-8"?>
+<tube name="Sample">
+    <lines>
+       <line id="L1" name="L1" />
+       <line id="L2" name="L2" />
+    </lines>
+
+    <attributes distance="km" duration="min" />
+
+    <stations>
+
+       <!-- Junctions -->
+       <station id="J01" name="C" line="L1:3,L2:1" link="S01|D-1.7|T-15,S04|D-1.1|T-13,J02|D-2.5|T-30" />
+       <station id="J02" name="F" line="L1:6,L2:2" link="S02|D-2.2|T-25,S05|D-2.1|T-23,S07|D-2.5|T-18,J01|D-1.5|T-30" />
+
+       <!-- Line 1 -->
+       <!-- Route 1: A <-> C <-> D <-> E <-> F <-> G <-> H -->
+       <!-- Route 2: A <-> B <-> E <-> F <-> G <-> H -->
+       <station id="S01" name="A" line="L1:1"      link="S02|D-1.5|T-10,J01|D-1.7|T-15" />
+       <station id="S02" name="B" line="L1:2"      link="S01|D-1.5|T-10,J02|D-2.2|T-25" />
+       <station id="S04" name="D" line="L1:4"      link="J01|D-1.1|T-8,S05|D-1.4|T-13"  />
+       <station id="S05" name="E" line="L1:5"      link="S04|D-1.4|T-13,J02|D-2.1|T-23" />
+
+       <!-- Line 2 -->
+       <!-- Route 3: C <-> F <-> G <-> H -->
+       <station id="S07" name="G" line="L1:7,L2:3" link="J02|D-2.5|T-28,S08|D-1.2|T-10" />
+       <station id="S08" name="H" line="L1:8,L2:4" link="S07|D-1.2|T-10" />
+
+    </stations>
+</tube>
+```
+
+<br>
+
+If you noticed, I have two lines, `L1` and `L2`, in the above sample map.
+
+Also we have added units in the map file like below:
+
+<br>
+
+```bash
+    <attributes distance="km" duration="min" />
+```
+
+<br>
+
+To make it easy to read, I have grouped the stations.
+
+In my experiment today, I am going to use the `XML` formatted data but in case you are looking for `JSON` formatted data for the sample map, please find below:
+
+<br>
+
+```bash
+{
+   "name" : "Sample",
+   "attributes" : {
+      "distance" : "km",
+      "duration" : "min"
+   },
+   "lines" : {
+      "line" : [
+         {
+            "name" : "L1",
+            "id" : "L1"
+         },
+         {
+            "id" : "L2",
+            "name" : "L2"
+         }
+      ]
+   },
+   "stations" : {
+      "station" : [
+         {
+            "name" : "C",
+            "link" : "S01|D-1.7|T-15,S04|D-1.1|T-13,J02|D-2.5|T-30",
+            "id" : "J01",
+            "line" : "L1:3,L2:1"
+         },
+         {
+            "line" : "L1:6,L2:2",
+            "id" : "J02",
+            "name" : "F",
+            "link" : "S02|D-2.2|T-25,S05|D-2.1|T-23,S07|D-2.5|T-18,J01|D-1.5|T-30"
+         },
+         {
+            "id" : "S01",
+            "name" : "A",
+            "link" : "S02|D-1.5|T-10,J01|D-1.7|T-15",
+            "line" : "L1:1"
+         },
+         {
+            "line" : "L1:2",
+            "link" : "S01|D-1.5|T-10,J02|D-2.2|T-25",
+            "name" : "B",
+            "id" : "S02"
+         },
+         {
+            "line" : "L1:4",
+            "link" : "J01|D-1.1|T-8,S05|D-1.4|T-13",
+            "name" : "D",
+            "id" : "S04"
+         },
+         {
+            "line" : "L1:5",
+            "link" : "S04|D-1.4|T-13,J02|D-2.1|T-23",
+            "name" : "E",
+            "id" : "S05"
+         },
+         {
+            "id" : "S07",
+            "name" : "G",
+            "link" : "J02|D-2.5|T-28,S08|D-1.2|T-10",
+            "line" : "L1:7,L2:3"
+         },
+         {
+            "line" : "L1:8,L2:4",
+            "name" : "H",
+            "link" : "S07|D-1.2|T-10",
+            "id" : "S08"
+         }
+      ]
+   }
+}
+```
+
+<br>
+
+Since this is experimental feature, I didn't want to touch the [**master copy**](https://github.com/manwar/Map-Tube).
+
+I could have created a branch and made the changes there but I decided not to.
+
+Reason, I am not sure about the future of this experiment as of today.
+
+Therefore, I decided to create separate repository for experiment purpose in the [**GitHub**](https://github.com/manwar/Map-Tube-Experimental) which is a copy of `Map::Tube v4.07`.
+
+Let's do the real work, we have added a new optional attribute `units` to the `Map::Tube` package.
+
+<br>
+
+![map-tube-1](/images/blog/map-tube-1.png)
+
+<br>
+
+This attribute would capture the units for the `distamce` and the `duration`, something like below:
+
+<br>
+
+```perl
+    { distance => 'km', duration => 'min' }
+```
+
+<br>
+
+Next, we have added an optional attribute `attrs` to the `Map::Tube::Node` package.
+
+<br>
+
+![map-tube-2](/images/blog/map-tube-2.png)
+
+<br>
+
+This new attribute would capture the following information for each station:
+
+<br>
+
+```bash
+       link="S02|D-1.5|T-10,J01|D-1.7|T-15"
+```
+
+<br>
+
+into something like below:
+
+<br>
+
+```bash
+       {
+            distance => { 'S02' => 1.5, 'J01' => 1.7 },
+            duration => { 'S02' => 10,  'J01' => 15  },
+       }
+```
+
+<br>
+
+Now I have created a new subroutine `_convert_station_to_node()` as below, which would populate the new attribute `attrs` of `Map::Tube::Node` package.
+
+<br>
+
+![map-tube-3](/images/blog/map-tube-3.png)
+
+<br>
+
+Now time to plug-in the new subroutine to the `sub _init_map()`, this is core subroutine which initialises the map data.
+
+If you noticed, I am also populating the `units` attribute of the `Map::Tube` package.
+
+<br>
+
+![map-tube-4](/images/blog/map-tube-4.png)
+
+<br>
+
+We need to make some space in the `Map::Tube::Route` package to capture the units detail. It is optional.
+
+We have new attribute `units` as shown below:
+
+<br>
+
+![map-tube-5](/images/blog/map-tube-5.png)
+
+<br>
+
+Finally we need subroutines to calculate the distance and durations of the final route.
+
+<br>
+
+![map-tube-6](/images/blog/map-tube-6.png)
+
+<br>
+
+![map-tube-7](/images/blog/map-tube-7.png)
+
+<br>
+
+One final bit, we need to populate the newly added attribute `units` in the `Map::Tube::Route` package.
+
+And the best place to do that when we calculate the shortest route in the `sub get_shortest_route()` in the `Map::Tube` package.
+
+<br>
+
+![map-tube-8](/images/blog/map-tube-8.png)
+
+<br>
+
+I think we are good to go now.
+
+The core framework is ready to serve the new map data we have defined above.
+
+Let's create simple script to test the workflow:
+
+<br>
+
+```perl
+package Sample;
+
+use v5.38;
+use Moo;
+use File::Spec;
+
+has xml => (
+    is      => 'ro',
+    default => sub { return File::Spec->catfile('sample.xml') });
+
+with 'Map::Tube';
+
+package main;
+
+my $route = Sample->new->get_shortest_route($ARGV[0], $ARGV[1]);
+
+print "Route: $route\n";
+print "Distance: ", $route->distance, "\n";
+print "Duration: ", $route->duration, "\n";
+```
+
+<br>
+
+Testing time:
+
+<br>
+
+```bash
+$ perl find-route.pl 'C' 'G'
+Route: C (L1, L2), F (L1, L2), G (L1, L2)
+Distance: 5.00 km
+Duration: 48 min
+$
+$
+$ perl find-route.pl 'E' 'H'
+Route: E (L1), F (L1, L2), G (L1, L2), H (L1, L2)
+Distance: 5.80 km
+Duration: 51 min
+```
+
+<br>
+
+As I mentioned above this change in the framework is currently saved in a separate repository, feel free to play with it.
+
+In the meantime, I will continue to explore this further.
+
+If you have any suggestion please feel free to share with me: `mohammad.anwar@yahoo.com`
+
+<br>
+
+***
+
+<br>
+
+Happy Good Friday !!`
