@@ -173,7 +173,6 @@ So, I decided to take the sample map above as a base and convert it into this ne
     <attributes distance="km" duration="min" />
 
     <stations>
-
        <!-- Junctions -->
        <station id="J01" name="C" line="L1:3,L2:1" link="S01|D-1.7|T-15,S04|D-1.1|T-13,J02|D-2.5|T-30" />
        <station id="J02" name="F" line="L1:6,L2:2" link="S02|D-2.2|T-25,S05|D-2.1|T-23,S07|D-2.5|T-18,J01|D-1.5|T-30" />
@@ -190,7 +189,6 @@ So, I decided to take the sample map above as a base and convert it into this ne
        <!-- Route 3: C <-> F <-> G <-> H -->
        <station id="S07" name="G" line="L1:7,L2:3" link="J02|D-2.5|T-28,S08|D-1.2|T-10" />
        <station id="S08" name="H" line="L1:8,L2:4" link="S07|D-1.2|T-10" />
-
     </stations>
 </tube>
 ```
@@ -443,8 +441,11 @@ $ perl find-route.pl 'C' 'G'
 Route: C (L1, L2), F (L1, L2), G (L1, L2)
 Distance: 5.00 km
 Duration: 48 min
-$
-$
+```
+
+<br>
+
+```bash
 $ perl find-route.pl 'E' 'H'
 Route: E (L1), F (L1, L2), G (L1, L2), H (L1, L2)
 Distance: 5.80 km
