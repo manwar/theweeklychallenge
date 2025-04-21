@@ -209,7 +209,28 @@ Also we have added units in the map file like below:
 
 To make it easy to read, I have grouped the stations.
 
-In my experiment today, I am going to use the `XML` formatted data but in case you are looking for `JSON` formatted data for the sample map, please find below:
+In my experiment today, I am going to use the `XML` formatted data but in case you are looking for `JSON` formatted data for the sample map, I used this one-liner to convert the `XML` data into `JSON` format.
+
+<br>
+
+```perl
+#!/usr/bin/env perl
+
+use v5.38;
+use XML::Twig;
+use JSON::MaybeXS;
+
+say JSON::MaybeXS->new
+                 ->utf8
+                 ->pretty
+                 ->encode(XML::Twig->new
+                                   ->parsefile($ARGV[0])
+                                   ->simplify(keyattr => 'stations', forcearray => 0));
+```
+
+<br>
+
+This is the result, you end up with in the end:
 
 <br>
 

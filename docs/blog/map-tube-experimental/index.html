@@ -416,7 +416,22 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    &lt;attributes distance<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;km&#34;</span> duration<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;min&#34;</span> /&gt;
 </code></pre></div><br>
 <p>To make it easy to read, I have grouped the stations.</p>
-<p>In my experiment today, I am going to use the <code>XML</code> formatted data but in case you are looking for <code>JSON</code> formatted data for the sample map, please find below:</p>
+<p>In my experiment today, I am going to use the <code>XML</code> formatted data but in case you are looking for <code>JSON</code> formatted data for the sample map, I used this one-liner to convert the <code>XML</code> data into <code>JSON</code> format.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> XML::Twig;
+<span style="color:#66d9ef">use</span> JSON::MaybeXS;
+
+say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>
+                 <span style="color:#f92672">-&gt;</span>utf8
+                 <span style="color:#f92672">-&gt;</span>pretty
+                 <span style="color:#f92672">-&gt;</span>encode(XML::Twig<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>
+                                   <span style="color:#f92672">-&gt;</span>parsefile($ARGV[<span style="color:#ae81ff">0</span>])
+                                   <span style="color:#f92672">-&gt;</span>simplify(keyattr <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;stations&#39;</span>, forcearray <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>));
+</code></pre></div><br>
+<p>This is the result, you end up with in the end:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{</span>
    <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;Sample&#34;</span>,
