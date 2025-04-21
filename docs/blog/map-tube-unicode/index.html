@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Map::Tube Unicode"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/map-tube-unicode/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about the support of unicode station name in Map::Tube."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about the support of unicode station name in Map::Tube.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/map-tube-unicode/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Map::Tube Unicode</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Map::Tube Unicode</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Apr 21, 2025</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/map-tube-unicode.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>Just a few days ago, I shared an experimental feature added to the <a href="https://metacpan.org/dist/Map-Tube"><strong>Map::Tube</strong></a>, routing framework. It involved adding metadata to stations. You can find out more about it in <a href="/blog/map-tube-experimental"><strong>this post</strong></a>.</p>
+<p>In the same spirit, here&rsquo;s one more fature that has been introduced: support for <code>Unicode</code> characters in station names.</p>
+<p>To give you some context, when I originally wrote this framework, it was primarily for the <code>London Tube Map</code>. Later, it expanded to include maps from other cities, some of which had station names containing <code>Unicode</code> characters. In fact, some of my maps, like those for <a href="https://metacpan.org/pod/Map::Tube::Barcelona"><strong>Barcelona</strong></a> and <a href="https://metacpan.org/dist/Map-Tube-Madrid"><strong>Madrid</strong></a> had many station names using <code>Unicode</code>.</p>
+<p>I must confess, I&rsquo;ve never felt entirely comfortable with <code>Unicode</code> characters.</p>
+<p>So, to keep things simple. I conveniently converted the names to their <code>ASCII</code> equivalents to keep the framework happy.</p>
+<p>However, when I read the <a href="https://peateasea.de/building-map-tube-whatever-maps-a-howto-first-steps"><strong>first post</strong></a> in a <code>five-part series</code> by <code>Paul Cochrane</code>, I realised it was only a matter of time before this approach would cause issues, specially since he&rsquo;s working on a map for <code>Hannover, Germany</code>, which is likely to include <code>Unicode</code> characters in its station names.</p>
+<p>I thought, why not invest a little time and see if this can be supported without a major overhaul?</p>
+<p>To explore this, I decided to created a very basic map with just four stations and two lines.</p>
+<p>The main purpose of this experiment was to test the station names containing <code>Unicode</code> characters.</p>
+<p>I find it a bit tricky to type <code>Unicode</code> characters using my <code>US-layout</code> keyboard.</p>
+<p>A quick and easy workaround is to copy the characters from an online resource.</p>
+<p>Here&rsquo;s what I ended up after some initial trial and error: <code>unicode-map.xml</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&lt;?xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>?&gt;
+&lt;tube name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UnicodeMap&#34;</span>&gt;
+    &lt;lines&gt;
+       &lt;line id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Èà&#34;</span> /&gt;
+       &lt;line id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L2&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Àé&#34;</span> /&gt;
+    &lt;/lines&gt;
+
+    &lt;stations&gt;
+       &lt;!-- Junction --&gt;
+       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J1&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Ï&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1,L2&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S1,S3,S4&#34;</span> /&gt;
+
+       &lt;!-- Line 1: À &lt;-&gt; Ï &lt;-&gt; È --&gt;
+       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S1&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;À&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1&#34;</span>    link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J1&#34;</span>       /&gt;
+       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S3&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;È&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1&#34;</span>    link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J1&#34;</span>       /&gt;
+
+       &lt;!-- Line 2: Ù &lt;-&gt; Ï &lt;-&gt; È --&gt;
+       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S4&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Ù&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L2&#34;</span>    link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J1&#34;</span>       /&gt;
+    &lt;/stations&gt;
+&lt;/tube&gt;
+</code></pre></div><br>
+<p>Did you notice, that I even included line names with <code>Unicode</code> characters?</p>
+<p>For this experiment, However, I&rsquo;m only interested in station names.</p>
+<p>I want to see how the current framework, <a href="https://metacpan.org/dist/Map-Tube"><strong>Map::Tube v4.07</strong></a> behaves when using this map.</p>
+<p>To test it, I wrote this simple script: <code>unicode-map.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> UnicodeMap;
+
+<span style="color:#66d9ef">use</span> open <span style="color:#e6db74">&#39;:std&#39;</span>, <span style="color:#e6db74">&#39;:encoding(UTF-8)&#39;</span>;
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Moo;
+<span style="color:#66d9ef">use</span> namespace::clean;
+
+has xml <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>, default <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> File::Spec<span style="color:#f92672">-&gt;</span>catfile(<span style="color:#e6db74">&#39;unicode-map.xml&#39;</span>) });
+with <span style="color:#e6db74">&#39;Map::Tube&#39;</span>;
+
+<span style="color:#66d9ef">package</span> main;
+
+say UnicodeMap<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>get_shortest_route(<span style="color:#e6db74">&#39;À&#39;</span>, <span style="color:#e6db74">&#39;Ù&#39;</span>);
+</code></pre></div><br>
+<p>Time to test the code:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl unicode-map.pl
+Map::Tube::get_node_by_name<span style="color:#f92672">()</span>: ERROR: Invalid Station Name <span style="color:#f92672">[</span>Ã<span style="color:#f92672">]</span>.
+</code></pre></div><br>
+<p>As expected, the <code>Unicode</code> characters are causing some trouble.</p>
+<p>Here&rsquo;s a quick change to the framework to support the <code>Unicode</code> character in station names.</p>
+<br>
+<p><img src="/images/blog/map-tube-unicode-1.png" alt="map-tube-unicode-1"></p>
+<br>
+<p>I know, it&rsquo;s not foolproof yet, but it&rsquo;s not a bad attempt either.</p>
+<p>With the above change to the framework, let&rsquo;s re-run the test:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl unicode-map.pl
+Route: À <span style="color:#f92672">(</span>Èà<span style="color:#f92672">)</span>, Ï <span style="color:#f92672">(</span>Èà, Àé<span style="color:#f92672">)</span>, Ù <span style="color:#f92672">(</span>Àé<span style="color:#f92672">)</span>
+</code></pre></div><br>
+<p>It&rsquo;s hard to believe what I just saw.</p>
+<p>We now have support for <code>Unicode</code> characters in station names!</p>
+<p>I&rsquo;m sure <code>Unicode</code> experts might spot gaps in my approach.</p>
+<p>I&rsquo;d love to hear your thoughts if you can help me improve it further.</p>
+<p>Feel free to reach out to me at <code>mohammad.anwar@yahoo.com</code>.</p>
+<br>
+<hr>
+<br>
+<p><code>Happy Hacking!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
