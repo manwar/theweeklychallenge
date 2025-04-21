@@ -221,6 +221,7 @@ use XML::Twig;
 use JSON::MaybeXS;
 
 say JSON::MaybeXS->new
+                 ->canonical(1)
                  ->utf8
                  ->pretty
                  ->encode(XML::Twig->new
@@ -236,7 +237,6 @@ This is the result, you end up with in the end:
 
 ```bash
 {
-   "name" : "Sample",
    "attributes" : {
       "distance" : "km",
       "duration" : "min"
@@ -244,8 +244,8 @@ This is the result, you end up with in the end:
    "lines" : {
       "line" : [
          {
-            "name" : "L1",
-            "id" : "L1"
+            "id" : "L1",
+            "name" : "L1"
          },
          {
             "id" : "L2",
@@ -253,55 +253,56 @@ This is the result, you end up with in the end:
          }
       ]
    },
+   "name" : "Sample",
    "stations" : {
       "station" : [
          {
-            "name" : "C",
-            "link" : "S01|D-1.7|T-15,S04|D-1.1|T-13,J02|D-2.5|T-30",
             "id" : "J01",
-            "line" : "L1:3,L2:1"
+            "line" : "L1:3,L2:1",
+            "link" : "S01|D-1.7|T-15,S04|D-1.1|T-13,J02|D-2.5|T-30",
+            "name" : "C"
          },
          {
-            "line" : "L1:6,L2:2",
             "id" : "J02",
-            "name" : "F",
-            "link" : "S02|D-2.2|T-25,S05|D-2.1|T-23,S07|D-2.5|T-18,J01|D-1.5|T-30"
+            "line" : "L1:6,L2:2",
+            "link" : "S02|D-2.2|T-25,S05|D-2.1|T-23,S07|D-2.5|T-18,J01|D-1.5|T-30",
+            "name" : "F"
          },
          {
             "id" : "S01",
-            "name" : "A",
+            "line" : "L1:1",
             "link" : "S02|D-1.5|T-10,J01|D-1.7|T-15",
-            "line" : "L1:1"
+            "name" : "A"
          },
          {
+            "id" : "S02",
             "line" : "L1:2",
             "link" : "S01|D-1.5|T-10,J02|D-2.2|T-25",
-            "name" : "B",
-            "id" : "S02"
+            "name" : "B"
          },
          {
+            "id" : "S04",
             "line" : "L1:4",
             "link" : "J01|D-1.1|T-8,S05|D-1.4|T-13",
-            "name" : "D",
-            "id" : "S04"
+            "name" : "D"
          },
          {
+            "id" : "S05",
             "line" : "L1:5",
             "link" : "S04|D-1.4|T-13,J02|D-2.1|T-23",
-            "name" : "E",
-            "id" : "S05"
+            "name" : "E"
          },
          {
             "id" : "S07",
-            "name" : "G",
+            "line" : "L1:7,L2:3",
             "link" : "J02|D-2.5|T-28,S08|D-1.2|T-10",
-            "line" : "L1:7,L2:3"
+            "name" : "G"
          },
          {
+            "id" : "S08",
             "line" : "L1:8,L2:4",
-            "name" : "H",
             "link" : "S07|D-1.2|T-10",
-            "id" : "S08"
+            "name" : "H"
          }
       ]
    }
