@@ -192,14 +192,6 @@ Write a script to find the position of all groups in the given string. Three or 
 
 <br>
 
-#### Example 3
-
-    Input: @array = ("Morning", "Good")
-           $word  = "MM"
-    Output: false
-
-<br>
-
 ## Task 2: Reverse Equals {#TASK2}
 ##### **Submitted by:** [Roger Bell_West](https://blog.firedrake.org)
 ***
