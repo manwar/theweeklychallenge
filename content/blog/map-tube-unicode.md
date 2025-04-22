@@ -190,7 +190,7 @@ Feel free to reach out to me at `mohammad.anwar@yahoo.com`.
 
 Just a day after I published my proposed change to support `Unicode` characters in station names, I decided to extend it allow in line names too.
 
-Before I make any changes, let update the test script to see how the framework currently reacts with line name having `Unicode` character.
+Before I make any changes, let's update the test script to see how the framework currently reacts with line name having `Unicode` character.
 
 <br>
 
