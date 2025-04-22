@@ -48,7 +48,7 @@ The main purpose of this experiment was to test the station names containing `Un
 
 I find it a bit tricky to type `Unicode` characters using my `US-layout` keyboard.
 
-A quick and easy workaround is to copy the characters from an online resource.
+A quick and easy workaround is to copy the characters from online resource.
 
 Here's what I ended up after some initial trial and error: `unicode-map.xml`
 
