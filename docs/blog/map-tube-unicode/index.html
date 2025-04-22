@@ -303,6 +303,16 @@
 <p>However, when I read the <a href="https://peateasea.de/building-map-tube-whatever-maps-a-howto-first-steps"><strong>first post</strong></a> in a <code>five-part series</code> by <code>Paul Cochrane</code>, I realised it was only a matter of time before this approach would cause issues, specially since he&rsquo;s working on a map for <code>Hannover, Germany</code>, which is likely to include <code>Unicode</code> characters in its station names.</p>
 <p>I thought, why not invest a little time and see if this can be supported without a major overhaul?</p>
 <p>To explore this, I decided to created a very basic map with just four stations and two lines.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+    À  ---  Ï  ---  È
+
+            |
+            |
+
+            Ù
+
+</code></pre></div><br>
 <p>The main purpose of this experiment was to test the station names containing <code>Unicode</code> characters.</p>
 <p>I find it a bit tricky to type <code>Unicode</code> characters using my <code>US-layout</code> keyboard.</p>
 <p>A quick and easy workaround is to copy the characters from an online resource.</p>
@@ -355,8 +365,37 @@ Map::Tube::get_node_by_name<span style="color:#f92672">()</span>: ERROR: Invalid
 <p>As expected, the <code>Unicode</code> characters are causing some trouble.</p>
 <p>Here&rsquo;s a quick change to the framework to support the <code>Unicode</code> character in station names.</p>
 <br>
-<p><img src="/images/blog/map-tube-unicode-1.png" alt="map-tube-unicode-1"></p>
-<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#f92672">---</span> a<span style="color:#e6db74">/lib/</span>Map<span style="color:#f92672">/</span>Tube<span style="color:#f92672">.</span>pm
+<span style="color:#f92672">+++</span> b<span style="color:#e6db74">/lib/</span>Map<span style="color:#f92672">/</span>Tube<span style="color:#f92672">.</span>pm
+@@ <span style="color:#960050;background-color:#1e0010">-</span>13,<span style="color:#ae81ff">6</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">13</span>,<span style="color:#ae81ff">9</span> @@ Version <span style="color:#ae81ff">4.07</span>
+
+ <span style="color:#f92672">=</span>cut
+
+<span style="color:#f92672">+</span><span style="color:#66d9ef">use</span> Unicode::Normalize;
+<span style="color:#f92672">+</span><span style="color:#66d9ef">use</span> Encode <span style="color:#e6db74">qw(decode_utf8)</span>;
+<span style="color:#f92672">+</span>
+ <span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.006</span>;
+ <span style="color:#66d9ef">use</span> XML::Twig;
+ <span style="color:#66d9ef">use</span> Data::Dumper;
+@@ <span style="color:#960050;background-color:#1e0010">-</span>874,<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">877</span>,<span style="color:#ae81ff">7</span> @@ sub _get_all_routes {
+ <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_map_node_name</span> {
+     <span style="color:#66d9ef">my</span> ($self, $name, $id) <span style="color:#f92672">=</span> @_;
+
+<span style="color:#f92672">-</span>    $self<span style="color:#f92672">-&gt;</span>{name_to_id}<span style="color:#f92672">-&gt;</span>{uc($name)} <span style="color:#f92672">=</span> $id;
+<span style="color:#f92672">+</span>    $self<span style="color:#f92672">-&gt;</span>{name_to_id}<span style="color:#f92672">-&gt;</span>{NFC(uc($name))} <span style="color:#f92672">=</span> $id;
+ }
+
+ <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_validate_input</span> {
+@@ <span style="color:#960050;background-color:#1e0010">-</span>1266,<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">1269</span>,<span style="color:#ae81ff">9</span> @@ sub _get_node_id {
+     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> defined $name;
+     $name <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s+//</span>;
+     $name <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+$//</span>;
+<span style="color:#f92672">-</span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{name_to_id}<span style="color:#f92672">-&gt;</span>{uc($name)};
+<span style="color:#f92672">+</span>    $name <span style="color:#f92672">=</span> decode_utf8($name) <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>utf8::is_utf8($name) <span style="color:#f92672">&amp;&amp;</span> utf8::valid($name);
+<span style="color:#f92672">+</span>    $name <span style="color:#f92672">=</span> NFC(uc($name));
+<span style="color:#f92672">+</span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{name_to_id}<span style="color:#f92672">-&gt;</span>{$name};
+ }
+</code></pre></div><br>
 <p>I know, it&rsquo;s not foolproof yet, but it&rsquo;s not a bad attempt either.</p>
 <p>With the above change to the framework, let&rsquo;s re-run the test:</p>
 <br>
@@ -369,6 +408,175 @@ Route: À <span style="color:#f92672">(</span>Èà<span style="color:#f92672">)<
 <p>I&rsquo;d love to hear your thoughts if you can help me improve it further.</p>
 <p>Feel free to reach out to me at <code>mohammad.anwar@yahoo.com</code>.</p>
 <br>
+<h2 id="2025-04-22-update">[2025-04-22] UPDATE</h2>
+<hr>
+<br>
+<p>Just a day after I published my proposed change to support <code>Unicode</code> characters in station names, I decided to extend it allow in line names too.</p>
+<p>Before I make any changes, let update the test script to see how the framework currently reacts with line name having <code>Unicode</code> character.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> UnicodeMap;
+
+<span style="color:#66d9ef">use</span> open <span style="color:#e6db74">&#39;:std&#39;</span>, <span style="color:#e6db74">&#39;:encoding(UTF-8)&#39;</span>;
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Moo;
+<span style="color:#66d9ef">use</span> namespace::clean;
+
+has xml <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>, default <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> File::Spec<span style="color:#f92672">-&gt;</span>catfile(<span style="color:#e6db74">&#39;unicode.xml&#39;</span>) });
+with <span style="color:#e6db74">&#39;Map::Tube&#39;</span>;
+
+<span style="color:#66d9ef">package</span> main;
+
+<span style="color:#66d9ef">my</span> $map <span style="color:#f92672">=</span> UnicodeMap<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+say <span style="color:#e6db74">&#34;Route   : &#34;</span>, $map<span style="color:#f92672">-&gt;</span>get_shortest_route(<span style="color:#e6db74">&#39;À&#39;</span>, <span style="color:#e6db74">&#39;Ù&#39;</span>);
+say <span style="color:#e6db74">&#34;Line    : &#34;</span>, $map<span style="color:#f92672">-&gt;</span>get_line_by_name(<span style="color:#e6db74">&#39;Èà&#39;</span>);
+say <span style="color:#e6db74">&#34;Stations: &#34;</span>, join(<span style="color:#e6db74">&#34; -&gt; &#34;</span>, @{$map<span style="color:#f92672">-&gt;</span>get_stations(<span style="color:#e6db74">&#39;Èà&#39;</span>)});
+</code></pre></div><br>
+<p>Now run the script:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl unicode-map.pl
+Route   : À <span style="color:#f92672">(</span>Èà<span style="color:#f92672">)</span>, Ï <span style="color:#f92672">(</span>Èà, Àé<span style="color:#f92672">)</span>, Ù <span style="color:#f92672">(</span>Àé<span style="color:#f92672">)</span>
+Map::Tube::get_line_by_name<span style="color:#f92672">()</span>: ERROR: Invalid Line Name <span style="color:#f92672">[</span>ÃÃ <span style="color:#f92672">]</span>.
+</code></pre></div><br>
+<p>As expected, it is throwing error.</p>
+<p>I have applied similar patch to the line name as above and it looks like this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#f92672">---</span> a<span style="color:#e6db74">/lib/</span>Map<span style="color:#f92672">/</span>Tube<span style="color:#f92672">.</span>pm
+<span style="color:#f92672">+++</span> b<span style="color:#e6db74">/lib/</span>Map<span style="color:#f92672">/</span>Tube<span style="color:#f92672">.</span>pm
+@@ <span style="color:#960050;background-color:#1e0010">-</span>935,<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">935</span>,<span style="color:#ae81ff">7</span> @@ sub _init_map {
+     }
+     <span style="color:#66d9ef">my</span> $master_line_data <span style="color:#f92672">=</span> {};
+     <span style="color:#66d9ef">foreach</span> (@lines) {
+<span style="color:#f92672">-</span>        $master_line_data<span style="color:#f92672">-&gt;</span>{lc $_<span style="color:#f92672">-&gt;</span>{id}} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#f92672">+</span>        $master_line_data<span style="color:#f92672">-&gt;</span>{NFC(lc $_<span style="color:#f92672">-&gt;</span>{id})} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+     }
+
+     <span style="color:#66d9ef">my</span> $has_station_index <span style="color:#f92672">=</span> {};
+@@ <span style="color:#960050;background-color:#1e0010">-</span>967,<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">967</span>,<span style="color:#ae81ff">8</span> @@ sub _init_map {
+                 $has_station_index<span style="color:#f92672">-&gt;</span>{$_line} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+             }
+
+<span style="color:#f92672">-</span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>exists $master_line_data<span style="color:#f92672">-&gt;</span>{lc $_line}) {
+<span style="color:#f92672">+</span>            $_line <span style="color:#f92672">=</span> _decode_utf8_if_needed($_line);
+<span style="color:#f92672">+</span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>exists $master_line_data<span style="color:#f92672">-&gt;</span>{NFC(lc $_line)}) {
+                 Map::Tube::Exception::InvalidStationLineId<span style="color:#f92672">-&gt;</span>throw({
+                     method      <span style="color:#f92672">=&gt;</span> $method,
+                     message     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;ERROR: Invalid line [$_line] for station [$name].&#34;</span>,
+@@ <span style="color:#960050;background-color:#1e0010">-</span>1046,<span style="color:#ae81ff">6</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">1047</span>,<span style="color:#ae81ff">16</span> @@ sub _init_map {
+     $self<span style="color:#f92672">-&gt;</span>tables($tables);
+ }
+
+<span style="color:#f92672">+</span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_decode_utf8_if_needed</span> {
+<span style="color:#f92672">+</span>    <span style="color:#66d9ef">my</span> ($data) <span style="color:#f92672">=</span> @_;
+<span style="color:#f92672">+</span>
+<span style="color:#f92672">+</span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>utf8::is_utf8($data) <span style="color:#f92672">&amp;&amp;</span> utf8::valid($data)) {
+<span style="color:#f92672">+</span>        $data <span style="color:#f92672">=</span> decode_utf8($data);
+<span style="color:#f92672">+</span>    }
+<span style="color:#f92672">+</span>
+<span style="color:#f92672">+</span>    <span style="color:#66d9ef">return</span> $data;
+<span style="color:#f92672">+</span>}
+<span style="color:#f92672">+</span>
+ <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_is_directly_linked</span> {
+     <span style="color:#66d9ef">my</span> ($self, $start_station, $end_station) <span style="color:#f92672">=</span> @_;
+     <span style="color:#66d9ef">my</span> $linked_stations <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>get_linked_stations($start_station);
+@@ <span style="color:#960050;background-color:#1e0010">-</span>1277,<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">1288</span>,<span style="color:#ae81ff">8</span> @@ sub _get_node_id {
+ <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_get_line_object_by_name</span> {
+     <span style="color:#66d9ef">my</span> ($self, $name) <span style="color:#f92672">=</span> @_;
+
+<span style="color:#f92672">-</span>    $name <span style="color:#f92672">=</span> uc($name);
+<span style="color:#f92672">+</span>    $name <span style="color:#f92672">=</span> _decode_utf8_if_needed($name);
+<span style="color:#f92672">+</span>    $name <span style="color:#f92672">=</span> NFC(uc($name));
+     <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $line_id (keys %{$self<span style="color:#f92672">-&gt;</span>{_lines}}) {
+         <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>{_lines}<span style="color:#f92672">-&gt;</span>{$line_id};
+         <span style="color:#66d9ef">if</span> (defined $line <span style="color:#f92672">&amp;&amp;</span> defined $line<span style="color:#f92672">-&gt;</span>name) {
+</code></pre></div><br>
+<p>Let&rsquo;s re-run the script:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl unicode-map.pl
+Route   : À <span style="color:#f92672">(</span>Èà<span style="color:#f92672">)</span>, Ï <span style="color:#f92672">(</span>Èà, Àé<span style="color:#f92672">)</span>, Ù <span style="color:#f92672">(</span>Àé<span style="color:#f92672">)</span>
+Line    : Èà
+Stations: Ï <span style="color:#f92672">(</span>Èà, Àé<span style="color:#f92672">)</span> -&gt; À <span style="color:#f92672">(</span>Èà<span style="color:#f92672">)</span> -&gt; È <span style="color:#f92672">(</span>Èà<span style="color:#f92672">)</span>
+</code></pre></div><br>
+<p>Much better, right?</p>
+<p>The combined change now looks like this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#f92672">---</span> a<span style="color:#e6db74">/lib/</span>Map<span style="color:#f92672">/</span>Tube<span style="color:#f92672">.</span>pm
+<span style="color:#f92672">+++</span> b<span style="color:#e6db74">/lib/</span>Map<span style="color:#f92672">/</span>Tube<span style="color:#f92672">.</span>pm
+@@ <span style="color:#960050;background-color:#1e0010">-</span>13,<span style="color:#ae81ff">6</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">13</span>,<span style="color:#ae81ff">9</span> @@ Version <span style="color:#ae81ff">4.07</span>
+
+ <span style="color:#f92672">=</span>cut
+
+<span style="color:#f92672">+</span><span style="color:#66d9ef">use</span> Unicode::Normalize;
+<span style="color:#f92672">+</span><span style="color:#66d9ef">use</span> Encode <span style="color:#e6db74">qw(decode_utf8)</span>;
+<span style="color:#f92672">+</span>
+ <span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.006</span>;
+ <span style="color:#66d9ef">use</span> XML::Twig;
+ <span style="color:#66d9ef">use</span> Data::Dumper;
+@@ <span style="color:#960050;background-color:#1e0010">-</span>874,<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">877</span>,<span style="color:#ae81ff">7</span> @@ sub _get_all_routes {
+ <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_map_node_name</span> {
+     <span style="color:#66d9ef">my</span> ($self, $name, $id) <span style="color:#f92672">=</span> @_;
+
+<span style="color:#f92672">-</span>    $self<span style="color:#f92672">-&gt;</span>{name_to_id}<span style="color:#f92672">-&gt;</span>{uc($name)} <span style="color:#f92672">=</span> $id;
+<span style="color:#f92672">+</span>    $self<span style="color:#f92672">-&gt;</span>{name_to_id}<span style="color:#f92672">-&gt;</span>{NFC(uc($name))} <span style="color:#f92672">=</span> $id;
+ }
+
+ <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_validate_input</span> {
+@@ <span style="color:#960050;background-color:#1e0010">-</span>932,<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">935</span>,<span style="color:#ae81ff">7</span> @@ sub _init_map {
+     }
+     <span style="color:#66d9ef">my</span> $master_line_data <span style="color:#f92672">=</span> {};
+     <span style="color:#66d9ef">foreach</span> (@lines) {
+<span style="color:#f92672">-</span>        $master_line_data<span style="color:#f92672">-&gt;</span>{lc $_<span style="color:#f92672">-&gt;</span>{id}} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#f92672">+</span>        $master_line_data<span style="color:#f92672">-&gt;</span>{NFC(lc $_<span style="color:#f92672">-&gt;</span>{id})} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+     }
+
+     <span style="color:#66d9ef">my</span> $has_station_index <span style="color:#f92672">=</span> {};
+@@ <span style="color:#960050;background-color:#1e0010">-</span>964,<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">967</span>,<span style="color:#ae81ff">8</span> @@ sub _init_map {
+                 $has_station_index<span style="color:#f92672">-&gt;</span>{$_line} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+             }
+
+<span style="color:#f92672">-</span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>exists $master_line_data<span style="color:#f92672">-&gt;</span>{lc $_line}) {
+<span style="color:#f92672">+</span>            $_line <span style="color:#f92672">=</span> _decode_utf8_if_needed($_line);
+<span style="color:#f92672">+</span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>exists $master_line_data<span style="color:#f92672">-&gt;</span>{NFC(lc $_line)}) {
+                 Map::Tube::Exception::InvalidStationLineId<span style="color:#f92672">-&gt;</span>throw({
+                     method      <span style="color:#f92672">=&gt;</span> $method,
+                     message     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;ERROR: Invalid line [$_line] for station [$name].&#34;</span>,
+@@ <span style="color:#960050;background-color:#1e0010">-</span>1043,<span style="color:#ae81ff">6</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">1047</span>,<span style="color:#ae81ff">16</span> @@ sub _init_map {
+     $self<span style="color:#f92672">-&gt;</span>tables($tables);
+ }
+
+<span style="color:#f92672">+</span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_decode_utf8_if_needed</span> {
+<span style="color:#f92672">+</span>    <span style="color:#66d9ef">my</span> ($data) <span style="color:#f92672">=</span> @_;
+<span style="color:#f92672">+</span>
+<span style="color:#f92672">+</span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>utf8::is_utf8($data) <span style="color:#f92672">&amp;&amp;</span> utf8::valid($data)) {
+<span style="color:#f92672">+</span>        $data <span style="color:#f92672">=</span> decode_utf8($data);
+<span style="color:#f92672">+</span>    }
+<span style="color:#f92672">+</span>
+<span style="color:#f92672">+</span>    <span style="color:#66d9ef">return</span> $data;
+<span style="color:#f92672">+</span>}
+<span style="color:#f92672">+</span>
+ <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_is_directly_linked</span> {
+     <span style="color:#66d9ef">my</span> ($self, $start_station, $end_station) <span style="color:#f92672">=</span> @_;
+     <span style="color:#66d9ef">my</span> $linked_stations <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>get_linked_stations($start_station);
+@@ <span style="color:#960050;background-color:#1e0010">-</span>1266,<span style="color:#ae81ff">13</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">1280</span>,<span style="color:#ae81ff">16</span> @@ sub _get_node_id {
+     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> defined $name;
+     $name <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s+//</span>;
+     $name <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+$//</span>;
+<span style="color:#f92672">-</span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{name_to_id}<span style="color:#f92672">-&gt;</span>{uc($name)};
+<span style="color:#f92672">+</span>    $name <span style="color:#f92672">=</span> _decode_utf8_if_needed($name);
+<span style="color:#f92672">+</span>    $name <span style="color:#f92672">=</span> NFC(uc($name));
+<span style="color:#f92672">+</span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{name_to_id}<span style="color:#f92672">-&gt;</span>{$name};
+ }
+
+ <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_get_line_object_by_name</span> {
+     <span style="color:#66d9ef">my</span> ($self, $name) <span style="color:#f92672">=</span> @_;
+
+<span style="color:#f92672">-</span>    $name <span style="color:#f92672">=</span> uc($name);
+<span style="color:#f92672">+</span>    $name <span style="color:#f92672">=</span> _decode_utf8_if_needed($name);
+<span style="color:#f92672">+</span>    $name <span style="color:#f92672">=</span> NFC(uc($name));
+     <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $line_id (keys %{$self<span style="color:#f92672">-&gt;</span>{_lines}}) {
+         <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>{_lines}<span style="color:#f92672">-&gt;</span>{$line_id};
+         <span style="color:#66d9ef">if</span> (defined $line <span style="color:#f92672">&amp;&amp;</span> defined $line<span style="color:#f92672">-&gt;</span>name) {
+</code></pre></div><br>
+<p><strong>NOTE:</strong> I haven&rsquo;t uploaded the patch to <code>CPAN</code> yet. I&rsquo;ll try to do it soon.</p>
 <hr>
 <br>
 <p><code>Happy Hacking!!</code></p>
