@@ -222,7 +222,7 @@ Now run the script:
 ```bash
 $ perl unicode-map.pl
 Route   : À (Èà), Ï (Èà, Àé), Ù (Àé)
-Map::Tube::get_line_by_name(): ERROR: Invalid Line Name [ÃÃ ].
+Map::Tube::get_line_by_name(): ERROR: Invalid Line Name [Èà].
 ```
 
 <br>
@@ -236,6 +236,14 @@ I have applied similar patch to the line name as above and it looks like this:
 ```perl
 --- a/lib/Map/Tube.pm
 +++ b/lib/Map/Tube.pm
+@@ -418,6 +418,7 @@ sub get_line_by_name {
+         line_number => $caller[2] }) unless defined $name;
+
+     my $line = $self->_get_line_object_by_name($name);
++    $name = _decode_utf8_if_needed($name);
+     Map::Tube::Exception::InvalidLineName->throw({
+         method      => __PACKAGE__."::get_line_by_name",
+         message     => "ERROR: Invalid Line Name [$name].",
 @@ -935,7 +935,7 @@ sub _init_map {
      }
      my $master_line_data = {};

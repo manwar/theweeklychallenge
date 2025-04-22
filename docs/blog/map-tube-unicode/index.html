@@ -435,13 +435,21 @@ say <span style="color:#e6db74">&#34;Stations: &#34;</span>, join(<span style="c
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl unicode-map.pl
 Route   : À <span style="color:#f92672">(</span>Èà<span style="color:#f92672">)</span>, Ï <span style="color:#f92672">(</span>Èà, Àé<span style="color:#f92672">)</span>, Ù <span style="color:#f92672">(</span>Àé<span style="color:#f92672">)</span>
-Map::Tube::get_line_by_name<span style="color:#f92672">()</span>: ERROR: Invalid Line Name <span style="color:#f92672">[</span>ÃÃ <span style="color:#f92672">]</span>.
+Map::Tube::get_line_by_name<span style="color:#f92672">()</span>: ERROR: Invalid Line Name <span style="color:#f92672">[</span>Èà<span style="color:#f92672">]</span>.
 </code></pre></div><br>
 <p>As expected, it is throwing error.</p>
 <p>I have applied similar patch to the line name as above and it looks like this:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#f92672">---</span> a<span style="color:#e6db74">/lib/</span>Map<span style="color:#f92672">/</span>Tube<span style="color:#f92672">.</span>pm
 <span style="color:#f92672">+++</span> b<span style="color:#e6db74">/lib/</span>Map<span style="color:#f92672">/</span>Tube<span style="color:#f92672">.</span>pm
+@@ <span style="color:#960050;background-color:#1e0010">-</span>418,<span style="color:#ae81ff">6</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">418</span>,<span style="color:#ae81ff">7</span> @@ sub get_line_by_name {
+         line_number <span style="color:#f92672">=&gt;</span> $caller[<span style="color:#ae81ff">2</span>] }) <span style="color:#66d9ef">unless</span> defined $name;
+
+     <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>_get_line_object_by_name($name);
+<span style="color:#f92672">+</span>    $name <span style="color:#f92672">=</span> _decode_utf8_if_needed($name);
+     Map::Tube::Exception::InvalidLineName<span style="color:#f92672">-&gt;</span>throw({
+         method      <span style="color:#f92672">=&gt;</span> __PACKAGE__<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;::get_line_by_name&#34;</span>,
+         message     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;ERROR: Invalid Line Name [$name].&#34;</span>,
 @@ <span style="color:#960050;background-color:#1e0010">-</span>935,<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">935</span>,<span style="color:#ae81ff">7</span> @@ sub _init_map {
      }
      <span style="color:#66d9ef">my</span> $master_line_data <span style="color:#f92672">=</span> {};
