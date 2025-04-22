@@ -80,7 +80,7 @@ Here's what I ended up after some initial trial and error: `unicode-map.xml`
 
 Did you notice, that I even included line names with `Unicode` characters?
 
-For this experiment, However, I'm only interested in station names.
+For this experiment, however, I'm only interested in station names.
 
 I want to see how the current framework, [**Map::Tube v4.07**](https://metacpan.org/dist/Map-Tube) behaves when using this map.
 
