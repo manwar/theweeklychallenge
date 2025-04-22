@@ -27,7 +27,7 @@ However, when I read the [**first post**](https://peateasea.de/building-map-tube
 
 I thought, why not invest a little time and see if this can be supported without a major overhaul?
 
-To explore this, I decided to created a very basic map with just four stations and two lines.
+To explore this, I decided to create a very basic map with just four stations and two lines.
 
 <br>
 
