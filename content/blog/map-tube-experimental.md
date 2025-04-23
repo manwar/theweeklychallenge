@@ -325,9 +325,9 @@ Let's get to the real work.
 
 We've added a new optional attribute `units` to the `Map::Tube` package.
 
-<br>
-
-![map-tube-1](/images/blog/map-tube-1.png)
+<div class="container mt-4">
+    <img src="/images/blog/map-tube-1.png" class="img-fluid" alt="">
+</div>
 
 <br>
 
@@ -343,9 +343,9 @@ This attribute would capture the units for the `distance` and the `duration`, so
 
 Next, we have added an optional attribute `attrs` to the `Map::Tube::Node` package.
 
-<br>
-
-![map-tube-2](/images/blog/map-tube-2.png)
+<div class="container mt-4">
+    <img src="/images/blog/map-tube-2.png" class="img-fluid" alt="">
+</div>
 
 <br>
 
@@ -374,9 +374,9 @@ into something like below:
 
 Now I have created a new subroutine `_convert_station_to_node()` as below, which would populate the new attribute `attrs` of `Map::Tube::Node` package.
 
-<br>
-
-![map-tube-3](/images/blog/map-tube-3.png)
+<div class="container mt-4">
+    <img src="/images/blog/map-tube-3.png" class="img-fluid" alt="">
+</div>
 
 <br>
 
@@ -384,9 +384,9 @@ Now time to plug-in the new subroutine to the `sub _init_map()`, this is core su
 
 If you noticed, I am also populating the `units` attribute of the `Map::Tube` package.
 
-<br>
-
-![map-tube-4](/images/blog/map-tube-4.png)
+<div class="container mt-4">
+    <img src="/images/blog/map-tube-4.png" class="img-fluid" alt="">
+</div>
 
 <br>
 
@@ -394,21 +394,23 @@ We need to make some space in the `Map::Tube::Route` package to capture the unit
 
 We have new attribute `units` as shown below:
 
-<br>
-
-![map-tube-5](/images/blog/map-tube-5.png)
+<div class="container mt-4">
+    <img src="/images/blog/map-tube-5.png" class="img-fluid" alt="">
+</div>
 
 <br>
 
 Finally we need subroutines to calculate the distance and durations of the final route.
 
+<div class="container mt-4">
+    <img src="/images/blog/map-tube-6.png" class="img-fluid" alt="">
+</div>
+
 <br>
 
-![map-tube-6](/images/blog/map-tube-6.png)
-
-<br>
-
-![map-tube-7](/images/blog/map-tube-7.png)
+<div class="container mt-4">
+    <img src="/images/blog/map-tube-7.png" class="img-fluid" alt="">
+</div>
 
 <br>
 
@@ -416,9 +418,9 @@ One final bit, we need to populate the newly added attribute `units` in the `Map
 
 And the best place to do that when we calculate the shortest route in the `sub get_shortest_route()` in the `Map::Tube` package.
 
-<br>
-
-![map-tube-8](/images/blog/map-tube-8.png)
+<div class="container mt-4">
+    <img src="/images/blog/map-tube-8.png" class="img-fluid" alt="">
+</div>
 
 <br>
 
