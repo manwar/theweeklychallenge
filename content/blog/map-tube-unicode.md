@@ -91,7 +91,6 @@ To test it, I wrote this simple script: `unicode-map.pl`
 ```perl
 package UnicodeMap;
 
-use open ':std', ':encoding(UTF-8)';
 use v5.38;
 use Moo;
 use namespace::clean;
@@ -100,6 +99,8 @@ has xml => (is => 'ro', default => sub { return File::Spec->catfile('unicode-map
 with 'Map::Tube';
 
 package main;
+
+use open ':std', ':encoding(UTF-8)';
 
 say UnicodeMap->new->get_shortest_route('À', 'Ù');
 ```
@@ -197,7 +198,6 @@ Before I make any changes, let's update the test script to see how the framework
 ```perl
 package UnicodeMap;
 
-use open ':std', ':encoding(UTF-8)';
 use v5.38;
 use Moo;
 use namespace::clean;
@@ -206,6 +206,8 @@ has xml => (is => 'ro', default => sub { return File::Spec->catfile('unicode.xml
 with 'Map::Tube';
 
 package main;
+
+use open ':std', ':encoding(UTF-8)';
 
 my $map = UnicodeMap->new;
 say "Route   : ", $map->get_shortest_route('À', 'Ù');
@@ -394,7 +396,14 @@ The combined change now looks like this:
 
 <br>
 
-**NOTE:** I haven't uploaded the patch to `CPAN` yet. I'll try to do it soon.
+## [2025-04-23] UPDATE
+***
+
+<br>
+
+[**Map::Tube v4.08**](https://metacpan.org/dist/Map-Tube) has been uploaded to `CPAN` which has all the changes discussed above.
+
+Please it give a try and let me know your experience.
 
 ***
 
