@@ -113,7 +113,7 @@ Time to test the code:
 
 ```bash
 $ perl unicode-map.pl
-Map::Tube::get_node_by_name(): ERROR: Invalid Station Name [Ã].
+Map::Tube::get_node_by_name(): ERROR: Invalid Station Name [À].
 ```
 
 <br>
