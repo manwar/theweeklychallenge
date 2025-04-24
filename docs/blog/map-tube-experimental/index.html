@@ -514,7 +514,9 @@ say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d
 <p>Let&rsquo;s get to the real work.</p>
 <p>We&rsquo;ve added a new optional attribute <code>units</code> to the <code>Map::Tube</code> package.</p>
 <div class="container mt-4">
-    <img src="/images/blog/map-tube-1.png" class="img-fluid" alt="">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/map-tube-1.png" class="img-fluid" alt="" />
+    </div>
 </div>
 <br>
 <p>This attribute would capture the units for the <code>distance</code> and the <code>duration</code>, something like below:</p>
@@ -523,7 +525,9 @@ say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d
 </code></pre></div><br>
 <p>Next, we have added an optional attribute <code>attrs</code> to the <code>Map::Tube::Node</code> package.</p>
 <div class="container mt-4">
-    <img src="/images/blog/map-tube-2.png" class="img-fluid" alt="">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/map-tube-2.png" class="img-fluid" alt="" />
+    </div>
 </div>
 <br>
 <p>This new attribute would capture the following information for each station:</p>
@@ -539,34 +543,46 @@ say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d
 </code></pre></div><br>
 <p>Now I have created a new subroutine <code>_convert_station_to_node()</code> as below, which would populate the new attribute <code>attrs</code> of <code>Map::Tube::Node</code> package.</p>
 <div class="container mt-4">
-    <img src="/images/blog/map-tube-3.png" class="img-fluid" alt="">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/map-tube-3.png" class="img-fluid" alt="" />
+    </div>
 </div>
 <br>
 <p>Now time to plug-in the new subroutine to the <code>sub _init_map()</code>, this is core subroutine which initialises the map data.</p>
 <p>If you noticed, I am also populating the <code>units</code> attribute of the <code>Map::Tube</code> package.</p>
 <div class="container mt-4">
-    <img src="/images/blog/map-tube-4.png" class="img-fluid" alt="">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/map-tube-4.png" class="img-fluid" alt="" />
+    </div>
 </div>
 <br>
 <p>We need to make some space in the <code>Map::Tube::Route</code> package to capture the units detail. It is optional.</p>
 <p>We have new attribute <code>units</code> as shown below:</p>
 <div class="container mt-4">
-    <img src="/images/blog/map-tube-5.png" class="img-fluid" alt="">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/map-tube-5.png" class="img-fluid" alt="" />
+    </div>
 </div>
 <br>
 <p>Finally we need subroutines to calculate the distance and durations of the final route.</p>
 <div class="container mt-4">
-    <img src="/images/blog/map-tube-6.png" class="img-fluid" alt="">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/map-tube-6.png" class="img-fluid" alt="" />
+    </div>
 </div>
 <br>
 <div class="container mt-4">
-    <img src="/images/blog/map-tube-7.png" class="img-fluid" alt="">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/map-tube-7.png" class="img-fluid" alt="" />
+    </div>
 </div>
 <br>
 <p>One final bit, we need to populate the newly added attribute <code>units</code> in the <code>Map::Tube::Route</code> package.</p>
 <p>And the best place to do that when we calculate the shortest route in the <code>sub get_shortest_route()</code> in the <code>Map::Tube</code> package.</p>
 <div class="container mt-4">
-    <img src="/images/blog/map-tube-8.png" class="img-fluid" alt="">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/map-tube-8.png" class="img-fluid" alt="" />
+    </div>
 </div>
 <br>
 <p>I think we are good to go now.</p>
