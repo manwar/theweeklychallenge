@@ -325,15 +325,13 @@ Let's get to the real work.
 
 We've added a new optional attribute `units` to the `Map::Tube` package.
 
-<br>
-
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
         <img src="/images/blog/map-tube-1.png" class="img-fluid" alt="" />
     </div>
 </div>
 
-<br>
+<br><br>
 
 This attribute would capture the units for the `distance` and the `duration`, something like below:
 
@@ -346,8 +344,6 @@ This attribute would capture the units for the `distance` and the `duration`, so
 <br>
 
 Next, we have added an optional attribute `attrs` to the `Map::Tube::Node` package.
-
-<br>
 
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
@@ -390,7 +386,7 @@ Now I have created a new subroutine `_convert_station_to_node()` as below, which
     </div>
 </div>
 
-<br>
+<br><br>
 
 Now time to plug-in the new subroutine to the `sub _init_map()`, this is core subroutine which initialises the map data.
 
@@ -404,7 +400,7 @@ If you noticed, I am also populating the `units` attribute of the `Map::Tube` pa
     </div>
 </div>
 
-<br>
+<br><br>
 
 We need to make some space in the `Map::Tube::Route` package to capture the units detail. It is optional.
 
@@ -418,9 +414,11 @@ We have new attribute `units` as shown below:
     </div>
 </div>
 
-<br>
+<br><br>
 
 Finally we need subroutines to calculate the distance and durations of the final route.
+
+Source: `subroutine duration()`
 
 <br>
 
@@ -429,6 +427,10 @@ Finally we need subroutines to calculate the distance and durations of the final
         <img src="/images/blog/map-tube-6.png" class="img-fluid" alt="" />
     </div>
 </div>
+
+<br><br>
+
+Source: `subroutine distance()`
 
 <br>
 
@@ -452,7 +454,7 @@ And the best place to do that when we calculate the shortest route in the `sub g
     </div>
 </div>
 
-<br>
+<br><br>
 
 I think we are good to go now.
 

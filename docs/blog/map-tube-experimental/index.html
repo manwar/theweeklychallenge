@@ -513,19 +513,17 @@ say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d
 <p>It&rsquo;s based on <code>Map::Tube v4.07</code>.</p>
 <p>Let&rsquo;s get to the real work.</p>
 <p>We&rsquo;ve added a new optional attribute <code>units</code> to the <code>Map::Tube</code> package.</p>
-<br>
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
         <img src="/images/blog/map-tube-1.png" class="img-fluid" alt="" />
     </div>
 </div>
-<br>
+<p><br><br></p>
 <p>This attribute would capture the units for the <code>distance</code> and the <code>duration</code>, something like below:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    { distance <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;km&#39;</span>, duration <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;min&#39;</span> }
 </code></pre></div><br>
 <p>Next, we have added an optional attribute <code>attrs</code> to the <code>Map::Tube::Node</code> package.</p>
-<br>
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
         <img src="/images/blog/map-tube-2.png" class="img-fluid" alt="" />
@@ -550,7 +548,7 @@ say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d
         <img src="/images/blog/map-tube-3.png" class="img-fluid" alt="" />
     </div>
 </div>
-<br>
+<p><br><br></p>
 <p>Now time to plug-in the new subroutine to the <code>sub _init_map()</code>, this is core subroutine which initialises the map data.</p>
 <p>If you noticed, I am also populating the <code>units</code> attribute of the <code>Map::Tube</code> package.</p>
 <br>
@@ -559,7 +557,7 @@ say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d
         <img src="/images/blog/map-tube-4.png" class="img-fluid" alt="" />
     </div>
 </div>
-<br>
+<p><br><br></p>
 <p>We need to make some space in the <code>Map::Tube::Route</code> package to capture the units detail. It is optional.</p>
 <p>We have new attribute <code>units</code> as shown below:</p>
 <br>
@@ -568,14 +566,17 @@ say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d
         <img src="/images/blog/map-tube-5.png" class="img-fluid" alt="" />
     </div>
 </div>
-<br>
+<p><br><br></p>
 <p>Finally we need subroutines to calculate the distance and durations of the final route.</p>
+<p>Source: <code>subroutine duration()</code></p>
 <br>
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
         <img src="/images/blog/map-tube-6.png" class="img-fluid" alt="" />
     </div>
 </div>
+<p><br><br></p>
+<p>Source: <code>subroutine distance()</code></p>
 <br>
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
@@ -591,7 +592,7 @@ say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d
         <img src="/images/blog/map-tube-8.png" class="img-fluid" alt="" />
     </div>
 </div>
-<br>
+<p><br><br></p>
 <p>I think we are good to go now.</p>
 <p>The core framework is ready to serve the new map data we have defined above.</p>
 <p>Let&rsquo;s create simple script to test the workflow: <code>find-route.pl</code></p>
