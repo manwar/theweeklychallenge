@@ -325,6 +325,8 @@ Let's get to the real work.
 
 We've added a new optional attribute `units` to the `Map::Tube` package.
 
+<br>
+
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
         <img src="/images/blog/map-tube-1.png" class="img-fluid" alt="" />
@@ -344,6 +346,8 @@ This attribute would capture the units for the `distance` and the `duration`, so
 <br>
 
 Next, we have added an optional attribute `attrs` to the `Map::Tube::Node` package.
+
+<br>
 
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
@@ -378,6 +382,8 @@ into something like below:
 
 Now I have created a new subroutine `_convert_station_to_node()` as below, which would populate the new attribute `attrs` of `Map::Tube::Node` package.
 
+<br>
+
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
         <img src="/images/blog/map-tube-3.png" class="img-fluid" alt="" />
@@ -389,6 +395,8 @@ Now I have created a new subroutine `_convert_station_to_node()` as below, which
 Now time to plug-in the new subroutine to the `sub _init_map()`, this is core subroutine which initialises the map data.
 
 If you noticed, I am also populating the `units` attribute of the `Map::Tube` package.
+
+<br>
 
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
@@ -402,6 +410,8 @@ We need to make some space in the `Map::Tube::Route` package to capture the unit
 
 We have new attribute `units` as shown below:
 
+<br>
+
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
         <img src="/images/blog/map-tube-5.png" class="img-fluid" alt="" />
@@ -411,6 +421,8 @@ We have new attribute `units` as shown below:
 <br>
 
 Finally we need subroutines to calculate the distance and durations of the final route.
+
+<br>
 
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
@@ -432,6 +444,8 @@ One final bit, we need to populate the newly added attribute `units` in the `Map
 
 And the best place to do that when we calculate the shortest route in the `sub get_shortest_route()` in the `Map::Tube` package.
 
+<br>
+
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
         <img src="/images/blog/map-tube-8.png" class="img-fluid" alt="" />
@@ -444,7 +458,7 @@ I think we are good to go now.
 
 The core framework is ready to serve the new map data we have defined above.
 
-Let's create simple script to test the workflow:
+Let's create simple script to test the workflow: `find-route.pl`
 
 <br>
 
