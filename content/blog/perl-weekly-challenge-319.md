@@ -32,7 +32,7 @@ Last week, I forgot to mention the new member, [**Steve Hart**](https://github.c
 
 Welcome aboard, `Steve Hart` and thanks for your first contributions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-317/steve-hart/perl).
 
-I am going to `Leipzig, Germany` this `Wednesday April 30th, 2025` to be part of [**Perl Toolchain Summit 2025**](https://perltoolchainsummit.org/pts2025). I am flying back home on `Monday May 1st 2025` morning. I will do my best not to disturb the scheduled weekly challenge.
+I am going to `Leipzig, Germany` this `Wednesday April 30th, 2025` to be part of [**Perl Toolchain Summit 2025**](https://perltoolchainsummit.org/pts2025). I am flying back home on `Monday May 5th, 2025` morning. I will do my best not to disturb the scheduled weekly challenge.
 
 `Happy Hacking!!`
 
