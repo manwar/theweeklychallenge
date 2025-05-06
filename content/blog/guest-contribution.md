@@ -286,9 +286,6 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
              <span class="link-item"><a href="#233">[&nbsp;&nbsp;233&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
-             <span class="link-item"><a href="#232">[&nbsp;&nbsp;232&nbsp;&nbsp;]</a> &nbsp;</span>
-          </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#231">[&nbsp;&nbsp;231&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
