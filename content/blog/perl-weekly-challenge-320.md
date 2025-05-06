@@ -163,6 +163,8 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 ## NEW MEMBERS {#NEWMEMBERS}
 ***
 
+[**HVukman**](https://github.com/HVukman), an expert hacker in `K`, joined `Team PWC`.
+
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
 Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) created by respected member `Saif Ahmed` of **Team PWC**.
