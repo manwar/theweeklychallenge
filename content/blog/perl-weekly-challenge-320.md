@@ -63,7 +63,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `316` &nbsp;&nbsp;|&nbsp;&nbsp; 50 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `317` &nbsp;&nbsp;|&nbsp;&nbsp; 48 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `318` &nbsp;&nbsp;|&nbsp;&nbsp; 42 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `319` &nbsp;&nbsp;|&nbsp;&nbsp; 36 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `319` &nbsp;&nbsp;|&nbsp;&nbsp; 38 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
 
 <br>
 
@@ -76,7 +76,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `316` &nbsp;&nbsp;|&nbsp;&nbsp; 11 &nbsp;&nbsp;|&nbsp;&nbsp; 52 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `317` &nbsp;&nbsp;|&nbsp;&nbsp; 10 &nbsp;&nbsp;|&nbsp;&nbsp; 50 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `318` &nbsp;&nbsp;|&nbsp;&nbsp; 10 &nbsp;&nbsp;|&nbsp;&nbsp; 48 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `319` &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|&nbsp;&nbsp; 54 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `319` &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|&nbsp;&nbsp; 56 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
 
 <br>
 
@@ -101,21 +101,22 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 ### Blogs with Creative Title
 ***
 
-#### 1. [Common Count](https://raku-musings.com/common-count.html) by Arne Sommer.
-#### 2. [Common Vowels](https://github.sommrey.de/the-bears-den/2025/05/02/ch-319.html) by Jorg Sommrey.
-#### 3. [Does 'Weekly' Have a Happy (Vowel) Ending?](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-319/challenge-319/matthias-muth#readme) by Matthias Muth.
-#### 4. [Count the Minimum Common Word](https://packy.dardan.com/b/UD) by Packy Anderson.
-#### 5. [Vowels and minima](http://ccgi.campbellsmiths.force9.co.uk/challenge/319) by Peter Campbell Smith.
-#### 6. [Minimum Words Count Even If They Are Common](https://blog.firedrake.org/archive/2025/05/The_Weekly_Challenge_319__Minimum_Words_Count_Even_If_They_Are_Common.html) by Roger Bell_West.
-#### 7. [Words and numbers](https://dev.to/simongreennet/words-and-numbers-54k6) by Simon Green.
+#### 1. [In the Count of Common](http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2025/05/04) by Adam Russell.
+#### 2. [Common Count](https://raku-musings.com/common-count.html) by Arne Sommer.
+#### 3. [Common Vowels](https://github.sommrey.de/the-bears-den/2025/05/02/ch-319.html) by Jorg Sommrey.
+#### 4. [Does 'Weekly' Have a Happy (Vowel) Ending?](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-319/challenge-319/matthias-muth#readme) by Matthias Muth.
+#### 5. [Count the Minimum Common Word](https://packy.dardan.com/b/UD) by Packy Anderson.
+#### 6. [Vowels and minima](http://ccgi.campbellsmiths.force9.co.uk/challenge/319) by Peter Campbell Smith.
+#### 7. [Minimum Words Count Even If They Are Common](https://blog.firedrake.org/archive/2025/05/The_Weekly_Challenge_319__Minimum_Words_Count_Even_If_They_Are_Common.html) by Roger Bell_West.
+#### 8. [Words and numbers](https://dev.to/simongreennet/words-and-numbers-54k6) by Simon Green.
 
 <br>
 
 ### [GitHub](https://github.com/manwar/perlweeklychallenge-club) Repository Stats
 ***
 
-#### 1. Commits: 43,339 (`+70`)
-#### 2. Pull Requests: 11,949 (`+27`)
+#### 1. Commits: 43,357 (`+88`)
+#### 2. Pull Requests: 11,955 (`+33`)
 #### 3. Contributors: 259 (`+1`)
 #### 4. Fork: 326
 #### 5. Stars: 189
