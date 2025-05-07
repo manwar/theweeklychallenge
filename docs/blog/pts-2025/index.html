@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Perl Toolchain Summit 2025"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/pts-2025/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="My first hand experience of PTS 2025."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="My first hand experience of PTS 2025.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/pts-2025/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Perl Toolchain Summit 2025</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Perl Toolchain Summit 2025</h2>
+                    <div class="portfolio-meta">
+                        <span>Wednesday, May 7, 2025</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/pts-2025.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-captured-by-salve-j-nilsen"><strong>DISCLAIMER:</strong> Image captured by <code>Salve J. Nilsen</code>.</h4>
+<hr>
+<br>
+<h2 id="journey-to-the-event">Journey to the Event</h2>
+<hr>
+<p>My journey began at <code>12 PM</code> on <code>Wednesday, April 30th</code>. I took a bus to <code>Heathrow Airport</code> to catch my flight to <code>Berlin</code> via <code>Frankfurt</code> with <code>Lufthansa Airline</code>.
+The entire journey was a pleasant experience, except for one part: I had to exit the <code>Frankfurt</code> airport and re-enter to catch my connecting flight to <code>Berlin</code>. I had assumed I could simply switch planes without leaving the airport.</p>
+<br>
+<h2 id="day-1">Day 1</h2>
+<hr>
+<p>I reached the hotel at <code>6 AM</code> on <code>Thursday</code> morning, the first day of the event.</p>
+<div class="container mt-4">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/pts2025_1.jpg" class="img-fluid" alt="" />
+        &nbsp;&nbsp;&nbsp;
+        <img src="/images/blog/pts2025_2.jpg" class="img-fluid" alt="" />
+    </div>
+</div>
+<br>
+<p>At breakfast, I met many guests, <code>Salve</code> was the first among them. I also met <code>Ruth</code> again; it was lovely to see her after the <code>Toronto</code> conference. I met <code>Todd</code> for the first time as well.</p>
+<p>That day, I had the chance to meet the <code>MetaCPAN</code> team: <code>Olaf</code>, <code>Graham</code>, <code>Mickie</code> and <code>Shawn</code>. I’ve always wanted to contribute to <code>MetaCPAN</code>, and this was finally my opportunity. I had to start from scratch by setting up the local <code>MetaCPAN</code> web environment.</p>
+<p>I was given the link to the <code>MetaCPAN Docker GitHub</code> repository: <strong><a href="https://github.com/metacpan/metacpan-docker.git">https://github.com/metacpan/metacpan-docker.git</a></strong></p>
+<p>It was just a matter of a quick <code>clone</code>, <code>init</code>, and <code>docker compose up</code>. In no time, I had a working local <code>MetaCPAN</code> web interface on my laptop.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/metacpan/metacpan-docker.git
+$ cd metacpan-docker/
+$ bin/metacpan-docker init
+$ docker compose up web-server
+</code></pre></div><br>
+<p>The local instance of <code>MetaCPAN</code> was now accessible: <strong>http://localhost:5001</strong></p>
+<p>I took a quick glance at the codebase and its structure: <strong><a href="https://github.com/metacpan/metacpan-web">https://github.com/metacpan/metacpan-web</a></strong></p>
+<p>Two important areas: <a href="https://github.com/metacpan/metacpan-web/tree/master/lib/MetaCPAN"><strong>Library</strong></a> and <a href="https://github.com/metacpan/metacpan-web/tree/master/root"><strong>Template</strong></a></p>
+<p>My first issue of the day: <strong><a href="https://github.com/metacpan/metacpan-web/issues/3235">https://github.com/metacpan/metacpan-web/issues/3235</a></strong></p>
+<p>I had to explore the codebase extensively to find the right spot. It was a fun exercise involving both the <code>MetaCPAN</code> web and <code>API</code> components.</p>
+<p>Unfortunately, I only had the web interface running locally, not the <code>API</code>, which made debugging the API side difficult.</p>
+<p>In this setup, my local web instance was making <code>API</code> calls to the production environment.</p>
+<p>I spent some time on the issue but didn’t get close to resolving it.</p>
+<p><code>Olaf</code> suggested I pick another issue in the meantime.</p>
+<p>So I chose this one, a pure templating issue with no API involvement: <strong><a href="https://github.com/metacpan/metacpan-web/issues/3079">https://github.com/metacpan/metacpan-web/issues/3079</a></strong></p>
+<p>Understanding the code structure was an enjoyable exercise.</p>
+<p>I resolved the issue in my local environment and submitted my first pull request of the day: <strong><a href="https://github.com/metacpan/metacpan-web/pull/3326">https://github.com/metacpan/metacpan-web/pull/3326</a></strong></p>
+<p>It was kindly approved and merged by <code>Olaf</code>.</p>
+<p>Lunch was organized at the hotel by the <code>PTS Organiser</code>. It was great to see so many people in one place.</p>
+<p>After lunch, I worked on this issue: <strong><a href="https://github.com/metacpan/metacpan-web/issues/3278">https://github.com/metacpan/metacpan-web/issues/3278</a></strong></p>
+<p>This was another front-end-only issue. The <code>BackPAN</code> link was empty and simply pointed to the current page.</p>
+<p>The easy fix was to provide the necessary data to the template.</p>
+<p>I did exactly that in this pull request: <strong><a href="https://github.com/metacpan/metacpan-web/pull/3327">https://github.com/metacpan/metacpan-web/pull/3327</a></strong></p>
+<p><code>Graham</code> quickly suggested that this should be handled in the API rather than the frontend layer. He even provided an alternate fix.</p>
+<p>So this one didn’t go through—but that’s okay. I was learning from every issue.</p>
+<p>In the evening, some of us went to a <code>Lebanese</code> restaurant for dinner. The wait was long, but it was worth it, the food was excellent.</p>
+<br>
+<h2 id="day-2">Day 2</h2>
+<hr>
+<p>I met <code>Stig</code> from the <code>CPAN Security Group</code> and had a discussion about <code>CVEs</code>.</p>
+<p>It was reassuring to know there’s a dedicated team handling <code>CVE-related</code> matters.</p>
+<p>My first issue of the day was: <strong><a href="https://github.com/metacpan/metacpan-web/issues/3044">https://github.com/metacpan/metacpan-web/issues/3044</a></strong></p>
+<p>Nice and easy, got the pull request ready in no time: <strong><a href="https://github.com/metacpan/metacpan-web/pull/3331">https://github.com/metacpan/metacpan-web/pull/3331</a></strong></p>
+<p>Thanks to <code>Olaf</code> for accepting and quick merge.</p>
+<p>It was great to see my change live instantly.</p>
+<p>My second issue was: <strong><a href="https://github.com/metacpan/metacpan-web/issues/3108">https://github.com/metacpan/metacpan-web/issues/3108</a></strong></p>
+<p>Pull request for the same was ready for review: <strong><a href="https://github.com/metacpan/metacpan-web/pull/3332">https://github.com/metacpan/metacpan-web/pull/3332</a></strong></p>
+<p>Once again, <code>Olaf</code>, approved and merged the changes.</p>
+<p>In the evening, <code>Daniel</code>, one of the organisers, gave us a city tour.</p>
+<div class="container mt-4">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/pts2025_3.jpg" class="img-fluid" alt="" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="/images/blog/pts2025_4.jpg" class="img-fluid" alt="" />
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/pts2025_5.jpg" class="img-fluid" alt="" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="/images/blog/pts2025_6.jpg" class="img-fluid" alt="" />
+    </div>
+</div>
+<br>
+<p>It was tiring but well worth it. There was so much to see—beautiful buildings and open spaces.</p>
+<p>Dinner was sponsored by the <code>PTS Organiser</code> in a lovely restaurant. I sat with <code>Olaf</code> and <code>Todd</code>. The food wasn’t exactly to my taste, but the company made up for it. After dinner, <code>Mickey</code>, <code>Shawn</code> and I decided to walk back to the hotel. On the way, I met <code>Doug</code>, it was my first time meeting him in person, though we had interacted over email in the past. It was nice chatting with him on the way back.</p>
+<p>During the city tour, someone suggested I should better create map for <code>Leipzig Railway Network</code> while I am here.</p>
+<p>After the dinner, I couldn&rsquo;t sleep as the idea was burning inside me. I decided to do quick search if I can get hold of <code>Leipzig Railway Network</code> data.</p>
+<p>Luckily I found one, although I couldn&rsquo;t cover the entire network, I managed to do just two lines and published it before going to bed: <a href="https://metacpan.org/dist/Map-Tube-Leipzig"><strong>Map::Tube::Leipzig</strong></a></p>
+<br>
+<h2 id="day-3">Day 3</h2>
+<hr>
+<p>At breakfast, I met <code>Ferenc Erki</code> and had a very interesting conversation. <code>Garu</code> also joined us and introduced himself, it was my first time meeting him. He seemed like a very friendly guy.</p>
+<p>For lunch, <code>Olaf</code>, <code>Shawn</code>, <code>Graham</code>, <code>Mickie</code>, <code>Salve</code>, <code>Jordan</code> and I went to a nearby Doner kebab place. The food was absolutely delicious.</p>
+<p>After lunch, <code>Graham</code> kindly helped me get the <code>API Docker</code> container testing successfully locally.</p>
+<p>I needed this to investigate the earlier issue: <strong><a href="https://github.com/metacpan/metacpan-web/issues/3235">https://github.com/metacpan/metacpan-web/issues/3235</a></strong></p>
+<p>It turned out that the API was returning the full dataset, but the frontend was limiting the result size. That’s why the complete list wasn’t visible.</p>
+<p>The ideal solution would be to implement pagination, rather than showing everything on one page.</p>
+<p>For now, <code>Graham</code> and I increased the limit to <code>500</code> items to resolve the issue.</p>
+<p>I also learned a few tricks for working with the local API, thanks to <code>Graham</code> something that will definitely help me in the future.</p>
+<p>This is the pull request that finally resolved the issue: <strong><a href="https://github.com/metacpan/metacpan-web/pull/3337">https://github.com/metacpan/metacpan-web/pull/3337</a></strong></p>
+<p>Another quick issue for the day: <strong><a href="https://github.com/metacpan/metacpan-web/issues/2912">https://github.com/metacpan/metacpan-web/issues/2912</a></strong></p>
+<p>Corresponding pull request for the same: <strong><a href="https://github.com/metacpan/metacpan-web/pull/3340">https://github.com/metacpan/metacpan-web/pull/3340</a></strong></p>
+<p><code>Daniel</code> also helped me book a train ticket from <code>Leipzig</code> to <code>Berlin Airport</code>.</p>
+<br>
+<h2 id="day-4">Day 4</h2>
+<hr>
+<p>At the breakfast table, I was joined by <code>Todd</code>. I also met <code>Ruth</code> again, and we exchanged a warm hug.</p>
+<p>This was the last day of the event—time to fly back. My anxiety started to kick in.</p>
+<p>I tried to take it slow and worked on this issue after a quick breakfast: <strong><a href="https://github.com/metacpan/metacpan-web/issues/2861">https://github.com/metacpan/metacpan-web/issues/2861</a></strong></p>
+<p>And submitted the following pull request: <strong><a href="https://github.com/metacpan/metacpan-web/pull/3344">https://github.com/metacpan/metacpan-web/pull/3344</a></strong></p>
+<p>Later it turned out to be throwing warning in the log for some other pages.</p>
+<p>I decided to change it to <code>draft</code> as suggested by <code>Olaf</code>.</p>
+<p>I will look at it at some point in time.</p>
+<div class="container mt-4">
+    <div class="row g-4 justify-content-center">
+        <img src="/images/blog/pts2025_7.jpg" class="img-fluid" alt="" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="/images/blog/pts2025_8.jpg" class="img-fluid" alt="" />
+    </div>
+</div>
+<br>
+<h2 id="summary-of-issues">Summary of Issues</h2>
+<hr>
+<pre><code>2912: Merged
+3044: Merged
+3079: Merged
+3108: Merged
+3235: Merged
+3278: Closed (alternate solution by HAARG)
+2861: Open/Draft
+</code></pre>
+<br>
+<h2 id="future-plan">Future Plan</h2>
+<hr>
+<p>My attendance of <code>PTS 2025</code> wasn&rsquo;t planned. It just came as a surprise for me. I didn&rsquo;t get time to prepare anything for the event. Now that I have experienced and seen how others had planned, I&rsquo;ll definitely be better prepared if I get invited again.</p>
+<p>I am definitely going to continue work on <code>MetaCPAN</code> project as and when I find spare time. I don&rsquo;t want to break the continuity. I noticed <code>Elastic Search</code> is heavily used in <code>MetaCPAN</code>. I will brush up my <code>Elastic Search</code> knowledge so that I can contribute in that area too.</p>
+<br>
+<h2 id="sponsors-of-pts-2025">Sponsors of PTS 2025</h2>
+<hr>
+<h3 id="monetary-sponsors">Monetary Sponsors</h3>
+<pre><code>Booking.com
+WebPros
+CosmoShop
+Datensegler
+OpenCage
+SUSE
+Simplelists Ltd
+Ctrl O Ltd
+Findus Internet-OPAC
+plusW GmbH
+</code></pre>
+<h3 id="in-kind-sponsors">In-kind sponsors</h3>
+<pre><code>Grant Street Group
+Fastmail
+shift2
+Oleeo
+Ferenc Erki
+</code></pre>
+<h3 id="community-sponsors">Community Sponsors</h3>
+<pre><code>The Perl and Raku Foundation
+Japan Perl Association
+Harald Joerg
+Alexandros Karelas PerlModules.net
+Matthew Persico
+Michele Beltrame Sigmafin
+Rob Hall
+Joel Roth
+Richard Leach
+Jonathan Kean
+Richard Loveland
+Bojan Ramsa
+</code></pre>
+<br>
+<p><code>Thank You Perl Toolchain Summit 2025!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
