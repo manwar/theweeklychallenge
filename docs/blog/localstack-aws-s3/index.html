@@ -301,9 +301,9 @@
 <h3 id="nbspnbsp4-make-bucketmake-bucket"><a href="#make-bucket">  4. Make Bucket</a></h3>
 <h3 id="nbspnbsp5-list-bucketslist-buckets"><a href="#list-buckets">  5. List Buckets</a></h3>
 <h3 id="nbspnbsp6-upload-fileupload-file"><a href="#upload-file">  6. Upload File</a></h3>
-<h3 id="nbspnbsp7-list-bucketlist-bucket"><a href="#list-bucket">  7. List Bucket</a></h3>
-<h3 id="nbspnbsp8-download-filedownload-file"><a href="#download-file">  8. Download File</a></h3>
-<h3 id="nbspnbsp9-delete-filedelete-file"><a href="#delete-file">  9. Delete File</a></h3>
+<h3 id="nbspnbsp7-download-filedownload-file"><a href="#download-file">  7. Download File</a></h3>
+<h3 id="nbspnbsp8-delete-filedelete-file"><a href="#delete-file">  8. Delete File</a></h3>
+<h3 id="nbspnbsp9-list-bucketlist-bucket"><a href="#list-bucket">  9. List Bucket</a></h3>
 <h3 id="10-remove-bucketremove-bucket"><a href="#remove-bucket">10. Remove Bucket</a></h3>
 <h3 id="11-s3-with-pythons3-with-python"><a href="#s3-with-python">11. S3 with Python</a></h3>
 <h3 id="12-s3-with-perls3-with-perl"><a href="#s3-with-perl">12. S3 with Perl</a></h3>
@@ -445,14 +445,6 @@ make_bucket: bucket-1
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 cp test.txt s3://bucket-1
 upload: ./test.txt to s3://bucket-1/test.txt
 </code></pre></div><br>
-<h2 id="list-bucket">List Bucket</h2>
-<hr>
-<br>
-<p>List the content of the <code>S3</code> bucket.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 ls s3://bucket-1
-2025-05-24 01:03:49         <span style="color:#ae81ff">24</span> test.txt
-</code></pre></div><br>
 <h2 id="download-file">Download File</h2>
 <hr>
 <br>
@@ -477,7 +469,14 @@ download: s3://bucket-1/test.txt to ./test-1.txt
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 rm s3://bucket-1/test.txt
 delete: s3://bucket-1/test.txt
 </code></pre></div><br>
-<h2 id="remove-bucket">Remove Bucket</h2>
+<h2 id="list-bucket">List Bucket</h2>
+<hr>
+<br>
+<p>List the content of the <code>S3</code> bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 ls s3://bucket-1
+2025-05-24 01:03:49         <span style="color:#ae81ff">24</span> test.txt
+</code></pre></div><h2 id="remove-bucket">Remove Bucket</h2>
 <hr>
 <br>
 <p>To remove the bucket, we need to empty the bucket first or use <code>--force</code> to remove with contents.</p>
@@ -660,14 +659,14 @@ REGION <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;eu-
     <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>upload:
         upload_file(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>file)
 
-    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>list:
-        list_bucket_contents(s3, args<span style="color:#f92672">.</span>bucket)
-
     <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>download:
         download_file(s3, args<span style="color:#f92672">.</span>bucket, os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(args<span style="color:#f92672">.</span>file))
 
     <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>delete:
         delete_file(s3, args<span style="color:#f92672">.</span>bucket, os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(args<span style="color:#f92672">.</span>file))
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>list:
+        list_bucket_contents(s3, args<span style="color:#f92672">.</span>bucket)
 
     <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>remove_bucket:
         remove_bucket(s3, args<span style="color:#f92672">.</span>bucket)
@@ -711,12 +710,6 @@ S3 Bucket List:
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --file test.txt --upload
 File <span style="color:#e6db74">&#39;test.txt&#39;</span> uploaded as <span style="color:#e6db74">&#39;test.txt&#39;</span>.
 </code></pre></div><br>
-<h3 id="list-bucket-1">List Bucket</h3>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --list
-Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> contents:
-- test.txt
-</code></pre></div><br>
 <h3 id="download-file-1">Download File</h3>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --file test.txt --download
@@ -726,6 +719,12 @@ File downloaded <span style="color:#e6db74">&#39;test.txt&#39;</span> to <span s
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --file test.txt --delete
 Successfully deleted test.txt from bucket-2.
+</code></pre></div><br>
+<h3 id="list-bucket-1">List Bucket</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --list
+Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> contents:
+- test.txt
 </code></pre></div><br>
 <h3 id="remove-bucket-1">Remove Bucket</h3>
 <br>
@@ -794,16 +793,16 @@ $opts{file}   <span style="color:#f92672">||=</span> $DEFAULT_FILE;
     upload_file($s3, $opts{bucket}, $opts{file});
 }
 
-<span style="color:#66d9ef">if</span> ($opts{list}) {
-    list_bucket_contents($s3, $opts{bucket});
-}
-
 <span style="color:#66d9ef">if</span> ($opts{download}) {
     download_file($s3, $opts{bucket}, basename($opts{file}));
 }
 
 <span style="color:#66d9ef">if</span> ($opts{delete}) {
     delete_file($s3, $opts{bucket}, basename($opts{file}));
+}
+
+<span style="color:#66d9ef">if</span> ($opts{list}) {
+    list_bucket_contents($s3, $opts{bucket});
 }
 
 <span style="color:#66d9ef">if</span> ($opts{remove_bucket}) {
@@ -1020,12 +1019,6 @@ S3 Bucket List:
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --file test.txt --upload
 Successfully uploaded <span style="color:#e6db74">&#39;test.txt&#39;</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">56</span> bytes<span style="color:#f92672">)</span> as <span style="color:#e6db74">&#39;test.txt&#39;</span>.
 </code></pre></div><br>
-<h3 id="list-bucket-2">List Bucket</h3>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --list
-Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> contents:
-- test.txt
-</code></pre></div><br>
 <h3 id="download-file-2">Download File</h3>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --file test.txt --download
@@ -1035,6 +1028,12 @@ Successfully downloaded <span style="color:#e6db74">&#39;test.txt&#39;</span> to
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --file test.txt --delete
 Successfully deleted test.txt from bucket-2.
+</code></pre></div><br>
+<h3 id="list-bucket-2">List Bucket</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --list
+Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> contents:
+- test.txt
 </code></pre></div><br>
 <h3 id="remove-bucket-2">Remove Bucket</h3>
 <br>

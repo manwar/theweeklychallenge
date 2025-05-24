@@ -19,9 +19,9 @@ tags: ["perl", "python", "aws", "localstack"]
 ### [&nbsp;&nbsp;4. Make Bucket](#make-bucket)
 ### [&nbsp;&nbsp;5. List Buckets](#list-buckets)
 ### [&nbsp;&nbsp;6. Upload File](#upload-file)
-### [&nbsp;&nbsp;7. List Bucket](#list-bucket)
-### [&nbsp;&nbsp;8. Download File](#download-file)
-### [&nbsp;&nbsp;9. Delete File](#delete-file)
+### [&nbsp;&nbsp;7. Download File](#download-file)
+### [&nbsp;&nbsp;8. Delete File](#delete-file)
+### [&nbsp;&nbsp;9. List Bucket](#list-bucket)
 ### [10. Remove Bucket](#remove-bucket)
 ### [11. S3 with Python](#s3-with-python)
 ### [12. S3 with Perl](#s3-with-perl)
@@ -274,22 +274,6 @@ upload: ./test.txt to s3://bucket-1/test.txt
 
 <br>
 
-## List Bucket
-***
-
-<br>
-
-List the content of the `S3` bucket.
-
-<br>
-
-```bash
-$ aws s3 ls s3://bucket-1
-2025-05-24 01:03:49         24 test.txt
-```
-
-<br>
-
 ## Download File
 ***
 
@@ -340,6 +324,20 @@ delete: s3://bucket-1/test.txt
 ```
 
 <br>
+
+## List Bucket
+***
+
+<br>
+
+List the content of the `S3` bucket.
+
+<br>
+
+```bash
+$ aws s3 ls s3://bucket-1
+2025-05-24 01:03:49         24 test.txt
+```
 
 ## Remove Bucket
 ***
@@ -553,14 +551,14 @@ def main():
     if args.upload:
         upload_file(s3, args.bucket, args.file)
 
-    if args.list:
-        list_bucket_contents(s3, args.bucket)
-
     if args.download:
         download_file(s3, args.bucket, os.path.basename(args.file))
 
     if args.delete:
         delete_file(s3, args.bucket, os.path.basename(args.file))
+
+    if args.list:
+        list_bucket_contents(s3, args.bucket)
 
     if args.remove_bucket:
         remove_bucket(s3, args.bucket)
@@ -631,18 +629,6 @@ File 'test.txt' uploaded as 'test.txt'.
 
 <br>
 
-### List Bucket
-
-<br>
-
-```bash
-(myenv) $ py manage-s3.py --bucket bucket-2 --list
-Bucket 'bucket-2' contents:
-- test.txt
-```
-
-<br>
-
 ### Download File
 
 <br>
@@ -661,6 +647,18 @@ File downloaded 'test.txt' to 'downloaded_test.txt'.
 ```bash
 (myenv) $ py manage-s3.py --bucket bucket-2 --file test.txt --delete
 Successfully deleted test.txt from bucket-2.
+```
+
+<br>
+
+### List Bucket
+
+<br>
+
+```bash
+(myenv) $ py manage-s3.py --bucket bucket-2 --list
+Bucket 'bucket-2' contents:
+- test.txt
 ```
 
 <br>
@@ -750,16 +748,16 @@ if ($opts{upload}) {
     upload_file($s3, $opts{bucket}, $opts{file});
 }
 
-if ($opts{list}) {
-    list_bucket_contents($s3, $opts{bucket});
-}
-
 if ($opts{download}) {
     download_file($s3, $opts{bucket}, basename($opts{file}));
 }
 
 if ($opts{delete}) {
     delete_file($s3, $opts{bucket}, basename($opts{file}));
+}
+
+if ($opts{list}) {
+    list_bucket_contents($s3, $opts{bucket});
 }
 
 if ($opts{remove_bucket}) {
@@ -1003,18 +1001,6 @@ Successfully uploaded 'test.txt' (56 bytes) as 'test.txt'.
 
 <br>
 
-### List Bucket
-
-<br>
-
-```bash
-(myenv) $ perl manage-s3.pl --bucket bucket-2 --list
-Bucket 'bucket-2' contents:
-- test.txt
-```
-
-<br>
-
 ### Download File
 
 <br>
@@ -1033,6 +1019,18 @@ Successfully downloaded 'test.txt' to 'downloaded_test.txt'.
 ```bash
 (myenv) $ perl manage-s3.pl --bucket bucket-2 --file test.txt --delete
 Successfully deleted test.txt from bucket-2.
+```
+
+<br>
+
+### List Bucket
+
+<br>
+
+```bash
+(myenv) $ perl manage-s3.pl --bucket bucket-2 --list
+Bucket 'bucket-2' contents:
+- test.txt
 ```
 
 <br>
