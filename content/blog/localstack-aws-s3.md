@@ -478,6 +478,15 @@ def download_file(s3, bucket_name, object_name, download_path=None):
         print(f"Error downloading file: {e}")
         return False
 
+def delete_file(s3, bucket_name, object_key):
+    try:
+        s3.delete_object(Bucket=bucket_name, Key=object_key)
+        print(f"Successfully deleted {object_key} from {bucket_name}.")
+        return True
+    except Exception as e:
+        print(f"Error deleting {object_key}: {e}")
+        return False
+
 def list_bucket_contents(s3, bucket_name):
     try:
         response = s3.list_objects_v2(Bucket=bucket_name)
@@ -524,6 +533,7 @@ def main():
     parser.add_argument('--list-buckets', action='store_true', help="List buckets")
     parser.add_argument('--upload', action='store_true', help="Upload file")
     parser.add_argument('--download', action='store_true', help="Download file")
+    parser.add_argument('--delete-file', action='store_true', help="Delete file")
     parser.add_argument('--list', action='store_true', help="List bucket contents")
     parser.add_argument('--remove-bucket', action='store_true', help="Remove bucket")
 
@@ -549,6 +559,9 @@ def main():
     if args.download:
         download_file(s3, args.bucket, os.path.basename(args.file))
 
+    if args.delete_file:
+        delete_file(s3, args.bucket, os.path.basename(args.file))
+
     if args.remove_bucket:
         remove_bucket(s3, args.bucket)
 
@@ -565,7 +578,7 @@ This is what it looks like:
 
 ```bash
 (myenv) $ py manage-s3.py --help
-usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--list] [--remove-bucket]
+usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--list] [--delete-file] [--remove-bucket]
 
 LocalStack S3 Operations
 
@@ -577,6 +590,7 @@ options:
   --list-buckets   List buckets
   --upload         Upload file
   --download       Download file
+  --delete-file    Delete file
   --list           List bucket contents
   --remove-bucket  Remove bucket
 ```
@@ -636,6 +650,17 @@ Bucket 'bucket-2' contents:
 ```bash
 (myenv) $ py manage-s3.py --bucket bucket-2 --file test.txt --download
 File downloaded 'test.txt' to 'downloaded_test.txt'.
+```
+
+<br>
+
+### Delete File
+
+<br>
+
+```bash
+(myenv) $ py manage-s3.py --bucket bucket-2 --file test.txt --delete-file
+Successfully deleted test.txt from bucket-2.
 ```
 
 <br>
@@ -776,6 +801,20 @@ sub download_file {
     }
 }
 
+sub delete_file {
+    my ($s3, $bucket_name, $object_name) = @_;
+    eval {
+        my $bucket  = $s3->bucket($bucket_name);
+        $bucket->delete_key($object_name) or die $s3->err . ": " . $s3->errstr;
+        print "Successfully deleted '$object_name' from '$bucket_name'.\n";
+        return 1;
+    };
+    if ($@) {
+        print "Error downloading file: $@\n";
+        return 0;
+    }
+}
+
 sub list_bucket_contents {
     my ($s3, $bucket_name) = @_;
 
@@ -831,6 +870,7 @@ GetOptions(
     'list-buckets'   => \$opts{list_buckets},
     'upload'         => \$opts{upload},
     'download'       => \$opts{download},
+    'delete-file'    => \$opts{delete_file},
     'list'           => \$opts{list},
     'remove-bucket'  => \$opts{remove_bucket},
     'help'           => \$opts{help},
@@ -845,7 +885,7 @@ sub show_help_and_exit {
     my ($exit_code) = @_;
 
     print <<"END_HELP";
-usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--list] [--remove-bucket]
+usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete-file] [--list] [--remove-bucket]
 
 LocalStack S3 Operations
 
@@ -857,6 +897,7 @@ options:
   --list-buckets   List buckets
   --upload         Upload file
   --download       Download file
+  --delete-file    Delete file
   --list           List bucket contents
   --remove-bucket  Delete bucket
 END_HELP
@@ -893,6 +934,10 @@ if ($opts{download}) {
     download_file($s3, $opts{bucket}, basename($opts{file}));
 }
 
+if ($opts{delete_file}) {
+    delete_file($s3, $opts{bucket}, basename($opts{file}));
+}
+
 if ($opts{remove_bucket}) {
     remove_bucket($s3, $opts{bucket});
 }
@@ -906,7 +951,7 @@ This is what it looks like:
 
 ```bash
 (myenv) $ perl manage-s3.pl --help
-usage: manage-s3.pl [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--list] [--remove-bucket]
+usage: manage-s3.pl [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete-file] [--list] [--remove-bucket]
 
 LocalStack S3 Operations
 
@@ -918,6 +963,7 @@ options:
   --list-buckets   List buckets
   --upload         Upload file
   --download       Download file
+  --delete-file    Delete file
   --list           List bucket contents
   --remove-bucket  Delete bucket
 ```
@@ -977,6 +1023,17 @@ Bucket 'bucket-2' contents:
 ```bash
 (myenv) $ perl manage-s3.pl --bucket bucket-2 --file test.txt --download
 Successfully downloaded 'test.txt' to 'downloaded_test.txt'.
+```
+
+<br>
+
+### Delete File
+
+<br>
+
+```bash
+(myenv) $ perl manage-s3.pl --bucket bucket-2 --file test.txt --delete-file
+Successfully deleted test.txt from bucket-2.
 ```
 
 <br>

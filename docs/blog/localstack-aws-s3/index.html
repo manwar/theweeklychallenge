@@ -585,6 +585,15 @@ REGION <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;eu-
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error downloading file: {e}&#34;</span>)
         <span style="color:#66d9ef">return</span> False
 
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delete_file</span>(s3, bucket_name, object_key):
+    <span style="color:#66d9ef">try</span>:
+        s3<span style="color:#f92672">.</span>delete_object(Bucket<span style="color:#f92672">=</span>bucket_name, Key<span style="color:#f92672">=</span>object_key)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Successfully deleted {object_key} from {bucket_name}.&#34;</span>)
+        <span style="color:#66d9ef">return</span> True
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error deleting {object_key}: {e}&#34;</span>)
+        <span style="color:#66d9ef">return</span> False
+
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">list_bucket_contents</span>(s3, bucket_name):
     <span style="color:#66d9ef">try</span>:
         response <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>list_objects_v2(Bucket<span style="color:#f92672">=</span>bucket_name)
@@ -631,6 +640,7 @@ REGION <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;eu-
     parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--list-buckets&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;List buckets&#34;</span>)
     parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--upload&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Upload file&#34;</span>)
     parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--download&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Download file&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--delete-file&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Delete file&#34;</span>)
     parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--list&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;List bucket contents&#34;</span>)
     parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--remove-bucket&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Remove bucket&#34;</span>)
 
@@ -656,6 +666,9 @@ REGION <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;eu-
     <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>download:
         download_file(s3, args<span style="color:#f92672">.</span>bucket, os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(args<span style="color:#f92672">.</span>file))
 
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>delete_file:
+        delete_file(s3, args<span style="color:#f92672">.</span>bucket, os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(args<span style="color:#f92672">.</span>file))
+
     <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>remove_bucket:
         remove_bucket(s3, args<span style="color:#f92672">.</span>bucket)
 
@@ -666,7 +679,7 @@ REGION <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;eu-
 <p>This is what it looks like:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --help
-usage: manage-s3.py <span style="color:#f92672">[</span>-h<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--make-bucket<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list-buckets<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--upload<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--download<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--remove-bucket<span style="color:#f92672">]</span>
+usage: manage-s3.py <span style="color:#f92672">[</span>-h<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--make-bucket<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list-buckets<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--upload<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--download<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--delete-file<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--remove-bucket<span style="color:#f92672">]</span>
 
 LocalStack S3 Operations
 
@@ -678,6 +691,7 @@ options:
   --list-buckets   List buckets
   --upload         Upload file
   --download       Download file
+  --delete-file    Delete file
   --list           List bucket contents
   --remove-bucket  Remove bucket
 </code></pre></div><br>
@@ -707,6 +721,11 @@ Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> contents:
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --file test.txt --download
 File downloaded <span style="color:#e6db74">&#39;test.txt&#39;</span> to <span style="color:#e6db74">&#39;downloaded_test.txt&#39;</span>.
+</code></pre></div><br>
+<h3 id="delete-file-1">Delete File</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --file test.txt --delete-file
+Successfully deleted test.txt from bucket-2.
 </code></pre></div><br>
 <h3 id="remove-bucket-1">Remove Bucket</h3>
 <br>
@@ -826,6 +845,20 @@ Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> deleted successfull
     }
 }
 
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">delete_file</span> {
+    <span style="color:#66d9ef">my</span> ($s3, $bucket_name, $object_name) <span style="color:#f92672">=</span> @_;
+    eval {
+        <span style="color:#66d9ef">my</span> $bucket  <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>bucket($bucket_name);
+        $bucket<span style="color:#f92672">-&gt;</span>delete_key($object_name) <span style="color:#f92672">or</span> die $s3<span style="color:#f92672">-&gt;</span>err <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">.</span> $s3<span style="color:#f92672">-&gt;</span>errstr;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Successfully deleted &#39;$object_name&#39; from &#39;$bucket_name&#39;.\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    };
+    <span style="color:#66d9ef">if</span> ($@) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Error downloading file: $@\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+}
+
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_bucket_contents</span> {
     <span style="color:#66d9ef">my</span> ($s3, $bucket_name) <span style="color:#f92672">=</span> @_;
 
@@ -881,6 +914,7 @@ GetOptions(
     <span style="color:#e6db74">&#39;list-buckets&#39;</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{list_buckets},
     <span style="color:#e6db74">&#39;upload&#39;</span>         <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{upload},
     <span style="color:#e6db74">&#39;download&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{download},
+    <span style="color:#e6db74">&#39;delete-file&#39;</span>    <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{delete_file},
     <span style="color:#e6db74">&#39;list&#39;</span>           <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{list},
     <span style="color:#e6db74">&#39;remove-bucket&#39;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{remove_bucket},
     <span style="color:#e6db74">&#39;help&#39;</span>           <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{help},
@@ -895,7 +929,7 @@ show_help_and_exit(<span style="color:#ae81ff">0</span>) <span style="color:#66d
     <span style="color:#66d9ef">my</span> ($exit_code) <span style="color:#f92672">=</span> @_;
 
     <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&lt;&lt;&#34;</span><span style="color:#e6db74">END_HELP</span><span style="color:#e6db74">&#34;;
-</span><span style="color:#e6db74">usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--list] [--remove-bucket]
+</span><span style="color:#e6db74">usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete-file] [--list] [--remove-bucket]
 </span><span style="color:#e6db74">
 </span><span style="color:#e6db74">LocalStack S3 Operations
 </span><span style="color:#e6db74">
@@ -907,6 +941,7 @@ show_help_and_exit(<span style="color:#ae81ff">0</span>) <span style="color:#66d
 </span><span style="color:#e6db74">  --list-buckets   List buckets
 </span><span style="color:#e6db74">  --upload         Upload file
 </span><span style="color:#e6db74">  --download       Download file
+</span><span style="color:#e6db74">  --delete-file    Delete file
 </span><span style="color:#e6db74">  --list           List bucket contents
 </span><span style="color:#e6db74">  --remove-bucket  Delete bucket
 </span><span style="color:#e6db74"></span><span style="color:#e6db74">END_HELP</span>
@@ -943,6 +978,10 @@ $opts{file}   <span style="color:#f92672">||=</span> $DEFAULT_FILE;
     download_file($s3, $opts{bucket}, basename($opts{file}));
 }
 
+<span style="color:#66d9ef">if</span> ($opts{delete_file}) {
+    delete_file($s3, $opts{bucket}, basename($opts{file}));
+}
+
 <span style="color:#66d9ef">if</span> ($opts{remove_bucket}) {
     remove_bucket($s3, $opts{bucket});
 }
@@ -950,7 +989,7 @@ $opts{file}   <span style="color:#f92672">||=</span> $DEFAULT_FILE;
 <p>This is what it looks like:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --help
-usage: manage-s3.pl <span style="color:#f92672">[</span>--help<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--make-bucket<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list-buckets<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--upload<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--download<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--remove-bucket<span style="color:#f92672">]</span>
+usage: manage-s3.pl <span style="color:#f92672">[</span>--help<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--make-bucket<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list-buckets<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--upload<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--download<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--delete-file<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--remove-bucket<span style="color:#f92672">]</span>
 
 LocalStack S3 Operations
 
@@ -962,6 +1001,7 @@ options:
   --list-buckets   List buckets
   --upload         Upload file
   --download       Download file
+  --delete-file    Delete file
   --list           List bucket contents
   --remove-bucket  Delete bucket
 </code></pre></div><br>
@@ -991,6 +1031,11 @@ Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> contents:
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --file test.txt --download
 Successfully downloaded <span style="color:#e6db74">&#39;test.txt&#39;</span> to <span style="color:#e6db74">&#39;downloaded_test.txt&#39;</span>.
+</code></pre></div><br>
+<h3 id="delete-file-2">Delete File</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --file test.txt --delete-file
+Successfully deleted test.txt from bucket-2.
 </code></pre></div><br>
 <h3 id="remove-bucket-2">Remove Bucket</h3>
 <br>
