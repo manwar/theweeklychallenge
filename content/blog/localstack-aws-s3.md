@@ -409,6 +409,8 @@ import os
 import sys
 
 LOCALSTACK_ENDPOINT = "http://localhost:4566"
+ACCESS_KEY_ID = "test"
+SECRET_ACCESS_KEY = "test"
 DEFAULT_BUCKET = "bucket-1"
 DEFAULT_FILE = "test.txt"
 REGION = "eu-west-1"
@@ -416,11 +418,11 @@ REGION = "eu-west-1"
 def create_s3_client():
     return boto3.client(
         's3',
-        endpoint_url=LOCALSTACK_ENDPOINT,
-        aws_access_key_id="test",
-        aws_secret_access_key="test",
-        config=Config(signature_version='s3v4'),
-        region_name=REGION
+        endpoint_url = LOCALSTACK_ENDPOINT,
+        aws_access_key_id = ACCESS_KEY_ID,
+        aws_secret_access_key = SECRET_ACCESS_KEY,
+        config = Config(signature_version='s3v4'),
+        region_name = REGION
     )
 
 def make_bucket(s3, bucket_name):
@@ -680,16 +682,16 @@ use File::Basename;
 use Net::Amazon::S3;
 
 my $LOCALSTACK_ENDPOINT = 'localhost:4566';
-my $DEFAULT_API_KEY     = 'test';
-my $DEFAULT_ACCESS_KEY  = 'test';
+my $ACCESS_KEY_ID       = 'test';
+my $SECRET_ACCESS_KEY   = 'test';
 my $DEFAULT_BUCKET      = 'bucket-1';
 my $DEFAULT_FILE        = 'test.txt';
 my $REGION              = 'eu-west-1';
 
 sub create_s3_client {
     return Net::Amazon::S3->new(
-        aws_access_key_id     => $DEFAULT_API_KEY,
-        aws_secret_access_key => $DEFAULT_ACCESS_KEY,
+        aws_access_key_id     => $ACCESS_KEY_ID,
+        aws_secret_access_key => $SECRET_ACCESS_KEY,
         host                  => $LOCALSTACK_ENDPOINT,
         secure                => 0,
     );
