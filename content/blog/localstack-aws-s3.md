@@ -440,13 +440,10 @@ def make_bucket(s3, bucket_name):
 def list_buckets(s3):
     try:
         response = s3.list_buckets()
-
         print("S3 Bucket List:")
         for bucket in response['Buckets']:
             print(f"- {bucket['Name']}")
-
         return True
-
     except Exception as e:
         print(f"Error listing buckets: {e}")
         return False
