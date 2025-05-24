@@ -713,6 +713,85 @@ my $DEFAULT_BUCKET      = 'bucket-1';
 my $DEFAULT_FILE        = 'test.txt';
 my $REGION              = 'eu-west-1';
 
+my %opts;
+GetOptions(
+    'bucket=s'       => \$opts{bucket},
+    'file=s'         => \$opts{file},
+    'make-bucket'    => \$opts{make_bucket},
+    'list-buckets'   => \$opts{list_buckets},
+    'upload'         => \$opts{upload},
+    'download'       => \$opts{download},
+    'delete'         => \$opts{delete},
+    'list'           => \$opts{list},
+    'remove-bucket'  => \$opts{remove_bucket},
+    'help'           => \$opts{help},
+) or show_help_and_exit(1);  # Show help on invalid options
+
+show_help_and_exit(0) if $opts{help};
+
+$opts{bucket} ||= $DEFAULT_BUCKET;
+$opts{file}   ||= $DEFAULT_FILE;
+
+my $s3 = create_s3_client();
+
+if ($opts{upload}) {
+    create_test_file($opts{file});
+}
+
+if ($opts{make_bucket}) {
+    make_bucket($s3, $opts{bucket});
+}
+
+if ($opts{list_buckets}) {
+    list_buckets($s3);
+}
+
+if ($opts{upload}) {
+    upload_file($s3, $opts{bucket}, $opts{file});
+}
+
+if ($opts{list}) {
+    list_bucket_contents($s3, $opts{bucket});
+}
+
+if ($opts{download}) {
+    download_file($s3, $opts{bucket}, basename($opts{file}));
+}
+
+if ($opts{delete}) {
+    delete_file($s3, $opts{bucket}, basename($opts{file}));
+}
+
+if ($opts{remove_bucket}) {
+    remove_bucket($s3, $opts{bucket});
+}
+
+## SUBROUTINES
+
+sub show_help_and_exit {
+    my ($exit_code) = @_;
+
+    print <<"END_HELP";
+usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
+
+LocalStack S3 Operations
+
+options:
+  --help           show this help message and exit
+  --bucket BUCKET  Bucket name
+  --file FILE      File to upload/download
+  --make-bucket    Create bucket
+  --list-buckets   List buckets
+  --upload         Upload file
+  --download       Download file
+  --delete         Delete file
+  --list           List bucket contents
+  --remove-bucket  Delete bucket
+END_HELP
+
+    exit $exit_code;
+}
+
 sub create_s3_client {
     return Net::Amazon::S3->new(
         aws_access_key_id     => $ACCESS_KEY_ID,
@@ -860,86 +939,6 @@ sub create_test_file {
         write_file($file_path, "This is a test file created at " . localtime() . "\n");
         print "Created test file: $file_path\n";
     }
-}
-
-my %opts;
-GetOptions(
-    'bucket=s'       => \$opts{bucket},
-    'file=s'         => \$opts{file},
-    'make-bucket'    => \$opts{make_bucket},
-    'list-buckets'   => \$opts{list_buckets},
-    'upload'         => \$opts{upload},
-    'download'       => \$opts{download},
-    'delete'         => \$opts{delete},
-    'list'           => \$opts{list},
-    'remove-bucket'  => \$opts{remove_bucket},
-    'help'           => \$opts{help},
-) or show_help_and_exit(1);  # Show help on invalid options
-
-# Show help if requested
-show_help_and_exit(0) if $opts{help};
-
-# [Rest of your script implementation]
-
-sub show_help_and_exit {
-    my ($exit_code) = @_;
-
-    print <<"END_HELP";
-usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
-
-LocalStack S3 Operations
-
-options:
-  --help           show this help message and exit
-  --bucket BUCKET  Bucket name
-  --file FILE      File to upload/download
-  --make-bucket    Create bucket
-  --list-buckets   List buckets
-  --upload         Upload file
-  --download       Download file
-  --delete         Delete file
-  --list           List bucket contents
-  --remove-bucket  Delete bucket
-END_HELP
-
-    exit $exit_code;
-}
-
-$opts{bucket} ||= $DEFAULT_BUCKET;
-$opts{file}   ||= $DEFAULT_FILE;
-
-my $s3 = create_s3_client();
-
-if ($opts{upload}) {
-    create_test_file($opts{file});
-}
-
-if ($opts{make_bucket}) {
-    make_bucket($s3, $opts{bucket});
-}
-
-if ($opts{list_buckets}) {
-    list_buckets($s3);
-}
-
-if ($opts{upload}) {
-    upload_file($s3, $opts{bucket}, $opts{file});
-}
-
-if ($opts{list}) {
-    list_bucket_contents($s3, $opts{bucket});
-}
-
-if ($opts{download}) {
-    download_file($s3, $opts{bucket}, basename($opts{file}));
-}
-
-if ($opts{delete}) {
-    delete_file($s3, $opts{bucket}, basename($opts{file}));
-}
-
-if ($opts{remove_bucket}) {
-    remove_bucket($s3, $opts{bucket});
 }
 ```
 

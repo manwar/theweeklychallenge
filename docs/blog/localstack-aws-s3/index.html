@@ -757,6 +757,85 @@ Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> deleted successfull
 <span style="color:#66d9ef">my</span> $DEFAULT_FILE        <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test.txt&#39;</span>;
 <span style="color:#66d9ef">my</span> $REGION              <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;eu-west-1&#39;</span>;
 
+<span style="color:#66d9ef">my</span> %opts;
+GetOptions(
+    <span style="color:#e6db74">&#39;bucket=s&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{bucket},
+    <span style="color:#e6db74">&#39;file=s&#39;</span>         <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{file},
+    <span style="color:#e6db74">&#39;make-bucket&#39;</span>    <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{make_bucket},
+    <span style="color:#e6db74">&#39;list-buckets&#39;</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{list_buckets},
+    <span style="color:#e6db74">&#39;upload&#39;</span>         <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{upload},
+    <span style="color:#e6db74">&#39;download&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{download},
+    <span style="color:#e6db74">&#39;delete&#39;</span>         <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{delete},
+    <span style="color:#e6db74">&#39;list&#39;</span>           <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{list},
+    <span style="color:#e6db74">&#39;remove-bucket&#39;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{remove_bucket},
+    <span style="color:#e6db74">&#39;help&#39;</span>           <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{help},
+) <span style="color:#f92672">or</span> show_help_and_exit(<span style="color:#ae81ff">1</span>);  <span style="color:#75715e"># Show help on invalid options</span>
+
+show_help_and_exit(<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">if</span> $opts{help};
+
+$opts{bucket} <span style="color:#f92672">||=</span> $DEFAULT_BUCKET;
+$opts{file}   <span style="color:#f92672">||=</span> $DEFAULT_FILE;
+
+<span style="color:#66d9ef">my</span> $s3 <span style="color:#f92672">=</span> create_s3_client();
+
+<span style="color:#66d9ef">if</span> ($opts{upload}) {
+    create_test_file($opts{file});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{make_bucket}) {
+    make_bucket($s3, $opts{bucket});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{list_buckets}) {
+    list_buckets($s3);
+}
+
+<span style="color:#66d9ef">if</span> ($opts{upload}) {
+    upload_file($s3, $opts{bucket}, $opts{file});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{list}) {
+    list_bucket_contents($s3, $opts{bucket});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{download}) {
+    download_file($s3, $opts{bucket}, basename($opts{file}));
+}
+
+<span style="color:#66d9ef">if</span> ($opts{delete}) {
+    delete_file($s3, $opts{bucket}, basename($opts{file}));
+}
+
+<span style="color:#66d9ef">if</span> ($opts{remove_bucket}) {
+    remove_bucket($s3, $opts{bucket});
+}
+
+<span style="color:#75715e">## SUBROUTINES</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_help_and_exit</span> {
+    <span style="color:#66d9ef">my</span> ($exit_code) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&lt;&lt;&#34;</span><span style="color:#e6db74">END_HELP</span><span style="color:#e6db74">&#34;;
+</span><span style="color:#e6db74">usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">LocalStack S3 Operations
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">options:
+</span><span style="color:#e6db74">  --help           show this help message and exit
+</span><span style="color:#e6db74">  --bucket BUCKET  Bucket name
+</span><span style="color:#e6db74">  --file FILE      File to upload/download
+</span><span style="color:#e6db74">  --make-bucket    Create bucket
+</span><span style="color:#e6db74">  --list-buckets   List buckets
+</span><span style="color:#e6db74">  --upload         Upload file
+</span><span style="color:#e6db74">  --download       Download file
+</span><span style="color:#e6db74">  --delete         Delete file
+</span><span style="color:#e6db74">  --list           List bucket contents
+</span><span style="color:#e6db74">  --remove-bucket  Delete bucket
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">END_HELP</span>
+
+    exit $exit_code;
+}
+
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_s3_client</span> {
     <span style="color:#66d9ef">return</span> Net::Amazon::S3<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
         aws_access_key_id     <span style="color:#f92672">=&gt;</span> $ACCESS_KEY_ID,
@@ -904,86 +983,6 @@ Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> deleted successfull
         write_file($file_path, <span style="color:#e6db74">&#34;This is a test file created at &#34;</span> <span style="color:#f92672">.</span> localtime() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>);
         <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Created test file: $file_path\n&#34;</span>;
     }
-}
-
-<span style="color:#66d9ef">my</span> %opts;
-GetOptions(
-    <span style="color:#e6db74">&#39;bucket=s&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{bucket},
-    <span style="color:#e6db74">&#39;file=s&#39;</span>         <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{file},
-    <span style="color:#e6db74">&#39;make-bucket&#39;</span>    <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{make_bucket},
-    <span style="color:#e6db74">&#39;list-buckets&#39;</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{list_buckets},
-    <span style="color:#e6db74">&#39;upload&#39;</span>         <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{upload},
-    <span style="color:#e6db74">&#39;download&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{download},
-    <span style="color:#e6db74">&#39;delete&#39;</span>         <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{delete},
-    <span style="color:#e6db74">&#39;list&#39;</span>           <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{list},
-    <span style="color:#e6db74">&#39;remove-bucket&#39;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{remove_bucket},
-    <span style="color:#e6db74">&#39;help&#39;</span>           <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{help},
-) <span style="color:#f92672">or</span> show_help_and_exit(<span style="color:#ae81ff">1</span>);  <span style="color:#75715e"># Show help on invalid options</span>
-
-<span style="color:#75715e"># Show help if requested</span>
-show_help_and_exit(<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">if</span> $opts{help};
-
-<span style="color:#75715e"># [Rest of your script implementation]</span>
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_help_and_exit</span> {
-    <span style="color:#66d9ef">my</span> ($exit_code) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&lt;&lt;&#34;</span><span style="color:#e6db74">END_HELP</span><span style="color:#e6db74">&#34;;
-</span><span style="color:#e6db74">usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">LocalStack S3 Operations
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">options:
-</span><span style="color:#e6db74">  --help           show this help message and exit
-</span><span style="color:#e6db74">  --bucket BUCKET  Bucket name
-</span><span style="color:#e6db74">  --file FILE      File to upload/download
-</span><span style="color:#e6db74">  --make-bucket    Create bucket
-</span><span style="color:#e6db74">  --list-buckets   List buckets
-</span><span style="color:#e6db74">  --upload         Upload file
-</span><span style="color:#e6db74">  --download       Download file
-</span><span style="color:#e6db74">  --delete         Delete file
-</span><span style="color:#e6db74">  --list           List bucket contents
-</span><span style="color:#e6db74">  --remove-bucket  Delete bucket
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">END_HELP</span>
-
-    exit $exit_code;
-}
-
-$opts{bucket} <span style="color:#f92672">||=</span> $DEFAULT_BUCKET;
-$opts{file}   <span style="color:#f92672">||=</span> $DEFAULT_FILE;
-
-<span style="color:#66d9ef">my</span> $s3 <span style="color:#f92672">=</span> create_s3_client();
-
-<span style="color:#66d9ef">if</span> ($opts{upload}) {
-    create_test_file($opts{file});
-}
-
-<span style="color:#66d9ef">if</span> ($opts{make_bucket}) {
-    make_bucket($s3, $opts{bucket});
-}
-
-<span style="color:#66d9ef">if</span> ($opts{list_buckets}) {
-    list_buckets($s3);
-}
-
-<span style="color:#66d9ef">if</span> ($opts{upload}) {
-    upload_file($s3, $opts{bucket}, $opts{file});
-}
-
-<span style="color:#66d9ef">if</span> ($opts{list}) {
-    list_bucket_contents($s3, $opts{bucket});
-}
-
-<span style="color:#66d9ef">if</span> ($opts{download}) {
-    download_file($s3, $opts{bucket}, basename($opts{file}));
-}
-
-<span style="color:#66d9ef">if</span> ($opts{delete}) {
-    delete_file($s3, $opts{bucket}, basename($opts{file}));
-}
-
-<span style="color:#66d9ef">if</span> ($opts{remove_bucket}) {
-    remove_bucket($s3, $opts{bucket});
 }
 </code></pre></div><br>
 <p>This is what it looks like:</p>
