@@ -563,7 +563,7 @@ This is what it looks like:
 
 ```bash
 (myenv) $ py manage-s3.py --help
-usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--upload] [--download] [--list] [--remove-bucket]
+usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--list] [--remove-bucket]
 
 LocalStack S3 Operations
 
