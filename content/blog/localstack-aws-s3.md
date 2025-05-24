@@ -725,7 +725,7 @@ GetOptions(
     'list'           => \$opts{list},
     'remove-bucket'  => \$opts{remove_bucket},
     'help'           => \$opts{help},
-) or show_help_and_exit(1);  # Show help on invalid options
+) or show_help_and_exit(1);
 
 show_help_and_exit(0) if $opts{help};
 
