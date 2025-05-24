@@ -533,7 +533,7 @@ def main():
     parser.add_argument('--list-buckets', action='store_true', help="List buckets")
     parser.add_argument('--upload', action='store_true', help="Upload file")
     parser.add_argument('--download', action='store_true', help="Download file")
-    parser.add_argument('--delete-file', action='store_true', help="Delete file")
+    parser.add_argument('--delete', action='store_true', help="Delete file")
     parser.add_argument('--list', action='store_true', help="List bucket contents")
     parser.add_argument('--remove-bucket', action='store_true', help="Remove bucket")
 
@@ -559,7 +559,7 @@ def main():
     if args.download:
         download_file(s3, args.bucket, os.path.basename(args.file))
 
-    if args.delete_file:
+    if args.delete:
         delete_file(s3, args.bucket, os.path.basename(args.file))
 
     if args.remove_bucket:
@@ -578,7 +578,7 @@ This is what it looks like:
 
 ```bash
 (myenv) $ py manage-s3.py --help
-usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--list] [--delete-file] [--remove-bucket]
+usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
 
 LocalStack S3 Operations
 
@@ -590,7 +590,7 @@ options:
   --list-buckets   List buckets
   --upload         Upload file
   --download       Download file
-  --delete-file    Delete file
+  --delete         Delete file
   --list           List bucket contents
   --remove-bucket  Remove bucket
 ```
@@ -659,7 +659,7 @@ File downloaded 'test.txt' to 'downloaded_test.txt'.
 <br>
 
 ```bash
-(myenv) $ py manage-s3.py --bucket bucket-2 --file test.txt --delete-file
+(myenv) $ py manage-s3.py --bucket bucket-2 --file test.txt --delete
 Successfully deleted test.txt from bucket-2.
 ```
 
@@ -870,7 +870,7 @@ GetOptions(
     'list-buckets'   => \$opts{list_buckets},
     'upload'         => \$opts{upload},
     'download'       => \$opts{download},
-    'delete-file'    => \$opts{delete_file},
+    'delete'         => \$opts{delete},
     'list'           => \$opts{list},
     'remove-bucket'  => \$opts{remove_bucket},
     'help'           => \$opts{help},
@@ -885,7 +885,7 @@ sub show_help_and_exit {
     my ($exit_code) = @_;
 
     print <<"END_HELP";
-usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete-file] [--list] [--remove-bucket]
+usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
 
 LocalStack S3 Operations
 
@@ -897,7 +897,7 @@ options:
   --list-buckets   List buckets
   --upload         Upload file
   --download       Download file
-  --delete-file    Delete file
+  --delete         Delete file
   --list           List bucket contents
   --remove-bucket  Delete bucket
 END_HELP
@@ -934,7 +934,7 @@ if ($opts{download}) {
     download_file($s3, $opts{bucket}, basename($opts{file}));
 }
 
-if ($opts{delete_file}) {
+if ($opts{delete}) {
     delete_file($s3, $opts{bucket}, basename($opts{file}));
 }
 
@@ -951,7 +951,7 @@ This is what it looks like:
 
 ```bash
 (myenv) $ perl manage-s3.pl --help
-usage: manage-s3.pl [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete-file] [--list] [--remove-bucket]
+usage: manage-s3.pl [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
 
 LocalStack S3 Operations
 
@@ -963,7 +963,7 @@ options:
   --list-buckets   List buckets
   --upload         Upload file
   --download       Download file
-  --delete-file    Delete file
+  --delete         Delete file
   --list           List bucket contents
   --remove-bucket  Delete bucket
 ```
@@ -1032,7 +1032,7 @@ Successfully downloaded 'test.txt' to 'downloaded_test.txt'.
 <br>
 
 ```bash
-(myenv) $ perl manage-s3.pl --bucket bucket-2 --file test.txt --delete-file
+(myenv) $ perl manage-s3.pl --bucket bucket-2 --file test.txt --delete
 Successfully deleted test.txt from bucket-2.
 ```
 
