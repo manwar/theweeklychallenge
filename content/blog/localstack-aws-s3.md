@@ -810,7 +810,7 @@ sub delete_file {
         return 1;
     };
     if ($@) {
-        print "Error downloading file: $@\n";
+        print "Error deleting file: $@\n";
         return 0;
     }
 }
