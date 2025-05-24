@@ -538,7 +538,7 @@ def create_s3_client():
         region_name = REGION
     )
 
-def make_bucket(s3, bucket_name):
+def make_bucket(s3, bucket_name, enable_versioning=False):
     try:
         s3.create_bucket(
             Bucket=bucket_name,
@@ -546,10 +546,27 @@ def make_bucket(s3, bucket_name):
                 'LocationConstraint': REGION
             }
         )
+
+        if enable_versioning:
+            s3.put_bucket_versioning(
+                Bucket=bucket_name,
+                VersioningConfiguration = { 'Status': 'Enabled' }
+            )
+
         print(f"Bucket '{bucket_name}' created successfully.")
         return True
     except Exception as e:
         print(f"Error creating bucket: {e}")
+        return False
+
+def check_bucket_versioning(s3, bucket_name):
+    try:
+        response = s3.get_bucket_versioning(Bucket=bucket_name)
+        status = response.get('Status', 'Not enabled')
+        print(f"Versioning: {status}")
+        return True
+    except Exception as e:
+        print(f"Error checking bucket versioning: {e}")
         return False
 
 def list_buckets(s3):
@@ -643,6 +660,8 @@ def main():
 
     # Operation flags
     parser.add_argument('--make-bucket', action='store_true', help="Make bucket")
+    parser.add_argument('--enable-versioning', action='store_true', help="Enable object versioning")
+    parser.add_argument('--check-versioning', action='store_true', help="Check object versioning")
     parser.add_argument('--list-buckets', action='store_true', help="List buckets")
     parser.add_argument('--upload', action='store_true', help="Upload file")
     parser.add_argument('--download', action='store_true', help="Download file")
@@ -658,7 +677,10 @@ def main():
         create_test_file(args.file)
 
     if args.make_bucket:
-        make_bucket(s3, args.bucket)
+        make_bucket(s3, args.bucket, args.enable_versioning)
+
+    if args.check_versioning:
+        check_bucket_versioning(s3, args.bucket)
 
     if args.list_buckets:
         list_buckets(s3)
@@ -691,21 +713,23 @@ This is what it looks like:
 
 ```bash
 (myenv) $ py manage-s3.py --help
-usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
+usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning] [--check-versioning] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
 
 LocalStack S3 Operations
 
 options:
-  -h, --help       show this help message and exit
-  --bucket BUCKET  Bucket name
-  --file FILE      File to upload/download
-  --make-bucket    Make bucket
-  --list-buckets   List buckets
-  --upload         Upload file
-  --download       Download file
-  --delete         Delete file
-  --list           List bucket contents
-  --remove-bucket  Remove bucket
+  -h, --help           show this help message and exit
+  --bucket BUCKET      Bucket name
+  --file FILE          File to upload/download
+  --make-bucket        Make bucket
+  --enable-versioning  Enable object versioning
+  --check-versioning   Check object versioning
+  --list-buckets       List buckets
+  --upload             Upload file
+  --download           Download file
+  --delete             Delete file
+  --list               List bucket contents
+  --remove-bucket      Remove bucket
 ```
 
 <br>
@@ -717,6 +741,30 @@ options:
 ```bash
 (myenv) $ py manage-s3.py --bucket bucket-2 --make-bucket
 Bucket 'bucket-2' created successfully.
+```
+
+<br>
+
+Now make bucket with versioning enabled:
+
+<br>
+
+```bash
+(myenv) $ py manage-s3.py --bucket bucket-3 --make-bucket --enable-versioning
+Bucket 'bucket-3' created successfully.
+```
+
+<br>
+
+Check the versioning now:
+
+<br>
+
+```bash
+(myenv) $ py manage-s3.py --bucket bucket-3 --check-versioning
+Versioning: Enabled
+(myenv) $ py manage-s3.py --bucket bucket-2 --check-versioning
+Versioning: Not enabled
 ```
 
 <br>
