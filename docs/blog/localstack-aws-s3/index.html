@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="LocalStack with AWS S3"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/localstack-aws-s3/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about LocalStack and AWS S3."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about LocalStack and AWS S3.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/localstack-aws-s3/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LocalStack with AWS S3</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>LocalStack with AWS S3</h2>
+                    <div class="portfolio-meta">
+                        <span>Saturday, May 24, 2025</span>|
+                        <span> Tags:
+                            perl, python, aws, localstack
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/localstack-aws-s3.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-leonardo-ai"><strong>DISCLAIMER:</strong> Image is generated using <code>Leonardo AI</code>.</h4>
+<hr>
+<br>
+<h3 id="nbspnbsp1-introductionintroduction"><a href="#introduction">  1. Introduction</a></h3>
+<h3 id="nbspnbsp2-setup-awscliinstall-awscli"><a href="#install-awscli">  2. Setup awscli</a></h3>
+<h3 id="nbspnbsp3-setup-localstackinstall-localstack"><a href="#install-localstack">  3. Setup LocalStack</a></h3>
+<h3 id="nbspnbsp4-make-bucketmake-bucket"><a href="#make-bucket">  4. Make Bucket</a></h3>
+<h3 id="nbspnbsp5-list-bucketslist-buckets"><a href="#list-buckets">  5. List Buckets</a></h3>
+<h3 id="nbspnbsp6-upload-fileupload-file"><a href="#upload-file">  6. Upload File</a></h3>
+<h3 id="nbspnbsp7-list-bucketlist-bucket"><a href="#list-bucket">  7. List Bucket</a></h3>
+<h3 id="nbspnbsp8-download-filedownload-file"><a href="#download-file">  8. Download File</a></h3>
+<h3 id="nbspnbsp9-delete-filedelete-file"><a href="#delete-file">  9. Delete File</a></h3>
+<h3 id="10-remove-bucketremove-bucket"><a href="#remove-bucket">10. Remove Bucket</a></h3>
+<h3 id="11-s3-with-pythons3-with-python"><a href="#s3-with-python">11. S3 with Python</a></h3>
+<h3 id="12-s3-with-perls3-with-perl"><a href="#s3-with-perl">12. S3 with Perl</a></h3>
+<h3 id="13-what-nextwhat-next"><a href="#what-next">13. What next?</a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<p>Recently I got the opportunity to work with <code>AWS S3</code> at work.</p>
+<p>For this I wanted to brush up my knowledge as last I played with it was an year ago.</p>
+<p>I used <code>Free Tier</code> account provided by <code>AWS</code> last time.</p>
+<p>The account trial period ended in <code>12 months</code> as expected.</p>
+<p>So now, I had no otherway to play with <code>AWS S3</code>.</p>
+<p>While looking for an alternative, I found out, <a href="https://www.localstack.cloud"><strong>LocalStack</strong></a>.</p>
+<p><code>LocalStack</code> is a cloud service emulator that provides a local environment for developing and testing <code>AWS (Amazon Web Services)</code> applications without connecting to the real <code>AWS</code> cloud.</p>
+<br>
+<h2 id="setup-awscli">Setup awscli</h2>
+<hr>
+<br>
+<p>To prepare the ground, I needed <code>aws</code> command line utility.</p>
+<p>So this is how I got it installed.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl <span style="color:#e6db74">&#34;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&#34;</span> -o <span style="color:#e6db74">&#34;awscliv2.zip&#34;</span>
+$ unzip awscliv2.zip
+$ sudo ./aws/install
+$ aws --version
+aws-cli/2.25.6 Python/3.12.9 Linux/5.15.167.4-microsoft-standard-WSL2 exe/x86_64.ubuntu.24
+</code></pre></div><br>
+<p>Let&rsquo;s configure the <code>aws</code> client now:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure
+AWS Access Key ID <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: test
+AWS Secret Access Key <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: test
+Default region name <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: eu-west-1
+Default output format <span style="color:#f92672">[</span>None<span style="color:#f92672">]</span>: json
+</code></pre></div><br>
+<p>List the configuration:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws configure list
+      Name                    Value             Type    Location
+      ----                    -----             ----    --------
+   profile                &lt;not set&gt;             None    None
+access_key     ****************VW55              env
+secret_key     ****************+ljT              env
+    region                eu-west-1      config-file    ~/.aws/config
+</code></pre></div><br>
+<p>Verify the config file:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat ~/.aws/config
+<span style="color:#f92672">[</span>default<span style="color:#f92672">]</span>
+region <span style="color:#f92672">=</span> eu-west-1
+output <span style="color:#f92672">=</span> json
+</code></pre></div><br>
+<p>And the credentials as well:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat ~/.aws/credentials
+<span style="color:#f92672">[</span>default<span style="color:#f92672">]</span>
+aws_access_key_id <span style="color:#f92672">=</span> test
+aws_secret_access_key <span style="color:#f92672">=</span> test
+</code></pre></div><br>
+<h2 id="setup-localstack">Setup LocalStack</h2>
+<hr>
+<p>Being a docker fan, I decided to create container using the following configuration file.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    ports:
+      - <span style="color:#e6db74">&#34;4566:4566&#34;</span>
+      - <span style="color:#e6db74">&#34;4510-4559:4510-4559&#34;</span>
+    volumes:
+      - localstack_data:/var/lib/localstack
+    environment:
+      - PERSISTENCE<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+      - LAMBDA_PERSISTENCE<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+      - LOCALSTACK_PERSISTENCE<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+      - LOCALSTACK_HOST<span style="color:#f92672">=</span>127.0.0.1
+      - LAMBDA_DOCKER_NETWORK<span style="color:#f92672">=</span>bridge
+    restart: unless-stopped
+
+volumes:
+  localstack_data:
+</code></pre></div><br>
+<p>Let&rsquo;s start the service now:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up -d
+</code></pre></div><br>
+<p>Check the status of container:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ dps
+Container ID: 59d9d7c80571
+Image: localstack/localstack
+Command: <span style="color:#e6db74">&#34;docker-entrypoint.sh&#34;</span>
+Created: 2025-05-24 00:18:48 +0100 BST
+Status: Up <span style="color:#ae81ff">2</span> minutes <span style="color:#f92672">(</span>healthy<span style="color:#f92672">)</span>
+Ports: 0.0.0.0:4510-4559-&gt;4510-4559/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:4510-4559-&gt;4510-4559/tcp, 0.0.0.0:4566-&gt;4566/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:4566-&gt;4566/tcp, 5678/tcp
+Names: localstack
+</code></pre></div><br>
+<p>I have created alias <code>dps</code> as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">alias dps<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;docker ps --format &#34;Container ID: {{.ID}}\nImage: {{.Image}}\nCommand: {{.Command}}\nCreated: {{.CreatedAt}}\nStatus: {{.Status}}\nPorts: {{.Ports}}\nNames: {{.Names}}\n&#34;&#39;</span>
+</code></pre></div><br>
+<p>Let&rsquo;s find out the version of <code>LocalStack</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker logs localstack | grep -i <span style="color:#e6db74">&#34;version&#34;</span>
+LocalStack version: 4.3.1.dev3
+</code></pre></div><br>
+<h2 id="make-bucket">Make Bucket</h2>
+<hr>
+<br>
+<p>We need to set the env var <code>AWS_ENDPOINT_URL</code> first.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export AWS_ENDPOINT_URL<span style="color:#f92672">=</span>http://localhost:4566
+</code></pre></div><br>
+<p>Let&rsquo;s make the first bucket in <code>S3</code> using <code>aws</code> utility.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 mb s3://bucket-1
+make_bucket: bucket-1
+</code></pre></div><br>
+<h2 id="list-buckets">List Buckets</h2>
+<hr>
+<br>
+<p>List all <code>S3</code> buckets.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 ls
+2025-05-24 13:00:34 bucket-1
+</code></pre></div><br>
+<h2 id="upload-file">Upload File</h2>
+<hr>
+<br>
+<p>We will create local file <code>test.txt</code> first:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ echo <span style="color:#e6db74">&#39;Hello from LocalStack!!&#39;</span> &gt; test.txt
+</code></pre></div><br>
+<p>Time to upload the file, <code>test.txt</code>, to the bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 cp test.txt s3://bucket-1
+upload: ./test.txt to s3://bucket-1/test.txt
+</code></pre></div><br>
+<h2 id="list-bucket">List Bucket</h2>
+<hr>
+<br>
+<p>List the content of the <code>S3</code> bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 ls s3://bucket-1
+2025-05-24 01:03:49         <span style="color:#ae81ff">24</span> test.txt
+</code></pre></div><br>
+<h2 id="download-file">Download File</h2>
+<hr>
+<br>
+<p>Let&rsquo;s delete the local file first.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ rm test.txt
+</code></pre></div><br>
+<p>Now, download the file from the <code>S3</code> bucket.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 cp s3://bucket-1/test.txt .
+download: s3://bucket-1/test.txt to ./test.txt
+</code></pre></div><br>
+<p>We can even download the file and save it with a new name.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 cp s3://bucket-1/test.txt test-1.txt
+download: s3://bucket-1/test.txt to ./test-1.txt
+</code></pre></div><br>
+<h2 id="delete-file">Delete File</h2>
+<hr>
+<br>
+<p>Delete file from the <code>S3</code> bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 rm s3://bucket-1/test.txt
+delete: s3://bucket-1/test.txt
+</code></pre></div><br>
+<h2 id="remove-bucket">Remove Bucket</h2>
+<hr>
+<br>
+<p>To remove the bucket, we need to empty the bucket first or use <code>--force</code> to remove with contents.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 rb s3://bucket-1 --force
+delete: s3://bucket-1/test.txt
+remove_bucket: bucket-1
+</code></pre></div><br>
+<h2 id="s3-with-python">S3 with Python</h2>
+<hr>
+<br>
+<p>We would need <code>boto3</code> module if we want to use <code>Python</code>.</p>
+<p>However, to install <code>boto3</code> module, we need to create virtual environment.</p>
+<p>And for virtual environment, we need to install <code>python-env</code> package first.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt install python3-venv
+$ mkdir ~/python-venv
+$ cd ~/python-venv
+$ python3 -m venv myenv
+$ alias aenv<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;source ~/python-venv/myenv/bin/activate&#39;</span>
+$ alias denv<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;deactivate&#39;</span>
+</code></pre></div><br>
+<p>We have created two aliases <code>aenv</code> to activate the virtual environment and <code>denv</code> to deactive the virtual environment.</p>
+<p>Let&rsquo;s install the <code>boto3</code> module.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aenv
+<span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> ~/$ pip3 install boto3
+</code></pre></div><br>
+<p>Below is the <code>Python</code> script to manage <code>S3</code> buckets.</p>
+<p><strong>File</strong>: <code>manage-s3.py</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> boto3
+<span style="color:#f92672">import</span> argparse
+<span style="color:#f92672">from</span> botocore.config <span style="color:#f92672">import</span> Config
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> sys
+
+LOCALSTACK_ENDPOINT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:4566&#34;</span>
+DEFAULT_BUCKET <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bucket-1&#34;</span>
+DEFAULT_FILE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;test.txt&#34;</span>
+REGION <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;eu-west-1&#34;</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_s3_client</span>():
+    <span style="color:#66d9ef">return</span> boto3<span style="color:#f92672">.</span>client(
+        <span style="color:#e6db74">&#39;s3&#39;</span>,
+        endpoint_url<span style="color:#f92672">=</span>LOCALSTACK_ENDPOINT,
+        aws_access_key_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;test&#34;</span>,
+        aws_secret_access_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;test&#34;</span>,
+        config<span style="color:#f92672">=</span>Config(signature_version<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;s3v4&#39;</span>),
+        region_name<span style="color:#f92672">=</span>REGION
+    )
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_bucket</span>(s3, bucket_name):
+    <span style="color:#66d9ef">try</span>:
+        s3<span style="color:#f92672">.</span>create_bucket(
+            Bucket<span style="color:#f92672">=</span>bucket_name,
+            CreateBucketConfiguration<span style="color:#f92672">=</span>{
+                <span style="color:#e6db74">&#39;LocationConstraint&#39;</span>: REGION
+            }
+        )
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Bucket &#39;{bucket_name}&#39; created successfully.&#34;</span>)
+        <span style="color:#66d9ef">return</span> True
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error creating bucket: {e}&#34;</span>)
+        <span style="color:#66d9ef">return</span> False
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">list_buckets</span>(s3):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>list_buckets()
+
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;S3 Bucket List:&#34;</span>)
+        <span style="color:#66d9ef">for</span> bucket <span style="color:#f92672">in</span> response[<span style="color:#e6db74">&#39;Buckets&#39;</span>]:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;- {bucket[&#39;Name&#39;]}&#34;</span>)
+
+        <span style="color:#66d9ef">return</span> True
+
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error listing buckets: {e}&#34;</span>)
+        <span style="color:#66d9ef">return</span> False
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">upload_file</span>(s3, bucket_name, file_path, object_name<span style="color:#f92672">=</span>None):
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(file_path):
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: File &#39;{file_path}&#39; does not exist&#34;</span>)
+        <span style="color:#66d9ef">return</span> False
+
+    <span style="color:#66d9ef">if</span> object_name <span style="color:#f92672">is</span> None:
+        object_name <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(file_path)
+
+    <span style="color:#66d9ef">try</span>:
+        s3<span style="color:#f92672">.</span>upload_file(file_path, bucket_name, object_name)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;File &#39;{file_path}&#39; uploaded as &#39;{object_name}&#39;.&#34;</span>)
+        <span style="color:#66d9ef">return</span> True
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error uploading file: {e}&#34;</span>)
+        <span style="color:#66d9ef">return</span> False
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">download_file</span>(s3, bucket_name, object_name, download_path<span style="color:#f92672">=</span>None):
+    <span style="color:#66d9ef">if</span> download_path <span style="color:#f92672">is</span> None:
+        download_path <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#34;downloaded_{object_name}&#34;</span>
+
+    <span style="color:#66d9ef">try</span>:
+        s3<span style="color:#f92672">.</span>download_file(bucket_name, object_name, download_path)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Successfully downloaded &#39;{file_path}&#39; to &#39;{download_path}&#39;.&#34;</span>)
+        <span style="color:#66d9ef">return</span> True
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error downloading file: {e}&#34;</span>)
+        <span style="color:#66d9ef">return</span> False
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">list_bucket_contents</span>(s3, bucket_name):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>list_objects_v2(Bucket<span style="color:#f92672">=</span>bucket_name)
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;Contents&#39;</span> <span style="color:#f92672">in</span> response:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Bucket &#39;{bucket_name}&#39; contents:&#34;</span>)
+            <span style="color:#66d9ef">for</span> obj <span style="color:#f92672">in</span> response[<span style="color:#e6db74">&#39;Contents&#39;</span>]:
+                <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;- {obj[&#39;Key&#39;]}&#34;</span>)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Bucket &#39;{bucket_name}&#39; is empty&#34;</span>)
+        <span style="color:#66d9ef">return</span> True
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error listing bucket contents: {e}&#34;</span>)
+        <span style="color:#66d9ef">return</span> False
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">remove_bucket</span>(s3, bucket_name):
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#75715e"># Delete all objects first</span>
+        objects <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>list_objects_v2(Bucket<span style="color:#f92672">=</span>bucket_name)
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;Contents&#39;</span> <span style="color:#f92672">in</span> objects:
+            <span style="color:#66d9ef">for</span> obj <span style="color:#f92672">in</span> objects[<span style="color:#e6db74">&#39;Contents&#39;</span>]:
+                s3<span style="color:#f92672">.</span>delete_object(Bucket<span style="color:#f92672">=</span>bucket_name, Key<span style="color:#f92672">=</span>obj[<span style="color:#e6db74">&#39;Key&#39;</span>])
+
+        <span style="color:#75715e"># Delete bucket</span>
+        s3<span style="color:#f92672">.</span>delete_bucket(Bucket<span style="color:#f92672">=</span>bucket_name)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Bucket &#39;{bucket_name}&#39; deleted successfully.&#34;</span>)
+        <span style="color:#66d9ef">return</span> True
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error deleting bucket: {e}&#34;</span>)
+        <span style="color:#66d9ef">return</span> False
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_test_file</span>(file_path):
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(file_path):
+        <span style="color:#66d9ef">with</span> open(file_path, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> f:
+            f<span style="color:#f92672">.</span>write(f<span style="color:#e6db74">&#34;This is a test file created at {datetime.datetime.now()}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Created test file: {file_path}&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;LocalStack S3 Operations&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--bucket&#39;</span>, default<span style="color:#f92672">=</span>DEFAULT_BUCKET, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Bucket name&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--file&#39;</span>, default<span style="color:#f92672">=</span>DEFAULT_FILE, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;File to upload/download&#34;</span>)
+
+    <span style="color:#75715e"># Operation flags</span>
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--make-bucket&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Make bucket&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--list-buckets&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;List buckets&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--upload&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Upload file&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--download&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Download file&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--list&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;List bucket contents&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--remove-bucket&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Remove bucket&#34;</span>)
+
+    args <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+
+    s3 <span style="color:#f92672">=</span> create_s3_client()
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>upload:
+        create_test_file(args<span style="color:#f92672">.</span>file)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>make_bucket:
+        make_bucket(s3, args<span style="color:#f92672">.</span>bucket)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>list_buckets:
+        list_buckets(s3)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>upload:
+        upload_file(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>file)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>list:
+        list_bucket_contents(s3, args<span style="color:#f92672">.</span>bucket)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>download:
+        download_file(s3, args<span style="color:#f92672">.</span>bucket, os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(args<span style="color:#f92672">.</span>file))
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>remove_bucket:
+        remove_bucket(s3, args<span style="color:#f92672">.</span>bucket)
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    <span style="color:#f92672">import</span> datetime
+    main()
+</code></pre></div><br>
+<p>This is what it looks like:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --help
+usage: manage-s3.py <span style="color:#f92672">[</span>-h<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--make-bucket<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--upload<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--download<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--remove-bucket<span style="color:#f92672">]</span>
+
+LocalStack S3 Operations
+
+options:
+  -h, --help       show this help message and exit
+  --bucket BUCKET  Bucket name
+  --file FILE      File to upload/download
+  --make-bucket    Make bucket
+  --list-buckets   List buckets
+  --upload         Upload file
+  --download       Download file
+  --list           List bucket contents
+  --remove-bucket  Remove bucket
+</code></pre></div><br>
+<h3 id="make-bucket-1">Make Bucket</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --make-bucket
+Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> created successfully.
+</code></pre></div><br>
+<h3 id="list-buckets-1">List Buckets</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --list-buckets
+S3 Bucket List:
+- bucket-2
+</code></pre></div><br>
+<h3 id="upload-file-1">Upload File</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --file test.txt --upload
+File <span style="color:#e6db74">&#39;test.txt&#39;</span> uploaded as <span style="color:#e6db74">&#39;test.txt&#39;</span>.
+</code></pre></div><br>
+<h3 id="list-bucket-1">List Bucket</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --list
+Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> contents:
+- test.txt
+</code></pre></div><br>
+<h3 id="download-file-1">Download File</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --file test.txt --download
+File downloaded <span style="color:#e6db74">&#39;test.txt&#39;</span> to <span style="color:#e6db74">&#39;downloaded_test.txt&#39;</span>.
+</code></pre></div><br>
+<h3 id="remove-bucket-1">Remove Bucket</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py manage-s3.py --bucket bucket-2 --remove-bucket
+Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> deleted successfully.
+</code></pre></div><br>
+<h2 id="s3-with-perl">S3 with Perl</h2>
+<hr>
+<br>
+<p>We need <code>CPAN</code> module <a href="https://metacpan.org/dist/Net-Amazon-S3"><strong>Net::Amazon::S3</strong></a> for the script.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cpanm -vS Net::Amazon::S3
+</code></pre></div><br>
+<p>Below is the <code>Perl</code> script to manage <code>S3</code> buckets.</p>
+<p><strong>File</strong>: <code>manage-s3.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> File::Slurp;
+<span style="color:#66d9ef">use</span> Getopt::Long;
+<span style="color:#66d9ef">use</span> File::Basename;
+<span style="color:#66d9ef">use</span> Net::Amazon::S3;
+
+<span style="color:#66d9ef">my</span> $LOCALSTACK_ENDPOINT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;localhost:4566&#39;</span>;
+<span style="color:#66d9ef">my</span> $DEFAULT_API_KEY     <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test&#39;</span>;
+<span style="color:#66d9ef">my</span> $DEFAULT_ACCESS_KEY  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test&#39;</span>;
+<span style="color:#66d9ef">my</span> $DEFAULT_BUCKET      <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;bucket-1&#39;</span>;
+<span style="color:#66d9ef">my</span> $DEFAULT_FILE        <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test.txt&#39;</span>;
+<span style="color:#66d9ef">my</span> $REGION              <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;eu-west-1&#39;</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_s3_client</span> {
+    <span style="color:#66d9ef">return</span> Net::Amazon::S3<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+        aws_access_key_id     <span style="color:#f92672">=&gt;</span> $DEFAULT_API_KEY,
+        aws_secret_access_key <span style="color:#f92672">=&gt;</span> $DEFAULT_ACCESS_KEY,
+        host                  <span style="color:#f92672">=&gt;</span> $LOCALSTACK_ENDPOINT,
+        secure                <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>,
+    );
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_bucket</span> {
+    <span style="color:#66d9ef">my</span> ($s3, $bucket_name) <span style="color:#f92672">=</span> @_;
+    eval {
+        $s3<span style="color:#f92672">-&gt;</span>add_bucket($bucket_name, { location_constraint <span style="color:#f92672">=&gt;</span> $REGION });
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Bucket &#39;$bucket_name&#39; created successfully.\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    };
+    <span style="color:#66d9ef">if</span> ($@) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Error creating bucket: $@\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_buckets</span> {
+    <span style="color:#66d9ef">my</span> ($s3) <span style="color:#f92672">=</span> @_;
+    eval {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>buckets;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;S3 Bucket List:\n&#34;</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $bucket ( @{ $response<span style="color:#f92672">-&gt;</span>{buckets} } ) {
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;- &#34;</span> <span style="color:#f92672">.</span> $bucket<span style="color:#f92672">-&gt;</span>bucket <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    };
+    <span style="color:#66d9ef">if</span> ($@) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Error listing buckets: $@\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">upload_file</span> {
+    <span style="color:#66d9ef">my</span> ($s3, $bucket_name, $file_path) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">unless</span> (<span style="color:#f92672">-</span>e $file_path) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Error: File &#39;$file_path&#39; does not exist\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+
+    <span style="color:#66d9ef">my</span> $object_name <span style="color:#f92672">=</span> basename($file_path);
+    <span style="color:#66d9ef">my</span> $bucket      <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>bucket($bucket_name);
+
+    eval {
+        <span style="color:#66d9ef">my</span> $content   <span style="color:#f92672">=</span> read_file($file_path, binmode <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;:raw&#39;</span>);
+        <span style="color:#66d9ef">my</span> $temp_file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/tmp/s3upload_$$.tmp&#34;</span>;
+        write_file($temp_file, { binmode <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;:raw&#39;</span> }, $content);
+        $bucket<span style="color:#f92672">-&gt;</span>add_key_filename($object_name, $temp_file);
+        unlink $temp_file;
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Successfully uploaded &#39;$file_path&#39; (&#34;</span><span style="color:#f92672">.</span>length($content)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; bytes) as &#39;$object_name&#39;.\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    };
+    <span style="color:#66d9ef">if</span> ($@) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Error uploading file: $@\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">download_file</span> {
+    <span style="color:#66d9ef">my</span> ($s3, $bucket_name, $object_name) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $download_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;downloaded_$object_name&#34;</span>;
+
+    eval {
+        <span style="color:#66d9ef">my</span> $bucket  <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>bucket($bucket_name);
+        <span style="color:#66d9ef">my</span> $key     <span style="color:#f92672">=</span> $bucket<span style="color:#f92672">-&gt;</span>get_key($object_name) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Key &#39;$object_name&#39; not found&#34;</span>;
+        <span style="color:#66d9ef">my</span> $content <span style="color:#f92672">=</span> $key<span style="color:#f92672">-&gt;</span>{value};
+
+        open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $download_path) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot write file: $!&#34;</span>;
+        binmode($fh);
+        <span style="color:#66d9ef">print</span> $fh $content;
+        close($fh);
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Successfully downloaded &#39;$object_name&#39; to &#39;$download_path&#39;.\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    };
+    <span style="color:#66d9ef">if</span> ($@) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Error downloading file: $@\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_bucket_contents</span> {
+    <span style="color:#66d9ef">my</span> ($s3, $bucket_name) <span style="color:#f92672">=</span> @_;
+
+    eval {
+        <span style="color:#66d9ef">my</span> $bucket   <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>bucket($bucket_name);
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $bucket<span style="color:#f92672">-&gt;</span>list_all <span style="color:#f92672">or</span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Bucket &#39;$bucket_name&#39; contents:\n&#34;</span>);
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $key (@{$response<span style="color:#f92672">-&gt;</span>{keys}}) {
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;- &#34;</span>, $key<span style="color:#f92672">-&gt;</span>{key}, <span style="color:#e6db74">&#34;\n&#34;</span>;
+        }
+    };
+    <span style="color:#66d9ef">if</span> ($@) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Error listing bucket contents: $@\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">remove_bucket</span> {
+    <span style="color:#66d9ef">my</span> ($s3, $bucket_name) <span style="color:#f92672">=</span> @_;
+
+    eval {
+        <span style="color:#66d9ef">my</span> $bucket   <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>bucket($bucket_name);
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $bucket<span style="color:#f92672">-&gt;</span>list_all <span style="color:#f92672">or</span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $key (@{$response<span style="color:#f92672">-&gt;</span>{keys}}) {
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; Delete key:&#34;</span>, $key<span style="color:#f92672">-&gt;</span>{key}, <span style="color:#e6db74">&#34;\n&#34;</span>;
+            $bucket<span style="color:#f92672">-&gt;</span>delete_key($key<span style="color:#f92672">-&gt;</span>{key});
+        }
+
+        $bucket<span style="color:#f92672">-&gt;</span>delete_bucket;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Bucket &#39;$bucket_name&#39; deleted successfully.\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    };
+    <span style="color:#66d9ef">if</span> ($@) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Error deleting bucket: $@\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_test_file</span> {
+    <span style="color:#66d9ef">my</span> ($file_path) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">unless</span> (<span style="color:#f92672">-</span>e $file_path) {
+        write_file($file_path, <span style="color:#e6db74">&#34;This is a test file created at &#34;</span> <span style="color:#f92672">.</span> localtime() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>);
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Created test file: $file_path\n&#34;</span>;
+    }
+}
+
+<span style="color:#66d9ef">my</span> %opts;
+GetOptions(
+    <span style="color:#e6db74">&#39;bucket=s&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{bucket},
+    <span style="color:#e6db74">&#39;file=s&#39;</span>         <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{file},
+    <span style="color:#e6db74">&#39;make-bucket&#39;</span>    <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{make_bucket},
+    <span style="color:#e6db74">&#39;list-buckets&#39;</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{list_buckets},
+    <span style="color:#e6db74">&#39;upload&#39;</span>         <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{upload},
+    <span style="color:#e6db74">&#39;download&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{download},
+    <span style="color:#e6db74">&#39;list&#39;</span>           <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{list},
+    <span style="color:#e6db74">&#39;remove-bucket&#39;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{remove_bucket},
+    <span style="color:#e6db74">&#39;help&#39;</span>           <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{help},
+) <span style="color:#f92672">or</span> show_help_and_exit(<span style="color:#ae81ff">1</span>);  <span style="color:#75715e"># Show help on invalid options</span>
+
+<span style="color:#75715e"># Show help if requested</span>
+show_help_and_exit(<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">if</span> $opts{help};
+
+<span style="color:#75715e"># [Rest of your script implementation]</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_help_and_exit</span> {
+    <span style="color:#66d9ef">my</span> ($exit_code) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&lt;&lt;&#34;</span><span style="color:#e6db74">END_HELP</span><span style="color:#e6db74">&#34;;
+</span><span style="color:#e6db74">usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--list] [--remove-bucket]
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">LocalStack S3 Operations
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">options:
+</span><span style="color:#e6db74">  --help           show this help message and exit
+</span><span style="color:#e6db74">  --bucket BUCKET  Bucket name
+</span><span style="color:#e6db74">  --file FILE      File to upload/download
+</span><span style="color:#e6db74">  --make-bucket    Create bucket
+</span><span style="color:#e6db74">  --list-buckets   List buckets
+</span><span style="color:#e6db74">  --upload         Upload file
+</span><span style="color:#e6db74">  --download       Download file
+</span><span style="color:#e6db74">  --list           List bucket contents
+</span><span style="color:#e6db74">  --remove-bucket  Delete bucket
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">END_HELP</span>
+
+    exit $exit_code;
+}
+
+$opts{bucket} <span style="color:#f92672">||=</span> $DEFAULT_BUCKET;
+$opts{file}   <span style="color:#f92672">||=</span> $DEFAULT_FILE;
+
+<span style="color:#66d9ef">my</span> $s3 <span style="color:#f92672">=</span> create_s3_client();
+
+<span style="color:#66d9ef">if</span> ($opts{upload}) {
+    create_test_file($opts{file});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{make_bucket}) {
+    make_bucket($s3, $opts{bucket});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{list_buckets}) {
+    list_buckets($s3);
+}
+
+<span style="color:#66d9ef">if</span> ($opts{upload}) {
+    upload_file($s3, $opts{bucket}, $opts{file});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{list}) {
+    list_bucket_contents($s3, $opts{bucket});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{download}) {
+    download_file($s3, $opts{bucket}, basename($opts{file}));
+}
+
+<span style="color:#66d9ef">if</span> ($opts{remove_bucket}) {
+    remove_bucket($s3, $opts{bucket});
+}
+</code></pre></div><br>
+<p>This is what it looks like:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --help
+usage: manage-s3.pl <span style="color:#f92672">[</span>--help<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--make-bucket<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list-buckets<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--upload<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--download<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--remove-bucket<span style="color:#f92672">]</span>
+
+LocalStack S3 Operations
+
+options:
+  --help           show this help message and exit
+  --bucket BUCKET  Bucket name
+  --file FILE      File to upload/download
+  --make-bucket    Create bucket
+  --list-buckets   List buckets
+  --upload         Upload file
+  --download       Download file
+  --list           List bucket contents
+  --remove-bucket  Delete bucket
+</code></pre></div><br>
+<h3 id="make-bucket-2">Make Bucket</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --make-bucket
+Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> created successfully.
+</code></pre></div><br>
+<h3 id="list-buckets-2">List Buckets</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --list-buckets
+S3 Bucket List:
+- bucket-2
+</code></pre></div><br>
+<h3 id="upload-file-2">Upload File</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --file test.txt --upload
+Successfully uploaded <span style="color:#e6db74">&#39;test.txt&#39;</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">56</span> bytes<span style="color:#f92672">)</span> as <span style="color:#e6db74">&#39;test.txt&#39;</span>.
+</code></pre></div><br>
+<h3 id="list-bucket-2">List Bucket</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --list
+Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> contents:
+- test.txt
+</code></pre></div><br>
+<h3 id="download-file-2">Download File</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --file test.txt --download
+Successfully downloaded <span style="color:#e6db74">&#39;test.txt&#39;</span> to <span style="color:#e6db74">&#39;downloaded_test.txt&#39;</span>.
+</code></pre></div><br>
+<h3 id="remove-bucket-2">Remove Bucket</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --bucket bucket-2 --remove-bucket
+Bucket <span style="color:#e6db74">&#39;bucket-2&#39;</span> deleted successfully.
+</code></pre></div><br>
+<h2 id="what-next">What next?</h2>
+<hr>
+<p>Now we have done with <code>AWS S3</code>.</p>
+<p>The next would be about <code>AWS Dynamo DB</code> very soon.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
