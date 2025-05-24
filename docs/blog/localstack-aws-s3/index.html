@@ -425,6 +425,15 @@ LocalStack version: 4.3.1.dev3
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 mb s3://bucket-1
 make_bucket: bucket-1
 </code></pre></div><br>
+<h3 id="object-versioning">Object Versioning</h3>
+<br>
+<p>After creating the bucket, we can enable the versioning for the bucket.</p>
+<p>What does that mean?</p>
+<p>It means, any object saved in the bucket after enabling the versioning will have unique version assgined.</p>
+<p>To enable the versioning we do this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api put-bucket-versioning --bucket bucket-1 --versioning-configuration Status<span style="color:#f92672">=</span>Enabled
+</code></pre></div><br>
 <h2 id="list-buckets">List Buckets</h2>
 <hr>
 <br>
@@ -444,6 +453,83 @@ make_bucket: bucket-1
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 cp test.txt s3://bucket-1
 upload: ./test.txt to s3://bucket-1/test.txt
+</code></pre></div><br>
+<p>Since, the bucket <code>bucket-1</code> has versioning enabled, we can list the versioned objects like this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api list-object-versions --bucket bucket-1
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;Versions&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;4a55761ef4480141238eeb4fe69d3b95\&#34;&#34;</span>,
+            <span style="color:#e6db74">&#34;ChecksumAlgorithm&#34;</span>: <span style="color:#f92672">[</span>
+                <span style="color:#e6db74">&#34;CRC64NVME&#34;</span>
+            <span style="color:#f92672">]</span>,
+            <span style="color:#e6db74">&#34;ChecksumType&#34;</span>: <span style="color:#e6db74">&#34;FULL_OBJECT&#34;</span>,
+            <span style="color:#e6db74">&#34;Size&#34;</span>: 56,
+            <span style="color:#e6db74">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD&#34;</span>,
+            <span style="color:#e6db74">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;test.txt&#34;</span>,
+            <span style="color:#e6db74">&#34;VersionId&#34;</span>: <span style="color:#e6db74">&#34;AZcC8UinjmtEDvAEOUOMh3FQMmmBVbOh&#34;</span>,
+            <span style="color:#e6db74">&#34;IsLatest&#34;</span>: true,
+            <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-05-24T15:37:36+00:00&#34;</span>,
+            <span style="color:#e6db74">&#34;Owner&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;DisplayName&#34;</span>: <span style="color:#e6db74">&#34;webfile&#34;</span>,
+                <span style="color:#e6db74">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">]</span>,
+    <span style="color:#e6db74">&#34;RequestCharged&#34;</span>: null,
+    <span style="color:#e6db74">&#34;Prefix&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Let&rsquo;s modify the file <code>test.txt</code> and upload again to the same bucket <code>bucket-1</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ echo <span style="color:#e6db74">&#34;Add another line.&#34;</span> &gt;&gt; test.txt
+$ aws s3 cp test.txt s3://bucket-1
+upload: ./test.txt to s3://bucket-1/test.txt
+</code></pre></div><br>
+<p>Now, let&rsquo;s list object version again:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api list-object-versions --bucket bucket-1
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;Versions&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;c14953d2f24898e979c75c72b0ca4cf6\&#34;&#34;</span>,
+            <span style="color:#e6db74">&#34;ChecksumAlgorithm&#34;</span>: <span style="color:#f92672">[</span>
+                <span style="color:#e6db74">&#34;CRC64NVME&#34;</span>
+            <span style="color:#f92672">]</span>,
+            <span style="color:#e6db74">&#34;ChecksumType&#34;</span>: <span style="color:#e6db74">&#34;FULL_OBJECT&#34;</span>,
+            <span style="color:#e6db74">&#34;Size&#34;</span>: 74,
+            <span style="color:#e6db74">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD&#34;</span>,
+            <span style="color:#e6db74">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;test.txt&#34;</span>,
+            <span style="color:#e6db74">&#34;VersionId&#34;</span>: <span style="color:#e6db74">&#34;AZcC8Uio9aDWHsR_0SWRIBB5eslHp4kX&#34;</span>,
+            <span style="color:#e6db74">&#34;IsLatest&#34;</span>: true,
+            <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-05-24T15:39:12+00:00&#34;</span>,
+            <span style="color:#e6db74">&#34;Owner&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;DisplayName&#34;</span>: <span style="color:#e6db74">&#34;webfile&#34;</span>,
+                <span style="color:#e6db74">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;4a55761ef4480141238eeb4fe69d3b95\&#34;&#34;</span>,
+            <span style="color:#e6db74">&#34;ChecksumAlgorithm&#34;</span>: <span style="color:#f92672">[</span>
+                <span style="color:#e6db74">&#34;CRC64NVME&#34;</span>
+            <span style="color:#f92672">]</span>,
+            <span style="color:#e6db74">&#34;ChecksumType&#34;</span>: <span style="color:#e6db74">&#34;FULL_OBJECT&#34;</span>,
+            <span style="color:#e6db74">&#34;Size&#34;</span>: 56,
+            <span style="color:#e6db74">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD&#34;</span>,
+            <span style="color:#e6db74">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;test.txt&#34;</span>,
+            <span style="color:#e6db74">&#34;VersionId&#34;</span>: <span style="color:#e6db74">&#34;AZcC8UinjmtEDvAEOUOMh3FQMmmBVbOh&#34;</span>,
+            <span style="color:#e6db74">&#34;IsLatest&#34;</span>: false,
+            <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-05-24T15:37:36+00:00&#34;</span>,
+            <span style="color:#e6db74">&#34;Owner&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;DisplayName&#34;</span>: <span style="color:#e6db74">&#34;webfile&#34;</span>,
+                <span style="color:#e6db74">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">]</span>,
+    <span style="color:#e6db74">&#34;RequestCharged&#34;</span>: null,
+    <span style="color:#e6db74">&#34;Prefix&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+<span style="color:#f92672">}</span>
 </code></pre></div><br>
 <h2 id="download-file">Download File</h2>
 <hr>

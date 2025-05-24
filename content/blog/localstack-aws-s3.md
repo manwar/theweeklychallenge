@@ -232,6 +232,26 @@ make_bucket: bucket-1
 
 <br>
 
+### Object Versioning
+
+<br>
+
+After creating the bucket, we can enable the versioning for the bucket.
+
+What does that mean?
+
+It means, any object saved in the bucket after enabling the versioning will have unique version assgined.
+
+To enable the versioning we do this:
+
+<br>
+
+```bash
+$ aws s3api put-bucket-versioning --bucket bucket-1 --versioning-configuration Status=Enabled
+```
+
+<br>
+
 ## List Buckets
 ***
 
@@ -270,6 +290,101 @@ Time to upload the file, `test.txt`, to the bucket.
 ```bash
 $ aws s3 cp test.txt s3://bucket-1
 upload: ./test.txt to s3://bucket-1/test.txt
+```
+
+<br>
+
+Since, the bucket `bucket-1` has versioning enabled, we can list the versioned objects like this:
+
+<br>
+
+```bash
+$ aws s3api list-object-versions --bucket bucket-1
+{
+    "Versions": [
+        {
+            "ETag": "\"4a55761ef4480141238eeb4fe69d3b95\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 56,
+            "StorageClass": "STANDARD",
+            "Key": "test.txt",
+            "VersionId": "AZcC8UinjmtEDvAEOUOMh3FQMmmBVbOh",
+            "IsLatest": true,
+            "LastModified": "2025-05-24T15:37:36+00:00",
+            "Owner": {
+                "DisplayName": "webfile",
+                "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+            }
+        }
+    ],
+    "RequestCharged": null,
+    "Prefix": ""
+}
+```
+
+<br>
+
+Let's modify the file `test.txt` and upload again to the same bucket `bucket-1`.
+
+<br>
+
+```bash
+$ echo "Add another line." >> test.txt
+$ aws s3 cp test.txt s3://bucket-1
+upload: ./test.txt to s3://bucket-1/test.txt
+```
+
+<br>
+
+Now, let's list object version again:
+
+<br>
+
+```bash
+$ aws s3api list-object-versions --bucket bucket-1
+{
+    "Versions": [
+        {
+            "ETag": "\"c14953d2f24898e979c75c72b0ca4cf6\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 74,
+            "StorageClass": "STANDARD",
+            "Key": "test.txt",
+            "VersionId": "AZcC8Uio9aDWHsR_0SWRIBB5eslHp4kX",
+            "IsLatest": true,
+            "LastModified": "2025-05-24T15:39:12+00:00",
+            "Owner": {
+                "DisplayName": "webfile",
+                "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+            }
+        },
+        {
+            "ETag": "\"4a55761ef4480141238eeb4fe69d3b95\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 56,
+            "StorageClass": "STANDARD",
+            "Key": "test.txt",
+            "VersionId": "AZcC8UinjmtEDvAEOUOMh3FQMmmBVbOh",
+            "IsLatest": false,
+            "LastModified": "2025-05-24T15:37:36+00:00",
+            "Owner": {
+                "DisplayName": "webfile",
+                "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+            }
+        }
+    ],
+    "RequestCharged": null,
+    "Prefix": ""
+}
 ```
 
 <br>
