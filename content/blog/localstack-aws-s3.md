@@ -367,7 +367,7 @@ We would need `boto3` module if we want to use `Python`.
 
 However, to install `boto3` module, we need to create virtual environment.
 
-And for virtual environment, we need to install `python-env` package first.
+And for virtual environment, we need to install `python3-venv` package first.
 
 <br>
 
