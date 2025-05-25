@@ -434,6 +434,23 @@ make_bucket: bucket-1
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api put-bucket-versioning --bucket bucket-1 --versioning-configuration Status<span style="color:#f92672">=</span>Enabled
 </code></pre></div><br>
+<p>Once the versioning is enabled for <code>S3</code> bucket, it can&rsquo;t be disabled permanently.</p>
+<p>However, it can be suspended.</p>
+<p>This is how you can do it:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api put-bucket-versioning --bucket bucket-1 --versioning-configuration Status<span style="color:#f92672">=</span>Suspended
+</code></pre></div><br>
+<p>Objects uploaded before enabling versioning will have their version id set to <code>null</code>.</p>
+<p>Objects uploaded after will get unique version id.</p>
+<p>After the versioning is suspended, all existing objects with version id remain intact but new object wouldn&rsquo;t get version id.</p>
+<p>Deleting a versioned object doesn&rsquo;t actually delete the object, instead adds a <code>delete marker</code>.</p>
+<p>Those with <code>delete marker</code>, then disappears from the listing i.e. <code>aws s3 ls</code>.</p>
+<p>You can still access the object if you know their version id.</p>
+<p>The <code>delete marker</code> can be removed if you know the version id.</p>
+<p>You can permanently delete a specific version as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api delete-object --bucket bucket-1 --key test.txt --version-id &lt;object version id&gt;
+</code></pre></div><br>
 <h2 id="list-buckets">List Buckets</h2>
 <hr>
 <br>

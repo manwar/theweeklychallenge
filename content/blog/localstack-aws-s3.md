@@ -252,6 +252,44 @@ $ aws s3api put-bucket-versioning --bucket bucket-1 --versioning-configuration S
 
 <br>
 
+Once the versioning is enabled for `S3` bucket, it can't be disabled permanently.
+
+However, it can be suspended.
+
+This is how you can do it:
+
+<br>
+
+```bash
+$ aws s3api put-bucket-versioning --bucket bucket-1 --versioning-configuration Status=Suspended
+```
+
+<br>
+
+Objects uploaded before enabling versioning will have their version id set to `null`.
+
+Objects uploaded after will get unique version id.
+
+After the versioning is suspended, all existing objects with version id remain intact but new object wouldn't get version id.
+
+Deleting a versioned object doesn't actually delete the object, instead adds a `delete marker`.
+
+Those with `delete marker`, then disappears from the listing i.e. `aws s3 ls`.
+
+You can still access the object if you know their version id.
+
+The `delete marker` can be removed if you know the version id.
+
+You can permanently delete a specific version as below:
+
+<br>
+
+```bash
+$ aws s3api delete-object --bucket bucket-1 --key test.txt --version-id <object version id>
+```
+
+<br>
+
 ## List Buckets
 ***
 
