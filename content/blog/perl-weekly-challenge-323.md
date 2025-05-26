@@ -224,7 +224,7 @@ Write a script to calculate the total tax amount.
 #### Example 1
 
     Input: $income = 10, @tax = ([3, 50], [7, 10], [12,25])
-    Output: 1.65
+    Output: 2.65
 
     1st tax bracket upto  3, tax is 50%.
     2nd tax bracket upto  7, tax is 10%.
