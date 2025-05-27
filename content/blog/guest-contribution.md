@@ -1100,6 +1100,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-323/roger-bell-west/typst/ch-1.typ) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-323/roger-bell-west/typst/ch-2.typ) in **Typst**.
 
+##### **Steven Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-323/steven-wilson/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-323/steven-wilson/python/ch-2.py) in **Python**.
+
 ___
 ## [The Weekly Challenge - 322](/blog/perl-weekly-challenge-322) {#322}
 <br>
