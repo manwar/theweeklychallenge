@@ -572,6 +572,125 @@ download: s3://bucket-1/test.txt to ./test-1.txt
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 rm s3://bucket-1/test.txt
 delete: s3://bucket-1/test.txt
 </code></pre></div><br>
+<p>If the file <code>test.txt</code> is a versioned object then it isn&rsquo;t deleted permanently yet.</p>
+<p>Instead, it is assigned <code>DeleteMarkers</code> and hide from listing.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api list-object-versions --bucket bucket-1
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;Versions&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;c14953d2f24898e979c75c72b0ca4cf6\&#34;&#34;</span>,
+            <span style="color:#e6db74">&#34;ChecksumAlgorithm&#34;</span>: <span style="color:#f92672">[</span>
+                <span style="color:#e6db74">&#34;CRC64NVME&#34;</span>
+            <span style="color:#f92672">]</span>,
+            <span style="color:#e6db74">&#34;ChecksumType&#34;</span>: <span style="color:#e6db74">&#34;FULL_OBJECT&#34;</span>,
+            <span style="color:#e6db74">&#34;Size&#34;</span>: 74,
+            <span style="color:#e6db74">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD&#34;</span>,
+            <span style="color:#e6db74">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;test.txt&#34;</span>,
+            <span style="color:#e6db74">&#34;VersionId&#34;</span>: <span style="color:#e6db74">&#34;AZcmqb_JvtzcqY6aLIzZM4I31ydynMux&#34;</span>,
+            <span style="color:#e6db74">&#34;IsLatest&#34;</span>: false,
+            <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-05-31T16:39:29+00:00&#34;</span>,
+            <span style="color:#e6db74">&#34;Owner&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;DisplayName&#34;</span>: <span style="color:#e6db74">&#34;webfile&#34;</span>,
+                <span style="color:#e6db74">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;c14953d2f24898e979c75c72b0ca4cf6\&#34;&#34;</span>,
+            <span style="color:#e6db74">&#34;ChecksumAlgorithm&#34;</span>: <span style="color:#f92672">[</span>
+                <span style="color:#e6db74">&#34;CRC64NVME&#34;</span>
+            <span style="color:#f92672">]</span>,
+            <span style="color:#e6db74">&#34;ChecksumType&#34;</span>: <span style="color:#e6db74">&#34;FULL_OBJECT&#34;</span>,
+            <span style="color:#e6db74">&#34;Size&#34;</span>: 74,
+            <span style="color:#e6db74">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD&#34;</span>,
+            <span style="color:#e6db74">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;test.txt&#34;</span>,
+            <span style="color:#e6db74">&#34;VersionId&#34;</span>: <span style="color:#e6db74">&#34;AZcmqb_IltL0mnl324IHtaUhm0L5AMvH&#34;</span>,
+            <span style="color:#e6db74">&#34;IsLatest&#34;</span>: false,
+            <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-05-31T16:39:04+00:00&#34;</span>,
+            <span style="color:#e6db74">&#34;Owner&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;DisplayName&#34;</span>: <span style="color:#e6db74">&#34;webfile&#34;</span>,
+                <span style="color:#e6db74">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">]</span>,
+    <span style="color:#e6db74">&#34;DeleteMarkers&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;Owner&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;DisplayName&#34;</span>: <span style="color:#e6db74">&#34;webfile&#34;</span>,
+                <span style="color:#e6db74">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;test.txt&#34;</span>,
+            <span style="color:#e6db74">&#34;VersionId&#34;</span>: <span style="color:#e6db74">&#34;AZcmqb_KNCmI5BHzE3nR5t6YgmYLGw_B&#34;</span>,
+            <span style="color:#e6db74">&#34;IsLatest&#34;</span>: true,
+            <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-05-31T16:41:50+00:00&#34;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">]</span>,
+    <span style="color:#e6db74">&#34;RequestCharged&#34;</span>: null,
+    <span style="color:#e6db74">&#34;Prefix&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>To list all delete markers in a bucket, you do this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api list-object-versions --bucket bucket-1 --query <span style="color:#e6db74">&#39;DeleteMarkers[*]&#39;</span>
+<span style="color:#f92672">[</span>
+    <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;Owner&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;DisplayName&#34;</span>: <span style="color:#e6db74">&#34;webfile&#34;</span>,
+            <span style="color:#e6db74">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#e6db74">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;test.txt&#34;</span>,
+        <span style="color:#e6db74">&#34;VersionId&#34;</span>: <span style="color:#e6db74">&#34;AZcmqb_KNCmI5BHzE3nR5t6YgmYLGw_B&#34;</span>,
+        <span style="color:#e6db74">&#34;IsLatest&#34;</span>: true,
+        <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-05-31T16:41:50+00:00&#34;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">]</span>
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api list-object-versions --bucket bucket-1 --query <span style="color:#e6db74">&#39;Versions[?IsLatest==`false`] || DeleteMarkers[]&#39;</span>
+<span style="color:#f92672">[</span>
+    <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;c14953d2f24898e979c75c72b0ca4cf6\&#34;&#34;</span>,
+        <span style="color:#e6db74">&#34;ChecksumAlgorithm&#34;</span>: <span style="color:#f92672">[</span>
+            <span style="color:#e6db74">&#34;CRC64NVME&#34;</span>
+        <span style="color:#f92672">]</span>,
+        <span style="color:#e6db74">&#34;ChecksumType&#34;</span>: <span style="color:#e6db74">&#34;FULL_OBJECT&#34;</span>,
+        <span style="color:#e6db74">&#34;Size&#34;</span>: 74,
+        <span style="color:#e6db74">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD&#34;</span>,
+        <span style="color:#e6db74">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;test.txt&#34;</span>,
+        <span style="color:#e6db74">&#34;VersionId&#34;</span>: <span style="color:#e6db74">&#34;AZcmqb_JvtzcqY6aLIzZM4I31ydynMux&#34;</span>,
+        <span style="color:#e6db74">&#34;IsLatest&#34;</span>: false,
+        <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-05-31T16:39:29+00:00&#34;</span>,
+        <span style="color:#e6db74">&#34;Owner&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;DisplayName&#34;</span>: <span style="color:#e6db74">&#34;webfile&#34;</span>,
+            <span style="color:#e6db74">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a&#34;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;c14953d2f24898e979c75c72b0ca4cf6\&#34;&#34;</span>,
+        <span style="color:#e6db74">&#34;ChecksumAlgorithm&#34;</span>: <span style="color:#f92672">[</span>
+            <span style="color:#e6db74">&#34;CRC64NVME&#34;</span>
+        <span style="color:#f92672">]</span>,
+        <span style="color:#e6db74">&#34;ChecksumType&#34;</span>: <span style="color:#e6db74">&#34;FULL_OBJECT&#34;</span>,
+        <span style="color:#e6db74">&#34;Size&#34;</span>: 74,
+        <span style="color:#e6db74">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD&#34;</span>,
+        <span style="color:#e6db74">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;test.txt&#34;</span>,
+        <span style="color:#e6db74">&#34;VersionId&#34;</span>: <span style="color:#e6db74">&#34;AZcmqb_IltL0mnl324IHtaUhm0L5AMvH&#34;</span>,
+        <span style="color:#e6db74">&#34;IsLatest&#34;</span>: false,
+        <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-05-31T16:39:04+00:00&#34;</span>,
+        <span style="color:#e6db74">&#34;Owner&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;DisplayName&#34;</span>: <span style="color:#e6db74">&#34;webfile&#34;</span>,
+            <span style="color:#e6db74">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a&#34;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">]</span>
+</code></pre></div><br>
+<p>To delete any delete markers, do this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api delete-object --bucket bucket-1 --key test.txt --version-id <span style="color:#e6db74">&#34;AZcmqb_KNCmI5BHzE3nR5t6YgmYLGw_B&#34;</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;DeleteMarker&#34;</span>: true,
+    <span style="color:#e6db74">&#34;VersionId&#34;</span>: <span style="color:#e6db74">&#34;AZcmqb_KNCmI5BHzE3nR5t6YgmYLGw_B&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
 <h2 id="list-bucket">List Bucket</h2>
 <hr>
 <br>

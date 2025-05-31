@@ -478,6 +478,150 @@ delete: s3://bucket-1/test.txt
 
 <br>
 
+If the file `test.txt` is a versioned object then it isn't deleted permanently yet.
+
+Instead, it is assigned `DeleteMarkers` and hide from listing.
+
+<br>
+
+```bash
+$ aws s3api list-object-versions --bucket bucket-1
+{
+    "Versions": [
+        {
+            "ETag": "\"c14953d2f24898e979c75c72b0ca4cf6\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 74,
+            "StorageClass": "STANDARD",
+            "Key": "test.txt",
+            "VersionId": "AZcmqb_JvtzcqY6aLIzZM4I31ydynMux",
+            "IsLatest": false,
+            "LastModified": "2025-05-31T16:39:29+00:00",
+            "Owner": {
+                "DisplayName": "webfile",
+                "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+            }
+        },
+        {
+            "ETag": "\"c14953d2f24898e979c75c72b0ca4cf6\"",
+            "ChecksumAlgorithm": [
+                "CRC64NVME"
+            ],
+            "ChecksumType": "FULL_OBJECT",
+            "Size": 74,
+            "StorageClass": "STANDARD",
+            "Key": "test.txt",
+            "VersionId": "AZcmqb_IltL0mnl324IHtaUhm0L5AMvH",
+            "IsLatest": false,
+            "LastModified": "2025-05-31T16:39:04+00:00",
+            "Owner": {
+                "DisplayName": "webfile",
+                "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+            }
+        }
+    ],
+    "DeleteMarkers": [
+        {
+            "Owner": {
+                "DisplayName": "webfile",
+                "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+            },
+            "Key": "test.txt",
+            "VersionId": "AZcmqb_KNCmI5BHzE3nR5t6YgmYLGw_B",
+            "IsLatest": true,
+            "LastModified": "2025-05-31T16:41:50+00:00"
+        }
+    ],
+    "RequestCharged": null,
+    "Prefix": ""
+}
+```
+
+<br>
+
+
+To list all delete markers in a bucket, you do this:
+
+<br>
+
+```bash
+$ aws s3api list-object-versions --bucket bucket-1 --query 'DeleteMarkers[*]'
+[
+    {
+        "Owner": {
+            "DisplayName": "webfile",
+            "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+        },
+        "Key": "test.txt",
+        "VersionId": "AZcmqb_KNCmI5BHzE3nR5t6YgmYLGw_B",
+        "IsLatest": true,
+        "LastModified": "2025-05-31T16:41:50+00:00"
+    }
+]
+```
+
+<br>
+
+
+```bash
+$ aws s3api list-object-versions --bucket bucket-1 --query 'Versions[?IsLatest==`false`] || DeleteMarkers[]'
+[
+    {
+        "ETag": "\"c14953d2f24898e979c75c72b0ca4cf6\"",
+        "ChecksumAlgorithm": [
+            "CRC64NVME"
+        ],
+        "ChecksumType": "FULL_OBJECT",
+        "Size": 74,
+        "StorageClass": "STANDARD",
+        "Key": "test.txt",
+        "VersionId": "AZcmqb_JvtzcqY6aLIzZM4I31ydynMux",
+        "IsLatest": false,
+        "LastModified": "2025-05-31T16:39:29+00:00",
+        "Owner": {
+            "DisplayName": "webfile",
+            "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+        }
+    },
+    {
+        "ETag": "\"c14953d2f24898e979c75c72b0ca4cf6\"",
+        "ChecksumAlgorithm": [
+            "CRC64NVME"
+        ],
+        "ChecksumType": "FULL_OBJECT",
+        "Size": 74,
+        "StorageClass": "STANDARD",
+        "Key": "test.txt",
+        "VersionId": "AZcmqb_IltL0mnl324IHtaUhm0L5AMvH",
+        "IsLatest": false,
+        "LastModified": "2025-05-31T16:39:04+00:00",
+        "Owner": {
+            "DisplayName": "webfile",
+            "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+        }
+    }
+]
+```
+
+<br>
+
+To delete any delete markers, do this:
+
+<br>
+
+```bash
+$ aws s3api delete-object --bucket bucket-1 --key test.txt --version-id "AZcmqb_KNCmI5BHzE3nR5t6YgmYLGw_B"
+{
+    "DeleteMarker": true,
+    "VersionId": "AZcmqb_KNCmI5BHzE3nR5t6YgmYLGw_B"
+}
+```
+
+<br>
+
 ## List Bucket
 ***
 
