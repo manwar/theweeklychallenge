@@ -1179,6 +1179,10 @@ delete_all($s3, $opts{bucket}, $opts{file})                     if $opts{delete_
 list_bucket_contents($s3, $opts{bucket})                        if $opts{list};
 remove_bucket($s3, $opts{bucket})                               if $opts{remove_bucket};
 
+#
+#
+# HELPER SUBROUTINES
+
 sub show_help_and_exit {
     my ($exit_code) = @_;
     print <<"END_HELP";
