@@ -974,8 +974,10 @@ This is what it looks like:
 
 ```bash
 (myenv) $ py manage-s3.py --help
-usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning] [--suspend-versioning] [--check-versioning] [--list-buckets]
-                    [--list-object-versions] [--upload] [--download] [--delete] [--delete-all] [--version-id VERSION_ID] [--list] [--remove-bucket]
+usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning]
+                    [--suspend-versioning] [--check-versioning] [--list-buckets]
+                    [--list-object-versions] [--upload] [--download] [--delete] [--delete-all]
+                    [--version-id VERSION_ID] [--list] [--remove-bucket]
 
 S3 Bucket Operations
 
