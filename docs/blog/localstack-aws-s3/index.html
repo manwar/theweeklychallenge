@@ -1146,27 +1146,30 @@ remove_bucket($s3, $opts{bucket})                               <span style="col
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_help_and_exit</span> {
     <span style="color:#66d9ef">my</span> ($exit_code) <span style="color:#f92672">=</span> @_;
     <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&lt;&lt;&#34;</span><span style="color:#e6db74">END_HELP</span><span style="color:#e6db74">&#34;;
-</span><span style="color:#e6db74">usage: $0 [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning] [--suspend-versioning] [--check-versioning] [--list-buckets] [--list-object-versions] [--upload] [--download] [--delete] [--delete-all] [--version-id] [--list] [--remove-bucket]
+</span><span style="color:#e6db74">usage: $0 [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning]
+</span><span style="color:#e6db74">          [--suspend-versioning] [--check-versioning] [--list-buckets]
+</span><span style="color:#e6db74">          [--list-object-versions] [--upload] [--download] [--delete] [--delete-all]
+</span><span style="color:#e6db74">          [--version-id VERSION_ID] [--list] [--remove-bucket]
 </span><span style="color:#e6db74">
 </span><span style="color:#e6db74">S3 Bucket Operations
 </span><span style="color:#e6db74">
 </span><span style="color:#e6db74">options:
-</span><span style="color:#e6db74">  -h, --help             Show this help message and exit
-</span><span style="color:#e6db74">  --bucket BUCKET        Bucket name
-</span><span style="color:#e6db74">  --file FILE            File to upload/download
-</span><span style="color:#e6db74">  --make-bucket          Create bucket
-</span><span style="color:#e6db74">  --enable-versioning    Enable object versioning
-</span><span style="color:#e6db74">  --suspend-versioning   Suspend object versioning
-</span><span style="color:#e6db74">  --check-versioning     Check object versioning
-</span><span style="color:#e6db74">  --list-buckets         List buckets
-</span><span style="color:#e6db74">  --list-object-versions List object versions
-</span><span style="color:#e6db74">  --upload               Upload file
-</span><span style="color:#e6db74">  --download             Download file
-</span><span style="color:#e6db74">  --delete               Delete file
-</span><span style="color:#e6db74">  --delete-all           Delete all versioned file
-</span><span style="color:#e6db74">  --version-id           Object version id
-</span><span style="color:#e6db74">  --list                 List bucket contents
-</span><span style="color:#e6db74">  --remove-bucket        Delete bucket
+</span><span style="color:#e6db74">  -h, --help              Show this help message and exit
+</span><span style="color:#e6db74">  --bucket BUCKET         Bucket name
+</span><span style="color:#e6db74">  --file FILE             File to upload/download
+</span><span style="color:#e6db74">  --make-bucket           Create bucket
+</span><span style="color:#e6db74">  --enable-versioning     Enable object versioning
+</span><span style="color:#e6db74">  --suspend-versioning    Suspend object versioning
+</span><span style="color:#e6db74">  --check-versioning      Check object versioning
+</span><span style="color:#e6db74">  --list-buckets          List buckets
+</span><span style="color:#e6db74">  --list-object-versions  List object versions
+</span><span style="color:#e6db74">  --upload                Upload file
+</span><span style="color:#e6db74">  --download              Download file
+</span><span style="color:#e6db74">  --delete                Delete file
+</span><span style="color:#e6db74">  --delete-all            Delete all versioned file
+</span><span style="color:#e6db74">  --version-id VERSION_ID Object version id
+</span><span style="color:#e6db74">  --list                  List bucket contents
+</span><span style="color:#e6db74">  --remove-bucket         Delete bucket
 </span><span style="color:#e6db74"></span><span style="color:#e6db74">END_HELP</span>
     exit $exit_code;
 }
@@ -1411,27 +1414,30 @@ remove_bucket($s3, $opts{bucket})                               <span style="col
 <p>This is what it looks like:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ perl manage-s3.pl --help
-usage: manage-s3.pl <span style="color:#f92672">[</span>-h<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--make-bucket<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--enable-versioning<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--suspend-versioning<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--check-versioning<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list-buckets<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list-object-versions<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--upload<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--download<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--delete<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--delete-all<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--version-id<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--remove-bucket<span style="color:#f92672">]</span>
+usage: manage-s3.pl <span style="color:#f92672">[</span>-h<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--make-bucket<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--enable-versioning<span style="color:#f92672">]</span>
+                    <span style="color:#f92672">[</span>--suspend-versioning<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--check-versioning<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list-buckets<span style="color:#f92672">]</span>
+                    <span style="color:#f92672">[</span>--list-object-versions<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--upload<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--download<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--delete<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--delete-all<span style="color:#f92672">]</span>
+                    <span style="color:#f92672">[</span>--version-id VERSION_ID<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--remove-bucket<span style="color:#f92672">]</span>
 
 S3 Bucket Operations
 
 options:
-  -h, --help             Show this help message and exit
-  --bucket BUCKET        Bucket name
-  --file FILE            File to upload/download
-  --make-bucket          Create bucket
-  --enable-versioning    Enable object versioning
-  --suspend-versioning   Suspend object versioning
-  --check-versioning     Check object versioning
-  --list-buckets         List buckets
-  --list-object-versions List object versions
-  --upload               Upload file
-  --download             Download file
-  --delete               Delete file
-  --delete-all           Delete all versioned file
-  --version-id           Object version id
-  --list                 List bucket contents
-  --remove-bucket        Delete bucket
+  -h, --help              Show this help message and exit
+  --bucket BUCKET         Bucket name
+  --file FILE             File to upload/download
+  --make-bucket           Create bucket
+  --enable-versioning     Enable object versioning
+  --suspend-versioning    Suspend object versioning
+  --check-versioning      Check object versioning
+  --list-buckets          List buckets
+  --list-object-versions  List object versions
+  --upload                Upload file
+  --download              Download file
+  --delete                Delete file
+  --delete-all            Delete all versioned file
+  --version-id VERSION_ID Object version id
+  --list                  List bucket contents
+  --remove-bucket         Delete bucket
 </code></pre></div><br>
 <h3 id="make-bucket-2">Make Bucket</h3>
 <br>

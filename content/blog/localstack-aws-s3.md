@@ -1188,27 +1188,30 @@ remove_bucket($s3, $opts{bucket})                               if $opts{remove_
 sub show_help_and_exit {
     my ($exit_code) = @_;
     print <<"END_HELP";
-usage: $0 [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning] [--suspend-versioning] [--check-versioning] [--list-buckets] [--list-object-versions] [--upload] [--download] [--delete] [--delete-all] [--version-id] [--list] [--remove-bucket]
+usage: $0 [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning]
+          [--suspend-versioning] [--check-versioning] [--list-buckets]
+          [--list-object-versions] [--upload] [--download] [--delete] [--delete-all]
+          [--version-id VERSION_ID] [--list] [--remove-bucket]
 
 S3 Bucket Operations
 
 options:
-  -h, --help             Show this help message and exit
-  --bucket BUCKET        Bucket name
-  --file FILE            File to upload/download
-  --make-bucket          Create bucket
-  --enable-versioning    Enable object versioning
-  --suspend-versioning   Suspend object versioning
-  --check-versioning     Check object versioning
-  --list-buckets         List buckets
-  --list-object-versions List object versions
-  --upload               Upload file
-  --download             Download file
-  --delete               Delete file
-  --delete-all           Delete all versioned file
-  --version-id           Object version id
-  --list                 List bucket contents
-  --remove-bucket        Delete bucket
+  -h, --help              Show this help message and exit
+  --bucket BUCKET         Bucket name
+  --file FILE             File to upload/download
+  --make-bucket           Create bucket
+  --enable-versioning     Enable object versioning
+  --suspend-versioning    Suspend object versioning
+  --check-versioning      Check object versioning
+  --list-buckets          List buckets
+  --list-object-versions  List object versions
+  --upload                Upload file
+  --download              Download file
+  --delete                Delete file
+  --delete-all            Delete all versioned file
+  --version-id VERSION_ID Object version id
+  --list                  List bucket contents
+  --remove-bucket         Delete bucket
 END_HELP
     exit $exit_code;
 }
@@ -1459,27 +1462,30 @@ This is what it looks like:
 
 ```bash
 (myenv) $ perl manage-s3.pl --help
-usage: manage-s3.pl [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning] [--suspend-versioning] [--check-versioning] [--list-buckets] [--list-object-versions] [--upload] [--download] [--delete] [--delete-all] [--version-id] [--list] [--remove-bucket]
+usage: manage-s3.pl [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning]
+                    [--suspend-versioning] [--check-versioning] [--list-buckets]
+                    [--list-object-versions] [--upload] [--download] [--delete] [--delete-all]
+                    [--version-id VERSION_ID] [--list] [--remove-bucket]
 
 S3 Bucket Operations
 
 options:
-  -h, --help             Show this help message and exit
-  --bucket BUCKET        Bucket name
-  --file FILE            File to upload/download
-  --make-bucket          Create bucket
-  --enable-versioning    Enable object versioning
-  --suspend-versioning   Suspend object versioning
-  --check-versioning     Check object versioning
-  --list-buckets         List buckets
-  --list-object-versions List object versions
-  --upload               Upload file
-  --download             Download file
-  --delete               Delete file
-  --delete-all           Delete all versioned file
-  --version-id           Object version id
-  --list                 List bucket contents
-  --remove-bucket        Delete bucket
+  -h, --help              Show this help message and exit
+  --bucket BUCKET         Bucket name
+  --file FILE             File to upload/download
+  --make-bucket           Create bucket
+  --enable-versioning     Enable object versioning
+  --suspend-versioning    Suspend object versioning
+  --check-versioning      Check object versioning
+  --list-buckets          List buckets
+  --list-object-versions  List object versions
+  --upload                Upload file
+  --download              Download file
+  --delete                Delete file
+  --delete-all            Delete all versioned file
+  --version-id VERSION_ID Object version id
+  --list                  List bucket contents
+  --remove-bucket         Delete bucket
 ```
 
 <br>
