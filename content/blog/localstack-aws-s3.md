@@ -1110,12 +1110,12 @@ Bucket 'bucket-2' deleted successfully.
 
 <br>
 
-We need `CPAN` module [**Net::Amazon::S3**](https://metacpan.org/dist/Net-Amazon-S3) for the script.
+We need `CPAN` module [**Paws**](https://metacpan.org/dist/Paws) for the script.
 
 <br>
 
 ```bash
-$ cpanm -vS Net::Amazon::S3
+$ cpanm -vS Paws
 ```
 
 <br>
