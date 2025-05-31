@@ -697,23 +697,23 @@ Below is the `Python` script to manage `S3` buckets.
 <br>
 
 ```python
+import os
+import sys
 import boto3
 import argparse
 from botocore.config import Config
-import os
-import sys
 
-LOCALSTACK_ENDPOINT = "http://localhost:4566"
-ACCESS_KEY_ID = "test"
+ENDPOINT_URL      = "http://localhost:4566"
+ACCESS_KEY_ID     = "test"
 SECRET_ACCESS_KEY = "test"
-DEFAULT_BUCKET = "bucket-1"
-DEFAULT_FILE = "test.txt"
-REGION = "eu-west-1"
+DEFAULT_BUCKET    = "bucket-1"
+DEFAULT_FILE      = "test.txt"
+REGION            = "eu-west-1"
 
 def create_s3_client():
     return boto3.client(
         's3',
-        endpoint_url = LOCALSTACK_ENDPOINT,
+        endpoint_url = ENDPOINT_URL,
         aws_access_key_id = ACCESS_KEY_ID,
         aws_secret_access_key = SECRET_ACCESS_KEY,
         config = Config(signature_version='s3v4'),
@@ -735,10 +735,23 @@ def make_bucket(s3, bucket_name, enable_versioning=False):
                 VersioningConfiguration = { 'Status': 'Enabled' }
             )
 
-        print(f"Bucket '{bucket_name}' created successfully.")
+        print(f"Bucket '{bucket_name}' created successfully")
         return True
     except Exception as e:
         print(f"Error creating bucket: {e}")
+        return False
+
+def suspend_versioning(s3, bucket_name):
+    try:
+        s3.put_bucket_versioning(
+            Bucket=bucket_name,
+            VersioningConfiguration = { 'Status': 'Suspended' }
+        )
+
+        print(f"Bucket '{bucket_name}' versioning suspended")
+        return True
+    except Exception as e:
+        print(f"Error suspending versioning: {e}")
         return False
 
 def check_bucket_versioning(s3, bucket_name):
@@ -754,12 +767,33 @@ def check_bucket_versioning(s3, bucket_name):
 def list_buckets(s3):
     try:
         response = s3.list_buckets()
+
         print("S3 Bucket List:")
         for bucket in response['Buckets']:
             print(f"- {bucket['Name']}")
+
         return True
+
     except Exception as e:
         print(f"Error listing buckets: {e}")
+        return False
+
+def list_object_versions(s3, bucket_name):
+    try:
+        response = s3.list_object_versions(Bucket=bucket_name)
+        print(f"Versions in bucket: {bucket_name}")
+        for version in response.get('Versions', []):
+            print(f"- Key: {version['Key']}")
+            print(f"  VersionId: {version['VersionId']}")
+            print(f"  IsLatest: {version['IsLatest']}")
+            print(f"  LastModified: {version['LastModified']}")
+            print(f"  Size: {version['Size']}")
+            print()
+
+        return True
+
+    except Exception as e:
+        print(f"Error listing object versions: {e}")
         return False
 
 def upload_file(s3, bucket_name, file_path, object_name=None):
@@ -772,7 +806,7 @@ def upload_file(s3, bucket_name, file_path, object_name=None):
 
     try:
         s3.upload_file(file_path, bucket_name, object_name)
-        print(f"File '{file_path}' uploaded as '{object_name}'.")
+        print(f"File '{file_path}' uploaded as '{object_name}'")
         return True
     except Exception as e:
         print(f"Error uploading file: {e}")
@@ -780,23 +814,55 @@ def upload_file(s3, bucket_name, file_path, object_name=None):
 
 def download_file(s3, bucket_name, object_name, download_path=None):
     if download_path is None:
-        download_path = f"downloaded_{object_name}"
+        download_path = f"new_{object_name}"
 
     try:
         s3.download_file(bucket_name, object_name, download_path)
-        print(f"Successfully downloaded '{file_path}' to '{download_path}'.")
+        print(f"File downloaded to '{download_path}'")
+
+        # Verify content
+        with open(download_path, 'r') as f:
+            print("File content:", f.read())
         return True
     except Exception as e:
         print(f"Error downloading file: {e}")
         return False
 
-def delete_file(s3, bucket_name, object_key):
+def delete_file(s3, bucket_name, object_key, version_id):
     try:
-        s3.delete_object(Bucket=bucket_name, Key=object_key)
-        print(f"Successfully deleted {object_key} from {bucket_name}.")
+        if version_id:
+            s3.delete_object(Bucket=bucket_name, Key=object_key, VersionId=version_id)
+        else:
+            s3.delete_object(Bucket=bucket_name, Key=object_key)
+        print(f"Successfully deleted {object_key} from {bucket_name}")
         return True
     except Exception as e:
         print(f"Error deleting {object_key}: {e}")
+        return False
+
+def delete_all(s3, bucket_name, object_key):
+    try:
+        response = s3.list_object_versions(Bucket=bucket_name, Prefix=object_key)
+
+        for version in response.get('Versions', []):
+            if version['Key'] == object_key:
+                print(f"Deleting version: {version['VersionId']}")
+                s3.delete_object(
+                    Bucket=bucket_name,
+                    Key=object_key,
+                    VersionId=version['VersionId']
+                )
+
+        for marker in response.get('DeleteMarkers', []):
+            if marker['Key'] == object_key:
+                print(f"Deleting delete marker: {marker['VersionId']}")
+                s3.delete_object(
+                    Bucket=bucket_name,
+                    Key=object_key,
+                    VersionId=marker['VersionId']
+                )
+    except Exception as e:
+        print(f"Error deleting versioned {object_key}: {e}")
         return False
 
 def list_bucket_contents(s3, bucket_name):
@@ -823,7 +889,7 @@ def remove_bucket(s3, bucket_name):
 
         # Delete bucket
         s3.delete_bucket(Bucket=bucket_name)
-        print(f"Bucket '{bucket_name}' deleted successfully.")
+        print(f"Bucket '{bucket_name}' deleted successfully")
         return True
     except Exception as e:
         print(f"Error deleting bucket: {e}")
@@ -836,20 +902,24 @@ def create_test_file(file_path):
         print(f"Created test file: {file_path}")
 
 def main():
-    parser = argparse.ArgumentParser(description="LocalStack S3 Operations")
+    parser = argparse.ArgumentParser(description="S3 Bucket Operations")
     parser.add_argument('--bucket', default=DEFAULT_BUCKET, help="Bucket name")
     parser.add_argument('--file', default=DEFAULT_FILE, help="File to upload/download")
 
     # Operation flags
-    parser.add_argument('--make-bucket', action='store_true', help="Make bucket")
+    parser.add_argument('--make-bucket', action='store_true', help="Create bucket")
     parser.add_argument('--enable-versioning', action='store_true', help="Enable object versioning")
+    parser.add_argument('--suspend-versioning', action='store_true', help="Suspend object versioning")
     parser.add_argument('--check-versioning', action='store_true', help="Check object versioning")
     parser.add_argument('--list-buckets', action='store_true', help="List buckets")
+    parser.add_argument('--list-object-versions', action='store_true', help="List object versions")
     parser.add_argument('--upload', action='store_true', help="Upload file")
     parser.add_argument('--download', action='store_true', help="Download file")
     parser.add_argument('--delete', action='store_true', help="Delete file")
+    parser.add_argument('--delete-all', action='store_true', help="Delete all")
+    parser.add_argument('--version-id', help="Object version id")
     parser.add_argument('--list', action='store_true', help="List bucket contents")
-    parser.add_argument('--remove-bucket', action='store_true', help="Remove bucket")
+    parser.add_argument('--remove-bucket', action='store_true', help="Delete bucket")
 
     args = parser.parse_args()
 
@@ -861,11 +931,17 @@ def main():
     if args.make_bucket:
         make_bucket(s3, args.bucket, args.enable_versioning)
 
+    if args.suspend_versioning:
+        suspend_versioning(s3, args.bucket)
+
     if args.check_versioning:
         check_bucket_versioning(s3, args.bucket)
 
     if args.list_buckets:
         list_buckets(s3)
+
+    if args.list_object_versions:
+        list_object_versions(s3, args.bucket)
 
     if args.upload:
         upload_file(s3, args.bucket, args.file)
@@ -874,7 +950,10 @@ def main():
         download_file(s3, args.bucket, os.path.basename(args.file))
 
     if args.delete:
-        delete_file(s3, args.bucket, os.path.basename(args.file))
+        delete_file(s3, args.bucket, os.path.basename(args.file), args.version_id)
+
+    if args.delete_all:
+        delete_all(s3, args.bucket, os.path.basename(args.file))
 
     if args.list:
         list_bucket_contents(s3, args.bucket)
@@ -895,23 +974,30 @@ This is what it looks like:
 
 ```bash
 (myenv) $ py manage-s3.py --help
-usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning] [--check-versioning] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
+usage: manage-s3.py [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning] [--suspend-versioning] [--check-versioning] [--list-buckets]
+                    [--list-object-versions] [--upload] [--download] [--delete] [--delete-all] [--version-id VERSION_ID] [--list] [--remove-bucket]
 
-LocalStack S3 Operations
+S3 Bucket Operations
 
 options:
-  -h, --help           show this help message and exit
-  --bucket BUCKET      Bucket name
-  --file FILE          File to upload/download
-  --make-bucket        Make bucket
-  --enable-versioning  Enable object versioning
-  --check-versioning   Check object versioning
-  --list-buckets       List buckets
-  --upload             Upload file
-  --download           Download file
-  --delete             Delete file
-  --list               List bucket contents
-  --remove-bucket      Remove bucket
+  -h, --help            show this help message and exit
+  --bucket BUCKET       Bucket name
+  --file FILE           File to upload/download
+  --make-bucket         Create bucket
+  --enable-versioning   Enable object versioning
+  --suspend-versioning  Suspend object versioning
+  --check-versioning    Check object versioning
+  --list-buckets        List buckets
+  --list-object-versions
+                        List object versions
+  --upload              Upload file
+  --download            Download file
+  --delete              Delete file
+  --delete-all          Delete all
+  --version-id VERSION_ID
+                        Object version id
+  --list                List bucket contents
+  --remove-bucket       Delete bucket
 ```
 
 <br>
@@ -1044,244 +1130,318 @@ Below is the `Perl` script to manage `S3` buckets.
 #!/usr/bin/env perl
 
 use v5.38;
+use Try::Tiny;
 use File::Slurp;
 use Getopt::Long;
 use File::Basename;
-use Net::Amazon::S3;
 
-my $LOCALSTACK_ENDPOINT = 'localhost:4566';
-my $ACCESS_KEY_ID       = 'test';
-my $SECRET_ACCESS_KEY   = 'test';
-my $DEFAULT_BUCKET      = 'bucket-1';
-my $DEFAULT_FILE        = 'test.txt';
-my $REGION              = 'eu-west-1';
+use Paws;
+use Paws::Credential::Explicit;
+
+my $ENDPOINT   = 'http://localhost:4566';
+my $ACCESS_KEY = 'test';
+my $SECRET_KEY = 'test';
+my $REGION     = 'eu-west-1';
 
 my %opts;
 GetOptions(
-    'bucket=s'       => \$opts{bucket},
-    'file=s'         => \$opts{file},
-    'make-bucket'    => \$opts{make_bucket},
-    'list-buckets'   => \$opts{list_buckets},
-    'upload'         => \$opts{upload},
-    'download'       => \$opts{download},
-    'delete'         => \$opts{delete},
-    'list'           => \$opts{list},
-    'remove-bucket'  => \$opts{remove_bucket},
-    'help'           => \$opts{help},
+    'help'                 => \$opts{help},
+    'bucket=s'             => \$opts{bucket},
+    'file=s'               => \$opts{file},
+    'make-bucket'          => \$opts{make_bucket},
+    'enable-versioning'    => \$opts{enable_versioning},
+    'suspend-versioning'   => \$opts{suspend_versioning},
+    'check-versioning'     => \$opts{check_versioning},
+    'list-buckets'         => \$opts{list_buckets},
+    'list-object-versions' => \$opts{list_object_versions},
+    'upload'               => \$opts{upload},
+    'download'             => \$opts{download},
+    'delete'               => \$opts{delete},
+    'delete-all'           => \$opts{delete_all},
+    'version-id=s'         => \$opts{version_id},
+    'list'                 => \$opts{list},
+    'remove-bucket'        => \$opts{remove_bucket},
 ) or show_help_and_exit(1);
 
 show_help_and_exit(0) if $opts{help};
 
-$opts{bucket} ||= $DEFAULT_BUCKET;
-$opts{file}   ||= $DEFAULT_FILE;
-
 my $s3 = create_s3_client();
 
-if ($opts{upload}) {
-    create_test_file($opts{file});
-}
-
-if ($opts{make_bucket}) {
-    make_bucket($s3, $opts{bucket});
-}
-
-if ($opts{list_buckets}) {
-    list_buckets($s3);
-}
-
-if ($opts{upload}) {
-    upload_file($s3, $opts{bucket}, $opts{file});
-}
-
-if ($opts{download}) {
-    download_file($s3, $opts{bucket}, basename($opts{file}));
-}
-
-if ($opts{delete}) {
-    delete_file($s3, $opts{bucket}, basename($opts{file}));
-}
-
-if ($opts{list}) {
-    list_bucket_contents($s3, $opts{bucket});
-}
-
-if ($opts{remove_bucket}) {
-    remove_bucket($s3, $opts{bucket});
-}
-
-## SUBROUTINES
+make_bucket($s3, $opts{bucket}, $opts{enable_versioning})       if $opts{make_bucket};
+suspend_versioning($s3, $opts{bucket})                          if $opts{suspend_versioning};
+list_buckets($s3)                                               if $opts{list_buckets};
+list_object_versions($s3, $opts{bucket})                        if $opts{list_object_versions};
+check_versioning($s3, $opts{bucket})                            if $opts{check_versioning};
+upload_file($s3, $opts{bucket}, $opts{file})                    if $opts{upload};
+download_file($s3, $opts{bucket}, $opts{file})                  if $opts{download};
+delete_file($s3, $opts{bucket}, $opts{file}, $opts{version_id}) if $opts{delete};
+delete_all($s3, $opts{bucket}, $opts{file})                     if $opts{delete_all};
+list_bucket_contents($s3, $opts{bucket})                        if $opts{list};
+remove_bucket($s3, $opts{bucket})                               if $opts{remove_bucket};
 
 sub show_help_and_exit {
     my ($exit_code) = @_;
-
     print <<"END_HELP";
-usage: $0 [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
+usage: $0 [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning] [--suspend-versioning] [--check-versioning] [--list-buckets] [--list-object-versions] [--upload] [--download] [--delete] [--delete-all] [--version-id] [--list] [--remove-bucket]
 
-LocalStack S3 Operations
+S3 Bucket Operations
 
 options:
-  --help           show this help message and exit
-  --bucket BUCKET  Bucket name
-  --file FILE      File to upload/download
-  --make-bucket    Create bucket
-  --list-buckets   List buckets
-  --upload         Upload file
-  --download       Download file
-  --delete         Delete file
-  --list           List bucket contents
-  --remove-bucket  Delete bucket
+  -h, --help             Show this help message and exit
+  --bucket BUCKET        Bucket name
+  --file FILE            File to upload/download
+  --make-bucket          Create bucket
+  --enable-versioning    Enable object versioning
+  --suspend-versioning   Suspend object versioning
+  --check-versioning     Check object versioning
+  --list-buckets         List buckets
+  --list-object-versions List object versions
+  --upload               Upload file
+  --download             Download file
+  --delete               Delete file
+  --delete-all           Delete all versioned file
+  --version-id           Object version id
+  --list                 List bucket contents
+  --remove-bucket        Delete bucket
 END_HELP
-
     exit $exit_code;
 }
 
 sub create_s3_client {
-    return Net::Amazon::S3->new(
-        aws_access_key_id     => $ACCESS_KEY_ID,
-        aws_secret_access_key => $SECRET_ACCESS_KEY,
-        host                  => $LOCALSTACK_ENDPOINT,
-        secure                => 0,
+    return Paws->service('S3',
+        region      => $REGION,
+        credentials => Paws::Credential::Explicit->new(
+            access_key => $ACCESS_KEY,
+            secret_key => $SECRET_KEY,
+        ),
+        endpoint => $ENDPOINT,
     );
 }
 
-sub make_bucket {
-    my ($s3, $bucket_name) = @_;
-    eval {
-        $s3->add_bucket($bucket_name, { location_constraint => $REGION });
-        print "Bucket '$bucket_name' created successfully.\n";
-        return 1;
-    };
-    if ($@) {
-        print "Error creating bucket: $@\n";
-        return 0;
-    }
-}
+sub make_bucket($s3, $bucket, $enable_versioning) {
+    die "ERROR: Missing S3 client."   unless defined $s3;
+    die "ERROR: Missing bucket name." unless defined $bucket;
 
-sub list_buckets {
-    my ($s3) = @_;
-    eval {
-        my $response = $s3->buckets;
-        print "S3 Bucket List:\n";
-        foreach my $bucket ( @{ $response->{buckets} } ) {
-            print "- " . $bucket->bucket . "\n";
+    $enable_versioning = 0 unless defined $enable_versioning;
+    try {
+        $s3->CreateBucket(
+            Bucket => $bucket,
+            CreateBucketConfiguration => {
+                LocationConstraint => $REGION,
+            },
+        );
+        if ($enable_versioning) {
+            $s3->PutBucketVersioning(
+                Bucket => $bucket,
+                VersioningConfiguration => {
+                    Status => 'Enabled'
+                }
+            );
         }
-        return 1;
+        say "Bucket '$bucket' created successfully.";
+    }
+    catch {
+        die "Error creating bucket: $_\n";
     };
-    if ($@) {
-        print "Error listing buckets: $@\n";
-        return 0;
+}
+
+sub suspend_versioning($s3, $bucket) {
+    die "ERROR: Missing S3 client."   unless defined $s3;
+    die "ERROR: Missing bucket name." unless defined $bucket;
+
+    try {
+        $s3->PutBucketVersioning(
+            Bucket => $bucket,
+            VersioningConfiguration => {
+                Status => 'Suspended'
+            }
+        );
+        say "Bucket '$bucket' versioning suspended.";
+    }
+    catch {
+        die "Error suspending versioning: $_\n";
+    };
+}
+
+sub check_versioning($s3, $bucket) {
+    die "ERROR: Missing S3 client."   unless defined $s3;
+    die "ERROR: Missing bucket name." unless defined $bucket;
+
+    my $versioning = $s3->GetBucketVersioning(Bucket => $bucket);
+
+    if ($versioning->Status) {
+        say "Versioning is enabled: " . $versioning->Status;
+    } else {
+        say "Versioning is not enabled.";
     }
 }
 
-sub upload_file {
-    my ($s3, $bucket_name, $file_path) = @_;
+sub list_buckets($s3) {
+    die "ERROR: Missing S3 client."   unless defined $s3;
 
-    unless (-e $file_path) {
-        print "Error: File '$file_path' does not exist\n";
-        return 0;
+    try {
+        my $resp = $s3->ListBuckets;
+        say "S3 Bucket List:";
+        say "- $_->{Name}" for @{ $resp->Buckets };
     }
-
-    my $object_name = basename($file_path);
-    my $bucket      = $s3->bucket($bucket_name);
-
-    eval {
-        my $content   = read_file($file_path, binmode => ':raw');
-        my $temp_file = "/tmp/s3upload_$$.tmp";
-        write_file($temp_file, { binmode => ':raw' }, $content);
-        $bucket->add_key_filename($object_name, $temp_file);
-        unlink $temp_file;
-
-        print "Successfully uploaded '$file_path' (".length($content)." bytes) as '$object_name'.\n";
-        return 1;
+    catch {
+        die "Error listing buckets: $_\n";
     };
-    if ($@) {
-        print "Error uploading file: $@\n";
-        return 0;
-    }
 }
 
-sub download_file {
-    my ($s3, $bucket_name, $object_name) = @_;
-    my $download_path = "downloaded_$object_name";
+sub list_object_versions($s3, $bucket) {
+    die "ERROR: Missing S3 client."   unless defined $s3;
+    die "ERROR: Missing bucket name." unless defined $bucket;
 
-    eval {
-        my $bucket  = $s3->bucket($bucket_name);
-        my $key     = $bucket->get_key($object_name) or die "Key '$object_name' not found";
-        my $content = $key->{value};
+    try {
+        my $response = $s3->ListObjectVersions(Bucket => $bucket);
 
-        open(my $fh, '>', $download_path) or die "Cannot write file: $!";
-        binmode($fh);
-        print $fh $content;
-        close($fh);
+        say "Object Versions in bucket '$bucket':";
 
-        print "Successfully downloaded '$object_name' to '$download_path'.\n";
-        return 1;
-    };
-    if ($@) {
-        print "Error downloading file: $@\n";
-        return 0;
-    }
-}
-
-sub delete_file {
-    my ($s3, $bucket_name, $object_name) = @_;
-    eval {
-        my $bucket  = $s3->bucket($bucket_name);
-        $bucket->delete_key($object_name) or die $s3->err . ": " . $s3->errstr;
-        print "Successfully deleted '$object_name' from '$bucket_name'.\n";
-        return 1;
-    };
-    if ($@) {
-        print "Error deleting file: $@\n";
-        return 0;
-    }
-}
-
-sub list_bucket_contents {
-    my ($s3, $bucket_name) = @_;
-
-    eval {
-        my $bucket   = $s3->bucket($bucket_name);
-        my $response = $bucket->list_all or return 0;
-        print("Bucket '$bucket_name' contents:\n");
-        foreach my $key (@{$response->{keys}}) {
-            print "- ", $key->{key}, "\n";
+        for my $version (@{ $response->Versions }) {
+            say "- Key: ",          $version->Key;
+            say "  VersionId: ",    $version->VersionId;
+            say "  IsLatest: ",     $version->IsLatest ? "Yes" : "No";
+            say "  LastModified: ", $version->LastModified;
+            say "  Size: ",         $version->Size;
+            say "";
         }
-    };
-    if ($@) {
-        print "Error listing bucket contents: $@\n";
-        return 0;
     }
+    catch {
+        die "Error listing object versions in bucket: $_\n";
+    };
 }
 
-sub remove_bucket {
-    my ($s3, $bucket_name) = @_;
+sub upload_file($s3, $bucket, $key) {
+    die "ERROR: Missing S3 client."   unless defined $s3;
+    die "ERROR: Missing bucket name." unless defined $bucket;
 
-    eval {
-        my $bucket   = $s3->bucket($bucket_name);
-        my $response = $bucket->list_all or return 0;
-        foreach my $key (@{$response->{keys}}) {
-            print " Delete key:", $key->{key}, "\n";
-            $bucket->delete_key($key->{key});
+    $key = basename($key);
+    return warn "File '$key' does not exist\n" unless -e $key;
+
+    my $content = read_file($key, binmode => ':raw');
+    try {
+        $s3->PutObject(
+            Bucket => $bucket,
+            Key    => $key,
+            Body   => $content,
+        );
+        say "Successfully uploaded '$key'.";
+    }
+    catch {
+        die "Error uploading file: $_\n";
+    };
+}
+
+sub download_file($s3, $bucket, $key) {
+    die "ERROR: Missing S3 client."   unless defined $s3;
+    die "ERROR: Missing bucket name." unless defined $bucket;
+    die "ERROR: Missing key."         unless defined $key;
+
+    $key = basename($key);
+    my $dest = "downloaded_$key";
+
+    try {
+        my $resp = $s3->GetObject(Bucket => $bucket, Key => $key);
+        write_file($dest, { binmode => ':raw' }, $resp->Body);
+        say "Successfully downloaded '$key' to '$dest'.";
+    }
+    catch {
+        die "Error downloading file: $_\n";
+    };
+}
+
+sub delete_file($s3, $bucket, $key, $version_id) {
+    die "ERROR: Missing S3 client."   unless defined $s3;
+    die "ERROR: Missing bucket name." unless defined $bucket;
+    die "ERROR: Missing key."         unless defined $key;
+
+    try {
+        $key = basename($key);
+        if (defined $version_id) {
+            $s3->DeleteObject(
+                Bucket    => $bucket,
+                Key       => $key,
+                VersionId => $version_id,
+            );
+
+            say "Deleted version '$version_id' of object '$key' in bucket '$bucket'.";
+        }
+        else {
+            $s3->DeleteObject(Bucket => $bucket, Key => $key);
+            say "Successfully deleted '$key' from '$bucket'.";
+        }
+    }
+    catch {
+        die "Error deleting file: $_\n";
+    };
+}
+
+sub delete_all($s3, $bucket, $key) {
+    die "ERROR: Missing S3 client."   unless defined $s3;
+    die "ERROR: Missing bucket name." unless defined $bucket;
+    die "ERROR: Missing key."         unless defined $key;
+
+    try {
+        my $resp = $s3->ListObjectVersions(Bucket => $bucket);
+        $key = basename($key);
+        for my $version (@{ $resp->Versions }) {
+            if ($version->Key eq $key) {
+                $s3->DeleteObject(
+                    Bucket    => $bucket,
+                    Key       => $key,
+                    VersionId => $version->VersionId,
+                );
+            }
         }
 
-        $bucket->delete_bucket;
-        print "Bucket '$bucket_name' deleted successfully.\n";
-        return 1;
-    };
-    if ($@) {
-        print "Error deleting bucket: $@\n";
-        return 0;
+        for my $marker (@{ $resp->DeleteMarkers }) {
+            if ($marker->Key eq $key) {
+                $s3->DeleteObject(
+                    Bucket    => $bucket,
+                    Key       => $key,
+                    VersionId => $marker->VersionId,
+                );
+            }
+        }
+
+        say "Deleted versions of '$key' from bucket '$bucket'.";
     }
+    catch {
+        die "Error deleting all file versions: $_\n";
+    };
 }
 
-sub create_test_file {
-    my ($file_path) = @_;
+sub list_bucket_contents($s3, $bucket) {
+    die "ERROR: Missing S3 client."   unless defined $s3;
+    die "ERROR: Missing bucket name." unless defined $bucket;
 
-    unless (-e $file_path) {
-        write_file($file_path, "This is a test file created at " . localtime() . "\n");
-        print "Created test file: $file_path\n";
+    try {
+        my $resp = $s3->ListObjectsV2(Bucket => $bucket);
+        say "Bucket '$bucket' contents:";
+        say "- $_->{Key}" for @{ $resp->Contents };
     }
+    catch {
+        warn "Error listing contents: $_\n";
+    };
+}
+
+sub remove_bucket($s3, $bucket) {
+    die "ERROR: Missing S3 client."   unless defined $s3;
+    die "ERROR: Missing bucket name." unless defined $bucket;
+
+    try {
+        my $resp = $s3->ListObjectsV2(Bucket => $bucket);
+        for my $obj (@{ $resp->Contents }) {
+            say " Delete key: ", $obj->{Key};
+            $s3->DeleteObject(Bucket => $bucket, Key => $obj->{Key});
+        }
+        $s3->DeleteBucket(Bucket => $bucket);
+        say "Bucket '$bucket' deleted successfully.";
+    }
+    catch {
+        die "Error deleting bucket: $_\n";
+    };
 }
 ```
 
@@ -1293,21 +1453,27 @@ This is what it looks like:
 
 ```bash
 (myenv) $ perl manage-s3.pl --help
-usage: manage-s3.pl [--help] [--bucket BUCKET] [--file FILE] [--make-bucket] [--list-buckets] [--upload] [--download] [--delete] [--list] [--remove-bucket]
+usage: manage-s3.pl [-h] [--bucket BUCKET] [--file FILE] [--make-bucket] [--enable-versioning] [--suspend-versioning] [--check-versioning] [--list-buckets] [--list-object-versions] [--upload] [--download] [--delete] [--delete-all] [--version-id] [--list] [--remove-bucket]
 
-LocalStack S3 Operations
+S3 Bucket Operations
 
 options:
-  --help           show this help message and exit
-  --bucket BUCKET  Bucket name
-  --file FILE      File to upload/download
-  --make-bucket    Create bucket
-  --list-buckets   List buckets
-  --upload         Upload file
-  --download       Download file
-  --delete         Delete file
-  --list           List bucket contents
-  --remove-bucket  Delete bucket
+  -h, --help             Show this help message and exit
+  --bucket BUCKET        Bucket name
+  --file FILE            File to upload/download
+  --make-bucket          Create bucket
+  --enable-versioning    Enable object versioning
+  --suspend-versioning   Suspend object versioning
+  --check-versioning     Check object versioning
+  --list-buckets         List buckets
+  --list-object-versions List object versions
+  --upload               Upload file
+  --download             Download file
+  --delete               Delete file
+  --delete-all           Delete all versioned file
+  --version-id           Object version id
+  --list                 List bucket contents
+  --remove-bucket        Delete bucket
 ```
 
 <br>
@@ -1319,6 +1485,28 @@ options:
 ```bash
 (myenv) $ perl manage-s3.pl --bucket bucket-2 --make-bucket
 Bucket 'bucket-2' created successfully.
+```
+
+<br>
+
+If you want to enable versioning too after creating the bucket then do this:
+
+<br>
+
+```bash
+(myenv) $ perl manage-s3.pl --bucket bucket-2 --make-bucket --enable-versioning
+Bucket 'bucket-2' created successfully.
+```
+
+<br>
+
+Incase, you want to suspend versioning later then try this:
+
+<br>
+
+```bash
+(myenv) $ perl manage-s3.pl --bucket bucket-2 --suspend-versioning
+Bucket 'bucket-2' versioning suspended.
 ```
 
 <br>
@@ -1396,7 +1584,7 @@ Bucket 'bucket-2' deleted successfully.
 
 Now we have done with `AWS S3`.
 
-The next would be about `AWS Dynamo DB` very soon.
+The next would be about `AWS DynamoDB` very soon.
 
 ***
 
