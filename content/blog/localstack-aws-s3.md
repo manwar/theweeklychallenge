@@ -1231,8 +1231,8 @@ sub make_bucket($s3, $bucket, $enable_versioning) {
     die "ERROR: Missing S3 client."   unless defined $s3;
     die "ERROR: Missing bucket name." unless defined $bucket;
 
-    $enable_versioning = 0 unless defined $enable_versioning;
     try {
+        $enable_versioning = 0 unless defined $enable_versioning;
         $s3->CreateBucket(
             Bucket => $bucket,
             CreateBucketConfiguration => {
@@ -1276,13 +1276,17 @@ sub check_versioning($s3, $bucket) {
     die "ERROR: Missing S3 client."   unless defined $s3;
     die "ERROR: Missing bucket name." unless defined $bucket;
 
-    my $versioning = $s3->GetBucketVersioning(Bucket => $bucket);
-
-    if ($versioning->Status) {
-        say "Versioning is enabled: " . $versioning->Status;
-    } else {
-        say "Versioning is not enabled.";
+    try {
+        my $versioning = $s3->GetBucketVersioning(Bucket => $bucket);
+        if ($versioning->Status) {
+            say "Versioning is enabled: " . $versioning->Status;
+        } else {
+            say "Versioning is not enabled.";
+        }
     }
+    catch {
+        die "Error checking bucket versioning: $_\n";
+    };
 }
 
 sub list_buckets($s3) {
@@ -1304,7 +1308,6 @@ sub list_object_versions($s3, $bucket) {
 
     try {
         my $response = $s3->ListObjectVersions(Bucket => $bucket);
-
         say "Object Versions in bucket '$bucket':";
 
         for my $version (@{ $response->Versions }) {
@@ -1324,12 +1327,13 @@ sub list_object_versions($s3, $bucket) {
 sub upload_file($s3, $bucket, $key) {
     die "ERROR: Missing S3 client."   unless defined $s3;
     die "ERROR: Missing bucket name." unless defined $bucket;
+    die "ERROR: Missing key."         unless defined $key;
 
-    $key = basename($key);
-    return warn "File '$key' does not exist\n" unless -e $key;
-
-    my $content = read_file($key, binmode => ':raw');
     try {
+        $key = basename($key);
+        return warn "File '$key' does not exist\n" unless -e $key;
+
+        my $content = read_file($key, binmode => ':raw');
         $s3->PutObject(
             Bucket => $bucket,
             Key    => $key,
@@ -1347,10 +1351,11 @@ sub download_file($s3, $bucket, $key) {
     die "ERROR: Missing bucket name." unless defined $bucket;
     die "ERROR: Missing key."         unless defined $key;
 
-    $key = basename($key);
-    my $dest = "downloaded_$key";
-
     try {
+        $key = basename($key);
+        return warn "File '$key' does not exist\n" unless -e $key;
+
+        my $dest = "downloaded_$key";
         my $resp = $s3->GetObject(Bucket => $bucket, Key => $key);
         write_file($dest, { binmode => ':raw' }, $resp->Body);
         say "Successfully downloaded '$key' to '$dest'.";
