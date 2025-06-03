@@ -1047,6 +1047,7 @@ Versioning: Not enabled
 (myenv) $ py manage-s3.py --list-buckets
 S3 Bucket List:
 - bucket-2
+- bucket-3
 ```
 
 <br>
@@ -1103,6 +1104,13 @@ Bucket 'bucket-2' contents:
 ```bash
 (myenv) $ py manage-s3.py --bucket bucket-2 --remove-bucket
 Bucket 'bucket-2' deleted successfully.
+```
+
+<br>
+
+```bash
+(myenv) $ py manage-s3.py --bucket bucket-3 --remove-bucket
+Bucket 'bucket-3' deleted successfully.
 ```
 
 <br>
@@ -1511,8 +1519,8 @@ If you want to enable versioning too after creating the bucket then do this:
 <br>
 
 ```bash
-(myenv) $ perl manage-s3.pl --bucket bucket-2 --make-bucket --enable-versioning
-Bucket 'bucket-2' created successfully.
+(myenv) $ perl manage-s3.pl --bucket bucket-3 --make-bucket --enable-versioning
+Bucket 'bucket-3' created successfully.
 ```
 
 <br>
@@ -1522,7 +1530,7 @@ Incase, you want to suspend versioning later then try this:
 <br>
 
 ```bash
-(myenv) $ perl manage-s3.pl --bucket bucket-2 --suspend-versioning
+(myenv) $ perl manage-s3.pl --bucket bucket-3 --suspend-versioning
 Bucket 'bucket-2' versioning suspended.
 ```
 
@@ -1536,6 +1544,7 @@ Bucket 'bucket-2' versioning suspended.
 (myenv) $ perl manage-s3.pl --list-buckets
 S3 Bucket List:
 - bucket-2
+- bucket-3
 ```
 
 <br>
@@ -1591,6 +1600,13 @@ Bucket 'bucket-2' contents:
 
 ```bash
 (myenv) $ perl manage-s3.pl --bucket bucket-2 --remove-bucket
+Bucket 'bucket-2' deleted successfully.
+```
+
+<br>
+
+```bash
+(myenv) $ perl manage-s3.pl --bucket bucket-3 --remove-bucket
 Bucket 'bucket-2' deleted successfully.
 ```
 
