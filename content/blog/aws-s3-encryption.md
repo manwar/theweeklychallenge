@@ -18,7 +18,7 @@ tags: ["perl", "python", "aws", "localstack"]
 ### [2. Types of S3 Encryption](#types-of-s3-encryption)
 ### [3. Server-Side Encryption (SSE)](#server-side-encryption-sse)
 ### [4. Client-Side Encryption (CSE)](#client-side-encryption-cse)
-### [5. AWS Managed Keys (SSE-S3)](#aws-managed-keys-sse-s3i)
+### [5. AWS Managed Keys (SSE-S3)](#aws-managed-keys-sse-s3)
 ### [6. Using aws](#using-aws)
 ### [7. Using Python](#using-python)
 ### [8. Using Perl](#using-perl)
