@@ -1,46 +1,345 @@
 ---
-title: "RECAP - Perl Weekly Challenge - 009"
+title: "RECAP - The Weekly Challenge - 009"
 date: 2019-05-27T00:00:00+00:00
-description: "My personal take on the Challenge #009."
+description: "Quick recap of The Weekly Challenge - 009."
 type: post
 image: images/blog/recap-challenge-009.jpg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
-I would like to this opportunity to thank one of the respected member **Kian-Meng Ang** for the help in reviewing **Perl 5** challenges every week. Checkout her last [review](/blog/review-challenge-008/) if you haven't seen already. Ever since I started reviewing the challenges, I am looking for volunteer to do the same for **Perl 6**. I know it is weekly commitment and can be tiresome. If we can create team of reviewers for each languages then it would be even more fun. I feel guilty every week not talking about **Perl 6** magical solutions.
+
+## TABLE OF CONTENTS
+***
+
+### &nbsp;&nbsp;1. [HEADLINES](#HEADLINES)
+### &nbsp;&nbsp;2. [STAR CONTRIBUTORS](#STARCONTRIBUTORS)
+### &nbsp;&nbsp;3. [CONTRIBUTION STATS](#CONTRIBUTIONSTATS)
+### &nbsp;&nbsp;4. [GUESTS](#GUESTS)
+### &nbsp;&nbsp;5. [LANGUAGES](#LANGUAGES)
+### &nbsp;&nbsp;6. [CENTURION CLUB](#CENTURIONCLUB)
+### &nbsp;&nbsp;7. [DAMIAN CONWAY's CORNER](#DAMIANCONWAYCORNER)
+### &nbsp;&nbsp;8. [ANDREW SHITOV's CORNER](#ANDREWSHITOVCORNER)
+### &nbsp;&nbsp;9. [PERL SOLUTIONS](#PERLSOLUTIONS)
+### 10. [RAKU SOLUTIONS](#RAKUSOLUTIONS)
+### 11. [PERL & RAKU SOLUTIONS](#PERLRAKUSOLUTIONS)
+
+<br>
+
+## HEADLINES {#HEADLINES}
+***
+
+Thank you **Team PWC** for your continuous support and encouragement.
+
+<br>
+
+## STAR CONTRIBUTORS {#STARCONTRIBUTORS}
+***
+
+Following members shared solutions to both tasks in `Perl` and `Raku` as well as blogged about it.
+
+#### 1. Jaldhar H. Vyas
+#### 2. Joelle Maslak
+#### 3. Laurent Rosenfeld
+
+<br>
+
+### Overall Contributions Stats:
+
+<br>
+
+#### 1. Perl: 518 (66%)
+#### 2. Raku: 259 (34%)
+#### 3. Blog: 96
+
+<br>
+
+## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
+***
+
+The total contributions in the week is `80`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+
+#### 1. Perl: 46
+#### 2. Raku: 20
+#### 3. Blog: 14
+
+<br>
+
+## GUESTS {#GUESTS}
+***
+
+#### 1. Abigail (106)
+    Awk (8), BASIC (1), Bash (8), Bc (5), Befunge-93 (4), C (8), Go (7), Java (7), Lua (8), Node.js (8), Pascal (7), Python (8), R (7), Ruby (8), Scheme (7), Tcl (5).
+#### 2. Paulo Custodio (88)
+    Awk (10), BASIC (6), Bc (6), Brainfuck (2), C (18), C++ (18), Forth (4), Lua (6), Python (18).
+#### 3. David Ferrone (72)
+    C (18), JavaScript (18), Python (18), Rust (18).
+#### 4. AhmetEmre (18)
+    BQN (18).
+#### 5. Archar Gelod (18)
+    Nim (18).
+#### 6. Stuart Little (18)
+    Haskell (18).
+#### 7. Lubos Kolouch (16)
+    Python (16).
+#### 8. Alexander Pankoff (6)
+    Haskell (6).
+#### 9. PokGoPun (6)
+    Go (6).
+#### 10. Mohammad Foda (4)
+    Haxe (2), Nim (2).
+#### 11. Aaryan Rastogi (1)
+    JavaScript (1).
+#### 12. Conor Hoekstra (1)
+    APL (1).
+#### 13. Karishma Rajput (1)
+    Node.js (1).
+
+<br>
+
+## LANGUAGES {#LANGUAGES}
+***
+
+    Python (60), C (44), Haskell (24), Nim (20), JavaScript (19), Awk (18), BQN (18), C++ (18), Rust (18), Lua (14), Go (13), Bc (11), Node.js (9), Bash (8), Ruby (8), BASIC (7), Java (7), Pascal (7), R (7), Scheme (7), Tcl (5), Befunge-93 (4), Forth (4), Brainfuck (2), Haxe (2), APL (1).
+
+<br>
+
+## CENTURION CLUB {#CENTURIONCLUB}
+***
+
+    Laurent Rosenfeld (108).
+
+<br>
+
+## DAMIAN CONWAY's CORNER {#DAMIANCONWAYCORNER}
+***
+
+Please checkout the masterpiece collection of [**blogs**](/blog/damian-corner) by **Damian Conway** solving the **[The Weekly Challenge](/challenges)**.
+
+<br>
+
+## ANDREW SHITOV's CORNER {#ANDREWSHITOVCORNER}
+***
+
+Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can find all his contributions to the **[The Weekly Challenge](/challenges)** on this [**nicely laid out page**](https://andrewshitov.com/raku-challenges-index/).
+
+<br>
+
+## PERL SOLUTIONS {#PERLSOLUTIONS}
 
 ***
 
 ### Adam Russell
-![Andrezgz](/images/team/adam_russell.jpg)
+![Adam Russell](/images/team/adam_russell.jpg)
 
-Adam attempted to solve the square number challenge using pure Perl without using any external library. But for the ranking challenge, he took the help of CPAN libraries like **Tie::RefHash** and **boolean**. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/adam-russell/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/adam-russell/perl5/ch-2.pl)] [[BLOG](https://adamcrussell.livejournal.com/3377.html)].
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/adam-russell/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/adam-russell/perl/ch-2.pl)]
+[[**BLOG #1**](https://adamcrussell.livejournal.com/3377.html)]
+
+***
 
 ### Andrezgz
-![Andrezgz](/images/team/user.jpg)
+![Andrezgz](/images/team/andrezgz.jpg)
 
-Andrezgz used operator heavily to solve the square number challenge. I found ranking solution very tricky to follow. At first, I couldn't figure where is logic for ranking. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/andrezgz/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/andrezgz/perl5/ch-2.pl)].
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/andrezgz/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/andrezgz/perl/ch-2.pl)]
 
-
-### Arne Sommer
-![Arne Sommer](/images/team/arne-sommer.jpg)
-
-Arne Sommer blog is as usual at its best. Highly recommended. [[BLOG](https://perl6.eu/squared-ranking.html)].
+***
 
 ### Athanasius
 ![Athanasius](/images/team/athanasius.jpg)
 
-Athanasius made it look very easy to solve the square number challenge. For ranking challenge, he went on and added more ranking solutions that we asked for. It is always great to see the enthusiasm. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/athanasius/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/athanasius/perl5/ch-2.pl)].
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/athanasius/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/athanasius/perl/ch-2.pl)]
+
+***
 
 ### Daniel Mantovani
 ![Daniel Mantovani](/images/team/daniel_mantovani.jpg)
 
-Daniel solution to the square number challenge is like a poetry. For ranking challenge, he came up with a very unique sub **rank()**. You must take a look. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/daniel-mantovani/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/daniel-mantovani/perl5/ch-2.pl)].
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/daniel-mantovani/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/daniel-mantovani/perl/ch-2.pl)]
+
+***
 
 ### Dave Jacoby
 ![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
-For ranking challenge, Dave tried different approach. He never shy away from using Perl magical opertaor. He solved the ranking challenge with plenty of documentation, It is such a fun reading his code. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/dave-jacoby/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/dave-jacoby/perl5/ch-2.pl)] [[BLOG1](https://jacoby.github.io//2019/05/21/ranking-in-perl.html)] [[BLOG2](https://jacoby.github.io//2019/05/21/finding-first-square-with-five-distinct-digits-plus.html)].
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/dave-jacoby/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/dave-jacoby/perl/ch-2.pl)]
+[[**BLOG #1**](https://jacoby.github.io//2019/05/21/ranking-in-perl.html)]
+[[**BLOG #2**](https://jacoby.github.io//2019/05/21/finding-first-square-with-five-distinct-digits-plus.html)]
+
+***
+
+### David Ferrone
+![David Ferrone](/images/team/david-ferrone.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/zapwai/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/zapwai/perl/ch-2.pl)]
+
+***
+
+### E. Choroba
+![E. Choroba](/images/team/e-choroba.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/e-choroba/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/e-choroba/perl/ch-2.pl)]
+[[**BLOG #1**](http://blogs.perl.org/users/e_choroba/2019/05/perl-weekly-challenge-009-square-numbers-and-ranking.html)]
+
+***
+
+### Guillermo Ramos
+![Guillermo Ramos](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/guillermo-ramos/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/guillermo-ramos/perl/ch-2.pl)]
+
+***
+
+### Gustavo Chaves
+![Gustavo Chaves](/images/team/gustavo-chaves.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/gustavo-chaves/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/gustavo-chaves/perl/ch-2.pl)]
+
+***
+
+### Jorg Sommrey
+![Jorg Sommrey](/images/team/jorg-sommrey.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/jo-37/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/jo-37/perl/ch-2.pl)]
+
+***
+
+### Kian-Meng Ang
+![Kian-Meng Ang](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/kian-meng-ang/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/kian-meng-ang/perl/ch-2.pl)]
+[[**BLOG #1**](https://perlweeklychallenge.org/blog/review-challenge-009/)]
+[[**BLOG #2**](https://perlweeklychallenge.org/blog/review-challenge-009.md)]
+
+***
+
+### Lakpa Tashi Bhutia
+![Lakpa Tashi Bhutia](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/lakpatashi/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/lakpatashi/perl/ch-2.pl)]
+
+***
+
+### Lubos Kolouch
+![Lubos Kolouch](/images/team/lubos_kolouch.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/lubos-kolouch/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/lubos-kolouch/perl/ch-2.pl)]
+
+***
+
+### Maxim Nechaev
+![Maxim Nechaev](/images/team/maxim-nechaev.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/maxim-nechaev/perl/ch-1.pl)]
+[[**PERL #3**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/maxim-nechaev/perl/ch-3.pl)]
+
+***
+
+### Paulo Custodio
+![Paulo Custodio](/images/team/paulo-custodio.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/paulo-custodio/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/paulo-custodio/perl/ch-2.pl)]
+
+***
+
+### Steven Wilson
+![Steven Wilson](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/steven-wilson/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/steven-wilson/perl/ch-2.pl)]
+
+***
+
+### Veesh Goldman
+![Veesh Goldman](/images/team/veesh_goldman.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/veesh-goldman/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/veesh-goldman/perl/ch-2.pl)]
+
+***
+
+### Yet Ebreo
+![Yet Ebreo](/images/team/yet-ebreo.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/yet-ebreo/perl/ch-1.pl)]
+
+***
+
+### Yozen Hernandez
+![Yozen Hernandez](/images/team/yozen-hernandez.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/yozen-hernandez/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/yozen-hernandez/perl/ch-2.pl)]
+[[**BLOG #1**](https://yzhernand.github.io/posts/perl-weekly-challenge-9/)]
+
+<br>
+
+## RAKU SOLUTIONS {#RAKUSOLUTIONS}
+***
+
+### Arne Sommer
+![Arne Sommer](/images/team/arne-sommer.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/arne-sommer/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/arne-sommer/raku/ch-2.p6)]
+[[**BLOG #1**](https://perl6.eu/squared-ranking.html)]
+
+***
+
+### Daniel Mita
+![Daniel Mita](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/daniel-mita/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/daniel-mita/raku/ch-2.p6)]
+
+***
+
+### Francis Whittle
+![Francis Whittle](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/fjwhittle/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/fjwhittle/raku/ch-2.p6)]
+[[**BLOG #1**](https://rage.powered.ninja/2019/05/26/unique-square-and-rank.html)]
+
+***
+
+### Kevin Colyer
+![Kevin Colyer](/images/team/kevin_colyer.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/kevin-colyer/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/kevin-colyer/raku/ch-2.p6)]
+
+***
+
+### Simon Proctor
+![Simon Proctor](/images/team/simon_proctor.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/simon-proctor/raku/ch-1.p6)]
+
+***
+
+### Stuart Little
+![Stuart Little](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/stuart-little/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/stuart-little/raku/ch-2.p6)]
+
+<br>
+
+# PERL & RAKU SOLUTIONS {#PERLRAKUSOLUTIONS}
+***
 
 ### Feng Chang
 ![Feng Chang](/images/team/user.jpg)
@@ -48,51 +347,53 @@ For ranking challenge, Dave tried different approach. He never shy away from usi
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/feng-chang/perl/ch-1.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/feng-chang/raku/ch-1.p6)]
 
-### Francis Whittle
-![Francis Whittle](/images/team/user.jpg)
+***
 
-Francis used **Bags** of **#Perl6** to solve square number challenge. For the ranking challenge, he went all out with the black magic of **#Perl6**. [[BLOG](https://rage.powered.ninja/2019/05/26/unique-square-and-rank.html)].
+### Jaldhar H. Vyas
+![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
 
-### Guillermo Ramos
-![Guillermo Ramos](/images/team/user.jpg)
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/jaldhar-h-vyas/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/jaldhar-h-vyas/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/jaldhar-h-vyas/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/jaldhar-h-vyas/raku/ch-2.p6)]
+[[**BLOG #1**](https://www.braincells.com/perl/2025/06/perl_weekly_challenge_week_9.html)]
 
-Guillermo solution to square number challenge was fun to read. For ranking challenge, he created a complete CLI app. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/guillermo-ramos/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/guillermo-ramos/perl5/ch-2.pl)].
-
-### Gustavo Chaves
-![Gustavo Chaves](/images/team/gustavo-chaves.jpg)
-
-Gustavo used special for loop to solve the square number challenge. His solution to ranking challenge is well organised and fun to read. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/gustavo-chaves/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/gustavo-chaves/perl5/ch-2.pl)].
+***
 
 ### Joelle Maslak
 ![Joelle Maslak](/images/team/joelle_maslak.jpg)
 
-Joelle solution to the square number challenge is one of the best we received. Even the ranking challenge solution is well crafted. She is one the few participants who took on the API challenge seriously. Although it is optional, she never misses it. Here again she not only solved the challenge but also dedicated an entire blog talking about her journey. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/joelle-maslak/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/joelle-maslak/perl5/ch-2.pl)] [[#3](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/joelle-maslak/perl5/ch-3.pl)] [[BLOG](https://digitalbarbedwire.com/2019/05/23/solving-the-sparkpost-challenge/)].
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/joelle-maslak/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/joelle-maslak/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/joelle-maslak/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/joelle-maslak/raku/ch-2.p6)]
+[[**BLOG #1**](https://digitalbarbedwire.com/2019/05/23/solving-the-sparkpost-challenge/)]
 
-### Kian-Meng Ang
-![Kian-Meng Ang](/images/team/user.jpg)
-
-Kian-Meng Ang not only solves the weekly challenge every week but also reviews weekly challenges every week. I noticed the square number solution referenced a node to perlmonks.org. The solution to ranking challenge is neatly laid out. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/kian-meng-ang/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/kian-meng-ang/perl5/ch-2.pl)].
+***
 
 ### Laurent Rosenfeld
 ![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
 
-As always the case with Laurent, you are served with plenty of choices. Each blog of him can easily be turned into chapter in book. Who knows one day, with his permission, I might do that. He wrote another blog talking about the use Functional Programming to solve the challenge. Highly Recommended. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/laurent-rosenfeld/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/laurent-rosenfeld/perl5/ch-2.pl)] [[BLOG1](http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-9-squares-and-rankings.html)] [[BLOG2](http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-9-square-numbers-and-functional-programming-in-perl.html)].
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/laurent-rosenfeld/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/laurent-rosenfeld/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/laurent-rosenfeld/raku/ch-1.sh)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/laurent-rosenfeld/raku/ch-2.p6)]
+[[**BLOG #1**](http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-9-squares-and-rankings.html)]
+[[**BLOG #2**](http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-9-square-numbers-and-functional-programming-in-perl.html)]
+[[**BLOG #3**](https://github.com/LaurentRosenfeld/Perl-6-Miscellaneous/blob/master/Challenges-in-Perl6/Squares-with-5-distinct-digits.md)]
 
-### Maxim Nechaev
-![Maxim Nechaev](/images/team/maxim-nechaev.jpg)
-
-Maxim solution for square number contained special for loop. He even solved the API challenge. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/maxim-nechaev/perl5/ch-1.pl)] [[#3](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/maxim-nechaev/perl5/ch-3.pl)].
+***
 
 ### Ruben Westerberg
 ![Ruben Westerberg](/images/team/user.jpg)
 
-Ruben solved the square number challenge using standard technique. Solution for ranking challenge made up of appropriately name subroutines, [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/maxim-nechaev/perl5/ch-3.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/ruben-westerberg/perl5/ch-2.pl)].
-
-### Yozen Hernandez
-![Yozen Hernandex](/images/team/user.jpg)
-
-Yozen used the regex power to solve the square number challenge. He used real data to solve the ranking challenge, very interesting. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/yozen-hernandez/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/yozen-hernandez/perl5/ch-2.pl)].
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/ruben-westerberg/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/ruben-westerberg/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/ruben-westerberg/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/ruben-westerberg/raku/ch-2.p6)]
 
 ***
 
-Last but not the least,  I would like to request all members, at least the one who blogs, please send us your photo to use in the weekly blog, if not already sent.
+Last but not the least, I would like to request all members, please send us your photo, that you already use on some other web platform, to use in the weekly blog, if not already sent.
+
+***

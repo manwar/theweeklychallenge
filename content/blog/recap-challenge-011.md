@@ -1,123 +1,429 @@
 ---
-title: "RECAP - Perl Weekly Challenge - 011"
+title: "RECAP - The Weekly Challenge - 011"
 date: 2019-06-10T00:00:00+00:00
-description: "My personal take on the Challenge #011."
+description: "Quick recap of The Weekly Challenge - 011."
 type: post
 image: images/blog/recap-challenge-011.jpg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
-I noticed members taking on the optional API challenge more regularly. Before only handfull members bother taking the challenge. I am also happy to see familiar faces coming back to the weekly challenge after short break. I hope they continue with it and enlighten us.
+
+## TABLE OF CONTENTS
+***
+
+### &nbsp;&nbsp;1. [HEADLINES](#HEADLINES)
+### &nbsp;&nbsp;2. [STAR CONTRIBUTORS](#STARCONTRIBUTORS)
+### &nbsp;&nbsp;3. [CONTRIBUTION STATS](#CONTRIBUTIONSTATS)
+### &nbsp;&nbsp;4. [GUESTS](#GUESTS)
+### &nbsp;&nbsp;5. [LANGUAGES](#LANGUAGES)
+### &nbsp;&nbsp;6. [CENTURION CLUB](#CENTURIONCLUB)
+### &nbsp;&nbsp;7. [DAMIAN CONWAY's CORNER](#DAMIANCONWAYCORNER)
+### &nbsp;&nbsp;8. [ANDREW SHITOV's CORNER](#ANDREWSHITOVCORNER)
+### &nbsp;&nbsp;9. [PERL SOLUTIONS](#PERLSOLUTIONS)
+### 10. [RAKU SOLUTIONS](#RAKUSOLUTIONS)
+### 11. [PERL & RAKU SOLUTIONS](#PERLRAKUSOLUTIONS)
+
+<br>
+
+## HEADLINES {#HEADLINES}
+***
+
+Thank you **Team PWC** for your continuous support and encouragement.
+
+<br>
+
+## STAR CONTRIBUTORS {#STARCONTRIBUTORS}
+***
+
+Following members shared solutions to both tasks in `Perl` and `Raku` as well as blogged about it.
+
+#### 1. Jaldhar H. Vyas
+#### 2. Laurent Rosenfeld
+
+<br>
+
+### Overall Contributions Stats:
+
+<br>
+
+#### 1. Perl: 608 (66%)
+#### 2. Raku: 303 (34%)
+#### 3. Blog: 119
+
+<br>
+
+## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
+***
+
+The total contributions in the week is `87`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+
+#### 1. Perl: 50
+#### 2. Raku: 26
+#### 3. Blog: 11
+
+<br>
+
+## GUESTS {#GUESTS}
+***
+
+#### 1. Abigail (106)
+    Awk (8), BASIC (1), Bash (8), Bc (5), Befunge-93 (4), C (8), Go (7), Java (7), Lua (8), Node.js (8), Pascal (7), Python (8), R (7), Ruby (8), Scheme (7), Tcl (5).
+#### 2. Paulo Custodio (106)
+    Ada (1), Awk (11), BASIC (7), Bc (7), Brainfuck (2), C (22), C++ (22), Forth (5), Lua (7), Python (22).
+#### 3. David Ferrone (88)
+    C (22), JavaScript (22), Python (22), Rust (22).
+#### 4. AhmetEmre (22)
+    BQN (22).
+#### 5. Archar Gelod (22)
+    Nim (22).
+#### 6. Stuart Little (22)
+    Haskell (22).
+#### 7. Lubos Kolouch (20)
+    Python (20).
+#### 8. PokGoPun (8)
+    Go (8).
+#### 9. Alexander Pankoff (6)
+    Haskell (6).
+#### 10. Mohammad Foda (4)
+    Haxe (2), Nim (2).
+#### 11. Aaryan Rastogi (1)
+    JavaScript (1).
+#### 12. Conor Hoekstra (1)
+    APL (1).
+#### 13. Karishma Rajput (1)
+    Node.js (1).
+
+<br>
+
+## LANGUAGES {#LANGUAGES}
+***
+
+    Python (72), C (52), Haskell (28), Nim (24), JavaScript (23), BQN (22), C++ (22), Rust (22), Awk (19), Go (15), Lua (15), Bc (12), Node.js (9), BASIC (8), Bash (8), Ruby (8), Java (7), Pascal (7), R (7), Scheme (7), Forth (5), Tcl (5), Befunge-93 (4), Brainfuck (2), Haxe (2), APL (1), Ada (1).
+
+<br>
+
+## CENTURION CLUB {#CENTURIONCLUB}
+***
+
+    Laurent Rosenfeld (132).
+
+<br>
+
+## DAMIAN CONWAY's CORNER {#DAMIANCONWAYCORNER}
+***
+
+Please checkout the masterpiece collection of [**blogs**](/blog/damian-corner) by **Damian Conway** solving the **[The Weekly Challenge](/challenges)**.
+
+<br>
+
+## ANDREW SHITOV's CORNER {#ANDREWSHITOVCORNER}
+***
+
+Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can find all his contributions to the **[The Weekly Challenge](/challenges)** on this [**nicely laid out page**](https://andrewshitov.com/raku-challenges-index/).
+
+<br>
+
+## PERL SOLUTIONS {#PERLSOLUTIONS}
 
 ***
 
 ### Adam Russell
 ![Adam Russell](/images/team/adam_russell.jpg)
 
-Adam solved the Fahrenheit-Celcius challenge in such a way that even a kid would follow it without any explanation. Simply Cool. He treated the second challenge of Identity Matrix in the similar fashion. Checkout his blog as well. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/adam-russell/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/adam-russell/perl5/ch-2.pl)] [[BLOG](https://adamcrussell.livejournal.com/3900.html)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/adam-russell/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/adam-russell/perl/ch-2.pl)]
+[[**BLOG #1**](https://adamcrussell.livejournal.com/3900.html)]
+
+***
 
 ### Alicia Bielsa
 ![Alicia Bielsa](/images/team/alicia_bielsa.jpg)
 
-Alicia approached the Fahrenheit-Celcius challenge is a very unique style. You must take a look. I also liked how she deals with the Indentity Matrix challenge so cleanly. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/alicia-bielsa/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/alicia-bielsa/perl5/ch-2.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/alicia-bielsa/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/alicia-bielsa/perl/ch-2.pl)]
+
+***
 
 ### Andrezgz
-![Andrezgz](/images/team/user.jpg)
+![Andrezgz](/images/team/andrezgz.jpg)
 
-Andrezgz used **while loop** very smartly to solve the Fahrenheit-Celcius challenge. Even the Identity Matrix solution is very elegant. Please do take a look. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/andrezgz/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/andrezgz/perl5/ch-2.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/andrezgz/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/andrezgz/perl/ch-2.pl)]
 
-### Arne Sommer
-![Arne Sommer](/images/team/arne-sommer.jpg)
-
-As always Arns came up with thorough explanation of his solutions to Challenge 011. It is always fun reading his blog. [[BLOG](https://perl6.eu/fc-matrix.html)]
+***
 
 ### Athanasius
 ![Athanasius](/images/team/athanasius.jpg)
 
-Athanasius solution for Fahrenheit-Celcius challenge is nicely structured. For the Indentity Matrix challenge, he used the CPAN module **Scalar::Util::Numeric**. He also attempted to solve the API challenge. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/athanasius/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/athanasius/perl5/ch-2.pl)] [[#3](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/athanasius/perl5/ch-3.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/athanasius/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/athanasius/perl/ch-2.pl)]
+
+***
 
 ### Daniel Mantovani
 ![Daniel Mantovani](/images/team/daniel_mantovani.jpg)
 
-Daniel only solved the first challenge Fahrenheit-Celcius challenge this time. His approach is really interesting. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/daniel-mantovani/perl5/ch-1.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/daniel-mantovani/perl/ch-1.pl)]
+
+***
 
 ### Dave Jacoby
 ![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
-Dave, as always, came up with full descriptive solution to the Farhenheit-Celcius challenge. He skipped the Identity Matrix challenge, instead solved the optional API challenge. Checkout his blog. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/dave-jacoby/perl5/ch-1.pl)] [[#3](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/dave-jacoby/perl5/ch-3.pl)] [[BLOG](https://jacoby.github.io//2019/06/04/two-technical-posts-about-temperature-kinda.html)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/dave-jacoby/perl/ch-1.pl)]
+[[**PERL #3**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/dave-jacoby/perl/ch-3.pl)]
+[[**BLOG #1**](https://jacoby.github.io//2019/06/04/two-technical-posts-about-temperature-kinda.html)]
+
+***
+
+### David Ferrone
+![David Ferrone](/images/team/david-ferrone.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/zapwai/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/zapwai/perl/ch-2.pl)]
+
+***
 
 ### Duncan C. White
 ![Duncan C. White](/images/team/duncan_white.jpg)
 
-Duncan solution to the Fahrenheit-Celcius challenge is very interesting. You must take a look. For Indentity Matrix, he cleverly used the cool trick. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/duncan-c-white/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/duncan-c-white/perl5/ch-2.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/duncan-c-white/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/duncan-c-white/perl/ch-2.pl)]
+
+***
 
 ### E. Choroba
 ![E. Choroba](/images/team/e-choroba.jpg)
 
-I simply loved both the solutions to the Farhenheit-Celcius and Indentity Matrix challenge by Choroba. On top, he even explained in details in his blog. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/e-choroba/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/e-choroba/perl5/ch-2.pl)] [[BLOG](http://blogs.perl.org/users/e_choroba/2019/06/perl-weekly-challenge-011-fahrenheit-celsius-and-an-identity-matrix.html)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/e-choroba/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/e-choroba/perl/ch-2.pl)]
+[[**BLOG #1**](http://blogs.perl.org/users/e_choroba/2019/06/perl-weekly-challenge-011-fahrenheit-celsius-and-an-identity-matrix.html)]
 
-### Feng Chang
-![Feng Chang](/images/team/user.jpg)
-
-Feng, joined the weekly challenge with the bang. He skipped the Fahrenheit-Celcius challenge but solved the Identity Matrix and API challenge. [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/feng-chang/perl5/ch-2.pl)] [[#3](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/feng-chang/perl5/ch-3.pl)]
-
+***
 
 ### Gustavo Chaves
 ![Gustavo Chaves](/images/team/gustavo-chaves.jpg)
 
-Gustavo is now regular face to the weekly challenge. You must read the comment in the script. It gives really interesting insight to the Fahrenheit-Celcisu challenge. For the Indentity Matrix, he took a simple straight forward path. [[#1](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-011/gustavo-chaves/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-011/gustavo-chaves/perl5/ch-2.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/gustavo-chaves/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/gustavo-chaves/perl/ch-2.pl)]
 
-### Jaldhar H. Vyas
-![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
+***
 
-I was pleasantly surprised by the timely submission of solutions this time. I really admire his dedication. Please do checkout his solution to both the challenges. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jaldhar-h-vyas/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jaldhar-h-vyas/perl5/ch-2.pl)]
+### Jorg Sommrey
+![Jorg Sommrey](/images/team/jorg-sommrey.jpg)
 
-### Joelle Maslak
-![Joelle Maslak](/images/team/joelle_maslak.jpg)
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jo-37/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jo-37/perl/ch-2.pl)]
 
-Joelle is also one of the few who always take on the optional API challenge. This time, I did miss her blog very badly, But never mind, I still had her solution to read. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/joelle-maslak/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/joelle-maslak/perl5/ch-2.pl)] [[#3](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/joelle-maslak/perl5/ch-3.pl)]
+***
 
 ### Kian-Meng Ang
 ![Kian-Meng Ang](/images/team/user.jpg)
 
-Kian-Meng, our in-house **#Perl5** reviewer, came up with one-liner to solve the Fahrenheit-Celcius challenge. For the Indentity Matrix challenge, she took the help of CPAN module **Math::MatrixReal**. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/kian-meng-ang/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/kian-meng-ang/perl5/ch-2.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/kian-meng-ang/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/kian-meng-ang/perl/ch-2.pl)]
+[[**BLOG #1**](https://perlweeklychallenge.org/blog/review-challenge-011/)]
+[[**BLOG #2**](https://perlweeklychallenge.org/blog/review-challenge-011.md)]
+
+***
 
 ### Kivanc Yazan
-![Kivanc Yazan](/images/team/user.jpg)
+![Kivanc Yazan](/images/team/kivanc.jpg)
 
-Kivanc, of **Pull Request Club** fame, solved the weekly challenge with lots of detailed description in the code. He solved the Identity Matrix challenge without using any library. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/kivanc-yazan/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/kivanc-yazan/perl5/ch-2.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/kivanc-yazan/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/kivanc-yazan/perl/ch-2.pl)]
 
-### Laurent Rosenfeld
-![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
+***
 
-No one can beat, Laurent, in my opinion with his detailed approach to each week challenge. He is simply the Genius. I admire his dedication. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/laurent-rosenfeld/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/laurent-rosenfeld/perl5/ch-2.pl)] [[BLOG](http://blogs.perl.org/users/laurent_r/2019/06/perl-weekly-challenge-11-fahrenheit-celsius-and-identity-matrix.html)]
+### Lakpa Tashi Bhutia
+![Lakpa Tashi Bhutia](/images/team/user.jpg)
 
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/lakpatashi/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/lakpatashi/perl/ch-2.pl)]
+
+***
+
+### Lubos Kolouch
+![Lubos Kolouch](/images/team/lubos_kolouch.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/lubos-kolouch/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/lubos-kolouch/perl/ch-2.pl)]
+
+***
 
 ### Maxim Nechaev
 ![Maxim Nechaev](/images/team/maxim-nechaev.jpg)
 
-Maxim is now regular to the weekly challenge. He always surprised me with his solutions every week. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/maxim-nechaev/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/maxim-nechaev/perl5/ch-2.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/maxim-nechaev/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/maxim-nechaev/perl/ch-2.pl)]
+
+***
+
+### Paulo Custodio
+![Paulo Custodio](/images/team/paulo-custodio.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/perl/ch-2.pl)]
+
+***
 
 ### Pete Houston
 ![Pete Houston](/images/team/user.jpg)
 
-Pete, came back after a short break. I liked his solution to the Fahrenheit-Celcius challenge. I hope to see him regular now. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/pete-houston/perl5/ch-1.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/pete-houston/perl/ch-1.pl)]
 
-### Ruben Westerberg
-![Ruben Westerberg](/images/team/user.jpg)
-
-Ruben made the Fahrenheit-Celcius challenge looks like kids play. I loved it. He kept the Indentity Matrix solution also very simple. [[#1](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-011/ruben-westerberg/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/ruben-westerberg/perl5/ch-2.pl)]
+***
 
 ### Steven Wilson
 ![Steven Wilson](/images/team/user.jpg)
 
-Steven attempted the API challenge this week, I am very impressed. His solutions to the other two challenges are really cool as well. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/steven-wilson/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/steven-wilson/perl5/ch-2.pl)] [[#3](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/steven-wilson/perl5/ch-3.pl)]
-
-### Yozen Hernandez
-![Yozen Hernandex](/images/team/user.jpg)
-
-I am becoming fan of Yozen now. I love reading his blog. Checkout his solutions. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/yozen-hernandez/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/yozen-hernandez/perl5/ch-2.pl)] [[BLOG](https://yzhernand.github.io/posts/perl-weekly-challenge-11/)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/steven-wilson/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/steven-wilson/perl/ch-2.pl)]
 
 ***
 
-Last but not the least,  I would like to request all members, at least the one who blogs, please send us your photo to use in the weekly blog, if not already sent.
+### Veesh Goldman
+![Veesh Goldman](/images/team/veesh_goldman.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/veesh-goldman/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/veesh-goldman/perl/ch-2.pl)]
+
+***
+
+### Yozen Hernandez
+![Yozen Hernandez](/images/team/yozen-hernandez.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/yozen-hernandez/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/yozen-hernandez/perl/ch-2.pl)]
+[[**BLOG #1**](https://yzhernand.github.io/posts/perl-weekly-challenge-11/)]
+
+<br>
+
+## RAKU SOLUTIONS {#RAKUSOLUTIONS}
+***
+
+### Aaron Sherman
+![Aaron Sherman](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/aaron-sherman/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/aaron-sherman/raku/ch-2.p6)]
+
+***
+
+### Arne Sommer
+![Arne Sommer](/images/team/arne-sommer.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/arne-sommer/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/arne-sommer/raku/ch-2.p6)]
+[[**BLOG #1**](https://perl6.eu/fc-matrix.html)]
+
+***
+
+### Francis Whittle
+![Francis Whittle](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/fjwhittle/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/fjwhittle/raku/ch-2.p6)]
+
+***
+
+### Jo Christian Oterhals
+![Jo Christian Oterhals](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jo-christian-oterhals/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jo-christian-oterhals/raku/ch-2.p6)]
+[[**BLOG #1**](https://medium.com/@jcoterhals/perl-6-small-stuff-20-from-anonymous-one-line-functions-to-full-length-mains-with-type-and-error-3d3a69faabda)]
+
+***
+
+### Khalid
+![Khalid](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/khalid/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/khalid/raku/ch-2.p6)]
+
+***
+
+### Ozzy
+![Ozzy](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/ozzy/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/ozzy/raku/ch-2.p6)]
+
+***
+
+### Simon Proctor
+![Simon Proctor](/images/team/simon_proctor.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/simon-proctor/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/simon-proctor/raku/ch-2.p6)]
+
+***
+
+### Stuart Little
+![Stuart Little](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/stuart-little/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/stuart-little/raku/ch-2.p6)]
+
+<br>
+
+# PERL & RAKU SOLUTIONS {#PERLRAKUSOLUTIONS}
+***
+
+### Feng Chang
+![Feng Chang](/images/team/user.jpg)
+
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/feng-chang/perl/ch-2.pl)]
+[[**PERL #3**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/feng-chang/perl/ch-3.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/feng-chang/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/feng-chang/raku/ch-2.p6)]
+
+***
+
+### Jaldhar H. Vyas
+![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jaldhar-h-vyas/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jaldhar-h-vyas/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jaldhar-h-vyas/raku/ch-1.sh)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jaldhar-h-vyas/raku/ch-2.p6)]
+[[**BLOG #1**](https://www.braincells.com/perl/2025/06/perl_weekly_challenge_week_11.html)]
+
+***
+
+### Joelle Maslak
+![Joelle Maslak](/images/team/joelle_maslak.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/joelle-maslak/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/joelle-maslak/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/joelle-maslak/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/joelle-maslak/raku/ch-2.p6)]
+
+***
+
+### Laurent Rosenfeld
+![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/laurent-rosenfeld/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/laurent-rosenfeld/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/laurent-rosenfeld/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/laurent-rosenfeld/raku/ch-2.p6)]
+[[**BLOG #1**](http://blogs.perl.org/users/laurent_r/2019/06/perl-weekly-challenge-11-fahrenheit-celsius-and-identity-matrix.html)]
+[[**BLOG #2**](https://perlweeklychallenge.org/blog/p6-review-challenge-011)]
+
+***
+
+### Ruben Westerberg
+![Ruben Westerberg](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/ruben-westerberg/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/ruben-westerberg/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/ruben-westerberg/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/ruben-westerberg/raku/ch-2.p6)]
+
+***
+
+Last but not the least, I would like to request all members, please send us your photo, that you already use on some other web platform, to use in the weekly blog, if not already sent.
+
+***
