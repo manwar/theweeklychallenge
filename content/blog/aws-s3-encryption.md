@@ -307,7 +307,7 @@ def make_enc_bucket(s3, bucket_name):
     try:
         s3.create_bucket(Bucket=bucket_name,
             CreateBucketConfiguration={
-                'LocationConstraint': 'eu-west-1'
+                'LocationConstraint': REGION
             })
         print(f"Bucket {bucket_name} created.")
 
