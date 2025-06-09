@@ -253,7 +253,7 @@ Cleanup now:
 <br>
 
 ```bash
-$ aws s3 rm s3://sse-s3-encrypted-bucket/secret-file.txt
+$ aws s3 rm s3://sse-s3-encrypted-bucket --recursive
 delete: s3://sse-s3-encrypted-bucket/secret-file.txt
 ```
 
