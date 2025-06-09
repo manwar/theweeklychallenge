@@ -514,6 +514,8 @@ Upload file to bucket.
 
 You can skip `--bucket sse-s3-encrypted-bucket` and `--file secret-file.txt` as it would upload the default file to the default bucket.
 
+You should have `secret-file.txt` already as we created it earlier when using `aws` command before.
+
 <br>
 
 ```bash
