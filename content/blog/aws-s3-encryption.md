@@ -476,7 +476,7 @@ SSE-S3 Encryption
 
 options:
   -h, --help           show this help message and exit
-  --bucket BUCKET      Bucket namei, default sse-se-encrypted-bucket
+  --bucket BUCKET      Bucket namei, default sse-s3-encrypted-bucket
   --file FILE          File to upload/download, default secret-file.txt
   --make-enc-bucket    Create encrypted bucket
   --upload             Upload file
@@ -492,7 +492,9 @@ options:
 
 <br>
 
-Let's create encrypted bucket.
+Create encypted bucket.
+
+You can skip `--bucket sse-s3-encrypted-bucket` and it would create the default bucket.
 
 <br>
 
@@ -508,7 +510,9 @@ Enabled AES-256 encryption on sse-s3-encrypted-bucket.
 
 <br>
 
-Upload file to bucket
+Upload file to bucket.
+
+You can skip `--bucket sse-s3-encrypted-bucket` and `--file secret-file.txt` as it would upload the default file to the default bucket.
 
 <br>
 
@@ -523,7 +527,9 @@ Uploaded secret-file.txt to sse-s3-encrypted-bucket.
 
 <br>
 
-Download file locally
+Download file locally.
+
+You can skip `--bucket sse-s3-encrypted-bucket` and `--file secret-file.txt` as it would download the default file from the default bucket.
 
 <br>
 
@@ -539,7 +545,9 @@ File content: This is a secret file content.
 
 <br>
 
-Fetch file meta
+Fetch file meta.
+
+You can skip `--bucket sse-s3-encrypted-bucket` and `--file secret-file.txt` as it would fetch the default file meta from the default bucket.
 
 <br>
 
@@ -550,7 +558,9 @@ File encryption: AES256
 
 <br>
 
-Fetch bucket meta
+Fetch bucket meta.
+
+You can skip `--bucket sse-s3-encrypted-bucket` as it would fetch the default bucket meta.
 
 <br>
 
@@ -565,7 +575,9 @@ Bucket encryption: AES256
 
 <br>
 
-Cleanup in the end
+Cleanup in the end.
+
+You can skip `--bucket sse-s3-encrypted-bucket` as it would empty the default bucket first and then remove it.
 
 <br>
 
@@ -828,7 +840,7 @@ SSE-S3 Encryption
 
 options:
   --help              Show this help message and exit
-  --bucket BUCKET     Bucket namei, default sse-se-encrypted-bucket
+  --bucket BUCKET     Bucket namei, default sse-s3-encrypted-bucket
   --file FILE         File to upload/download, default secret-file.txt
   --make-enc-bucket   Create encrypted bucket
   --upload            Upload file
@@ -844,7 +856,9 @@ options:
 
 <br>
 
-Let's create encypted bucket.
+Create encypted bucket.
+
+You can skip `--bucket sse-s3-encrypted-bucket` and it would create the default bucket.
 
 <br>
 
@@ -860,7 +874,9 @@ Enabled AES-256 encryption on sse-s3-encrypted-bucket.
 
 <br>
 
-Upload file to bucket
+Upload file to bucket.
+
+You can skip `--bucket sse-s3-encrypted-bucket` and `--file secret-file.txt` as it would upload the default file to the default bucket.
 
 <br>
 
@@ -876,7 +892,9 @@ Uploaded secret-file.txt to sse-s3-encrypted-bucket.
 
 <br>
 
-Download file locally
+Download file locally.
+
+You can skip `--bucket sse-s3-encrypted-bucket` and `--file secret-file.txt` as it would download the default file from the default bucket.
 
 <br>
 
@@ -891,7 +909,9 @@ Downloaded content: This is a secret file content.
 
 <br>
 
-Fetch file meta
+Fetch file meta.
+
+You can skip `--bucket sse-s3-encrypted-bucket` and `--file secret-file.txt` as it would fetch the default file meta from the default bucket.
 
 <br>
 
@@ -902,7 +922,9 @@ Object encryption: AES256
 
 <br>
 
-Fetch bucket meta
+Fetch bucket meta.
+
+You can skip `--bucket sse-s3-encrypted-bucket` as it would fetch the default bucket meta.
 
 <br>
 
@@ -918,7 +940,9 @@ Bucket encryption:
 
 <br>
 
-Cleanup in the end
+Cleanup in the end.
+
+You can skip `--bucket sse-s3-encrypted-bucket` as it would empty the default bucket first and then remove it.
 
 <br>
 
