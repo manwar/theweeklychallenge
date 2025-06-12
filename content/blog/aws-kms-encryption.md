@@ -766,49 +766,45 @@ def cleanup(s3, bucket_name):
 
 def main():
     parser = MyArgumentParser(description="SSE-KMS Encryption")
-    parser.add_argument('--bucket', default=DEFAULT_BUCKET, help=f"Bucket name, default {DEFAULT_BUCKET}")
-    parser.add_argument('--file', default=DEFAULT_FILE, help=f"File to upload/download, default {DEFAULT_FILE}")
-    parser.add_argument('--key-id', help="KMS key id")
-    parser.add_argument('--pending-window-days', type=int, default=DEFAULT_PENDING_WINDOW_DAYS, help=f"Pending window days, default {DEFAULT_PENDING_WINDOW_DAYS}")
-    parser.add_argument('--alias-name', help="Alias name")
 
-    parser.add_argument('--make-enc-bucket', action='store_true', help="Create encrypted bucket")
-    parser.add_argument('--list-keys', action='store_true', help="List KMS keys")
-    parser.add_argument('--desc-key', action='store_true', help="Describe key details")
-    parser.add_argument('--disable-key', action='store_true', help="Disable key")
-    parser.add_argument('--schedule-key-deletion', action='store_true', help="Schedule key deletion")
-    parser.add_argument('--list-aliases', action='store_true', help="List aliases")
-    parser.add_argument('--create-alias', action='store_true', help="Create alias")
-    parser.add_argument('--upload', action='store_true', help="Upload file")
-    parser.add_argument('--download', action='store_true', help="Download file")
-    parser.add_argument('--fetch-file-meta', action='store_true', help="Fetch file metadata")
-    parser.add_argument('--fetch-bucket-meta', action='store_true', help="Fetch bucket metadata")
-    parser.add_argument('--cleanup', action='store_true', help="Remove bucket and its content")
-
-    args = parser.parse_args()
-
-    # Enforce only one action is selected
-    actions = [
-        args.make_enc_bucket,
-        args.list_keys,
-        args.desc_key,
-        args.disable_key,
-        args.schedule_key_deletion,
-        args.create_alias,
-        args.list_aliases,
-        args.upload,
-        args.download,
-        args.fetch_file_meta,
-        args.fetch_bucket_meta,
-        args.cleanup,
+    # Regular arguments (positional or optional)
+    regular_args = [
+        ("--bucket", DEFAULT_BUCKET, f"Bucket name, default {DEFAULT_BUCKET}"),
+        ("--file", DEFAULT_FILE, f"File to upload/download, default {DEFAULT_FILE}"),
+        ("--key-id", None, "KMS key id"),
+        ("--pending-window-days", DEFAULT_PENDING_WINDOW_DAYS, f"Pending window days, default {DEFAULT_PENDING_WINDOW_DAYS}", int),
+        ("--alias-name", None, "Alias name"),
     ]
 
-    if sum(bool(action) for action in actions) != 1:
-        parser.error("You must specify exactly one of: "
-                     "--make-enc-bucket, --list-keys, --desc-key, "
-                     "--disable-key, --schedule-key-deletion, --list-aliases, "
-                     "--upload, --download, "
-                     "--fetch-file-meta, --fetch-bucket-meta, --cleanup")
+    for flag, default, help_text, *type_hint in regular_args:
+        kwargs = {"help": help_text}
+        if default is not None:
+            kwargs["default"] = default
+        if type_hint:
+            kwargs["type"] = type_hint[0]
+        parser.add_argument(flag, **kwargs)
+
+    # Mutually exclusive action flags
+    action_group = parser.add_mutually_exclusive_group(required=True)
+    action_flags = [
+        ("--make-enc-bucket", "Create encrypted bucket"),
+        ("--list-keys", "List KMS keys"),
+        ("--desc-key", "Describe key details"),
+        ("--disable-key", "Disable key"),
+        ("--schedule-key-deletion", "Schedule key deletion"),
+        ("--list-aliases", "List aliases"),
+        ("--create-alias", "Create alias"),
+        ("--upload", "Upload file"),
+        ("--download", "Download file"),
+        ("--fetch-file-meta", "Fetch file metadata"),
+        ("--fetch-bucket-meta", "Fetch bucket metadata"),
+        ("--cleanup", "Remove bucket and its content"),
+    ]
+
+    for flag, help_text in action_flags:
+        action_group.add_argument(flag, action='store_true', help=help_text)
+
+    args = parser.parse_args()
 
     if args.desc_key and not args.key_id:
         parser.error("--desc-key requires --key-id")
@@ -873,11 +869,11 @@ Test the code now:
 (myenv) $ py sse-kms.py --help
 usage: sse-kms.py [-h] [--bucket BUCKET] [--file FILE] [--key-id KEY_ID]
                   [--pending-window-days PENDING_WINDOW_DAYS]
-                  [--alias-name ALIAS_NAME] [--make-enc-bucket]
-                  [--list-keys] [--desc-key] [--disable-key]
-                  [--schedule-key-deletion] [--list-aliases]
-                  [--create-alias] [--upload] [--download]
-                  [--fetch-file-meta] [--fetch-bucket-meta] [--cleanup]
+                  [--alias-name ALIAS_NAME]
+                  (--make-enc-bucket | --list-keys | --desc-key |
+                   --disable-key | --schedule-key-deletion | --list-aliases |
+                   --create-alias | --upload | --download | --fetch-file-meta |
+                   --fetch-bucket-meta | --cleanup)
 
 SSE-KMS Encryption
 
