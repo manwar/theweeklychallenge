@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2025-06-10T00:00:00+00:00
+date: 2025-06-12T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1073,6 +1073,12 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/deadmarshal/modula-3/Ch1/src/Ch1.m3) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/deadmarshal/modula-3/Ch2/src/Ch2.m3) in **Modula 3**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/luca-ferrari/pljava/src/main/java/Task1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/luca-ferrari/pljava/src/main/java/Task2.java) in **Java**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/luca-ferrari/python/ch-2.py) in **Python**.
 
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
