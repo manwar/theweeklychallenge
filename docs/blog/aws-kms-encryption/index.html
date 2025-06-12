@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="AWS KMS Encryption"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/aws-kms-encryption/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about AWS KMS Encryption."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about AWS KMS Encryption.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/aws-kms-encryption/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AWS KMS Encryption</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>AWS KMS Encryption</h2>
+                    <div class="portfolio-meta">
+                        <span>Thursday, Jun 12, 2025</span>|
+                        <span> Tags:
+                            perl, python, aws, localstack
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/aws-kms-encryption.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-leonardo-ai"><strong>DISCLAIMER:</strong> Image is generated using <code>Leonardo AI</code>.</h4>
+<br>
+<h2 id="aws-kms-encryption">AWS KMS Encryption</h2>
+<hr>
+<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-using-awsusing-aws"><a href="#using-aws">2. Using aws</a></h3>
+<h3 id="3-using-pythonusing-python"><a href="#using-python">3. Using Python</a></h3>
+<h3 id="4-using-perlusing-perl"><a href="#using-perl">4. Using Perl</a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<br>
+<p>This post is in continuation of the last <a href="/blog/aws-s3-encryption"><strong>post</strong></a> where we explored the <code>AWS S3 Encryption</code>.</p>
+<p>In this post, I would like to talk about encryption using <code>AWS Key Management Service</code>.</p>
+<p><code>AWS Key Management Service (KMS)</code> is a managed service that enables easy encryption of data using cryptographic keys.</p>
+<p>It allows you to create, manage, and control encryption keys.</p>
+<p>Let&rsquo;s get our hand dirty.</p>
+<br>
+<h2 id="using-aws">Using aws</h2>
+<hr>
+<br>
+<h3 id="create-key">Create Key</h3>
+<br>
+<p>Create <code>KMS</code> key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ KEY_ARN<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws kms create-key --query KeyMetadata.Arn --output text<span style="color:#66d9ef">)</span>
+<span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ echo $KEY_ARN
+arn:aws:kms:eu-west-1:000000000000:key/9df113f1-4acd-4b1b-a930-bb2e9a98e124
+</code></pre></div><br>
+<p>How about creating an alias for the <code>KMS</code> key?</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ KEY_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws kms create-key --description <span style="color:#e6db74">&#34;My production key&#34;</span> --query <span style="color:#e6db74">&#39;KeyMetadata.KeyId&#39;</span> --output text<span style="color:#66d9ef">)</span>
+<span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ echo $KEY_ID
+<span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws kms create-alias --alias-name alias/my-prod-key --target-key-id $KEY_ID
+</code></pre></div><br>
+<p>Alias must start with <code>alias/</code> prefix.</p>
+<p>Each alias name must be unique within an <code>AWS</code> account and region.</p>
+<br>
+<h3 id="list-keys">List Keys</h3>
+<br>
+<p>To list all the keys, do this.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws kms list-keys
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;Keys&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;KeyId&#34;</span>: <span style="color:#e6db74">&#34;9df113f1-4acd-4b1b-a930-bb2e9a98e124&#34;</span>,
+            <span style="color:#e6db74">&#34;KeyArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:kms:eu-west-1:000000000000:key/9df113f1-4acd-4b1b-a930-bb2e9a98e124&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;KeyId&#34;</span>: <span style="color:#e6db74">&#34;0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba&#34;</span>,
+            <span style="color:#e6db74">&#34;KeyArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:kms:eu-west-1:000000000000:key/0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;KeyId&#34;</span>: <span style="color:#e6db74">&#34;3a934579-7f29-474c-8459-8a9f749ece3d&#34;</span>,
+            <span style="color:#e6db74">&#34;KeyArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:kms:eu-west-1:000000000000:key/3a934579-7f29-474c-8459-8a9f749ece3d&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;KeyId&#34;</span>: <span style="color:#e6db74">&#34;4cda3ec5-25a2-4146-a700-86bc54d94d48&#34;</span>,
+            <span style="color:#e6db74">&#34;KeyArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:kms:eu-west-1:000000000000:key/4cda3ec5-25a2-4146-a700-86bc54d94d48&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;KeyId&#34;</span>: <span style="color:#e6db74">&#34;e17a3030-f92c-4eda-99d2-3826df75fa86&#34;</span>,
+            <span style="color:#e6db74">&#34;KeyArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:kms:eu-west-1:000000000000:key/e17a3030-f92c-4eda-99d2-3826df75fa86&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;KeyId&#34;</span>: <span style="color:#e6db74">&#34;66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2&#34;</span>,
+            <span style="color:#e6db74">&#34;KeyArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:kms:eu-west-1:000000000000:key/66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;KeyId&#34;</span>: <span style="color:#e6db74">&#34;576243cb-2b52-490e-b707-711809874859&#34;</span>,
+            <span style="color:#e6db74">&#34;KeyArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:kms:eu-west-1:000000000000:key/576243cb-2b52-490e-b707-711809874859&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;KeyId&#34;</span>: <span style="color:#e6db74">&#34;50631fb0-74fa-4f4b-a2e5-c11be97701b7&#34;</span>,
+            <span style="color:#e6db74">&#34;KeyArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:kms:eu-west-1:000000000000:key/50631fb0-74fa-4f4b-a2e5-c11be97701b7&#34;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>To list keys with their aliases, try this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws kms list-aliases --query <span style="color:#e6db74">&#39;Aliases[].{AliasName:AliasName, TargetKeyId:TargetKeyId}&#39;</span>
+<span style="color:#f92672">[</span>
+    <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;AliasName&#34;</span>: <span style="color:#e6db74">&#34;alias/my-alias-key-1&#34;</span>,
+        <span style="color:#e6db74">&#34;TargetKeyId&#34;</span>: <span style="color:#e6db74">&#34;9df113f1-4acd-4b1b-a930-bb2e9a98e124&#34;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">]</span>
+</code></pre></div><h3 id="list-key-details">List Key Details</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws kms describe-key --key-id <span style="color:#e6db74">&#34;9df113f1-4acd-4b1b-a930-bb2e9a98e124&#34;</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;KeyMetadata&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;AWSAccountId&#34;</span>: <span style="color:#e6db74">&#34;000000000000&#34;</span>,
+        <span style="color:#e6db74">&#34;KeyId&#34;</span>: <span style="color:#e6db74">&#34;9df113f1-4acd-4b1b-a930-bb2e9a98e124&#34;</span>,
+        <span style="color:#e6db74">&#34;Arn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:kms:eu-west-1:000000000000:key/9df113f1-4acd-4b1b-a930-bb2e9a98e124&#34;</span>,
+        <span style="color:#e6db74">&#34;CreationDate&#34;</span>: <span style="color:#e6db74">&#34;2025-06-02T14:55:46.096049+01:00&#34;</span>,
+        <span style="color:#e6db74">&#34;Enabled&#34;</span>: true,
+        <span style="color:#e6db74">&#34;Description&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+        <span style="color:#e6db74">&#34;KeyUsage&#34;</span>: <span style="color:#e6db74">&#34;ENCRYPT_DECRYPT&#34;</span>,
+        <span style="color:#e6db74">&#34;KeyState&#34;</span>: <span style="color:#e6db74">&#34;Enabled&#34;</span>,
+        <span style="color:#e6db74">&#34;Origin&#34;</span>: <span style="color:#e6db74">&#34;AWS_KMS&#34;</span>,
+        <span style="color:#e6db74">&#34;KeyManager&#34;</span>: <span style="color:#e6db74">&#34;CUSTOMER&#34;</span>,
+        <span style="color:#e6db74">&#34;CustomerMasterKeySpec&#34;</span>: <span style="color:#e6db74">&#34;SYMMETRIC_DEFAULT&#34;</span>,
+        <span style="color:#e6db74">&#34;KeySpec&#34;</span>: <span style="color:#e6db74">&#34;SYMMETRIC_DEFAULT&#34;</span>,
+        <span style="color:#e6db74">&#34;EncryptionAlgorithms&#34;</span>: <span style="color:#f92672">[</span>
+            <span style="color:#e6db74">&#34;SYMMETRIC_DEFAULT&#34;</span>
+        <span style="color:#f92672">]</span>,
+        <span style="color:#e6db74">&#34;MultiRegion&#34;</span>: false
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<h3 id="delete-key">Delete Key</h3>
+<br>
+<p>To delete a key, you must disable it first.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws kms disable-key --key-id <span style="color:#e6db74">&#34;9df113f1-4acd-4b1b-a930-bb2e9a98e124&#34;</span>
+</code></pre></div><br>
+<p>Then schedule it for deletion, <code>7-30 days</code> waiting period.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws kms schedule-key-deletion <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>          --key-id <span style="color:#e6db74">&#34;9df113f1-4acd-4b1b-a930-bb2e9a98e124&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>          --pending-window-in-days <span style="color:#ae81ff">7</span>
+</code></pre></div><br>
+<h3 id="create-bucket">Create Bucket</h3>
+<br>
+<p>Let&rsquo;s create the bucket first.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws s3 mb s3://sse-kms-encrypted-bucket
+make_bucket: sse-kms-encrypted-bucket
+</code></pre></div><br>
+<h3 id="enable-encryption">Enable Encryption</h3>
+<br>
+<p>Here we are using <code>$KEY_ARN</code> generated above when enabling the encryption:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> aws s3api put-bucket-encryption <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --bucket sse-kms-encrypted-bucket <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --server-side-encryption-configuration <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;Rules&#34;: [{
+</span><span style="color:#e6db74">      &#34;ApplyServerSideEncryptionByDefault&#34;: {
+</span><span style="color:#e6db74">        &#34;SSEAlgorithm&#34;: &#34;aws:kms&#34;,
+</span><span style="color:#e6db74">        &#34;KMSMasterKeyID&#34;: &#34;&#39;</span>$KEY_ARN<span style="color:#e6db74">&#39;&#34;
+</span><span style="color:#e6db74">      }
+</span><span style="color:#e6db74">    }]
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><br>
+<p>The <code>KMSMasterKeyID</code> can have one of the following values:</p>
+<br>
+<pre><code>Key ID    9df113f1-4acd-4b1b-a930-bb2e9a98e124
+Key alias alias/my-key
+Key ARN   arn:aws:kms:eu-west-1:000000000000:key/9df113f1-4acd-4b1b-a930-bb2e9a98e124
+Alias ARN arn:aws:kms:eu-west-1:000000000000:alias/my-key
+</code></pre>
+<br>
+<p>It&rsquo;s always safe to use <code>Key ARN</code>.</p>
+<p>However if the key is in the same region and owned by the same account then <code>Key ID</code> is sufficient.</p>
+<br>
+<h3 id="upload-file">Upload File</h3>
+<br>
+<p>Now upload the secret file.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 cp secret-file.txt s3://sse-kms-encrypted-bucket
+upload: ./secret-file.txt to s3://sse-kms-encrypted-bucket/secret-file.txt
+</code></pre></div><br>
+<h3 id="download-file">Download File</h3>
+<br>
+<p>Download the file.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 cp s3://sse-kms-encrypted-bucket/secret-file.txt downloaded-secret-file.txt
+download: s3://sse-kms-encrypted-bucket/secret-file.txt to ./downloaded-secret-file.txt
+</code></pre></div><br>
+<p>Verify the content.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat downloaded-secret-file.txt
+This is a secret file content.
+</code></pre></div><br>
+<h3 id="object-metadata">Object Metadata</h3>
+<br>
+<p>Retrieves metadata about the stored object.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api head-object --bucket sse-kms-encrypted-bucket --key secret-file.txt
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;AcceptRanges&#34;</span>: <span style="color:#e6db74">&#34;bytes&#34;</span>,
+    <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-06-02T14:04:20+00:00&#34;</span>,
+    <span style="color:#e6db74">&#34;ContentLength&#34;</span>: 31,
+    <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;5c1c7463b3b94cd0e204abf746a42671\&#34;&#34;</span>,
+    <span style="color:#e6db74">&#34;ContentType&#34;</span>: <span style="color:#e6db74">&#34;text/plain&#34;</span>,
+    <span style="color:#e6db74">&#34;ServerSideEncryption&#34;</span>: <span style="color:#e6db74">&#34;aws:kms&#34;</span>,
+    <span style="color:#e6db74">&#34;Metadata&#34;</span>: <span style="color:#f92672">{}</span>,
+    <span style="color:#e6db74">&#34;SSEKMSKeyId&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:kms:eu-west-1:000000000000:key/9df113f1-4acd-4b1b-a930-bb2e9a98e124&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Finally, verify the encryption settings.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api get-bucket-encryption --bucket sse-kms-encrypted-bucket
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;ServerSideEncryptionConfiguration&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;Rules&#34;</span>: <span style="color:#f92672">[</span>
+            <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;ApplyServerSideEncryptionByDefault&#34;</span>: <span style="color:#f92672">{</span>
+                    <span style="color:#e6db74">&#34;SSEAlgorithm&#34;</span>: <span style="color:#e6db74">&#34;aws:kms&#34;</span>,
+                    <span style="color:#e6db74">&#34;KMSMasterKeyID&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:kms:eu-west-1:000000000000:key/9df113f1-4acd-4b1b-a930-bb2e9a98e124&#34;</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">]</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<h3 id="cleanup">Cleanup</h3>
+<br>
+<p>Finally cleanup now.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 rm s3://sse-kms-encrypted-bucket --recursive
+delete: s3://sse-kms-encrypted-bucket/secret-file.txt
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 rb s3://sse-kms-encrypted-bucket
+remove_bucket: sse-kms-encrypted-bucket
+</code></pre></div><br>
+<h2 id="using-python">Using Python</h2>
+<hr>
+<p>Here is the <code>Python</code> implementation of the above.</p>
+<p>For the first time, I am using decorator for parameter validation in <code>Python</code>.</p>
+<p>I have created class <code>ParamValidator</code> for parameter validation.</p>
+<p>File: <code>sse-kms.py</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
+
+<span style="color:#f92672">import</span> re
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> sys
+<span style="color:#f92672">import</span> boto3
+<span style="color:#f92672">import</span> argparse
+<span style="color:#f92672">from</span> botocore.config <span style="color:#f92672">import</span> Config
+<span style="color:#f92672">from</span> botocore.exceptions <span style="color:#f92672">import</span> ClientError
+<span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Any, Dict, Optional, Tuple
+
+ENDPOINT_URL      <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:4566&#34;</span>
+ACCESS_KEY_ID     <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;test&#34;</span>
+SECRET_ACCESS_KEY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;test&#34;</span>
+REGION            <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;eu-west-1&#34;</span>
+DEFAULT_FILE      <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;secret-file.txt&#39;</span>
+DEFAULT_BUCKET    <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sse-kms-encrypted-bucket&#39;</span>
+DEFAULT_PENDING_WINDOW_DAYS <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyArgumentParser</span>(argparse<span style="color:#f92672">.</span>ArgumentParser):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">error</span>(self, message):
+        <span style="color:#66d9ef">if</span> message:
+            sys<span style="color:#f92672">.</span>stderr<span style="color:#f92672">.</span>write(f<span style="color:#e6db74">&#34;ERROR: {message}</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>)
+        self<span style="color:#f92672">.</span>print_help()
+        sys<span style="color:#f92672">.</span>exit(<span style="color:#ae81ff">2</span>)
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ParamValidator</span>:
+    VALIDATION_RULES <span style="color:#f92672">=</span> {
+        <span style="color:#e6db74">&#39;bucket_name&#39;</span>: {
+            <span style="color:#e6db74">&#39;type&#39;</span>: str,
+            <span style="color:#e6db74">&#39;regex&#39;</span>: <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^[a-z0-9][a-z0-9\-.]*[a-z0-9]$&#39;</span>,
+            <span style="color:#e6db74">&#39;min_len&#39;</span>: <span style="color:#ae81ff">3</span>,
+            <span style="color:#e6db74">&#39;max_len&#39;</span>: <span style="color:#ae81ff">63</span>,
+            <span style="color:#e6db74">&#39;exclude_patterns&#39;</span>: [<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^\d+\.\d+\.\d+\.\d+$&#39;</span>],
+            <span style="color:#e6db74">&#39;invalid_sequences&#39;</span>: [<span style="color:#e6db74">&#39;..&#39;</span>, <span style="color:#e6db74">&#39;-.&#39;</span>, <span style="color:#e6db74">&#39;.-&#39;</span>],
+            <span style="color:#e6db74">&#39;error_msg&#39;</span>: <span style="color:#e6db74">&#34;Bucket name must be 3-63 chars, lowercase alphanumeric with hyphens/periods&#34;</span>
+        },
+        <span style="color:#e6db74">&#39;key_id&#39;</span>: {
+            <span style="color:#e6db74">&#39;type&#39;</span>: str,
+            <span style="color:#e6db74">&#39;regex&#39;</span>: <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|alias/[a-zA-Z0-9/_-]+|arn:aws:kms:.+:.+:key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$&#39;</span>,
+            <span style="color:#e6db74">&#39;error_msg&#39;</span>: <span style="color:#e6db74">&#34;Key ID must be UUID, alias (starting with alias/), or ARN&#34;</span>
+        },
+        <span style="color:#e6db74">&#39;region&#39;</span>: {
+            <span style="color:#e6db74">&#39;type&#39;</span>: str,
+            <span style="color:#e6db74">&#39;regex&#39;</span>: <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^[a-z]{2}-[a-z]+-\d+$&#39;</span>,
+            <span style="color:#e6db74">&#39;error_msg&#39;</span>: <span style="color:#e6db74">&#34;Region must be in format like &#39;us-east-1&#39;&#34;</span>
+        },
+        <span style="color:#e6db74">&#39;alias_name&#39;</span>: {
+            <span style="color:#e6db74">&#39;type&#39;</span>: str,
+            <span style="color:#e6db74">&#39;regex&#39;</span>: <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^alias/[a-zA-Z0-9/_-]+$&#39;</span>,
+            <span style="color:#e6db74">&#39;error_msg&#39;</span>: <span style="color:#e6db74">&#34;Alias must start with &#39;alias/&#39; and contain alphanumeric chars&#34;</span>
+        },
+        <span style="color:#e6db74">&#39;s3&#39;</span>: {
+            <span style="color:#e6db74">&#39;boto3_client&#39;</span>: True,
+            <span style="color:#e6db74">&#39;service&#39;</span>: <span style="color:#e6db74">&#39;s3&#39;</span>,
+            <span style="color:#e6db74">&#39;error_msg&#39;</span>: <span style="color:#e6db74">&#34;Must be a valid boto3 S3 client&#34;</span>
+        },
+        <span style="color:#e6db74">&#39;kms&#39;</span>: {
+            <span style="color:#e6db74">&#39;boto3_client&#39;</span>: True,
+            <span style="color:#e6db74">&#39;service&#39;</span>: <span style="color:#e6db74">&#39;kms&#39;</span>,
+            <span style="color:#e6db74">&#39;error_msg&#39;</span>: <span style="color:#e6db74">&#34;Must be a valid boto3 KMS client&#34;</span>
+        },
+        <span style="color:#e6db74">&#39;file&#39;</span>: {
+            <span style="color:#e6db74">&#39;type&#39;</span>: str,
+            <span style="color:#e6db74">&#39;error_msg&#39;</span>: <span style="color:#e6db74">&#34;Must be a valid file path&#34;</span>
+        }
+    }
+
+    <span style="color:#a6e22e">@staticmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_is_valid_boto3_client</span>(client: Any, expected_service: Optional[str] <span style="color:#f92672">=</span> None) <span style="color:#f92672">-&gt;</span> bool:
+        <span style="color:#66d9ef">try</span>:
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> all(hasattr(client, attr) <span style="color:#66d9ef">for</span> attr <span style="color:#f92672">in</span> [<span style="color:#e6db74">&#39;_service_model&#39;</span>, <span style="color:#e6db74">&#39;_endpoint&#39;</span>, <span style="color:#e6db74">&#39;meta&#39;</span>]):
+                <span style="color:#66d9ef">return</span> False
+
+            <span style="color:#66d9ef">if</span> expected_service <span style="color:#f92672">and</span> getattr(client, <span style="color:#e6db74">&#39;_service_model&#39;</span>, None):
+                <span style="color:#66d9ef">return</span> client<span style="color:#f92672">.</span>_service_model<span style="color:#f92672">.</span>service_name <span style="color:#f92672">==</span> expected_service
+
+            <span style="color:#66d9ef">return</span> True
+        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:
+            <span style="color:#66d9ef">return</span> False
+
+    <span style="color:#a6e22e">@classmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">validate</span>(cls, param_name: str, param_value: Any) <span style="color:#f92672">-&gt;</span> Tuple[bool, Optional[str]]:
+        <span style="color:#e6db74">&#34;&#34;&#34;Generic parameter validation method&#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">if</span> param_name <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> cls<span style="color:#f92672">.</span>VALIDATION_RULES:
+            <span style="color:#66d9ef">return</span> True, None
+
+        rules <span style="color:#f92672">=</span> cls<span style="color:#f92672">.</span>VALIDATION_RULES[param_name]
+
+        <span style="color:#75715e"># Type check</span>
+        <span style="color:#66d9ef">if</span> rules<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;boto3_client&#39;</span>):
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> cls<span style="color:#f92672">.</span>_is_valid_boto3_client(param_value, rules<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;service&#39;</span>)):
+                <span style="color:#66d9ef">return</span> False, rules<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;error_msg&#39;</span>, f<span style="color:#e6db74">&#34;Invalid {param_name} - must be boto3 client&#34;</span>)
+            <span style="color:#66d9ef">return</span> True, None
+
+        <span style="color:#75715e"># Length checks</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;min_len&#39;</span> <span style="color:#f92672">in</span> rules <span style="color:#f92672">and</span> len(param_value) <span style="color:#f92672">&lt;</span> rules[<span style="color:#e6db74">&#39;min_len&#39;</span>]:
+            <span style="color:#66d9ef">return</span> False, f<span style="color:#e6db74">&#34;{param_name} must be at least {rules[&#39;min_len&#39;]} characters&#34;</span>
+
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;max_len&#39;</span> <span style="color:#f92672">in</span> rules <span style="color:#f92672">and</span> len(param_value) <span style="color:#f92672">&gt;</span> rules[<span style="color:#e6db74">&#39;max_len&#39;</span>]:
+            <span style="color:#66d9ef">return</span> False, f<span style="color:#e6db74">&#34;{param_name} must be no more than {rules[&#39;max_len&#39;]} characters&#34;</span>
+
+        <span style="color:#75715e"># Regex pattern check</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;regex&#39;</span> <span style="color:#f92672">in</span> rules <span style="color:#f92672">and</span> <span style="color:#f92672">not</span> re<span style="color:#f92672">.</span>match(rules[<span style="color:#e6db74">&#39;regex&#39;</span>], str(param_value)):
+            <span style="color:#66d9ef">return</span> False, rules<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;error_msg&#39;</span>, f<span style="color:#e6db74">&#34;Invalid {param_name} format&#34;</span>)
+
+        <span style="color:#75715e"># Exclusion patterns</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;exclude_patterns&#39;</span> <span style="color:#f92672">in</span> rules:
+            <span style="color:#66d9ef">for</span> pattern <span style="color:#f92672">in</span> rules[<span style="color:#e6db74">&#39;exclude_patterns&#39;</span>]:
+                <span style="color:#66d9ef">if</span> re<span style="color:#f92672">.</span>match(pattern, str(param_value)):
+                    <span style="color:#66d9ef">return</span> False, f<span style="color:#e6db74">&#34;{param_name} matches invalid pattern {pattern}&#34;</span>
+
+        <span style="color:#75715e"># Invalid sequences</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;invalid_sequences&#39;</span> <span style="color:#f92672">in</span> rules:
+            <span style="color:#66d9ef">for</span> seq <span style="color:#f92672">in</span> rules[<span style="color:#e6db74">&#39;invalid_sequences&#39;</span>]:
+                <span style="color:#66d9ef">if</span> seq <span style="color:#f92672">in</span> str(param_value):
+                    <span style="color:#66d9ef">return</span> False, f<span style="color:#e6db74">&#34;{param_name} contains invalid sequence &#39;{seq}&#39;&#34;</span>
+
+        <span style="color:#66d9ef">return</span> True, None
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">validate_params</span>(<span style="color:#f92672">**</span>param_specs: Dict[str, str]):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decorator</span>(func):
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wrapper</span>(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
+            params <span style="color:#f92672">=</span> func<span style="color:#f92672">.</span>__code__<span style="color:#f92672">.</span>co_varnames[:func<span style="color:#f92672">.</span>__code__<span style="color:#f92672">.</span>co_argcount]
+            bound_args <span style="color:#f92672">=</span> dict(zip(params, args))
+            bound_args<span style="color:#f92672">.</span>update(kwargs)
+
+            <span style="color:#66d9ef">for</span> param_name, validation_type <span style="color:#f92672">in</span> param_specs<span style="color:#f92672">.</span>items():
+                <span style="color:#66d9ef">if</span> param_name <span style="color:#f92672">in</span> bound_args:
+                    is_valid, error_msg <span style="color:#f92672">=</span> ParamValidator<span style="color:#f92672">.</span>validate(
+                        validation_type,
+                        bound_args[param_name]
+                    )
+                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> is_valid:
+                        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(f<span style="color:#e6db74">&#34;Parameter validation failed for {param_name}: {error_msg}&#34;</span>)
+
+            <span style="color:#66d9ef">return</span> func(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs)
+        <span style="color:#66d9ef">return</span> wrapper
+    <span style="color:#66d9ef">return</span> decorator
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_client</span>(type):
+    <span style="color:#66d9ef">return</span> boto3<span style="color:#f92672">.</span>client(
+        type,
+        endpoint_url <span style="color:#f92672">=</span> ENDPOINT_URL,
+        aws_access_key_id <span style="color:#f92672">=</span> ACCESS_KEY_ID,
+        aws_secret_access_key <span style="color:#f92672">=</span> SECRET_ACCESS_KEY,
+        config <span style="color:#f92672">=</span> Config(signature_version<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;s3v4&#39;</span>),
+        region_name <span style="color:#f92672">=</span> REGION
+    )
+
+<span style="color:#a6e22e">@validate_params</span>(
+    s3<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;s3&#39;</span>,
+    kms<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kms&#39;</span>,
+    bucket_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bucket_name&#39;</span>,
+    region<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;region&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_enc_bucket</span>(s3, kms, bucket_name, region):
+    <span style="color:#66d9ef">try</span>:
+        key <span style="color:#f92672">=</span> kms<span style="color:#f92672">.</span>create_key(Description<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;KMS Encryption Key&#39;</span>)
+        key_arn <span style="color:#f92672">=</span> key[<span style="color:#e6db74">&#39;KeyMetadata&#39;</span>][<span style="color:#e6db74">&#39;Arn&#39;</span>]
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Created KMS key: {key_arn}&#34;</span>)
+
+        s3<span style="color:#f92672">.</span>create_bucket(Bucket<span style="color:#f92672">=</span>bucket_name,
+            CreateBucketConfiguration<span style="color:#f92672">=</span>{
+                <span style="color:#e6db74">&#39;LocationConstraint&#39;</span>: region
+            })
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Bucket {bucket_name} created.&#34;</span>)
+
+        s3<span style="color:#f92672">.</span>put_bucket_encryption(
+            Bucket<span style="color:#f92672">=</span>bucket_name,
+            ServerSideEncryptionConfiguration<span style="color:#f92672">=</span>{
+                <span style="color:#e6db74">&#39;Rules&#39;</span>: [
+                    {
+                        <span style="color:#e6db74">&#39;ApplyServerSideEncryptionByDefault&#39;</span>: {
+                            <span style="color:#e6db74">&#39;SSEAlgorithm&#39;</span>: <span style="color:#e6db74">&#39;aws:kms&#39;</span>,
+                            <span style="color:#e6db74">&#39;KMSMasterKeyID&#39;</span>: key_arn
+                        }
+                    }
+                ]
+            }
+        )
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Enabled KMS encryption on {bucket_name} using key {key_arn}.&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error creating encrypted bucket: {e}&#34;</span>)
+
+<span style="color:#a6e22e">@validate_params</span>(
+    kms<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kms&#39;</span>,
+    key_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;key_id&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">desc_key</span>(kms, key_id):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> kms<span style="color:#f92672">.</span>describe_key(KeyId<span style="color:#f92672">=</span>key_id)
+        key_metadata <span style="color:#f92672">=</span> response[<span style="color:#e6db74">&#39;KeyMetadata&#39;</span>]
+
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Key Details for {key_id}:&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;ARN: {key_metadata[&#39;Arn&#39;]}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Description: {key_metadata.get(&#39;Description&#39;, &#39;None&#39;)}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Creation Date: {key_metadata[&#39;CreationDate&#39;]}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Enabled: {key_metadata[&#39;Enabled&#39;]}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Key Usage: {key_metadata[&#39;KeyUsage&#39;]}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Key State: {key_metadata[&#39;KeyState&#39;]}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Origin: {key_metadata[&#39;Origin&#39;]}&#34;</span>)
+    <span style="color:#66d9ef">except</span> kms<span style="color:#f92672">.</span>exceptions<span style="color:#f92672">.</span>NotFoundException:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: Key {key_id} not found&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: {str(e)}&#34;</span>)
+
+<span style="color:#a6e22e">@validate_params</span>(
+    kms<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kms&#39;</span>,
+    key_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;key_id&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">disable_key</span>(kms, key_id):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> kms<span style="color:#f92672">.</span>disable_key(
+            KeyId<span style="color:#f92672">=</span>key_id
+        )
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Successfully disabled key: {key_id}&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        error_code <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>]
+        <span style="color:#66d9ef">if</span> error_code <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;NotFoundException&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: Key {key_id} not found&#34;</span>)
+        <span style="color:#66d9ef">elif</span> error_code <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;AccessDeniedException&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: Permission denied to disable key {key_id}&#34;</span>)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error disabling key: {e}&#34;</span>)
+
+<span style="color:#a6e22e">@validate_params</span>(
+    kms<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kms&#39;</span>,
+    key_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;key_id&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">schedule_key_deletion</span>(kms, key_id, pending_window_days<span style="color:#f92672">=</span><span style="color:#ae81ff">7</span>):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> kms<span style="color:#f92672">.</span>schedule_key_deletion(
+            KeyId<span style="color:#f92672">=</span>key_id,
+            PendingWindowInDays<span style="color:#f92672">=</span>pending_window_days
+        )
+
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Successfully scheduled deletion for key {key_id}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Deletion Date: {response[&#39;DeletionDate&#39;]}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Key State: {response[&#39;KeyState&#39;]}&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        error_code <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>]
+        <span style="color:#66d9ef">if</span> error_code <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;NotFoundException&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: Key {key_id} not found&#34;</span>)
+        <span style="color:#66d9ef">elif</span> error_code <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;KMSInvalidStateException&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: Key {key_id} is already pending deletion or incompatible&#34;</span>)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error scheduling key deletion: {e}&#34;</span>)
+
+<span style="color:#a6e22e">@validate_params</span>(
+    kms<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kms&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">list_keys</span>(kms):
+    <span style="color:#66d9ef">try</span>:
+        paginator <span style="color:#f92672">=</span> kms<span style="color:#f92672">.</span>get_paginator(<span style="color:#e6db74">&#39;list_keys&#39;</span>)
+        <span style="color:#66d9ef">for</span> page <span style="color:#f92672">in</span> paginator<span style="color:#f92672">.</span>paginate():
+            <span style="color:#66d9ef">for</span> key <span style="color:#f92672">in</span> page[<span style="color:#e6db74">&#39;Keys&#39;</span>]:
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;KeyId:&#34;</span>, key[<span style="color:#e6db74">&#39;KeyId&#39;</span>])
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;KeyArn:&#34;</span>, key[<span style="color:#e6db74">&#39;KeyArn&#39;</span>])
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;---&#34;</span>)
+
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error listing keys: {e}&#34;</span>)
+
+<span style="color:#a6e22e">@validate_params</span>(
+    kms<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kms&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">list_aliases</span>(kms):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> kms<span style="color:#f92672">.</span>list_aliases()
+        <span style="color:#66d9ef">for</span> alias <span style="color:#f92672">in</span> response[<span style="color:#e6db74">&#39;Aliases&#39;</span>]:
+            <span style="color:#66d9ef">print</span>({
+                <span style="color:#e6db74">&#39;AliasName&#39;</span>: alias[<span style="color:#e6db74">&#39;AliasName&#39;</span>],
+                <span style="color:#e6db74">&#39;TargetKeyId&#39;</span>: alias<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;TargetKeyId&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)
+            })
+
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error listing aliases: {e}&#34;</span>)
+
+<span style="color:#a6e22e">@validate_params</span>(
+    kms<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kms&#39;</span>,
+    key_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;key_id&#39;</span>,
+    alias_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;alias_name&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_alias</span>(kms, key_id, alias_name):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> kms<span style="color:#f92672">.</span>create_alias(
+            AliasName<span style="color:#f92672">=</span>alias_name,
+            TargetKeyId<span style="color:#f92672">=</span>key_id
+        )
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Successfully created alias &#39;{alias_name}&#39; for key {key_id}&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        error_code <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>]
+        <span style="color:#66d9ef">if</span> error_code <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;AlreadyExistsException&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: Alias &#39;{alias_name}&#39; already exists&#34;</span>)
+        <span style="color:#66d9ef">elif</span> error_code <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;NotFoundException&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: Key {key_id} not found&#34;</span>)
+        <span style="color:#66d9ef">elif</span> error_code <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;AccessDeniedException&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: Permission denied to create alias&#34;</span>)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error creating alias: {e}&#34;</span>)
+
+<span style="color:#a6e22e">@validate_params</span>(
+    s3<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;s3&#39;</span>,
+    bucket_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bucket_name&#39;</span>,
+    file<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;file&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">upload_file</span>(s3, bucket_name, file):
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(file):
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: File &#39;{file}&#39; does not exist&#34;</span>)
+            <span style="color:#66d9ef">return</span> False
+
+        key <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(file)
+        s3<span style="color:#f92672">.</span>upload_file(file, bucket_name, key)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Uploaded {file} to {bucket_name}.&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error uploading file: {e}&#34;</span>)
+
+<span style="color:#a6e22e">@validate_params</span>(
+    s3<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;s3&#39;</span>,
+    bucket_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bucket_name&#39;</span>,
+    file<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;file&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">download_file</span>(s3, bucket_name, file):
+    <span style="color:#66d9ef">try</span>:
+        key <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(file)
+        download_path <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#34;new_{key}&#34;</span>
+        s3<span style="color:#f92672">.</span>download_file(bucket_name, file, download_path)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;File downloaded to &#39;{download_path}&#39;.&#34;</span>)
+
+        <span style="color:#66d9ef">with</span> open(download_path, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> f:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;File content:&#34;</span>, f<span style="color:#f92672">.</span>read())
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error downloading file: {e}&#34;</span>)
+
+<span style="color:#a6e22e">@validate_params</span>(
+    s3<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;s3&#39;</span>,
+    bucket_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bucket_name&#39;</span>,
+    file<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;file&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch_file_meta</span>(s3, bucket_name, file):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>head_object(
+            Bucket<span style="color:#f92672">=</span>bucket_name,
+            Key<span style="color:#f92672">=</span>os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(file)
+        )
+        encryption <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;ServerSideEncryption&#39;</span>)
+        <span style="color:#66d9ef">if</span> encryption:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Object encryption: {encryption}&#34;</span>)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Object encryption: None&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error fetching file meta: {e}&#34;</span>)
+
+<span style="color:#a6e22e">@validate_params</span>(
+    s3<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;s3&#39;</span>,
+    bucket_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bucket_name&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch_bucket_meta</span>(s3, bucket_name):
+    <span style="color:#66d9ef">try</span>:
+        encryption <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>get_bucket_encryption(Bucket<span style="color:#f92672">=</span>bucket_name)
+        rules <span style="color:#f92672">=</span> encryption[<span style="color:#e6db74">&#39;ServerSideEncryptionConfiguration&#39;</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;Rules&#39;</span>, [])
+        <span style="color:#66d9ef">if</span> rules:
+            sse_algorithm <span style="color:#f92672">=</span> rules[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;ApplyServerSideEncryptionByDefault&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;SSEAlgorithm&#39;</span>)
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Bucket encryption: {sse_algorithm}&#34;</span>)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Bucket encryption: None&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error fetching bucket meta: {e}&#34;</span>)
+
+<span style="color:#a6e22e">@validate_params</span>(
+    s3<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;s3&#39;</span>,
+    bucket_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bucket_name&#39;</span>
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cleanup</span>(s3, bucket_name):
+    <span style="color:#66d9ef">try</span>:
+        objects <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>list_objects_v2(Bucket<span style="color:#f92672">=</span>bucket_name)
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;Contents&#39;</span> <span style="color:#f92672">in</span> objects:
+            <span style="color:#66d9ef">for</span> obj <span style="color:#f92672">in</span> objects[<span style="color:#e6db74">&#39;Contents&#39;</span>]:
+                s3<span style="color:#f92672">.</span>delete_object(Bucket<span style="color:#f92672">=</span>bucket_name, Key<span style="color:#f92672">=</span>obj[<span style="color:#e6db74">&#39;Key&#39;</span>])
+
+        s3<span style="color:#f92672">.</span>delete_bucket(Bucket<span style="color:#f92672">=</span>bucket_name)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Bucket &#39;{bucket_name}&#39; deleted successfully.&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error deleting bucket: {e}&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    parser <span style="color:#f92672">=</span> MyArgumentParser(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SSE-KMS Encryption&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--bucket&#39;</span>, default<span style="color:#f92672">=</span>DEFAULT_BUCKET, help<span style="color:#f92672">=</span>f<span style="color:#e6db74">&#34;Bucket name, default {DEFAULT_BUCKET}&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--file&#39;</span>, default<span style="color:#f92672">=</span>DEFAULT_FILE, help<span style="color:#f92672">=</span>f<span style="color:#e6db74">&#34;File to upload/download, default {DEFAULT_FILE}&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--key-id&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KMS key id&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--pending-window-days&#39;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span>DEFAULT_PENDING_WINDOW_DAYS, help<span style="color:#f92672">=</span>f<span style="color:#e6db74">&#34;Pending window days, default {DEFAULT_PENDING_WINDOW_DAYS}&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--alias-name&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Alias name&#34;</span>)
+
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--make-enc-bucket&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Create encrypted bucket&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--list-keys&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;List KMS keys&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--desc-key&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Describe key details&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--disable-key&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Disable key&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--schedule-key-deletion&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Schedule key deletion&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--list-aliases&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;List aliases&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--create-alias&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Create alias&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--upload&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Upload file&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--download&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Download file&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--fetch-file-meta&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Fetch file metadata&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--fetch-bucket-meta&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Fetch bucket metadata&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--cleanup&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Remove bucket and its content&#34;</span>)
+
+    args <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+
+    <span style="color:#75715e"># Enforce only one action is selected</span>
+    actions <span style="color:#f92672">=</span> [
+        args<span style="color:#f92672">.</span>make_enc_bucket,
+        args<span style="color:#f92672">.</span>list_keys,
+        args<span style="color:#f92672">.</span>desc_key,
+        args<span style="color:#f92672">.</span>disable_key,
+        args<span style="color:#f92672">.</span>schedule_key_deletion,
+        args<span style="color:#f92672">.</span>create_alias,
+        args<span style="color:#f92672">.</span>list_aliases,
+        args<span style="color:#f92672">.</span>upload,
+        args<span style="color:#f92672">.</span>download,
+        args<span style="color:#f92672">.</span>fetch_file_meta,
+        args<span style="color:#f92672">.</span>fetch_bucket_meta,
+        args<span style="color:#f92672">.</span>cleanup,
+    ]
+
+    <span style="color:#66d9ef">if</span> sum(bool(action) <span style="color:#66d9ef">for</span> action <span style="color:#f92672">in</span> actions) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>:
+        parser<span style="color:#f92672">.</span>error(<span style="color:#e6db74">&#34;You must specify exactly one of: &#34;</span>
+                     <span style="color:#e6db74">&#34;--make-enc-bucket, --list-keys, --desc-key, &#34;</span>
+                     <span style="color:#e6db74">&#34;--disable-key, --schedule-key-deletion, --list-aliases, &#34;</span>
+                     <span style="color:#e6db74">&#34;--upload, --download, &#34;</span>
+                     <span style="color:#e6db74">&#34;--fetch-file-meta, --fetch-bucket-meta, --cleanup&#34;</span>)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>desc_key <span style="color:#f92672">and</span> <span style="color:#f92672">not</span> args<span style="color:#f92672">.</span>key_id:
+        parser<span style="color:#f92672">.</span>error(<span style="color:#e6db74">&#34;--desc-key requires --key-id&#34;</span>)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>create_alias <span style="color:#f92672">and</span> (<span style="color:#f92672">not</span> args<span style="color:#f92672">.</span>key_id <span style="color:#f92672">or</span> <span style="color:#f92672">not</span> args<span style="color:#f92672">.</span>alias_name):
+        parser<span style="color:#f92672">.</span>error(<span style="color:#e6db74">&#34;--create-alias requires both --key-id and --alias-name&#34;</span>)
+
+    s3  <span style="color:#f92672">=</span> create_client(<span style="color:#e6db74">&#39;s3&#39;</span>)
+    kms <span style="color:#f92672">=</span> create_client(<span style="color:#e6db74">&#39;kms&#39;</span>)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>make_enc_bucket:
+        make_enc_bucket(s3, kms, args<span style="color:#f92672">.</span>bucket, REGION)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>list_keys:
+        list_keys(kms)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>desc_key:
+        desc_key(kms, args<span style="color:#f92672">.</span>key_id)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>disable_key:
+        disable_key(kms, args<span style="color:#f92672">.</span>key_id)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>schedule_key_deletion:
+        schedule_key_deletion(kms, args<span style="color:#f92672">.</span>key_id, args<span style="color:#f92672">.</span>pending_window_days)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>create_alias:
+        create_alias(kms, args<span style="color:#f92672">.</span>key_id, args<span style="color:#f92672">.</span>alias_name)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>list_aliases:
+        list_aliases(kms)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>upload:
+        upload_file(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>file)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>download:
+        download_file(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>file)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>fetch_file_meta:
+        fetch_file_meta(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>file)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>fetch_bucket_meta:
+        fetch_bucket_meta(s3, args<span style="color:#f92672">.</span>bucket)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>cleanup:
+        cleanup(s3, args<span style="color:#f92672">.</span>bucket)
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    <span style="color:#66d9ef">try</span>:
+        main()
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ValueError</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: {e}&#34;</span>)
+        sys<span style="color:#f92672">.</span>exit(<span style="color:#ae81ff">1</span>)
+</code></pre></div><br>
+<p>Test the code now:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --help
+usage: sse-kms.py <span style="color:#f92672">[</span>-h<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--key-id KEY_ID<span style="color:#f92672">]</span>
+                  <span style="color:#f92672">[</span>--pending-window-days PENDING_WINDOW_DAYS<span style="color:#f92672">]</span>
+                  <span style="color:#f92672">[</span>--alias-name ALIAS_NAME<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--make-enc-bucket<span style="color:#f92672">]</span>
+                  <span style="color:#f92672">[</span>--list-keys<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--desc-key<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--disable-key<span style="color:#f92672">]</span>
+                  <span style="color:#f92672">[</span>--schedule-key-deletion<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list-aliases<span style="color:#f92672">]</span>
+                  <span style="color:#f92672">[</span>--create-alias<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--upload<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--download<span style="color:#f92672">]</span>
+                  <span style="color:#f92672">[</span>--fetch-file-meta<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--fetch-bucket-meta<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--cleanup<span style="color:#f92672">]</span>
+
+SSE-KMS Encryption
+
+options:
+  -h, --help            show this help message and exit
+  --bucket BUCKET       Bucket namei, default sse-kms-encrypted-bucket
+  --file FILE           File to upload/download, default secret-file.txt
+  --key-id KEY_ID       KMS key id
+  --pending-window-days PENDING_WINDOW_DAYS
+                        Pending window days, default <span style="color:#ae81ff">7</span>
+  --alias-name ALIAS_NAME
+                        Alias name
+  --make-enc-bucket     Create encrypted bucket
+  --list-keys           List KMS keys
+  --desc-key            Describe key details
+  --disable-key         Disable key
+  --schedule-key-deletion
+                        Schedule key deletion
+  --list-aliases        List aliases
+  --create-alias        Create alias
+  --upload              Upload file
+  --download            Download file
+  --fetch-file-meta     Fetch file metadata
+  --fetch-bucket-meta   Fetch bucket metadata
+  --cleanup             Remove bucket and its content
+</code></pre></div><br>
+<p>Create encrypted bucket.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> and it would create the default bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --bucket sse-kms-encrypted-bucket --make-enc-bucket
+Created KMS key: 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+Bucket sse-kms-encrypted-bucket created
+Enabled KMS encryption on sse-kms-encrypted-bucket using key 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+</code></pre></div><br>
+<p>List <code>KMS keys</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --list-keys
+KeyId: 9df113f1-4acd-4b1b-a930-bb2e9a98e124
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/9df113f1-4acd-4b1b-a930-bb2e9a98e124
+---
+KeyId: 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+---
+KeyId: 3a934579-7f29-474c-8459-8a9f749ece3d
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/3a934579-7f29-474c-8459-8a9f749ece3d
+---
+KeyId: 4cda3ec5-25a2-4146-a700-86bc54d94d48
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/4cda3ec5-25a2-4146-a700-86bc54d94d48
+---
+KeyId: e17a3030-f92c-4eda-99d2-3826df75fa86
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/e17a3030-f92c-4eda-99d2-3826df75fa86
+---
+KeyId: 66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+---
+KeyId: 576243cb-2b52-490e-b707-711809874859
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/576243cb-2b52-490e-b707-711809874859
+---
+KeyId: 50631fb0-74fa-4f4b-a2e5-c11be97701b7
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/50631fb0-74fa-4f4b-a2e5-c11be97701b7
+---
+KeyId: 2913238b-370f-4dfd-940e-3245fce10fa4
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/2913238b-370f-4dfd-940e-3245fce10fa4
+---
+KeyId: 36b362c0-51ca-4236-9ac2-90b7d929b745
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/36b362c0-51ca-4236-9ac2-90b7d929b745
+---
+KeyId: f0994797-acfb-45b1-b9ee-0f7191adf50c
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/f0994797-acfb-45b1-b9ee-0f7191adf50c
+---
+KeyId: 817fdffb-46df-47ad-973c-f6f2b7f665fc
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/817fdffb-46df-47ad-973c-f6f2b7f665fc
+---
+</code></pre></div><br>
+<p>Describe a key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --desc-key --key-id 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+Key Details <span style="color:#66d9ef">for</span> 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba:
+ARN: arn:aws:kms:eu-west-1:000000000000:key/0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+Description: LocalStack S3 Encryption Key
+Creation Date: 2025-06-02 15:22:12.516666+01:00
+Enabled: True
+Key Usage: ENCRYPT_DECRYPT
+Key State: Enabled
+Origin: AWS_KMS
+</code></pre></div><br>
+<p>Disable a key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --disable-key --key-id 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+Successfully disabled key: 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+</code></pre></div><br>
+<p>Check the status post disabling key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --desc-key --key-id 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+Key Details <span style="color:#66d9ef">for</span> 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba:
+ARN: arn:aws:kms:eu-west-1:000000000000:key/0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+Description: LocalStack S3 Encryption Key
+Creation Date: 2025-06-02 15:22:12.516666+01:00
+Enabled: False
+Key Usage: ENCRYPT_DECRYPT
+Key State: Disabled
+Origin: AWS_KMS
+</code></pre></div><br>
+<p>Schedule deletion of disabled key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --schedule-key-deletion --key-id 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+Successfully scheduled deletion <span style="color:#66d9ef">for</span> key 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+Deletion Date: 2025-06-17 13:23:27.038130+01:00
+Key State: PendingDeletion
+</code></pre></div><br>
+<p>List aliases.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --list-aliases
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;AliasName&#39;</span>: <span style="color:#e6db74">&#39;alias/my-alias-key-1&#39;</span>, <span style="color:#e6db74">&#39;TargetKeyId&#39;</span>: <span style="color:#e6db74">&#39;9df113f1-4acd-4b1b-a930-bb2e9a98e124&#39;</span><span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Create alias for a given <code>KMS</code> key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --create-alias --alias-name <span style="color:#e6db74">&#34;alias/my-alias-key-2&#34;</span> --key-id 36b362c0-51ca-4236-9ac2-90b7d929b745
+Successfully created alias <span style="color:#e6db74">&#39;alias/my-alias-key-2&#39;</span> <span style="color:#66d9ef">for</span> key 36b362c0-51ca-4236-9ac2-90b7d929b745
+</code></pre></div><br>
+<p>Now list all aliases again.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --list-aliases
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;AliasName&#39;</span>: <span style="color:#e6db74">&#39;alias/my-alias-key-1&#39;</span>, <span style="color:#e6db74">&#39;TargetKeyId&#39;</span>: <span style="color:#e6db74">&#39;9df113f1-4acd-4b1b-a930-bb2e9a98e124&#39;</span><span style="color:#f92672">}</span>
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;AliasName&#39;</span>: <span style="color:#e6db74">&#39;alias/my-alias-key-2&#39;</span>, <span style="color:#e6db74">&#39;TargetKeyId&#39;</span>: <span style="color:#e6db74">&#39;36b362c0-51ca-4236-9ac2-90b7d929b745&#39;</span><span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Upload file to bucket.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> and <code>--file secret-file.txt</code> as it would upload the default file to the default bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --bucket sse-kms-encrypted-bucket --file secret-file.txt --upload
+Uploaded secret-file.txt to sse-kms-encrypted-bucket.
+</code></pre></div><br>
+<p>Download file locally.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> and <code>--file secret-file.txt</code> as it would download the default file from the default bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --bucket sse-kms-encrypted-bucket --file secret-file.txt --download
+File downloaded to <span style="color:#e6db74">&#39;new_secret-file.txt&#39;</span>
+File content: This is a secret file content.
+</code></pre></div><br>
+<p>Fetch file meta.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> and <code>--file secret-file.txt</code> as it would fetch the default file meta from the default bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --bucket sse-kms-encrypted-bucket --file secret-file.txt --fetch-file-meta
+Object encryption: aws:kms
+</code></pre></div><br>
+<p>Fetch bucket meta.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> as it would fetch the default bucket meta.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> py sse-kms.py --bucket sse-kms-encrypted-bucket --fetch-bucket-meta
+Bucket encryption: aws:kms
+</code></pre></div><br>
+<p>Cleanup in the end.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> as it would empty the default bucket first and then remove it.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-kms.py --bucket sse-kms-encrypted-bucket --cleanup
+Bucket <span style="color:#e6db74">&#39;sse-kms-encrypted-bucket&#39;</span> deleted successfully
+</code></pre></div><br>
+<h2 id="using-perl">Using Perl</h2>
+<hr>
+<br>
+<p>Now, <code>Perl</code> implementation:</p>
+<p>File: <code>sse-kms.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Try::Tiny;
+<span style="color:#66d9ef">use</span> File::Slurp;
+<span style="color:#66d9ef">use</span> Getopt::Long;
+<span style="color:#66d9ef">use</span> File::Basename;
+<span style="color:#66d9ef">use</span> POSIX <span style="color:#e6db74">qw(strftime)</span>;
+
+<span style="color:#66d9ef">use</span> Paws;
+<span style="color:#66d9ef">use</span> Paws::Credential::Explicit;
+
+<span style="color:#66d9ef">my</span> $REGION         <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;eu-west-1&#39;</span>;
+<span style="color:#66d9ef">my</span> $ENDPOINT       <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://localhost:4566&#39;</span>;
+<span style="color:#66d9ef">my</span> $ACCESS_KEY     <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test&#39;</span>;
+<span style="color:#66d9ef">my</span> $SECRET_KEY     <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test&#39;</span>;
+<span style="color:#66d9ef">my</span> $DEFAULT_FILE   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;secret-file.txt&#39;</span>;
+<span style="color:#66d9ef">my</span> $DEFAULT_BUCKET <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sse-kms-encrypted-bucket&#39;</span>;
+<span style="color:#66d9ef">my</span> $DEFAULT_PENDING_WINDOW_DAYS <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>;
+
+<span style="color:#66d9ef">my</span> %opts;
+GetOptions(
+    <span style="color:#e6db74">&#39;bucket=s&#39;</span>              <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{bucket},
+    <span style="color:#e6db74">&#39;file=s&#39;</span>                <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{file},
+    <span style="color:#e6db74">&#39;key-id=s&#39;</span>              <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{key_id},
+    <span style="color:#e6db74">&#39;pending-window-days=i&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{pending_window_days},
+    <span style="color:#e6db74">&#39;alias-name=s&#39;</span>          <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{alias_name},
+    <span style="color:#e6db74">&#39;make-enc-bucket&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{make_enc_bucket},
+    <span style="color:#e6db74">&#39;desc-key&#39;</span>              <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{desc_key},
+    <span style="color:#e6db74">&#39;disable-key&#39;</span>           <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{disable_key},
+    <span style="color:#e6db74">&#39;schedule-key-deletion&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{schedule_key_deletion},
+    <span style="color:#e6db74">&#39;list-keys&#39;</span>             <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{list_keys},
+    <span style="color:#e6db74">&#39;list-aliases&#39;</span>          <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{list_aliases},
+    <span style="color:#e6db74">&#39;create-alias&#39;</span>          <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{create_alias},
+    <span style="color:#e6db74">&#39;upload&#39;</span>                <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{upload},
+    <span style="color:#e6db74">&#39;download&#39;</span>              <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{download},
+    <span style="color:#e6db74">&#39;fetch-file-meta&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{fetch_file_meta},
+    <span style="color:#e6db74">&#39;fetch-bucket-meta&#39;</span>     <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{fetch_bucket_meta},
+    <span style="color:#e6db74">&#39;cleanup&#39;</span>               <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{cleanup},
+    <span style="color:#e6db74">&#39;help&#39;</span>                  <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{help},
+) <span style="color:#f92672">or</span> show_help_and_exit(<span style="color:#ae81ff">1</span>);
+
+show_help_and_exit(<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">if</span> $opts{help};
+
+<span style="color:#75715e"># Enforce only one action is selected</span>
+<span style="color:#66d9ef">my</span> @actions <span style="color:#f92672">=</span> <span style="color:#e6db74">qw/
+</span><span style="color:#e6db74">    make_enc_bucket
+</span><span style="color:#e6db74">    desc_key
+</span><span style="color:#e6db74">    disable_key
+</span><span style="color:#e6db74">    schedule_key_deletion
+</span><span style="color:#e6db74">    list_keys
+</span><span style="color:#e6db74">    list_aliases
+</span><span style="color:#e6db74">    create_alias
+</span><span style="color:#e6db74">    upload download
+</span><span style="color:#e6db74">    fetch_file_meta
+</span><span style="color:#e6db74">    fetch_bucket_meta
+</span><span style="color:#e6db74">    cleanup
+</span><span style="color:#e6db74">/</span>;
+
+<span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> grep { defined $opts{$_} } @actions;
+show_help_and_exit(<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;You must specify exactly one of: --&#34;</span> <span style="color:#f92672">.</span> join(<span style="color:#e6db74">&#39;, --&#39;</span>, @actions))
+    <span style="color:#66d9ef">unless</span> $count <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+
+<span style="color:#66d9ef">if</span> ($opts{desc_key} <span style="color:#f92672">and</span> <span style="color:#f92672">!</span>$opts{key_id}) {
+    show_help_and_exit(<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;--desc-key requires --key-id&#34;</span>);
+}
+
+<span style="color:#66d9ef">if</span> ($opts{create_alias} <span style="color:#f92672">and</span> (<span style="color:#f92672">!</span>$opts{key_id} <span style="color:#f92672">or</span> <span style="color:#f92672">!</span>$opts{alias_name})) {
+    show_help_and_exit(<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;--create-alias requires both --key-id and --alias-name&#34;</span>);
+}
+
+<span style="color:#66d9ef">my</span> $s3  <span style="color:#f92672">=</span> create_client(<span style="color:#e6db74">&#39;S3&#39;</span>);
+<span style="color:#66d9ef">my</span> $kms <span style="color:#f92672">=</span> create_client(<span style="color:#e6db74">&#39;KMS&#39;</span>);
+
+$opts{bucket} <span style="color:#f92672">=</span> $DEFAULT_BUCKET <span style="color:#66d9ef">unless</span> defined $opts{bucket};
+$opts{file}   <span style="color:#f92672">=</span> $DEFAULT_FILE   <span style="color:#66d9ef">unless</span> defined $opts{file};
+$opts{pending_window_days} <span style="color:#f92672">=</span> $DEFAULT_PENDING_WINDOW_DAYS
+    <span style="color:#66d9ef">unless</span> defined $opts{pending_window_days};
+
+<span style="color:#66d9ef">if</span> ($opts{make_enc_bucket}) {
+    make_enc_bucket($s3, $kms, $opts{bucket});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{desc_key}) {
+    desc_key($kms, $opts{key_id});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{disable_key}) {
+    disable_key($kms, $opts{key_id});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{schedule_key_deletion}) {
+    schedule_key_deletion($kms, $opts{key_id}, $opts{pending_window_days});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{list_keys}) {
+    list_keys($kms);
+}
+
+<span style="color:#66d9ef">if</span> ($opts{list_aliases}) {
+    list_aliases($kms);
+}
+
+<span style="color:#66d9ef">if</span> ($opts{create_alias}) {
+    create_alias($kms, $opts{key_id}, $opts{alias_name});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{upload}) {
+    upload_file($s3, $opts{bucket}, $opts{file});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{download}) {
+    download_file($s3, $opts{bucket}, $opts{file});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{fetch_file_meta}) {
+    fetch_file_meta($s3, $opts{bucket}, $opts{file});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{fetch_bucket_meta}) {
+    fetch_bucket_meta($s3, $opts{bucket});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{cleanup}) {
+    cleanup($s3, $opts{bucket});
+}
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># HELPER SUBROUTINES</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_help_and_exit</span>($exit_code, $message=undef) {
+
+    <span style="color:#66d9ef">my</span> $help <span style="color:#f92672">=</span><span style="color:#e6db74">&lt;&lt;&#34;</span><span style="color:#e6db74">END_HELP</span><span style="color:#e6db74">&#34;;
+</span><span style="color:#e6db74">usage: $0 [--help] [--bucket BUCKET] [--file FILE]
+</span><span style="color:#e6db74">          [--pending-window-days DAYS] [--alias-name ALIAS_NAME]
+</span><span style="color:#e6db74">          [--make-enc-bucket]
+</span><span style="color:#e6db74">          [--desc-key] [--disable-key] [--schedule-key-deletion]
+</span><span style="color:#e6db74">          [--list-keys] [--list-aliases] [--create-alias]
+</span><span style="color:#e6db74">          [--upload] [--download]
+</span><span style="color:#e6db74">          [--view-file-meta] [--view-bucket-meta]
+</span><span style="color:#e6db74">          [--cleanup]
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">SSE-KMS Encryption
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">options:
+</span><span style="color:#e6db74">  --help                     Show this help message and exit
+</span><span style="color:#e6db74">  --bucket BUCKET            Bucket name, default $DEFAULT_BUCKET
+</span><span style="color:#e6db74">  --file FILE                File to upload/download, default $DEFAULT_FILE
+</span><span style="color:#e6db74">  --key-id KEY_ID            KMS key id
+</span><span style="color:#e6db74">  --pending-window-days DAYS Pending window days, default $DEFAULT_PENDING_WINDOW_DAYS
+</span><span style="color:#e6db74">  --alias-name ALIAS_NAME    Alias name
+</span><span style="color:#e6db74">  --make-enc-bucket          Create encrypted bucket
+</span><span style="color:#e6db74">  --desc-key                 Describe key
+</span><span style="color:#e6db74">  --disable-key              Disable key
+</span><span style="color:#e6db74">  --schedule-key-deletion    Schedule key deletion
+</span><span style="color:#e6db74">  --list-keys                List keys
+</span><span style="color:#e6db74">  --list-aliases             List aliases
+</span><span style="color:#e6db74">  --upload                   Upload file
+</span><span style="color:#e6db74">  --download                 Download file
+</span><span style="color:#e6db74">  --fetch-file-meta          Fetch file metadata
+</span><span style="color:#e6db74">  --fetch-bucket-meta        Fetch bucket metadata
+</span><span style="color:#e6db74">  --cleanup                  Remove file and bucket
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">END_HELP</span>
+
+    $help <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ERROR: $message\n\n$help&#34;</span> <span style="color:#66d9ef">if</span> defined $message;
+    <span style="color:#66d9ef">print</span> $help <span style="color:#f92672">and</span> exit $exit_code;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">error_and_die</span>($message) {
+    <span style="color:#66d9ef">my</span> $level <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> ($sub_name, $line);
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">my</span> @caller <span style="color:#f92672">=</span> caller($level<span style="color:#f92672">++</span>) <span style="color:#f92672">or</span> <span style="color:#66d9ef">last</span>;
+        ($sub_name, $line) <span style="color:#f92672">=</span> @caller[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>];
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> $sub_name <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^(?:Try::Tiny|eval|catch|__ANON__|try|main::)/</span>;
+    }
+
+    <span style="color:#66d9ef">my</span> $clean_error <span style="color:#f92672">=</span> $message;
+    $clean_error <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+at\s+.*?line\s+\d+\.?$//</span>;
+
+    die <span style="color:#e6db74">&#34;ERROR in $sub_name (at line $line): $clean_error\n&#34;</span>;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_client</span>($type) {
+    <span style="color:#66d9ef">return</span> Paws<span style="color:#f92672">-&gt;</span>service($type,
+        region      <span style="color:#f92672">=&gt;</span> $REGION,
+        endpoint    <span style="color:#f92672">=&gt;</span> $ENDPOINT,
+        credentials <span style="color:#f92672">=&gt;</span> Paws::Credential::Explicit<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+            access_key <span style="color:#f92672">=&gt;</span> $ACCESS_KEY,
+            secret_key <span style="color:#f92672">=&gt;</span> $SECRET_KEY,
+        ),
+    );
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_kms_key</span>($kms) {
+    <span style="color:#66d9ef">return</span> $kms<span style="color:#f92672">-&gt;</span>CreateKey(Description <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;KMS Encryption Key&#39;</span>)
+               <span style="color:#f92672">-&gt;</span>KeyMetadata
+               <span style="color:#f92672">-&gt;</span>KeyId;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_enc_bucket</span>($s3, $kms, $bucket_name) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing KMS client.&#34;</span>)  <span style="color:#66d9ef">unless</span> defined $kms;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+
+    try {
+        say <span style="color:#e6db74">&#34;Creating KMS enc bucket: $bucket_name&#34;</span>;
+        <span style="color:#66d9ef">my</span> $key_id <span style="color:#f92672">=</span> create_kms_key($kms);
+        say <span style="color:#e6db74">&#34;Created KMS key: $key_id&#34;</span>;
+
+        $s3<span style="color:#f92672">-&gt;</span>CreateBucket(
+            Bucket <span style="color:#f92672">=&gt;</span> $bucket_name,
+            CreateBucketConfiguration <span style="color:#f92672">=&gt;</span> { LocationConstraint <span style="color:#f92672">=&gt;</span> $REGION },
+        );
+
+        say <span style="color:#e6db74">&#34;Bucket $bucket_name created.&#34;</span>;
+
+        $s3<span style="color:#f92672">-&gt;</span>PutBucketEncryption(
+            Bucket <span style="color:#f92672">=&gt;</span> $bucket_name,
+            ServerSideEncryptionConfiguration <span style="color:#f92672">=&gt;</span> {
+                Rules <span style="color:#f92672">=&gt;</span> [
+                    {
+                        ApplyServerSideEncryptionByDefault <span style="color:#f92672">=&gt;</span> {
+                            SSEAlgorithm   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;aws:kms&#39;</span>,
+                            KMSMasterKeyID <span style="color:#f92672">=&gt;</span> $key_id,
+                        }
+                    }
+                ],
+            }
+        );
+
+        say <span style="color:#e6db74">&#34;Enabled KMS encryption on $bucket_name using key $key_id.&#34;</span>;
+    }
+    catch {
+        error_and_die(<span style="color:#e6db74">&#34;Unable to create encrypted bucket: $_&#34;</span>);
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">desc_key</span>($kms, $key_id) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing KMS client.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $kms;
+    error_and_die(<span style="color:#e6db74">&#34;Missing key id.&#34;</span>)     <span style="color:#66d9ef">unless</span> defined $key_id;
+
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $kms<span style="color:#f92672">-&gt;</span>DescribeKey(KeyId <span style="color:#f92672">=&gt;</span> $key_id);
+        <span style="color:#66d9ef">my</span> $metadata <span style="color:#f92672">=</span> $response<span style="color:#f92672">-&gt;</span>KeyMetadata;
+
+        say <span style="color:#e6db74">&#34;Key Details for $key_id&#34;</span>;
+        say <span style="color:#e6db74">&#34;ARN: &#34;</span> <span style="color:#f92672">.</span> $metadata<span style="color:#f92672">-&gt;</span>Arn;
+        say <span style="color:#e6db74">&#34;Description: &#34;</span> <span style="color:#f92672">.</span> ($metadata<span style="color:#f92672">-&gt;</span>Description <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;None&#39;</span>);
+
+        <span style="color:#66d9ef">my</span> $timestamp <span style="color:#f92672">=</span> $metadata<span style="color:#f92672">-&gt;</span>CreationDate;
+        <span style="color:#66d9ef">my</span> ($sec, $msec) <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/\./</span>, $timestamp);
+        <span style="color:#66d9ef">my</span> $date_str <span style="color:#f92672">=</span> strftime(<span style="color:#e6db74">&#39;%Y-%m-%d %H:%M:%S&#39;</span>, localtime($sec));
+        say <span style="color:#e6db74">&#34;Creation Date: $date_str.$msec&#34;</span>;
+        say <span style="color:#e6db74">&#34;Enabled: &#34;</span> <span style="color:#f92672">.</span> ($metadata<span style="color:#f92672">-&gt;</span>Enabled ? <span style="color:#e6db74">&#39;true&#39;</span> : <span style="color:#e6db74">&#39;false&#39;</span>);
+        say <span style="color:#e6db74">&#34;Key Usage: &#34;</span> <span style="color:#f92672">.</span> $metadata<span style="color:#f92672">-&gt;</span>KeyUsage;
+        say <span style="color:#e6db74">&#34;Key State: &#34;</span> <span style="color:#f92672">.</span> $metadata<span style="color:#f92672">-&gt;</span>KeyState;
+        say <span style="color:#e6db74">&#34;Origin: &#34;</span> <span style="color:#f92672">.</span> $metadata<span style="color:#f92672">-&gt;</span>Origin;
+    }
+    catch {
+        <span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> $_;
+        <span style="color:#66d9ef">if</span> (ref($e) <span style="color:#f92672">&amp;&amp;</span> $e<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#39;Paws::Exception&#39;</span>)) {
+            <span style="color:#66d9ef">if</span> ($e<span style="color:#f92672">-&gt;</span>code <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;NotFoundException&#39;</span>) {
+                error_and_die(<span style="color:#e6db74">&#34;Key $key_id not found&#34;</span>);
+            } <span style="color:#66d9ef">else</span> {
+                error_and_die($e<span style="color:#f92672">-&gt;</span>message);
+            }
+        } <span style="color:#66d9ef">else</span> {
+            chomp(<span style="color:#66d9ef">my</span> $msg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$e&#34;</span>);
+            error_and_die(<span style="color:#e6db74">&#34;Unexpected error: $msg&#34;</span>);
+        }
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">disable_key</span>($kms, $key_id) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing KMS client.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $kms;
+    error_and_die(<span style="color:#e6db74">&#34;Missing key id.&#34;</span>)     <span style="color:#66d9ef">unless</span> defined $key_id;
+
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $kms<span style="color:#f92672">-&gt;</span>DisableKey(
+            KeyId <span style="color:#f92672">=&gt;</span> $key_id
+        );
+
+        say <span style="color:#e6db74">&#34;Successfully disabled key: $key_id&#34;</span>;
+    }
+    catch {
+        <span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> $_;
+
+        <span style="color:#66d9ef">if</span> (ref($e) <span style="color:#f92672">&amp;&amp;</span> $e<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#39;Paws::Exception&#39;</span>)) {
+            <span style="color:#66d9ef">if</span> ($e<span style="color:#f92672">-&gt;</span>code <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;NotFoundException&#39;</span>) {
+                error_and_die(<span style="color:#e6db74">&#34;Key $key_id not found&#34;</span>);
+            } <span style="color:#66d9ef">elsif</span> ($e<span style="color:#f92672">-&gt;</span>code <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;AccessDeniedException&#39;</span>) {
+                error_and_die(<span style="color:#e6db74">&#34;Permission denied to disable key $key_id&#34;</span>);
+            } <span style="color:#66d9ef">else</span> {
+                error_and_die($e<span style="color:#f92672">-&gt;</span>message);
+            }
+        }
+        <span style="color:#66d9ef">else</span> {
+            error_and_die(<span style="color:#e6db74">&#34;Unable to disable key: $e&#34;</span>);
+        }
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">schedule_key_deletion</span>($kms, $key_id, $pending_window_days=7) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing KMS client.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $kms;
+    error_and_die(<span style="color:#e6db74">&#34;Missing key id.&#34;</span>)     <span style="color:#66d9ef">unless</span> defined $key_id;
+
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $kms<span style="color:#f92672">-&gt;</span>ScheduleKeyDeletion(
+            KeyId               <span style="color:#f92672">=&gt;</span> $key_id,
+            PendingWindowInDays <span style="color:#f92672">=&gt;</span> $pending_window_days
+        );
+
+        <span style="color:#66d9ef">my</span> $timestamp <span style="color:#f92672">=</span> $response<span style="color:#f92672">-&gt;</span>DeletionDate;
+        <span style="color:#66d9ef">my</span> ($sec, $msec) <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/\./</span>, $timestamp);
+        <span style="color:#66d9ef">my</span> $date_str <span style="color:#f92672">=</span> strftime(<span style="color:#e6db74">&#39;%Y-%m-%d %H:%M:%S&#39;</span>, localtime($sec));
+
+        say <span style="color:#e6db74">&#34;Successfully scheduled deletion for key $key_id&#34;</span>;
+        say <span style="color:#e6db74">&#34;Deletion Date: $date_str.$msec&#34;</span>;
+        say <span style="color:#e6db74">&#34;Key State: &#34;</span> <span style="color:#f92672">.</span> $response<span style="color:#f92672">-&gt;</span>KeyState;
+
+        <span style="color:#66d9ef">return</span> $response;
+    }
+    catch {
+        <span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> $_;
+
+        <span style="color:#66d9ef">if</span> (ref($e) <span style="color:#f92672">&amp;&amp;</span> $e<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#39;Paws::Exception&#39;</span>)) {
+            <span style="color:#66d9ef">if</span> ($e<span style="color:#f92672">-&gt;</span>code <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;NotFoundException&#39;</span>) {
+                error_and_die(<span style="color:#e6db74">&#34;Key $key_id not found&#34;</span>);
+            } <span style="color:#66d9ef">elsif</span> ($e<span style="color:#f92672">-&gt;</span>code <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;KMSInvalidStateException&#39;</span>) {
+                error_and_die(<span style="color:#e6db74">&#34;Key $key_id is already pending deletion or incompatible&#34;</span>);
+            } <span style="color:#66d9ef">else</span> {
+                error_and_die($e<span style="color:#f92672">-&gt;</span>message);
+            }
+        }
+        <span style="color:#66d9ef">else</span> {
+            error_and_die(<span style="color:#e6db74">&#34;Unable to schedule key deletion: $e&#34;</span>);
+        }
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_keys</span>($kms, $limit = 100) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing KMS client.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $kms;
+
+    try {
+        <span style="color:#66d9ef">my</span> $marker <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+        <span style="color:#66d9ef">do</span> {
+            <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $kms<span style="color:#f92672">-&gt;</span>ListKeys(
+                Limit  <span style="color:#f92672">=&gt;</span> $limit,
+                Marker <span style="color:#f92672">=&gt;</span> $marker,
+            );
+
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $key (@{$response<span style="color:#f92672">-&gt;</span>Keys}) {
+                say <span style="color:#e6db74">&#34;KeyId: &#34;</span> <span style="color:#f92672">.</span> $key<span style="color:#f92672">-&gt;</span>KeyId;
+                say <span style="color:#e6db74">&#34;KeyArn: &#34;</span> <span style="color:#f92672">.</span> $key<span style="color:#f92672">-&gt;</span>KeyArn;
+                say <span style="color:#e6db74">&#34;---&#34;</span>;
+            }
+
+            $marker <span style="color:#f92672">=</span> $response<span style="color:#f92672">-&gt;</span>NextMarker;
+        } <span style="color:#66d9ef">while</span> (defined $marker);
+    }
+    catch {
+        error_and_die(<span style="color:#e6db74">&#34;Unable to list keys: $_&#34;</span>);
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_aliases</span>($kms) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing KMS client.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $kms;
+
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $kms<span style="color:#f92672">-&gt;</span>ListAliases();
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $alias (@{$response<span style="color:#f92672">-&gt;</span>Aliases}) {
+            say <span style="color:#e6db74">&#34;AliasName: &#34;</span>, $alias<span style="color:#f92672">-&gt;</span>AliasName;
+            say <span style="color:#e6db74">&#34;TargetKeyId: &#34;</span>, $alias<span style="color:#f92672">-&gt;</span>TargetKeyId <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;&#39;</span>;
+            say <span style="color:#e6db74">&#34;---&#34;</span>;
+        }
+    }
+    catch {
+        error_and_die(<span style="color:#e6db74">&#34;Unable to list aliases: $_&#34;</span>);
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_alias</span>($kms, $key_id, $alias_name) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing KMS client.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $kms;
+    error_and_die(<span style="color:#e6db74">&#34;Missing key id.&#34;</span>)     <span style="color:#66d9ef">unless</span> defined $key_id;
+    error_and_die(<span style="color:#e6db74">&#34;Missing alias name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $alias_name;
+
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $kms<span style="color:#f92672">-&gt;</span>CreateAlias(
+            AliasName   <span style="color:#f92672">=&gt;</span> $alias_name,
+            TargetKeyId <span style="color:#f92672">=&gt;</span> $key_id
+        );
+
+        say <span style="color:#e6db74">&#34;Successfully created alias &#39;$alias_name&#39; for key $key_id&#34;</span>;
+    }
+    catch {
+        <span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> $_;
+
+        <span style="color:#66d9ef">if</span> (ref($e) <span style="color:#f92672">&amp;&amp;</span> $e<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#39;Paws::Exception&#39;</span>)) {
+            <span style="color:#66d9ef">if</span> ($e<span style="color:#f92672">-&gt;</span>code <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;AlreadyExistsException&#39;</span>) {
+                error_and_die(<span style="color:#e6db74">&#34;Alias &#39;$alias_name&#39; already exists&#34;</span>);
+            } <span style="color:#66d9ef">elsif</span> ($e<span style="color:#f92672">-&gt;</span>code <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;NotFoundException&#39;</span>) {
+                error_and_die(<span style="color:#e6db74">&#34;Key $key_id not found&#34;</span>);
+            } <span style="color:#66d9ef">elsif</span> ($e<span style="color:#f92672">-&gt;</span>code <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;AccessDeniedException&#39;</span>) {
+                error_and_die(<span style="color:#e6db74">&#34;Permission denied to create alias&#34;</span>);
+            } <span style="color:#66d9ef">else</span> {
+                error_and_die($e<span style="color:#f92672">-&gt;</span>message);
+            }
+        }
+        <span style="color:#66d9ef">else</span> {
+            error_and_die(<span style="color:#e6db74">&#34;Unable to create alias: $e&#34;</span>);
+        }
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">upload_file</span>($s3, $bucket_name, $file) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+    error_and_die(<span style="color:#e6db74">&#34;Missing file.&#34;</span>)        <span style="color:#66d9ef">unless</span> defined $file;
+
+    try {
+        $file <span style="color:#f92672">=</span> basename($file);
+        say <span style="color:#e6db74">&#34;Uploading file: $file&#34;</span>;
+
+        $s3<span style="color:#f92672">-&gt;</span>PutObject(
+            Bucket <span style="color:#f92672">=&gt;</span> $bucket_name,
+            Key    <span style="color:#f92672">=&gt;</span> $file,
+            Body   <span style="color:#f92672">=&gt;</span> read_file($file, binmode <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;:raw&#39;</span>)
+        );
+
+        say <span style="color:#e6db74">&#34;Uploaded $file to $bucket_name.&#34;</span>;
+    }
+    catch {
+        error_and_die(<span style="color:#e6db74">&#34;Unable to upload file: $_&#34;</span>);
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">download_file</span>($s3, $bucket_name, $file) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+    error_and_die(<span style="color:#e6db74">&#34;Missing file.&#34;</span>)        <span style="color:#66d9ef">unless</span> defined $file;
+
+    try {
+        $file <span style="color:#f92672">=</span> basename($file);
+        <span style="color:#66d9ef">my</span> $downloaded <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>GetObject(
+            Bucket <span style="color:#f92672">=&gt;</span> $bucket_name,
+            Key    <span style="color:#f92672">=&gt;</span> $file
+        );
+
+        <span style="color:#66d9ef">my</span> $content <span style="color:#f92672">=</span> $downloaded<span style="color:#f92672">-&gt;</span>Body;
+        say <span style="color:#e6db74">&#34;Downloaded content: $content&#34;</span>;
+    }
+    catch {
+        error_and_die(<span style="color:#e6db74">&#34;Unable to download file: $_&#34;</span>);
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch_file_meta</span>($s3, $bucket_name, $file) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+    error_and_die(<span style="color:#e6db74">&#34;Missing file.&#34;</span>)        <span style="color:#66d9ef">unless</span> defined $file;
+
+    try {
+        $file <span style="color:#f92672">=</span> basename($file);
+        <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>HeadObject(
+            Bucket <span style="color:#f92672">=&gt;</span> $bucket_name,
+            Key    <span style="color:#f92672">=&gt;</span> $file
+        );
+
+        say <span style="color:#e6db74">&#34;Object encryption: &#34;</span>, ($head<span style="color:#f92672">-&gt;</span>ServerSideEncryption <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;None&#39;</span>);
+    }
+    catch {
+        error_and_die(<span style="color:#e6db74">&#34;Unable to view file meta: $_&#34;</span>);
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch_bucket_meta</span>($s3, $bucket_name) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+
+    try {
+        <span style="color:#66d9ef">my</span> $encryption <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>GetBucketEncryption(Bucket <span style="color:#f92672">=&gt;</span> $bucket_name);
+
+        say <span style="color:#e6db74">&#34;Bucket enc configuration:&#34;</span>;
+        <span style="color:#66d9ef">my</span> $config <span style="color:#f92672">=</span> $encryption<span style="color:#f92672">-&gt;</span>ServerSideEncryptionConfiguration;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $rule (@{ $config<span style="color:#f92672">-&gt;</span>Rules }) {
+            <span style="color:#66d9ef">my</span> $default <span style="color:#f92672">=</span> $rule<span style="color:#f92672">-&gt;</span>ApplyServerSideEncryptionByDefault;
+            say <span style="color:#e6db74">&#34;  SSE Algorithm: &#34;</span>, $default<span style="color:#f92672">-&gt;</span>SSEAlgorithm;
+            say <span style="color:#e6db74">&#34;  KMS Key ID: &#34;</span>, ($default<span style="color:#f92672">-&gt;</span>KMSMasterKeyID <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;N/A&#39;</span>);
+        }
+    }
+    catch {
+        error_and_die(<span style="color:#e6db74">&#34;Unable to view bucket meta: $_&#34;</span>);
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cleanup</span>($s3, $bucket_name) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+
+    try {
+        <span style="color:#66d9ef">my</span> $resp <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>ListObjectsV2(Bucket <span style="color:#f92672">=&gt;</span> $bucket_name);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $obj (@{ $resp<span style="color:#f92672">-&gt;</span>Contents }) {
+            say <span style="color:#e6db74">&#34; Delete key: &#34;</span>, $obj<span style="color:#f92672">-&gt;</span>{Key};
+            $s3<span style="color:#f92672">-&gt;</span>DeleteObject(Bucket <span style="color:#f92672">=&gt;</span> $bucket_name, Key <span style="color:#f92672">=&gt;</span> $obj<span style="color:#f92672">-&gt;</span>{Key});
+        }
+        $s3<span style="color:#f92672">-&gt;</span>DeleteBucket(Bucket <span style="color:#f92672">=&gt;</span> $bucket_name);
+        say <span style="color:#e6db74">&#34;Bucket &#39;$bucket_name&#39; deleted successfully.&#34;</span>;
+    }
+    catch {
+        error_and_die(<span style="color:#e6db74">&#34;Unable to cleanup: $_&#34;</span>);
+    };
+}
+</code></pre></div><br>
+<p>Time to test the code.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl -h
+usage: sse-kms.pl <span style="color:#f92672">[</span>--help<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--pending-window-days DAYS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--alias-name ALIAS_NAME<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--make-enc-bucket<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--desc-key<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--disable-key<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--schedule-key-deletion<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--list-keys<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--list-aliases<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--create-alias<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--upload<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--download<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--view-file-meta<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--view-bucket-meta<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--cleanup<span style="color:#f92672">]</span>
+
+SSE-KMS Encryption
+
+options:
+  --help                     Show this help message and exit
+  --bucket BUCKET            Bucket name, default sse-kms-encrypted-bucket
+  --file FILE                File to upload/download, default secret-file.txt
+  --key-id KEY_ID            KMS key id
+  --pending-window-days DAYS Pending window days, default <span style="color:#ae81ff">7</span>
+  --alias-name ALIAS_NAME    Alias name
+  --make-enc-bucket          Create encrypted bucket
+  --desc-key                 Describe key
+  --disable-key              Disable key
+  --schedule-key-deletion    Schedule key deletion
+  --list-keys                List keys
+  --list-aliases             List aliases
+  --upload                   Upload file
+  --download                 Download file
+  --fetch-file-meta          Fetch file metadata
+  --fetch-bucket-meta        Fetch bucket metadata
+  --cleanup                  Remove file and bucket
+</code></pre></div><br>
+<p>Create encrypted bucket.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> and it would create the default bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --bucket sse-kms-encrypted-bucket --make-enc-bucket
+Creating KMS enc bucket: sse-kms-encrypted-bucket
+Created KMS key: 3a934579-7f29-474c-8459-8a9f749ece3d
+Bucket sse-kms-encrypted-bucket created.
+Enabled KMS encryption on sse-kms-encrypted-bucket using key 3a934579-7f29-474c-8459-8a9f749ece3d.
+</code></pre></div><br>
+<p>List <code>KMS keys</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --list-keys
+KeyId: 9df113f1-4acd-4b1b-a930-bb2e9a98e124
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/9df113f1-4acd-4b1b-a930-bb2e9a98e124
+---
+KeyId: 0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/0ef066cd-c5f1-4ba7-bb7a-0584c71ffbba
+---
+KeyId: 3a934579-7f29-474c-8459-8a9f749ece3d
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/3a934579-7f29-474c-8459-8a9f749ece3d
+---
+KeyId: 4cda3ec5-25a2-4146-a700-86bc54d94d48
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/4cda3ec5-25a2-4146-a700-86bc54d94d48
+---
+KeyId: e17a3030-f92c-4eda-99d2-3826df75fa86
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/e17a3030-f92c-4eda-99d2-3826df75fa86
+---
+KeyId: 66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+---
+KeyId: 576243cb-2b52-490e-b707-711809874859
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/576243cb-2b52-490e-b707-711809874859
+---
+KeyId: 50631fb0-74fa-4f4b-a2e5-c11be97701b7
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/50631fb0-74fa-4f4b-a2e5-c11be97701b7
+---
+KeyId: 2913238b-370f-4dfd-940e-3245fce10fa4
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/2913238b-370f-4dfd-940e-3245fce10fa4
+---
+KeyId: 36b362c0-51ca-4236-9ac2-90b7d929b745
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/36b362c0-51ca-4236-9ac2-90b7d929b745
+---
+KeyId: f0994797-acfb-45b1-b9ee-0f7191adf50c
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/f0994797-acfb-45b1-b9ee-0f7191adf50c
+---
+KeyId: 817fdffb-46df-47ad-973c-f6f2b7f665fc
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/817fdffb-46df-47ad-973c-f6f2b7f665fc
+---
+KeyId: 8910801e-1184-4eb4-8f8a-7d33a4110282
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/8910801e-1184-4eb4-8f8a-7d33a4110282
+---
+KeyId: 7db86d2b-4de5-4c6e-b482-9f7fcc95dc55
+KeyArn: arn:aws:kms:eu-west-1:000000000000:key/7db86d2b-4de5-4c6e-b482-9f7fcc95dc55
+---
+</code></pre></div><br>
+<p>Describe a key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --desc-key --key-id 66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+Key Details <span style="color:#66d9ef">for</span> 66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+ARN: arn:aws:kms:eu-west-1:000000000000:key/66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+Description: Auto-created key <span style="color:#66d9ef">for</span> KMS encryption
+Creation Date: 2025-06-04 14:43:52.08327
+Enabled: true
+Key Usage: ENCRYPT_DECRYPT
+Key State: Enabled
+Origin: AWS_KMS
+</code></pre></div><br>
+<p>Disable a key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --disable-key --key-id 66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+Successfully disabled key: 66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+</code></pre></div><br>
+<p>Check the status post disabling key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --desc-key --key-id 66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+Key Details <span style="color:#66d9ef">for</span> 66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+ARN: arn:aws:kms:eu-west-1:000000000000:key/66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+Description: Auto-created key <span style="color:#66d9ef">for</span> KMS encryption
+Creation Date: 2025-06-04 14:43:52.08327
+Enabled: false
+Key Usage: ENCRYPT_DECRYPT
+Key State: Disabled
+Origin: AWS_KMS
+</code></pre></div><br>
+<p>Schedule deletion of disabled key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --schedule-key-deletion --key-id 66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+Successfully scheduled deletion <span style="color:#66d9ef">for</span> key 66da75e5-37f9-41dd-a3d5-2a2a3fdf57d2
+Deletion Date: 2025-06-17 17:27:42.32577
+Key State: PendingDeletion
+</code></pre></div><br>
+<p>List aliases.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --list-aliases
+AliasName: alias/my-alias-key-1
+TargetKeyId: 9df113f1-4acd-4b1b-a930-bb2e9a98e124
+---
+AliasName: alias/my-alias-key-2
+TargetKeyId: 36b362c0-51ca-4236-9ac2-90b7d929b745
+---
+</code></pre></div><br>
+<p>Create alias for a given <code>KMS</code> key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --create-alias --alias-name <span style="color:#e6db74">&#34;alias/my-alias-key-3&#34;</span>  --key-id 4cda3ec5-25a2-4146-a700-86bc54d94d48
+Successfully created alias <span style="color:#e6db74">&#39;alias/my-alias-key-3&#39;</span> <span style="color:#66d9ef">for</span> key 4cda3ec5-25a2-4146-a700-86bc54d94d48
+</code></pre></div><br>
+<p>Now list all aliases again.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --list-aliases
+AliasName: alias/my-alias-key-1
+TargetKeyId: 9df113f1-4acd-4b1b-a930-bb2e9a98e124
+---
+AliasName: alias/my-alias-key-2
+TargetKeyId: 36b362c0-51ca-4236-9ac2-90b7d929b745
+---
+AliasName: alias/my-alias-key-3
+TargetKeyId: 4cda3ec5-25a2-4146-a700-86bc54d94d48
+---
+</code></pre></div><br>
+<p>Upload file to bucket.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> and <code>--file secret-file.txt</code> as it would upload the default file to the default bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --bucket sse-kms-encrypted-bucket --file secret-file.txt --upload
+Uploading file: secret-file.txt
+Uploaded secret-file.txt to sse-kms-encrypted-bucket.
+</code></pre></div><br>
+<p>Download file locally.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> and <code>--file secret-file.txt</code> as it would download the default file from the default bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --bucket sse-kms-encrypted-bucket --file secret-file.txt --download
+Downloaded content: This is a secret file content.
+</code></pre></div><br>
+<p>Fetch file meta.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> and <code>--file secret-file.txt</code> as it would fetch the default file meta from the default bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --bucket sse-kms-encrypted-bucket --file secret-file.txt --fetch-file-meta
+Object encryption: aws:kms
+</code></pre></div><br>
+<p>Fetch bucket meta.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> as it would fetch the default bucket meta.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --bucket sse-kms-encrypted-bucket --fetch-bucket-meta
+Bucket enc configuration:
+  SSE Algorithm: aws:kms
+  KMS Key ID: 3a934579-7f29-474c-8459-8a9f749ece3d
+</code></pre></div><br>
+<p>Cleanup in the end.</p>
+<p>You can skip <code>--bucket sse-kms-encrypted-bucket</code> as it would empty the default bucket first and then remove it.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-kms.pl --bucket sse-kms-encrypted-bucket --cleanup
+ Delete key: secret-file.txt
+Bucket <span style="color:#e6db74">&#39;sse-kms-encrypted-bucket&#39;</span> deleted successfully.
+</code></pre></div><br>
+<h2 id="what-next">What next?</h2>
+<hr>
+<p>The next post would be about <code>Server-Side Encryption</code> using <code>Client Managed Keys</code>.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
