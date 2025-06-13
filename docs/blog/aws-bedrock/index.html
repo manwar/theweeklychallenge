@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="AWS Bedrock"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/aws-bedrock/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about AWS Bedrock."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about AWS Bedrock.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/aws-bedrock/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AWS Bedrock</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>AWS Bedrock</h2>
+                    <div class="portfolio-meta">
+                        <span>Friday, Jun 13, 2025</span>|
+                        <span> Tags:
+                            perl, python, aws, bedrock
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/aws-bedrock.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<br>
+<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-whats-ollamawhats-ollama"><a href="#whats-ollama">2. What&rsquo;s Ollama?</a></h3>
+<h3 id="3-install-ollamainstall-ollama"><a href="#install-ollama">3. Install Ollama</a></h3>
+<h3 id="4-run-ollamarun-ollama"><a href="#run-ollama">4. Run Ollama</a></h3>
+<h3 id="5-fastapifastapi"><a href="#fastapi">5. FastAPI</a></h3>
+<h3 id="6-mock-bedrock---pythonmock-bedrock-python"><a href="#mock-bedrock-python">6. Mock Bedrock - Python</a></h3>
+<h3 id="7-mock-bedrock---perlmock-bedrock-perl"><a href="#mock-bedrock-perl">7. Mock Bedrock - Perl</a></h3>
+<h3 id="8-uvicornuvicorn"><a href="#uvicorn">8. Uvicorn</a></h3>
+<h3 id="9-mock-testmock-test"><a href="#mock-test">9. Mock Test</a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<br>
+<p>Recently I was introduced to <code>AWS Bedrock</code> at work. Ever since, I&rsquo;ve had many questions around it.</p>
+<p>In this post, I am sharing my first encounter.</p>
+<p><code>AWS Bedrock</code> is a fully managed service offered by <code>Amazon Web Services</code>.</p>
+<p>It provides access to high-performing <code>Foundation Models</code> (FMs) from leading AI companies through a single <code>API</code>.</p>
+<p>Using <code>AWS Bedrock</code> we can build and scale generative <code>AI</code> applications without managing infrastructure.</p>
+<p>It provides access to a variety of <code>Foundation Models</code> via an <code>API</code>, for example:</p>
+<br>
+<pre><code>Anthropic (Claude)
+AI21 Labs (Jurassic)
+Meta (Llama 2 &amp; Llama 3)
+Mistral
+Cohere
+Stability AI
+Amazon Titan
+</code></pre>
+<br>
+<p>The <code>Bedrock</code> endpoints are regional.</p>
+<pre><code>https://bedrock.{region}.amazonaws.com
+</code></pre>
+<p>Below is a simple example invoking <code>Mistral 7B</code> model:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> boto3
+
+bedrock  <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;bedrock&#39;</span>, region_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;us-west-2&#39;</span>)
+response <span style="color:#f92672">=</span> bedrock<span style="color:#f92672">.</span>invoke_model(
+    modelId<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mistral.mistral-7b-instruct-v0:2&#39;</span>,
+    contentType<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;application/json&#39;</span>,
+    accept<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;application/json&#39;</span>,
+    body<span style="color:#f92672">=</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">    {
+</span><span style="color:#e6db74">        &#34;prompt&#34;: &#34;&lt;s&gt;[INST] Hello, what is the capital of France? [/INST]&#34;,
+</span><span style="color:#e6db74">        &#34;max_tokens&#34;: 100,
+</span><span style="color:#e6db74">        &#34;temperature&#34;: 0.7
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+)
+
+<span style="color:#66d9ef">print</span>(response[<span style="color:#e6db74">&#39;body&#39;</span>]<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>))
+</code></pre></div><br>
+<p><code>AWS Bedrock</code> is not included in the general <code>Free Tier</code>.</p>
+<p>I have used <a href="https://www.localstack.cloud/"><strong>LocalStack</strong></a> for <code>AWS</code> services e.g. <code>S3</code>, <code>Lamdba</code>, <code>DynamoDB</code> but unfortunately it doesn&rsquo;t support <code>AWS Bedrock</code> yet.</p>
+<p>Having said, we can build <code>Bedrock</code> stack locally using <code>Ollama</code>.</p>
+<br>
+<h2 id="whats-ollama">What&rsquo;s Ollama?</h2>
+<hr>
+<br>
+<p><code>Ollama</code> is an open-source tool designed to run large language models (LLMs) locally on your machine.</p>
+<p>It simplifies the process of downloading, managing, and interacting with models like <code>Llama 3</code>, <code>Mistral</code>, <code>Gemma</code> without requiring cloud services.</p>
+<br>
+<h2 id="install-ollama">Install Ollama</h2>
+<hr>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -fsSL https://ollama.com/install.sh | sh
+</code></pre></div><br>
+<p>Verify the installation:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ollama --version
+ollama version is 0.9.0
+</code></pre></div><br>
+<h2 id="run-ollama">Run Ollama</h2>
+<hr>
+<br>
+<p>This starts the background server, if not already running, and opens up interactive chat session.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ollama run mistral
+</code></pre></div><br>
+<p>To exit, <code>Ctrl + d</code>.</p>
+<p>The model API can be reached at http://localhost:11434.</p>
+<p>List the models:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ollama list
+NAME              ID              SIZE      MODIFIED
+mistral:latest    f974a74358d6    4.1 GB    <span style="color:#ae81ff">5</span> minutes ago
+</code></pre></div><br>
+<p>Test if the server is running:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl http://localhost:11434
+Ollama is running
+</code></pre></div><br>
+<p>On system reboot, you need to restart the server in the background.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ollama serve &amp;
+</code></pre></div><br>
+<h2 id="fastapi">FastAPI</h2>
+<hr>
+<br>
+<p><code>FastAPI</code> is a web framework for building APIs in <code>Python</code>.</p>
+<p>You need activate virtual environment before installing <code>fastapi</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ pip install fastapi
+</code></pre></div><br>
+<p>We need to install <code>requests</code> package too.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ pip install requests
+</code></pre></div><br>
+<h2 id="mock-bedrock---python">Mock Bedrock - Python</h2>
+<hr>
+<br>
+<p>File: <code>mock_bedrock.py</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
+
+<span style="color:#f92672">import</span> requests
+<span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI, Request
+
+app        <span style="color:#f92672">=</span> FastAPI()
+OLLAMA_URL <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:11434/api/generate&#34;</span>
+
+<span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/model/ollama.mistral/invoke&#34;</span>)
+async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mock_bedrock</span>(request: Request):
+    body   <span style="color:#f92672">=</span> await request<span style="color:#f92672">.</span>json()
+    prompt <span style="color:#f92672">=</span> body<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;input&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+
+    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(OLLAMA_URL, json<span style="color:#f92672">=</span>{
+        <span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;mistral&#34;</span>,
+        <span style="color:#e6db74">&#34;prompt&#34;</span>: prompt,
+        <span style="color:#e6db74">&#34;stream&#34;</span>: False
+    })
+
+    result <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>json()
+    <span style="color:#66d9ef">return</span> {
+        <span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;ollama.mistral&#34;</span>,
+        <span style="color:#e6db74">&#34;response&#34;</span>: result<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;response&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+    }
+</code></pre></div><br>
+<h2 id="mock-bedrock---perl">Mock Bedrock - Perl</h2>
+<hr>
+<br>
+<p>A simple <code>PSGI</code> (Perl Server Gateway Interface) application using <code>Dancer2</code>.</p>
+<p>File: <code>mock_bedrock.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Dancer2;
+<span style="color:#66d9ef">use</span> boolean ();
+<span style="color:#66d9ef">use</span> HTTP::Tiny;
+<span style="color:#66d9ef">use</span> JSON::MaybeXS ();
+
+<span style="color:#66d9ef">my</span> $json_encoder <span style="color:#f92672">=</span> JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(allow_blessed <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, convert_blessed <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+<span style="color:#66d9ef">my</span> $ollama_url   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://localhost:11434/api/generate&#39;</span>;
+
+post <span style="color:#e6db74">&#39;/model/ollama.mistral/invoke&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+    <span style="color:#66d9ef">my</span> $data     <span style="color:#f92672">=</span> request<span style="color:#f92672">-&gt;</span>body;
+    <span style="color:#66d9ef">my</span> $json     <span style="color:#f92672">=</span> JSON::MaybeXS::decode_json($data);
+    <span style="color:#66d9ef">my</span> $prompt   <span style="color:#f92672">=</span> $json<span style="color:#f92672">-&gt;</span>{input} <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">my</span> $http     <span style="color:#f92672">=</span> HTTP::Tiny<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+    <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $http<span style="color:#f92672">-&gt;</span>post($ollama_url, {
+        headers <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#39;Content-Type&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;application/json&#39;</span> },
+        content <span style="color:#f92672">=&gt;</span> $json_encoder<span style="color:#f92672">-&gt;</span>encode({
+            model  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;mistral&#39;</span>,
+            prompt <span style="color:#f92672">=&gt;</span> $prompt,
+            stream <span style="color:#f92672">=&gt;</span> boolean::false,
+        }),
+    });
+
+    <span style="color:#66d9ef">if</span> ($response<span style="color:#f92672">-&gt;</span>{success}) {
+        <span style="color:#66d9ef">my</span> $res_json <span style="color:#f92672">=</span> JSON::MaybeXS::decode_json($response<span style="color:#f92672">-&gt;</span>{content});
+        content_type <span style="color:#e6db74">&#39;application/json&#39;</span>;
+        <span style="color:#66d9ef">return</span> $json_encoder<span style="color:#f92672">-&gt;</span>encode({
+            model    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ollama.mistral&#39;</span>,
+            response <span style="color:#f92672">=&gt;</span> $res_json<span style="color:#f92672">-&gt;</span>{response} <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>
+        });
+    }
+    <span style="color:#66d9ef">else</span> {
+        status <span style="color:#e6db74">&#39;500&#39;</span>;
+        content_type <span style="color:#e6db74">&#39;application/json&#39;</span>;
+        <span style="color:#66d9ef">return</span> $json_encoder<span style="color:#f92672">-&gt;</span>encode({ error <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Failed to contact Ollama API&#34;</span> });
+    }
+};
+
+<span style="color:#66d9ef">return</span> Dancer2<span style="color:#f92672">-&gt;</span>psgi_app;
+</code></pre></div><br>
+<h2 id="uvicorn">Uvicorn</h2>
+<hr>
+<br>
+<p><code>Uvicorn</code> (Ultra-Violeticorn) is a lightweight, <code>ASGI</code> (Asynchronous Server Gateway Interface) server for <code>Python</code>.</p>
+<p>Activate virtual environment before installing <code>uvicorn</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ pip install uvicorn
+</code></pre></div><br>
+<p>Check the version:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ uvicorn --version
+Running uvicorn 0.27.1 with CPython 3.12.3 on Linux
+</code></pre></div><br>
+<h2 id="mock-test">Mock Test</h2>
+<hr>
+<br>
+<p>Let&rsquo;s start the <code>ASGI</code> server.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python3 -B -m uvicorn mock_bedrock:app --reload
+INFO:     Will watch <span style="color:#66d9ef">for</span> changes in these directories: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;/home/manwar/playground/bedrock&#39;</span><span style="color:#f92672">]</span>
+INFO:     Uvicorn running on http://127.0.0.1:8000 <span style="color:#f92672">(</span>Press CTRL+C to quit<span style="color:#f92672">)</span>
+INFO:     Started reloader process <span style="color:#f92672">[</span>57429<span style="color:#f92672">]</span> using StatReload
+INFO:     Started server process <span style="color:#f92672">[</span>57431<span style="color:#f92672">]</span>
+INFO:     Waiting <span style="color:#66d9ef">for</span> application startup.
+INFO:     Application startup complete.
+</code></pre></div><br>
+<p>Now in another terminal, make a call to the server.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -X POST http://localhost:8000/model/ollama.mistral/invoke <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{&#34;input&#34;: &#34;What is the capital of India?&#34;}&#39;</span>
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;model&#34;</span>:<span style="color:#e6db74">&#34;ollama.mistral&#34;</span>,<span style="color:#e6db74">&#34;response&#34;</span>:<span style="color:#e6db74">&#34; The capital of India is New Delhi. Despite popular belief, it&#39;s important to note that Mumbai (formerly known as Bombay) is not the capital city, but rather its financial and entertainment hub. This common misconception might stem from the fact that prior to 1947, Bombay was the capital of British India, while New Delhi was just a small town outside of Delhi.&#34;</span><span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Stop the <code>ASGI</code> server and start the <code>PSGI</code> server now with <code>Plack</code> (a <code>PSGI</code> toolkit):</p>
+<p><code>Plack</code> is the most widely used <code>PSGI</code> implementation.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ plackup -p <span style="color:#ae81ff">8000</span> mock_bedrock.pl
+HTTP::Server::PSGI: Accepting connections at http://0:8000/
+</code></pre></div><br>
+<p>Let&rsquo;s make the same call again.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -X POST http://localhost:8000/model/ollama.mistral/invoke <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{&#34;input&#34;: &#34;What is the capital of India?&#34;}&#39;</span>
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;model&#34;</span>:<span style="color:#e6db74">&#34;ollama.mistral&#34;</span>,<span style="color:#e6db74">&#34;response&#34;</span>:<span style="color:#e6db74">&#34; The capital of India is New Delhi. However, it&#39;s important to note that New Delhi is not a state or union territory but serves as the administrative capital for the country. India has 28 states and 9 union territories.&#34;</span><span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
