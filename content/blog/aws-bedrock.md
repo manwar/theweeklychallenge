@@ -54,7 +54,11 @@ It provides access to a variety of `Foundation Models` via `API`, for example:
 
 The `Bedrock` endpoints are regional.
 
+<br>
+
     https://bedrock.{region}.amazonaws.com
+
+<br>
 
 Below is a simple example invoking `Mistral 7B` model:
 
