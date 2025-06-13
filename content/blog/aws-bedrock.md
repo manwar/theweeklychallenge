@@ -144,9 +144,9 @@ $ ollama run mistral
 
 To exit, ``Ctrl + d``.
 
-The model API can be reached at http://localhost:11434.
+The model API can be reached here: `http://localhost:11434`.
 
-List the models:
+To list the installed models, try this:
 
 <br>
 
