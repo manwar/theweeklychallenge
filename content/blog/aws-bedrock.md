@@ -88,7 +88,7 @@ print(response['body'].read().decode('utf-8'))
 
 `AWS Bedrock` is not included in the general `Free Tier`.
 
-I have used [**LocalStack**](https://www.localstack.cloud/) for `AWS` services e.g. `S3`, `Lamdba`, `DynamoDB` but unfortunately it doesn't support `AWS Bedrock` yet.
+I have used [**LocalStack**](https://www.localstack.cloud/) for `AWS` services e.g. `S3`, `Lambda`, `DynamoDB` but unfortunately it doesn't support `AWS Bedrock` yet.
 
 Having said, we can build `Bedrock` stack locally using `Ollama`.
 
