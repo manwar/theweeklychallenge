@@ -74,7 +74,7 @@ response = bedrock.invoke_model(
     accept='application/json',
     body=b'''
     {
-        "prompt": "<s>[INST] Hello, what is the capital of France? [/INST]",
+        "prompt": "<s>[INST] What is the capital of India? [/INST]",
         "max_tokens": 100,
         "temperature": 0.7
     }
@@ -169,7 +169,7 @@ Ollama is running
 
 <br>
 
-On system reboot, you need to restart the server in the background.
+On system reboot, you need to start the server in the background again.
 
 <br>
 
@@ -186,7 +186,7 @@ $ ollama serve &
 
 `FastAPI` is a web framework for building APIs in `Python`.
 
-You need activate virtual environment before installing `fastapi`.
+You need to activate virtual environment before installing `fastapi`.
 
 <br>
 
