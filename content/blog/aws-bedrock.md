@@ -34,11 +34,11 @@ In this post, I am sharing my first encounter.
 
 `AWS Bedrock` is a fully managed service offered by `Amazon Web Services`.
 
-It provides access to high-performing `Foundation Models` (FMs) from leading AI companies through a single `API`.
+It provides access to high-performing `Foundation Models` from leading `AI` companies through a single `API`.
 
 Using `AWS Bedrock` we can build and scale generative `AI` applications without managing infrastructure.
 
-It provides access to a variety of `Foundation Models` via an `API`, for example:
+It provides access to a variety of `Foundation Models` via `API`, for example:
 
 <br>
 
