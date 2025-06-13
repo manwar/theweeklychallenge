@@ -99,7 +99,7 @@ Having said, we can build `Bedrock` stack locally using `Ollama`.
 
 <br>
 
-`Ollama` is an open-source tool designed to run large language models (LLMs) locally on your machine.
+`Ollama` is an open-source tool designed to run `Large Language Models (LLMs)` locally on your machine.
 
 It simplifies the process of downloading, managing, and interacting with models like `Llama 3`, `Mistral`, `Gemma` without requiring cloud services.
 
