@@ -526,8 +526,11 @@ DEFAULT_CUSTOMER_KEY <span style="color:#f92672">=</span> <span style="color:#e6
             <span style="color:#f92672">**</span>headers
         )
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Uploaded {file} to {bucket_name}.&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;InvalidRequest&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to upload file with key: {e}&#34;</span>)
     <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
-        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error uploading file: {e}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error uploading file with key: {e}&#34;</span>)
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">copy_file</span>(s3, bucket_name, file, enc_key):
     <span style="color:#66d9ef">try</span>:
@@ -543,9 +546,10 @@ DEFAULT_CUSTOMER_KEY <span style="color:#f92672">=</span> <span style="color:#e6
             CopySourceSSECustomerKey<span style="color:#f92672">=</span>headers[<span style="color:#e6db74">&#39;SSECustomerKey&#39;</span>],
             CopySourceSSECustomerKeyMD5<span style="color:#f92672">=</span>headers[<span style="color:#e6db74">&#39;SSECustomerKeyMD5&#39;</span>],
         )
-        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Successfully copied to &#39;copy_of_{file}&#39; with maintained encryption&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Successfully copied to &#39;copy_of_{file}&#39; with maintained encryption.&#34;</span>)
     <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
-        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error copying file: {e}&#34;</span>)
+        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;InvalidRequest&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to copy without key: {e}&#34;</span>)
     <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error copying file with key: {e}&#34;</span>)
 
@@ -559,6 +563,9 @@ DEFAULT_CUSTOMER_KEY <span style="color:#f92672">=</span> <span style="color:#e6
         )
         content <span style="color:#f92672">=</span> response[<span style="color:#e6db74">&#39;Body&#39;</span>]<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>)
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Downloaded content: {content}&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;InvalidRequest&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to downloaded with key: {e}&#34;</span>)
     <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error downloading file with key: {e}&#34;</span>)
 
@@ -571,7 +578,7 @@ DEFAULT_CUSTOMER_KEY <span style="color:#f92672">=</span> <span style="color:#e6
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;ERROR: downloaded successfully without key.&#34;</span>)
     <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
         <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;InvalidRequest&#39;</span>:
-            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to downloaded without key.&#34;</span>)
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to downloaded without key: {e}&#34;</span>)
     <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error downloading file without key: {e}&#34;</span>)
 
@@ -591,7 +598,8 @@ DEFAULT_CUSTOMER_KEY <span style="color:#f92672">=</span> <span style="color:#e6
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;SSE-C Algorithm: {response.get(&#39;SSECustomerAlgorithm&#39;, &#39;None&#39;)}&#34;</span>)
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;SSE-C Key MD5: {response.get(&#39;SSECustomerKeyMD5&#39;, &#39;None&#39;)}&#34;</span>)
     <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
-        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error retrieving metadata: {e}&#34;</span>)
+        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;InvalidRequest&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to retrieving file metadata: {e}&#34;</span>)
     <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error fetching file meta: {e}&#34;</span>)
 

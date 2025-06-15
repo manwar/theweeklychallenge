@@ -333,8 +333,11 @@ def upload_file(s3, bucket_name, file, enc_key):
             **headers
         )
         print(f"Uploaded {file} to {bucket_name}.")
+    except ClientError as e:
+        if e.response['Error']['Code'] == 'InvalidRequest':
+            print(f"Failed to upload file with key: {e}")
     except Exception as e:
-        print(f"Error uploading file: {e}")
+        print(f"Error uploading file with key: {e}")
 
 def copy_file(s3, bucket_name, file, enc_key):
     try:
@@ -350,9 +353,10 @@ def copy_file(s3, bucket_name, file, enc_key):
             CopySourceSSECustomerKey=headers['SSECustomerKey'],
             CopySourceSSECustomerKeyMD5=headers['SSECustomerKeyMD5'],
         )
-        print(f"Successfully copied to 'copy_of_{file}' with maintained encryption")
+        print(f"Successfully copied to 'copy_of_{file}' with maintained encryption.")
     except ClientError as e:
-        print(f"Error copying file: {e}")
+        if e.response['Error']['Code'] == 'InvalidRequest':
+            print(f"Failed to copy without key: {e}")
     except Exception as e:
         print(f"Error copying file with key: {e}")
 
@@ -366,6 +370,9 @@ def download_file(s3, bucket_name, file, enc_key):
         )
         content = response['Body'].read().decode('utf-8')
         print(f"Downloaded content: {content}")
+    except ClientError as e:
+        if e.response['Error']['Code'] == 'InvalidRequest':
+            print(f"Failed to downloaded with key: {e}")
     except Exception as e:
         print(f"Error downloading file with key: {e}")
 
@@ -378,7 +385,7 @@ def download_file_without_key(s3, bucket_name, file):
         print(f"ERROR: downloaded successfully without key.")
     except ClientError as e:
         if e.response['Error']['Code'] == 'InvalidRequest':
-            print(f"Failed to downloaded without key.")
+            print(f"Failed to downloaded without key: {e}")
     except Exception as e:
         print(f"Error downloading file without key: {e}")
 
@@ -398,7 +405,8 @@ def fetch_file_meta(s3, bucket_name, file, enc_key):
         print(f"SSE-C Algorithm: {response.get('SSECustomerAlgorithm', 'None')}")
         print(f"SSE-C Key MD5: {response.get('SSECustomerKeyMD5', 'None')}")
     except ClientError as e:
-        print(f"Error retrieving metadata: {e}")
+        if e.response['Error']['Code'] == 'InvalidRequest':
+            print(f"Failed to retrieving file metadata: {e}")
     except Exception as e:
         print(f"Error fetching file meta: {e}")
 
