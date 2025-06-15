@@ -24,41 +24,19 @@ tags: ["perl", "python", "aws", "localstack"]
 
 <br>
 
-Continuing our blog series on `AWS` encryption, this post focuses on `Server-Side Encryption` using `Customer-Provided Keys`.
+Continuing the blog series on `AWS` encryption, this post focuses on `Server-Side Encryption` using `Customer-Provided Keys`.
 
 Previously, I covered the other two types of `Server-Side Encryption` i.e. [**S3 Encryption**](/blog/aws-s3-encryption) and [**KMS Encryption**](/blog/aws-kms-encryption).
 
-<br>
+In this type of encryption, customer generates and manages the encryption key.
 
-### Key Features
-***
+`AWS` does not store customer keys, they must be provided with every `API` request.
 
-<br>
+It uses `AES-256`,  Advanced Encryption Standard with `256-bit` keys.
 
-#### Customer-Managed Keys
+`256-bit` keys offer 2<sup>256</sup> possible combinations.
 
-<br>
-
-    Customer generates and manages the encryption key.
-    AWS does not store customer keys – they must be provided with every API request.
-
-<br>
-
-#### Military-Grade Encryption
-
-<br>
-
-    Uses AES-256 (Advanced Encryption Standard with 256-bit keys).
-    The same symmetric key encrypts and decrypts data.
-
-<br>
-
-#### Unbreakable Security
-
-<br>
-
-    256-bit keys offer 2²⁵⁶ possible combinations.
-    It's considered virtually impervious to brute-force attacks.
+It's considered virtually impervious to brute-force attacks.
 
 <br>
 
@@ -444,8 +422,6 @@ def main():
         kwargs = {"help": help_text}
         if default is not None:
             kwargs["default"] = default
-        if type_hint:
-            kwargs["type"] = type_hint[0]
         parser.add_argument(flag, **kwargs)
 
     # Mutually exclusive action flags

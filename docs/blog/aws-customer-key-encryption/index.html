@@ -303,29 +303,13 @@
 <h2 id="introduction">Introduction</h2>
 <hr>
 <br>
-<p>Continuing our blog series on <code>AWS</code> encryption, this post focuses on <code>Server-Side Encryption</code> using <code>Customer-Provided Keys</code>.</p>
+<p>Continuing the blog series on <code>AWS</code> encryption, this post focuses on <code>Server-Side Encryption</code> using <code>Customer-Provided Keys</code>.</p>
 <p>Previously, I covered the other two types of <code>Server-Side Encryption</code> i.e. <a href="/blog/aws-s3-encryption"><strong>S3 Encryption</strong></a> and <a href="/blog/aws-kms-encryption"><strong>KMS Encryption</strong></a>.</p>
-<br>
-<h3 id="key-features">Key Features</h3>
-<hr>
-<br>
-<h4 id="customer-managed-keys">Customer-Managed Keys</h4>
-<br>
-<pre><code>Customer generates and manages the encryption key.
-AWS does not store customer keys – they must be provided with every API request.
-</code></pre>
-<br>
-<h4 id="military-grade-encryption">Military-Grade Encryption</h4>
-<br>
-<pre><code>Uses AES-256 (Advanced Encryption Standard with 256-bit keys).
-The same symmetric key encrypts and decrypts data.
-</code></pre>
-<br>
-<h4 id="unbreakable-security">Unbreakable Security</h4>
-<br>
-<pre><code>256-bit keys offer 2²⁵⁶ possible combinations.
-It's considered virtually impervious to brute-force attacks.
-</code></pre>
+<p>In this type of encryption, customer generates and manages the encryption key.</p>
+<p><code>AWS</code> does not store customer keys, they must be provided with every <code>API</code> request.</p>
+<p>It uses <code>AES-256</code>,  Advanced Encryption Standard with <code>256-bit</code> keys.</p>
+<p><code>256-bit</code> keys offer 2<sup>256</sup> possible combinations.</p>
+<p>It&rsquo;s considered virtually impervious to brute-force attacks.</p>
 <br>
 <h2 id="using-aws">Using aws</h2>
 <hr>
@@ -631,8 +615,6 @@ DEFAULT_CUSTOMER_KEY <span style="color:#f92672">=</span> <span style="color:#e6
         kwargs <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;help&#34;</span>: help_text}
         <span style="color:#66d9ef">if</span> default <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
             kwargs[<span style="color:#e6db74">&#34;default&#34;</span>] <span style="color:#f92672">=</span> default
-        <span style="color:#66d9ef">if</span> type_hint:
-            kwargs[<span style="color:#e6db74">&#34;type&#34;</span>] <span style="color:#f92672">=</span> type_hint[<span style="color:#ae81ff">0</span>]
         parser<span style="color:#f92672">.</span>add_argument(flag, <span style="color:#f92672">**</span>kwargs)
 
     <span style="color:#75715e"># Mutually exclusive action flags</span>
