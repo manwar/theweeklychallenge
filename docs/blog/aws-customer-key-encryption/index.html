@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="AWS Customer Key Encryption"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/aws-customer-key-encryption/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about AWS Customer Key Encryption."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about AWS Customer Key Encryption.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/aws-customer-key-encryption/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AWS Customer Key Encryption</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>AWS Customer Key Encryption</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Jun 15, 2025</span>|
+                        <span> Tags:
+                            perl, python, aws, localstack
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/aws-customer-key-encryption.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<br>
+<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-customer-provided-keys-sse-ccustomer-provided-keys-sse-c"><a href="#customer-provided-keys-sse-c">2. Customer Provided Keys (SSE-C)</a></h3>
+<h3 id="3-using-awsusing-aws"><a href="#using-aws">3. Using aws</a></h3>
+<h3 id="4-using-pythonusing-python"><a href="#using-python">4. Using Python</a></h3>
+<h3 id="5-using-perlusing-perl"><a href="#using-perl">5. Using Perl</a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<br>
+<p>Continuing our blog series on <code>AWS</code> encryption, this post focuses on <code>Server-Side Encryption</code> using <code>Customer-Provided Keys</code>.</p>
+<p>Previously, I covered the other two types of <code>Server-Side Encryption</code> i.e. <a href="/blog/aws-s3-encryption"><strong>S3 Encryption</strong></a> and <a href="/blog/aws-kms-encryption"><strong>KMS Encryption</strong></a>.</p>
+<br>
+<h3 id="key-features">Key Features</h3>
+<hr>
+<br>
+<h4 id="customer-managed-keys">Customer-Managed Keys</h4>
+<br>
+<pre><code>Customer generates and manages the encryption key.
+AWS does not store customer keys – they must be provided with every API request.
+</code></pre>
+<br>
+<h4 id="military-grade-encryption">Military-Grade Encryption</h4>
+<br>
+<pre><code>Uses AES-256 (Advanced Encryption Standard with 256-bit keys).
+The same symmetric key encrypts and decrypts data.
+</code></pre>
+<br>
+<h4 id="unbreakable-security">Unbreakable Security</h4>
+<br>
+<pre><code>256-bit keys offer 2²⁵⁶ possible combinations.
+It's considered virtually impervious to brute-force attacks.
+</code></pre>
+<br>
+<h2 id="using-aws">Using aws</h2>
+<hr>
+<br>
+<p>Create raw key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ export RAW_KEY<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand 32<span style="color:#66d9ef">)</span>
+<span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ echo $RAW_KEY
+-kPz0^ALGR*Ҭ&gt;MK
+</code></pre></div><br>
+<p>Generate base64 encoded raw key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ export BASE64_KEY<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo -n <span style="color:#e6db74">&#34;</span>$RAW_KEY<span style="color:#e6db74">&#34;</span> | base64<span style="color:#66d9ef">)</span>
+<span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ echo $BASE64_KEY
+igUt1GtQyHru7aswXkGoTJmAR39/HVIqtNKsxz7hTUs<span style="color:#f92672">=</span>
+</code></pre></div><br>
+<p>Generate md5 key for raw key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ export MD5_KEY<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo -n <span style="color:#e6db74">&#34;</span>$RAW_KEY<span style="color:#e6db74">&#34;</span> | openssl dgst -md5 -binary | base64<span style="color:#66d9ef">)</span>
+<span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ echo $MD5_KEY
+MFY4ZCjuzXvBZfIbk2LeMQ<span style="color:#f92672">==</span>
+</code></pre></div><br>
+<p>Let&rsquo;s create the bucket now.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws s3 mb s3://sse-c-encrypted-bucket
+make_bucket: sse-c-encrypted-bucket
+</code></pre></div><br>
+<p>Upload file with customer key using <code>AES-256</code> algorithm.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws s3api put-object <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --bucket sse-c-encrypted-bucket <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key secret-file.txt <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --body secret-file.txt <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-algorithm AES256 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-key <span style="color:#e6db74">&#34;</span>$BASE64_KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-key-md5 <span style="color:#e6db74">&#34;</span>$MD5_KEY<span style="color:#e6db74">&#34;</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;5c1c7463b3b94cd0e204abf746a42671\&#34;&#34;</span>,
+    <span style="color:#e6db74">&#34;ChecksumCRC64NVME&#34;</span>: <span style="color:#e6db74">&#34;QtYNnUr9Eos=&#34;</span>,
+    <span style="color:#e6db74">&#34;ChecksumType&#34;</span>: <span style="color:#e6db74">&#34;FULL_OBJECT&#34;</span>,
+    <span style="color:#e6db74">&#34;SSECustomerAlgorithm&#34;</span>: <span style="color:#e6db74">&#34;AES256&#34;</span>,
+    <span style="color:#e6db74">&#34;SSECustomerKeyMD5&#34;</span>: <span style="color:#e6db74">&#34;MFY4ZCjuzXvBZfIbk2LeMQ==&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Fetch file meta.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws s3api head-object <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --bucket sse-c-encrypted-bucket <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key secret-file.txt <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-algorithm AES256 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-key <span style="color:#e6db74">&#34;</span>$BASE64_KEY<span style="color:#e6db74">&#34;</span>  <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-key-md5 <span style="color:#e6db74">&#34;</span>$MD5_KEY<span style="color:#e6db74">&#34;</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;AcceptRanges&#34;</span>: <span style="color:#e6db74">&#34;bytes&#34;</span>,
+    <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-06-15T02:43:54+00:00&#34;</span>,
+    <span style="color:#e6db74">&#34;ContentLength&#34;</span>: 31,
+    <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;5c1c7463b3b94cd0e204abf746a42671\&#34;&#34;</span>,
+    <span style="color:#e6db74">&#34;ContentType&#34;</span>: <span style="color:#e6db74">&#34;binary/octet-stream&#34;</span>,
+    <span style="color:#e6db74">&#34;Metadata&#34;</span>: <span style="color:#f92672">{}</span>,
+    <span style="color:#e6db74">&#34;SSECustomerAlgorithm&#34;</span>: <span style="color:#e6db74">&#34;AES256&#34;</span>,
+    <span style="color:#e6db74">&#34;SSECustomerKeyMD5&#34;</span>: <span style="color:#e6db74">&#34;ICjoBPuHgpRhQCUQ4hCC1Q==&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Copy file with key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws s3api copy-object <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --bucket sse-c-encrypted-bucket <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key copy_of_secret-file.txt <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --copy-source <span style="color:#e6db74">&#34;sse-c-encrypted-bucket/secret-file.txt&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-algorithm AES256 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-key <span style="color:#e6db74">&#34;</span>$BASE64_KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-key-md5 <span style="color:#e6db74">&#34;</span>$MD5_KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --copy-source-sse-customer-algorithm AES256 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --copy-source-sse-customer-key <span style="color:#e6db74">&#34;</span>$BASE64_KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --copy-source-sse-customer-key-md5 <span style="color:#e6db74">&#34;</span>$MD5_KEY<span style="color:#e6db74">&#34;</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;SSECustomerAlgorithm&#34;</span>: <span style="color:#e6db74">&#34;AES256&#34;</span>,
+    <span style="color:#e6db74">&#34;SSECustomerKeyMD5&#34;</span>: <span style="color:#e6db74">&#34;qTQAjYHjCvO+vfQwrK4l8Q==&#34;</span>,
+    <span style="color:#e6db74">&#34;CopyObjectResult&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;5c1c7463b3b94cd0e204abf746a42671\&#34;&#34;</span>,
+        <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-06-15T03:12:23+00:00&#34;</span>,
+        <span style="color:#e6db74">&#34;ChecksumCRC64NVME&#34;</span>: <span style="color:#e6db74">&#34;QtYNnUr9Eos=&#34;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Fetch copied file meta.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws s3api head-object <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --bucket sse-c-encrypted-bucket <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key copy_of_secret-file.txt <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-algorithm AES256 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-key <span style="color:#e6db74">&#34;</span>$BASE64_KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-key-md5 <span style="color:#e6db74">&#34;</span>$MD5_KEY<span style="color:#e6db74">&#34;</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;AcceptRanges&#34;</span>: <span style="color:#e6db74">&#34;bytes&#34;</span>,
+    <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-06-15T03:12:23+00:00&#34;</span>,
+    <span style="color:#e6db74">&#34;ContentLength&#34;</span>: 31,
+    <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;5c1c7463b3b94cd0e204abf746a42671\&#34;&#34;</span>,
+    <span style="color:#e6db74">&#34;ContentType&#34;</span>: <span style="color:#e6db74">&#34;binary/octet-stream&#34;</span>,
+    <span style="color:#e6db74">&#34;Metadata&#34;</span>: <span style="color:#f92672">{}</span>,
+    <span style="color:#e6db74">&#34;SSECustomerAlgorithm&#34;</span>: <span style="color:#e6db74">&#34;AES256&#34;</span>,
+    <span style="color:#e6db74">&#34;SSECustomerKeyMD5&#34;</span>: <span style="color:#e6db74">&#34;qTQAjYHjCvO+vfQwrK4l8Q==&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Try downloading the file without key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws s3api get-object <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --bucket sse-c-encrypted-bucket <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key secret-file.txt <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  downloaded.txt
+
+An error occurred <span style="color:#f92672">(</span>InvalidRequest<span style="color:#f92672">)</span> when calling the GetObject operation: The object was stored using a form of Server Side Encryption. The correct parameters must be provided to retrieve the object.
+</code></pre></div><br>
+<p>Now download file with the customer key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws s3api get-object <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --bucket sse-c-encrypted-bucket <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key secret-file.txt <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  downloaded.txt <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-algorithm AES256 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-key <span style="color:#e6db74">&#34;</span>$BASE64_KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --sse-customer-key-md5 <span style="color:#e6db74">&#34;</span>$MD5_KEY<span style="color:#e6db74">&#34;</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;AcceptRanges&#34;</span>: <span style="color:#e6db74">&#34;bytes&#34;</span>,
+    <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-06-15T00:25:54+00:00&#34;</span>,
+    <span style="color:#e6db74">&#34;ContentLength&#34;</span>: 31,
+    <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;5c1c7463b3b94cd0e204abf746a42671\&#34;&#34;</span>,
+    <span style="color:#e6db74">&#34;ChecksumCRC64NVME&#34;</span>: <span style="color:#e6db74">&#34;QtYNnUr9Eos=&#34;</span>,
+    <span style="color:#e6db74">&#34;ChecksumType&#34;</span>: <span style="color:#e6db74">&#34;FULL_OBJECT&#34;</span>,
+    <span style="color:#e6db74">&#34;ContentType&#34;</span>: <span style="color:#e6db74">&#34;binary/octet-stream&#34;</span>,
+    <span style="color:#e6db74">&#34;Metadata&#34;</span>: <span style="color:#f92672">{}</span>,
+    <span style="color:#e6db74">&#34;SSECustomerAlgorithm&#34;</span>: <span style="color:#e6db74">&#34;AES256&#34;</span>,
+    <span style="color:#e6db74">&#34;SSECustomerKeyMD5&#34;</span>: <span style="color:#e6db74">&#34;MFY4ZCjuzXvBZfIbk2LeMQ==&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Cleanup now:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws s3 rm s3://sse-c-encrypted-bucket --recursive
+delete: s3://sse-c-encrypted-bucket/copy_of_secret-file.txt
+delete: s3://sse-c-encrypted-bucket/secret-file.txt
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws s3 rb s3://sse-c-encrypted-bucket
+remove_bucket: sse-c-encrypted-bucket
+</code></pre></div><br>
+<h2 id="using-python">Using Python</h2>
+<hr>
+<br>
+<p>Here is the <code>Python</code> implementation of the above.</p>
+<p>File: <code>sse-c.py</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
+
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> boto3
+<span style="color:#f92672">import</span> base64
+<span style="color:#f92672">import</span> hashlib
+<span style="color:#f92672">import</span> argparse
+<span style="color:#f92672">from</span> botocore.config <span style="color:#f92672">import</span> Config
+<span style="color:#f92672">from</span> botocore.exceptions <span style="color:#f92672">import</span> ClientError
+
+ENDPOINT_URL         <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:4566&#34;</span>
+ACCESS_KEY_ID        <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;test&#34;</span>
+SECRET_ACCESS_KEY    <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;test&#34;</span>
+REGION               <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;eu-west-1&#34;</span>
+DEFAULT_FILE         <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;secret-file.txt&#39;</span>
+DEFAULT_BUCKET       <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sse-c-encrypted-bucket&#39;</span>
+DEFAULT_CUSTOMER_KEY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;CustomerSecretKey&#39;</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyArgumentParser</span>(argparse<span style="color:#f92672">.</span>ArgumentParser):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">error</span>(self, message):
+        <span style="color:#66d9ef">if</span> message:
+            sys<span style="color:#f92672">.</span>stderr<span style="color:#f92672">.</span>write(f<span style="color:#e6db74">&#34;ERROR: {message}</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>)
+        self<span style="color:#f92672">.</span>print_help()
+        sys<span style="color:#f92672">.</span>exit(<span style="color:#ae81ff">2</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_s3_client</span>():
+    <span style="color:#66d9ef">return</span> boto3<span style="color:#f92672">.</span>client(
+        <span style="color:#e6db74">&#39;s3&#39;</span>,
+        endpoint_url <span style="color:#f92672">=</span> ENDPOINT_URL,
+        aws_access_key_id <span style="color:#f92672">=</span> ACCESS_KEY_ID,
+        aws_secret_access_key <span style="color:#f92672">=</span> SECRET_ACCESS_KEY,
+        config <span style="color:#f92672">=</span> Config(signature_version<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;s3v4&#39;</span>),
+        region_name <span style="color:#f92672">=</span> REGION
+    )
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_encryption_key</span>(customer_key):
+    <span style="color:#66d9ef">return</span> hashlib<span style="color:#f92672">.</span>sha256(customer_key<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf-8&#34;</span>))<span style="color:#f92672">.</span>digest()
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_sse_c_headers</span>(enc_key):
+    <span style="color:#66d9ef">return</span> {
+        <span style="color:#e6db74">&#39;SSECustomerAlgorithm&#39;</span>: <span style="color:#e6db74">&#39;AES256&#39;</span>,
+        <span style="color:#e6db74">&#39;SSECustomerKey&#39;</span>: base64<span style="color:#f92672">.</span>b64encode(enc_key)<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>),
+        <span style="color:#e6db74">&#39;SSECustomerKeyMD5&#39;</span>: base64<span style="color:#f92672">.</span>b64encode(hashlib<span style="color:#f92672">.</span>md5(enc_key)<span style="color:#f92672">.</span>digest())<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>),
+    }
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_bucket</span>(s3, bucket_name):
+    <span style="color:#66d9ef">try</span>:
+        s3<span style="color:#f92672">.</span>create_bucket(Bucket<span style="color:#f92672">=</span>bucket_name,
+            CreateBucketConfiguration<span style="color:#f92672">=</span>{
+                <span style="color:#e6db74">&#39;LocationConstraint&#39;</span>: REGION
+            })
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Bucket {bucket_name} created.&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error creating bucket: {e}&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">upload_file</span>(s3, bucket_name, file, enc_key):
+    <span style="color:#66d9ef">try</span>:
+        headers <span style="color:#f92672">=</span> get_sse_c_headers(enc_key)
+
+        s3<span style="color:#f92672">.</span>put_object(
+            Bucket <span style="color:#f92672">=</span> bucket_name,
+            Key <span style="color:#f92672">=</span> file,
+            Body <span style="color:#f92672">=</span> open(file, <span style="color:#e6db74">&#39;r&#39;</span>, encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;utf-8&#39;</span>)<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;utf-8&#39;</span>),
+            <span style="color:#f92672">**</span>headers
+        )
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Uploaded {file} to {bucket_name}.&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error uploading file: {e}&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">copy_file</span>(s3, bucket_name, file, enc_key):
+    <span style="color:#66d9ef">try</span>:
+        headers <span style="color:#f92672">=</span> get_sse_c_headers(enc_key)
+        s3<span style="color:#f92672">.</span>copy_object(
+            Bucket<span style="color:#f92672">=</span>bucket_name,
+            Key<span style="color:#f92672">=</span>f<span style="color:#e6db74">&#34;copy_of_{file}&#34;</span>,
+            CopySource<span style="color:#f92672">=</span>f<span style="color:#e6db74">&#34;{bucket_name}/{file}&#34;</span>,
+            SSECustomerAlgorithm<span style="color:#f92672">=</span>headers[<span style="color:#e6db74">&#39;SSECustomerAlgorithm&#39;</span>],
+            SSECustomerKey<span style="color:#f92672">=</span>headers[<span style="color:#e6db74">&#39;SSECustomerKey&#39;</span>],
+            SSECustomerKeyMD5<span style="color:#f92672">=</span>headers[<span style="color:#e6db74">&#39;SSECustomerKeyMD5&#39;</span>],
+            CopySourceSSECustomerAlgorithm<span style="color:#f92672">=</span>headers[<span style="color:#e6db74">&#39;SSECustomerAlgorithm&#39;</span>],
+            CopySourceSSECustomerKey<span style="color:#f92672">=</span>headers[<span style="color:#e6db74">&#39;SSECustomerKey&#39;</span>],
+            CopySourceSSECustomerKeyMD5<span style="color:#f92672">=</span>headers[<span style="color:#e6db74">&#39;SSECustomerKeyMD5&#39;</span>],
+        )
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Successfully copied to &#39;copy_of_{file}&#39; with maintained encryption&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error copying file: {e}&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">download_file</span>(s3, bucket_name, file, enc_key):
+    <span style="color:#66d9ef">try</span>:
+        headers <span style="color:#f92672">=</span> get_sse_c_headers(enc_key)
+        response <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>get_object(
+            Bucket <span style="color:#f92672">=</span> bucket_name,
+            Key <span style="color:#f92672">=</span> file,
+            <span style="color:#f92672">**</span>headers
+        )
+        content <span style="color:#f92672">=</span> response[<span style="color:#e6db74">&#39;Body&#39;</span>]<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Downloaded content: {content}&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error downloading file with key: {e}&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">download_file_without_key</span>(s3, bucket_name, file):
+    <span style="color:#66d9ef">try</span>:
+        s3<span style="color:#f92672">.</span>get_object(
+            Bucket <span style="color:#f92672">=</span> bucket_name,
+            Key <span style="color:#f92672">=</span> file
+        )
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;ERROR: downloaded successfully without key.&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;InvalidRequest&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to downloaded without key.&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch_file_meta</span>(s3, bucket_name, file, enc_key):
+    <span style="color:#66d9ef">try</span>:
+        headers <span style="color:#f92672">=</span> get_sse_c_headers(enc_key)
+
+        response <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>head_object(
+            Bucket <span style="color:#f92672">=</span> bucket_name,
+            Key <span style="color:#f92672">=</span> file,
+            <span style="color:#f92672">**</span>headers
+        )
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Object metadata:&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;ETag: {response[&#39;ETag&#39;]}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Size: {response[&#39;ContentLength&#39;]} bytes&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Encryption: {response.get(&#39;ServerSideEncryption&#39;, &#39;None&#39;)}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;SSE-C Algorithm: {response.get(&#39;SSECustomerAlgorithm&#39;, &#39;None&#39;)}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;SSE-C Key MD5: {response.get(&#39;SSECustomerKeyMD5&#39;, &#39;None&#39;)}&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error retrieving metadata: {e}&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cleanup</span>(s3, bucket_name):
+    <span style="color:#66d9ef">try</span>:
+        objects <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>list_objects_v2(Bucket<span style="color:#f92672">=</span>bucket_name)
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;Contents&#39;</span> <span style="color:#f92672">in</span> objects:
+            <span style="color:#66d9ef">for</span> obj <span style="color:#f92672">in</span> objects[<span style="color:#e6db74">&#39;Contents&#39;</span>]:
+                s3<span style="color:#f92672">.</span>delete_object(Bucket<span style="color:#f92672">=</span>bucket_name, Key<span style="color:#f92672">=</span>obj[<span style="color:#e6db74">&#39;Key&#39;</span>])
+
+        s3<span style="color:#f92672">.</span>delete_bucket(Bucket<span style="color:#f92672">=</span>bucket_name)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Bucket &#39;{bucket_name}&#39; deleted successfully.&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error deleting bucket: {e}&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    parser <span style="color:#f92672">=</span> MyArgumentParser(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SSE-C Encryption&#34;</span>)
+
+    <span style="color:#75715e"># Regular arguments</span>
+    regular_args <span style="color:#f92672">=</span> [
+        (<span style="color:#e6db74">&#34;--bucket&#34;</span>, DEFAULT_BUCKET, f<span style="color:#e6db74">&#34;Bucket name, default {DEFAULT_BUCKET}&#34;</span>),
+        (<span style="color:#e6db74">&#34;--file&#34;</span>, DEFAULT_FILE, f<span style="color:#e6db74">&#34;File to upload/download, default {DEFAULT_FILE}&#34;</span>),
+        (<span style="color:#e6db74">&#39;--customer-key&#39;</span>, DEFAULT_CUSTOMER_KEY, <span style="color:#e6db74">&#34;Customer key, default {DEFAULT_CUSTOMER_KEY}&#34;</span>),
+    ]
+
+    <span style="color:#66d9ef">for</span> flag, default, help_text, <span style="color:#f92672">*</span>type_hint <span style="color:#f92672">in</span> regular_args:
+        kwargs <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;help&#34;</span>: help_text}
+        <span style="color:#66d9ef">if</span> default <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
+            kwargs[<span style="color:#e6db74">&#34;default&#34;</span>] <span style="color:#f92672">=</span> default
+        <span style="color:#66d9ef">if</span> type_hint:
+            kwargs[<span style="color:#e6db74">&#34;type&#34;</span>] <span style="color:#f92672">=</span> type_hint[<span style="color:#ae81ff">0</span>]
+        parser<span style="color:#f92672">.</span>add_argument(flag, <span style="color:#f92672">**</span>kwargs)
+
+    <span style="color:#75715e"># Mutually exclusive action flags</span>
+    action_group <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>add_mutually_exclusive_group(required<span style="color:#f92672">=</span>True)
+    action_flags <span style="color:#f92672">=</span> [
+        (<span style="color:#e6db74">&#34;--make-bucket&#34;</span>, <span style="color:#e6db74">&#34;Create bucket&#34;</span>),
+        (<span style="color:#e6db74">&#34;--upload&#34;</span>, <span style="color:#e6db74">&#34;Upload file&#34;</span>),
+        (<span style="color:#e6db74">&#34;--copy-file&#34;</span>, <span style="color:#e6db74">&#34;Copy file&#34;</span>),
+        (<span style="color:#e6db74">&#34;--download&#34;</span>, <span style="color:#e6db74">&#34;Download file&#34;</span>),
+        (<span style="color:#e6db74">&#34;--fetch-file-meta&#34;</span>, <span style="color:#e6db74">&#34;Fetch file metadata&#34;</span>),
+        (<span style="color:#e6db74">&#34;--cleanup&#34;</span>, <span style="color:#e6db74">&#34;Remove bucket and its content&#34;</span>),
+    ]
+
+    <span style="color:#66d9ef">for</span> flag, help_text <span style="color:#f92672">in</span> action_flags:
+        action_group<span style="color:#f92672">.</span>add_argument(flag, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, help<span style="color:#f92672">=</span>help_text)
+
+    args    <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+    s3      <span style="color:#f92672">=</span> create_s3_client()
+    enc_key <span style="color:#f92672">=</span> generate_encryption_key(args<span style="color:#f92672">.</span>customer_key)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>make_bucket:
+        make_bucket(s3, args<span style="color:#f92672">.</span>bucket)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>upload:
+        upload_file(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>file, enc_key)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>copy_file:
+        copy_file(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>file, enc_key)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>download:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Downloading {args.file} with key&#34;</span>)
+        download_file(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>file, enc_key)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Downloading {args.file} without key&#34;</span>)
+        download_file_without_key(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>file)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>fetch_file_meta:
+        fetch_file_meta(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>file, enc_key)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>cleanup:
+        cleanup(s3, args<span style="color:#f92672">.</span>bucket)
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><br>
+<p>Test the code now:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py sse-c.py --help
+usage: sse-c.py <span style="color:#f92672">[</span>-h<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--customer-key CUSTOMER_KEY<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>--make-bucket | --upload | --copy-file | --download | --fetch-file-meta | --cleanup<span style="color:#f92672">)</span>
+
+SSE-C Encryption
+
+options:
+  -h, --help            show this help message and exit
+  --bucket BUCKET       Bucket name, default sse-c-encrypted-bucket
+  --file FILE           File to upload/download, default secret-file.txt
+  --customer-key CUSTOMER_KEY
+                        Customer key, default <span style="color:#f92672">{</span>DEFAULT_CUSTOMER_KEY<span style="color:#f92672">}</span>
+  --make-bucket         Create bucket
+  --upload              Upload file
+  --copy-file           Copy file
+  --download            Download file
+  --fetch-file-meta     Fetch file metadata
+  --cleanup             Remove bucket and its content
+</code></pre></div><br>
+<p>Create bucket</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py sse-c.py --bucket sse-c-encrypted-bucket --make-bucket
+Bucket sse-c-encrypted-bucket created.
+</code></pre></div><br>
+<p>Upload file to bucket</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py sse-c.py --bucket sse-c-encrypted-bucket --file secret-file.txt --upload
+Uploaded secret-file.txt to sse-c-encrypted-bucket.
+</code></pre></div><br>
+<p>Fetch file metadata</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py sse-c.py --bucket sse-c-encrypted-bucket --file secret-file.txt --fetch-file-meta
+Object metadata:
+ETag: <span style="color:#e6db74">&#34;5c1c7463b3b94cd0e204abf746a42671&#34;</span>
+Size: <span style="color:#ae81ff">31</span> bytes
+Encryption: AES256
+SSE-C Algorithm: AES256
+SSE-C Key MD5: dovR6EvoX5kk8922+aAvNQ<span style="color:#f92672">==</span>
+</code></pre></div><br>
+<p>Copy file with key</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py sse-c.py --bucket sse-c-encrypted-bucket --file secret-file.txt --copy-file
+Successfully copied to <span style="color:#e6db74">&#39;copy_of_secret-file.txt&#39;</span> with maintained encryption.
+</code></pre></div><br>
+<p>Download file locally with key and without key</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py sse-c.py --bucket sse-c-encrypted-bucket --file secret-file.txt --download
+Downloading secret-file.txt with key
+Downloaded content: This is a secret file content.
+
+Downloading secret-file.txt without key
+Failed to downloaded without key.
+</code></pre></div><br>
+<p>Cleanup in the end</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py sse-c.py --bucket sse-c-encrypted-bucket --cleanup
+Bucket <span style="color:#e6db74">&#39;sse-c-encrypted-bucket&#39;</span> deleted successfully.
+</code></pre></div><br>
+<h2 id="using-perl">Using Perl</h2>
+<hr>
+<br>
+<p>Now, <code>Perl</code> implementation:</p>
+<p>File: <code>sse-c.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Encode;
+<span style="color:#66d9ef">use</span> Try::Tiny;
+<span style="color:#66d9ef">use</span> File::Slurp;
+<span style="color:#66d9ef">use</span> Getopt::Long;
+<span style="color:#66d9ef">use</span> File::Basename;
+<span style="color:#66d9ef">use</span> Digest::MD5 <span style="color:#e6db74">qw(md5)</span>;
+<span style="color:#66d9ef">use</span> Digest::SHA <span style="color:#e6db74">qw(sha256)</span>;
+<span style="color:#66d9ef">use</span> MIME::Base64 <span style="color:#e6db74">qw(encode_base64 decode_base64)</span>;
+
+<span style="color:#66d9ef">use</span> Paws;
+<span style="color:#66d9ef">use</span> Paws::Credential::Explicit;
+
+<span style="color:#66d9ef">my</span> $REGION               <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;eu-west-1&#39;</span>;
+<span style="color:#66d9ef">my</span> $ENDPOINT             <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://localhost:4566&#39;</span>;
+<span style="color:#66d9ef">my</span> $ACCESS_KEY           <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test&#39;</span>;
+<span style="color:#66d9ef">my</span> $SECRET_KEY           <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test&#39;</span>;
+<span style="color:#66d9ef">my</span> $DEFAULT_FILE         <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;secret-file.txt&#39;</span>;
+<span style="color:#66d9ef">my</span> $DEFAULT_BUCKET       <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sse-c-encrypted-bucket&#39;</span>;
+<span style="color:#66d9ef">my</span> $DEFAULT_CUSTOMER_KEY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;CustomerSecretKey&#39;</span>;
+
+<span style="color:#66d9ef">my</span> %opts;
+GetOptions(
+    <span style="color:#e6db74">&#39;bucket=s&#39;</span>          <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{bucket},
+    <span style="color:#e6db74">&#39;file=s&#39;</span>            <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{file},
+    <span style="color:#e6db74">&#39;customer-key=s&#39;</span>    <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{customer_key},
+    <span style="color:#e6db74">&#39;make-bucket&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{make_bucket},
+    <span style="color:#e6db74">&#39;upload&#39;</span>            <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{upload},
+    <span style="color:#e6db74">&#39;copy-file&#39;</span>         <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{copy_file},
+    <span style="color:#e6db74">&#39;download&#39;</span>          <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{download},
+    <span style="color:#e6db74">&#39;fetch-file-meta&#39;</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{fetch_file_meta},
+    <span style="color:#e6db74">&#39;cleanup&#39;</span>           <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{cleanup},
+    <span style="color:#e6db74">&#39;help&#39;</span>              <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$opts{help},
+) <span style="color:#f92672">or</span> show_help_and_exit(<span style="color:#ae81ff">1</span>);
+
+show_help_and_exit(<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">if</span> $opts{help};
+
+<span style="color:#75715e"># Enforce only one action is selected</span>
+<span style="color:#66d9ef">my</span> @actions <span style="color:#f92672">=</span> <span style="color:#e6db74">qw/
+</span><span style="color:#e6db74">    make_bucket
+</span><span style="color:#e6db74">    upload
+</span><span style="color:#e6db74">    copy_file
+</span><span style="color:#e6db74">    download
+</span><span style="color:#e6db74">    fetch_file_meta
+</span><span style="color:#e6db74">    cleanup
+</span><span style="color:#e6db74">/</span>;
+
+<span style="color:#66d9ef">my</span> $count   <span style="color:#f92672">=</span> grep { defined $opts{$_} } @actions;
+show_help_and_exit(<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;You must specify exactly one of: --&#34;</span> <span style="color:#f92672">.</span> join(<span style="color:#e6db74">&#39;, --&#39;</span>, @actions))
+    <span style="color:#66d9ef">unless</span> $count <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+
+$opts{bucket}       <span style="color:#f92672">=</span> $DEFAULT_BUCKET       <span style="color:#66d9ef">unless</span> defined $opts{bucket};
+$opts{file}         <span style="color:#f92672">=</span> $DEFAULT_FILE         <span style="color:#66d9ef">unless</span> defined $opts{file};
+$opts{customer_key} <span style="color:#f92672">=</span> $DEFAULT_CUSTOMER_KEY <span style="color:#66d9ef">unless</span> defined $opts{customer_key};
+
+<span style="color:#66d9ef">my</span> $s3 <span style="color:#f92672">=</span> create_s3_client();
+<span style="color:#66d9ef">my</span> $enc_key <span style="color:#f92672">=</span> generate_encryption_key($opts{customer_key});
+
+<span style="color:#66d9ef">if</span> ($opts{make_bucket}) {
+    make_bucket($s3, $opts{bucket});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{upload}) {
+    upload_file($s3, $opts{bucket}, $opts{file}, $enc_key);
+}
+
+<span style="color:#66d9ef">if</span> ($opts{copy_file}) {
+    copy_file($s3, $opts{bucket}, $opts{file}, $enc_key);
+}
+
+<span style="color:#66d9ef">if</span> ($opts{download}) {
+    download_file($s3, $opts{bucket}, $opts{file}, $enc_key);
+    download_file_without_enc_key($s3, $opts{bucket}, $opts{file});
+}
+
+<span style="color:#66d9ef">if</span> ($opts{fetch_file_meta}) {
+    fetch_file_meta($s3, $opts{bucket}, $opts{file}, $enc_key);
+}
+
+<span style="color:#66d9ef">if</span> ($opts{cleanup}) {
+    cleanup($s3, $opts{bucket});
+}
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># HELPER SUBROUTINES</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_help_and_exit</span>($exit_code) {
+
+    say <span style="color:#e6db74">&lt;&lt;&#34;</span><span style="color:#e6db74">END_HELP</span><span style="color:#e6db74">&#34;;
+</span><span style="color:#e6db74">usage: $0 [--help] [--bucket BUCKET] [--file FILE]
+</span><span style="color:#e6db74">          [--customer-key CUSTOMER_KEY]
+</span><span style="color:#e6db74">          [--make-bucket]
+</span><span style="color:#e6db74">          [--upload] [--copy-file] [--download]
+</span><span style="color:#e6db74">          [--fetch-file-meta] [--cleanup]
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">SSE-C Encryption
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">options:
+</span><span style="color:#e6db74">  --help                      Show this help message and exit
+</span><span style="color:#e6db74">  --bucket BUCKET             Bucket name, default $DEFAULT_BUCKET
+</span><span style="color:#e6db74">  --file FILE                 File to upload/download, default $DEFAULT_FILE
+</span><span style="color:#e6db74">  --customer-key CUSTOMER_KEY Customer key, default $DEFAULT_CUSTOMER_KEY
+</span><span style="color:#e6db74">  --make-bucket               Create bucket
+</span><span style="color:#e6db74">  --upload                    Upload file
+</span><span style="color:#e6db74">  --copy-file                 Copy file
+</span><span style="color:#e6db74">  --download                  Download file
+</span><span style="color:#e6db74">  --fetch-file-meta           Fetch file metadata
+</span><span style="color:#e6db74">  --cleanup                   Remove file and bucket
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">END_HELP</span>
+
+    exit $exit_code;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">error_and_die</span>($message) {
+    <span style="color:#66d9ef">my</span> $level <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> ($sub_name, $line);
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">my</span> @caller <span style="color:#f92672">=</span> caller($level<span style="color:#f92672">++</span>) <span style="color:#f92672">or</span> <span style="color:#66d9ef">last</span>;
+        ($sub_name, $line) <span style="color:#f92672">=</span> @caller[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>];
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> $sub_name <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^(?:Try::Tiny|eval|catch|__ANON__|try|main::)/</span>;
+    }
+
+    <span style="color:#66d9ef">my</span> $clean_error <span style="color:#f92672">=</span> $message;
+    $clean_error <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+at\s+.*?line\s+\d+\.?$//</span>;
+
+    die <span style="color:#e6db74">&#34;ERROR in $sub_name (at line $line): $clean_error\n&#34;</span>;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_encryption_key</span>($customer_key) {
+    <span style="color:#66d9ef">return</span> sha256(Encode::encode_utf8($customer_key));
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_s3_client</span> {
+    <span style="color:#66d9ef">return</span> Paws<span style="color:#f92672">-&gt;</span>service(<span style="color:#e6db74">&#39;S3&#39;</span>,
+        region      <span style="color:#f92672">=&gt;</span> $REGION,
+        endpoint    <span style="color:#f92672">=&gt;</span> $ENDPOINT,
+        credentials <span style="color:#f92672">=&gt;</span> Paws::Credential::Explicit<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+            access_key <span style="color:#f92672">=&gt;</span> $ACCESS_KEY,
+            secret_key <span style="color:#f92672">=&gt;</span> $SECRET_KEY,
+        ),
+    );
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_bucket</span>($s3, $bucket_name) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+
+    try {
+        $s3<span style="color:#f92672">-&gt;</span>CreateBucket(
+            Bucket <span style="color:#f92672">=&gt;</span> $bucket_name,
+            CreateBucketConfiguration <span style="color:#f92672">=&gt;</span> { LocationConstraint <span style="color:#f92672">=&gt;</span> $REGION },
+        );
+
+        say <span style="color:#e6db74">&#34;Bucket $bucket_name created.&#34;</span>;
+    }
+    catch {
+        die <span style="color:#e6db74">&#34;ERROR: unable to create bucket: $_\n&#34;</span>;
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">upload_file</span>($s3, $bucket_name, $file, $enc_key) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+    error_and_die(<span style="color:#e6db74">&#34;Missing file.&#34;</span>)        <span style="color:#66d9ef">unless</span> defined $file;
+    error_and_die(<span style="color:#e6db74">&#34;Missing enc key.&#34;</span>)     <span style="color:#66d9ef">unless</span> defined $enc_key;
+
+    try {
+        <span style="color:#66d9ef">my</span> $key_b64 <span style="color:#f92672">=</span> encode_base64($enc_key, <span style="color:#e6db74">&#39;&#39;</span>);
+        <span style="color:#66d9ef">my</span> $md5_raw <span style="color:#f92672">=</span> md5($enc_key);
+        <span style="color:#66d9ef">my</span> $md5_b64 <span style="color:#f92672">=</span> encode_base64($md5_raw, <span style="color:#e6db74">&#39;&#39;</span>);
+
+        $s3<span style="color:#f92672">-&gt;</span>PutObject(
+            Bucket <span style="color:#f92672">=&gt;</span> $bucket_name,
+            Key    <span style="color:#f92672">=&gt;</span> $file,
+            Body   <span style="color:#f92672">=&gt;</span> read_file($file, binmode <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;:raw&#39;</span>),
+            SSECustomerAlgorithm <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;AES256&#39;</span>,
+            SSECustomerKey       <span style="color:#f92672">=&gt;</span> $key_b64,
+            SSECustomerKeyMD5    <span style="color:#f92672">=&gt;</span> $md5_b64,
+        );
+        say <span style="color:#e6db74">&#34;File &#39;$file&#39; uploaded with SSE-C encryption.&#34;</span>;
+    }
+    catch {
+        die <span style="color:#e6db74">&#34;Error uploading file with SSE-C encryption: $_&#34;</span>;
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">copy_file</span>($s3, $bucket_name, $file, $enc_key) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+    error_and_die(<span style="color:#e6db74">&#34;Missing file.&#34;</span>)        <span style="color:#66d9ef">unless</span> defined $file;
+    error_and_die(<span style="color:#e6db74">&#34;Missing enc key.&#34;</span>)     <span style="color:#66d9ef">unless</span> defined $enc_key;
+
+    try {
+        <span style="color:#66d9ef">my</span> $key_b64 <span style="color:#f92672">=</span> encode_base64($enc_key, <span style="color:#e6db74">&#39;&#39;</span>);
+        <span style="color:#66d9ef">my</span> $md5_raw <span style="color:#f92672">=</span> md5($enc_key);
+        <span style="color:#66d9ef">my</span> $md5_b64 <span style="color:#f92672">=</span> encode_base64($md5_raw, <span style="color:#e6db74">&#39;&#39;</span>);
+
+        $s3<span style="color:#f92672">-&gt;</span>CopyObject(
+            Bucket     <span style="color:#f92672">=&gt;</span> $bucket_name,
+            Key        <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;copy_of_$file&#34;</span>,
+            CopySource <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$bucket_name/$file&#34;</span>,
+            CopySourceSSECustomerAlgorithm <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;AES256&#39;</span>,
+            CopySourceSSECustomerKey       <span style="color:#f92672">=&gt;</span> $key_b64,
+            CopySourceSSECustomerKeyMD5    <span style="color:#f92672">=&gt;</span> $md5_b64,
+            SSECustomerAlgorithm           <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;AES256&#39;</span>,
+            SSECustomerKey                 <span style="color:#f92672">=&gt;</span> $key_b64,
+            SSECustomerKeyMD5              <span style="color:#f92672">=&gt;</span> $md5_b64,
+        );
+        say <span style="color:#e6db74">&#34;Successfully copied to &#39;copy_of_$file&#39; with maintained encryption.&#34;</span>;
+    }
+    catch {
+        die <span style="color:#e6db74">&#34;Error copying file with SSE-C encryption: $_&#34;</span>;
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">download_file</span>($s3, $bucket_name, $file, $enc_key) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+    error_and_die(<span style="color:#e6db74">&#34;Missing file.&#34;</span>)        <span style="color:#66d9ef">unless</span> defined $file;
+    error_and_die(<span style="color:#e6db74">&#34;Missing enc key.&#34;</span>)     <span style="color:#66d9ef">unless</span> defined $enc_key;
+
+    try {
+        <span style="color:#66d9ef">my</span> $key_b64 <span style="color:#f92672">=</span> encode_base64($enc_key, <span style="color:#e6db74">&#39;&#39;</span>);
+        <span style="color:#66d9ef">my</span> $md5_raw <span style="color:#f92672">=</span> md5($enc_key);
+        <span style="color:#66d9ef">my</span> $md5_b64 <span style="color:#f92672">=</span> encode_base64($md5_raw, <span style="color:#e6db74">&#39;&#39;</span>);
+
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>GetObject(
+            Bucket               <span style="color:#f92672">=&gt;</span> $bucket_name,
+            Key                  <span style="color:#f92672">=&gt;</span> $file,
+            SSECustomerAlgorithm <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;AES256&#39;</span>,
+            SSECustomerKey       <span style="color:#f92672">=&gt;</span> $key_b64,
+            SSECustomerKeyMD5    <span style="color:#f92672">=&gt;</span> $md5_b64,
+        );
+
+        <span style="color:#66d9ef">my</span> $content;
+        <span style="color:#66d9ef">if</span> (ref $response<span style="color:#f92672">-&gt;</span>Body <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;SCALAR&#39;</span>) {
+            $content <span style="color:#f92672">=</span> ${ $response<span style="color:#f92672">-&gt;</span>Body };
+        } <span style="color:#66d9ef">elsif</span> (ref $response<span style="color:#f92672">-&gt;</span>Body <span style="color:#f92672">&amp;&amp;</span> $response<span style="color:#f92672">-&gt;</span>Body<span style="color:#f92672">-&gt;</span>can(<span style="color:#e6db74">&#39;getline&#39;</span>)) {
+            local $/;
+            $content <span style="color:#f92672">=</span> $response<span style="color:#f92672">-&gt;</span>Body<span style="color:#f92672">-&gt;</span>getline();
+        } <span style="color:#66d9ef">else</span> {
+            $content <span style="color:#f92672">=</span> $response<span style="color:#f92672">-&gt;</span>Body;  <span style="color:#75715e"># fallback</span>
+        }
+
+        say <span style="color:#e6db74">&#34;Successfully downloaded encrypted object:\n$content&#34;</span>;
+    }
+    catch {
+        die <span style="color:#e6db74">&#34;ERROR: unable to download file with enc key: $_\n&#34;</span>;
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">download_file_without_enc_key</span>($s3, $bucket_name, $file) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+    error_and_die(<span style="color:#e6db74">&#34;Missing file.&#34;</span>)        <span style="color:#66d9ef">unless</span> defined $file;
+
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>GetObject(
+            Bucket <span style="color:#f92672">=&gt;</span> $bucket_name,
+            Key    <span style="color:#f92672">=&gt;</span> $file,
+        );
+        say <span style="color:#e6db74">&#34;Unexpected success downloading without SSE-C key.&#34;</span>;
+    }
+    catch {
+        say <span style="color:#e6db74">&#34;Expected failure when downloading without SSE-C key.&#34;</span>;
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch_file_meta</span>($s3, $bucket_name, $file, $enc_key) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+    error_and_die(<span style="color:#e6db74">&#34;Missing file.&#34;</span>)        <span style="color:#66d9ef">unless</span> defined $file;
+    error_and_die(<span style="color:#e6db74">&#34;Missing enc key.&#34;</span>)     <span style="color:#66d9ef">unless</span> defined $enc_key;
+
+    try {
+        <span style="color:#66d9ef">my</span> $key_b64 <span style="color:#f92672">=</span> encode_base64($enc_key, <span style="color:#e6db74">&#39;&#39;</span>);
+        <span style="color:#66d9ef">my</span> $md5_raw <span style="color:#f92672">=</span> md5($enc_key);
+        <span style="color:#66d9ef">my</span> $md5_b64 <span style="color:#f92672">=</span> encode_base64($md5_raw, <span style="color:#e6db74">&#39;&#39;</span>);
+
+        <span style="color:#66d9ef">my</span> $resp <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>HeadObject(
+            Bucket <span style="color:#f92672">=&gt;</span> $bucket_name,
+            Key    <span style="color:#f92672">=&gt;</span> $file,
+            SSECustomerAlgorithm <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;AES256&#39;</span>,
+            SSECustomerKey       <span style="color:#f92672">=&gt;</span> $key_b64,
+            SSECustomerKeyMD5    <span style="color:#f92672">=&gt;</span> $md5_b64,
+        );
+
+        say <span style="color:#e6db74">&#34;Object metadata:&#34;</span>;
+        say <span style="color:#e6db74">&#34;ETag: &#34;</span> <span style="color:#f92672">.</span> $resp<span style="color:#f92672">-&gt;</span>ETag;
+        say <span style="color:#e6db74">&#34;Size: &#34;</span> <span style="color:#f92672">.</span> $resp<span style="color:#f92672">-&gt;</span>ContentLength <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; bytes&#34;</span>;
+        say <span style="color:#e6db74">&#34;Encryption: &#34;</span> <span style="color:#f92672">.</span> ($resp<span style="color:#f92672">-&gt;</span>ServerSideEncryption <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;None&#39;</span>);
+        say <span style="color:#e6db74">&#34;SSE-C Algorithm: &#34;</span> <span style="color:#f92672">.</span> ($resp<span style="color:#f92672">-&gt;</span>SSECustomerAlgorithm <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;None&#39;</span>);
+        say <span style="color:#e6db74">&#34;SSE-C Key MD5: &#34;</span> <span style="color:#f92672">.</span> ($resp<span style="color:#f92672">-&gt;</span>SSECustomerKeyMD5 <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;None&#39;</span>);
+    }
+    catch {
+        die <span style="color:#e6db74">&#34;ERROR: unable to view file meta: $_\n&#34;</span>;
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cleanup</span>($s3, $bucket_name) {
+    error_and_die(<span style="color:#e6db74">&#34;Missing S3 client.&#34;</span>)   <span style="color:#66d9ef">unless</span> defined $s3;
+    error_and_die(<span style="color:#e6db74">&#34;Missing bucket name.&#34;</span>) <span style="color:#66d9ef">unless</span> defined $bucket_name;
+
+    try {
+        <span style="color:#66d9ef">my</span> $resp <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>ListObjectsV2(Bucket <span style="color:#f92672">=&gt;</span> $bucket_name);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $obj (@{ $resp<span style="color:#f92672">-&gt;</span>Contents }) {
+            say <span style="color:#e6db74">&#34; Delete key: &#34;</span>, $obj<span style="color:#f92672">-&gt;</span>{Key};
+            $s3<span style="color:#f92672">-&gt;</span>DeleteObject(Bucket <span style="color:#f92672">=&gt;</span> $bucket_name, Key <span style="color:#f92672">=&gt;</span> $obj<span style="color:#f92672">-&gt;</span>{Key});
+        }
+        $s3<span style="color:#f92672">-&gt;</span>DeleteBucket(Bucket <span style="color:#f92672">=&gt;</span> $bucket_name);
+        say <span style="color:#e6db74">&#34;Bucket &#39;$bucket_name&#39; deleted successfully.&#34;</span>;
+    }
+    catch {
+        die <span style="color:#e6db74">&#34;ERROR: unable to cleanup: $_\n&#34;</span>;
+    };
+}
+</code></pre></div><br>
+<p>Test the code now:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-c.pl --help
+usage: sse-c.pl <span style="color:#f92672">[</span>--help<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--file FILE<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--customer-key CUSTOMER_KEY<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--make-bucket<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--upload<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--copy-file<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--download<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--fetch-file-meta<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--cleanup<span style="color:#f92672">]</span>
+
+SSE-C Encryption
+
+options:
+  --help                      Show this help message and exit
+  --bucket BUCKET             Bucket name, default sse-c-encrypted-bucket
+  --file FILE                 File to upload/download, default secret-file.txt
+  --customer-key CUSTOMER_KEY Customer key, default CustomerSecretKey
+  --make-bucket               Create bucket
+  --upload                    Upload file
+  --copy-file                 Copy file
+  --download                  Download file
+  --fetch-file-meta           Fetch file metadata
+  --cleanup                   Remove file and bucket
+</code></pre></div><br>
+<p>Create bucket</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-c.pl --bucket sse-c-encrypted-bucket --make-bucket
+Bucket sse-c-encrypted-bucket created.
+</code></pre></div><br>
+<p>Upload file to bucket</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-c.pl --bucket sse-c-encrypted-bucket --file secret-file.txt --upload
+File <span style="color:#e6db74">&#39;secret-file.txt&#39;</span> uploaded with SSE-C encryption.
+</code></pre></div><br>
+<p>Fetch file metadata</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-c.pl --bucket sse-c-encrypted-bucket --file secret-file.txt --fetch-file-meta
+Object metadata:
+ETag: <span style="color:#e6db74">&#34;5c1c7463b3b94cd0e204abf746a42671&#34;</span>
+Size: <span style="color:#ae81ff">31</span> bytes
+Encryption: None
+SSE-C Algorithm: AES256
+SSE-C Key MD5: dovR6EvoX5kk8922+aAvNQ<span style="color:#f92672">==</span>
+</code></pre></div><br>
+<p>Copy file with key</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-c.pl --bucket sse-c-encrypted-bucket --file secret-file.txt --copy-file
+Successfully copied to <span style="color:#e6db74">&#39;copy_of_secret-file.txt&#39;</span> with maintained encryption.
+</code></pre></div><br>
+<p>Download file locally with key and without key</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-c.pl --bucket sse-c-encrypted-bucket --file secret-file.txt --download
+Successfully downloaded encrypted object:
+This is a secret file content.
+
+Expected failure when downloading without SSE-C key.
+</code></pre></div><br>
+<p>Cleanup in the end</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl sse-c.pl --bucket sse-c-encrypted-bucket --cleanup
+ Delete key: copy_of_secret-file.txt
+ Delete key: secret-file.txt
+Bucket <span style="color:#e6db74">&#39;sse-c-encrypted-bucket&#39;</span> deleted successfully.
+</code></pre></div><br>
+<h2 id="what-next">What next?</h2>
+<hr>
+<p>The next post would be about <code>AWS S3 Client-Side Encryption</code>.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
