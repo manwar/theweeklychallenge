@@ -546,6 +546,8 @@ DEFAULT_CUSTOMER_KEY <span style="color:#f92672">=</span> <span style="color:#e6
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Successfully copied to &#39;copy_of_{file}&#39; with maintained encryption&#34;</span>)
     <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error copying file: {e}&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error copying file with key: {e}&#34;</span>)
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">download_file</span>(s3, bucket_name, file, enc_key):
     <span style="color:#66d9ef">try</span>:
@@ -570,6 +572,8 @@ DEFAULT_CUSTOMER_KEY <span style="color:#f92672">=</span> <span style="color:#e6
     <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
         <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;InvalidRequest&#39;</span>:
             <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to downloaded without key.&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error downloading file without key: {e}&#34;</span>)
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch_file_meta</span>(s3, bucket_name, file, enc_key):
     <span style="color:#66d9ef">try</span>:
@@ -588,6 +592,8 @@ DEFAULT_CUSTOMER_KEY <span style="color:#f92672">=</span> <span style="color:#e6
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;SSE-C Key MD5: {response.get(&#39;SSECustomerKeyMD5&#39;, &#39;None&#39;)}&#34;</span>)
     <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error retrieving metadata: {e}&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error fetching file meta: {e}&#34;</span>)
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cleanup</span>(s3, bucket_name):
     <span style="color:#66d9ef">try</span>:
