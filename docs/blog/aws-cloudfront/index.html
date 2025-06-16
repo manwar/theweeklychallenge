@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="AWS CloudFront"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/aws-cloudfront/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about AWS Customer Key Encryption."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about AWS Customer Key Encryption.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/aws-cloudfront/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AWS CloudFront</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>AWS CloudFront</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Jun 16, 2025</span>|
+                        <span> Tags:
+                            aws, cloudfront
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/aws-cloudfront.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-leonardo-ai"><strong>DISCLAIMER:</strong> Image is generated using <code>Leonardo AI</code>.</h4>
+<br>
+<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-whats-amazon-cloudfrontwhats-amazon-cloudfront"><a href="#whats-amazon-cloudfront">2. What&rsquo;s Amazon CloudFront?</a></h3>
+<h3 id="3-setup-originsetup-origin"><a href="#setup-origin">3. Setup Origin</a></h3>
+<h3 id="4-create-contentcreate-content"><a href="#create-content">4. Create Content</a></h3>
+<h3 id="5-setup-configurationsetup-configuration"><a href="#setup-configuration">5. Setup Configuration</a></h3>
+<h3 id="6-create-distributioncreate-distribution"><a href="#create-distribution">6. Create Distribution</a></h3>
+<h3 id="7-mock-cloudfrontmock-cloudfront"><a href="#mock-cloudfront">7. Mock CloudFront</a></h3>
+<h3 id="8-testing-timetesting-time"><a href="#testing-time">8. Testing Time</a></h3>
+<h3 id="9-cleanupcleanup"><a href="#cleanup">9. Cleanup</a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<br>
+<p>Imagine you&rsquo;re running a FastFood shop and you want to deliver food as fast as possible to customers all over the world.</p>
+<p>But if your shop is only in, say, London, someone in Paris might have to wait a long time for their food to arrive.</p>
+<p><code>CloudFront</code> is like opening small FastFood centers (called <code>&quot;edge locations&quot;</code>) all around the world.</p>
+<p>Instead of sending every food from your main kitchen, you keep some pre-made or frequently ordered foods at these nearby stations.</p>
+<p>When someone orders, they get their food much faster because it comes from the closest station rather than the main kitchen.</p>
+<p>Let&rsquo;s take a closer look at some of the keywords used with <code>CloudFront</code>.</p>
+<br>
+<h3 id="origin">Origin</h3>
+<br>
+<p>It is same as the main kitchen. In <code>CloudFront</code>, the <code>origin</code> is the original source of your content.</p>
+<br>
+<h3 id="edge-locations">Edge Locations</h3>
+<br>
+<p>It is the FastFood centers around the world. In <code>CloudFront</code>, they are globally distributed servers that cache data..</p>
+<br>
+<h3 id="distribution">Distribution</h3>
+<br>
+<p>It is the delivery network. In <code>CloudFront</code>, the <code>distribution</code> is the configuration that connects your origin to edge locations.</p>
+<br>
+<h3 id="cache">Cache</h3>
+<br>
+<p>It is like pre-cooked food ready to serve. The <code>CloudFront</code> caches copies of your files at edge locations so they load faster.</p>
+<br>
+<h3 id="ttl">TTL</h3>
+<br>
+<p>It decides how long the food stays fresh. <code>TTL</code> determines how long <code>CloudFront</code> keeps a cached copy before checking the origin for updates.</p>
+<br>
+<h3 id="invalidations">Invalidations</h3>
+<br>
+<p>It is like throwing away stale foods. If you update your content, you can force <code>CloudFront</code> to clear (invalidate) the cache and fetch the latest version from the origin.</p>
+<br>
+<h3 id="behaviors">Behaviors</h3>
+<br>
+<p>It is like special delivery rules. Rules that define how <code>CloudFront</code> handles different types of requests.</p>
+<br>
+<h2 id="what-is-aws-cloudfront">What is AWS CloudFront?</h2>
+<hr>
+<br>
+<p><code>AWS CloudFront</code> is a <code>Content Delivery Network (CDN)</code> service provided by <code>Amazon Web Services</code>.</p>
+<p>It is designed to deliver content, such as web pages, images, videos, and APIs—to users quickly, securely and with low latency by using a network of globally distributed edge locations.</p>
+<p><code>CloudFront</code> caches the content in data centers, called <code>edge locations</code>, around the world.</p>
+<p>Frequently requested content is cached at <code>edge locations</code> to reduce load on the origin server and improve load times.</p>
+<p>It can serve content from various sources, such as <code>Amazon S3 buckets</code>, <code>EC2 instances</code> etc.</p>
+<br>
+<h2 id="setup-origin">Setup Origin</h2>
+<hr>
+<p><code>CloudFront</code> needs an <code>origin</code> e.g. <code>S3</code> bucket.</p>
+<p>As you know by now, I have used <a href="https://www.localstack.cloud"><strong>LocalStack</strong></a> platform to play with supported <code>Amazon Web Services</code>.</p>
+<p>So, for <code>CloudFront</code> also, I am using <code>LocalStack (FREE version)</code>.</p>
+<p>I am running <code>LocalStack</code> in a docker container. This is current state of the container.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Container ID: c5414ee41318
+Image: localstack/localstack
+Command: <span style="color:#e6db74">&#34;docker-entrypoint.sh&#34;</span>
+Created: 2025-06-15 02:39:36 +0100 BST
+Status: Up <span style="color:#ae81ff">17</span> hours <span style="color:#f92672">(</span>healthy<span style="color:#f92672">)</span>
+Ports: 0.0.0.0:4510-4559-&gt;4510-4559/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:4510-4559-&gt;4510-4559/tcp, 0.0.0.0:4566-&gt;4566/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:4566-&gt;4566/tcp, 5678/tcp
+Names: localstack
+</code></pre></div><br>
+<p>Let&rsquo;s create <code>origin</code> for <code>CloudFront</code> first.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 mb s3://my-cloudfront-bucket
+make_bucket: my-cloudfront-bucket
+</code></pre></div><br>
+<h2 id="create-content">Create Content</h2>
+<hr>
+<br>
+<p>Now I&rsquo;ll create a static <code>HTML</code> page and upload to <code>S3</code> bucket &lsquo;my-cloudfront-bucket`.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ echo <span style="color:#e6db74">&#34;Hello, CloudFront!&#34;</span> &gt; index.html
+$ aws s3 cp index.html s3://my-cloudfront-bucket
+upload: ./index.html to s3://my-cloudfront-bucket/index.html
+</code></pre></div><br>
+<h2 id="setup-configuration">Setup Configuration</h2>
+<hr>
+<br>
+<p>Time to create <code>CloudFront</code> configuration file: <code>cloudfront-config.json</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{</span>
+  <span style="color:#e6db74">&#34;CallerReference&#34;</span>: <span style="color:#e6db74">&#34;my-distribution&#34;</span>,
+  <span style="color:#e6db74">&#34;Comment&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+  <span style="color:#e6db74">&#34;Origins&#34;</span>: <span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;Quantity&#34;</span>: 1,
+    <span style="color:#e6db74">&#34;Items&#34;</span>: <span style="color:#f92672">[</span>
+      <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;Id&#34;</span>: <span style="color:#e6db74">&#34;my-s3-origin&#34;</span>,
+        <span style="color:#e6db74">&#34;DomainName&#34;</span>: <span style="color:#e6db74">&#34;my-cloudfront-bucket.s3.localhost.localstack.cloud&#34;</span>,
+        <span style="color:#e6db74">&#34;S3OriginConfig&#34;</span>: <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#34;OriginAccessIdentity&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+        <span style="color:#f92672">}</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">]</span>
+  <span style="color:#f92672">}</span>,
+  <span style="color:#e6db74">&#34;DefaultCacheBehavior&#34;</span>: <span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;TargetOriginId&#34;</span>: <span style="color:#e6db74">&#34;my-s3-origin&#34;</span>,
+    <span style="color:#e6db74">&#34;ForwardedValues&#34;</span>: <span style="color:#f92672">{</span>
+      <span style="color:#e6db74">&#34;QueryString&#34;</span>: false,
+      <span style="color:#e6db74">&#34;Cookies&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;Forward&#34;</span>: <span style="color:#e6db74">&#34;none&#34;</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;ViewerProtocolPolicy&#34;</span>: <span style="color:#e6db74">&#34;allow-all&#34;</span>
+  <span style="color:#f92672">}</span>,
+  <span style="color:#e6db74">&#34;Enabled&#34;</span>: true
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<h2 id="create-distribution">Create Distribution</h2>
+<hr>
+<br>
+<p>Next step is to create the distribution.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws cloudfront create-distribution --distribution-config file://cloudfront-config.json
+</code></pre></div><br>
+<p>It seems my luck is running out today.</p>
+<p>I got the following error when I tried to create distribution above.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    An error occurred <span style="color:#f92672">(</span>InternalFailure<span style="color:#f92672">)</span> when calling the CreateDistribution operation:
+    API <span style="color:#66d9ef">for</span> service <span style="color:#e6db74">&#39;cloudfront&#39;</span> not yet implemented or pro feature -
+    please check https://docs.localstack.cloud/references/coverage/ <span style="color:#66d9ef">for</span> further information
+</code></pre></div><br>
+<p>Apparently, the <code>LocalStack (FREE version)</code> do not support <code>CloudFront</code> service unfortunately.</p>
+<p>I&rsquo;ll have to purchase the <code>Pro version</code> to be able to use <code>CloudFront</code> service.</p>
+<p>It is a blocker for me.</p>
+<br>
+<h2 id="mock-cloudfront">Mock CloudFront</h2>
+<hr>
+<br>
+<p>There is a workaround and we can easily mock the <code>CloudFront</code> behaviour.</p>
+<p>For basic simulation of <code>Caching/CDN-like</code> behaviour, we can use a local reverse proxy e.g. <code>nginx</code> in front of <code>S3</code> in <code>LocalStack</code>.</p>
+<p>Let&rsquo;s create <code>nginx</code> configuration file: <code>nginx/nginx.conf</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">events <span style="color:#f92672">{}</span>
+
+http <span style="color:#f92672">{</span>
+    proxy_cache_path /var/cache/nginx
+                     levels<span style="color:#f92672">=</span>1:2
+                     keys_zone<span style="color:#f92672">=</span>cloudfront_cache:10m
+                     max_size<span style="color:#f92672">=</span>100m
+                     inactive<span style="color:#f92672">=</span>60m
+                     use_temp_path<span style="color:#f92672">=</span>off;
+
+    server <span style="color:#f92672">{</span>
+        listen 80;
+
+        location / <span style="color:#f92672">{</span>
+            proxy_pass http://172.17.0.1:4566;
+            proxy_set_header Host $host;
+
+            proxy_cache cloudfront_cache;
+            proxy_cache_valid <span style="color:#ae81ff">200</span> <span style="color:#ae81ff">302</span> 10m;
+            proxy_cache_use_stale error timeout updating;
+
+            add_header X-Mock-CloudFront true;
+            add_header Cache-Control <span style="color:#e6db74">&#34;public, max-age=600&#34;</span>;
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>The above <code>nginx</code> server emulates the following <code>CloudFront</code> behaviour:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">1<span style="color:#f92672">)</span> Sets up a cache zone <span style="color:#f92672">(</span>cloudfront_cache<span style="color:#f92672">)</span> with 10MB memory and 100MB disk space
+2<span style="color:#f92672">)</span> Caches successful responses <span style="color:#f92672">(</span>200, 302<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">10</span> minutes
+3<span style="color:#f92672">)</span> Uses stale cache when there are errors or timeouts
+4<span style="color:#f92672">)</span> Adds X-Mock-CloudFront header to identify this as a mock CloudFront
+5<span style="color:#f92672">)</span> Sets Cache-Control header to public, max-age<span style="color:#f92672">=</span><span style="color:#ae81ff">600</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">10</span> minutes<span style="color:#f92672">)</span>
+6<span style="color:#f92672">)</span> Forwards requests to LocalStack instance <span style="color:#f92672">(</span>172.17.0.1:4566<span style="color:#f92672">)</span>
+7<span style="color:#f92672">)</span> Preserves the original Host header
+</code></pre></div><br>
+<p>As a fan of <code>Docker</code>, I will run the <code>nginx</code> server in a docker container.</p>
+<p>So here is the docker compose configuration file: <code>docker-compose.yml</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+
+services:
+  mock-cloudfront:
+    image: nginx:alpine
+    ports:
+      - <span style="color:#e6db74">&#34;8080:80&#34;</span>
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+</code></pre></div><br>
+<p>Time to start the <code>nginx</code> server.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up -d
+Creating network <span style="color:#e6db74">&#34;cloudfront_default&#34;</span> with the default driver
+Creating cloudfront_mock-cloudfront_1 ... <span style="color:#66d9ef">done</span>
+</code></pre></div><br>
+<p>The docker container status looks like below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Container ID: 959bdf82721e
+Image: nginx:alpine
+Command: <span style="color:#e6db74">&#34;/docker-entrypoint.…&#34;</span>
+Created: 2025-06-15 19:51:01 +0100 BST
+Status: Up <span style="color:#ae81ff">23</span> seconds
+Ports: 0.0.0.0:8080-&gt;80/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:8080-&gt;80/tcp
+Names: cloudfront_mock-cloudfront_1
+</code></pre></div><br>
+<p>We are good to go now.</p>
+<br>
+<h2 id="testing-time">Testing Time</h2>
+<hr>
+<br>
+<p>Let&rsquo;s try to access the <code>HTML</code> page we created and uploaded to <code>S3</code> bucket above.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -i http://localhost:8080/my-cloudfront-bucket/index.html
+HTTP/1.1 <span style="color:#ae81ff">200</span> OK
+Server: nginx/1.27.5
+Date: Sun, <span style="color:#ae81ff">15</span> Jun <span style="color:#ae81ff">2025</span> 18:54:48 GMT
+Content-Type: text/html
+Content-Length: <span style="color:#ae81ff">19</span>
+Connection: keep-alive
+Last-Modified: Sun, <span style="color:#ae81ff">15</span> Jun <span style="color:#ae81ff">2025</span> 18:54:38 GMT
+ETag: <span style="color:#e6db74">&#34;ae6f164c882446d8d3eaca05c82149b3&#34;</span>
+x-amz-server-side-encryption: AES256
+x-amz-request-id: 904b2a41-ebc4-4d86-980d-237554ed341f
+x-amz-id-2: s9lzHYrFp76ZVxRcpX9+5cjAnEH2ROuNkd2BHfIa6UkFVdtjf5mKR3/eTPFvsiP/XV/VLi31234<span style="color:#f92672">=</span>
+X-Mock-CloudFront: true
+Cache-Control: public, max-age<span style="color:#f92672">=</span><span style="color:#ae81ff">600</span>
+Accept-Ranges: bytes
+
+Hello, CloudFront!
+</code></pre></div><br>
+<p>So far, so good.</p>
+<br>
+<h2 id="cleanup">Cleanup</h2>
+<hr>
+<br>
+<p>Let&rsquo;s stop the container.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose down
+Stopping cloudfront_mock-cloudfront_1 ... <span style="color:#66d9ef">done</span>
+Removing cloudfront_mock-cloudfront_1 ... <span style="color:#66d9ef">done</span>
+Removing network cloudfront_default
+</code></pre></div><br>
+<p>Time to cleanup <code>S3</code> bucket finally.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 rm s3://my-cloudfront-bucket --recursive
+delete: s3://my-cloudfront-bucket/index.html
+$ aws s3 rb s3://my-cloudfront-bucket
+remove_bucket: my-cloudfront-bucket
+</code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
