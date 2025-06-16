@@ -157,7 +157,7 @@ make_bucket: my-cloudfront-bucket
 
 <br>
 
-Now I'll create a static `HTML` page and upload to `S3` bucket 'my-cloudfront-bucket`.
+Now I'll create a static `HTML` page and upload to `S3` bucket `my-cloudfront-bucket`.
 
 <br>
 
