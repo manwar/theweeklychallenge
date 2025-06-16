@@ -106,7 +106,7 @@ It is like special delivery rules. Rules that define how `CloudFront` handles di
 
 `AWS CloudFront` is a `Content Delivery Network (CDN)` service provided by `Amazon Web Services`.
 
-It is designed to deliver content, such as web pages, images, videos, and APIs—to users quickly, securely and with low latency by using a network of globally distributed edge locations.
+It is designed to deliver content, such as web pages, images, videos, and APIs to users quickly, securely and with low latency by using a network of globally distributed edge locations.
 
 `CloudFront` caches the content in data centers, called `edge locations`, around the world.
 
