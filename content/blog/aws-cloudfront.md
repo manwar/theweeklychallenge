@@ -99,7 +99,7 @@ It is like special delivery rules. Rules that define how `CloudFront` handles di
 <br>
 
 
-## What is AWS CloudFront?
+## What's AWS CloudFront?
 ***
 
 <br>
