@@ -12,7 +12,7 @@ tags: ["aws", "cloudfront"]
 <br>
 
 ### [1. Introduction](#introduction)
-### [2. What's Amazon CloudFront?](#whats-amazon-cloudfront)
+### [2. What's AWS CloudFront?](#whats-aws-cloudfront)
 ### [3. Setup Origin](#setup-origin)
 ### [4. Create Content](#create-content)
 ### [5. Setup Configuration](#setup-configuration)
