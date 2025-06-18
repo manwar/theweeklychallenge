@@ -29,8 +29,6 @@ A `list` is an ordered collection of scalar values and it's immutable i.e. canno
 
 `Lists` are temporary and exist only in expressions e.g. `function arguments, assignments`.
 
-`Lists` are not indexed, so you cannot access elements by position directly.
-
 For example:
 
 <br>
