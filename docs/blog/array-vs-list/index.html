@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Array vs List"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/array-vs-list/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about Array vs List in Perl."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about Array vs List in Perl.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/array-vs-list/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Array vs List</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Array vs List</h2>
+                    <div class="portfolio-meta">
+                        <span>Wednesday, Jun 18, 2025</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/array-vs-list.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<br>
+<p>Recently, I came across a blog post titled, <a href="https://perlhacks.com/2025/06/a-slice-of-perl"><strong>Slice of Perl</strong></a> by <code>Dave Cross</code>.</p>
+<p>It&rsquo;s a must-read for <code>Perl</code> programmers, as it highlights a useful feature that can simplify your life.</p>
+<p>Reading it, reminded me of a subtle but important distinction I encountered years ago: the difference between <code>List</code> and <code>Array</code> in <code>Perl</code>.</p>
+<p>I&rsquo;m sharing my insights here in the hope that others will find them helpful.</p>
+<p>Before diving into <code>List Slicing</code> or <code>Array Slicing</code>, it&rsquo;s essential to understand the difference between <code>List</code> and <code>Array</code> in <code>Perl</code>.</p>
+<p>When I first started learning <code>Perl</code> (around <code>1998</code>), I only knew about <code>Array</code> and assumed every <code>List</code> was an <code>Array</code>.</p>
+<p>However, <code>List</code> and <code>Array</code> while related, are distinct concepts.</p>
+<p>A <code>list</code> is an ordered collection of scalar values and it&rsquo;s immutable i.e. cannot be modified directly.</p>
+<p><code>Lists</code> are temporary and exist only in expressions e.g. <code>function arguments, assignments</code>.</p>
+<p><code>Lists</code> are not indexed, so you cannot access elements by position directly.</p>
+<p>For example:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;foo&#39;</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)   <span style="color:#75715e"># Collection of scalars</span>
+  <span style="color:#e6db74">qw(foo bar)</span>        <span style="color:#75715e"># Same as list (&#39;foo&#39;, &#39;bar&#39;)</span>
+</code></pre></div><br>
+<p>An <code>array</code> is a variable that stores an ordered list of scalars.</p>
+<p><code>Array</code> is mutable i.e. it can be modified after creation.</p>
+<p>Arrays are indexed and elements can be accessed via <code>$array[index]</code>.</p>
+<p>For example:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">my</span> @fruits <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;apple&#39;</span>, <span style="color:#e6db74">&#39;banana&#39;</span>, <span style="color:#e6db74">&#39;cherry&#39;</span>);  <span style="color:#75715e"># List assigned to an array</span>
+  $fruits[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;orange&#39;</span>;                       <span style="color:#75715e"># Modifying an element</span>
+</code></pre></div><br>
+<p>Use a <code>list</code> for temporary groupings e.g. <code>passing arguments to functions</code>.</p>
+<p>Use an <code>array</code> when you need persistent, extendable storage.</p>
+<p>In the example below, passing a list <code>(1, 2, 3)</code> to sub <code>example()</code> which becomes <code>@_</code> inside the sub.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">example</span> {
+    <span style="color:#66d9ef">my</span> ($a, $b, $c) <span style="color:#f92672">=</span> @_;  <span style="color:#75715e"># @_ is an array containing the passed list</span>
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$a, $b, $c\n&#34;</span>;
+}
+
+example(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
+</code></pre></div><br>
+<p>When a <code>list</code> is stored in a named variable, that variable is called an <code>array</code>.</p>
+<p>A <code>list</code> by itself is just an ordered collection of scalars.</p>
+<p><code>List</code> has no storage identity.</p>
+<p>An <code>array</code> is a variable that holds a <code>list</code> and allows indexed access, modification, and persistence.</p>
+<p>Assignment is not the only way <code>arrays</code> get <code>lists</code>.</p>
+<p><code>Array</code> can also be modified dynamically e.g. <code>push @array, $new_element</code>.</p>
+<p>A <code>list</code> does not <code>become</code> an <code>array</code>, it is stored inside an <code>array</code>.</p>
+<p><code>List</code> exists independently of <code>Array</code>.</p>
+<p>For example:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;, &#34;</span>, (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>));
+</code></pre></div><br>
+<p>Here <code>(1, 2, 3)</code> is a <code>list</code> used directly, not stored in an <code>array</code>.</p>
+<p><code>Arrays</code> can hold <code>lists</code>, but <code>lists</code> are not <code>arrays</code>.</p>
+<br>
+<h2 id="lists-are-values-arrays-are-containers">Lists are values; Arrays are containers;</h2>
+<br>
+<p>One line defintion:</p>
+<p>A <code>list</code> cannot directly contain arrays (or hashes), but it can contain their elements (flattened) or references to them.</p>
+<p>An <code>array</code> is a <code>Perl</code> variable that stores a <code>list</code>, allowing indexed access and modification.</p>
+<p><code>List</code> only hold scalars.</p>
+<p>If you try to include an <code>array</code> directly in a <code>list</code>, <code>Perl</code> flattens it into its individual elements.</p>
+<p>For example:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @array     <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @new_array <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, @array, <span style="color:#ae81ff">4</span>);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@new_array&#34;</span>;
+</code></pre></div><br>
+<p><code>@array</code> is flattened into <code>(2, 3)</code>, so the <code>@new_array</code> becomes <code>(1, 2, 3, 4)</code>.</p>
+<p>How about <code>hash</code> in the <code>list</code>?</p>
+<p>It would get the same treatment as <code>array</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %hash      <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;x&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;y&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @new_array <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, %hash, <span style="color:#ae81ff">4</span>);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@new_array&#34;</span>;
+</code></pre></div><br>
+<p><code>%hash</code> is flattened into <code>('x', 2, 'y', 3)</code>, so <code>@new_array</code> becomes <code>(1, 'x', 2, 'y', 3, 4)</code>.</p>
+<p>Can I include an array without flattening?</p>
+<p>If you want to keep the array as a single element in the list, you must use a reference <code>\@array</code>.</p>
+<p>Same goes with hash as well.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @array     <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @new_array <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#f92672">\</span>@array, <span style="color:#ae81ff">4</span>);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@new_array&#34;</span>;
+</code></pre></div><br>
+<p>Now, the <code>@new_array</code> contains: <code>(1 ARRAY(0x558f1b3b43b0) 4)</code>.</p>
+<p>Let&rsquo;s see how <code>hash</code> behaves in a <code>list</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %hash      <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;x&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;y&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @new_array <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#f92672">\</span>%hash, <span style="color:#ae81ff">4</span>);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@new_array&#34;</span>;
+</code></pre></div><br>
+<p>Now, the <code>@new_array</code> contains: <code>(1, HASH(0x558f1b3b4470), 4)</code>.</p>
+<p>Why <code>Perl</code> flattens lists?</p>
+<p><code>Perl</code> was designed with simplicity and flexibility in mind.</p>
+<p>Flattening allows easy concatenation of lists.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @combined <span style="color:#f92672">=</span> (@list1, @list2);  <span style="color:#75715e"># Merges both lists seamlessly.</span>
+</code></pre></div><br>
+<p>When does this matter?</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">example</span> { <span style="color:#66d9ef">print</span> scalar @_; }
+<span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+example(@arr, <span style="color:#ae81ff">3</span>);
+</code></pre></div><br>
+<p>The <code>@_</code> inside the subroutine gets <code>(1, 2, 3)</code>, not <code>(@arr, 3)</code>.</p>
+<br>
+<h2 id="summary">Summary</h2>
+<hr>
+<br>
+<p><code>Array</code> in list flattened into elements: <code>(1, @array, 4)</code> =&gt; <code>(1, 2, 3, 4)</code></p>
+<p><code>Array ref</code> in list stored as a single reference: <code>(1, \@array, 2)</code>  =&gt; <code>(1, ARRAY(0x...), 4)</code></p>
+<p>A <code>list</code> can only contain scalars (not <code>arrays</code>/<code>hashes</code> directly).</p>
+<p>If an <code>array</code> is placed inside a <code>list</code>, it is flattened into its elements.</p>
+<p>To store an <code>array</code> as a single list element, use a reference, <code>\@array</code>.</p>
+<hr>
+<br>
+<p><code>Happy Learning !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
