@@ -169,7 +169,7 @@ print "@new_array";
 
 <br>
 
-Now, the `@new_array` contains: `(1 ARRAY(0x558f1b3b43b0) 4)`.
+Now, the `@new_array` contains: `(1, ARRAY(0x558f1b3b43b0), 4)`.
 
 Let's see how `hash` behaves in a `list`.
 
