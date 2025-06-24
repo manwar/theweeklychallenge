@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2025-06-22T00:00:00+00:00
+date: 2025-06-24T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -17,6 +17,9 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
     <div class="col-12">
       <div class="links-visible">
         <div class="row text-center">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
+             <span class="link-item"><a href="#327">[&nbsp;&nbsp;327&nbsp;&nbsp;]</a> &nbsp;</span>
+          </div>
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#326">[&nbsp;&nbsp;326&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
@@ -194,13 +197,13 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#268">[&nbsp;&nbsp;268&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
-             <span class="link-item"><a href="#267">[&nbsp;&nbsp;267&nbsp;&nbsp;]</a> &nbsp;</span>
-          </div>
         </div>
       </div>
       <div class="links-hidden" style="display: none;">
         <div class="row text-center">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
+             <span class="link-item"><a href="#267">[&nbsp;&nbsp;267&nbsp;&nbsp;]</a> &nbsp;</span>
+          </div>
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#266">[&nbsp;&nbsp;266&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
@@ -1064,6 +1067,28 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
   }
 </style>
 
+## [The Weekly Challenge - 327](/blog/perl-weekly-challenge-327) {#327}
+<br>
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/deadmarshal/erlang/ch1.erl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/deadmarshal/erlang/ch2.erl) in **Erlang**.
+
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Magnus Markling** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/memark/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/memark/uiua/ch-2.ua) in **Uiua**.
+
+##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/pokgopun/go/ch-2.go) in **Go**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/pokgopun/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/pokgopun/python/ch-1.py) in **Python**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-327/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+
+___
 ## [The Weekly Challenge - 326](/blog/perl-weekly-challenge-326) {#326}
 <br>
 
@@ -1154,6 +1179,8 @@ ___
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/luca-ferrari/python/ch-2.py) in **Python**.
+
+##### **Magnus Markling** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/memark/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/memark/uiua/ch-2.ua) in **Uiua**.
 
 ##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/packy-anderson/elixir/ch-1.exs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-325/packy-anderson/elixir/ch-2.exs) in **Elixir**.
 
