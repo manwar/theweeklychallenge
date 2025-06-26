@@ -81,7 +81,7 @@ Optionally, we can create `Global Secondary Indexes` which helps to query the da
 
 <br>
 
-As always being `Docker` fan, I am using thie docker compose configuration to start the `LocalStack` xontainer/
+As always being a `Docker` fan, I am using this docker compose configuration to start the `LocalStack` xontainer/
 
 <br>
 
