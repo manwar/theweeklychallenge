@@ -70,7 +70,7 @@ It consists of two attributes: `Primary Key` and `Sort Key`.
 
 The `key-schema` is used to define the primary key (partition key and sort key).
 
-The `attribute-definitions` are a way to define the data types of the attributes in the table.
+The `attribute-definitions` is used to define the data types of the attributes in the table.
 
 Optionally, we can create `Global Secondary Indexes` which helps to query the data using different attributes.
 
