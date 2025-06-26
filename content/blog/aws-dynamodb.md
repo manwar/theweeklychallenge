@@ -66,6 +66,8 @@ It consists of single attribute (partition key). It is used to distribute data a
 
 It consists of two attributes: `Partition Key` and `Sort Key`.
 
+<br>
+
 `Partition Key` determines the physical storage partition and `Sort Key` orders items within the same partition.
 
 The `key-schema` is used to define the primary key (`partition key` and `sort key`).
