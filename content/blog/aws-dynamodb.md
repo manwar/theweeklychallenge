@@ -1007,7 +1007,7 @@ sub list_table_contents($table_name) {
 
 <br>
 
-Now time for quick operatios as below:
+Now time for quick operations as below:
 
 <br>
 
