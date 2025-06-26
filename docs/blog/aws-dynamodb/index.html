@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="AWS DynamoDB"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/aws-dynamodb/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about AWS DynamoDB."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about AWS DynamoDB.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/aws-dynamodb/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AWS DynamoDB</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>AWS DynamoDB</h2>
+                    <div class="portfolio-meta">
+                        <span>Wednesday, Jun 25, 2025</span>|
+                        <span> Tags:
+                            aws, dynamodb
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/aws-dynamodb.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<br>
+<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-dynamodb-structuredynamodb-structure"><a href="#dynamodb-structure">2. DynamoDB Structure</a></h3>
+<h3 id="3-setup-localstacksetup-localstack"><a href="#setup-localstack">3. Setup LocalStack</a></h3>
+<h3 id="4-using-cliusing-cli"><a href="#using-cli">4. Using CLI</a></h3>
+<h3 id="5-using-pythonusing-python"><a href="#using-python">5. Using Python</a></h3>
+<h3 id="6-using-perlusing-perl"><a href="#using-perl">6. Using Perl</a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<br>
+<p><code>AWS DynamoDB</code> is a fully managed <code>NoSQL</code> database service provided by <code>AWS</code>.</p>
+<p>It is designed for high availability, scalability and low-latency performance.</p>
+<p>It is a popular choice for modern applications that require fast and flexible data storage.</p>
+<p>Unlike traditional relational databases, <code>DynamoDB</code> is schemaless, meaning it does not require a fixed table structure.</p>
+<p><code>DynamoDB</code> can handle millions of requests per second by distributing data across multiple servers.</p>
+<p><code>Horizontal</code> scaling refers to adding more machines or nodes to a system to handle increased load, rather than upgrading a single machine, which is <code>Vertical</code> scaling.</p>
+<p><code>AWS DynamoDB</code> supports automatic horizontal scaling.</p>
+<br>
+<h2 id="dynamodb-structure">DynamoDB Structure</h2>
+<hr>
+<br>
+<p>In <code>DynamoDB</code>, each table has a <code>primary key</code> that is composed of one or two parts: <code>Partition Key (HASH key)</code> and <code>Sort Key (RANGE key)</code></p>
+<p>There are two types of <code>primary keys</code> in <code>DynamoDB</code>.</p>
+<br>
+<h3 id="1-simple-primary-key">1. Simple Primary Key</h3>
+<p>It consists of single attribute (partition key). It is used to distribute data across partitions.</p>
+<h3 id="2-composite-primary-key">2. Composite Primary Key</h3>
+<p>It consists of two attributes: <code>Primary Key</code> and <code>Sort Key</code>.</p>
+<p><code>Primary Key</code> determines the physical storage partition and <code>Sort Key</code> orders items within the same partition.</p>
+<p>The <code>key-schema</code> is used to define the primary key (partition key and sort key).</p>
+<p>The <code>attribute-definitions</code> are a way to define the data types of the attributes in the table.</p>
+<p>Optionally, we can create <code>Global Secondary Indexes</code> which helps to query the data using different attributes.</p>
+<br>
+<h2 id="setup-localstack">Setup LocalStack</h2>
+<hr>
+<br>
+<p>As always being <code>Docker</code> fan, I am using thie docker compose configuration to start the <code>LocalStack</code> xontainer/</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat docker-compose.yml
+version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    ports:
+      - <span style="color:#e6db74">&#34;4566:4566&#34;</span>
+      - <span style="color:#e6db74">&#34;4510-4559:4510-4559&#34;</span>
+    environment:
+      - LAMBDA_EXECUTOR<span style="color:#f92672">=</span>docker
+      - HOST_TMP_FOLDER<span style="color:#f92672">=</span>/host_tmp
+      - LOCALSTACK_S3_STRICT_ENCRYPTION<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+      - SERVICES<span style="color:#f92672">=</span>s3,ec2,lambda,sts,iam,apigateway,logs,kinesis,dynamodb
+      - LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT<span style="color:#f92672">=</span><span style="color:#ae81ff">60</span>
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - localstack_localstack_data:/var/lib/localstack
+      - /tmp/localstack_host:/host_tmp
+
+volumes:
+  localstack_localstack_data:
+</code></pre></div><br>
+<p>Start the container, do this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up -d
+</code></pre></div><br>
+<h2 id="using-cli">Using CLI</h2>
+<hr>
+<br>
+<p>For demo purpose, lets create table <code>Users</code> with attributes <code>id</code>, <code>name</code>, <code>age</code> and <code>sex</code>. We&rsquo;ll make <code>id</code> as primary key.</p>
+<br>
+<h3 id="create-table">Create Table</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws dynamodb create-table <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --table-name Users <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --billing-mode PAY_PER_REQUEST <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --attribute-definitions <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        AttributeName<span style="color:#f92672">=</span>id,AttributeType<span style="color:#f92672">=</span>S <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        AttributeName<span style="color:#f92672">=</span>name,AttributeType<span style="color:#f92672">=</span>S <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        AttributeName<span style="color:#f92672">=</span>age,AttributeType<span style="color:#f92672">=</span>N <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        AttributeName<span style="color:#f92672">=</span>sex,AttributeType<span style="color:#f92672">=</span>S <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --key-schema AttributeName<span style="color:#f92672">=</span>id,KeyType<span style="color:#f92672">=</span>HASH <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --global-secondary-indexes <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        <span style="color:#e6db74">&#39;[
+</span><span style="color:#e6db74">            {
+</span><span style="color:#e6db74">                &#34;IndexName&#34;: &#34;NameIndex&#34;,
+</span><span style="color:#e6db74">                &#34;KeySchema&#34;: [{&#34;AttributeName&#34;: &#34;name&#34;, &#34;KeyType&#34;: &#34;HASH&#34;}],
+</span><span style="color:#e6db74">                &#34;Projection&#34;: {&#34;ProjectionType&#34;: &#34;ALL&#34;}
+</span><span style="color:#e6db74">            },
+</span><span style="color:#e6db74">            {
+</span><span style="color:#e6db74">                &#34;IndexName&#34;: &#34;AgeIndex&#34;,
+</span><span style="color:#e6db74">                &#34;KeySchema&#34;: [{&#34;AttributeName&#34;: &#34;age&#34;, &#34;KeyType&#34;: &#34;HASH&#34;}],
+</span><span style="color:#e6db74">                &#34;Projection&#34;: {&#34;ProjectionType&#34;: &#34;ALL&#34;}
+</span><span style="color:#e6db74">            },
+</span><span style="color:#e6db74">            {
+</span><span style="color:#e6db74">                &#34;IndexName&#34;: &#34;SexIndex&#34;,
+</span><span style="color:#e6db74">                &#34;KeySchema&#34;: [{&#34;AttributeName&#34;: &#34;sex&#34;, &#34;KeyType&#34;: &#34;HASH&#34;}],
+</span><span style="color:#e6db74">                &#34;Projection&#34;: {&#34;ProjectionType&#34;: &#34;ALL&#34;}
+</span><span style="color:#e6db74">            }
+</span><span style="color:#e6db74">        ]&#39;</span>
+</code></pre></div><br>
+<h3 id="list-tables">List Tables</h3>
+<br>
+<p>To list all the tables in <code>DynamoDB</code>, try this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws dynamodb list-tables --output text
+TABLENAMES      Users
+</code></pre></div><br>
+<h3 id="describe-table">Describe Table</h3>
+<br>
+<p>To describe table definition, try this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws dynamodb describe-table --table-name Users
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;Table&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;AttributeDefinitions&#34;</span>: <span style="color:#f92672">[</span>
+            <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;AttributeName&#34;</span>: <span style="color:#e6db74">&#34;id&#34;</span>,
+                <span style="color:#e6db74">&#34;AttributeType&#34;</span>: <span style="color:#e6db74">&#34;S&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;AttributeName&#34;</span>: <span style="color:#e6db74">&#34;name&#34;</span>,
+                <span style="color:#e6db74">&#34;AttributeType&#34;</span>: <span style="color:#e6db74">&#34;S&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;AttributeName&#34;</span>: <span style="color:#e6db74">&#34;age&#34;</span>,
+                <span style="color:#e6db74">&#34;AttributeType&#34;</span>: <span style="color:#e6db74">&#34;N&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;AttributeName&#34;</span>: <span style="color:#e6db74">&#34;sex&#34;</span>,
+                <span style="color:#e6db74">&#34;AttributeType&#34;</span>: <span style="color:#e6db74">&#34;S&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">]</span>,
+        <span style="color:#e6db74">&#34;TableName&#34;</span>: <span style="color:#e6db74">&#34;Users&#34;</span>,
+        <span style="color:#e6db74">&#34;KeySchema&#34;</span>: <span style="color:#f92672">[</span>
+            <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;AttributeName&#34;</span>: <span style="color:#e6db74">&#34;id&#34;</span>,
+                <span style="color:#e6db74">&#34;KeyType&#34;</span>: <span style="color:#e6db74">&#34;HASH&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">]</span>,
+        ...
+        ...
+        ...
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<h3 id="add-item">Add Item</h3>
+<br>
+<p>Add items to the table. I am using the most basic form here.</p>
+<p>We are adding three items as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws dynamodb put-item <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name Users <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --item <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">     &#34;id&#34;: {&#34;S&#34;: &#34;1&#34;},
+</span><span style="color:#e6db74">     &#34;name&#34;: {&#34;S&#34;: &#34;Joe&#34;},
+</span><span style="color:#e6db74">     &#34;age&#34;: {&#34;N&#34;: &#34;23&#34;},
+</span><span style="color:#e6db74">     &#34;sex&#34;: {&#34;S&#34;: &#34;m&#34;}
+</span><span style="color:#e6db74">   }&#39;</span>
+
+$ aws dynamodb put-item <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name Users <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --item <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;id&#34;: {&#34;S&#34;: &#34;2&#34;},
+</span><span style="color:#e6db74">    &#34;name&#34;: {&#34;S&#34;: &#34;Kate&#34;},
+</span><span style="color:#e6db74">    &#34;age&#34;: {&#34;N&#34;: &#34;25&#34;},
+</span><span style="color:#e6db74">    &#34;sex&#34;: {&#34;S&#34;: &#34;f&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+
+$ aws dynamodb put-item <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name Users <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --item <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;id&#34;: {&#34;S&#34;: &#34;3&#34;},
+</span><span style="color:#e6db74">    &#34;name&#34;: {&#34;S&#34;: &#34;John&#34;},
+</span><span style="color:#e6db74">    &#34;age&#34;: {&#34;N&#34;: &#34;28&#34;},
+</span><span style="color:#e6db74">    &#34;sex&#34;: {&#34;S&#34;: &#34;m&#34;}
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><br>
+<h3 id="show-items">Show Items</h3>
+<br>
+<p>To list all the items in the table, try this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws dynamodb scan --table-name Users --no-paginate
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;Items&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;Joe&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;id&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;age&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;N&#34;</span>: <span style="color:#e6db74">&#34;23&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;sex&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;m&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;John&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;id&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;age&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;N&#34;</span>: <span style="color:#e6db74">&#34;28&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;sex&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;m&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;Kate&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;id&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;2&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;age&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;N&#34;</span>: <span style="color:#e6db74">&#34;25&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;sex&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;f&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">]</span>,
+    <span style="color:#e6db74">&#34;Count&#34;</span>: 3,
+    <span style="color:#e6db74">&#34;ScannedCount&#34;</span>: <span style="color:#ae81ff">3</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<h3 id="query-table">Query Table</h3>
+<br>
+<p>Let&rsquo;s query table using the primary key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws dynamodb query <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --table-name Users <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --key-condition-expression <span style="color:#e6db74">&#34;id = :id&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --expression-attribute-values <span style="color:#e6db74">&#39;{&#34;:id&#34;: {&#34;S&#34;: &#34;2&#34;}}&#39;</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;Items&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;Kate&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;id&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;2&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;age&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;N&#34;</span>: <span style="color:#e6db74">&#34;25&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;sex&#34;</span>: <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;S&#34;</span>: <span style="color:#e6db74">&#34;f&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">]</span>,
+    <span style="color:#e6db74">&#34;Count&#34;</span>: 1,
+    <span style="color:#e6db74">&#34;ScannedCount&#34;</span>: 1,
+    <span style="color:#e6db74">&#34;ConsumedCapacity&#34;</span>: null
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<h3 id="update-item">Update Item</h3>
+<br>
+<p>Update an item using primary key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws dynamodb update-item <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --table-name Users <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --key <span style="color:#e6db74">&#39;{&#34;id&#34;: {&#34;S&#34;: &#34;2&#34;}}&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --update-expression <span style="color:#e6db74">&#34;SET age = :age&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --expression-attribute-values <span style="color:#e6db74">&#39;{&#34;:age&#34;: {&#34;N&#34;: &#34;26&#34;}}&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --return-values UPDATED_NEW
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;Attributes&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;age&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;N&#34;</span>: <span style="color:#e6db74">&#34;26&#34;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<h3 id="delete-table">Delete Table</h3>
+<br>
+<p>To delete the table, just do this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws dynamodb delete-table --table-name Users
+</code></pre></div><br>
+<h2 id="using-python">Using Python</h2>
+<hr>
+<br>
+<p>Here we will re-create the same table and play with it as a standalone script.</p>
+<p>Standard package import as needed and created client.</p>
+<p>Also defined table name.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> boto3
+<span style="color:#f92672">from</span> botocore.exceptions <span style="color:#f92672">import</span> ClientError
+
+dynamodb <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;dynamodb&#39;</span>, endpoint_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;http://localhost:4566&#39;</span>, region_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;eu-west-1&#39;</span>)
+table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Users&#39;</span>
+</code></pre></div><br>
+<p>Declare function to delete the table if exists, so that we can run it multiple times.</p>
+<p>I found something new in <code>Python</code> called <code>waiter</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delete_table_if_exists</span>(table_name):
+    <span style="color:#66d9ef">try</span>:
+        dynamodb<span style="color:#f92672">.</span>describe_table(TableName<span style="color:#f92672">=</span>table_name)
+        response <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>delete_table(TableName<span style="color:#f92672">=</span>table_name)
+
+        <span style="color:#75715e"># create waiter of type &#39;table_not_exists&#39;</span>
+        waiter <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>get_waiter(<span style="color:#e6db74">&#39;table_not_exists&#39;</span>)
+        <span style="color:#75715e"># ask the waiter to wait until the given table reached the status</span>
+        waiter<span style="color:#f92672">.</span>wait(TableName<span style="color:#f92672">=</span>table_name)
+
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Table {table_name} deleted successfully&#34;</span>)
+
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ResourceNotFoundException&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Table {table_name} does not exist - nothing to delete&#34;</span>)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error deleting table {table_name}: {e}&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Unexpected error deleting table {table_name}: {e}&#34;</span>)
+</code></pre></div><br>
+<p>Time to define method to create the table as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_table</span>(table_name):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>create_table(
+            TableName<span style="color:#f92672">=</span>table_name,
+            KeySchema<span style="color:#f92672">=</span>[
+                {
+                    <span style="color:#e6db74">&#39;AttributeName&#39;</span>: <span style="color:#e6db74">&#39;id&#39;</span>,
+                    <span style="color:#e6db74">&#39;KeyType&#39;</span>: <span style="color:#e6db74">&#39;HASH&#39;</span>
+                }
+            ],
+            AttributeDefinitions<span style="color:#f92672">=</span>[
+                {<span style="color:#e6db74">&#39;AttributeName&#39;</span>: <span style="color:#e6db74">&#39;id&#39;</span>, <span style="color:#e6db74">&#39;AttributeType&#39;</span>: <span style="color:#e6db74">&#39;S&#39;</span>},
+                {<span style="color:#e6db74">&#39;AttributeName&#39;</span>: <span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#e6db74">&#39;AttributeType&#39;</span>: <span style="color:#e6db74">&#39;S&#39;</span>},
+                {<span style="color:#e6db74">&#39;AttributeName&#39;</span>: <span style="color:#e6db74">&#39;age&#39;</span>, <span style="color:#e6db74">&#39;AttributeType&#39;</span>: <span style="color:#e6db74">&#39;N&#39;</span>},
+                {<span style="color:#e6db74">&#39;AttributeName&#39;</span>: <span style="color:#e6db74">&#39;sex&#39;</span>, <span style="color:#e6db74">&#39;AttributeType&#39;</span>: <span style="color:#e6db74">&#39;S&#39;</span>}
+            ],
+            GlobalSecondaryIndexes<span style="color:#f92672">=</span>[
+                {
+                    <span style="color:#e6db74">&#39;IndexName&#39;</span>: <span style="color:#e6db74">&#39;NameIndex&#39;</span>,
+                    <span style="color:#e6db74">&#39;KeySchema&#39;</span>: [
+                        {<span style="color:#e6db74">&#39;AttributeName&#39;</span>: <span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#e6db74">&#39;KeyType&#39;</span>: <span style="color:#e6db74">&#39;HASH&#39;</span>}
+                    ],
+                    <span style="color:#e6db74">&#39;Projection&#39;</span>: {
+                        <span style="color:#e6db74">&#39;ProjectionType&#39;</span>: <span style="color:#e6db74">&#39;ALL&#39;</span>
+                    },
+                    <span style="color:#e6db74">&#39;ProvisionedThroughput&#39;</span>: {
+                        <span style="color:#e6db74">&#39;ReadCapacityUnits&#39;</span>: <span style="color:#ae81ff">5</span>,
+                        <span style="color:#e6db74">&#39;WriteCapacityUnits&#39;</span>: <span style="color:#ae81ff">5</span>
+                    }
+                },
+                {
+                    <span style="color:#e6db74">&#39;IndexName&#39;</span>: <span style="color:#e6db74">&#39;AgeIndex&#39;</span>,
+                    <span style="color:#e6db74">&#39;KeySchema&#39;</span>: [
+                        {<span style="color:#e6db74">&#39;AttributeName&#39;</span>: <span style="color:#e6db74">&#39;age&#39;</span>, <span style="color:#e6db74">&#39;KeyType&#39;</span>: <span style="color:#e6db74">&#39;HASH&#39;</span>}
+                    ],
+                    <span style="color:#e6db74">&#39;Projection&#39;</span>: {
+                        <span style="color:#e6db74">&#39;ProjectionType&#39;</span>: <span style="color:#e6db74">&#39;ALL&#39;</span>
+                    },
+                    <span style="color:#e6db74">&#39;ProvisionedThroughput&#39;</span>: {
+                        <span style="color:#e6db74">&#39;ReadCapacityUnits&#39;</span>: <span style="color:#ae81ff">5</span>,
+                        <span style="color:#e6db74">&#39;WriteCapacityUnits&#39;</span>: <span style="color:#ae81ff">5</span>
+                    }
+                },
+                {
+                    <span style="color:#e6db74">&#39;IndexName&#39;</span>: <span style="color:#e6db74">&#39;SexIndex&#39;</span>,
+                    <span style="color:#e6db74">&#39;KeySchema&#39;</span>: [
+                        {<span style="color:#e6db74">&#39;AttributeName&#39;</span>: <span style="color:#e6db74">&#39;sex&#39;</span>, <span style="color:#e6db74">&#39;KeyType&#39;</span>: <span style="color:#e6db74">&#39;HASH&#39;</span>}
+                    ],
+                    <span style="color:#e6db74">&#39;Projection&#39;</span>: {
+                        <span style="color:#e6db74">&#39;ProjectionType&#39;</span>: <span style="color:#e6db74">&#39;ALL&#39;</span>
+                    },
+                    <span style="color:#e6db74">&#39;ProvisionedThroughput&#39;</span>: {
+                        <span style="color:#e6db74">&#39;ReadCapacityUnits&#39;</span>: <span style="color:#ae81ff">5</span>,
+                        <span style="color:#e6db74">&#39;WriteCapacityUnits&#39;</span>: <span style="color:#ae81ff">5</span>
+                    }
+                }
+            ],
+            ProvisionedThroughput<span style="color:#f92672">=</span>{
+                <span style="color:#e6db74">&#39;ReadCapacityUnits&#39;</span>: <span style="color:#ae81ff">5</span>,
+                <span style="color:#e6db74">&#39;WriteCapacityUnits&#39;</span>: <span style="color:#ae81ff">5</span>
+            }
+        )
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Table {table_name} created successfully.&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ResourceInUseException&#39;</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Table {table_name} already exists.&#34;</span>)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error creating table: {e}&#34;</span>)
+</code></pre></div><br>
+<p>So far so good, lets define function to add three items as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">insert_items</span>(table_name):
+    items <span style="color:#f92672">=</span> [
+        {
+            <span style="color:#e6db74">&#39;PutRequest&#39;</span>: {
+                <span style="color:#e6db74">&#39;Item&#39;</span>: {
+                    <span style="color:#e6db74">&#39;id&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>},
+                    <span style="color:#e6db74">&#39;name&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;Joe&#39;</span>},
+                    <span style="color:#e6db74">&#39;age&#39;</span>: {<span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;23&#39;</span>},
+                    <span style="color:#e6db74">&#39;sex&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;m&#39;</span>}
+                }
+            }
+        },
+        {
+            <span style="color:#e6db74">&#39;PutRequest&#39;</span>: {
+                <span style="color:#e6db74">&#39;Item&#39;</span>: {
+                    <span style="color:#e6db74">&#39;id&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;2&#39;</span>},
+                    <span style="color:#e6db74">&#39;name&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;Kate&#39;</span>},
+                    <span style="color:#e6db74">&#39;age&#39;</span>: {<span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;25&#39;</span>},
+                    <span style="color:#e6db74">&#39;sex&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;f&#39;</span>}
+                }
+            }
+        },
+        {
+            <span style="color:#e6db74">&#39;PutRequest&#39;</span>: {
+                <span style="color:#e6db74">&#39;Item&#39;</span>: {
+                    <span style="color:#e6db74">&#39;id&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;3&#39;</span>},
+                    <span style="color:#e6db74">&#39;name&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;John&#39;</span>},
+                    <span style="color:#e6db74">&#39;age&#39;</span>: {<span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;28&#39;</span>},
+                    <span style="color:#e6db74">&#39;sex&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;f&#39;</span>}
+                }
+            }
+        }
+    ]
+
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>batch_write_item(RequestItems<span style="color:#f92672">=</span>{table_name: items})
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Items inserted successfully: {response}&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error inserting items: {e}&#34;</span>)
+</code></pre></div><br>
+<p>Now we need function to query items.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">query_items</span>(table_name, id):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>scan(
+            TableName<span style="color:#f92672">=</span>table_name,
+            FilterExpression<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;id = :id&#39;</span>,
+            ExpressionAttributeValues<span style="color:#f92672">=</span>{
+                <span style="color:#e6db74">&#39;:id&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: id}
+            }
+        )
+
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Items where id = {id}:&#34;</span>)
+        <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> response[<span style="color:#e6db74">&#39;Items&#39;</span>]:
+            <span style="color:#66d9ef">print</span>(item)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error querying items: {e}&#34;</span>)
+</code></pre></div><br>
+<p>Here is the function to update an item.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update_age</span>(table_name, id, age):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>update_item(
+            TableName<span style="color:#f92672">=</span>table_name,
+            Key<span style="color:#f92672">=</span>{
+                <span style="color:#e6db74">&#39;id&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: id }
+            },
+            UpdateExpression<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;SET age = :age&#39;</span>,
+            ExpressionAttributeValues<span style="color:#f92672">=</span>{
+                <span style="color:#e6db74">&#39;:age&#39;</span>: {<span style="color:#e6db74">&#39;N&#39;</span>: str(age)}
+            },
+            ReturnValues<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;UPDATED_NEW&#39;</span>
+        )
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Item with id {id} updated successfully.&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Updated attributes: {response[&#39;Attributes&#39;]}&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error updating item with id {id}: {e}&#34;</span>)
+</code></pre></div><br>
+<p>How about delete an item?</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delete_item</span>(table_name, id):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>delete_item(
+            TableName<span style="color:#f92672">=</span>table_name,
+            Key<span style="color:#f92672">=</span>{
+                <span style="color:#e6db74">&#39;id&#39;</span>: {<span style="color:#e6db74">&#39;S&#39;</span>: id}
+            }
+        )
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Item with id {id} deleted successfully.&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error deleting item with id {id}: {e}&#34;</span>)
+</code></pre></div><br>
+<p>Finally function to list the table contents.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">list_table_contents</span>(table_name):
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>scan(TableName<span style="color:#f92672">=</span>table_name)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Items in {table_name}:&#34;</span>)
+        <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> response[<span style="color:#e6db74">&#39;Items&#39;</span>]:
+            <span style="color:#66d9ef">print</span>(item)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error listing table contents: {e}&#34;</span>)
+</code></pre></div><br>
+<p>We have almost all basic operations covered, let&rsquo;s get the hand dirty.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    delete_table_if_exists(table_name)
+    create_table(table_name)
+    insert_items(table_name)
+    list_table_contents(table_name)
+    query_items(table_name, <span style="color:#e6db74">&#39;2&#39;</span>)
+    delete_item(table_name, <span style="color:#e6db74">&#39;1&#39;</span>)
+    list_table_contents(table_name)
+    update_age(table_name, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#ae81ff">26</span>)
+    list_table_contents(table_name)
+</code></pre></div><br>
+<h2 id="using-perl">Using Perl</h2>
+<hr>
+<br>
+<p>Using <code>CPAN</code> module <a href="https://metacpan.org/pod/Paws"><strong>Paws</strong></a>, let&rsquo;s prepare the ground as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Paws;
+<span style="color:#66d9ef">use</span> Try::Tiny;
+<span style="color:#66d9ef">use</span> Data::Dumper;
+
+<span style="color:#66d9ef">my</span> $dynamodb <span style="color:#f92672">=</span> Paws<span style="color:#f92672">-&gt;</span>service(<span style="color:#e6db74">&#39;DynamoDB&#39;</span>,
+    region   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;eu-west-1&#39;</span>,
+    endpoint <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;http://localhost:4566&#39;</span>
+);
+
+<span style="color:#66d9ef">my</span> $table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Users&#39;</span>;
+</code></pre></div><br>
+<p>No <code>waiter</code> in <code>Perl</code>, unfortunately.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">delete_table_if_exists</span>($table_name) {
+    try {
+        $dynamodb<span style="color:#f92672">-&gt;</span>DeleteTable(TableName <span style="color:#f92672">=&gt;</span> $table_name);
+        say <span style="color:#e6db74">&#34;Table $table_name deletion requested.&#34;</span>;
+        <span style="color:#75715e"># LocalStack deletes immediately - no need to wait</span>
+    } catch {
+        <span style="color:#66d9ef">if</span> ($_<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#39;Paws::DynamoDB::Errors::ResourceNotFoundException&#39;</span>)) {
+            say <span style="color:#e6db74">&#34;Table $table_name already doesn&#39;t exist.&#34;</span>;
+        } <span style="color:#66d9ef">else</span> {
+            die <span style="color:#e6db74">&#34;Error deleting table: $_\n&#34;</span>;
+        }
+    };
+}
+</code></pre></div><br>
+<p>Here is function to create table:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_table</span>($table_name) {
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $dynamodb<span style="color:#f92672">-&gt;</span>CreateTable(
+            TableName <span style="color:#f92672">=&gt;</span> $table_name,
+            KeySchema <span style="color:#f92672">=&gt;</span> [
+                {
+                    AttributeName <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;id&#39;</span>,
+                    KeyType       <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;HASH&#39;</span>,
+                },
+            ],
+            AttributeDefinitions <span style="color:#f92672">=&gt;</span> [
+                { AttributeName <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;id&#39;</span>,   AttributeType <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;S&#39;</span> },
+                { AttributeName <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;name&#39;</span>, AttributeType <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;S&#39;</span> },
+                { AttributeName <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;age&#39;</span>,  AttributeType <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;N&#39;</span> },
+                { AttributeName <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;sex&#39;</span>,  AttributeType <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;S&#39;</span> },
+            ],
+            GlobalSecondaryIndexes <span style="color:#f92672">=&gt;</span> [
+                {
+                    IndexName <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;NameIndex&#39;</span>,
+                    KeySchema <span style="color:#f92672">=&gt;</span> [
+                        {
+                            AttributeName <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;name&#39;</span>,
+                            KeyType       <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;HASH&#39;</span>,
+                        },
+                    ],
+                    Projection <span style="color:#f92672">=&gt;</span> {
+                        ProjectionType <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ALL&#39;</span>,
+                    },
+                    ProvisionedThroughput <span style="color:#f92672">=&gt;</span> {
+                        ReadCapacityUnits  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+                        WriteCapacityUnits <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+                    },
+                },
+                {
+                    IndexName <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;AgeIndex&#39;</span>,
+                    KeySchema <span style="color:#f92672">=&gt;</span> [
+                        {
+                            AttributeName <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;age&#39;</span>,
+                            KeyType       <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;HASH&#39;</span>,
+                        },
+                    ],
+                    Projection <span style="color:#f92672">=&gt;</span> {
+                        ProjectionType <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ALL&#39;</span>,
+                    },
+                    ProvisionedThroughput <span style="color:#f92672">=&gt;</span> {
+                        ReadCapacityUnits  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+                        WriteCapacityUnits <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+                    },
+                },
+                {
+                    IndexName <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;SexIndex&#39;</span>,
+                    KeySchema <span style="color:#f92672">=&gt;</span> [
+                        {
+                            AttributeName <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;sex&#39;</span>,
+                            KeyType       <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;HASH&#39;</span>,
+                        },
+                    ],
+                    Projection <span style="color:#f92672">=&gt;</span> {
+                        ProjectionType <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ALL&#39;</span>,
+                    },
+                    ProvisionedThroughput <span style="color:#f92672">=&gt;</span> {
+                        ReadCapacityUnits  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+                        WriteCapacityUnits <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+                    },
+                },
+            ],
+            ProvisionedThroughput <span style="color:#f92672">=&gt;</span> {
+                ReadCapacityUnits  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+                WriteCapacityUnits <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+            },
+        );
+
+        say <span style="color:#e6db74">&#34;Table $table_name created successfully.&#34;</span>;
+    } catch {
+        <span style="color:#66d9ef">if</span> ($_<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#39;Paws::DynamoDB::Errors::ResourceInUseException&#39;</span>)) {
+            say <span style="color:#e6db74">&#34;Table $table_name already exists.&#34;</span>;
+        } <span style="color:#66d9ef">else</span> {
+            die <span style="color:#e6db74">&#34;Error creating table: $_\n&#34;</span>;
+        }
+    };
+}
+</code></pre></div><br>
+<p>The function to insert items.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_items</span>($table_name) {
+    <span style="color:#66d9ef">my</span> @items <span style="color:#f92672">=</span> (
+        {
+            <span style="color:#e6db74">&#39;PutRequest&#39;</span> <span style="color:#f92672">=&gt;</span> {
+                <span style="color:#e6db74">&#39;Item&#39;</span>   <span style="color:#f92672">=&gt;</span> {
+                    <span style="color:#e6db74">&#39;id&#39;</span>   <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1&#39;</span>  },
+                    <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Joe&#39;</span>},
+                    <span style="color:#e6db74">&#39;age&#39;</span>  <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;N&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;23&#39;</span> },
+                    <span style="color:#e6db74">&#39;sex&#39;</span>  <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;m&#39;</span>  }
+                }
+            }
+        },
+        {
+            <span style="color:#e6db74">&#39;PutRequest&#39;</span> <span style="color:#f92672">=&gt;</span> {
+                <span style="color:#e6db74">&#39;Item&#39;</span>   <span style="color:#f92672">=&gt;</span> {
+                    <span style="color:#e6db74">&#39;id&#39;</span>   <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;2&#39;</span>   },
+                    <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Kate&#39;</span>},
+                    <span style="color:#e6db74">&#39;age&#39;</span>  <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;N&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;25&#39;</span>  },
+                    <span style="color:#e6db74">&#39;sex&#39;</span>  <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;f&#39;</span>   }
+                }
+            }
+        },
+        {
+            <span style="color:#e6db74">&#39;PutRequest&#39;</span> <span style="color:#f92672">=&gt;</span> {
+                <span style="color:#e6db74">&#39;Item&#39;</span>   <span style="color:#f92672">=&gt;</span> {
+                    <span style="color:#e6db74">&#39;id&#39;</span>   <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;3&#39;</span>   },
+                    <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;John&#39;</span>},
+                    <span style="color:#e6db74">&#39;age&#39;</span>  <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;N&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;28&#39;</span>  },
+                    <span style="color:#e6db74">&#39;sex&#39;</span>  <span style="color:#f92672">=&gt;</span> {<span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;m&#39;</span>   }
+                }
+            }
+        }
+    );
+
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $dynamodb<span style="color:#f92672">-&gt;</span>BatchWriteItem(
+            RequestItems <span style="color:#f92672">=&gt;</span> {
+                $table_name <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>@items
+            }
+        );
+        say <span style="color:#e6db74">&#34;Items inserted successfully: &#34;</span> <span style="color:#f92672">.</span> Dumper($response);
+    } catch {
+        die <span style="color:#e6db74">&#34;Error inserting items: $_\n&#34;</span>;
+    };
+}
+</code></pre></div><br>
+<p>Query item using primary key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">query_items</span>($table_name, $id) {
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $dynamodb<span style="color:#f92672">-&gt;</span>Scan(
+            TableName <span style="color:#f92672">=&gt;</span> $table_name,
+            FilterExpression <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;id = :id&#39;</span>,
+            ExpressionAttributeValues <span style="color:#f92672">=&gt;</span> {
+                <span style="color:#e6db74">&#39;:id&#39;</span> <span style="color:#f92672">=&gt;</span> { S <span style="color:#f92672">=&gt;</span> $id }
+            }
+        );
+
+        say <span style="color:#e6db74">&#34;Items where id = $id:&#34;</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $item (@{$response<span style="color:#f92672">-&gt;</span>Items}) {
+            say Dumper($item);
+        }
+    } catch {
+        die <span style="color:#e6db74">&#34;Error querying items: $_\n&#34;</span>;
+    };
+}
+</code></pre></div><br>
+<p>Update item by primary key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">update_age</span>($table_name, $id, $new_age) {
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $dynamodb<span style="color:#f92672">-&gt;</span>UpdateItem(
+            TableName <span style="color:#f92672">=&gt;</span> $table_name,
+            Key <span style="color:#f92672">=&gt;</span> {
+                id <span style="color:#f92672">=&gt;</span> { S <span style="color:#f92672">=&gt;</span> $id }
+            },
+            UpdateExpression <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;SET age = :age&#39;</span>,
+            ExpressionAttributeValues <span style="color:#f92672">=&gt;</span> {
+                <span style="color:#e6db74">&#39;:age&#39;</span> <span style="color:#f92672">=&gt;</span> { N <span style="color:#f92672">=&gt;</span> $new_age }
+            },
+            ReturnValues <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;UPDATED_NEW&#39;</span>
+        );
+        say <span style="color:#e6db74">&#34;Item with id $id updated successfully.&#34;</span>;
+        say <span style="color:#e6db74">&#34;Updated attributes: &#34;</span> <span style="color:#f92672">.</span> Dumper($response<span style="color:#f92672">-&gt;</span>Attributes);
+    } catch {
+        die <span style="color:#e6db74">&#34;Error updating item with id $id: $_\n&#34;</span>;
+    };
+}
+</code></pre></div><br>
+<p>Delete an item using primary key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">delete_item</span>($table_name, $id) {
+    try {
+        $dynamodb<span style="color:#f92672">-&gt;</span>DeleteItem(
+            TableName <span style="color:#f92672">=&gt;</span> $table_name,
+            Key <span style="color:#f92672">=&gt;</span> {
+                id <span style="color:#f92672">=&gt;</span> { S <span style="color:#f92672">=&gt;</span> $id }
+            }
+        );
+        say <span style="color:#e6db74">&#34;Item with id $id deleted successfully.&#34;</span>;
+    } catch {
+        die <span style="color:#e6db74">&#34;Error deleting item with id $id: $_\n&#34;</span>;
+    };
+}
+</code></pre></div><br>
+<p>Finally list table contents.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_table_contents</span>($table_name) {
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $dynamodb<span style="color:#f92672">-&gt;</span>Scan(TableName <span style="color:#f92672">=&gt;</span> $table_name);
+        say <span style="color:#e6db74">&#34;Items in $table_name:&#34;</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $item (@{$response<span style="color:#f92672">-&gt;</span>Items}) {
+            say Dumper($item);
+        }
+    } catch {
+        die <span style="color:#e6db74">&#34;Error listing table contents: $_\n&#34;</span>;
+    };
+}
+</code></pre></div><br>
+<p>Now time for quick action:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">delete_table_if_exists($table_name);
+create_table($table_name);
+insert_items($table_name);
+list_table_contents($table_name);
+query_items($table_name, <span style="color:#e6db74">&#39;2&#39;</span>);
+delete_item($table_name, <span style="color:#e6db74">&#39;1&#39;</span>);
+list_table_contents($table_name);
+update_age($table_name, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#ae81ff">26</span>);
+list_table_contents($table_name);
+</code></pre></div><br>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
