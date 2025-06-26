@@ -224,7 +224,7 @@ version='5.42.0';
 
 <br>
 
-For those curious about what else is included om this latest release, all the details are documented in the [**perldelta page**](https://metacpan.org/release/CONTRA/perl-5.42.0-RC1/view/pod/perldelta.pod).
+For those curious about what else is included in this latest release, all the details are documented in the [**perldelta page**](https://metacpan.org/release/CONTRA/perl-5.42.0-RC1/view/pod/perldelta.pod).
 
 ***
 
