@@ -847,7 +847,9 @@ Items in Users:
 </code></pre></div><br>
 <p>No <code>waiter</code> in <code>Perl</code>, unfortunately.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">delete_table_if_exists</span>($table_name) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">delete_table_if_exists</span> {
+    <span style="color:#66d9ef">my</span> ($table_name) <span style="color:#f92672">=</span> @_;
+
     try {
         $dynamodb<span style="color:#f92672">-&gt;</span>DeleteTable(TableName <span style="color:#f92672">=&gt;</span> $table_name);
         say <span style="color:#e6db74">&#34;Table $table_name deletion requested.&#34;</span>;
@@ -863,7 +865,9 @@ Items in Users:
 </code></pre></div><br>
 <p>Here is function to create table:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_table</span>($table_name) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_table</span> {
+    <span style="color:#66d9ef">my</span> ($table_name) <span style="color:#f92672">=</span> @_;
+
     try {
         <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $dynamodb<span style="color:#f92672">-&gt;</span>CreateTable(
             TableName <span style="color:#f92672">=&gt;</span> $table_name,
@@ -947,7 +951,9 @@ Items in Users:
 </code></pre></div><br>
 <p>The function to insert items.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_items</span>($table_name) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_items</span> {
+    <span style="color:#66d9ef">my</span> ($table_name) <span style="color:#f92672">=</span> @_;
+
     <span style="color:#66d9ef">my</span> @items <span style="color:#f92672">=</span> (
         {
             <span style="color:#e6db74">&#39;PutRequest&#39;</span> <span style="color:#f92672">=&gt;</span> {
@@ -995,7 +1001,9 @@ Items in Users:
 </code></pre></div><br>
 <p>Query item using primary key.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">query_items</span>($table_name, $id) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">query_items</span> {
+    <span style="color:#66d9ef">my</span> ($table_name, $id) <span style="color:#f92672">=</span> @_;
+
     try {
         <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $dynamodb<span style="color:#f92672">-&gt;</span>Scan(
             TableName <span style="color:#f92672">=&gt;</span> $table_name,
@@ -1016,7 +1024,9 @@ Items in Users:
 </code></pre></div><br>
 <p>Update item by primary key.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">update_age</span>($table_name, $id, $new_age) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">update_age</span> {
+    <span style="color:#66d9ef">my</span> ($table_name, $id, $new_age) <span style="color:#f92672">=</span> @_;
+
     try {
         <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $dynamodb<span style="color:#f92672">-&gt;</span>UpdateItem(
             TableName <span style="color:#f92672">=&gt;</span> $table_name,
@@ -1038,7 +1048,9 @@ Items in Users:
 </code></pre></div><br>
 <p>Delete an item using primary key.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">delete_item</span>($table_name, $id) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">delete_item</span> {
+    <span style="color:#66d9ef">my</span> ($table_name, $id) <span style="color:#f92672">=</span> @_;
+
     try {
         $dynamodb<span style="color:#f92672">-&gt;</span>DeleteItem(
             TableName <span style="color:#f92672">=&gt;</span> $table_name,
@@ -1054,7 +1066,9 @@ Items in Users:
 </code></pre></div><br>
 <p>Finally list table contents.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_table_contents</span>($table_name) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_table_contents</span> {
+    <span style="color:#66d9ef">my</span> ($table_name) <span style="color:#f92672">=</span> @_;
+
     try {
         <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $dynamodb<span style="color:#f92672">-&gt;</span>Scan(TableName <span style="color:#f92672">=&gt;</span> $table_name);
         say <span style="color:#e6db74">&#34;Items in $table_name:&#34;</span>;

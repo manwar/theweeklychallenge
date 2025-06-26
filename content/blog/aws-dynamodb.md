@@ -749,7 +749,9 @@ No `waiter` in `Perl`, unfortunately.
 <br>
 
 ```perl
-sub delete_table_if_exists($table_name) {
+sub delete_table_if_exists {
+    my ($table_name) = @_;
+
     try {
         $dynamodb->DeleteTable(TableName => $table_name);
         say "Table $table_name deletion requested.";
@@ -771,7 +773,9 @@ Here is function to create table:
 <br>
 
 ```perl
-sub create_table($table_name) {
+sub create_table {
+    my ($table_name) = @_;
+
     try {
         my $response = $dynamodb->CreateTable(
             TableName => $table_name,
@@ -861,7 +865,9 @@ The function to insert items.
 <br>
 
 ```perl
-sub insert_items($table_name) {
+sub insert_items {
+    my ($table_name) = @_;
+
     my @items = (
         {
             'PutRequest' => {
@@ -915,7 +921,9 @@ Query item using primary key.
 <br>
 
 ```perl
-sub query_items($table_name, $id) {
+sub query_items {
+    my ($table_name, $id) = @_;
+
     try {
         my $response = $dynamodb->Scan(
             TableName => $table_name,
@@ -942,7 +950,9 @@ Update item by primary key.
 <br>
 
 ```perl
-sub update_age($table_name, $id, $new_age) {
+sub update_age {
+    my ($table_name, $id, $new_age) = @_;
+
     try {
         my $response = $dynamodb->UpdateItem(
             TableName => $table_name,
@@ -970,7 +980,9 @@ Delete an item using primary key.
 <br>
 
 ```perl
-sub delete_item($table_name, $id) {
+sub delete_item {
+    my ($table_name, $id) = @_;
+
     try {
         $dynamodb->DeleteItem(
             TableName => $table_name,
@@ -992,7 +1004,9 @@ Finally list table contents.
 <br>
 
 ```perl
-sub list_table_contents($table_name) {
+sub list_table_contents {
+    my ($table_name) = @_;
+
     try {
         my $response = $dynamodb->Scan(TableName => $table_name);
         say "Items in $table_name:";
