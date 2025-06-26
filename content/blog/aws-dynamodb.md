@@ -58,7 +58,7 @@ There are two types of `primary keys` in `DynamoDB`.
 
 It consists of single attribute (partition key). It is used to distribute data across partitions.
 
-<br?
+<br>
 
 ### 2. Composite Primary Key
 
