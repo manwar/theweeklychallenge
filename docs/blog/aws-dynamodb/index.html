@@ -609,7 +609,7 @@ table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39
         <span style="color:#75715e"># ask the waiter to wait until the given table reached the status</span>
         waiter<span style="color:#f92672">.</span>wait(TableName<span style="color:#f92672">=</span>table_name)
 
-        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Table {table_name} deleted successfully&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Table {table_name} deleted successfully.&#34;</span>)
 
     <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
         <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ResourceNotFoundException&#39;</span>:
@@ -728,7 +728,7 @@ table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39
 
     <span style="color:#66d9ef">try</span>:
         response <span style="color:#f92672">=</span> dynamodb<span style="color:#f92672">.</span>batch_write_item(RequestItems<span style="color:#f92672">=</span>{table_name: items})
-        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Items inserted successfully: {response}&#34;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Items inserted successfully.&#34;</span>)
     <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error inserting items: {e}&#34;</span>)
 </code></pre></div><br>
@@ -794,7 +794,7 @@ table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39
     <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error listing table contents: {e}&#34;</span>)
 </code></pre></div><br>
-<p>We have almost all basic operations covered, let&rsquo;s get the hand dirty.</p>
+<p>We have covered almost all basic operations, let&rsquo;s get the hand dirty.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
     delete_table_if_exists(table_name)
@@ -807,13 +807,34 @@ table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39
     update_age(table_name, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#ae81ff">26</span>)
     list_table_contents(table_name)
 </code></pre></div><br>
+<p>Time to run the script: <a href="https://gist.github.com/manwar/1eb251510192aedc5a8371f4b6aa133d"><strong>aws-dynamodb.py</strong></a></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py aws-dynamodb.py
+Table Users deleted successfully.
+Table Users created successfully.
+Items inserted successfully.
+Items in Users:
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;Joe&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;id&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;age&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;23&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;sex&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;m&#39;</span><span style="color:#f92672">}}</span>
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;John&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;id&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;age&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;28&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;sex&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;f&#39;</span><span style="color:#f92672">}}</span>
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;Kate&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;id&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;2&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;age&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;25&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;sex&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;f&#39;</span><span style="color:#f92672">}}</span>
+Items where id <span style="color:#f92672">=</span> 2:
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;Kate&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;id&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;2&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;age&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;25&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;sex&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;f&#39;</span><span style="color:#f92672">}}</span>
+Item with id <span style="color:#ae81ff">1</span> deleted successfully.
+Items in Users:
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;John&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;id&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;age&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;28&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;sex&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;f&#39;</span><span style="color:#f92672">}}</span>
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;Kate&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;id&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;2&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;age&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;25&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;sex&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;f&#39;</span><span style="color:#f92672">}}</span>
+Item with id <span style="color:#ae81ff">2</span> updated successfully.
+Updated attributes: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;age&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;26&#39;</span><span style="color:#f92672">}}</span>
+Items in Users:
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;John&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;id&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;age&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;28&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;sex&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;f&#39;</span><span style="color:#f92672">}}</span>
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;Kate&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;id&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;2&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;age&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#e6db74">&#39;26&#39;</span><span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;sex&#39;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;S&#39;</span>: <span style="color:#e6db74">&#39;f&#39;</span><span style="color:#f92672">}}</span>
+</code></pre></div><br>
 <h2 id="using-perl">Using Perl</h2>
 <hr>
 <br>
-<p>Using <code>CPAN</code> module <a href="https://metacpan.org/pod/Paws"><strong>Paws</strong></a>, let&rsquo;s prepare the ground as below:</p>
+<p>With the help of <code>CPAN</code> module <a href="https://metacpan.org/pod/Paws"><strong>Paws</strong></a>, let&rsquo;s prepare the ground as below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> Paws;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.30</span>;
 <span style="color:#66d9ef">use</span> Try::Tiny;
 <span style="color:#66d9ef">use</span> Data::Dumper;
 
@@ -966,7 +987,7 @@ table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39
                 $table_name <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>@items
             }
         );
-        say <span style="color:#e6db74">&#34;Items inserted successfully: &#34;</span> <span style="color:#f92672">.</span> Dumper($response);
+        say <span style="color:#e6db74">&#34;Items inserted successfully.&#34;</span>;
     } catch {
         die <span style="color:#e6db74">&#34;Error inserting items: $_\n&#34;</span>;
     };
@@ -1045,7 +1066,7 @@ table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39
     };
 }
 </code></pre></div><br>
-<p>Now time for quick action:</p>
+<p>Now time for quick operatios as below:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">delete_table_if_exists($table_name);
 create_table($table_name);
@@ -1056,6 +1077,38 @@ delete_item($table_name, <span style="color:#e6db74">&#39;1&#39;</span>);
 list_table_contents($table_name);
 update_age($table_name, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#ae81ff">26</span>);
 list_table_contents($table_name);
+</code></pre></div><br>
+<p>Let&rsquo;s run the script now: <a href="https://gist.github.com/manwar/94d657cb584746b5aa6bfa814ce1081d"><strong>aws-dynamodb.pl</strong></a></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl aws-dynamodb.pl
+Table Users deletion requested.
+Table Users created successfully.
+Items inserted successfully.
+Items in Users:
+$VAR1 <span style="color:#f92672">=</span> bless<span style="color:#f92672">(</span> <span style="color:#f92672">{</span>
+                 <span style="color:#e6db74">&#39;Map&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+                            <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=</span>&gt; bless<span style="color:#f92672">(</span> <span style="color:#f92672">{</span>
+                                               <span style="color:#e6db74">&#39;L&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[]</span>,
+                                               <span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;Joe&#39;</span>
+                                             <span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;Paws::DynamoDB::AttributeValue&#39;</span> <span style="color:#f92672">)</span>,
+                            <span style="color:#e6db74">&#39;age&#39;</span> <span style="color:#f92672">=</span>&gt; bless<span style="color:#f92672">(</span> <span style="color:#f92672">{</span>
+                                              <span style="color:#e6db74">&#39;N&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;23&#39;</span>,
+                                              <span style="color:#e6db74">&#39;L&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[]</span>
+                                            <span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;Paws::DynamoDB::AttributeValue&#39;</span> <span style="color:#f92672">)</span>,
+                            <span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=</span>&gt; bless<span style="color:#f92672">(</span> <span style="color:#f92672">{</span>
+                                             <span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;1&#39;</span>,
+                                             <span style="color:#e6db74">&#39;L&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[]</span>
+                                           <span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;Paws::DynamoDB::AttributeValue&#39;</span> <span style="color:#f92672">)</span>,
+                            <span style="color:#e6db74">&#39;sex&#39;</span> <span style="color:#f92672">=</span>&gt; bless<span style="color:#f92672">(</span> <span style="color:#f92672">{</span>
+                                              <span style="color:#e6db74">&#39;L&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[]</span>,
+                                              <span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;m&#39;</span>
+                                            <span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;Paws::DynamoDB::AttributeValue&#39;</span> <span style="color:#f92672">)</span>
+                          <span style="color:#f92672">}</span>
+               <span style="color:#f92672">}</span>, <span style="color:#e6db74">&#39;Paws::DynamoDB::AttributeMap&#39;</span> <span style="color:#f92672">)</span>;
+...
+...
+...
+...
 </code></pre></div><br>
 <hr>
 <br>

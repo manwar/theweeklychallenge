@@ -450,7 +450,7 @@ def delete_table_if_exists(table_name):
         # ask the waiter to wait until the given table reached the status
         waiter.wait(TableName=table_name)
 
-        print(f"Table {table_name} deleted successfully")
+        print(f"Table {table_name} deleted successfully.")
 
     except ClientError as e:
         if e.response['Error']['Code'] == 'ResourceNotFoundException':
@@ -581,7 +581,7 @@ def insert_items(table_name):
 
     try:
         response = dynamodb.batch_write_item(RequestItems={table_name: items})
-        print(f"Items inserted successfully: {response}")
+        print(f"Items inserted successfully.")
     except ClientError as e:
         print(f"Error inserting items: {e}")
 ```
@@ -673,7 +673,7 @@ def list_table_contents(table_name):
 
 <br>
 
-We have almost all basic operations covered, let's get the hand dirty.
+We have covered almost all basic operations, let's get the hand dirty.
 
 <br>
 
@@ -692,18 +692,45 @@ if __name__ == "__main__":
 
 <br>
 
+Time to run the script: [**aws-dynamodb.py**](https://gist.github.com/manwar/1eb251510192aedc5a8371f4b6aa133d)
+
+<br>
+
+```bash
+$ py aws-dynamodb.py
+Table Users deleted successfully.
+Table Users created successfully.
+Items inserted successfully.
+Items in Users:
+{'name': {'S': 'Joe'}, 'id': {'S': '1'}, 'age': {'N': '23'}, 'sex': {'S': 'm'}}
+{'name': {'S': 'John'}, 'id': {'S': '3'}, 'age': {'N': '28'}, 'sex': {'S': 'f'}}
+{'name': {'S': 'Kate'}, 'id': {'S': '2'}, 'age': {'N': '25'}, 'sex': {'S': 'f'}}
+Items where id = 2:
+{'name': {'S': 'Kate'}, 'id': {'S': '2'}, 'age': {'N': '25'}, 'sex': {'S': 'f'}}
+Item with id 1 deleted successfully.
+Items in Users:
+{'name': {'S': 'John'}, 'id': {'S': '3'}, 'age': {'N': '28'}, 'sex': {'S': 'f'}}
+{'name': {'S': 'Kate'}, 'id': {'S': '2'}, 'age': {'N': '25'}, 'sex': {'S': 'f'}}
+Item with id 2 updated successfully.
+Updated attributes: {'age': {'N': '26'}}
+Items in Users:
+{'name': {'S': 'John'}, 'id': {'S': '3'}, 'age': {'N': '28'}, 'sex': {'S': 'f'}}
+{'name': {'S': 'Kate'}, 'id': {'S': '2'}, 'age': {'N': '26'}, 'sex': {'S': 'f'}}
+```
+
+<br>
+
 ## Using Perl
 ***
 
 <br>
 
-Using `CPAN` module [**Paws**](https://metacpan.org/pod/Paws), let's prepare the ground as below:
+With the help of `CPAN` module [**Paws**](https://metacpan.org/pod/Paws), let's prepare the ground as below:
 
 <br>
 
 ```perl
-use v5.38;
-use Paws;
+use v5.30;
 use Try::Tiny;
 use Data::Dumper;
 
@@ -874,7 +901,7 @@ sub insert_items($table_name) {
                 $table_name => \@items
             }
         );
-        say "Items inserted successfully: " . Dumper($response);
+        say "Items inserted successfully.";
     } catch {
         die "Error inserting items: $_\n";
     };
@@ -980,7 +1007,7 @@ sub list_table_contents($table_name) {
 
 <br>
 
-Now time for quick action:
+Now time for quick operatios as below:
 
 <br>
 
@@ -994,6 +1021,44 @@ delete_item($table_name, '1');
 list_table_contents($table_name);
 update_age($table_name, '2', 26);
 list_table_contents($table_name);
+```
+
+<br>
+
+Let's run the script now: [**aws-dynamodb.pl**](https://gist.github.com/manwar/94d657cb584746b5aa6bfa814ce1081d)
+
+<br>
+
+```bash
+$ perl aws-dynamodb.pl
+Table Users deletion requested.
+Table Users created successfully.
+Items inserted successfully.
+Items in Users:
+$VAR1 = bless( {
+                 'Map' => {
+                            'name' => bless( {
+                                               'L' => [],
+                                               'S' => 'Joe'
+                                             }, 'Paws::DynamoDB::AttributeValue' ),
+                            'age' => bless( {
+                                              'N' => '23',
+                                              'L' => []
+                                            }, 'Paws::DynamoDB::AttributeValue' ),
+                            'id' => bless( {
+                                             'S' => '1',
+                                             'L' => []
+                                           }, 'Paws::DynamoDB::AttributeValue' ),
+                            'sex' => bless( {
+                                              'L' => [],
+                                              'S' => 'm'
+                                            }, 'Paws::DynamoDB::AttributeValue' )
+                          }
+               }, 'Paws::DynamoDB::AttributeMap' );
+...
+...
+...
+...
 ```
 
 <br>
