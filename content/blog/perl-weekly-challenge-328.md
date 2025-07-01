@@ -205,6 +205,8 @@ You are given a string made up of lower and upper case English letters only.
 
 Write a script to return the good string of the given string. A string is called `good string` if it doesn't have two adjacent same characters, one in upper case and other is lower case.
 
+`UPDATE [2025-07-01]`: Just to be explicit, you can only remove pair if they are same characters, one in lower case and other in upper case, order is not important.
+
 <br>
 
 #### Example 1
