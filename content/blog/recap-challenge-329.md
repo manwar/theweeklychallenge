@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 329"
-date: 2025-07-15T00:00:00+00:00
+date: 2025-07-17T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 329."
 type: post
 image: images/blog/recap-challenge-329.jpg
@@ -46,7 +46,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 16999 (64%)
+#### 1. Perl: 17000 (64%)
 #### 2. Raku: 9460 (36%)
 #### 3. Blog: 6081
 
@@ -55,9 +55,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `94`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `95`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 45
+#### 1. Perl: 46
 #### 2. Raku: 24
 #### 3. Blog: 25
 
@@ -432,6 +432,13 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-329/e-choroba/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-329/e-choroba/perl/ch-2.pl)]
+
+***
+
+### Fabio Valeri
+![Fabio Valeri](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-329/fabio-valeri/perl/ch-1.sh)]
 
 ***
 
