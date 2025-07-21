@@ -28,7 +28,7 @@ tags: ["Perl", "Raku"]
 
 Welcome to the `Week #331` of `The Weekly Challenge`.
 
-Let's all welcome two new members to `Team PWC:` `Harry Wozniak` and `Fabio Valeri` to `Team PWC`. Both are experienced `Perl` hacker.
+Let's all welcome two new members to `Team PWC:` `Harry Wozniak` and `Fabio Valeri` to `Team PWC`. Both are experienced `Perl` hackers.
 
 Do you remember our fellow team member, `Humberto Massa`?
 
