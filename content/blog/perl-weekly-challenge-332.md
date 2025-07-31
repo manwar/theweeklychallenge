@@ -48,6 +48,12 @@ Any contributions from now on will be processed when I return on `July 30, 2025`
 
 ***
 
+**UPDATE: 2025-07-31**
+
+The following tables for mainstream and guest contributions updated.
+
+***
+
 Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your support and encouragements.
 
 | | | | |
@@ -57,7 +63,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `328` &nbsp;&nbsp;|&nbsp;&nbsp; 44 &nbsp;&nbsp;|&nbsp;&nbsp; 27 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `329` &nbsp;&nbsp;|&nbsp;&nbsp; 46 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `330` &nbsp;&nbsp;|&nbsp;&nbsp; 50 &nbsp;&nbsp;|&nbsp;&nbsp; 29 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `331` &nbsp;&nbsp;|&nbsp;&nbsp; 40 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `331` &nbsp;&nbsp;|&nbsp;&nbsp; 50 &nbsp;&nbsp;|&nbsp;&nbsp; 27 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|
 
 <br>
 
@@ -70,7 +76,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `328` &nbsp;&nbsp;|&nbsp;&nbsp; 11 &nbsp;&nbsp;|&nbsp;&nbsp; 31 &nbsp;&nbsp;|&nbsp;&nbsp; 11 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `329` &nbsp;&nbsp;|&nbsp;&nbsp; 15 &nbsp;&nbsp;|&nbsp;&nbsp; 46 &nbsp;&nbsp;|&nbsp;&nbsp; 15 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `330` &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|&nbsp;&nbsp; 62 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `331` &nbsp;&nbsp;|&nbsp;&nbsp; 10 &nbsp;&nbsp;|&nbsp;&nbsp; 52 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `331` &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|&nbsp;&nbsp; 62 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
 
 <br>
 
@@ -83,12 +89,12 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
      2. Rust       (954)
      3. Ruby       (809)
      4. Haskell    (795)
-     5. Lua        (739)
+     5. Lua        (741)
      6. C++        (635)
      7. C          (594)
      8. JavaScript (572)
      9. Go         (515)
-    10. BQN        (452)
+    10. BQN        (454)
 
 <br>
 
@@ -100,15 +106,16 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 #### 3. [String-ish](https://fluca1978.github.io/2025/07/24/PerlWeeklyChallenge331.html) by Luca Ferrari.
 #### 4. [You have the last word, Buddy…](https://packy.dardan.com/b/Yw) by Packy Anderson.
 #### 5. [Last word, buddy](http://ccgi.campbellsmiths.force9.co.uk/challenge/331) by Peter Campbell Smith.
-#### 6. [The last word is my buddy](https://dev.to/simongreennet/weekly-challenge-the-last-word-is-my-buddy-13pm) by Simon Green.
+#### 6. [Stringing Up Your Last Buddy](https://blog.firedrake.org/archive/2025/07/The_Weekly_Challenge_331__Stringing_Up_Your_Last_Buddy.html) by Roger Bell_West.
+#### 7. [The last word is my buddy](https://dev.to/simongreennet/weekly-challenge-the-last-word-is-my-buddy-13pm) by Simon Green.
 
 <br>
 
 ### [GitHub](https://github.com/manwar/perlweeklychallenge-club) Repository Stats
 ***
 
-#### 1. Commits: 44,544 (`+81`)
-#### 2. Pull Requests: 12,368 (`+32`)
+#### 1. Commits: 44,574 (`+111`)
+#### 2. Pull Requests: 12,381 (`+45`)
 #### 3. Contributors: 262
 #### 4. Fork: 332
 #### 5. Stars: 195
