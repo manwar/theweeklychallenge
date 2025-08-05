@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="AWS Lambda"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/aws-lambda/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about AWS Lambda."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about AWS Lambda.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/aws-lambda/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AWS Lambda</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>AWS Lambda</h2>
+                    <div class="portfolio-meta">
+                        <span>Tuesday, Aug 5, 2025</span>|
+                        <span> Tags:
+                            perl, python, aws, localstack
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/aws-lambda.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<br>
+<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-lambda-functionlambda-function"><a href="#lambda-function">2. Lambda Function</a></h3>
+<h3 id="3-using-awsusing-aws"><a href="#using-aws">3. Using aws</a></h3>
+<h3 id="4-using-pythonusing-python"><a href="#using-python">4. Using Python</a></h3>
+<h3 id="5-using-perlusing-perl"><a href="#using-perl">5. Using Perl</a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<br>
+<p>This post came nearly after a month and half. The last post about <code>AWS</code> related topic was about <a href="/blog/aws-dynamodb"><strong>AWS DynamoDB</strong></a>. The break wasn&rsquo;t intended, though.</p>
+<p><code>AWS Lambda</code> is a serverless compute service that allows you to run code without having to manage servers. You simply upload your code and <code>Lambda</code> takes care of the scaling, patching and execution, charging you only for the duration your code is executed.</p>
+<p>It would be like hiring a chef that cooks when you request them, cleans up when they are done and charges you only for the minutes that they actually cook.</p>
+<br>
+<h2 id="lambda-function">Lambda Function</h2>
+<hr>
+<br>
+<p>For the purpose of this post, let&rsquo;s create basic <code>Lambda</code> function in <code>Python</code>.</p>
+<p><strong>File:</strong> <code>lambda_function.py</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handler</span>(event, context):
+    <span style="color:#66d9ef">return</span> {
+        <span style="color:#e6db74">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">200</span>,
+        <span style="color:#e6db74">&#34;body&#34;</span>: <span style="color:#e6db74">&#34;Hello from Lambda!&#34;</span>,
+        <span style="color:#e6db74">&#34;headers&#34;</span>: {<span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;text/plain&#34;</span>}
+    }
+</code></pre></div><br>
+<p><code>AWS Lambda</code> requires code packages to be uploaded in a compressed archive format,  typically a <code>.zip</code> file.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ zip lambda_function.zip lambda_function.py
+</code></pre></div><br>
+<h2 id="using-aws">Using aws</h2>
+<hr>
+<br>
+<p>Let&rsquo;s create <code>AWS Lambda</code> function as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws lambda create-function <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --function-name my-local-lambda <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --runtime python3.9 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --handler lambda_function.handler <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --zip-file fileb://lambda_function.zip <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --role arn:aws:iam::000000000000:role/lambda-role
+</code></pre></div><br>
+<p>You should see detailed response as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;FunctionName&#34;</span>: <span style="color:#e6db74">&#34;my-local-lambda&#34;</span>,
+    <span style="color:#e6db74">&#34;FunctionArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:lambda:eu-west-1:000000000000:function:my-local-lambda&#34;</span>,
+    <span style="color:#e6db74">&#34;Runtime&#34;</span>: <span style="color:#e6db74">&#34;python3.9&#34;</span>,
+    <span style="color:#e6db74">&#34;Role&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::000000000000:role/lambda-role&#34;</span>,
+    <span style="color:#e6db74">&#34;Handler&#34;</span>: <span style="color:#e6db74">&#34;lambda_function.handler&#34;</span>,
+    <span style="color:#e6db74">&#34;CodeSize&#34;</span>: 309,
+    <span style="color:#e6db74">&#34;Description&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+    <span style="color:#e6db74">&#34;Timeout&#34;</span>: 3,
+    <span style="color:#e6db74">&#34;MemorySize&#34;</span>: 128,
+    <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-08-05T21:35:58.309347+0000&#34;</span>,
+    <span style="color:#e6db74">&#34;CodeSha256&#34;</span>: <span style="color:#e6db74">&#34;KjcYzGqZ2FlY/x0/mU4Sq5bk2kZ3mcUQp9Mq69D/3ms=&#34;</span>,
+    <span style="color:#e6db74">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;</span>$LATEST<span style="color:#e6db74">&#34;</span>,
+    <span style="color:#e6db74">&#34;TracingConfig&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;Mode&#34;</span>: <span style="color:#e6db74">&#34;PassThrough&#34;</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;RevisionId&#34;</span>: <span style="color:#e6db74">&#34;4352d333-bceb-49cd-84e0-a9cf6cd7f421&#34;</span>,
+    <span style="color:#e6db74">&#34;State&#34;</span>: <span style="color:#e6db74">&#34;Pending&#34;</span>,
+    <span style="color:#e6db74">&#34;StateReason&#34;</span>: <span style="color:#e6db74">&#34;The function is being created.&#34;</span>,
+    <span style="color:#e6db74">&#34;StateReasonCode&#34;</span>: <span style="color:#e6db74">&#34;Creating&#34;</span>,
+    <span style="color:#e6db74">&#34;PackageType&#34;</span>: <span style="color:#e6db74">&#34;Zip&#34;</span>,
+    <span style="color:#e6db74">&#34;Architectures&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#e6db74">&#34;x86_64&#34;</span>
+    <span style="color:#f92672">]</span>,
+    <span style="color:#e6db74">&#34;EphemeralStorage&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;Size&#34;</span>: <span style="color:#ae81ff">512</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;SnapStart&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;ApplyOn&#34;</span>: <span style="color:#e6db74">&#34;None&#34;</span>,
+        <span style="color:#e6db74">&#34;OptimizationStatus&#34;</span>: <span style="color:#e6db74">&#34;Off&#34;</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;RuntimeVersionConfig&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;RuntimeVersionArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1&#34;</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;LoggingConfig&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;LogFormat&#34;</span>: <span style="color:#e6db74">&#34;Text&#34;</span>,
+        <span style="color:#e6db74">&#34;LogGroup&#34;</span>: <span style="color:#e6db74">&#34;/aws/lambda/my-local-lambda&#34;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>The most important bit in the response is <code>&quot;State&quot;: &quot;Pending&quot;</code>.</p>
+<p>An <code>AWS Lambda</code> function typically becomes active within a few seconds after creation, often under <code>10 seconds</code>, but it depends on how you&rsquo;re deploying it and what it&rsquo;s doing.</p>
+<p>We check the status like below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws lambda get-function --function-name my-local-lambda
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;Configuration&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;FunctionName&#34;</span>: <span style="color:#e6db74">&#34;my-local-lambda&#34;</span>,
+        <span style="color:#e6db74">&#34;FunctionArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:lambda:eu-west-1:000000000000:function:my-local-lambda&#34;</span>,
+        <span style="color:#e6db74">&#34;Runtime&#34;</span>: <span style="color:#e6db74">&#34;python3.9&#34;</span>,
+        <span style="color:#e6db74">&#34;Role&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::000000000000:role/lambda-role&#34;</span>,
+        <span style="color:#e6db74">&#34;Handler&#34;</span>: <span style="color:#e6db74">&#34;lambda_function.handler&#34;</span>,
+        <span style="color:#e6db74">&#34;CodeSize&#34;</span>: 309,
+        <span style="color:#e6db74">&#34;Description&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+        <span style="color:#e6db74">&#34;Timeout&#34;</span>: 3,
+        <span style="color:#e6db74">&#34;MemorySize&#34;</span>: 128,
+        <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-08-05T21:35:58.309347+0000&#34;</span>,
+        <span style="color:#e6db74">&#34;CodeSha256&#34;</span>: <span style="color:#e6db74">&#34;KjcYzGqZ2FlY/x0/mU4Sq5bk2kZ3mcUQp9Mq69D/3ms=&#34;</span>,
+        <span style="color:#e6db74">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;</span>$LATEST<span style="color:#e6db74">&#34;</span>,
+        <span style="color:#e6db74">&#34;TracingConfig&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;Mode&#34;</span>: <span style="color:#e6db74">&#34;PassThrough&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#e6db74">&#34;RevisionId&#34;</span>: <span style="color:#e6db74">&#34;3081467c-a0ea-48a4-89fd-70dad2b85be2&#34;</span>,
+        <span style="color:#e6db74">&#34;State&#34;</span>: <span style="color:#e6db74">&#34;Active&#34;</span>,
+        <span style="color:#e6db74">&#34;LastUpdateStatus&#34;</span>: <span style="color:#e6db74">&#34;Successful&#34;</span>,
+        <span style="color:#e6db74">&#34;PackageType&#34;</span>: <span style="color:#e6db74">&#34;Zip&#34;</span>,
+        <span style="color:#e6db74">&#34;Architectures&#34;</span>: <span style="color:#f92672">[</span>
+            <span style="color:#e6db74">&#34;x86_64&#34;</span>
+        <span style="color:#f92672">]</span>,
+        <span style="color:#e6db74">&#34;EphemeralStorage&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;Size&#34;</span>: <span style="color:#ae81ff">512</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#e6db74">&#34;SnapStart&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;ApplyOn&#34;</span>: <span style="color:#e6db74">&#34;None&#34;</span>,
+            <span style="color:#e6db74">&#34;OptimizationStatus&#34;</span>: <span style="color:#e6db74">&#34;Off&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#e6db74">&#34;RuntimeVersionConfig&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;RuntimeVersionArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#e6db74">&#34;LoggingConfig&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;LogFormat&#34;</span>: <span style="color:#e6db74">&#34;Text&#34;</span>,
+            <span style="color:#e6db74">&#34;LogGroup&#34;</span>: <span style="color:#e6db74">&#34;/aws/lambda/my-local-lambda&#34;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;Code&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;RepositoryType&#34;</span>: <span style="color:#e6db74">&#34;S3&#34;</span>,
+        <span style="color:#e6db74">&#34;Location&#34;</span>: <span style="color:#e6db74">&#34;http://s3.localhost.localstack.cloud:4566/awslambda-eu-west-1-tasks/snapshots/000000000000/my-local-lambda-e26b1bca-22be-4475-b0f8-60ce302b2524?AWSAccessKeyId=949334387222&amp;Signature=BS5glQ8FG3sUB2OEXLLhGsumRrc%3D&amp;Expires=1754433611&#34;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>The function is now in active state as confirmed above.</p>
+<p>Time to invoke the function.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws lambda invoke --function-name my-local-lambda output.json
+</code></pre></div><br>
+<p>Let&rsquo;s check the <code>output.json</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ cat output.json
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;statusCode&#34;</span>: 200, <span style="color:#e6db74">&#34;body&#34;</span>: <span style="color:#e6db74">&#34;Hello from Lambda!&#34;</span>, <span style="color:#e6db74">&#34;headers&#34;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;text/plain&#34;</span><span style="color:#f92672">}}</span>
+</code></pre></div><br>
+<h2 id="using-python">Using Python</h2>
+<hr>
+<br>
+<p>Let&rsquo;s repeat the process using <code>Python</code>.</p>
+<p>Here we will provide the script, <code>lambda_function.py</code> as input and we would zip it first, followed by deploy and invoke.</p>
+<p>The following function to zip lambda file.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">zip_lambda_file</span>(lambda_script):
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(lambda_script):
+        <span style="color:#66d9ef">raise</span> FileNotFoundError(f<span style="color:#e6db74">&#34;Lambda script &#39;{lambda_script}&#39; not found&#34;</span>)
+
+    zip_filename <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#34;{os.path.splitext(lambda_script)[0]}.zip&#34;</span>
+    <span style="color:#66d9ef">with</span> zipfile<span style="color:#f92672">.</span>ZipFile(zip_filename, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> zipf:
+        zipf<span style="color:#f92672">.</span>write(lambda_script, os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(lambda_script))
+    <span style="color:#66d9ef">return</span> zip_filename
+</code></pre></div><br>
+<p>Now the function to deploy lambda function. Please note, it deletes the function first, if already deployed then deploy it fresh.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deploy_lambda_function</span>(lambda_client, lambda_script, function_name, handler_name, runtime<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;python3.9&#39;</span>):
+    zip_filename <span style="color:#f92672">=</span> zip_lambda_file(lambda_script)
+
+    <span style="color:#66d9ef">try</span>:
+        lambda_client<span style="color:#f92672">.</span>delete_function(FunctionName<span style="color:#f92672">=</span>function_name)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Deleted existing function: {function_name}&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;ResourceNotFoundException&#39;</span>:
+            <span style="color:#66d9ef">raise</span>
+
+    <span style="color:#66d9ef">with</span> open(zip_filename, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+        <span style="color:#66d9ef">try</span>:
+            response <span style="color:#f92672">=</span> lambda_client<span style="color:#f92672">.</span>create_function(
+                FunctionName<span style="color:#f92672">=</span>function_name,
+                Runtime<span style="color:#f92672">=</span>runtime,
+                Handler<span style="color:#f92672">=</span>f<span style="color:#e6db74">&#34;{os.path.splitext(lambda_script)[0]}.{handler_name}&#34;</span>,
+                Role<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;arn:aws:iam::000000000000:role/lambda-role&#39;</span>,
+                Code<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;ZipFile&#39;</span>: f<span style="color:#f92672">.</span>read()}
+            )
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Successfully created function: {function_name}&#34;</span>)
+
+            <span style="color:#66d9ef">return</span> response
+        <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to create function: {e}&#34;</span>)
+            <span style="color:#66d9ef">raise</span>
+</code></pre></div><br>
+<p>To handle the function state, here is the function to wait until it become active.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wait_for_lambda_active</span>(lambda_client, function_name, max_retries<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, delay<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(max_retries):
+        <span style="color:#66d9ef">try</span>:
+            response <span style="color:#f92672">=</span> lambda_client<span style="color:#f92672">.</span>get_function_configuration(
+                FunctionName<span style="color:#f92672">=</span>function_name
+            )
+            <span style="color:#66d9ef">if</span> response[<span style="color:#e6db74">&#39;State&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Active&#39;</span>:
+                <span style="color:#66d9ef">return</span> True
+            time<span style="color:#f92672">.</span>sleep(delay)
+        <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Waiting for function to become active... (Current state: {response.get(&#39;State&#39;, &#39;Unknown&#39;)})&#34;</span>)
+            <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ResourceNotFoundException&#39;</span>:
+                <span style="color:#66d9ef">raise</span>
+    <span style="color:#66d9ef">raise</span> TimeoutError(f<span style="color:#e6db74">&#34;Function {function_name} did not become active within {max_retries * delay} seconds&#34;</span>)
+</code></pre></div><br>
+<p>Finally the function to invoke the lambda function.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">invoke_lambda_function</span>(lambda_client, function_name):
+    lambda_client <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;lambda&#39;</span>)
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> lambda_client<span style="color:#f92672">.</span>invoke(
+            FunctionName<span style="color:#f92672">=</span>function_name,
+            Payload<span style="color:#f92672">=</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;{}&#39;</span>,
+            InvocationType<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;RequestResponse&#39;</span>
+        )
+        output <span style="color:#f92672">=</span> response[<span style="color:#e6db74">&#39;Payload&#39;</span>]<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Lambda invocation output:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{output}&#34;</span>)
+        <span style="color:#66d9ef">return</span> output
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to invoke function: {e}&#34;</span>)
+        <span style="color:#66d9ef">raise</span>
+</code></pre></div><br>
+<p>We are almost ready, here is the complete script: <code>run-lambda.py</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> argparse
+<span style="color:#f92672">import</span> boto3
+<span style="color:#f92672">import</span> zipfile
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> sys
+<span style="color:#f92672">import</span> time
+<span style="color:#f92672">from</span> botocore.exceptions <span style="color:#f92672">import</span> ClientError
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">zip_lambda_file</span>(lambda_script):
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(lambda_script):
+        <span style="color:#66d9ef">raise</span> FileNotFoundError(f<span style="color:#e6db74">&#34;Lambda script &#39;{lambda_script}&#39; not found&#34;</span>)
+
+    zip_filename <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#34;{os.path.splitext(lambda_script)[0]}.zip&#34;</span>
+    <span style="color:#66d9ef">with</span> zipfile<span style="color:#f92672">.</span>ZipFile(zip_filename, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> zipf:
+        zipf<span style="color:#f92672">.</span>write(lambda_script, os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(lambda_script))
+    <span style="color:#66d9ef">return</span> zip_filename
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wait_for_lambda_active</span>(lambda_client, function_name, max_retries<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, delay<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(max_retries):
+        <span style="color:#66d9ef">try</span>:
+            response <span style="color:#f92672">=</span> lambda_client<span style="color:#f92672">.</span>get_function_configuration(
+                FunctionName<span style="color:#f92672">=</span>function_name
+            )
+            <span style="color:#66d9ef">if</span> response[<span style="color:#e6db74">&#39;State&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Active&#39;</span>:
+                <span style="color:#66d9ef">return</span> True
+            time<span style="color:#f92672">.</span>sleep(delay)
+        <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Waiting for function to become active: (Current state: {response.get(&#39;State&#39;, &#39;Unknown&#39;)})&#34;</span>)
+            <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ResourceNotFoundException&#39;</span>:
+                <span style="color:#66d9ef">raise</span>
+    <span style="color:#66d9ef">raise</span> TimeoutError(f<span style="color:#e6db74">&#34;Function {function_name} did not become active within {max_retries * delay} seconds&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deploy_lambda_function</span>(lambda_client, lambda_script, function_name, handler_name, runtime<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;python3.9&#39;</span>):
+    zip_filename <span style="color:#f92672">=</span> zip_lambda_file(lambda_script)
+
+    <span style="color:#66d9ef">try</span>:
+        lambda_client<span style="color:#f92672">.</span>delete_function(FunctionName<span style="color:#f92672">=</span>function_name)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Deleted existing function: {function_name}&#34;</span>)
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">if</span> e<span style="color:#f92672">.</span>response[<span style="color:#e6db74">&#39;Error&#39;</span>][<span style="color:#e6db74">&#39;Code&#39;</span>] <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;ResourceNotFoundException&#39;</span>:
+            <span style="color:#66d9ef">raise</span>
+
+    <span style="color:#66d9ef">with</span> open(zip_filename, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+        <span style="color:#66d9ef">try</span>:
+            response <span style="color:#f92672">=</span> lambda_client<span style="color:#f92672">.</span>create_function(
+                FunctionName<span style="color:#f92672">=</span>function_name,
+                Runtime<span style="color:#f92672">=</span>runtime,
+                Handler<span style="color:#f92672">=</span>f<span style="color:#e6db74">&#34;{os.path.splitext(lambda_script)[0]}.{handler_name}&#34;</span>,
+                Role<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;arn:aws:iam::000000000000:role/lambda-role&#39;</span>,
+                Code<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;ZipFile&#39;</span>: f<span style="color:#f92672">.</span>read()}
+            )
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Successfully created function: {function_name}&#34;</span>)
+
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Waiting for function to become active...&#34;</span>)
+            wait_for_lambda_active(lambda_client, function_name)
+            <span style="color:#66d9ef">return</span> response
+        <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to create function: {e}&#34;</span>)
+            <span style="color:#66d9ef">raise</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">invoke_lambda_function</span>(lambda_client, function_name):
+    lambda_client <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;lambda&#39;</span>)
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> lambda_client<span style="color:#f92672">.</span>invoke(
+            FunctionName<span style="color:#f92672">=</span>function_name,
+            Payload<span style="color:#f92672">=</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;{}&#39;</span>,
+            InvocationType<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;RequestResponse&#39;</span>
+        )
+        output <span style="color:#f92672">=</span> response[<span style="color:#e6db74">&#39;Payload&#39;</span>]<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Lambda invocation output:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{output}&#34;</span>)
+        <span style="color:#66d9ef">return</span> output
+    <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Failed to invoke function: {e}&#34;</span>)
+        <span style="color:#66d9ef">raise</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Deploy and invoke AWS Lambda function&#39;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;lambda_script&#39;</span>,
+                       help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Path to the Lambda Python script&#39;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--function-name&#39;</span>, default<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;my-local-lambda&#39;</span>,
+                       help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Name of the Lambda function (default: my-local-lambda)&#39;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--handler&#39;</span>, default<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;handler&#39;</span>,
+                       help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Name of the handler function (default: handler)&#39;</span>)
+    args <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+    lambda_client <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;lambda&#39;</span>)
+
+    <span style="color:#66d9ef">try</span>:
+        deploy_lambda_function(
+            lambda_client,
+            args<span style="color:#f92672">.</span>lambda_script,
+            args<span style="color:#f92672">.</span>function_name,
+            args<span style="color:#f92672">.</span>handler
+        )
+        wait_for_lambda_active(lambda_client, args<span style="color:#f92672">.</span>function_name)
+        invoke_lambda_function(lambda_client, args<span style="color:#f92672">.</span>function_name)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: {e}&#34;</span>, file<span style="color:#f92672">=</span>sys<span style="color:#f92672">.</span>stderr)
+        sys<span style="color:#f92672">.</span>exit(<span style="color:#ae81ff">1</span>)
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><br>
+<p>This is how the interface looks like:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py run-lambda.py --help
+usage: run-lambda.py <span style="color:#f92672">[</span>-h<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--function-name FUNCTION_NAME<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--handler HANDLER<span style="color:#f92672">]</span> lambda_script
+
+Deploy and invoke AWS Lambda <span style="color:#66d9ef">function</span>
+
+positional arguments:
+  lambda_script         Path to the Lambda Python script
+
+options:
+  -h, --help            show this help message and exit
+  --function-name FUNCTION_NAME
+                        Name of the Lambda <span style="color:#66d9ef">function</span> <span style="color:#f92672">(</span>default: my-local-lambda<span style="color:#f92672">)</span>
+  --handler HANDLER     Name of the handler <span style="color:#66d9ef">function</span> <span style="color:#f92672">(</span>default: handler<span style="color:#f92672">)</span>
+</code></pre></div><br>
+<p>Time for some action:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py run-lambda.py lambda_function.py
+Successfully created <span style="color:#66d9ef">function</span>: my-local-lambda
+Waiting <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">function</span> to become active:
+Lambda invocation output:
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;statusCode&#34;</span>: 200, <span style="color:#e6db74">&#34;body&#34;</span>: <span style="color:#e6db74">&#34;Hello from Lambda!&#34;</span>, <span style="color:#e6db74">&#34;headers&#34;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;text/plain&#34;</span><span style="color:#f92672">}}</span>
+</code></pre></div><br>
+<h2 id="using-perl">Using Perl</h2>
+<hr>
+<br>
+<p>Finally time to repeat the process in <code>Perl</code> now.</p>
+<p>As before, here is function to zip the lambda function file.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zip_lambda_file</span> {
+    <span style="color:#66d9ef">my</span> ($script_path) <span style="color:#f92672">=</span> @_;
+
+    die <span style="color:#e6db74">&#34;Lambda script &#39;$script_path&#39; not found&#34;</span> <span style="color:#66d9ef">unless</span> <span style="color:#f92672">-</span>e $script_path;
+
+    <span style="color:#66d9ef">my</span> ($name, $path, $suffix) <span style="color:#f92672">=</span> fileparse($script_path, <span style="color:#e6db74">qr/\.[^.]*/</span>);
+    <span style="color:#66d9ef">my</span> $zip_filename <span style="color:#f92672">=</span> $name <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.zip&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> $zip <span style="color:#f92672">=</span> Archive::Zip<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>();
+    $zip<span style="color:#f92672">-&gt;</span>addFile($script_path, basename($script_path))
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Failed to add file to zip: $!&#34;</span>;
+
+    <span style="color:#66d9ef">unless</span> ($zip<span style="color:#f92672">-&gt;</span>writeToFileNamed($zip_filename) <span style="color:#f92672">==</span> AZ_OK) {
+        die <span style="color:#e6db74">&#34;Failed to create zip file: $!&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">return</span> $zip_filename;
+}
+</code></pre></div><br>
+<p>Now the function to deploy lambda.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">deploy_function</span> {
+    <span style="color:#66d9ef">my</span> ($lambda_client, $script_path, $function_name, $handler_name) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">my</span> $zip_file    <span style="color:#f92672">=</span> zip_lambda_file($script_path);
+    <span style="color:#66d9ef">my</span> $zip_content <span style="color:#f92672">=</span> read_zip_file($zip_file);
+
+    try {
+        $lambda_client<span style="color:#f92672">-&gt;</span>DeleteFunction(FunctionName <span style="color:#f92672">=&gt;</span> $function_name);
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Deleted existing function: $function_name\n&#34;</span>;
+    } catch {
+        <span style="color:#66d9ef">unless</span> ($_<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#39;Paws::Exception&#39;</span>) <span style="color:#f92672">&amp;&amp;</span> $_<span style="color:#f92672">-&gt;</span>code <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;ResourceNotFoundException&#39;</span>) {
+            die <span style="color:#e6db74">&#34;Error deleting function: $_&#34;</span>;
+        }
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;No existing function to delete\n&#34;</span>;
+    };
+
+    <span style="color:#66d9ef">my</span> ($base_name) <span style="color:#f92672">=</span> fileparse($script_path, <span style="color:#e6db74">qr/\.[^.]*/</span>);
+    <span style="color:#66d9ef">my</span> $handler     <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$base_name.$handler_name&#34;</span>;
+
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $lambda_client<span style="color:#f92672">-&gt;</span>CreateFunction(
+            FunctionName <span style="color:#f92672">=&gt;</span> $function_name,
+            Runtime      <span style="color:#f92672">=&gt;</span> $config<span style="color:#f92672">-&gt;</span>{runtime},
+            Handler      <span style="color:#f92672">=&gt;</span> $handler,
+            Role         <span style="color:#f92672">=&gt;</span> $config<span style="color:#f92672">-&gt;</span>{role_arn},
+            Code         <span style="color:#f92672">=&gt;</span> { ZipFile <span style="color:#f92672">=&gt;</span> $zip_content }  <span style="color:#75715e"># &lt;-- FIXED HERE</span>
+        );
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Successfully created function: $function_name\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> $response;
+    } catch {
+        die <span style="color:#e6db74">&#34;Failed to create function: $_\n&#34;</span>;
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zip_lambda_file</span> {
+    <span style="color:#66d9ef">my</span> ($script_path) <span style="color:#f92672">=</span> @_;
+
+    die <span style="color:#e6db74">&#34;Lambda script &#39;$script_path&#39; not found&#34;</span> <span style="color:#66d9ef">unless</span> <span style="color:#f92672">-</span>e $script_path;
+
+    <span style="color:#66d9ef">my</span> ($name, $path, $suffix) <span style="color:#f92672">=</span> fileparse($script_path, <span style="color:#e6db74">qr/\.[^.]*/</span>);
+    <span style="color:#66d9ef">my</span> $zip_filename <span style="color:#f92672">=</span> $name <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.zip&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> $zip <span style="color:#f92672">=</span> Archive::Zip<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>();
+    $zip<span style="color:#f92672">-&gt;</span>addFile($script_path, basename($script_path))
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Failed to add file to zip: $!&#34;</span>;
+
+    <span style="color:#66d9ef">unless</span> ($zip<span style="color:#f92672">-&gt;</span>writeToFileNamed($zip_filename) <span style="color:#f92672">==</span> AZ_OK) {
+        die <span style="color:#e6db74">&#34;Failed to create zip file: $!&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">return</span> $zip_filename;
+}
+</code></pre></div><br>
+<p>Last but not least, function to invoke the lambda.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">invoke_function</span> {
+    <span style="color:#66d9ef">my</span> ($lambda_client, $function_name) <span style="color:#f92672">=</span> @_;
+
+    sleep <span style="color:#ae81ff">2</span>;
+
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $lambda_client<span style="color:#f92672">-&gt;</span>Invoke(
+            FunctionName   <span style="color:#f92672">=&gt;</span> $function_name,
+            Payload        <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;{}&#39;</span>,
+            InvocationType <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;RequestResponse&#39;</span>
+        );
+
+        <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> $response<span style="color:#f92672">-&gt;</span>Payload;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Lambda invocation output:\n$output\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> decode_json($output) <span style="color:#66d9ef">if</span> $output <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^{/</span>;
+        <span style="color:#66d9ef">return</span> $output;
+    } catch {
+        die <span style="color:#e6db74">&#34;Failed to invoke function: $_\n&#34;</span>;
+    };
+}
+</code></pre></div><br>
+<p>The complete source file: <code>run-lambda.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
+
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Archive::Zip <span style="color:#e6db74">qw(:ERROR_CODES :CONSTANTS)</span>;
+<span style="color:#66d9ef">use</span> File::Basename;
+<span style="color:#66d9ef">use</span> File::Spec;
+<span style="color:#66d9ef">use</span> Try::Tiny;
+<span style="color:#66d9ef">use</span> Getopt::Long;
+<span style="color:#66d9ef">use</span> JSON;
+<span style="color:#66d9ef">use</span> MIME::Base64 ();
+
+<span style="color:#66d9ef">use</span> Paws;
+
+<span style="color:#66d9ef">my</span> $config <span style="color:#f92672">=</span> {
+    function_name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;my-local-lambda&#39;</span>,
+    handler       <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;handler&#39;</span>,
+    runtime       <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;python3.9&#39;</span>,
+    role_arn      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;arn:aws:iam::000000000000:role/lambda-role&#39;</span>,
+    endpoint      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;http://localhost:4566&#39;</span>,
+    region        <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;eu-west-1&#39;</span>,
+    max_retries   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+    retry_delay   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>
+};
+
+<span style="color:#66d9ef">my</span> $lambda <span style="color:#f92672">=</span> Paws<span style="color:#f92672">-&gt;</span>service(<span style="color:#e6db74">&#39;Lambda&#39;</span>,
+    region      <span style="color:#f92672">=&gt;</span> $config<span style="color:#f92672">-&gt;</span>{region},
+    endpoint    <span style="color:#f92672">=&gt;</span> $config<span style="color:#f92672">-&gt;</span>{endpoint},
+    retries     <span style="color:#f92672">=&gt;</span> $config<span style="color:#f92672">-&gt;</span>{max_retries},
+);
+
+<span style="color:#66d9ef">my</span> %options <span style="color:#f92672">=</span> (
+    <span style="color:#e6db74">&#39;function-name=s&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$config<span style="color:#f92672">-&gt;</span>{function_name},
+    <span style="color:#e6db74">&#39;handler=s&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$config<span style="color:#f92672">-&gt;</span>{handler},
+    <span style="color:#e6db74">&#39;help|h&#39;</span>          <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span><span style="color:#66d9ef">my</span> $help
+);
+
+GetOptions(%options) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Error in command line arguments\n&#34;</span>;
+
+<span style="color:#66d9ef">if</span> ($help) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&lt;&lt;&#34;</span><span style="color:#e6db74">END_USAGE</span><span style="color:#e6db74">&#34;;
+</span><span style="color:#e6db74">Usage: $0 &lt;script-file&gt; [options]
+</span><span style="color:#e6db74">Options:
+</span><span style="color:#e6db74">    --function-name NAME  Set Lambda function name
+</span><span style="color:#e6db74">    --handler NAME        Set handler name
+</span><span style="color:#e6db74">    -h, --help            Show this help message and exit
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">END_USAGE</span>
+    exit;
+}
+
+<span style="color:#66d9ef">my</span> $script_file <span style="color:#f92672">=</span> shift @ARGV <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Please specify a Lambda script file\n&#34;</span>;
+
+try {
+    <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> deploy_function(
+        $lambda,
+        $script_file,
+        $config<span style="color:#f92672">-&gt;</span>{function_name},
+        $config<span style="color:#f92672">-&gt;</span>{handler}
+    );
+
+    invoke_function($lambda, $config<span style="color:#f92672">-&gt;</span>{function_name});
+} catch {
+    <span style="color:#66d9ef">print</span> STDERR <span style="color:#e6db74">&#34;Error: $_\n&#34;</span>;
+    exit <span style="color:#ae81ff">1</span>;
+};
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># SUBROUTINES</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zip_lambda_file</span> {
+    <span style="color:#66d9ef">my</span> ($script_path) <span style="color:#f92672">=</span> @_;
+
+    die <span style="color:#e6db74">&#34;Lambda script &#39;$script_path&#39; not found&#34;</span> <span style="color:#66d9ef">unless</span> <span style="color:#f92672">-</span>e $script_path;
+
+    <span style="color:#66d9ef">my</span> ($name, $path, $suffix) <span style="color:#f92672">=</span> fileparse($script_path, <span style="color:#e6db74">qr/\.[^.]*/</span>);
+    <span style="color:#66d9ef">my</span> $zip_filename <span style="color:#f92672">=</span> $name <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.zip&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> $zip <span style="color:#f92672">=</span> Archive::Zip<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>();
+    $zip<span style="color:#f92672">-&gt;</span>addFile($script_path, basename($script_path))
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Failed to add file to zip: $!&#34;</span>;
+
+    <span style="color:#66d9ef">unless</span> ($zip<span style="color:#f92672">-&gt;</span>writeToFileNamed($zip_filename) <span style="color:#f92672">==</span> AZ_OK) {
+        die <span style="color:#e6db74">&#34;Failed to create zip file: $!&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">return</span> $zip_filename;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">read_zip_file</span> {
+    <span style="color:#66d9ef">my</span> ($zip_file) <span style="color:#f92672">=</span> @_;
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;:raw&#39;</span>, $zip_file) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot open zip file: $!&#34;</span>;
+    <span style="color:#66d9ef">my</span> $content <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> { local $/; <span style="color:#e6db74">&lt;$fh&gt;</span> };
+    close($fh);
+    <span style="color:#66d9ef">return</span> MIME::Base64::encode_base64($content, <span style="color:#e6db74">&#39;&#39;</span>);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">deploy_function</span> {
+    <span style="color:#66d9ef">my</span> ($lambda_client, $script_path, $function_name, $handler_name) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">my</span> $zip_file    <span style="color:#f92672">=</span> zip_lambda_file($script_path);
+    <span style="color:#66d9ef">my</span> $zip_content <span style="color:#f92672">=</span> read_zip_file($zip_file);
+
+    try {
+        $lambda_client<span style="color:#f92672">-&gt;</span>DeleteFunction(FunctionName <span style="color:#f92672">=&gt;</span> $function_name);
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Deleted existing function: $function_name\n&#34;</span>;
+    } catch {
+        <span style="color:#66d9ef">unless</span> ($_<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#39;Paws::Exception&#39;</span>) <span style="color:#f92672">&amp;&amp;</span> $_<span style="color:#f92672">-&gt;</span>code <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;ResourceNotFoundException&#39;</span>) {
+            die <span style="color:#e6db74">&#34;Error deleting function: $_&#34;</span>;
+        }
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;No existing function to delete\n&#34;</span>;
+    };
+
+    <span style="color:#66d9ef">my</span> ($base_name) <span style="color:#f92672">=</span> fileparse($script_path, <span style="color:#e6db74">qr/\.[^.]*/</span>);
+    <span style="color:#66d9ef">my</span> $handler     <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$base_name.$handler_name&#34;</span>;
+
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $lambda_client<span style="color:#f92672">-&gt;</span>CreateFunction(
+            FunctionName <span style="color:#f92672">=&gt;</span> $function_name,
+            Runtime      <span style="color:#f92672">=&gt;</span> $config<span style="color:#f92672">-&gt;</span>{runtime},
+            Handler      <span style="color:#f92672">=&gt;</span> $handler,
+            Role         <span style="color:#f92672">=&gt;</span> $config<span style="color:#f92672">-&gt;</span>{role_arn},
+            Code         <span style="color:#f92672">=&gt;</span> { ZipFile <span style="color:#f92672">=&gt;</span> $zip_content }  <span style="color:#75715e"># &lt;-- FIXED HERE</span>
+        );
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Successfully created function: $function_name\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> $response;
+    } catch {
+        die <span style="color:#e6db74">&#34;Failed to create function: $_\n&#34;</span>;
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">invoke_function</span> {
+    <span style="color:#66d9ef">my</span> ($lambda_client, $function_name) <span style="color:#f92672">=</span> @_;
+
+    sleep <span style="color:#ae81ff">2</span>;
+
+    try {
+        <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $lambda_client<span style="color:#f92672">-&gt;</span>Invoke(
+            FunctionName   <span style="color:#f92672">=&gt;</span> $function_name,
+            Payload        <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;{}&#39;</span>,
+            InvocationType <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;RequestResponse&#39;</span>
+        );
+
+        <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> $response<span style="color:#f92672">-&gt;</span>Payload;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Lambda invocation output:\n$output\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> decode_json($output) <span style="color:#66d9ef">if</span> $output <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^{/</span>;
+        <span style="color:#66d9ef">return</span> $output;
+    } catch {
+        die <span style="color:#e6db74">&#34;Failed to invoke function: $_\n&#34;</span>;
+    };
+}
+</code></pre></div><br>
+<p>Here is the interface looks like below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl run-lambda.pl -h
+Usage: run-lambda.pl &lt;script-file&gt; <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span>
+Options:
+    --function-name NAME  Set Lambda <span style="color:#66d9ef">function</span> name
+    --handler NAME        Set handler name
+    -h, --help            Show this help message and exit
+</code></pre></div><br>
+<p>Action time now:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl run-lambda.pl lambda_function.py
+Deleted existing <span style="color:#66d9ef">function</span>: my-local-lambda
+Successfully created <span style="color:#66d9ef">function</span>: my-local-lambda
+Lambda invocation output:
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;statusCode&#34;</span>: 200, <span style="color:#e6db74">&#34;body&#34;</span>: <span style="color:#e6db74">&#34;Hello from Lambda!&#34;</span>, <span style="color:#e6db74">&#34;headers&#34;</span>: <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;text/plain&#34;</span><span style="color:#f92672">}}</span>
+</code></pre></div><br>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
