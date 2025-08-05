@@ -295,10 +295,11 @@
                     <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
 <br>
 <h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
-<h3 id="2-lambda-functionlambda-function"><a href="#lambda-function">2. Lambda Function</a></h3>
-<h3 id="3-using-awsusing-aws"><a href="#using-aws">3. Using aws</a></h3>
-<h3 id="4-using-pythonusing-python"><a href="#using-python">4. Using Python</a></h3>
-<h3 id="5-using-perlusing-perl"><a href="#using-perl">5. Using Perl</a></h3>
+<h3 id="2-setup-localstacksetup-localstack"><a href="#setup-localstack">2. Setup LocalStack</a></h3>
+<h3 id="3-lambda-functionlambda-function"><a href="#lambda-function">3. Lambda Function</a></h3>
+<h3 id="4-using-awsusing-aws"><a href="#using-aws">4. Using aws</a></h3>
+<h3 id="5-using-pythonusing-python"><a href="#using-python">5. Using Python</a></h3>
+<h3 id="6-using-perlusing-perl"><a href="#using-perl">6. Using Perl</a></h3>
 <br>
 <h2 id="introduction">Introduction</h2>
 <hr>
@@ -307,6 +308,35 @@
 <p><code>AWS Lambda</code> is a serverless compute service that allows you to run code without having to manage servers. You simply upload your code and <code>Lambda</code> takes care of the scaling, patching and execution, charging you only for the duration your code is executed.</p>
 <p>It&rsquo;s like hiring a chef who only cooks when you request it, cleans up afterward and charges you only for the minutes spent cooking.</p>
 <br>
+<h2 id="setup-localstack">Setup LocalStack</h2>
+<hr>
+<br>
+<p>Here is the docker compose configuration: <code>docker-compose.yml</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    ports:
+      - <span style="color:#e6db74">&#34;4566:4566&#34;</span>
+      - <span style="color:#e6db74">&#34;4510-4559:4510-4559&#34;</span>
+    environment:
+      - PERSISTENCE<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+      - SERVICES<span style="color:#f92672">=</span>s3,ec2,lambda,sts,iam,apigateway,logs
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - localstack_localstack_data:/var/lib/localstack
+      - /tmp/localstack_host:/host_tmp
+
+volumes:
+  localstack_localstack_data:
+</code></pre></div><br>
+<p>Start the container like below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up -d
+</code></pre></div><br>
 <h2 id="lambda-function">Lambda Function</h2>
 <hr>
 <br>
@@ -327,6 +357,16 @@
 <h2 id="using-aws">Using aws</h2>
 <hr>
 <br>
+<p>Here is the <code>aws</code> configuration:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws configure list
+      Name                    Value             Type    Location
+      ----                    -----             ----    --------
+   profile                &lt;not set&gt;             None    None
+access_key     ****************VW55              env
+secret_key     ****************+ljT              env
+    region                eu-west-1      config-file    ~/.aws/config
+</code></pre></div><br>
 <p>Let&rsquo;s create <code>AWS Lambda</code> function as below:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ aws lambda create-function <span style="color:#ae81ff">\

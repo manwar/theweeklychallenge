@@ -12,10 +12,11 @@ tags: ["perl", "python", "aws", "localstack"]
 <br>
 
 ### [1. Introduction](#introduction)
-### [2. Lambda Function](#lambda-function)
-### [3. Using aws](#using-aws)
-### [4. Using Python](#using-python)
-### [5. Using Perl](#using-perl)
+### [2. Setup LocalStack](#setup-localstack)
+### [3. Lambda Function](#lambda-function)
+### [4. Using aws](#using-aws)
+### [5. Using Python](#using-python)
+### [6. Using Perl](#using-perl)
 
 <br>
 
@@ -29,6 +30,49 @@ This post comes nearly a month and a half after the last one. The previous post 
 `AWS Lambda` is a serverless compute service that allows you to run code without having to manage servers. You simply upload your code and `Lambda` takes care of the scaling, patching and execution, charging you only for the duration your code is executed.
 
 It's like hiring a chef who only cooks when you request it, cleans up afterward and charges you only for the minutes spent cooking.
+
+<br>
+
+## Setup LocalStack
+***
+
+<br>
+
+Here is the docker compose configuration: `docker-compose.yml`
+
+<br>
+
+```bash
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+    environment:
+      - PERSISTENCE=1
+      - SERVICES=s3,ec2,lambda,sts,iam,apigateway,logs
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - localstack_localstack_data:/var/lib/localstack
+      - /tmp/localstack_host:/host_tmp
+
+volumes:
+  localstack_localstack_data:
+```
+
+<br>
+
+Start the container like below:
+
+<br>
+
+```bash
+$ docker-compose up -d
+```
 
 <br>
 
@@ -66,6 +110,22 @@ def handler(event, context):
 
 ## Using aws
 ***
+
+<br>
+
+Here is the `aws` configuration:
+
+<br>
+
+```bash
+(myenv) $ aws configure list
+      Name                    Value             Type    Location
+      ----                    -----             ----    --------
+   profile                <not set>             None    None
+access_key     ****************VW55              env
+secret_key     ****************+ljT              env
+    region                eu-west-1      config-file    ~/.aws/config
+```
 
 <br>
 
