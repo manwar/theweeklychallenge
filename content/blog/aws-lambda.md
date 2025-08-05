@@ -59,7 +59,7 @@ def handler(event, context):
 <br>
 
 ```bash
-$ zip lambda_function.zip lambda_function.py
+(myenv) $ zip lambda_function.zip lambda_function.py
 ```
 
 <br>
@@ -198,6 +198,10 @@ Time to invoke the function.
 
 ```bash
 (myenv) $ aws lambda invoke --function-name my-local-lambda output.json
+{
+    "StatusCode": 200,
+    "ExecutedVersion": "$LATEST"
+}
 ```
 
 <br>
