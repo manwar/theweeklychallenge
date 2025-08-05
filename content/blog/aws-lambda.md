@@ -24,11 +24,11 @@ tags: ["perl", "python", "aws", "localstack"]
 
 <br>
 
-This post came nearly after a month and half. The last post about `AWS` related topic was about [**AWS DynamoDB**](/blog/aws-dynamodb). The break wasn't intended, though.
+This post comes nearly a month and a half after the last one. The previous post on an `AWS` related topic was about [**AWS DynamoDB**](/blog/aws-dynamodb). The break wasn't intentional, though.
 
 `AWS Lambda` is a serverless compute service that allows you to run code without having to manage servers. You simply upload your code and `Lambda` takes care of the scaling, patching and execution, charging you only for the duration your code is executed.
 
-It would be like hiring a chef that cooks when you request them, cleans up when they are done and charges you only for the minutes that they actually cook.
+It's like hiring a chef who only cooks when you request it, cleans up afterward and charges you only for the minutes spent cooking.
 
 <br>
 
@@ -113,20 +113,9 @@ You should see detailed response as below:
     "Architectures": [
         "x86_64"
     ],
-    "EphemeralStorage": {
-        "Size": 512
-    },
-    "SnapStart": {
-        "ApplyOn": "None",
-        "OptimizationStatus": "Off"
-    },
-    "RuntimeVersionConfig": {
-        "RuntimeVersionArn": "arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1"
-    },
-    "LoggingConfig": {
-        "LogFormat": "Text",
-        "LogGroup": "/aws/lambda/my-local-lambda"
-    }
+    ...
+    ...
+    ...
 }
 ```
 
@@ -166,25 +155,9 @@ We check the status like below:
         "Architectures": [
             "x86_64"
         ],
-        "EphemeralStorage": {
-            "Size": 512
-        },
-        "SnapStart": {
-            "ApplyOn": "None",
-            "OptimizationStatus": "Off"
-        },
-        "RuntimeVersionConfig": {
-            "RuntimeVersionArn": "arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1"
-        },
-        "LoggingConfig": {
-            "LogFormat": "Text",
-            "LogGroup": "/aws/lambda/my-local-lambda"
-        }
-    },
-    "Code": {
-        "RepositoryType": "S3",
-        "Location": "http://s3.localhost.localstack.cloud:4566/awslambda-eu-west-1-tasks/snapshots/000000000000/my-local-lambda-e26b1bca-22be-4475-b0f8-60ce302b2524?AWSAccessKeyId=949334387222&Signature=BS5glQ8FG3sUB2OEXLLhGsumRrc%3D&Expires=1754433611"
-    }
+        ...
+        ...
+        ...
 }
 ```
 
