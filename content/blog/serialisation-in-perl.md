@@ -322,9 +322,11 @@ Some of the main benefits:
 
 <br>
 
-    - 2-5x faster than Storable
-    - 20-50% smaller output
-    - no arbitrary code execution by default
+```bash
+- 2-5x faster than Storable
+- 20-50% smaller output
+- no arbitrary code execution by default
+```
 
 <br>
 
