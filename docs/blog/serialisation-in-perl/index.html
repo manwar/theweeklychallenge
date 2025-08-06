@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Serialisation in Perl"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/serialisation-in-perl/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about AWS Lambda."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about AWS Lambda.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/serialisation-in-perl/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Serialisation in Perl</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Serialisation in Perl</h2>
+                    <div class="portfolio-meta">
+                        <span>Wednesday, Aug 6, 2025</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/serialisation-in-perl.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<br>
+<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-storablestorable"><a href="#storable">2. Storable</a></h3>
+<h3 id="3-serealsereal"><a href="#sereal">3. Sereal</a></h3>
+<h3 id="4-file-based-serialisationfile-based-serialisation"><a href="#file-based-serialisation">4. File-based Serialisation</a></h3>
+<h3 id="5-in-memory-serialisationin-memory-serialisation"><a href="#in-memory-serialisation">5. In-memory Serialisation</a></h3>
+<h3 id="6-benchmarkbenchmark"><a href="#benchmark">6. Benchmark</a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<br>
+<p><code>Serialisation</code> is the process of converting complex <code>Perl</code> data structures (hashes, arrays, objects) into a format that can be stored or transmitted and later reconstructed.</p>
+<p>Two major <code>Perl</code> serialisation <code>CPAN</code>modules: <a href="https://metacpan.org/pod/Storable"><strong>Storable</strong></a> and <a href="https://metacpan.org/pod/Sereal"><strong>Sereal</strong></a></p>
+<br>
+<pre><code>Storable – A core Perl module for fast serialisation.
+Sereal   – A high-performance alternative with better speed and compression.
+</code></pre>
+<br>
+<h3 id="local-system-configuration">Local System Configuration</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo lshw -short | grep -E <span style="color:#e6db74">&#39;processor|memory|storage|volume&#39;</span>
+/0/0                  memory     15GiB System memory
+/0/1                  processor  13th Gen Intel<span style="color:#f92672">(</span>R<span style="color:#f92672">)</span> Core<span style="color:#f92672">(</span>TM<span style="color:#f92672">)</span> i9-13900HX
+/0/3                  storage    Virtio 1.0 console
+/0/7        scsi0     storage
+/0/7/0.0.0  /dev/sda  volume     388MiB Virtual Disk
+/0/7/0.0.1  /dev/sdb  volume     4GiB Virtual Disk
+/0/7/0.0.2  /dev/sdc  volume     1TiB Virtual Disk
+</code></pre></div><br>
+<h2 id="storable">Storable</h2>
+<hr>
+<br>
+<p>Introduced in <code>Perl 5.0</code> in <code>1994</code> as a core module.</p>
+<p>It uses binary format for compact storage.</p>
+<p><code>Storable</code> is one of <code>Perl</code>'s core modules for serialisation and deserialisation of <code>Perl</code> data structures.</p>
+<p>It can handle nested data structures, objects, and references.</p>
+<p>It provides both functional and OO interfaces.</p>
+<p>It generally performs better than text-based serialisation formats e.g <code>YAML</code>, <code>JSON</code> etc.</p>
+<p>Always use <code>$Storable::forgive_me = 1</code> and <code>$Storable::canonical = 1</code> for security when processing untrusted input.</p>
+<p>Consider using the <code>lock_store</code> and <code>lock_retrieve</code> functions from <code>Storable v2.53+</code> which are safer by default.</p>
+<br>
+<h3 id="example">Example</h3>
+<br>
+<p>A very simple example where we have three different types of data.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Storable <span style="color:#e6db74">qw(store retrieve freeze thaw)</span>;
+
+<span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> {
+    numbers <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span>],
+    nested  <span style="color:#f92672">=&gt;</span> { a <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, b <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, c <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span> },
+    object  <span style="color:#f92672">=&gt;</span> YourClass<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>
+};
+
+store($data, <span style="color:#e6db74">&#39;storable.dat&#39;</span>);
+
+<span style="color:#66d9ef">my</span> $deserialised <span style="color:#f92672">=</span> retrieve(<span style="color:#e6db74">&#39;storable.dat&#39;</span>);
+
+<span style="color:#66d9ef">my</span> $frozen <span style="color:#f92672">=</span> freeze($data);
+<span style="color:#66d9ef">my</span> $thawed <span style="color:#f92672">=</span> thaw($frozen);
+</code></pre></div><br>
+<h3 id="arbitrary-code-execution-risk">Arbitrary Code Execution Risk</h3>
+<br>
+<p>There is always a risk of arbitrary code execution, if you aren&rsquo;t carefull.</p>
+<p>This example shows how <code>Storable</code> can execute dangerous code during deserialisation if proper precautions aren&rsquo;t taken.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Storable <span style="color:#e6db74">qw(freeze thaw)</span>;
+
+<span style="color:#66d9ef">package</span> Malicious;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">STORABLE_thaw</span> {
+    <span style="color:#66d9ef">my</span> ($self, $cloning, $serialised) <span style="color:#f92672">=</span> @_;
+    system(<span style="color:#e6db74">&#34;echo &#39;running malicious code!!&#39; &gt; danger.txt&#34;</span>);
+    <span style="color:#66d9ef">return</span> $self;
+}
+
+<span style="color:#66d9ef">my</span> $malicious <span style="color:#f92672">=</span> bless {}, <span style="color:#e6db74">&#39;Malicious&#39;</span>;
+<span style="color:#66d9ef">my</span> $frozen    <span style="color:#f92672">=</span> freeze($malicious);
+<span style="color:#66d9ef">my</span> $decoded   <span style="color:#f92672">=</span> thaw($frozen);
+</code></pre></div><br>
+<p>You should now have <code>danger.txt</code> created after the run.</p>
+<h3 id="how-can-we-protect-ourself-from-this">How can we protect ourself from this?</h3>
+<p>Use <code>lock_thaw()</code> instead of just <code>thaw</code> as below.</p>
+<p>You need <code>Perl v5.30+</code> for this feature.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Storable <span style="color:#e6db74">qw(lock_thaw)</span>;
+<span style="color:#66d9ef">my</span> $safe_data <span style="color:#f92672">=</span> lock_thaw($frozen);
+</code></pre></div><br>
+<p>Or you can disable the dangerous feaure, still risky.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$Storable::forgive_me <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+$Storable::canonical  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+<span style="color:#66d9ef">my</span> $safe_data <span style="color:#f92672">=</span> thaw($frozen);
+</code></pre></div><br>
+<h3 id="storable_thaw">STORABLE_thaw</h3>
+<br>
+<p>It is a special predefined method name in <code>Storable</code>'s serialisation protocol.</p>
+<p>You cannot rename it arbitrarily if you want <code>Storable</code> to call it automatically during deserialisation.</p>
+<p><code>STORABLE_thaw</code> is a fixed hook name.</p>
+<p><code>Storable</code> specifically looks for this exact method name during deserialisation.</p>
+<p>During <code>thaw()</code>, <code>Storable</code> checks if the serialised data has a class with <code>STORABLE_thaw</code> and executes it automatically if found.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Malicious;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">STORABLE_thaw</span> {
+    system(<span style="color:#e6db74">&#34;rm -rf /&#34;</span>);
+}
+</code></pre></div><br>
+<p>Attackers can exploit this fixed hook name to embed malicious payloads.</p>
+<p><code>Storable</code> always calls <code>STORABLE_thaw</code> if present.</p>
+<p>There is no way to disable it without <code>lock_thaw</code>.</p>
+<p>This would <code>die</code> if your data contains <code>object</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Storable <span style="color:#e6db74">qw(thaw)</span>;
+
+$Storable::forbid_objects <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+thaw($data);
+</code></pre></div><br>
+<p>Similarly there is <code>STORABLE_freeze</code> method in the <code>Storable</code> module&rsquo;s object serialisation mechanism.</p>
+<p>It allows you to define how an object should be serialised when <code>Storable::freeze</code>.</p>
+<p>If it&rsquo;s so dangerous then why it&rsquo;s there in the first place?</p>
+<p>It is needed when the class needs to rebuild itself in a special way.</p>
+<p>Please find below some of common use case:</p>
+<hr>
+<br>
+<h3 id="1-database-connection">1. Database Connection</h3>
+<br>
+<p><code>Storable</code> can&rsquo;t serialise the <code>db connection</code>.</p>
+<p>However you can save the <code>dsn</code> and this can be used to recreate the db connection when deserialisation happens:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> DatabaseHandle;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+    <span style="color:#66d9ef">my</span> ($class, $dsn) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $dbh <span style="color:#f92672">=</span> DBI<span style="color:#f92672">-&gt;</span>connect($dsn);
+    bless { dbh <span style="color:#f92672">=&gt;</span> $dbh }, $class;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">STORABLE_freeze</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> ($self<span style="color:#f92672">-&gt;</span>{dsn});
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">STORABLE_thaw</span> {
+    <span style="color:#66d9ef">my</span> ($self, $cloning, $dsn) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">if</span> ($cloning) {
+        <span style="color:#75715e"># During dclone</span>
+        $self<span style="color:#f92672">-&gt;</span>{dbh} <span style="color:#f92672">=</span> undef;  <span style="color:#75715e"># Safety measure</span>
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e"># During thaw</span>
+        $self<span style="color:#f92672">-&gt;</span>{dbh} <span style="color:#f92672">=</span> DBI<span style="color:#f92672">-&gt;</span>connect($dsn) <span style="color:#f92672">or</span> die;
+    }
+}
+</code></pre></div><br>
+<h3 id="2-validation-wrapper">2. Validation Wrapper</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> SecureData;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">STORABLE_thaw</span> {
+    <span style="color:#66d9ef">my</span> ($self, $cloning, $serialised) <span style="color:#f92672">=</span> @_;
+    die <span style="color:#e6db74">&#34;Invalid data&#34;</span> <span style="color:#66d9ef">unless</span> validate($serialised);
+    %$self <span style="color:#f92672">=</span> %$serialised;
+}
+</code></pre></div><br>
+<h3 id="3-version-compatibility">3. Version Compatibility</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Employee;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">STORABLE_thaw</span> {
+    <span style="color:#66d9ef">my</span> ($self, $cloning, $serialised) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#75715e"># Backward compatibility</span>
+    <span style="color:#66d9ef">if</span> (ref $serialised <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;ARRAY&#39;</span>) {
+        ($self<span style="color:#f92672">-&gt;</span>{name}, $self<span style="color:#f92672">-&gt;</span>{id}) <span style="color:#f92672">=</span> @$serialised;
+    }
+    <span style="color:#75715e"># New format</span>
+    <span style="color:#66d9ef">elsif</span> (ref $serialised <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;HASH&#39;</span>) {
+        %$self <span style="color:#f92672">=</span> %$serialised;
+    }
+}
+</code></pre></div><br>
+<h2 id="sereal">Sereal</h2>
+<hr>
+<br>
+<p>Developed by <code>Steffen Müller</code> in <code>2012</code> as a faster, more efficient serialisation format.</p>
+<p>It is used by <code>Facebook</code>, <code>Booking.com</code> and others for high-performance <code>Perl</code> applications.</p>
+<p>It is a binary serialisation format designed specifically for <code>Perl</code>.</p>
+<p>Some of the main benefits:</p>
+<br>
+<pre><code>- 2-5x faster than Storable
+- 20-50% smaller output
+- no arbitrary code execution by default
+</code></pre>
+<br>
+<h3 id="example-1">Example</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Sereal::Encoder <span style="color:#e6db74">qw(encode_sereal)</span>;
+<span style="color:#66d9ef">use</span> Sereal::Decoder <span style="color:#e6db74">qw(decode_sereal)</span>;
+
+<span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> {
+    numbers <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span>],
+    nested  <span style="color:#f92672">=&gt;</span> { a <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, b <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, c <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span> },
+    object  <span style="color:#f92672">=&gt;</span> YourClass<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>
+};
+
+open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, <span style="color:#e6db74">&#39;sereal.dat&#39;</span> <span style="color:#f92672">or</span> die $!;
+<span style="color:#66d9ef">print</span> $fh encode_sereal($data);
+close $fh;
+
+open $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, <span style="color:#e6db74">&#39;sereal.dat&#39;</span> <span style="color:#f92672">or</span> die $!;
+<span style="color:#66d9ef">my</span> $serialised <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> { local $/; <span style="color:#e6db74">&lt;$fh&gt;</span> };
+close $fh;
+<span style="color:#66d9ef">my</span> $decoded <span style="color:#f92672">=</span> decode_sereal($serialised);
+</code></pre></div><br>
+<h2 id="file-based-serialisation">File-based Serialisation</h2>
+<hr>
+<br>
+<h3 id="using-storable">Using Storable</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Storable <span style="color:#e6db74">qw(store)</span>;
+
+class Employee {
+    field $id   :param;
+    field $name :param;
+    field $age  :param;
+
+    method info { <span style="color:#e6db74">&#34;ID: $id, Name: $name, Age: $age&#34;</span> }
+}
+
+<span style="color:#66d9ef">my</span> $alice <span style="color:#f92672">=</span> Employee<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1001</span>, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span>);
+<span style="color:#66d9ef">my</span> $bob   <span style="color:#f92672">=</span> Employee<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1002</span>, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Bob&#39;</span>,   age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">25</span>);
+
+store([$alice, $bob], <span style="color:#e6db74">&#39;storable.dat&#39;</span>);
+say <span style="color:#e6db74">&#34;Saved employees to storable.dat&#34;</span>;
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> Storable <span style="color:#e6db74">qw(retrieve)</span>;
+
+class Employee {
+    field $id   :param;
+    field $name :param;
+    field $age  :param;
+
+    method info { <span style="color:#e6db74">&#34;ID: $id, Name: $name, Age: $age&#34;</span> }
+}
+
+<span style="color:#66d9ef">my</span> $employees <span style="color:#f92672">=</span> retrieve(<span style="color:#e6db74">&#39;storable.dat&#39;</span>);
+
+isa_ok($employees, <span style="color:#e6db74">&#39;ARRAY&#39;</span>, <span style="color:#e6db74">&#39;Loaded array&#39;</span>);
+is(scalar @$employees, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;Found 2 employees&#39;</span>);
+
+is($employees<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>info, <span style="color:#e6db74">&#34;ID: 1001, Name: Alice, Age: 30&#34;</span>, <span style="color:#e6db74">&#39;Alice data intact&#39;</span>);
+is($employees<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>info, <span style="color:#e6db74">&#34;ID: 1002, Name: Bob, Age: 25&#34;</span>, <span style="color:#e6db74">&#39;Bob data intact&#39;</span>);
+
+done_testing;
+</code></pre></div><br>
+<h3 id="using-sereal">Using Sereal</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Sereal::Encoder <span style="color:#e6db74">qw(encode_sereal)</span>;
+
+class Employee {
+    field $id   :param;
+    field $name :param;
+    field $age  :param;
+
+    method info { <span style="color:#e6db74">&#34;ID: $id, Name: $name, Age: $age&#34;</span> }
+}
+
+<span style="color:#66d9ef">my</span> $alice <span style="color:#f92672">=</span> Employee<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1001</span>, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span>);
+<span style="color:#66d9ef">my</span> $bob   <span style="color:#f92672">=</span> Employee<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1002</span>, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Bob&#39;</span>,   age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">25</span>);
+
+open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, <span style="color:#e6db74">&#39;sereal.dat&#39;</span> <span style="color:#f92672">or</span> die $!;
+<span style="color:#66d9ef">print</span> $fh encode_sereal([$alice, $bob]);
+close $fh;
+
+say <span style="color:#e6db74">&#34;Saved employees to sereal.dat&#34;</span>;
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> Sereal::Decoder <span style="color:#e6db74">qw(decode_sereal)</span>;
+
+class Employee {
+    field $id   :param;
+    field $name :param;
+    field $age  :param;
+
+    method info { <span style="color:#e6db74">&#34;ID: $id, Name: $name, Age: $age&#34;</span> }
+}
+
+open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, <span style="color:#e6db74">&#39;sereal.dat&#39;</span> <span style="color:#f92672">or</span> die $!;
+<span style="color:#66d9ef">my</span> $serialised <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> { local $/; <span style="color:#e6db74">&lt;$fh&gt;</span> };
+close $fh;
+
+<span style="color:#66d9ef">my</span> $employees <span style="color:#f92672">=</span> decode_sereal($serialised);
+
+isa_ok($employees, <span style="color:#e6db74">&#39;ARRAY&#39;</span>, <span style="color:#e6db74">&#39;Loaded array&#39;</span>);
+is(scalar @$employees, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;Found 2 employees&#39;</span>);
+is($employees<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>info, <span style="color:#e6db74">&#34;ID: 1001, Name: Alice, Age: 30&#34;</span>, <span style="color:#e6db74">&#39;Alice data&#39;</span>);
+is($employees<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>info, <span style="color:#e6db74">&#34;ID: 1002, Name: Bob, Age: 25&#34;</span>, <span style="color:#e6db74">&#39;Bob data&#39;</span>);
+
+done_testing;
+</code></pre></div><br>
+<h2 id="in-memory-serialisation">In-memory Serialisation</h2>
+<hr>
+<br>
+<h3 id="using-storable-1">Using Storable</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> Storable <span style="color:#e6db74">qw(freeze thaw)</span>;
+
+class Employee {
+    field $id   :param;
+    field $name :param;
+    field $age  :param;
+
+    method info { <span style="color:#e6db74">&#34;ID: $id, Name: $name, Age: $age&#34;</span> }
+}
+
+<span style="color:#66d9ef">my</span> $alice     <span style="color:#f92672">=</span> Employee<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1001</span>, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span>);
+<span style="color:#66d9ef">my</span> $bob       <span style="color:#f92672">=</span> Employee<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1002</span>, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Bob&#39;</span>,   age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">25</span>);
+<span style="color:#66d9ef">my</span> $employees <span style="color:#f92672">=</span> [$alice, $bob];
+
+<span style="color:#66d9ef">my</span> $serialised   <span style="color:#f92672">=</span> freeze($employees);
+<span style="color:#66d9ef">my</span> $deserialised <span style="color:#f92672">=</span> thaw($serialised);
+
+is(scalar @$deserialised, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#34;Correct number of employees&#34;</span>);
+is($deserialised<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>info, $alice<span style="color:#f92672">-&gt;</span>info, <span style="color:#e6db74">&#34;Alice data matches&#34;</span>);
+is($deserialised<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>info, $bob<span style="color:#f92672">-&gt;</span>info, <span style="color:#e6db74">&#34;Bob data matches&#34;</span>);
+
+done_testing;
+</code></pre></div><br>
+<h3 id="using-sereal-1">Using Sereal</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> Sereal::Encoder <span style="color:#e6db74">qw(encode_sereal)</span>;
+<span style="color:#66d9ef">use</span> Sereal::Decoder <span style="color:#e6db74">qw(decode_sereal)</span>;
+
+class Employee {
+    field $id   :param;
+    field $name :param;
+    field $age  :param;
+
+    method info { <span style="color:#e6db74">&#34;ID: $id, Name: $name, Age: $age&#34;</span> }
+}
+
+<span style="color:#66d9ef">my</span> $alice     <span style="color:#f92672">=</span> Employee<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1001</span>, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span>);
+<span style="color:#66d9ef">my</span> $bob       <span style="color:#f92672">=</span> Employee<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1002</span>, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Bob&#39;</span>,   age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">25</span>);
+<span style="color:#66d9ef">my</span> $employees <span style="color:#f92672">=</span> [$alice, $bob];
+
+<span style="color:#66d9ef">my</span> $serialised   <span style="color:#f92672">=</span> encode_sereal($employees, { compress <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> });
+<span style="color:#66d9ef">my</span> $deserialised <span style="color:#f92672">=</span> decode_sereal($serialised);
+
+is(scalar @$deserialised, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#34;Correct number of employees&#34;</span>);
+is($deserialised<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>info, $alice<span style="color:#f92672">-&gt;</span>info, <span style="color:#e6db74">&#34;Alice data matches&#34;</span>);
+is($deserialised<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>info, $bob<span style="color:#f92672">-&gt;</span>info, <span style="color:#e6db74">&#34;Bob data matches&#34;</span>);
+
+done_testing;
+</code></pre></div><br>
+<h2 id="benchmark">Benchmark</h2>
+<hr>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Benchmark <span style="color:#e6db74">qw(cmpthese)</span>;
+<span style="color:#66d9ef">use</span> Storable <span style="color:#e6db74">qw(freeze thaw)</span>;
+<span style="color:#66d9ef">use</span> Sereal::Encoder <span style="color:#e6db74">qw(encode_sereal)</span>;
+<span style="color:#66d9ef">use</span> Sereal::Decoder <span style="color:#e6db74">qw(decode_sereal)</span>;
+
+<span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> {
+    array  <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span>],
+    hash   <span style="color:#f92672">=&gt;</span> { map { $_ <span style="color:#f92672">=&gt;</span> $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span> },
+    nested <span style="color:#f92672">=&gt;</span> { map { $_ <span style="color:#f92672">=&gt;</span> [$_ x <span style="color:#ae81ff">5</span>] } <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;z&#39;</span> }
+};
+
+cmpthese(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, {
+    storable <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">my</span> $frozen <span style="color:#f92672">=</span> freeze($data);
+        <span style="color:#66d9ef">my</span> $thawed <span style="color:#f92672">=</span> thaw($frozen);
+    },
+    sereal <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">my</span> $encoded <span style="color:#f92672">=</span> encode_sereal($data);
+        <span style="color:#66d9ef">my</span> $decoded <span style="color:#f92672">=</span> decode_sereal($encoded);
+    },
+});
+</code></pre></div><br>
+<h3 id="result">Result</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">            Rate storable   sereal
+storable  1428/s       --     -66%
+sereal    4166/s     192%       --
+</code></pre></div><br>
+<h3 id="decode-the-numbers">Decode the Numbers</h3>
+<br>
+<p>How much slower <code>Storable</code> is compared to <code>Sereal</code>?</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">(</span><span style="color:#ae81ff">1428</span> - 4166<span style="color:#f92672">)</span>/4166 × <span style="color:#ae81ff">100</span> ≈ -66%
+</code></pre></div><br>
+<p>How much faster <code>Sereal</code> is compared to <code>Storable</code>?</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">(</span><span style="color:#ae81ff">4166</span> - 1428<span style="color:#f92672">)</span>/1428 × <span style="color:#ae81ff">100</span> ≈ 192%
+</code></pre></div><br>
+<h3 id="large-datasets-benchmark">Large Datasets Benchmark</h3>
+<br>
+<p>In the example below, we are processing one million employees record.</p>
+<p><strong>File:</strong> <code>serialisation_benchmark.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Storable <span style="color:#e6db74">qw(freeze thaw)</span>;
+<span style="color:#66d9ef">use</span> Sereal::Encoder <span style="color:#e6db74">qw(encode_sereal)</span>;
+<span style="color:#66d9ef">use</span> Sereal::Decoder <span style="color:#e6db74">qw(decode_sereal)</span>;
+
+<span style="color:#66d9ef">use</span> Memory::Usage;
+<span style="color:#66d9ef">use</span> Devel::Size <span style="color:#e6db74">qw(size total_size)</span>;
+<span style="color:#66d9ef">use</span> Benchmark <span style="color:#e6db74">qw(timethis :hireswallclock)</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_data</span> {
+    <span style="color:#66d9ef">return</span> map {
+        {
+            id   <span style="color:#f92672">=&gt;</span> $_,
+            name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Employee_$_&#34;</span>,
+            age  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">20</span> <span style="color:#f92672">+</span> int(rand(<span style="color:#ae81ff">40</span>)),
+        }
+    } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1_000_000</span>;
+}
+
+<span style="color:#66d9ef">my</span> @employees <span style="color:#f92672">=</span> generate_data();
+<span style="color:#66d9ef">my</span> $mu <span style="color:#f92672">=</span> Memory::Usage<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>();
+$mu<span style="color:#f92672">-&gt;</span>record(<span style="color:#e6db74">&#39;Before serialisation&#39;</span>);
+
+<span style="color:#66d9ef">my</span> $storable_data;
+timethis(<span style="color:#ae81ff">20</span>, <span style="color:#66d9ef">sub</span> {
+    $storable_data <span style="color:#f92672">=</span> freeze(<span style="color:#f92672">\</span>@employees);
+}, <span style="color:#e6db74">&#39;Storable serialise&#39;</span>);
+$mu<span style="color:#f92672">-&gt;</span>record(<span style="color:#e6db74">&#39;After Storable serialise&#39;</span>);
+
+<span style="color:#66d9ef">my</span> $storable_out;
+timethis(<span style="color:#ae81ff">20</span>, <span style="color:#66d9ef">sub</span> {
+    $storable_out <span style="color:#f92672">=</span> thaw($storable_data);
+}, <span style="color:#e6db74">&#39;Storable deserialise&#39;</span>);
+$mu<span style="color:#f92672">-&gt;</span>record(<span style="color:#e6db74">&#39;After Storable deserialise&#39;</span>);
+
+<span style="color:#66d9ef">my</span> $sereal_data;
+timethis(<span style="color:#ae81ff">20</span>, <span style="color:#66d9ef">sub</span> {
+    $sereal_data <span style="color:#f92672">=</span> encode_sereal(<span style="color:#f92672">\</span>@employees, {compress <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, compress_level <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">9</span>});
+}, <span style="color:#e6db74">&#39;Sereal serialise&#39;</span>);
+$mu<span style="color:#f92672">-&gt;</span>record(<span style="color:#e6db74">&#39;After Sereal serialise&#39;</span>);
+
+<span style="color:#66d9ef">my</span> $sereal_out;
+timethis(<span style="color:#ae81ff">20</span>, <span style="color:#66d9ef">sub</span> {
+    $sereal_out <span style="color:#f92672">=</span> decode_sereal($sereal_data);
+}, <span style="color:#e6db74">&#39;Sereal deserialise&#39;</span>);
+$mu<span style="color:#f92672">-&gt;</span>record(<span style="color:#e6db74">&#39;After Sereal deserialise&#39;</span>);
+
+say <span style="color:#e6db74">&#34;\n\nSize&#34;</span>;
+printf <span style="color:#e6db74">&#34;Storable: %.2f MB\n&#34;</span>, length($storable_data)<span style="color:#f92672">/</span>(<span style="color:#ae81ff">1024</span><span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>);
+printf <span style="color:#e6db74">&#34;Sereal:   %.2f MB\n&#34;</span>, length($sereal_data)<span style="color:#f92672">/</span>(<span style="color:#ae81ff">1024</span><span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>);
+
+say <span style="color:#e6db74">&#34;\n\nMemory Usage&#34;</span>;
+$mu<span style="color:#f92672">-&gt;</span>dump();
+</code></pre></div><br>
+<h3 id="result-1">Result</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl serialisation_benchmark<span style="color:#f92672">.</span>pl
+Storable serialise: <span style="color:#ae81ff">6.13806</span> wallclock secs ( <span style="color:#ae81ff">4.96</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.89</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">5.85</span> CPU) @  3<span style="color:#ae81ff">.42</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+Storable deserialise: <span style="color:#ae81ff">6.48468</span> wallclock secs ( <span style="color:#ae81ff">5.71</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.48</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">6.19</span> CPU) @  3<span style="color:#ae81ff">.23</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+Sereal serialise: <span style="color:#ae81ff">1.73747</span> wallclock secs ( <span style="color:#ae81ff">1.58</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.07</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">1.65</span> CPU) @ 12<span style="color:#ae81ff">.12</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+Sereal deserialise: <span style="color:#ae81ff">3.94233</span> wallclock secs ( <span style="color:#ae81ff">4.98</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.14</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">5.12</span> CPU) @  3<span style="color:#ae81ff">.91</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+
+
+Size
+Storable: <span style="color:#ae81ff">52.35</span> MB
+Sereal:   <span style="color:#ae81ff">10.20</span> MB
+
+
+Memory Usage
+  time    vsz (diff)     rss (diff)        shared (diff)   code (diff)  data (diff)
+     <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">475704</span> (<span style="color:#ae81ff">475704</span>)  <span style="color:#ae81ff">471808</span> (<span style="color:#ae81ff">471808</span>)   <span style="color:#ae81ff">5376</span> (<span style="color:#ae81ff">5376</span>)     <span style="color:#ae81ff">1868</span> (<span style="color:#ae81ff">1868</span>)  <span style="color:#ae81ff">466692</span> (<span style="color:#ae81ff">466692</span>)  Before serialisation
+     <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">842504</span> (<span style="color:#ae81ff">366800</span>)  <span style="color:#ae81ff">838808</span> (<span style="color:#ae81ff">367000</span>)   <span style="color:#ae81ff">5376</span> (<span style="color:#ae81ff">0</span>)        <span style="color:#ae81ff">1868</span> (<span style="color:#ae81ff">0</span>)     <span style="color:#ae81ff">833492</span> (<span style="color:#ae81ff">366800</span>)  After Storable serialise
+    <span style="color:#ae81ff">13</span>  <span style="color:#ae81ff">1409224</span> (<span style="color:#ae81ff">566720</span>) <span style="color:#ae81ff">1404952</span> (<span style="color:#ae81ff">566144</span>)  <span style="color:#ae81ff">5376</span> (<span style="color:#ae81ff">0</span>)        <span style="color:#ae81ff">1868</span> (<span style="color:#ae81ff">0</span>)     <span style="color:#ae81ff">1400212</span> (<span style="color:#ae81ff">566720</span>) After Storable deserialise
+    <span style="color:#ae81ff">15</span>  <span style="color:#ae81ff">1453768</span> (<span style="color:#ae81ff">44544</span>)  <span style="color:#ae81ff">1446684</span> (<span style="color:#ae81ff">41732</span>)   <span style="color:#ae81ff">5376</span> (<span style="color:#ae81ff">0</span>)        <span style="color:#ae81ff">1868</span> (<span style="color:#ae81ff">0</span>)     <span style="color:#ae81ff">1444756</span> (<span style="color:#ae81ff">44544</span>)  After Sereal serialise
+    <span style="color:#ae81ff">19</span>  <span style="color:#ae81ff">1822108</span> (<span style="color:#ae81ff">368340</span>) <span style="color:#ae81ff">1818140</span> (<span style="color:#ae81ff">371456</span>)  <span style="color:#ae81ff">5376</span> (<span style="color:#ae81ff">0</span>)        <span style="color:#ae81ff">1868</span> (<span style="color:#ae81ff">0</span>)     <span style="color:#ae81ff">1813096</span> (<span style="color:#ae81ff">368340</span>) After Sereal deserialise
+</code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
