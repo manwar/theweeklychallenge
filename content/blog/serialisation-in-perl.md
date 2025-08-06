@@ -213,7 +213,7 @@ thaw($data);
 
 Similarly there is `STORABLE_freeze` method in the `Storable` module's object serialisation mechanism.
 
-It allows you to define how an object should be serialised when `Storable::freeze`.
+It allows you to define how an object should be serialised when `Storable::freeze` is called on it.
 
 If it's so dangerous then why it's there in the first place?
 
