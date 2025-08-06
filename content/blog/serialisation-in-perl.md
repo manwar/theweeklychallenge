@@ -608,7 +608,7 @@ How much slower `Storable` is compared to `Sereal`?
 <br>
 
 ```bash
-    (1428 - 4166)/4166 × 100 ≈ -66%
+(1428 - 4166)/4166 × 100 ≈ -66%
 ```
 
 <br>
@@ -618,7 +618,7 @@ How much faster `Sereal` is compared to `Storable`?
 <br>
 
 ```bash
-    (4166 - 1428)/1428 × 100 ≈ 192%
+(4166 - 1428)/1428 × 100 ≈ 192%
 ```
 
 <br>
