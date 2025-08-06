@@ -133,8 +133,11 @@ my $decoded   = thaw($frozen);
 
 You should now have `danger.txt` created after the run.
 
+<br>
 
 ### How can we protect ourself from this?
+
+<br>
 
 Use `lock_thaw()` instead of just `thaw` as below.
 
