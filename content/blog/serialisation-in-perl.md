@@ -31,8 +31,10 @@ Two major `Perl` serialisation `CPAN`modules: [**Storable**](https://metacpan.or
 
 <br>
 
-    Storable – A core Perl module for fast serialisation.
-    Sereal   – A high-performance alternative with better speed and compression.
+```bash
+Storable – A core Perl module for fast serialisation.
+Sereal   – A high-performance alternative with better speed and compression.
+```
 
 <br>
 
@@ -215,7 +217,11 @@ Similarly there is `STORABLE_freeze` method in the `Storable` module's object se
 
 It allows you to define how an object should be serialised when `Storable::freeze` is called on it.
 
-If it's so dangerous then why it's there in the first place?
+<br>
+
+### If it's so dangerous then why it's there in the first place?
+
+<br>
 
 It is needed when the class needs to rebuild itself in a special way.
 
