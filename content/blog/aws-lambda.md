@@ -536,7 +536,7 @@ sub zip_lambda_file {
 
 <br>
 
-Now the function to deploy lambda.
+Now the function to deploy lambda including reading zip file.
 
 <br>
 
@@ -576,23 +576,12 @@ sub deploy_function {
     };
 }
 
-sub zip_lambda_file {
-    my ($script_path) = @_;
-
-    die "Lambda script '$script_path' not found" unless -e $script_path;
-
-    my ($name, $path, $suffix) = fileparse($script_path, qr/\.[^.]*/);
-    my $zip_filename = $name . '.zip';
-
-    my $zip = Archive::Zip->new();
-    $zip->addFile($script_path, basename($script_path))
-        or die "Failed to add file to zip: $!";
-
-    unless ($zip->writeToFileNamed($zip_filename) == AZ_OK) {
-        die "Failed to create zip file: $!";
-    }
-
-    return $zip_filename;
+sub read_zip_file {
+    my ($zip_file) = @_;
+    open(my $fh, '<:raw', $zip_file) or die "Cannot open zip file: $!";
+    my $content = do { local $/; <$fh> };
+    close($fh);
+    return MIME::Base64::encode_base64($content, '');
 }
 ```
 

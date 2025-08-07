@@ -1,7 +1,7 @@
 ---
 title: "Serialisation in Perl"
 date: 2025-08-06T00:00:00+00:00
-description: "Discussion about AWS Lambda."
+description: "Discussion about Serialisation in Perl."
 type: post
 image: images/blog/serialisation-in-perl.jpg
 author: Mohammad Sajid Anwar

@@ -686,7 +686,7 @@ Lambda invocation output:
     <span style="color:#66d9ef">return</span> $zip_filename;
 }
 </code></pre></div><br>
-<p>Now the function to deploy lambda.</p>
+<p>Now the function to deploy lambda including reading zip file.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">deploy_function</span> {
     <span style="color:#66d9ef">my</span> ($lambda_client, $script_path, $function_name, $handler_name) <span style="color:#f92672">=</span> @_;
@@ -723,23 +723,12 @@ Lambda invocation output:
     };
 }
 
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zip_lambda_file</span> {
-    <span style="color:#66d9ef">my</span> ($script_path) <span style="color:#f92672">=</span> @_;
-
-    die <span style="color:#e6db74">&#34;Lambda script &#39;$script_path&#39; not found&#34;</span> <span style="color:#66d9ef">unless</span> <span style="color:#f92672">-</span>e $script_path;
-
-    <span style="color:#66d9ef">my</span> ($name, $path, $suffix) <span style="color:#f92672">=</span> fileparse($script_path, <span style="color:#e6db74">qr/\.[^.]*/</span>);
-    <span style="color:#66d9ef">my</span> $zip_filename <span style="color:#f92672">=</span> $name <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.zip&#39;</span>;
-
-    <span style="color:#66d9ef">my</span> $zip <span style="color:#f92672">=</span> Archive::Zip<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>();
-    $zip<span style="color:#f92672">-&gt;</span>addFile($script_path, basename($script_path))
-        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Failed to add file to zip: $!&#34;</span>;
-
-    <span style="color:#66d9ef">unless</span> ($zip<span style="color:#f92672">-&gt;</span>writeToFileNamed($zip_filename) <span style="color:#f92672">==</span> AZ_OK) {
-        die <span style="color:#e6db74">&#34;Failed to create zip file: $!&#34;</span>;
-    }
-
-    <span style="color:#66d9ef">return</span> $zip_filename;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">read_zip_file</span> {
+    <span style="color:#66d9ef">my</span> ($zip_file) <span style="color:#f92672">=</span> @_;
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;:raw&#39;</span>, $zip_file) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot open zip file: $!&#34;</span>;
+    <span style="color:#66d9ef">my</span> $content <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> { local $/; <span style="color:#e6db74">&lt;$fh&gt;</span> };
+    close($fh);
+    <span style="color:#66d9ef">return</span> MIME::Base64::encode_base64($content, <span style="color:#e6db74">&#39;&#39;</span>);
 }
 </code></pre></div><br>
 <p>Last but not least, function to invoke the lambda.</p>

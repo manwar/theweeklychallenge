@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Caching in Perl"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/caching-in-perl/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about Caching in Perl."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about Caching in Perl.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/caching-in-perl/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Caching in Perl</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Caching in Perl</h2>
+                    <div class="portfolio-meta">
+                        <span>Thursday, Aug 7, 2025</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/caching-in-perl.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<br>
+<h3 id="nbspnbsp1-introductionintroduction"><a href="#introduction">  1. Introduction</a></h3>
+<h3 id="nbspnbsp2-what-is-valkeywhat-is-valkey"><a href="#what-is-valkey">  2. What is Valkey?</a></h3>
+<h3 id="nbspnbsp3-setup-valkeysetup-valkey"><a href="#setup-valkey">  3. Setup Valkey</a></h3>
+<h3 id="nbspnbsp4-frequent-access-datafrequent-access-data"><a href="#frequent-access-data">  4. Frequent Access Data</a></h3>
+<h3 id="nbspnbsp5-publisher--subscriberpublisher--subscriber"><a href="#publisher--subscriber">  5. Publisher / Subscriber</a></h3>
+<h3 id="nbspnbsp6-producer--consumerproducer--consumer"><a href="#producer--consumer">  6. Producer / Consumer</a></h3>
+<h3 id="nbspnbsp7-job-queue-systemjob-queue-system"><a href="#job-queue-system">  7. Job Queue System</a></h3>
+<h3 id="nbspnbsp8-key---value-storagekey---value-storage"><a href="#key---value-storage">  8. Key - Value Storage</a></h3>
+<h3 id="nbspnbsp9-atomic-counteratomic-counter"><a href="#atomic-counter">  9. Atomic Counter</a></h3>
+<h3 id="10-atomic-transactionatomic-transaction"><a href="#atomic-transaction">10. Atomic Transaction</a></h3>
+<h3 id="11-atomic-leaderboardatomic-leaderboard"><a href="#atomic-leaderboard">11. Atomic Leaderboard</a></h3>
+<h3 id="12-atomic-vs-non-atomicatomic-vs-non-atomic"><a href="#atomic-vs-non-atomic">12. Atomic vs Non-atomic</a></h3>
+<h3 id="13-safe-counter-with-locksafe-counter-with-lock"><a href="#safe-counter-with-lock">13. Safe Counter with Lock</a></h3>
+<h3 id="14-safe-counter-atomicsafe-counter-atomic"><a href="#safe-counter-atomic">14. Safe Counter Atomic</a></h3>
+<h3 id="15-inventory-reservationinventory-reservation"><a href="#inventory-reservation">15. Inventory Reservation</a></h3>
+<h3 id="16-performance-benchmarkperformance-benchmark"><a href="#performance-benchmark">16. Performance Benchmark</a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<br>
+<p><code>Caching</code> is the process of storing frequently accessed or computed data in a temporary, high-speed storage layer.</p>
+<p>It helps in <code>reduce latency</code> i.e. faster access than primary storage.</p>
+<p>Also, lower load on backend systems e.g. <code>DBs</code>, <code>APIs</code> etc.</p>
+<p>Finally, improve scalability by serving repeated requests efficiently.</p>
+<p>In this post, I am going to talk about <code>Redis</code> only. If time permits, I will talk about <code>Memcached</code> and <code>CHI</code> in separate post.</p>
+<p>Discussion would be limited to <code>Perl</code> only and the reason is obvious.</p>
+<br>
+<h2 id="what-is-valkey">What is Valkey?</h2>
+<hr>
+<br>
+<p>In <code>March 2024</code>, after <code>Redis Inc.</code> announced that future versions of <code>Redis</code> would no longer be open source, the <code>Linux Foundation</code>, <code>Redis OSS developers</code> and contributors united to fork version <code>7.2</code> of <code>Redis OSS</code> and created the <code>Valkey</code> project.</p>
+<p>It is stewarded by the <code>Linux Foundation</code> and the community is rapidly improving <code>Valkey</code> with contributions from a vibrant developer community.</p>
+<p><strong>Source</strong>: <a href="https://aws.amazon.com/elasticache/what-is-valkey"><strong>https://aws.amazon.com/elasticache/what-is-valkey</strong></a></p>
+<br>
+<h2 id="setup-valkey">Setup Valkey</h2>
+<hr>
+<br>
+<p><code>Valkey</code> is a drop-in replacement for <code>Redis OSS</code>.</p>
+<p><code>Valkey</code> can run as either a standalone daemon or in a cluster, with options for replication and high availability.</p>
+<p>Being a docker fan, I would like to run <code>Valkey</code> in a docker container.</p>
+<p>Here is the docker compose configuration file: <code>docker-compose.yml</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+
+services:
+  valkey:
+    image: valkey/valkey:latest
+    container_name: valkey
+    ports:
+      - <span style="color:#e6db74">&#34;6379:6379&#34;</span>
+    restart: unless-stopped
+</code></pre></div><br>
+<h3 id="start-the-valkey-container">Start the Valkey container</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up -d
+Creating valkey ... <span style="color:#66d9ef">done</span>
+</code></pre></div><br>
+<h3 id="check-the-container-status">Check the container status</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ dps
+Container ID: c88f9ad8e0dd
+Image: valkey/valkey:latest
+Command: <span style="color:#e6db74">&#34;docker-entrypoint.s…&#34;</span>
+Created: 2025-08-07 11:30:00 +0100 BST
+Status: Up <span style="color:#ae81ff">1</span> minutes
+Ports: 0.0.0.0:6379-&gt;6379/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:6379-&gt;6379/tcp
+Names: valkey
+</code></pre></div><br>
+<h3 id="test-the-connection">Test the connection</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker exec -it valkey valkey-cli ping
+PONG
+</code></pre></div><br>
+<h2 id="frequent-access-data">Frequent Access Data</h2>
+<hr>
+<br>
+<p>Time for some action, let&rsquo;s start with basic frequent access data.</p>
+<p><strong>NOTE:</strong> Throughout the post, I will use the term <code>Redis</code>, although technically <code>Valkey</code> is in action.</p>
+<p><strong>File:</strong> <code>frequent-access-data.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> JSON;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+<span style="color:#66d9ef">use</span> Data::Dumper;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch_user_from_db</span> {
+    <span style="color:#66d9ef">my</span> ($user_id) <span style="color:#f92672">=</span> @_;
+    say <span style="color:#e6db74">&#34;Fetching user $user_id from database...&#34;</span>;
+    sleep <span style="color:#ae81ff">2</span>;  <span style="color:#75715e"># Simulate delay</span>
+    <span style="color:#66d9ef">return</span> {
+        id    <span style="color:#f92672">=&gt;</span> $user_id,
+        name  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;User_$user_id&#34;</span>,
+        email <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;user$user_id\@example.com&#34;</span>
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_user</span> {
+    <span style="color:#66d9ef">my</span> ($user_id) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;user:$user_id&#34;</span>;
+
+    <span style="color:#75715e"># Check Redis cache first</span>
+    <span style="color:#66d9ef">my</span> $cached_data <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>get($key);
+    <span style="color:#66d9ef">if</span> ($cached_data) {
+        say <span style="color:#e6db74">&#34;Cache hit for user $user_id!&#34;</span>;
+        <span style="color:#66d9ef">return</span> eval { JSON::decode_json($cached_data) };  <span style="color:#75715e"># Deserialize</span>
+    }
+
+    <span style="color:#75715e"># Cache miss: fetch from DB and store in Redis</span>
+    say <span style="color:#e6db74">&#34;Cache miss for user $user_id.&#34;</span>;
+    <span style="color:#66d9ef">my</span> $user_data <span style="color:#f92672">=</span> fetch_user_from_db($user_id);
+    $redis<span style="color:#f92672">-&gt;</span>set($key, JSON::encode_json($user_data));     <span style="color:#75715e"># Serialize</span>
+    $redis<span style="color:#f92672">-&gt;</span>expire($key, <span style="color:#ae81ff">3600</span>);  <span style="color:#75715e"># Set TTL (1 hour)</span>
+    <span style="color:#66d9ef">return</span> $user_data;
+}
+
+<span style="color:#75715e"># Test the cache</span>
+say <span style="color:#e6db74">&#34;First request (uncached):&#34;</span>;
+<span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> get_user(<span style="color:#ae81ff">42</span>);
+say Dumper($user);
+
+say <span style="color:#e6db74">&#34;\nSecond request (cached):&#34;</span>;
+$user <span style="color:#f92672">=</span> get_user(<span style="color:#ae81ff">42</span>);
+say Dumper($user);
+</code></pre></div><br>
+<h3 id="lets-run-the-script">Let&rsquo;s run the script:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl frequent-access-data.pl
+First request <span style="color:#f92672">(</span>uncached<span style="color:#f92672">)</span>:
+Cache miss <span style="color:#66d9ef">for</span> user 42.
+Fetching user <span style="color:#ae81ff">42</span> from database...
+$VAR1 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=</span>&gt; 42,
+          <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;User_42&#39;</span>,
+          <span style="color:#e6db74">&#39;email&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;user42@example.com&#39;</span>
+        <span style="color:#f92672">}</span>;
+
+
+Second request <span style="color:#f92672">(</span>cached<span style="color:#f92672">)</span>:
+Cache hit <span style="color:#66d9ef">for</span> user 42!
+$VAR1 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;42&#39;</span>,
+          <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;User_42&#39;</span>,
+          <span style="color:#e6db74">&#39;email&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;user42@example.com&#39;</span>
+        <span style="color:#f92672">}</span>;
+</code></pre></div><br>
+<h2 id="publisher--subscriber">Publisher / Subscriber</h2>
+<hr>
+<br>
+<p><code>Redis</code>'s pub/sub model allows <code>Perl</code> scripts to act as <code>publishers</code> or <code>subscribers</code> for real-time messaging.</p>
+<p><strong>File:</strong> <code>publisher.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+
+<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Enter message to publish (or &#39;quit&#39; to exit): &#34;</span>;
+    <span style="color:#66d9ef">my</span> $message <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
+    chomp $message;
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $message <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;quit&#39;</span>;
+
+    $redis<span style="color:#f92672">-&gt;</span>publish(<span style="color:#e6db74">&#34;news_channel&#34;</span>, $message);
+    say <span style="color:#e6db74">&#34;Published: &#39;$message&#39;&#34;</span>;
+}
+</code></pre></div><br>
+<p><strong>File:</strong> <code>subscriber.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+
+say <span style="color:#e6db74">&#34;Subscribed to &#39;news_channel&#39;. Waiting for messages...&#34;</span>;
+
+$redis<span style="color:#f92672">-&gt;</span>subscribe(
+    <span style="color:#e6db74">&#34;news_channel&#34;</span>,
+    <span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">my</span> ($message, $channel) <span style="color:#f92672">=</span> @_;
+        say <span style="color:#e6db74">&#34;Received: &#39;$message&#39;&#34;</span> <span style="color:#66d9ef">if</span> $channel <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;news_channel&#39;</span>;
+    }
+);
+
+$redis<span style="color:#f92672">-&gt;</span>wait_for_messages();
+</code></pre></div><br>
+<p>To test this model, we need two separate terminals next to each other, so that we can publish a message and see the same in another.</p>
+<p>First we would start the publisher:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl publisher.pl
+│Enter message to publish <span style="color:#f92672">(</span>or <span style="color:#e6db74">&#39;quit&#39;</span> to exit<span style="color:#f92672">)</span>:
+</code></pre></div><br>
+<p>Go to the second terminal and start the subscriber:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl subscriber.pl
+Subscribed to <span style="color:#e6db74">&#39;news_channel&#39;</span>. Waiting <span style="color:#66d9ef">for</span> messages...
+</code></pre></div><br>
+<p>Now go back to the publisher terminal and type a message, you should see the same message appeared in the subscriber terminal.</p>
+<p>So much fun with so little coding.</p>
+<br>
+<h2 id="producer--consumer">Producer / Consumer</h2>
+<hr>
+<br>
+<p>The <code>Publisher/Subscriber</code> model lacks persistence (messages are lost if no subscriber is active).</p>
+<p>So if a message is published and no active subscriber found then the message is lost.</p>
+<p>If there is an active subcriber and a new message is published, he would receive it.</p>
+<p>To resolve this, we can use <code>Redis Streams</code>.</p>
+<p><strong>File:</strong> <code>producer-stream.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> JSON;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+
+<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Enter message (or &#39;quit&#39; to exit): &#34;</span>;
+    <span style="color:#66d9ef">my</span> $message <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
+    chomp $message;
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $message <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;quit&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> {
+        time <span style="color:#f92672">=&gt;</span> time,
+        msg  <span style="color:#f92672">=&gt;</span> $message,
+        from <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;producer&#39;</span>
+    };
+
+    <span style="color:#75715e"># Add to stream with automatic ID</span>
+    <span style="color:#66d9ef">my</span> $id <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>xadd(<span style="color:#e6db74">&#39;message_stream&#39;</span>, <span style="color:#e6db74">&#39;*&#39;</span>, %$data);
+    say <span style="color:#e6db74">&#34;Published message ID: $id&#34;</span>;
+}
+</code></pre></div><br>
+<p><strong>File:</strong> <code>consumer-stream.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+<span style="color:#66d9ef">use</span> Time::Piece;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+    server    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>,
+    reconnect <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+    every     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1000</span>
+);
+
+<span style="color:#66d9ef">my</span> $last_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0-0&#39;</span>;
+say <span style="color:#e6db74">&#34;Subscriber ready. Waiting for messages from ID: $last_id...&#34;</span>;
+
+<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">my</span> $messages <span style="color:#f92672">=</span> eval {
+        $redis<span style="color:#f92672">-&gt;</span>xread(
+            <span style="color:#e6db74">&#39;COUNT&#39;</span>, <span style="color:#ae81ff">5</span>,
+            <span style="color:#e6db74">&#39;BLOCK&#39;</span>, <span style="color:#ae81ff">5000</span>,
+            <span style="color:#e6db74">&#39;STREAMS&#39;</span>, <span style="color:#e6db74">&#39;message_stream&#39;</span>, $last_id
+        );
+    };
+
+    <span style="color:#66d9ef">if</span> ($@) {
+        warn <span style="color:#e6db74">&#34;ERROR: $@&#34;</span>;
+        sleep <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">next</span>;
+    }
+
+    <span style="color:#66d9ef">unless</span> ($messages) {
+        say <span style="color:#e6db74">&#34;No new messages (timeout)&#34;</span>;
+        <span style="color:#66d9ef">next</span>;
+    }
+
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $stream (@$messages) {
+        <span style="color:#66d9ef">my</span> ($stream_name, $entries) <span style="color:#f92672">=</span> @$stream;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $entry (@$entries) {
+            <span style="color:#66d9ef">my</span> ($id, $data) <span style="color:#f92672">=</span> @$entry;
+            $last_id <span style="color:#f92672">=</span> $id;
+
+            <span style="color:#66d9ef">my</span> %msg;
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @$data; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>) {
+                $msg{$data<span style="color:#f92672">-&gt;</span>[$i]} <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span>[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+            }
+
+            <span style="color:#66d9ef">my</span> $timestamp <span style="color:#f92672">=</span> localtime($msg{time} <span style="color:#f92672">||</span> time);
+            say <span style="color:#e6db74">&#34;# Message&#34;</span>;
+            say <span style="color:#e6db74">&#34;ID: $id&#34;</span>;
+            say <span style="color:#e6db74">&#34;Time: $timestamp&#34;</span>;
+            say <span style="color:#e6db74">&#34;From: $msg{from}&#34;</span> <span style="color:#66d9ef">if</span> exists $msg{from};
+            say <span style="color:#e6db74">&#34;Content: $msg{msg}\n&#34;</span>;
+        }
+    }
+}
+</code></pre></div><br>
+<p>We would again need two terminals, one for producer and another for consumer.</p>
+<p>Let&rsquo;s start the producer and submit a message immediately.</p>
+<p>Please note at this point, no consumer is assgined to this producer yet.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl producer-stream.pl
+Enter message <span style="color:#f92672">(</span>or <span style="color:#e6db74">&#39;quit&#39;</span> to exit<span style="color:#f92672">)</span>: Hello
+Published message ID: 1754566447313-0
+Enter message <span style="color:#f92672">(</span>or <span style="color:#e6db74">&#39;quit&#39;</span> to exit<span style="color:#f92672">)</span>:
+</code></pre></div><br>
+<h3 id="lets-start-the-consumer-in-the-other-terminal">Let&rsquo;s start the consumer in the other terminal.</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl consumer-stream.pl
+Subscriber ready. Waiting <span style="color:#66d9ef">for</span> messages from ID: 0-0...
+<span style="color:#75715e"># Message</span>
+ID: 1754566447313-0
+Time: Thu Aug  <span style="color:#ae81ff">7</span> 12:34:07 <span style="color:#ae81ff">2025</span>
+From: producer
+Content: Hello
+</code></pre></div><br>
+<p>As soon as the consumer is assigned, it pulled the message from the producer.</p>
+<p>I am having fun with this.</p>
+<br>
+<h2 id="job-queue-system">Job Queue System</h2>
+<hr>
+<br>
+<p><code>Redis</code> lists can be used as lightweight job queues, similar to <code>RabbitMQ</code>.</p>
+<p><strong>File:</strong> <code>job-queue-producer.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+
+<span style="color:#66d9ef">my</span> $redis      <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+<span style="color:#66d9ef">my</span> $queue_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;job_queue&#39;</span>;
+
+<span style="color:#75715e"># Optional: Clear previous queue</span>
+$redis<span style="color:#f92672">-&gt;</span>del($queue_name);
+
+<span style="color:#66d9ef">my</span> @jobs <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;process_image.jpg&#39;</span>, <span style="color:#e6db74">&#39;generate_report&#39;</span>, <span style="color:#e6db74">&#39;send_emails&#39;</span>, <span style="color:#e6db74">&#39;cleanup&#39;</span>);
+
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $job (@jobs) {
+    $redis<span style="color:#f92672">-&gt;</span>rpush($queue_name, $job);
+    say <span style="color:#e6db74">&#34;Produced job: $job&#34;</span>;
+    sleep(<span style="color:#ae81ff">1</span>); <span style="color:#75715e"># Simulate job arrival rate</span>
+}
+</code></pre></div><br>
+<p><strong>File:</strong> <code>job-queue-worker.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+<span style="color:#66d9ef">use</span> Parallel::ForkManager;
+
+<span style="color:#66d9ef">my</span> $workers    <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+<span style="color:#66d9ef">my</span> $queue_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;job_queue&#39;</span>;
+<span style="color:#66d9ef">my</span> $pfm        <span style="color:#f92672">=</span> Parallel::ForkManager<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($workers);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">worker</span> {
+    <span style="color:#66d9ef">my</span> ($worker_id) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+
+    say <span style="color:#e6db74">&#34;Worker $worker_id started&#34;</span>;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        <span style="color:#75715e"># 5 seconds timeout</span>
+        <span style="color:#66d9ef">my</span> $job <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>blpop($queue_name, <span style="color:#ae81ff">5</span>);
+
+        <span style="color:#66d9ef">if</span> ($job) {
+            <span style="color:#66d9ef">my</span> ($qname, $job_data) <span style="color:#f92672">=</span> @$job;
+            say <span style="color:#e6db74">&#34;Worker $worker_id processing: $job_data&#34;</span>;
+
+            <span style="color:#75715e"># Simulate work (1-2 seconds)</span>
+            sleep(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> rand(<span style="color:#ae81ff">2</span>));
+
+            say <span style="color:#e6db74">&#34;Worker $worker_id completed: $job_data&#34;</span>;
+        } <span style="color:#66d9ef">else</span> {
+            say <span style="color:#e6db74">&#34;Worker $worker_id idle&#34;</span>;
+
+            <span style="color:#75715e"># Exit if the queue if empty</span>
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $redis<span style="color:#f92672">-&gt;</span>llen($queue_name) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        }
+    }
+}
+
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $id (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$workers) {
+    $pfm<span style="color:#f92672">-&gt;</span>start <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span>;
+    worker($id);
+    $pfm<span style="color:#f92672">-&gt;</span>finish;
+}
+
+$pfm<span style="color:#f92672">-&gt;</span>wait_all_children;
+say <span style="color:#e6db74">&#34;All workers finished.&#34;</span>;
+</code></pre></div><br>
+<h3 id="we-will-start-the-job-queue-producer-first">We will start the job queue producer first.</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl job-queue-producer.pl
+Produced job: process_image.jpg
+Produced job: generate_report
+Produced job: send_emails
+Produced job: cleanup
+</code></pre></div><br>
+<h3 id="now-let-the-worker-pick-the-job-and-process">Now let the worker pick the job and process.</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl job-queue-worker.pl
+Worker <span style="color:#ae81ff">1</span> started
+Worker <span style="color:#ae81ff">2</span> started
+Worker <span style="color:#ae81ff">1</span> processing: process_image.jpg
+Worker <span style="color:#ae81ff">2</span> processing: generate_report
+Worker <span style="color:#ae81ff">3</span> started
+Worker <span style="color:#ae81ff">3</span> processing: send_emails
+Worker <span style="color:#ae81ff">2</span> completed: generate_report
+Worker <span style="color:#ae81ff">2</span> processing: cleanup
+Worker <span style="color:#ae81ff">3</span> completed: send_emails
+Worker <span style="color:#ae81ff">1</span> completed: process_image.jpg
+Worker <span style="color:#ae81ff">2</span> completed: cleanup
+Worker <span style="color:#ae81ff">3</span> idle
+Worker <span style="color:#ae81ff">1</span> idle
+Worker <span style="color:#ae81ff">2</span> idle
+All workers finished.
+</code></pre></div><br>
+<h2 id="key---value-storage">Key - Value Storage</h2>
+<hr>
+<br>
+<p><code>Redis</code>'s key-value storage is ideal for <code>Perl</code> applications needing fast access.</p>
+<p><strong>File:</strong> <code>key-value-storage.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> JSON;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+<span style="color:#66d9ef">use</span> Data::Dumper;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+    server    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>,
+    reconnect <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+    every     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">500_000</span>, <span style="color:#75715e"># 500ms</span>
+);
+
+say <span style="color:#e6db74">&#34;\nFirst access:&#34;</span>;
+<span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> get_user_profile(<span style="color:#ae81ff">1001</span>);
+say Dumper($user);
+
+say <span style="color:#e6db74">&#34;\nSecond access:&#34;</span>;
+$user <span style="color:#f92672">=</span> get_user_profile(<span style="color:#ae81ff">1001</span>);
+say Dumper($user);
+
+benchmark(<span style="color:#ae81ff">1001</span>, <span style="color:#ae81ff">5</span>);
+
+<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\nEnter user ID to lookup (or &#39;quit&#39;): &#34;</span>;
+    <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
+    chomp $input;
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $input <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;quit&#39;</span>;
+
+    <span style="color:#66d9ef">if</span> ($input <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span>) {
+        <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> get_user_profile($input);
+        say <span style="color:#e6db74">&#34;User $input:&#34;</span>;
+        say <span style="color:#e6db74">&#34;Name: $data-&gt;{name}&#34;</span>;
+        say <span style="color:#e6db74">&#34;Email: $data-&gt;{email}&#34;</span>;
+        say <span style="color:#e6db74">&#34;Last login: &#34;</span> <span style="color:#f92672">.</span> scalar(localtime($data<span style="color:#f92672">-&gt;</span>{last_login}));
+    } <span style="color:#66d9ef">else</span> {
+        say <span style="color:#e6db74">&#34;Invalid user ID&#34;</span>;
+    }
+}
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># SUBROUTINES</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch_user_from_db</span> {
+    <span style="color:#66d9ef">my</span> ($user_id) <span style="color:#f92672">=</span> @_;
+    say <span style="color:#e6db74">&#34;DEBUG: Fetching user $user_id from database...&#34;</span>;
+    sleep <span style="color:#ae81ff">2</span>; <span style="color:#75715e"># Simulate database latency</span>
+
+    <span style="color:#66d9ef">return</span> {
+        id    <span style="color:#f92672">=&gt;</span> $user_id,
+        name  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;User_$user_id&#34;</span>,
+        email <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;user$user_id\@example.com&#34;</span>,
+        roles <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;member&#39;</span>, (rand <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.7</span> ? <span style="color:#e6db74">&#39;premium&#39;</span> : ())],
+        last_login <span style="color:#f92672">=&gt;</span> time <span style="color:#f92672">-</span> int(rand(<span style="color:#ae81ff">86400</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">30</span>)) <span style="color:#75715e"># Random timestamp (0-30 days ago)</span>
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_user_profile</span> {
+    <span style="color:#66d9ef">my</span> ($user_id) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $cache_key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;user:$user_id:profile&#34;</span>;
+
+    <span style="color:#75715e"># 1. Try Redis cache first</span>
+    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">my</span> $cached <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>get($cache_key)) {
+        say <span style="color:#e6db74">&#34;DEBUG: Cache HIT for user $user_id&#34;</span>;
+        <span style="color:#66d9ef">return</span> decode_json($cached);
+    }
+
+    say <span style="color:#e6db74">&#34;DEBUG: Cache MISS for user $user_id&#34;</span>;
+
+    <span style="color:#75715e"># 2. Fetch from DB if not in cache</span>
+    <span style="color:#66d9ef">my</span> $profile <span style="color:#f92672">=</span> fetch_user_from_db($user_id);
+
+    <span style="color:#75715e"># 3. Store in Redis (with expiration)</span>
+    $redis<span style="color:#f92672">-&gt;</span>set($cache_key <span style="color:#f92672">=&gt;</span> encode_json($profile));
+    $redis<span style="color:#f92672">-&gt;</span>expire($cache_key <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3600</span>); <span style="color:#75715e"># Expire in 1 hour</span>
+
+    <span style="color:#66d9ef">return</span> $profile;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">benchmark</span> {
+    <span style="color:#66d9ef">my</span> ($user_id, $iterations) <span style="color:#f92672">=</span> @_;
+
+    say <span style="color:#e6db74">&#34;Benchmarking $iterations iterations:&#34;</span>;
+
+    <span style="color:#75715e"># Without cache</span>
+    <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> time;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$iterations) {
+        fetch_user_from_db($user_id);
+    }
+    say sprintf(<span style="color:#e6db74">&#34;Without cache: %0.2f seconds&#34;</span>, time <span style="color:#f92672">-</span> $start);
+
+    <span style="color:#75715e"># With cache</span>
+    $start <span style="color:#f92672">=</span> time;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$iterations) {
+        get_user_profile($user_id);
+    }
+    say sprintf(<span style="color:#e6db74">&#34;With Redis cache: %0.2f seconds&#34;</span>, time <span style="color:#f92672">-</span> $start);
+}
+</code></pre></div><br>
+<h3 id="lets-run-the-script-1">Let&rsquo;s run the script:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl key-value-storage.pl
+
+First access:
+DEBUG: Cache MISS <span style="color:#66d9ef">for</span> user <span style="color:#ae81ff">1001</span>
+DEBUG: Fetching user <span style="color:#ae81ff">1001</span> from database...
+$VAR1 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#39;email&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;user1001@example.com&#39;</span>,
+          <span style="color:#e6db74">&#39;last_login&#39;</span> <span style="color:#f92672">=</span>&gt; 1752035569,
+          <span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=</span>&gt; 1001,
+          <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;User_1001&#39;</span>,
+          <span style="color:#e6db74">&#39;roles&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span>
+                       <span style="color:#e6db74">&#39;member&#39;</span>
+                     <span style="color:#f92672">]</span>
+        <span style="color:#f92672">}</span>;
+
+
+Second access:
+DEBUG: Cache HIT <span style="color:#66d9ef">for</span> user <span style="color:#ae81ff">1001</span>
+$VAR1 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;1001&#39;</span>,
+          <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;User_1001&#39;</span>,
+          <span style="color:#e6db74">&#39;roles&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span>
+                       <span style="color:#e6db74">&#39;member&#39;</span>
+                     <span style="color:#f92672">]</span>,
+          <span style="color:#e6db74">&#39;last_login&#39;</span> <span style="color:#f92672">=</span>&gt; 1752035569,
+          <span style="color:#e6db74">&#39;email&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;user1001@example.com&#39;</span>
+        <span style="color:#f92672">}</span>;
+
+Benchmarking <span style="color:#ae81ff">5</span> iterations:
+DEBUG: Fetching user <span style="color:#ae81ff">1001</span> from database...
+DEBUG: Fetching user <span style="color:#ae81ff">1001</span> from database...
+DEBUG: Fetching user <span style="color:#ae81ff">1001</span> from database...
+DEBUG: Fetching user <span style="color:#ae81ff">1001</span> from database...
+DEBUG: Fetching user <span style="color:#ae81ff">1001</span> from database...
+Without cache: 10.00 seconds
+DEBUG: Cache HIT <span style="color:#66d9ef">for</span> user <span style="color:#ae81ff">1001</span>
+DEBUG: Cache HIT <span style="color:#66d9ef">for</span> user <span style="color:#ae81ff">1001</span>
+DEBUG: Cache HIT <span style="color:#66d9ef">for</span> user <span style="color:#ae81ff">1001</span>
+DEBUG: Cache HIT <span style="color:#66d9ef">for</span> user <span style="color:#ae81ff">1001</span>
+DEBUG: Cache HIT <span style="color:#66d9ef">for</span> user <span style="color:#ae81ff">1001</span>
+With Redis cache: 0.00 seconds
+
+Enter user ID to lookup <span style="color:#f92672">(</span>or <span style="color:#e6db74">&#39;quit&#39;</span><span style="color:#f92672">)</span>: <span style="color:#ae81ff">1001</span>
+DEBUG: Cache HIT <span style="color:#66d9ef">for</span> user <span style="color:#ae81ff">1001</span>
+User 1001:
+Name: User_1001
+Email: user1001@example.com
+Last login: Wed Jul  <span style="color:#ae81ff">9</span> 05:32:49 <span style="color:#ae81ff">2025</span>
+</code></pre></div><br>
+<h3 id="how-this-is-different-from-cache-frequently-accessed-data">How this is different from cache frequently accessed data?</h3>
+<br>
+<p><code>Key-Value</code> provides persistent storage with fast access where as caching frequent access data provides temporary storage to reduce backend load.</p>
+<br>
+<h2 id="atomic-counter">Atomic Counter</h2>
+<hr>
+<br>
+<p><code>Redis</code>'s atomic operations (like <code>INCR</code>) can help in counting requests or tracking user activity.</p>
+<p><strong>File:</strong> <code>atomic-counter.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">record_page_view</span> {
+    <span style="color:#66d9ef">my</span> ($page_id) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#75715e"># INCR is atomic - safe for concurrent access</span>
+    <span style="color:#66d9ef">my</span> $views <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>incr(<span style="color:#e6db74">&#34;page:views:$page_id&#34;</span>);
+
+    <span style="color:#75715e"># Set expiry only on first view (using SETNX)</span>
+    $redis<span style="color:#f92672">-&gt;</span>setnx(<span style="color:#e6db74">&#34;page:views:$page_id:expiry&#34;</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;&amp;</span>
+        $redis<span style="color:#f92672">-&gt;</span>expire(<span style="color:#e6db74">&#34;page:views:$page_id&#34;</span>, <span style="color:#ae81ff">86400</span>); <span style="color:#75715e"># Expire in 24h</span>
+
+    <span style="color:#66d9ef">return</span> $views;
+}
+
+<span style="color:#75715e"># Concurrent simulation (safe across multiple processes)</span>
+say <span style="color:#e6db74">&#34;Homepage views: &#34;</span> <span style="color:#f92672">.</span> record_page_view(<span style="color:#e6db74">&#39;home&#39;</span>);
+say <span style="color:#e6db74">&#34;Homepage views: &#34;</span> <span style="color:#f92672">.</span> record_page_view(<span style="color:#e6db74">&#39;home&#39;</span>);
+say <span style="color:#e6db74">&#34;Product views : &#34;</span> <span style="color:#f92672">.</span> record_page_view(<span style="color:#e6db74">&#39;product&#39;</span>);
+</code></pre></div><br>
+<h3 id="lets-run-the-script-2">Let&rsquo;s run the script:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl atomic-counter.pl
+Homepage views: <span style="color:#ae81ff">1</span>
+Homepage views: <span style="color:#ae81ff">2</span>
+Product views : <span style="color:#ae81ff">1</span>
+
+$ perl atomic-counter.pl
+Homepage views: <span style="color:#ae81ff">3</span>
+Homepage views: <span style="color:#ae81ff">4</span>
+Product views : <span style="color:#ae81ff">2</span>
+
+$ perl atomic-counter.pl
+Homepage views: <span style="color:#ae81ff">5</span>
+Homepage views: <span style="color:#ae81ff">6</span>
+Product views : <span style="color:#ae81ff">3</span>
+</code></pre></div><br>
+<h2 id="atomic-transaction">Atomic Transaction</h2>
+<hr>
+<br>
+<p><strong>File:</strong> <code>atomic-transaction.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+
+$redis<span style="color:#f92672">-&gt;</span>setnx(<span style="color:#e6db74">&#34;inventory:widget_123&#34;</span>, <span style="color:#ae81ff">100</span>);
+
+<span style="color:#75715e"># Try reserve 5 units</span>
+<span style="color:#66d9ef">if</span> (reserve_inventory(<span style="color:#e6db74">&#39;widget_123&#39;</span>, <span style="color:#ae81ff">5</span>)) {
+    say <span style="color:#e6db74">&#34;Inventory reserved successfully!&#34;</span>;
+} <span style="color:#66d9ef">else</span> {
+    say <span style="color:#e6db74">&#34;Failed - not enough stock or race condition.&#34;</span>;
+}
+
+<span style="color:#75715e"># Show inventory</span>
+<span style="color:#66d9ef">my</span> $remaining <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;inventory:widget_123&#34;</span>);
+say <span style="color:#e6db74">&#34;Remaining inventory: $remaining&#34;</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reserve_inventory</span> {
+    <span style="color:#66d9ef">my</span> ($item_id, $quantity) <span style="color:#f92672">=</span> @_;
+
+    $redis<span style="color:#f92672">-&gt;</span>watch(<span style="color:#e6db74">&#34;inventory:$item_id&#34;</span>);
+
+    <span style="color:#66d9ef">my</span> $available <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;inventory:$item_id&#34;</span>) <span style="color:#e6db74">//</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $available <span style="color:#f92672">&gt;=</span> $quantity;
+
+    <span style="color:#75715e"># Start transaction</span>
+    $redis<span style="color:#f92672">-&gt;</span>multi;
+    $redis<span style="color:#f92672">-&gt;</span>decrby(<span style="color:#e6db74">&#34;inventory:$item_id&#34;</span>, $quantity);
+
+    <span style="color:#75715e"># Execute transaction</span>
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>exec;
+
+    <span style="color:#75715e"># exec() returns undef if watched key changed =&gt; transaction aborted</span>
+    <span style="color:#66d9ef">return</span> $result ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><br>
+<h3 id="lets-run-the-script-3">Let&rsquo;s run the script:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl atomic-transaction.pl
+Inventory reserved successfully!
+Remaining inventory: <span style="color:#ae81ff">95</span>
+
+$ perl atomic-transaction.pl
+Inventory reserved successfully!
+Remaining inventory: <span style="color:#ae81ff">90</span>
+</code></pre></div><br>
+<h2 id="atomic-leaderboard">Atomic Leaderboard</h2>
+<hr>
+<br>
+<p><strong>File:</strong> <code>atomic-leaderboard.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+
+update_score(<span style="color:#e6db74">&#39;player_1&#39;</span>, <span style="color:#ae81ff">50</span>);
+update_score(<span style="color:#e6db74">&#39;player_2&#39;</span>, <span style="color:#ae81ff">75</span>);
+update_score(<span style="color:#e6db74">&#39;player_1&#39;</span>, <span style="color:#ae81ff">25</span>);
+
+<span style="color:#66d9ef">my</span> $leaders <span style="color:#f92672">=</span> get_leaderboard();
+say <span style="color:#e6db74">&#34;Top Players:&#34;</span>;
+<span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> ($player, $score) <span style="color:#f92672">=</span> splice(@$leaders, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>)) {
+    say <span style="color:#e6db74">&#34;$player: $score points&#34;</span>;
+}
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># SUBROUTINES</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">update_score</span> {
+    <span style="color:#66d9ef">my</span> ($player_id, $points) <span style="color:#f92672">=</span> @_;
+
+    $redis<span style="color:#f92672">-&gt;</span>zincrby(<span style="color:#e6db74">&#34;game_leaderboard&#34;</span>, $points, $player_id);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_leaderboard</span> {
+    <span style="color:#66d9ef">return</span> $redis<span style="color:#f92672">-&gt;</span>zrevrange(<span style="color:#e6db74">&#34;game_leaderboard&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;WITHSCORES&#39;</span>);
+}
+</code></pre></div><br>
+<h3 id="run-the-script">Run the script:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl atomic-leaderboard.pl
+Top Players:
+player_2: <span style="color:#ae81ff">75</span> points
+player_1: <span style="color:#ae81ff">75</span> points
+$ perl atomic-leaderboard.pl
+Top Players:
+player_2: <span style="color:#ae81ff">150</span> points
+player_1: <span style="color:#ae81ff">150</span> points
+</code></pre></div><br>
+<h2 id="atomic-vs-non-atomic">Atomic vs Non-atomic</h2>
+<hr>
+<br>
+<p>Let&rsquo;s do some benchmarking <code>Atomic vs Non-atomic</code>.</p>
+<p><strong>File:</strong> <code>atomic-vs-non-atomic.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+<span style="color:#66d9ef">use</span> Benchmark <span style="color:#e6db74">qw(:hireswallclock cmpthese)</span>;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+
+<span style="color:#75715e"># Non-atomic</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">unsafe_counter</span> {
+    <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;counter&#34;</span>);
+    $redis<span style="color:#f92672">-&gt;</span>set(<span style="color:#e6db74">&#34;counter&#34;</span>, $val <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+}
+
+<span style="color:#75715e"># Atomic</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">safe_counter</span> {
+    $redis<span style="color:#f92672">-&gt;</span>incr(<span style="color:#e6db74">&#34;counter&#34;</span>);
+}
+
+cmpthese(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, {
+    atomic     <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>safe_counter,
+    non_atomic <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>unsafe_counter,
+});
+</code></pre></div><br>
+<h3 id="lets-see-the-result">Let&rsquo;s see the result.</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl atomic-vs-non-atomic.pl
+              Rate non_atomic     atomic
+non_atomic 22974/s         --       -53%
+atomic     49104/s       114%         --
+</code></pre></div><br>
+<h2 id="safe-counter-with-lock">Safe Counter with Lock</h2>
+<hr>
+<br>
+<p>How <code>Redis</code> is <code>thread-safe</code>?</p>
+<p>Here is the script that starts <code>10</code> processes each incrementing the counter by one.</p>
+<p><strong>File:</strong> <code>safe-counter-with-lock.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Fcntl <span style="color:#e6db74">qw(:flock)</span>;
+<span style="color:#66d9ef">use</span> Parallel::ForkManager;
+
+<span style="color:#66d9ef">my</span> $COUNTER_FILE   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;counter.txt&#34;</span>;
+<span style="color:#66d9ef">my</span> $TEST_PROCESSES <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+
+open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#34;&gt;&#34;</span>, $COUNTER_FILE) <span style="color:#f92672">or</span> die $!;
+<span style="color:#66d9ef">print</span> $fh <span style="color:#e6db74">&#34;0&#34;</span>;
+close $fh;
+
+<span style="color:#66d9ef">my</span> $pm <span style="color:#f92672">=</span> Parallel::ForkManager<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($TEST_PROCESSES);
+
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$TEST_PROCESSES) {
+    $pm<span style="color:#f92672">-&gt;</span>start <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span>;
+
+    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#34;+&lt;&#34;</span>, $COUNTER_FILE) <span style="color:#f92672">or</span> die $!;
+    flock($fh, LOCK_EX) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot lock&#34;</span>;
+    <span style="color:#66d9ef">my</span> $file_count <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>;
+    seek($fh, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">print</span> $fh <span style="color:#f92672">++</span>$file_count;
+    truncate($fh, tell($fh));
+    close($fh);
+
+    $pm<span style="color:#f92672">-&gt;</span>finish;
+}
+
+$pm<span style="color:#f92672">-&gt;</span>wait_all_children;
+
+open($fh, <span style="color:#e6db74">&#34;&lt;&#34;</span>, $COUNTER_FILE);
+<span style="color:#66d9ef">my</span> $final_file_count <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>;
+close($fh);
+
+say sprintf(<span style="color:#e6db74">&#34;File counter (with locking): %2d (should be %d)&#34;</span>, $final_file_count, $TEST_PROCESSES);
+</code></pre></div><br>
+<h3 id="run-the-script-1">Run the script.</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl safe-counter-with-lock.pl
+File counter <span style="color:#f92672">(</span>with locking<span style="color:#f92672">)</span>: <span style="color:#ae81ff">10</span> <span style="color:#f92672">(</span>should be 10<span style="color:#f92672">)</span>
+</code></pre></div><br>
+<h2 id="safe-counter-atomic">Safe Counter Atomic</h2>
+<hr>
+<br>
+<p><strong>File:</strong> <code>safe-counter-atomic.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+<span style="color:#66d9ef">use</span> Parallel::ForkManager;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+    server    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>,
+    reconnect <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+    every     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">500_000</span>
+);
+
+$redis<span style="color:#f92672">-&gt;</span>del(<span style="color:#e6db74">&#34;safe_counter&#34;</span>);
+say <span style="color:#e6db74">&#34;Counter reset to 0&#34;</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">increment_counter</span> {
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>incr(<span style="color:#e6db74">&#34;safe_counter&#34;</span>);
+    say <span style="color:#e6db74">&#34;Process $$ incremented counter to $count&#34;</span>;
+}
+
+<span style="color:#66d9ef">my</span> $pm <span style="color:#f92672">=</span> Parallel::ForkManager<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">10</span>);
+say <span style="color:#e6db74">&#34;Starting 10 parallel increments...&#34;</span>;
+
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>) {
+    $pm<span style="color:#f92672">-&gt;</span>start <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span>;
+    increment_counter();
+    $pm<span style="color:#f92672">-&gt;</span>finish;
+}
+
+$pm<span style="color:#f92672">-&gt;</span>wait_all_children;
+
+<span style="color:#66d9ef">my</span> $final_count <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;safe_counter&#34;</span>);
+say <span style="color:#e6db74">&#34;Final counter value: $final_count (should be 10)&#34;</span>;
+</code></pre></div><br>
+<h3 id="run-the-script-2">Run the script:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl safe-counter-atomic.pl
+Counter reset to <span style="color:#ae81ff">0</span>
+Starting <span style="color:#ae81ff">10</span> parallel increments...
+Process <span style="color:#ae81ff">79419</span> incremented counter to <span style="color:#ae81ff">1</span>
+Process <span style="color:#ae81ff">79418</span> incremented counter to <span style="color:#ae81ff">2</span>
+Process <span style="color:#ae81ff">79421</span> incremented counter to <span style="color:#ae81ff">4</span>
+Process <span style="color:#ae81ff">79420</span> incremented counter to <span style="color:#ae81ff">3</span>
+Process <span style="color:#ae81ff">79422</span> incremented counter to <span style="color:#ae81ff">5</span>
+Process <span style="color:#ae81ff">79423</span> incremented counter to <span style="color:#ae81ff">6</span>
+Process <span style="color:#ae81ff">79424</span> incremented counter to <span style="color:#ae81ff">7</span>
+Process <span style="color:#ae81ff">79427</span> incremented counter to <span style="color:#ae81ff">9</span>
+Process <span style="color:#ae81ff">79428</span> incremented counter to <span style="color:#ae81ff">8</span>
+Process <span style="color:#ae81ff">79425</span> incremented counter to <span style="color:#ae81ff">10</span>
+Final counter value: <span style="color:#ae81ff">10</span> <span style="color:#f92672">(</span>should be 10<span style="color:#f92672">)</span>
+</code></pre></div><br>
+<h2 id="inventory-reservation">Inventory Reservation</h2>
+<hr>
+<br>
+<p><strong>File:</strong> <code>inventory-reservation.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+
+$redis<span style="color:#f92672">-&gt;</span>set(<span style="color:#e6db74">&#34;inventory:widget&#34;</span>, <span style="color:#ae81ff">100</span>) <span style="color:#66d9ef">unless</span> $redis<span style="color:#f92672">-&gt;</span>exists(<span style="color:#e6db74">&#34;inventory:widget&#34;</span>);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reserve_stock</span> {
+    <span style="color:#66d9ef">my</span> ($item, $quantity) <span style="color:#f92672">=</span> @_;
+
+    $redis<span style="color:#f92672">-&gt;</span>watch(<span style="color:#e6db74">&#34;inventory:$item&#34;</span>);
+    <span style="color:#66d9ef">my</span> $available <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;inventory:$item&#34;</span>);
+
+    <span style="color:#66d9ef">if</span> ($available <span style="color:#f92672">&gt;=</span> $quantity) {
+        $redis<span style="color:#f92672">-&gt;</span>multi;
+        $redis<span style="color:#f92672">-&gt;</span>decrby(<span style="color:#e6db74">&#34;inventory:$item&#34;</span>, $quantity);
+        <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>exec;
+        <span style="color:#66d9ef">return</span> $result ? <span style="color:#e6db74">&#34;Reserved $quantity&#34;</span> : <span style="color:#e6db74">&#34;Retry needed&#34;</span>;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Out of stock&#34;</span>;
+}
+
+<span style="color:#75715e"># Simulate 5 concurrent reservations</span>
+<span style="color:#66d9ef">my</span> @pids;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>) {
+    <span style="color:#66d9ef">my</span> $pid <span style="color:#f92672">=</span> fork();
+    die <span style="color:#e6db74">&#34;fork failed&#34;</span> <span style="color:#66d9ef">unless</span> defined $pid;
+    <span style="color:#66d9ef">if</span> ($pid <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        say <span style="color:#e6db74">&#34;Process $$: &#34;</span> <span style="color:#f92672">.</span> reserve_stock(<span style="color:#e6db74">&#34;widget&#34;</span>, <span style="color:#ae81ff">30</span>);
+        exit;
+    }
+    push @pids, $pid;
+}
+waitpid($_, <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">for</span> @pids;
+
+say <span style="color:#e6db74">&#34;Remaining stock: &#34;</span> <span style="color:#f92672">.</span> $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;inventory:widget&#34;</span>);
+</code></pre></div><br>
+<h3 id="test-the-script">Test the script.</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl inventory-reservation.pl
+Process 81059: Reserved <span style="color:#ae81ff">30</span>
+Process 81060: Retry needed
+Process 81062: Retry needed
+Process 81061: Retry needed
+Process 81063: Retry needed
+Remaining stock: <span style="color:#ae81ff">70</span>
+
+$ vim inventory-reservation.pl
+Process 81086: Reserved <span style="color:#ae81ff">30</span>
+Process 81089: Retry needed
+Process 81088: Retry needed
+Process 81087: Retry needed
+Process 81090: Retry needed
+Remaining stock: <span style="color:#ae81ff">40</span>
+
+$ perl inventory-reservation.pl
+Process 81092: Reserved <span style="color:#ae81ff">30</span>
+Process 81093: Retry needed
+Process 81096: Out of stock
+Process 81094: Retry needed
+Process 81095: Retry needed
+Remaining stock: <span style="color:#ae81ff">10</span>
+
+$ perl inventory-reservation.pl
+Process 81100: Out of stock
+Process 81098: Out of stock
+Process 81099: Out of stock
+Process 81101: Out of stock
+Process 81102: Out of stock
+Remaining stock: <span style="color:#ae81ff">10</span>
+</code></pre></div><br>
+<h2 id="performance-benchmark">Performance Benchmark</h2>
+<hr>
+<br>
+<p><strong>File:</strong> <code>performance-benchmark.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Redis::Fast;
+<span style="color:#66d9ef">use</span> Benchmark <span style="color:#e6db74">qw(:hireswallclock cmpthese)</span>;
+
+<span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
+
+$redis<span style="color:#f92672">-&gt;</span>del(<span style="color:#e6db74">&#34;bench_counter&#34;</span>);
+$redis<span style="color:#f92672">-&gt;</span>set(<span style="color:#e6db74">&#34;bench_counter&#34;</span>, <span style="color:#ae81ff">0</span>);
+
+cmpthese(<span style="color:#ae81ff">50_000</span>, {
+    redis_atomic <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $redis<span style="color:#f92672">-&gt;</span>incr(<span style="color:#e6db74">&#34;bench_counter&#34;</span>) },
+    perl_shared  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">require</span> threads::shared;
+        <span style="color:#66d9ef">my</span> $lock :shared;
+        { lock($lock); $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;bench_counter&#34;</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> }
+    },
+});
+</code></pre></div><br>
+<h3 id="test-result">Test Result:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl performance-benchmark.pl
+                Rate  perl_shared redis_atomic
+perl_shared  40984/s           --         -15%
+redis_atomic 48077/s          17%           --
+</code></pre></div><br>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
