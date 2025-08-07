@@ -951,6 +951,7 @@ $ perl atomic-leaderboard.pl
 Top Players:
 player_2: 75 points
 player_1: 75 points
+
 $ perl atomic-leaderboard.pl
 Top Players:
 player_2: 150 points
