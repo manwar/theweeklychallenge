@@ -44,6 +44,8 @@ Additionally, we had some late contributions to the `Week #332` by [**Andreas Ma
 
 Thanks to these late submissions, the `Week #332` has now crossed the magical `100+` contributions mark. With this achievement, we've now had four consecutive weeks with `100+` contributions, a fantastic milestone for `Team PWC` in the year `2025`.
 
+Welcome back, `Dave Jacoby` and thanks for the yet another [**pure tech post**](https://jacoby-lpwk.onrender.com/2025/08/07/weekly-challenge-333-back-in-the-saddle-again.html).
+
 On a personal note, a very good friend recently reminded me that `The Weekly Challenge` has been running for over `six years` now. Honestly, it doesn't feel real, what an incredible journey.
 
 Thank you all for your continued support and enthusiasm.
