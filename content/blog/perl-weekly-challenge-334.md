@@ -242,7 +242,7 @@ Write a script to return the sum of integers between the given indices (inclusiv
 
 <br>
 
-## Task 2:  {#TASK2}
+## Task 2: Nearest Valid Point {#TASK2}
 ##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)
 ***
 
