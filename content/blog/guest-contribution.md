@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2025-08-12T00:00:00+00:00
+date: 2025-08-14T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1126,6 +1126,12 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-334/roger-bell-west/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-334/roger-bell-west/scala/ch-2.scala) in **Scala**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-334/roger-bell-west/typst/ch-1.typ) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-334/roger-bell-west/typst/ch-2.typ) in **Typst**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-334/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-334/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-334/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-334/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-334/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-334/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
 ___
 ## [The Weekly Challenge - 333](/blog/perl-weekly-challenge-333) {#333}
