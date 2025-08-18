@@ -219,6 +219,8 @@ You are given an array of all moves by the two players.
 
 Write a script to find the winner of the `TicTacToe` game if found based on the moves provided in the given array.
 
+**UPDATE:** Order move is in the order - A, B, A, B, A, ....
+
 <br>
 
 #### Example 1
