@@ -1098,6 +1098,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/deadmarshal/python/ch1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/deadmarshal/python/ch2.py) in **Python**.
 
+##### **Benjamin Andre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/benjamin-andre/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/benjamin-andre/rust/ch-2.rs) in **Rust**.
+
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/eric-cheung/python/ch-2.py) in **Python**.
