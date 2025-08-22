@@ -230,8 +230,8 @@ Write a script to find the winner of the `TicTacToe` game if found based on the 
 
     Game Board:
     [ A _ _ ]
-    [ B A B ]
-    [ _ _ A ]
+    [ _ A _ ]
+    [ B B A ]
 
 <br>
 
