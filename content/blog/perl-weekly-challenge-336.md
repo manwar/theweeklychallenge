@@ -116,12 +116,13 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 ***
 
 #### 1. [Common Find](https://raku-musings.com/common-find.html) by Arne Sommer.
-#### 2. [Common Tics and Toes](https://github.sommrey.de/the-bears-den/2025/08/22/ch-335.html) by Jorg Sommrey.
-#### 3. [Uncommon Bags and Winning Lines](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-335/challenge-335/matthias-muth#readme) by Matthias Muth.
-#### 4. [Fanfare for the Common Character](https://packy.dardan.com/b/_V) by Packy Anderson.
-#### 5. [Common winner](http://ccgi.campbellsmiths.force9.co.uk/challenge/335) by Peter Campbell Smith.
-#### 6. [The Commoners are Winning Characters](https://blog.firedrake.org/archive/2025/08/The_Weekly_Challenge_335__The_Commoners_are_Winning_Characters.html) by Roger Bell_West.
-#### 7. [The Common Winner](https://dev.to/simongreennet/weekly-challenge-the-common-winner-57ka) by Simon Green.
+#### 2. [Common Characters](https://dev.to/boblied/pwc-335-common-characters-532p) by Bob Lied.
+#### 3. [Common Tics and Toes](https://github.sommrey.de/the-bears-den/2025/08/22/ch-335.html) by Jorg Sommrey.
+#### 4. [Uncommon Bags and Winning Lines](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-335/challenge-335/matthias-muth#readme) by Matthias Muth.
+#### 5. [Fanfare for the Common Character](https://packy.dardan.com/b/_V) by Packy Anderson.
+#### 6. [Common winner](http://ccgi.campbellsmiths.force9.co.uk/challenge/335) by Peter Campbell Smith.
+#### 7. [The Commoners are Winning Characters](https://blog.firedrake.org/archive/2025/08/The_Weekly_Challenge_335__The_Commoners_are_Winning_Characters.html) by Roger Bell_West.
+#### 8. [The Common Winner](https://dev.to/simongreennet/weekly-challenge-the-common-winner-57ka) by Simon Green.
 
 <br>
 
@@ -129,7 +130,7 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 ***
 
 #### 1. Commits: 44,961 (`+101`)
-#### 2. Pull Requests: 12,525 (`+36`)
+#### 2. Pull Requests: 12,527 (`+38`)
 #### 3. Contributors: 264 (`+1`)
 #### 4. Fork: 336 (`+2`)
 #### 5. Stars: 195

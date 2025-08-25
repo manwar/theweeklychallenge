@@ -18,6 +18,9 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
       <div class="links-visible">
         <div class="row text-center">
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
+             <span class="link-item"><a href="#336">[&nbsp;&nbsp;336&nbsp;&nbsp;]</a> &nbsp;</span>
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#335">[&nbsp;&nbsp;335&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
@@ -194,13 +197,13 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#277">[&nbsp;&nbsp;277&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
-             <span class="link-item"><a href="#276">[&nbsp;&nbsp;276&nbsp;&nbsp;]</a> &nbsp;</span>
-          </div>
         </div>
       </div>
       <div class="links-hidden" style="display: none;">
         <div class="row text-center">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
+             <span class="link-item"><a href="#276">[&nbsp;&nbsp;276&nbsp;&nbsp;]</a> &nbsp;</span>
+          </div>
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#275">[&nbsp;&nbsp;275&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
@@ -1091,6 +1094,12 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
   }
 </style>
 
+## [The Weekly Challenge - 336](/blog/perl-weekly-challenge-336) {#336}
+<br>
+
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-336/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-336/eric-cheung/python/ch-2.py) in **Python**.
+
+___
 ## [The Weekly Challenge - 335](/blog/perl-weekly-challenge-335) {#335}
 <br>
 
