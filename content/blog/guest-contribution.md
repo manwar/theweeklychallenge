@@ -1104,9 +1104,9 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/eric-cheung/python/ch-2.py) in **Python**.
 
-##### **HVukman** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/hvukman/picolisp/335_p1.l) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/hvukman/picolisp/335_p2.l) in **PicoLisp**.
-
 ##### **HVukman** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/hvukman/lua/335_p1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/hvukman/lua/335_p2.lua) in **Lua**.
+
+##### **HVukman** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/hvukman/picolisp/335_p1.l) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/hvukman/picolisp/335_p2.l) in **PicoLisp**.
 
 ##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/packy-anderson/elixir/ch-1.exs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-335/packy-anderson/elixir/ch-2.exs) in **Elixir**.
 
