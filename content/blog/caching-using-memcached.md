@@ -111,9 +111,9 @@ version: 1.6.24
 
 Finally we need a `Perl` client to talk to the `memcached` server.
 
-As always, [**MetaCPAN**](https://metacpan.org) is the place for all solutions. I found [**Cache::Memcached::Fast**](https://metacpan.org/pod/Cache::Memcached::Fast), a `Perl` client for memcached, in `C` language.
+As always, [**MetaCPAN**](https://metacpan.org) is the place for all solutions. I found [**Cache::Memcached::Fast**](https://metacpan.org/pod/Cache::Memcached::Fast), a `Perl` client for `memcached`, in `C` language.
 
-Installing the client is as simple as below:
+Installing the module is as simple as below:
 
 <br>
 
