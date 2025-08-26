@@ -23,11 +23,11 @@ tags: ["perl"]
 
 <br>
 
-Recently I shared my experience with [**Redis/Valkey**](/blog/caching-in-perl). Continue exploring further, today I will share another very popular choice `Memcached`. My introduction to caching was through `Memcached`.
+Recently I shared my experience with [**Redis/Valkey**](/blog/caching-in-perl). Continue exploring further, today I'd like to talk about another very popular choice `Memcached`. My first introduction to caching was actually through `Memcached`.
 
 [**Memcached**](https://memcached.org) is a lightning-fast caching server that stores data in `RAM` for instant access.
 
-It works like a `key-value` store.
+At its core. it works like a simple `key-value` store.
 
 `Memcached` is ideal for
 
