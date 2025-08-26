@@ -192,6 +192,11 @@ sub get_product($id) {
 
     return $data;
 }
+
+sub expensive_db_query($id) {
+    sleep 1; # Simulate slow query
+    return $fake_db{$id} || undef;
+}
 ```
 
 <br>
