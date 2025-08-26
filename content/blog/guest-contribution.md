@@ -1101,6 +1101,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-336/deadmarshal/odin/ch1.odin) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-336/deadmarshal/odin/ch2.odin) in **Odin**.
 
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-336/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-336/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-336/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-336/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-336/richard-park/apl/EqualGroup.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-336/richard-park/apl/FinalScore.aplf) in **APL**.
