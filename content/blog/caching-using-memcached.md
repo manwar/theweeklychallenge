@@ -23,7 +23,7 @@ tags: ["perl"]
 
 <br>
 
-Recently I shared my experience with [**Redis/Valkey**](/blog/caching-in-perl). Continue exploring further, today I'd like to talk about another very popular choice `Memcached`.
+Recently I shared my experience with [**Redis/Valkey**](/blog/caching-in-perl). Continuing my exploration, today I'd like to talk about another very popular choice `Memcached`.
 
 My first introduction to caching was actually through `Memcached`.
 
