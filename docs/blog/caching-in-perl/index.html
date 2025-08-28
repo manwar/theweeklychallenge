@@ -383,6 +383,19 @@ PONG
 
 <span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
 
+<span style="color:#75715e"># Test the cache</span>
+say <span style="color:#e6db74">&#34;First request (uncached):&#34;</span>;
+<span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> get_user(<span style="color:#ae81ff">42</span>);
+say Dumper($user);
+
+say <span style="color:#e6db74">&#34;\nSecond request (cached):&#34;</span>;
+$user <span style="color:#f92672">=</span> get_user(<span style="color:#ae81ff">42</span>);
+say Dumper($user);
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># SUBROUTINES</span>
+
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch_user_from_db</span> {
     <span style="color:#66d9ef">my</span> ($user_id) <span style="color:#f92672">=</span> @_;
     say <span style="color:#e6db74">&#34;Fetching user $user_id from database...&#34;</span>;
@@ -412,15 +425,6 @@ PONG
     $redis<span style="color:#f92672">-&gt;</span>expire($key, <span style="color:#ae81ff">3600</span>);  <span style="color:#75715e"># Set TTL (1 hour)</span>
     <span style="color:#66d9ef">return</span> $user_data;
 }
-
-<span style="color:#75715e"># Test the cache</span>
-say <span style="color:#e6db74">&#34;First request (uncached):&#34;</span>;
-<span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> get_user(<span style="color:#ae81ff">42</span>);
-say Dumper($user);
-
-say <span style="color:#e6db74">&#34;\nSecond request (cached):&#34;</span>;
-$user <span style="color:#f92672">=</span> get_user(<span style="color:#ae81ff">42</span>);
-say Dumper($user);
 </code></pre></div><br>
 <h3 id="lets-run-the-script">Let&rsquo;s run the script:</h3>
 <br>
@@ -652,6 +656,19 @@ $redis<span style="color:#f92672">-&gt;</span>del($queue_name);
 <span style="color:#66d9ef">my</span> $queue_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;job_queue&#39;</span>;
 <span style="color:#66d9ef">my</span> $pfm        <span style="color:#f92672">=</span> Parallel::ForkManager<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($workers);
 
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $id (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$workers) {
+    $pfm<span style="color:#f92672">-&gt;</span>start <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span>;
+    worker($id);
+    $pfm<span style="color:#f92672">-&gt;</span>finish;
+}
+
+$pfm<span style="color:#f92672">-&gt;</span>wait_all_children;
+say <span style="color:#e6db74">&#34;All workers finished.&#34;</span>;
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># SUBROUTINES</span>
+
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">worker</span> {
     <span style="color:#66d9ef">my</span> ($worker_id) <span style="color:#f92672">=</span> @_;
     <span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
@@ -678,15 +695,6 @@ $redis<span style="color:#f92672">-&gt;</span>del($queue_name);
         }
     }
 }
-
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $id (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$workers) {
-    $pfm<span style="color:#f92672">-&gt;</span>start <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span>;
-    worker($id);
-    $pfm<span style="color:#f92672">-&gt;</span>finish;
-}
-
-$pfm<span style="color:#f92672">-&gt;</span>wait_all_children;
-say <span style="color:#e6db74">&#34;All workers finished.&#34;</span>;
 </code></pre></div><br>
 <h3 id="we-will-start-the-job-queue-producer-first">We will start the job queue producer first.</h3>
 <br>
@@ -889,6 +897,11 @@ Last login: Wed Jul  <span style="color:#ae81ff">9</span> 05:32:49 <span style="
 
 <span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
 
+<span style="color:#75715e"># Concurrent simulation (safe across multiple processes)</span>
+say <span style="color:#e6db74">&#34;Homepage views: &#34;</span> <span style="color:#f92672">.</span> record_page_view(<span style="color:#e6db74">&#39;home&#39;</span>);
+say <span style="color:#e6db74">&#34;Homepage views: &#34;</span> <span style="color:#f92672">.</span> record_page_view(<span style="color:#e6db74">&#39;home&#39;</span>);
+say <span style="color:#e6db74">&#34;Product views : &#34;</span> <span style="color:#f92672">.</span> record_page_view(<span style="color:#e6db74">&#39;product&#39;</span>);
+
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">record_page_view</span> {
     <span style="color:#66d9ef">my</span> ($page_id) <span style="color:#f92672">=</span> @_;
 
@@ -901,11 +914,6 @@ Last login: Wed Jul  <span style="color:#ae81ff">9</span> 05:32:49 <span style="
 
     <span style="color:#66d9ef">return</span> $views;
 }
-
-<span style="color:#75715e"># Concurrent simulation (safe across multiple processes)</span>
-say <span style="color:#e6db74">&#34;Homepage views: &#34;</span> <span style="color:#f92672">.</span> record_page_view(<span style="color:#e6db74">&#39;home&#39;</span>);
-say <span style="color:#e6db74">&#34;Homepage views: &#34;</span> <span style="color:#f92672">.</span> record_page_view(<span style="color:#e6db74">&#39;home&#39;</span>);
-say <span style="color:#e6db74">&#34;Product views : &#34;</span> <span style="color:#f92672">.</span> record_page_view(<span style="color:#e6db74">&#39;product&#39;</span>);
 </code></pre></div><br>
 <h3 id="lets-run-the-script-2">Let&rsquo;s run the script:</h3>
 <br>
@@ -1040,6 +1048,15 @@ player_1: <span style="color:#ae81ff">150</span> points
 
 <span style="color:#66d9ef">my</span> $redis <span style="color:#f92672">=</span> Redis::Fast<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(server <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;127.0.0.1:6379&#39;</span>);
 
+cmpthese(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, {
+    atomic     <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>safe_counter,
+    non_atomic <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>unsafe_counter,
+});
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># SUBROUTINES</span>
+
 <span style="color:#75715e"># Non-atomic</span>
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">unsafe_counter</span> {
     <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;counter&#34;</span>);
@@ -1050,11 +1067,6 @@ player_1: <span style="color:#ae81ff">150</span> points
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">safe_counter</span> {
     $redis<span style="color:#f92672">-&gt;</span>incr(<span style="color:#e6db74">&#34;counter&#34;</span>);
 }
-
-cmpthese(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, {
-    atomic     <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>safe_counter,
-    non_atomic <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>unsafe_counter,
-});
 </code></pre></div><br>
 <h3 id="lets-see-the-result">Let&rsquo;s see the result.</h3>
 <br>
@@ -1132,11 +1144,6 @@ File counter <span style="color:#f92672">(</span>with locking<span style="color:
 $redis<span style="color:#f92672">-&gt;</span>del(<span style="color:#e6db74">&#34;safe_counter&#34;</span>);
 say <span style="color:#e6db74">&#34;Counter reset to 0&#34;</span>;
 
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">increment_counter</span> {
-    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>incr(<span style="color:#e6db74">&#34;safe_counter&#34;</span>);
-    say <span style="color:#e6db74">&#34;Process $$ incremented counter to $count&#34;</span>;
-}
-
 <span style="color:#66d9ef">my</span> $pm <span style="color:#f92672">=</span> Parallel::ForkManager<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">10</span>);
 say <span style="color:#e6db74">&#34;Starting 10 parallel increments...&#34;</span>;
 
@@ -1150,6 +1157,15 @@ $pm<span style="color:#f92672">-&gt;</span>wait_all_children;
 
 <span style="color:#66d9ef">my</span> $final_count <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;safe_counter&#34;</span>);
 say <span style="color:#e6db74">&#34;Final counter value: $final_count (should be 10)&#34;</span>;
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># SUBROUTINES</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">increment_counter</span> {
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>incr(<span style="color:#e6db74">&#34;safe_counter&#34;</span>);
+    say <span style="color:#e6db74">&#34;Process $$ incremented counter to $count&#34;</span>;
+}
 </code></pre></div><br>
 <h3 id="run-the-script-2">Run the script:</h3>
 <br>
@@ -1182,21 +1198,6 @@ Final counter value: <span style="color:#ae81ff">10</span> <span style="color:#f
 
 $redis<span style="color:#f92672">-&gt;</span>set(<span style="color:#e6db74">&#34;inventory:widget&#34;</span>, <span style="color:#ae81ff">100</span>) <span style="color:#66d9ef">unless</span> $redis<span style="color:#f92672">-&gt;</span>exists(<span style="color:#e6db74">&#34;inventory:widget&#34;</span>);
 
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reserve_stock</span> {
-    <span style="color:#66d9ef">my</span> ($item, $quantity) <span style="color:#f92672">=</span> @_;
-
-    $redis<span style="color:#f92672">-&gt;</span>watch(<span style="color:#e6db74">&#34;inventory:$item&#34;</span>);
-    <span style="color:#66d9ef">my</span> $available <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;inventory:$item&#34;</span>);
-
-    <span style="color:#66d9ef">if</span> ($available <span style="color:#f92672">&gt;=</span> $quantity) {
-        $redis<span style="color:#f92672">-&gt;</span>multi;
-        $redis<span style="color:#f92672">-&gt;</span>decrby(<span style="color:#e6db74">&#34;inventory:$item&#34;</span>, $quantity);
-        <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>exec;
-        <span style="color:#66d9ef">return</span> $result ? <span style="color:#e6db74">&#34;Reserved $quantity&#34;</span> : <span style="color:#e6db74">&#34;Retry needed&#34;</span>;
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Out of stock&#34;</span>;
-}
-
 <span style="color:#75715e"># Simulate 5 concurrent reservations</span>
 <span style="color:#66d9ef">my</span> @pids;
 <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>) {
@@ -1211,6 +1212,25 @@ $redis<span style="color:#f92672">-&gt;</span>set(<span style="color:#e6db74">&#
 waitpid($_, <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">for</span> @pids;
 
 say <span style="color:#e6db74">&#34;Remaining stock: &#34;</span> <span style="color:#f92672">.</span> $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;inventory:widget&#34;</span>);
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># SUBROUTINES</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reserve_stock</span> {
+    <span style="color:#66d9ef">my</span> ($item, $quantity) <span style="color:#f92672">=</span> @_;
+
+    $redis<span style="color:#f92672">-&gt;</span>watch(<span style="color:#e6db74">&#34;inventory:$item&#34;</span>);
+    <span style="color:#66d9ef">my</span> $available <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#34;inventory:$item&#34;</span>);
+
+    <span style="color:#66d9ef">if</span> ($available <span style="color:#f92672">&gt;=</span> $quantity) {
+        $redis<span style="color:#f92672">-&gt;</span>multi;
+        $redis<span style="color:#f92672">-&gt;</span>decrby(<span style="color:#e6db74">&#34;inventory:$item&#34;</span>, $quantity);
+        <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $redis<span style="color:#f92672">-&gt;</span>exec;
+        <span style="color:#66d9ef">return</span> $result ? <span style="color:#e6db74">&#34;Reserved $quantity&#34;</span> : <span style="color:#e6db74">&#34;Retry needed&#34;</span>;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Out of stock&#34;</span>;
+}
 </code></pre></div><br>
 <h3 id="test-the-script">Test the script.</h3>
 <br>

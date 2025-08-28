@@ -153,6 +153,19 @@ use Data::Dumper;
 
 my $redis = Redis::Fast->new(server => '127.0.0.1:6379');
 
+# Test the cache
+say "First request (uncached):";
+my $user = get_user(42);
+say Dumper($user);
+
+say "\nSecond request (cached):";
+$user = get_user(42);
+say Dumper($user);
+
+#
+#
+# SUBROUTINES
+
 sub fetch_user_from_db {
     my ($user_id) = @_;
     say "Fetching user $user_id from database...";
@@ -182,15 +195,6 @@ sub get_user {
     $redis->expire($key, 3600);  # Set TTL (1 hour)
     return $user_data;
 }
-
-# Test the cache
-say "First request (uncached):";
-my $user = get_user(42);
-say Dumper($user);
-
-say "\nSecond request (cached):";
-$user = get_user(42);
-say Dumper($user);
 ```
 
 <br>
@@ -509,6 +513,19 @@ my $workers    = 3;
 my $queue_name = 'job_queue';
 my $pfm        = Parallel::ForkManager->new($workers);
 
+for my $id (1..$workers) {
+    $pfm->start and next;
+    worker($id);
+    $pfm->finish;
+}
+
+$pfm->wait_all_children;
+say "All workers finished.";
+
+#
+#
+# SUBROUTINES
+
 sub worker {
     my ($worker_id) = @_;
     my $redis = Redis::Fast->new(server => '127.0.0.1:6379');
@@ -535,15 +552,6 @@ sub worker {
         }
     }
 }
-
-for my $id (1..$workers) {
-    $pfm->start and next;
-    worker($id);
-    $pfm->finish;
-}
-
-$pfm->wait_all_children;
-say "All workers finished.";
 ```
 
 <br>
@@ -786,6 +794,11 @@ use Redis::Fast;
 
 my $redis = Redis::Fast->new(server => '127.0.0.1:6379');
 
+# Concurrent simulation (safe across multiple processes)
+say "Homepage views: " . record_page_view('home');
+say "Homepage views: " . record_page_view('home');
+say "Product views : " . record_page_view('product');
+
 sub record_page_view {
     my ($page_id) = @_;
 
@@ -798,11 +811,6 @@ sub record_page_view {
 
     return $views;
 }
-
-# Concurrent simulation (safe across multiple processes)
-say "Homepage views: " . record_page_view('home');
-say "Homepage views: " . record_page_view('home');
-say "Product views : " . record_page_view('product');
 ```
 
 <br>
@@ -980,6 +988,15 @@ use Benchmark qw(:hireswallclock cmpthese);
 
 my $redis = Redis::Fast->new(server => '127.0.0.1:6379');
 
+cmpthese(-1, {
+    atomic     => \&safe_counter,
+    non_atomic => \&unsafe_counter,
+});
+
+#
+#
+# SUBROUTINES
+
 # Non-atomic
 sub unsafe_counter {
     my $val = $redis->get("counter");
@@ -990,11 +1007,6 @@ sub unsafe_counter {
 sub safe_counter {
     $redis->incr("counter");
 }
-
-cmpthese(-1, {
-    atomic     => \&safe_counter,
-    non_atomic => \&unsafe_counter,
-});
 ```
 
 <br>
@@ -1102,11 +1114,6 @@ my $redis = Redis::Fast->new(
 $redis->del("safe_counter");
 say "Counter reset to 0";
 
-sub increment_counter {
-    my $count = $redis->incr("safe_counter");
-    say "Process $$ incremented counter to $count";
-}
-
 my $pm = Parallel::ForkManager->new(10);
 say "Starting 10 parallel increments...";
 
@@ -1120,6 +1127,15 @@ $pm->wait_all_children;
 
 my $final_count = $redis->get("safe_counter");
 say "Final counter value: $final_count (should be 10)";
+
+#
+#
+# SUBROUTINES
+
+sub increment_counter {
+    my $count = $redis->incr("safe_counter");
+    say "Process $$ incremented counter to $count";
+}
 ```
 
 <br>
@@ -1166,21 +1182,6 @@ my $redis = Redis::Fast->new(server => '127.0.0.1:6379');
 
 $redis->set("inventory:widget", 100) unless $redis->exists("inventory:widget");
 
-sub reserve_stock {
-    my ($item, $quantity) = @_;
-
-    $redis->watch("inventory:$item");
-    my $available = $redis->get("inventory:$item");
-
-    if ($available >= $quantity) {
-        $redis->multi;
-        $redis->decrby("inventory:$item", $quantity);
-        my $result = $redis->exec;
-        return $result ? "Reserved $quantity" : "Retry needed";
-    }
-    return "Out of stock";
-}
-
 # Simulate 5 concurrent reservations
 my @pids;
 for (1..5) {
@@ -1195,6 +1196,25 @@ for (1..5) {
 waitpid($_, 0) for @pids;
 
 say "Remaining stock: " . $redis->get("inventory:widget");
+
+#
+#
+# SUBROUTINES
+
+sub reserve_stock {
+    my ($item, $quantity) = @_;
+
+    $redis->watch("inventory:$item");
+    my $available = $redis->get("inventory:$item");
+
+    if ($available >= $quantity) {
+        $redis->multi;
+        $redis->decrby("inventory:$item", $quantity);
+        my $result = $redis->exec;
+        return $result ? "Reserved $quantity" : "Retry needed";
+    }
+    return "Out of stock";
+}
 ```
 
 <br>
