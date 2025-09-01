@@ -1100,6 +1100,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ## [The Weekly Challenge - 337](/blog/perl-weekly-challenge-337) {#337}
 <br>
 
+##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-337/richard-park/apl/OddMatrix.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-337/richard-park/apl/SmallerThanCurrent.aplf) in **APL**.
+
 ___
 ## [The Weekly Challenge - 336](/blog/perl-weekly-challenge-336) {#336}
 <br>
