@@ -302,7 +302,7 @@ For each location (r, c), do both of the following:
 
 #### Example 3
 
-    Input: $row = 3, $col = 3, @locations = ([0,0],[1,2],[2,1)
+    Input: $row = 3, $col = 3, @locations = ([0,0],[1,2],[2,1])
     Output: 0
 
     Initial:
