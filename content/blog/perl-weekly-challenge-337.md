@@ -268,7 +268,7 @@ For each location (r, c), do both of the following:
 #### Example 2
 
     Input: $row = 2, $col = 2, @locations = ([1,1],[0,0])
-    Output: 2
+    Output: 0
 
     Initial:
     [ 0 0 ]
@@ -291,12 +291,12 @@ For each location (r, c), do both of the following:
     [ 1 2 ]   [ 1 2 ]
     Increment col 0:
     Before    After
-    [ 1 2 ]   [ 1 2 ]
-    [ 1 2 ]   [ 2 3 ]
+    [ 1 2 ]   [ 2 2 ]
+    [ 1 2 ]   [ 2 2 ]
 
     Final:
-    [ 1 2 ]
-    [ 2 3 ]
+    [ 2 2 ]
+    [ 2 2 ]
 
 <br>
 
