@@ -190,7 +190,7 @@ Write a script to return an array, `@num2`, where `$num2[i]` is the count of all
 #### Example 2
 
     Input: @num1 = (7, 7, 7, 7)
-    Output: (0, 0, 0, 0)
+    Output: (3, 3, 3, 3)
 
 <br>
 
@@ -211,7 +211,7 @@ Write a script to return an array, `@num2`, where `$num2[i]` is the count of all
 #### Example 5
 
     Input: @num1 = (0, 1, 1, 2, 0)
-    Output: (0, 2, 2, 4, 0)
+    Output: (1, 3, 3, 4, 1)
 
 <br>
 
