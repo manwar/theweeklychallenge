@@ -431,7 +431,7 @@ I decided to work on solution where user can choose how many layers and type of 
 
 There are two ways to work with `CHI::Tiered` as below:
 
-First passing list of hashrefs.
+First passing list of arrayrefs.
 
 <br>
 
@@ -445,7 +445,7 @@ my $cache = CHI::Tiered->new(
 
 <br>
 
-Or passing list of `CHI` objects.
+Or passing list of `CHI::Driver` objects.
 
 <br>
 
