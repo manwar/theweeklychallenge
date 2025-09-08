@@ -33,31 +33,33 @@ This is the third and last post in the series `Caching in Perl`. If you missed t
 
 <br>
 
-In this post, I am sharing my experience with [**CHI**](https://metacpan.org/pod/CHI).
+In this post, I'm sharing my experience with [**CHI**](https://metacpan.org/pod/CHI).
 
-When I was working on the post for `Redis`, I fell in love with it as I never used it before.
+While working on my previous post for `Redis`, I fell in love with it as I had never used it before.
 
-Then when I started working on the second post about [**Memcached**](https://memcached.org), I found out few things that I didn't know before although I have worked with it in the past.
+Then when I started my second post about [**Memcached**](https://memcached.org), I discovered new things about it, even though I had worked with it in the past.
 
-To be honest, I really enjoy the process as I learn a lot during my journey.
+To be honest, I'm really enjoying this process as I'm learning a lot on this journey.
 
-The reason I kept, `CHI` as the last in the series so that I can show the power of all cachings covered so far.
+I saved `CHI` for last in this series specifically to demonstrate the power of all the caching systems we've covered so far.
 
-I must admit, I have never used `CHI` before so everything was new to me. I only knew that is provides some kind of caching layers.
+I must admit, I had never used `CHI` before, so everything was new to me.
 
-The best part of `CHI` is that it provides a unified interface to work with multiple caching services.
+I only knew that it provided some kind of caching layer.
 
-`CHI` is the `Swiss Army knife` for all the caching needs and one of the most valuable tools in a modern `Perl` developer's toolkit.
+The best part of `CHI` is that it offers a unified interface for working with multiple caching services.
 
-It helps you decouple your application code from the specific cache implementation.
+It is the `Swiss Army knife` for caching needs and one of the most valuable tools in a modern `Perl` developer's toolkit.
+
+`CHI` helps you decouple your application code from a specific cache implementation.
 
 You write your code to the `CHI` interface.
 
-Then, you can switch your cache backend from `in-memory` to `memcached` to a `FastMmap` file.
+And then, you can switch your cache backend from `in-memory` to `memcached` to a `FastMmap` file.
 
 Or even a multi-level cache, by changing just a single line of configuration.
 
-No need to rewrite your `get/set` calls.
+There's no need to rewrite your `get/set` calls.
 
 <br>
 
