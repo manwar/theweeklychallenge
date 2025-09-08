@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Caching using CHI"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/caching-using-chi/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about Caching using CHI in Perl."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about Caching using CHI in Perl.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/caching-using-chi/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Caching using CHI</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Caching using CHI</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Sep 8, 2025</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/caching-using-chi.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<br>
+<h3 id="1-introductionintroduction"><a href="#introduction"><strong>1. Introduction</strong></a></h3>
+<h3 id="2-installationinstallation"><a href="#installation"><strong>2. Installation</strong></a></h3>
+<h3 id="3-examplesexamples"><a href="#examples"><strong>3. Examples</strong></a></h3>
+<h3 id="4-chicachechicache"><a href="#chicache"><strong>4. CHI::Cache</strong></a></h3>
+<h3 id="5-chitieredchitiered"><a href="#chitiered"><strong>5. CHI::Tiered</strong></a></h3>
+<h3 id="6-conclusionconclusion"><a href="#conclusion"><strong>6. Conclusion</strong></a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<p>This is the third and last post in the series <code>Caching in Perl</code>. If you missed the first two then please follow the links below:</p>
+<br>
+<h4 id="1-caching-using-redisvalkeyhttpstheweeklychallengeorgblogcaching-in-perl"><a href="https://theweeklychallenge.org/blog/caching-in-perl"><strong>1. Caching using Redis/Valkey</strong></a></h4>
+<h4 id="2-caching-using-memcachedhttpstheweeklychallengeorgblogcaching-using-memcached"><a href="https://theweeklychallenge.org/blog/caching-using-memcached"><strong>2. Caching using Memcached</strong></a></h4>
+<br>
+<p>In this post, I am sharing my experience with <a href="https://metacpan.org/pod/CHI"><strong>CHI</strong></a>.</p>
+<p>When I was working on the post for <code>Redis</code>, I fell in love with it as I never used it before.</p>
+<p>Then when I started working on the second post about <a href="https://memcached.org"><strong>Memcached</strong></a>, I found out few things that I didn&rsquo;t know before although I have worked with it in the past.</p>
+<p>To be honest, I really enjoy the process as I learn a lot during my journey.</p>
+<p>The reason I kept, <code>CHI</code> as the last in the series so that I can show the power of all cachings covered so far.</p>
+<p>I must admit, I have never used <code>CHI</code> before so everything was new to me. I only knew that is provides some kind of caching layers.</p>
+<p>The best part of <code>CHI</code> is that it provides a unified interface to work with multiple caching services.</p>
+<p><code>CHI</code> is the <code>Swiss Army knife</code> for all the caching needs and one of the most valuable tools in a modern <code>Perl</code> developer&rsquo;s toolkit.</p>
+<p>It helps you decouple your application code from the specific cache implementation.</p>
+<p>You write your code to the <code>CHI</code> interface.</p>
+<p>Then, you can switch your cache backend from <code>in-memory</code> to <code>memcached</code> to a <code>FastMmap</code> file.</p>
+<p>Or even a multi-level cache, by changing just a single line of configuration.</p>
+<p>No need to rewrite your <code>get/set</code> calls.</p>
+<br>
+<h2 id="installation">Installation</h2>
+<hr>
+<p>For the purpose of this post, we would need <code>Valkey</code> and <code>Memcached</code>.</p>
+<p>With regard to installation, you can find the details in the post above.</p>
+<p>Please find below, quick recaps.</p>
+<p>Here is the docker configuration, <code>docker-compose.yml</code>, to create docker container running <code>Valkey</code>.</p>
+<p><strong>NOTE</strong>: <code>Valkey</code> is the new open source project name for <code>Redis</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+
+services:
+  valkey:
+    image: valkey/valkey:latest
+    container_name: valkey
+    ports:
+      - <span style="color:#e6db74">&#34;6379:6379&#34;</span>
+    restart: unless-stopped
+</code></pre></div><br>
+<p>Now, we can start the container like below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up -d
+Creating valkey ... <span style="color:#66d9ef">done</span>
+</code></pre></div><br>
+<p>We can now install the <code>memcached</code> if missing as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt install memcached libmemcached-tools
+$ sudo systemctl enable memcached
+$ sudo systemctl start memcached
+$ sudo systemctl status memcached
+</code></pre></div><br>
+<p>We can now install the <code>Perl</code> client as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cpanm -vS CHI Cache::Memcached::Fast Redis::Fast
+</code></pre></div><br>
+<h2 id="examples">Examples</h2>
+<hr>
+<p>Here is a very simple example showing file-based caching using <code>CHI</code>.</p>
+<p><strong>File:</strong> <code>chi-file.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> CHI;
+
+<span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>, root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/my_cache&#39;</span>);
+<span style="color:#66d9ef">my</span> $key   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;key&#39;</span>;
+
+<span style="color:#75715e"># Clear cache.</span>
+$cache<span style="color:#f92672">-&gt;</span>clear;
+
+get($cache, $key);
+get($cache, $key);
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># SUBROUTINES</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span>($cache, $key) {
+    <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> $cache<span style="color:#f92672">-&gt;</span>get($key);
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>defined $val) {
+        say <span style="color:#e6db74">&#34;Cache MISS, fetching from database.&#34;</span>;
+        sleep <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># Simulate slow query</span>
+        $val <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;val&#39;</span>;
+        $cache<span style="color:#f92672">-&gt;</span>set($key, $val);
+    }
+    <span style="color:#66d9ef">else</span> {
+        say <span style="color:#e6db74">&#34;Cache HIT, serving from cache.&#34;</span>;
+    }
+}
+</code></pre></div><br>
+<p>Let&rsquo;s check the result:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl chi-file.pl
+Cache MISS, fetching from database.
+Cache HIT, serving from cache.
+</code></pre></div><br>
+<p>So far, so good.</p>
+<p>But did you notice something new in the code above? The use of <code>driver</code>.</p>
+<p>It is the storage backends for <code>CHI</code>. Below is some of the most commonly used backends:</p>
+<br>
+<pre><code>Memory            - Volatile, in-process memory.
+File              - On-disk storage.
+Memcached / Redis - Distributed caches for multi-process/multi-server environments.
+FastMmap          - Shared memory via mmap'd files.
+and many more
+</code></pre>
+<br>
+<p>The killer feature of <code>CHI</code> in my opinion is the support for tiered cache.</p>
+<br>
+<h3 id="how-about-tiered-cache">How about tiered cache?</h3>
+<br>
+<p>Using <code>CHI</code>, we can have 2 levels cache i.e. setting up <code>l1_cache</code> infront of primary cache.</p>
+<p>Here is a simple example showing the power of <code>CHI</code> layered caches i.e. <code>Memory</code> and <code>File</code>.</p>
+<p><strong>File:</strong> <code>chi-l1-cache.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> CHI;
+
+<span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+    driver   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,
+    root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/file_cache&#39;</span>,
+    l1_cache <span style="color:#f92672">=&gt;</span> { driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>, global <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
+);
+
+$cache<span style="color:#f92672">-&gt;</span>clear;
+
+<span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;key&#39;</span>;
+<span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;val&#39;</span>;
+
+is($cache<span style="color:#f92672">-&gt;</span>get($key), undef, <span style="color:#e6db74">&#39;First get miss&#39;</span>);
+
+$cache<span style="color:#f92672">-&gt;</span>set($key, $val);
+is($cache<span style="color:#f92672">-&gt;</span>get($key), $val, <span style="color:#e6db74">&#39;Found key after set&#39;</span>);
+
+<span style="color:#66d9ef">my</span> $file_cache <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>, root <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/file_cache&#39;</span>);
+$file_cache<span style="color:#f92672">-&gt;</span>remove($key);
+is($file_cache<span style="color:#f92672">-&gt;</span>get($key), undef, <span style="color:#e6db74">&#39;Key missing in file cache&#39;</span>);
+
+is($cache<span style="color:#f92672">-&gt;</span>get($key), $val, <span style="color:#e6db74">&#39;Found key in L1 cache&#39;</span>);
+
+done_testing;
+</code></pre></div><br>
+<p>Time for some action now.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl chi-l1-cache.pl
+ok <span style="color:#ae81ff">1</span> - First get miss
+ok <span style="color:#ae81ff">2</span> - Found key after set
+ok <span style="color:#ae81ff">3</span> - Key missing in file cache
+ok <span style="color:#ae81ff">4</span> - Found key in L1 cache
+1..4
+</code></pre></div><br>
+<h2 id="chicache">CHI::Cache</h2>
+<hr>
+<p>During my research, one thing keep bothering me about cache operation stats.</p>
+<p>It would be handy to know, how many hits and miss per cache.</p>
+<p>I found <a href="https://metacpan.org/pod/CHI::Stats"><strong>CHI::Stats</strong></a> on <code>MetaCPAN</code>.</p>
+<p>Unfortunately it didn&rsquo;t answer any one of my questions.</p>
+<p>May be, it&rsquo;s time to re-invent the wheel.</p>
+<p>This is my initial draft.</p>
+<p><strong>File:</strong> <code>chi-cache.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> CHI::Cache;
+
+<span style="color:#66d9ef">use</span> CHI;
+<span style="color:#66d9ef">use</span> Moo;
+<span style="color:#66d9ef">use</span> Time::HiRes <span style="color:#e6db74">qw(time)</span>;
+
+has <span style="color:#e6db74">&#39;cache&#39;</span> <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>, required <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+has <span style="color:#e6db74">&#39;stats&#39;</span> <span style="color:#f92672">=&gt;</span> (
+    is      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>,
+    lazy    <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+    builder <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;_build_stats&#39;</span>,
+);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_build_stats</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">my</span> $stats <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span>stats;
+    $stats<span style="color:#f92672">-&gt;</span>enable;
+
+    <span style="color:#66d9ef">return</span> $stats;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">label</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>label;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span> {
+    <span style="color:#66d9ef">my</span> ($self, @args) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">my</span> $t0   <span style="color:#f92672">=</span> time;
+    <span style="color:#66d9ef">my</span> $val  <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>get(@args);
+    <span style="color:#66d9ef">my</span> $t1   <span style="color:#f92672">=</span> time;
+    <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>data;
+
+    $data<span style="color:#f92672">-&gt;</span>{gets}<span style="color:#f92672">++</span>;
+    (defined $val) ? ($data<span style="color:#f92672">-&gt;</span>{hits}<span style="color:#f92672">++</span>) : ($data<span style="color:#f92672">-&gt;</span>{misses}<span style="color:#f92672">++</span>);
+    $data<span style="color:#f92672">-&gt;</span>{get_time_ms} <span style="color:#f92672">+=</span> int(($t1 <span style="color:#f92672">-</span> $t0) <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+
+    <span style="color:#66d9ef">return</span> $val;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">set</span> {
+    <span style="color:#66d9ef">my</span> ($self, @args) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">my</span> $t0   <span style="color:#f92672">=</span> time;
+    <span style="color:#66d9ef">my</span> $val  <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>set(@args);
+    <span style="color:#66d9ef">my</span> $t1   <span style="color:#f92672">=</span> time;
+    <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>data;
+
+    $data<span style="color:#f92672">-&gt;</span>{sets}<span style="color:#f92672">++</span>;
+    $data<span style="color:#f92672">-&gt;</span>{set_time_ms} <span style="color:#f92672">+=</span> int(($t1 <span style="color:#f92672">-</span> $t0) <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+
+    <span style="color:#66d9ef">return</span> $val;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">data</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>stats<span style="color:#f92672">-&gt;</span>stats_for_driver($self<span style="color:#f92672">-&gt;</span>cache);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">AUTOLOAD</span> {
+    <span style="color:#66d9ef">our</span> $AUTOLOAD;
+    <span style="color:#66d9ef">my</span> ($self, @args) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">my</span> $method <span style="color:#f92672">=</span> $AUTOLOAD;
+    $method <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/.*:://</span>;
+
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $method <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;DESTROY&#39;</span>;
+    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>$method(@args);
+}
+
+<span style="color:#66d9ef">package</span> main;
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> CHI;
+<span style="color:#66d9ef">use</span> CHI::Cache;
+<span style="color:#66d9ef">use</span> Data::Dumper;
+
+<span style="color:#66d9ef">my</span> $caches <span style="color:#f92672">=</span> [
+    CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>, global   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>),
+    CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,   root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/chi_file_cache&#39;</span>),
+];
+
+<span style="color:#66d9ef">foreach</span> (@$caches) {
+    <span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI::Cache<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(cache <span style="color:#f92672">=&gt;</span> $_);
+    $cache<span style="color:#f92672">-&gt;</span>set(<span style="color:#e6db74">&#39;foo&#39;</span>, <span style="color:#e6db74">&#39;bar&#39;</span>);
+    $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;foo&#39;</span>);
+    $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;baz&#39;</span>);
+    say <span style="color:#e6db74">&#34;Cache: &#34;</span>, $cache<span style="color:#f92672">-&gt;</span>label;
+    say Dumper($cache<span style="color:#f92672">-&gt;</span>data);
+}
+</code></pre></div><br>
+<p>Let&rsquo;s test the script.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl chi-cache.pl
+Cache: Memory
+$VAR1 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#39;hits&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
+          <span style="color:#e6db74">&#39;set_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; 0,
+          <span style="color:#e6db74">&#39;sets&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
+          <span style="color:#e6db74">&#39;misses&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
+          <span style="color:#e6db74">&#39;start_time&#39;</span> <span style="color:#f92672">=</span>&gt; 1757341995,
+          <span style="color:#e6db74">&#39;gets&#39;</span> <span style="color:#f92672">=</span>&gt; 2,
+          <span style="color:#e6db74">&#39;get_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">0</span>
+        <span style="color:#f92672">}</span>;
+
+Cache: File
+$VAR1 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#39;gets&#39;</span> <span style="color:#f92672">=</span>&gt; 2,
+          <span style="color:#e6db74">&#39;get_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; 0,
+          <span style="color:#e6db74">&#39;set_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; 3,
+          <span style="color:#e6db74">&#39;start_time&#39;</span> <span style="color:#f92672">=</span>&gt; 1757341995,
+          <span style="color:#e6db74">&#39;sets&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
+          <span style="color:#e6db74">&#39;misses&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
+          <span style="color:#e6db74">&#39;hits&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">1</span>
+        <span style="color:#f92672">}</span>;
+</code></pre></div><br>
+<p>Decent result, not a perfect one though.</p>
+<br>
+<h2 id="chitiered">CHI::Tiered</h2>
+<hr>
+<p>I was wondering, why limit to just <code>l1_cache</code>.</p>
+<p>I decided to work on solution where user can choose how many layers and type of cache to pick.</p>
+<br>
+<h3 id="github-repository-chitieredhttpsgithubcommanwarchi-tiered">GitHub Repository: <a href="https://github.com/manwar/CHI-Tiered">CHI::Tiered</a></h3>
+<br>
+<p>There are two ways to work with <code>CHI::Tiered</code> as below:</p>
+<p>First passing list of hashrefs.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI::Tiered<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+    [driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>,    global   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>                  ],
+    [driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,      root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/cache&#39;</span>       ],
+    [driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memcached&#39;</span>, servers  <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;127.0.0.1:11211&#39;</span>]],
+);
+</code></pre></div><br>
+<p>Or passing list of <code>CHI</code> objects.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $memory    <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>,    global   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+<span style="color:#66d9ef">my</span> $file      <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,      root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/cache&#39;</span>);
+<span style="color:#66d9ef">my</span> $memcached <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memcached&#39;</span>, servers  <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;127.0.0.1:11211&#39;</span>]);
+
+<span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI::Tiered<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($memory, $file, $memcached);
+</code></pre></div><br>
+<p>The order of cache is important, fastest to slowest. You can decide the order.</p>
+<p>Standard operations are as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$cache<span style="color:#f92672">-&gt;</span>set($key, $val, <span style="color:#e6db74">&#39;1 hour&#39;</span>);
+<span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> $cache<span style="color:#f92672">-&gt;</span>get($key);
+$cache<span style="color:#f92672">-&gt;</span>remove($key);
+$cache<span style="color:#f92672">-&gt;</span>clear;
+</code></pre></div><br>
+<p>Let&rsquo;s build and test the package <code>CHI::Tiered</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl Makefile.PL
+Checking <span style="color:#66d9ef">if</span> your kit is complete...
+Looks good
+Generating a Unix-style Makefile
+Writing Makefile <span style="color:#66d9ef">for</span> CHI::Tiered
+Writing MYMETA.yml and MYMETA.json
+
+$ make
+cp lib/CHI/Tiered.pm blib/lib/CHI/Tiered.pm
+Manifying <span style="color:#ae81ff">1</span> pod document
+
+$ make test
+PERL_DL_NONLAZY<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#e6db74">&#34;/usr/bin/perl&#34;</span> <span style="color:#e6db74">&#34;-MExtUtils::Command::MM&#34;</span> <span style="color:#e6db74">&#34;-MTest::Harness&#34;</span> <span style="color:#e6db74">&#34;-e&#34;</span> <span style="color:#e6db74">&#34;undef *Test::Harness::Switches; test_harness(0, &#39;blib/lib&#39;, &#39;blib/arch&#39;)&#34;</span> t/*.t
+t/00-load.t ............. 1/1 <span style="color:#75715e"># Testing CHI::Tiered 0.01, Perl 5.038002, /usr/bin/perl</span>
+t/00-load.t ............. ok
+t/01_driver_name.t ...... ok
+t/02_driver_obj.t ....... ok
+t/03_driver_extended.t .. ok
+t/manifest.t ............ ok
+t/pod.t ................. ok
+All tests successful.
+Files<span style="color:#f92672">=</span>6, Tests<span style="color:#f92672">=</span>39,  <span style="color:#ae81ff">0</span> wallclock secs <span style="color:#f92672">(</span> 0.01 usr  0.00 sys +  0.40 cusr  0.07 csys <span style="color:#f92672">=</span>  0.48 CPU<span style="color:#f92672">)</span>
+Result: PASS
+</code></pre></div><br>
+<h2 id="conclusion">Conclusion</h2>
+<hr>
+<p>This exercise was worth it. In the end, I have got two solutions: <code>CHI::Cache</code> and <code>CHI::Tiered</code>.</p>
+<p>I will try it few times before pushing it to <code>CPAN</code>.</p>
+<p>If you have any suggestions, please do share with me: <code>mohammad.anwar@yahoo.com</code>.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
