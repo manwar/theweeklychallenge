@@ -59,7 +59,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `334` &nbsp;&nbsp;|&nbsp;&nbsp; 46 &nbsp;&nbsp;|&nbsp;&nbsp; 27 &nbsp;&nbsp;|&nbsp;&nbsp; 15 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `335` &nbsp;&nbsp;|&nbsp;&nbsp; 38 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `336` &nbsp;&nbsp;|&nbsp;&nbsp; 44 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `337` &nbsp;&nbsp;|&nbsp;&nbsp; 42 &nbsp;&nbsp;|&nbsp;&nbsp; 15 &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `337` &nbsp;&nbsp;|&nbsp;&nbsp; 44 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|
 
 <br>
 
@@ -112,7 +112,7 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 ***
 
 #### 1. Commits: 45,151 (`+91`)
-#### 2. Pull Requests: 12,595 (`+33`)
+#### 2. Pull Requests: 12,596 (`+34`)
 #### 3. Contributors: 264
 #### 4. Fork: 336 (`+1`)
 #### 5. Stars: 196
