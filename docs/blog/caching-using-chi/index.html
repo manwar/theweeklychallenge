@@ -382,14 +382,13 @@ get($cache, $key);
 
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span>($cache, $key) {
     <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> $cache<span style="color:#f92672">-&gt;</span>get($key);
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>defined $val) {
+    <span style="color:#66d9ef">if</span> (defined $val) {
+        say <span style="color:#e6db74">&#34;Cache HIT, serving from cache.&#34;</span>;
+    } <span style="color:#66d9ef">else</span> {
         say <span style="color:#e6db74">&#34;Cache MISS, fetching from database.&#34;</span>;
         sleep <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># Simulate slow query</span>
         $val <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;val&#39;</span>;
         $cache<span style="color:#f92672">-&gt;</span>set($key, $val);
-    }
-    <span style="color:#66d9ef">else</span> {
-        say <span style="color:#e6db74">&#34;Cache HIT, serving from cache.&#34;</span>;
     }
 }
 </code></pre></div><br>
