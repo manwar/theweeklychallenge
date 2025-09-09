@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 337"
-date: 2025-09-08T00:00:00+00:00
+date: 2025-09-09T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 337."
 type: post
 image: images/blog/recap-challenge-337.jpg
