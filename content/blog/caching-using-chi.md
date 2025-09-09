@@ -156,14 +156,13 @@ get($cache, $key);
 
 sub get($cache, $key) {
     my $val = $cache->get($key);
-    if (!defined $val) {
+    if (defined $val) {
+        say "Cache HIT, serving from cache.";
+    } else {
         say "Cache MISS, fetching from database.";
         sleep 1; # Simulate slow query
         $val = 'val';
         $cache->set($key, $val);
-    }
-    else {
-        say "Cache HIT, serving from cache.";
     }
 }
 ```
