@@ -79,6 +79,8 @@ Let's do the same using experimental `class` feature now.
 <br>
 
 ```perl
+use experimental 'class';
+
 class Shape {
     method draw { die "draw() must be implemented by subclass" }
 }
@@ -130,6 +132,8 @@ Let's do it using `class` feature.
 <br>
 
 ```perl
+use experimental 'class';
+
 class Shape::Circle :isa(Shape) {
     method draw { "Inside Shape::Circle::draw()" }
 }
@@ -187,6 +191,8 @@ Then with `class` feature as below:
 <br>
 
 ```perl
+use experimental 'class';
+
 class ShapeFactory {
     my %dispatch = (
         CIRCLE    => 'Shape::Circle',

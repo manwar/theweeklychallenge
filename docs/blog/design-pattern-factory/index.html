@@ -331,7 +331,9 @@ requires <span style="color:#e6db74">&#39;draw&#39;</span>;
 <p>This ensures consistency: all shapes must know how to &ldquo;draw themselves.&rdquo;</p>
 <p>Let&rsquo;s do the same using experimental <code>class</code> feature now.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">class Shape {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+
+class Shape {
     method draw { die <span style="color:#e6db74">&#34;draw() must be implemented by subclass&#34;</span> }
 }
 </code></pre></div><br>
@@ -368,7 +370,9 @@ with <span style="color:#e6db74">&#39;Shape&#39;</span>;
 </code></pre></div><br>
 <p>Let&rsquo;s do it using <code>class</code> feature.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">class Shape::Circle :isa(Shape) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+
+class Shape::Circle :isa(Shape) {
     method draw { <span style="color:#e6db74">&#34;Inside Shape::Circle::draw()&#34;</span> }
 }
 
@@ -409,7 +413,9 @@ class Shape::Square :isa(Shape) {
 </code></pre></div><br>
 <p>Then with <code>class</code> feature as below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">class ShapeFactory {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+
+class ShapeFactory {
     <span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span> (
         CIRCLE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Circle&#39;</span>,
         SQUARE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Square&#39;</span>,
