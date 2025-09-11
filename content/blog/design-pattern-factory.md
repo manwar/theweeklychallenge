@@ -108,21 +108,21 @@ package Shape::Circle;
 use Moo;
 with 'Shape';
 
-sub draw { "Inside Shape::Circle::draw()"; }
+sub draw { "Inside Shape::Circle::draw()" }
 
 package Shape::Rectangle;
 
 use Moo;
 with 'Shape';
 
-sub draw { "Inside Shape::Rectangle::draw()"; }
+sub draw { "Inside Shape::Rectangle::draw()" }
 
 package Shape::Square;
 
 use Moo;
 with 'Shape';
 
-sub draw { "Inside Shape::Square::draw()"; }
+sub draw { "Inside Shape::Square::draw()" }
 ```
 
 <br>
