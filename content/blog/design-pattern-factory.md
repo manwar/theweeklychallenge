@@ -14,7 +14,7 @@ tags: ["perl"]
 ### [**1. Introduction**](#introduction)
 ### [**2. Define Shape Role**](#define-shape-role)
 ### [**3. Implement Concrete Shapes**](#implement-concrete-shapes)
-### [**4. Create Shape Factory**](#create=shape-factory)
+### [**4. Create Shape Factory**](#create-shape-factory)
 ### [**5. Test Factory**](#test-factory)
 
 <br>
