@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Design Pattern Factory"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/design-pattern-factory/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about Design Pattern Factory."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about Design Pattern Factory.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/design-pattern-factory/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Design Pattern Factory</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Design Pattern Factory</h2>
+                    <div class="portfolio-meta">
+                        <span>Thursday, Sep 11, 2025</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/design-pattern-factory.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<br>
+<h3 id="1-introductionintroduction"><a href="#introduction"><strong>1. Introduction</strong></a></h3>
+<h3 id="2-define-shape-roledefine-shape-role"><a href="#define-shape-role"><strong>2. Define Shape Role</strong></a></h3>
+<h3 id="3-implement-concrete-shapesimplement-concrete-shapes"><a href="#implement-concrete-shapes"><strong>3. Implement Concrete Shapes</strong></a></h3>
+<h3 id="4-create-shape-factorycreateshape-factory"><a href="#create=shape-factory"><strong>4. Create Shape Factory</strong></a></h3>
+<h3 id="5-test-factorytest-factory"><a href="#test-factory"><strong>5. Test Factory</strong></a></h3>
+<br>
+<h3 id="introduction">Introduction</h3>
+<hr>
+<p>In <code>Jan 2021</code>, I created a small project called, <a href="https://github.com/manwar/Design-Patterns"><strong>Design Pattern using Modern Perl</strong></a> where I explored many design patterns using <code>Moo</code>.</p>
+<p>The project became quite popular and received positive feedback on <code>GitHub</code>.</p>
+<p>When the experimental <code>class</code> feature was first introduced in <code>Perl v5.38</code> (released in <code>July 2023</code>, I decided to re-visit the project and re-implement the patterns using this new feature.</p>
+<p>However, there was one major blocker, the experimental <code>class</code> feature doesn&rsquo;t yet support <code>roles</code>.</p>
+<p>I waited for some time, but unfortunately, support for <code>roles</code> is not a high priority on the list of outstanding issues.</p>
+<p>So, I decided to move forward with what we currently have.</p>
+<p>This post is the first in a long series where I&rsquo;ll be covering commonly used design patterns. Each post will include implementations using both <code>Moo</code> and the new experimental <code>class</code> feature. So you can experience two similar yet distinct approaches.</p>
+<p>For consistency, I&rsquo;ll be using <code>Perl v5.38</code> as the baseline throughout.</p>
+<p>In this post, I’ll demonstrate a simple yet powerful example of the <code>Factory Design Pattern</code> in <code>Perl</code>.</p>
+<p>Using <a href="https://metacpan.org/pod/Moo"><strong>Moo</strong></a>, a lightweight object system for <code>Perl</code>, I&rsquo;ll show how <code>roles</code> and <code>dispatch tables</code> can be combined to produce clean, extensible and testable code.</p>
+<p>Specifically, I’ll implement a <code>Shape Factory</code> that can create different types of shapes (<code>Circle</code>, <code>Square</code>, <code>Rectangle</code>) based on a string identifier.</p>
+<p>Each shape will implement a common interface, <code>draw</code>, enforced through a <code>Moo</code> role.</p>
+<p>Finally, I’ll add unit tests to validate the behaviour.</p>
+<br>
+<h3 id="define-shape-role">Define Shape Role</h3>
+<hr>
+<p>Let&rsquo;s create the <code>Shape</code> role using <code>Moo::Role</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Shape;
+
+<span style="color:#66d9ef">use</span> Moo::Role;
+requires <span style="color:#e6db74">&#39;draw&#39;</span>;
+</code></pre></div><br>
+<p><a href="https://metacpan.org/pod/Moo::Role"><strong>Moo::Role</strong></a> is similar to a <code>trait</code> or <code>interface</code>.</p>
+<p>It declares behavior that consuming classes must implement.</p>
+<p>Here, we say: Any class that does with &lsquo;Shape&rsquo; must provide a <code>draw</code> method.</p>
+<p>This ensures consistency: all shapes must know how to &ldquo;draw themselves.&rdquo;</p>
+<p>Let&rsquo;s do the same using experimental <code>class</code> feature now.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">class Shape {
+    method draw { die <span style="color:#e6db74">&#34;draw() must be implemented by subclass&#34;</span> }
+}
+</code></pre></div><br>
+<h3 id="implement-concrete-shapes">Implement Concrete Shapes</h3>
+<hr>
+<p>Each shape consumes the <code>Shape</code> role and implements the required <code>draw</code> method.</p>
+<p>Again, I&rsquo;ll create concrete class for each shape using <code>Moo</code> first.</p>
+<pre><code>- Uses Moo (to be a full class).
+- Consumes the Shape role (with 'Shape').
+- Implements draw, returning a string showing which method is being called.
+- This makes the interface uniform across all shapes.
+</code></pre>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Shape::Circle;
+
+<span style="color:#66d9ef">use</span> Moo;
+with <span style="color:#e6db74">&#39;Shape&#39;</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span> { <span style="color:#e6db74">&#34;Inside Shape::Circle::draw()&#34;</span>; }
+
+<span style="color:#66d9ef">package</span> Shape::Rectangle;
+
+<span style="color:#66d9ef">use</span> Moo;
+with <span style="color:#e6db74">&#39;Shape&#39;</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span> { <span style="color:#e6db74">&#34;Inside Shape::Rectangle::draw()&#34;</span>; }
+
+<span style="color:#66d9ef">package</span> Shape::Square;
+
+<span style="color:#66d9ef">use</span> Moo;
+with <span style="color:#e6db74">&#39;Shape&#39;</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span> { <span style="color:#e6db74">&#34;Inside Shape::Square::draw()&#34;</span>; }
+</code></pre></div><br>
+<p>Let&rsquo;s do it using <code>class</code> feature.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">class Shape::Circle :isa(Shape) {
+    method draw { <span style="color:#e6db74">&#34;Inside Shape::Circle::draw()&#34;</span> }
+}
+
+class Shape::Rectangle :isa(Shape) {
+    method draw { <span style="color:#e6db74">&#34;Inside Shape::Rectangle::draw()&#34;</span> }
+}
+
+class Shape::Square :isa(Shape) {
+    method draw { <span style="color:#e6db74">&#34;Inside Shape::Square::draw()&#34;</span> }
+}
+</code></pre></div><br>
+<h3 id="create-shape-factory">Create Shape Factory</h3>
+<hr>
+<p>Finally, I&rsquo;ll create the shape factory using dispatch table.</p>
+<p>The method <code>getShape()</code> accepts a shape name as input. It then looks up the corresponding class in <code>%dispatch</code> and returns a new instance of that class.</p>
+<p>If the shape isn’t known, it returns <code>undef</code>.</p>
+<p>First using <code>Moo</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> ShapeFactory;
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Moo;
+<span style="color:#66d9ef">use</span> Shape::Circle;
+<span style="color:#66d9ef">use</span> Shape::Square;
+<span style="color:#66d9ef">use</span> Shape::Rectangle;
+
+<span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span> (
+    CIRCLE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Circle&#39;</span>,
+    SQUARE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Square&#39;</span>,
+    RECTANGLE <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Rectangle&#39;</span>
+);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">getShape</span>($self, $shapeType) {
+    <span style="color:#66d9ef">my</span> $class <span style="color:#f92672">=</span> $dispatch{ uc $shapeType };
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $class;
+    <span style="color:#66d9ef">return</span> $class<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+}
+</code></pre></div><br>
+<p>Then with <code>class</code> feature as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">class ShapeFactory {
+    <span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span> (
+        CIRCLE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Circle&#39;</span>,
+        SQUARE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Square&#39;</span>,
+        RECTANGLE <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Rectangle&#39;</span>
+    );
+
+    method getShape($shapeType) {
+        <span style="color:#66d9ef">my</span> $class <span style="color:#f92672">=</span> $dispatch{ uc $shapeType };
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $class;
+        <span style="color:#66d9ef">return</span> $class<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+    }
+}
+</code></pre></div><br>
+<p>Now, the <code>Factory Pattern</code> is ready for action, the factory hides object creation logic and provides a simple interface for clients.</p>
+<br>
+<h3 id="test-factory">Test Factory</h3>
+<hr>
+<p>Here is the standard test script.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> ShapeFactory;
+
+<span style="color:#66d9ef">my</span> $shapeFactory <span style="color:#f92672">=</span> ShapeFactory<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+
+<span style="color:#66d9ef">my</span> $shape1 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;CIRCLE&#39;</span>);
+is($shape1<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Circle::draw()&#39;</span>);
+
+<span style="color:#66d9ef">my</span> $shape2 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;SQUARE&#39;</span>);
+is($shape2<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Square::draw()&#39;</span>);
+
+<span style="color:#66d9ef">my</span> $shape3 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;RECTANGLE&#39;</span>);
+is($shape3<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Rectangle::draw()&#39;</span>);
+
+<span style="color:#66d9ef">my</span> $shape4 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;rectangle&#39;</span>);
+is($shape4<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Rectangle::draw()&#39;</span>);
+
+<span style="color:#66d9ef">my</span> $no_shape <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;TRIQUETRA&#39;</span>);
+ok(<span style="color:#f92672">!</span> defined $no_shape);
+
+done_testing;
+</code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
