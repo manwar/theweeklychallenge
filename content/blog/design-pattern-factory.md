@@ -50,6 +50,14 @@ Finally, I’ll add unit tests to validate the behaviour.
 
 <br>
 
+### **UPDATE:** `2025-09-12`, I decided to share the implementation using [**Object::Pad**](https://metacpan.org/pod/Object::Pad) as well.
+
+<br>
+
+Those who are new, it was created by `Paul "LeoNerd" Evans`. It started as an external `CPAN` module that used the `XS` language to add new keywords (`class`, `role`, `method`, `has` etc.) to `Perl`. It's a standalone project that you can choose to use today. The experimental feature `class` borrowed ideas from it.
+
+<br>
+
 ### Define Shape Role
 ***
 
@@ -85,6 +93,20 @@ use experimental 'class';
 
 class Shape {
     method draw { die "draw() must be implemented by subclass" }
+}
+```
+
+<br>
+
+Finally using `Object::Pad`, this can be your drop-in replacement for `Moo` version.
+
+<br>
+
+```perl
+use Object::Pad;
+
+role Shape {
+    method draw;
 }
 ```
 
@@ -151,6 +173,28 @@ class Shape::Square :isa(Shape) {
 
 <br>
 
+Then with `Object::Pad` as below:
+
+<br>
+
+```perl
+use Object::Pad;
+
+class Shape::Circle :does(Shape) {
+    method draw { "Inside Shape::Circle::draw()" }
+}
+
+class Shape::Rectangle :does(Shape) {
+    method draw { "Inside Shape::Rectangle::draw()" }
+}
+
+class Shape::Square :does(Shape) {
+    method draw { "Inside Shape::Square::draw()" }
+}
+```
+
+<br>
+
 ### Create Shape Factory
 ***
 
@@ -169,9 +213,6 @@ package ShapeFactory;
 
 use v5.38;
 use Moo;
-use Shape::Circle;
-use Shape::Square;
-use Shape::Rectangle;
 
 my %dispatch = (
     CIRCLE    => 'Shape::Circle',
@@ -194,6 +235,31 @@ Then with `class` feature as below:
 
 ```perl
 use experimental 'class';
+
+class ShapeFactory {
+    my %dispatch = (
+        CIRCLE    => 'Shape::Circle',
+        SQUARE    => 'Shape::Square',
+        RECTANGLE => 'Shape::Rectangle'
+    );
+
+    method getShape($shapeType) {
+        my $class = $dispatch{ uc $shapeType };
+        return unless $class;
+        return $class->new;
+    }
+}
+```
+
+<br>
+
+Finally using `Object::Pad`.
+
+<br>
+
+```perl
+use v5.38;
+use Object::Pad;
 
 class ShapeFactory {
     my %dispatch = (
