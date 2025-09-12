@@ -327,9 +327,10 @@ requires <span style="color:#e6db74">&#39;draw&#39;</span>;
 </code></pre></div><br>
 <p><a href="https://metacpan.org/pod/Moo::Role"><strong>Moo::Role</strong></a> is similar to a <code>trait</code> or <code>interface</code>.</p>
 <p>It declares behavior that consuming classes must implement.</p>
-<p>Here, we say: Any class that does with &lsquo;Shape&rsquo; must provide a <code>draw</code> method.</p>
-<p>This ensures consistency: all shapes must know how to &ldquo;draw themselves.&rdquo;</p>
+<p>Here, we say: Any class that does with <code>Shape</code> must provide a <code>draw</code> method.</p>
+<p>This ensures consistency: all shapes must know how to <code>&quot;draw themselves&quot;</code>.</p>
 <p>Let&rsquo;s do the same using experimental <code>class</code> feature now.</p>
+<p>Please note, this isn&rsquo;t drop-in replacement for <code>Moo</code> version, just workaround until we have support for <code>roles</code> in the <code>class</code> feature.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
 
@@ -386,8 +387,8 @@ class Shape::Square :isa(Shape) {
 </code></pre></div><br>
 <h3 id="create-shape-factory">Create Shape Factory</h3>
 <hr>
-<p>Finally, I&rsquo;ll create the shape factory using dispatch table.</p>
-<p>The method <code>getShape()</code> accepts a shape name as input. It then looks up the corresponding class in <code>%dispatch</code> and returns a new instance of that class.</p>
+<p>Finally, I&rsquo;ll create the shape factory using the dispatch table.</p>
+<p>The method <code>getShape()</code> accepts a shape name as input. It then looks up the corresponding class in the dispatch table, <code>%dispatch</code>, and returns a new instance of that class.</p>
 <p>If the shape isn’t known, it returns <code>undef</code>.</p>
 <p>First using <code>Moo</code>.</p>
 <br>

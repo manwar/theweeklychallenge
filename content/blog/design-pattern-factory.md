@@ -70,11 +70,13 @@ requires 'draw';
 
 It declares behavior that consuming classes must implement.
 
-Here, we say: Any class that does with 'Shape' must provide a `draw` method.
+Here, we say: Any class that does with `Shape` must provide a `draw` method.
 
-This ensures consistency: all shapes must know how to "draw themselves."
+This ensures consistency: all shapes must know how to `"draw themselves"`.
 
 Let's do the same using experimental `class` feature now.
+
+Please note, this isn't drop-in replacement for `Moo` version, just workaround until we have support for `roles` in the `class` feature.
 
 <br>
 
@@ -152,9 +154,9 @@ class Shape::Square :isa(Shape) {
 ### Create Shape Factory
 ***
 
-Finally, I'll create the shape factory using dispatch table.
+Finally, I'll create the shape factory using the dispatch table.
 
-The method `getShape()` accepts a shape name as input. It then looks up the corresponding class in `%dispatch` and returns a new instance of that class.
+The method `getShape()` accepts a shape name as input. It then looks up the corresponding class in the dispatch table, `%dispatch`, and returns a new instance of that class.
 
 If the shape isn’t known, it returns `undef`.
 
