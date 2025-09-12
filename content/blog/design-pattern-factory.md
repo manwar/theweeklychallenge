@@ -68,7 +68,7 @@ requires 'draw';
 
 [**Moo::Role**](https://metacpan.org/pod/Moo::Role) is similar to a `trait` or `interface`.
 
-It declares behavior that consuming classes must implement.
+It declares behaviour that consuming classes must implement.
 
 Here, we say: Any class that does with `Shape` must provide a `draw` method.
 
