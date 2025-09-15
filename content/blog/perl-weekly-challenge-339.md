@@ -193,10 +193,10 @@ In the end return the max difference.
 #### Example 2
 
     Input: @ints = (1, -2, 3, -4)
-    Output: 8
+    Output: 10
 
-    Pair 1: (3, 1)
-    Pair 2: (-2, -4)
+    Pair 1: (1, -2)
+    Pair 2: (3, -4)
 
 <br>
 
