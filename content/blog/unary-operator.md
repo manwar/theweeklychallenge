@@ -232,6 +232,10 @@ print Dumper(good('key'));  # { 'key'   => 'value' };
 
 <br>
 
+And one more example as below:
+
+<br>
+
 ```perl
 my @nums = (1, 2, 3);
 
