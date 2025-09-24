@@ -318,7 +318,7 @@
 <br>
 <h3 id="why-is-this-necessary"><strong>Why is this necessary?</strong></h3>
 <br>
-<p>The <code>{ ... }</code> after a <code>$</code> sigil (<code>$hash{...}</code>) is ambiguous. It can be either:</p>
+<p>The <code>{...}</code> after a <code>$</code> sigil (<code>$hash{...}</code>) is ambiguous. It can be either:</p>
 <br>
 <pre><code>a) A block returning an expression for the key (scalar context wanted).
 b) An anonymous hash reference constructor e.g. $var = { a =&gt; 1 }.
@@ -344,7 +344,7 @@ b) An anonymous hash reference constructor e.g. $var = { a =&gt; 1 }.
 </code></pre></div><br>
 <h3 id="what-unary--is-not-in-perl"><strong>What unary + is NOT in Perl?</strong></h3>
 <br>
-<p>It is critical to understand that <code>Perl</code>'s unary <code>+</code> does not convert data types.</p>
+<p>It&rsquo;s critical to understand that <code>Perl</code>'s unary <code>+</code> operator does not convert data types.</p>
 <br>
 <pre><code>a) It does not convert a string to a number.
 b) It does not have any mathematical effect on numbers.
@@ -364,7 +364,7 @@ b) It does not have any mathematical effect on numbers.
 </code></pre></div><br>
 <h3 id="ambiguous-blocks-with-map"><strong>Ambiguous blocks with map</strong></h3>
 <br>
-<p>The <code>map</code> function takes either a block <code>{ ... }</code> or an <code>expression</code>.</p>
+<p>The <code>map</code> function takes either a block <code>{...}</code> or an <code>expression</code>.</p>
 <p>The parser has to figure out which one you&rsquo;re using.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map { $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> } @array;     <span style="color:#75715e"># the braces are a block for map</span>
@@ -395,8 +395,8 @@ b) It does not have any mathematical effect on numbers.
 <span style="color:#66d9ef">my</span> @refs_block <span style="color:#f92672">=</span> map {{ name <span style="color:#f92672">=&gt;</span> $_ }} @names;   <span style="color:#75715e"># ({&#39;name&#39; =&gt; &#39;Joe&#39;}, {&#39;name&#39; =&gt; &#39;Blog&#39;})</span>
 <span style="color:#66d9ef">my</span> @refs_plus  <span style="color:#f92672">=</span> map <span style="color:#f92672">+</span>{ name <span style="color:#f92672">=&gt;</span> $_ }, @names;   <span style="color:#75715e"># ({&#39;name&#39; =&gt; &#39;Joe&#39;}, {&#39;name&#39; =&gt; &#39;Blog&#39;})</span>
 </code></pre></div><br>
-<p>The <code>+</code> applies to what follows immediately, it&rsquo;s saying <code>&quot;treat the next token as the start of an expression&quot;</code></p>
-<p>It&rsquo;s purely syntactic at runtime, the <code>+</code> has no effect on the value.</p>
+<p>The <code>+</code> operator applies to what follows immediately, it&rsquo;s saying <code>&quot;treat the next token as the start of an expression&quot;</code></p>
+<p>It&rsquo;s purely syntactic at runtime, the <code>+</code> operator has no effect on the value.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $href <span style="color:#f92672">=</span> <span style="color:#f92672">+</span>{ key <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;value&#39;</span> };  <span style="color:#75715e"># Same as { key =&gt; &#39;value&#39; }</span>
 </code></pre></div><br>
@@ -404,14 +404,14 @@ b) It does not have any mathematical effect on numbers.
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">grep <span style="color:#f92672">+</span>{ $_<span style="color:#f92672">-&gt;</span>{active} }<span style="color:#f92672">-&gt;</span>{value}, @users;
 </code></pre></div><br>
-<p>If your expression doesn&rsquo;t contain <code>ambiguous braces</code> then you don&rsquo;t need the unary <code>+</code>.</p>
-<p>These are fine without <code>+</code>.</p>
+<p>If your expression doesn&rsquo;t contain <code>ambiguous braces</code> then you don&rsquo;t need the unary <code>+</code> operator.</p>
+<p>These are fine without <code>+</code> operator.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map $_<span style="color:#f92672">-&gt;</span>{name}, @array_of_hashrefs;          <span style="color:#75715e"># No braces at all</span>
 map $some_hash{$_}, @keys;                   <span style="color:#75715e"># No ambiguous braces</span>
 map [ $_<span style="color:#f92672">-&gt;</span>{x}, $_<span style="color:#f92672">-&gt;</span>{y} ], @points;           <span style="color:#75715e"># Square brackets are unambiguous</span>
 </code></pre></div><br>
-<p>With <code>map</code>, unary <code>+</code> serves as a syntactic disambiguator that tells <code>Perl</code> to interpret <code>{ ... }</code> as a <code>hash reference</code> constructor (an expression) rather than as a <code>map</code> block.</p>
+<p>With <code>map</code>, unary <code>+</code> operator serves as a syntactic disambiguator that tells <code>Perl</code> to interpret <code>{...}</code> as a <code>hash reference</code> constructor (an expression) rather than as a <code>map</code> block.</p>
 <p>It&rsquo;s a crucial tool for writing correct <code>Perl</code> code when you need to return <code>hash references</code> or other <code>brace-delimited</code> constructs from <code>map</code>.</p>
 <hr>
 <br>

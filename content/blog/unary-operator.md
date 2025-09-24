@@ -62,7 +62,7 @@ This tells `Perl` that `{...}` is a code block whose result is the key.
 
 <br>
 
-The `{ ... }` after a `$` sigil (`$hash{...}`) is ambiguous. It can be either:
+The `{...}` after a `$` sigil (`$hash{...}`) is ambiguous. It can be either:
 
 <br>
 
@@ -102,7 +102,7 @@ print Dumper(good('key'));  # { 'key'   => 'value' };
 
 <br>
 
-It is critical to understand that `Perl`'s unary `+` does not convert data types.
+It's critical to understand that `Perl`'s unary `+` operator does not convert data types.
 
 <br>
 
@@ -140,7 +140,7 @@ print $number;             # Now prints "123"
 
 <br>
 
-The `map` function takes either a block `{ ... }` or an `expression`.
+The `map` function takes either a block `{...}` or an `expression`.
 
 The parser has to figure out which one you're using.
 
@@ -204,9 +204,9 @@ my @refs_plus  = map +{ name => $_ }, @names;   # ({'name' => 'Joe'}, {'name' =>
 
 <br>
 
-The `+` applies to what follows immediately, it's saying `"treat the next token as the start of an expression"`
+The `+` operator applies to what follows immediately, it's saying `"treat the next token as the start of an expression"`
 
-It's purely syntactic at runtime, the `+` has no effect on the value.
+It's purely syntactic at runtime, the `+` operator has no effect on the value.
 
 <br>
 
@@ -226,9 +226,9 @@ grep +{ $_->{active} }->{value}, @users;
 
 <br>
 
-If your expression doesn't contain `ambiguous braces` then you don't need the unary `+`.
+If your expression doesn't contain `ambiguous braces` then you don't need the unary `+` operator.
 
-These are fine without `+`.
+These are fine without `+` operator.
 
 <br>
 
@@ -240,7 +240,7 @@ map [ $_->{x}, $_->{y} ], @points;           # Square brackets are unambiguous
 
 <br>
 
-With `map`, unary `+` serves as a syntactic disambiguator that tells `Perl` to interpret `{ ... }` as a `hash reference` constructor (an expression) rather than as a `map` block.
+With `map`, unary `+` operator serves as a syntactic disambiguator that tells `Perl` to interpret `{...}` as a `hash reference` constructor (an expression) rather than as a `map` block.
 
 It's a crucial tool for writing correct `Perl` code when you need to return `hash references` or other `brace-delimited` constructs from `map`.
 
