@@ -405,7 +405,7 @@ b) With +:    map +{ $_-&gt;{name} } ... is parsed as map(EXPRESSION, ...)
 <span style="color:#66d9ef">print</span> Dumper(bad(<span style="color:#e6db74">&#39;key&#39;</span>));   <span style="color:#75715e"># { &#39;shift&#39; =&gt; &#39;value&#39; };</span>
 <span style="color:#66d9ef">print</span> Dumper(good(<span style="color:#e6db74">&#39;key&#39;</span>));  <span style="color:#75715e"># { &#39;key&#39;   =&gt; &#39;value&#39; };</span>
 </code></pre></div><br>
-<p>And one more example as below:</p>
+<p>Another example as below:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @nums <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
 
@@ -418,6 +418,13 @@ b) With +:    map +{ $_-&gt;{name} } ... is parsed as map(EXPRESSION, ...)
 <p>Instead, <code>Perl</code> interprets it as the first element of <code>map</code> being a void context, which evaluates to <code>0</code>.</p>
 <p>Whereas in <code>map +($_ =&gt; $_ * 2), @nums</code>, the unary <code>+</code> forces the parentheses to be treated as a <code>list expression</code> not a <code>block</code> or <code>ambiguous expression</code>.</p>
 <p>Now <code>map</code> sees the correct list <code>($_ =&gt; $_ * 2)</code> for each element of <code>@nums</code>.</p>
+<p>Here&rsquo;s one more example:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @names <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;Joe&#39;</span>,<span style="color:#e6db74">&#39;Blog&#39;</span>);
+
+<span style="color:#66d9ef">my</span> @refs_block <span style="color:#f92672">=</span> map {{ name <span style="color:#f92672">=&gt;</span> $_ }} @names;   <span style="color:#75715e"># ({&#39;name&#39; =&gt; &#39;Joe&#39;}, {&#39;name&#39; =&gt; &#39;Blog&#39;})</span>
+<span style="color:#66d9ef">my</span> @refs_plus  <span style="color:#f92672">=</span> map <span style="color:#f92672">+</span>{ name <span style="color:#f92672">=&gt;</span> $_ }, @names;   <span style="color:#75715e"># ({&#39;name&#39; =&gt; &#39;Joe&#39;}, {&#39;name&#39; =&gt; &#39;Blog&#39;})</span>
+</code></pre></div><br>
 <p>The <code>+</code> applies to what follows immediately, it&rsquo;s saying <code>&quot;treat the next token as the start of an expression&quot;</code></p>
 <p>It&rsquo;s purely syntactic at runtime, the <code>+</code> has no effect on the value.</p>
 <br>

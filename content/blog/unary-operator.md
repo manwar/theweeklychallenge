@@ -232,7 +232,7 @@ print Dumper(good('key'));  # { 'key'   => 'value' };
 
 <br>
 
-And one more example as below:
+Another example as below:
 
 <br>
 
@@ -256,6 +256,19 @@ Instead, `Perl` interprets it as the first element of `map` being a void context
 Whereas in `map +($_ => $_ * 2), @nums`, the unary `+` forces the parentheses to be treated as a `list expression` not a `block` or `ambiguous expression`.
 
 Now `map` sees the correct list `($_ => $_ * 2)` for each element of `@nums`.
+
+Here's one more example:
+
+<br>
+
+```perl
+my @names = ('Joe','Blog');
+
+my @refs_block = map {{ name => $_ }} @names;   # ({'name' => 'Joe'}, {'name' => 'Blog'})
+my @refs_plus  = map +{ name => $_ }, @names;   # ({'name' => 'Joe'}, {'name' => 'Blog'})
+```
+
+<br>
 
 The `+` applies to what follows immediately, it's saying `"treat the next token as the start of an expression"`
 
