@@ -20,7 +20,7 @@ Its primary technical aspect is `context disambiguation`.
 
 <br>
 
-#### **Enforcing Scalar Context**
+### **Enforcing Scalar Context**
 
 <br>
 
@@ -58,7 +58,7 @@ This tells `Perl` that `{...}` is a code block whose result is the key.
 
 <br>
 
-#### **Why is this necessary?**
+### **Why is this necessary?**
 
 <br>
 
@@ -77,7 +77,7 @@ The unary `+` resolves the ambiguity by signaling that what follows is an `expre
 
 <br>
 
-#### **What unary + is NOT in Perl?**
+### **What unary + is NOT in Perl?**
 
 <br>
 
@@ -115,7 +115,7 @@ print $number;             # Now prints "123"
 
 <br>
 
-#### **Ambiguous blocks with map**
+### **Ambiguous blocks with map**
 
 <br>
 
@@ -163,7 +163,7 @@ The parser gets confused about which brace closes the map block.
 
 <br>
 
-#### **Unary + to the rescue**
+### **Unary + to the rescue**
 
 <br>
 
@@ -188,7 +188,7 @@ b) where EXPRESSION is +{ $_->{name} }
 
 <br>
 
-#### **What's actually happening?**
+### **What's actually happening?**
 
 <br>
 
@@ -203,7 +203,7 @@ The `+` forces the `{ ... }` to be interpreted as an `anonymous hash reference c
 
 <br>
 
-#### **More Examples**
+### **More Examples**
 
 <br>
 

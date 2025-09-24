@@ -299,7 +299,7 @@
 <p>In <code>Perl</code>, it is not a numeric conversion operator.</p>
 <p>Its primary technical aspect is <code>context disambiguation</code>.</p>
 <br>
-<h4 id="enforcing-scalar-context"><strong>Enforcing Scalar Context</strong></h4>
+<h3 id="enforcing-scalar-context"><strong>Enforcing Scalar Context</strong></h3>
 <br>
 <p><code>Perl</code> has a fundamental concept of context: <code>scalar context</code> and <code>list context</code>.</p>
 <p>The result of an operation can change dramatically depending on the context it&rsquo;s evaluated in.</p>
@@ -316,7 +316,7 @@
 <p>However, using unary <code>+</code> forces the contents of <code>{...}</code> to be evaluated in <code>scalar context</code>.</p>
 <p>This tells <code>Perl</code> that <code>{...}</code> is a code block whose result is the key.</p>
 <br>
-<h4 id="why-is-this-necessary"><strong>Why is this necessary?</strong></h4>
+<h3 id="why-is-this-necessary"><strong>Why is this necessary?</strong></h3>
 <br>
 <p>The <code>{ ... }</code> after a <code>$</code> sigil (<code>$hash{...}</code>) is ambiguous. It can be either:</p>
 <br>
@@ -325,7 +325,7 @@ b) An anonymous hash reference constructor e.g. $var = { a =&gt; 1 }.
 </code></pre><br>
 <p>The unary <code>+</code> resolves the ambiguity by signaling that what follows is an <code>expression</code>, not a <code>hash reference</code>.</p>
 <br>
-<h4 id="what-unary--is-not-in-perl"><strong>What unary + is NOT in Perl?</strong></h4>
+<h3 id="what-unary--is-not-in-perl"><strong>What unary + is NOT in Perl?</strong></h3>
 <br>
 <p>It is critical to understand that <code>Perl</code>'s unary <code>+</code> does not convert data types.</p>
 <br>
@@ -345,7 +345,7 @@ b) It does not have any mathematical effect on numbers.
 <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> $string;  <span style="color:#75715e"># Numeric context</span>
 <span style="color:#66d9ef">print</span> $number;             <span style="color:#75715e"># Now prints &#34;123&#34;</span>
 </code></pre></div><br>
-<h4 id="ambiguous-blocks-with-map"><strong>Ambiguous blocks with map</strong></h4>
+<h3 id="ambiguous-blocks-with-map"><strong>Ambiguous blocks with map</strong></h3>
 <br>
 <p>The <code>map</code> function takes either a block <code>{ ... }</code> or an <code>expression</code>.</p>
 <p>The parser has to figure out which one you&rsquo;re using.</p>
@@ -366,7 +366,7 @@ b) It does not have any mathematical effect on numbers.
 <p>But inside, you have <code>$_-&gt;{name} }</code> which includes a closing brace.</p>
 <p>The parser gets confused about which brace closes the map block.</p>
 <br>
-<h4 id="unary--to-the-rescue"><strong>Unary + to the rescue</strong></h4>
+<h3 id="unary--to-the-rescue"><strong>Unary + to the rescue</strong></h3>
 <br>
 <p>Placing a unary <code>+</code> before the opening brace tells <code>Perl</code>: <code>&quot;What follows is an expression not a map block.&quot;</code></p>
 <br>
@@ -377,14 +377,14 @@ b) It does not have any mathematical effect on numbers.
 <pre><code>a) map( EXPRESSION, @array )
 b) where EXPRESSION is +{ $_-&gt;{name} }
 </code></pre><br>
-<h4 id="whats-actually-happening"><strong>What&rsquo;s actually happening?</strong></h4>
+<h3 id="whats-actually-happening"><strong>What&rsquo;s actually happening?</strong></h3>
 <br>
 <pre><code>a) Without +: map  { $_-&gt;{name} } ... is parsed as map(BLOCK, ...)
 b) With +:    map +{ $_-&gt;{name} } ... is parsed as map(EXPRESSION, ...)
 </code></pre><br>
 <p>The <code>+</code> forces the <code>{ ... }</code> to be interpreted as an <code>anonymous hash reference constructor</code>, which is an <code>expression</code> rather than as the start of a <code>map block</code>.</p>
 <br>
-<h4 id="more-examples"><strong>More Examples</strong></h4>
+<h3 id="more-examples"><strong>More Examples</strong></h3>
 <br>
 <p>Here this creates a list of hashrefs.</p>
 <br>
