@@ -217,8 +217,6 @@ my @people = map +{ name => $_, age => 25 }, qw(Alice Bob Charlie);
 
 <br>
 
-Without `+` would be syntax error.
-
 Like, in this complex expressions with blocks:
 
 If you need a real block for complex logic but want to return a `hashref`.
