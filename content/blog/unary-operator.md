@@ -12,11 +12,11 @@ tags: ["perl"]
 ***
 <br>
 
-The unary `+` operator in `Perl` has a very specific and important purpose but it is quite different from its behavior in languages like `JavaScript`.
+The unary `+` operator in `Perl` has a very specific and important purpose but it's quite different from it's behavior in languages like `JavaScript`.
 
-In `Perl`, it is not a numeric conversion operator.
+In `Perl`, it's not a numeric conversion operator.
 
-Its primary technical aspect is `context disambiguation`.
+It's primary technical aspect is `context disambiguation`.
 
 <br>
 
@@ -32,7 +32,7 @@ The unary `+` is used to force an `expression` to be interpreted in `scalar cont
 
 This is most commonly needed when you have a function or an operator that expects a scalar argument but the argument you're providing is ambiguous and could be interpreted as a list.
 
-This is the most frequent use case for unary `+` in modern `Perl` code.
+This is the most frequent use case for unary `+` operator in `Modern Perl` code.
 
 <br>
 
@@ -52,7 +52,7 @@ $hash{shift} = 'new_value';
 
 <br>
 
-However, using unary `+` forces the contents of `{...}` to be evaluated in `scalar context`.
+However, using unary `+` operator forces the contents of `{...}` to be evaluated in `scalar context`.
 
 This tells `Perl` that `{...}` is a code block whose result is the key.
 
