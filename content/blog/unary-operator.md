@@ -212,7 +212,22 @@ Here this creates a list of hashrefs.
 <br>
 
 ```perl
-my @people = map +{ name => $_, age => 25 }, qw(Alice Bob Charlie);
+use Data::Dumper;
+
+sub bad {
+    my %hash;
+    $hash{ shift } = 'value';   # Ambiguous
+    return \%hash;
+}
+
+sub good {
+    my %hash;
+    $hash{ +shift } = 'value';  # Unambiguous
+    return \%hash;
+}
+
+print Dumper(bad('key'));   # { 'shift' => 'value' };
+print Dumper(good('key'));  # { 'key'   => 'value' };
 ```
 
 <br>

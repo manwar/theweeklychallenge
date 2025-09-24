@@ -388,7 +388,22 @@ b) With +:    map +{ $_-&gt;{name} } ... is parsed as map(EXPRESSION, ...)
 <br>
 <p>Here this creates a list of hashrefs.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @people <span style="color:#f92672">=</span> map <span style="color:#f92672">+</span>{ name <span style="color:#f92672">=&gt;</span> $_, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">25</span> }, <span style="color:#e6db74">qw(Alice Bob Charlie)</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Data::Dumper;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bad</span> {
+    <span style="color:#66d9ef">my</span> %hash;
+    $hash{ shift } <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;value&#39;</span>;   <span style="color:#75715e"># Ambiguous</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%hash;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">good</span> {
+    <span style="color:#66d9ef">my</span> %hash;
+    $hash{ <span style="color:#f92672">+</span>shift } <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;value&#39;</span>;  <span style="color:#75715e"># Unambiguous</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%hash;
+}
+
+<span style="color:#66d9ef">print</span> Dumper(bad(<span style="color:#e6db74">&#39;key&#39;</span>));   <span style="color:#75715e"># { &#39;shift&#39; =&gt; &#39;value&#39; };</span>
+<span style="color:#66d9ef">print</span> Dumper(good(<span style="color:#e6db74">&#39;key&#39;</span>));  <span style="color:#75715e"># { &#39;key&#39;   =&gt; &#39;value&#39; };</span>
 </code></pre></div><br>
 <p>Like, in this complex expressions with blocks:</p>
 <p>If you need a real block for complex logic but want to return a <code>hashref</code>.</p>
