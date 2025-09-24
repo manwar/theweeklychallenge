@@ -357,32 +357,6 @@ b) It does not have any mathematical effect on numbers.
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>, @array;        <span style="color:#75715e"># no braces, just an expression</span>
 </code></pre></div><br>
 <p>The ambiguity arises when you want to use a <code>complex expression</code> that includes <code>a dereference</code> or another <code>block</code>.</p>
-<p>Is this <code>map</code> with a <code>block</code> or <code>map</code> with an <code>expression</code> containing a hashref?</p>
-<p>Actually, this <code>WILL NOT COMPILE</code> as written.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map { $_<span style="color:#f92672">-&gt;</span>{name} } @array_of_hashrefs;
-</code></pre></div><br>
-<p>The parser sees <code>map { ... }</code> and thinks you&rsquo;re starting a <code>block</code> for the <code>map</code>.</p>
-<p>But inside, you have <code>$_-&gt;{name} }</code> which includes a closing brace.</p>
-<p>The parser gets confused about which brace closes the map block.</p>
-<br>
-<h3 id="unary--to-the-rescue"><strong>Unary + to the rescue</strong></h3>
-<br>
-<p>Placing a unary <code>+</code> before the opening brace tells <code>Perl</code>: <code>&quot;What follows is an expression not a map block.&quot;</code></p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @names <span style="color:#f92672">=</span> map <span style="color:#f92672">+</span>{ $_<span style="color:#f92672">-&gt;</span>{name} }, @array_of_hashrefs;
-</code></pre></div><br>
-<p>This is parsed as:</p>
-<br>
-<pre><code>a) map( EXPRESSION, @array )
-b) where EXPRESSION is +{ $_-&gt;{name} }
-</code></pre><br>
-<h3 id="whats-actually-happening"><strong>What&rsquo;s actually happening?</strong></h3>
-<br>
-<pre><code>a) Without +: map  { $_-&gt;{name} } ... is parsed as map(BLOCK, ...)
-b) With +:    map +{ $_-&gt;{name} } ... is parsed as map(EXPRESSION, ...)
-</code></pre><br>
-<p>The <code>+</code> forces the <code>{ ... }</code> to be interpreted as an <code>anonymous hash reference constructor</code>, which is an <code>expression</code> rather than as the start of a <code>map block</code>.</p>
 <br>
 <h3 id="more-examples"><strong>More Examples</strong></h3>
 <br>

@@ -143,64 +143,6 @@ map $_ * 2, @array;        # no braces, just an expression
 
 The ambiguity arises when you want to use a `complex expression` that includes `a dereference` or another `block`.
 
-Is this `map` with a `block` or `map` with an `expression` containing a hashref?
-
-Actually, this `WILL NOT COMPILE` as written.
-
-<br>
-
-```perl
-map { $_->{name} } @array_of_hashrefs;
-```
-
-<br>
-
-The parser sees `map { ... }` and thinks you're starting a `block` for the `map`.
-
-But inside, you have `$_->{name} }` which includes a closing brace.
-
-The parser gets confused about which brace closes the map block.
-
-<br>
-
-### **Unary + to the rescue**
-
-<br>
-
-Placing a unary `+` before the opening brace tells `Perl`: `"What follows is an expression not a map block."`
-
-<br>
-
-```perl
-my @names = map +{ $_->{name} }, @array_of_hashrefs;
-```
-
-<br>
-
-This is parsed as:
-
-<br>
-
-```
-a) map( EXPRESSION, @array )
-b) where EXPRESSION is +{ $_->{name} }
-```
-
-<br>
-
-### **What's actually happening?**
-
-<br>
-
-```
-a) Without +: map  { $_->{name} } ... is parsed as map(BLOCK, ...)
-b) With +:    map +{ $_->{name} } ... is parsed as map(EXPRESSION, ...)
-```
-
-<br>
-
-The `+` forces the `{ ... }` to be interpreted as an `anonymous hash reference constructor`, which is an `expression` rather than as the start of a `map block`.
-
 <br>
 
 ### **More Examples**
