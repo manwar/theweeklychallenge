@@ -386,7 +386,7 @@ b) With +:    map +{ $_-&gt;{name} } ... is parsed as map(EXPRESSION, ...)
 <br>
 <h3 id="more-examples"><strong>More Examples</strong></h3>
 <br>
-<p>Here this creates a list of hashrefs.</p>
+<p>Here this creates a hashref.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Data::Dumper;
 
@@ -405,21 +405,17 @@ b) With +:    map +{ $_-&gt;{name} } ... is parsed as map(EXPRESSION, ...)
 <span style="color:#66d9ef">print</span> Dumper(bad(<span style="color:#e6db74">&#39;key&#39;</span>));   <span style="color:#75715e"># { &#39;shift&#39; =&gt; &#39;value&#39; };</span>
 <span style="color:#66d9ef">print</span> Dumper(good(<span style="color:#e6db74">&#39;key&#39;</span>));  <span style="color:#75715e"># { &#39;key&#39;   =&gt; &#39;value&#39; };</span>
 </code></pre></div><br>
-<p>Like, in this complex expressions with blocks:</p>
-<p>If you need a real block for complex logic but want to return a <code>hashref</code>.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> map {
-    <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> complex_calculation($_);
-    <span style="color:#f92672">+</span>{ result <span style="color:#f92672">=&gt;</span> $value, original <span style="color:#f92672">=&gt;</span> $_ }
-} @input;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @nums <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
+
+<span style="color:#66d9ef">my</span> @wrong <span style="color:#f92672">=</span> map  ($_ <span style="color:#f92672">=&gt;</span> $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>), @nums;    <span style="color:#75715e"># [ &#39;0&#39; ]</span>
+<span style="color:#66d9ef">my</span> @right <span style="color:#f92672">=</span> map <span style="color:#f92672">+</span>($_ <span style="color:#f92672">=&gt;</span> $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>), @nums;    <span style="color:#75715e"># [ 1,2,2,4,3,6 ]</span>
 </code></pre></div><br>
-<p>Well the unary <code>+</code> operator <strong>IS NOT</strong> the only way to resolve this ambiguity.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map <span style="color:#f92672">+</span>{ $_<span style="color:#f92672">-&gt;</span>{name} },        @array;     <span style="color:#75715e"># Using unary +</span>
-map ({ $_<span style="color:#f92672">-&gt;</span>{name} }),       @array;     <span style="color:#75715e"># Same using parenthesis</span>
-map <span style="color:#66d9ef">do</span> { $_<span style="color:#f92672">-&gt;</span>{name} },      @array;     <span style="color:#75715e"># Same using do block</span>
-map <span style="color:#66d9ef">sub</span> { $_<span style="color:#f92672">-&gt;</span>{name} }<span style="color:#f92672">-&gt;</span>(), @array;     <span style="color:#75715e"># Same using sub (overkill)</span>
-</code></pre></div><br>
+<p>The <code>map ($_ =&gt; $_ * 2), @nums</code> is parsed differently than you might expect.</p>
+<p>In <strong>Perl</strong>, <code>map EXPR, LIST</code> expects a single expression.</p>
+<p>The parentheses here <code>( $_ =&gt; $_ * 2 )</code> don’t behave as a <code>list</code>.</p>
+<p>Instead, <code>Perl</code> interprets it as the first element of <code>map</code> being a void context, which evaluates to <code>0</code>.</p>
+<p>Whereas in <code>map +($_ =&gt; $_ * 2), @nums</code>, the unary <code>+</code> forces the parentheses to be treated as a <code>list expression</code> not a <code>block</code> or <code>ambiguous expression</code>.</p>
+<p>Now <code>map</code> sees the correct list <code>($_ =&gt; $_ * 2)</code> for each element of <code>@nums</code>.</p>
 <p>The <code>+</code> applies to what follows immediately, it&rsquo;s saying <code>&quot;treat the next token as the start of an expression&quot;</code></p>
 <p>It&rsquo;s purely syntactic at runtime, the <code>+</code> has no effect on the value.</p>
 <br>

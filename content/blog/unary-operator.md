@@ -207,7 +207,7 @@ The `+` forces the `{ ... }` to be interpreted as an `anonymous hash reference c
 
 <br>
 
-Here this creates a list of hashrefs.
+Here this creates a hashref.
 
 <br>
 
@@ -232,33 +232,26 @@ print Dumper(good('key'));  # { 'key'   => 'value' };
 
 <br>
 
-Like, in this complex expressions with blocks:
-
-If you need a real block for complex logic but want to return a `hashref`.
-
-<br>
-
 ```perl
-my @data = map {
-    my $value = complex_calculation($_);
-    +{ result => $value, original => $_ }
-} @input;
+my @nums = (1, 2, 3);
+
+my @wrong = map  ($_ => $_ * 2), @nums;    # [ '0' ]
+my @right = map +($_ => $_ * 2), @nums;    # [ 1,2,2,4,3,6 ]
 ```
 
 <br>
 
-Well the unary `+` operator **IS NOT** the only way to resolve this ambiguity.
+The `map ($_ => $_ * 2), @nums` is parsed differently than you might expect.
 
-<br>
+In **Perl**, `map EXPR, LIST` expects a single expression.
 
-```perl
-map +{ $_->{name} },        @array;     # Using unary +
-map ({ $_->{name} }),       @array;     # Same using parenthesis
-map do { $_->{name} },      @array;     # Same using do block
-map sub { $_->{name} }->(), @array;     # Same using sub (overkill)
-```
+The parentheses here `( $_ => $_ * 2 )` don’t behave as a `list`.
 
-<br>
+Instead, `Perl` interprets it as the first element of `map` being a void context, which evaluates to `0`.
+
+Whereas in `map +($_ => $_ * 2), @nums`, the unary `+` forces the parentheses to be treated as a `list expression` not a `block` or `ambiguous expression`.
+
+Now `map` sees the correct list `($_ => $_ * 2)` for each element of `@nums`.
 
 The `+` applies to what follows immediately, it's saying `"treat the next token as the start of an expression"`
 
