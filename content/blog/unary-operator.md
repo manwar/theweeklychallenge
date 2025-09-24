@@ -92,8 +92,8 @@ sub good {
     return \%hash;
 }
 
-print Dumper(bad('key'));   # { 'shift' => 'value' };
-print Dumper(good('key'));  # { 'key'   => 'value' };
+print Dumper(bad('key'));       # { 'shift' => 'value' };
+print Dumper(good('key'));      # { 'key'   => 'value' };
 ```
 
 <br>
