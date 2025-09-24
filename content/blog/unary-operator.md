@@ -239,8 +239,8 @@ Another example as below:
 ```perl
 my @nums = (1, 2, 3);
 
-my @wrong = map  ($_ => $_ * 2), @nums;    # [ '0' ]
-my @right = map +($_ => $_ * 2), @nums;    # [ 1,2,2,4,3,6 ]
+my @wrong = map  ($_ => $_ * 2), @nums;    # ('0')
+my @right = map +($_ => $_ * 2), @nums;    # [(1,2,2,4,3,6)
 ```
 
 <br>
