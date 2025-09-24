@@ -28,7 +28,7 @@ It's primary technical aspect is `context disambiguation`.
 
 The result of an operation can change dramatically depending on the context it's evaluated in.
 
-The unary `+` is used to force an `expression` to be interpreted in `scalar context`.
+The unary `+` operator is used to force an `expression` to be interpreted in `scalar context`.
 
 This is most commonly needed when you have a function or an operator that expects a scalar argument but the argument you're providing is ambiguous and could be interpreted as a list.
 
