@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Perl: Unary Operator"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/unary-operator/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about the unary operator in Perl."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about the unary operator in Perl.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/unary-operator/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Perl: Unary Operator</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Perl: Unary Operator</h2>
+                    <div class="portfolio-meta">
+                        <span>Wednesday, Sep 24, 2025</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/unary-operator.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>The unary <code>+</code> operator in <code>Perl</code> has a very specific and important purpose but it is quite different from its behavior in languages like <code>JavaScript</code>.</p>
+<p>In <code>Perl</code>, it is not a numeric conversion operator.</p>
+<p>Its primary technical aspect is <code>context disambiguation</code>.</p>
+<br>
+<h4 id="enforcing-scalar-context"><strong>Enforcing Scalar Context</strong></h4>
+<br>
+<p><code>Perl</code> has a fundamental concept of context: <code>scalar context</code> and <code>list context</code>.</p>
+<p>The result of an operation can change dramatically depending on the context it&rsquo;s evaluated in.</p>
+<p>The unary <code>+</code> is used to force an <code>expression</code> to be interpreted in <code>scalar context</code>.</p>
+<p>This is most commonly needed when you have a function or an operator that expects a scalar argument but the argument you&rsquo;re providing is ambiguous and could be interpreted as a list.</p>
+<p>This is the most frequent use case for unary <code>+</code> in modern <code>Perl</code> code.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %hash <span style="color:#f92672">=</span> ( key <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;value&#39;</span> );
+</code></pre></div><br>
+<p>Now if we do this, then <code>{...}</code> is interpreted as an anonymous hash reference constructor and creates a key named <code>'HASH(0x...)'</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$hash{shift} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;new_value&#39;</span>;
+</code></pre></div><br>
+<p>However, using unary <code>+</code> forces the contents of <code>{...}</code> to be evaluated in <code>scalar context</code>.</p>
+<p>This tells <code>Perl</code> that <code>{...}</code> is a code block whose result is the key.</p>
+<br>
+<h4 id="why-is-this-necessary"><strong>Why is this necessary?</strong></h4>
+<br>
+<p>The <code>{ ... }</code> after a <code>$</code> sigil (<code>$hash{...}</code>) is ambiguous. It can be either:</p>
+<br>
+<pre><code>a) A block returning an expression for the key (scalar context wanted).
+b) An anonymous hash reference constructor e.g. $var = { a =&gt; 1 }.
+</code></pre><br>
+<p>The unary <code>+</code> resolves the ambiguity by signaling that what follows is an <code>expression</code>, not a <code>hash reference</code>.</p>
+<br>
+<h4 id="what-unary--is-not-in-perl"><strong>What unary + is NOT in Perl?</strong></h4>
+<br>
+<p>It is critical to understand that <code>Perl</code>'s unary <code>+</code> does not convert data types.</p>
+<br>
+<pre><code>a) It does not convert a string to a number.
+b) It does not have any mathematical effect on numbers.
+</code></pre><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;123abc&#34;</span>;
+<span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#f92672">+</span>$string;     <span style="color:#75715e"># This does NOT convert the string to 123!</span>
+<span style="color:#66d9ef">print</span> $number;             <span style="color:#75715e"># Still prints &#34;123abc&#34;</span>
+
+<span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+<span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#f92672">+</span>$num;        <span style="color:#75715e"># $result is just 5. The + is a no-op here.</span>
+</code></pre></div><br>
+<p>If you need to convert a string to a number, you would typically just use the string in a <code>numeric context</code> (like a mathematical operation) and <code>Perl</code> will do the conversion for you.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;123abc&#34;</span>;
+<span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> $string;  <span style="color:#75715e"># Numeric context</span>
+<span style="color:#66d9ef">print</span> $number;             <span style="color:#75715e"># Now prints &#34;123&#34;</span>
+</code></pre></div><br>
+<h4 id="ambiguous-blocks-with-map"><strong>Ambiguous blocks with map</strong></h4>
+<br>
+<p>The <code>map</code> function takes either a block <code>{ ... }</code> or an <code>expression</code>.</p>
+<p>The parser has to figure out which one you&rsquo;re using.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map { $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> } @array;     <span style="color:#75715e"># the braces are a block for map</span>
+</code></pre></div><br>
+<p>This is also clear - no braces, just an <code>expression</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>, @array;        <span style="color:#75715e"># no braces, just an expression</span>
+</code></pre></div><br>
+<p>The ambiguity arises when you want to use a <code>complex expression</code> that includes <code>a dereference</code> or another <code>block</code>.</p>
+<p>Is this <code>map</code> with a <code>block</code> or <code>map</code> with an <code>expression</code> containing a hashref?</p>
+<p>Actually, this <code>WILL NOT COMPILE</code> as written.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map { $_<span style="color:#f92672">-&gt;</span>{name} } @array_of_hashrefs;
+</code></pre></div><br>
+<p>The parser sees <code>map { ... }</code> and thinks you&rsquo;re starting a <code>block</code> for the <code>map</code>.</p>
+<p>But inside, you have <code>$_-&gt;{name} }</code> which includes a closing brace.</p>
+<p>The parser gets confused about which brace closes the map block.</p>
+<br>
+<h4 id="unary--to-the-rescue"><strong>Unary + to the rescue</strong></h4>
+<br>
+<p>Placing a unary <code>+</code> before the opening brace tells <code>Perl</code>: <code>&quot;What follows is an expression not a map block.&quot;</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @names <span style="color:#f92672">=</span> map <span style="color:#f92672">+</span>{ $_<span style="color:#f92672">-&gt;</span>{name} }, @array_of_hashrefs;
+</code></pre></div><br>
+<p>This is parsed as:</p>
+<br>
+<pre><code>a) map( EXPRESSION, @array )
+b) where EXPRESSION is +{ $_-&gt;{name} }
+</code></pre><br>
+<h4 id="whats-actually-happening"><strong>What&rsquo;s actually happening?</strong></h4>
+<br>
+<pre><code>a) Without +: map  { $_-&gt;{name} } ... is parsed as map(BLOCK, ...)
+b) With +:    map +{ $_-&gt;{name} } ... is parsed as map(EXPRESSION, ...)
+</code></pre><br>
+<p>The <code>+</code> forces the <code>{ ... }</code> to be interpreted as an <code>anonymous hash reference constructor</code>, which is an <code>expression</code> rather than as the start of a <code>map block</code>.</p>
+<br>
+<h4 id="more-examples"><strong>More Examples</strong></h4>
+<br>
+<p>Here this creates a list of hashrefs.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @people <span style="color:#f92672">=</span> map <span style="color:#f92672">+</span>{ name <span style="color:#f92672">=&gt;</span> $_, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">25</span> }, <span style="color:#e6db74">qw(Alice Bob Charlie)</span>;
+</code></pre></div><br>
+<p>Without <code>+</code> would be syntax error.</p>
+<p>Like, in this complex expressions with blocks:</p>
+<p>If you need a real block for complex logic but want to return a <code>hashref</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> map {
+    <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> complex_calculation($_);
+    <span style="color:#f92672">+</span>{ result <span style="color:#f92672">=&gt;</span> $value, original <span style="color:#f92672">=&gt;</span> $_ }
+} @input;
+</code></pre></div><br>
+<p>Well the unary <code>+</code> operator <strong>IS NOT</strong> the only way to resolve this ambiguity.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map <span style="color:#f92672">+</span>{ $_<span style="color:#f92672">-&gt;</span>{name} },        @array;     <span style="color:#75715e"># Using unary +</span>
+map ({ $_<span style="color:#f92672">-&gt;</span>{name} }),       @array;     <span style="color:#75715e"># Same using parenthesis</span>
+map <span style="color:#66d9ef">do</span> { $_<span style="color:#f92672">-&gt;</span>{name} },      @array;     <span style="color:#75715e"># Same using do block</span>
+map <span style="color:#66d9ef">sub</span> { $_<span style="color:#f92672">-&gt;</span>{name} }<span style="color:#f92672">-&gt;</span>(), @array;     <span style="color:#75715e"># Same using sub (overkill)</span>
+</code></pre></div><br>
+<p>The <code>+</code> applies to what follows immediately, it&rsquo;s saying <code>&quot;treat the next token as the start of an expression&quot;</code></p>
+<p>It&rsquo;s purely syntactic at runtime, the <code>+</code> has no effect on the value.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $href <span style="color:#f92672">=</span> <span style="color:#f92672">+</span>{ key <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;value&#39;</span> };  <span style="color:#75715e"># Same as { key =&gt; &#39;value&#39; }</span>
+</code></pre></div><br>
+<p>This pattern appears with other functions that take <code>blocks</code> or <code>expressions</code>, like <code>grep</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">grep <span style="color:#f92672">+</span>{ $_<span style="color:#f92672">-&gt;</span>{active} }<span style="color:#f92672">-&gt;</span>{value}, @users;
+</code></pre></div><br>
+<p>If your expression doesn&rsquo;t contain <code>ambiguous braces</code> then you don&rsquo;t need the unary <code>+</code>.</p>
+<p>These are fine without <code>+</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map $_<span style="color:#f92672">-&gt;</span>{name}, @array_of_hashrefs;          <span style="color:#75715e"># No braces at all</span>
+map $some_hash{$_}, @keys;                   <span style="color:#75715e"># No ambiguous braces</span>
+map [ $_<span style="color:#f92672">-&gt;</span>{x}, $_<span style="color:#f92672">-&gt;</span>{y} ], @points;           <span style="color:#75715e"># Square brackets are unambiguous</span>
+</code></pre></div><br>
+<p>With <code>map</code>, unary <code>+</code> serves as a syntactic disambiguator that tells <code>Perl</code> to interpret <code>{ ... }</code> as a <code>hash reference</code> constructor (an expression) rather than as a <code>map</code> block.</p>
+<p>It&rsquo;s a crucial tool for writing correct <code>Perl</code> code when you need to return <code>hash references</code> or other <code>brace-delimited</code> constructs from <code>map</code>.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
