@@ -98,7 +98,7 @@ print Dumper(good('key'));  # { 'key'   => 'value' };
 
 <br>
 
-### **What unary + is NOT in Perl?**
+### **What unary + operator is NOT in Perl?**
 
 <br>
 
