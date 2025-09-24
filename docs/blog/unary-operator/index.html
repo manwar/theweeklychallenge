@@ -325,6 +325,23 @@ b) An anonymous hash reference constructor e.g. $var = { a =&gt; 1 }.
 </code></pre><br>
 <p>The unary <code>+</code> resolves the ambiguity by signaling that what follows is an <code>expression</code>, not a <code>hash reference</code>.</p>
 <br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Data::Dumper;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bad</span> {
+    <span style="color:#66d9ef">my</span> %hash;
+    $hash{ shift } <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;value&#39;</span>;   <span style="color:#75715e"># Ambiguous</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%hash;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">good</span> {
+    <span style="color:#66d9ef">my</span> %hash;
+    $hash{ <span style="color:#f92672">+</span>shift } <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;value&#39;</span>;  <span style="color:#75715e"># Unambiguous</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%hash;
+}
+
+<span style="color:#66d9ef">print</span> Dumper(bad(<span style="color:#e6db74">&#39;key&#39;</span>));   <span style="color:#75715e"># { &#39;shift&#39; =&gt; &#39;value&#39; };</span>
+<span style="color:#66d9ef">print</span> Dumper(good(<span style="color:#e6db74">&#39;key&#39;</span>));  <span style="color:#75715e"># { &#39;key&#39;   =&gt; &#39;value&#39; };</span>
+</code></pre></div><br>
 <h3 id="what-unary--is-not-in-perl"><strong>What unary + is NOT in Perl?</strong></h3>
 <br>
 <p>It is critical to understand that <code>Perl</code>'s unary <code>+</code> does not convert data types.</p>
@@ -359,27 +376,6 @@ b) It does not have any mathematical effect on numbers.
 <p>The ambiguity arises when you want to use a <code>complex expression</code> that includes <code>a dereference</code> or another <code>block</code>.</p>
 <br>
 <h3 id="more-examples"><strong>More Examples</strong></h3>
-<br>
-<p>Here this creates a hashref.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Data::Dumper;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bad</span> {
-    <span style="color:#66d9ef">my</span> %hash;
-    $hash{ shift } <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;value&#39;</span>;   <span style="color:#75715e"># Ambiguous</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%hash;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">good</span> {
-    <span style="color:#66d9ef">my</span> %hash;
-    $hash{ <span style="color:#f92672">+</span>shift } <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;value&#39;</span>;  <span style="color:#75715e"># Unambiguous</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%hash;
-}
-
-<span style="color:#66d9ef">print</span> Dumper(bad(<span style="color:#e6db74">&#39;key&#39;</span>));   <span style="color:#75715e"># { &#39;shift&#39; =&gt; &#39;value&#39; };</span>
-<span style="color:#66d9ef">print</span> Dumper(good(<span style="color:#e6db74">&#39;key&#39;</span>));  <span style="color:#75715e"># { &#39;key&#39;   =&gt; &#39;value&#39; };</span>
-</code></pre></div><br>
-<p>Another example as below:</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @nums <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
 

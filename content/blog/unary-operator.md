@@ -77,6 +77,27 @@ The unary `+` resolves the ambiguity by signaling that what follows is an `expre
 
 <br>
 
+```perl
+use Data::Dumper;
+
+sub bad {
+    my %hash;
+    $hash{ shift } = 'value';   # Ambiguous
+    return \%hash;
+}
+
+sub good {
+    my %hash;
+    $hash{ +shift } = 'value';  # Unambiguous
+    return \%hash;
+}
+
+print Dumper(bad('key'));   # { 'shift' => 'value' };
+print Dumper(good('key'));  # { 'key'   => 'value' };
+```
+
+<br>
+
 ### **What unary + is NOT in Perl?**
 
 <br>
@@ -146,35 +167,6 @@ The ambiguity arises when you want to use a `complex expression` that includes `
 <br>
 
 ### **More Examples**
-
-<br>
-
-Here this creates a hashref.
-
-<br>
-
-```perl
-use Data::Dumper;
-
-sub bad {
-    my %hash;
-    $hash{ shift } = 'value';   # Ambiguous
-    return \%hash;
-}
-
-sub good {
-    my %hash;
-    $hash{ +shift } = 'value';  # Unambiguous
-    return \%hash;
-}
-
-print Dumper(bad('key'));   # { 'shift' => 'value' };
-print Dumper(good('key'));  # { 'key'   => 'value' };
-```
-
-<br>
-
-Another example as below:
 
 <br>
 
