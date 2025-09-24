@@ -386,7 +386,7 @@ b) It does not have any mathematical effect on numbers.
 <p>In <strong>Perl</strong>, <code>map EXPR, LIST</code> expects a single expression.</p>
 <p>The parentheses here <code>( $_ =&gt; $_ * 2 )</code> don’t behave as a <code>list</code>.</p>
 <p>Instead, <code>Perl</code> interprets it as the first element of <code>map</code> being a void context, which evaluates to <code>0</code>.</p>
-<p>Whereas in <code>map +($_ =&gt; $_ * 2), @nums</code>, the unary <code>+</code> forces the parentheses to be treated as a <code>list expression</code> not a <code>block</code> or <code>ambiguous expression</code>.</p>
+<p>Whereas in <code>map +($_ =&gt; $_ * 2), @nums</code>, the unary <code>+</code> operator forces the parentheses to be treated as a <code>list expression</code> not a <code>block</code> or <code>ambiguous expression</code>.</p>
 <p>Now <code>map</code> sees the correct list <code>($_ =&gt; $_ * 2)</code> for each element of <code>@nums</code>.</p>
 <p>Here&rsquo;s one more example:</p>
 <br>
@@ -395,8 +395,8 @@ b) It does not have any mathematical effect on numbers.
 <span style="color:#66d9ef">my</span> @refs_block <span style="color:#f92672">=</span> map {{ name <span style="color:#f92672">=&gt;</span> $_ }} @names;   <span style="color:#75715e"># ({&#39;name&#39; =&gt; &#39;Joe&#39;}, {&#39;name&#39; =&gt; &#39;Blog&#39;})</span>
 <span style="color:#66d9ef">my</span> @refs_plus  <span style="color:#f92672">=</span> map <span style="color:#f92672">+</span>{ name <span style="color:#f92672">=&gt;</span> $_ }, @names;   <span style="color:#75715e"># ({&#39;name&#39; =&gt; &#39;Joe&#39;}, {&#39;name&#39; =&gt; &#39;Blog&#39;})</span>
 </code></pre></div><br>
-<p>The <code>+</code> operator applies to what follows immediately, it&rsquo;s saying <code>&quot;treat the next token as the start of an expression&quot;</code></p>
-<p>It&rsquo;s purely syntactic at runtime, the <code>+</code> operator has no effect on the value.</p>
+<p>The unary <code>+</code> operator applies to what follows immediately, it&rsquo;s saying <code>&quot;treat the next token as the start of an expression&quot;</code></p>
+<p>It&rsquo;s purely syntactic at runtime, the unary <code>+</code> operator has no effect on the value.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $href <span style="color:#f92672">=</span> <span style="color:#f92672">+</span>{ key <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;value&#39;</span> };  <span style="color:#75715e"># Same as { key =&gt; &#39;value&#39; }</span>
 </code></pre></div><br>
@@ -405,7 +405,7 @@ b) It does not have any mathematical effect on numbers.
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">grep <span style="color:#f92672">+</span>{ $_<span style="color:#f92672">-&gt;</span>{active} }<span style="color:#f92672">-&gt;</span>{value}, @users;
 </code></pre></div><br>
 <p>If your expression doesn&rsquo;t contain <code>ambiguous braces</code> then you don&rsquo;t need the unary <code>+</code> operator.</p>
-<p>These are fine without <code>+</code> operator.</p>
+<p>These are fine without unary <code>+</code> operator.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map $_<span style="color:#f92672">-&gt;</span>{name}, @array_of_hashrefs;          <span style="color:#75715e"># No braces at all</span>
 map $some_hash{$_}, @keys;                   <span style="color:#75715e"># No ambiguous braces</span>

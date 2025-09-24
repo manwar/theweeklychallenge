@@ -187,7 +187,7 @@ The parentheses here `( $_ => $_ * 2 )` don’t behave as a `list`.
 
 Instead, `Perl` interprets it as the first element of `map` being a void context, which evaluates to `0`.
 
-Whereas in `map +($_ => $_ * 2), @nums`, the unary `+` forces the parentheses to be treated as a `list expression` not a `block` or `ambiguous expression`.
+Whereas in `map +($_ => $_ * 2), @nums`, the unary `+` operator forces the parentheses to be treated as a `list expression` not a `block` or `ambiguous expression`.
 
 Now `map` sees the correct list `($_ => $_ * 2)` for each element of `@nums`.
 
@@ -204,9 +204,9 @@ my @refs_plus  = map +{ name => $_ }, @names;   # ({'name' => 'Joe'}, {'name' =>
 
 <br>
 
-The `+` operator applies to what follows immediately, it's saying `"treat the next token as the start of an expression"`
+The unary `+` operator applies to what follows immediately, it's saying `"treat the next token as the start of an expression"`
 
-It's purely syntactic at runtime, the `+` operator has no effect on the value.
+It's purely syntactic at runtime, the unary `+` operator has no effect on the value.
 
 <br>
 
@@ -228,7 +228,7 @@ grep +{ $_->{active} }->{value}, @users;
 
 If your expression doesn't contain `ambiguous braces` then you don't need the unary `+` operator.
 
-These are fine without `+` operator.
+These are fine without unary `+` operator.
 
 <br>
 
