@@ -32,47 +32,6 @@ The unary `+` operator is used to force an `expression` to be interpreted in `sc
 
 This is most commonly needed when you have a function or an operator that expects a scalar argument but the argument you're providing is ambiguous and could be interpreted as a list.
 
-This is the most frequent use case for unary `+` operator in `Modern Perl` code.
-
-<br>
-
-```perl
-my %hash = ( key => 'value' );
-```
-
-<br>
-
-Now if we do this, then `{...}` is interpreted as an anonymous hash reference constructor and creates a key named `'HASH(0x...)'`.
-
-<br>
-
-```perl
-$hash{shift} = 'new_value';
-```
-
-<br>
-
-However, using unary `+` operator forces the contents of `{...}` to be evaluated in `scalar context`.
-
-This tells `Perl` that `{...}` is a code block whose result is the key.
-
-<br>
-
-### **Why is this necessary?**
-
-<br>
-
-The `{...}` after a `$` sigil (`$hash{...}`) is ambiguous. It can be either:
-
-<br>
-
-```
-a) A block returning an expression for the key (scalar context wanted).
-b) An anonymous hash reference constructor e.g. $var = { a => 1 }.
-```
-
-<br>
-
 The unary `+` resolves the ambiguity by signaling that what follows is an `expression`, not a `hash reference`.
 
 <br>

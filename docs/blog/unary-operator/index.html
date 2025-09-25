@@ -305,24 +305,6 @@
 <p>The result of an operation can change dramatically depending on the context it&rsquo;s evaluated in.</p>
 <p>The unary <code>+</code> operator is used to force an <code>expression</code> to be interpreted in <code>scalar context</code>.</p>
 <p>This is most commonly needed when you have a function or an operator that expects a scalar argument but the argument you&rsquo;re providing is ambiguous and could be interpreted as a list.</p>
-<p>This is the most frequent use case for unary <code>+</code> operator in <code>Modern Perl</code> code.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %hash <span style="color:#f92672">=</span> ( key <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;value&#39;</span> );
-</code></pre></div><br>
-<p>Now if we do this, then <code>{...}</code> is interpreted as an anonymous hash reference constructor and creates a key named <code>'HASH(0x...)'</code>.</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$hash{shift} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;new_value&#39;</span>;
-</code></pre></div><br>
-<p>However, using unary <code>+</code> operator forces the contents of <code>{...}</code> to be evaluated in <code>scalar context</code>.</p>
-<p>This tells <code>Perl</code> that <code>{...}</code> is a code block whose result is the key.</p>
-<br>
-<h3 id="why-is-this-necessary"><strong>Why is this necessary?</strong></h3>
-<br>
-<p>The <code>{...}</code> after a <code>$</code> sigil (<code>$hash{...}</code>) is ambiguous. It can be either:</p>
-<br>
-<pre><code>a) A block returning an expression for the key (scalar context wanted).
-b) An anonymous hash reference constructor e.g. $var = { a =&gt; 1 }.
-</code></pre><br>
 <p>The unary <code>+</code> resolves the ambiguity by signaling that what follows is an <code>expression</code>, not a <code>hash reference</code>.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Data::Dumper;
