@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Using Role in Perl"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/using-role/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about the using role in Perl."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about the using role in Perl.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/using-role/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Using Role in Perl</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Using Role in Perl</h2>
+                    <div class="portfolio-meta">
+                        <span>Saturday, Sep 27, 2025</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/using-role.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>As <code>Perl</code> developers, we&rsquo;re always looking for ways to write cleaner, more maintainable and reusable code.</p>
+<p>We&rsquo;ve embraced object-oriented programming (<code>OOP</code>) with modules like <a href="https://metacpan.org/pod/Moo"><strong>Moo</strong></a> and <a href="https://metacpan.org/pod/Moose"><strong>Moose</strong></a> which provide powerful tools for building <code>classes</code> and <code>objects</code>.</p>
+<p>But sometimes, <code>classic inheritance</code>, where a <code>class</code> extends another, can lead to a tangled <code>&quot;tree&quot;</code> of <code>classes</code> and the dreaded <code>diamond problem</code>.</p>
+<p><strong>What if there was a better way to share behaviour between unrelated <code>classes</code>?</strong></p>
+<p>Enter the concept of <code>Roles</code>.</p>
+<br>
+<h3 id="what-is-a-role">What is a <code>Role</code>?</h3>
+<hr>
+<p>Think of a <code>Role</code> as a package of related behaviours. It&rsquo;s a collection of <code>methods</code> and <code>attributes</code> that can be added to any <code>class</code>.</p>
+<p>A <code>Role</code> defines what a <code>class</code> can do, <strong>NOT</strong> what it is. This is the key difference from <code>inheritance</code>, which defines an <code>&quot;is-a&quot;</code> relationship.</p>
+<p>I’m working on a project where I need a role written in pure <code>Perl</code> with no dependencies.</p>
+<p>This is the result of my research in that direction.</p>
+<br>
+<h3 id="a-simple-analogy">A Simple Analogy</h3>
+<hr>
+<p>Imagine a <code>Drawable</code> role. Its contract says: <code>&quot;Any class that uses me must implement a draw method&quot;</code>.</p>
+<p>In return, I may provide helpful utilities like <code>set_color</code> or <code>get_bounds</code>.</p>
+<p>Many unrelated things could be drawable: a <code>Square</code>, a <code>Circle</code> or a <code>TextLabel</code>.</p>
+<p>The role ensures a consistent interface while allowing each <code>class</code> to implement the details in its own way.</p>
+<br>
+<h3 id="introducing-rolepm">Introducing Role.pm</h3>
+<hr>
+<p>The <a href="https://github.com/manwar/Role/blob/master/lib/Role.pm"><strong>Role.pm</strong></a> module provides a lightweight, <code>non-Moose/Moo</code> way to use <code>roles</code> in your code.</p>
+<p>It&rsquo;s a pure <code>Perl</code> implementation making it easy to use with zero dependencies.</p>
+<p><strong>Key Features</strong></p>
+<br>
+<h4 id="1-method-composition">1. Method Composition</h4>
+<p>Cleanly adds <code>methods</code> to your <code>classes</code>.</p>
+<br>
+<h4 id="2-requirement-checking">2. Requirement Checking</h4>
+<p>A <code>role</code> can declare that any <code>class</code> using it must implement specific methods. This is the module&rsquo;s most powerful feature.</p>
+<br>
+<h4 id="3-conflict-detection">3. Conflict Detection</h4>
+<p>The module will throw an exception if two roles try to introduce a method with the same name, preventing nasty surprises.</p>
+<br>
+<h4 id="4-simple-syntax">4. Simple Syntax</h4>
+<p>The syntax is clear and easy to understand.</p>
+<br>
+<h3 id="a-practical-example">A Practical Example</h3>
+<hr>
+<p>The best way to understand <code>roles</code> is to see them enforce a contract. Let&rsquo;s model a system for drawable shapes.</p>
+<p>We&rsquo;ll define a <code>Shape</code> role that mandates a <code>draw</code> method and then create two classes that fulfill this contract.</p>
+<br>
+<h3 id="step-1-define-the-role">Step 1: Define the <code>Role</code></h3>
+<hr>
+<p>First, we create the <code>Shape</code> role. It doesn&rsquo;t provide any <code>methods</code> itself.</p>
+<p>Instead, it uses <code>requires</code> to declare that any <code>class</code> that uses this <code>role</code> must implement a <code>draw</code> method.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Shape;
+
+<span style="color:#66d9ef">use</span> Role;
+requires <span style="color:#e6db74">qw/draw/</span>;
+
+<span style="color:#ae81ff">1</span>;
+</code></pre></div><br>
+<p>This is incredibly powerful. The <code>Shape</code> role is now an <code>interface</code>.</p>
+<p>It says, &ldquo;If you want to be considered a <code>Shape</code>, you must know how to <code>draw</code> yourself.&rdquo;</p>
+<br>
+<h3 id="step-2-create-classes">Step 2: Create Classes</h3>
+<hr>
+<p>Now, let&rsquo;s create two different classes, <code>Shape::Square</code> and <code>Shape::Rectangle</code>.</p>
+<p>They are unrelated by <code>inheritance</code> but they both agree to the <code>Shape</code> contract by using the <code>with</code> keyword.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Shape::Square;
+
+<span style="color:#66d9ef">use</span> Role;
+with <span style="color:#e6db74">qw/Shape/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>($class, %args) { bless { %args }, $class         }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span>               { <span style="color:#e6db74">&#39;Inside Shape::Square::draw()&#39;</span>  }
+
+<span style="color:#ae81ff">1</span>;
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Shape::Rectangle;
+
+<span style="color:#66d9ef">use</span> Role;
+with <span style="color:#e6db74">qw/Shape/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>($class, %args) { bless { %args }, $class           }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span>               { <span style="color:#e6db74">&#39;Inside Shape::Rectangle::draw()&#39;</span> }
+
+<span style="color:#ae81ff">1</span>;
+</code></pre></div><br>
+<h3 id="step-3-using-the-interface">Step 3: Using the interface</h3>
+<hr>
+<p>The beauty of this approach is that we can now write code that works with any object that does the <code>Shape</code> role without caring about its specific class.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Shape::Square;
+<span style="color:#66d9ef">use</span> Shape::Rectangle;
+
+<span style="color:#66d9ef">my</span> $square    <span style="color:#f92672">=</span> Shape::Square<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(size <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>);
+<span style="color:#66d9ef">my</span> $rectangle <span style="color:#f92672">=</span> Shape::Rectangle<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(width <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>, height <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>);
+
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $shape (<span style="color:#e6db74">qw/$square $rectangle/</span>) {
+    <span style="color:#66d9ef">print</span> $shape<span style="color:#f92672">-&gt;</span>draw <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+}
+</code></pre></div><br>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Inside Shape::Square::draw<span style="color:#f92672">()</span>
+Inside Shape::Rectangle::draw<span style="color:#f92672">()</span>
+</code></pre></div><br>
+<h3 id="what-happens-if-you-break-the-contract">What Happens If You Break the Contract?</h3>
+<hr>
+<p>The safety net provided by <code>Role.pm</code> is crucial. If we created a <code>Shape::Triangle</code> class that used the <code>Shape</code> role but forgot to implement the <code>draw</code> method, we would get a clear, compile-time error.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Shape::Triangle;
+
+<span style="color:#66d9ef">use</span> Role;
+with <span style="color:#e6db74">qw/Shape/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>($class, %args) { bless { %args }, $class }
+
+<span style="color:#ae81ff">1</span>;
+</code></pre></div><br>
+<p>The error would be something like: <code>Shape::Triangle requires the method 'draw' to be implemented at ...</code></p>
+<p>This immediate feedback is far better than discovering a missing method at runtime deep in your application logic.</p>
+<br>
+<h3 id="why-use-rolepm">Why use <code>Role.pm</code>?</h3>
+<hr>
+<br>
+<h4 id="1-enforces-clean-contracts">1. Enforces Clean Contracts</h4>
+<p>The <code>requires</code> keyword lets you design robust interfaces ensuring <code>classes</code> provide the expected functionality.</p>
+<br>
+<h4 id="2-promotes-code-reuse">2. Promotes Code Reuse</h4>
+<p>While this example showed an interface-like role, roles can also provide reusable method implementations, reducing code duplication.</p>
+<br>
+<h4 id="3-avoids-inheritance-issues">3. Avoids Inheritance Issues</h4>
+<p>No more forcing <code>classes</code> into an <code>&quot;is-a&quot;</code> relationship when they just need to share a common interface. A <code>Square</code> and a <code>UIButton</code> can both be <code>Drawable</code> without being related.</p>
+<br>
+<h4 id="4-lightweight">4. Lightweight</h4>
+<p>If you&rsquo;re not using a large framework like <code>Moose</code>, <a href="https://github.com/manwar/Role/blob/master/lib/Role.pm"><strong>Role.pm</strong></a> is a perfect, dependency-free way to get the power of <code>roles</code>.</p>
+<br>
+<h3 id="conclusion">Conclusion</h3>
+<hr>
+<p>The <code>Role.pm</code> module is a testament to <code>Perl</code>'s enduring flexibility and the creativity of its community.</p>
+<p>It provides an elegant solution for defining <code>contracts</code> and <code>composing</code> behavior, moving beyond the limitations of simple <code>inheritance</code>.</p>
+<p>The <code>Shape</code> example perfectly illustrates the core concept: roles are about capabilities and contracts.</p>
+<p>If you&rsquo;re looking to write more modular, reliable and flexible <code>Perl</code> code, I highly encourage you to give Role.pm a try.</p>
+<p>Please check out the project on <a href="https://github.com/manwar/Role"><strong>GitHub</strong></a>, read the documentation and start thinking about the <code>interfaces</code> in your codebase that could be defined as clean, reusable <code>roles</code>.</p>
+<p>Feel free to share your suggestions at <code>mohammad.anwar@yahoo.com</code>.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
