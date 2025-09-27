@@ -171,9 +171,7 @@ use Shape::Rectangle;
 my $square    = Shape::Square->new(size => 10);
 my $rectangle = Shape::Rectangle->new(width => 10, height => 5);
 
-foreach my $shape (qw/$square $rectangle/) {
-    print $shape->draw . "\n";
-}
+print $_->draw, "\n" for ($square, $rectangle);
 ```
 
 <br>
