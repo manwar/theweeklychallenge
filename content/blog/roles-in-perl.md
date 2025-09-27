@@ -1,9 +1,9 @@
 ---
-title: "Using Role in Perl"
+title: "Roles in Perl"
 date: 2025-09-27T00:00:00+00:00
-description: "Discussion about the using role in Perl."
+description: "Discussion about the roles in Perl."
 type: post
-image: images/blog/using-role.jpg
+image: images/blog/roles-in-perl.jpg
 author: Mohammad Sajid Anwar
 tags: ["perl"]
 ---
@@ -187,7 +187,7 @@ Inside Shape::Rectangle::draw()
 
 <br>
 
-### What Happens If You Break the Contract?
+### Contract Breaking
 ***
 
 The safety net provided by `Role.pm` is crucial. If we created a `Shape::Triangle` class that used the `Shape` role but forgot to implement the `draw` method, we would get a clear, compile-time error.
