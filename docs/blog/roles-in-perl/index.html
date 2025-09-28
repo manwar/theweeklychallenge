@@ -295,6 +295,11 @@
                     <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
 <hr>
 <br>
+<h4 id="tldr"><strong>TL;DR</strong></h4>
+<hr>
+<p>The <a href="https://github.com/manwar/Role/blob/master/lib/Role.pm"><strong>Role.pm</strong></a> module provides a lightweight, dependency-free way to compose behaviours (methods) into <code>Perl</code> classes, enforcing clean contracts using the requires keyword, which is superior to deep inheritance. While the module originally enforced fatal errors for method conflicts, it now supports <code>Automatic Method Conflict Resolution</code> (first role applied wins) and <code>Method Aliasing</code> (renaming a method during composition) for greater flexibility and successful composition in complex scenarios.</p>
+<hr>
+<br>
 <p>As <code>Perl</code> developers, we&rsquo;re always looking for ways to write cleaner, more maintainable and reusable code.</p>
 <p>We&rsquo;ve embraced object-oriented programming (<code>OOP</code>) with modules like <a href="https://metacpan.org/pod/Moo"><strong>Moo</strong></a> and <a href="https://metacpan.org/pod/Moose"><strong>Moose</strong></a> which provide powerful tools for building <code>classes</code> and <code>objects</code>.</p>
 <p>But sometimes, <code>classic inheritance</code>, where a <code>class</code> extends another, can lead to a tangled <code>&quot;tree&quot;</code> of <code>classes</code> and the dreaded <code>diamond problem</code>.</p>
@@ -332,6 +337,23 @@
 <br>
 <h4 id="4-simple-syntax">4. Simple Syntax</h4>
 <p>The syntax is clear and easy to understand.</p>
+<br>
+<h3 id="update-2025-09-28"><strong>UPDATE: 2025-09-28</strong></h3>
+<hr>
+<p>Since this post was initially published, the <code>Role.pm</code> module has received two significant updates to enhance flexibility and composition power, particularly concerning method conflicts:</p>
+<h4 id="1-automatic-method-conflict-resolution">1. Automatic Method Conflict Resolution:</h4>
+<p>The original implementation strictly enforced a fatal error when two roles introduced the same method name. The module now automatically resolves these non-aliased conflicts using a precedence rule: The existing method (or the method from the first role applied) takes precedence and the conflicting method from the second role is silently discarded. This means simple conflicts no longer halt compilation.</p>
+<h4 id="2-method-aliasingrenaming">2. Method Aliasing/Renaming:</h4>
+<p>To allow developers to keep all methods, a new syntax was introduced to manually resolve conflicts. You can now rename a role&rsquo;s method during composition using a hashref:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Role;
+with {
+    role  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ConflictingRole&#39;</span>,
+    alias <span style="color:#f92672">=&gt;</span> { common_method <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;conflicting_method_aliased&#39;</span> }
+};
+</code></pre></div><br>
+<h4 id="3-timing-fix">3. Timing Fix:</h4>
+<p>The internal role application mechanism was fixed to ensure method composition occurs earlier in the compile cycle (BEGIN block), resolving issues related to classes loading before their methods were fully composed.</p>
 <br>
 <h3 id="a-practical-example">A Practical Example</h3>
 <hr>

@@ -12,6 +12,15 @@ tags: ["perl"]
 ***
 <br>
 
+#### **TL;DR**
+***
+
+The [**Role.pm**](https://github.com/manwar/Role/blob/master/lib/Role.pm) module provides a lightweight, dependency-free way to compose behaviours (methods) into `Perl` classes, enforcing clean contracts using the requires keyword, which is superior to deep inheritance. While the module originally enforced fatal errors for method conflicts, it now supports `Automatic Method Conflict Resolution` (first role applied wins) and `Method Aliasing` (renaming a method during composition) for greater flexibility and successful composition in complex scenarios.
+
+***
+
+<br>
+
 As `Perl` developers, we're always looking for ways to write cleaner, more maintainable and reusable code.
 
 We've embraced object-oriented programming (`OOP`) with modules like [**Moo**](https://metacpan.org/pod/Moo) and [**Moose**](https://metacpan.org/pod/Moose) which provide powerful tools for building `classes` and `objects`.
@@ -82,6 +91,37 @@ The module will throw an exception if two roles try to introduce a method with t
 #### 4. Simple Syntax
 
 The syntax is clear and easy to understand.
+
+<br>
+
+### **UPDATE: 2025-09-28**
+***
+
+Since this post was initially published, the `Role.pm` module has received two significant updates to enhance flexibility and composition power, particularly concerning method conflicts:
+
+#### 1. Automatic Method Conflict Resolution:
+
+The original implementation strictly enforced a fatal error when two roles introduced the same method name. The module now automatically resolves these non-aliased conflicts using a precedence rule: The existing method (or the method from the first role applied) takes precedence and the conflicting method from the second role is silently discarded. This means simple conflicts no longer halt compilation.
+
+#### 2. Method Aliasing/Renaming:
+
+To allow developers to keep all methods, a new syntax was introduced to manually resolve conflicts. You can now rename a role's method during composition using a hashref:
+
+<br>
+
+```perl
+use Role;
+with {
+    role  => 'ConflictingRole',
+    alias => { common_method => 'conflicting_method_aliased' }
+};
+```
+
+<br>
+
+#### 3. Timing Fix:
+
+The internal role application mechanism was fixed to ensure method composition occurs earlier in the compile cycle (BEGIN block), resolving issues related to classes loading before their methods were fully composed.
 
 <br>
 
