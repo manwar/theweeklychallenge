@@ -301,7 +301,7 @@ Write a script to reverse the prefix upto the first occurrence of the given $cha
 #### Example 1
 
     Input: $str = "programming", $char = "g"
-    Output: "gorpmming"
+    Output: "gorpramming"
 
     Reverse of prefix "prog" is "gorp".
 
@@ -317,7 +317,7 @@ Write a script to reverse the prefix upto the first occurrence of the given $cha
 #### Example 3
 
     Input: $str = "abcdefghij", $char = "h"
-    Output: "hgfedcbaj"
+    Output: "hgfedcbaij"
 
 <br>
 
