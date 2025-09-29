@@ -277,7 +277,7 @@ Write a script to return the total words in the given sentence can be typed comp
 #### Example 4
 
     Input: $str = 'The Weekly Challenge', @keys = ('a','b')
-    Output: 3
+    Output: 2
 
 <br>
 
@@ -301,7 +301,7 @@ Write a script to reverse the prefix upto the first occurrence of the given $cha
 #### Example 1
 
     Input: $str = "programming", $char = "g"
-    Output: "gorpmming"
+    Output: "gorpramming"
 
     Reverse of prefix "prog" is "gorp".
 
@@ -317,7 +317,7 @@ Write a script to reverse the prefix upto the first occurrence of the given $cha
 #### Example 3
 
     Input: $str = "abcdefghij", $char = "h"
-    Output: "hgfedcbaj"
+    Output: "hgfedcbaij"
 
 <br>
 
