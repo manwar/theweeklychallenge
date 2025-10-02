@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Class and Role"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/class-and-role/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about native class and role in Perl."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about native class and role in Perl.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/class-and-role/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Class and Role</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Class and Role</h2>
+                    <div class="portfolio-meta">
+                        <span>Thursday, Oct 2, 2025</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/class-and-role.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h4 id="tldr"><strong>TL;DR</strong></h4>
+<hr>
+<h5 id="a-added-classpmhttpsgithubcommanwarclass-miteblobmasterlibclasspm-for-lightweight-constructors--build-hook">a) Added <a href="https://github.com/manwar/Class-Mite/blob/master/lib/Class.pm"><strong>Class.pm</strong></a> for lightweight constructors + <code>BUILD</code> hook.</h5>
+<h5 id="b-rolepmhttpsgithubcommanwarclass-miteblobmasterlibrolepm-updated-with-stricter-conflict-handling-and-aliasing">b) <a href="https://github.com/manwar/Class-Mite/blob/master/lib/Role.pm"><strong>Role.pm</strong></a> updated with stricter conflict handling and aliasing.</h5>
+<h5 id="c-distribution-renamed-to-classmitehttpsgithubcommanwarclass-mite-small-but-mighty">c) Distribution renamed to <a href="https://github.com/manwar/Class-Mite"><strong>Class::Mite</strong></a>, small but mighty.</h5>
+<br>
+<p>In my <a href="https://theweeklychallenge.org/blog/roles-in-perl"><strong>previous post</strong></a>, I introduced <a href="https://github.com/manwar/Role/blob/master/lib/Role.pm"><strong>Role.pm</strong></a>, a lightweight, dependency-free <code>Role</code> system for <code>Perl</code>. Since then, the project has grown with the addition of a companion module: <code>Class.pm</code>. Together, they form the foundation of the new distribution: <a href="https://github.com/manwar/Class-Mite"><strong>Class::Mite</strong></a>.</p>
+<br>
+<h4 id="why-classpm"><strong>Why Class.pm?</strong></h4>
+<hr>
+<p>While <code>Role.pm</code> was designed to bring <code>method composition</code> and <code>requirement contracts</code> into plain <code>Perl</code>, many users asked:</p>
+<br>
+<h4 id="how-do-i-create-simple-consistent-classes-that-work-seamlessly-with-these-roles"><strong>How do I create simple, consistent classes that work seamlessly with these roles?</strong></h4>
+<br>
+<p>The answer is <a href="https://github.com/manwar/Class-Mite/blob/master/lib/Class.pm"><strong>Class.pm</strong></a>, a minimal constructor and lifecycle system.</p>
+<p><strong>It provides:</strong></p>
+<h5 id="a-a-new-constructor">a) A <code>new</code> constructor</h5>
+<h5 id="b-an-optional-build-hook-for-initialization-logic">b) An optional <code>BUILD</code> hook (for initialization logic)</h5>
+<h5 id="c-automatic-role-integration-via-with">c) Automatic role integration (via <code>with</code>)</h5>
+<h5 id="d-no-dependency-chains-just-simple-perl">d) No dependency chains, just simple <code>Perl</code>.</h5>
+<br>
+<h4 id="example-a-class-with-a-role"><strong>Example: A Class with a Role</strong></h4>
+<hr>
+<p>First we create the role <code>Animal</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Animal;
+
+<span style="color:#66d9ef">use</span> Role;
+requires <span style="color:#e6db74">qw/speak/</span>;
+
+<span style="color:#ae81ff">1</span>;
+</code></pre></div><br>
+<p>Then we create the class <code>Animal::Dog</code> taking the role <code>Animal</code> as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Animal::Dog;
+
+<span style="color:#66d9ef">use</span> Class;
+with <span style="color:#e6db74">qw/Animal/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> { <span style="color:#e6db74">&#39;bark!!&#39;</span> }
+
+<span style="color:#ae81ff">1</span>;
+</code></pre></div><br>
+<p>Action time finally.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Animal::Dog;
+
+<span style="color:#66d9ef">my</span> $dog <span style="color:#f92672">=</span> Animal::Dog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+
+<span style="color:#66d9ef">print</span> $dog<span style="color:#f92672">-&gt;</span>speak, <span style="color:#e6db74">&#34;\n&#34;</span>;   <span style="color:#75715e"># bark!!</span>
+</code></pre></div><br>
+<p>Let&rsquo;s try the default constructor in the class <code>Animal::Dog</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Animal::Dog;
+
+<span style="color:#66d9ef">use</span> Class;
+with <span style="color:#e6db74">qw/Animal/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{name} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; bark!!&#39;</span> }
+
+<span style="color:#ae81ff">1</span>;
+</code></pre></div><br>
+<p>Let&rsquo;s test the code now:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Animal::Dog;
+
+<span style="color:#66d9ef">my</span> $dog <span style="color:#f92672">=</span> Animal::Dog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Dummy&#39;</span>);
+
+<span style="color:#66d9ef">print</span> $dog<span style="color:#f92672">-&gt;</span>speak, <span style="color:#e6db74">&#34;\n&#34;</span>;   <span style="color:#75715e"># Dummy bark!!</span>
+</code></pre></div><br>
+<p>We&rsquo;ll update the class <code>Animal::Dog</code> to use the <code>BUILD</code> hook.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Animal::Dog;
+
+<span style="color:#66d9ef">use</span> Class;
+with <span style="color:#e6db74">qw/Animal/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">BUILD</span> {
+    <span style="color:#66d9ef">my</span> ($self, $args) <span style="color:#f92672">=</span> @_;
+    $self<span style="color:#f92672">-&gt;</span>{greet} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Hello &#39;</span> <span style="color:#f92672">.</span> $self<span style="color:#f92672">-&gt;</span>{name};
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{name} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; bark!!&#39;</span> }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">greet</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{greet}            }
+</code></pre></div><br>
+<p>Finally test the hook:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Animal::Dog;
+
+<span style="color:#66d9ef">my</span> $dog <span style="color:#f92672">=</span> Animal::Dog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Dummy&#39;</span>);
+<span style="color:#66d9ef">print</span> $dog<span style="color:#f92672">-&gt;</span>greet, <span style="color:#e6db74">&#34;\n&#34;</span>;   <span style="color:#75715e"># Hello Dummy</span>
+</code></pre></div><br>
+<p>Notice how clean this is:</p>
+<h5 id="a-new-automatically-blesses-a-hash">a) <code>new</code> automatically blesses a <code>hash</code>.</h5>
+<h5 id="b-build-runs-after-construction-for-custom-initialization">b) <code>BUILD</code> runs after construction for custom initialization.</h5>
+<h5 id="c-with-comes-directly-from-rolepm-with-zero-extra-boilerplate">c) <code>with</code> comes directly from <code>Role.pm</code> with zero extra boilerplate.</h5>
+<br>
+<h4 id="updates-to-rolepm"><strong>Updates to <code>Role.pm</code></strong></h4>
+<hr>
+<p>Alongside <code>Class.pm</code>, the <code>Role.pm</code> module has also evolved.</p>
+<p>Key updates since the last blog post:</p>
+<p><strong>1. Automatic Class Base</strong></p>
+<h5 id="a-when-a-class-consumes-a-role-rolepm-ensures-the-class-inherits-from-classpm-if-it-hasnt-already">a) When a class consumes a role, <code>Role.pm</code> ensures the class inherits from <code>Class.pm</code> if it hasn’t already.</h5>
+<h5 id="b-this-gives-every-role-consuming-class-a-consistent-new-and-build-hook">b) This gives every role-consuming class a consistent <code>new</code> and <code>BUILD</code> hook.</h5>
+<br>
+<p><strong>2. Stricter Conflict Detection</strong></p>
+<p>The current release re-aligns with <code>Moo</code>/<code>Moose</code> semantics:</p>
+<h5 id="a-if-two-roles-provide-the-same-method-its-now-a-fatal-error-not-silently-discarded">a) If two roles provide the same method, it’s now a fatal error (not silently discarded).</h5>
+<h5 id="b-classes-win-if-they-already-implement-the-method">b) Classes win if they already implement the method.</h5>
+<h5 id="c-developers-can-resolve-conflicts-explicitly-with-aliasing">c) Developers can resolve conflicts explicitly with aliasing.</h5>
+<br>
+<p><strong>3. Method Aliasing</strong></p>
+<h5 id="a-roles-can-be-applied-with-renamed-methods-allowing-you-to-keep-both-implementations-without-conflict">a) Roles can be applied with renamed methods, allowing you to keep both implementations without conflict.</h5>
+<br>
+<h4 id="why-the-name-classmite"><strong>Why the name <code>Class::Mite</code>?</strong></h4>
+<hr>
+<p>The distribution is named <code>Class::Mite</code> to capture the spirit of being <code>small</code> but <code>mighty</code>.</p>
+<h5 id="a-small-tiny-codebase-zero-dependencies-and-pure-perl">a) Small: Tiny codebase, zero dependencies and pure <code>Perl</code>.</h5>
+<h5 id="b-mighty-provides-the-essential-building-blocks-for-both-class-and-role">b) Mighty: Provides the essential building blocks for both <code>Class</code> and <code>Role</code>.</h5>
+<br>
+<p>This naming also aligns with <code>Perl</code> traditions like <a href="https://metacpan.org/pod/Mouse"><strong>Mouse</strong></a> and <a href="https://metacpan.org/pod/Moo"><strong>Moo</strong></a>, smaller frameworks inspired by <a href="https://metacpan.org/pod/Moose"><strong>Moose</strong></a>.</p>
+<br>
+<h4 id="looking-ahead"><strong>Looking Ahead</strong></h4>
+<hr>
+<p>With <code>Role.pm</code> and <code>Class.pm</code> now bundled together as <code>Class::Mite</code>, the foundation is set:</p>
+<h5 id="a-roles-for-behavior-composition">a) Roles for behavior composition</h5>
+<h5 id="b-classes-for-constructors-and-lifecycle">b) Classes for constructors and lifecycle</h5>
+<h5 id="c-clean-integration-without-heavyweight-dependencies">c) Clean integration without heavyweight dependencies</h5>
+<br>
+<h4 id="roadmap"><strong>ROADMAP</strong></h4>
+<hr>
+<h5 id="a-more-documentation-and-real-world-examples">a) More documentation and real-world examples</h5>
+<h5 id="b-possibly-lightweight-utilities-for-attribute-defaults-and-validation">b) Possibly lightweight utilities for attribute defaults and validation</h5>
+<h5 id="c-wider-testing-across-platforms">c) Wider testing across platforms</h5>
+<br>
+<h4 id="purpose-and-limits"><strong>Purpose and Limits</strong></h4>
+<hr>
+<p>This project is not intended to replace existing mature object systems such as <code>Moose</code>, <code>Moo</code>, or <code>Mouse</code>. Those frameworks are fully featured, production-proven and battle-tested across countless <code>CPAN</code> distributions.</p>
+<p><code>Class::Mite</code> was created primarily as a prototype for an upcoming project where I needed:</p>
+<br>
+<h5 id="a-a-minimal-constructorrole-system">a) A minimal constructor/role system</h5>
+<h5 id="b-pure-bless-objects-without-sugar-or-metaclasses">b) Pure bless objects without sugar or metaclasses</h5>
+<h5 id="c-zero-external-dependencies">c) Zero external dependencies</h5>
+<br>
+<p>If you need rich features like type constraints, attributes, or method modifiers, you should stick with <code>Moose</code>/<code>Moo</code>/<code>Mouse</code>.</p>
+<p>If you’re looking for something tiny, dependency-free and easy to embed, <code>Class::Mite</code> may be worth exploring.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
