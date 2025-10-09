@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="bless vs Class::Mite"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/bless-vs-class-mite/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion comparatively analysis between bless and Class::Mite."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion comparatively analysis between bless and Class::Mite.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/bless-vs-class-mite/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bless vs Class::Mite</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>bless vs Class::Mite</h2>
+                    <div class="portfolio-meta">
+                        <span>Thursday, Oct 9, 2025</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/bless-vs-class-mite.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h4 id="tldr"><strong>TL;DR</strong></h4>
+<hr>
+<p><code>Class::Mite</code> gives you <code>Moo</code>-like syntax (classes, roles, and attributes) with almost zero runtime cost. It’s a thin wrapper over <code>bless</code>, preserving native <code>Perl</code> speed while reducing boilerplate and improving readability.</p>
+<br>
+<p>In my <a href="https://theweeklychallenge.org/blog/class-and-role"><strong>previous post</strong></a>, I introduced <a href="https://github.com/manwar/Class-Mite"><strong>Class::Mite</strong></a>, a lightweight, dependency-free <code>Class</code> and <code>Role</code> system for <code>Perl</code>. Since then I have added <code>Class::More</code> that supports basic attributes feature with key <code>has</code> same as <code>Moo</code>.</p>
+<br>
+<h3 id="why-classmite"><strong>Why Class::Mite?</strong></h3>
+<hr>
+<p>The purpose of this distribution is to provide something as simple as a bless-based class with zero dependencies and minimal boilerplate. I built it for my pet project which is about <code>80%</code> complete and I can’t wait to share it with you all.</p>
+<br>
+<h3 id="from-bless-to-classmite-a-practical-comparison"><strong>From bless to Class::Mite: A Practical Comparison</strong></h3>
+<hr>
+<p><code>Perl</code>’s native object system is famously minimal: you just <code>bless a hash</code>, and you have an <code>object</code> but as codebases grow, so does the need for structure, readability and safety.</p>
+<p>Enter <code>Class::Mite</code>, a lightweight framework that wraps traditional <code>bless-based</code> classes with modern conveniences.</p>
+<p>It introduces three packages:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Class       <span style="color:#f92672">-</span> <span style="color:#66d9ef">for</span> classes with constructors, inheritance
+Class::More <span style="color:#f92672">-</span> everything that Class does with support <span style="color:#66d9ef">for</span> attributes
+Role        <span style="color:#f92672">-</span> <span style="color:#66d9ef">for</span> composable behaviour units
+</code></pre></div><br>
+<p>Unlike <code>Moose</code> or <code>Moo</code>, <strong>Class::Mite</strong> aims to stay minimal and fast, remaining close to plain <code>Perl</code> under the hood.</p>
+<p>This post explores the technical aspects of both <code>bless</code> and <code>Class::Mite</code> - with benchmarks for <code>Basic</code>, <code>Extends</code>, <code>Role</code> and <code>Attributes</code>.</p>
+<br>
+<h3 id="a-basic-class-definition"><strong>A) Basic Class Definition</strong></h3>
+<hr>
+<h4 id="using-bless"><strong>Using bless:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> BlessPerson;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+    <span style="color:#66d9ef">my</span> ($class, %args) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> bless { %args }, $class;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">greet</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello &#34;</span>, $self<span style="color:#f92672">-&gt;</span>{name}, <span style="color:#e6db74">&#34;!\n&#34;</span>;
+}
+</code></pre></div><br>
+<h4 id="using-class"><strong>Using Class:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> ClassPerson;
+<span style="color:#66d9ef">use</span> Class;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">greet</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello &#34;</span>, $self<span style="color:#f92672">-&gt;</span>{name}, <span style="color:#e6db74">&#34;!\n&#34;</span>;
+}
+</code></pre></div><br>
+<h3 id="benchmark-script"><strong>Benchmark Script</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> main;
+<span style="color:#66d9ef">use</span> BlessPerson;
+<span style="color:#66d9ef">use</span> ClassPerson;
+<span style="color:#66d9ef">use</span> Benchmark;
+
+timethese(<span style="color:#ae81ff">10_000_000</span>, {
+    bless <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { BlessPerson<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Joe&#39;</span>)<span style="color:#f92672">-&gt;</span>greet; },
+    class <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { ClassPerson<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Joe&#39;</span>)<span style="color:#f92672">-&gt;</span>greet; },
+});
+</code></pre></div><br>
+<h3 id="result"><strong>Result</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">000</span>,<span style="color:#ae81ff">000</span> iterations of bless, class<span style="color:#f92672">...</span>
+     bless:  <span style="color:#ae81ff">3</span> wallclock secs (<span style="color:#ae81ff">4.14</span> usr <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span> <span style="color:#ae81ff">4.14</span> CPU) @ 2,<span style="color:#ae81ff">415</span>,<span style="color:#ae81ff">458.94</span><span style="color:#f92672">/</span>s
+     class:  <span style="color:#ae81ff">4</span> wallclock secs (<span style="color:#ae81ff">5.20</span> usr <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span> <span style="color:#ae81ff">5.20</span> CPU) @ 1,<span style="color:#ae81ff">923</span>,<span style="color:#ae81ff">076</span><span style="color:#ae81ff">.92</span><span style="color:#f92672">/</span>s
+</code></pre></div><br>
+<h3 id="comparison"><strong>Comparison</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Aspect           bless                  Class
+<span style="color:#f92672">------------------------------------------------------------</span>
+Boilerplate      Manual constructor     Auto<span style="color:#f92672">-</span>generated <span style="color:#66d9ef">new</span>()
+Structure        Minimal                Declarative
+Type checks      Manual                 Optional
+Speed            <span style="color:#f92672">~</span><span style="color:#ae81ff">2.41</span>M<span style="color:#e6db74">/s               ~1.92M/s</span>
+</code></pre></div><br>
+<h3 id="summary"><strong>Summary</strong></h3>
+<hr>
+<p><code>Class::Mite</code> trades <code>~20–25%</code> performance for <code>clarity</code> and <code>reduced boilerplate</code>. For most applications, that’s a win.</p>
+<br>
+<h3 id="b-inheritance-extends"><strong>B) Inheritance (extends)</strong></h3>
+<hr>
+<h4 id="using-bless-1"><strong>Using bless:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> BlessParent;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+    <span style="color:#66d9ef">my</span> ($class, %args) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> bless { %args }, $class;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{name}, <span style="color:#e6db74">&#34; bark!\n&#34;</span>;
+}
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> BlessChild;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> parent <span style="color:#e6db74">qw/BlessParent/</span>;
+</code></pre></div><br>
+<h4 id="using-class-1"><strong>Using Class:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> ClassParent;
+<span style="color:#66d9ef">use</span> Class;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{name}, <span style="color:#e6db74">&#34; bark!\n&#34;</span>;
+}
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> ClassChild;
+<span style="color:#66d9ef">use</span> Class;
+extends <span style="color:#e6db74">qw/ClassParent/</span>;
+</code></pre></div><br>
+<h3 id="benchmark-script-1"><strong>Benchmark Script</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> main;
+<span style="color:#66d9ef">use</span> BlessChild;
+<span style="color:#66d9ef">use</span> ClassChild;
+<span style="color:#66d9ef">use</span> Benchmark;
+
+timethese(<span style="color:#ae81ff">10_000_000</span>, {
+    bless <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { BlessChild<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tommy&#39;</span>)<span style="color:#f92672">-&gt;</span>speak; },
+    class <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { ClassChild<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tommy&#39;</span>)<span style="color:#f92672">-&gt;</span>speak; },
+});
+</code></pre></div><br>
+<h3 id="result-1"><strong>Result</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">000</span>,<span style="color:#ae81ff">000</span> iterations of bless, class<span style="color:#f92672">...</span>
+     bless:  <span style="color:#ae81ff">3</span> wallclock secs (<span style="color:#ae81ff">4.06</span> usr <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span> <span style="color:#ae81ff">4.06</span> CPU) @ 2,<span style="color:#ae81ff">463</span>,<span style="color:#ae81ff">054</span><span style="color:#ae81ff">.19</span><span style="color:#f92672">/</span>s
+     class:  <span style="color:#ae81ff">4</span> wallclock secs (<span style="color:#ae81ff">5.13</span> usr <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span> <span style="color:#ae81ff">5.13</span> CPU) @ 1,<span style="color:#ae81ff">949</span>,<span style="color:#ae81ff">317.74</span><span style="color:#f92672">/</span>s
+</code></pre></div><br>
+<h3 id="comparison-1"><strong>Comparison</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Aspect                bless <span style="color:#f92672">+</span> parent    Class
+<span style="color:#f92672">---------------------------------------------------</span>
+Inheritance syntax    Procedural        Declarative
+Method lookup         Native            Native
+Ease of <span style="color:#66d9ef">use</span>           Simple            Cleaner
+Overhead              None              Minimal
+</code></pre></div><br>
+<h3 id="summary-1"><strong>Summary</strong></h3>
+<hr>
+<p><code>extends</code> in <code>Class</code> abstracts <code>use parent</code>, giving <code>uniform</code> and <code>modern inheritance</code> declarations with minimal performance impact.</p>
+<br>
+<h3 id="c-roles-with"><strong>C) Roles (with)</strong></h3>
+<hr>
+<p><code>Roles</code> allow behaviour composition without classical inheritance. They’re conceptually like <code>mix-ins</code> but with formal requirements.</p>
+<p><code>Perl</code>’s core doesn’t have <code>roles</code> — you must emulate them manually:</p>
+<h4 id="using-bless-2"><strong>Using bless:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> BlessRole;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> { <span style="color:#f92672">...</span> }
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> BlessDog;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> parent <span style="color:#e6db74">qw/BlessRole/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+    <span style="color:#66d9ef">my</span> ($class, %args) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> bless { %args }, $class;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{name}, <span style="color:#e6db74">&#34; bark!\n&#34;</span>;
+}
+</code></pre></div><br>
+<h4 id="using-classrole"><strong>Using Class/Role:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> ClassRole;
+<span style="color:#66d9ef">use</span> Role;
+requires <span style="color:#e6db74">qw/speak/</span>;
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> ClassDog;
+<span style="color:#66d9ef">use</span> Class;
+with <span style="color:#e6db74">qw/ClassRole/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{name}, <span style="color:#e6db74">&#34; bark!\n&#34;</span>;
+}
+</code></pre></div><br>
+<h3 id="benchmark-script-2"><strong>Benchmark Script</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> main;
+<span style="color:#66d9ef">use</span> BlessDog;
+<span style="color:#66d9ef">use</span> ClassDog;
+<span style="color:#66d9ef">use</span> Benchmark;
+
+timethese(<span style="color:#ae81ff">10_000_000</span>, {
+    bless <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { BlessDog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tommy&#39;</span>)<span style="color:#f92672">-&gt;</span>speak; },
+    class <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { ClassDog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tommy&#39;</span>)<span style="color:#f92672">-&gt;</span>speak; },
+});
+</code></pre></div><br>
+<h3 id="result-2"><strong>Result</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">000</span>,<span style="color:#ae81ff">000</span> iterations of bless, class<span style="color:#f92672">...</span>
+     bless:  <span style="color:#ae81ff">4.06</span> usr @ 2,<span style="color:#ae81ff">463</span>,<span style="color:#ae81ff">054</span><span style="color:#ae81ff">.19</span><span style="color:#f92672">/</span>s
+     class:  <span style="color:#ae81ff">5.10</span> usr @ 1,<span style="color:#ae81ff">960</span>,<span style="color:#ae81ff">784.31</span><span style="color:#f92672">/</span>s
+</code></pre></div><br>
+<h3 id="comparison-2"><strong>Comparison</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Aspect          bless               Role
+<span style="color:#f92672">---------------------------------------------------------</span>
+Role concept    None (manual)       Native
+Composition     Inheritance only    Declarative with
+Requirements    Manual              Enforced via requires
+Overhead        Minimal             Slight
+</code></pre></div><br>
+<h3 id="summary-2"><strong>Summary</strong></h3>
+<hr>
+<p><code>Roles</code> are a major advantage of <code>Class::Mite</code>. They formalize what used to be ad hoc, with little runtime cost.</p>
+<br>
+<h3 id="d-attributes"><strong>D) Attributes</strong></h3>
+<hr>
+<p>This is where <code>Class::Mite</code> shines. Manual constructors get replaced by declarative <code>has</code> statements.</p>
+<h4 id="using-bless-3"><strong>Using bless:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> BlessPerson;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+    <span style="color:#66d9ef">my</span> ($class, %args) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">for</span> (<span style="color:#e6db74">qw/name age/</span>) {
+        die <span style="color:#e6db74">&#34;Missing required key $_.\n&#34;</span>
+            <span style="color:#66d9ef">unless</span> (exists $args{$_});
+    }
+    $args{country} <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;UK&#39;</span>;
+    <span style="color:#66d9ef">return</span> bless { %args }, $class;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">desc</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#34;%s&#39;s age is %d old from %s.\n&#34;</span>,
+        $self<span style="color:#f92672">-&gt;</span>{name}, $self<span style="color:#f92672">-&gt;</span>{age}, $self<span style="color:#f92672">-&gt;</span>{country});
+}
+</code></pre></div><br>
+<h4 id="using-classmore"><strong>Using Class::More:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> ClassPerson;
+<span style="color:#66d9ef">use</span> Class::More;
+
+has name    <span style="color:#f92672">=&gt;</span> (required <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+has age     <span style="color:#f92672">=&gt;</span> (required <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+has country <span style="color:#f92672">=&gt;</span> (default  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;UK&#39;</span>);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">desc</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#34;%s&#39;s age is %d old from %s.\n&#34;</span>,
+        $self<span style="color:#f92672">-&gt;</span>{name}, $self<span style="color:#f92672">-&gt;</span>{age}, $self<span style="color:#f92672">-&gt;</span>{country});
+}
+</code></pre></div><br>
+<h3 id="benchmark-script-3"><strong>Benchmark Script</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> main;
+<span style="color:#66d9ef">use</span> BlessPerson;
+<span style="color:#66d9ef">use</span> ClassPerson;
+<span style="color:#66d9ef">use</span> Benchmark;
+
+<span style="color:#66d9ef">my</span> $bless_person <span style="color:#f92672">=</span> BlessPerson<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tom&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">20</span>);
+<span style="color:#66d9ef">my</span> $class_person <span style="color:#f92672">=</span> ClassPerson<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tom&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">20</span>);
+
+timethese(<span style="color:#ae81ff">10_000_000</span>, {
+    bless <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $bless_person<span style="color:#f92672">-&gt;</span>desc; },
+    class <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $class_person<span style="color:#f92672">-&gt;</span>desc; },
+});
+</code></pre></div><br>
+<h3 id="result-3"><strong>Result</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">000</span>,<span style="color:#ae81ff">000</span> iterations of bless, class<span style="color:#f92672">...</span>
+     bless:  <span style="color:#ae81ff">1.56</span> usr @ 6,<span style="color:#ae81ff">410</span>,<span style="color:#ae81ff">256.41</span><span style="color:#f92672">/</span>s
+     class:  <span style="color:#ae81ff">1.58</span> usr @ 6,<span style="color:#ae81ff">329</span>,<span style="color:#ae81ff">113.92</span><span style="color:#f92672">/</span>s
+</code></pre></div><br>
+<h3 id="comparison-3"><strong>Comparison</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Aspect                bless         Class::More
+<span style="color:#f92672">-----------------------------------------------</span>
+Attribute setup       Manual        Declarative
+Defaults              Manual        Built<span style="color:#f92672">-</span>in
+Required keys         Manual        Built<span style="color:#f92672">-</span>in
+Readability           Procedural    Declarative
+Performance           Equal         Equal
+</code></pre></div><br>
+<h3 id="summary-3"><strong>Summary</strong></h3>
+<hr>
+<p>Once the object is built, <code>accessors</code> are plain <code>Perl</code> methods — no runtime penalty. This gives you <code>Moo</code>-like ergonomics with <code>pure-Perl</code> performance.</p>
+<br>
+<h3 id="summary-of-benchmarks"><strong>Summary of Benchmarks</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Test            bless (ops<span style="color:#e6db74">/sec)    Class/</span>Role (ops<span style="color:#f92672">/</span>sec)       Overhead
+<span style="color:#f92672">-----------------------------------------------------------------------</span>
+Basic class     <span style="color:#ae81ff">2.41</span>M              <span style="color:#ae81ff">1.92</span>M                      <span style="color:#f92672">+</span><span style="color:#ae81ff">27</span>%
+Inheritance     <span style="color:#ae81ff">2.46</span>M              <span style="color:#ae81ff">1.95</span>M                      <span style="color:#f92672">+</span><span style="color:#ae81ff">26</span>%
+Role            <span style="color:#ae81ff">2.46</span>M              <span style="color:#ae81ff">1.96</span>M                      <span style="color:#f92672">+</span><span style="color:#ae81ff">25</span>%
+Attributes      <span style="color:#ae81ff">6.41</span>M              <span style="color:#ae81ff">6.33</span>M                      <span style="color:#960050;background-color:#1e0010">≈</span><span style="color:#ae81ff">0</span>%
+</code></pre></div><br>
+<h3 id="interpretation"><strong>Interpretation</strong></h3>
+<hr>
+<p><code>Class::Mite</code> adds only a tiny initialization cost. Runtime <code>method</code> and <code>attribute access</code> remain as fast as native <code>Perl</code>.</p>
+<h4 id="you-gain-cleaner-syntax-roles-and-safer-constructors"><strong>You gain cleaner syntax, roles and safer constructors.</strong></h4>
+<br>
+<h3 id="conclusion"><strong>Conclusion</strong></h3>
+<hr>
+<p><code>Class::Mite</code> brings modern <code>OOP</code> syntax to <code>Perl</code> without abandoning its simplicity.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#f92672">-</span> Faster <span style="color:#f92672">and</span> lighter than Moose<span style="color:#f92672">/</span>Moo
+<span style="color:#f92672">-</span> Cleaner <span style="color:#f92672">and</span> safer than raw bless
+<span style="color:#f92672">-</span> Fully compatible with existing Perl objects
+<span style="color:#f92672">-</span> Declarative roles, inheritance <span style="color:#f92672">and</span> attributes
+</code></pre></div><br>
+<p>If you love <code>Perl</code>’s flexibility but want less boilerplate and more expressiveness - <code>Class::Mite</code> bridges that gap beautifully.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
