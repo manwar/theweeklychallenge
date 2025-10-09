@@ -33,7 +33,7 @@ The purpose of this distribution is to provide something as simple as a bless-ba
 ### **From bless to Class::Mite: A Practical Comparison**
 ***
 
-`Perl`’s native object system is famously minimal: you just `bless a hash`, and you have an `object` but as codebases grow, so does the need for structure, readability and safety.
+`Perl`’s native object system is famously minimal: you just `bless a hash` and you have an `object` but as codebases grow, so does the need for structure, readability and safety.
 
 Enter `Class::Mite`, a lightweight framework that wraps traditional `bless-based` classes with modern conveniences.
 
@@ -228,8 +228,8 @@ Benchmark: timing 10,000,000 iterations of bless, class...
 ***
 
 ```perl
-Aspect                bless + parent    Class
----------------------------------------------------
+Aspect                bless + parent    Class + extends
+-------------------------------------------------------
 Inheritance syntax    Procedural        Declarative
 Method lookup         Native            Native
 Ease of use           Simple            Cleaner
@@ -326,9 +326,9 @@ timethese(10_000_000, {
 ***
 
 ```perl
-Benchmark: timing 10,000,000 iterations of bless, class...
-     bless:  4.06 usr @ 2,463,054.19/s
-     class:  5.10 usr @ 1,960,784.31/s
+Benchmark: timing 10000000 iterations of bless, class...
+     bless:  4 wallclock secs ( 4.03 usr +  0.00 sys =  4.03 CPU) @ 2481389.58/s (n=10000000)
+     class:  4 wallclock secs ( 5.09 usr +  0.00 sys =  5.09 CPU) @ 1964636.54/s (n=10000000)
 ```
 
 <br>
@@ -428,9 +428,9 @@ timethese(10_000_000, {
 ***
 
 ```perl
-Benchmark: timing 10,000,000 iterations of bless, class...
-     bless:  1.56 usr @ 6,410,256.41/s
-     class:  1.58 usr @ 6,329,113.92/s
+Benchmark: timing 10000000 iterations of bless, class...
+     bless:  2 wallclock secs ( 1.54 usr +  0.00 sys =  1.54 CPU) @ 6493506.49/s (n=10000000)
+     class:  2 wallclock secs ( 1.57 usr +  0.00 sys =  1.57 CPU) @ 6369426.75/s (n=10000000)
 ```
 
 <br>
