@@ -579,19 +579,6 @@ D) Attributes (method call)    6.21M    6.13M    6.17M    Bless      ~equal (±1
 
 <br>
 
-### **Average Performance**
-***
-
-```perl
-System    Avg ops/sec    Relative to Bless    Relative to Moo
--------------------------------------------------------------
-Bless     3,842,681      100%                 +14.6%
-Class     2,975,007      77%                  +3.6%
-Moo       2,985,980      78%                  100%
-```
-
-<br>
-
 ### **Interpretation**
 ***
 
