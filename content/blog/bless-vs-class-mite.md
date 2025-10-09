@@ -460,7 +460,7 @@ sub new {
 
 sub desc {
     my ($self) = @_;
-    return sprintf("%s's age is %d old from %s.\n",
+    return sprintf("%s is %d years old and from %s.\n",
         $self->{name},
         $self->{age},
         $self->{country});
