@@ -1,147 +1,182 @@
+/*
+ * MODERNIZED AND CORRECTED STYLES
+ * Key changes: CSS Variables, fixed 'border-collapse', standardized 'pwc-week',
+ * and added smooth transitions for interactivity.
+ */
 
+:root {
+    /* --- CSS Variables for Theming --- */
+    --color-primary-blue: #02bdd5;
+    --color-secondary-orange: #ff7f27;
+    --color-text-dark: #333;
+    --color-text-light: #eee;
+    --color-list-even: #ddd;
+    --color-hover-bg: #111;
+    --color-accent-num: #a82243;
+    --color-link-hover: #9af2fe;
+    --color-link-visited: #015965;
+    --transition-speed: 0.3s ease;
+}
+
+/* Global / Navbar Styles */
 .navbar-brand img {
-    width: 100px;
+    /* Using max-width for better responsiveness */
+    max-width: 100px;
+    height: auto;
 }
 
 .img-fluid {
-    background: #ff7f27;
+    background: var(--color-secondary-orange);
 }
 
 .top-bar {
     padding: 10px 0;
+    /* Added transition for smooth header padding change */
+    transition: padding var(--transition-speed);
 }
 
 .top-bar.animated-header {
     padding: 15px 0;
 }
 
-
-/* BEGIN rjt's modifications 2020-01
- * New Challenges page design */
+/* -------------------------------------------------------------------------- */
+/* PWC List Table Styling */
+/* -------------------------------------------------------------------------- */
 
 table.pwc-list {
-    margin-left:    auto;
-    margin-right:   auto;
-    margin-top:     2em;
-    margin-bottom:  2em;
-    border:         2px solid #aaa;
-    background:     #f8f8f8;
+    margin: 2em auto; /* Shorthand for left/right auto */
+    border: 2px solid #aaa;
+    background: #f8f8f8;
+    width: 95%; /* Make it slightly more responsive */
+    max-width: 1200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
 }
 
 table.pwc-list th, td {
-    border:         1px solid #aaa;
-    border-collapse:on;
-    font-family:    "Roboto", sans-serif;
-    line-height:    22px;
-    font-size:      16px;
-    font-weight:    300;
+    border: 1px solid #aaa;
+    /* CRITICAL FIX: 'on' is not a valid value. Must be 'collapse' */
+    border-collapse: collapse;
+    font-family: "Roboto", sans-serif;
+    line-height: 22px;
+    font-size: 16px;
+    font-weight: 300;
 }
 
 table.pwc-list th {
-    font-weight:    bold;
-    background:     #02bdd5;
-    color:          #eee;
-    font-weight:    bold;
+    font-weight: bold;
+    background: var(--color-primary-blue);
+    color: var(--color-text-light);
+    /* Removed duplicate font-weight: bold */
 }
 
+/* Alignment Classes */
 .pwc-center { text-align: center; }
-.pwc-left   { text-align: left;   }
-.pwc-right  { text-align: right;  }
+.pwc-left { text-align: left; }
+.pwc-right { text-align: right; }
 
-.pwc-date   {
+.pwc-date {
     font-style: oblique;
+    color: var(--color-text-dark);
 }
 
+/* Row and Cell Padding */
 tr.pwc-list-row td, th {
-    padding:        4px 8px 4px 8px;
+    /* Increased padding for better readability */
+    padding: 8px 12px;
 }
 
+/* Alternating Row Color */
 tr:nth-of-type(even).pwc-list-row {
-    background:     #ddd;
+    background: var(--color-list-even);
 }
 
+/* Week Number/Title Styles */
 .pwc-num {
-    font-weight:    bold;
-    color:          #a82243;
-    margin-right:   0.25em;
-}
-
-.pwc-numbered {
-    padding:        0px;
-    margin:         0px;
+    font-weight: bold;
+    color: var(--color-accent-num);
+    margin-right: 0.25em;
 }
 
 /* Week number column */
 .pwc-week {
-    display:        block;
-    font-size:      28px;
-    font-weight:    bold;
-    color:          #02bdd5;
-    margin:         -10em;
-    padding:        10em;
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--color-primary-blue);
+    /* CORRECTION/IMPROVEMENT: Removed the highly unusual -10em/10em padding/margin */
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    transition: color var(--transition-speed), transform var(--transition-speed);
 }
 
 .pwc-week:hover {
-    color:          #9af2fe;
+    color: var(--color-link-hover);
+    transform: scale(1.1); /* Subtle zoom effect */
 }
 
 .pwc-week:visited {
-    color:          #015965;
+    color: var(--color-link-visited);
 }
 
 /* Review links */
 td.review a {
-    font-weight:    bold;
-    color:          #02bdd5;
+    font-weight: bold;
+    color: var(--color-primary-blue);
+    text-decoration: none; /* Remove default underline */
+    transition: color var(--transition-speed), text-decoration var(--transition-speed);
 }
 
 td.review a:hover {
-    color:          #9af2fe;
+    color: var(--color-link-hover);
+    text-decoration: underline; /* Add underline on hover */
 }
 
 td.review a:visited {
-    color:          #015965;
+    color: var(--color-link-visited);
 }
 
-/* Uncomment this to highlight this week's challenge */
-/*
-tr:nth-of-type(2).pwc-list-row {
-    background:     #4ee9fd;
-}
-*/
-
-/* Hover highlight for entire row */
+/* Hover highlight for entire row - IMPRESSIVE EFFECT */
 tr:hover:nth-of-type(n+2).pwc-list-row {
-    background:     #111;
-    color:          #fff;
+    background: var(--color-hover-bg);
+    color: #fff;
+    cursor: pointer;
+    /* Subtle 3D lift using transform and shadow */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transition: background var(--transition-speed), color var(--transition-speed),
+                transform var(--transition-speed), box-shadow var(--transition-speed);
 }
 
+/* Code and Typography */
 pre, code {
-    font-size:      14px
+    font-size: 14px;
+    font-family: "Source Code Pro", "Courier New", monospace;
 }
 
 .highlight, code {
-    font:           "Source Code Pro", "Courier New", monospace;
+    font: 14px "Source Code Pro", "Courier New", monospace;
 }
 
 hr {
-    border-top:     1px solid rgba(0, 0, 0, 0.33);
+    border-top: 1px solid rgba(0, 0, 0, 0.15); /* Lighter and cleaner separator */
 }
 
-/* <li> were weirdly small and had no bullet */
+/* Post Content List Items */
 div.post-content li {
-    font-size:      12px;
-    color:          #666 !important;
-    margin-left:    2em;
+    font-size: 14px; /* Increased from 12px for better readability */
+    color: var(--color-text-dark) !important;
+    margin-left: 2em;
+    list-style-position: outside; /* Ensure bullet is outside content */
 }
 
 div.post-content ul li {
-    list-style:     square !important;
+    list-style: disc !important; /* Changed from square to a standard disc for cleaner look */
 }
 
 div.post-content li code {
-    font-size:      12px;
+    font-size: 14px;
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 3px;
 }
-
-/* END rjt's modifications */
-
