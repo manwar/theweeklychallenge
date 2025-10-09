@@ -1,182 +1,926 @@
-/*
- * MODERNIZED AND CORRECTED STYLES
- * Key changes: CSS Variables, fixed 'border-collapse', standardized 'pwc-week',
- * and added smooth transitions for interactivity.
- */
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="The Weekly Challenge - Modern Design"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://theweeklychallenge.org/"/>
+    <meta property="og:image" content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="The Weekly Challenge that includes Perl and Raku programming with modern, attractive design."/>
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/about/about.jpg"/>
 
-:root {
-    /* --- CSS Variables for Theming --- */
-    --color-primary-blue: #02bdd5;
-    --color-secondary-orange: #ff7f27;
-    --color-text-dark: #333;
-    --color-text-light: #eee;
-    --color-list-even: #ddd;
-    --color-hover-bg: #111;
-    --color-accent-num: #a82243;
-    --color-link-hover: #9af2fe;
-    --color-link-visited: #015965;
-    --transition-speed: 0.3s ease;
-}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="The Weekly Challenge that includes Perl and Raku programming with modern, attractive design.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Modern HTML Design" />
 
-/* Global / Navbar Styles */
-.navbar-brand img {
-    /* Using max-width for better responsiveness */
-    max-width: 100px;
-    height: auto;
-}
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/" />
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
-.img-fluid {
-    background: var(--color-secondary-orange);
-}
+    <!-- Enhanced CSS Libraries -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        /* MODERNIZED AND ENHANCED STYLES */
+        :root {
+            /* CSS Variables for Theming */
+            --color-primary-blue: #02bdd5;
+            --color-secondary-orange: #ff7f27;
+            --color-accent-purple: #6366f1;
+            --color-accent-green: #10b981;
+            --color-text-dark: #1f2937;
+            --color-text-light: #f9fafb;
+            --color-text-muted: #6b7280;
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #f8fafc;
+            --color-bg-dark: #111827;
+            --color-list-even: #f1f5f9;
+            --color-hover-bg: #1e40af;
+            --color-accent-num: #dc2626;
+            --color-link-hover: #0ea5e9;
+            --color-link-visited: #7c3aed;
+            --color-border: #e5e7eb;
+            --color-shadow: rgba(0, 0, 0, 0.1);
+            --color-shadow-hover: rgba(0, 0, 0, 0.2);
+            --transition-speed: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+        }
 
-.top-bar {
-    padding: 10px 0;
-    /* Added transition for smooth header padding change */
-    transition: padding var(--transition-speed);
-}
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-text-dark: #f9fafb;
+                --color-text-light: #111827;
+                --color-bg-primary: #111827;
+                --color-bg-secondary: #1f2937;
+                --color-list-even: #374151;
+                --color-border: #374151;
+                --color-shadow: rgba(0, 0, 0, 0.3);
+                --color-shadow-hover: rgba(0, 0, 0, 0.5);
+            }
+        }
 
-.top-bar.animated-header {
-    padding: 15px 0;
-}
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+        }
 
-/* -------------------------------------------------------------------------- */
-/* PWC List Table Styling */
-/* -------------------------------------------------------------------------- */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+            margin: 0;
+            padding: 0;
+        }
 
-table.pwc-list {
-    margin: 2em auto; /* Shorthand for left/right auto */
-    border: 2px solid #aaa;
-    background: #f8f8f8;
-    width: 95%; /* Make it slightly more responsive */
-    max-width: 1200px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
-}
+        /* Enhanced Navigation */
+        .top-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            padding: 15px 0;
+            transition: all var(--transition-speed);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-table.pwc-list th, td {
-    border: 1px solid #aaa;
-    /* CRITICAL FIX: 'on' is not a valid value. Must be 'collapse' */
-    border-collapse: collapse;
-    font-family: "Roboto", sans-serif;
-    line-height: 22px;
-    font-size: 16px;
-    font-weight: 300;
-}
+        .navbar-brand img {
+            max-width: 120px;
+            height: auto;
+            transition: transform var(--transition-speed);
+        }
 
-table.pwc-list th {
-    font-weight: bold;
-    background: var(--color-primary-blue);
-    color: var(--color-text-light);
-    /* Removed duplicate font-weight: bold */
-}
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
 
-/* Alignment Classes */
-.pwc-center { text-align: center; }
-.pwc-left { text-align: left; }
-.pwc-right { text-align: right; }
+        .navbar-nav .nav-link {
+            color: var(--color-text-dark) !important;
+            font-weight: 500;
+            padding: 8px 16px !important;
+            margin: 0 4px;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-speed);
+            position: relative;
+        }
 
-.pwc-date {
-    font-style: oblique;
-    color: var(--color-text-dark);
-}
+        .navbar-nav .nav-link:hover {
+            background: var(--color-primary-blue);
+            color: var(--color-text-light) !important;
+            transform: translateY(-2px);
+        }
 
-/* Row and Cell Padding */
-tr.pwc-list-row td, th {
-    /* Increased padding for better readability */
-    padding: 8px 12px;
-}
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--color-secondary-orange);
+            transition: all var(--transition-speed);
+            transform: translateX(-50%);
+        }
 
-/* Alternating Row Color */
-tr:nth-of-type(even).pwc-list-row {
-    background: var(--color-list-even);
-}
+        .navbar-nav .nav-link:hover::after {
+            width: 80%;
+        }
 
-/* Week Number/Title Styles */
-.pwc-num {
-    font-weight: bold;
-    color: var(--color-accent-num);
-    margin-right: 0.25em;
-}
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-accent-purple) 100%);
+            color: var(--color-text-light);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Week number column */
-.pwc-week {
-    display: block;
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--color-primary-blue);
-    /* CORRECTION/IMPROVEMENT: Removed the highly unusual -10em/10em padding/margin */
-    margin: 0;
-    padding: 10px;
-    text-align: center;
-    transition: color var(--transition-speed), transform var(--transition-speed);
-}
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
 
-.pwc-week:hover {
-    color: var(--color-link-hover);
-    transform: scale(1.1); /* Subtle zoom effect */
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
 
-.pwc-week:visited {
-    color: var(--color-link-visited);
-}
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
 
-/* Review links */
-td.review a {
-    font-weight: bold;
-    color: var(--color-primary-blue);
-    text-decoration: none; /* Remove default underline */
-    transition: color var(--transition-speed), text-decoration var(--transition-speed);
-}
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-td.review a:hover {
-    color: var(--color-link-hover);
-    text-decoration: underline; /* Add underline on hover */
-}
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--color-secondary-orange);
+            color: white;
+            padding: 16px 32px;
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+            box-shadow: 0 8px 25px rgba(255, 127, 39, 0.3);
+        }
 
-td.review a:visited {
-    color: var(--color-link-visited);
-}
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 127, 39, 0.4);
+            color: white;
+            text-decoration: none;
+        }
 
-/* Hover highlight for entire row - IMPRESSIVE EFFECT */
-tr:hover:nth-of-type(n+2).pwc-list-row {
-    background: var(--color-hover-bg);
-    color: #fff;
-    cursor: pointer;
-    /* Subtle 3D lift using transform and shadow */
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-    transition: background var(--transition-speed), color var(--transition-speed),
-                transform var(--transition-speed), box-shadow var(--transition-speed);
-}
+        /* Page Header */
+        .global-page-header {
+            background: var(--color-bg-primary);
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
 
-/* Code and Typography */
-pre, code {
-    font-size: 14px;
-    font-family: "Source Code Pro", "Courier New", monospace;
-}
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-text-dark);
+            margin-bottom: 1rem;
+        }
 
-.highlight, code {
-    font: 14px "Source Code Pro", "Courier New", monospace;
-}
+        /* Enhanced Blog Section */
+        .blog-section {
+            padding: 80px 0;
+            background: var(--color-bg-secondary);
+        }
 
-hr {
-    border-top: 1px solid rgba(0, 0, 0, 0.15); /* Lighter and cleaner separator */
-}
+        .blog-card {
+            background: var(--color-bg-primary);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px var(--color-shadow);
+            overflow: hidden;
+            transition: all var(--transition-speed);
+            margin-bottom: 40px;
+            border: 1px solid var(--color-border);
+        }
 
-/* Post Content List Items */
-div.post-content li {
-    font-size: 14px; /* Increased from 12px for better readability */
-    color: var(--color-text-dark) !important;
-    margin-left: 2em;
-    list-style-position: outside; /* Ensure bullet is outside content */
-}
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px var(--color-shadow-hover);
+        }
 
-div.post-content ul li {
-    list-style: disc !important; /* Changed from square to a standard disc for cleaner look */
-}
+        .blog-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
 
-div.post-content li code {
-    font-size: 14px;
-    background-color: #f5f5f5;
-    padding: 2px 4px;
-    border-radius: 3px;
-}
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-speed);
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            padding: 30px;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--color-text-dark);
+        }
+
+        .blog-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .blog-title a:hover {
+            color: var(--color-primary-blue);
+        }
+
+        .blog-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-meta i {
+            color: var(--color-primary-blue);
+        }
+
+        .blog-excerpt {
+            color: var(--color-text-muted);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .read-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--color-primary-blue), var(--color-accent-purple));
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-speed);
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(2, 189, 213, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Enhanced PWC Table */
+        .pwc-table-container {
+            background: var(--color-bg-primary);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px var(--color-shadow);
+            overflow: hidden;
+            margin: 40px 0;
+            border: 1px solid var(--color-border);
+        }
+
+        table.pwc-list {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--color-bg-primary);
+            margin: 0;
+        }
+
+        table.pwc-list th {
+            background: linear-gradient(135deg, var(--color-primary-blue), var(--color-accent-purple));
+            color: var(--color-text-light);
+            padding: 20px 15px;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+        }
+
+        table.pwc-list td {
+            padding: 15px;
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: middle;
+        }
+
+        tr:nth-of-type(even) {
+            background: var(--color-list-even);
+        }
+
+        tr:hover {
+            background: var(--color-hover-bg);
+            color: var(--color-text-light);
+            transform: scale(1.02);
+            transition: all var(--transition-speed);
+        }
+
+        .pwc-week {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary-blue);
+            text-align: center;
+            padding: 20px;
+            transition: all var(--transition-speed);
+        }
+
+        .pwc-week:hover {
+            color: var(--color-secondary-orange);
+            transform: scale(1.1);
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-accent-purple), var(--color-primary-blue));
+            color: var(--color-text-light);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--color-secondary-orange);
+            color: white;
+            padding: 16px 32px;
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all var(--transition-speed);
+            box-shadow: 0 8px 25px rgba(255, 127, 39, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 127, 39, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-bg-dark);
+            color: var(--color-text-light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--color-primary-blue);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all var(--transition-speed);
+        }
+
+        .social-links a:hover {
+            background: var(--color-secondary-orange);
+            transform: translateY(-3px);
+        }
+
+        /* Go to Top Button */
+        #goTopButton {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--color-primary-blue), var(--color-accent-purple));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(2, 189, 213, 0.3);
+            transition: all var(--transition-speed);
+        }
+
+        #goTopButton:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(2, 189, 213, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+            
+            .navbar-nav {
+                text-align: center;
+                margin-top: 20px;
+            }
+            
+            .footer-content {
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Code Styling */
+        code {
+            background: var(--color-bg-secondary);
+            color: var(--color-accent-purple);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--color-bg-dark);
+            color: var(--color-text-light);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        /* Language Tags */
+        .language-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .language-tag {
+            background: var(--color-accent-green);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Go to Top Button -->
+    <button onclick="goTop()" id="goTopButton" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Navigation -->
+    <section class="top-bar animated-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="#">
+                            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge Logo">
+                        </a>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navigation">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#home">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#chart">Chart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#champions">Champions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#challenges">Challenges</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#reviews">Reviews</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#blogs">Blogs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#contact">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content animate-fade-in">
+                <h1 class="hero-title">The Weekly Challenge</h1>
+                <p class="hero-subtitle">
+                    Join our community of programmers solving weekly challenges in Perl, Raku, and over 100 other programming languages. 
+                    Enhance your skills while contributing to an amazing collection of solutions.
+                </p>
+                <a href="#challenges" class="hero-cta">
+                    <i class="fas fa-rocket"></i>
+                    Start Your Journey
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page Header -->
+    <section class="global-page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block animate-slide-up">
+                        <h2 class="page-title">HTML Programming Solutions</h2>
+                        <p class="lead">Discover amazing HTML implementations and web development solutions from our community.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blogs" class="blog-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Guest Contributions Article -->
+                    <article class="blog-card animate-slide-up">
+                        <div class="blog-image">
+                            <a href="https://theweeklychallenge.org/blog/guest-contribution/">
+                                <img src="https://theweeklychallenge.org/images/blog/guest-contribution.jpg" alt="Guest Contributions">
+                            </a>
+                        </div>
+                        <div class="blog-content">
+                            <h2 class="blog-title">
+                                <a href="https://theweeklychallenge.org/blog/guest-contribution/">The Weekly Challenge - Guest Contributions</a>
+                            </h2>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> Wednesday, Oct 8, 2025</span>
+                                <span><i class="fas fa-user"></i> Mohammad Sajid Anwar</span>
+                                <span><i class="fas fa-tag"></i> Featured</span>
+                            </div>
+                            <p class="blog-excerpt">
+                                As you know, The Weekly Challenge primarily focuses on Perl and Raku. During Week #018, we received solutions in Python by Orestis Zekai - a pleasant surprise! Since then, our community has grown to include solutions in over 100 programming languages including HTML, JavaScript, Python, Rust, and many more.
+                            </p>
+                            <div class="language-tags">
+                                <span class="language-tag">HTML</span>
+                                <span class="language-tag">JavaScript</span>
+                                <span class="language-tag">Python</span>
+                                <span class="language-tag">Rust</span>
+                                <span class="language-tag">+96 more</span>
+                            </div>
+                            <a href="https://theweeklychallenge.org/blog/guest-contribution/" class="read-more-btn">
+                                <i class="fas fa-arrow-right"></i>
+                                Continue Reading
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Plan 2020 Article -->
+                    <article class="blog-card animate-slide-up">
+                        <div class="blog-image">
+                            <a href="https://theweeklychallenge.org/blog/plan-2020/">
+                                <img src="https://theweeklychallenge.org/images/blog/plan-2020.jpg" alt="Weekly Challenge 2020">
+                            </a>
+                        </div>
+                        <div class="blog-content">
+                            <h2 class="blog-title">
+                                <a href="https://theweeklychallenge.org/blog/plan-2020/">[ Perl | Raku | The ] Weekly Challenge - 2020</a>
+                            </h2>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> Tuesday, Nov 19, 2019</span>
+                                <span><i class="fas fa-user"></i> Mohammad S Anwar</span>
+                                <span><i class="fas fa-tag"></i> Planning</span>
+                            </div>
+                            <p class="blog-excerpt">
+                                It has been a wonderful journey so far in 2019. When I started in March, I didn't know it would take this shape. All credit goes to the support of the Perl/Raku community. Let me share the story with you all about working on "Perl Weekly Challenge" and "London Hack Day".
+                            </p>
+                            <div class="language-tags">
+                                <span class="language-tag">Perl</span>
+                                <span class="language-tag">Raku</span>
+                                <span class="language-tag">HTML</span>
+                                <span class="language-tag">C++</span>
+                                <span class="language-tag">Python</span>
+                            </div>
+                            <a href="https://theweeklychallenge.org/blog/plan-2020/" class="read-more-btn">
+                                <i class="fas fa-arrow-right"></i>
+                                Continue Reading
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block animate-fade-in">
+                        <h2 class="cta-title">SO WHAT DO YOU THINK?</h2>
+                        <p class="cta-subtitle">
+                            If you have any suggestions or ideas, we'd love to hear from you. 
+                            Join our community and start contributing today!
+                        </p>
+                        <a href="mailto:mohammad.anwar@yahoo.com" class="cta-button">
+                            <i class="fas fa-envelope"></i>
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>
+                        Copyright: <span>2019 - 2025</span> The Weekly Challenge. 
+                        Theme Design and Developed by <a href="http://www.Themefisher.com" target="_blank">Themefisher</a>.
+                    </p>
+                </div>
+                <div class="social-links">
+                    <a href="https://twitter.com/PerlWChallenge" target="_blank" title="Follow us on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="/rss.xml" target="_blank" title="RSS Feed">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                    <a href="https://github.com/manwar/perlweeklychallenge-club" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        // Enhanced scroll functionality
+        let topButton = document.getElementById("goTopButton");
+
+        window.onscroll = function() { 
+            scrollFunction();
+            updateNavbar();
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+                topButton.style.display = "block";
+            } else {
+                topButton.style.display = "none";
+            }
+        }
+
+        function goTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Enhanced navbar behavior
+        function updateNavbar() {
+            const navbar = document.querySelector('.top-bar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate-slide-up, .animate-fade-in');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                observer.observe(el);
+            });
+        });
+
+        // Enhanced toggle functionality for show more/less links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Guest Contributions toggle
+            const showMoreLinkGC = document.querySelector('.show-more-gc');
+            const showLessLinkGC = document.querySelector('.show-less-gc');
+            const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+            if (showMoreLinkGC) {
+                showMoreLinkGC.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    hiddenLinksGC.forEach(link => {
+                        link.style.display = 'list-item';
+                        link.style.animation = 'slideUp 0.3s ease-out';
+                    });
+                    showMoreLinkGC.style.display = 'none';
+                    showLessLinkGC.style.display = 'inline-flex';
+                });
+            }
+
+            if (showLessLinkGC) {
+                showLessLinkGC.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    hiddenLinksGC.forEach(link => {
+                        link.style.display = 'none';
+                    });
+                    showLessLinkGC.style.display = 'none';
+                    showMoreLinkGC.style.display = 'inline-flex';
+                });
+            }
+
+            // PWC toggle
+            const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+            const showLessLinkPWC = document.querySelector('.show-less-pwc');
+            const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+            if (showMoreLinkPWC) {
+                showMoreLinkPWC.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    hiddenLinksPWC.forEach(link => {
+                        link.style.display = 'list-item';
+                        link.style.animation = 'slideUp 0.3s ease-out';
+                    });
+                    showMoreLinkPWC.style.display = 'none';
+                    showLessLinkPWC.style.display = 'inline-flex';
+                });
+            }
+
+            if (showLessLinkPWC) {
+                showLessLinkPWC.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    hiddenLinksPWC.forEach(link => {
+                        link.style.display = 'none';
+                    });
+                    showLessLinkPWC.style.display = 'none';
+                    showMoreLinkPWC.style.display = 'inline-flex';
+                });
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
