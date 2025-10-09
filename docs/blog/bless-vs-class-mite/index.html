@@ -344,23 +344,36 @@ Role        <span style="color:#f92672">-</span> <span style="color:#66d9ef">for
     <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello &#34;</span>, $self<span style="color:#f92672">-&gt;</span>{name}, <span style="color:#e6db74">&#34;!\n&#34;</span>;
 }
 </code></pre></div><br>
+<h4 id="using-moo"><strong>Using Moo:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> MooPerson;
+<span style="color:#66d9ef">use</span> Moo;
+has <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">greet</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello &#34;</span>, $self<span style="color:#f92672">-&gt;</span>name, <span style="color:#e6db74">&#34;!\n&#34;</span>;
+}
+</code></pre></div><br>
 <h3 id="benchmark-script"><strong>Benchmark Script</strong></h3>
 <hr>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> main;
 <span style="color:#66d9ef">use</span> BlessPerson;
 <span style="color:#66d9ef">use</span> ClassPerson;
+<span style="color:#66d9ef">use</span> MooPerson;
 <span style="color:#66d9ef">use</span> Benchmark;
 
 timethese(<span style="color:#ae81ff">10_000_000</span>, {
     bless <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { BlessPerson<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Joe&#39;</span>)<span style="color:#f92672">-&gt;</span>greet; },
     class <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { ClassPerson<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Joe&#39;</span>)<span style="color:#f92672">-&gt;</span>greet; },
+    moo   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { MooPerson<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Joe&#39;</span>)<span style="color:#f92672">-&gt;</span>greet;   },
 });
 </code></pre></div><br>
 <h3 id="result"><strong>Result</strong></h3>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">000</span>,<span style="color:#ae81ff">000</span> iterations of bless, class<span style="color:#f92672">...</span>
-     bless:  <span style="color:#ae81ff">3</span> wallclock secs (<span style="color:#ae81ff">4.14</span> usr <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span> <span style="color:#ae81ff">4.14</span> CPU) @ 2,<span style="color:#ae81ff">415</span>,<span style="color:#ae81ff">458.94</span><span style="color:#f92672">/</span>s
-     class:  <span style="color:#ae81ff">4</span> wallclock secs (<span style="color:#ae81ff">5.20</span> usr <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span> <span style="color:#ae81ff">5.20</span> CPU) @ 1,<span style="color:#ae81ff">923</span>,<span style="color:#ae81ff">076</span><span style="color:#ae81ff">.92</span><span style="color:#f92672">/</span>s
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10000000</span> iterations of bless, class, moo<span style="color:#f92672">...</span>
+     bless:  <span style="color:#ae81ff">5</span> wallclock secs ( <span style="color:#ae81ff">4.32</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">4.32</span> CPU) @ 2314814<span style="color:#ae81ff">.81</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
+     class:  <span style="color:#ae81ff">6</span> wallclock secs ( <span style="color:#ae81ff">5.32</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">5.32</span> CPU) @ 1879699<span style="color:#ae81ff">.25</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
+       moo:  <span style="color:#ae81ff">7</span> wallclock secs ( <span style="color:#ae81ff">5.79</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">5.79</span> CPU) @ 1727115<span style="color:#ae81ff">.72</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
 </code></pre></div><br>
 <h3 id="comparison"><strong>Comparison</strong></h3>
 <hr>
@@ -369,11 +382,16 @@ timethese(<span style="color:#ae81ff">10_000_000</span>, {
 Boilerplate      Manual constructor     Auto<span style="color:#f92672">-</span>generated <span style="color:#66d9ef">new</span>()
 Structure        Minimal                Declarative
 Type checks      Manual                 Optional
-Speed            <span style="color:#f92672">~</span><span style="color:#ae81ff">2.41</span>M<span style="color:#e6db74">/s               ~1.92M/s</span>
+Speed            <span style="color:#f92672">~</span><span style="color:#ae81ff">2.31</span>M<span style="color:#e6db74">/s               ~1.87M/s</span>
 </code></pre></div><br>
 <h3 id="summary"><strong>Summary</strong></h3>
 <hr>
-<p><code>Class::Mite</code> trades <code>~20–25%</code> performance for <code>clarity</code> and <code>reduced boilerplate</code>. For most applications, that’s a win.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Framework    Ops<span style="color:#f92672">/</span>sec    Relative    Difference
+bless        <span style="color:#ae81ff">2.31</span>M      <span style="color:#ae81ff">100</span>%        <span style="color:#960050;background-color:#1e0010">—</span>
+Class        <span style="color:#ae81ff">1.87</span>M      <span style="color:#f92672">~</span><span style="color:#ae81ff">81</span>%        <span style="color:#960050;background-color:#1e0010">−</span>19%
+Moo          <span style="color:#ae81ff">1.72</span>M      <span style="color:#f92672">~</span><span style="color:#ae81ff">75</span>%        <span style="color:#960050;background-color:#1e0010">−</span>25%
+</code></pre></div><br>
+<p><code>Class</code> is <code>~20%</code> slower than raw <code>bless</code> and roughly <code>8–9%</code> faster than <code>Moo</code></p>
 <br>
 <h3 id="b-inheritance-extends"><strong>B) Inheritance (extends)</strong></h3>
 <hr>
@@ -410,23 +428,40 @@ Speed            <span style="color:#f92672">~</span><span style="color:#ae81ff"
 <span style="color:#66d9ef">use</span> Class;
 extends <span style="color:#e6db74">qw/ClassParent/</span>;
 </code></pre></div><br>
+<h4 id="using-moo-1"><strong>Using Moo:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> MooParent;
+<span style="color:#66d9ef">use</span> Moo;
+has <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{name}, <span style="color:#e6db74">&#34; neigh!\n&#34;</span>;
+}
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> MooChild;
+<span style="color:#66d9ef">use</span> Moo;
+extends <span style="color:#e6db74">qw/MooParent/</span>;
+</code></pre></div><br>
 <h3 id="benchmark-script-1"><strong>Benchmark Script</strong></h3>
 <hr>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> main;
 <span style="color:#66d9ef">use</span> BlessChild;
 <span style="color:#66d9ef">use</span> ClassChild;
+<span style="color:#66d9ef">use</span> MooChild;
 <span style="color:#66d9ef">use</span> Benchmark;
 
 timethese(<span style="color:#ae81ff">10_000_000</span>, {
-    bless <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { BlessChild<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tommy&#39;</span>)<span style="color:#f92672">-&gt;</span>speak; },
-    class <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { ClassChild<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tommy&#39;</span>)<span style="color:#f92672">-&gt;</span>speak; },
+    bless <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { BlessChild<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tom&#39;</span>)<span style="color:#f92672">-&gt;</span>speak; },
+    class <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { ClassChild<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tom&#39;</span>)<span style="color:#f92672">-&gt;</span>speak; },
+    moo   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { MooChild<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tom&#39;</span>)<span style="color:#f92672">-&gt;</span>speak;   },
 });
 </code></pre></div><br>
 <h3 id="result-1"><strong>Result</strong></h3>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">000</span>,<span style="color:#ae81ff">000</span> iterations of bless, class<span style="color:#f92672">...</span>
-     bless:  <span style="color:#ae81ff">3</span> wallclock secs (<span style="color:#ae81ff">4.06</span> usr <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span> <span style="color:#ae81ff">4.06</span> CPU) @ 2,<span style="color:#ae81ff">463</span>,<span style="color:#ae81ff">054</span><span style="color:#ae81ff">.19</span><span style="color:#f92672">/</span>s
-     class:  <span style="color:#ae81ff">4</span> wallclock secs (<span style="color:#ae81ff">5.13</span> usr <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span> <span style="color:#ae81ff">5.13</span> CPU) @ 1,<span style="color:#ae81ff">949</span>,<span style="color:#ae81ff">317.74</span><span style="color:#f92672">/</span>s
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10000000</span> iterations of bless, class, moo<span style="color:#f92672">...</span>
+     bless:  <span style="color:#ae81ff">5</span> wallclock secs ( <span style="color:#ae81ff">4.11</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">4.11</span> CPU) @ 2433090<span style="color:#ae81ff">.02</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
+     class:  <span style="color:#ae81ff">6</span> wallclock secs ( <span style="color:#ae81ff">5.12</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">5.12</span> CPU) @ 1953125<span style="color:#ae81ff">.00</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
+       moo:  <span style="color:#ae81ff">5</span> wallclock secs ( <span style="color:#ae81ff">5.30</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">5.30</span> CPU) @ 1886792<span style="color:#ae81ff">.45</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
 </code></pre></div><br>
 <h3 id="comparison-1"><strong>Comparison</strong></h3>
 <hr>
@@ -480,23 +515,43 @@ with <span style="color:#e6db74">qw/ClassRole/</span>;
     <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{name}, <span style="color:#e6db74">&#34; bark!\n&#34;</span>;
 }
 </code></pre></div><br>
+<h4 id="using-moorole"><strong>Using Moo::Role:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> MooRole;
+
+<span style="color:#66d9ef">use</span> Moo::Role;
+requires <span style="color:#e6db74">qw/speak/</span>;
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> MooDog;
+
+<span style="color:#66d9ef">use</span> Moo;
+has <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
+with <span style="color:#e6db74">qw/MooRole/</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{name}, <span style="color:#e6db74">&#34; neigh!\n&#34;</span>;
+}
+</code></pre></div><br>
 <h3 id="benchmark-script-2"><strong>Benchmark Script</strong></h3>
 <hr>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> main;
 <span style="color:#66d9ef">use</span> BlessDog;
 <span style="color:#66d9ef">use</span> ClassDog;
+<span style="color:#66d9ef">use</span> MooDog;
 <span style="color:#66d9ef">use</span> Benchmark;
 
 timethese(<span style="color:#ae81ff">10_000_000</span>, {
     bless <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { BlessDog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tommy&#39;</span>)<span style="color:#f92672">-&gt;</span>speak; },
     class <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { ClassDog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tommy&#39;</span>)<span style="color:#f92672">-&gt;</span>speak; },
+    moo   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { MooDog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tommy&#39;</span>)<span style="color:#f92672">-&gt;</span>speak;   },
 });
 </code></pre></div><br>
 <h3 id="result-2"><strong>Result</strong></h3>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10000000</span> iterations of bless, class<span style="color:#f92672">...</span>
-     bless:  <span style="color:#ae81ff">4</span> wallclock secs ( <span style="color:#ae81ff">4.03</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">4.03</span> CPU) @ 2461389<span style="color:#ae81ff">.58</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
-     class:  <span style="color:#ae81ff">4</span> wallclock secs ( <span style="color:#ae81ff">5.09</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">5.09</span> CPU) @ 1964636<span style="color:#ae81ff">.54</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10000000</span> iterations of bless, class, moo<span style="color:#f92672">...</span>
+     bless:  <span style="color:#ae81ff">3</span> wallclock secs ( <span style="color:#ae81ff">4.15</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">4.15</span> CPU) @ 2409638<span style="color:#ae81ff">.55</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
+     class:  <span style="color:#ae81ff">6</span> wallclock secs ( <span style="color:#ae81ff">5.17</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">5.17</span> CPU) @ 1934235<span style="color:#ae81ff">.98</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
+       moo:  <span style="color:#ae81ff">5</span> wallclock secs ( <span style="color:#ae81ff">4.64</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">4.64</span> CPU) @ 2155172<span style="color:#ae81ff">.41</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
 </code></pre></div><br>
 <h3 id="comparison-2"><strong>Comparison</strong></h3>
 <hr>
@@ -541,7 +596,7 @@ Overhead        Minimal             Slight
 
 has name    <span style="color:#f92672">=&gt;</span> (required <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
 has age     <span style="color:#f92672">=&gt;</span> (required <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
-has country <span style="color:#f92672">=&gt;</span> (default  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;UK&#39;</span>);
+has country <span style="color:#f92672">=&gt;</span> (default  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#e6db74">&#39;UK&#39;</span> });
 
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">desc</span> {
     <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
@@ -549,26 +604,46 @@ has country <span style="color:#f92672">=&gt;</span> (default  <span style="colo
         $self<span style="color:#f92672">-&gt;</span>{name}, $self<span style="color:#f92672">-&gt;</span>{age}, $self<span style="color:#f92672">-&gt;</span>{country});
 }
 </code></pre></div><br>
+<h4 id="using-moo-2"><strong>Using Moo:</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> MooPerson;
+<span style="color:#66d9ef">use</span> Moo;
+
+has name    <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>, required <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>   );
+has age     <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>, required <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>   );
+has country <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>, default  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#e6db74">&#39;UK&#39;</span>});
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">desc</span> {
+    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#34;%s&#39;s age is %d old from %s.\n&#34;</span>,
+        $self<span style="color:#f92672">-&gt;</span>{name},
+        $self<span style="color:#f92672">-&gt;</span>{age},
+        $self<span style="color:#f92672">-&gt;</span>{country});
+}
+</code></pre></div><br>
 <h3 id="benchmark-script-3"><strong>Benchmark Script</strong></h3>
 <hr>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> main;
 <span style="color:#66d9ef">use</span> BlessPerson;
 <span style="color:#66d9ef">use</span> ClassPerson;
+<span style="color:#66d9ef">use</span> MooPerson;
 <span style="color:#66d9ef">use</span> Benchmark;
 
 <span style="color:#66d9ef">my</span> $bless_person <span style="color:#f92672">=</span> BlessPerson<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tom&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">20</span>);
 <span style="color:#66d9ef">my</span> $class_person <span style="color:#f92672">=</span> ClassPerson<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tom&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">20</span>);
+<span style="color:#66d9ef">my</span> $moo_person   <span style="color:#f92672">=</span> MooPerson<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tom&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">20</span>);
 
 timethese(<span style="color:#ae81ff">10_000_000</span>, {
     bless <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $bless_person<span style="color:#f92672">-&gt;</span>desc; },
     class <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $class_person<span style="color:#f92672">-&gt;</span>desc; },
+    moo   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $moo_person<span style="color:#f92672">-&gt;</span>desc;   },
 });
 </code></pre></div><br>
 <h3 id="result-3"><strong>Result</strong></h3>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10000000</span> iterations of bless, class<span style="color:#f92672">...</span>
-     bless:  <span style="color:#ae81ff">2</span> wallclock secs ( <span style="color:#ae81ff">1.54</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">1.54</span> CPU) @ 6493506<span style="color:#ae81ff">.49</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
-     class:  <span style="color:#ae81ff">2</span> wallclock secs ( <span style="color:#ae81ff">1.57</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">1.57</span> CPU) @ 6369426<span style="color:#ae81ff">.75</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Benchmark: timing <span style="color:#ae81ff">10000000</span> iterations of bless, class, moo<span style="color:#f92672">...</span>
+     bless:  <span style="color:#ae81ff">2</span> wallclock secs ( <span style="color:#ae81ff">1.61</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">1.61</span> CPU) @ 6211180<span style="color:#ae81ff">.12</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
+     class:  <span style="color:#ae81ff">1</span> wallclock secs ( <span style="color:#ae81ff">1.63</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">1.63</span> CPU) @ 6134969<span style="color:#ae81ff">.33</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
+       moo:  <span style="color:#ae81ff">2</span> wallclock secs ( <span style="color:#ae81ff">1.62</span> usr <span style="color:#f92672">+</span>  <span style="color:#ae81ff">0.00</span> sys <span style="color:#f92672">=</span>  <span style="color:#ae81ff">1.62</span> CPU) @ 6172839<span style="color:#ae81ff">.51</span><span style="color:#f92672">/</span>s (n<span style="color:#f92672">=</span><span style="color:#ae81ff">10000000</span>)
 </code></pre></div><br>
 <h3 id="comparison-3"><strong>Comparison</strong></h3>
 <hr>
@@ -586,12 +661,21 @@ Performance           Equal         Equal
 <br>
 <h3 id="summary-of-benchmarks"><strong>Summary of Benchmarks</strong></h3>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Test            bless (ops<span style="color:#e6db74">/sec)    Class/</span>Role (ops<span style="color:#f92672">/</span>sec)       Overhead
-<span style="color:#f92672">-----------------------------------------------------------------------</span>
-Basic class     <span style="color:#ae81ff">2.41</span>M              <span style="color:#ae81ff">1.92</span>M                      <span style="color:#f92672">+</span><span style="color:#ae81ff">27</span>%
-Inheritance     <span style="color:#ae81ff">2.46</span>M              <span style="color:#ae81ff">1.95</span>M                      <span style="color:#f92672">+</span><span style="color:#ae81ff">26</span>%
-Role            <span style="color:#ae81ff">2.46</span>M              <span style="color:#ae81ff">1.96</span>M                      <span style="color:#f92672">+</span><span style="color:#ae81ff">25</span>%
-Attributes      <span style="color:#ae81ff">6.41</span>M              <span style="color:#ae81ff">6.33</span>M                      <span style="color:#960050;background-color:#1e0010">≈</span><span style="color:#ae81ff">0</span>%
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">                               Bless    Class    Moo      Fastest    Class vs Moo   Class vs Bless
+                               ops<span style="color:#e6db74">/s    ops/s</span>    ops<span style="color:#f92672">/</span>s
+<span style="color:#f92672">--------------------------------------------------------------------------------------------------</span>
+A) Basic Class Definition      <span style="color:#ae81ff">2.31</span>M    <span style="color:#ae81ff">1.87</span>M    <span style="color:#ae81ff">1.72</span>M    Bless      <span style="color:#f92672">+</span><span style="color:#ae81ff">8.8</span>% faster   <span style="color:#ae81ff">19</span>% slower
+B) Inheritance (extends)       <span style="color:#ae81ff">2.43</span>M    <span style="color:#ae81ff">1.95</span>M    <span style="color:#ae81ff">1.88</span>M    Bless      <span style="color:#f92672">+</span><span style="color:#ae81ff">3.5</span>% faster   <span style="color:#ae81ff">19.7</span>% slower
+C) Roles (with)                <span style="color:#ae81ff">2.40</span>M    <span style="color:#ae81ff">1.93</span>M    <span style="color:#ae81ff">2.15</span>M    Bless      <span style="color:#ae81ff">10.2</span>% slower   <span style="color:#ae81ff">19.7</span>% slower
+D) Attributes (method call)    <span style="color:#ae81ff">6.21</span>M    <span style="color:#ae81ff">6.13</span>M    <span style="color:#ae81ff">6.17</span>M    Bless      <span style="color:#f92672">~</span>equal (<span style="color:#960050;background-color:#1e0010">±</span><span style="color:#ae81ff">1</span>%)   <span style="color:#ae81ff">1.2</span>% slower
+</code></pre></div><br>
+<h3 id="average-performance"><strong>Average Performance</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">System    Avg ops<span style="color:#f92672">/</span>sec    Relative to Bless    Relative to Moo
+<span style="color:#f92672">-------------------------------------------------------------</span>
+Bless     <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">842</span>,<span style="color:#ae81ff">681</span>      <span style="color:#ae81ff">100</span>%                 <span style="color:#960050;background-color:#1e0010">+</span>14<span style="color:#ae81ff">.6</span>%
+Class     <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">975</span>,<span style="color:#ae81ff">007</span>      <span style="color:#ae81ff">77</span>%                  <span style="color:#960050;background-color:#1e0010">+</span>3<span style="color:#ae81ff">.6</span>%
+Moo       <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">985</span>,<span style="color:#ae81ff">980</span>      <span style="color:#ae81ff">78</span>%                  100%
 </code></pre></div><br>
 <h3 id="interpretation"><strong>Interpretation</strong></h3>
 <hr>

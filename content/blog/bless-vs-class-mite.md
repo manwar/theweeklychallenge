@@ -92,6 +92,21 @@ sub greet {
 
 <br>
 
+#### **Using Moo:**
+
+```perl
+package MooPerson;
+use Moo;
+has 'name' => (is => 'rw');
+
+sub greet {
+    my ($self) = @_;
+    return "Hello ", $self->name, "!\n";
+}
+```
+
+<br>
+
 ### **Benchmark Script**
 ***
 
@@ -99,11 +114,13 @@ sub greet {
 package main;
 use BlessPerson;
 use ClassPerson;
+use MooPerson;
 use Benchmark;
 
 timethese(10_000_000, {
     bless => sub { BlessPerson->new(name => 'Joe')->greet; },
     class => sub { ClassPerson->new(name => 'Joe')->greet; },
+    moo   => sub { MooPerson->new(name => 'Joe')->greet;   },
 });
 ```
 
@@ -113,9 +130,10 @@ timethese(10_000_000, {
 ***
 
 ```perl
-Benchmark: timing 10,000,000 iterations of bless, class...
-     bless:  3 wallclock secs (4.14 usr + 0.00 sys = 4.14 CPU) @ 2,415,458.94/s
-     class:  4 wallclock secs (5.20 usr + 0.00 sys = 5.20 CPU) @ 1,923,076.92/s
+Benchmark: timing 10000000 iterations of bless, class, moo...
+     bless:  5 wallclock secs ( 4.32 usr +  0.00 sys =  4.32 CPU) @ 2314814.81/s (n=10000000)
+     class:  6 wallclock secs ( 5.32 usr +  0.00 sys =  5.32 CPU) @ 1879699.25/s (n=10000000)
+       moo:  7 wallclock secs ( 5.79 usr +  0.00 sys =  5.79 CPU) @ 1727115.72/s (n=10000000)
 ```
 
 <br>
@@ -129,7 +147,7 @@ Aspect           bless                  Class
 Boilerplate      Manual constructor     Auto-generated new()
 Structure        Minimal                Declarative
 Type checks      Manual                 Optional
-Speed            ~2.41M/s               ~1.92M/s
+Speed            ~2.31M/s               ~1.87M/s
 ```
 
 <br>
@@ -137,7 +155,16 @@ Speed            ~2.41M/s               ~1.92M/s
 ### **Summary**
 ***
 
-`Class::Mite` trades `~20–25%` performance for `clarity` and `reduced boilerplate`. For most applications, that’s a win.
+```perl
+Framework    Ops/sec    Relative    Difference
+bless        2.31M      100%        —
+Class        1.87M      ~81%        −19%
+Moo          1.72M      ~75%        −25%
+```
+
+<br>
+
+`Class` is `~20%` slower than raw `bless` and roughly `8–9%` faster than `Moo`
 
 <br>
 
@@ -196,6 +223,29 @@ extends qw/ClassParent/;
 
 <br>
 
+#### **Using Moo:**
+
+```perl
+package MooParent;
+use Moo;
+has 'name' => (is => 'rw');
+
+sub speak {
+    my ($self) = @_;
+    return $self->{name}, " neigh!\n";
+}
+```
+
+<br>
+
+```perl
+package MooChild;
+use Moo;
+extends qw/MooParent/;
+```
+
+<br>
+
 ### **Benchmark Script**
 ***
 
@@ -203,11 +253,13 @@ extends qw/ClassParent/;
 package main;
 use BlessChild;
 use ClassChild;
+use MooChild;
 use Benchmark;
 
 timethese(10_000_000, {
-    bless => sub { BlessChild->new(name => 'Tommy')->speak; },
-    class => sub { ClassChild->new(name => 'Tommy')->speak; },
+    bless => sub { BlessChild->new(name => 'Tom')->speak; },
+    class => sub { ClassChild->new(name => 'Tom')->speak; },
+    moo   => sub { MooChild->new(name => 'Tom')->speak;   },
 });
 ```
 
@@ -217,9 +269,10 @@ timethese(10_000_000, {
 ***
 
 ```perl
-Benchmark: timing 10,000,000 iterations of bless, class...
-     bless:  3 wallclock secs (4.06 usr + 0.00 sys = 4.06 CPU) @ 2,463,054.19/s
-     class:  4 wallclock secs (5.13 usr + 0.00 sys = 5.13 CPU) @ 1,949,317.74/s
+Benchmark: timing 10000000 iterations of bless, class, moo...
+     bless:  5 wallclock secs ( 4.11 usr +  0.00 sys =  4.11 CPU) @ 2433090.02/s (n=10000000)
+     class:  6 wallclock secs ( 5.12 usr +  0.00 sys =  5.12 CPU) @ 1953125.00/s (n=10000000)
+       moo:  5 wallclock secs ( 5.30 usr +  0.00 sys =  5.30 CPU) @ 1886792.45/s (n=10000000)
 ```
 
 <br>
@@ -305,6 +358,32 @@ sub speak {
 
 <br>
 
+#### **Using Moo::Role:**
+
+```perl
+package MooRole;
+
+use Moo::Role;
+requires qw/speak/;
+```
+
+<br>
+
+```perl
+package MooDog;
+
+use Moo;
+has 'name' => (is => 'rw');
+with qw/MooRole/;
+
+sub speak {
+    my ($self) = @_;
+    return $self->{name}, " neigh!\n";
+}
+```
+
+<br>
+
 ### **Benchmark Script**
 ***
 
@@ -312,11 +391,13 @@ sub speak {
 package main;
 use BlessDog;
 use ClassDog;
+use MooDog;
 use Benchmark;
 
 timethese(10_000_000, {
     bless => sub { BlessDog->new(name => 'Tommy')->speak; },
     class => sub { ClassDog->new(name => 'Tommy')->speak; },
+    moo   => sub { MooDog->new(name => 'Tommy')->speak;   },
 });
 ```
 
@@ -326,9 +407,10 @@ timethese(10_000_000, {
 ***
 
 ```perl
-Benchmark: timing 10000000 iterations of bless, class...
-     bless:  4 wallclock secs ( 4.03 usr +  0.00 sys =  4.03 CPU) @ 2461389.58/s (n=10000000)
-     class:  4 wallclock secs ( 5.09 usr +  0.00 sys =  5.09 CPU) @ 1964636.54/s (n=10000000)
+Benchmark: timing 10000000 iterations of bless, class, moo...
+     bless:  3 wallclock secs ( 4.15 usr +  0.00 sys =  4.15 CPU) @ 2409638.55/s (n=10000000)
+     class:  6 wallclock secs ( 5.17 usr +  0.00 sys =  5.17 CPU) @ 1934235.98/s (n=10000000)
+       moo:  5 wallclock secs ( 4.64 usr +  0.00 sys =  4.64 CPU) @ 2155172.41/s (n=10000000)
 ```
 
 <br>
@@ -393,12 +475,33 @@ use Class::More;
 
 has name    => (required => 1);
 has age     => (required => 1);
-has country => (default  => 'UK');
+has country => (default  => sub { 'UK' });
 
 sub desc {
     my ($self) = @_;
     return sprintf("%s's age is %d old from %s.\n",
         $self->{name}, $self->{age}, $self->{country});
+}
+```
+
+<br>
+
+#### **Using Moo:**
+
+```perl
+package MooPerson;
+use Moo;
+
+has name    => (is => 'rw', required => 1   );
+has age     => (is => 'rw', required => 1   );
+has country => (is => 'rw', default  => sub { 'UK'});
+
+sub desc {
+    my ($self) = @_;
+    return sprintf("%s's age is %d old from %s.\n",
+        $self->{name},
+        $self->{age},
+        $self->{country});
 }
 ```
 
@@ -411,14 +514,17 @@ sub desc {
 package main;
 use BlessPerson;
 use ClassPerson;
+use MooPerson;
 use Benchmark;
 
 my $bless_person = BlessPerson->new(name => 'Tom', age => 20);
 my $class_person = ClassPerson->new(name => 'Tom', age => 20);
+my $moo_person   = MooPerson->new(name => 'Tom', age => 20);
 
 timethese(10_000_000, {
     bless => sub { $bless_person->desc; },
     class => sub { $class_person->desc; },
+    moo   => sub { $moo_person->desc;   },
 });
 ```
 
@@ -428,9 +534,10 @@ timethese(10_000_000, {
 ***
 
 ```perl
-Benchmark: timing 10000000 iterations of bless, class...
-     bless:  2 wallclock secs ( 1.54 usr +  0.00 sys =  1.54 CPU) @ 6493506.49/s (n=10000000)
-     class:  2 wallclock secs ( 1.57 usr +  0.00 sys =  1.57 CPU) @ 6369426.75/s (n=10000000)
+Benchmark: timing 10000000 iterations of bless, class, moo...
+     bless:  2 wallclock secs ( 1.61 usr +  0.00 sys =  1.61 CPU) @ 6211180.12/s (n=10000000)
+     class:  1 wallclock secs ( 1.63 usr +  0.00 sys =  1.63 CPU) @ 6134969.33/s (n=10000000)
+       moo:  2 wallclock secs ( 1.62 usr +  0.00 sys =  1.62 CPU) @ 6172839.51/s (n=10000000)
 ```
 
 <br>
@@ -461,12 +568,26 @@ Once the object is built, `accessors` are plain `Perl` methods — no runtime pe
 ***
 
 ```perl
-Test            bless (ops/sec)    Class/Role (ops/sec)       Overhead
------------------------------------------------------------------------
-Basic class     2.41M              1.92M                      +27%
-Inheritance     2.46M              1.95M                      +26%
-Role            2.46M              1.96M                      +25%
-Attributes      6.41M              6.33M                      ≈0%
+                               Bless    Class    Moo      Fastest    Class vs Moo   Class vs Bless
+                               ops/s    ops/s    ops/s
+--------------------------------------------------------------------------------------------------
+A) Basic Class Definition      2.31M    1.87M    1.72M    Bless      +8.8% faster   19% slower
+B) Inheritance (extends)       2.43M    1.95M    1.88M    Bless      +3.5% faster   19.7% slower
+C) Roles (with)                2.40M    1.93M    2.15M    Bless      10.2% slower   19.7% slower
+D) Attributes (method call)    6.21M    6.13M    6.17M    Bless      ~equal (±1%)   1.2% slower
+```
+
+<br>
+
+### **Average Performance**
+***
+
+```perl
+System    Avg ops/sec    Relative to Bless    Relative to Moo
+-------------------------------------------------------------
+Bless     3,842,681      100%                 +14.6%
+Class     2,975,007      77%                  +3.6%
+Moo       2,985,980      78%                  100%
 ```
 
 <br>
