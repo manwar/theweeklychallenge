@@ -327,7 +327,7 @@ timethese(10_000_000, {
 
 ```perl
 Benchmark: timing 10000000 iterations of bless, class...
-     bless:  4 wallclock secs ( 4.03 usr +  0.00 sys =  4.03 CPU) @ 2481389.58/s (n=10000000)
+     bless:  4 wallclock secs ( 4.03 usr +  0.00 sys =  4.03 CPU) @ 2461389.58/s (n=10000000)
      class:  4 wallclock secs ( 5.09 usr +  0.00 sys =  5.09 CPU) @ 1964636.54/s (n=10000000)
 ```
 
