@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - 343"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/perl-weekly-challenge-343/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="The Weekly Challenge - 343"/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="The Weekly Challenge - 343">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/perl-weekly-challenge-343/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Weekly Challenge - 343</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>The Weekly Challenge - 343</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Oct 13, 2025</span>|
+                        <span> Tags:
+                            Perl, Raku
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/twc-logo.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h2 id="table-of-contents">TABLE OF CONTENTS</h2>
+<hr>
+<h3 id="nbspnbsp1-headlinesheadlines">  1. <a href="#HEADLINES">HEADLINES</a></h3>
+<h3 id="nbspnbsp2-sponsorsponsor">  2. <a href="#SPONSOR">SPONSOR</a></h3>
+<h3 id="nbspnbsp3-recaprecap">  3. <a href="#RECAP">RECAP</a></h3>
+<h3 id="nbspnbsp4-perl-reviewperlreview">  4. <a href="#PERLREVIEW">PERL REVIEW</a></h3>
+<h3 id="nbspnbsp5-raku-reviewrakureview">  5. <a href="#RAKUREVIEW">RAKU REVIEW</a></h3>
+<h3 id="nbspnbsp6-chartchart">  6. <a href="#CHART">CHART</a></h3>
+<h3 id="nbspnbsp7-new-membersnewmembers">  7. <a href="#NEWMEMBERS">NEW MEMBERS</a></h3>
+<h3 id="nbspnbsp8-guestsguests">  8. <a href="#GUESTS">GUESTS</a></h3>
+<h3 id="nbspnbsp9-task-1-zero-friendtask1">  9. <a href="#TASK1">TASK #1: Zero Friend</a></h3>
+<h3 id="10-task-2-champion-teamtask2">10. <a href="#TASK2">TASK #2: Champion Team</a></h3>
+<br>
+<h2 id="HEADLINES">HEADLINES</h2>
+<hr>
+<p>Welcome to the <code>Week #343</code> of <code>The Weekly Challenge</code>.</p>
+<p>Thank you, <code>Ryan Thompson</code>, for back to back contributions.</p>
+<p>I have managed to contribute too, this time added <code>Raku</code> to the list as well, in addition to <code>Perl</code> and <code>Python</code>. I had a very busy last week, still found time luckily.</p>
+<p>Are you guys taking part in <code>Hacktoberfest</code>?</p>
+<p>Well, if you are unaware then let me tell you, <code>The Weekly Challenge</code>, is participating this year too like last time. So that means, your pull request should technical count towards the minimum pull request submission criteria. There was a time when I used to take part full on, not anymore. I would love to see, how many of <code>Team PWC</code> members are actively taking part in <code>Hacktoberfest</code>.</p>
+<p>Please don&rsquo;t push yourself too hard. Take it easy and enjoy the process.</p>
+<h3 id="perl">Perl</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> Test::More;
+
+<span style="color:#66d9ef">my</span> @examples <span style="color:#f92672">=</span> (
+    [<span style="color:#e6db74">&#34;a0b1c2&#34;</span>,  <span style="color:#e6db74">&#34;0a1b2c&#34;</span> ],
+    [<span style="color:#e6db74">&#34;abc12&#34;</span>,   <span style="color:#e6db74">&#34;a1b2c&#34;</span>  ],
+    [<span style="color:#e6db74">&#34;0a2b1c3&#34;</span>, <span style="color:#e6db74">&#34;0a1b2c3&#34;</span>],
+    [<span style="color:#e6db74">&#34;1a23&#34;</span>,    <span style="color:#e6db74">&#34;&#34;</span>       ],
+    [<span style="color:#e6db74">&#34;ab123&#34;</span>,   <span style="color:#e6db74">&#34;1a2b3&#34;</span>  ],
+);
+
+<span style="color:#66d9ef">for</span> (@examples) {
+    is(balance_string($_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]), $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+}
+
+done_testing;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balance_string</span>($s) {
+    <span style="color:#75715e"># Extract all digits and sort them</span>
+    <span style="color:#66d9ef">my</span> @d <span style="color:#f92672">=</span> sort grep <span style="color:#e6db74">/\d/</span>, split <span style="color:#e6db74">//</span>, $s;
+    <span style="color:#75715e"># Extract all letters and sort them</span>
+    <span style="color:#66d9ef">my</span> @l <span style="color:#f92672">=</span> sort grep <span style="color:#e6db74">/\D/</span>, split <span style="color:#e6db74">//</span>, $s;
+
+    <span style="color:#75715e"># Return empty string if impossible</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">if</span> abs(@d <span style="color:#f92672">-</span> @l) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#75715e"># If more digits than letters:</span>
+    @d <span style="color:#f92672">&gt;</span> @l ?
+        <span style="color:#75715e">#   Join all elements into a string</span>
+        join <span style="color:#e6db74">&#34;&#34;</span>,
+        <span style="color:#75715e">#   For each index: digit + letter (or empty if no letter)</span>
+        map $d[$_] <span style="color:#f92672">.</span> ($l[$_] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;&#34;</span>),
+        <span style="color:#75715e">#   Iterate through all digit indices</span>
+        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#d
+    :
+    <span style="color:#75715e"># If more letters than digits:</span>
+    @l <span style="color:#f92672">&gt;</span> @d ?
+        <span style="color:#75715e">#   Join all elements into a string</span>
+        join <span style="color:#e6db74">&#34;&#34;</span>,
+        <span style="color:#75715e">#   For each index: letter + digit (or empty if no digit)</span>
+        map $l[$_] <span style="color:#f92672">.</span> ($d[$_] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;&#34;</span>),
+        <span style="color:#75715e">#   Iterate through all letter indices</span>
+        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#l
+    <span style="color:#75715e"># Else (equal counts):</span>
+    :
+    <span style="color:#75715e"># If first digit &lt; first letter lexicographically:</span>
+    $d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">lt</span> $l[<span style="color:#ae81ff">0</span>] ?
+        <span style="color:#75715e">#   Join all elements into a string</span>
+        join <span style="color:#e6db74">&#34;&#34;</span>,
+        <span style="color:#75715e">#   For each index: digit + letter</span>
+        map $d[$_] <span style="color:#f92672">.</span> $l[$_],
+        <span style="color:#75715e">#   Iterate through all indices (both arrays same size)</span>
+        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#d
+    :   <span style="color:#75715e"># Else:</span>
+        <span style="color:#75715e">#   Join all elements into a string</span>
+        join <span style="color:#e6db74">&#34;&#34;</span>,
+        <span style="color:#75715e">#   For each index: letter + digit</span>
+        map $l[$_] <span style="color:#f92672">.</span> $d[$_],
+        <span style="color:#75715e">#   Iterate through all indices (both arrays same size)</span>
+        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#d
+}
+</code></pre></div><br>
+<h3 id="raku">Raku</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e">#!/usr/bin/env raku</span>
+
+<span style="color:#66d9ef">my</span> @examples <span style="color:#f92672">=</span> (
+    [<span style="color:#e6db74">&#34;a0b1c2&#34;</span>,  <span style="color:#e6db74">&#34;0a1b2c&#34;</span> ],
+    [<span style="color:#e6db74">&#34;abc12&#34;</span>,   <span style="color:#e6db74">&#34;a1b2c&#34;</span>  ],
+    [<span style="color:#e6db74">&#34;0a2b1c3&#34;</span>, <span style="color:#e6db74">&#34;0a1b2c3&#34;</span>],
+    [<span style="color:#e6db74">&#34;1a23&#34;</span>,    <span style="color:#e6db74">&#34;&#34;</span>       ],
+    [<span style="color:#e6db74">&#34;ab123&#34;</span>,   <span style="color:#e6db74">&#34;1a2b3&#34;</span>  ],
+);
+
+<span style="color:#66d9ef">for</span> @examples <span style="color:#f92672">-&gt;</span> @example {
+    <span style="color:#66d9ef">my</span> ($input, $expected) <span style="color:#f92672">=</span> @example;
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> balance<span style="color:#f92672">-</span>string($input);
+    say <span style="color:#e6db74">&#34;Pass: {$result eq $expected}&#34;</span>;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balance</span>-string(Str $s) {
+    <span style="color:#75715e"># Extract all digits and sort them</span>
+    <span style="color:#66d9ef">my</span> @d <span style="color:#f92672">=</span> $s<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>grep({ <span style="color:#e6db74">/&lt;digit&gt;/</span> })<span style="color:#f92672">.</span>sort;
+    <span style="color:#75715e"># Extract all letters and sort them</span>
+    <span style="color:#66d9ef">my</span> @l <span style="color:#f92672">=</span> $s<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>grep({ <span style="color:#e6db74">/&lt;alpha&gt;/</span> })<span style="color:#f92672">.</span>sort;
+
+    <span style="color:#75715e"># Return empty string if impossible</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">if</span> abs(@d<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> @l<span style="color:#f92672">.</span>elems) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#75715e"># If more digits than letters:</span>
+    <span style="color:#66d9ef">if</span> @d<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> @l<span style="color:#f92672">.</span>elems {
+        <span style="color:#75715e"># Join all elements into a string</span>
+        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
+            <span style="color:#75715e"># For each index: digit + letter (or empty if no letter)</span>
+            map { @d[$_] <span style="color:#f92672">~</span> (@l[$_] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span>) },
+            <span style="color:#75715e"># Iterate through all digit indices</span>
+            <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@d<span style="color:#f92672">.</span>elems;
+    }
+    <span style="color:#75715e"># Else if more letters than digits:</span>
+    <span style="color:#66d9ef">elsif</span> @l<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> @d<span style="color:#f92672">.</span>elems {
+        <span style="color:#75715e"># Join all elements into a string</span>
+        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
+            <span style="color:#75715e"># For each index: letter + digit (or empty if no digit)</span>
+            map { @l[$_] <span style="color:#f92672">~</span> (@d[$_] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span>) },
+            <span style="color:#75715e"># Iterate through all letter indices</span>
+            <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@l<span style="color:#f92672">.</span>elems;
+    }
+    <span style="color:#75715e"># Else (equal counts):</span>
+    <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e"># If first digit &lt; first letter lexicographically:</span>
+        <span style="color:#66d9ef">if</span> @d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">lt</span> @l[<span style="color:#ae81ff">0</span>] {
+            <span style="color:#75715e"># Join all elements into a string</span>
+            <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
+                <span style="color:#75715e"># For each index: digit + letter</span>
+                map { @d[$_] <span style="color:#f92672">~</span> @l[$_] },
+                <span style="color:#75715e"># Iterate through all indices (both arrays same size)</span>
+                <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@d<span style="color:#f92672">.</span>elems;
+        }
+        <span style="color:#75715e"># Else:</span>
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#75715e"># Join all elements into a string</span>
+            <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
+                <span style="color:#75715e"># For each index: letter + digit</span>
+                map { @l[$_] <span style="color:#f92672">~</span> @d[$_] },
+                <span style="color:#75715e"># Iterate through all indices (both arrays same size)</span>
+                <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@d<span style="color:#f92672">.</span>elems;
+        }
+    }
+}
+</code></pre></div><br>
+<h3 id="python">Python</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
+
+<span style="color:#f92672">import</span> re
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">balance_string</span>(s):
+    <span style="color:#75715e"># Extract all digits and sort them</span>
+    d <span style="color:#f92672">=</span> sorted([c <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> s <span style="color:#66d9ef">if</span> c<span style="color:#f92672">.</span>isdigit()])
+    <span style="color:#75715e"># Extract all letters and sort them</span>
+    l <span style="color:#f92672">=</span> sorted([c <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> s <span style="color:#66d9ef">if</span> c<span style="color:#f92672">.</span>isalpha()])
+
+    <span style="color:#75715e"># Return empty string if impossible</span>
+    <span style="color:#66d9ef">if</span> abs(len(d) <span style="color:#f92672">-</span> len(l)) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>:
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
+
+    <span style="color:#75715e"># If more digits than letters:</span>
+    <span style="color:#66d9ef">if</span> len(d) <span style="color:#f92672">&gt;</span> len(l):
+        <span style="color:#75715e"># Join all elements into a string</span>
+        result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+        <span style="color:#75715e"># For each index: digit + letter (or empty if no letter)</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(d)):
+            result <span style="color:#f92672">+=</span> d[i] <span style="color:#f92672">+</span> (l[i] <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&lt;</span> len(l) <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;&#34;</span>)
+        <span style="color:#66d9ef">return</span> result
+    <span style="color:#75715e"># Else if more letters than digits:</span>
+    <span style="color:#66d9ef">elif</span> len(l) <span style="color:#f92672">&gt;</span> len(d):
+        <span style="color:#75715e"># Join all elements into a string</span>
+        result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+        <span style="color:#75715e"># For each index: letter + digit (or empty if no digit)</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(l)):
+            result <span style="color:#f92672">+=</span> l[i] <span style="color:#f92672">+</span> (d[i] <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&lt;</span> len(d) <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;&#34;</span>)
+        <span style="color:#66d9ef">return</span> result
+    <span style="color:#75715e"># Else (equal counts):</span>
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#75715e"># If first digit &lt; first letter lexicographically:</span>
+        <span style="color:#66d9ef">if</span> d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> l[<span style="color:#ae81ff">0</span>]:
+            <span style="color:#75715e"># Join all elements into a string</span>
+            result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+            <span style="color:#75715e"># For each index: digit + letter</span>
+            <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(d)):
+                result <span style="color:#f92672">+=</span> d[i] <span style="color:#f92672">+</span> l[i]
+            <span style="color:#66d9ef">return</span> result
+        <span style="color:#75715e"># Else:</span>
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#75715e"># Join all elements into a string</span>
+            result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+            <span style="color:#75715e"># For each index: letter + digit</span>
+            <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(d)):
+                result <span style="color:#f92672">+=</span> l[i] <span style="color:#f92672">+</span> d[i]
+            <span style="color:#66d9ef">return</span> result
+
+examples <span style="color:#f92672">=</span> [
+    [<span style="color:#e6db74">&#34;a0b1c2&#34;</span>,  <span style="color:#e6db74">&#34;0a1b2c&#34;</span> ],
+    [<span style="color:#e6db74">&#34;abc12&#34;</span>,   <span style="color:#e6db74">&#34;a1b2c&#34;</span>  ],
+    [<span style="color:#e6db74">&#34;0a2b1c3&#34;</span>, <span style="color:#e6db74">&#34;0a1b2c3&#34;</span>],
+    [<span style="color:#e6db74">&#34;1a23&#34;</span>,    <span style="color:#e6db74">&#34;&#34;</span>       ],
+    [<span style="color:#e6db74">&#34;ab123&#34;</span>,   <span style="color:#e6db74">&#34;1a2b3&#34;</span>  ],
+]
+
+<span style="color:#66d9ef">for</span> example <span style="color:#f92672">in</span> examples:
+    input_str, expected <span style="color:#f92672">=</span> example
+    result <span style="color:#f92672">=</span> balance_string(input_str)
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Pass: {result == expected}&#34;</span>)
+</code></pre></div><br>
+<p>Thank you <code>Team PWC</code>, once again.</p>
+<p><code>Happy Hacking!!</code></p>
+<hr>
+<p>Last <code>5 weeks</code> mainstream contribution stats. Thank you <code>Team PWC</code>  for your support and encouragements.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">  <code>Week</code>  </td>
+<td align="center">   <code>Perl</code>   </td>
+<td align="center">   <code>Raku</code>   </td>
+<td align="center">   <code>Blog</code>   </td>
+</tr>
+<tr>
+<td align="center">   <code>338</code>   </td>
+<td align="center">   45   </td>
+<td align="center">   23   </td>
+<td align="center">   14   </td>
+</tr>
+<tr>
+<td align="center">   <code>339</code>   </td>
+<td align="center">   45   </td>
+<td align="center">   23   </td>
+<td align="center">   14   </td>
+</tr>
+<tr>
+<td align="center">   <code>340</code>   </td>
+<td align="center">   49   </td>
+<td align="center">   25   </td>
+<td align="center">   12   </td>
+</tr>
+<tr>
+<td align="center">   <code>341</code>   </td>
+<td align="center">   55   </td>
+<td align="center">   25   </td>
+<td align="center">   24   </td>
+</tr>
+<tr>
+<td align="center">   <code>342</code>   </td>
+<td align="center">   49   </td>
+<td align="center">   20   </td>
+<td align="center">   13   </td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>Last <code>5 weeks</code> guest contribution stats. Thank you each and every guest contributors for your time and efforts.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">  <code>Week</code>  </td>
+<td align="center">   <code>Guests</code>   </td>
+<td align="center">   <code>Contributions</code>   </td>
+<td align="center">   <code>Languages</code>   </td>
+</tr>
+<tr>
+<td align="center">   <code>338</code>   </td>
+<td align="center">   13   </td>
+<td align="center">   58   </td>
+<td align="center">   19   </td>
+</tr>
+<tr>
+<td align="center">   <code>339</code>   </td>
+<td align="center">   13   </td>
+<td align="center">   64   </td>
+<td align="center">   21   </td>
+</tr>
+<tr>
+<td align="center">   <code>340</code>   </td>
+<td align="center">   13   </td>
+<td align="center">   55   </td>
+<td align="center">   17   </td>
+</tr>
+<tr>
+<td align="center">   <code>341</code>   </td>
+<td align="center">   15   </td>
+<td align="center">   67   </td>
+<td align="center">   19   </td>
+</tr>
+<tr>
+<td align="center">   <code>342</code>   </td>
+<td align="center">   14   </td>
+<td align="center">   46   </td>
+<td align="center">   14   </td>
+</tr>
+</tbody>
+</table>
+<br>
+<h3 id="top-10-guest-languages">TOP 10 Guest Languages</h3>
+<hr>
+<p>Do you see your favourite language in the <code>Top #10</code>? If not then why not contribute regularly and make it to the top.</p>
+<pre><code> 1. Python     (3655)
+ 2. Rust       (1016)
+ 3. Ruby       (836)
+ 4. Haskell    (821)
+ 5. Lua        (775)
+ 6. C++        (657)
+ 7. C          (596)
+ 8. JavaScript (592)
+ 9. Go         (557)
+10. BQN        (474)
+</code></pre>
+<br>
+<h3 id="blogs-with-creative-title">Blogs with Creative Title</h3>
+<hr>
+<h4 id="1-maximum-balancehttpsraku-musingscommaximum-balancehtml-by-arne-sommer">1. <a href="https://raku-musings.com/maximum-balance.html">Maximum Balance</a> by Arne Sommer.</h4>
+<h4 id="2-and-a-1-and-a-2httpsdevtobobliedpwc-342-balance-4eh4-by-bob-lied">2. <a href="https://dev.to/boblied/pwc-342-balance-4eh4">And a 1, and a 2</a> by Bob Lied.</h4>
+<h4 id="3-balanced-adagio-for-stringshttpspackydardancombcq-by-packy-anderson">3. <a href="https://packy.dardan.com/b/cQ">Balanced Adagio for Strings</a> by Packy Anderson.</h4>
+<h4 id="4-fun-with-charactershttpccgicampbellsmithsforce9coukchallenge342-by-peter-campbell-smith">4. <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/342">Fun with characters</a> by Peter Campbell Smith.</h4>
+<h4 id="5-balanced-max-scores-the-stringhttpsblogfiredrakeorgarchive202510the_weekly_challenge_342__balanced_max_scores_the_stringhtml-by-roger-bell_west">5. <a href="https://blog.firedrake.org/archive/2025/10/The_Weekly_Challenge_342__Balanced_Max_Scores_the_String.html">Balanced Max Scores the String</a> by Roger Bell_West.</h4>
+<h4 id="6-balancing-the-scorehttpsdevtosimongreennetweekly-challenge-balancing-the-score-38kd-by-simon-green">6. <a href="https://dev.to/simongreennet/weekly-challenge-balancing-the-score-38kd">Balancing the Score</a> by Simon Green.</h4>
+<br>
+<h3 id="githubhttpsgithubcommanwarperlweeklychallenge-club-repository-stats"><a href="https://github.com/manwar/perlweeklychallenge-club">GitHub</a> Repository Stats</h3>
+<hr>
+<h4 id="1-commits-45698-101">1. Commits: 45,698 (<code>+101</code>)</h4>
+<h4 id="2-pull-requests-12792-38">2. Pull Requests: 12,792 (<code>+38</code>)</h4>
+<h4 id="3-contributors-264">3. Contributors: 264</h4>
+<h4 id="4-fork-337">4. Fork: 337</h4>
+<h4 id="5-stars-198-1">5. Stars: 198 (<code>+1</code>)</h4>
+<br>
+<h2 id="SPONSOR">SPONSOR</h2>
+<hr>
+<p>With start of <code>Week #268</code>, we have a new sponsor <code>Lance Wicks</code> until the end of year <code>2025</code>. Having said we are looking for more sponsors so that we can go back to weekly winner. If anyone interested please get in touch with us at <code>perlweeklychallenge@yahoo.com</code>. Thanks for your support in advance.</p>
+<br>
+<h2 id="RECAP">RECAP</h2>
+<hr>
+<p>Quick recap of <strong><a href="/blog/recap-challenge-342">The Weekly Challenge - 342</a></strong> by <code>Mohammad Sajid Anwar</code>.</p>
+<br>
+<h2 id="PERLREVIEW">PERL REVIEW</h2>
+<hr>
+<p>If you missed any past reviews then please check out the <a href="/p5-reviews"><strong>collection</strong></a>.</p>
+<br>
+<h2 id="RAKUREVIEW">RAKU REVIEW</h2>
+<hr>
+<p>If you missed any past reviews then please check out the <a href="/p6-reviews"><strong>collection</strong></a>.</p>
+<br>
+<h2 id="CHART">CHART</h2>
+<hr>
+<p>Please take a look at the <a href="/chart"><strong>charts</strong></a> showing interesting data.</p>
+<p>I would like to <code>THANK</code> every member of the team for their valuable suggestions. Please do share your experience with us.</p>
+<br>
+<h2 id="NEWMEMBERS">NEW MEMBERS</h2>
+<hr>
+<p>Please find out <a href="/blog/how-to-contribute"><strong>How to contribute?</strong></a>, if you have any doubts.</p>
+<p>Please try the excellent tool <a href="https://github.com/saiftynet/EZPWC"><strong>EZPWC</strong></a> created by respected member <code>Saif Ahmed</code> of <strong>Team PWC</strong>.</p>
+<br>
+<h2 id="GUESTS">GUESTS</h2>
+<hr>
+<p>Please check out the guest contributions for the <a href="/blog/guest-contribution/#342"><strong>Week #342</strong></a>.</p>
+<p>Please find <a href="/blog/guest-contribution"><strong>past solutions</strong></a> by respected <strong>guests</strong>. Please share your creative solutions in other languages.</p>
+<br>
+<h2 id="TASK1">Task 1: Zero Friend</h2>
+<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<hr>
+<p>You are given a list of numbers.</p>
+<p>Find the number that is closest to zero and return its distance to zero.</p>
+<br>
+<h4 id="example-1">Example 1</h4>
+<pre><code>Input: @nums = (4, 2, -1, 3, -2)
+Output: 1
+
+Values closest to 0: -1 and 2 (distance = 1)
+</code></pre>
+<br>
+<h4 id="example-2">Example 2</h4>
+<pre><code>Input: @nums = (-5, 5, -3, 3, -1, 1)
+Output: 1
+
+Values closest to 0: -1 and 1 (distance = 1)
+</code></pre>
+<br>
+<h4 id="example-3">Example 3</h4>
+<pre><code>Input: @ums = (7, -3, 0, 2, -8)
+Output: 0
+
+Values closest to 0: 0 (distance = 0)
+Exact zero wins regardless of other close values.
+</code></pre>
+<br>
+<h4 id="example-4">Example 4</h4>
+<pre><code>Input: @nums = (-2, -5, -1, -8)
+Output: 1
+
+Values closest to 0: -1 and -2 (distance = 1 and 2)
+</code></pre>
+<br>
+<h4 id="example-5">Example 5</h4>
+<pre><code>Input: @nums = (-2, 2, -4, 4, -1, 1)
+Output: 1
+
+Values closest to 0: -1 and 1 (distance = 1)
+</code></pre>
+<br>
+<h2 id="TASK2">Task 2: Champion Team</h2>
+<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg-1"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<hr>
+<p>You have n teams in a tournament. A matrix grid tells you which team is stronger between any two teams:</p>
+<pre><code>If grid[i][j] == 1, then team i is stronger than team j
+If grid[i][j] == 0, then team j is stronger than team i
+</code></pre>
+<p>Find the champion team - the one with most wins, or if there is no single such team, the strongest of the teams with most wins. (You may assume that there is a definite answer.)</p>
+<br>
+<h4 id="example-1-1">Example 1</h4>
+<pre><code>Input: @grid = (
+                 [0, 1, 1],
+                 [0, 0, 1],
+                 [0, 0, 0],
+               )
+Output: Team 0
+
+[0, 1, 1] =&gt; Team 0 beats Team 1 and Team 2
+[0, 0, 1] =&gt; Team 1 beats Team 2
+[0, 0, 0] =&gt; Team 2 loses to all
+</code></pre>
+<br>
+<h4 id="example-2-1">Example 2</h4>
+<pre><code>Input: @grid = (
+                 [0, 1, 0, 0],
+                 [0, 0, 0, 0],
+                 [1, 1, 0, 0],
+                 [1, 1, 1, 0],
+               )
+Output: Team 3
+
+[0, 1, 0, 0] =&gt; Team 0 beats only Team 1
+[0, 0, 0, 0] =&gt; Team 1 loses to all
+[1, 1, 0, 0] =&gt; Team 2 beats Team 0 and Team 1
+[1, 1, 1, 0] =&gt; Team 3 beats everyone
+</code></pre>
+<br>
+<h4 id="example-3-1">Example 3</h4>
+<pre><code>Input: @grid = (
+                 [0, 1, 0, 1],
+                 [0, 0, 1, 1],
+                 [1, 0, 0, 0],
+                 [0, 0, 1, 0],
+               )
+Output: Team 0
+
+[0, 1, 0, 1] =&gt; Team 0 beats teams 1 and 3
+[0, 0, 1, 1] =&gt; Team 1 beats teams 2 and 3
+[1, 0, 0, 0] =&gt; Team 2 beats team 0
+[0, 0, 1, 0] =&gt; Team 3 beats team 2
+
+Of the teams with 2 wins, Team 0 beats team 1.
+</code></pre>
+<br>
+<h4 id="example-4-1">Example 4</h4>
+<pre><code>Input: @grid = (
+                 [0, 1, 1],
+                 [0, 0, 0],
+                 [0, 1, 0],
+               )
+Output: Team 0
+
+[0, 1, 1] =&gt; Team 0 beats Team 1 and Team 2
+[0, 0, 0] =&gt; Team 1 loses to Team 2
+[0, 1, 0] =&gt; Team 2 beats Team 1 but loses to Team 0
+</code></pre>
+<br>
+<h4 id="example-5-1">Example 5</h4>
+<pre><code>Input: @grid = (
+                 [0, 0, 0, 0, 0],
+                 [1, 0, 0, 0, 0],
+                 [1, 1, 0, 1, 1],
+                 [1, 1, 0, 0, 0],
+                 [1, 1, 0, 1, 0],
+               )
+Output: Team 2
+
+[0, 0, 0, 0, 0] =&gt; Team 0 loses to all
+[1, 0, 0, 0, 0] =&gt; Team 1 beats only Team 0
+[1, 1, 0, 1, 1] =&gt; Team 2 beats everyone except self
+[1, 1, 0, 0, 0] =&gt; Team 3 loses to Team 2
+[1, 1, 0, 1, 0] =&gt; Team 4 loses to Team 2
+</code></pre>
+<br>
+<hr>
+<p>Last date to submit the solution <code>23:59 (UK Time) Sunday 19th October 2025</code>.</p>
+<hr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
