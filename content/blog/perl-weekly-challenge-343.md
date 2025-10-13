@@ -397,7 +397,7 @@ Find the number that is closest to zero and return its distance to zero.
     Input: @nums = (4, 2, -1, 3, -2)
     Output: 1
 
-    Values closest to 0: -1 and 2 (distance = 1)
+    Values closest to 0: -1 and 2 (distance = 1 and 2)
 
 <br>
 
