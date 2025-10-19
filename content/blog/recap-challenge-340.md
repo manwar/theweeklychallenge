@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 340"
-date: 2025-09-29T00:00:00+00:00
+date: 2025-10-19T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 340."
 type: post
 image: images/blog/recap-challenge-340.jpg
@@ -47,20 +47,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 17533 (64%)
-#### 2. Raku: 9743 (36%)
-#### 3. Blog: 6284
+#### 1. Perl: 17545 (64%)
+#### 2. Raku: 9751 (36%)
+#### 3. Blog: 6290
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `86`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `89`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 49
+#### 1. Perl: 51
 #### 2. Raku: 25
-#### 3. Blog: 12
+#### 3. Blog: 13
 
 <br>
 
@@ -356,7 +356,7 @@ The total contributions in the week is `86`. Well done **Team PWC**. I would als
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Luca Ferrari (3350), Jaldhar H. Vyas (3110), Roger Bell_West (3110), Laurent Rosenfeld (2906), Arne Sommer (2338), Athanasius (2230), Ulrich Rieke (2088), Flavio Poletti (1716), Dave Jacoby (1500), W. Luis Mochan (1498), Jorg Sommrey (1492), E. Choroba (1452), Adam Russell (1446), Colin Crain (1336), Lubos Kolouch (1320), Simon Green (1286), Peter Campbell Smith (1204), Paulo Custodio (1188), Mark Anderson (1138), Thomas Kohler (1114), Feng Chang (982), Ali Moradi (942), Jan Krnavek (942), Packy Anderson (922), Cheok-Yin Fung (892), James Smith (882), Bob Lied (864), Robbie Hatley (856), Niels van Dijke (840), Duncan C. White (794), Mohammad Sajid Anwar (722), Robert Ransbottom (700), Wanderdoc (696), Matthias Muth (686), David Ferrone (680), Bruce Gray (674), Stuart Little (644), Simon Proctor (628), Matthew Neleigh (602), Abigail (574), Robert DiCicco (574), Peter Meszaros (564), Stephen G. Lynn (478), BarrOff (476), Javier Luque (460), Ruben Westerberg (452), Ryan Thompson (442), Kjetil Skotheim (364), Pete Houston (360), Andrew Shitov (328), Joelle Maslak (314), Steven Wilson (284), Andrezgz (264), Yet Ebreo (222), Alexander Pankoff (220), Walt Mankowski (210), Markus Holzer (198), Solathian (198), Myoungjin Jeon (192), Noud Aldenhoven (188), Marton Polgar (182), Avery Adams (176), Kevin Colyer (176), Nelo Tovar (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Reinier Maliepaard (162), Andreas Mahnke (160), Mark Senn (156), Humberto Massa (148), Mariano Spadaccini (148), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Santiago Leyva (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104).
+    Luca Ferrari (3350), Jaldhar H. Vyas (3150), Roger Bell_West (3110), Laurent Rosenfeld (2906), Arne Sommer (2338), Athanasius (2230), Ulrich Rieke (2088), Flavio Poletti (1716), Jorg Sommrey (1504), Dave Jacoby (1500), W. Luis Mochan (1498), E. Choroba (1452), Adam Russell (1446), Colin Crain (1336), Lubos Kolouch (1320), Simon Green (1286), Peter Campbell Smith (1204), Paulo Custodio (1188), Mark Anderson (1138), Thomas Kohler (1114), Feng Chang (982), Ali Moradi (942), Jan Krnavek (942), Packy Anderson (922), Cheok-Yin Fung (892), James Smith (882), Bob Lied (864), Robbie Hatley (856), Niels van Dijke (840), Duncan C. White (794), Mohammad Sajid Anwar (722), Robert Ransbottom (700), Wanderdoc (696), Matthias Muth (686), David Ferrone (680), Bruce Gray (674), Stuart Little (644), Simon Proctor (628), Matthew Neleigh (602), Abigail (574), Robert DiCicco (574), Peter Meszaros (564), Stephen G. Lynn (478), BarrOff (476), Javier Luque (460), Ruben Westerberg (452), Ryan Thompson (442), Kjetil Skotheim (364), Pete Houston (360), Andrew Shitov (328), Joelle Maslak (314), Steven Wilson (284), Andrezgz (264), Yet Ebreo (222), Alexander Pankoff (220), Walt Mankowski (210), Markus Holzer (198), Solathian (198), Myoungjin Jeon (192), Noud Aldenhoven (188), Marton Polgar (182), Avery Adams (176), Kevin Colyer (176), Nelo Tovar (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Reinier Maliepaard (162), Andreas Mahnke (160), Mark Senn (156), Humberto Massa (148), Mariano Spadaccini (148), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Santiago Leyva (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104).
 
 <br>
 
@@ -416,6 +416,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-340/e-choroba/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-340/e-choroba/perl/ch-2.pl)]
+
+***
+
+### Jorg Sommrey
+![Jorg Sommrey](/images/team/jorg-sommrey.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-340/jo-37/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-340/jo-37/perl/ch-2.pl)]
+[[**BLOG #1**](https://github.sommrey.de/the-bears-den/2025/10/17/ch-340.html)]
 
 ***
 
@@ -643,7 +652,11 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-340/packy-anderson/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-340/packy-anderson/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-340/packy-anderson/raku/ch-2.raku)]
-[[**BLOG #1**](https://packy.dardan.com/2025/09/23/perl-weekly-challenge-rising-in-num/)]
+[[**BLOG #1**](<<<<<<< HEAD
+https://packy.dardan.com/b/bj
+=======
+https://packy.dardan.com/2025/09/23/perl-weekly-challenge-rising-in-num/
+>>>>>>> upstream/master)]
 
 ***
 
