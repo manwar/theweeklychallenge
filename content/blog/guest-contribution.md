@@ -1122,6 +1122,10 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/deadmarshal/java/Ch1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/deadmarshal/java/Ch2.java) in **Java**.
 
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/asherbhs/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/asherbhs/apl/ch-2.apl) in **APL**.
+
+##### **Asher Harvey-Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/asherbhs/hy/ch-1.hy) in **Hy**.
+
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/conor-hoekstra/cuda/ch-1.cu) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/conor-hoekstra/cuda/ch-2.cu) in **CUDA**.
