@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2025-10-22T00:00:00+00:00
+date: 2025-10-24T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1120,6 +1120,12 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ## [The Weekly Challenge - 344](/blog/perl-weekly-challenge-344) {#344}
 <br>
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/asherbhs/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/asherbhs/apl/ch-2.apl) in **APL**.
+
+##### **Asher Harvey-Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/asherbhs/j/ch-1.ijs) in **J**.
+
+##### **Asher Harvey-Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/asherbhs/k/ch-1.k) in **K**.
 
 ##### **Benjamin Andre** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/benjamin-andre/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/benjamin-andre/rust/ch-2.rs) in **Rust**.
 
