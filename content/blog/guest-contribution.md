@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2025-10-24T00:00:00+00:00
+date: 2025-10-26T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1121,6 +1121,12 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ## [The Weekly Challenge - 344](/blog/perl-weekly-challenge-344) {#344}
 <br>
 
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/deadmarshal/go/ch1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/deadmarshal/go/ch2.go) in **Go**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/deadmarshal/java/Ch1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/deadmarshal/java/Ch2.java) in **Java**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/deadmarshal/tcl/ch1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/deadmarshal/tcl/ch2.tcl) in **Tcl**.
+
 ##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/asherbhs/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/asherbhs/apl/ch-2.apl) in **APL**.
 
 ##### **Asher Harvey-Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/asherbhs/j/ch-1.ijs) in **J**.
@@ -1150,6 +1156,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/pokgopun/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/pokgopun/lua/ch-2.lua) in **Lua**.
 
 ##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/richard-park/apl/ArrayFormCompute.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/richard-park/apl/ArrayFormation.aplf) in **APL**.
+
+##### **Simon Green** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/sgreen/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/sgreen/python/ch-2.py) in **Python**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
