@@ -1130,9 +1130,23 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/deadmarshal/modula-3/Ch1/src/Ch1.m3) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/deadmarshal/modula-3/Ch2/src/Ch2.m3) in **Modula 3**.
 
+##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/conor-hoekstra/apl/ch-1.apl) in **APL**.
+
+##### **Conor Hoekstra** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/conor-hoekstra/cuda/ch-1.cu) in **CUDA**.
+
+##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/conor-hoekstra/python/ch-1.py) in **Python**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/lubos-kolouch/python/ch-2.py) in **Python**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/pokgopun/go/ch-2.go) in **Go**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/pokgopun/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/pokgopun/python/ch-1.py) in **Python**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/pokgopun/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/pokgopun/lua/ch-2.lua) in **Lua**.
+
+##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/richard-park/apl/PeakPositions.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/richard-park/apl/LastVisitor.aplf) in **APL**.
 
 ___
 ## [The Weekly Challenge - 344](/blog/perl-weekly-challenge-344) {#344}
