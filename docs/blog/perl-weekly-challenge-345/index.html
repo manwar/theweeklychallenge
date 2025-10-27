@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - 345"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/perl-weekly-challenge-345/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="The Weekly Challenge - 345"/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="The Weekly Challenge - 345">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/perl-weekly-challenge-345/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Weekly Challenge - 345</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>The Weekly Challenge - 345</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Oct 27, 2025</span>|
+                        <span> Tags:
+                            Perl, Raku
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/twc-logo.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h2 id="table-of-contents">TABLE OF CONTENTS</h2>
+<hr>
+<h3 id="nbspnbsp1-headlinesheadlines">  1. <a href="#HEADLINES">HEADLINES</a></h3>
+<h3 id="nbspnbsp2-sponsorsponsor">  2. <a href="#SPONSOR">SPONSOR</a></h3>
+<h3 id="nbspnbsp3-recaprecap">  3. <a href="#RECAP">RECAP</a></h3>
+<h3 id="nbspnbsp4-perl-reviewperlreview">  4. <a href="#PERLREVIEW">PERL REVIEW</a></h3>
+<h3 id="nbspnbsp5-raku-reviewrakureview">  5. <a href="#RAKUREVIEW">RAKU REVIEW</a></h3>
+<h3 id="nbspnbsp6-chartchart">  6. <a href="#CHART">CHART</a></h3>
+<h3 id="nbspnbsp7-new-membersnewmembers">  7. <a href="#NEWMEMBERS">NEW MEMBERS</a></h3>
+<h3 id="nbspnbsp8-guestsguests">  8. <a href="#GUESTS">GUESTS</a></h3>
+<h3 id="nbspnbsp9-task-1-peak-positionstask1">  9. <a href="#TASK1">TASK #1: Peak Positions</a></h3>
+<h3 id="10-task-2-last-visitortask2">10. <a href="#TASK2">TASK #2: Last Visitor</a></h3>
+<br>
+<h2 id="HEADLINES">HEADLINES</h2>
+<hr>
+<p>Welcome to the <code>Week #345</code> of <code>The Weekly Challenge</code>.</p>
+<p>I just noticed, we now have guest contributions in <code>117</code> different programming languages and <code>Python</code> being the <code>#1</code> in the list.</p>
+<p>Also the <code>Centurion Club</code> is growing very fast, as of today, we have <code>86</code> members in the club.</p>
+<p>Another week another contributions from my side. It feels nice to be able to take part in the weekly challenge. The motivation comes from the active team members, specially the ones active on <code>Facebook</code>.</p>
+<p>First time weekly challenge blogger, <code>Vinod Kumar K</code>, shared his first <a href="https://dev.to/vinodk89/perl-weekly-challenge-344-1god"><strong>blog post</strong></a>. Congratulation and thank you.</p>
+<h3 id="perl">Perl</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> Test::Deep;
+
+<span style="color:#66d9ef">my</span> @examples <span style="color:#f92672">=</span> (
+    { input <span style="color:#f92672">=&gt;</span> { arr <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>],    x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">12</span>   }, exp <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>]    },
+    { input <span style="color:#f92672">=&gt;</span> { arr <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>],       x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">181</span>  }, exp <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>]       },
+    { input <span style="color:#f92672">=&gt;</span> { arr <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>],       x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>    }, exp <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]    },
+    { input <span style="color:#f92672">=&gt;</span> { arr <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">9999</span> }, exp <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>] },
+    { input <span style="color:#f92672">=&gt;</span> { arr <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">0</span>],             x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1000</span> }, exp <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]    },
+);
+
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $example (@examples) {
+    is_deeply([add_to_array_form($example<span style="color:#f92672">-&gt;</span>{input}{arr}, $example<span style="color:#f92672">-&gt;</span>{input}{x})],
+              $example<span style="color:#f92672">-&gt;</span>{exp});
+}
+
+done_testing;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_to_array_form</span> { map $_<span style="color:#f92672">+</span><span style="color:#ae81ff">0</span>, split <span style="color:#e6db74">//</span>, join(<span style="color:#e6db74">&#39;&#39;</span>, @{$_[<span style="color:#ae81ff">0</span>]}) <span style="color:#f92672">+</span> $_[<span style="color:#ae81ff">1</span>] }
+</code></pre></div><br>
+<h3 id="raku">Raku</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e">#!/usr/bin/env raku</span>
+
+<span style="color:#66d9ef">use</span> Test;
+
+<span style="color:#66d9ef">my</span> @examples <span style="color:#f92672">=</span> (
+    { input <span style="color:#f92672">=&gt;</span> { arr <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>],    x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">12</span>   }, exp <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>]    },
+    { input <span style="color:#f92672">=&gt;</span> { arr <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>],       x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">181</span>  }, exp <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>]       },
+    { input <span style="color:#f92672">=&gt;</span> { arr <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>],       x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>    }, exp <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]    },
+    { input <span style="color:#f92672">=&gt;</span> { arr <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">9999</span> }, exp <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>] },
+    { input <span style="color:#f92672">=&gt;</span> { arr <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">0</span>],             x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1000</span> }, exp <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]    },
+);
+
+<span style="color:#66d9ef">for</span> @examples <span style="color:#f92672">-&gt;</span> $example {
+    is<span style="color:#f92672">-</span>deeply([add<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>array<span style="color:#f92672">-</span>form($example<span style="color:#e6db74">&lt;input&gt;&lt;arr&gt;</span>, $example<span style="color:#e6db74">&lt;input&gt;&lt;x&gt;</span>)],
+              $example<span style="color:#e6db74">&lt;exp&gt;</span>);
+}
+
+done<span style="color:#f92672">-</span>testing;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span>-to-array-form($arr, $x) { ($arr<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#f92672">+</span> $x)<span style="color:#f92672">.</span>comb<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>Int }
+</code></pre></div><br>
+<h3 id="python">Python</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_to_array_form</span>(arr, x):
+    <span style="color:#66d9ef">return</span> [int(d) <span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> str(int(<span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(map(str, arr))) <span style="color:#f92672">+</span> x)]
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    examples <span style="color:#f92672">=</span> [
+        {<span style="color:#e6db74">&#34;input&#34;</span>: {<span style="color:#e6db74">&#34;arr&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>],    <span style="color:#e6db74">&#34;x&#34;</span>: <span style="color:#ae81ff">12</span>},   <span style="color:#e6db74">&#34;exp&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>]},
+        {<span style="color:#e6db74">&#34;input&#34;</span>: {<span style="color:#e6db74">&#34;arr&#34;</span>: [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>],       <span style="color:#e6db74">&#34;x&#34;</span>: <span style="color:#ae81ff">181</span>},  <span style="color:#e6db74">&#34;exp&#34;</span>: [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>]},
+        {<span style="color:#e6db74">&#34;input&#34;</span>: {<span style="color:#e6db74">&#34;arr&#34;</span>: [<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>],       <span style="color:#e6db74">&#34;x&#34;</span>: <span style="color:#ae81ff">1</span>},    <span style="color:#e6db74">&#34;exp&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]},
+        {<span style="color:#e6db74">&#34;input&#34;</span>: {<span style="color:#e6db74">&#34;arr&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#34;x&#34;</span>: <span style="color:#ae81ff">9999</span>}, <span style="color:#e6db74">&#34;exp&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>]},
+        {<span style="color:#e6db74">&#34;input&#34;</span>: {<span style="color:#e6db74">&#34;arr&#34;</span>: [<span style="color:#ae81ff">0</span>],             <span style="color:#e6db74">&#34;x&#34;</span>: <span style="color:#ae81ff">1000</span>}, <span style="color:#e6db74">&#34;exp&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]},
+    ]
+
+    <span style="color:#66d9ef">for</span> example <span style="color:#f92672">in</span> examples:
+        result <span style="color:#f92672">=</span> add_to_array_form(example[<span style="color:#e6db74">&#34;input&#34;</span>][<span style="color:#e6db74">&#34;arr&#34;</span>], example[<span style="color:#e6db74">&#34;input&#34;</span>][<span style="color:#e6db74">&#34;x&#34;</span>])
+        <span style="color:#66d9ef">assert</span> result <span style="color:#f92672">==</span> example[<span style="color:#e6db74">&#34;exp&#34;</span>], f<span style="color:#e6db74">&#34;Expected {example[&#39;exp&#39;]}, got {result}&#34;</span>
+
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;All tests passed!&#34;</span>)
+</code></pre></div><br>
+<p>Thank you <code>Team PWC</code>, once again.</p>
+<p><code>Happy Hacking!!</code></p>
+<hr>
+<p>Last <code>5 weeks</code> mainstream contribution stats. Thank you <code>Team PWC</code>  for your support and encouragements.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">  <code>Week</code>  </td>
+<td align="center">   <code>Perl</code>   </td>
+<td align="center">   <code>Raku</code>   </td>
+<td align="center">   <code>Blog</code>   </td>
+</tr>
+<tr>
+<td align="center">   <code>340</code>   </td>
+<td align="center">   51   </td>
+<td align="center">   25   </td>
+<td align="center">   13   </td>
+</tr>
+<tr>
+<td align="center">   <code>341</code>   </td>
+<td align="center">   57   </td>
+<td align="center">   25   </td>
+<td align="center">   25   </td>
+</tr>
+<tr>
+<td align="center">   <code>342</code>   </td>
+<td align="center">   51   </td>
+<td align="center">   22   </td>
+<td align="center">   15   </td>
+</tr>
+<tr>
+<td align="center">   <code>343</code>   </td>
+<td align="center">   44   </td>
+<td align="center">   19   </td>
+<td align="center">   13   </td>
+</tr>
+<tr>
+<td align="center">   <code>344</code>   </td>
+<td align="center">   45   </td>
+<td align="center">   25   </td>
+<td align="center">   17   </td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>Last <code>5 weeks</code> guest contribution stats. Thank you each and every guest contributors for your time and efforts.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">  <code>Week</code>  </td>
+<td align="center">   <code>Guests</code>   </td>
+<td align="center">   <code>Contributions</code>   </td>
+<td align="center">   <code>Languages</code>   </td>
+</tr>
+<tr>
+<td align="center">   <code>340</code>   </td>
+<td align="center">   13   </td>
+<td align="center">   55   </td>
+<td align="center">   17   </td>
+</tr>
+<tr>
+<td align="center">   <code>341</code>   </td>
+<td align="center">   15   </td>
+<td align="center">   67   </td>
+<td align="center">   19   </td>
+</tr>
+<tr>
+<td align="center">   <code>342</code>   </td>
+<td align="center">   14   </td>
+<td align="center">   46   </td>
+<td align="center">   14   </td>
+</tr>
+<tr>
+<td align="center">   <code>343</code>   </td>
+<td align="center">   15   </td>
+<td align="center">   61   </td>
+<td align="center">   20   </td>
+</tr>
+<tr>
+<td align="center">   <code>344</code>   </td>
+<td align="center">   16   </td>
+<td align="center">   60   </td>
+<td align="center">   18   </td>
+</tr>
+</tbody>
+</table>
+<br>
+<h3 id="top-10-guest-languages">TOP 10 Guest Languages</h3>
+<hr>
+<p>Do you see your favourite language in the <code>Top #10</code>? If not then why not contribute regularly and make it to the top.</p>
+<pre><code> 1. Python     (3690)
+ 2. Rust       (1026)
+ 3. Ruby       (840)
+ 4. Haskell    (825)
+ 5. Lua        (783)
+ 6. C++        (661)
+ 7. C          (596)
+ 8. JavaScript (594)
+ 9. Go         (565)
+10. BQN        (478)
+</code></pre>
+<br>
+<h3 id="blogs-with-creative-title">Blogs with Creative Title</h3>
+<hr>
+<h4 id="1-form-formationhttpsraku-musingscomform-formationhtml-by-arne-sommer">1. <a href="https://raku-musings.com/form-formation.html">Form Formation</a> by Arne Sommer.</h4>
+<h4 id="2-pick-up-the-pieceshttpsdevtobobliedpwc-344-task-2-pick-up-the-pieces-3391-by-bob-lied">2. <a href="https://dev.to/boblied/pwc-344-task-2-pick-up-the-pieces-3391">Pick Up the Pieces</a> by Bob Lied.</h4>
+<h4 id="3-turning-arrays-into-arrayshttpsgithubsommreydethe-bears-den20251023ch-344html-by-jorg-sommrey">3. <a href="https://github.sommrey.de/the-bears-den/2025/10/23/ch-344.html">Turning Arrays Into Arrays</a> by Jorg Sommrey.</h4>
+<h4 id="4-lazyness-and-too-much-taskshttpsfluca1978githubio20251020perlweeklychallenge344html-by-luca-ferrari">4. <a href="https://fluca1978.github.io/2025/10/20/PerlWeeklyChallenge344.html">Lazyness and too much tasks!</a> by Luca Ferrari.</h4>
+<h4 id="5-take-it-to-the-limitshttpsgithubcommatthiasmuthperlweeklychallenge-clubtreemuthm-344challenge-344matthias-muthreadme-by-matthias-muth">5. <a href="https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-344/challenge-344/matthias-muth#readme">Take it to the Limits</a> by Matthias Muth.</h4>
+<h4 id="6-a-ray-sunshinehttpspackydardancombct-by-packy-anderson">6. <a href="https://packy.dardan.com/b/ct">A-ray Sunshine!</a> by Packy Anderson.</h4>
+<h4 id="7-hip-hip-arrayhttpccgicampbellsmithsforce9coukchallenge344-by-peter-campbell-smith">7. <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/344">Hip, hip, array!</a> by Peter Campbell Smith.</h4>
+<h4 id="8-all-is-array-formationhttpsblogfiredrakeorgarchive202510the_weekly_challenge_344__all_is_array_formationhtml-by-roger-bell_west">8. <a href="https://blog.firedrake.org/archive/2025/10/The_Weekly_Challenge_344__All_is_Array_Formation.html">All is Array Formation</a> by Roger Bell_West.</h4>
+<h4 id="9-the-one-about-arrayshttpsdevtosimongreennetweekly-challenge-the-one-about-arrays-1h8k-by-simon-green">9. <a href="https://dev.to/simongreennet/weekly-challenge-the-one-about-arrays-1h8k">The one about arrays</a> by Simon Green.</h4>
+<br>
+<h3 id="githubhttpsgithubcommanwarperlweeklychallenge-club-repository-stats"><a href="https://github.com/manwar/perlweeklychallenge-club">GitHub</a> Repository Stats</h3>
+<hr>
+<h4 id="1-commits-45959-133">1. Commits: 45,959 (<code>+133</code>)</h4>
+<h4 id="2-pull-requests-12883-50">2. Pull Requests: 12,883 (<code>+50</code>)</h4>
+<h4 id="3-contributors-264">3. Contributors: 264</h4>
+<h4 id="4-fork-337">4. Fork: 337</h4>
+<h4 id="5-stars-198">5. Stars: 198</h4>
+<br>
+<h2 id="SPONSOR">SPONSOR</h2>
+<hr>
+<p>With start of <code>Week #268</code>, we have a new sponsor <code>Lance Wicks</code> until the end of year <code>2025</code>. Having said we are looking for more sponsors so that we can go back to weekly winner. If anyone interested please get in touch with us at <code>perlweeklychallenge@yahoo.com</code>. Thanks for your support in advance.</p>
+<br>
+<h2 id="RECAP">RECAP</h2>
+<hr>
+<p>Quick recap of <strong><a href="/blog/recap-challenge-344">The Weekly Challenge - 344</a></strong> by <code>Mohammad Sajid Anwar</code>.</p>
+<br>
+<h2 id="PERLREVIEW">PERL REVIEW</h2>
+<hr>
+<p>If you missed any past reviews then please check out the <a href="/p5-reviews"><strong>collection</strong></a>.</p>
+<br>
+<h2 id="RAKUREVIEW">RAKU REVIEW</h2>
+<hr>
+<p>If you missed any past reviews then please check out the <a href="/p6-reviews"><strong>collection</strong></a>.</p>
+<br>
+<h2 id="CHART">CHART</h2>
+<hr>
+<p>Please take a look at the <a href="/chart"><strong>charts</strong></a> showing interesting data.</p>
+<p>I would like to <code>THANK</code> every member of the team for their valuable suggestions. Please do share your experience with us.</p>
+<br>
+<h2 id="NEWMEMBERS">NEW MEMBERS</h2>
+<hr>
+<p>Please find out <a href="/blog/how-to-contribute"><strong>How to contribute?</strong></a>, if you have any doubts.</p>
+<p>Please try the excellent tool <a href="https://github.com/saiftynet/EZPWC"><strong>EZPWC</strong></a> created by respected member <code>Saif Ahmed</code> of <strong>Team PWC</strong>.</p>
+<br>
+<h2 id="GUESTS">GUESTS</h2>
+<hr>
+<p>Please check out the guest contributions for the <a href="/blog/guest-contribution/#344"><strong>Week #344</strong></a>.</p>
+<p>Please find <a href="/blog/guest-contribution"><strong>past solutions</strong></a> by respected <strong>guests</strong>. Please share your creative solutions in other languages.</p>
+<br>
+<h2 id="TASK1">Task 1: Peak Positions</h2>
+<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<hr>
+<p>You are given an array of integers, <code>@ints</code>.</p>
+<p>Find all the peaks in the array, a peak is an element that is strictly greater than its left and right neighbours. Return the indices of all such peak positions.</p>
+<br>
+<h4 id="example-1">Example 1</h4>
+<pre><code>Input: @ints = (1, 3, 2)
+Output: (1)
+</code></pre>
+<br>
+<h4 id="example-2">Example 2</h4>
+<pre><code>Input: @ints = (2, 4, 6, 5, 3)
+Output: (2)
+</code></pre>
+<br>
+<h4 id="example-3">Example 3</h4>
+<pre><code>Input: @ints = (1, 2, 3, 2, 4, 1)
+Output: (2, 4)
+</code></pre>
+<br>
+<h4 id="example-4">Example 4</h4>
+<pre><code>Input: @ints = (5, 3, 1)
+Output: (0)
+</code></pre>
+<br>
+<h4 id="example-5">Example 5</h4>
+<pre><code>Input: @ints = (1, 5, 1, 5, 1, 5, 1)
+Output: (1, 3, 5)
+</code></pre>
+<br>
+<h2 id="TASK2">Task 2: Last Visitor</h2>
+<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg-1"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<hr>
+<p>You are given an integer array <code>@ints</code> where each element is either a positive integer or <code>-1</code>.</p>
+<p>We process the array from <code>left</code> to <code>right</code> while maintaining two lists:</p>
+<pre><code>@seen: stores previously seen positive integers (newest at the front)
+@ans: stores the answers for each -1
+</code></pre>
+<p>Rules:</p>
+<pre><code>If $ints[i] is a positive number -&gt; insert it at the front of @seen
+If $ints[i] is -1:
+</code></pre>
+<p>Let $x be how many -1s in a row we&rsquo;ve seen before this one.</p>
+<p>If $x &lt; len(@seen) -&gt; append seen[x] to @ans</p>
+<p>Else -&gt; append -1 to @ans</p>
+<p>At the end, return @ans.</p>
+<br>
+<h4 id="example-1-1">Example 1</h4>
+<pre><code>Input: @ints = (5, -1, -1)
+Output: (5, -1)
+
+@seen = (5)
+First  -1: @ans = (5)
+Second -1: @ans = (5, -1)
+</code></pre>
+<br>
+<h4 id="example-2-1">Example 2</h4>
+<pre><code>Input: @ints = (3, 7, -1, -1, -1)
+Output: (7, 3, -1)
+
+@seen = (3, 7)
+First  -1: @ans = (7)
+Second -1: @ans = (7, 3)
+Third  -1: @ans = (7, 3, -1)
+</code></pre>
+<br>
+<h4 id="example-3-1">Example 3</h4>
+<pre><code>Input: @ints = (2, -1, 4, -1, -1)
+Output: (2, 4, 2)
+</code></pre>
+<br>
+<h4 id="example-4-1">Example 4</h4>
+<pre><code>Input: @ints = (10, 20, -1, 30, -1, -1)
+Output: (20, 30, 20)
+</code></pre>
+<br>
+<h4 id="example-5-1">Example 5</h4>
+<pre><code>Input: @ints = (-1, -1, 5, -1)
+Output: (-1, -1, 5)
+</code></pre>
+<br>
+<hr>
+<p>Last date to submit the solution <code>23:59 (UK Time) Sunday 2nd November 2025</code>.</p>
+<hr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
