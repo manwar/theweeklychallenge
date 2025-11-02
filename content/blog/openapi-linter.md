@@ -11,16 +11,16 @@ tags: ["perl", "OpenAPI"]
 #### **DISCLAIMER:** Image is generated using `ChatGPT`.
 <br>
 
-### [&nbsp;**1. Introduction**](#introduction)
-### [&nbsp;**2. What is OpenAPI::Linter?**](#what-is-openapi-linter)
-### [&nbsp;**3. Installation**](#installation)
-### [&nbsp;**4. Basic Usage**](#basic-usage)
-### [&nbsp;**5. Validating OpenAPI Specifications**](#validating-openapi-specifications)
-### [&nbsp;**6. Finding Linting Issues**](#finding-linting-issues)
-### [&nbsp;**7. Advanced Filtering**](#advanced-filtering)
-### [&nbsp;**8. Real-World Example**](#real-world-example)
-### [&nbsp;**9. Command Line Tool**](#command-line-tool)
-### [**10. Supported OpenAPI Versions**](#supported-openapi-versions)
+#### [&nbsp;**1. Introduction**](#introduction)
+#### [&nbsp;**2. What is OpenAPI::Linter?**](#what-is-openapi-linter)
+#### [&nbsp;**3. Installation**](#installation)
+#### [&nbsp;**4. Basic Usage**](#basic-usage)
+#### [&nbsp;**5. Validating OpenAPI Specifications**](#validating-openapi-specifications)
+#### [&nbsp;**6. Finding Linting Issues**](#finding-linting-issues)
+#### [&nbsp;**7. Advanced Filtering**](#advanced-filtering)
+#### [&nbsp;**8. Real-World Example**](#real-world-example)
+#### [&nbsp;**9. Command Line Tool**](#command-line-tool)
+#### [**10. Supported OpenAPI Versions**](#supported-openapi-versions)
 
 <br>
 
@@ -439,7 +439,7 @@ my @schema_errors = $linter->validate_schema;
 if (@schema_errors) {
     print "Schema validation failed:\n";
     foreach my $error (@schema_errors) {
-        print "  - $error\n";
+        print "  - $error->{message}\n";
     }
 } else {
     print "Schema validation passed!\n";
@@ -466,24 +466,24 @@ if (@linting_issues) {
 ```bash
 $ perl validate.pl api.yml
 Schema validation failed:
-  - /info/version: Missing property.
-  - /paths/~001users~001{id}/get/parameters/0/$ref: /oneOf/1 Missing property.
-  - /paths/~001users~001{id}/put/parameters/0/$ref: /oneOf/1 Missing property.
-  - /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-  - /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-  - /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-  - /paths/~1users~1{id}/get/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
-  - /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-  - /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-  - /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-  - /paths/~1users~1{id}/put/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /info/version: /info/version: Missing property.
+  - /paths/~001users~001{id}/get/parameters/0/$ref: /paths/~001users~001{id}/get/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/~001users~001{id}/put/parameters/0/$ref: /paths/~001users~001{id}/put/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/~1users~1{id}/get/parameters/0/in: /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/~1users~1{id}/get/parameters/0/in: /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/~1users~1{id}/get/parameters/0/in: /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/~1users~1{id}/get/parameters/0/required: /paths/~1users~1{id}/get/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /paths/~1users~1{id}/put/parameters/0/in: /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/~1users~1{id}/put/parameters/0/in: /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/~1users~1{id}/put/parameters/0/in: /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/~1users~1{id}/put/parameters/0/required: /paths/~1users~1{id}/put/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
 Linting issues found:
   [ERROR] Missing info.version
   [WARN] Missing info.license
-  [WARN] Missing description for get /users
   [WARN] Missing description for get /users/{id}
-  [WARN] Schema User.age missing description
+  [WARN] Missing description for get /users
   [WARN] Schema User.id missing description
+  [WARN] Schema User.age missing description
   [WARN] Schema Error missing type
 ```
 

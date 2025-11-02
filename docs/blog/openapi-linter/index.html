@@ -294,16 +294,16 @@
                 <div style="text-align: justify" class="post-content">
                     <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
 <br>
-<h3 id="nbsp1-introductionintroduction"><a href="#introduction"> <strong>1. Introduction</strong></a></h3>
-<h3 id="nbsp2-what-is-openapilinterwhat-is-openapi-linter"><a href="#what-is-openapi-linter"> <strong>2. What is OpenAPI::Linter?</strong></a></h3>
-<h3 id="nbsp3-installationinstallation"><a href="#installation"> <strong>3. Installation</strong></a></h3>
-<h3 id="nbsp4-basic-usagebasic-usage"><a href="#basic-usage"> <strong>4. Basic Usage</strong></a></h3>
-<h3 id="nbsp5-validating-openapi-specificationsvalidating-openapi-specifications"><a href="#validating-openapi-specifications"> <strong>5. Validating OpenAPI Specifications</strong></a></h3>
-<h3 id="nbsp6-finding-linting-issuesfinding-linting-issues"><a href="#finding-linting-issues"> <strong>6. Finding Linting Issues</strong></a></h3>
-<h3 id="nbsp7-advanced-filteringadvanced-filtering"><a href="#advanced-filtering"> <strong>7. Advanced Filtering</strong></a></h3>
-<h3 id="nbsp8-real-world-examplereal-world-example"><a href="#real-world-example"> <strong>8. Real-World Example</strong></a></h3>
-<h3 id="nbsp9-command-line-toolcommand-line-tool"><a href="#command-line-tool"> <strong>9. Command Line Tool</strong></a></h3>
-<h3 id="10-supported-openapi-versionssupported-openapi-versions"><a href="#supported-openapi-versions"><strong>10. Supported OpenAPI Versions</strong></a></h3>
+<h4 id="nbsp1-introductionintroduction"><a href="#introduction"> <strong>1. Introduction</strong></a></h4>
+<h4 id="nbsp2-what-is-openapilinterwhat-is-openapi-linter"><a href="#what-is-openapi-linter"> <strong>2. What is OpenAPI::Linter?</strong></a></h4>
+<h4 id="nbsp3-installationinstallation"><a href="#installation"> <strong>3. Installation</strong></a></h4>
+<h4 id="nbsp4-basic-usagebasic-usage"><a href="#basic-usage"> <strong>4. Basic Usage</strong></a></h4>
+<h4 id="nbsp5-validating-openapi-specificationsvalidating-openapi-specifications"><a href="#validating-openapi-specifications"> <strong>5. Validating OpenAPI Specifications</strong></a></h4>
+<h4 id="nbsp6-finding-linting-issuesfinding-linting-issues"><a href="#finding-linting-issues"> <strong>6. Finding Linting Issues</strong></a></h4>
+<h4 id="nbsp7-advanced-filteringadvanced-filtering"><a href="#advanced-filtering"> <strong>7. Advanced Filtering</strong></a></h4>
+<h4 id="nbsp8-real-world-examplereal-world-example"><a href="#real-world-example"> <strong>8. Real-World Example</strong></a></h4>
+<h4 id="nbsp9-command-line-toolcommand-line-tool"><a href="#command-line-tool"> <strong>9. Command Line Tool</strong></a></h4>
+<h4 id="10-supported-openapi-versionssupported-openapi-versions"><a href="#supported-openapi-versions"><strong>10. Supported OpenAPI Versions</strong></a></h4>
 <br>
 <h2 id="introduction">Introduction</h2>
 <hr>
@@ -688,7 +688,7 @@ components:
 <span style="color:#66d9ef">if</span> (@schema_errors) {
     <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Schema validation failed:\n&#34;</span>;
     <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $error (@schema_errors) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  - $error\n&#34;</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  - $error-&gt;{message}\n&#34;</span>;
     }
 } <span style="color:#66d9ef">else</span> {
     <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Schema validation passed!\n&#34;</span>;
@@ -709,24 +709,24 @@ components:
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl validate.pl api.yml
 Schema validation failed:
-  - /info/version: Missing property.
-  - /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/$ref: /oneOf/1 Missing property.
-  - /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/$ref: /oneOf/1 Missing property.
-  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
-  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /info/version: /info/version: Missing property.
+  - /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/$ref: /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/$ref: /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/required: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/required: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
 Linting issues found:
   <span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> Missing info.version
   <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing info.license
-  <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing description <span style="color:#66d9ef">for</span> get /users
   <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing description <span style="color:#66d9ef">for</span> get /users/<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>
-  <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Schema User.age missing description
+  <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing description <span style="color:#66d9ef">for</span> get /users
   <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Schema User.id missing description
+  <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Schema User.age missing description
   <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Schema Error missing type
 </code></pre></div><br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl validate.pl api-valid.yml
