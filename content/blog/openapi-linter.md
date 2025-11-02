@@ -439,7 +439,7 @@ my @schema_errors = $linter->validate_schema;
 if (@schema_errors) {
     print "Schema validation failed:\n";
     foreach my $error (@schema_errors) {
-        print "  - $error->{message}\n";
+        print $linter->format_schema_error($error->{message}) . "\n";
     }
 } else {
     print "Schema validation passed!\n";
@@ -448,7 +448,7 @@ if (@schema_errors) {
 my @linting_issues = $linter->find_issues;
 
 if (@linting_issues) {
-    print "Linting issues found:\n";
+    print "\nLinting issues found:\n";
     foreach my $issue (@linting_issues) {
         print "  [$issue->{level}] $issue->{message}\n";
     }
@@ -466,25 +466,34 @@ if (@linting_issues) {
 ```bash
 $ perl validate.pl api.yml
 Schema validation failed:
-  - /info/version: /info/version: Missing property.
-  - /paths/~001users~001{id}/get/parameters/0/$ref: /paths/~001users~001{id}/get/parameters/0/$ref: /oneOf/1 Missing property.
-  - /paths/~001users~001{id}/put/parameters/0/$ref: /paths/~001users~001{id}/put/parameters/0/$ref: /oneOf/1 Missing property.
-  - /paths/~1users~1{id}/get/parameters/0/in: /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-  - /paths/~1users~1{id}/get/parameters/0/in: /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-  - /paths/~1users~1{id}/get/parameters/0/in: /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-  - /paths/~1users~1{id}/get/parameters/0/required: /paths/~1users~1{id}/get/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
-  - /paths/~1users~1{id}/put/parameters/0/in: /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-  - /paths/~1users~1{id}/put/parameters/0/in: /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-  - /paths/~1users~1{id}/put/parameters/0/in: /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-  - /paths/~1users~1{id}/put/parameters/0/required: /paths/~1users~1{id}/put/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /info/version: Missing property.
+  - /paths/users~001{id}/get/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/users~001{id}/put/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/users~1{id}/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/users~1{id}/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/users~1{id}/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/users~1{id}/get/parameters/0/required:
+      /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /paths/users~1{id}/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/users~1{id}/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/users~1{id}/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/users~1{id}/put/parameters/0/required:
+      /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+
 Linting issues found:
   [ERROR] Missing info.version
   [WARN] Missing info.license
-  [WARN] Missing description for get /users/{id}
   [WARN] Missing description for get /users
-  [WARN] Schema User.id missing description
-  [WARN] Schema User.age missing description
+  [WARN] Missing description for get /users/{id}
   [WARN] Schema Error missing type
+  [WARN] Schema User.age missing description
+  [WARN] Schema User.id missing description
 ```
 
 <br>
@@ -663,7 +672,7 @@ eval {
     if (@schema_errors) {
         print "Schema validation failed:\n";
         foreach my $error (@schema_errors) {
-            print "   • $error->{message}\n";
+            print $linter->format_schema_error($error->{message}) . "\n";
         }
         exit 1;
     }
@@ -709,17 +718,25 @@ if ($@) {
 ```bash
 $ perl complete-validation.pl api.yml
 Schema validation failed:
-   • /info/version: /info/version: Missing property.
-   • /paths/~001users~001{id}/get/parameters/0/$ref: /paths/~001users~001{id}/get/parameters/0/$ref: /oneOf/1 Missing property.
-   • /paths/~001users~001{id}/put/parameters/0/$ref: /paths/~001users~001{id}/put/parameters/0/$ref: /oneOf/1 Missing property.
-   • /paths/~1users~1{id}/get/parameters/0/in: /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-   • /paths/~1users~1{id}/get/parameters/0/in: /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-   • /paths/~1users~1{id}/get/parameters/0/in: /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-   • /paths/~1users~1{id}/get/parameters/0/required: /paths/~1users~1{id}/get/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
-   • /paths/~1users~1{id}/put/parameters/0/in: /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-   • /paths/~1users~1{id}/put/parameters/0/in: /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-   • /paths/~1users~1{id}/put/parameters/0/in: /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-   • /paths/~1users~1{id}/put/parameters/0/required: /paths/~1users~1{id}/put/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /info/version: Missing property.
+  - /paths/users~001{id}/get/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/users~001{id}/put/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/users~1{id}/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/users~1{id}/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/users~1{id}/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/users~1{id}/get/parameters/0/required:
+      /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /paths/users~1{id}/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/users~1{id}/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/users~1{id}/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/users~1{id}/put/parameters/0/required:
+      /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
 ```
 
 <br>
