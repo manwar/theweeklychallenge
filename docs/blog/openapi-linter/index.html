@@ -924,10 +924,10 @@ Schema validation failed:
 </code></pre></div><br>
 <h2 id="command-line-tool">Command Line Tool</h2>
 <hr>
-<p><code>OpenAPI::Linter</code> comes with a convenient command-line tool <code>openapi-lint</code> for quick validation during development and <code>CI/CD</code> pipelines.</p>
+<p><code>OpenAPI::Linter</code> comes with a convenient command-line tool <code>openapi-linter</code> for quick validation during development and <code>CI/CD</code> pipelines.</p>
 <br>
 <h3 id="basic-linting">Basic Linting</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ openapi-lint --spec api.yml
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ openapi-linter --spec api.yml
 <span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> Missing info.version
 <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing info.license
 <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing description <span style="color:#66d9ef">for</span> get /users
@@ -939,19 +939,27 @@ Schema validation failed:
 Summary: <span style="color:#ae81ff">1</span> ERROR, <span style="color:#ae81ff">6</span> WARNs
 </code></pre></div><br>
 <h3 id="schema-validation-mode">Schema Validation Mode</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ openapi-lint --spec api.yml --validate
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ openapi-linter --spec api.yml --validate
 Running schema validation <span style="color:#66d9ef">for</span> api.yml...
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /info/version: Missing property.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/$ref: /oneOf/1 Missing property.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/$ref: /oneOf/1 Missing property.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /info/version: Missing property.
+  - /paths/users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/required:
+      /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /paths/users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/required:
+      /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
 
 Summary: <span style="color:#ae81ff">11</span> ERRORs, <span style="color:#ae81ff">0</span> WARNs
 </code></pre></div><br>

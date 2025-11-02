@@ -744,14 +744,14 @@ Schema validation failed:
 ## Command Line Tool
 ***
 
-`OpenAPI::Linter` comes with a convenient command-line tool `openapi-lint` for quick validation during development and `CI/CD` pipelines.
+`OpenAPI::Linter` comes with a convenient command-line tool `openapi-linter` for quick validation during development and `CI/CD` pipelines.
 
 <br>
 
 ### Basic Linting
 
 ```bash
-$ openapi-lint --spec api.yml
+$ openapi-linter --spec api.yml
 [ERROR] Missing info.version
 [WARN] Missing info.license
 [WARN] Missing description for get /users
@@ -768,19 +768,27 @@ Summary: 1 ERROR, 6 WARNs
 ### Schema Validation Mode
 
 ```bash
-$ openapi-lint --spec api.yml --validate
+$ openapi-linter --spec api.yml --validate
 Running schema validation for api.yml...
-[ERROR] /info/version: Missing property.
-[ERROR] /paths/~001users~001{id}/get/parameters/0/$ref: /oneOf/1 Missing property.
-[ERROR] /paths/~001users~001{id}/put/parameters/0/$ref: /oneOf/1 Missing property.
-[ERROR] /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-[ERROR] /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-[ERROR] /paths/~1users~1{id}/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-[ERROR] /paths/~1users~1{id}/get/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
-[ERROR] /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
-[ERROR] /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
-[ERROR] /paths/~1users~1{id}/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
-[ERROR] /paths/~1users~1{id}/put/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /info/version: Missing property.
+  - /paths/users~001{id}/get/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/users~001{id}/put/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/users~1{id}/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/users~1{id}/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/users~1{id}/get/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/users~1{id}/get/parameters/0/required:
+      /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /paths/users~1{id}/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/users~1{id}/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/users~1{id}/put/parameters/0/in:
+      /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/users~1{id}/put/parameters/0/required:
+      /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
 
 Summary: 11 ERRORs, 0 WARNs
 ```
