@@ -661,7 +661,6 @@ Here's a complete example that validates a realistic API specification and handl
 **File:** `complete-validation.pl`
 
 ```perl
-use JSON;
 use OpenAPI::Linter;
 
 eval {
