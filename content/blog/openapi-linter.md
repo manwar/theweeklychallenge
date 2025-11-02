@@ -798,7 +798,7 @@ Summary: 11 ERRORs, 0 WARNs
 ### JSON Output for Automation
 
 ```bash
-$ openapi-lint --spec api.yml --json
+$ openapi-linter --spec api.yml --json
 {
    "issues" : [
       {
