@@ -11,15 +11,15 @@ tags: ["perl", "OpenAPI"]
 #### **DISCLAIMER:** Image is generated using `ChatGPT`.
 <br>
 
-#### [&nbsp;**1. Introduction**](#introduction)
-#### [&nbsp;**2. What is OpenAPI::Linter?**](#what-is-openapi-linter)
-#### [&nbsp;**3. Installation**](#installation)
-#### [&nbsp;**4. Basic Usage**](#basic-usage)
-#### [&nbsp;**5. Validating OpenAPI Specifications**](#validating-openapi-specifications)
-#### [&nbsp;**6. Finding Linting Issues**](#finding-linting-issues)
-#### [&nbsp;**7. Advanced Filtering**](#advanced-filtering)
-#### [&nbsp;**8. Real-World Example**](#real-world-example)
-#### [&nbsp;**9. Command Line Tool**](#command-line-tool)
+#### [&nbsp;&nbsp;**1. Introduction**](#introduction)
+#### [&nbsp;&nbsp;**2. What is OpenAPI::Linter?**](#what-is-openapi-linter)
+#### [&nbsp;&nbsp;**3. Installation**](#installation)
+#### [&nbsp;&nbsp;**4. Basic Usage**](#basic-usage)
+#### [&nbsp;&nbsp;**5. Validating OpenAPI Specifications**](#validating-openapi-specifications)
+#### [&nbsp;&nbsp;**6. Finding Linting Issues**](#finding-linting-issues)
+#### [&nbsp;&nbsp;**7. Advanced Filtering**](#advanced-filtering)
+#### [&nbsp;&nbsp;**8. Real-World Example**](#real-world-example)
+#### [&nbsp;&nbsp;**9. Command Line Tool**](#command-line-tool)
 #### [**10. Supported OpenAPI Versions**](#supported-openapi-versions)
 
 <br>
