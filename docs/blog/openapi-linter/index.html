@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="OpenAPI Linter"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/openapi-linter/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about OpenAPI Linter."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about OpenAPI Linter.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/openapi-linter/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OpenAPI Linter</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>OpenAPI Linter</h2>
+                    <div class="portfolio-meta">
+                        <span>Saturday, Nov 1, 2025</span>|
+                        <span> Tags:
+                            perl, OpenAPI
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/openapi-linter.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<br>
+<h3 id="nbsp1-introductionintroduction"><a href="#introduction"> <strong>1. Introduction</strong></a></h3>
+<h3 id="nbsp2-what-is-openapilinterwhat-is-openapi-linter"><a href="#what-is-openapi-linter"> <strong>2. What is OpenAPI::Linter?</strong></a></h3>
+<h3 id="nbsp3-installationinstallation"><a href="#installation"> <strong>3. Installation</strong></a></h3>
+<h3 id="nbsp4-basic-usagebasic-usage"><a href="#basic-usage"> <strong>4. Basic Usage</strong></a></h3>
+<h3 id="nbsp5-validating-openapi-specificationsvalidating-openapi-specifications"><a href="#validating-openapi-specifications"> <strong>5. Validating OpenAPI Specifications</strong></a></h3>
+<h3 id="nbsp6-finding-linting-issuesfinding-linting-issues"><a href="#finding-linting-issues"> <strong>6. Finding Linting Issues</strong></a></h3>
+<h3 id="nbsp7-advanced-filteringadvanced-filtering"><a href="#advanced-filtering"> <strong>7. Advanced Filtering</strong></a></h3>
+<h3 id="nbsp8-real-world-examplereal-world-example"><a href="#real-world-example"> <strong>8. Real-World Example</strong></a></h3>
+<h3 id="nbsp9-command-line-toolcommand-line-tool"><a href="#command-line-tool"> <strong>9. Command Line Tool</strong></a></h3>
+<h3 id="10-supported-openapi-versionssupported-openapi-versions"><a href="#supported-openapi-versions"><strong>10. Supported OpenAPI Versions</strong></a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<p><a href="https://www.openapis.org"><strong>OpenAPI</strong></a> has become the standard for <code>designing</code>, <code>building</code> and <code>documenting RESTful APIs</code>. However, ensuring your <code>OpenAPI specifications</code> are both syntactically correct and follow best practices can be challenging. <a href="https://metacpan.org/dist/OpenAPI-Linter"><strong>OpenAPI::Linter</strong></a> brings comprehensive validation and linting capabilities directly into your <code>Perl</code> applications and development workflow, helping you catch issues before they impact your <code>API</code> consumers.</p>
+<br>
+<h2 id="what-is-openapilinter">What is OpenAPI::Linter?</h2>
+<hr>
+<p><code>OpenAPI::Linter</code> is a dual-purpose tool that provides both structural validation against the official <code>OpenAPI JSON Schema</code> and custom linting for best practices. It automatically detects your <code>OpenAPI</code> version and applies the appropriate validation rules, supporting versions <code>3.0.x</code> through <code>3.1.x</code>.</p>
+<br>
+<h2 id="installation">Installation</h2>
+<hr>
+<p>Install from <code>CPAN</code>:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cpanm -vS OpenAPI::Linter
+</code></pre></div><br>
+<p>The module has minimal dependencies and will automatically install <code>JSON::Validator</code> for schema validation and <code>YAML::XS</code> for <code>YAML</code> file parsing.</p>
+<br>
+<h3 id="sample-spec-file">Sample Spec File</h3>
+<br>
+<p><strong>File:</strong> <code>api.yml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openapi: 3.0.3
+info:
+  title: Sample User API
+  <span style="color:#75715e"># version: 1.0.0  # INTENTIONALLY COMMENTED OUT to demonstrate error</span>
+  description: A sample API <span style="color:#66d9ef">for</span> user management
+  <span style="color:#75715e"># license:  # INTENTIONALLY MISSING to demonstrate warning</span>
+  contact:
+    name: API Team
+    email: api@example.com
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+paths:
+  /users:
+    get:
+      summary: Get all users
+      <span style="color:#75715e"># description: Retrieve a list of all users  # INTENTIONALLY MISSING</span>
+      responses:
+        <span style="color:#e6db74">&#39;200&#39;</span>:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: <span style="color:#e6db74">&#39;#/components/schemas/User&#39;</span>
+        <span style="color:#e6db74">&#39;500&#39;</span>:
+          description: Internal server error
+    post:
+      summary: Create a new user
+      description: Create a new user in the system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: <span style="color:#e6db74">&#39;#/components/schemas/User&#39;</span>
+      responses:
+        <span style="color:#e6db74">&#39;201&#39;</span>:
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: <span style="color:#e6db74">&#39;#/components/schemas/User&#39;</span>
+        <span style="color:#e6db74">&#39;400&#39;</span>:
+          description: Bad request
+  /users/<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>:
+    get:
+      summary: Get user by ID
+      <span style="color:#75715e"># description: Retrieve a specific user by their ID  # INTENTIONALLY MISSING</span>
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        <span style="color:#e6db74">&#39;200&#39;</span>:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: <span style="color:#e6db74">&#39;#/components/schemas/User&#39;</span>
+        <span style="color:#e6db74">&#39;404&#39;</span>:
+          description: User not found
+    put:
+      summary: Update user
+      description: Update an existing user<span style="color:#e6db74">&#39;s information
+</span><span style="color:#e6db74">      parameters:
+</span><span style="color:#e6db74">        - name: id
+</span><span style="color:#e6db74">          in: path
+</span><span style="color:#e6db74">          required: true
+</span><span style="color:#e6db74">          schema:
+</span><span style="color:#e6db74">            type: string
+</span><span style="color:#e6db74">      requestBody:
+</span><span style="color:#e6db74">        required: true
+</span><span style="color:#e6db74">        content:
+</span><span style="color:#e6db74">          application/json:
+</span><span style="color:#e6db74">            schema:
+</span><span style="color:#e6db74">              $ref: &#39;</span><span style="color:#75715e">#/components/schemas/User&#39;</span>
+      responses:
+        <span style="color:#e6db74">&#39;200&#39;</span>:
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: <span style="color:#e6db74">&#39;#/components/schemas/User&#39;</span>
+        <span style="color:#e6db74">&#39;404&#39;</span>:
+          description: User not found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          <span style="color:#75715e"># description: User&#39;s unique identifier  # INTENTIONALLY MISSING</span>
+        name:
+          type: string
+          description: User<span style="color:#e6db74">&#39;s full name
+</span><span style="color:#e6db74">        email:
+</span><span style="color:#e6db74">          type: string
+</span><span style="color:#e6db74">          format: email
+</span><span style="color:#e6db74">          description: User&#39;</span>s email address
+        age:
+          type: integer
+          minimum: <span style="color:#ae81ff">0</span>
+          <span style="color:#75715e"># description: User&#39;s age in years  # INTENTIONALLY MISSING</span>
+        status:
+          type: string
+          enum: <span style="color:#f92672">[</span>active, inactive, suspended<span style="color:#f92672">]</span>
+          description: User account status
+      required:
+        - id
+        - name
+        - email
+    Error:
+      <span style="color:#75715e"># type: object  # INTENTIONALLY MISSING to demonstrate warning</span>
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: <span style="color:#e6db74">&#39;#/components/schemas/Error&#39;</span>
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: <span style="color:#e6db74">&#39;#/components/schemas/Error&#39;</span>
+</code></pre></div><br>
+<p><strong>File:</strong> <code>api-valid.yml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openapi: 3.1.0
+info:
+  title: Sample User API
+  version: 1.0.0
+  description: A sample API <span style="color:#66d9ef">for</span> user management
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  contact:
+    name: API Team
+    email: api@example.com
+    url: https://example.com/support
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+  - url: https://staging-api.example.com/v1
+    description: Staging server
+paths:
+  /users:
+    get:
+      summary: Get all users
+      description: Retrieve a paginated list of all users in the system
+      parameters:
+        - name: page
+          in: query
+          description: Page number <span style="color:#66d9ef">for</span> pagination
+          schema:
+            type: integer
+            minimum: <span style="color:#ae81ff">1</span>
+            default: <span style="color:#ae81ff">1</span>
+        - name: limit
+          in: query
+          description: Number of items per page
+          schema:
+            type: integer
+            minimum: <span style="color:#ae81ff">1</span>
+            maximum: <span style="color:#ae81ff">100</span>
+            default: <span style="color:#ae81ff">20</span>
+      responses:
+        <span style="color:#e6db74">&#39;200&#39;</span>:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: <span style="color:#e6db74">&#39;#/components/schemas/User&#39;</span>
+                  pagination:
+                    $ref: <span style="color:#e6db74">&#39;#/components/schemas/Pagination&#39;</span>
+        <span style="color:#e6db74">&#39;500&#39;</span>:
+          $ref: <span style="color:#e6db74">&#39;#/components/responses/ServerError&#39;</span>
+    post:
+      summary: Create a new user
+      description: Create a new user in the system with the provided information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: <span style="color:#e6db74">&#39;#/components/schemas/UserInput&#39;</span>
+      responses:
+        <span style="color:#e6db74">&#39;201&#39;</span>:
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: <span style="color:#e6db74">&#39;#/components/schemas/User&#39;</span>
+        <span style="color:#e6db74">&#39;400&#39;</span>:
+          description: Bad request - invalid input data
+        <span style="color:#e6db74">&#39;500&#39;</span>:
+          $ref: <span style="color:#e6db74">&#39;#/components/responses/ServerError&#39;</span>
+  /users/<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>:
+    get:
+      summary: Get user by ID
+      description: Retrieve a specific user by their unique identifier
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: User<span style="color:#e6db74">&#39;s unique identifier
+</span><span style="color:#e6db74">          schema:
+</span><span style="color:#e6db74">            type: string
+</span><span style="color:#e6db74">            format: uuid
+</span><span style="color:#e6db74">      responses:
+</span><span style="color:#e6db74">        &#39;</span>200<span style="color:#e6db74">&#39;:
+</span><span style="color:#e6db74">          description: Successful response
+</span><span style="color:#e6db74">          content:
+</span><span style="color:#e6db74">            application/json:
+</span><span style="color:#e6db74">              schema:
+</span><span style="color:#e6db74">                $ref: &#39;</span><span style="color:#75715e">#/components/schemas/User&#39;</span>
+        <span style="color:#e6db74">&#39;404&#39;</span>:
+          $ref: <span style="color:#e6db74">&#39;#/components/responses/NotFound&#39;</span>
+        <span style="color:#e6db74">&#39;500&#39;</span>:
+          $ref: <span style="color:#e6db74">&#39;#/components/responses/ServerError&#39;</span>
+components:
+  schemas:
+    User:
+      type: object
+      description: A user object containing all user information
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: User<span style="color:#e6db74">&#39;s unique identifier
+</span><span style="color:#e6db74">        name:
+</span><span style="color:#e6db74">          type: string
+</span><span style="color:#e6db74">          description: User&#39;</span>s full name
+        email:
+          type: string
+          format: email
+          description: User<span style="color:#e6db74">&#39;s email address
+</span><span style="color:#e6db74">        age:
+</span><span style="color:#e6db74">          type: integer
+</span><span style="color:#e6db74">          minimum: 0
+</span><span style="color:#e6db74">          maximum: 150
+</span><span style="color:#e6db74">          description: User&#39;</span>s age in years
+        status:
+          type: string
+          enum: <span style="color:#f92672">[</span>active, inactive, suspended<span style="color:#f92672">]</span>
+          description: User account status
+        createdAt:
+          type: string
+          format: date-time
+          description: When the user was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the user was last updated
+      required:
+        - id
+        - name
+        - email
+        - status
+    UserInput:
+      type: object
+      description: Input data <span style="color:#66d9ef">for</span> creating or updating a user
+      properties:
+        name:
+          type: string
+          description: User<span style="color:#e6db74">&#39;s full name
+</span><span style="color:#e6db74">        email:
+</span><span style="color:#e6db74">          type: string
+</span><span style="color:#e6db74">          format: email
+</span><span style="color:#e6db74">          description: User&#39;</span>s email address
+        age:
+          type: integer
+          minimum: <span style="color:#ae81ff">0</span>
+          maximum: <span style="color:#ae81ff">150</span>
+          description: User<span style="color:#e6db74">&#39;s age in years
+</span><span style="color:#e6db74">      required:
+</span><span style="color:#e6db74">        - name
+</span><span style="color:#e6db74">        - email
+</span><span style="color:#e6db74">    Pagination:
+</span><span style="color:#e6db74">      type: object
+</span><span style="color:#e6db74">      description: Pagination metadata
+</span><span style="color:#e6db74">      properties:
+</span><span style="color:#e6db74">        page:
+</span><span style="color:#e6db74">          type: integer
+</span><span style="color:#e6db74">          description: Current page number
+</span><span style="color:#e6db74">        limit:
+</span><span style="color:#e6db74">          type: integer
+</span><span style="color:#e6db74">          description: Number of items per page
+</span><span style="color:#e6db74">        total:
+</span><span style="color:#e6db74">          type: integer
+</span><span style="color:#e6db74">          description: Total number of items
+</span><span style="color:#e6db74">        pages:
+</span><span style="color:#e6db74">          type: integer
+</span><span style="color:#e6db74">          description: Total number of pages
+</span><span style="color:#e6db74">    Error:
+</span><span style="color:#e6db74">      type: object
+</span><span style="color:#e6db74">      description: Standard error response
+</span><span style="color:#e6db74">      properties:
+</span><span style="color:#e6db74">        code:
+</span><span style="color:#e6db74">          type: integer
+</span><span style="color:#e6db74">          description: HTTP status code
+</span><span style="color:#e6db74">        message:
+</span><span style="color:#e6db74">          type: string
+</span><span style="color:#e6db74">          description: Error message
+</span><span style="color:#e6db74">        details:
+</span><span style="color:#e6db74">          type: string
+</span><span style="color:#e6db74">          description: Additional error details
+</span><span style="color:#e6db74">        timestamp:
+</span><span style="color:#e6db74">          type: string
+</span><span style="color:#e6db74">          format: date-time
+</span><span style="color:#e6db74">          description: When the error occurred
+</span><span style="color:#e6db74">      required:
+</span><span style="color:#e6db74">        - code
+</span><span style="color:#e6db74">        - message
+</span><span style="color:#e6db74">        - timestamp
+</span><span style="color:#e6db74">  responses:
+</span><span style="color:#e6db74">    NotFound:
+</span><span style="color:#e6db74">      description: The specified resource was not found
+</span><span style="color:#e6db74">      content:
+</span><span style="color:#e6db74">        application/json:
+</span><span style="color:#e6db74">          schema:
+</span><span style="color:#e6db74">            $ref: &#39;</span><span style="color:#75715e">#/components/schemas/Error&#39;</span>
+    ServerError:
+      description: Internal server error occurred
+      content:
+        application/json:
+          schema:
+            $ref: <span style="color:#e6db74">&#39;#/components/schemas/Error&#39;</span>
+</code></pre></div><br>
+<h2 id="basic-usage">Basic Usage</h2>
+<hr>
+<p>Let&rsquo;s start with a simple validation example.</p>
+<br>
+<h3 id="file-validatepl">File: <code>validate.pl</code></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> OpenAPI::Linter;
+
+<span style="color:#66d9ef">my</span> $linter <span style="color:#f92672">=</span> OpenAPI::Linter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(spec <span style="color:#f92672">=&gt;</span> $ARGV[<span style="color:#ae81ff">0</span>]);
+
+<span style="color:#66d9ef">my</span> @schema_errors <span style="color:#f92672">=</span> $linter<span style="color:#f92672">-&gt;</span>validate_schema;
+
+<span style="color:#66d9ef">if</span> (@schema_errors) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Schema validation failed:\n&#34;</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $error (@schema_errors) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  - $error\n&#34;</span>;
+    }
+} <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Schema validation passed!\n&#34;</span>;
+}
+
+<span style="color:#66d9ef">my</span> @linting_issues <span style="color:#f92672">=</span> $linter<span style="color:#f92672">-&gt;</span>find_issues;
+
+<span style="color:#66d9ef">if</span> (@linting_issues) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Linting issues found:\n&#34;</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $issue (@linting_issues) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  [$issue-&gt;{level}] $issue-&gt;{message}\n&#34;</span>;
+    }
+} <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;No linting issues found!\n&#34;</span>;
+}
+</code></pre></div><br>
+<h3 id="output">Output</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl validate.pl api.yml
+Schema validation failed:
+  - /info/version: Missing property.
+  - /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/$ref: /oneOf/1 Missing property.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+  - /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+Linting issues found:
+  <span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> Missing info.version
+  <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing info.license
+  <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing description <span style="color:#66d9ef">for</span> get /users
+  <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing description <span style="color:#66d9ef">for</span> get /users/<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>
+  <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Schema User.age missing description
+  <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Schema User.id missing description
+  <span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Schema Error missing type
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl validate.pl api-valid.yml
+Schema validation passed!
+No linting issues found!
+</code></pre></div><br>
+<h2 id="validating-openapi-specifications">Validating OpenAPI Specifications</h2>
+<hr>
+<p><code>validate_schema</code> performs structural validation against the official <code>OpenAPI JSON Schema</code>. This ensures your specification conforms to the <code>OpenAPI</code> standard.</p>
+<br>
+<p><strong>File:</strong> <code>schema-validation.pl</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> OpenAPI::Linter;
+
+<span style="color:#66d9ef">my</span> $linter <span style="color:#f92672">=</span> OpenAPI::Linter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(spec <span style="color:#f92672">=&gt;</span> {
+    openapi <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;3.0.0&#39;</span>,
+    info <span style="color:#f92672">=&gt;</span> {
+        title   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;My API&#39;</span>,
+        version <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1.0.0&#39;</span>
+    },
+    paths <span style="color:#f92672">=&gt;</span> {}
+});
+
+<span style="color:#66d9ef">my</span> $errors <span style="color:#f92672">=</span> $linter<span style="color:#f92672">-&gt;</span>validate_schema;
+
+<span style="color:#66d9ef">if</span> (@$errors) {
+    die <span style="color:#e6db74">&#34;Invalid OpenAPI specification:\n&#34;</span> <span style="color:#f92672">.</span> join(<span style="color:#e6db74">&#34;\n&#34;</span>, @$errors);
+}
+
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Specification is structurally valid!\n&#34;</span>;
+</code></pre></div><br>
+<h3 id="output-1">Output</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl schema-validation.pl
+Specification is structurally valid!
+</code></pre></div><br>
+<h2 id="finding-linting-issues">Finding Linting Issues</h2>
+<hr>
+<p><code>find_issues</code> performs best-practice checks beyond basic schema validation. It identifies common issues that can affect API usability and documentation quality.</p>
+<br>
+<p><strong>File:</strong> <code>linting.pl</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> OpenAPI::Linter;
+
+<span style="color:#66d9ef">my</span> $spec <span style="color:#f92672">=</span> {
+    openapi <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;3.0.0&#39;</span>,
+    info <span style="color:#f92672">=&gt;</span> {
+        title   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;My API&#39;</span>,
+        version <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1.0.0&#39;</span>
+        <span style="color:#75715e"># Missing description and license</span>
+    },
+    paths <span style="color:#f92672">=&gt;</span> {
+        <span style="color:#e6db74">&#39;/users&#39;</span> <span style="color:#f92672">=&gt;</span> {
+            <span style="color:#e6db74">&#39;get&#39;</span> <span style="color:#f92672">=&gt;</span> {
+                responses <span style="color:#f92672">=&gt;</span> {
+                    <span style="color:#e6db74">&#39;200&#39;</span> <span style="color:#f92672">=&gt;</span> {
+                        description <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;OK&#39;</span>
+                    }
+                }
+                <span style="color:#75715e"># Missing operation description</span>
+            }
+        }
+    }
+};
+
+<span style="color:#66d9ef">my</span> $linter <span style="color:#f92672">=</span> OpenAPI::Linter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(spec <span style="color:#f92672">=&gt;</span> $spec);
+<span style="color:#66d9ef">my</span> @issues <span style="color:#f92672">=</span> $linter<span style="color:#f92672">-&gt;</span>find_issues;
+
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $issue (@issues) {
+    printf <span style="color:#e6db74">&#34;[%-5s] %s\n&#34;</span>, $issue<span style="color:#f92672">-&gt;</span>{level}, $issue<span style="color:#f92672">-&gt;</span>{message};
+}
+</code></pre></div><br>
+<h3 id="output-2">Output</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl linting.pl
+<span style="color:#f92672">[</span>WARN <span style="color:#f92672">]</span> Missing info.description
+<span style="color:#f92672">[</span>WARN <span style="color:#f92672">]</span> Missing info.license
+<span style="color:#f92672">[</span>WARN <span style="color:#f92672">]</span> Missing description <span style="color:#66d9ef">for</span> get /users
+</code></pre></div><br>
+<h2 id="advanced-filtering">Advanced Filtering</h2>
+<hr>
+<p><code>find_issues</code> supports filtering by <code>severity level</code> and message patterns, making it easy to focus on specific types of issues.</p>
+<p><strong>File:</strong> <code>filtering.pl</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> OpenAPI::Linter;
+
+<span style="color:#66d9ef">my</span> $linter <span style="color:#f92672">=</span> OpenAPI::Linter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(spec <span style="color:#f92672">=&gt;</span> $ARGV[<span style="color:#ae81ff">0</span>]);
+
+<span style="color:#75715e"># Get only errors (no warnings)</span>
+<span style="color:#66d9ef">my</span> @errors <span style="color:#f92672">=</span> $linter<span style="color:#f92672">-&gt;</span>find_issues(level <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ERROR&#39;</span>);
+
+<span style="color:#75715e"># Get warnings related to descriptions</span>
+<span style="color:#66d9ef">my</span> @description_warnings <span style="color:#f92672">=</span> $linter<span style="color:#f92672">-&gt;</span>find_issues(
+    level <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;WARN&#39;</span>,
+    pattern <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qr/description/</span>i
+);
+
+<span style="color:#75715e"># Get path-related issues</span>
+<span style="color:#66d9ef">my</span> @path_issues <span style="color:#f92672">=</span> $linter<span style="color:#f92672">-&gt;</span>find_issues(
+    pattern <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qr/^Missing description for \w+/</span>
+);
+
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Critical errors: &#34;</span> <span style="color:#f92672">.</span> scalar(@errors) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Description warnings: &#34;</span> <span style="color:#f92672">.</span> scalar(@description_warnings) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Path issues: &#34;</span> <span style="color:#f92672">.</span> scalar(@path_issues) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><br>
+<h3 id="output-3">Output</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl filtering.pl api.yml
+Critical errors: <span style="color:#ae81ff">1</span>
+Description warnings: <span style="color:#ae81ff">4</span>
+Path issues: <span style="color:#ae81ff">2</span>
+</code></pre></div><br>
+<h2 id="real-world-example">Real-World Example</h2>
+<hr>
+<p>Here&rsquo;s a complete example that validates a realistic API specification and handles both schema and linting issues.</p>
+<br>
+<p><strong>File:</strong> <code>complete-validation.pl</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> JSON;
+<span style="color:#66d9ef">use</span> OpenAPI::Linter;
+
+eval {
+    <span style="color:#66d9ef">my</span> $linter <span style="color:#f92672">=</span> OpenAPI::Linter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(spec <span style="color:#f92672">=&gt;</span> $ARGV[<span style="color:#ae81ff">0</span>]);
+
+    <span style="color:#66d9ef">my</span> @schema_errors <span style="color:#f92672">=</span> $linter<span style="color:#f92672">-&gt;</span>validate_schema;
+
+    <span style="color:#66d9ef">if</span> (@schema_errors) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Schema validation failed:\n&#34;</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $error (@schema_errors) {
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;   • $error-&gt;{message}\n&#34;</span>;
+        }
+        exit <span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Schema validation passed\n&#34;</span>;
+
+    <span style="color:#66d9ef">my</span> @issues <span style="color:#f92672">=</span> $linter<span style="color:#f92672">-&gt;</span>find_issues;
+
+    <span style="color:#66d9ef">my</span> ($errors, $warnings) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $issue (@issues) {
+        <span style="color:#66d9ef">if</span> ($issue<span style="color:#f92672">-&gt;</span>{level} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;ERROR&#39;</span>) {
+            $errors<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$issue-&gt;{message}\n&#34;</span>;
+        } <span style="color:#66d9ef">else</span> {
+            $warnings<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$issue-&gt;{message}\n&#34;</span>;
+        }
+    }
+
+    <span style="color:#66d9ef">if</span> ($errors) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n$errors error(s), $warnings warning(s) found - please fix errors\n&#34;</span>;
+        exit <span style="color:#ae81ff">1</span>;
+    } <span style="color:#66d9ef">elsif</span> ($warnings) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n$warnings warning(s) found - consider addressing these\n&#34;</span>;
+        exit <span style="color:#ae81ff">0</span>;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;No issues found! Specification looks great!\n&#34;</span>;
+        exit <span style="color:#ae81ff">0</span>;
+    }
+};
+
+<span style="color:#66d9ef">if</span> ($@) {
+    die <span style="color:#e6db74">&#34;Failed to process $spec_file: $@\n&#34;</span>;
+}
+</code></pre></div><br>
+<h3 id="output-4">Output</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl complete-validation.pl api.yml
+Schema validation failed:
+   • /info/version: /info/version: Missing property.
+   • /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/$ref: /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/$ref: /oneOf/1 Missing property.
+   • /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/$ref: /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/$ref: /oneOf/1 Missing property.
+   • /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+   • /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+   • /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+   • /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/required: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+   • /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+   • /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+   • /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+   • /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/required: /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+</code></pre></div><br>
+<h2 id="command-line-tool">Command Line Tool</h2>
+<hr>
+<p><code>OpenAPI::Linter</code> comes with a convenient command-line tool <code>openapi-lint</code> for quick validation during development and <code>CI/CD</code> pipelines.</p>
+<br>
+<h3 id="basic-linting">Basic Linting</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ openapi-lint --spec api.yml
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> Missing info.version
+<span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing info.license
+<span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing description <span style="color:#66d9ef">for</span> get /users
+<span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Missing description <span style="color:#66d9ef">for</span> get /users/<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>
+<span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Schema User.age missing description
+<span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Schema User.id missing description
+<span style="color:#f92672">[</span>WARN<span style="color:#f92672">]</span> Schema Error missing type
+
+Summary: <span style="color:#ae81ff">1</span> ERROR, <span style="color:#ae81ff">6</span> WARNs
+</code></pre></div><br>
+<h3 id="schema-validation-mode">Schema Validation Mode</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ openapi-lint --spec api.yml --validate
+Running schema validation <span style="color:#66d9ef">for</span> api.yml...
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /info/version: Missing property.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/$ref: /oneOf/1 Missing property.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~001users~001<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/$ref: /oneOf/1 Missing property.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/get/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/1 Not in enum list: query.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/2 Not in enum list: header.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/in: /oneOf/0/allOf/2/oneOf/3 Not in enum list: cookie.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> /paths/~1users~1<span style="color:#f92672">{</span>id<span style="color:#f92672">}</span>/put/parameters/0/required: /oneOf/0/allOf/2/oneOf/0 Not in enum list: true.
+
+Summary: <span style="color:#ae81ff">11</span> ERRORs, <span style="color:#ae81ff">0</span> WARNs
+</code></pre></div><br>
+<h3 id="json-output-for-automation">JSON Output for Automation</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ openapi-lint --spec api.yml --json
+<span style="color:#f92672">{</span>
+   <span style="color:#e6db74">&#34;issues&#34;</span> : <span style="color:#f92672">[</span>
+      <span style="color:#f92672">{</span>
+         <span style="color:#e6db74">&#34;level&#34;</span> : <span style="color:#e6db74">&#34;ERROR&#34;</span>,
+         <span style="color:#e6db74">&#34;message&#34;</span> : <span style="color:#e6db74">&#34;Missing info.version&#34;</span>
+      <span style="color:#f92672">}</span>,
+      <span style="color:#f92672">{</span>
+         <span style="color:#e6db74">&#34;message&#34;</span> : <span style="color:#e6db74">&#34;Missing info.license&#34;</span>,
+         <span style="color:#e6db74">&#34;level&#34;</span> : <span style="color:#e6db74">&#34;WARN&#34;</span>
+      <span style="color:#f92672">}</span>,
+      <span style="color:#f92672">{</span>
+         <span style="color:#e6db74">&#34;message&#34;</span> : <span style="color:#e6db74">&#34;Missing description for get /users/{id}&#34;</span>,
+         <span style="color:#e6db74">&#34;level&#34;</span> : <span style="color:#e6db74">&#34;WARN&#34;</span>
+      <span style="color:#f92672">}</span>,
+      <span style="color:#f92672">{</span>
+         <span style="color:#e6db74">&#34;level&#34;</span> : <span style="color:#e6db74">&#34;WARN&#34;</span>,
+         <span style="color:#e6db74">&#34;message&#34;</span> : <span style="color:#e6db74">&#34;Missing description for get /users&#34;</span>
+      <span style="color:#f92672">}</span>,
+      <span style="color:#f92672">{</span>
+         <span style="color:#e6db74">&#34;message&#34;</span> : <span style="color:#e6db74">&#34;Schema User.id missing description&#34;</span>,
+         <span style="color:#e6db74">&#34;level&#34;</span> : <span style="color:#e6db74">&#34;WARN&#34;</span>
+      <span style="color:#f92672">}</span>,
+      <span style="color:#f92672">{</span>
+         <span style="color:#e6db74">&#34;level&#34;</span> : <span style="color:#e6db74">&#34;WARN&#34;</span>,
+         <span style="color:#e6db74">&#34;message&#34;</span> : <span style="color:#e6db74">&#34;Schema User.age missing description&#34;</span>
+      <span style="color:#f92672">}</span>,
+      <span style="color:#f92672">{</span>
+         <span style="color:#e6db74">&#34;message&#34;</span> : <span style="color:#e6db74">&#34;Schema Error missing type&#34;</span>,
+         <span style="color:#e6db74">&#34;level&#34;</span> : <span style="color:#e6db74">&#34;WARN&#34;</span>
+      <span style="color:#f92672">}</span>
+   <span style="color:#f92672">]</span>,
+   <span style="color:#e6db74">&#34;summary&#34;</span> : <span style="color:#f92672">{</span>
+      <span style="color:#e6db74">&#34;warnings&#34;</span> : 6,
+      <span style="color:#e6db74">&#34;errors&#34;</span> : <span style="color:#ae81ff">1</span>
+   <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<h2 id="supported-openapi-versions">Supported OpenAPI Versions</h2>
+<hr>
+<p><code>OpenAPI::Linter</code> automatically detects and supports:</p>
+<br>
+<pre><code>OpenAPI 3.0.x: 3.0.0, 3.0.1, 3.0.2, 3.0.3
+OpenAPI 3.1.x: 3.1.0, 3.1.1
+</code></pre>
+<br>
+<p>The version is auto-detected from the openapi field, but you can explicitly specify it:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $linter <span style="color:#f92672">=</span> OpenAPI::Linter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+    spec    <span style="color:#f92672">=&gt;</span> $spec,
+    version <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;3.1.0&#39;</span>  <span style="color:#75715e"># Override auto-detection</span>
+);
+</code></pre></div><br>
+<p><code>OpenAPI::Linter</code> helps you maintain high-quality <code>API specifications</code> by catching issues early in the development process. Whether you&rsquo;re using it in your <code>CI/CD</code> pipeline, as a <code>pre-commit</code> hook or integrated directly into your application, it ensures your <code>OpenAPI</code> specifications are both valid and follow best practices.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
