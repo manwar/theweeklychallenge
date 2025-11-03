@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - 346"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/perl-weekly-challenge-346/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="The Weekly Challenge - 346"/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="The Weekly Challenge - 346">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/perl-weekly-challenge-346/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Weekly Challenge - 346</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>The Weekly Challenge - 346</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Nov 3, 2025</span>|
+                        <span> Tags:
+                            Perl, Raku
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/twc-logo.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h2 id="table-of-contents">TABLE OF CONTENTS</h2>
+<hr>
+<h3 id="nbspnbsp1-headlinesheadlines">  1. <a href="#HEADLINES">HEADLINES</a></h3>
+<h3 id="nbspnbsp2-sponsorsponsor">  2. <a href="#SPONSOR">SPONSOR</a></h3>
+<h3 id="nbspnbsp3-recaprecap">  3. <a href="#RECAP">RECAP</a></h3>
+<h3 id="nbspnbsp4-perl-reviewperlreview">  4. <a href="#PERLREVIEW">PERL REVIEW</a></h3>
+<h3 id="nbspnbsp5-raku-reviewrakureview">  5. <a href="#RAKUREVIEW">RAKU REVIEW</a></h3>
+<h3 id="nbspnbsp6-chartchart">  6. <a href="#CHART">CHART</a></h3>
+<h3 id="nbspnbsp7-new-membersnewmembers">  7. <a href="#NEWMEMBERS">NEW MEMBERS</a></h3>
+<h3 id="nbspnbsp8-guestsguests">  8. <a href="#GUESTS">GUESTS</a></h3>
+<h3 id="nbspnbsp9-task-1-longest-parenthesistask1">  9. <a href="#TASK1">TASK #1: Longest Parenthesis</a></h3>
+<h3 id="10-task-2-magic-expressiontask2">10. <a href="#TASK2">TASK #2: Magic Expression</a></h3>
+<br>
+<h2 id="HEADLINES">HEADLINES</h2>
+<hr>
+<p>Welcome to the <code>Week #346</code> of <code>The Weekly Challenge</code>.</p>
+<p>Today is the first <code>Monday</code> of the month and time to declare our next <code>Champion of the Month</code>. With great pleasure, I announce <code>Niels van Dijke</code> as the next champion. He is currently ranked <code>#29</code> with total score <code>856</code>. He was last declared champion in <code>Dec 2020</code>. Congratulations <code>Niels</code>.</p>
+<p>Let us welcome new guest contributor, <a href="https://github.com/pyjail"><strong>lexi</strong></a>, expert hacker in <code>Uiua</code>. Thanks <code>lexi</code> for your first contributions in <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-345/orthoplex/uiua"><strong>Uiua</strong></a>.</p>
+<p>I&rsquo;ve been meaning to tell the team about something for a while and I think this is the ideal moment.</p>
+<p>The months of <code>November</code> through <code>January</code> are usually challenging for me and I&rsquo;ve always had trouble with elevated anxiety and depression during these times. I&rsquo;m paying attention to taking care of my health now that <code>November</code> has arrived. Fortunately, I benefit greatly from being a member of the PWC team because it keeps me motivated and involved. I find that keeping myself occupied and avoiding idleness is essential to keeping my equilibrium.</p>
+<p>By the way, next month is my <code>50th</code> birthday. I never celebrated my birthdays and I intend to keep that tradition going this year as well.</p>
+<p>Seeing our team&rsquo;s retired techies who enjoy coding makes me think of my own objective: to eventually be able to code just for fun after retirement. They&rsquo;re really fortunate, in my opinion.</p>
+<p>It&rsquo;s time to get ready for the <code>Advent Calendar</code> this year, by the way. The custom of reading through blog entries and choosing one for each day is something I truly appreciate. I&rsquo;m excited to carry on this year.</p>
+<p>Please let me know if you would like to nominate any particular blog posts. I want to make sure I don&rsquo;t overlook any outstanding ones!</p>
+<p>Below is my contribution to last week&rsquo;s <code>Task #1</code>. It doesn&rsquo;t take long but gives me immense pleasure in the end and keep me motivated.</p>
+<br>
+<h3 id="perl">Perl</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Test::More;
+
+<span style="color:#66d9ef">my</span> @examples <span style="color:#f92672">=</span> (
+    { in <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>],             exp <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;1&#34;</span>       },
+    { in <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>],       exp <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;2&#34;</span>       },
+    { in <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>],    exp <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;2, 4&#34;</span>    },
+    { in <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>],             exp <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0&#34;</span>       },
+    { in <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>], exp <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;1, 3, 5&#34;</span> },
+);
+
+<span style="color:#66d9ef">foreach</span> (@examples) {
+    is(peak_point(@{$_<span style="color:#f92672">-&gt;</span>{in}}), $_<span style="color:#f92672">-&gt;</span>{exp});
+}
+
+done_testing;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">peak_point</span> {
+    <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> join(<span style="color:#e6db74">&#34;, &#34;</span>, grep {
+        ($_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>   ? @n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $n[<span style="color:#ae81ff">0</span>]  <span style="color:#f92672">&gt;</span> $n[<span style="color:#ae81ff">1</span>]  :
+         $_ <span style="color:#f92672">==</span> $#n ? @n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $n[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $n[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] :
+         $n[$_] <span style="color:#f92672">&gt;</span> $n[$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  <span style="color:#f92672">&amp;&amp;</span> $n[$_] <span style="color:#f92672">&gt;</span> $n[$_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+    } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#n);
+}
+</code></pre></div><br>
+<h3 id="raku">Raku</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e">#!/usr/bin/env raku</span>
+
+<span style="color:#66d9ef">use</span> Test;
+
+<span style="color:#66d9ef">my</span> @examples <span style="color:#f92672">=</span> (
+    { in <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>],             exp <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;1&#34;</span>       },
+    { in <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>],       exp <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;2&#34;</span>       },
+    { in <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>],    exp <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;2, 4&#34;</span>    },
+    { in <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>],             exp <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0&#34;</span>       },
+    { in <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>], exp <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;1, 3, 5&#34;</span> },
+);
+
+<span style="color:#66d9ef">for</span> @examples <span style="color:#f92672">-&gt;</span> %example {
+    is(peak<span style="color:#f92672">-</span>point(%example<span style="color:#e6db74">&lt;in&gt;</span>), %example<span style="color:#e6db74">&lt;exp&gt;</span>);
+}
+
+done<span style="color:#f92672">-</span>testing;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">peak</span>-point(@n) {
+    <span style="color:#66d9ef">return</span> @n<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>grep({
+        $_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>             ?? @n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> @n[<span style="color:#ae81ff">0</span>]   <span style="color:#f92672">&gt;</span> @n[<span style="color:#ae81ff">1</span>]   <span style="color:#f92672">!!</span>
+        $_ <span style="color:#f92672">==</span> @n<span style="color:#f92672">.</span>end        ?? @n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> @n[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> @n[<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">!!</span>
+        @n[$_] <span style="color:#f92672">&gt;</span> @n[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&amp;&amp;</span> @n[$_] <span style="color:#f92672">&gt;</span>  @n[$_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]
+    })<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>);
+}
+</code></pre></div><br>
+<h3 id="python">Python</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">peak_point</span>(nums):
+    n <span style="color:#f92672">=</span> nums
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">.</span>join(str(i) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(n)) <span style="color:#66d9ef">if</span>
+        (i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> len(n) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> n[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> n[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">or</span>
+        (i <span style="color:#f92672">==</span> len(n) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> len(n) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> n[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> n[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]) <span style="color:#f92672">or</span>
+        (<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> i <span style="color:#f92672">&lt;</span> len(n) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> n[i] <span style="color:#f92672">&gt;</span> n[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">and</span> n[i] <span style="color:#f92672">&gt;</span> n[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]))
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_examples</span>():
+    examples <span style="color:#f92672">=</span> [
+        {<span style="color:#e6db74">&#34;in&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>],             <span style="color:#e6db74">&#34;exp&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>},
+        {<span style="color:#e6db74">&#34;in&#34;</span>: [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>],       <span style="color:#e6db74">&#34;exp&#34;</span>: <span style="color:#e6db74">&#34;2&#34;</span>},
+        {<span style="color:#e6db74">&#34;in&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>],    <span style="color:#e6db74">&#34;exp&#34;</span>: <span style="color:#e6db74">&#34;2, 4&#34;</span>},
+        {<span style="color:#e6db74">&#34;in&#34;</span>: [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>],             <span style="color:#e6db74">&#34;exp&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>},
+        {<span style="color:#e6db74">&#34;in&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#34;exp&#34;</span>: <span style="color:#e6db74">&#34;1, 3, 5&#34;</span>},
+    ]
+
+    <span style="color:#66d9ef">for</span> example <span style="color:#f92672">in</span> examples:
+        result <span style="color:#f92672">=</span> peak_point(example[<span style="color:#e6db74">&#34;in&#34;</span>])
+        expected <span style="color:#f92672">=</span> example[<span style="color:#e6db74">&#34;exp&#34;</span>]
+        <span style="color:#66d9ef">assert</span> result <span style="color:#f92672">==</span> expected, f<span style="color:#e6db74">&#34;Failed for {example[&#39;in&#39;]}: expected &#39;{expected}&#39;, got &#39;{result}&#39;&#34;</span>
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;{example[&#39;in&#39;]} -&gt; {result}&#34;</span>)
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    test_examples()
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;All tests passed!&#34;</span>)
+</code></pre></div><br>
+<p>Thank you <code>Team PWC</code>, once again.</p>
+<p><code>Happy Hacking!!</code></p>
+<hr>
+<p>Last <code>5 weeks</code> mainstream contribution stats. Thank you <code>Team PWC</code>  for your support and encouragements.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">  <code>Week</code>  </td>
+<td align="center">   <code>Perl</code>   </td>
+<td align="center">   <code>Raku</code>   </td>
+<td align="center">   <code>Blog</code>   </td>
+</tr>
+<tr>
+<td align="center">   <code>341</code>   </td>
+<td align="center">   57   </td>
+<td align="center">   25   </td>
+<td align="center">   25   </td>
+</tr>
+<tr>
+<td align="center">   <code>342</code>   </td>
+<td align="center">   51   </td>
+<td align="center">   22   </td>
+<td align="center">   15   </td>
+</tr>
+<tr>
+<td align="center">   <code>343</code>   </td>
+<td align="center">   44   </td>
+<td align="center">   19   </td>
+<td align="center">   13   </td>
+</tr>
+<tr>
+<td align="center">   <code>344</code>   </td>
+<td align="center">   47   </td>
+<td align="center">   25   </td>
+<td align="center">   17   </td>
+</tr>
+<tr>
+<td align="center">   <code>345</code>   </td>
+<td align="center">   45   </td>
+<td align="center">   22   </td>
+<td align="center">   15   </td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>Last <code>5 weeks</code> guest contribution stats. Thank you each and every guest contributors for your time and efforts.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">  <code>Week</code>  </td>
+<td align="center">   <code>Guests</code>   </td>
+<td align="center">   <code>Contributions</code>   </td>
+<td align="center">   <code>Languages</code>   </td>
+</tr>
+<tr>
+<td align="center">   <code>341</code>   </td>
+<td align="center">   15   </td>
+<td align="center">   67   </td>
+<td align="center">   19   </td>
+</tr>
+<tr>
+<td align="center">   <code>342</code>   </td>
+<td align="center">   14   </td>
+<td align="center">   46   </td>
+<td align="center">   14   </td>
+</tr>
+<tr>
+<td align="center">   <code>343</code>   </td>
+<td align="center">   15   </td>
+<td align="center">   61   </td>
+<td align="center">   20   </td>
+</tr>
+<tr>
+<td align="center">   <code>344</code>   </td>
+<td align="center">   16   </td>
+<td align="center">   60   </td>
+<td align="center">   18   </td>
+</tr>
+<tr>
+<td align="center">   <code>345</code>   </td>
+<td align="center">   16   </td>
+<td align="center">   56   </td>
+<td align="center">   18   </td>
+</tr>
+</tbody>
+</table>
+<br>
+<h3 id="top-10-guest-languages">TOP 10 Guest Languages</h3>
+<hr>
+<p>Do you see your favourite language in the <code>Top #10</code>? If not then why not contribute regularly and make it to the top.</p>
+<pre><code> 1. Python     (3707)
+ 2. Rust       (1032)
+ 3. Ruby       (842)
+ 4. Haskell    (827)
+ 5. Lua        (785)
+ 6. C++        (663)
+ 7. C          (596)
+ 8. JavaScript (594)
+ 9. Go         (569)
+10. BQN        (480)
+</code></pre>
+<br>
+<h3 id="blogs-with-creative-title">Blogs with Creative Title</h3>
+<hr>
+<h4 id="1-last-peakhttpsraku-musingscomlast-peakhtml-by-arne-sommer">1. <a href="https://raku-musings.com/last-peak.html">Last Peak</a> by Arne Sommer.</h4>
+<h4 id="2-i-went-to-the-mountainshttpsdevtobobliedpwc-345-i-went-to-the-mountains-43i0-by-bob-lied">2. <a href="https://dev.to/boblied/pwc-345-i-went-to-the-mountains-43i0">I Went to the Mountains</a> by Bob Lied.</h4>
+<h4 id="3-the-last-peakhttpsgithubsommreydethe-bears-den20251031ch-345html-by-jorg-sommrey">3. <a href="https://github.sommrey.de/the-bears-den/2025/10/31/ch-345.html">The Last Peak</a> by Jorg Sommrey.</h4>
+<h4 id="4-visiting-the-peakshttpsgithubcommatthiasmuthperlweeklychallenge-clubtreemuthm-345challenge-345matthias-muthreadme-by-matthias-muth">4. <a href="https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-345/challenge-345/matthias-muth#readme">Visiting the Peaks</a> by Matthias Muth.</h4>
+<h4 id="5-teach-them-how-to-say-pwchttpspackydardancombdd-by-packy-anderson">5. <a href="https://packy.dardan.com/b/dD">Teach Them How To Say PWC…</a> by Packy Anderson.</h4>
+<h4 id="6-peak-at-the-answershttpccgicampbellsmithsforce9coukchallenge345-by-peter-campbell-smith">6. <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/345">Peak at the answers</a> by Peter Campbell Smith.</h4>
+<h4 id="7-position-the-visitorhttpsblogfiredrakeorgarchive202511the_weekly_challenge_345__position_the_visitorhtml-by-roger-bell_west">7. <a href="https://blog.firedrake.org/archive/2025/11/The_Weekly_Challenge_345__Position_the_Visitor.html">Position the Visitor</a> by Roger Bell_West.</h4>
+<h4 id="8-peak-visitorshttpsdevtosimongreennetweekly-challenge-peak-visitors-3lei-by-simon-green">8. <a href="https://dev.to/simongreennet/weekly-challenge-peak-visitors-3lei">Peak Visitors</a> by Simon Green.</h4>
+<br>
+<h3 id="githubhttpsgithubcommanwarperlweeklychallenge-club-repository-stats"><a href="https://github.com/manwar/perlweeklychallenge-club">GitHub</a> Repository Stats</h3>
+<hr>
+<h4 id="1-commits-46072-113">1. Commits: 46,072 (<code>+113</code>)</h4>
+<h4 id="2-pull-requests-12921-38">2. Pull Requests: 12,921 (<code>+38</code>)</h4>
+<h4 id="3-contributors-264">3. Contributors: 264</h4>
+<h4 id="4-fork-339-2">4. Fork: 339 (<code>+2</code>)</h4>
+<h4 id="5-stars-199-1">5. Stars: 199 (<code>+1</code>)</h4>
+<br>
+<h2 id="SPONSOR">SPONSOR</h2>
+<hr>
+<p>With start of <code>Week #268</code>, we have a new sponsor <code>Lance Wicks</code> until the end of year <code>2025</code>. Having said we are looking for more sponsors so that we can go back to weekly winner. If anyone interested please get in touch with us at <code>perlweeklychallenge@yahoo.com</code>. Thanks for your support in advance.</p>
+<br>
+<h2 id="RECAP">RECAP</h2>
+<hr>
+<p>Quick recap of <strong><a href="/blog/recap-challenge-345">The Weekly Challenge - 345</a></strong> by <code>Mohammad Sajid Anwar</code>.</p>
+<br>
+<h2 id="PERLREVIEW">PERL REVIEW</h2>
+<hr>
+<p>If you missed any past reviews then please check out the <a href="/p5-reviews"><strong>collection</strong></a>.</p>
+<br>
+<h2 id="RAKUREVIEW">RAKU REVIEW</h2>
+<hr>
+<p>If you missed any past reviews then please check out the <a href="/p6-reviews"><strong>collection</strong></a>.</p>
+<br>
+<h2 id="CHART">CHART</h2>
+<hr>
+<p>Please take a look at the <a href="/chart"><strong>charts</strong></a> showing interesting data.</p>
+<p>I would like to <code>THANK</code> every member of the team for their valuable suggestions. Please do share your experience with us.</p>
+<br>
+<h2 id="NEWMEMBERS">NEW MEMBERS</h2>
+<hr>
+<h3 id="lexihttpsgithubcompyjail-joined-team-pwc-as-a-guest-contributor"><a href="https://github.com/pyjail"><strong>lexi</strong></a> joined <code>Team PWC</code> as a guest contributor.</h3>
+<br>
+<p>Please find out <a href="/blog/how-to-contribute"><strong>How to contribute?</strong></a>, if you have any doubts.</p>
+<p>Please try the excellent tool <a href="https://github.com/saiftynet/EZPWC"><strong>EZPWC</strong></a> created by respected member <code>Saif Ahmed</code> of <strong>Team PWC</strong>.</p>
+<br>
+<h2 id="GUESTS">GUESTS</h2>
+<hr>
+<p>Please check out the guest contributions for the <a href="/blog/guest-contribution/#345"><strong>Week #345</strong></a>.</p>
+<p>Please find <a href="/blog/guest-contribution"><strong>past solutions</strong></a> by respected <strong>guests</strong>. Please share your creative solutions in other languages.</p>
+<br>
+<h2 id="TASK1">Task 1: Longest Parenthesis</h2>
+<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<hr>
+<p>You are given a string containing only <code>(</code> and <code>)</code>.</p>
+<p>Write a script to find the length of the longest valid parenthesis.</p>
+<br>
+<h4 id="example-1">Example 1</h4>
+<pre><code>Input: $str = '(()())'
+Output: 6
+
+Valid Parenthesis: '(()())'
+</code></pre>
+<br>
+<h4 id="example-2">Example 2</h4>
+<pre><code>Input: $str = ')()())'
+Output: 4
+
+Valid Parenthesis: '()()' at positions 1-4.
+</code></pre>
+<br>
+<h4 id="example-3">Example 3</h4>
+<pre><code>Input: $str = '((()))()(((()'
+Output: 8
+
+Valid Parenthesis: '((()))()' at positions 0-7.
+</code></pre>
+<br>
+<h4 id="example-4">Example 4</h4>
+<pre><code>Input: $str = '))))((()('
+Output: 2
+
+Valid Parenthesis: '()' at positions 6-7.
+</code></pre>
+<br>
+<h4 id="example-5">Example 5</h4>
+<pre><code>Input: $str = '()(()'
+Output: 2
+
+Valid Parenthesis: '()' at positions 0-1 and 3-4.
+</code></pre>
+<br>
+<h2 id="TASK2">Task 2: Magic Expression</h2>
+<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg-1"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<hr>
+<p>You are given a string containing only digits and a target integer.</p>
+<p>Write a script to insert binary operators <code>+</code>, <code>-</code> and <code>*</code> between the digits in the given string that evaluates to target integer.</p>
+<br>
+<h4 id="example-1-1">Example 1</h4>
+<pre><code>Input: $str = &quot;123&quot;, $target = 6
+Output: (&quot;1*2*3&quot;, &quot;1+2+3&quot;)
+</code></pre>
+<br>
+<h4 id="example-2-1">Example 2</h4>
+<pre><code>Input: $str = &quot;105&quot;, $target = 5
+Output: (&quot;1*0+5&quot;, &quot;10-5&quot;)
+</code></pre>
+<br>
+<h4 id="example-3-1">Example 3</h4>
+<pre><code>Input: $str = &quot;232&quot;, $target = 8
+Output: (&quot;2*3+2&quot;, &quot;2+3*2&quot;)
+</code></pre>
+<br>
+<h4 id="example-4-1">Example 4</h4>
+<pre><code>Input: $str = &quot;1234&quot;, $target = 10
+Output: (&quot;1*2*3+4&quot;, &quot;1+2+3+4&quot;)
+</code></pre>
+<br>
+<h4 id="example-5-1">Example 5</h4>
+<pre><code>Input: $str = &quot;1001&quot;, $target = 2
+Output: (&quot;1+0*0+1&quot;, &quot;1+0+0+1&quot;, &quot;1+0-0+1&quot;, &quot;1-0*0+1&quot;, &quot;1-0+0+1&quot;, &quot;1-0-0+1&quot;)
+</code></pre>
+<br>
+<hr>
+<p>Last date to submit the solution <code>23:59 (UK Time) Sunday 9th November 2025</code>.</p>
+<hr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
