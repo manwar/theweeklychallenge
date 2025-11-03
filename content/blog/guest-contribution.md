@@ -1136,6 +1136,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **lexi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/orthoplex/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/orthoplex/uiua/ch-2.ua) in **Uiua**.
+
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/mohammad-anwar/python/ch-1.py) in **Python**.
