@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2025-11-03T00:00:00+00:00
+date: 2025-11-04T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1126,6 +1126,12 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ## [The Weekly Challenge - 346](/blog/perl-weekly-challenge-346) {#346}
 <br>
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/deadmarshal/elixir/ch1.ex) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/deadmarshal/elixirgo/ch2.ex) in **Elixir**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/deadmarshal/go/ch1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/deadmarshal/go/ch2.go) in **Go**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/deadmarshal/java/Ch1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/deadmarshal/java/Ch2.java) in **Java**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/eric-cheung/python/ch-2.py) in **Python**.
 
