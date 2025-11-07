@@ -24,7 +24,7 @@ tags: ["perl", "python", "aws", "localstack", "s3"]
 
 Recently I shared my experience with [**Amazon S3**](https://theweeklychallenge.org/blog/localstack-aws-s3) and [**Amazon Lambda**](https://theweeklychallenge.org/blog/aws-lambda).
 
-Today I am playing with `S3 Bucket Events` and how it can be triggered and captured.
+Today I am playing with `S3 Bucket Trigger` events and how it can be triggered and captured.
 
 In this post, I will take a closer look at the following events.
 
@@ -331,7 +331,7 @@ $ aws s3api get-bucket-notification-configuration --bucket test-bucket
 
 <br>
 
-Finally, we are ready to test the `S3 Bucket Events` trigger.
+Finally, we are ready to test the `S3 Bucket Trigger` events.
 
 <br>
 
