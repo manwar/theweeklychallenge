@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="AWS S3 Bucket Trigger"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/aws-s3-bucket-trigger/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Discussion about AWS S3 Bucket Trigger."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion about AWS S3 Bucket Trigger.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/aws-s3-bucket-trigger/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AWS S3 Bucket Trigger</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>AWS S3 Bucket Trigger</h2>
+                    <div class="portfolio-meta">
+                        <span>Friday, Nov 7, 2025</span>|
+                        <span> Tags:
+                            perl, python, aws, localstack, s3
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/aws-s3-trigger.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<br>
+<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-setup-environmentsetup-environment"><a href="#setup-environment">2. Setup Environment</a></h3>
+<h3 id="3-using-awsusing-aws"><a href="#using-aws">3. Using aws</a></h3>
+<h3 id="4-using-pythonusing-python"><a href="#using-python">4. Using Python</a></h3>
+<h3 id="5-using-perlusing-perl"><a href="#using-perl">5. Using Perl</a></h3>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<p>Recently I shared my experience with <a href="https://theweeklychallenge.org/blog/localstack-aws-s3"><strong>Amazon S3</strong></a> and <a href="https://theweeklychallenge.org/blog/aws-lambda"><strong>Amazon Lambda</strong></a>.</p>
+<p>Today I am playing with <code>S3 Bucket Events</code> and how it can be triggered and captured.</p>
+<p>In this post, I will take a closer look at the following events.</p>
+<br>
+<h4 id="s3objectcreatedput">s3:ObjectCreated:Put</h4>
+<h4 id="s3objectcreatedcopy">s3:ObjectCreated:Copy</h4>
+<h4 id="s3objectcreatedpost">s3:ObjectCreated:Post</h4>
+<h4 id="s3objectcreatedcompletemultipartupload">s3:ObjectCreated:CompleteMultipartUpload</h4>
+<h4 id="s3objectremoveddelete">s3:ObjectRemoved:Delete</h4>
+<br>
+<h2 id="setup-environment">Setup Environment</h2>
+<hr>
+<p>As with all other <code>AWS</code> related experiments, I want <code>LocalStack</code> running in a docker container. Here is the docker configuration file, <code>docker-compose.yml</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    ports:
+      - <span style="color:#e6db74">&#34;4566:4566&#34;</span>
+      - <span style="color:#e6db74">&#34;4510-4559:4510-4559&#34;</span>
+    environment:
+      - PERSISTENCE<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+      - SERVICES<span style="color:#f92672">=</span>s3,lambda,logs
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - localstack_localstack_data:/var/lib/localstack
+      - /tmp/localstack_host:/host_tmp
+
+volumes:
+  localstack_localstack_data:
+</code></pre></div><br>
+<p>Let&rsquo;s start the container now.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up -d
+Starting localstack ... <span style="color:#66d9ef">done</span>
+</code></pre></div><br>
+<p>Check the status of the container.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose ps
+   Name            Command             State                           Ports
+localstack   docker-entrypoint.sh   Up <span style="color:#f92672">(</span>healthy<span style="color:#f92672">)</span>   0.0.0.0:4510-&gt;4510/tcp,:::4510-&gt;4510/tcp,
+                                                   0.0.0.0:4511-&gt;4511/tcp,:::4511-&gt;4510/tcp,
+                                                   0.0.0.0:4511-&gt;4511/tcp,:::4511-&gt;4510/tcp,
+                                                   0.0.0.0:4511-&gt;4511/tcp,:::4511-&gt;4510/tcp,
+                                                   ...
+                                                   ...
+                                                   0.0.0.0:4566-&gt;4566/tcp,:::4511-&gt;4566/tcp,
+                                                   5678/tcp
+</code></pre></div><br>
+<p>We need <code>S3</code> bucket for testing the trigger.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 mb s3://test-bucket
+make_bucket: test-bucket
+</code></pre></div><br>
+<p>Now, we want a test file as well.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ echo <span style="color:#e6db74">&#39;S3 events trigger demo file.&#39;</span> &gt; test.txt
+</code></pre></div><br>
+<p>Time to create <code>Lambda Function</code> handler: <code>event_handler.py</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handler</span>(event, context):
+    <span style="color:#66d9ef">for</span> record <span style="color:#f92672">in</span> event<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;Records&#39;</span>, []):
+        event_name   <span style="color:#f92672">=</span> record<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;eventName&#39;</span>,   <span style="color:#e6db74">&#39;UnknownEvent&#39;</span> )
+        event_time   <span style="color:#f92672">=</span> record<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;eventTime&#39;</span>,   <span style="color:#e6db74">&#39;UnknownTime&#39;</span>  )
+        event_source <span style="color:#f92672">=</span> record<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;eventSource&#39;</span>, <span style="color:#e6db74">&#39;UnknownSource&#39;</span>)
+
+        s3_data   <span style="color:#f92672">=</span> record<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;s3&#39;</span>, {})
+        bucket    <span style="color:#f92672">=</span> s3_data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;bucket&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#e6db74">&#39;UnknownBucket&#39;</span>)
+        key       <span style="color:#f92672">=</span> s3_data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;object&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;key&#39;</span>, <span style="color:#e6db74">&#39;UnknownKey&#39;</span>)
+        size      <span style="color:#f92672">=</span> s3_data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;object&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;size&#39;</span>, <span style="color:#ae81ff">0</span>)
+        etag      <span style="color:#f92672">=</span> s3_data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;object&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;eTag&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)
+        operation <span style="color:#f92672">=</span> event_name<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;:&#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+
+        current_timestamp <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%Y-%m-</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">T%H:%M:%S&#34;</span>)
+
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">{current_timestamp} S3 Event Detected
+</span><span style="color:#e6db74">{current_timestamp} -------------------------------
+</span><span style="color:#e6db74">{current_timestamp} Event Type: {event_name} ({operation})
+</span><span style="color:#e6db74">{current_timestamp} Timestamp:  {event_time}
+</span><span style="color:#e6db74">{current_timestamp} Bucket:     {bucket}
+</span><span style="color:#e6db74">{current_timestamp} Object:     {key}
+</span><span style="color:#e6db74">{current_timestamp} Size:       {size} bytes
+</span><span style="color:#e6db74">{current_timestamp} ETag:       {etag}
+</span><span style="color:#e6db74">{current_timestamp} -------------------------------
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>)
+
+    <span style="color:#66d9ef">return</span> {
+        <span style="color:#e6db74">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">200</span>,
+        <span style="color:#e6db74">&#34;body&#34;</span>: f<span style="color:#e6db74">&#34;Processed {len(event.get(&#39;Records&#39;, []))} events&#34;</span>
+    }
+</code></pre></div><br>
+<p>We need code package in a compressed archive format, typically a <code>.zip</code> file.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ zip event_handler.zip event_handler.py
+</code></pre></div><br>
+<p>To capture the <code>S3 events</code>, we meed to create lambda function.</p>
+<br>
+<pre><code>$ aws lambda create-function \
+  --function-name event-handler \
+  --runtime python3.9 \
+  --handler event_handler.handler \
+  --zip-file fileb://event_handler.zip \
+  --role arn:aws:iam::000000000000:role/lambda-role
+{
+    &quot;FunctionName&quot;: &quot;event-handler&quot;,
+    &quot;FunctionArn&quot;: &quot;arn:aws:lambda:eu-west-1:000000000000:function:event-handler&quot;,
+    &quot;Runtime&quot;: &quot;python3.9&quot;,
+    &quot;Role&quot;: &quot;arn:aws:iam::000000000000:role/lambda-role&quot;,
+    &quot;Handler&quot;: &quot;event_handler.handler&quot;,
+    &quot;CodeSize&quot;: 652,
+    &quot;Description&quot;: &quot;&quot;,
+    &quot;Timeout&quot;: 3,
+    &quot;MemorySize&quot;: 128,
+    &quot;LastModified&quot;: &quot;2025-11-07T09:36:30.640522+0000&quot;,
+    &quot;CodeSha256&quot;: &quot;Wx0djcKvlM4f9JPbAWD/mcl+2gPMEvyK9QC2dSdeStU=&quot;,
+    &quot;Version&quot;: &quot;$LATEST&quot;,
+    &quot;TracingConfig&quot;: {
+        &quot;Mode&quot;: &quot;PassThrough&quot;
+    },
+    &quot;RevisionId&quot;: &quot;30349dd4-dc3c-4ccb-bce6-4be7ac219dad&quot;,
+    &quot;State&quot;: &quot;Pending&quot;,
+    &quot;StateReason&quot;: &quot;The function is being created.&quot;,
+    &quot;StateReasonCode&quot;: &quot;Creating&quot;,
+    &quot;PackageType&quot;: &quot;Zip&quot;,
+    &quot;Architectures&quot;: [
+        &quot;x86_64&quot;
+    ],
+    &quot;EphemeralStorage&quot;: {
+        &quot;Size&quot;: 512
+    },
+    &quot;SnapStart&quot;: {
+        &quot;ApplyOn&quot;: &quot;None&quot;,
+        &quot;OptimizationStatus&quot;: &quot;Off&quot;
+    },
+    &quot;RuntimeVersionConfig&quot;: {
+        &quot;RuntimeVersionArn&quot;: &quot;arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1&quot;
+    },
+    &quot;LoggingConfig&quot;: {
+        &quot;LogFormat&quot;: &quot;Text&quot;,
+        &quot;LogGroup&quot;: &quot;/aws/lambda/event-handler&quot;
+    }
+}
+</code></pre><br>
+<p>Let&rsquo;s find the status of the lambda function.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws lambda get-function --function-name event-handler
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;Configuration&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;FunctionName&#34;</span>: <span style="color:#e6db74">&#34;event-handler&#34;</span>,
+        <span style="color:#e6db74">&#34;FunctionArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:lambda:eu-west-1:000000000000:function:event-handler&#34;</span>,
+        <span style="color:#e6db74">&#34;Runtime&#34;</span>: <span style="color:#e6db74">&#34;python3.9&#34;</span>,
+        <span style="color:#e6db74">&#34;Role&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::000000000000:role/lambda-role&#34;</span>,
+        <span style="color:#e6db74">&#34;Handler&#34;</span>: <span style="color:#e6db74">&#34;event_handler.handler&#34;</span>,
+        <span style="color:#e6db74">&#34;CodeSize&#34;</span>: 652,
+        <span style="color:#e6db74">&#34;Description&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+        <span style="color:#e6db74">&#34;Timeout&#34;</span>: 3,
+        <span style="color:#e6db74">&#34;MemorySize&#34;</span>: 128,
+        <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-11-07T09:36:30.640522+0000&#34;</span>,
+        <span style="color:#e6db74">&#34;CodeSha256&#34;</span>: <span style="color:#e6db74">&#34;Wx0djcKvlM4f9JPbAWD/mcl+2gPMEvyK9QC2dSdeStU=&#34;</span>,
+        <span style="color:#e6db74">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;</span>$LATEST<span style="color:#e6db74">&#34;</span>,
+        <span style="color:#e6db74">&#34;TracingConfig&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;Mode&#34;</span>: <span style="color:#e6db74">&#34;PassThrough&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#e6db74">&#34;RevisionId&#34;</span>: <span style="color:#e6db74">&#34;83aaa06c-1d99-4cf1-aa19-47df60de28cd&#34;</span>,
+        <span style="color:#e6db74">&#34;State&#34;</span>: <span style="color:#e6db74">&#34;Active&#34;</span>,
+        <span style="color:#e6db74">&#34;LastUpdateStatus&#34;</span>: <span style="color:#e6db74">&#34;Successful&#34;</span>,
+        <span style="color:#e6db74">&#34;PackageType&#34;</span>: <span style="color:#e6db74">&#34;Zip&#34;</span>,
+        <span style="color:#e6db74">&#34;Architectures&#34;</span>: <span style="color:#f92672">[</span>
+            <span style="color:#e6db74">&#34;x86_64&#34;</span>
+        <span style="color:#f92672">]</span>,
+        <span style="color:#e6db74">&#34;EphemeralStorage&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;Size&#34;</span>: <span style="color:#ae81ff">512</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#e6db74">&#34;SnapStart&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;ApplyOn&#34;</span>: <span style="color:#e6db74">&#34;None&#34;</span>,
+            <span style="color:#e6db74">&#34;OptimizationStatus&#34;</span>: <span style="color:#e6db74">&#34;Off&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#e6db74">&#34;RuntimeVersionConfig&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;RuntimeVersionArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#e6db74">&#34;LoggingConfig&#34;</span>: <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;LogFormat&#34;</span>: <span style="color:#e6db74">&#34;Text&#34;</span>,
+            <span style="color:#e6db74">&#34;LogGroup&#34;</span>: <span style="color:#e6db74">&#34;/aws/lambda/event-handler&#34;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;Code&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;RepositoryType&#34;</span>: <span style="color:#e6db74">&#34;S3&#34;</span>,
+        <span style="color:#e6db74">&#34;Location&#34;</span>: <span style="color:#e6db74">&#34;http://s3.localhost.localstack.cloud:4566/awslambda-eu-west-1-tasks/snapshots/000000000000/event-handler-7fe708cb-6213-4c9f-a9c9-245b1ce1dac3?AWSAccessKeyId=949334387222&amp;Signature=Se%2BvKpf5AnLf8OKaACO9BzCYvyU%3D&amp;Expires=1762511862&#34;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>OK, we now have a lambda function in <code>Active</code> state.</p>
+<p>Finally, we need to setup notification to capture the events we listed above for the <code>S3</code> bucket as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api put-bucket-notification-configuration <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --bucket test-bucket <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --notification-configuration <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">    &#34;LambdaFunctionConfigurations&#34;: [
+</span><span style="color:#e6db74">      {
+</span><span style="color:#e6db74">        &#34;LambdaFunctionArn&#34;: &#34;arn:aws:lambda:eu-west-1:000000000000:function:event-handler&#34;,
+</span><span style="color:#e6db74">        &#34;Events&#34;: [&#34;s3:ObjectCreated:*&#34;]
+</span><span style="color:#e6db74">      },
+</span><span style="color:#e6db74">      {
+</span><span style="color:#e6db74">        &#34;LambdaFunctionArn&#34;: &#34;arn:aws:lambda:eu-west-1:000000000000:function:event-handler&#34;,
+</span><span style="color:#e6db74">        &#34;Events&#34;: [&#34;s3:ObjectRemoved:*&#34;]
+</span><span style="color:#e6db74">      }
+</span><span style="color:#e6db74">    ]
+</span><span style="color:#e6db74">  }&#39;</span>
+</code></pre></div><br>
+<p>Let&rsquo;s check the bucket notification.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api get-bucket-notification-configuration --bucket test-bucket
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;LambdaFunctionConfigurations&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;Id&#34;</span>: <span style="color:#e6db74">&#34;e82e19f0&#34;</span>,
+            <span style="color:#e6db74">&#34;LambdaFunctionArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:lambda:eu-west-1:000000000000:function:event-handler&#34;</span>,
+            <span style="color:#e6db74">&#34;Events&#34;</span>: <span style="color:#f92672">[</span>
+                <span style="color:#e6db74">&#34;s3:ObjectCreated:*&#34;</span>
+            <span style="color:#f92672">]</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;Id&#34;</span>: <span style="color:#e6db74">&#34;511f09ba&#34;</span>,
+            <span style="color:#e6db74">&#34;LambdaFunctionArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:lambda:eu-west-1:000000000000:function:event-handler&#34;</span>,
+            <span style="color:#e6db74">&#34;Events&#34;</span>: <span style="color:#f92672">[</span>
+                <span style="color:#e6db74">&#34;s3:ObjectRemoved:*&#34;</span>
+            <span style="color:#f92672">]</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Finally, we are ready to test the <code>S3 Bucket Events</code> trigger.</p>
+<br>
+<h2 id="using-aws">Using aws</h2>
+<hr>
+<p>Let&rsquo;s trigger the <code>PUT event</code> first and for that we just need to copy a file to <code>S3</code> bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 cp test.txt s3://test-bucket
+upload: ./test.txt to s3://test-bucket/test.txt
+</code></pre></div><br>
+<p>Now check the logs.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+2025-11-07T09:41:24 S3 Event Detected
+2025-11-07T09:41:24 -------------------------------
+2025-11-07T09:41:24 Event Type: ObjectCreated:Put <span style="color:#f92672">(</span>Put<span style="color:#f92672">)</span>
+2025-11-07T09:41:24 Timestamp:  2025-11-07T09:41:23.870Z
+2025-11-07T09:41:24 Bucket:     test-bucket
+2025-11-07T09:41:24 Object:     test.txt
+2025-11-07T09:41:24 Size:       <span style="color:#ae81ff">29</span> bytes
+2025-11-07T09:41:24 ETag:       b72a05983f663132daaf4688bb919f80
+2025-11-07T09:41:24 -------------------------------
+</code></pre></div><br>
+<p>Log proves, the successfull <code>PUT event</code> trigger.</p>
+<p>Time for next, <code>COPY event</code>.</p>
+<p>And to trigger it, we need to copy file from the <code>S3</code> bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 cp s3://test-bucket/test.txt s3://test-bucket/copy_test.txt
+copy: s3://test-bucket/test.txt to s3://test-bucket/copy_test.txt
+</code></pre></div><br>
+<p>Let&rsquo;s check the logs again.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T09:42:15 S3 Event Detected
+2025-11-07T09:42:15 -------------------------------
+2025-11-07T09:42:15 Event Type: ObjectCreated:Copy <span style="color:#f92672">(</span>Copy<span style="color:#f92672">)</span>
+2025-11-07T09:42:15 Timestamp:  2025-11-07T09:42:15.335Z
+2025-11-07T09:42:15 Bucket:     test-bucket
+2025-11-07T09:42:15 Object:     copy_test.txt
+2025-11-07T09:42:15 Size:       <span style="color:#ae81ff">29</span> bytes
+2025-11-07T09:42:15 ETag:       b72a05983f663132daaf4688bb919f80
+2025-11-07T09:42:15 -------------------------------
+</code></pre></div><br>
+<p>Let&rsquo;s trigger the next event i.e. <code>DEL event</code>.</p>
+<p>We just need to delete file as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 rm s3://test-bucket/copy_test.txt
+delete: s3://test-bucket/copy_test.txt
+</code></pre></div><br>
+<p>This is what we see in the logs:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T09:43:12 S3 Event Detected
+2025-11-07T09:43:12 -------------------------------
+2025-11-07T09:43:12 Event Type: ObjectRemoved:Delete <span style="color:#f92672">(</span>Delete<span style="color:#f92672">)</span>
+2025-11-07T09:43:12 Timestamp:  2025-11-07T09:43:12.527Z
+2025-11-07T09:43:12 Bucket:     test-bucket
+2025-11-07T09:43:12 Object:     copy_test.txt
+2025-11-07T09:43:12 Size:       <span style="color:#ae81ff">0</span> bytes
+2025-11-07T09:43:12 ETag:
+2025-11-07T09:43:12 -------------------------------
+</code></pre></div><br>
+<p>Moving on to the next event i.e. <code>POST</code>.</p>
+<p>We can just use <code>curl</code> to post a file to <code>S3</code> bucket.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -X POST <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -F <span style="color:#e6db74">&#34;key=test.txt&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -F <span style="color:#e6db74">&#34;file=@test.txt&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  http://localhost:4566/test-bucket
+</code></pre></div><br>
+<p>Let&rsquo;s check the log now.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T09:46:29 S3 Event Detected
+2025-11-07T09:46:29 -------------------------------
+2025-11-07T09:46:29 Event Type: ObjectCreated:Post <span style="color:#f92672">(</span>Post<span style="color:#f92672">)</span>
+2025-11-07T09:46:29 Timestamp:  2025-11-07T09:46:29.853Z
+2025-11-07T09:46:29 Bucket:     test-bucket
+2025-11-07T09:46:29 Object:     test.txt
+2025-11-07T09:46:29 Size:       <span style="color:#ae81ff">29</span> bytes
+2025-11-07T09:46:29 ETag:       b72a05983f663132daaf4688bb919f80
+2025-11-07T09:46:29 -------------------------------
+</code></pre></div><br>
+<p>So far so good.</p>
+<p>Now last but not least event i.e. <code>MultipartUpload event</code>.</p>
+<p>It&rsquo;s a bit tricky to demonstrate.</p>
+<p>For this, we have to create two large files.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ PART1<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;part1.bin&#34;</span>
+$ PART2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;part2.bin&#34;</span>
+
+$ dd <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>/dev/urandom of<span style="color:#f92672">=</span>$PART1 bs<span style="color:#f92672">=</span>5M count<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+1+0 records in
+1+0 records out
+<span style="color:#ae81ff">5242880</span> bytes <span style="color:#f92672">(</span>5.2 MB, 5.0 MiB<span style="color:#f92672">)</span> copied, 0.0143711 s, <span style="color:#ae81ff">365</span> MB/s
+
+$ dd <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>/dev/urandom of<span style="color:#f92672">=</span>$PART2 bs<span style="color:#f92672">=</span>5M count<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+1+0 records in
+1+0 records out
+<span style="color:#ae81ff">5242880</span> bytes <span style="color:#f92672">(</span>5.2 MB, 5.0 MiB<span style="color:#f92672">)</span> copied, 0.0143298 s, <span style="color:#ae81ff">366</span> MB/s
+
+$ ls -l part*.bin
+-rw-r--r-- <span style="color:#ae81ff">1</span> manwar manwar <span style="color:#ae81ff">5242880</span> Nov <span style="color:#ae81ff">07</span> 09:48 part1.bin
+-rw-r--r-- <span style="color:#ae81ff">1</span> manwar manwar <span style="color:#ae81ff">5242880</span> Nov <span style="color:#ae81ff">07</span> 09:48 part2.bin
+</code></pre></div><br>
+<p>Let&rsquo;s create multipart upload and get the <code>UploadId</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ BUCKET<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;test-bucket&#34;</span>
+$ KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bigfile.bin&#34;</span>
+
+$ UPLOAD_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws s3api create-multipart-upload <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --bucket <span style="color:#e6db74">&#34;</span>$BUCKET<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --key <span style="color:#e6db74">&#34;</span>$KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --query <span style="color:#e6db74">&#39;UploadId&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --output text<span style="color:#66d9ef">)</span>
+</code></pre></div><br>
+<p>Time to upload individual parts using the <code>UploadId</code> and get the <code>ETag</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ETAG1<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws s3api upload-part <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --bucket <span style="color:#e6db74">&#34;</span>$BUCKET<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --key <span style="color:#e6db74">&#34;</span>$KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --part-number <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --body <span style="color:#e6db74">&#34;</span>$PART1<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --upload-id <span style="color:#e6db74">&#34;</span>$UPLOAD_ID<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --query <span style="color:#e6db74">&#39;ETag&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --output text<span style="color:#66d9ef">)</span>
+
+$ ETAG2<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws s3api upload-part <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --bucket <span style="color:#e6db74">&#34;</span>$BUCKET<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --key <span style="color:#e6db74">&#34;</span>$KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --part-number <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --body <span style="color:#e6db74">&#34;</span>$PART2<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --upload-id <span style="color:#e6db74">&#34;</span>$UPLOAD_ID<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --query <span style="color:#e6db74">&#39;ETag&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --output text<span style="color:#66d9ef">)</span>
+</code></pre></div><br>
+<p>Let&rsquo;s complete the multipart upload now.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api complete-multipart-upload <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --bucket <span style="color:#e6db74">&#34;</span>$BUCKET<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --key <span style="color:#e6db74">&#34;</span>$KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --upload-id <span style="color:#e6db74">&#34;</span>$UPLOAD_ID<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --multipart-upload <span style="color:#e6db74">&#34;{\
+</span><span style="color:#e6db74">        \&#34;Parts\&#34;: [\
+</span><span style="color:#e6db74">            {\&#34;ETag\&#34;: </span>$ETAG1<span style="color:#e6db74">, \&#34;PartNumber\&#34;: 1},\
+</span><span style="color:#e6db74">            {\&#34;ETag\&#34;: </span>$ETAG2<span style="color:#e6db74">, \&#34;PartNumber\&#34;: 2}\
+</span><span style="color:#e6db74">        ]\
+</span><span style="color:#e6db74">    }&#34;</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;ServerSideEncryption&#34;</span>: <span style="color:#e6db74">&#34;AES256&#34;</span>,
+    <span style="color:#e6db74">&#34;Location&#34;</span>: <span style="color:#e6db74">&#34;http://test-bucket.s3.localhost.localstack.cloud:4566/bigfile.bin&#34;</span>,
+    <span style="color:#e6db74">&#34;Bucket&#34;</span>: <span style="color:#e6db74">&#34;test-bucket&#34;</span>,
+    <span style="color:#e6db74">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;bigfile.bin&#34;</span>,
+    <span style="color:#e6db74">&#34;ETag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;8c3c902f7dbe017b83fe23b4a1de0f6b-2\&#34;&#34;</span>,
+    <span style="color:#e6db74">&#34;ChecksumCRC64NVME&#34;</span>: <span style="color:#e6db74">&#34;4aKLvJVsCwI=&#34;</span>,
+    <span style="color:#e6db74">&#34;ChecksumType&#34;</span>: <span style="color:#e6db74">&#34;FULL_OBJECT&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
+<p>Checking the log as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T09:50:38 S3 Event Detected
+2025-11-07T09:50:38 -------------------------------
+2025-11-07T09:50:38 Event Type: ObjectCreated:CompleteMultipartUpload <span style="color:#f92672">(</span>CompleteMultipartUpload<span style="color:#f92672">)</span>
+2025-11-07T09:50:38 Timestamp:  2025-11-07T09:50:38.037Z
+2025-11-07T09:50:38 Bucket:     test-bucket
+2025-11-07T09:50:38 Object:     bigfile.bin
+2025-11-07T09:50:38 Size:       <span style="color:#ae81ff">10485760</span> bytes
+2025-11-07T09:50:38 ETag:       8c3c902f7dbe017b83fe23b4a1de0f6b-2
+2025-11-07T09:50:38 -------------------------------
+</code></pre></div><br>
+<p>This completes all the events, finally.</p>
+<p>Finally empyty the bucket, so that we have clean setup for further run.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 rm s3://test-bucket --recursive
+delete: s3://test-bucket/bigfile.bin
+delete: s3://test-bucket/test.txt
+</code></pre></div><br>
+<h2 id="using-python">Using Python</h2>
+<hr>
+<br>
+<p>Having done this using <code>aws</code> CLI, we can now define each operation easily.</p>
+<p>First <code>PUT event</code>, here is the function that takes in <code>S3</code> client, bucket name and file to put.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">put_object</span>(s3, bucket, key):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;PUT object {key} to bucket {bucket}&#34;</span>)
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#66d9ef">with</span> open(key, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> file:
+            content <span style="color:#f92672">=</span> file<span style="color:#f92672">.</span>read()
+
+        s3<span style="color:#f92672">.</span>put_object(Bucket<span style="color:#f92672">=</span>bucket, Key<span style="color:#f92672">=</span>key, Body<span style="color:#f92672">=</span>content)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Done. Uploaded {len(content)} bytes from file: {key}&#34;</span>)
+
+    <span style="color:#66d9ef">except</span> FileNotFoundError:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: File &#39;{key}&#39; not found.&#34;</span>)
+        <span style="color:#66d9ef">raise</span>
+    <span style="color:#66d9ef">except</span> PermissionError:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: Permission denied to read file &#39;{key}&#39;.&#34;</span>)
+        <span style="color:#66d9ef">raise</span>
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error uploading file: {e}&#34;</span>)
+        <span style="color:#66d9ef">raise</span>
+</code></pre></div><br>
+<p>Next is <code>COPY event</code>.</p>
+<p>For this, we have <code>S3</code> client, source and destination bucket/key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">copy_object</span>(s3, src_bucket, src_key, dest_bucket, dest_key):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;COPY object {src_key} from {src_bucket} to {dest_key} in {dest_bucket}&#34;</span>)
+    copy_source <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Bucket&#39;</span>: src_bucket, <span style="color:#e6db74">&#39;Key&#39;</span>: src_key}
+    s3<span style="color:#f92672">.</span>copy_object(CopySource<span style="color:#f92672">=</span>copy_source, Bucket<span style="color:#f92672">=</span>dest_bucket, Key<span style="color:#f92672">=</span>dest_key)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Done.&#34;</span>)
+</code></pre></div><br>
+<p>Here is the simplest of all, <code>DEL event</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delete_object</span>(s3, bucket, key):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;DELETE object {key} from bucket {bucket}&#34;</span>)
+    s3<span style="color:#f92672">.</span>delete_object(Bucket<span style="color:#f92672">=</span>bucket, Key<span style="color:#f92672">=</span>key)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Done.&#34;</span>)
+</code></pre></div><br>
+<p>For <code>POST event</code>, we generate <code>pre-signed URL</code> first and use it to post the file.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">post_object</span>(s3, bucket, key):
+    post <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>generate_presigned_post(
+        Bucket<span style="color:#f92672">=</span>bucket,
+        Key<span style="color:#f92672">=</span>key,
+        Fields<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;acl&#34;</span>: <span style="color:#e6db74">&#34;private&#34;</span>},
+        Conditions<span style="color:#f92672">=</span>[
+            {<span style="color:#e6db74">&#34;acl&#34;</span>: <span style="color:#e6db74">&#34;private&#34;</span>},
+            [<span style="color:#e6db74">&#34;content-length-range&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1048576</span>]
+        ],
+        ExpiresIn<span style="color:#f92672">=</span><span style="color:#ae81ff">3600</span>
+    )
+
+    <span style="color:#66d9ef">with</span> open(key, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+        files <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;file&#39;</span>: (key, f)}
+        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(post[<span style="color:#e6db74">&#34;url&#34;</span>], data<span style="color:#f92672">=</span>post[<span style="color:#e6db74">&#34;fields&#34;</span>], files<span style="color:#f92672">=</span>files)
+
+    <span style="color:#66d9ef">if</span> response<span style="color:#f92672">.</span>status_code <span style="color:#f92672">==</span> <span style="color:#ae81ff">204</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Upload successful. S3 POST trigger should fire.&#34;</span>)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Upload failed!&#34;</span>)
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Status:&#34;</span>, response<span style="color:#f92672">.</span>status_code)
+        <span style="color:#66d9ef">print</span>(response<span style="color:#f92672">.</span>text)
+</code></pre></div><br>
+<p>For the tricky, <code>MultipartUpload event</code>, we will generate large file and then upload it.</p>
+<p>In this function, we have <code>S3</code> client, bucket and file.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">multipart_upload</span>(s3, bucket, key, file_size_mb<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;MULTIPART upload {key} to bucket {bucket}&#34;</span>)
+
+    <span style="color:#75715e"># Create a temporary file</span>
+    filename <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#34;/tmp/{uuid.uuid4().hex}.bin&#34;</span>
+    <span style="color:#66d9ef">with</span> open(filename, <span style="color:#e6db74">&#34;wb&#34;</span>) <span style="color:#66d9ef">as</span> f:
+        f<span style="color:#f92672">.</span>write(os<span style="color:#f92672">.</span>urandom(file_size_mb <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>))
+
+    config <span style="color:#f92672">=</span> TransferConfig(multipart_threshold<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span>, multipart_chunksize<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span>)
+    s3<span style="color:#f92672">.</span>upload_file(filename, bucket, key, Config<span style="color:#f92672">=</span>config)
+    os<span style="color:#f92672">.</span>remove(filename)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Done.&#34;</span>)
+</code></pre></div><br>
+<p>Putting together everything and created simple application as below:</p>
+<p><strong>File:</strong> <code>s3_event_trigger.py</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
+
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> uuid
+<span style="color:#f92672">import</span> requests
+<span style="color:#f92672">import</span> argparse
+
+<span style="color:#f92672">import</span> boto3
+<span style="color:#f92672">from</span> boto3.s3.transfer <span style="color:#f92672">import</span> TransferConfig
+
+REGION       <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;eu-west-1&#39;</span>
+ENDPOINT_URL <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;AWS_ENDPOINT_URL&#34;</span>, <span style="color:#e6db74">&#34;http://localhost:4566&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">put_object</span>(s3, bucket, key):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;PUT object {key} to bucket {bucket}&#34;</span>)
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#66d9ef">with</span> open(key, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> file:
+            content <span style="color:#f92672">=</span> file<span style="color:#f92672">.</span>read()
+
+        s3<span style="color:#f92672">.</span>put_object(Bucket<span style="color:#f92672">=</span>bucket, Key<span style="color:#f92672">=</span>key, Body<span style="color:#f92672">=</span>content)
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Done. Uploaded {len(content)} bytes from file: {key}&#34;</span>)
+
+    <span style="color:#66d9ef">except</span> FileNotFoundError:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: File &#39;{key}&#39; not found.&#34;</span>)
+        <span style="color:#66d9ef">raise</span>
+    <span style="color:#66d9ef">except</span> PermissionError:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error: Permission denied to read file &#39;{key}&#39;.&#34;</span>)
+        <span style="color:#66d9ef">raise</span>
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Error uploading file: {e}&#34;</span>)
+        <span style="color:#66d9ef">raise</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">copy_object</span>(s3, src_bucket, src_key, dest_bucket, dest_key):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;COPY object {src_key} from {src_bucket} to {dest_key} in {dest_bucket}&#34;</span>)
+    copy_source <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Bucket&#39;</span>: src_bucket, <span style="color:#e6db74">&#39;Key&#39;</span>: src_key}
+    s3<span style="color:#f92672">.</span>copy_object(CopySource<span style="color:#f92672">=</span>copy_source, Bucket<span style="color:#f92672">=</span>dest_bucket, Key<span style="color:#f92672">=</span>dest_key)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Done.&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delete_object</span>(s3, bucket, key):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;DELETE object {key} from bucket {bucket}&#34;</span>)
+    s3<span style="color:#f92672">.</span>delete_object(Bucket<span style="color:#f92672">=</span>bucket, Key<span style="color:#f92672">=</span>key)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Done.&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">post_object</span>(s3, bucket, key):
+    post <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>generate_presigned_post(
+        Bucket<span style="color:#f92672">=</span>bucket,
+        Key<span style="color:#f92672">=</span>key,
+        Fields<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;acl&#34;</span>: <span style="color:#e6db74">&#34;private&#34;</span>},
+        Conditions<span style="color:#f92672">=</span>[
+            {<span style="color:#e6db74">&#34;acl&#34;</span>: <span style="color:#e6db74">&#34;private&#34;</span>},
+            [<span style="color:#e6db74">&#34;content-length-range&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1048576</span>]
+        ],
+        ExpiresIn<span style="color:#f92672">=</span><span style="color:#ae81ff">3600</span>
+    )
+
+    <span style="color:#66d9ef">with</span> open(key, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+        files <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;file&#39;</span>: (key, f)}
+        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(post[<span style="color:#e6db74">&#34;url&#34;</span>], data<span style="color:#f92672">=</span>post[<span style="color:#e6db74">&#34;fields&#34;</span>], files<span style="color:#f92672">=</span>files)
+
+    <span style="color:#66d9ef">if</span> response<span style="color:#f92672">.</span>status_code <span style="color:#f92672">==</span> <span style="color:#ae81ff">204</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Upload successful. S3 POST trigger should fire.&#34;</span>)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Upload failed!&#34;</span>)
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Status:&#34;</span>, response<span style="color:#f92672">.</span>status_code)
+        <span style="color:#66d9ef">print</span>(response<span style="color:#f92672">.</span>text)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">multipart_upload</span>(s3, bucket, key, file_size_mb<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;MULTIPART upload {key} to bucket {bucket}&#34;</span>)
+
+    <span style="color:#75715e"># Create a temporary file</span>
+    filename <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#34;/tmp/{uuid.uuid4().hex}.bin&#34;</span>
+    <span style="color:#66d9ef">with</span> open(filename, <span style="color:#e6db74">&#34;wb&#34;</span>) <span style="color:#66d9ef">as</span> f:
+        f<span style="color:#f92672">.</span>write(os<span style="color:#f92672">.</span>urandom(file_size_mb <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>))
+
+    config <span style="color:#f92672">=</span> TransferConfig(multipart_threshold<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span>, multipart_chunksize<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span>)
+    s3<span style="color:#f92672">.</span>upload_file(filename, bucket, key, Config<span style="color:#f92672">=</span>config)
+    os<span style="color:#f92672">.</span>remove(filename)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Done.&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S3 Trigger Events&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--bucket&#34;</span>, required<span style="color:#f92672">=</span>True, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S3 bucket name&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--put&#34;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Key for PUT operation&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--copy&#34;</span>, nargs<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, metavar<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#39;DEST_BUCKET&#39;</span>, <span style="color:#e6db74">&#39;SRC_KEY&#39;</span>, <span style="color:#e6db74">&#39;DEST_KEY&#39;</span>), help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Copy operation&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--delkey&#34;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Key to DELETE&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--post&#34;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Key for POST operation&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--multipart&#34;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Key for MULTIPART UPLOAD&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--size&#34;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;File size in MB for multipart upload, default 6&#34;</span>)
+
+    args <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+
+    s3 <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(
+        <span style="color:#e6db74">&#39;s3&#39;</span>,
+        endpoint_url<span style="color:#f92672">=</span>ENDPOINT_URL,
+        region_name <span style="color:#f92672">=</span> REGION)
+
+    <span style="color:#66d9ef">try</span>:
+        s3<span style="color:#f92672">.</span>create_bucket(Bucket<span style="color:#f92672">=</span>args<span style="color:#f92672">.</span>bucket,
+            CreateBucketConfiguration<span style="color:#f92672">=</span>{
+                <span style="color:#e6db74">&#39;LocationConstraint&#39;</span>: REGION
+            })
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Bucket {args.bucket} created.&#34;</span>)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">pass</span>
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>put:
+        put_object(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>put)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>copy:
+        src_bucket, src_key, dest_key <span style="color:#f92672">=</span> args<span style="color:#f92672">.</span>copy
+        copy_object(s3, src_bucket, src_key, args<span style="color:#f92672">.</span>bucket, dest_key)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>delkey:
+        delete_object(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>delkey)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>post:
+        post_object(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>post)
+
+    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>multipart:
+        multipart_upload(s3, args<span style="color:#f92672">.</span>bucket, args<span style="color:#f92672">.</span>multipart, file_size_mb<span style="color:#f92672">=</span>args<span style="color:#f92672">.</span>size)
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    main()
+</code></pre></div><br>
+<p>To use this script, we have to activate virtual environment since I am using module <code>boto3</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>myenv<span style="color:#f92672">)</span> $ py s3_event_trigger.py --help
+usage: s3_event_trigger.py <span style="color:#f92672">[</span>-h<span style="color:#f92672">]</span> --bucket BUCKET <span style="color:#f92672">[</span>--put PUT<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--copy SRC_BUCKET SRC_KEY DEST_KEY<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--delkey DELKEY<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--post POST<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--multipart MULTIPART<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--size SIZE<span style="color:#f92672">]</span>
+
+S3 Trigger Events
+
+options:
+  -h, --help            show this help message and exit
+  --bucket BUCKET       S3 bucket name
+  --put PUT             Key <span style="color:#66d9ef">for</span> PUT operation
+  --copy DEST_BUCKET SRC_KEY DEST_KEY
+                        Copy operation
+  --delkey DELKEY       Key to DELETE
+  --post POST           Key <span style="color:#66d9ef">for</span> POST operation
+  --multipart MULTIPART
+                        Key <span style="color:#66d9ef">for</span> MULTIPART UPLOAD
+  --size SIZE           File size in MB <span style="color:#66d9ef">for</span> multipart upload, default <span style="color:#ae81ff">6</span>
+</code></pre></div><br>
+<p>Let&rsquo;s play with the <code>Python</code> script.</p>
+<h3 id="put-event">PUT event:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py s3_event_trigger.py --bucket test-bucket --put test.txt
+PUT object test.txt to bucket test-bucket
+Done. Uploaded <span style="color:#ae81ff">29</span> bytes from file: test.txt
+</code></pre></div><br>
+<h3 id="check-log">Check Log:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+2025-11-07T10:18:46 S3 Event Detected
+2025-11-07T10:18:46 -------------------------------
+2025-11-07T10:18:46 Event Type: ObjectCreated:Put <span style="color:#f92672">(</span>Put<span style="color:#f92672">)</span>
+2025-11-07T10:18:46 Timestamp:  2025-11-07T10:18:45.901Z
+2025-11-07T10:18:46 Bucket:     test-bucket
+2025-11-07T10:18:46 Object:     test.txt
+2025-11-07T10:18:46 Size:       <span style="color:#ae81ff">29</span> bytes
+2025-11-07T10:18:46 ETag:       b72a05983f663132daaf4688bb919f80
+2025-11-07T10:18:46 -------------------------------
+</code></pre></div><br>
+<h3 id="copy-event">COPY event:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py s3_event_trigger.py --bucket test-bucket --copy test-bucket test.txt copy_test.txt
+COPY object test.txt from test-bucket to copy_test.txt in test-bucket
+Done.
+</code></pre></div><br>
+<h3 id="check-log-1">Check Log:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T10:24:23 S3 Event Detected
+2025-11-07T10:24:23 -------------------------------
+2025-11-07T10:24:23 Event Type: ObjectCreated:Copy <span style="color:#f92672">(</span>Copy<span style="color:#f92672">)</span>
+2025-11-07T10:24:23 Timestamp:  2025-11-07T10:24:23.049Z
+2025-11-07T10:24:23 Bucket:     test-bucket
+2025-11-07T10:24:23 Object:     copy_test.txt
+2025-11-07T10:24:23 Size:       <span style="color:#ae81ff">29</span> bytes
+2025-11-07T10:24:23 ETag:       b72a05983f663132daaf4688bb919f80
+2025-11-07T10:24:23 -------------------------------
+</code></pre></div><br>
+<h3 id="del-event">DEL event:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py s3_event_trigger.py --bucket test-bucket --delkey copy_test.txt
+DELETE object copy_test.txt from bucket test-bucket
+Done.
+</code></pre></div><br>
+<h3 id="check-log-2">Check Log:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T10:31:23 S3 Event Detected
+2025-11-07T10:31:23 -------------------------------
+2025-11-07T10:31:23 Event Type: ObjectRemoved:Delete <span style="color:#f92672">(</span>Delete<span style="color:#f92672">)</span>
+2025-11-07T10:31:23 Timestamp:  2025-11-07T10:31:23.815Z
+2025-11-07T10:31:23 Bucket:     test-bucket
+2025-11-07T10:31:23 Object:     copy_test.txt
+2025-11-07T10:31:23 Size:       <span style="color:#ae81ff">0</span> bytes
+2025-11-07T10:31:23 ETag:
+2025-11-07T10:31:23 -------------------------------
+</code></pre></div><br>
+<h3 id="post-event">POST event:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py s3_event_trigger.py --bucket test-bucket --post test.txt
+Upload successful. S3 POST trigger should fire.
+Done.
+</code></pre></div><br>
+<h3 id="check-log-3">Check Log:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T10:38:34 S3 Event Detected
+2025-11-07T10:38:34 -------------------------------
+2025-11-07T10:38:34 Event Type: ObjectCreated:Post <span style="color:#f92672">(</span>Post<span style="color:#f92672">)</span>
+2025-11-07T10:38:34 Timestamp:  2025-11-07T10:38:34.267Z
+2025-11-07T10:38:34 Bucket:     test-bucket
+2025-11-07T10:38:34 Object:     test.txt
+2025-11-07T10:38:34 Size:       <span style="color:#ae81ff">29</span> bytes
+2025-11-07T10:38:34 ETag:       b72a05983f663132daaf4688bb919f80
+2025-11-07T10:38:34 -------------------------------
+</code></pre></div><br>
+<h3 id="multipartupload-event">MultipartUpload event:</h3>
+<br>
+<p>This creates file <code>bigfile.bin</code> with default size <code>6MB</code> and then multipart upload.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ py s3_event_trigger.py --bucket test-bucket --multipart bigfile.bin
+MULTIPART upload bigfile.bin to bucket test-bucket
+Done.
+</code></pre></div><br>
+<h3 id="check-log-4">Check Log:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T10:47:03 S3 Event Detected
+2025-11-07T10:47:03 -------------------------------
+2025-11-07T10:47:03 Event Type: ObjectCreated:CompleteMultipartUpload <span style="color:#f92672">(</span>CompleteMultipartUpload<span style="color:#f92672">)</span>
+2025-11-07T10:47:03 Timestamp:  2025-11-07T10:47:03.826Z
+2025-11-07T10:47:03 Bucket:     test-bucket
+2025-11-07T10:47:03 Object:     bigfile.bin
+2025-11-07T10:47:03 Size:       <span style="color:#ae81ff">6291456</span> bytes
+2025-11-07T10:47:03 ETag:       e987a1a3c3017758f83dd34f9f8db424-2
+2025-11-07T10:47:03 -------------------------------
+</code></pre></div><br>
+<p>That&rsquo;s it, we have done with <code>Python</code> script.</p>
+<p>Time to clean up the bucket:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 rm s3://test-bucket --recursive
+delete: s3://test-bucket/test.txt
+delete: s3://test-bucket/bigfile.bin
+</code></pre></div><br>
+<h2 id="using-perl">Using Perl</h2>
+<hr>
+<p>Let&rsquo;s re-create the same features in <code>Perl</code>.</p>
+<p>For <code>POST event</code>, I had to generate policy and signing key.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_generate_policy</span>($bucket, $key) {
+    <span style="color:#66d9ef">my</span> $expire_in  <span style="color:#f92672">=</span> <span style="color:#ae81ff">3600</span>;
+    <span style="color:#66d9ef">my</span> $expiration <span style="color:#f92672">=</span> strftime(<span style="color:#e6db74">&#34;%Y-%m-%dT%H:%M:%SZ&#34;</span>, gmtime(time <span style="color:#f92672">+</span> $expire_in));
+    <span style="color:#66d9ef">my</span> $policy     <span style="color:#f92672">=</span> {
+        expiration <span style="color:#f92672">=&gt;</span> $expiration,
+        conditions <span style="color:#f92672">=&gt;</span> [
+            { bucket <span style="color:#f92672">=&gt;</span> $bucket },
+            [<span style="color:#e6db74">&#34;starts-with&#34;</span>, <span style="color:#e6db74">&#39;$key&#39;</span>, <span style="color:#e6db74">&#34;&#34;</span>],
+        ],
+    };
+
+    <span style="color:#66d9ef">return</span> encode_base64(encode_json($policy), <span style="color:#e6db74">&#34;&#34;</span>);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_derive_signing_key</span>($secret, $date, $region, $service) {
+    <span style="color:#66d9ef">my</span> $k_date    <span style="color:#f92672">=</span> _sign(<span style="color:#e6db74">&#34;AWS4$secret&#34;</span>, $date);
+    <span style="color:#66d9ef">my</span> $k_region  <span style="color:#f92672">=</span> _sign($k_date, $region);
+    <span style="color:#66d9ef">my</span> $k_service <span style="color:#f92672">=</span> _sign($k_region, $service);
+    <span style="color:#66d9ef">return</span> _sign($k_service, <span style="color:#e6db74">&#34;aws4_request&#34;</span>);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_sign</span>($key, $message) {
+    <span style="color:#66d9ef">return</span> hmac_sha256($message, $key);
+}
+</code></pre></div><br>
+<p>Here is the complete solution.</p>
+<p><strong>File:</strong> <code>s3_event_trigger.pl</code></p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+
+<span style="color:#66d9ef">use</span> Paws;
+<span style="color:#66d9ef">use</span> Try::Tiny;
+<span style="color:#66d9ef">use</span> Data::UUID;
+<span style="color:#66d9ef">use</span> File::Temp;
+<span style="color:#66d9ef">use</span> Getopt::Long;
+<span style="color:#66d9ef">use</span> File::Basename;
+<span style="color:#66d9ef">use</span> POSIX <span style="color:#e6db74">qw(strftime)</span>;
+<span style="color:#66d9ef">use</span> JSON <span style="color:#e6db74">qw(encode_json)</span>;
+<span style="color:#66d9ef">use</span> MIME::Base64 <span style="color:#e6db74">qw(encode_base64)</span>;
+<span style="color:#66d9ef">use</span> Digest::SHA <span style="color:#e6db74">qw(hmac_sha256_hex hmac_sha256)</span>;
+
+<span style="color:#66d9ef">use</span> LWP::UserAgent;
+<span style="color:#66d9ef">use</span> HTTP::Request::Common;
+
+<span style="color:#66d9ef">my</span> $ENDPOINT   <span style="color:#f92672">=</span> $ENV{AWS_ENDPOINT_URL} <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;http://localhost:4566&#39;</span>;
+<span style="color:#66d9ef">my</span> $REGION     <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;eu-west-1&#39;</span>;
+<span style="color:#66d9ef">my</span> $SECRET_KEY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test&#39;</span>;
+<span style="color:#66d9ef">my</span> $ACCESS_KEY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;test&#39;</span>;
+
+<span style="color:#66d9ef">my</span> %args;
+GetOptions(
+    <span style="color:#e6db74">&#39;bucket=s&#39;</span>    <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$args{bucket},
+    <span style="color:#e6db74">&#39;put=s&#39;</span>       <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$args{put},
+    <span style="color:#e6db74">&#39;copy=s{3}&#39;</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span><span style="color:#66d9ef">my</span> @copy_args,
+    <span style="color:#e6db74">&#39;delkey=s&#39;</span>    <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$args{delkey},
+    <span style="color:#e6db74">&#39;post=s&#39;</span>      <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$args{post},
+    <span style="color:#e6db74">&#39;multipart=s&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$args{multipart},
+    <span style="color:#e6db74">&#39;size=i&#39;</span>      <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$args{size},
+    <span style="color:#e6db74">&#39;help&#39;</span>        <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>$args{help},
+) <span style="color:#f92672">or</span> show_help_and_exit(<span style="color:#ae81ff">1</span>);
+
+show_help_and_exit(<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">if</span> $args{help};
+
+die <span style="color:#e6db74">&#34;Bucket name is required&#34;</span> <span style="color:#66d9ef">unless</span> $args{bucket};
+
+<span style="color:#66d9ef">my</span> $s3 <span style="color:#f92672">=</span> Paws<span style="color:#f92672">-&gt;</span>service(<span style="color:#e6db74">&#39;S3&#39;</span>, region <span style="color:#f92672">=&gt;</span> $REGION, endpoint <span style="color:#f92672">=&gt;</span> $ENDPOINT);
+
+<span style="color:#66d9ef">my</span> $bucket <span style="color:#f92672">=</span> $args{bucket};
+try {
+    $s3<span style="color:#f92672">-&gt;</span>HeadBucket(Bucket <span style="color:#f92672">=&gt;</span> $bucket);
+    say <span style="color:#e6db74">&#34;Bucket &#39;$bucket&#39; exists and is accessible.&#34;</span>;
+}
+catch {
+    try {
+        $s3<span style="color:#f92672">-&gt;</span>CreateBucket(
+            Bucket <span style="color:#f92672">=&gt;</span> $bucket,
+            CreateBucketConfiguration <span style="color:#f92672">=&gt;</span> {
+                LocationConstraint <span style="color:#f92672">=&gt;</span> $REGION
+            }
+        );
+        say <span style="color:#e6db74">&#34;Bucket &#39;$bucket&#39; created successfully.&#34;</span>;
+    }
+    catch {
+        die <span style="color:#e6db74">&#34;Failed to create bucket: $_&#34;</span>;
+    };
+};
+
+<span style="color:#66d9ef">if</span> ($args{put}) {
+    put_object($s3, $bucket, $args{put});
+}
+
+<span style="color:#66d9ef">if</span> (@copy_args) {
+    <span style="color:#66d9ef">my</span> ($src_bucket, $src_key, $dest_key) <span style="color:#f92672">=</span> @copy_args;
+    copy_object($s3, $src_bucket, $src_key, $bucket, $dest_key);
+}
+
+<span style="color:#66d9ef">if</span> ($args{delkey}) {
+    delete_object($s3, $bucket, $args{delkey});
+}
+
+<span style="color:#66d9ef">if</span> ($args{post}) {
+    post_object($s3, $bucket, $args{post});
+}
+
+<span style="color:#66d9ef">if</span> ($args{multipart}) {
+    multipart_upload($s3, $bucket, $args{multipart}, $args{size}<span style="color:#f92672">||</span><span style="color:#ae81ff">6</span>);
+}
+
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># SUBROUTINES</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_help_and_exit</span>($exit_code, $message=undef) {
+
+    <span style="color:#66d9ef">my</span> $help <span style="color:#f92672">=</span><span style="color:#e6db74">&lt;&lt;&#34;</span><span style="color:#e6db74">END_HELP</span><span style="color:#e6db74">&#34;;
+</span><span style="color:#e6db74">usage: $0 [--help] [--bucket BUCKET]
+</span><span style="color:#e6db74">          [--put KEY]
+</span><span style="color:#e6db74">          [--copy DEST_BUCKET SRC_KEY DEST_KEY]
+</span><span style="color:#e6db74">          [--delkey KEY]
+</span><span style="color:#e6db74">          [--post KEY]
+</span><span style="color:#e6db74">          [--multipart KEY]
+</span><span style="color:#e6db74">          [--size SIZE]
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">S3 Trigger Events
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">options:
+</span><span style="color:#e6db74">  --help              Show this help message and exit
+</span><span style="color:#e6db74">  --bucket BUCKET     S3 Bucket name, required
+</span><span style="color:#e6db74">  --put KEY           Key for PUT operation
+</span><span style="color:#e6db74">  --copy DEST_BUCKET SRC_KEY DEST_KEY Copy operation
+</span><span style="color:#e6db74">  --delkey KEY        Key to DELETE
+</span><span style="color:#e6db74">  --post KEY          Key for POST operation
+</span><span style="color:#e6db74">  --multipart KEY     Key for MULTIPART UPLOAD
+</span><span style="color:#e6db74">  --size SIZE         File size in MB for multipart upload, default 6
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">END_HELP</span>
+
+    $help <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ERROR: $message\n\n$help&#34;</span> <span style="color:#66d9ef">if</span> defined $message;
+    say $help <span style="color:#f92672">and</span> exit $exit_code;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">put_object</span>($s3, $bucket, $key) {
+
+    say <span style="color:#e6db74">&#34;PUT object $key to bucket $bucket&#34;</span>;
+
+    try {
+        open(<span style="color:#66d9ef">my</span> $file, <span style="color:#e6db74">&#39;&lt;:raw&#39;</span>, $key) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot open file &#39;$key&#39;: $!&#34;</span>;
+        <span style="color:#66d9ef">my</span> $content;
+        {
+            local $/;
+            $content <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$file&gt;</span>;
+        }
+        close($file);
+
+        $s3<span style="color:#f92672">-&gt;</span>PutObject(
+            Bucket <span style="color:#f92672">=&gt;</span> $bucket,
+            Key    <span style="color:#f92672">=&gt;</span> $key,
+            Body   <span style="color:#f92672">=&gt;</span> $content
+        );
+
+        <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> length($content);
+        say <span style="color:#e6db74">&#34;Done. Uploaded $size bytes from file: $key&#34;</span>;
+    }
+    catch {
+        <span style="color:#66d9ef">my</span> $error <span style="color:#f92672">=</span> $_;
+
+        <span style="color:#66d9ef">if</span> ($error <span style="color:#f92672">=~</span><span style="color:#e6db74"> /Cannot open file.*No such file or directory/</span>) {
+            say <span style="color:#e6db74">&#34;Error: File &#39;$key&#39; not found.&#34;</span>;
+        }
+        <span style="color:#66d9ef">elsif</span> ($error <span style="color:#f92672">=~</span><span style="color:#e6db74"> /Cannot open file.*Permission denied/</span>) {
+            say <span style="color:#e6db74">&#34;Error: Permission denied to read file &#39;$key&#39;.&#34;</span>;
+        }
+        <span style="color:#66d9ef">else</span> {
+            say <span style="color:#e6db74">&#34;Error uploading file: $error&#34;</span>;
+        }
+        die $error;
+    };
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">copy_object</span>($s3, $src_bucket, $src_key, $dest_bucket, $dest_key) {
+
+    say <span style="color:#e6db74">&#34;COPY object $src_key from $src_bucket to $dest_key in $dest_bucket&#34;</span>;
+    $s3<span style="color:#f92672">-&gt;</span>CopyObject(
+        CopySource <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$src_bucket/$src_key&#34;</span>,
+        Bucket     <span style="color:#f92672">=&gt;</span> $dest_bucket,
+        Key        <span style="color:#f92672">=&gt;</span> $dest_key
+    );
+    say <span style="color:#e6db74">&#34;Done.&#34;</span>;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">delete_object</span>($s3, $bucket, $key) {
+
+    say <span style="color:#e6db74">&#34;DELETE object $key from bucket $bucket&#34;</span>;
+    $s3<span style="color:#f92672">-&gt;</span>DeleteObject(
+        Bucket <span style="color:#f92672">=&gt;</span> $bucket,
+        Key    <span style="color:#f92672">=&gt;</span> $key
+    );
+    say <span style="color:#e6db74">&#34;Done.&#34;</span>;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">post_object</span>($s3, $bucket, $file) {
+
+    <span style="color:#66d9ef">my</span> $key         <span style="color:#f92672">=</span> basename($file);
+    <span style="color:#66d9ef">my</span> $policy      <span style="color:#f92672">=</span> _generate_policy($bucket, $key);
+    <span style="color:#66d9ef">my</span> $date        <span style="color:#f92672">=</span> strftime(<span style="color:#e6db74">&#34;%Y%m%d&#34;</span>, gmtime());
+    <span style="color:#66d9ef">my</span> $amz_date    <span style="color:#f92672">=</span> strftime(<span style="color:#e6db74">&#34;%Y%m%dT%H%M%SZ&#34;</span>, gmtime());
+    <span style="color:#66d9ef">my</span> $credential  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$ACCESS_KEY/$date/$REGION/s3/aws4_request&#34;</span>;
+    <span style="color:#66d9ef">my</span> $signing_key <span style="color:#f92672">=</span> _derive_signing_key($SECRET_KEY, $date, $REGION, <span style="color:#e6db74">&#34;s3&#34;</span>);
+    <span style="color:#66d9ef">my</span> $signature   <span style="color:#f92672">=</span> hmac_sha256_hex($policy, $signing_key);
+
+    <span style="color:#66d9ef">my</span> %form <span style="color:#f92672">=</span> (
+        key                <span style="color:#f92672">=&gt;</span> $key,
+        bucket             <span style="color:#f92672">=&gt;</span> $bucket,
+        <span style="color:#e6db74">&#34;X-Amz-Algorithm&#34;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;AWS4-HMAC-SHA256&#34;</span>,
+        <span style="color:#e6db74">&#34;X-Amz-Credential&#34;</span> <span style="color:#f92672">=&gt;</span> $credential,
+        <span style="color:#e6db74">&#34;X-Amz-Date&#34;</span>       <span style="color:#f92672">=&gt;</span> $amz_date,
+        Policy             <span style="color:#f92672">=&gt;</span> $policy,
+        <span style="color:#e6db74">&#34;X-Amz-Signature&#34;</span>  <span style="color:#f92672">=&gt;</span> $signature,
+        file               <span style="color:#f92672">=&gt;</span> [$file],
+    );
+
+    <span style="color:#66d9ef">my</span> $ua  <span style="color:#f92672">=</span> LWP::UserAgent<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+    <span style="color:#66d9ef">my</span> $url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$ENDPOINT/$bucket&#34;</span>;
+    <span style="color:#66d9ef">my</span> $res <span style="color:#f92672">=</span> $ua<span style="color:#f92672">-&gt;</span>request(
+        POST $url, Content_Type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;form-data&#39;</span>, Content <span style="color:#f92672">=&gt;</span> [%form]);
+
+    <span style="color:#66d9ef">if</span> ($res<span style="color:#f92672">-&gt;</span>is_success) {
+        say <span style="color:#e6db74">&#34;Upload successful (S3 POST event trigger).&#34;</span>;
+    } <span style="color:#66d9ef">else</span> {
+        say <span style="color:#e6db74">&#34;Upload failed!&#34;</span>;
+        say <span style="color:#e6db74">&#34;Status: &#34;</span> <span style="color:#f92672">.</span> $res<span style="color:#f92672">-&gt;</span>code;
+        say <span style="color:#e6db74">&#34;Message: &#34;</span> <span style="color:#f92672">.</span> $res<span style="color:#f92672">-&gt;</span>status_line;
+        say <span style="color:#e6db74">&#34;Response body:\n&#34;</span> <span style="color:#f92672">.</span> $res<span style="color:#f92672">-&gt;</span>decoded_content;
+    }
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_generate_policy</span>($bucket, $key) {
+    <span style="color:#66d9ef">my</span> $expire_in  <span style="color:#f92672">=</span> <span style="color:#ae81ff">3600</span>;
+    <span style="color:#66d9ef">my</span> $expiration <span style="color:#f92672">=</span> strftime(<span style="color:#e6db74">&#34;%Y-%m-%dT%H:%M:%SZ&#34;</span>, gmtime(time <span style="color:#f92672">+</span> $expire_in));
+    <span style="color:#66d9ef">my</span> $policy     <span style="color:#f92672">=</span> {
+        expiration <span style="color:#f92672">=&gt;</span> $expiration,
+        conditions <span style="color:#f92672">=&gt;</span> [
+            { bucket <span style="color:#f92672">=&gt;</span> $bucket },
+            [<span style="color:#e6db74">&#34;starts-with&#34;</span>, <span style="color:#e6db74">&#39;$key&#39;</span>, <span style="color:#e6db74">&#34;&#34;</span>],
+        ],
+    };
+
+    <span style="color:#66d9ef">return</span> encode_base64(encode_json($policy), <span style="color:#e6db74">&#34;&#34;</span>);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_derive_signing_key</span>($secret, $date, $region, $service) {
+    <span style="color:#66d9ef">my</span> $k_date    <span style="color:#f92672">=</span> _sign(<span style="color:#e6db74">&#34;AWS4$secret&#34;</span>, $date);
+    <span style="color:#66d9ef">my</span> $k_region  <span style="color:#f92672">=</span> _sign($k_date, $region);
+    <span style="color:#66d9ef">my</span> $k_service <span style="color:#f92672">=</span> _sign($k_region, $service);
+    <span style="color:#66d9ef">return</span> _sign($k_service, <span style="color:#e6db74">&#34;aws4_request&#34;</span>);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_sign</span>($key, $message) {
+    <span style="color:#66d9ef">return</span> hmac_sha256($message, $key);
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">multipart_upload</span>($s3, $bucket, $key, $file_size_mb) {
+
+    say <span style="color:#e6db74">&#34;MULTIPART upload $key to bucket $bucket.&#34;</span>;
+
+    <span style="color:#66d9ef">my</span> $ug <span style="color:#f92672">=</span> Data::UUID<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+    <span style="color:#66d9ef">my</span> $temp_filename   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/tmp/&#34;</span> <span style="color:#f92672">.</span> $ug<span style="color:#f92672">-&gt;</span>create_str() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;.bin&#34;</span>;
+    <span style="color:#66d9ef">my</span> $file_size_bytes <span style="color:#f92672">=</span> $file_size_mb <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+
+    open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $temp_filename <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot create temp file: $!&#34;</span>;
+    <span style="color:#66d9ef">print</span> $fh map { chr(int(rand(<span style="color:#ae81ff">256</span>))) } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$file_size_bytes;
+    close $fh;
+
+    <span style="color:#66d9ef">my</span> $create_response <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>CreateMultipartUpload(
+        Bucket <span style="color:#f92672">=&gt;</span> $bucket,
+        Key    <span style="color:#f92672">=&gt;</span> $key
+    );
+
+    <span style="color:#66d9ef">my</span> $upload_id <span style="color:#f92672">=</span> $create_response<span style="color:#f92672">-&gt;</span>UploadId;
+    <span style="color:#66d9ef">my</span> $parts     <span style="color:#f92672">=</span> _create_parts($bucket, $key, $temp_filename, $upload_id);
+
+    $s3<span style="color:#f92672">-&gt;</span>CompleteMultipartUpload(
+        Bucket          <span style="color:#f92672">=&gt;</span> $bucket,
+        Key             <span style="color:#f92672">=&gt;</span> $key,
+        UploadId        <span style="color:#f92672">=&gt;</span> $upload_id,
+        MultipartUpload <span style="color:#f92672">=&gt;</span> { Parts <span style="color:#f92672">=&gt;</span> $parts }
+    );
+
+    unlink $temp_filename <span style="color:#f92672">or</span> warn <span style="color:#e6db74">&#34;Could not delete temp file: $!&#34;</span>;
+
+    say <span style="color:#e6db74">&#34;Done. Upload completed with &#34;</span>, scalar(@$parts), <span style="color:#e6db74">&#34; parts.&#34;</span>;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_create_parts</span>($bucket, $key, $filename, $upload_id) {
+
+    <span style="color:#66d9ef">my</span> $part_number <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $part_size   <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>;
+    <span style="color:#66d9ef">my</span> @parts;
+
+    open <span style="color:#66d9ef">my</span> $file_fh, <span style="color:#e6db74">&#39;&lt;:raw&#39;</span>, $filename <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot open file: $!&#34;</span>;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $bytes_read <span style="color:#f92672">=</span> read($file_fh, <span style="color:#66d9ef">my</span> $chunk, $part_size)) {
+        say <span style="color:#e6db74">&#34;Uploading part $part_number ($bytes_read bytes)&#34;</span>;
+
+        <span style="color:#66d9ef">my</span> $part_response <span style="color:#f92672">=</span> $s3<span style="color:#f92672">-&gt;</span>UploadPart(
+            Bucket     <span style="color:#f92672">=&gt;</span> $bucket,
+            Key        <span style="color:#f92672">=&gt;</span> $key,
+            PartNumber <span style="color:#f92672">=&gt;</span> $part_number,
+            UploadId   <span style="color:#f92672">=&gt;</span> $upload_id,
+            Body       <span style="color:#f92672">=&gt;</span> $chunk
+        );
+
+        push @parts, {
+            PartNumber <span style="color:#f92672">=&gt;</span> $part_number,
+            ETag       <span style="color:#f92672">=&gt;</span> $part_response<span style="color:#f92672">-&gt;</span>ETag
+        };
+
+        $part_number<span style="color:#f92672">++</span>;
+    }
+
+    close $file_fh;
+
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@parts;
+}
+</code></pre></div><br>
+<p>This is the interface of the application.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl s3_event_trigger.pl --help
+usage: s3_event_trigger.pl <span style="color:#f92672">[</span>--help<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--bucket BUCKET<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--put KEY<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--copy DEST_BUCKET SRC_KEY DEST_KEY<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--delkey KEY<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--post KEY<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--multipart KEY<span style="color:#f92672">]</span>
+          <span style="color:#f92672">[</span>--size SIZE<span style="color:#f92672">]</span>
+
+S3 Trigger Events
+
+options:
+  --help              Show this help message and exit
+  --bucket BUCKET     S3 Bucket name, required
+  --put KEY           Key <span style="color:#66d9ef">for</span> PUT operation
+  --copy DEST_BUCKET SRC_KEY DEST_KEY Copy operation
+  --delkey KEY        Key to DELETE
+  --post KEY          Key <span style="color:#66d9ef">for</span> POST operation
+  --multipart KEY     Key <span style="color:#66d9ef">for</span> MULTIPART UPLOAD
+  --size SIZE         File size in MB <span style="color:#66d9ef">for</span> multipart upload, default <span style="color:#ae81ff">6</span>
+</code></pre></div><br>
+<p>Let&rsquo;s play with the <code>Perl</code> script.</p>
+<h3 id="put-event-1">PUT event:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl s3_event_trigger.pl --bucket test-bucket --put test.txt
+Bucket <span style="color:#e6db74">&#39;test-bucket&#39;</span> exists and is accessible.
+PUT object test.txt to bucket test-bucket
+Done. Uploaded <span style="color:#ae81ff">29</span> bytes from file: test.txt
+</code></pre></div><br>
+<h3 id="check-log-5">Check Log:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T10:54:19 S3 Event Detected
+2025-11-07T10:54:19 -------------------------------
+2025-11-07T10:54:19 Event Type: ObjectCreated:Put <span style="color:#f92672">(</span>Put<span style="color:#f92672">)</span>
+2025-11-07T10:54:19 Timestamp:  2025-11-07T10:54:19.394Z
+2025-11-07T10:54:19 Bucket:     test-bucket
+2025-11-07T10:54:19 Object:     test.txt
+2025-11-07T10:54:19 Size:       <span style="color:#ae81ff">29</span> bytes
+2025-11-07T10:54:19 ETag:       b72a05983f663132daaf4688bb919f80
+2025-11-07T10:54:19 -------------------------------
+</code></pre></div><br>
+<h3 id="copy-event-1">COPY event:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl s3_event_trigger.pl --bucket test-bucket --copy test-bucket test.txt copy_test.txt
+Bucket <span style="color:#e6db74">&#39;test-bucket&#39;</span> exists and is accessible.
+COPY object test.txt from test-bucket to copy_test.txt in test-bucket
+Done.
+</code></pre></div><br>
+<h3 id="check-log-6">Check Log:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T11:02:50 S3 Event Detected
+2025-11-07T11:02:50 -------------------------------
+2025-11-07T11:02:50 Event Type: ObjectCreated:Copy <span style="color:#f92672">(</span>Copy<span style="color:#f92672">)</span>
+2025-11-07T11:02:50 Timestamp:  2025-11-07T11:02:50.187Z
+2025-11-07T11:02:50 Bucket:     test-bucket
+2025-11-07T11:02:50 Object:     copy_test.txt
+2025-11-07T11:02:50 Size:       <span style="color:#ae81ff">29</span> bytes
+2025-11-07T11:02:50 ETag:       b72a05983f663132daaf4688bb919f80
+2025-11-07T11:02:50 -------------------------------
+</code></pre></div><br>
+<h3 id="del-event-1">DEL event:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl s3_event_trigger.pl --bucket test-bucket --delkey copy_test.txt
+Bucket <span style="color:#e6db74">&#39;test-bucket&#39;</span> exists and is accessible.
+DELETE object copy_test.txt from bucket test-bucket
+Done.
+</code></pre></div><br>
+<h3 id="check-log-7">Check Log:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T11:05:01 S3 Event Detected
+2025-11-07T11:05:01 -------------------------------
+2025-11-07T11:05:01 Event Type: ObjectRemoved:Delete <span style="color:#f92672">(</span>Delete<span style="color:#f92672">)</span>
+2025-11-07T11:05:01 Timestamp:  2025-11-07T11:05:01.757Z
+2025-11-07T11:05:01 Bucket:     test-bucket
+2025-11-07T11:05:01 Object:     copy_test.txt
+2025-11-07T11:05:01 Size:       <span style="color:#ae81ff">0</span> bytes
+2025-11-07T11:05:01 ETag:
+2025-11-07T11:05:01 -------------------------------
+</code></pre></div><br>
+<h3 id="post-event-1">POST event:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl s3_event_trigger.pl --bucket test-bucket --post test.txt
+Bucket <span style="color:#e6db74">&#39;test-bucket&#39;</span> exists and is accessible.
+Upload successful <span style="color:#f92672">(</span>S3 POST event trigger<span style="color:#f92672">)</span>.
+</code></pre></div><br>
+<h3 id="check-log-8">Check Log:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T11:06:14 S3 Event Detected
+2025-11-07T11:06:14 -------------------------------
+2025-11-07T11:06:14 Event Type: ObjectCreated:Post <span style="color:#f92672">(</span>Post<span style="color:#f92672">)</span>
+2025-11-07T11:06:14 Timestamp:  2025-11-07T11:06:14.177Z
+2025-11-07T11:06:14 Bucket:     test-bucket
+2025-11-07T11:06:14 Object:     test.txt
+2025-11-07T11:06:14 Size:       <span style="color:#ae81ff">29</span> bytes
+2025-11-07T11:06:14 ETag:       b72a05983f663132daaf4688bb919f80
+2025-11-07T11:06:14 -------------------------------
+</code></pre></div><br>
+<h3 id="multipartupload-event-1">MultipartUpload event:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl s3_event_trigger.pl --bucket test-bucket --multipart bigfile.bin
+Bucket <span style="color:#e6db74">&#39;test-bucket&#39;</span> exists and is accessible.
+MULTIPART upload bigfile.bin to bucket test-bucket.
+Uploading part <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">5242880</span> bytes<span style="color:#f92672">)</span>
+Uploading part <span style="color:#ae81ff">2</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">1048576</span> bytes<span style="color:#f92672">)</span>
+Done. Upload completed with <span style="color:#ae81ff">2</span> parts.
+</code></pre></div><br>
+<h3 id="check-log-9">Check Log:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws logs tail /aws/lambda/event-handler | grep -oP <span style="color:#e6db74">&#39;\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2} .*&#39;</span>
+...
+...
+...
+2025-11-07T11:07:25 S3 Event Detected
+2025-11-07T11:07:25 -------------------------------
+2025-11-07T11:07:25 Event Type: ObjectCreated:CompleteMultipartUpload <span style="color:#f92672">(</span>CompleteMultipartUpload<span style="color:#f92672">)</span>
+2025-11-07T11:07:25 Timestamp:  2025-11-07T11:07:25.949Z
+2025-11-07T11:07:25 Bucket:     test-bucket
+2025-11-07T11:07:25 Object:     bigfile.bin
+2025-11-07T11:07:25 Size:       <span style="color:#ae81ff">6291456</span> bytes
+2025-11-07T11:07:25 ETag:       98637b481c8a3c836bab1d9df673204a-2
+2025-11-07T11:07:25 -------------------------------
+</code></pre></div><br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
