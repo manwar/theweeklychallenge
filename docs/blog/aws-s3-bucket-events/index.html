@@ -323,7 +323,6 @@ services:
     container_name: localstack
     ports:
       - <span style="color:#e6db74">&#34;4566:4566&#34;</span>
-      - <span style="color:#e6db74">&#34;4510-4559:4510-4559&#34;</span>
     environment:
       - PERSISTENCE<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
       - SERVICES<span style="color:#f92672">=</span>s3,lambda,logs
@@ -343,14 +342,16 @@ Starting localstack ... <span style="color:#66d9ef">done</span>
 <p>Check the status of the container.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose ps
-   Name            Command             State                           Ports
-localstack   docker-entrypoint.sh   Up <span style="color:#f92672">(</span>healthy<span style="color:#f92672">)</span>   0.0.0.0:4510-&gt;4510/tcp,:::4510-&gt;4510/tcp,
-                                                   0.0.0.0:4511-&gt;4511/tcp,:::4511-&gt;4510/tcp,
-                                                   0.0.0.0:4511-&gt;4511/tcp,:::4511-&gt;4510/tcp,
-                                                   0.0.0.0:4511-&gt;4511/tcp,:::4511-&gt;4510/tcp,
+   Name            Command             State              Ports
+localstack   docker-entrypoint.sh   Up <span style="color:#f92672">(</span>healthy<span style="color:#f92672">)</span>   4510/tcp, 4511/tcp,
+                                                   4512/tcp, 4513/tcp,
+                                                   4514/tcp, 4515/tcp,
+                                                   4516/tcp, 4517/tcp,
                                                    ...
                                                    ...
-                                                   0.0.0.0:4566-&gt;4566/tcp,:::4511-&gt;4566/tcp,
+                                                   ...
+                                                   0.0.0.0:4566-&gt;4566/tcp,
+                                                   :::4511-&gt;4566/tcp,
                                                    5678/tcp
 </code></pre></div><br>
 <p>We need <code>S3</code> bucket for testing the event trigger.</p>

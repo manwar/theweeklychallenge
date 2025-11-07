@@ -52,7 +52,6 @@ services:
     container_name: localstack
     ports:
       - "4566:4566"
-      - "4510-4559:4510-4559"
     environment:
       - PERSISTENCE=1
       - SERVICES=s3,lambda,logs
@@ -84,14 +83,16 @@ Check the status of the container.
 
 ```bash
 $ docker-compose ps
-   Name            Command             State                           Ports
-localstack   docker-entrypoint.sh   Up (healthy)   0.0.0.0:4510->4510/tcp,:::4510->4510/tcp,
-                                                   0.0.0.0:4511->4511/tcp,:::4511->4510/tcp,
-                                                   0.0.0.0:4511->4511/tcp,:::4511->4510/tcp,
-                                                   0.0.0.0:4511->4511/tcp,:::4511->4510/tcp,
+   Name            Command             State              Ports
+localstack   docker-entrypoint.sh   Up (healthy)   4510/tcp, 4511/tcp,
+                                                   4512/tcp, 4513/tcp,
+                                                   4514/tcp, 4515/tcp,
+                                                   4516/tcp, 4517/tcp,
                                                    ...
                                                    ...
-                                                   0.0.0.0:4566->4566/tcp,:::4511->4566/tcp,
+                                                   ...
+                                                   0.0.0.0:4566->4566/tcp,
+                                                   :::4511->4566/tcp,
                                                    5678/tcp
 ```
 
