@@ -212,13 +212,9 @@ $ aws lambda create-function \
         "ApplyOn": "None",
         "OptimizationStatus": "Off"
     },
-    "RuntimeVersionConfig": {
-        "RuntimeVersionArn": "arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1"
-    },
-    "LoggingConfig": {
-        "LogFormat": "Text",
-        "LogGroup": "/aws/lambda/event-handler"
-    }
+    ...
+    ...
+    ...
 }
 ```
 
@@ -261,18 +257,13 @@ $ aws lambda get-function --function-name event-handler
             "ApplyOn": "None",
             "OptimizationStatus": "Off"
         },
-        "RuntimeVersionConfig": {
-            "RuntimeVersionArn": "arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1"
-        },
-        "LoggingConfig": {
-            "LogFormat": "Text",
-            "LogGroup": "/aws/lambda/event-handler"
-        }
+        ...
+        ...
+        ...
     },
-    "Code": {
-        "RepositoryType": "S3",
-        "Location": "http://s3.localhost.localstack.cloud:4566/awslambda-eu-west-1-tasks/snapshots/000000000000/event-handler-7fe708cb-6213-4c9f-a9c9-245b1ce1dac3?AWSAccessKeyId=949334387222&Signature=Se%2BvKpf5AnLf8OKaACO9BzCYvyU%3D&Expires=1762511862"
-    }
+    ...
+    ...
+    ...
 }
 ```
 
