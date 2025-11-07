@@ -3,7 +3,7 @@ title: "AWS S3 Bucket Trigger"
 date: 2025-11-07T00:00:00+00:00
 description: "Discussion about AWS S3 Bucket Trigger."
 type: post
-image: images/blog/aws-s3-trigger.jpg
+image: images/blog/aws-s3-bucket-trigger.jpg
 author: Mohammad Sajid Anwar
 tags: ["perl", "python", "aws", "localstack", "s3"]
 ---
