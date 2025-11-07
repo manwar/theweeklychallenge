@@ -174,7 +174,7 @@ To capture the `S3 events`, we meed to create lambda function.
 
 <br>
 
-```
+```bash
 $ aws lambda create-function \
   --function-name event-handler \
   --runtime python3.9 \

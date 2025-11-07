@@ -403,52 +403,52 @@ make_bucket: test-bucket
 </code></pre></div><br>
 <p>To capture the <code>S3 events</code>, we meed to create lambda function.</p>
 <br>
-<pre><code>$ aws lambda create-function \
-  --function-name event-handler \
-  --runtime python3.9 \
-  --handler event_handler.handler \
-  --zip-file fileb://event_handler.zip \
-  --role arn:aws:iam::000000000000:role/lambda-role
-{
-    &quot;FunctionName&quot;: &quot;event-handler&quot;,
-    &quot;FunctionArn&quot;: &quot;arn:aws:lambda:eu-west-1:000000000000:function:event-handler&quot;,
-    &quot;Runtime&quot;: &quot;python3.9&quot;,
-    &quot;Role&quot;: &quot;arn:aws:iam::000000000000:role/lambda-role&quot;,
-    &quot;Handler&quot;: &quot;event_handler.handler&quot;,
-    &quot;CodeSize&quot;: 652,
-    &quot;Description&quot;: &quot;&quot;,
-    &quot;Timeout&quot;: 3,
-    &quot;MemorySize&quot;: 128,
-    &quot;LastModified&quot;: &quot;2025-11-07T09:36:30.640522+0000&quot;,
-    &quot;CodeSha256&quot;: &quot;Wx0djcKvlM4f9JPbAWD/mcl+2gPMEvyK9QC2dSdeStU=&quot;,
-    &quot;Version&quot;: &quot;$LATEST&quot;,
-    &quot;TracingConfig&quot;: {
-        &quot;Mode&quot;: &quot;PassThrough&quot;
-    },
-    &quot;RevisionId&quot;: &quot;30349dd4-dc3c-4ccb-bce6-4be7ac219dad&quot;,
-    &quot;State&quot;: &quot;Pending&quot;,
-    &quot;StateReason&quot;: &quot;The function is being created.&quot;,
-    &quot;StateReasonCode&quot;: &quot;Creating&quot;,
-    &quot;PackageType&quot;: &quot;Zip&quot;,
-    &quot;Architectures&quot;: [
-        &quot;x86_64&quot;
-    ],
-    &quot;EphemeralStorage&quot;: {
-        &quot;Size&quot;: 512
-    },
-    &quot;SnapStart&quot;: {
-        &quot;ApplyOn&quot;: &quot;None&quot;,
-        &quot;OptimizationStatus&quot;: &quot;Off&quot;
-    },
-    &quot;RuntimeVersionConfig&quot;: {
-        &quot;RuntimeVersionArn&quot;: &quot;arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1&quot;
-    },
-    &quot;LoggingConfig&quot;: {
-        &quot;LogFormat&quot;: &quot;Text&quot;,
-        &quot;LogGroup&quot;: &quot;/aws/lambda/event-handler&quot;
-    }
-}
-</code></pre><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws lambda create-function <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --function-name event-handler <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --runtime python3.9 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --handler event_handler.handler <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --zip-file fileb://event_handler.zip <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --role arn:aws:iam::000000000000:role/lambda-role
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;FunctionName&#34;</span>: <span style="color:#e6db74">&#34;event-handler&#34;</span>,
+    <span style="color:#e6db74">&#34;FunctionArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:lambda:eu-west-1:000000000000:function:event-handler&#34;</span>,
+    <span style="color:#e6db74">&#34;Runtime&#34;</span>: <span style="color:#e6db74">&#34;python3.9&#34;</span>,
+    <span style="color:#e6db74">&#34;Role&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::000000000000:role/lambda-role&#34;</span>,
+    <span style="color:#e6db74">&#34;Handler&#34;</span>: <span style="color:#e6db74">&#34;event_handler.handler&#34;</span>,
+    <span style="color:#e6db74">&#34;CodeSize&#34;</span>: 652,
+    <span style="color:#e6db74">&#34;Description&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+    <span style="color:#e6db74">&#34;Timeout&#34;</span>: 3,
+    <span style="color:#e6db74">&#34;MemorySize&#34;</span>: 128,
+    <span style="color:#e6db74">&#34;LastModified&#34;</span>: <span style="color:#e6db74">&#34;2025-11-07T09:36:30.640522+0000&#34;</span>,
+    <span style="color:#e6db74">&#34;CodeSha256&#34;</span>: <span style="color:#e6db74">&#34;Wx0djcKvlM4f9JPbAWD/mcl+2gPMEvyK9QC2dSdeStU=&#34;</span>,
+    <span style="color:#e6db74">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;</span>$LATEST<span style="color:#e6db74">&#34;</span>,
+    <span style="color:#e6db74">&#34;TracingConfig&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;Mode&#34;</span>: <span style="color:#e6db74">&#34;PassThrough&#34;</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;RevisionId&#34;</span>: <span style="color:#e6db74">&#34;30349dd4-dc3c-4ccb-bce6-4be7ac219dad&#34;</span>,
+    <span style="color:#e6db74">&#34;State&#34;</span>: <span style="color:#e6db74">&#34;Pending&#34;</span>,
+    <span style="color:#e6db74">&#34;StateReason&#34;</span>: <span style="color:#e6db74">&#34;The function is being created.&#34;</span>,
+    <span style="color:#e6db74">&#34;StateReasonCode&#34;</span>: <span style="color:#e6db74">&#34;Creating&#34;</span>,
+    <span style="color:#e6db74">&#34;PackageType&#34;</span>: <span style="color:#e6db74">&#34;Zip&#34;</span>,
+    <span style="color:#e6db74">&#34;Architectures&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#e6db74">&#34;x86_64&#34;</span>
+    <span style="color:#f92672">]</span>,
+    <span style="color:#e6db74">&#34;EphemeralStorage&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;Size&#34;</span>: <span style="color:#ae81ff">512</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;SnapStart&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;ApplyOn&#34;</span>: <span style="color:#e6db74">&#34;None&#34;</span>,
+        <span style="color:#e6db74">&#34;OptimizationStatus&#34;</span>: <span style="color:#e6db74">&#34;Off&#34;</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;RuntimeVersionConfig&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;RuntimeVersionArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1&#34;</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#e6db74">&#34;LoggingConfig&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;LogFormat&#34;</span>: <span style="color:#e6db74">&#34;Text&#34;</span>,
+        <span style="color:#e6db74">&#34;LogGroup&#34;</span>: <span style="color:#e6db74">&#34;/aws/lambda/event-handler&#34;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><br>
 <p>Let&rsquo;s find the status of the lambda function.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws lambda get-function --function-name event-handler
