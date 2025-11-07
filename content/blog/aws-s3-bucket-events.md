@@ -1,9 +1,9 @@
 ---
-title: "AWS S3 Bucket Trigger"
+title: "AWS S3 Bucket Events"
 date: 2025-11-07T00:00:00+00:00
-description: "Discussion about AWS S3 Bucket Trigger."
+description: "Discussion about AWS S3 Bucket Events."
 type: post
-image: images/blog/aws-s3-bucket-trigger.jpg
+image: images/blog/aws-s3-bucket-events.jpg
 author: Mohammad Sajid Anwar
 tags: ["perl", "python", "aws", "localstack", "s3"]
 ---
@@ -24,17 +24,15 @@ tags: ["perl", "python", "aws", "localstack", "s3"]
 
 Recently I shared my experience with [**Amazon S3**](https://theweeklychallenge.org/blog/localstack-aws-s3) and [**Amazon Lambda**](https://theweeklychallenge.org/blog/aws-lambda).
 
-Today I am playing with `S3 Bucket Trigger` events and how it can be triggered and captured.
+Today I am playing with `S3 Bucket Events` and how it can be triggered and captured.
 
 In this post, I will take a closer look at the following events.
 
-<br>
-
-#### s3:ObjectCreated:Put
-#### s3:ObjectCreated:Copy
-#### s3:ObjectCreated:Post
-#### s3:ObjectCreated:CompleteMultipartUpload
-#### s3:ObjectRemoved:Delete
+#### **- s3:ObjectCreated:Put**
+#### **- s3:ObjectCreated:Copy**
+#### **- s3:ObjectRemoved:Delete**
+#### **- s3:ObjectCreated:Post**
+#### **- s3:ObjectCreated:CompleteMultipartUpload**
 
 <br>
 
@@ -99,7 +97,7 @@ localstack   docker-entrypoint.sh   Up (healthy)   0.0.0.0:4510->4510/tcp,:::451
 
 <br>
 
-We need `S3` bucket for testing the trigger.
+We need `S3` bucket for testing the event trigger.
 
 <br>
 
@@ -322,7 +320,7 @@ $ aws s3api get-bucket-notification-configuration --bucket test-bucket
 
 <br>
 
-Finally, we are ready to test the `S3 Bucket Trigger` events.
+Finally, we are ready to test the `S3 Bucket Events`.
 
 <br>
 
