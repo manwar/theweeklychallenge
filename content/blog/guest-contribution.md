@@ -1235,6 +1235,8 @@ ___
 
 ##### **Vinod Kumar K** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/vinod-k/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/vinod-k/python/ch-2.py) in **Python**.
 
+##### **Yitzchak Scott-Thoennes** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/ysth/go/ch-1.go) in **Go**.
+
 ___
 ## [The Weekly Challenge - 344](/blog/perl-weekly-challenge-344) {#344}
 <br>
