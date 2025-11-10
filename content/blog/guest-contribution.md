@@ -1142,6 +1142,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-347/pokgopun/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-347/pokgopun/python/ch-1.py) in **Python**.
 
+##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-347/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-347/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
+
 ___
 ## [The Weekly Challenge - 346](/blog/perl-weekly-challenge-346) {#346}
 <br>
