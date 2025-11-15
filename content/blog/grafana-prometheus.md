@@ -32,6 +32,8 @@ tags: ["perl", "python", "Grafana", "Promotheus"]
 
 It’s very popular for monitoring servers, containers, applications especially when paired with `Prometheus`.
 
+You can find more information here: [**https://grafana.com**](https://grafana.com)
+
 <br>
 
 ## What is Prometheus?
@@ -47,6 +49,8 @@ It’s very popular for monitoring servers, containers, applications especially 
     - Serves the metrics to Grafana for visualisation
 
 `Prometheus Server` pulls metrics from your applications every 5 seconds (as configured in the `prometheus.yml`).
+
+You can find more information here: [**https://prometheus.io**](https://prometheus.io)
 
 <br>
 
