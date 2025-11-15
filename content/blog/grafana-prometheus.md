@@ -45,7 +45,7 @@ You can find more information here: [**https://grafana.com**](https://grafana.co
 
     - Scrapes metrics from your applications (Perl app, Python app) and infrastructure (node-exporter)
     - Stores the metrics in a time-series database
-    - Provides a query language (PromQL) to analyze the metrics
+    - Provides a query language (PromQL) to analyse the metrics
     - Serves the metrics to Grafana for visualisation
 
 `Prometheus Server` pulls metrics from your applications every 5 seconds (as configured in the `prometheus.yml`).
