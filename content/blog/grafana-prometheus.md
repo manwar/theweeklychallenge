@@ -289,7 +289,11 @@ Time to test the `Perl` and `Python` applications:
 ```bash
 $ curl http://localhost:7000
 Hello from Perl!
-$
+```
+
+<br>
+
+```bash
 $ curl http://localhost:8000
 Hello from Python!
 ```
