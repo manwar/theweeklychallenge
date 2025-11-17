@@ -211,7 +211,7 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 
 You are given a string of even length.
 
-Write a script to find if the given string split into two halves of equal lengths and they both have same number of vowels.
+Write a script to find out whether the given string can be split into two halves of equal lengths, each with the same non-zero number of vowels.
 
 <br>
 
