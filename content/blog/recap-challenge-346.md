@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 346"
-date: 2025-11-11T00:00:00+00:00
+date: 2025-11-17T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 346."
 type: post
 image: images/blog/recap-challenge-346.jpg
@@ -46,7 +46,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 17847 (64%)
+#### 1. Perl: 17849 (64%)
 #### 2. Raku: 9884 (36%)
 #### 3. Blog: 6391
 
@@ -55,9 +55,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `81`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `83`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 48
+#### 1. Perl: 50
 #### 2. Raku: 18
 #### 3. Blog: 15
 
@@ -154,10 +154,10 @@ The total contributions in the week is `81`. Well done **Team PWC**. I would als
     C (3), Dart (2), F# (6), Go (2), Java (2), JavaScript (2), Julia (2), Python (4), Rust (2), SVG (1), Scala (2), WebAssembly (2), YaBasic (2), Zig (2).
 #### 44. Marton Polgar (34)
     Groovy (4), PHP (10), Prolog (20).
-#### 45. Benjamin Andre (32)
+#### 45. Yitzchak Scott-Thoennes (33)
+    Go (11), Python (22).
+#### 46. Benjamin Andre (32)
     Rust (32).
-#### 46. Yitzchak Scott-Thoennes (29)
-    Go (9), Python (20).
 #### 47. Magnus Markling (28)
     Uiua (28).
 #### 48. Shawn Wagner (27)
@@ -352,7 +352,7 @@ The total contributions in the week is `81`. Well done **Team PWC**. I would als
 ## LANGUAGES {#LANGUAGES}
 ***
 
-    Python (3721), Rust (1036), Ruby (844), Haskell (829), Lua (788), C++ (664), C (596), JavaScript (596), Go (574), BQN (481), Java (472), Postscript (436), Kotlin (425), Julia (324), Scala (287), PostgreSQL (281), Tcl (228), Prolog (222), Clojure (202), Bash (200), Nim (198), Node.js (196), APL (194), Awk (190), Pascal (164), Crystal (146), Modula 3 (142), Elixir (140), BASIC (100), R (100), D (99), Forth (98), Bc (84), Lisp (75), Uiua (68), Scheme (64), Excel VBA (63), PHP (51), Oberon (47), Typst (47), Dart (46), Erlang (44), Swift (41), Ada (38), Befunge-93 (35), Fortran (33), OCaml (33), F# (29), J (28), SQL (24), COBOL (20), Ring (20), C Shell (19), K (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), Racket (14), PowerShell (13), Nelua (12), PicoLisp (12), Hy (11), Zig (11), C# (10), Smalltalk (9), Fennel (8), Brainfuck (6), Odin (6), Standard ML (6), TypeScript (6), WebAssembly (6), Coconut (4), Emacs Lisp (4), Factor (4), Groovy (4), Kap (4), Nu (4), CESIL (3), CUDA (3), Fish (3), Gembase (3), Janet (3), Logo (3), Nuweb (3), Octave (3), Roc (3), V (3), C3 (2), Dc (2), GP (2), Gleam (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Retro (2), Wolfram (2), YaBasic (2), Bourne Shell (1), Chef (1), GNAT (1), IO (1), Javascript (1), Maxima (1), Mumps (1), Node (1), Ook (1), SVG (1), Typescript (1), VBA (1), Visual BASIC (1), XSLT (1).
+    Python (3723), Rust (1036), Ruby (844), Haskell (829), Lua (788), C++ (664), C (596), JavaScript (596), Go (576), BQN (481), Java (472), Postscript (436), Kotlin (425), Julia (324), Scala (287), PostgreSQL (281), Tcl (228), Prolog (222), Clojure (202), Bash (200), Nim (198), Node.js (196), APL (194), Awk (190), Pascal (164), Crystal (146), Modula 3 (142), Elixir (140), BASIC (100), R (100), D (99), Forth (98), Bc (84), Lisp (75), Uiua (68), Scheme (64), Excel VBA (63), PHP (51), Oberon (47), Typst (47), Dart (46), Erlang (44), Swift (41), Ada (38), Befunge-93 (35), Fortran (33), OCaml (33), F# (29), J (28), SQL (24), COBOL (20), Ring (20), C Shell (19), K (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), Racket (14), PowerShell (13), Nelua (12), PicoLisp (12), Hy (11), Zig (11), C# (10), Smalltalk (9), Fennel (8), Brainfuck (6), Odin (6), Standard ML (6), TypeScript (6), WebAssembly (6), Coconut (4), Emacs Lisp (4), Factor (4), Groovy (4), Kap (4), Nu (4), CESIL (3), CUDA (3), Fish (3), Gembase (3), Janet (3), Logo (3), Nuweb (3), Octave (3), Roc (3), V (3), C3 (2), Dc (2), GP (2), Gleam (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Retro (2), Wolfram (2), YaBasic (2), Bourne Shell (1), Chef (1), GNAT (1), IO (1), Javascript (1), Maxima (1), Mumps (1), Node (1), Ook (1), SVG (1), Typescript (1), VBA (1), Visual BASIC (1), XSLT (1).
 
 <br>
 
@@ -546,6 +546,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/wanderdoc/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/wanderdoc/perl/ch-2.pl)]
+
+***
+
+### Yitzchak Scott-Thoennes
+![Yitzchak Scott-Thoennes](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/ysth/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/ysth/perl/ch-2.pl)]
 
 <br>
 

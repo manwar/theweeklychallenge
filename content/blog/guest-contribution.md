@@ -1258,6 +1258,10 @@ ___
 
 ##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/ulrich-rieke/rust/ch-1.rs) in **Rust**.
 
+##### **Yitzchak Scott-Thoennes** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/ysth/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/ysth/go/ch-2.go) in **Go**.
+
+##### **Yitzchak Scott-Thoennes** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/ysth/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/ysth/python/ch-2.py) in **Python**.
+
 ___
 ## [The Weekly Challenge - 345](/blog/perl-weekly-challenge-345) {#345}
 <br>
