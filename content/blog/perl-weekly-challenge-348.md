@@ -248,7 +248,7 @@ Write a script to find if the given string split into two halves of equal length
 #### Example 4
 
     Input: $str = "rhythmmyth"
-    Output: false
+    Output: true
 
     1st half: "rhyth" (0 vowel)
     2nd half: "mmyth" (0 vowel)
