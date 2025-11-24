@@ -38,7 +38,7 @@ The overall contributions figure is looking great, I must admit. We are getting 
 
 Another number that caught my attention is the total number of `pull requests` submitted. As of today it is over `13K` and that's considering not every member submits pull request. These numbers tell a very beautiful story.
 
-One more piece of good news: we have now received `200` stars for the central **GitHub** repository of Club members: [**https://github.com/manwar/perlweeklychallenge-club**](https://github.com/manwar/perlweeklychallenge-club).
+One more piece of good news: we have now received `200` stars for the [**GitHub repository**](https://github.com/manwar/perlweeklychallenge-club) of club members.
 
 I need to get started soon on `The Weekly Challenge Advent Calendar 2025`. For those who are new, we have been doing this every year. Please check out last year's, [**Advent Calendar**](/blog/advent-calendar-2024).
 
