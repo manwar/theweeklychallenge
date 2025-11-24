@@ -18,6 +18,9 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
       <div class="links-visible">
         <div class="row text-center">
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
+             <span class="link-item"><a href="#349">[&nbsp;&nbsp;349&nbsp;&nbsp;]</a> &nbsp;</span>
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#348">[&nbsp;&nbsp;348&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
@@ -194,13 +197,13 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#290">[&nbsp;&nbsp;290&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
-             <span class="link-item"><a href="#289">[&nbsp;&nbsp;289&nbsp;&nbsp;]</a> &nbsp;</span>
-          </div>
         </div>
       </div>
       <div class="links-hidden" style="display: none;">
         <div class="row text-center">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
+             <span class="link-item"><a href="#289">[&nbsp;&nbsp;289&nbsp;&nbsp;]</a> &nbsp;</span>
+          </div>
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#288">[&nbsp;&nbsp;288&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
@@ -1130,6 +1133,20 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
   }
 </style>
 
+## [The Weekly Challenge - 349](/blog/perl-weekly-challenge-349) {#349}
+<br>
+
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/luca-ferrari/pljava/src/main/java/Task1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/luca-ferrari/pljava/src/main/java/Task2.java) in **Java**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
+
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/luca-ferrari/python/ch-2.py) in **Python**.
+
+##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/mohammad-anwar/python/ch-1.py) in **Python**.
+
+___
 ## [The Weekly Challenge - 348](/blog/perl-weekly-challenge-348) {#348}
 <br>
 
