@@ -275,7 +275,7 @@ Write a script to return the power of the given string.
 
 You are given instruction string made up of `U (up)`, `D (down)`, `L (left)` and `R (right)`.
 
-Write a script to return true if following the instruction, you meet the starting point (0,0).
+Write a script to return true if following the instruction, you meet (0,0) at any point along the sequence.
 
 <br>
 
