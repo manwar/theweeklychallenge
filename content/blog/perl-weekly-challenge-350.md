@@ -356,7 +356,7 @@ Write a script to return the number of good substrings of length three in the gi
 ##### **Submitted by:** [E. Choroba](https://github.com/choroba)
 ***
 
-If two integers `A <= B` have the same digits but in different orders, we say that they belong to the same *shuffle pair* if and only if there is an integer `k` such that `B = A * k`. `k` is called the *witness* of the pair.
+If two integers `A <= B` have the same digits but in different orders, we say that they belong to the same *shuffle pair* if and only if there is an integer `k` such that `B = A * k` where `k` is called the *witness* of the pair.
 
 For example, 1359 and 9513 belong to the same shuffle pair, because `1359 * 7 = 9513`.
 
