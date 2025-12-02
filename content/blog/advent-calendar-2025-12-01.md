@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; **Day 1** &nbsp; |
+### | &nbsp; **Day 1** &nbsp; | &nbsp; [**Day 2**](/blog/advent-calendar-2025-12-02) &nbsp; |
 ***
 
 The gift is presented by `Ali Moradi`. Today he is talking about his solution to [**The Weekly Challenge - 303**](/blog/perl-weekly-challenge-303). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://deadmarshal.blogspot.com/2025/01/twc303.html).
