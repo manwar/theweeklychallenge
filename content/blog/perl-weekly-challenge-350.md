@@ -418,7 +418,7 @@ Write a function that for a given `$from`, `$to`, and `$count` returns the numbe
     Input: $from = 1030, $to = 1130, $count = 1
     Output: 2
 
-    There are 2 integers between 1020 and 1120 that belong to at least one shuffle pair:
+    There are 2 integers between 1030 and 1130 that belong to at least one shuffle pair:
     1035, the other element is 3105 (witness k = 3)
     1089, the other element is 9801 (witness k = 9)
 
