@@ -18,7 +18,7 @@ The gift is presented by `Dave Jacoby`. Today he is talking about his solution t
 
 <br>
 
-Welcome to Weekly Challenge #304! 304 is many things: A compound number (2<sup>4 * 19), the area code for West Virginia, a common and corrosion-resistant alloy of stainless steel, (with leading zero) an album by Jewel that Todd in the Shadows calls a Trainwrecord, and an HTTP error code.
+Welcome to Weekly Challenge #304! 304 is many things: A compound number **(2<sup>4</sup> * 19)**, the area code for West Virginia, a common and corrosion-resistant alloy of stainless steel, (with leading zero) an album by Jewel that Todd in the Shadows calls a Trainwrecord, and an HTTP error code.
 
 <br>
 
