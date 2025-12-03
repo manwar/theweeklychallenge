@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 1**](/blog/advent-calendar-2025-12-01) &nbsp; | &nbsp; **Day 2** &nbsp; |
+### | &nbsp; [**Day 1**](/blog/advent-calendar-2025-12-01) &nbsp; | &nbsp; **Day 2** &nbsp; | &nbsp; [**Day 3**](/blog/advent-calendar-2025-12-03) &nbsp; |
 ***
 
 The gift is presented by `Dave Jacoby`. Today he is talking about his solution to [**The Weekly Challenge - 304**](/blog/perl-weekly-challenge-304). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://jacoby-lpwk.onrender.com/2025/01/13/not-modified-weekly-challenge-304.html).
