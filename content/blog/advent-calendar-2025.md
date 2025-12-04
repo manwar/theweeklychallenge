@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar 2025"
-date: 2025-12-03T00:00:00+00:00
+date: 2025-12-04T00:00:00+00:00
 description: "Advent Calendar 2025."
 type: post
 image: images/blog/advent-calendar-2025.jpg
@@ -24,7 +24,7 @@ It's amazing to look back and see how far we've come - and none of it would have
 | | | | | | | |
 | `MON`<br> |  `TUE`<br> | `WED`<br> |  `THU`<br>| `FRI`<br>|  `SAT`<br> |  `SUN`<br> |
 | | | | | | | |
-| [![Day 1](/images/blog/2025-12-01-thumbnail.jpg "3-digits Even/Delete and Earn by Ali Moradi")](/blog/advent-calendar-2025-12-01)<br>[**`1`**](/blog/advent-calendar-2025-12-01) | [![Day 2](/images/blog/2025-12-02-thumbnail.jpg "Not Modified by Dave Jacoby")](/blog/advent-calendar-2025-12-02)<br>[**`2`**](/blog/advent-calendar-2025-12-02) | [![Day 3](/images/blog/2025-12-03-thumbnail.jpg "Alien Primes by Jorg Sommrey")](/blog/advent-calendar-2025-12-03)<br>[**`3`**](/blog/advent-calendar-2025-12-03) | ![Day 4](/images/blog/2025-12-04-thumbnail.jpg)<br>**`4`** | ![Day 5](/images/blog/2025-12-05-thumbnail.jpg)<br>**`5`** | ![Day 6](/images/blog/2025-12-06-thumbnail.jpg)<br>**`6`** | ![Day 7](/images/blog/2025-12-07-thumbnail.jpg)<br>**`7`** |
+| [![Day 1](/images/blog/2025-12-01-thumbnail.jpg "3-digits Even/Delete and Earn by Ali Moradi")](/blog/advent-calendar-2025-12-01)<br>[**`1`**](/blog/advent-calendar-2025-12-01) | [![Day 2](/images/blog/2025-12-02-thumbnail.jpg "Not Modified by Dave Jacoby")](/blog/advent-calendar-2025-12-02)<br>[**`2`**](/blog/advent-calendar-2025-12-02) | [![Day 3](/images/blog/2025-12-03-thumbnail.jpg "Alien Primes by Jorg Sommrey")](/blog/advent-calendar-2025-12-03)<br>[**`3`**](/blog/advent-calendar-2025-12-03) | [![Day 4](/images/blog/2025-12-04-thumbnail.jpg "Odd game by Peter Campbell Smith")](/blog/advent-calendar-2025-12-04)<br>[**`4`**](/blog/advent-calendar-2025-12-04) | ![Day 5](/images/blog/2025-12-05-thumbnail.jpg)<br>**`5`** | ![Day 6](/images/blog/2025-12-06-thumbnail.jpg)<br>**`6`** | ![Day 7](/images/blog/2025-12-07-thumbnail.jpg)<br>**`7`** |
 | | | | | | | |
 | ![Day 8](/images/blog/2025-12-08-thumbnail.jpg)<br>**`8`** | ![Day 9](/images/blog/2025-12-09-thumbnail.jpg)<br>**`9`** | ![Day 10](/images/blog/2025-12-10-thumbnail.jpg)<br>**`10`** | ![Day 11](/images/blog/2025-12-11-thumbnail.jpg)<br>**`11`** | ![Day 12](/images/blog/2025-12-12-thumbnail.jpg)<br>**`12`** | ![Day 13](/images/blog/2025-12-13-thumbnail.jpg)<br>**`13`** | ![Day 14](/images/blog/2025-12-14-thumbnail.jpg)<br>**`14`** |
 | | | | | | | |
