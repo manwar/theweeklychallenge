@@ -652,11 +652,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-340/packy-anderson/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-340/packy-anderson/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-340/packy-anderson/raku/ch-2.raku)]
-[[**BLOG #1**](<<<<<<< HEAD
-https://packy.dardan.com/b/bj
-=======
-https://packy.dardan.com/2025/09/23/perl-weekly-challenge-rising-in-num/
->>>>>>> upstream/master)]
+[[**BLOG #1**](https://packy.dardan.com/b/bj)
 
 ***
 
