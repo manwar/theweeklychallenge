@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 3**](/blog/advent-calendar-2025-12-03) &nbsp; | &nbsp; **Day 4** &nbsp; |
+### | &nbsp; [**Day 3**](/blog/advent-calendar-2025-12-03) &nbsp; | &nbsp; **Day 4** &nbsp; | &nbsp; [**Day 5**](/blog/advent-calendar-2025-12-05) &nbsp; |
 ***
 
 The gift is presented by `Peter Campbell Smith`. Today he is talking about his solution to [**The Weekly Challenge - 306**](/blog/perl-weekly-challenge-306). This is re-produced for `Advent Calendar 2025` from the original [**post**](http://ccgi.campbellsmiths.force9.co.uk/challenge/306).
