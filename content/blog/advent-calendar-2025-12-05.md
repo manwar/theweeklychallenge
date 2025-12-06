@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 4**](/blog/advent-calendar-2025-12-04) &nbsp; | &nbsp; **Day 5** &nbsp; |
+### | &nbsp; [**Day 4**](/blog/advent-calendar-2025-12-04) &nbsp; | &nbsp; **Day 5** &nbsp; | &nbsp; [**Day 6**](/blog/advent-calendar-2025-12-06) &nbsp; |
 ***
 
 The gift is presented by `Matthias Muth`. Today he is talking about his solution to [**The Weekly Challenge - 307**](/blog/perl-weekly-challenge-307). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-307/challenge-307/matthias-muth#readme).
