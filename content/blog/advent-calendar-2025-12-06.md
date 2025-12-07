@@ -9,7 +9,7 @@ tags: ["Raku"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 5**](/blog/advent-calendar-2025-12-05) &nbsp; | &nbsp; **Day 6** &nbsp; |
+### | &nbsp; [**Day 5**](/blog/advent-calendar-2025-12-05) &nbsp; | &nbsp; **Day 6** &nbsp; | &nbsp; [**Day 7**](/blog/advent-calendar-2025-12-07) &nbsp; |
 ***
 
 The gift is presented by `Arne Sommer`. Today he is talking about his solution to [**The Weekly Challenge - 308**](/blog/perl-weekly-challenge-308). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://raku-musings.com/xor-common.html).
