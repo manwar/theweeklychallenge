@@ -36,8 +36,6 @@ Last week, I completely forgot to announce the champion in all the excitement. W
 
 Thank you, `Arne Sommer`, for the kind and encouraging words in your [**blog post**](https://raku-musings.com/good-shuffle.html). I loved the post title image, it made my day.
 
-<br>
-
 Below is my contributions to the `Task #1` of `Week #350`.
 
 ### Perl: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-350/mohammad-anwar/perl/ch-1.pl)
