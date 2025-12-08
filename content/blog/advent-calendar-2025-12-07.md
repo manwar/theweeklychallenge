@@ -9,7 +9,7 @@ tags: ["Raku", "Perl", "PostgreSQL"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 6**](/blog/advent-calendar-2025-12-06) &nbsp; | &nbsp; **Day 7** &nbsp; |
+### | &nbsp; [**Day 6**](/blog/advent-calendar-2025-12-06) &nbsp; | &nbsp; **Day 7** &nbsp; | &nbsp; [**Day 8**](/blog/advent-calendar-2025-12-08) &nbsp; |
 ***
 
 The gift is presented by `Luca Ferrari`. Today he is talking about his solution to [**The Weekly Challenge - 309**](/blog/perl-weekly-challenge-309). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://fluca1978.github.io/2025/02/20/PerlWeeklyChallenge309.html).
