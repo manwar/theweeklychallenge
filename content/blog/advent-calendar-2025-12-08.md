@@ -9,7 +9,7 @@ tags: ["Raku", "Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 7**](/blog/advent-calendar-2025-12-07) &nbsp; | &nbsp; **Day 8** &nbsp; |
+### | &nbsp; [**Day 7**](/blog/advent-calendar-2025-12-07) &nbsp; | &nbsp; **Day 8** &nbsp; | &nbsp; [**Day 9**](/blog/advent-calendar-2025-12-09) &nbsp; |
 ***
 
 The gift is presented by `Jaldhar H. Vyas`. Today he is talking about his solutioni to [**The Weekly Challenge - 310**](/blog/perl-weekly-challenge-310). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://www.braincells.com/perl/2025/03/perl_weekly_challenge_week_310.html).
