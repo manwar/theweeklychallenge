@@ -9,7 +9,7 @@ tags: ["Raku", "Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 8**](/blog/advent-calendar-2025-12-08) &nbsp; | &nbsp; **Day 9** &nbsp; |
+### | &nbsp; [**Day 8**](/blog/advent-calendar-2025-12-08) &nbsp; | &nbsp; **Day 9** &nbsp; | &nbsp; [**Day 10**](/blog/advent-calendar-2025-12-10) &nbsp; |
 ***
 
 The gift is presented by `Roger Bell_West`. Today he is talking about his solutioni to [**The Weekly Challenge - 311**](/blog/perl-weekly-challenge-311). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://blog.firedrake.org/archive/2025/03/The_Weekly_Challenge_311__Lower_the_Sum.html).
