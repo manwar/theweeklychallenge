@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 9**](/blog/advent-calendar-2025-12-09) &nbsp; | &nbsp; **Day 10** &nbsp; |
+### | &nbsp; [**Day 9**](/blog/advent-calendar-2025-12-09) &nbsp; | &nbsp; **Day 10** &nbsp; | &nbsp; [**Day 11**](/blog/advent-calendar-2025-12-11) &nbsp; |
 ***
 
 The gift is presented by `W. Luis Mochan`. Today he is talking about his solutioni to [**The Weekly Challenge - 312**](/blog/perl-weekly-challenge-312). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://wlmb.github.io/2025/03/09/PWC312/).
