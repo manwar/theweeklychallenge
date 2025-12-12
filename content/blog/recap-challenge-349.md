@@ -451,8 +451,8 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 ***
 
-### Matt Martinit
-![Matt Martinit](/images/team/user.jpg)
+### Matt Martini
+![Matt Martini](/images/team/user.jpg)
 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/matt-martini/perl/ch-2.pl)]
 
