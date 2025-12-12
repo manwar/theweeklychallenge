@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 349"
-date: 2025-12-01T00:00:00+00:00
+date: 2025-12-12T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 349."
 type: post
 image: images/blog/recap-challenge-349.jpg
@@ -47,7 +47,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 18008 (64%)
+#### 1. Perl: 18011 (64%)
 #### 2. Raku: 9951 (36%)
 #### 3. Blog: 6467
 
@@ -56,9 +56,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `98`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `99`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 49
+#### 1. Perl: 50
 #### 2. Raku: 23
 #### 3. Blog: 26
 
@@ -448,6 +448,13 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/lubos-kolouch/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/lubos-kolouch/perl/ch-2.pl)]
+
+***
+
+### Matt Martinit
+![Matt Martinit](/images/team/user.jpg)
+
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/matt-martini/perl/ch-2.pl)]
 
 ***
 
