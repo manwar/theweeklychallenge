@@ -1156,6 +1156,10 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **HVukman** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/hvukman/part1/factor/351part1.factor) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/hvukman/part1/factor/351part2.factor) in **Factor**.
+
+##### **HVukman** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/hvukman/part1/racket/part1.rkt) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/hvukman/part2/racket/part2.rkt) in **Racket**.
+
 ##### **Jorg Sommrey** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/jo-37/j/ch-1.ijs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/jo-37/j/ch-2.ijs) in **J**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/lubos-kolouch/python/ch-2.py) in **Python**.
