@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 13**](/blog/advent-calendar-2025-12-13) &nbsp; | &nbsp; **Day 14** &nbsp; |
+### | &nbsp; [**Day 13**](/blog/advent-calendar-2025-12-13) &nbsp; | &nbsp; **Day 14** &nbsp; | &nbsp; [**Day 15**](/blog/advent-calendar-2025-12-15) &nbsp; |
 ***
 
 The gift is presented by `Bob Lied`. Today he is talking about his solutioni to [**The Weekly Challenge - 318**](/blog/perl-weekly-challenge-318). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://dev.to/boblied/pwc-318-task-2-reverse-equals-o5n).
