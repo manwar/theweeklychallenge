@@ -47,7 +47,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 18106 (64%)
+#### 1. Perl: 18108 (64%)
 #### 2. Raku: 9990 (36%)
 #### 3. Blog: 6497
 
@@ -56,9 +56,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `82`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `84`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 49
+#### 1. Perl: 51
 #### 2. Raku: 20
 #### 3. Blog: 13
 
@@ -542,6 +542,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/wanderdoc/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/wanderdoc/perl/ch-2.pl)]
+
+***
+
+### Yitzchak Scott-Thoennes
+![Yitzchak Scott-Thoennes](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/ysth/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/ysth/perl/ch-2.pl)]
 
 <br>
 
