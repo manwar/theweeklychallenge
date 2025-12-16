@@ -9,7 +9,7 @@ tags: ["Perl","Python","Raku","Elixir"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 14**](/blog/advent-calendar-2025-12-14) &nbsp; | &nbsp; **Day 15** &nbsp; |
+### | &nbsp; [**Day 14**](/blog/advent-calendar-2025-12-14) &nbsp; | &nbsp; **Day 15** &nbsp; | &nbsp; [**Day 16**](/blog/advent-calendar-2025-12-16) &nbsp; |
 ***
 
 The gift is presented by `Packy Anderson`. Today he is talking about his solutioni to [**The Weekly Challenge - 319**](/blog/perl-weekly-challenge-319). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://packy.dardan.com/2025/05/02/perl-weekly-challenge-count-the-minimum-common-word).
