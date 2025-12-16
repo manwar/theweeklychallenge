@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 350"
-date: 2025-12-14T00:00:00+00:00
+date: 2025-12-16T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 350."
 type: post
 image: images/blog/recap-challenge-350.jpg
@@ -99,8 +99,8 @@ The total contributions in the week is `82`. Well done **Team PWC**. I would als
     Elixir (122), Java (8), Python (191).
 #### 16. AhmetEmre (282)
     BQN (281), Javascript (1).
-#### 17. Conor Hoekstra (279)
-    APL (67), BQN (172), C++ (2), CUDA (3), Haskell (6), J (8), Kap (4), Python (4), Rust (1), Uiua (12).
+#### 17. Conor Hoekstra (281)
+    APL (67), BQN (174), C++ (2), CUDA (3), Haskell (6), J (8), Kap (4), Python (4), Rust (1), Uiua (12).
 #### 18. Tyler Wardhaugh (262)
     Clojure (202), Fennel (8), Lua (36), Python (16).
 #### 19. Adam Russell (251)
@@ -355,7 +355,7 @@ The total contributions in the week is `82`. Well done **Team PWC**. I would als
 ## LANGUAGES {#LANGUAGES}
 ***
 
-    Python (3807), Rust (1060), Ruby (852), Haskell (839), Lua (804), C++ (672), JavaScript (604), C (596), Go (594), BQN (487), Java (484), Postscript (444), Kotlin (433), Julia (324), Scala (295), PostgreSQL (287), Tcl (238), Prolog (224), Clojure (202), Bash (200), Nim (198), Node.js (196), APL (194), Awk (190), Pascal (164), Crystal (154), Elixir (148), Modula 3 (144), BASIC (100), R (100), D (99), Forth (98), Bc (84), Lisp (79), Uiua (78), Scheme (64), Excel VBA (63), Typst (55), PHP (51), Erlang (48), Oberon (47), Dart (46), Swift (41), Ada (38), Befunge-93 (35), J (34), Fortran (33), OCaml (33), F# (29), SQL (24), COBOL (20), Ring (20), C Shell (19), K (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), Racket (14), PowerShell (13), Nelua (12), PicoLisp (12), Hy (11), Zig (11), C# (10), Smalltalk (9), Fennel (8), Odin (8), Brainfuck (6), Gleam (6), Standard ML (6), TypeScript (6), WebAssembly (6), Coconut (4), Emacs Lisp (4), Factor (4), Groovy (4), Kap (4), Nu (4), CESIL (3), CUDA (3), Fish (3), Gembase (3), Janet (3), Logo (3), Nuweb (3), Octave (3), Retro (3), Roc (3), V (3), C3 (2), Dc (2), GP (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Wolfram (2), YaBasic (2), Bourne Shell (1), Chef (1), GNAT (1), IO (1), Javascript (1), Maxima (1), Mumps (1), Node (1), Ook (1), SVG (1), Typescript (1), VBA (1), Visual BASIC (1), XSLT (1).
+    Python (3807), Rust (1060), Ruby (852), Haskell (839), Lua (804), C++ (672), JavaScript (604), C (596), Go (594), BQN (489), Java (484), Postscript (444), Kotlin (433), Julia (324), Scala (295), PostgreSQL (287), Tcl (238), Prolog (224), Clojure (202), Bash (200), Nim (198), Node.js (196), APL (194), Awk (190), Pascal (164), Crystal (154), Elixir (148), Modula 3 (144), BASIC (100), R (100), D (99), Forth (98), Bc (84), Lisp (79), Uiua (78), Scheme (64), Excel VBA (63), Typst (55), PHP (51), Erlang (48), Oberon (47), Dart (46), Swift (41), Ada (38), Befunge-93 (35), J (34), Fortran (33), OCaml (33), F# (29), SQL (24), COBOL (20), Ring (20), C Shell (19), K (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), Racket (14), PowerShell (13), Nelua (12), PicoLisp (12), Hy (11), Zig (11), C# (10), Smalltalk (9), Fennel (8), Odin (8), Brainfuck (6), Gleam (6), Standard ML (6), TypeScript (6), WebAssembly (6), Coconut (4), Emacs Lisp (4), Factor (4), Groovy (4), Kap (4), Nu (4), CESIL (3), CUDA (3), Fish (3), Gembase (3), Janet (3), Logo (3), Nuweb (3), Octave (3), Retro (3), Roc (3), V (3), C3 (2), Dc (2), GP (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Wolfram (2), YaBasic (2), Bourne Shell (1), Chef (1), GNAT (1), IO (1), Javascript (1), Maxima (1), Mumps (1), Node (1), Ook (1), SVG (1), Typescript (1), VBA (1), Visual BASIC (1), XSLT (1).
 
 <br>
 
