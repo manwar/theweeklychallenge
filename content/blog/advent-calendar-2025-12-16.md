@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 15**](/blog/advent-calendar-2025-12-15) &nbsp; | &nbsp; **Day 16** &nbsp; |
+### | &nbsp; [**Day 15**](/blog/advent-calendar-2025-12-15) &nbsp; | &nbsp; **Day 16** &nbsp; | &nbsp; [**Day 17**](/blog/advent-calendar-2025-12-17) &nbsp; |
 ***
 
 The gift is presented by `Yitzchak Scott-Thoennes`. Today he is talking about his solutioni to [**The Weekly Challenge - 324**](/blog/perl-weekly-challenge-324). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://blog.ysth.info/idiomatic-perl-solutions-to-the-weekly-challenge-324/).
