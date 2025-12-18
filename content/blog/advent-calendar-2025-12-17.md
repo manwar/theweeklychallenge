@@ -9,7 +9,7 @@ tags: ["Perl","Python"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 16**](/blog/advent-calendar-2025-12-16) &nbsp; | &nbsp; **Day 17** &nbsp; |
+### | &nbsp; [**Day 16**](/blog/advent-calendar-2025-12-16) &nbsp; | &nbsp; **Day 17** &nbsp; | &nbsp; [**Day 18**](/blog/advent-calendar-2025-12-18) &nbsp; |
 ***
 
 The gift is presented by `Walt Mankowski`. Today he is talking about his solutioni to [**The Weekly Challenge - 326**](/blog/perl-weekly-challenge-326). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-326/walt-mankowski#readme).
