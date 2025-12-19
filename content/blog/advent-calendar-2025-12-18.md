@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 17**](/blog/advent-calendar-2025-12-17) &nbsp; | &nbsp; **Day 18** &nbsp; |
+### | &nbsp; [**Day 17**](/blog/advent-calendar-2025-12-17) &nbsp; | &nbsp; **Day 18** &nbsp; | &nbsp; [**Day 19**](/blog/advent-calendar-2025-12-19) &nbsp; |
 ***
 
 The gift is presented by `Torgny Lyon`. Today he is talking about his solutioni to [**The Weekly Challenge - 339**](/blog/perl-weekly-challenge-339). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://www.abc.se/~torgny/pwc.html#339).
