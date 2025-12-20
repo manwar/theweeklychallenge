@@ -4,27 +4,27 @@
     <!-- Basic Page Needs -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title"       content="Advent Calendar - December 19, 2025"/>
+    <meta property="og:title"       content="Advent Calendar - December 20, 2025"/>
     <meta property="og:type"        content="website"/>
-    <meta property="og:url"         content="https://theweeklychallenge.org/blog/advent-calendar-2025-12-19/"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/advent-calendar-2025-12-20/"/>
     <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
-    <meta property="og:description" content="Advent Calendar - December 19, 2025."/>
+    <meta property="og:description" content="Advent Calendar - December 20, 2025."/>
     <meta name="twitter:card"       content="summary" />
     <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Advent Calendar - December 19, 2025.">
+    <meta name="description" content="Advent Calendar - December 20, 2025.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <link rel="me" href="https://fosstodon.org/@manwar">
-    <link rel="canonical" href="https://theweeklychallenge.org/blog/advent-calendar-2025-12-19/" />
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/advent-calendar-2025-12-20/" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Advent Calendar - December 19, 2025</title>
+    <title>Advent Calendar - December 20, 2025</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -269,11 +269,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Advent Calendar - December 19, 2025</h2>
+                    <h2>Advent Calendar - December 20, 2025</h2>
                     <div class="portfolio-meta">
-                        <span>Friday, Dec 19, 2025</span>|
+                        <span>Saturday, Dec 20, 2025</span>|
                         <span> Tags:
-                            Perl
+                            Perl, Raku
                         </span>
                     </div>
                 </div>
@@ -288,89 +288,148 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2025-12-19.jpg">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2025-12-20.jpg">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
                     <h2 id="advent-calendar-2025blogadvent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
-<h3 id="-nbsp-day-18blogadvent-calendar-2025-12-18-nbsp--nbsp-day-19-nbsp--nbsp-day-20blogadvent-calendar-2025-12-20-nbsp-">|   <a href="/blog/advent-calendar-2025-12-18"><strong>Day 18</strong></a>   |   <strong>Day 19</strong>   |   <a href="/blog/advent-calendar-2025-12-20"><strong>Day 20</strong></a>   |</h3>
+<h3 id="-nbsp-day-19blogadvent-calendar-2025-12-19-nbsp--nbsp-day-20-nbsp-">|   <a href="/blog/advent-calendar-2025-12-19"><strong>Day 19</strong></a>   |   <strong>Day 20</strong>   |</h3>
 <hr>
-<p>The gift is presented by <code>Ryan Thompson</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-341"><strong>The Weekly Challenge - 341</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://ry.ca/2025/10/brken-keybards-reverse-prefixes/"><strong>post</strong></a>.</p>
+<p>The gift is presented by <code>Vinod Kumar K</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-344"><strong>The Weekly Challenge - 344</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://dev.to/vinodk89/perl-weekly-challenge-344-1god"><strong>post</strong></a>.</p>
 <hr>
 <br>
-<h2 id="pwc-341--brken-keybards-and-reverse-prefixes">PWC 341 › Brken Keybards and Reverse Prefixes</h2>
+<p>Writing a blog for first time and this week&rsquo;s challenges provided a fantastic opportunity to explore different problem-solving strategies in <code>Perl</code>. I tried to solve one of the problem in <code>Raku</code> aswell :)</p>
+<h2 id="challenge-1-add-to-array-form">Challenge 1: Add to Array Form</h2>
+<br>
+<h3 id="the-problem">The Problem</h3>
+<pre><code>You are given an array of integers, @ints and an integer, $x.
+
+Write a script to add $x to the integer in the array-form.
+</code></pre>
+<br>
 <blockquote>
-<p>This post is part of a series on Mohammad Anwar’s excellent <a href="https://theweeklychallenge.org/challenges"><strong>Weekly Challenge</strong></a>, where hackers submit solutions in <code>Perl</code>, <code>Raku</code>, or any other language, to two different challenges every week. (It’s a lot of fun, if you’re into that sort of thing.)</p>
+<p>The array form of an integer is a digit-by-digit representation stored as an array, where the most significant digit is at the 0th index.</p>
 </blockquote>
-<p>I’ve recently moved all the sites I host to a new server, including <code>ry.ca</code>, and realized it’s been far too long since I wrote a blog post. And, indeed, far too long since I’ve had time for any sort of recreational programming. So let’s fix that!</p>
+<h3 id="my-solution">My Solution:</h3>
+<p>In <code>Perl</code>, when we use a list of digits in a string context, they are automatically concatenated. This allows us to convert the array-form number into a standard integer, perform the addition, and then convert the sum back into its array form in three concise steps.</p>
+<p>Here is the add_to_array_form subroutine:</p>
 <br>
-<h2 id="task-1-my-keyboard-is-broken">Task 1: My Keyboard is Broken</h2>
-<p>This task posits that age old question: which words could I still type if my keyboard was broken? For example, if the o key on your keyboard is broken, you can (correctly) type help, but not keyboard or broken.</p>
-<p>The solution (made possible to code without an o for your convenience):</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pssible</span>($str, @brken) {
-    grep <span style="color:#f92672">!</span><span style="color:#e6db74">/[@brken\0]/i</span>, split <span style="color:#e6db74">/\s+/</span>, $str
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_to_array_form</span> {
+    <span style="color:#66d9ef">my</span> ($ints_ref, $x) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#75715e"># 1. Convert the array of digits into a single string/number.</span>
+    <span style="color:#66d9ef">my</span> $int_form <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>, @$ints_ref);
+
+    <span style="color:#75715e"># 2. Perform the arithmetic. Perl handles the large number arithmetic here.</span>
+    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $int_form <span style="color:#f92672">+</span> $x;
+
+    <span style="color:#75715e"># 3. Split the resulting sum back into an array of individual digits.</span>
+    <span style="color:#66d9ef">my</span> @result_array <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $sum;
+
+    <span style="color:#66d9ef">return</span> @result_array;
 }
 </code></pre></div><br>
-<p>I’m using subroutine signatures, but they’re not necessary:</p>
+<p>This solution is highly efficient and perfectly illustrates <code>Perl</code>'s strength in handling scalar contexts and type coercion.</p>
+<h3 id="example">Example</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pssible</span> { grep <span style="color:#f92672">!</span><span style="color:#e6db74">/[@_\0]/i</span>, split <span style="color:#e6db74">/\s+/</span>, shift }
-</code></pre></div><br>
-<p>Otherwise the only slightly weird thing I’m doing is interpolating an array inside a regex. The <code>\0 (NUL)</code> in the regex is there to prevent an edge case where <code>@brken</code> is empty. In that case, the regex would be <code>/[]/i</code>, and Perl doesn’t like having empty square brackets:</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl -e <span style="color:#e6db74">&#39;/[]/&#39;</span>
-Unmatched <span style="color:#f92672">[</span> in regex; marked by &amp;lt;-- HERE in m/<span style="color:#f92672">[</span> &amp;lt;-- HERE <span style="color:#f92672">]</span>/ at -e line 1.
-</code></pre></div><br>
-<p><code>Perl</code> assumes the <code>]</code> is the first character you want to match, but then there is no closing ]. If you were to instead try <code>perl -e '/[]]/'</code>, you’d have a valid regex that matches strings containing <code>]</code>.</p>
-<br>
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-341/ryan-thompson/perl/ch-1.pl"><strong>ch-1.pl source code</strong></a></p>
-<br>
-<h2 id="task-2-reverse-prefix">Task 2: Reverse Prefix</h2>
-<p>This task asks us to take a <code>$string</code> and a <code>$char</code> as input. Find the <code>$char</code>, and reverse everything up to (and including!) <code>$char</code>, but leave the rest alone. Thus, the name is a bit of a misnomer, because we’re reversing more than just the prefix.</p>
-<p>An example:</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rev_prefix<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;programming&#39;</span>, <span style="color:#e6db74">&#39;g&#39;</span><span style="color:#f92672">)</span>; <span style="color:#75715e"># gorpramming</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vinod@vinod:~/my_folder/git/perlweeklychallenge-club/challenge-344/vinod-k/perl$ perl ch-1.pl
 
-<span style="color:#75715e"># PRE CH POST</span>
-<span style="color:#75715e"># pro g  ramming</span>
-<span style="color:#75715e"># g orp  ramming</span>
+Input Array: <span style="color:#f92672">(</span>1, 2, 3, 4<span style="color:#f92672">)</span>
+Input X: <span style="color:#ae81ff">12</span>
+Output Array: <span style="color:#f92672">(</span>1, 2, 4, 6<span style="color:#f92672">)</span>
+
+Input Array: <span style="color:#f92672">(</span>2, 7, 4<span style="color:#f92672">)</span>
+Input X: <span style="color:#ae81ff">181</span>
+Output Array: <span style="color:#f92672">(</span>4, 5, 5<span style="color:#f92672">)</span>
+
+Input Array: <span style="color:#f92672">(</span>9, 9, 9<span style="color:#f92672">)</span>
+Input X: <span style="color:#ae81ff">1</span>
+Output Array: <span style="color:#f92672">(</span>1, 0, 0, 0<span style="color:#f92672">)</span>
+
+Input Array: <span style="color:#f92672">(</span>1, 0, 0, 0, 0<span style="color:#f92672">)</span>
+Input X: <span style="color:#ae81ff">9999</span>
+Output Array: <span style="color:#f92672">(</span>1, 9, 9, 9, 9<span style="color:#f92672">)</span>
+
+Input Array: <span style="color:#f92672">(</span>0<span style="color:#f92672">)</span>
+Input X: <span style="color:#ae81ff">1000</span>
+Output Array: <span style="color:#f92672">(</span>1, 0, 0, 0<span style="color:#f92672">)</span>
 </code></pre></div><br>
-<p>And, my solution:</p>
+<h2 id="challenge-2-build-target-from-source-subarrays">Challenge 2: Build Target from Source Subarrays</h2>
+<p>You are given two list: @source and @target.</p>
+<p>Write a script to see if you can build the exact @target by putting these smaller lists from @source together in some order. You cannot break apart or change the order inside any of the smaller lists in @source.</p>
+<h3 id="my-solution-1">My Solution:</h3>
+<p>They way used to solve this is - to convert the array sequences into strings and use the power of <code>Perl</code>'s regular expression engine to perform prefix matching and consumption.</p>
+<ul>
+<li>Convert the $target array into a string (e.g., &ldquo;1234&rdquo;).</li>
+<li>In a loop, iterate through all unused source subarrays.</li>
+<li>For each source subarray, check if it matches the current beginning of the target string.</li>
+<li>If a match is found, use the substitution operator (s///) to remove the matched prefix from the target string, mark the source subarray as used, and continue to the next iteration.</li>
+</ul>
+<p>This logic is in the <code>can_build_target</code> subroutine:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rev_prefix</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^(.+?\Q$_[1]\E)/reverse $1/e</span>r }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">can_build_target</span> {
+    <span style="color:#66d9ef">my</span> ($source_ref, $target_ref) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $target_string <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>, @$target_ref);
+
+    <span style="color:#66d9ef">my</span> $source_count <span style="color:#f92672">=</span> scalar @$source_ref;
+    <span style="color:#66d9ef">my</span> %used_source_indices <span style="color:#f92672">=</span> ();
+    <span style="color:#66d9ef">my</span> @used_order <span style="color:#f92672">=</span> ();
+
+    <span style="color:#66d9ef">while</span> (length $target_string) {
+        <span style="color:#66d9ef">my</span> $match_found_in_cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $source_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> exists $used_source_indices{$i};
+
+            <span style="color:#66d9ef">my</span> $sub_array_ref <span style="color:#f92672">=</span> $source_ref<span style="color:#f92672">-&gt;</span>[$i];
+            <span style="color:#66d9ef">my</span> $source_pattern <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>, @$sub_array_ref);
+
+            <span style="color:#75715e"># The core of the greedy match:</span>
+            <span style="color:#75715e"># s/ ... / / checks for a match AND removes it if successful.</span>
+            <span style="color:#75715e"># ^: Anchors the match to the start of the string.</span>
+            <span style="color:#75715e"># \Q...\E: Quotes the pattern so it&#39;s treated literally (no regex metacharacters).</span>
+            <span style="color:#66d9ef">if</span> ($target_string <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\Q$source_pattern\E//</span>) {
+                $used_source_indices{$i} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                push @used_order, $sub_array_ref;
+                $match_found_in_cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                <span style="color:#66d9ef">last</span>; <span style="color:#75715e"># Move to the next prefix</span>
+            }
+        }
+
+        <span style="color:#75715e"># If we couldn&#39;t match any source subarray, we fail.</span>
+        <span style="color:#66d9ef">unless</span> ($match_found_in_cycle) {
+            <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">0</span>, <span style="color:#f92672">[]</span>);
+        }
+    }
+    <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">1</span>, <span style="color:#f92672">\</span>@used_order);
+}
 </code></pre></div><br>
-<p>Here I match the beginning of the string <code>(^)</code>, followed by a capturing non-greedy number of arbitrary characters plus the first <code>CH ($_[1])</code>. I do not match the POST section of the string at all.</p>
-<p>Then in the replacement (with <code>/e</code> active, so everything is executed as a <code>Perl</code> expression), I simply <code>reverse($1)</code>. Since this is a substitution, the original <code>PRE</code> and <code>CH</code> parts of the string are replaced by their reversed version, and the <code>POST</code> part is left alone. And thanks to <code>/r</code>, the resulting string is returned, avoiding the need for a temp variable.</p>
-<h2 id="security-q-and-e">Security (\Q and \E)</h2>
-<p>The <code>\Q</code> and <code>\E</code> around <code>$_[1]</code> are necessary if that input can come from a user, file, or other untrusted source, and is not fully validated. I’d argue the <code>\Q</code> and <code>\E</code> are pretty cheap insurance even when you think your input is safe. Why is that, exactly? Well, did you know you can run arbitrary code in a regex?</p>
+<h3 id="example-1">Example</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">rev_prefix(<span style="color:#e6db74">&#39;lol&#39;</span>, <span style="color:#e6db74">qr/(?{ die })/</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">inod@vinod:~/my_folder/git/perlweeklychallenge-club/challenge-344/vinod-k/perl$ perl ch-2.pl
+Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>2,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4<span style="color:#f92672">])</span>
+Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>1, 2, 3, 4<span style="color:#f92672">)</span>
+Output: true
+Use in the order: <span style="color:#f92672">([</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4<span style="color:#f92672">])</span>
+
+Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>1,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2,4<span style="color:#f92672">])</span>
+Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>1, 2, 3, 4<span style="color:#f92672">)</span>
+Output: false
+
+Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>9,1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>5,8<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2<span style="color:#f92672">])</span>
+Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>5, 8, 2, 9, 1<span style="color:#f92672">)</span>
+Output: true
+Use in the order: <span style="color:#f92672">([</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4<span style="color:#f92672">])</span>
+
+Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>3<span style="color:#f92672">])</span>
+Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>1, 2, 3<span style="color:#f92672">)</span>
+Output: false
+
+Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>7,4,6<span style="color:#f92672">])</span>
+Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>7, 4, 6<span style="color:#f92672">)</span>
+Output: true
+Use in the order: <span style="color:#f92672">([</span>7,4,6<span style="color:#f92672">])</span>
 </code></pre></div><br>
-<p>This will actually execute the code in the <code>{ ... }</code> section, and kill the program. And that’s me being nice!</p>
-<p>You might now think Task 1 has a similar vulnerability. So what happens if we try this?</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">pssible(<span style="color:#e6db74">&#39;foo&#39;</span>, <span style="color:#e6db74">&#39;a](?{ die })[&#39;</span>);
-</code></pre></div><br>
-<p>That would produce a regex like this:</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#e6db74">qr/[a](?{ die })[\0]/</span>
-</code></pre></div><br>
-<p>However, in this case, Perl refuses compilation:</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Eval-group not allowed at runtime, use re <span style="color:#e6db74">&#39;eval&#39;</span>
-in regex m/<span style="color:#f92672">[</span>a<span style="color:#f92672">](</span>?<span style="color:#f92672">{</span> die <span style="color:#f92672">})[</span><span style="color:#ae81ff">\0</span><span style="color:#f92672">]</span>/ at ...
-</code></pre></div><br>
-<p>This may be safe enough for a contrived <code>Perl</code> challenge task, but a crafty attacker can still crash your program, exploit your innocent-looking regex to grind your processor to a halt, or even expose enough program internals to compromise your system. A deep dive would be out of scope for this blog post, but suffice to say, if you’re dealing with user input, validate it!</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">@chars <span style="color:#f92672">=</span> grep <span style="color:#e6db74">/^\w$/</span>, @chars;
-</code></pre></div><br>
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-341/ryan-thompson/perl/ch-2.pl"><strong>ch-2.pl source code</strong></a></p>
-<br>
-<h2 id="tests">Tests</h2>
-<p>I left my tests in the <code>t/</code> subdirectory, so running prove from the <code>ryan-thompson/perl/</code> directory will run the tests, and they should all pass.</p>
-<h2 id="on-github">On Github</h2>
-<p>You can see all of my solutions (and the solutions of everyone else) on <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-341/ryan-thompson"><strong>Github</strong></a>.</p>
-<br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
 <p>|   <a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a>   |</p>

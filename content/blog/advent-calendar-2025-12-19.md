@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 18**](/blog/advent-calendar-2025-12-18) &nbsp; | &nbsp; **Day 19** &nbsp; |
+### | &nbsp; [**Day 18**](/blog/advent-calendar-2025-12-18) &nbsp; | &nbsp; **Day 19** &nbsp; | &nbsp; [**Day 20**](/blog/advent-calendar-2025-12-20) &nbsp; |
 ***
 
 The gift is presented by `Ryan Thompson`. Today he is talking about his solutioni to [**The Weekly Challenge - 341**](/blog/perl-weekly-challenge-341). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://ry.ca/2025/10/brken-keybards-reverse-prefixes/).
