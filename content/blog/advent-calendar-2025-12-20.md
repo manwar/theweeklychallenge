@@ -9,7 +9,7 @@ tags: ["Perl","Raku"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 19**](/blog/advent-calendar-2025-12-19) &nbsp; | &nbsp; **Day 20** &nbsp; |
+### | &nbsp; [**Day 19**](/blog/advent-calendar-2025-12-19) &nbsp; | &nbsp; **Day 20** &nbsp; | &nbsp; [**Day 21**](/blog/advent-calendar-2025-12-21) &nbsp; |
 ***
 
 The gift is presented by `Vinod Kumar K`. Today he is talking about his solutioni to [**The Weekly Challenge - 344**](/blog/perl-weekly-challenge-344). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://dev.to/vinodk89/perl-weekly-challenge-344-1god).
