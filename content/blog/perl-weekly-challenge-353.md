@@ -281,8 +281,8 @@ Write a script to return the maximum number of words that appear in a single sen
 
 #### Example 3
 
-    Input: @sentences = ("Short", "This sentence has six words in total", "A B C", "Just four words here")
-    Output: 6
+    Input: @sentences = ("Short", "This sentence has seven words in total", "A B C", "Just four words here")
+    Output: 7
 
 <br>
 
