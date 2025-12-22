@@ -9,7 +9,7 @@ tags: ["Raku"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 20**](/blog/advent-calendar-2025-12-20) &nbsp; | &nbsp; **Day 21** &nbsp; |
+### | &nbsp; [**Day 20**](/blog/advent-calendar-2025-12-20) &nbsp; | &nbsp; **Day 21** &nbsp; | &nbsp; [**Day 22**](/blog/advent-calendar-2025-12-22) &nbsp; |
 ***
 
 The gift is presented by `Feng Chang`. Today he is talking about his solutioni to [**The Weekly Challenge - 347**](/blog/perl-weekly-challenge-347). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-347/feng-chang/raku/ch-1.ipynb).

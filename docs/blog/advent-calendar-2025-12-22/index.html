@@ -4,27 +4,27 @@
     <!-- Basic Page Needs -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title"       content="Advent Calendar - December 21, 2025"/>
+    <meta property="og:title"       content="Advent Calendar - December 22, 2025"/>
     <meta property="og:type"        content="website"/>
-    <meta property="og:url"         content="https://theweeklychallenge.org/blog/advent-calendar-2025-12-21/"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/advent-calendar-2025-12-22/"/>
     <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
-    <meta property="og:description" content="Advent Calendar - December 21, 2025."/>
+    <meta property="og:description" content="Advent Calendar - December 22, 2025."/>
     <meta name="twitter:card"       content="summary" />
     <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Advent Calendar - December 21, 2025.">
+    <meta name="description" content="Advent Calendar - December 22, 2025.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <link rel="me" href="https://fosstodon.org/@manwar">
-    <link rel="canonical" href="https://theweeklychallenge.org/blog/advent-calendar-2025-12-21/" />
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/advent-calendar-2025-12-22/" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Advent Calendar - December 21, 2025</title>
+    <title>Advent Calendar - December 22, 2025</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -269,11 +269,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Advent Calendar - December 21, 2025</h2>
+                    <h2>Advent Calendar - December 22, 2025</h2>
                     <div class="portfolio-meta">
-                        <span>Sunday, Dec 21, 2025</span>|
+                        <span>Monday, Dec 22, 2025</span>|
                         <span> Tags:
-                            Raku
+                            Perl
                         </span>
                     </div>
                 </div>
@@ -288,45 +288,102 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2025-12-21.jpg">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2025-12-22.jpg">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
                     <h2 id="advent-calendar-2025blogadvent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
-<h3 id="-nbsp-day-20blogadvent-calendar-2025-12-20-nbsp--nbsp-day-21-nbsp--nbsp-day-22blogadvent-calendar-2025-12-22-nbsp-">|   <a href="/blog/advent-calendar-2025-12-20"><strong>Day 20</strong></a>   |   <strong>Day 21</strong>   |   <a href="/blog/advent-calendar-2025-12-22"><strong>Day 22</strong></a>   |</h3>
+<h3 id="-nbsp-day-21blogadvent-calendar-2025-12-21-nbsp--nbsp-day-22-nbsp-">|   <a href="/blog/advent-calendar-2025-12-21"><strong>Day 21</strong></a>   |   <strong>Day 22</strong>   |</h3>
 <hr>
-<p>The gift is presented by <code>Feng Chang</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-347"><strong>The Weekly Challenge - 347</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-347/feng-chang/raku/ch-1.ipynb"><strong>post</strong></a>.</p>
+<p>The gift is presented by <code>David Ferrone</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-285"><strong>The Weekly Challenge - 285</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://dev.to/zapwai/lost-connections-and-making-changes-anp"><strong>post</strong></a>.</p>
 <hr>
 <br>
-<h2 id="pwc347-task-1-format-date">PWC347, Task 1 Format Date</h2>
-<p>Following is my ch-1.raku script:</p>
+<h2 id="weekly-challenge-285">Weekly Challenge 285</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e">#!/bin/env raku</span>
+<h3 id="challenge-285---my-solutions">Challenge 285 - My Solutions</h3>
+<br>
+<h3 id="task-one-no-connection">Task One: No Connection</h3>
+<pre><code>Given a list of routes, find the destination with no outgoing connection.
+For example, given [B, C] [D, B] [C, A] we have routes
+B -&gt; C -&gt; A
+D -&gt; B -&gt; C -&gt; A
+C -&gt; A
+Output: A
+</code></pre>
+<br>
+<h3 id="task-two-making-change">Task Two: Making Change</h3>
+<pre><code>Compute the number of distinct ways to make change for a given amount.
+(Using Pennies, Nickels, Dimes, Quarters, and Half-Dollars.)
+There are two ways to make change for 9 cents (N + 4P or 9P).
+There are three ways to make change for 10 cents (2N, N + 5P, or 10P).
+</code></pre>
+<br>
+<h3 id="solution-to-task-one">Solution to task one</h3>
+<p>I make two lists, in-routes and out-routes, and then I see if there is an out that is not also an in.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">my</span> @routes <span style="color:#f92672">=</span> ([<span style="color:#e6db74">&#34;B&#34;</span>,<span style="color:#e6db74">&#34;C&#34;</span>], [<span style="color:#e6db74">&#34;D&#34;</span>,<span style="color:#e6db74">&#34;B&#34;</span>], [<span style="color:#e6db74">&#34;C&#34;</span>,<span style="color:#e6db74">&#34;A&#34;</span>]);
+proc(@routes);
+@routes <span style="color:#f92672">=</span> ([<span style="color:#e6db74">&#34;A&#34;</span>,<span style="color:#e6db74">&#34;Z&#34;</span>]);
+proc(@routes);
 
-unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str:D $s);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">proc</span>(@routes) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Input: &#34;</span>;
+    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;,&#34;</span>, @{$routes[$_]}),<span style="color:#e6db74">&#34; &#34;</span> <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#routes);
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    <span style="color:#66d9ef">my</span> @in;
+    <span style="color:#66d9ef">my</span> @out;
+    <span style="color:#66d9ef">foreach</span> (@routes) {
+    push @in, ${$_}[<span style="color:#ae81ff">0</span>];
+    push @out, ${$_}[<span style="color:#ae81ff">1</span>];
+    }
+    <span style="color:#66d9ef">my</span> $ans <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;a&#34;</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $needle (@out) {
+    <span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $hay (@in) {
+        <span style="color:#66d9ef">if</span> ($needle <span style="color:#f92672">eq</span> $hay) {
+        $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">last</span>;
+        }
+    }
+    <span style="color:#66d9ef">if</span> ($found <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        $ans <span style="color:#f92672">=</span> $needle;
+    }
+    }
+    say <span style="color:#e6db74">&#34;Output: $ans&#34;</span>;
+}
+</code></pre></div><br>
+<h3 id="solution-to-task-two">Solution to task two</h3>
+<p>This challenge was inspired by an analysis book of <code>Pólya</code>. (Problems and Theorems in Analysis) The first question is to count the number of ways to make change for a dollar, which is arduous. It&rsquo;s a trivial task for a computer, though.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">my</span> $amt <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">100</span>;
+<span style="color:#66d9ef">my</span> $cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $h (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">50</span>) {
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $q (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">25</span>) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $d (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">5</span>) {
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt) {
+                    <span style="color:#66d9ef">if</span> (tally($p, $n, $d, $q, $h) <span style="color:#f92672">==</span> $amt) {
+                        $cnt<span style="color:#f92672">++</span>;
+                    }
+                }
+            }
+        }
+    }
+}
 
-my %months = &lt;Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec&gt; Z=&gt; 1..12;
-my ($day, $mon, $yr) = $s.words;
-printf &#39;%d-%02d-%02d&#39;, $yr, %months{$mon}, $day<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>,<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>);
+say <span style="color:#e6db74">&#34;There are $cnt ways to make change for $amt cents&#34;</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tally</span>($p, $n, $d, $q, $h) { $p <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">*</span>$n <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">*</span>$d <span style="color:#f92672">+</span> <span style="color:#ae81ff">25</span><span style="color:#f92672">*</span>$q <span style="color:#f92672">+</span> <span style="color:#ae81ff">50</span><span style="color:#f92672">*</span>$h
 </code></pre></div><br>
-<p><code>Z=&gt;</code> is a more readable approach to define a <code>hash</code> in <code>Raku</code> when dealing with <code>sequences</code>, e.g.,</p>
+<p>I have used a for loop for each coin, in a stunning display of brute force.</p>
+<h2 id="ps">P.S.</h2>
+<p>The original question was to be done by hand; In a manner similar to the above code, you could first divide to find the max possible number of pennies, nickels, etc that can be used. Then split into cases (i.e. <code>H = 0, 1, or 2; Q = 0, 1, 2, 3, or 4; etc.</code>)</p>
+<p>The second question in <code>Pólya</code>'s book asks for a function whose coefficients <code>A_n</code> (in a series expansion) would equal the number of ways to make change for n cents.</p>
+<p>The concept there is that if you took a product like <code>(1 + x + x^2 + x^3 + ... )(1 + x^5 + x^10 + x^15 + ...)</code> the resulting series has coefficients which provide the number of ways to <code>&quot;make change&quot;</code> using pennies and nickels. (That is, a term like x^6 in our product could only have come from <code>x * x^5</code> or from <code>x^6 * 1</code>, coinciding with the two unique ways we can make change for <code>6 cents</code>.)</p>
+<p>So theoretically, one could form the correct product (using five such factors, since there are five coins) - then expand and find the coefficient of the <code>100th</code> term in order to find the number of ways to make change for <code>100</code> cents. That&rsquo;s easier said than done, however.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> %letters <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;z&#39;</span> Z<span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">26</span>;
-put %letters<span style="color:#f92672">.</span>raku;
-</code></pre></div><br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{</span>:a<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>, :b<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>, :c<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>, :d<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>, :e<span style="color:#f92672">(</span>5<span style="color:#f92672">)</span>, :f<span style="color:#f92672">(</span>6<span style="color:#f92672">)</span>, :g<span style="color:#f92672">(</span>7<span style="color:#f92672">)</span>, :h<span style="color:#f92672">(</span>8<span style="color:#f92672">)</span>, :i<span style="color:#f92672">(</span>9<span style="color:#f92672">)</span>, :j<span style="color:#f92672">(</span>10<span style="color:#f92672">)</span>, :k<span style="color:#f92672">(</span>11<span style="color:#f92672">)</span>, :l<span style="color:#f92672">(</span>12<span style="color:#f92672">)</span>, :m<span style="color:#f92672">(</span>13<span style="color:#f92672">)</span>, :n<span style="color:#f92672">(</span>14<span style="color:#f92672">)</span>, :o<span style="color:#f92672">(</span>15<span style="color:#f92672">)</span>, :p<span style="color:#f92672">(</span>16<span style="color:#f92672">)</span>, :q<span style="color:#f92672">(</span>17<span style="color:#f92672">)</span>, :r<span style="color:#f92672">(</span>18<span style="color:#f92672">)</span>, :s<span style="color:#f92672">(</span>19<span style="color:#f92672">)</span>, :t<span style="color:#f92672">(</span>20<span style="color:#f92672">)</span>, :u<span style="color:#f92672">(</span>21<span style="color:#f92672">)</span>, :v<span style="color:#f92672">(</span>22<span style="color:#f92672">)</span>, :w<span style="color:#f92672">(</span>23<span style="color:#f92672">)</span>, :x<span style="color:#f92672">(</span>24<span style="color:#f92672">)</span>, :y<span style="color:#f92672">(</span>25<span style="color:#f92672">)</span>, :z<span style="color:#f92672">(</span>26<span style="color:#f92672">)}</span>
-</code></pre></div><br>
-<p><code>.words</code> is convenient in translating sentences into a <code>list of words</code>:</p>
-<br>
-<p>put <code>.words</code> is convienent in translate sentences into a list of words <code>.words.raku;</code></p>
-<br>
-<p>(&ldquo;<code>.words</code>&rdquo;, &ldquo;is&rdquo;, &ldquo;convienent&rdquo;, &ldquo;in&rdquo;, &ldquo;translate&rdquo;, &ldquo;sentences&rdquo;, &ldquo;into&rdquo;, &ldquo;a&rdquo;, &ldquo;list&rdquo;, &ldquo;of&rdquo;, &ldquo;words&rdquo;).Seq</p>
-<p><code>.substr(0,*-2)</code> cuts the last 2 characters off from a string:</p>
-<br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">put <span style="color:#e6db74">&#39;abcdefgYZ&#39;</span><span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>,<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>);
-</code></pre></div><br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">abcdefg
-</code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
 <p>|   <a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a>   |</p>
