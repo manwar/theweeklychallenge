@@ -48,19 +48,19 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 <br>
 
 #### 1. Perl: 18171 (64%)
-#### 2. Raku: 10017 (36%)
-#### 3. Blog: 6525
+#### 2. Raku: 10023 (36%)
+#### 3. Blog: 6531
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `95`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `99`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
 #### 1. Perl: 52
-#### 2. Raku: 19
-#### 3. Blog: 24
+#### 2. Raku: 21
+#### 3. Blog: 26
 
 <br>
 
@@ -362,7 +362,7 @@ The total contributions in the week is `95`. Well done **Team PWC**. I would als
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Luca Ferrari (3494), Jaldhar H. Vyas (3310), Roger Bell_West (3214), Laurent Rosenfeld (2906), Arne Sommer (2410), Athanasius (2322), Ulrich Rieke (2180), Flavio Poletti (1716), Jorg Sommrey (1576), W. Luis Mochan (1570), Dave Jacoby (1500), E. Choroba (1500), Adam Russell (1446), Lubos Kolouch (1404), Simon Green (1354), Colin Crain (1336), Peter Campbell Smith (1276), Thomas Kohler (1210), Paulo Custodio (1188), Mark Anderson (1186), Packy Anderson (1042), Feng Chang (1032), Ali Moradi (1010), Jan Krnavek (956), Bob Lied (928), Robbie Hatley (920), Cheok-Yin Fung (892), Niels van Dijke (888), James Smith (882), Duncan C. White (794), Mohammad Sajid Anwar (768), Matthias Muth (748), Robert Ransbottom (744), Wanderdoc (744), David Ferrone (728), Bruce Gray (674), Matthew Neleigh (650), Stuart Little (644), Simon Proctor (628), Peter Meszaros (612), Abigail (574), Robert DiCicco (574), BarrOff (492), Stephen G. Lynn (478), Javier Luque (460), Ryan Thompson (460), Ruben Westerberg (452), Kjetil Skotheim (392), Pete Houston (360), Andrew Shitov (358), Joelle Maslak (314), Steven Wilson (284), Andrezgz (264), Yet Ebreo (222), Alexander Pankoff (220), Walt Mankowski (210), Andreas Mahnke (208), Markus Holzer (198), Solathian (198), Myoungjin Jeon (192), Noud Aldenhoven (188), Marton Polgar (182), Avery Adams (176), Kevin Colyer (176), Nelo Tovar (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Reinier Maliepaard (162), Mark Senn (156), Mariano Spadaccini (156), Humberto Massa (148), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Santiago Leyva (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104), Yitzchak Scott-Thoennes (100).
+    Luca Ferrari (3494), Jaldhar H. Vyas (3310), Roger Bell_West (3214), Laurent Rosenfeld (2906), Arne Sommer (2410), Athanasius (2322), Ulrich Rieke (2180), Flavio Poletti (1716), Jorg Sommrey (1576), W. Luis Mochan (1570), Dave Jacoby (1500), E. Choroba (1500), Adam Russell (1446), Lubos Kolouch (1404), Simon Green (1354), Colin Crain (1336), Peter Campbell Smith (1276), Thomas Kohler (1210), Paulo Custodio (1188), Mark Anderson (1186), Feng Chang (1056), Packy Anderson (1042), Ali Moradi (1010), Jan Krnavek (956), Bob Lied (928), Robbie Hatley (920), Cheok-Yin Fung (892), Niels van Dijke (888), James Smith (882), Duncan C. White (794), Mohammad Sajid Anwar (768), Matthias Muth (748), Robert Ransbottom (744), Wanderdoc (744), David Ferrone (728), Bruce Gray (674), Matthew Neleigh (650), Stuart Little (644), Simon Proctor (628), Peter Meszaros (612), Abigail (574), Robert DiCicco (574), BarrOff (492), Stephen G. Lynn (478), Javier Luque (460), Ryan Thompson (460), Ruben Westerberg (452), Kjetil Skotheim (392), Pete Houston (360), Andrew Shitov (358), Joelle Maslak (314), Steven Wilson (284), Andrezgz (264), Yet Ebreo (222), Alexander Pankoff (220), Walt Mankowski (210), Andreas Mahnke (208), Markus Holzer (198), Solathian (198), Myoungjin Jeon (192), Noud Aldenhoven (188), Marton Polgar (182), Avery Adams (176), Kevin Colyer (176), Nelo Tovar (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Reinier Maliepaard (162), Mark Senn (156), Mariano Spadaccini (156), Humberto Massa (148), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Santiago Leyva (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104), Yitzchak Scott-Thoennes (100).
 
 <br>
 
@@ -570,6 +570,16 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-352/arne-sommer/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-352/arne-sommer/raku/ch-2.raku)]
 [[**BLOG #1**](https://raku-musings.com/binary-match.html)]
+
+***
+
+### Feng Chang
+![Feng Chang](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-352/feng-chang/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-352/feng-chang/raku/ch-2.raku)]
+[[**BLOG #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-352/feng-chang/raku/ch-1.ipynb)]
+[[**BLOG #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-352/feng-chang/raku/ch-2.ipynb)]
 
 ***
 
