@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar 2025"
-date: 2025-12-23T00:00:00+00:00
+date: 2025-12-24T00:00:00+00:00
 description: "Advent Calendar 2025."
 type: post
 image: images/blog/advent-calendar-2025.jpg
@@ -30,7 +30,7 @@ It's amazing to look back and see how far we've come - and none of it would have
 | | | | | | | |
 | [![Day 15](/images/blog/2025-12-15-thumbnail.jpg "Count the Minimum Common Word by Packy Anderson")](/blog/advent-calendar-2025-12-15)<br>[**`15`**](/blog/advent-calendar-2025-12-15) | [![Day 16](/images/blog/2025-12-16-thumbnail.jpg "2D Array/Total XOR by Yitzchak Scott-Thoennes")](/blog/advent-calendar-2025-12-16)<br>[**`16`**](/blog/advent-calendar-2025-12-16) | [![Day 17](/images/blog/2025-12-17-thumbnail.jpg "Day of the Year and Decompressed List by Walt Mankowski")](/blog/advent-calendar-2025-12-17)<br>[**`17`**](/blog/advent-calendar-2025-12-17) | [![Day 18](/images/blog/2025-12-18-thumbnail.jpg "Max Diff/Peak Point by Torgny Lyon")](/blog/advent-calendar-2025-12-18)<br>[**`18`**](/blog/advent-calendar-2025-12-18) | [![Day 19](/images/blog/2025-12-19-thumbnail.jpg "Brken Keybards and Reverse Prefixes by Ryan Thompson")](/blog/advent-calendar-2025-12-19)<br>[**`19`**](/blog/advent-calendar-2025-12-19) | [![Day 20](/images/blog/2025-12-20-thumbnail.jpg "Add to Array Form/Build Target from Source Subarrays by Vinod Kumar K")](/blog/advent-calendar-2025-12-20)<br>[**`20`**](/blog/advent-calendar-2025-12-20) | [![Day 21](/images/blog/2025-12-21-thumbnail.jpg "Format Date by Feng Chang")](/blog/advent-calendar-2025-12-21)<br>[**`21`**](/blog/advent-calendar-2025-12-21) |
 | | | | | | | |
-| [![Day 22](/images/blog/2025-12-22-thumbnail.jpg "Lost Connections and Making Changes by David Ferrone")](/blog/advent-calendar-2025-12-22)<br>[**`22`**](/blog/advent-calendar-2025-12-22) | [![Day 23](/images/blog/2025-12-23-thumbnail.jpg "Discs and Spheres by Kaushik Tunuguntla")](/blog/advent-calendar-2025-12-23)<br>[**`23`**](/blog/advent-calendar-2025-12-23) | ![Day 24](/images/blog/2025-12-24-thumbnail.jpg)<br>**`24`** | ![Day 25](/images/blog/2025-12-25-thumbnail.jpg)<br>**`25`** | <br><br>**`26`**<br> | <br><br>**`27`**<br> | <br><br>**`28`**<br> |
+| [![Day 22](/images/blog/2025-12-22-thumbnail.jpg "Lost Connections and Making Changes by David Ferrone")](/blog/advent-calendar-2025-12-22)<br>[**`22`**](/blog/advent-calendar-2025-12-22) | [![Day 23](/images/blog/2025-12-23-thumbnail.jpg "Discs and Spheres by Kaushik Tunuguntla")](/blog/advent-calendar-2025-12-23)<br>[**`23`**](/blog/advent-calendar-2025-12-23) | [![Day 24](/images/blog/2025-12-24-thumbnail.jpg "Strong Password/Valid Number by Peter Pentchev")](/blog/advent-calendar-2025-12-24)<br>[**`24`**](/blog/advent-calendar-2025-12-24) | ![Day 25](/images/blog/2025-12-25-thumbnail.jpg)<br>**`25`** | <br><br>**`26`**<br> | <br><br>**`27`**<br> | <br><br>**`28`**<br> |
 | <br><br>**`29`**<br> | <br><br>**`30`**<br>  | <br><br>**`31`**<br> | <br><br><br> | <br><br><br> | <br><br><br> | <br><br><br> |
 | | | | | | | |
 ***

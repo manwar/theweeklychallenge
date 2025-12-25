@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 22**](/blog/advent-calendar-2025-12-22) &nbsp; | &nbsp; **Day 23** &nbsp; |
+### | &nbsp; [**Day 22**](/blog/advent-calendar-2025-12-22) &nbsp; | &nbsp; **Day 23** &nbsp; | &nbsp; [**Day 24**](/blog/advent-calendar-2025-12-24) &nbsp; |
 ***
 
 The gift is presented by `Kaushik Tunuguntla`. Today he is talking about his solutioni to [**The Weekly Challenge - 312**](/blog/perl-weekly-challenge-312). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://notmondayagain.blogspot.com/2025/03/discs-and-spheres.html).
