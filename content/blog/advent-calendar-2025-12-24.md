@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2025**](/blog/advent-calendar-2025)
-### | &nbsp; [**Day 23**](/blog/advent-calendar-2025-12-23) &nbsp; | &nbsp; **Day 24** &nbsp; |
+### | &nbsp; [**Day 23**](/blog/advent-calendar-2025-12-23) &nbsp; | &nbsp; **Day 24** &nbsp; | &nbsp; [**Day 25**](/blog/advent-calendar-2025-12-25) &nbsp; |
 ***
 
 The gift is presented by `Peter Pentchev`. Today he is talking about his solutioni to [**The Weekly Challenge - 287**](/blog/perl-weekly-challenge-287). This is re-produced for `Advent Calendar 2025` from the original [**post**](https://devel.ringlet.net/misc/perlweeklychallenge-club/287/).
