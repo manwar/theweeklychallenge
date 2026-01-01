@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="DBIx::Class::Async"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/dbix-class-async/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Introduction to DBIx::Class::Async module."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Introduction to DBIx::Class::Async module.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/dbix-class-async/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DBIx::Class::Async</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>DBIx::Class::Async</h2>
+                    <div class="portfolio-meta">
+                        <span>Thursday, Jan 1, 2026</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/dbix-class-async.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h3 id="note"><strong>NOTE</strong></h3>
+<p>This blog post marks the beginning of <code>2026</code> and also <code>DBIx::Class::Async</code> is the first distribution uploaded to <code>CPAN</code> in <code>2026</code>.</p>
+<p>This work is part of my upcoming book, currently titled <code>Mastering DBIx::Class: The Perl ORM for Modern Applications</code>. The first draft is now completed, marking a major milestone in a journey that aims to provide a deep, practical guide to one of <code>Perl</code>s most powerful and widely used <code>ORM</code>.</p>
+<p>I am about to begin the second phase of the process - arguably the most critical stage - where ideas are refined, examples are sharpened, and the material truly comes to life. While my original plan was to complete this phase during my <code>Christmas</code> break, it didn&rsquo;t quite work out that way. That&rsquo;s perfectly fine, this is a book worth taking the time to get right.</p>
+<p>This book is dedicated to the memory of <code>Matt S. Trout</code>, whose work and influence continue to shape the <code>DBIx::Class</code> ecosystem and the wider <code>Perl</code> community.</p>
+<p>Here is the <code>TOC</code>:</p>
+<hr>
+<p>[<img src="/images/blog/dbix-class-async-1.jpg" alt="TOC"></p>
+<hr>
+<br>
+<h3 id="what-is-dbixclassasync"><strong>What is DBIx::Class::Async?</strong></h3>
+<hr>
+<p>If you&rsquo;ve worked with <a href="https://metacpan.org/dist/DBIx-Class"><strong>DBIx::Class</strong></a> (<code>DBIC</code>) in <code>Perl</code>, you know it&rsquo;s the gold standard for database abstraction.</p>
+<p>But in today&rsquo;s world of <code>async programming</code> and <code>event-driven applications</code>, blocking database calls can be a bottleneck.</p>
+<p>That&rsquo;s where <a href="https://metacpan.org/dist/DBIx-Class-Async"><strong>DBIx::Class::Async</strong></a> comes in - a brand new <code>CPAN</code> distribution that brings <code>asynchronous</code> database operations to your <code>DBIC</code> applications.</p>
+<p><a href="https://metacpan.org/dist/DBIx-Class-Async"><strong>DBIx::Class::Async</strong></a> provides <code>asynchronous</code> access to <a href="https://metacpan.org/dist/DBIx-Class"><strong>DBIx::Class</strong></a> using a process-based worker pool built on <a href="https://metacpan.org/dist/IO-Async-Function"><strong>IO::Async::Function</strong></a>.</p>
+<p>Each worker maintains a persistent database connection and executes blocking <code>DBIC</code> operations outside the main event loop, returning results via <a href="https://metacpan.org/dist/Future"><strong>Future</strong></a> objects.</p>
+<br>
+<h3 id="key-features"><strong>Key Features</strong></h3>
+<hr>
+<ul>
+<li>Process-based worker pool using <a href="https://metacpan.org/dist/IO-Async"><strong>IO::Async</strong></a></li>
+<li>Persistent <a href="https://metacpan.org/dist/DBIx-Class"><strong>DBIx::Class</strong></a> connections per worker</li>
+<li>Non-blocking <code>CRUD</code> operations via <a href="https://metacpan.org/dist/Future"><strong>Future</strong></a></li>
+<li>Optional result caching via <a href="https://metacpan.org/dist/CHI"><strong>CHI</strong></a></li>
+<li>Transaction support</li>
+<li>Optional retry with exponential backoff</li>
+<li>Health checks and graceful shutdown</li>
+</ul>
+<br>
+<h3 id="installation"><strong>Installation</strong></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cpanm -vS DBIx::Class::Async
+</code></pre></div><br>
+<p>Or add to your <code>cpanfile</code>:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">requires <span style="color:#e6db74">&#39;DBIx::Class::Async&#39;</span>, <span style="color:#e6db74">&#39;0.01&#39;</span>;
+</code></pre></div><br>
+<h3 id="quick-start"><strong>Quick Start</strong></h3>
+<hr>
+<p>Here&rsquo;s a simple example to get you started:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+<span style="color:#66d9ef">use</span> IO::Async::Loop;
+<span style="color:#66d9ef">use</span> DBIx::Class::Async;
+
+<span style="color:#66d9ef">my</span> $loop <span style="color:#f92672">=</span> IO::Async::Loop<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+
+<span style="color:#66d9ef">my</span> $db <span style="color:#f92672">=</span> DBIx::Class::Async<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+    schema_class <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;MyApp::Schema&#39;</span>,
+    connect_info <span style="color:#f92672">=&gt;</span> [
+        <span style="color:#e6db74">&#39;dbi:SQLite:dbname=my.db&#39;</span>,
+        undef,
+        undef,
+        { sqlite_unicode <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
+    ],
+    workers   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+    cache_ttl <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">60</span>,
+    loop      <span style="color:#f92672">=&gt;</span> $loop,
+);
+</code></pre></div><br>
+<h3 id="approach-1-future-chaining-with--then---catch"><strong>APPROACH 1: <code>Future</code> chaining with <code>-&gt;then</code> / <code>-&gt;catch</code></strong></h3>
+<hr>
+<p><strong>Best for:</strong> Complex async workflows, transforming data, chaining operations</p>
+<ul>
+<li>Creates a new <code>Future</code> chain that transforms results</li>
+<li><code>-&gt;then()</code> receives the result and can return a new Future</li>
+<li><code>-&gt;catch()</code> handles errors and can recover or transform them</li>
+<li>Must manually stop the loop when done</li>
+<li>Returns a new <code>Future</code> (must store it or use <code>-&gt;retain</code> to avoid void context warning)</li>
+</ul>
+<p><strong>Good for:</strong> piping data through transformations, conditional logic, error recovery</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>search(<span style="color:#e6db74">&#39;User&#39;</span>, { active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> })
+           <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">then</span>(<span style="color:#66d9ef">sub</span> {
+                <span style="color:#66d9ef">my</span> ($rows) <span style="color:#f92672">=</span> @_;
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (@$rows) {
+                    say $row<span style="color:#f92672">-&gt;</span>{name};
+                }
+                $loop<span style="color:#f92672">-&gt;</span>stop;
+                <span style="color:#66d9ef">return</span> Future<span style="color:#f92672">-&gt;</span>done;
+            })
+            <span style="color:#f92672">-&gt;</span>catch(<span style="color:#66d9ef">sub</span> {
+                <span style="color:#66d9ef">my</span> $error <span style="color:#f92672">=</span> shift;
+                warn <span style="color:#e6db74">&#34;Query failed: $error&#34;</span>;
+                $loop<span style="color:#f92672">-&gt;</span>stop;
+                <span style="color:#66d9ef">return</span> Future<span style="color:#f92672">-&gt;</span>fail($error);
+            });
+$loop<span style="color:#f92672">-&gt;</span>run;
+$db<span style="color:#f92672">-&gt;</span>disconnect;
+</code></pre></div><br>
+<h3 id="approach-2-callback-registration-with--on_done---on_fail"><strong>APPROACH 2: Callback registration with <code>-&gt;on_done</code> / <code>-&gt;on_fail</code></strong></h3>
+<hr>
+<p><strong>Best for:</strong> Side effects, logging, simple async operations</p>
+<ul>
+<li>Registers callbacks on the original <code>Future</code> (doesn&rsquo;t create a new one)</li>
+<li><code>-&gt;on_done()</code> is called when <code>Future</code> completes successfully</li>
+<li><code>-&gt;on_fail()</code> is called when <code>Future</code> fails</li>
+<li>Must manually stop the loop when done</li>
+<li>Returns the same <code>Future</code> (safe to use in any context)</li>
+</ul>
+<p><strong>Good for:</strong> fire-and-forget operations, logging, simple handling</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>search(<span style="color:#e6db74">&#39;User&#39;</span>, { active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> })
+           <span style="color:#f92672">-&gt;</span>on_done(<span style="color:#66d9ef">sub</span> {
+                <span style="color:#66d9ef">my</span> ($rows) <span style="color:#f92672">=</span> @_;
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (@$rows) {
+                    say $row<span style="color:#f92672">-&gt;</span>{name};
+                }
+                $loop<span style="color:#f92672">-&gt;</span>stop;
+           })
+           <span style="color:#f92672">-&gt;</span>on_fail(<span style="color:#66d9ef">sub</span> {
+                <span style="color:#66d9ef">my</span> $error <span style="color:#f92672">=</span> shift;
+                warn <span style="color:#e6db74">&#34;Query failed: $error&#34;</span>;
+                $loop<span style="color:#f92672">-&gt;</span>stop;
+           });
+
+$loop<span style="color:#f92672">-&gt;</span>run;
+$db<span style="color:#f92672">-&gt;</span>disconnect;
+</code></pre></div><br>
+<h3 id="approach-3-blocking-with--get"><strong>APPROACH 3: Blocking with <code>-&gt;get()</code></strong></h3>
+<hr>
+<p><strong>Best for:</strong> Scripts, simple sequential operations, testing</p>
+<ul>
+<li>Blocks until the <code>Future</code> completes (synchronous-style)</li>
+<li>Automatically runs and stops the event loop internally</li>
+<li>Throws exception on failure (use <code>try/catch</code> or <code>eval</code>)</li>
+<li>No manual loop management needed</li>
+<li>Returns the actual result value directly</li>
+</ul>
+<p><strong>Good for:</strong> simple scripts, sequential operations, when you don&rsquo;t need concurrency</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Try::Tiny;
+
+try {
+    <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>search(<span style="color:#e6db74">&#39;User&#39;</span>, { active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> })<span style="color:#f92672">-&gt;</span>get;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (@$rows) {
+        say $row<span style="color:#f92672">-&gt;</span>{name};
+    }
+}
+catch {
+    warn <span style="color:#e6db74">&#34;Query failed: $_&#34;</span>;
+};
+
+$db<span style="color:#f92672">-&gt;</span>disconnect;
+</code></pre></div><br>
+<h3 id="summary"><strong>SUMMARY</strong></h3>
+<hr>
+<ul>
+<li><code>-&gt;then/-&gt;catch</code>:      For complex async workflows and data transformation</li>
+<li><code>-&gt;on_done/-&gt;on_fail</code>: For simple callbacks and side effects</li>
+<li><code>-&gt;get()</code>:             For blocking/synchronous-style code</li>
+</ul>
+<br>
+<h3 id="core-methods"><strong>Core Methods</strong></h3>
+<hr>
+<p><strong>Search with conditions and attributes</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $users <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>search(<span style="color:#e6db74">&#39;User&#39;</span>,
+    { active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
+    { order_by <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;created_at DESC&#39;</span>, rows <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span> }
+)<span style="color:#f92672">-&gt;</span>get;
+</code></pre></div><br>
+<p><strong>Find single record</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>find(<span style="color:#e6db74">&#39;User&#39;</span>, <span style="color:#ae81ff">123</span>)<span style="color:#f92672">-&gt;</span>get;
+
+<span style="color:#66d9ef">my</span> $new_user <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>create(<span style="color:#e6db74">&#39;User&#39;</span>, {
+    name  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Alice&#39;</span>,
+    email <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;alice@example.com&#39;</span>,
+})<span style="color:#f92672">-&gt;</span>get;
+</code></pre></div><br>
+<p><strong>Update existing record</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $updated <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>update(<span style="color:#e6db74">&#39;User&#39;</span>, <span style="color:#ae81ff">123</span>, {
+    status <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;verified&#39;</span>,
+})<span style="color:#f92672">-&gt;</span>get;
+</code></pre></div><br>
+<p><strong>Delete record</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $deleted <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>delete(<span style="color:#e6db74">&#39;User&#39;</span>, <span style="color:#ae81ff">456</span>)<span style="color:#f92672">-&gt;</span>get;
+</code></pre></div><br>
+<p><strong>Count records</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>count(<span style="color:#e6db74">&#39;User&#39;</span>, { active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> })<span style="color:#f92672">-&gt;</span>get;
+</code></pre></div><br>
+<h3 id="advanced-features"><strong>Advanced Features</strong></h3>
+<hr>
+<p><strong>Concurrent Queries</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> ($users, $orders) <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>search_multi(
+    [<span style="color:#e6db74">&#39;User&#39;</span>, { active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> }, { rows <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span> }],
+    [<span style="color:#e6db74">&#39;Order&#39;</span>, undef, { order_by <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;created_at DESC&#39;</span>, rows <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span> }],
+)<span style="color:#f92672">-&gt;</span>get;
+</code></pre></div><br>
+<p><strong>Prefetching Relationships</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $users_with_orders <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>search_with_prefetch(
+    <span style="color:#e6db74">&#39;User&#39;</span>,
+    { active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
+    <span style="color:#e6db74">&#39;orders&#39;</span>,
+    { rows <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span> }
+)<span style="color:#f92672">-&gt;</span>get;
+</code></pre></div><br>
+<p><strong>Transactions</strong></p>
+<p><strong>IMPORTANT:</strong> The method <code>txn_do()</code> method has limitations due to serialisation constraints.</p>
+<p>The <code>CODE</code> reference passed to <code>txn_do()</code> must be serialisable by <a href="https://metacpan.org/pod/Sereal"><strong>Sereal</strong></a> which may not support anonymous subroutines or CODE references with closed over variables in all configurations.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>txn_do(<span style="color:#66d9ef">sub</span> {
+    <span style="color:#66d9ef">my</span> $schema <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#75715e"># These operations succeed or fail together</span>
+    $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Order&#39;</span>)<span style="color:#f92672">-&gt;</span>find(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>update({
+        amount <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span><span style="color:#e6db74">&#39;amount - 10&#39;</span>
+    });
+    $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Order&#39;</span>)<span style="color:#f92672">-&gt;</span>find(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">-&gt;</span>update({
+        amount <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span><span style="color:#e6db74">&#39;amount + 10&#39;</span>
+    });
+
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;transfer_complete&#39;</span>;
+})<span style="color:#f92672">-&gt;</span>get;
+</code></pre></div><br>
+<p>If you encounter serialisation errors, then you can try this instead <code>txn_batch()</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>txn_batch(
+    { type      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;update&#39;</span>,
+      resultset <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Order&#39;</span>,
+      id        <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+      data      <span style="color:#f92672">=&gt;</span> { amount <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span><span style="color:#e6db74">&#39;amount + 10&#39;</span> }
+    },
+    { type      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;update&#39;</span>,
+      resultset <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Order&#39;</span>,
+      id        <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+      data      <span style="color:#f92672">=&gt;</span> { amount <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span><span style="color:#e6db74">&#39;amount - 10&#39;</span> }
+    },
+)<span style="color:#f92672">-&gt;</span>get;
+</code></pre></div><br>
+<p><strong>Raw SQL Queries</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>raw_query(
+    <span style="color:#e6db74">&#39;SELECT * FROM users WHERE active = ?&#39;</span>, [<span style="color:#ae81ff">1</span>]
+)<span style="color:#f92672">-&gt;</span>get;
+</code></pre></div><br>
+<h3 id="configuration-options"><strong>Configuration Options</strong></h3>
+<hr>
+<p>The constructor accepts various configuration parameters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $db <span style="color:#f92672">=</span> DBIx::Class::Async<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+    schema_class   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;MyApp::Schema&#39;</span>,
+    connect_info   <span style="color:#f92672">=&gt;</span> $connect_info,
+    workers        <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,                  <span style="color:#75715e"># Default: 4</span>
+    loop           <span style="color:#f92672">=&gt;</span> $loop,              <span style="color:#75715e"># Optional custom loop</span>
+    cache_ttl      <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">300</span>,                <span style="color:#75715e"># Cache TTL in seconds</span>
+    cache          <span style="color:#f92672">=&gt;</span> $chi_object,        <span style="color:#75715e"># Custom cache object</span>
+    enable_retry   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,                  <span style="color:#75715e"># Enable retry on deadlocks</span>
+    max_retries    <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,                  <span style="color:#75715e"># Maximum retry attempts</span>
+    retry_delay    <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,                  <span style="color:#75715e"># Initial retry delay</span>
+    query_timeout  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span>,                 <span style="color:#75715e"># Query timeout in seconds</span>
+    enable_metrics <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,                  <span style="color:#75715e"># Enable metrics collection</span>
+    health_check   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">300</span>,                <span style="color:#75715e"># Health check interval</span>
+    on_connect_do  <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;SET NAMES utf8&#39;</span>], <span style="color:#75715e"># SQL to run on connect</span>
+);
+</code></pre></div><br>
+<h3 id="performance-tips"><strong>Performance Tips</strong></h3>
+<hr>
+<ul>
+<li>Worker Count: Adjust based on your database connection limits (<code>2-4</code> workers per <code>CPU</code> core usually works well)</li>
+<li>Caching: Use caching for read-heavy workloads with appropriate <code>TTL</code></li>
+<li>Batch Operations: Use <code>search_multi</code> for fetching unrelated data concurrently</li>
+<li>Connection Pooling: Each worker maintains its own persistent connection</li>
+<li>Timeouts: Set appropriate <code>query_timeout</code> values to prevent hung queries</li>
+</ul>
+<br>
+<h3 id="error-handling"><strong>Error Handling</strong></h3>
+<hr>
+<p>All methods throw exceptions on failure. Use <code>try/catch</code> blocks or <code>-&gt;catch</code> on futures:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$db<span style="color:#f92672">-&gt;</span>search(<span style="color:#e6db74">&#39;User&#39;</span>, { active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> })
+   <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">then</span>(<span style="color:#66d9ef">sub</span> {
+       <span style="color:#66d9ef">my</span> ($users) <span style="color:#f92672">=</span> @_;
+       <span style="color:#75715e"># Process users</span>
+   })
+   <span style="color:#f92672">-&gt;</span>catch(<span style="color:#66d9ef">sub</span> {
+       <span style="color:#66d9ef">my</span> $error <span style="color:#f92672">=</span> shift;
+       warn <span style="color:#e6db74">&#34;Query failed: $error&#34;</span>;
+   });
+</code></pre></div><br>
+<p>Common retryable errors (when <code>enable_retry</code> is true):</p>
+<ul>
+<li>Deadlocks</li>
+<li>Lock wait timeouts</li>
+<li>Connection issues</li>
+<li>MySQL server has gone away</li>
+</ul>
+<br>
+<h3 id="metrics-collection"><strong>Metrics Collection</strong></h3>
+<hr>
+<p>When <code>enable_metrics</code> is true and <a href="https://metacpan.org/dist/Metrics-Any"><strong>Metrics::Any</strong></a> is installed:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Enable metrics</span>
+<span style="color:#66d9ef">my</span> $db <span style="color:#f92672">=</span> DBIx::Class::Async<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+    <span style="color:#75715e"># ... other config ...</span>
+    enable_metrics <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+);
+
+<span style="color:#75715e"># Get statistics</span>
+<span style="color:#66d9ef">my</span> $stats <span style="color:#f92672">=</span> $db<span style="color:#f92672">-&gt;</span>stats;
+</code></pre></div><br>
+<h3 id="when-to-use-dbixclassasync"><strong>When to use DBIx::Class::Async?</strong></h3>
+<hr>
+<ul>
+<li>Web applications with high concurrency</li>
+<li>Event-driven systems using <code>IO::Async</code> or similar frameworks</li>
+<li>Microservices requiring non-blocking database access</li>
+<li>Background job processors</li>
+<li>Real-time applications with <code>WebSocket</code> connections</li>
+</ul>
+<br>
+<h3 id="limitations"><strong>Limitations</strong></h3>
+<hr>
+<ul>
+<li>Returned rows are plain hashrefs, not DBIC row objects</li>
+<li>Transactions execute on a single worker only</li>
+<li>Large result sets are loaded entirely into memory (use pagination)</li>
+<li>Worker processes add some memory overhead</li>
+</ul>
+<br>
+<h3 id="contributions"><strong>Contributions</strong></h3>
+<hr>
+<ul>
+<li>Repository: <a href="https://github.com/manwar/DBIx-Class-Async">https://github.com/manwar/DBIx-Class-Async</a></li>
+<li>Issues: <a href="https://github.com/manwar/DBIx-Class-Async/issues">https://github.com/manwar/DBIx-Class-Async/issues</a></li>
+</ul>
+<br>
+<h3 id="conclusion"><strong>Conclusion</strong></h3>
+<hr>
+<p><code>DBIx::Class::Async</code> bridges the gap between the robust <code>ORM</code> capabilities of <code>DBIx::Class</code> and the modern async programming paradigm. Whether you&rsquo;re building a high-traffic web application or a real-time data processing system, this module provides the asynchronous database access you need while maintaining the familiar <code>DBIC</code> interface.</p>
+<p>Give it a try and let us know what you think!</p>
+<p>Your feedback and contributions are always welcome.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2025
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
