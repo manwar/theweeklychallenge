@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 278"
-date: 2024-07-21T00:00:00+00:00
+date: 2026-01-02T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 278."
 type: post
 image: images/blog/recap-challenge-278.jpg
@@ -11,15 +11,15 @@ tags: ["Perl", "Raku"]
 ## TABLE OF CONTENTS
 ***
 
-### 01. [HEADLINES](#HEADLINES)
-### 02. [STAR CONTRIBUTORS](#STARCONTRIBUTORS)
-### 03. [CONTRIBUTION STATS](#CONTRIBUTIONSTATS)
-### 04. [GUESTS](#GUESTS)
-### 05. [LANGUAGES](#LANGUAGES)
-### 06. [CENTURION CLUB](#CENTURIONCLUB)
-### 07. [DAMIAN CONWAY's CORNER](#DAMIANCONWAYCORNER)
-### 08. [ANDREW SHITOV's CORNER](#ANDREWSHITOVCORNER)
-### 09. [PERL SOLUTIONS](#PERLSOLUTIONS)
+### &nbsp;&nbsp;1. [HEADLINES](#HEADLINES)
+### &nbsp;&nbsp;2. [STAR CONTRIBUTORS](#STARCONTRIBUTORS)
+### &nbsp;&nbsp;3. [CONTRIBUTION STATS](#CONTRIBUTIONSTATS)
+### &nbsp;&nbsp;4. [GUESTS](#GUESTS)
+### &nbsp;&nbsp;5. [LANGUAGES](#LANGUAGES)
+### &nbsp;&nbsp;6. [CENTURION CLUB](#CENTURIONCLUB)
+### &nbsp;&nbsp;7. [DAMIAN CONWAY's CORNER](#DAMIANCONWAYCORNER)
+### &nbsp;&nbsp;8. [ANDREW SHITOV's CORNER](#ANDREWSHITOVCORNER)
+### &nbsp;&nbsp;9. [PERL SOLUTIONS](#PERLSOLUTIONS)
 ### 10. [RAKU SOLUTIONS](#RAKUSOLUTIONS)
 ### 11. [PERL & RAKU SOLUTIONS](#PERLRAKUSOLUTIONS)
 
@@ -48,20 +48,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 14399 (63%)
-#### 2. Raku: 8332 (37%)
-#### 3. Blog: 5080
+#### 1. Perl: 14574 (63%)
+#### 2. Raku: 8364 (37%)
+#### 3. Blog: 5141
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `109`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `112`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 57
+#### 1. Perl: 59
 #### 2. Raku: 28
-#### 3. Blog: 24
+#### 3. Blog: 25
 
 <br>
 
@@ -72,20 +72,20 @@ The total contributions in the week is `109`. Well done **Team PWC**. I would al
     Bash (1), Crystal (20), JavaScript (251), Kotlin (256), Lua (246), Postscript (294), Python (391), Ruby (379), Rust (373), Scala (85).
 #### 2. Abigail (1540)
     Awk (122), BASIC (22), Bash (110), Bc (58), Befunge-93 (34), Brainfuck (1), C (124), C Shell (19), COBOL (18), Chef (1), Erlang (19), Forth (18), Fortran (20), Go (66), Java (63), Lua (110), M4 (18), MMIX (14), Mumps (1), Node.js (129), OCaml (17), Ook (1), PHP (17), Pascal (66), Postscript (16), Python (114), R (61), Rexx (17), Ruby (108), SQL (23), Scheme (58), Sed (15), Tcl (60).
-#### 3. Ulrich Rieke (814)
+#### 3. Paulo Custodio (897)
+    Ada (21), Awk (28), BASIC (76), Bc (17), Brainfuck (5), C (141), C++ (101), D (14), Forth (80), Fortran (8), Lua (38), Pascal (6), Python (362).
+#### 4. Ulrich Rieke (814)
     Awk (3), C (2), C++ (293), Haskell (331), Java (9), Julia (1), Lisp (7), Python (1), Ruby (1), Rust (166).
-#### 4. Paulo Custodio (764)
-    Ada (21), Awk (28), BASIC (76), Bc (17), Brainfuck (5), C (141), C++ (101), D (14), Forth (79), Fortran (8), Lua (38), Pascal (6), Python (230).
 #### 5. Ali Moradi (649)
     APL (1), Ada (14), C (55), C++ (61), D (56), Go (17), Haskell (10), Java (26), Lisp (20), Lua (84), Modula 3 (72), Nelua (12), Nim (24), OCaml (8), Oberon (47), Pascal (70), Python (36), Ruby (28), Scheme (2), Standard ML (4), Zig (2).
-#### 6. Lubos Kolouch (458)
-    Bash (6), C++ (1), Go (2), Java (18), JavaScript (1), PHP (9), Python (419), Ruby (1), VBA (1).
+#### 6. Lubos Kolouch (467)
+    Bash (6), C++ (1), Go (1), Java (18), JavaScript (1), PHP (9), Python (429), Ruby (1), VBA (1).
 #### 7. Stuart Little (436)
     Haskell (256), Lua (88), Node.js (44), Python (48).
 #### 8. Laurent Rosenfeld (400)
     Awk (22), Bash (2), Bc (9), Bourne Shell (1), C (21), C++ (1), Coconut (1), D (19), Dart (9), Dc (2), Gembase (3), Go (16), IO (1), Java (9), JavaScript (11), Julia (41), Kotlin (18), Lua (16), Nim (12), Pascal (9), Python (50), R (1), Ring (20), Ruby (30), Rust (15), Scala (52), Sed (1), Tcl (6), Visual BASIC (1), Zig (1).
-#### 9. Luca Ferrari (365)
-    Java (50), PostgreSQL (237), Python (78).
+#### 9. Luca Ferrari (371)
+    Java (52), PostgreSQL (239), Python (80).
 #### 10. David Ferrone (360)
     C (91), JavaScript (86), Python (86), Rust (97).
 #### 11. Robert DiCicco (350)
@@ -102,18 +102,18 @@ The total contributions in the week is `109`. Well done **Team PWC**. I would al
     Python (217).
 #### 17. Adam Russell (205)
     C++ (26), Fortran (3), Java (16), JavaScript (6), Nuweb (3), Prolog (143), Python (2), R (6).
-#### 18. Archar Gelod (124)
+#### 18. Conor Hoekstra (130)
+    APL (63), BQN (46), C++ (2), Haskell (6), J (8), Python (2), Rust (1), Uiua (2).
+#### 19. Archar Gelod (124)
     Nim (124).
-#### 19. Conor Hoekstra (123)
-    APL (62), BQN (40), C++ (2), Haskell (6), J (8), Pytho (1), Python (1), Rust (1), Uiua (2).
 #### 20. Packy Anderson (123)
     Elixir (24), Java (8), Python (91).
 #### 21. BarrOff (104)
     Awk (1), BQN (9), D (3), GP (2), Julia (61), Nim (25), V (3).
 #### 22. Duncan C. White (103)
     C (94), Pascal (6), Postscript (3).
-#### 23. Mohammad Sajid Anwar (102)
-    Java (27), Python (35), Swift (40).
+#### 23. Mohammad Sajid Anwar (103)
+    Java (27), Python (35), Swift (41).
 #### 24. Steven Wilson (102)
     Haskell (1), JavaScript (13), Python (87), Rust (1).
 #### 25. Mariano Spadaccini (93)
@@ -308,13 +308,11 @@ The total contributions in the week is `109`. Well done **Team PWC**. I would al
     C++ (1).
 #### 120. Maxim Kolodyazhny (1)
     Elixir (1).
-#### 121. Mohammad S Anwar (1)
-    Swift (1).
-#### 122. Robbie Hatley (1)
+#### 121. Robbie Hatley (1)
     C (1).
-#### 123. Roman Kotelnikov (1)
+#### 122. Roman Kotelnikov (1)
     J (1).
-#### 124. Stephen G. Lynn (1)
+#### 123. Stephen G. Lynn (1)
     Julia (1).
 
 <br>
@@ -322,14 +320,14 @@ The total contributions in the week is `109`. Well done **Team PWC**. I would al
 ## LANGUAGES {#LANGUAGES}
 ***
 
-    Python (2658), Ruby (707), Haskell (688), Rust (687), Lua (624), C (565), C++ (526), JavaScript (451), Go (388), BQN (350), Java (330), Postscript (313), Kotlin (307), Julia (296), PostgreSQL (237), Clojure (202), Node.js (196), Awk (190), Bash (190), Nim (187), Prolog (164), Pascal (159), Scala (159), APL (149), Tcl (102), BASIC (100), Forth (97), D (93), Bc (84), R (81), Lisp (74), Modula 3 (72), Excel VBA (63), Scheme (60), PHP (51), Oberon (47), Elixir (44), Swift (41), Dart (40), Ada (35), Befunge-93 (35), Fortran (33), OCaml (33), Erlang (24), SQL (24), Crystal (23), J (23), COBOL (20), Ring (20), C Shell (19), F# (18), M4 (18), Rexx (17), Sed (16), Uiua (16), Elm (15), MMIX (14), PowerShell (13), Nelua (12), Smalltalk (9), Fennel (8), Hy (8), Racket (8), Zig (7), Brainfuck (6), TypeScript (6), Coconut (4), Emacs Lisp (4), Factor (4), Groovy (4), Nu (4), Standard ML (4), CESIL (3), Gembase (3), Janet (3), Nuweb (3), Octave (3), Roc (3), V (3), C3 (2), Dc (2), GP (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Bourne Shell (1), C# (1), Chef (1), Fish (1), GNAT (1), IO (1), Javascript (1), Logo (1), Maxima (1), Mumps (1), Node (1), Ook (1), Pytho (1), SVG (1), Typescript (1), VBA (1), Visual BASIC (1), XSLT (1).
+    Python (2803), Ruby (707), Haskell (688), Rust (687), Lua (624), C (565), C++ (526), JavaScript (451), Go (387), BQN (356), Java (332), Postscript (313), Kotlin (307), Julia (296), PostgreSQL (239), Clojure (202), Node.js (196), Awk (190), Bash (190), Nim (187), Prolog (164), Pascal (159), Scala (159), APL (150), Tcl (102), BASIC (100), Forth (98), D (93), Bc (84), R (81), Lisp (74), Modula 3 (72), Excel VBA (63), Scheme (60), PHP (51), Oberon (47), Elixir (44), Swift (41), Dart (40), Ada (35), Befunge-93 (35), Fortran (33), OCaml (33), Erlang (24), SQL (24), Crystal (23), J (23), COBOL (20), Ring (20), C Shell (19), F# (18), M4 (18), Rexx (17), Sed (16), Uiua (16), Elm (15), MMIX (14), PowerShell (13), Nelua (12), Smalltalk (9), Fennel (8), Hy (8), Racket (8), Zig (7), Brainfuck (6), TypeScript (6), Coconut (4), Emacs Lisp (4), Factor (4), Groovy (4), Nu (4), Standard ML (4), CESIL (3), Gembase (3), Janet (3), Nuweb (3), Octave (3), Roc (3), V (3), C3 (2), Dc (2), GP (2), HTML (2), Haxe (2), Idris (2), Korn Shell (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Bourne Shell (1), C# (1), Chef (1), Fish (1), GNAT (1), IO (1), Javascript (1), Logo (1), Maxima (1), Mumps (1), Node (1), Ook (1), SVG (1), Typescript (1), VBA (1), Visual BASIC (1), XSLT (1).
 
 <br>
 
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2744), Luca Ferrari (2704), Roger Bell_West (2518), Jaldhar H. Vyas (2456), Arne Sommer (1966), Athanasius (1780), Flavio Poletti (1716), Ulrich Rieke (1610), Colin Crain (1336), Dave Jacoby (1284), Adam Russell (1222), E. Choroba (1202), Lubos Kolouch (1196), Jorg Sommrey (1130), W. Luis Mochan (1126), Simon Green (1004), Paulo Custodio (916), Mark Anderson (910), James Smith (882), Cheok-Yin Fung (854), Peter Campbell Smith (838), Duncan C. White (794), Feng Chang (734), Jan Krnavek (720), Mohammad Sajid Anwar (718), Bruce Gray (670), Thomas Kohler (666), Niels van Dijke (664), Stuart Little (644), Bob Lied (594), Ali Moradi (590), Abigail (574), Robert DiCicco (574), Simon Proctor (560), Packy Anderson (520), Robbie Hatley (498), Matthew Neleigh (478), Stephen G. Lynn (478), Robert Ransbottom (468), Wanderdoc (466), Javier Luque (460), Ruben Westerberg (452), David Ferrone (428), Ryan Thompson (412), Pete Houston (360), Matthias Muth (338), BarrOff (336), Joelle Maslak (314), Peter Meszaros (256), Andrew Shitov (254), Andrezgz (252), Steven Wilson (242), Yet Ebreo (222), Alexander Pankoff (220), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Solathian (192), Noud Aldenhoven (188), Marton Polgar (182), Avery Adams (176), Kevin Colyer (176), Aaron Smith (174), Kjetil Skotheim (168), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Nelo Tovar (146), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Mariano Spadaccini (130), Humberto Massa (128), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104).
+    Luca Ferrari (2776), Laurent Rosenfeld (2744), Jaldhar H. Vyas (2620), Roger Bell_West (2518), Arne Sommer (1966), Athanasius (1780), Flavio Poletti (1716), Ulrich Rieke (1610), Colin Crain (1336), Dave Jacoby (1284), Adam Russell (1222), Lubos Kolouch (1216), E. Choroba (1202), Jorg Sommrey (1130), W. Luis Mochan (1126), Paulo Custodio (1108), Simon Green (1004), Mark Anderson (910), James Smith (882), Cheok-Yin Fung (854), Peter Campbell Smith (838), Duncan C. White (794), Feng Chang (738), Jan Krnavek (720), Mohammad Sajid Anwar (718), Bruce Gray (670), Thomas Kohler (666), Niels van Dijke (664), Stuart Little (644), Bob Lied (594), Ali Moradi (590), Abigail (574), Robert DiCicco (574), Simon Proctor (560), Packy Anderson (520), Robbie Hatley (498), Matthew Neleigh (478), Stephen G. Lynn (478), Robert Ransbottom (468), Wanderdoc (466), Javier Luque (460), Ruben Westerberg (452), David Ferrone (428), Ryan Thompson (418), Pete Houston (360), Matthias Muth (338), BarrOff (336), Peter Meszaros (328), Joelle Maslak (314), Andrew Shitov (254), Andrezgz (252), Steven Wilson (242), Yet Ebreo (222), Alexander Pankoff (220), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Solathian (192), Noud Aldenhoven (188), Marton Polgar (182), Avery Adams (176), Kevin Colyer (176), Aaron Smith (174), Kjetil Skotheim (172), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Nelo Tovar (146), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Pip Stuart (132), Mariano Spadaccini (130), Humberto Massa (128), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104).
 
 <br>
 
@@ -438,6 +436,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ![Lance Wicks](/images/team/user.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/lance-wicks/perl/ch-1.pl)]
+
+***
+
+### Lubos Kolouch
+![Lubos Kolouch](/images/team/lubos_kolouch.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/lubos-kolouch/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/lubos-kolouch/perl/ch-2.pl)]
 
 ***
 
@@ -593,14 +599,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/luca-ferrari/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-278/luca-ferrari/raku/ch-2.raku)]
 [[**BLOG #1**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task1)]
-[[**BLOG #2**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task2)]
-[[**BLOG #3**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task1plperl)]
-[[**BLOG #4**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task2plperl)]
-[[**BLOG #5**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task1plpgsql)]
-[[**BLOG #6**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task2plpgsql)]
-[[**BLOG #7**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task1python)]
-[[**BLOG #8**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task2python)]
-[[**BLOG #9**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task1pljava)]
+[[**BLOG #2**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task2pljava)]
+[[**BLOG #3**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task2)]
+[[**BLOG #4**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task1plperl)]
+[[**BLOG #5**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task2plperl)]
+[[**BLOG #6**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task1plpgsql)]
+[[**BLOG #7**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task2plpgsql)]
+[[**BLOG #8**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task1python)]
+[[**BLOG #9**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task2python)]
+[[**BLOG #10**](https://fluca1978.github.io/2024/07/15/PerlWeeklyChallenge278.html#task1pljava)]
 
 ***
 
