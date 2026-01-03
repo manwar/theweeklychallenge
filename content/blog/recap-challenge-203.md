@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 203"
-date: 2025-10-07T00:00:00+00:00
+date: 2026-01-03T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 203."
 type: post
 image: images/blog/recap-challenge-203.jpg
@@ -48,9 +48,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 10434 (63%)
-#### 2. Raku: 6008 (37%)
-#### 3. Blog: 3314
+#### 1. Perl: 10453 (63%)
+#### 2. Raku: 6026 (37%)
+#### 3. Blog: 3323
 
 <br>
 
@@ -80,8 +80,8 @@ The total contributions in the week is `105`. Well done **Team PWC**. I would al
     Awk (1), C (2), C++ (171), Haskell (203), Java (9), Lisp (7), Rust (38).
 #### 6. Laurent Rosenfeld (396)
     Awk (22), Bash (2), Bc (9), Bourne Shell (1), C (21), C++ (1), Coconut (1), D (19), Dart (9), Dc (2), Gembase (3), Go (16), IO (1), Java (9), JavaScript (11), Julia (37), Kotlin (18), Lua (16), Nim (12), Pascal (9), Python (50), R (1), Ring (20), Ruby (30), Rust (15), Scala (52), Sed (1), Tcl (6), Visual BASIC (1), Zig (1).
-#### 7. Lubos Kolouch (314)
-    Bash (1), C++ (1), Go (1), Java (11), JavaScript (1), PHP (7), Python (290), Ruby (1), VBA (1).
+#### 7. Lubos Kolouch (316)
+    Bash (1), C++ (1), Go (1), Java (11), JavaScript (1), PHP (7), Python (292), Ruby (1), VBA (1).
 #### 8. Ali Moradi (311)
     Ada (14), C (27), C++ (37), D (34), Go (2), Haskell (2), Lua (44), Modula 3 (28), Nelua (12), Nim (22), Oberon (25), Pascal (42), Python (20), Ruby (2).
 #### 9. AhmetEmre (274)
@@ -266,14 +266,14 @@ The total contributions in the week is `105`. Well done **Team PWC**. I would al
 ## LANGUAGES {#LANGUAGES}
 ***
 
-    Python (1639), Haskell (531), Ruby (463), Lua (444), C (412), C++ (339), Rust (338), BQN (295), Go (245), Java (225), JavaScript (217), Node.js (196), Awk (187), Clojure (172), Julia (167), Postscript (166), Kotlin (145), Nim (140), Pascal (131), APL (127), Bash (127), Prolog (122), PostgreSQL (109), Tcl (89), BASIC (88), Bc (84), Forth (80), R (74), D (68), Scala (68), Excel VBA (63), Scheme (58), Lisp (41), Swift (41), Dart (40), PHP (39), Ada (35), Befunge-93 (35), Fortran (33), Modula 3 (28), OCaml (25), Oberon (25), SQL (23), Erlang (22), Ring (20), C Shell (19), COBOL (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), Nelua (12), J (9), Smalltalk (9), Fennel (8), Brainfuck (6), Emacs Lisp (4), TypeScript (4), CESIL (3), Coconut (3), Crystal (3), Gembase (3), Janet (3), Nuweb (3), Zig (3), C3 (2), Dc (2), HTML (2), Haxe (2), Idris (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Bourne Shell (1), C# (1), Chef (1), Elixir (1), Fish (1), GNAT (1), IO (1), Javascript (1), Korn Shell (1), Logo (1), Maxima (1), Mumps (1), Node (1), Ook (1), SVG (1), VBA (1), Visual BASIC (1), XSLT (1).
+    Python (1641), Haskell (531), Ruby (463), Lua (444), C (412), C++ (339), Rust (338), BQN (295), Go (245), Java (225), JavaScript (217), Node.js (196), Awk (187), Clojure (172), Julia (167), Postscript (166), Kotlin (145), Nim (140), Pascal (131), APL (127), Bash (127), Prolog (122), PostgreSQL (109), Tcl (89), BASIC (88), Bc (84), Forth (80), R (74), D (68), Scala (68), Excel VBA (63), Scheme (58), Lisp (41), Swift (41), Dart (40), PHP (39), Ada (35), Befunge-93 (35), Fortran (33), Modula 3 (28), OCaml (25), Oberon (25), SQL (23), Erlang (22), Ring (20), C Shell (19), COBOL (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), Nelua (12), J (9), Smalltalk (9), Fennel (8), Brainfuck (6), Emacs Lisp (4), TypeScript (4), CESIL (3), Coconut (3), Crystal (3), Gembase (3), Janet (3), Nuweb (3), Zig (3), C3 (2), Dc (2), HTML (2), Haxe (2), Idris (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Bourne Shell (1), C# (1), Chef (1), Elixir (1), Fish (1), GNAT (1), IO (1), Javascript (1), Korn Shell (1), Logo (1), Maxima (1), Mumps (1), Node (1), Ook (1), SVG (1), VBA (1), Visual BASIC (1), XSLT (1).
 
 <br>
 
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (2036), Jaldhar H. Vyas (1790), Roger Bell_West (1782), Arne Sommer (1516), Luca Ferrari (1452), Flavio Poletti (1368), Colin Crain (1326), Athanasius (1264), Ulrich Rieke (1098), Adam Russell (1062), Dave Jacoby (950), E. Choroba (904), Paulo Custodio (812), Lubos Kolouch (784), James Smith (776), Jorg Sommrey (756), Duncan C. White (738), Mohammad Sajid Anwar (718), W. Luis Mochan (682), Cheok-Yin Fung (656), Stuart Little (644), Simon Green (628), Mark Anderson (614), Abigail (574), Simon Proctor (520), Javier Luque (460), Ruben Westerberg (452), Jan Krnavek (452), Feng Chang (442), Niels van Dijke (442), Peter Campbell Smith (394), Ryan Thompson (390), Pete Houston (360), Wanderdoc (358), Bruce Gray (346), Robert DiCicco (334), Stephen G. Lynn (322), Joelle Maslak (274), Andrezgz (252), Matthew Neleigh (242), Bob Lied (234), Yet Ebreo (222), Alexander Pankoff (220), Robert Ransbottom (212), Steven Wilson (210), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Ali Moradi (166), Duane Powell (164), Kian-Meng Ang (162), Marton Polgar (158), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Cristina Heredia (126), David Ferrone (124), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104).
+    Laurent Rosenfeld (2036), Jaldhar H. Vyas (1880), Roger Bell_West (1782), Arne Sommer (1516), Luca Ferrari (1452), Flavio Poletti (1368), Colin Crain (1326), Athanasius (1264), Ulrich Rieke (1098), Adam Russell (1062), Dave Jacoby (950), E. Choroba (904), Paulo Custodio (812), Lubos Kolouch (784), James Smith (776), Jorg Sommrey (756), Duncan C. White (738), Mohammad Sajid Anwar (718), W. Luis Mochan (682), Cheok-Yin Fung (656), Stuart Little (644), Simon Green (628), Mark Anderson (614), Abigail (574), Simon Proctor (520), Javier Luque (460), Ruben Westerberg (452), Jan Krnavek (452), Feng Chang (442), Niels van Dijke (442), Peter Campbell Smith (394), Ryan Thompson (390), Pete Houston (360), Wanderdoc (358), Bruce Gray (346), Robert DiCicco (334), Stephen G. Lynn (322), Joelle Maslak (274), Andrezgz (252), Matthew Neleigh (242), Bob Lied (234), Yet Ebreo (222), Alexander Pankoff (220), Robert Ransbottom (212), Steven Wilson (210), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Ali Moradi (166), Duane Powell (164), Kian-Meng Ang (162), Marton Polgar (158), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Andinus (132), Cristina Heredia (126), David Ferrone (124), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104).
 
 <br>
 
