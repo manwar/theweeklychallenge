@@ -246,7 +246,7 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 
 You are given a positive integer, `$int`.
 
-Write a script to add thausand separator, `,` and return as string.
+Write a script to add thousand separator, `,` and return as string.
 
 #### Example 1
 
