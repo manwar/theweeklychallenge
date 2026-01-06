@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="DBIx::Class::Async - UPDATE"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/dbix-class-async-update/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Update to DBIx::Class::Async module."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Update to DBIx::Class::Async module.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/dbix-class-async-update/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DBIx::Class::Async - UPDATE</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>DBIx::Class::Async - UPDATE</h2>
+                    <div class="portfolio-meta">
+                        <span>Tuesday, Jan 6, 2026</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/dbix-class-async-update.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>Few days ago, I shared a blog post about <a href="/blog/dbix-class-async"><strong>Introduction to DBIx::Class::Async</strong></a>. It was well received and got many encouraging comments about <code>DBIx::Class::Async</code>.</p>
+<br>
+<h4 id="dave-cross-asked-"><strong>Dave Cross asked &hellip;</strong></h4>
+<blockquote>
+<p>Do you have plans to move the async stuff into the schema or resultset classes, so you can make it more of a drop-in replacement for standard DBIC?</p>
+</blockquote>
+<h4 id="daniel-bohmer-asked-"><strong>Daniel Bohmer asked &hellip;</strong></h4>
+<blockquote>
+<p>Do you think you could support cursors in a future release?</p>
+</blockquote>
+<p>Apart from that, there was some very important features missing in the first release:</p>
+<ul>
+<li><strong>search with prefetch</strong></li>
+<li><strong>create related</strong></li>
+</ul>
+<p>As of today, we have <a href="https://metacpan.org/dist/DBIx-Class-Async"><strong>DBIx::Class::Async v0.12</strong></a> released to <code>CPAN</code> that addressed the above issues.</p>
+<p>The latest release now have these packages:</p>
+<ul>
+<li><a href="https://metacpan.org/pod/DBIx::Class::Async::Schema"><strong>DBIx::Class::Async::Schema</strong></a></li>
+<li><a href="https://metacpan.org/pod/DBIx::Class::Async::ResultSet"><strong>DBIx::Class::Async::ResultSet</strong></a></li>
+<li><a href="https://metacpan.org/pod/DBIx::Class::Async::Row"><strong>DBIx::Class::Async::Row</strong></a></li>
+<li><a href="https://metacpan.org/pod/DBIx::Class::Async::Storage"><strong>DBIx::Class::Async::Storage</strong></a></li>
+<li><a href="https://metacpan.org/pod/DBIx::Class::Async::Cursor"><strong>DBIx::Class::Async::Cursor</strong></a></li>
+</ul>
+<p>In this post, I will try to take you through the changes.</p>
+<p>For the demo purpose, I have created the following schema exactly how you would for <code>DBIx::Class</code>:</p>
+<pre><code>lib/
+└── MyApp
+    ├── Schema
+    │   └── Result
+    │       ├── Post.pm
+    │       └── User.pm
+    └── Schema.pm
+</code></pre>
+<br>
+<h4 id="myappschema"><strong>MyApp::Schema</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> MyApp::Schema;
+
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::Schema&#39;</span>;
+
+__PACKAGE__<span style="color:#f92672">-&gt;</span>load_namespaces;
+
+<span style="color:#ae81ff">1</span>;
+</code></pre></div><hr>
+<br>
+<h4 id="myappschemaresultuser"><strong>MyApp::Schema::Result::User</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> MyApp::Schema::Result::User;
+
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::Core&#39;</span>;
+
+__PACKAGE__<span style="color:#f92672">-&gt;</span>table(<span style="color:#e6db74">&#39;users&#39;</span>);
+__PACKAGE__<span style="color:#f92672">-&gt;</span>add_columns(
+    id <span style="color:#f92672">=&gt;</span> {
+        data_type         <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>,
+        is_auto_increment <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        is_nullable       <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>,
+    },
+    username <span style="color:#f92672">=&gt;</span> {
+        data_type   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;varchar&#39;</span>,
+        size        <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">50</span>,
+        is_nullable <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>,
+    },
+    email <span style="color:#f92672">=&gt;</span> {
+        data_type   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;varchar&#39;</span>,
+        size        <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">100</span>,
+        is_nullable <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>,
+    },
+    active <span style="color:#f92672">=&gt;</span> {
+        data_type     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>,
+        default_value <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        is_nullable   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>,
+    },
+);
+
+__PACKAGE__<span style="color:#f92672">-&gt;</span>set_primary_key(<span style="color:#e6db74">&#39;id&#39;</span>);
+__PACKAGE__<span style="color:#f92672">-&gt;</span>add_unique_constraint([<span style="color:#e6db74">&#39;email&#39;</span>]);
+__PACKAGE__<span style="color:#f92672">-&gt;</span>add_unique_constraint([<span style="color:#e6db74">&#39;username&#39;</span>]);
+
+__PACKAGE__<span style="color:#f92672">-&gt;</span>has_many(
+    <span style="color:#e6db74">&#39;posts&#39;</span>,
+    <span style="color:#e6db74">&#39;MyApp::Schema::Result::Post&#39;</span>,
+    <span style="color:#e6db74">&#39;user_id&#39;</span>
+);
+
+<span style="color:#ae81ff">1</span>;
+</code></pre></div><hr>
+<br>
+<h4 id="myappschemaresultpost"><strong>MyApp::Schema::Result::Post</strong></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> MyApp::Schema::Result::Post;
+
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::Core&#39;</span>;
+
+__PACKAGE__<span style="color:#f92672">-&gt;</span>table(<span style="color:#e6db74">&#39;posts&#39;</span>);
+__PACKAGE__<span style="color:#f92672">-&gt;</span>add_columns(
+    id <span style="color:#f92672">=&gt;</span> {
+        data_type         <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>,
+        is_auto_increment <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        is_nullable       <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>,
+    },
+    user_id <span style="color:#f92672">=&gt;</span> {
+        data_type      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>,
+        is_nullable    <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>,
+        is_foreign_key <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+    },
+    title <span style="color:#f92672">=&gt;</span> {
+        data_type   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;varchar&#39;</span>,
+        size        <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">255</span>,
+        is_nullable <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>,
+    },
+);
+
+__PACKAGE__<span style="color:#f92672">-&gt;</span>set_primary_key(<span style="color:#e6db74">&#39;id&#39;</span>);
+__PACKAGE__<span style="color:#f92672">-&gt;</span>add_unique_constraint([<span style="color:#e6db74">&#39;user_id&#39;</span>, <span style="color:#e6db74">&#39;title&#39;</span>]);
+
+__PACKAGE__<span style="color:#f92672">-&gt;</span>belongs_to(
+    <span style="color:#e6db74">&#39;user&#39;</span>,
+    <span style="color:#e6db74">&#39;MyApp::Schema::Result::User&#39;</span>,
+    <span style="color:#e6db74">&#39;user_id&#39;</span>
+);
+
+<span style="color:#ae81ff">1</span>;
+</code></pre></div><br>
+<h3 id="using-dbixclassasync"><strong>Using DBIx::Class::Async</strong></h3>
+<hr>
+<p>First I will show you some asynchronous action from <code>DBIx::Class::Async</code>.</p>
+<p>Let&rsquo;s create <code>async db</code> handler first as below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> IO::Async::Loop;
+<span style="color:#66d9ef">use</span> DBIx::Class::Async;
+
+<span style="color:#66d9ef">my</span> $loop <span style="color:#f92672">=</span> IO::Async::Loop<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#66d9ef">my</span> $db   <span style="color:#f92672">=</span> DBIx::Class::Async<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+    schema_class <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;MyApp::Schema&#39;</span>,
+    connect_info <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;dbi:SQLite:dbname=myapp.db&#39;</span>, undef, undef, {}],
+    workers      <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+    loop         <span style="color:#f92672">=&gt;</span> $loop,
+);
+</code></pre></div><br>
+<p>Now I will create a <code>user</code> and a <code>post</code> for the newly created user.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> await $db<span style="color:#f92672">-&gt;</span>create(
+   <span style="color:#e6db74">&#39;User&#39;</span>,
+   { username <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;New User&#39;</span>, email <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;new@example.com&#39;</span> }
+);
+<span style="color:#66d9ef">my</span> $user_id <span style="color:#f92672">=</span> $user<span style="color:#f92672">-&gt;</span>{id};
+
+<span style="color:#66d9ef">my</span> $post <span style="color:#f92672">=</span> await $db<span style="color:#f92672">-&gt;</span>create(
+   <span style="color:#e6db74">&#39;Post&#39;</span>,
+   { user_id <span style="color:#f92672">=&gt;</span> $user_id,
+     title   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;My First Post&#39;</span>,
+   });
+<span style="color:#66d9ef">my</span> $post_id <span style="color:#f92672">=</span> $post<span style="color:#f92672">-&gt;</span>{id};
+
+say <span style="color:#e6db74">&#34;User Id: $user_id&#34;</span>
+say <span style="color:#e6db74">&#34;Post Id: $post_id&#34;</span>;
+</code></pre></div><br>
+<p><strong>NOTE:</strong> The <code>DBIx::Class::Async</code> returns a hash for the newly create object.</p>
+<p>I am using keyword <code>await</code> for each operation and for this you will have to <code>use Future::AsyncAwait;</code>.</p>
+<p>You can checkout other functions as documented in the <a href="https://metacpan.org/pod/DBIx::Class::Async"><strong>pod document</strong></a>. I want to focus more on the updates to <code>DBIx::Class::Async</code> in this post.</p>
+<br>
+<h3 id="using-dbixclassasyncschema"><strong>Using DBIx::Class::Async::Schema</strong></h3>
+<hr>
+<p>Here I will create <code>async schema</code> as below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> IO::Async::Loop;
+<span style="color:#66d9ef">use</span> DBIx::Class::Async::Schema;
+
+<span style="color:#66d9ef">my</span> $loop   <span style="color:#f92672">=</span> IO::Async::Loop<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#66d9ef">my</span> $schema <span style="color:#f92672">=</span> DBIx::Class::Async::Schema<span style="color:#f92672">-&gt;</span>connect(
+    <span style="color:#e6db74">&#34;dbi:SQLite:dbname=myapp.db&#34;</span>, undef, undef, {},
+    {
+        workers      <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        schema_class <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;MyApp::Schema&#39;</span>,
+        loop         <span style="color:#f92672">=&gt;</span> $loop
+    }
+);
+</code></pre></div><br>
+<p>I will now create <code>user</code> and <code>post</code> like below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> await $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)
+    <span style="color:#f92672">-&gt;</span>create({
+        username <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Test User&#39;</span>,
+        email    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;test@example.com&#39;</span>,
+        active   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+});
+
+<span style="color:#66d9ef">my</span> $post <span style="color:#f92672">=</span> await $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Post&#39;</span>)
+    <span style="color:#f92672">-&gt;</span>create({
+        user_id  <span style="color:#f92672">=&gt;</span> $user<span style="color:#f92672">-&gt;</span>id,
+        title    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;My First Post&#39;</span>,
+});
+
+say $user<span style="color:#f92672">-&gt;</span>id;
+say $post<span style="color:#f92672">-&gt;</span>id;
+</code></pre></div><br>
+<p>Here <code>$user</code> is an object of type <code>DBIx::Class::Async::Row::User</code> and <code>$post</code> is an object of type <code>DBIx::Class::Async::Row::Post</code>.</p>
+<br>
+<h4 id="this-is-a-big-improvement-imho"><strong>This is a big improvement (imho).</strong></h4>
+<br>
+<p>Let&rsquo;s do the same using <code>create_related</code> function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> await $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)
+    <span style="color:#f92672">-&gt;</span>create({
+        username <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;john_doe&#39;</span>,
+        email    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;john@example.com&#39;</span>,
+        active   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+});
+
+<span style="color:#66d9ef">my</span> $post <span style="color:#f92672">=</span> await $user<span style="color:#f92672">-&gt;</span>create_related(<span style="color:#e6db74">&#39;posts&#39;</span>,
+    {
+        title    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;My First Post&#39;</span>,
+    });
+
+say $user<span style="color:#f92672">-&gt;</span>id;
+say $post<span style="color:#f92672">-&gt;</span>id;
+</code></pre></div><br>
+<p>I will now show you <code>prefetch</code> function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> await $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)
+    <span style="color:#f92672">-&gt;</span>prefetch(<span style="color:#e6db74">&#39;posts&#39;</span>)
+    <span style="color:#f92672">-&gt;</span>find({ active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> });
+
+<span style="color:#66d9ef">my</span> $posts <span style="color:#f92672">=</span> $user<span style="color:#f92672">-&gt;</span>posts<span style="color:#f92672">-&gt;</span>all<span style="color:#f92672">-&gt;</span>get;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $post (@$posts) {
+    say $post<span style="color:#f92672">-&gt;</span>title;
+}
+</code></pre></div><br>
+<p>and one more variant of <code>prefetch</code> as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $posts <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Post&#39;</span>)
+    <span style="color:#f92672">-&gt;</span>search(
+    {},
+    { prefetch <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;user&#39;</span> }
+)<span style="color:#f92672">-&gt;</span>all<span style="color:#f92672">-&gt;</span>get;
+
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $post (@$posts) {
+    say $post<span style="color:#f92672">-&gt;</span>title;
+}
+</code></pre></div><br>
+<p>Let me show you <code>next</code> function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)
+    <span style="color:#f92672">-&gt;</span>search({ active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> });
+
+<span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> $user<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
+    say <span style="color:#e6db74">&#34;User Id:&#34;</span>, $row<span style="color:#f92672">-&gt;</span>get_column(<span style="color:#e6db74">&#39;id&#39;</span>);
+}
+</code></pre></div><br>
+<p>Finally <code>cursor</code> in action as below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $cursor <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>cursor;
+
+<span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> await $cursor<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
+    say <span style="color:#e6db74">&#34;Processing user: &#34;</span> <span style="color:#f92672">.</span> $user<span style="color:#f92672">-&gt;</span>id;
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Do some async work with the user</span>
+    <span style="color:#75715e">#</span>
+}
+</code></pre></div><br>
+<h4 id="this-is-still-experimental-but-i-would-love-to-hear-your-views-i-am-open-to-suggestions"><strong>This is still experimental but I would love to hear your views. I am open to suggestions.</strong></h4>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2026
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
