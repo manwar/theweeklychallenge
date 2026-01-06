@@ -289,6 +289,8 @@ say $post->id;
 
 I will now show you `prefetch` function.
 
+<br>
+
 ```perl
 my $user = await $schema->resultset('User')
     ->prefetch('posts')
@@ -321,6 +323,8 @@ foreach my $post (@$posts) {
 <br>
 
 Let me show you `next` function.
+
+<br>
 
 ```perl
 my $user = $schema->resultset('User')
