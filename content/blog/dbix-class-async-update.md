@@ -198,7 +198,7 @@ my $post = await $db->create(
    });
 my $post_id = $post->{id};
 
-say "User Id: $user_id"
+say "User Id: $user_id";
 say "Post Id: $post_id";
 ```
 
