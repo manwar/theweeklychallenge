@@ -39,7 +39,7 @@ The latest release now have these packages:
 
 In this post, I will try to take you through the changes.
 
-For the demo purpose, I have created the following schema exactly how you would for `DBIx::Class`:
+For the demo purpose, I have created the following schema exactly how you would create for `DBIx::Class`:
 
     lib/
     └── MyApp
