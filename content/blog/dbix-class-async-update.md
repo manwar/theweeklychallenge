@@ -316,6 +316,7 @@ my $posts = $schema->resultset('Post')
 )->all->get;
 
 foreach my $post (@$posts) {
+    say $post->user->get->id;
     say $post->title;
 }
 ```
