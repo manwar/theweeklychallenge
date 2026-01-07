@@ -249,14 +249,19 @@ my $user = await $schema->resultset('User')
 my $post = await $schema->resultset('Post')
     ->create({
         user_id  => $user->id,
-        title    => 'My First Post',
-});
+        title    => 'My First Post' })
+    ->then(sub {
+        my ($row) = shift;
+        return Future->done($row);
+    });
 
 say $user->id;
 say $post->id;
 ```
 
 <br>
+
+I showed two ways to perform similar task. You pick your preferred choice.
 
 Here `$user` is an object of type `DBIx::Class::Async::Row::User` and `$post` is an object of type `DBIx::Class::Async::Row::Post`.
 

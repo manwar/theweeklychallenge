@@ -488,12 +488,16 @@ say <span style="color:#e6db74">&#34;Post Id: $post_id&#34;</span>;
 <span style="color:#66d9ef">my</span> $post <span style="color:#f92672">=</span> await $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Post&#39;</span>)
     <span style="color:#f92672">-&gt;</span>create({
         user_id  <span style="color:#f92672">=&gt;</span> $user<span style="color:#f92672">-&gt;</span>id,
-        title    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;My First Post&#39;</span>,
-});
+        title    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;My First Post&#39;</span> })
+    <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">then</span>(<span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">my</span> ($row) <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">return</span> Future<span style="color:#f92672">-&gt;</span>done($row);
+    });
 
 say $user<span style="color:#f92672">-&gt;</span>id;
 say $post<span style="color:#f92672">-&gt;</span>id;
 </code></pre></div><br>
+<p>I showed two ways to perform similar task. You pick your preferred choice.</p>
 <p>Here <code>$user</code> is an object of type <code>DBIx::Class::Async::Row::User</code> and <code>$post</code> is an object of type <code>DBIx::Class::Async::Row::Post</code>.</p>
 <br>
 <h4 id="this-is-a-big-improvement-imho"><strong>This is a big improvement (imho).</strong></h4>
