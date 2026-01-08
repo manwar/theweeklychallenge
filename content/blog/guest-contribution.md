@@ -1170,6 +1170,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-355/packy-anderson/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-355/packy-anderson/python/ch-2.py) in **Python**.
 
+##### **Patrick Steele** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-355/prsteele/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-355/prsteele/uiua/ch-2.ua) in **Uiua**.
+
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-355/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-355/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
 ##### **Piotr Kolasinski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-355/nutilius/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-355/nutilius/python/ch-2.py) in **Python**.
