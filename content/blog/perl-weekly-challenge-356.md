@@ -46,6 +46,8 @@ Returning to contributions, I am thrilled to begin the year with a bang. We near
 
 As of today, we have `332` regular contributors and `34` guest contributors. Every week, I aim for `100+` regular contributions and `50+` guest contributions. And when we reach that target, I am the happiest person.
 
+I just noticed that we have received `6,600` blog post to date, which is especially impressive considering the time period when not many people were writing about `Perl` or `Raku`. Well done `Team PWC`.
+
 Last but not least, thank you, `Simon Green`, for the cool challenge this week `Who Wins`.
 
 ***
