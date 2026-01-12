@@ -28,7 +28,7 @@ tags: ["Perl", "Raku"]
 
 Welcome to the `Week #356` of `The Weekly Challenge`.
 
-For us, officially, this is the first week of `2026` and what a great way to begin the journey - by welcoming two new members, [**Piotr Kolasinski**](https://github.com/nutilius) and [**Patrick Steele**](https://github.com/prsteele).
+For us, officially, `Week #355` was the first week of `2026` and what a great way to begin the journey - by welcoming two new members, [**Piotr Kolasinski**](https://github.com/nutilius) and [**Patrick Steele**](https://github.com/prsteele).
 
 Thank you, `Piotr`, for your first contributions in [**Python**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-355/nutilius/python).
 
