@@ -1181,6 +1181,10 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-358/mohammad-anwar/python/ch-1.py) in **Python**.
 
+##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-358/packy-anderson/elixir/ch-1.exs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-358/packy-anderson/elixir/ch-2.exs) in **Elixir**.
+
+##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-358/packy-anderson/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-358/packy-anderson/python/ch-2.py) in **Python**.
+
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-358/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-358/paulo-custodio/c/ch-2.c) in **C**.
 
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-358/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-358/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
