@@ -28,6 +28,7 @@ tags: ["Perl", "Raku"]
 
 Welcome to the `Week #359` of `The Weekly Challenge`.
 
+Another extremely busy week for me, sorry. Keep contributing and sharing knowlege as always. Your energy never lets me down.
 
 ***
 
@@ -98,7 +99,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `355` &nbsp;&nbsp;|&nbsp;&nbsp; 51 &nbsp;&nbsp;|&nbsp;&nbsp; 23 &nbsp;&nbsp;|&nbsp;&nbsp; 24 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `356` &nbsp;&nbsp;|&nbsp;&nbsp; 44 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `357` &nbsp;&nbsp;|&nbsp;&nbsp; 50 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `358` &nbsp;&nbsp;|&nbsp;&nbsp;  &nbsp;&nbsp;|&nbsp;&nbsp;  &nbsp;&nbsp;|&nbsp;&nbsp;  &nbsp;&nbsp;|
+|&nbsp;&nbsp; `358` &nbsp;&nbsp;|&nbsp;&nbsp; 51 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|
 
 <br>
 
@@ -110,8 +111,8 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `354` &nbsp;&nbsp;|&nbsp;&nbsp; 15 &nbsp;&nbsp;|&nbsp;&nbsp; 61 &nbsp;&nbsp;|&nbsp;&nbsp; 18 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `355` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 69 &nbsp;&nbsp;|&nbsp;&nbsp; 21 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `356` &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|&nbsp;&nbsp; 39 &nbsp;&nbsp;|&nbsp;&nbsp; 11 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `357` &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|&nbsp;&nbsp; 67 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `358` &nbsp;&nbsp;|&nbsp;&nbsp;  &nbsp;&nbsp;|&nbsp;&nbsp;  &nbsp;&nbsp;|&nbsp;&nbsp;  &nbsp;&nbsp;|
+|&nbsp;&nbsp; `357` &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|&nbsp;&nbsp; 69 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `358` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 69 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
 
 <br>
 
@@ -120,16 +121,16 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 
 Do you see your favourite language in the `Top #10`? If not then why not contribute regularly and make it to the top.
 
-     1. Python     (4047)
-     2. Rust       (1092)
-     3. Ruby       (864)
-     4. Haskell    (855)
-     5. Lua        (830)
-     6. C++        (686)
-     7. Go         (624)
-     8. JavaScript (616)
-     9. C          (600)
-    10. BQN        (499)
+     1. Python     (4077)
+     2. Rust       (1096)
+     3. Ruby       (866)
+     4. Haskell    (859)
+     5. Lua        (834)
+     6. C++        (688)
+     7. Go         (628)
+     8. JavaScript (618)
+     9. C          (606)
+    10. BQN        (501)
 
 <br>
 
@@ -150,9 +151,9 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 ### [GitHub](https://github.com/manwar/perlweeklychallenge-club) Repository Stats
 ***
 
-#### 1. Commits: 47,502 (`+111`)
-#### 2. Pull Requests: 13,428 (`+43`)
-#### 3. Contributors: 273 (`+1`)
+#### 1. Commits: 47,603 (`+101`)
+#### 2. Pull Requests: 13,467 (`+39`)
+#### 3. Contributors: 273
 #### 4. Fork: 350
 #### 5. Stars: 209
 
