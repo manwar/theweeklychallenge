@@ -341,7 +341,7 @@
 <br>
 <h2 id="phase-2-the-object-hybrid">Phase 2: The Object Hybrid</h2>
 <hr>
-<p>We tried to bring back the magic by creating a custom <code>Row.pm</code>. This was a <strong>&ldquo;fat&rdquo;</strong> object that tried to mimic a real <strong>DBIC row</strong>.</p>
+<p>We tried to bring back the magic by creating a custom <strong>Row.pm</strong>. This was a <strong>&ldquo;fat&rdquo;</strong> object that tried to mimic a real <strong>DBIC row</strong>.</p>
 <br>
 <h3 id="the-strategy-dynamic-accessors"><strong>The Strategy: Dynamic Accessors</strong></h3>
 <br>
@@ -359,7 +359,7 @@
 </code></pre></div><br>
 <h3 id="the-breaking-point"><strong>The Breaking Point</strong></h3>
 <br>
-<p>This phase taught us a hard lesson about <strong>Memory Leaks</strong>. Because every <code>Row</code> object held a reference to the <strong>schema</strong> and the <strong>async_db</strong> connection, we created massive circular dependencies. In a resultset of <code>1,000 rows</code>, the memory usage skyrocketed, and the <strong>&ldquo;Great Worker Leak&rdquo;</strong> began.</p>
+<p>This phase taught us a hard lesson about <strong>Memory Leaks</strong>. Because every <strong>Row</strong> object held a reference to the <strong>schema</strong> and the <strong>async_db</strong> connection, we created massive circular dependencies. In a resultset of <strong>1,000 rows</strong>, the memory usage skyrocketed, and the <strong>&ldquo;Great Worker Leak&rdquo;</strong> began.</p>
 <br>
 <h2 id="phase-3-the-bridge--worker-design">Phase 3: The Bridge &amp; Worker Design</h2>
 <hr>
@@ -512,7 +512,7 @@ $heartbeat<span style="color:#f92672">-&gt;</span>start;
 $loop<span style="color:#f92672">-&gt;</span>run;
 
 </code></pre></div><br>
-<h4 id="output"><strong>Output</strong></h4>
+<h3 id="output"><strong>Output</strong></h3>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Heartbeat: Loop is alive at 1.02 seconds
 Heartbeat: Loop is alive at 2.05 seconds
@@ -933,7 +933,7 @@ Time Saved:         0.6239 seconds <span style="color:#f92672">(</span>99.2% imp
 <h3 id="summary"><strong>SUMMARY</strong></h3>
 <br>
 <p>Across all 3 test runs:</p>
-<p>Performance Results:</p>
+<h3 id="performance-results"><strong>Performance Results:</strong></h3>
 <pre><code>- Average Speedup:     83.69x faster
 - Maximum Speedup:     131.50x faster
 - Total Time (Sync):   1.1041 seconds
@@ -941,12 +941,12 @@ Time Saved:         0.6239 seconds <span style="color:#f92672">(</span>99.2% imp
 - Time Saved:          0.9383 seconds (85.0% improvement)
 </code></pre>
 <br>
-<p>Event Loop Health:</p>
+<h3 id="event-loop-health"><strong>Event Loop Health:</strong></h3>
 <pre><code>- Average Responsiveness: 32.7%
 - Sequential Blocking:    0.0% (completely blocked)
 </code></pre>
 <br>
-<p>What This Means:</p>
+<h3 id="what-this-means"><strong>What This Means:</strong></h3>
 <pre><code>- TRUE parallel query execution across network connections
 - Exceptional performance: 84x faster with worker pool
 - Worker process caching and connection reuse is highly effective
@@ -954,7 +954,7 @@ Time Saved:         0.6239 seconds <span style="color:#f92672">(</span>99.2% imp
 - Better scalability as query count increases
 </code></pre>
 <br>
-<p>Key Insight:</p>
+<h3 id="key-insight"><strong>Key Insight:</strong></h3>
 <pre><code>- Worker pool caching delivered exceptional results!
 - After warm-up, persistent workers with cached connections and prepared statements achieved extraordinary parallel throughput.
 </code></pre>

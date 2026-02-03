@@ -73,7 +73,7 @@ In the beginning (**v0.01**), the goal was simple: get data out of the database 
 ## Phase 2: The Object Hybrid
 ***
 
-We tried to bring back the magic by creating a custom `Row.pm`. This was a **"fat"** object that tried to mimic a real **DBIC row**.
+We tried to bring back the magic by creating a custom **Row.pm**. This was a **"fat"** object that tried to mimic a real **DBIC row**.
 
 <br>
 
@@ -103,7 +103,7 @@ sub _ensure_accessors {
 
 <br>
 
-This phase taught us a hard lesson about **Memory Leaks**. Because every `Row` object held a reference to the **schema** and the **async_db** connection, we created massive circular dependencies. In a resultset of `1,000 rows`, the memory usage skyrocketed, and the **"Great Worker Leak"** began.
+This phase taught us a hard lesson about **Memory Leaks**. Because every **Row** object held a reference to the **schema** and the **async_db** connection, we created massive circular dependencies. In a resultset of **1,000 rows**, the memory usage skyrocketed, and the **"Great Worker Leak"** began.
 
 <br>
 
@@ -305,7 +305,7 @@ $loop->run;
 
 <br>
 
-#### **Output**
+### **Output**
 
 <br>
 
@@ -814,7 +814,7 @@ Time Saved:         0.6239 seconds (99.2% improvement)
 
 Across all 3 test runs:
 
-Performance Results:
+### **Performance Results:**
 
     - Average Speedup:     83.69x faster
     - Maximum Speedup:     131.50x faster
@@ -824,14 +824,14 @@ Performance Results:
 
 <br>
 
-Event Loop Health:
+### **Event Loop Health:**
 
     - Average Responsiveness: 32.7%
     - Sequential Blocking:    0.0% (completely blocked)
 
 <br>
 
-What This Means:
+### **What This Means:**
 
     - TRUE parallel query execution across network connections
     - Exceptional performance: 84x faster with worker pool
@@ -841,7 +841,7 @@ What This Means:
 
 <br>
 
-Key Insight:
+### **Key Insight:**
 
     - Worker pool caching delivered exceptional results!
     - After warm-up, persistent workers with cached connections and prepared statements achieved extraordinary parallel throughput.
