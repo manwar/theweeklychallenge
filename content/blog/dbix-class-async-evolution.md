@@ -55,7 +55,7 @@ Developing the foundation for **DBIx::Class::Async** proved to be a massive unde
 
 The foundation is now laid. With the release of **v0.50**, I am thrilled to return to the manuscript and finish the book. This release isn't just a new tool; it's the missing chapter I needed to complete the story of modern DBIC.
 
-This blog post captures the transformation of [**DBIx::Class::Async**](https://metacpan.org/dist/DBIx-Class-Async) from an experimental wrapper to a high-performance, mature asynchronous `ORM`.
+This blog post captures the transformation of [**DBIx::Class::Async**](https://metacpan.org/dist/DBIx-Class-Async) from an experimental wrapper to a high-performance, mature asynchronous **ORM**.
 
 If you’ve ever tried to mix [**DBIx::Class**](https://metacpan.org/dist/DBIx-Class) (DBIC) with an asynchronous event loop like [**IO::Async**](https://metacpan.org/pod/IO::Async) or [**Mojo::IOLoop**](https://metacpan.org/pod/Mojo::IOLoop), you’ve hit the **"DBI Ceiling"**. No matter how fast your event loop is, standard database drivers are blocking. One heavy query freezes your entire application.
 
@@ -66,7 +66,7 @@ Today, I’m walking through the journey of how we broke that ceiling, moving fr
 ## Phase 1: The Async Hash
 ***
 
-In the beginning (**v0.01**), the goal was simple: get data out of the database without blocking. The first iteration returned raw hashrefs. It was fast, but it didn't feel like Perl. We lost the **"magic"** of DBIC—the relationships, the accessors, and the object-oriented feel.
+In the beginning (**v0.01**), the goal was simple: get data out of the database without blocking. The first iteration returned raw hashrefs. It was fast, but it didn't feel like Perl. We lost the **"magic"** of DBIC, the relationships, the accessors, and the object-oriented feel.
 
 <br>
 
