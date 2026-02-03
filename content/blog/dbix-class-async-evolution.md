@@ -141,7 +141,7 @@ One of the primary goals of **v0.50** was to ensure that moving to an asynchrono
 
 <br>
 
-#### **Seamless Integration**
+### **Seamless Integration**
 
 <br>
 
@@ -165,7 +165,7 @@ my $schema = DBIx::Class::Async::Schema->connect(
 
 <br>
 
-#### **Writing Non-Blocking Code**
+### **Writing Non-Blocking Code**
 
 <br>
 
@@ -173,7 +173,7 @@ Once connected, you can use the modern async/await pattern (via [**Future::Async
 
 <br>
 
-#### **1. The "Yielding" Difference**
+### **1. The "Yielding" Difference**
 
 <br>
 
@@ -372,7 +372,7 @@ $memory_usage->dump;
 
 <br>
 
-#### **Output**
+### **Output**
 
 <br>
 
@@ -398,7 +398,7 @@ Processed 5000 rows...
 
 <br>
 
-#### **1. The "Don't Wrap, Isolate" Rule**
+### **1. The "Don't Wrap, Isolate" Rule**
 
 <br>
 
@@ -406,7 +406,7 @@ We initially tried to wrap **DBI** calls in **Futures**. We learned that wrappin
 
 <br>
 
-#### **2. Serialisation is the Tax of Success**
+### **2. Serialisation is the Tax of Success**
 
 <br>
 
@@ -414,7 +414,7 @@ Moving to a worker model meant we had to pay a **"Serialisation Tax"**. We spent
 
 <br>
 
-#### **3. API Symmetry Matters**
+### **3. API Symmetry Matters**
 
 <br>
 
@@ -422,7 +422,7 @@ The hardest part wasn't the backend logic, it was making the **$schema->resultse
 
 <br>
 
-#### **4. Health Checks are Mandatory**
+### **4. Health Checks are Mandatory**
 
 <br>
 
@@ -438,7 +438,7 @@ Numbers in a vacuum can be misleading, so we put **DBIx::Class::Async v0.50** th
 
 <br>
 
-#### **Test Setup**
+### **Test Setup**
 
 <br>
 
@@ -721,7 +721,7 @@ $async_schema->disconnect;
 
 <br>
 
-#### **Benchmark with 50 queries**
+### **Benchmark with 50 queries**
 
 <br>
 
@@ -750,7 +750,7 @@ Time Saved:         0.0047 seconds (2.9% improvement)
 
 <Br>
 
-#### **Benchmark with 100 queries**
+### **Benchmark with 100 queries**
 
 <br>
 
@@ -779,7 +779,7 @@ Time Saved:         0.3097 seconds (99.2% improvement)
 
 <br>
 
-#### **Benchmark with 200 queries**
+### **Benchmark with 200 queries**
 
 <br>
 
@@ -853,7 +853,7 @@ Key Insight:
 
 <br>
 
-#### **Does this work with any DBI driver (PostgreSQL, MySQL, SQLite)?**
+### **Does this work with any DBI driver (PostgreSQL, MySQL, SQLite)?**
 
 <br>
 
@@ -861,7 +861,7 @@ Yes. Because the blocking DBI calls are isolated within the **Worker** processes
 
 <br>
 
-#### **How are transactions handled?**
+### **How are transactions handled?**
 
 <br>
 
@@ -869,7 +869,7 @@ Transactions are handled via a specialised **txn_do** method. Since a transactio
 
 <br>
 
-#### **What is the performance overhead of the Worker pool?**
+### **What is the performance overhead of the Worker pool?**
 
 <br>
 
@@ -877,7 +877,7 @@ There is a small serialisation **"tax"** when moving data between the **Worker**
 
 <br>
 
-#### **Can I still use DBIC ResultSource magic (like relationships)?**
+### **Can I still use DBIC ResultSource magic (like relationships)?**
 
 <br>
 
