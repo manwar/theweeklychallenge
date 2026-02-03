@@ -122,7 +122,7 @@ We moved to a **Worker-Pool Model**. The main process (**The Bridge**) acts as a
 
 <br>
 
-#### **Why v0.50 is more mature now?**
+### **Why v0.50 is more mature now?**
 
 <br>
 
