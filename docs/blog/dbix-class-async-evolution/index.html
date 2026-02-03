@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+<script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Evolution of DBIx::Class::Async"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/dbix-class-async-evolution/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="The evolution of DBIx::Class::Async module."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="The evolution of DBIx::Class::Async module.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/dbix-class-async-evolution/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Evolution of DBIx::Class::Async</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row" style="color:black">
+          <div class="col-xs-12 text-center">
+            <div id="perl-ad-target" class="center-block"></div>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Evolution of DBIx::Class::Async</h2>
+                    <div class="portfolio-meta">
+                        <span>Tuesday, Feb 3, 2026</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/dbix-class-async-evolution.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<h4 id="tldr"><strong>TL;DR</strong></h4>
+<hr>
+<p>How do you make the world&rsquo;s best <code>Perl ORM</code> non-blocking without rewriting your entire schema? We’ve solved the <strong>&ldquo;DBI Ceiling&rdquo;</strong> by isolating <a href="https://metacpan.org/dist/DBIx-Class"><strong>DBIx::Class</strong></a> in a worker pool. Keep your existing <code>Result</code> classes and use <code>$schema-&gt;await()</code> to run queries without stopping your heartbeats.</p>
+<br>
+<h3 id="nbspnbsp1-nbspnbspintroductionintroduction"><a href="#introduction">  1.   <strong>Introduction</strong></a></h3>
+<h3 id="nbspnbsp2-nbspnbspphase-1-the-async-hashphase-1-the-async-hash"><a href="#phase-1-the-async-hash">  2.   <strong>Phase 1: The Async Hash</strong></a></h3>
+<h3 id="nbspnbsp3-nbspnbspphase-2-the-object-hybridphase-2-the-object-hybrid"><a href="#phase-2-the-object-hybrid">  3.   <strong>Phase 2: The Object Hybrid</strong></a></h3>
+<h3 id="nbspnbsp4-nbspnbspphase-3-the-bridge--worker-designphase-3-the-bridge--worker-design"><a href="#phase-3-the-bridge--worker-design">  4.   <strong>Phase 3: The Bridge &amp; Worker Design</strong></a></h3>
+<h3 id="nbspnbsp5-nbspnbspmodern-apimodern-api"><a href="#modern-api">  5.   <strong>Modern API</strong></a></h3>
+<h3 id="nbspnbsp6-nbspnbsplessons-learnedlessons-learned"><a href="#lessons-learned">  6.   <strong>Lessons Learned</strong></a></h3>
+<h3 id="nbspnbsp7-nbspnbsploop-freeze-testloop-freeze-test"><a href="#loop-freeze-test">  7.   <strong>Loop Freeze Test</strong></a></h3>
+<h3 id="nbspnbsp8-nbspnbspstress-teststress-test"><a href="#stress-test">  8.   <strong>Stress Test</strong></a></h3>
+<h3 id="nbspnbsp9-nbspnbspfinal-retrospectivefinal-retrospective"><a href="#final-retrospective">  9.   <strong>Final Retrospective</strong></a></h3>
+<h3 id="10-nbspnbspbenchmarksbenchmarks"><a href="#benchmarks">10.   <strong>Benchmarks</strong></a></h3>
+<h3 id="11-nbspnbspfrequently-asked-questionsfrequently-asked-questions"><a href="#frequently-asked-questions">11.   <strong>Frequently Asked Questions</strong></a></h3>
+<br>
+<hr>
+<br>
+<h2 id="introduction">Introduction</h2>
+<hr>
+<p>Before we dive into the details, I want to clarify the philosophy behind this release.</p>
+<br>
+<blockquote>
+<p><strong>DBIx::Class::Async</strong> is not a replacement for <strong>DBIx::Class</strong>, it is a tribute to it.</p>
+</blockquote>
+<p><strong>DBIx::Class</strong> remains the most robust and elegant <strong>ORM</strong> in the Perl ecosystem. However, as our applications move toward increasingly asynchronous, event-driven architectures, the need to bridge the gap between <strong>&ldquo;standard&rdquo;</strong> blocking <strong>DBI</strong> calls and the non-blocking event loop became undeniable. This project is about taking that legendary stability and pushing it one step further into the high-concurrency era.</p>
+<p>For those following my work, you know I have been deep in the trenches writing my second book on <strong>DBIx::Class</strong>. I want to share that I made the difficult decision to put the manuscript on hold over the last one month.</p>
+<p>Developing the foundation for <strong>DBIx::Class::Async</strong> proved to be a massive undertaking that demanded all of my <strong>FREE</strong> time. I believed it was vital to lay this technical foundation first, ensuring that when the book is finally in your hands, it covers the full spectrum of modern Perl database interaction, from classic synchronous patterns to these new parallel horizons.</p>
+<p>The foundation is now laid. With the release of <strong>v0.50</strong>, I am thrilled to return to the manuscript and finish the book. This release isn&rsquo;t just a new tool; it&rsquo;s the missing chapter I needed to complete the story of modern DBIC.</p>
+<p>This blog post captures the transformation of <a href="https://metacpan.org/dist/DBIx-Class-Async"><strong>DBIx::Class::Async</strong></a> from an experimental wrapper to a high-performance, mature asynchronous <code>ORM</code>.</p>
+<p>If you’ve ever tried to mix <a href="https://metacpan.org/dist/DBIx-Class"><strong>DBIx::Class</strong></a> (DBIC) with an asynchronous event loop like <a href="https://metacpan.org/pod/IO::Async"><strong>IO::Async</strong></a> or <a href="https://metacpan.org/pod/Mojo::IOLoop"><strong>Mojo::IOLoop</strong></a>, you’ve hit the <strong>&ldquo;DBI Ceiling&rdquo;</strong>. No matter how fast your event loop is, standard database drivers are blocking. One heavy query freezes your entire application.</p>
+<p>Today, I’m walking through the journey of how we broke that ceiling, moving from a simple <strong>&ldquo;Async Hash&rdquo;</strong> to a sophisticated <strong>Bridge &amp; Worker</strong> architecture.</p>
+<br>
+<h2 id="phase-1-the-async-hash">Phase 1: The Async Hash</h2>
+<hr>
+<p>In the beginning (<strong>v0.01</strong>), the goal was simple: get data out of the database without blocking. The first iteration returned raw hashrefs. It was fast, but it didn&rsquo;t feel like Perl. We lost the <strong>&ldquo;magic&rdquo;</strong> of DBIC—the relationships, the accessors, and the object-oriented feel.</p>
+<br>
+<h2 id="phase-2-the-object-hybrid">Phase 2: The Object Hybrid</h2>
+<hr>
+<p>We tried to bring back the magic by creating a custom <code>Row.pm</code>. This was a <strong>&ldquo;fat&rdquo;</strong> object that tried to mimic a real <strong>DBIC row</strong>.</p>
+<br>
+<h3 id="the-strategy-dynamic-accessors"><strong>The Strategy: Dynamic Accessors</strong></h3>
+<br>
+<p>We used <code>AUTOLOAD</code> and <code>symbol table</code> manipulation to create methods on the fly. If you called <code>$user-&gt;name</code>, the row would look into its internal <code>_data</code> hashref and return the value.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># v0.02</span>
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_ensure_accessors</span> {
+    <span style="color:#66d9ef">my</span> $self   <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $source <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>{schema}<span style="color:#f92672">-&gt;</span>source($self<span style="color:#f92672">-&gt;</span>{source_name});
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $col ($source<span style="color:#f92672">-&gt;</span>columns) {
+        <span style="color:#f92672">*</span>{<span style="color:#e6db74">&#34;${class}::$col&#34;</span>} <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { shift<span style="color:#f92672">-&gt;</span>get_column($col) };
+    }
+}
+</code></pre></div><br>
+<h3 id="the-breaking-point"><strong>The Breaking Point</strong></h3>
+<br>
+<p>This phase taught us a hard lesson about <code>Memory Leaks</code>. Because every <code>Row</code> object held a reference to the <code>schema</code> and the <code>async_db</code> connection, we created massive circular dependencies. In a resultset of <code>1,000 rows</code>, the memory usage skyrocketed, and the <strong>&ldquo;Great Worker Leak&rdquo;</strong> began.</p>
+<br>
+<h2 id="phase-3-the-bridge--worker-design">Phase 3: The Bridge &amp; Worker Design</h2>
+<hr>
+<p>The breakthrough came when we stopped trying to make <strong>DBI async</strong> and started treating it as a <strong>distributed service</strong>.</p>
+<br>
+<h3 id="the-architecture"><strong>The Architecture</strong></h3>
+<br>
+<p>We moved to a <strong>Worker-Pool Model</strong>. The main process (<strong>The Bridge</strong>) acts as a traffic controller. It never touches the database. Instead, it ships <strong>&ldquo;recipes&rdquo;</strong> to a pool of background workers.</p>
+<br>
+<h4 id="why-v050-is-more-mature-now"><strong>Why v0.50 is more mature now?</strong></h4>
+<br>
+<ul>
+<li>
+<p><strong>Zero Loop Freezing</strong>: Even a 30-second query won&rsquo;t lag your UI or network requests.</p>
+</li>
+<li>
+<p><strong>The Deflator Engine</strong>: We built a recursive system that turns <strong>&ldquo;live&rdquo;</strong> DBIC objects into <strong>&ldquo;safe&rdquo;</strong> data structures that can travel across process boundaries.</p>
+</li>
+<li>
+<p><strong>Smart Transactions</strong>: With <strong>txn_do</strong>, you can send a batch of operations to a worker to ensure they either all succeed or all fail—keeping your data consistent in an async world.</p>
+</li>
+</ul>
+<br>
+<h2 id="the-modern-api">The Modern API</h2>
+<hr>
+<p>One of the primary goals of <strong>v0.50</strong> was to ensure that moving to an asynchronous architecture didn&rsquo;t feel like learning a new language. The API is designed to be a <strong>&ldquo;drop-in&rdquo;</strong> enhancement: you keep your existing <code>Schema</code> logic, but gain the ability to yield control back to the event loop during database I/O.</p>
+<br>
+<h4 id="seamless-integration"><strong>Seamless Integration</strong></h4>
+<br>
+<p>Setting up the <strong>Bridge</strong> is straightforward. By passing your existing <a href="https://metacpan.org/pod/IO::Async::Loop"><strong>IO::Async::Loop</strong></a> and your standard <strong>DBIx::Class</strong> schema class, the module handles the heavy lifting of spawning workers and managing <strong>Inter-Process Communication (IPC)</strong>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># v0.50</span>
+
+<span style="color:#66d9ef">my</span> $loop   <span style="color:#f92672">=</span> IO::Async::Loop<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#66d9ef">my</span> $schema <span style="color:#f92672">=</span> DBIx::Class::Async::Schema<span style="color:#f92672">-&gt;</span>connect(
+    <span style="color:#e6db74">&#34;dbi:SQLite:dbname=test.db&#34;</span>, $user, $pass, {},
+    {
+        workers      <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+        schema_class <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;MyApp::Schema&#39;</span>,
+        async_loop   <span style="color:#f92672">=&gt;</span> $loop,
+    }
+);
+</code></pre></div><br>
+<h4 id="writing-non-blocking-code"><strong>Writing Non-Blocking Code</strong></h4>
+<br>
+<p>Once connected, you can use the modern async/await pattern (via <a href="https://metacpan.org/pod/Future::AsyncAwait"><strong>Future::AsyncAwait</strong></a>) or the built-in <code>$schema-&gt;await()</code> helper. In both cases, the main process remains responsive while the worker pool crunches the query.</p>
+<br>
+<h4 id="1-the-yielding-difference"><strong>1. The &ldquo;Yielding&rdquo; Difference</strong></h4>
+<br>
+<p>While both methods keep the loop alive, they handle the <strong>&ldquo;wait&rdquo;</strong> differently:</p>
+<ul>
+<li>
+<p><strong>async/await (Keywords)</strong>: These use <code>Future::AsyncAwait</code> to suspend the current function. This is truly <strong>&ldquo;zero-overhead&rdquo;</strong> waiting. The stack is saved, the sub is paused, and the loop moves on.</p>
+</li>
+<li>
+<p><strong>$schema-&gt;await (Method)</strong>: This is a <strong>&ldquo;loop-blocker&rdquo;</strong>. It forces the loop to run specifically until that one <strong>Future</strong> is complete. While it allows other timers to fire, it can lead to <strong>&ldquo;nested loop&rdquo;</strong> issues if you aren&rsquo;t careful, especially in complex applications.</p>
+</li>
+</ul>
+<br>
+<h4 id="2-composition-and-chaining"><strong>2. Composition and Chaining</strong></h4>
+<br>
+<p>Modern async code often involves running multiple things at once:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># This is easy with keywords</span>
+
+<span style="color:#66d9ef">my</span> ($users, $logs) <span style="color:#f92672">=</span> await Future<span style="color:#f92672">-&gt;</span>wait_all(
+    $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>all,
+    $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Log&#39;</span>)<span style="color:#f92672">-&gt;</span>all
+);
+</code></pre></div><br>
+<p>Doing this with <strong>$schema-&gt;await</strong> requires more manual management of the <strong>Future</strong> objects before calling the helper.</p>
+<p>Use <strong>Future::AsyncAwait</strong> for the cleanest, most efficient non-blocking code.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $users <span style="color:#f92672">=</span> await $rs<span style="color:#f92672">-&gt;</span>all;
+</code></pre></div><br>
+<p>Use <strong>$schema-&gt;await()</strong> if you want to keep your code looking like standard Perl or if you are integrating into a codebase where you can&rsquo;t add new keywords.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $users <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>await( $rs<span style="color:#f92672">-&gt;</span>all );
+</code></pre></div><br>
+<p>Both paths ensure that your <strong>&ldquo;Heartbeat&rdquo;</strong> keeps ticking and your app stays responsive.</p>
+<br>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<hr>
+<br>
+<ul>
+<li>
+<p><strong>Decouple Early</strong>: If the underlying library is blocking, don&rsquo;t wrap it; isolate it.</p>
+</li>
+<li>
+<p><strong>Watch your References</strong>: In Perl, circular references in long-running async processes are silent killers.</p>
+</li>
+<li>
+<p><strong>Serialisation is King</strong>: The speed of your async library often depends on how fast you can move data between the worker and the bridge.</p>
+</li>
+</ul>
+<br>
+<p>The move to <strong>v0.50</strong> represents more than just a version bump, it&rsquo;s a shift in philosophy. We stopped fighting the blocking nature of DBI and started orchestrating around it.</p>
+<br>
+<h2 id="loop-freeze-test">Loop Freeze Test</h2>
+<hr>
+<p>This script simulates a heavy database query while simultaneously running a <strong>&ldquo;Heartbeat&rdquo;</strong> timer.</p>
+<br>
+<ul>
+<li>
+<p><strong>In v0.02</strong>: The Heartbeat will stop ticking while the DB is busy.</p>
+</li>
+<li>
+<p><strong>In v0.50</strong>: The Heartbeat will continue to tick every second, even while the DB is crunching data.</p>
+</li>
+</ul>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+
+<span style="color:#66d9ef">use</span> File::Temp;
+<span style="color:#66d9ef">use</span> IO::Async::Loop;
+<span style="color:#66d9ef">use</span> Time::HiRes <span style="color:#e6db74">qw(time)</span>;
+<span style="color:#66d9ef">use</span> IO::Async::Timer::Periodic;
+<span style="color:#66d9ef">use</span> DBIx::Class::Async::Schema;
+
+<span style="color:#66d9ef">my</span> $loop           <span style="color:#f92672">=</span> IO::Async::Loop<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#66d9ef">my</span> ($fh, $db_file) <span style="color:#f92672">=</span> File::Temp::tempfile(UNLINK <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+<span style="color:#66d9ef">my</span> $schema         <span style="color:#f92672">=</span> DBIx::Class::Async::Schema<span style="color:#f92672">-&gt;</span>connect(
+    <span style="color:#e6db74">&#34;dbi:SQLite:dbname=$db_file&#34;</span>, undef, undef, {},
+    { workers <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, schema_class <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;TestSchema&#39;</span> });
+
+$schema<span style="color:#f92672">-&gt;</span>await($schema<span style="color:#f92672">-&gt;</span>deploy);
+
+<span style="color:#66d9ef">my</span> $start     <span style="color:#f92672">=</span> time;
+<span style="color:#66d9ef">my</span> $is_alive  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> $heartbeat <span style="color:#f92672">=</span> IO::Async::Timer::Periodic<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+    interval <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+    on_tick  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+        $is_alive <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        printf <span style="color:#e6db74">&#34;Heartbeat: Loop is alive at %.2f seconds\n&#34;</span>, time <span style="color:#f92672">-</span> $start;
+    },
+);
+
+$loop<span style="color:#f92672">-&gt;</span>add($heartbeat);
+$heartbeat<span style="color:#f92672">-&gt;</span>start;
+
+<span style="color:#66d9ef">my</span> $query <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)
+                   <span style="color:#f92672">-&gt;</span>search({ <span style="color:#e6db74">&#39;me.id&#39;</span> <span style="color:#f92672">=&gt;</span> { <span style="color:#f92672">-</span>in <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span> ] } })
+                   <span style="color:#f92672">-&gt;</span>all
+                   <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">then</span>(   <span style="color:#66d9ef">sub</span> { $loop<span style="color:#f92672">-&gt;</span>stop <span style="color:#66d9ef">if</span> $is_alive })
+                   <span style="color:#f92672">-&gt;</span>on_fail(<span style="color:#66d9ef">sub</span> { $loop<span style="color:#f92672">-&gt;</span>stop });
+
+$loop<span style="color:#f92672">-&gt;</span>run;
+
+</code></pre></div><br>
+<h4 id="output"><strong>Output</strong></h4>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Heartbeat: Loop is alive at 1.02 seconds
+Heartbeat: Loop is alive at 2.05 seconds
+Heartbeat: Loop is alive at 3.05 seconds
+Heartbeat: Loop is alive at 4.05 seconds
+</code></pre></div><br>
+<h2 id="stress-test">Stress Test</h2>
+<hr>
+<p>This script creates thousands of row objects in a loop. It uses <a href="https://metacpan.org/pod/Memory::Usage"><strong>Memory::Usage</strong></a> to show how <strong>v0.50</strong> stays lean compared to the old <strong>&ldquo;Fat Row&rdquo;</strong> objects.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+
+<span style="color:#66d9ef">use</span> File::Temp;
+<span style="color:#66d9ef">use</span> Memory::Usage;
+<span style="color:#66d9ef">use</span> IO::Async::Loop;
+<span style="color:#66d9ef">use</span> DBIx::Class::Async::Schema;
+
+<span style="color:#66d9ef">my</span> $memory_usage   <span style="color:#f92672">=</span> Memory::Usage<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#66d9ef">my</span> $loop           <span style="color:#f92672">=</span> IO::Async::Loop<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#66d9ef">my</span> ($fh, $db_file) <span style="color:#f92672">=</span> File::Temp::tempfile(SUFFIX <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;.db&#39;</span>, UNLINK <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+<span style="color:#66d9ef">my</span> $schema         <span style="color:#f92672">=</span> DBIx::Class::Async::Schema<span style="color:#f92672">-&gt;</span>connect(
+    <span style="color:#e6db74">&#34;dbi:SQLite:dbname=$db_file&#34;</span>, undef, undef, {},
+    { workers      <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+      schema_class <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;TestSchema&#39;</span>,
+      async_loop   <span style="color:#f92672">=&gt;</span> $loop,
+      cache_ttl    <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">60</span>,
+    },
+);
+
+$memory_usage<span style="color:#f92672">-&gt;</span>record(<span style="color:#e6db74">&#39;Starting test&#39;</span>);
+$schema<span style="color:#f92672">-&gt;</span>await($schema<span style="color:#f92672">-&gt;</span>deploy({ add_drop_table <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> }));
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">stress_test</span> {
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>) {
+        <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)
+                          <span style="color:#f92672">-&gt;</span>search({}, { rows <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">100</span> })
+                          <span style="color:#f92672">-&gt;</span>get;
+
+        <span style="color:#66d9ef">if</span> ($i % 10 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            $memory_usage<span style="color:#f92672">-&gt;</span>record(<span style="color:#e6db74">&#34;Iteration $i - 1000 rows processed&#34;</span>);
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Processed &#34;</span> <span style="color:#f92672">.</span> ($i <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; rows...\n&#34;</span>;
+        }
+        <span style="color:#75715e"># In v0.02, these $rows would hang around in memory due to cycles</span>
+        <span style="color:#75715e"># In v0.50, they are cleaned up immediately when the scope ends</span>
+    }
+}
+
+stress_test;
+$memory_usage<span style="color:#f92672">-&gt;</span>dump;
+</code></pre></div><br>
+<h4 id="output-1"><strong>Output</strong></h4>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Processed <span style="color:#ae81ff">1000</span> rows...
+Processed <span style="color:#ae81ff">2000</span> rows...
+Processed <span style="color:#ae81ff">3000</span> rows...
+Processed <span style="color:#ae81ff">4000</span> rows...
+Processed <span style="color:#ae81ff">5000</span> rows...
+  time    vsz <span style="color:#f92672">(</span>  diff<span style="color:#f92672">)</span>    rss <span style="color:#f92672">(</span>  diff<span style="color:#f92672">)</span> shared <span style="color:#f92672">(</span>  diff<span style="color:#f92672">)</span>   code <span style="color:#f92672">(</span>  diff<span style="color:#f92672">)</span>   data <span style="color:#f92672">(</span>  diff<span style="color:#f92672">)</span>
+     <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">48964</span> <span style="color:#f92672">(</span> 48964<span style="color:#f92672">)</span>  <span style="color:#ae81ff">44800</span> <span style="color:#f92672">(</span> 44800<span style="color:#f92672">)</span>   <span style="color:#ae81ff">6656</span> <span style="color:#f92672">(</span>  6656<span style="color:#f92672">)</span>   <span style="color:#ae81ff">1868</span> <span style="color:#f92672">(</span>  1868<span style="color:#f92672">)</span>  <span style="color:#ae81ff">38340</span> <span style="color:#f92672">(</span> 38340<span style="color:#f92672">)</span> Starting test
+     <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">48964</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>  <span style="color:#ae81ff">44800</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>   <span style="color:#ae81ff">6656</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>   <span style="color:#ae81ff">1868</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>  <span style="color:#ae81ff">38340</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span> Iteration <span style="color:#ae81ff">10</span> - <span style="color:#ae81ff">1000</span> rows processed
+     <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">48964</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>  <span style="color:#ae81ff">44800</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>   <span style="color:#ae81ff">6656</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>   <span style="color:#ae81ff">1868</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>  <span style="color:#ae81ff">38340</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span> Iteration <span style="color:#ae81ff">20</span> - <span style="color:#ae81ff">1000</span> rows processed
+     <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">48964</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>  <span style="color:#ae81ff">44800</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>   <span style="color:#ae81ff">6656</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>   <span style="color:#ae81ff">1868</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>  <span style="color:#ae81ff">38340</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span> Iteration <span style="color:#ae81ff">30</span> - <span style="color:#ae81ff">1000</span> rows processed
+     <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">48964</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>  <span style="color:#ae81ff">44800</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>   <span style="color:#ae81ff">6656</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>   <span style="color:#ae81ff">1868</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>  <span style="color:#ae81ff">38340</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span> Iteration <span style="color:#ae81ff">40</span> - <span style="color:#ae81ff">1000</span> rows processed
+     <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">48964</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>  <span style="color:#ae81ff">44800</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>   <span style="color:#ae81ff">6656</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>   <span style="color:#ae81ff">1868</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span>  <span style="color:#ae81ff">38340</span> <span style="color:#f92672">(</span>     0<span style="color:#f92672">)</span> Iteration <span style="color:#ae81ff">50</span> - <span style="color:#ae81ff">1000</span> rows processed
+</code></pre></div><br>
+<h2 id="final-retrospective">Final Retrospective</h2>
+<hr>
+<br>
+<h4 id="1-the-dont-wrap-isolate-rule"><strong>1. The &ldquo;Don&rsquo;t Wrap, Isolate&rdquo; Rule</strong></h4>
+<br>
+<p>We initially tried to wrap <strong>DBI</strong> calls in <strong>Futures</strong>. We learned that wrapping a blocking call doesn&rsquo;t make it async; it just makes it a blocking call with a different name. True async requires process or thread isolation.</p>
+<br>
+<h4 id="2-serialisation-is-the-tax-of-success"><strong>2. Serialisation is the Tax of Success</strong></h4>
+<br>
+<p>Moving to a worker model meant we had to pay a <strong>&ldquo;Serialisation Tax&rdquo;</strong>. We spent a significant amount of time optimising how we stringify and de-stringify data between pipes. The lesson: Pick a fast serialiser (like <strong>Sereal</strong>) early.</p>
+<br>
+<h4 id="3-api-symmetry-matters"><strong>3. API Symmetry Matters</strong></h4>
+<br>
+<p>The hardest part wasn&rsquo;t the backend logic, it was making the <strong>$schema-&gt;resultset(&hellip;)</strong> syntax feel identical to the standard version. Users shouldn&rsquo;t have to learn a new <strong>DSL</strong> just to go async. By mimicking the <strong>DBIC</strong> interface perfectly, we reduced the <strong>&ldquo;Cognitive Load&rdquo;</strong> for developers.</p>
+<br>
+<h4 id="4-health-checks-are-mandatory"><strong>4. Health Checks are Mandatory</strong></h4>
+<br>
+<p>Workers die. Database connections timeout. In a long-running async daemon, you cannot assume your workers are immortal. Building the ping and re-spawn logic (<strong>v0.50</strong>) was what finally made this library more mature.</p>
+<br>
+<h2 id="benchmarks">Benchmarks</h2>
+<hr>
+<p>Numbers in a vacuum can be misleading, so we put <strong>DBIx::Class::Async v0.50</strong> through a real-world stress test.</p>
+<br>
+<h4 id="test-setup"><strong>Test Setup</strong></h4>
+<br>
+<p>We benchmarked <strong>DBIx::Class::Async</strong> against standard <strong>DBIx::Class</strong> using a MySQL database with <strong>10,000</strong> user records.</p>
+<p>The test executed 100 complex queries (filtering by age, ordering results, limiting to 100 rows) in both sequential and parallel modes.</p>
+<p>The async version used <strong>4 worker processes</strong> maintaining persistent MySQL connections, while the standard version executed queries one-by-one on a single connection.</p>
+<p>We then run the bench, in three stages: <strong>50 queries</strong>, <strong>100 queries</strong> and <strong>200 queries</strong>.</p>
+<p>Here is the breakdown of the benchmark script showing three subroutines i.e. <strong>setup_environment()</strong>, <strong>run_bench()</strong> and <strong>print_summary()</strong>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">setup_environment</span> {
+    <span style="color:#66d9ef">my</span> $loop <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Setting up MySQL database with 10,000 records...\n\n&#34;</span>;
+
+    <span style="color:#66d9ef">my</span> $dsn      <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dbi:mysql:database=testdb&#34;</span>;
+    <span style="color:#66d9ef">my</span> $username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;root&#34;</span>;
+    <span style="color:#66d9ef">my</span> $password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;root&#34;</span>;
+
+    <span style="color:#66d9ef">my</span> $raw_schema <span style="color:#f92672">=</span> TestSchema<span style="color:#f92672">-&gt;</span>connect($dsn, $username, $password);
+    $raw_schema<span style="color:#f92672">-&gt;</span>storage<span style="color:#f92672">-&gt;</span>dbh<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">do</span>(<span style="color:#e6db74">&#34;DROP TABLE IF EXISTS orders&#34;</span>);
+    $raw_schema<span style="color:#f92672">-&gt;</span>storage<span style="color:#f92672">-&gt;</span>dbh<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">do</span>(<span style="color:#e6db74">&#34;DROP TABLE IF EXISTS users&#34;</span>);
+    $raw_schema<span style="color:#f92672">-&gt;</span>deploy({ add_drop_table <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> });
+
+    <span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> map {
+        {
+            name   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;User $_&#34;</span>,
+            age    <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">20</span> <span style="color:#f92672">+</span> int(rand(<span style="color:#ae81ff">60</span>)),
+            email  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;user$_\@example.com&#34;</span>,
+            active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>
+        }
+    } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10_000</span>);
+
+    $raw_schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>populate(<span style="color:#f92672">\</span>@data);
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Database ready\n\n&#34;</span>;
+
+    <span style="color:#66d9ef">my</span> $async_schema <span style="color:#f92672">=</span> DBIx::Class::Async::Schema<span style="color:#f92672">-&gt;</span>connect(
+        $dsn, $username, $password, {},
+        { workers <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>, schema_class <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;TestSchema&#39;</span>, async_loop <span style="color:#f92672">=&gt;</span> $loop }
+    );
+
+    <span style="color:#66d9ef">return</span> $async_schema;
+}
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run_bench</span> {
+    <span style="color:#66d9ef">my</span> ($name, $is_async, $query_count, $raw_schema, $async_schema, $loop) <span style="color:#f92672">=</span> @_
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;-&#34;</span> x <span style="color:#ae81ff">70</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$name\n&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;-&#34;</span> x <span style="color:#ae81ff">70</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+
+    <span style="color:#75715e"># Heartbeat configuration</span>
+    <span style="color:#66d9ef">my</span> $ticks    <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.001</span>;  <span style="color:#75715e"># 1ms resolution</span>
+    <span style="color:#66d9ef">my</span> $timer    <span style="color:#f92672">=</span> IO::Async::Timer::Periodic<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+        interval <span style="color:#f92672">=&gt;</span> $interval,
+        on_tick  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $ticks<span style="color:#f92672">++</span> },
+    );
+    $loop<span style="color:#f92672">-&gt;</span>add($timer<span style="color:#f92672">-&gt;</span>start);
+
+    <span style="color:#66d9ef">my</span> $t0 <span style="color:#f92672">=</span> [gettimeofday];
+
+    <span style="color:#66d9ef">my</span> $heavy_search <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">my</span> $schema <span style="color:#f92672">=</span> shift;
+        <span style="color:#75715e"># More complex query to emphasize network latency</span>
+        <span style="color:#66d9ef">return</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>search(
+            {
+                age    <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#39;&gt;&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span> },
+                active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+                name   <span style="color:#f92672">=&gt;</span> { <span style="color:#f92672">-</span>like <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;%User%&#39;</span> }
+            },
+            {
+                order_by <span style="color:#f92672">=&gt;</span> { <span style="color:#f92672">-</span>desc <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;age&#39;</span> },
+                rows     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">100</span>,
+                columns  <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">qw/id name email age/</span>]
+            }
+        );
+    };
+
+    <span style="color:#66d9ef">if</span> ($is_async) {
+        <span style="color:#75715e"># Parallel execution</span>
+        <span style="color:#66d9ef">my</span> @futures <span style="color:#f92672">=</span> map {
+            $heavy_search<span style="color:#f92672">-&gt;</span>($async_schema)<span style="color:#f92672">-&gt;</span>all
+        } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$query_count);
+
+        $async_schema<span style="color:#f92672">-&gt;</span>await( Future<span style="color:#f92672">-&gt;</span>wait_all(@futures) );
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e"># Sequential execution</span>
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$query_count) {
+            <span style="color:#66d9ef">my</span> @results <span style="color:#f92672">=</span> $heavy_search<span style="color:#f92672">-&gt;</span>($raw_schema)<span style="color:#f92672">-&gt;</span>all;
+        }
+    }
+
+    <span style="color:#66d9ef">my</span> $elapsed <span style="color:#f92672">=</span> tv_interval($t0);
+
+    $timer<span style="color:#f92672">-&gt;</span>stop;
+    $loop<span style="color:#f92672">-&gt;</span>remove($timer);
+
+    <span style="color:#66d9ef">my</span> $expected_ticks <span style="color:#f92672">=</span> int($elapsed <span style="color:#f92672">/</span> $interval);
+    <span style="color:#66d9ef">my</span> $responsiveness <span style="color:#f92672">=</span> $expected_ticks <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
+                         ? ($ticks <span style="color:#f92672">/</span> $expected_ticks) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>
+                         : <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $throughput     <span style="color:#f92672">=</span> $query_count <span style="color:#f92672">/</span> $elapsed;
+
+    printf <span style="color:#e6db74">&#34;Execution Time:     %.4f seconds\n&#34;</span>, $elapsed;
+    printf <span style="color:#e6db74">&#34;Throughput:         %.2f queries/second\n&#34;</span>, $throughput;
+    printf <span style="color:#e6db74">&#34;Event Loop Health:  %.1f%% responsive (%d/%d ticks)\n&#34;</span>,
+           $responsiveness, $ticks, $expected_ticks;
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>$is_async) {
+        $baseline_time <span style="color:#f92672">=</span> $elapsed;
+        <span style="color:#66d9ef">my</span> $status     <span style="color:#f92672">=</span> $ticks <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+                         ? <span style="color:#e6db74">&#34;COMPLETELY BLOCKED&#34;</span>
+                         : <span style="color:#e6db74">&#34;SEVERELY DEGRADED&#34;</span>;
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;System Status:      $status\n&#34;</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Performance:        [BASELINE]\n&#34;</span>;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">my</span> $speedup <span style="color:#f92672">=</span> $baseline_time <span style="color:#f92672">/</span> $elapsed;
+        <span style="color:#66d9ef">my</span> $status  <span style="color:#f92672">=</span> $responsiveness <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">80</span>
+                      ? <span style="color:#e6db74">&#34;HEALTHY &amp; NON-BLOCKING&#34;</span>
+                      : <span style="color:#e6db74">&#34;BUSY&#34;</span>;
+
+        <span style="color:#66d9ef">print</span>  <span style="color:#e6db74">&#34;System Status:      $status\n&#34;</span>;
+        printf <span style="color:#e6db74">&#34;Performance:        %.2fx FASTER than baseline\n&#34;</span>, $speedup;
+        printf <span style="color:#e6db74">&#34;Time Saved:         %.4f seconds (%.1f%% improvement)\n&#34;</span>,
+             ($baseline_time <span style="color:#f92672">-</span> $elapsed),
+            (($baseline_time <span style="color:#f92672">-</span> $elapsed) <span style="color:#f92672">/</span> $baseline_time <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>);
+    }
+
+    push @results, {
+        name           <span style="color:#f92672">=&gt;</span> $name,
+        is_async       <span style="color:#f92672">=&gt;</span> $is_async,
+        query_count    <span style="color:#f92672">=&gt;</span> $query_count,
+        elapsed        <span style="color:#f92672">=&gt;</span> $elapsed,
+        throughput     <span style="color:#f92672">=&gt;</span> $throughput,
+        responsiveness <span style="color:#f92672">=&gt;</span> $responsiveness,
+        speedup        <span style="color:#f92672">=&gt;</span> $is_async ? ($baseline_time <span style="color:#f92672">/</span> $elapsed) : <span style="color:#ae81ff">1</span>,
+    };
+}
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">print_summary</span> {
+    <span style="color:#66d9ef">my</span> @results <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;-&#34;</span> x <span style="color:#ae81ff">70</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;SUMMARY\n&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;-&#34;</span> x <span style="color:#ae81ff">70</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+
+    <span style="color:#66d9ef">my</span> @async_results <span style="color:#f92672">=</span> grep {  $_<span style="color:#f92672">-&gt;</span>{is_async} } @results;
+    <span style="color:#66d9ef">my</span> @sync_results  <span style="color:#f92672">=</span> grep { <span style="color:#f92672">!</span>$_<span style="color:#f92672">-&gt;</span>{is_async} } @results;
+
+    <span style="color:#66d9ef">if</span> (@async_results <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> @sync_results <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;No results to summarise.\n&#34;</span>;
+        exit;
+    }
+
+    <span style="color:#66d9ef">my</span> $avg_speedup        <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $max_speedup        <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $avg_responsiveness <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $result (@async_results) {
+        $avg_speedup        <span style="color:#f92672">+=</span> $result<span style="color:#f92672">-&gt;</span>{speedup};
+        $max_speedup         <span style="color:#f92672">=</span> $result<span style="color:#f92672">-&gt;</span>{speedup}
+            <span style="color:#66d9ef">if</span> $result<span style="color:#f92672">-&gt;</span>{speedup} <span style="color:#f92672">&gt;</span> $max_speedup;
+        $avg_responsiveness <span style="color:#f92672">+=</span> $result<span style="color:#f92672">-&gt;</span>{responsiveness};
+    }
+
+    $avg_speedup        <span style="color:#f92672">/=</span> scalar @async_results;
+    $avg_responsiveness <span style="color:#f92672">/=</span> scalar @async_results;
+
+    <span style="color:#66d9ef">my</span> $total_sync_time  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $total_async_time <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    $total_sync_time  <span style="color:#f92672">+=</span> $_<span style="color:#f92672">-&gt;</span>{elapsed} <span style="color:#66d9ef">for</span> @sync_results;
+    $total_async_time <span style="color:#f92672">+=</span> $_<span style="color:#f92672">-&gt;</span>{elapsed} <span style="color:#66d9ef">for</span> @async_results;
+
+    <span style="color:#66d9ef">my</span> $total_time_saved  <span style="color:#f92672">=</span> $total_sync_time <span style="color:#f92672">-</span> $total_async_time;
+    <span style="color:#66d9ef">my</span> $total_improvement <span style="color:#f92672">=</span> $total_sync_time <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
+                            ? ($total_time_saved <span style="color:#f92672">/</span> $total_sync_time <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>)
+                            : <span style="color:#ae81ff">0</span>;
+
+    printf <span style="color:#e6db74">&#34;Across all %d test runs:\n&#34;</span>, scalar(@results) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+    printf <span style="color:#e6db74">&#34;\nPerformance Results:\n&#34;</span>;
+    printf <span style="color:#e6db74">&#34;  - Average Speedup:     %.2fx faster\n&#34;</span>, $avg_speedup;
+    printf <span style="color:#e6db74">&#34;  - Maximum Speedup:     %.2fx faster\n&#34;</span>, $max_speedup;
+    printf <span style="color:#e6db74">&#34;  - Total Time (Sync):   %.4f seconds\n&#34;</span>, $total_sync_time;
+    printf <span style="color:#e6db74">&#34;  - Total Time (Async):  %.4f seconds\n&#34;</span>, $total_async_time;
+    printf <span style="color:#e6db74">&#34;  - Time Saved:          %.4f seconds (%.1f%% improvement)\n&#34;</span>,
+        $total_time_saved, $total_improvement;
+
+    printf <span style="color:#e6db74">&#34;\nEvent Loop Health:\n&#34;</span>;
+    printf <span style="color:#e6db74">&#34;  - Average Responsiveness: %.1f%%\n&#34;</span>, $avg_responsiveness;
+    printf <span style="color:#e6db74">&#34;  - Sequential Blocking:    0.0%% (completely blocked)\n&#34;</span>;
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n What This Means:\n&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  - TRUE parallel query execution across network connections\n&#34;</span>;
+
+    <span style="color:#66d9ef">if</span> ($avg_speedup <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>) {
+        printf <span style="color:#e6db74">&#34;  - Exceptional performance: %.0fx faster with worker pool\n&#34;</span>, $avg_speedup;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  - Worker process caching and connection reuse is highly effective\n&#34;</span>;
+    }
+    <span style="color:#66d9ef">elsif</span> ($avg_speedup <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>) {
+        printf <span style="color:#e6db74">&#34;  - Strong performance: %.1fx faster with parallelism\n&#34;</span>, $avg_speedup;
+    }
+    <span style="color:#66d9ef">else</span> {
+        printf <span style="color:#e6db74">&#34;  - Similar speed (%.1fx), but with %.1f%% event loop responsiveness\n&#34;</span>,
+            $avg_speedup, $avg_responsiveness;
+    }
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  • Non-blocking event loop maintains application responsiveness\n&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  • Better scalability as query count increases\n&#34;</span>;
+
+    <span style="color:#66d9ef">if</span> ($max_speedup <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\nKey Insight: Worker pool caching delivered exceptional results!\n&#34;</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;After warm-up, persistent workers with cached connections and\n&#34;</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;prepared statements achieved extraordinary parallel throughput.\n&#34;</span>;
+    } <span style="color:#66d9ef">elsif</span> (@sync_results <span style="color:#f92672">&amp;&amp;</span> $sync_results[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{query_count}) {
+        <span style="color:#66d9ef">my</span> $avg_query_time <span style="color:#f92672">=</span> ($sync_results[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{elapsed} <span style="color:#f92672">/</span> $sync_results[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{query_count} <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\nKey Insight: Network latency makes parallelism highly effective!\n&#34;</span>;
+        printf <span style="color:#e6db74">&#34;Each query has ~%.1fms of overhead. With 4 workers, parallel\n&#34;</span>, $avg_query_time;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;execution dramatically reduces total execution time.\n&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+}
+</code></pre></div><br>
+<p>Finally this is my main benchmark script:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+
+<span style="color:#66d9ef">use</span> TestSchema;
+<span style="color:#66d9ef">use</span> IO::Async::Loop;
+<span style="color:#66d9ef">use</span> DBIx::Class::Async::Schema;
+<span style="color:#66d9ef">use</span> Time::HiRes <span style="color:#e6db74">qw(gettimeofday tv_interval)</span>;
+
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;DBIx::Class::Async Performance Benchmark (MySQL)\n\n&#34;</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;-&#34;</span> x <span style="color:#ae81ff">70</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+
+<span style="color:#66d9ef">my</span> $loop <span style="color:#f92672">=</span> IO::Async::Loop<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#66d9ef">my</span> ($raw_schema, $async_schema) <span style="color:#f92672">=</span> setup_environment($loop);
+
+<span style="color:#66d9ef">my</span> (@results, $baseline_time);
+
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $count (<span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">200</span>) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;Testing with $count queries...\n&#34;</span>;
+    run_bench(
+        <span style="color:#e6db74">&#34;Standard DBIx::Class (Sequential/Blocking)&#34;</span>, <span style="color:#ae81ff">0</span>,
+        $count, $raw_schema, $async_schema, $loop);
+    run_bench(<span style="color:#e6db74">&#34;DBIx::Class::Async (Parallel/Non-Blocking)&#34;</span>, <span style="color:#ae81ff">1</span>,
+        $count, $raw_schema, $async_schema, $loop);
+}
+
+print_summary(@results);
+
+$async_schema<span style="color:#f92672">-&gt;</span>disconnect;
+</code></pre></div><br>
+<h4 id="benchmark-with-50-queries"><strong>Benchmark with 50 queries</strong></h4>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Testing with <span style="color:#ae81ff">50</span> queries...
+
+----------------------------------------------------------------------
+Standard DBIx::Class <span style="color:#f92672">(</span>Sequential/Blocking<span style="color:#f92672">)</span>
+----------------------------------------------------------------------
+Execution Time:     0.1631 seconds
+Throughput:         306.61 queries/second
+Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/163 ticks<span style="color:#f92672">)</span>
+System Status:      COMPLETELY BLOCKED
+Performance:        <span style="color:#f92672">[</span>BASELINE<span style="color:#f92672">]</span>
+
+----------------------------------------------------------------------
+DBIx::Class::Async <span style="color:#f92672">(</span>Parallel/Non-Blocking<span style="color:#f92672">)</span>
+----------------------------------------------------------------------
+Execution Time:     0.1583 seconds
+Throughput:         315.77 queries/second
+Event Loop Health:  98.1% responsive <span style="color:#f92672">(</span>155/158 ticks<span style="color:#f92672">)</span>
+System Status:      HEALTHY &amp; NON-BLOCKING
+Performance:        1.03x FASTER than baseline
+Time Saved:         0.0047 seconds <span style="color:#f92672">(</span>2.9% improvement<span style="color:#f92672">)</span>
+</code></pre></div><Br>
+<h4 id="benchmark-with-100-queries"><strong>Benchmark with 100 queries</strong></h4>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Testing with <span style="color:#ae81ff">100</span> queries...
+
+----------------------------------------------------------------------
+Standard DBIx::Class <span style="color:#f92672">(</span>Sequential/Blocking<span style="color:#f92672">)</span>
+----------------------------------------------------------------------
+Execution Time:     0.3123 seconds
+Throughput:         320.20 queries/second
+Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/312 ticks<span style="color:#f92672">)</span>
+System Status:      COMPLETELY BLOCKED
+Performance:        <span style="color:#f92672">[</span>BASELINE<span style="color:#f92672">]</span>
+
+----------------------------------------------------------------------
+DBIx::Class::Async <span style="color:#f92672">(</span>Parallel/Non-Blocking<span style="color:#f92672">)</span>
+----------------------------------------------------------------------
+Execution Time:     0.0026 seconds
+Throughput:         37950.66 queries/second
+Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/2 ticks<span style="color:#f92672">)</span>
+System Status:      BUSY
+Performance:        118.52x FASTER than baseline
+Time Saved:         0.3097 seconds <span style="color:#f92672">(</span>99.2% improvement<span style="color:#f92672">)</span>
+</code></pre></div><br>
+<h4 id="benchmark-with-200-queries"><strong>Benchmark with 200 queries</strong></h4>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Testing with <span style="color:#ae81ff">200</span> queries...
+
+----------------------------------------------------------------------
+Standard DBIx::Class <span style="color:#f92672">(</span>Sequential/Blocking<span style="color:#f92672">)</span>
+----------------------------------------------------------------------
+Execution Time:     0.6287 seconds
+Throughput:         318.10 queries/second
+Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/628 ticks<span style="color:#f92672">)</span>
+System Status:      COMPLETELY BLOCKED
+Performance:        <span style="color:#f92672">[</span>BASELINE<span style="color:#f92672">]</span>
+
+----------------------------------------------------------------------
+DBIx::Class::Async <span style="color:#f92672">(</span>Parallel/Non-Blocking<span style="color:#f92672">)</span>
+----------------------------------------------------------------------
+Execution Time:     0.0048 seconds
+Throughput:         41832.25 queries/second
+Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/4 ticks<span style="color:#f92672">)</span>
+System Status:      BUSY
+Performance:        131.50x FASTER than baseline
+Time Saved:         0.6239 seconds <span style="color:#f92672">(</span>99.2% improvement<span style="color:#f92672">)</span>
+</code></pre></div><br>
+<h3 id="summary"><strong>SUMMARY</strong></h3>
+<br>
+<p>Across all 3 test runs:</p>
+<p>Performance Results:</p>
+<pre><code>- Average Speedup:     83.69x faster
+- Maximum Speedup:     131.50x faster
+- Total Time (Sync):   1.1041 seconds
+- Total Time (Async):  0.1658 seconds
+- Time Saved:          0.9383 seconds (85.0% improvement)
+</code></pre>
+<br>
+<p>Event Loop Health:</p>
+<pre><code>- Average Responsiveness: 32.7%
+- Sequential Blocking:    0.0% (completely blocked)
+</code></pre>
+<br>
+<p>What This Means:</p>
+<pre><code>- TRUE parallel query execution across network connections
+- Exceptional performance: 84x faster with worker pool
+- Worker process caching and connection reuse is highly effective
+- Non-blocking event loop maintains application responsiveness
+- Better scalability as query count increases
+</code></pre>
+<br>
+<p>Key Insight:</p>
+<pre><code>- Worker pool caching delivered exceptional results!
+- After warm-up, persistent workers with cached connections and prepared statements achieved extraordinary parallel throughput.
+</code></pre>
+<br>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<hr>
+<br>
+<h4 id="does-this-work-with-any-dbi-driver-postgresql-mysql-sqlite"><strong>Does this work with any DBI driver (PostgreSQL, MySQL, SQLite)?</strong></h4>
+<br>
+<p>Yes. Because the blocking DBI calls are isolated within the <strong>Worker</strong> processes, the <strong>Bridge</strong> doesn&rsquo;t care which driver you use. If <strong>DBIx::Class</strong> supports it, <strong>DBIx::Class::Async</strong> can handle it. You get true non-blocking behavior even for drivers that don&rsquo;t have native async support.</p>
+<br>
+<h4 id="how-are-transactions-handled"><strong>How are transactions handled?</strong></h4>
+<br>
+<p>Transactions are handled via a specialised <strong>txn_do</strong> method. Since a transaction must occur on a single database connection, the <strong>Bridge</strong> ensures that all operations within a <strong>txn_do</strong> block are pinned to the same <strong>Worker</strong> until the transaction is committed or rolled back.</p>
+<br>
+<h4 id="what-is-the-performance-overhead-of-the-worker-pool"><strong>What is the performance overhead of the Worker pool?</strong></h4>
+<br>
+<p>There is a small serialisation <strong>&ldquo;tax&rdquo;</strong> when moving data between the <strong>Worker</strong> and the <strong>Bridge</strong> (IPC). However, for web applications, this is almost always offset by the fact that your main event loop never freezes. We recommend using <strong>Sereal</strong> or <strong>JSON::XS</strong> for the fastest possible data transfer.</p>
+<br>
+<h4 id="can-i-still-use-dbic-resultsource-magic-like-relationships"><strong>Can I still use DBIC ResultSource magic (like relationships)?</strong></h4>
+<br>
+<p>Partially. You can navigate relationships in your queries, and the returned <strong>DBIx::Class::Async::Row</strong> objects support basic accessors. However, because the objects are <strong>&ldquo;deflated&rdquo;</strong> to cross the process boundary, <strong>&ldquo;lazy loading&rdquo;</strong> a relationship on a result after it has returned will trigger a new async request rather than a blocking one.</p>
+<br>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2026
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
