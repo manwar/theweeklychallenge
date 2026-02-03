@@ -332,7 +332,7 @@
 <p>Developing the foundation for <strong>DBIx::Class::Async</strong> proved to be a massive undertaking that demanded all of my <strong>FREE</strong> time. I believed it was vital to lay this technical foundation first, ensuring that when the book is finally in your hands, it covers the full spectrum of modern Perl database interaction, from classic synchronous patterns to these new parallel horizons.</p>
 <p>The foundation is now laid. With the release of <strong>v0.50</strong>, I am thrilled to return to the manuscript and finish the book. This release isn&rsquo;t just a new tool; it&rsquo;s the missing chapter I needed to complete the story of modern DBIC.</p>
 <p>This blog post captures the transformation of <a href="https://metacpan.org/dist/DBIx-Class-Async"><strong>DBIx::Class::Async</strong></a> from an experimental wrapper to a high-performance, mature asynchronous <strong>ORM</strong>.</p>
-<p>If you’ve ever tried to mix <a href="https://metacpan.org/dist/DBIx-Class"><strong>DBIx::Class</strong></a> (DBIC) with an asynchronous event loop like <a href="https://metacpan.org/pod/IO::Async"><strong>IO::Async</strong></a> or <a href="https://metacpan.org/pod/Mojo::IOLoop"><strong>Mojo::IOLoop</strong></a>, you’ve hit the <strong>&ldquo;DBI Ceiling&rdquo;</strong>. No matter how fast your event loop is, standard database drivers are blocking. One heavy query freezes your entire application.</p>
+<p>If you&rsquo;ve ever tried to mix <a href="https://metacpan.org/dist/DBIx-Class"><strong>DBIx::Class</strong></a> (DBIC) with an asynchronous event loop like <a href="https://metacpan.org/pod/IO::Async"><strong>IO::Async</strong></a> or <a href="https://metacpan.org/pod/Mojo::IOLoop"><strong>Mojo::IOLoop</strong></a>, you’ve hit the <strong>&ldquo;DBI Ceiling&rdquo;</strong>. No matter how fast your event loop is, standard database drivers are blocking. One heavy query freezes your entire application.</p>
 <p>Today, I’m walking through the journey of how we broke that ceiling, moving from a simple <strong>&ldquo;Async Hash&rdquo;</strong> to a sophisticated <strong>Bridge &amp; Worker</strong> architecture.</p>
 <br>
 <h2 id="phase-1-the-async-hash">Phase 1: The Async Hash</h2>
@@ -345,7 +345,7 @@
 <br>
 <h3 id="the-strategy-dynamic-accessors"><strong>The Strategy: Dynamic Accessors</strong></h3>
 <br>
-<p>We used <code>AUTOLOAD</code> and <code>symbol table</code> manipulation to create methods on the fly. If you called <code>$user-&gt;name</code>, the row would look into its internal <code>_data</code> hashref and return the value.</p>
+<p>We used <strong>AUTOLOAD</strong> and <strong>symbol table</strong> manipulation to create methods on the fly. If you called <strong>$user-&gt;name</strong>, the row would look into its internal <strong>_data</strong> hashref and return the value.</p>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># v0.02</span>
 
@@ -359,7 +359,7 @@
 </code></pre></div><br>
 <h3 id="the-breaking-point"><strong>The Breaking Point</strong></h3>
 <br>
-<p>This phase taught us a hard lesson about <code>Memory Leaks</code>. Because every <code>Row</code> object held a reference to the <code>schema</code> and the <code>async_db</code> connection, we created massive circular dependencies. In a resultset of <code>1,000 rows</code>, the memory usage skyrocketed, and the <strong>&ldquo;Great Worker Leak&rdquo;</strong> began.</p>
+<p>This phase taught us a hard lesson about <strong>Memory Leaks</strong>. Because every <code>Row</code> object held a reference to the <strong>schema</strong> and the <strong>async_db</strong> connection, we created massive circular dependencies. In a resultset of <code>1,000 rows</code>, the memory usage skyrocketed, and the <strong>&ldquo;Great Worker Leak&rdquo;</strong> began.</p>
 <br>
 <h2 id="phase-3-the-bridge--worker-design">Phase 3: The Bridge &amp; Worker Design</h2>
 <hr>
@@ -379,13 +379,13 @@
 <p><strong>The Deflator Engine</strong>: We built a recursive system that turns <strong>&ldquo;live&rdquo;</strong> DBIC objects into <strong>&ldquo;safe&rdquo;</strong> data structures that can travel across process boundaries.</p>
 </li>
 <li>
-<p><strong>Smart Transactions</strong>: With <strong>txn_do</strong>, you can send a batch of operations to a worker to ensure they either all succeed or all fail—keeping your data consistent in an async world.</p>
+<p><strong>Smart Transactions</strong>: With <strong>txn_do</strong>, you can ship a complete transactional block to a background worker. This ensures that even in an async environment, your complex multi-step operations are executed on a single dedicated connection, maintaining full <strong>ACID</strong> compliance without stalling your main event loop.</p>
 </li>
 </ul>
 <br>
 <h2 id="the-modern-api">The Modern API</h2>
 <hr>
-<p>One of the primary goals of <strong>v0.50</strong> was to ensure that moving to an asynchronous architecture didn&rsquo;t feel like learning a new language. The API is designed to be a <strong>&ldquo;drop-in&rdquo;</strong> enhancement: you keep your existing <code>Schema</code> logic, but gain the ability to yield control back to the event loop during database I/O.</p>
+<p>One of the primary goals of <strong>v0.50</strong> was to ensure that moving to an asynchronous architecture didn&rsquo;t feel like learning a new language. The API is designed to be a <strong>&ldquo;drop-in&rdquo;</strong> enhancement: you keep your existing <strong>Schema</strong> logic, but gain the ability to yield control back to the event loop during database I/O.</p>
 <br>
 <h4 id="seamless-integration"><strong>Seamless Integration</strong></h4>
 <br>
@@ -405,14 +405,14 @@
 </code></pre></div><br>
 <h4 id="writing-non-blocking-code"><strong>Writing Non-Blocking Code</strong></h4>
 <br>
-<p>Once connected, you can use the modern async/await pattern (via <a href="https://metacpan.org/pod/Future::AsyncAwait"><strong>Future::AsyncAwait</strong></a>) or the built-in <code>$schema-&gt;await()</code> helper. In both cases, the main process remains responsive while the worker pool crunches the query.</p>
+<p>Once connected, you can use the modern async/await pattern (via <a href="https://metacpan.org/pod/Future::AsyncAwait"><strong>Future::AsyncAwait</strong></a>) or the built-in <strong>$schema-&gt;await()</strong> helper. In both cases, the main process remains responsive while the worker pool crunches the query.</p>
 <br>
 <h4 id="1-the-yielding-difference"><strong>1. The &ldquo;Yielding&rdquo; Difference</strong></h4>
 <br>
 <p>While both methods keep the loop alive, they handle the <strong>&ldquo;wait&rdquo;</strong> differently:</p>
 <ul>
 <li>
-<p><strong>async/await (Keywords)</strong>: These use <code>Future::AsyncAwait</code> to suspend the current function. This is truly <strong>&ldquo;zero-overhead&rdquo;</strong> waiting. The stack is saved, the sub is paused, and the loop moves on.</p>
+<p><strong>async/await (Keywords)</strong>: These use <a href="https://metacpan.org/pod/Future::AsyncAwait"><strong>Future::AsyncAwait</strong></a> to suspend the current function. This is truly <strong>&ldquo;zero-overhead&rdquo;</strong> waiting. The stack is saved, the sub is paused, and the loop moves on.</p>
 </li>
 <li>
 <p><strong>$schema-&gt;await (Method)</strong>: This is a <strong>&ldquo;loop-blocker&rdquo;</strong>. It forces the loop to run specifically until that one <strong>Future</strong> is complete. While it allows other timers to fire, it can lead to <strong>&ldquo;nested loop&rdquo;</strong> issues if you aren&rsquo;t careful, especially in complex applications.</p>

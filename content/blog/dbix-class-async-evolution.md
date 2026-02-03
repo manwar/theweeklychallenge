@@ -57,7 +57,7 @@ The foundation is now laid. With the release of **v0.50**, I am thrilled to retu
 
 This blog post captures the transformation of [**DBIx::Class::Async**](https://metacpan.org/dist/DBIx-Class-Async) from an experimental wrapper to a high-performance, mature asynchronous **ORM**.
 
-If you’ve ever tried to mix [**DBIx::Class**](https://metacpan.org/dist/DBIx-Class) (DBIC) with an asynchronous event loop like [**IO::Async**](https://metacpan.org/pod/IO::Async) or [**Mojo::IOLoop**](https://metacpan.org/pod/Mojo::IOLoop), you’ve hit the **"DBI Ceiling"**. No matter how fast your event loop is, standard database drivers are blocking. One heavy query freezes your entire application.
+If you've ever tried to mix [**DBIx::Class**](https://metacpan.org/dist/DBIx-Class) (DBIC) with an asynchronous event loop like [**IO::Async**](https://metacpan.org/pod/IO::Async) or [**Mojo::IOLoop**](https://metacpan.org/pod/Mojo::IOLoop), you’ve hit the **"DBI Ceiling"**. No matter how fast your event loop is, standard database drivers are blocking. One heavy query freezes your entire application.
 
 Today, I’m walking through the journey of how we broke that ceiling, moving from a simple **"Async Hash"** to a sophisticated **Bridge & Worker** architecture.
 
@@ -81,7 +81,7 @@ We tried to bring back the magic by creating a custom `Row.pm`. This was a **"fa
 
 <br>
 
-We used `AUTOLOAD` and `symbol table` manipulation to create methods on the fly. If you called `$user->name`, the row would look into its internal `_data` hashref and return the value.
+We used **AUTOLOAD** and **symbol table** manipulation to create methods on the fly. If you called **$user->name**, the row would look into its internal **_data** hashref and return the value.
 
 <br>
 
@@ -103,7 +103,7 @@ sub _ensure_accessors {
 
 <br>
 
-This phase taught us a hard lesson about `Memory Leaks`. Because every `Row` object held a reference to the `schema` and the `async_db` connection, we created massive circular dependencies. In a resultset of `1,000 rows`, the memory usage skyrocketed, and the **"Great Worker Leak"** began.
+This phase taught us a hard lesson about **Memory Leaks**. Because every `Row` object held a reference to the **schema** and the **async_db** connection, we created massive circular dependencies. In a resultset of `1,000 rows`, the memory usage skyrocketed, and the **"Great Worker Leak"** began.
 
 <br>
 
@@ -130,14 +130,14 @@ We moved to a **Worker-Pool Model**. The main process (**The Bridge**) acts as a
 
 - **The Deflator Engine**: We built a recursive system that turns **"live"** DBIC objects into **"safe"** data structures that can travel across process boundaries.
 
-- **Smart Transactions**: With **txn_do**, you can send a batch of operations to a worker to ensure they either all succeed or all fail—keeping your data consistent in an async world.
+- **Smart Transactions**: With **txn_do**, you can ship a complete transactional block to a background worker. This ensures that even in an async environment, your complex multi-step operations are executed on a single dedicated connection, maintaining full **ACID** compliance without stalling your main event loop.
 
 <br>
 
 ## The Modern API
 ***
 
-One of the primary goals of **v0.50** was to ensure that moving to an asynchronous architecture didn't feel like learning a new language. The API is designed to be a **"drop-in"** enhancement: you keep your existing `Schema` logic, but gain the ability to yield control back to the event loop during database I/O.
+One of the primary goals of **v0.50** was to ensure that moving to an asynchronous architecture didn't feel like learning a new language. The API is designed to be a **"drop-in"** enhancement: you keep your existing **Schema** logic, but gain the ability to yield control back to the event loop during database I/O.
 
 <br>
 
@@ -169,7 +169,7 @@ my $schema = DBIx::Class::Async::Schema->connect(
 
 <br>
 
-Once connected, you can use the modern async/await pattern (via [**Future::AsyncAwait**](https://metacpan.org/pod/Future::AsyncAwait)) or the built-in `$schema->await()` helper. In both cases, the main process remains responsive while the worker pool crunches the query.
+Once connected, you can use the modern async/await pattern (via [**Future::AsyncAwait**](https://metacpan.org/pod/Future::AsyncAwait)) or the built-in **$schema->await()** helper. In both cases, the main process remains responsive while the worker pool crunches the query.
 
 <br>
 
@@ -179,7 +179,7 @@ Once connected, you can use the modern async/await pattern (via [**Future::Async
 
 While both methods keep the loop alive, they handle the **"wait"** differently:
 
-- **async/await (Keywords)**: These use `Future::AsyncAwait` to suspend the current function. This is truly **"zero-overhead"** waiting. The stack is saved, the sub is paused, and the loop moves on.
+- **async/await (Keywords)**: These use [**Future::AsyncAwait**](https://metacpan.org/pod/Future::AsyncAwait) to suspend the current function. This is truly **"zero-overhead"** waiting. The stack is saved, the sub is paused, and the loop moves on.
 
 - **$schema->await (Method)**: This is a **"loop-blocker"**. It forces the loop to run specifically until that one **Future** is complete. While it allows other timers to fire, it can lead to **"nested loop"** issues if you aren't careful, especially in complex applications.
 
