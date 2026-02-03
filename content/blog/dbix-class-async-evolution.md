@@ -452,6 +452,8 @@ We then run the bench, in three stages: **50 queries**, **100 queries** and **20
 
 Here is the breakdown of the benchmark script showing three subroutines i.e. **setup_environment()**, **run_bench()** and **print_summary()**.
 
+### UPDATED: Script now do data integrity check as well.
+
 <br>
 
 ```perl
@@ -494,7 +496,7 @@ sub setup_environment {
 
 ```perl
 sub run_bench {
-    my ($name, $is_async, $query_count, $raw_schema, $async_schema, $loop) = @_
+    my ($name, $is_async, $query_count, $raw_schema, $async_schema, $loop) = @_;
 
     print "\n" . "-" x 70 . "\n";
     print "$name\n";
@@ -510,10 +512,11 @@ sub run_bench {
     $loop->add($timer->start);
 
     my $t0 = [gettimeofday];
+    my $total_rows_verified = 0;
+    my $objects_inflated    = 0;
 
     my $heavy_search = sub {
         my $schema = shift;
-        # More complex query to emphasize network latency
         return $schema->resultset('User')->search(
             {
                 age    => { '>' => 30 },
@@ -534,15 +537,30 @@ sub run_bench {
             $heavy_search->($async_schema)->all
         } (1..$query_count);
 
-        $async_schema->await( Future->wait_all(@futures) );
+        # Process each future
+        for my $f (@futures) {
+            my $rows = $async_schema->await($f);
+
+            $total_rows_verified += scalar(@$rows);
+            if (@$rows && Scalar::Util::blessed($rows->[0])) {
+                $objects_inflated += scalar(@$rows);
+            }
+        }
     } else {
-        # Sequential execution
+        # Sequential execution WITH VERIFICATION
         for (1..$query_count) {
-            my @results = $heavy_search->($raw_schema)->all;
+            my @rows = $heavy_search->($raw_schema)->all;
+
+            # VERIFY PAYLOAD
+            $total_rows_verified += scalar(@rows);
+            if (@rows && Scalar::Util::blessed($rows[0])) {
+                $objects_inflated += scalar(@rows);
+            }
         }
     }
 
     my $elapsed = tv_interval($t0);
+    $elapsed = 0.0001 if $elapsed <= 0;
 
     $timer->stop;
     $loop->remove($timer);
@@ -555,28 +573,19 @@ sub run_bench {
 
     printf "Execution Time:     %.4f seconds\n", $elapsed;
     printf "Throughput:         %.2f queries/second\n", $throughput;
+    printf "Data Integrity:     %d rows verified (%d objects inflated)\n",
+           $total_rows_verified, $objects_inflated;
     printf "Event Loop Health:  %.1f%% responsive (%d/%d ticks)\n",
            $responsiveness, $ticks, $expected_ticks;
 
     if (!$is_async) {
         $baseline_time = $elapsed;
-        my $status     = $ticks == 0
-                         ? "COMPLETELY BLOCKED"
-                         : "SEVERELY DEGRADED";
-
-        print "System Status:      $status\n";
+        print "System Status:      " . ($ticks == 0 ? "COMPLETELY BLOCKED" : "DEGRADED") . "\n";
         print "Performance:        [BASELINE]\n";
     } else {
         my $speedup = $baseline_time / $elapsed;
-        my $status  = $responsiveness > 80
-                      ? "HEALTHY & NON-BLOCKING"
-                      : "BUSY";
-
-        print  "System Status:      $status\n";
+        print "System Status:      " . ($responsiveness > 80 ? "HEALTHY" : "BUSY") . "\n";
         printf "Performance:        %.2fx FASTER than baseline\n", $speedup;
-        printf "Time Saved:         %.4f seconds (%.1f%% improvement)\n",
-             ($baseline_time - $elapsed),
-            (($baseline_time - $elapsed) / $baseline_time * 100);
     }
 
     push @results, {
@@ -605,7 +614,7 @@ sub print_summary {
     my @sync_results  = grep { !$_->{is_async} } @results;
 
     if (@async_results == 0 || @sync_results == 0) {
-        print "No results to summarise.\n";
+        print "No results to summarize.\n";
         exit;
     }
 
@@ -662,8 +671,8 @@ sub print_summary {
             $avg_speedup, $avg_responsiveness;
     }
 
-    print "  • Non-blocking event loop maintains application responsiveness\n";
-    print "  • Better scalability as query count increases\n";
+    print "  - Non-blocking event loop maintains application responsiveness\n";
+    print "  - Better scalability as query count increases\n";
 
     if ($max_speedup > 100) {
         print "\nKey Insight: Worker pool caching delivered exceptional results!\n";
@@ -731,21 +740,22 @@ Testing with 50 queries...
 ----------------------------------------------------------------------
 Standard DBIx::Class (Sequential/Blocking)
 ----------------------------------------------------------------------
-Execution Time:     0.1631 seconds
-Throughput:         306.61 queries/second
-Event Loop Health:  0.0% responsive (0/163 ticks)
+Execution Time:     0.1537 seconds
+Throughput:         325.33 queries/second
+Data Integrity:     5000 rows verified (5000 objects inflated)
+Event Loop Health:  0.0% responsive (0/153 ticks)
 System Status:      COMPLETELY BLOCKED
 Performance:        [BASELINE]
 
 ----------------------------------------------------------------------
 DBIx::Class::Async (Parallel/Non-Blocking)
 ----------------------------------------------------------------------
-Execution Time:     0.1583 seconds
-Throughput:         315.77 queries/second
-Event Loop Health:  98.1% responsive (155/158 ticks)
-System Status:      HEALTHY & NON-BLOCKING
-Performance:        1.03x FASTER than baseline
-Time Saved:         0.0047 seconds (2.9% improvement)
+Execution Time:     0.1535 seconds
+Throughput:         325.80 queries/second
+Data Integrity:     5000 rows verified (5000 objects inflated)
+Event Loop Health:  98.0% responsive (150/153 ticks)
+System Status:      HEALTHY
+Performance:        1.00x FASTER than baseline
 ```
 
 <Br>
@@ -760,21 +770,22 @@ Testing with 100 queries...
 ----------------------------------------------------------------------
 Standard DBIx::Class (Sequential/Blocking)
 ----------------------------------------------------------------------
-Execution Time:     0.3123 seconds
-Throughput:         320.20 queries/second
-Event Loop Health:  0.0% responsive (0/312 ticks)
+Execution Time:     0.3071 seconds
+Throughput:         325.65 queries/second
+Data Integrity:     10000 rows verified (10000 objects inflated)
+Event Loop Health:  0.0% responsive (0/307 ticks)
 System Status:      COMPLETELY BLOCKED
 Performance:        [BASELINE]
 
 ----------------------------------------------------------------------
 DBIx::Class::Async (Parallel/Non-Blocking)
 ----------------------------------------------------------------------
-Execution Time:     0.0026 seconds
-Throughput:         37950.66 queries/second
+Execution Time:     0.0024 seconds
+Throughput:         40899.80 queries/second
+Data Integrity:     10000 rows verified (10000 objects inflated)
 Event Loop Health:  0.0% responsive (0/2 ticks)
 System Status:      BUSY
-Performance:        118.52x FASTER than baseline
-Time Saved:         0.3097 seconds (99.2% improvement)
+Performance:        125.60x FASTER than baseline
 ```
 
 <br>
@@ -789,21 +800,22 @@ Testing with 200 queries...
 ----------------------------------------------------------------------
 Standard DBIx::Class (Sequential/Blocking)
 ----------------------------------------------------------------------
-Execution Time:     0.6287 seconds
-Throughput:         318.10 queries/second
-Event Loop Health:  0.0% responsive (0/628 ticks)
+Execution Time:     0.6138 seconds
+Throughput:         325.83 queries/second
+Data Integrity:     20000 rows verified (20000 objects inflated)
+Event Loop Health:  0.0% responsive (0/613 ticks)
 System Status:      COMPLETELY BLOCKED
 Performance:        [BASELINE]
 
 ----------------------------------------------------------------------
 DBIx::Class::Async (Parallel/Non-Blocking)
 ----------------------------------------------------------------------
-Execution Time:     0.0048 seconds
-Throughput:         41832.25 queries/second
+Execution Time:     0.0047 seconds
+Throughput:         42238.65 queries/second
+Data Integrity:     20000 rows verified (20000 objects inflated)
 Event Loop Health:  0.0% responsive (0/4 ticks)
 System Status:      BUSY
-Performance:        131.50x FASTER than baseline
-Time Saved:         0.6239 seconds (99.2% improvement)
+Performance:        129.64x FASTER than baseline
 ```
 
 <br>
@@ -816,11 +828,11 @@ Across all 3 test runs:
 
 ### **Performance Results:**
 
-    - Average Speedup:     83.69x faster
-    - Maximum Speedup:     131.50x faster
-    - Total Time (Sync):   1.1041 seconds
-    - Total Time (Async):  0.1658 seconds
-    - Time Saved:          0.9383 seconds (85.0% improvement)
+    - Average Speedup:     85.41x faster
+    - Maximum Speedup:     129.64x faster
+    - Total Time (Sync):   1.0746 seconds
+    - Total Time (Async):  0.1606 seconds
+    - Time Saved:          0.9139 seconds (85.1% improvement)
 
 <br>
 

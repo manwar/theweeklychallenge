@@ -611,6 +611,7 @@ Processed <span style="color:#ae81ff">5000</span> rows...
 <p>The async version used <strong>4 worker processes</strong> maintaining persistent MySQL connections, while the standard version executed queries one-by-one on a single connection.</p>
 <p>We then run the bench, in three stages: <strong>50 queries</strong>, <strong>100 queries</strong> and <strong>200 queries</strong>.</p>
 <p>Here is the breakdown of the benchmark script showing three subroutines i.e. <strong>setup_environment()</strong>, <strong>run_bench()</strong> and <strong>print_summary()</strong>.</p>
+<h3 id="updated-script-now-do-data-integrity-check-as-well">UPDATED: Script now do data integrity check as well.</h3>
 <br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">setup_environment</span> {
     <span style="color:#66d9ef">my</span> $loop <span style="color:#f92672">=</span> shift;
@@ -647,7 +648,7 @@ Processed <span style="color:#ae81ff">5000</span> rows...
 }
 </code></pre></div><br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run_bench</span> {
-    <span style="color:#66d9ef">my</span> ($name, $is_async, $query_count, $raw_schema, $async_schema, $loop) <span style="color:#f92672">=</span> @_
+    <span style="color:#66d9ef">my</span> ($name, $is_async, $query_count, $raw_schema, $async_schema, $loop) <span style="color:#f92672">=</span> @_;
 
     <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;-&#34;</span> x <span style="color:#ae81ff">70</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
     <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$name\n&#34;</span>;
@@ -663,10 +664,11 @@ Processed <span style="color:#ae81ff">5000</span> rows...
     $loop<span style="color:#f92672">-&gt;</span>add($timer<span style="color:#f92672">-&gt;</span>start);
 
     <span style="color:#66d9ef">my</span> $t0 <span style="color:#f92672">=</span> [gettimeofday];
+    <span style="color:#66d9ef">my</span> $total_rows_verified <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $objects_inflated    <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
     <span style="color:#66d9ef">my</span> $heavy_search <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> {
         <span style="color:#66d9ef">my</span> $schema <span style="color:#f92672">=</span> shift;
-        <span style="color:#75715e"># More complex query to emphasize network latency</span>
         <span style="color:#66d9ef">return</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>search(
             {
                 age    <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#39;&gt;&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span> },
@@ -687,15 +689,30 @@ Processed <span style="color:#ae81ff">5000</span> rows...
             $heavy_search<span style="color:#f92672">-&gt;</span>($async_schema)<span style="color:#f92672">-&gt;</span>all
         } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$query_count);
 
-        $async_schema<span style="color:#f92672">-&gt;</span>await( Future<span style="color:#f92672">-&gt;</span>wait_all(@futures) );
+        <span style="color:#75715e"># Process each future</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $f (@futures) {
+            <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $async_schema<span style="color:#f92672">-&gt;</span>await($f);
+
+            $total_rows_verified <span style="color:#f92672">+=</span> scalar(@$rows);
+            <span style="color:#66d9ef">if</span> (@$rows <span style="color:#f92672">&amp;&amp;</span> Scalar::Util::blessed($rows<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>])) {
+                $objects_inflated <span style="color:#f92672">+=</span> scalar(@$rows);
+            }
+        }
     } <span style="color:#66d9ef">else</span> {
-        <span style="color:#75715e"># Sequential execution</span>
+        <span style="color:#75715e"># Sequential execution WITH VERIFICATION</span>
         <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$query_count) {
-            <span style="color:#66d9ef">my</span> @results <span style="color:#f92672">=</span> $heavy_search<span style="color:#f92672">-&gt;</span>($raw_schema)<span style="color:#f92672">-&gt;</span>all;
+            <span style="color:#66d9ef">my</span> @rows <span style="color:#f92672">=</span> $heavy_search<span style="color:#f92672">-&gt;</span>($raw_schema)<span style="color:#f92672">-&gt;</span>all;
+
+            <span style="color:#75715e"># VERIFY PAYLOAD</span>
+            $total_rows_verified <span style="color:#f92672">+=</span> scalar(@rows);
+            <span style="color:#66d9ef">if</span> (@rows <span style="color:#f92672">&amp;&amp;</span> Scalar::Util::blessed($rows[<span style="color:#ae81ff">0</span>])) {
+                $objects_inflated <span style="color:#f92672">+=</span> scalar(@rows);
+            }
         }
     }
 
     <span style="color:#66d9ef">my</span> $elapsed <span style="color:#f92672">=</span> tv_interval($t0);
+    $elapsed <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0001</span> <span style="color:#66d9ef">if</span> $elapsed <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>;
 
     $timer<span style="color:#f92672">-&gt;</span>stop;
     $loop<span style="color:#f92672">-&gt;</span>remove($timer);
@@ -708,28 +725,19 @@ Processed <span style="color:#ae81ff">5000</span> rows...
 
     printf <span style="color:#e6db74">&#34;Execution Time:     %.4f seconds\n&#34;</span>, $elapsed;
     printf <span style="color:#e6db74">&#34;Throughput:         %.2f queries/second\n&#34;</span>, $throughput;
+    printf <span style="color:#e6db74">&#34;Data Integrity:     %d rows verified (%d objects inflated)\n&#34;</span>,
+           $total_rows_verified, $objects_inflated;
     printf <span style="color:#e6db74">&#34;Event Loop Health:  %.1f%% responsive (%d/%d ticks)\n&#34;</span>,
            $responsiveness, $ticks, $expected_ticks;
 
     <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>$is_async) {
         $baseline_time <span style="color:#f92672">=</span> $elapsed;
-        <span style="color:#66d9ef">my</span> $status     <span style="color:#f92672">=</span> $ticks <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
-                         ? <span style="color:#e6db74">&#34;COMPLETELY BLOCKED&#34;</span>
-                         : <span style="color:#e6db74">&#34;SEVERELY DEGRADED&#34;</span>;
-
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;System Status:      $status\n&#34;</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;System Status:      &#34;</span> <span style="color:#f92672">.</span> ($ticks <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#e6db74">&#34;COMPLETELY BLOCKED&#34;</span> : <span style="color:#e6db74">&#34;DEGRADED&#34;</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
         <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Performance:        [BASELINE]\n&#34;</span>;
     } <span style="color:#66d9ef">else</span> {
         <span style="color:#66d9ef">my</span> $speedup <span style="color:#f92672">=</span> $baseline_time <span style="color:#f92672">/</span> $elapsed;
-        <span style="color:#66d9ef">my</span> $status  <span style="color:#f92672">=</span> $responsiveness <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">80</span>
-                      ? <span style="color:#e6db74">&#34;HEALTHY &amp; NON-BLOCKING&#34;</span>
-                      : <span style="color:#e6db74">&#34;BUSY&#34;</span>;
-
-        <span style="color:#66d9ef">print</span>  <span style="color:#e6db74">&#34;System Status:      $status\n&#34;</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;System Status:      &#34;</span> <span style="color:#f92672">.</span> ($responsiveness <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">80</span> ? <span style="color:#e6db74">&#34;HEALTHY&#34;</span> : <span style="color:#e6db74">&#34;BUSY&#34;</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
         printf <span style="color:#e6db74">&#34;Performance:        %.2fx FASTER than baseline\n&#34;</span>, $speedup;
-        printf <span style="color:#e6db74">&#34;Time Saved:         %.4f seconds (%.1f%% improvement)\n&#34;</span>,
-             ($baseline_time <span style="color:#f92672">-</span> $elapsed),
-            (($baseline_time <span style="color:#f92672">-</span> $elapsed) <span style="color:#f92672">/</span> $baseline_time <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>);
     }
 
     push @results, {
@@ -754,7 +762,7 @@ Processed <span style="color:#ae81ff">5000</span> rows...
     <span style="color:#66d9ef">my</span> @sync_results  <span style="color:#f92672">=</span> grep { <span style="color:#f92672">!</span>$_<span style="color:#f92672">-&gt;</span>{is_async} } @results;
 
     <span style="color:#66d9ef">if</span> (@async_results <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> @sync_results <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;No results to summarise.\n&#34;</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;No results to summarize.\n&#34;</span>;
         exit;
     }
 
@@ -811,8 +819,8 @@ Processed <span style="color:#ae81ff">5000</span> rows...
             $avg_speedup, $avg_responsiveness;
     }
 
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  • Non-blocking event loop maintains application responsiveness\n&#34;</span>;
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  • Better scalability as query count increases\n&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  - Non-blocking event loop maintains application responsiveness\n&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  - Better scalability as query count increases\n&#34;</span>;
 
     <span style="color:#66d9ef">if</span> ($max_speedup <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
         <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\nKey Insight: Worker pool caching delivered exceptional results!\n&#34;</span>;
@@ -868,21 +876,22 @@ $async_schema<span style="color:#f92672">-&gt;</span>disconnect;
 ----------------------------------------------------------------------
 Standard DBIx::Class <span style="color:#f92672">(</span>Sequential/Blocking<span style="color:#f92672">)</span>
 ----------------------------------------------------------------------
-Execution Time:     0.1631 seconds
-Throughput:         306.61 queries/second
-Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/163 ticks<span style="color:#f92672">)</span>
+Execution Time:     0.1537 seconds
+Throughput:         325.33 queries/second
+Data Integrity:     <span style="color:#ae81ff">5000</span> rows verified <span style="color:#f92672">(</span><span style="color:#ae81ff">5000</span> objects inflated<span style="color:#f92672">)</span>
+Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/153 ticks<span style="color:#f92672">)</span>
 System Status:      COMPLETELY BLOCKED
 Performance:        <span style="color:#f92672">[</span>BASELINE<span style="color:#f92672">]</span>
 
 ----------------------------------------------------------------------
 DBIx::Class::Async <span style="color:#f92672">(</span>Parallel/Non-Blocking<span style="color:#f92672">)</span>
 ----------------------------------------------------------------------
-Execution Time:     0.1583 seconds
-Throughput:         315.77 queries/second
-Event Loop Health:  98.1% responsive <span style="color:#f92672">(</span>155/158 ticks<span style="color:#f92672">)</span>
-System Status:      HEALTHY &amp; NON-BLOCKING
-Performance:        1.03x FASTER than baseline
-Time Saved:         0.0047 seconds <span style="color:#f92672">(</span>2.9% improvement<span style="color:#f92672">)</span>
+Execution Time:     0.1535 seconds
+Throughput:         325.80 queries/second
+Data Integrity:     <span style="color:#ae81ff">5000</span> rows verified <span style="color:#f92672">(</span><span style="color:#ae81ff">5000</span> objects inflated<span style="color:#f92672">)</span>
+Event Loop Health:  98.0% responsive <span style="color:#f92672">(</span>150/153 ticks<span style="color:#f92672">)</span>
+System Status:      HEALTHY
+Performance:        1.00x FASTER than baseline
 </code></pre></div><Br>
 <h3 id="benchmark-with-100-queries"><strong>Benchmark with 100 queries</strong></h3>
 <br>
@@ -891,21 +900,22 @@ Time Saved:         0.0047 seconds <span style="color:#f92672">(</span>2.9% impr
 ----------------------------------------------------------------------
 Standard DBIx::Class <span style="color:#f92672">(</span>Sequential/Blocking<span style="color:#f92672">)</span>
 ----------------------------------------------------------------------
-Execution Time:     0.3123 seconds
-Throughput:         320.20 queries/second
-Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/312 ticks<span style="color:#f92672">)</span>
+Execution Time:     0.3071 seconds
+Throughput:         325.65 queries/second
+Data Integrity:     <span style="color:#ae81ff">10000</span> rows verified <span style="color:#f92672">(</span><span style="color:#ae81ff">10000</span> objects inflated<span style="color:#f92672">)</span>
+Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/307 ticks<span style="color:#f92672">)</span>
 System Status:      COMPLETELY BLOCKED
 Performance:        <span style="color:#f92672">[</span>BASELINE<span style="color:#f92672">]</span>
 
 ----------------------------------------------------------------------
 DBIx::Class::Async <span style="color:#f92672">(</span>Parallel/Non-Blocking<span style="color:#f92672">)</span>
 ----------------------------------------------------------------------
-Execution Time:     0.0026 seconds
-Throughput:         37950.66 queries/second
+Execution Time:     0.0024 seconds
+Throughput:         40899.80 queries/second
+Data Integrity:     <span style="color:#ae81ff">10000</span> rows verified <span style="color:#f92672">(</span><span style="color:#ae81ff">10000</span> objects inflated<span style="color:#f92672">)</span>
 Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/2 ticks<span style="color:#f92672">)</span>
 System Status:      BUSY
-Performance:        118.52x FASTER than baseline
-Time Saved:         0.3097 seconds <span style="color:#f92672">(</span>99.2% improvement<span style="color:#f92672">)</span>
+Performance:        125.60x FASTER than baseline
 </code></pre></div><br>
 <h3 id="benchmark-with-200-queries"><strong>Benchmark with 200 queries</strong></h3>
 <br>
@@ -914,31 +924,32 @@ Time Saved:         0.3097 seconds <span style="color:#f92672">(</span>99.2% imp
 ----------------------------------------------------------------------
 Standard DBIx::Class <span style="color:#f92672">(</span>Sequential/Blocking<span style="color:#f92672">)</span>
 ----------------------------------------------------------------------
-Execution Time:     0.6287 seconds
-Throughput:         318.10 queries/second
-Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/628 ticks<span style="color:#f92672">)</span>
+Execution Time:     0.6138 seconds
+Throughput:         325.83 queries/second
+Data Integrity:     <span style="color:#ae81ff">20000</span> rows verified <span style="color:#f92672">(</span><span style="color:#ae81ff">20000</span> objects inflated<span style="color:#f92672">)</span>
+Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/613 ticks<span style="color:#f92672">)</span>
 System Status:      COMPLETELY BLOCKED
 Performance:        <span style="color:#f92672">[</span>BASELINE<span style="color:#f92672">]</span>
 
 ----------------------------------------------------------------------
 DBIx::Class::Async <span style="color:#f92672">(</span>Parallel/Non-Blocking<span style="color:#f92672">)</span>
 ----------------------------------------------------------------------
-Execution Time:     0.0048 seconds
-Throughput:         41832.25 queries/second
+Execution Time:     0.0047 seconds
+Throughput:         42238.65 queries/second
+Data Integrity:     <span style="color:#ae81ff">20000</span> rows verified <span style="color:#f92672">(</span><span style="color:#ae81ff">20000</span> objects inflated<span style="color:#f92672">)</span>
 Event Loop Health:  0.0% responsive <span style="color:#f92672">(</span>0/4 ticks<span style="color:#f92672">)</span>
 System Status:      BUSY
-Performance:        131.50x FASTER than baseline
-Time Saved:         0.6239 seconds <span style="color:#f92672">(</span>99.2% improvement<span style="color:#f92672">)</span>
+Performance:        129.64x FASTER than baseline
 </code></pre></div><br>
 <h3 id="summary"><strong>SUMMARY</strong></h3>
 <br>
 <p>Across all 3 test runs:</p>
 <h3 id="performance-results"><strong>Performance Results:</strong></h3>
-<pre><code>- Average Speedup:     83.69x faster
-- Maximum Speedup:     131.50x faster
-- Total Time (Sync):   1.1041 seconds
-- Total Time (Async):  0.1658 seconds
-- Time Saved:          0.9383 seconds (85.0% improvement)
+<pre><code>- Average Speedup:     85.41x faster
+- Maximum Speedup:     129.64x faster
+- Total Time (Sync):   1.0746 seconds
+- Total Time (Async):  0.1606 seconds
+- Time Saved:          0.9139 seconds (85.1% improvement)
 </code></pre>
 <br>
 <h3 id="event-loop-health"><strong>Event Loop Health:</strong></h3>
