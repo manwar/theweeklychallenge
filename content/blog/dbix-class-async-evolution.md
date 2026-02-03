@@ -185,7 +185,7 @@ While both methods keep the loop alive, they handle the **"wait"** differently:
 
 <br>
 
-#### **2. Composition and Chaining**
+### **2. Composition and Chaining**
 
 <br>
 
