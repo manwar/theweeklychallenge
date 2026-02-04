@@ -719,7 +719,8 @@ for my $count (50, 100, 200) {
     run_bench(
         "Standard DBIx::Class (Sequential/Blocking)", 0,
         $count, $raw_schema, $async_schema, $loop);
-    run_bench("DBIx::Class::Async (Parallel/Non-Blocking)", 1,
+    run_bench(
+        "DBIx::Class::Async (Parallel/Non-Blocking)", 1,
         $count, $raw_schema, $async_schema, $loop);
 }
 
