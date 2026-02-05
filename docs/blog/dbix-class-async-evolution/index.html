@@ -316,7 +316,8 @@
 <h3 id="nbspnbsp8-nbspnbspstress-teststress-test"><a href="#stress-test">  8.   <strong>Stress Test</strong></a></h3>
 <h3 id="nbspnbsp9-nbspnbspfinal-retrospectivefinal-retrospective"><a href="#final-retrospective">  9.   <strong>Final Retrospective</strong></a></h3>
 <h3 id="10-nbspnbspbenchmarksbenchmarks"><a href="#benchmarks">10.   <strong>Benchmarks</strong></a></h3>
-<h3 id="11-nbspnbspfrequently-asked-questionsfrequently-asked-questions"><a href="#frequently-asked-questions">11.   <strong>Frequently Asked Questions</strong></a></h3>
+<h3 id="11-nbspnbspconclusionconclusion"><a href="#conclusion">11.   <strong>Conclusion</strong></a></h3>
+<h3 id="12-nbspnbspfrequently-asked-questionsfrequently-asked-questions"><a href="#frequently-asked-questions">12.   <strong>Frequently Asked Questions</strong></a></h3>
 <br>
 <hr>
 <br>
@@ -970,6 +971,25 @@ Performance:        129.64x FASTER than baseline
 <pre><code>- Worker pool caching delivered exceptional results!
 - After warm-up, persistent workers with cached connections and prepared statements achieved extraordinary parallel throughput.
 </code></pre>
+<br>
+<h3 id="three-pillars-of-concurrency"><strong>Three Pillars of Concurrency</strong></h3>
+<br>
+<h5 id="1-event-loop-breathing-room"><strong>1. Event Loop &ldquo;Breathing Room&rdquo;</strong></h5>
+<p>The most important metric isn&rsquo;t how fast the SQL finishes, it&rsquo;s how many <strong>&ldquo;ticks&rdquo;</strong> happened during the query.</p>
+<h5 id="2-non-blocking-io-vs-parallel-execution"><strong>2. Non-Blocking IO vs. Parallel Execution</strong></h5>
+<p>The main process is never <strong>&ldquo;stuck&rdquo;</strong> waiting for the socket. Because we use a worker pool (IO::Async::Function), multiple heavy queries actually run at the same time on different CPU cores.</p>
+<h5 id="3-resource-stewardship"><strong>3. Resource Stewardship</strong></h5>
+<p>By using <strong>InactiveDestroy</strong> and persistent workers, we are managing resources better than a standard <strong>&ldquo;fork-on-request&rdquo;</strong> model. You aren&rsquo;t just being fast, you&rsquo;re being stable.</p>
+<br>
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+<hr>
+<br>
+<blockquote>
+<p>If you measure a single <strong>SELECT</strong> statement in a vacuum, <strong>DBIx::Class::Async</strong> is actually a few microseconds slower than standard <strong>DBIC</strong> due to serialisation. But in a real-world application, you aren&rsquo;t running one query in a vacuum. You are running <strong>50 queries</strong> while handling <strong>100 web requests</strong>.</p>
+</blockquote>
+<blockquote>
+<p>The performance gains reported in our benchmarks are measurements of System Throughput, not raw SQL execution time. By delegating DB operations to a background pool, we eliminate the <strong>&ldquo;Event Loop Lag&rdquo;</strong> that plagues traditional Perl async apps. We aren&rsquo;t making the database faster; we&rsquo;re making the application stop waiting for it.</p>
+</blockquote>
 <br>
 <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
 <hr>

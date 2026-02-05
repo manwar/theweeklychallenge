@@ -30,7 +30,8 @@ How do you make the world's best `Perl ORM` non-blocking without rewriting your 
 ### [&nbsp;&nbsp;8. &nbsp;&nbsp;**Stress Test**](#stress-test)
 ### [&nbsp;&nbsp;9. &nbsp;&nbsp;**Final Retrospective**](#final-retrospective)
 ### [10. &nbsp;&nbsp;**Benchmarks**](#benchmarks)
-### [11. &nbsp;&nbsp;**Frequently Asked Questions**](#frequently-asked-questions)
+### [11. &nbsp;&nbsp;**Conclusion**](#conclusion)
+### [12. &nbsp;&nbsp;**Frequently Asked Questions**](#frequently-asked-questions)
 
 <br>
 
@@ -858,6 +859,35 @@ Across all 3 test runs:
 
     - Worker pool caching delivered exceptional results!
     - After warm-up, persistent workers with cached connections and prepared statements achieved extraordinary parallel throughput.
+
+<br>
+
+### **Three Pillars of Concurrency**
+
+<br>
+
+##### **1. Event Loop "Breathing Room"**
+
+The most important metric isn't how fast the SQL finishes, it's how many **"ticks"** happened during the query.
+
+##### **2. Non-Blocking IO vs. Parallel Execution**
+
+The main process is never **"stuck"** waiting for the socket. Because we use a worker pool (IO::Async::Function), multiple heavy queries actually run at the same time on different CPU cores.
+
+##### **3. Resource Stewardship**
+
+By using **InactiveDestroy** and persistent workers, we are managing resources better than a standard **"fork-on-request"** model. You aren't just being fast, you're being stable.
+
+<br>
+
+## **Conclusion**
+***
+
+<br>
+
+> If you measure a single **SELECT** statement in a vacuum, **DBIx::Class::Async** is actually a few microseconds slower than standard **DBIC** due to serialisation. But in a real-world application, you aren't running one query in a vacuum. You are running **50 queries** while handling **100 web requests**.
+
+> The performance gains reported in our benchmarks are measurements of System Throughput, not raw SQL execution time. By delegating DB operations to a background pool, we eliminate the **"Event Loop Lag"** that plagues traditional Perl async apps. We aren't making the database faster; we're making the application stop waiting for it.
 
 <br>
 
