@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+<script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Dancer2 &#43; Dancer2::Plugin::DBIC::Async &#43; HTMX"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/dancer2-dbic-async-htmx/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="The grand union of Dancer2 with DBIC Async pluing and HTMX."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="The grand union of Dancer2 with DBIC Async pluing and HTMX.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/dancer2-dbic-async-htmx/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dancer2 &#43; Dancer2::Plugin::DBIC::Async &#43; HTMX</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row" style="color:black">
+          <div class="col-xs-12 text-center">
+            <div id="perl-ad-target" class="center-block"></div>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Dancer2 &#43; Dancer2::Plugin::DBIC::Async &#43; HTMX</h2>
+                    <div class="portfolio-meta">
+                        <span>Thursday, Feb 5, 2026</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/dancer2-dbic-async-htmx.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>As you all know, I released a significant update (<strong>v0.50</strong>) to <a href="https://metacpan.org/dist/DBIx-Class-Async"><strong>DBIx::Class::Async</strong></a>. The latest version included some breaking changes, which means I needed to revisit its plugin, <a href="https://metacpan.org/dist/Dancer2-Plugin-DBIC-Async"><strong>Dancer2::Plugin::DBIC::Async</strong></a>. I&rsquo;ve applied the necessary patches to ensure compatibility with the latest <strong>DBIx::Class::Async</strong> release. The updated plugin is now available as version <strong>v0.05</strong>.</p>
+<p>Now that I have both tools, <strong>DBIx::Class::Async</strong> and <strong>Dancer2::Plugin::DBIC::Async</strong> working in harmony, I wanted to put them to use. Recently I came across the term <strong>HTMX</strong> and began exploring what it offers. As someone who leans more toward backend development and only touches frontend when necessary, <strong>HTMX</strong> caught my attention.</p>
+<p>I decided to build something that brings all these pieces together, <strong>DBIX::Class::Async</strong> for asynchronous database operations, <strong>Dancer2::Plugin::DBIC::Async</strong> for seamless integration with <strong>Dancer2</strong>, and <strong>HTMX</strong> for a modern, lightweight frontend experience. It’s a chance to see how these tools behave in a real-world scenario.</p>
+<p>This is a modern, high-performance Perl web application demonstrating how to build a reactive user interface without a complex JavaScript framework.</p>
+<br>
+<h3 id="key-features"><strong>Key Features</strong></h3>
+<hr>
+<br>
+<h4 id="1-non-blocking-db-operations"><strong>1. Non-Blocking DB Operations</strong></h4>
+<p>Uses IO::Async and Dancer2::Plugin::DBIC::Async to handle database queries without stalling the server.</p>
+<br>
+<h4 id="2-reactive-ui"><strong>2. Reactive UI</strong></h4>
+<p>Powered by HTMX for seamless, partial page updates (No full page reloads!).</p>
+<br>
+<h4 id="3-parallelism"><strong>3. Parallelism</strong></h4>
+<p>Executes search and count queries simultaneously using <strong>Future-&gt;wait_all</strong>.</p>
+<br>
+<h4 id="4-clean-api"><strong>4. Clean API</strong></h4>
+<p>Returns deflated HashRefs, making data handling simple and fast.</p>
+<br>
+<h3 id="prerequisites"><strong>Prerequisites</strong></h3>
+<hr>
+<br>
+<p>Ensure you have the following dependencies:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cpanm -vS Dancer2
+$ cpanm -vS DBIx::Class::Async
+$ cpanm -vS Dancer2::Plugin::DBIC::Async
+</code></pre></div><br>
+<h3 id="project-structure">Project Structure</h3>
+<hr>
+<p>The project looks like this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    ├── app.pl
+    ├── bin
+    │   └── deploy.pl
+    ├── config.yml
+    ├── contacts.db
+    ├── lib
+    │   └── MyApp
+    │       ├── Schema
+    │       │   └── Result
+    │       │       └── Contact.pm
+    │       └── Schema.pm
+    └── views
+        └── index.tt
+</code></pre></div><br>
+<pre><code>config.yml: Application configuration file.
+app.pl: The Dancer2 application logic and routes.
+lib/: Contains your DBIx::Class schema.
+views/index.tt: The main dashboard containing the HTMX attributes.
+contacts.db: SQLite database.
+</code></pre>
+<br>
+<h3 id="quick-start"><strong>Quick Start</strong></h3>
+<hr>
+<br>
+<h4 id="1-database-setup"><strong>1. Database Setup</strong></h4>
+<br>
+<p>Create your SQLite database and deploy the schema:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl bin/deploy.pl
+</code></pre></div><br>
+<h4 id="2-configuration"><strong>2. Configuration</strong></h4>
+<br>
+<p>Ensure your config.yml points to the correct schema:</p>
+<br>
+<pre><code>logger: &quot;console&quot;
+log: &quot;core&quot;
+show_errors: 1
+startup_info: 1
+template: &quot;template_toolkit&quot;
+
+# Plugin Settings
+plugins:
+    &quot;DBIC::Async&quot;:
+    default:
+        schema_class: &quot;MyApp::Schema&quot;
+        dsn: &quot;dbi:SQLite:dbname=contacts.db&quot;
+        async:
+            workers: 4
+</code></pre>
+<br>
+<h4 id="3-template"><strong>3. Template</strong></h4>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;Async Contact Manager&lt;/<span style="color:#f92672">title</span>&gt;
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://unpkg.com/htmx.org@1.9.10&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">h1</span>&gt;Contact Manager&lt;/<span style="color:#f92672">h1</span>&gt;
+
+    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">hx-post</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span>
+      <span style="color:#a6e22e">hx-target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#contact-list&#34;</span>
+      <span style="color:#a6e22e">hx-swap</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;innerHTML&#34;</span>
+      <span style="color:#a6e22e">onaddcontact</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;this.reset()&#34;</span>&gt;
+        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name&#34;</span> <span style="color:#a6e22e">required</span>&gt;
+        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span> <span style="color:#a6e22e">required</span>&gt;
+        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;Add Contact&lt;/<span style="color:#f92672">button</span>&gt;
+    &lt;/<span style="color:#f92672">form</span>&gt;
+
+    &lt;<span style="color:#f92672">hr</span>&gt;
+
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;search-box&#34;</span>&gt;
+        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>
+            <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;q&#34;</span>
+            <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Search contacts...&#34;</span>
+            <span style="color:#a6e22e">hx-get</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span>
+            <span style="color:#a6e22e">hx-target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#contact-list&#34;</span>
+            <span style="color:#a6e22e">hx-trigger</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;keyup changed delay:500ms&#34;</span>
+            <span style="color:#a6e22e">hx-indicator</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.loader&#34;</span>&gt;
+        &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;loader htmx-indicator&#34;</span>&gt;Searching...&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+
+    &lt;<span style="color:#f92672">h2</span>&gt;Active Contacts (&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;total-count&#34;</span>&gt;0&lt;/<span style="color:#f92672">span</span>&gt;)&lt;/<span style="color:#f92672">h2</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;contact-list&#34;</span> <span style="color:#a6e22e">hx-get</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span> <span style="color:#a6e22e">hx-trigger</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;load&#34;</span>&gt;
+        Loading contacts...
+    &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><br>
+<h4 id="4-application"><strong>4. Application</strong></h4>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+
+<span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;lib&#39;</span>;
+
+<span style="color:#66d9ef">use</span> Dancer2;
+<span style="color:#66d9ef">use</span> Dancer2::Plugin::DBIC::Async;
+
+get <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+    template <span style="color:#e6db74">&#39;index&#39;</span>;
+};
+
+post <span style="color:#e6db74">&#39;/contacts&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+    <span style="color:#66d9ef">my</span> $name  <span style="color:#f92672">=</span> body_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;name&#39;</span>);
+    <span style="color:#66d9ef">my</span> $email <span style="color:#f92672">=</span> body_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;email&#39;</span>);
+
+    async_create(<span style="color:#e6db74">&#39;Contact&#39;</span>, { name <span style="color:#f92672">=&gt;</span> $name, email <span style="color:#f92672">=&gt;</span> $email })<span style="color:#f92672">-&gt;</span>get;
+
+    redirect <span style="color:#e6db74">&#39;/contacts&#39;</span>;
+};
+
+post <span style="color:#e6db74">&#39;/contacts&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+    <span style="color:#66d9ef">my</span> $name  <span style="color:#f92672">=</span> body_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;name&#39;</span>);
+    <span style="color:#66d9ef">my</span> $email <span style="color:#f92672">=</span> body_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;email&#39;</span>);
+
+    async_create(<span style="color:#e6db74">&#39;Contact&#39;</span>, { name <span style="color:#f92672">=&gt;</span> $name, email <span style="color:#f92672">=&gt;</span> $email }, <span style="color:#e6db74">&#39;default&#39;</span>)<span style="color:#f92672">-&gt;</span>get;
+
+    redirect <span style="color:#e6db74">&#39;/contacts&#39;</span>;
+};
+
+get <span style="color:#e6db74">&#39;/contacts&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+    <span style="color:#66d9ef">my</span> $query <span style="color:#f92672">=</span> query_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;q&#39;</span>);
+    <span style="color:#66d9ef">my</span> $cond  <span style="color:#f92672">=</span> $query ? { name <span style="color:#f92672">=&gt;</span> { <span style="color:#f92672">-</span>like <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;%$query%&#34;</span> } } : {};
+
+    <span style="color:#66d9ef">my</span> $search_f <span style="color:#f92672">=</span> async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>);
+    <span style="color:#66d9ef">my</span> $count_f  <span style="color:#f92672">=</span> async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>);
+
+    Future<span style="color:#f92672">-&gt;</span>wait_all($search_f, $count_f)<span style="color:#f92672">-&gt;</span>get;
+
+    <span style="color:#66d9ef">my</span> $contacts <span style="color:#f92672">=</span> $search_f<span style="color:#f92672">-&gt;</span>get;
+    <span style="color:#66d9ef">my</span> $total    <span style="color:#f92672">=</span> $count_f<span style="color:#f92672">-&gt;</span>get;
+
+    <span style="color:#66d9ef">my</span> $html <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;ul class=&#34;list-group shadow-sm&#34;&gt;&#39;</span>;
+    <span style="color:#66d9ef">if</span> (@$contacts) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (@$contacts) {
+            $html <span style="color:#f92672">.=</span> sprintf(
+                <span style="color:#e6db74">&#39;&lt;li class=&#34;list-group-item d-flex justify-content-between align-items-center&#34;&gt;
+</span><span style="color:#e6db74">                    &lt;div&gt;
+</span><span style="color:#e6db74">                        &lt;h6 class=&#34;my-0&#34;&gt;%s&lt;/h6&gt;
+</span><span style="color:#e6db74">                        &lt;small class=&#34;text-muted&#34;&gt;%s&lt;/small&gt;
+</span><span style="color:#e6db74">                    &lt;/div&gt;
+</span><span style="color:#e6db74">                &lt;/li&gt;&#39;</span>,
+                $c<span style="color:#f92672">-&gt;</span>{name},
+                $c<span style="color:#f92672">-&gt;</span>{email}
+            );
+        }
+    } <span style="color:#66d9ef">else</span> {
+        $html <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;&lt;li class=&#34;list-group-item text-muted text-center py-4&#34;&gt;No contacts found&lt;/li&gt;&#39;</span>;
+    }
+    $html <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;&lt;/ul&gt;&#39;</span>;
+
+    $html <span style="color:#f92672">.=</span> <span style="color:#e6db74">qq|&lt;span id=&#34;total-count&#34; hx-swap-oob=&#34;innerHTML&#34;&gt;$total&lt;/span&gt;|</span>;
+
+    content_type <span style="color:#e6db74">&#39;text/html&#39;</span>;
+    <span style="color:#66d9ef">return</span> $html;
+};
+
+dance;
+</code></pre></div><br>
+<h4 id="5-launch-the-app"><strong>5. Launch the App</strong></h4>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl app.pl
+</code></pre></div><br>
+<p>Visit <a href="http://localhost:3000"><strong>http://localhost:3000</strong></a> in your browser.</p>
+<br>
+<h3 id="how-it-works">How it Works</h3>
+<hr>
+<br>
+<h4 id="the-frontend-htmx"><strong>The Frontend (HTMX)</strong></h4>
+<br>
+<p>The search bar uses <strong>hx-get</strong> to trigger a request to the server as you type. It waits <strong>500ms</strong> after your last keystroke to avoid overloading the DB.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;q&#34;</span>
+       <span style="color:#a6e22e">hx-get</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span>
+       <span style="color:#a6e22e">hx-trigger</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;keyup changed delay:500ms&#34;</span>
+       <span style="color:#a6e22e">hx-target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#contact-list&#34;</span>
+       <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Search contacts...&#34;</span>&gt;
+</code></pre></div><br>
+<h4 id="the-backend-asynchronous-perl"><strong>The Backend (Asynchronous Perl)</strong></h4>
+<br>
+<p>When the request hits <strong>/contacts</strong>, the server fires <strong>two</strong> database queries in <strong>parallel</strong>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">get <span style="color:#e6db74">&#39;/contacts&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+    <span style="color:#66d9ef">my</span> $query <span style="color:#f92672">=</span> query_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;q&#39;</span>);
+    <span style="color:#66d9ef">my</span> $cond  <span style="color:#f92672">=</span> $query ? { name <span style="color:#f92672">=&gt;</span> { <span style="color:#f92672">-</span>like <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;%$query%&#34;</span> } } : {};
+
+    <span style="color:#66d9ef">my</span> $search_f <span style="color:#f92672">=</span> async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>);
+    <span style="color:#66d9ef">my</span> $count_f  <span style="color:#f92672">=</span> async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>);
+
+    Future<span style="color:#f92672">-&gt;</span>wait_all($search_f, $count_f)<span style="color:#f92672">-&gt;</span>get;
+
+    <span style="color:#66d9ef">my</span> $contacts <span style="color:#f92672">=</span> $search_f<span style="color:#f92672">-&gt;</span>get;
+    <span style="color:#66d9ef">my</span> $total    <span style="color:#f92672">=</span> $count_f<span style="color:#f92672">-&gt;</span>get;
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># prepare the html contents</span>
+    <span style="color:#75715e">#</span>
+
+    content_type <span style="color:#e6db74">&#39;text/html&#39;</span>;
+    <span style="color:#66d9ef">return</span> $html;
+};
+</code></pre></div><br>
+<p>The complete source code is available here: <a href="https://github.com/manwar/Dancer2-DBIC-Async-HTMX"><strong>https://github.com/manwar/Dancer2-DBIC-Async-HTMX</strong></a></p>
+<p>So what are you waiting for, go and play.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2026
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
