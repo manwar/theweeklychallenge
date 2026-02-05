@@ -215,15 +215,6 @@ post '/contacts' => sub {
     my $name  = body_parameters->get('name');
     my $email = body_parameters->get('email');
 
-    async_create('Contact', { name => $name, email => $email })->get;
-
-    redirect '/contacts';
-};
-
-post '/contacts' => sub {
-    my $name  = body_parameters->get('name');
-    my $email = body_parameters->get('email');
-
     async_create('Contact', { name => $name, email => $email }, 'default')->get;
 
     redirect '/contacts';
