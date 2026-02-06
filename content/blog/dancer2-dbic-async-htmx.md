@@ -332,6 +332,33 @@ get '/contacts' => sub {
 
 <br>
 
+#### [UPDATE] With the release of **DBIx::Class::Async v0.55**, we can now do this:
+
+<br>
+
+```perl
+    my $schema  = async_db('default');
+    my $futures = $schema->run_parallel(
+       sub { async_search('Contact', $cond, 'default') },
+       sub { async_count('Contact', 'default') },
+    );
+    my ($contacts, $total) = $schema->await_all($futures);
+```
+
+<br>
+
+as well as this:
+
+<br>
+
+```perl
+    my $search_f = async_search('Contact', $cond, 'default');
+    my $count_f  = async_count('Contact', 'default');
+    my ($contacts, $total) = async_db('default')->await_all($search_f, $count_f);
+```
+
+<br>
+
 The complete source code is available here: [**https://github.com/manwar/Dancer2-DBIC-Async-HTMX**](https://github.com/manwar/Dancer2-DBIC-Async-HTMX)
 
 So what are you waiting for, go and play.

@@ -533,6 +533,21 @@ dance;
     <span style="color:#66d9ef">return</span> $html;
 };
 </code></pre></div><br>
+<h4 id="update-with-the-release-of-dbixclassasync-v055-we-can-now-do-this">[UPDATE] With the release of <strong>DBIx::Class::Async v0.55</strong>, we can now do this:</h4>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $schema  <span style="color:#f92672">=</span> async_db(<span style="color:#e6db74">&#39;default&#39;</span>);
+    <span style="color:#66d9ef">my</span> $futures <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>run_parallel(
+       <span style="color:#66d9ef">sub</span> { async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>) },
+       <span style="color:#66d9ef">sub</span> { async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>) },
+    );
+    <span style="color:#66d9ef">my</span> ($contacts, $total) <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>await_all($futures);
+</code></pre></div><br>
+<p>as well as this:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $search_f <span style="color:#f92672">=</span> async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>);
+    <span style="color:#66d9ef">my</span> $count_f  <span style="color:#f92672">=</span> async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>);
+    <span style="color:#66d9ef">my</span> ($contacts, $total) <span style="color:#f92672">=</span> async_db(<span style="color:#e6db74">&#39;default&#39;</span>)<span style="color:#f92672">-&gt;</span>await_all($search_f, $count_f);
+</code></pre></div><br>
 <p>The complete source code is available here: <a href="https://github.com/manwar/Dancer2-DBIC-Async-HTMX"><strong>https://github.com/manwar/Dancer2-DBIC-Async-HTMX</strong></a></p>
 <p>So what are you waiting for, go and play.</p>
 <hr>
