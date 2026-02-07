@@ -67,7 +67,7 @@ my @history;
 ### **The Homepage**
 ***
 
-A simple **GET** route serves the **HTML** frontend (from a template named index). Mojo’s **$c** is the controller object—similar to **Dancer2**’s request object.
+A simple **GET** route serves the **HTML** frontend (from a template named index). Mojo’s **$c** is the controller object, similar to **Dancer2**’s request object.
 
 <br>
 
