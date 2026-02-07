@@ -37,7 +37,7 @@ Here’s the script I came up with, a fully functional, minimal **WebSocket Chat
 ### **The Setup**
 ***
 
-We start by importing [**Mojolicious::Lite**](https://metacpan.org/pod/Mojolicious::Lite), the lightweight version of **Mojo** that’s perfect for quick apps. [**Mojo::JSON**](https://metacpan.org/pod/Mojo::JSON) handles **JSON** encoding/decoding—essential for **WebSocket** messaging.
+We start by importing [**Mojolicious::Lite**](https://metacpan.org/pod/Mojolicious::Lite), the lightweight version of **Mojo** that’s perfect for quick apps. [**Mojo::JSON**](https://metacpan.org/pod/Mojo::JSON) handles **JSON** encoding/decoding, essential for **WebSocket** messaging.
 
 <br>
 
