@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+<script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="Mojolicious with WebSocket"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/mojo-with-websocket/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="Online Chat application using Mojolicious with WebSocket."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Online Chat application using Mojolicious with WebSocket.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <link rel="me" href="https://fosstodon.org/@manwar">
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/mojo-with-websocket/" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mojolicious with WebSocket</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+
+        
+        .toggle-links {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .toggle-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4285f4;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .toggle-links a:hover {
+            background-color: #3367d6;
+        }
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const showMoreLinkGC = document.querySelector('.show-more-gc');
+        const showLessLinkGC = document.querySelector('.show-less-gc');
+        const hiddenLinksGC = document.querySelectorAll('.hidden-link-gc');
+
+        if (showMoreLinkGC) {
+            showMoreLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkGC.style.display = 'none';
+                showLessLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkGC) {
+            showLessLinkGC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksGC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkGC.style.display = 'none';
+                showMoreLinkGC.style.display = 'inline-flex';
+            });
+        }
+
+        
+        const showMoreLinkPWC = document.querySelector('.show-more-pwc');
+        const showLessLinkPWC = document.querySelector('.show-less-pwc');
+        const hiddenLinksPWC = document.querySelectorAll('.hidden-link-pwc');
+
+        if (showMoreLinkPWC) {
+            showMoreLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'list-item';
+                });
+                showMoreLinkPWC.style.display = 'none';
+                showLessLinkPWC.style.display = 'inline-flex';
+            });
+        }
+
+        if (showLessLinkPWC) {
+            showLessLinkPWC.addEventListener('click', function(e) {
+                e.preventDefault();
+                hiddenLinksPWC.forEach(link  => {
+                    link.style.display = 'none';
+                });
+                showLessLinkPWC.style.display = 'none';
+                showMoreLinkPWC.style.display = 'inline-flex';
+            });
+        }
+    });
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row" style="color:black">
+          <div class="col-xs-12 text-center">
+            <div id="perl-ad-target" class="center-block"></div>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+
+                    <button class="navbar-toggler d-lg-none"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navigation"
+                            aria-controls="navigation"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Mojolicious with WebSocket</h2>
+                    <div class="portfolio-meta">
+                        <span>Saturday, Feb 7, 2026</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/mojo-with-websocket.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>As a longtime <a href="https://metacpan.org/pod/Dancer2"><strong>Dancer2</strong></a> fan, I’ve always admired its elegance for building web apps. But recently, I decided to step out of my comfort zone and try something new, <a href="https://metacpan.org/pod/Mojolicious"><strong>Mojolicious</strong></a>. Known for its real‑time web capabilities, <strong>Mojo</strong> seemed like the perfect framework to experiment with <strong>WebSockets</strong>. And what better way to test it than building a live chat room?</p>
+<br>
+<h3 id="project-structure"><strong>Project Structure</strong></h3>
+<hr>
+<pre><code>├── chat-server.pl
+├── public
+│   ├── css
+│   │   └── style.css
+│   └── js
+│       └── chat.js
+└── templates
+    └── index.html.ep
+</code></pre>
+<br>
+<p>Here’s the script I came up with, a fully functional, minimal <strong>WebSocket Chat Server</strong> in just 60 lines of <strong>Perl</strong>. Let me walk you through it, piece by piece.</p>
+<br>
+<h3 id="the-setup"><strong>The Setup</strong></h3>
+<hr>
+<p>We start by importing <a href="https://metacpan.org/pod/Mojolicious::Lite"><strong>Mojolicious::Lite</strong></a>, the lightweight version of <strong>Mojo</strong> that’s perfect for quick apps. <a href="https://metacpan.org/pod/Mojo::JSON"><strong>Mojo::JSON</strong></a> handles <strong>JSON</strong> encoding/decoding—essential for <strong>WebSocket</strong> messaging.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+
+<span style="color:#66d9ef">use</span> Mojolicious::Lite;
+<span style="color:#66d9ef">use</span> Mojo::JSON <span style="color:#e6db74">qw(decode_json encode_json)</span>;
+</code></pre></div><br>
+<h3 id="global-state"><strong>Global State</strong></h3>
+<hr>
+<p>Since <strong>WebSocket</strong> connections are persistent, we need to track connected clients and message history. <strong>$clients</strong> is a hashref keyed by connection ID, and <strong>@history</strong> keeps the last 10 messages for newcomers.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $clients <span style="color:#f92672">=</span> {};
+<span style="color:#66d9ef">my</span> @history;
+</code></pre></div><br>
+<h3 id="the-homepage"><strong>The Homepage</strong></h3>
+<hr>
+<p>A simple <strong>GET</strong> route serves the <strong>HTML</strong> frontend (from a template named index). Mojo’s <strong>$c</strong> is the controller object—similar to <strong>Dancer2</strong>’s request object.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">get <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> shift;
+
+    $c<span style="color:#f92672">-&gt;</span>render(template <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;index&#39;</span>, title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Online Chat App&#39;</span>);
+};
+</code></pre></div><br>
+<h3 id="the-websocket-handler"><strong>The WebSocket Handler</strong></h3>
+<hr>
+<p>When a client connects to <strong>/chat</strong>, we create a unique ID from the transaction object (<strong>$c-&gt;tx</strong>) and store the connection along with a default username.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">websocket <span style="color:#e6db74">&#39;/chat&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+    <span style="color:#66d9ef">my</span> $c  <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $id <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%p&#34;</span>, $c<span style="color:#f92672">-&gt;</span>tx;
+    $clients<span style="color:#f92672">-&gt;</span>{$id} <span style="color:#f92672">=</span> { tx <span style="color:#f92672">=&gt;</span> $c<span style="color:#f92672">-&gt;</span>tx, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Anonymous&#39;</span> };
+
+</code></pre></div><br>
+<h3 id="handling-incoming-messages"><strong>Handling Incoming Messages</strong></h3>
+<hr>
+<p><strong>Mojo</strong> uses event-driven callbacks.</p>
+<p>Here, we listen for message events, decode the incoming <strong>JSON</strong>, and handle different message types:</p>
+<ul>
+<li>
+<p><strong>Typing indicators:</strong> Broadcast when a user is typing (excluding the sender).</p>
+</li>
+<li>
+<p><strong>Join events:</strong> Assign a username, send the message history to the new user, and announce their arrival to others.</p>
+</li>
+<li>
+<p><strong>Chat messages:</strong> Add a timestamp, store in history (capped at 10), and broadcast to all.</p>
+</li>
+</ul>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $c<span style="color:#f92672">-&gt;</span>on(message <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">my</span> ($self, $msg) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> eval { decode_json($msg) };
+        <span style="color:#66d9ef">if</span> ($@ <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>$data) {
+            app<span style="color:#f92672">-&gt;</span>log<span style="color:#f92672">-&gt;</span>error(<span style="color:#e6db74">&#34;Bad JSON received: $@&#34;</span>);
+            <span style="color:#66d9ef">return</span>;
+        }
+
+        <span style="color:#66d9ef">if</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;typing&#39;</span>) {
+            <span style="color:#75715e"># Send the typing status to everyone EXCEPT the person typing</span>
+            broadcast({
+                type     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;typing&#39;</span>,
+                user     <span style="color:#f92672">=&gt;</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name},
+                isTyping <span style="color:#f92672">=&gt;</span> $data<span style="color:#f92672">-&gt;</span>{isTyping}
+            }, $id);
+        }
+        <span style="color:#66d9ef">elsif</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;join&#39;</span>) {
+            $clients<span style="color:#f92672">-&gt;</span>{$id}{name} <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span>{name};
+
+            <span style="color:#75715e"># Send existing history ONLY to the user who just joined</span>
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $old_msg (@history) {
+                $c<span style="color:#f92672">-&gt;</span>send(encode_json($old_msg));
+            }
+
+            broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;system&#39;</span>, text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$data-&gt;{name} joined&#34;</span> });
+            send_user_list();
+        }
+        <span style="color:#66d9ef">elsif</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;message&#39;</span>) {
+            <span style="color:#66d9ef">my</span> (undef, $min, $hour) <span style="color:#f92672">=</span> localtime();
+            <span style="color:#66d9ef">my</span> $timestamp <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%02d:%02d&#34;</span>, $hour, $min);
+            <span style="color:#66d9ef">my</span> $msg_out   <span style="color:#f92672">=</span> {
+                user      <span style="color:#f92672">=&gt;</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name},
+                text      <span style="color:#f92672">=&gt;</span> $data<span style="color:#f92672">-&gt;</span>{text},
+                timestamp <span style="color:#f92672">=&gt;</span> $timestamp
+            };
+
+            <span style="color:#75715e"># Push to history and keep only the last 10</span>
+            push @history, $msg_out;
+            shift @history <span style="color:#66d9ef">if</span> @history <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>;
+
+            broadcast($msg_out);
+        }
+    });
+</code></pre></div><br>
+<h3 id="cleaning-up-on-disconnect"><strong>Cleaning Up on Disconnect</strong></h3>
+<hr>
+<p>When a <strong>WebSocket</strong> closes, we remove the client from <strong>$clients</strong> and notify everyone.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $c<span style="color:#f92672">-&gt;</span>on(finish <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name};
+        delete $clients<span style="color:#f92672">-&gt;</span>{$id};
+        broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;system&#39;</span>, text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$name left&#34;</span> });
+        send_user_list();
+    });
+</code></pre></div><br>
+<h3 id="helper-subs"><strong>Helper Subs</strong></h3>
+<hr>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">broadcast</span> {
+    <span style="color:#66d9ef">my</span> $msg <span style="color:#f92672">=</span> encode_json(shift);
+    $_<span style="color:#f92672">-&gt;</span>{tx}<span style="color:#f92672">-&gt;</span>send($msg) <span style="color:#66d9ef">for</span> values %$clients;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">send_user_list</span> {
+    <span style="color:#66d9ef">my</span> @names <span style="color:#f92672">=</span> sort map { $_<span style="color:#f92672">-&gt;</span>{name} } values %$clients;
+    broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;users&#39;</span>, list <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>@names });
+}
+</code></pre></div><br>
+<h3 id="kicking-things-off"><strong>Kicking Things Off</strong></h3>
+<hr>
+<p>Finally, we start the Mojo app.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">app<span style="color:#f92672">-&gt;</span>start;
+</code></pre></div><br>
+<p>With the built-in web server, launch the deamon like below:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl chat-server deamon
+<span style="color:#f92672">[</span>2026-02-07 21:43:08.63656<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>368424<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>info<span style="color:#f92672">]</span> Listening at <span style="color:#e6db74">&#34;http://*:3000&#34;</span>
+Web application available at http://127.0.0.1:3000
+</code></pre></div><br>
+<h3 id="final-look"><strong>Final Look</strong></h3>
+<hr>
+<p><img src="/images/blog/mojo-with-websocket-img-1.jpg" alt="Welcome Screen"></p>
+<hr>
+<p><img src="/images/blog/mojo-with-websocket-img-2.jpg" alt="Main Chat Screen"></p>
+<br>
+<h3 id="first-impressions"><strong>First Impressions</strong></h3>
+<hr>
+<p>Coming from <strong>Dancer2</strong>, I appreciated <strong>Mojo</strong>&lsquo;s all-in-one approach, no need for extra <strong>PSGI</strong> setup or external modules for <strong>WebSockets</strong>. The event-driven style felt natural for real-time apps, and the built-in <strong>JSON</strong> handling kept things tidy.</p>
+<p>Is <strong>Mojo</strong> going to replace <strong>Dancer2</strong> for me?</p>
+<p>Not necessarily, but for real-time features, it’s a powerful tool to have in the toolbox. And building this chat server was a fun way to dive in.</p>
+<p>You can find the full code (including the frontend template) on <a href="https://github.com/manwar/Mojo-with-WebSocket"><strong>GitHub</strong></a>.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="mailto:mohammad.anwar@yahoo.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2026
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jquery/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJTPYM9SB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CJTPYM9SB8');
+</script>
+</body>
+
+</html>
+
