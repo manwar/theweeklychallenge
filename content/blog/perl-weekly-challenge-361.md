@@ -268,7 +268,7 @@ Write a script to return Zeckendorf Representation of the given integer.
 
 <br>
 
-## Task 2: Word Sorter {#TASK2}
+## Task 2: Find Celebrity {#TASK2}
 ##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)
 ***
 
