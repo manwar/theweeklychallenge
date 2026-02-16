@@ -274,7 +274,7 @@ Write a script to return Zeckendorf Representation of the given integer.
 
 You are given a binary matrix (m x n).
 
-Write a script to find the celebrity, return -1 none found.
+Write a script to find the celebrity, return -1 when none found.
 
 > A celebrity is someone, everyone knows and knows nobody.
 
