@@ -143,7 +143,7 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 #### 6. [Padding and sorting](http://ccgi.campbellsmiths.force9.co.uk/challenge/360) by Peter Campbell Smith.
 #### 7. [Justify the Words](https://blog.firedrake.org/archive/2026/02/The_Weekly_Challenge_360__Justify_the_Words.html) by Roger Bell_West.
 #### 8. [Padding and sorting](https://dev.to/simongreennet/weekly-challenge-padding-and-sorting-3oj8) by Simon Green.
-#### 9. [Perl Power: Two Tiny Scripts, Big Learning!](https://dev.to/vinodk89/perl-weekly-challenge-360-perl-power-two-tiny-scripts-big-learning-2o61) by Yitzchak Scott-Thoennes.
+#### 9. [Perl Power: Two Tiny Scripts, Big Learning!](https://dev.to/vinodk89/perl-weekly-challenge-360-perl-power-two-tiny-scripts-big-learning-2o61) by Vinod Kumar K.
 
 <br>
 
