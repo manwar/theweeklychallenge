@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-02-19T00:00:00+00:00
+date: 2026-02-21T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -4240,6 +4240,8 @@ ____
 
 ##### **Packy Anderson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-316/packy-anderson/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-316/packy-anderson/python/ch-2.py) in **Python**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-316/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-316/paulo-custodio/c/ch-2.c) in **C**.
+
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-316/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-316/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-316/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-316/pokgopun/go/ch-2.go) in **Go**.
@@ -4297,6 +4299,8 @@ ____
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-315/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-315/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Marton Polgar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-315/2colours/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-315/2colours/prolog/ch-2.p) in **Prolog**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-315/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-315/paulo-custodio/c/ch-2.c) in **C**.
 
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-315/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-315/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
@@ -4358,6 +4362,8 @@ ____
 
 ##### **Mariano Spadaccini** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/spadacciniweb/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/spadacciniweb/python/ch-2.py) in **Python**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/paulo-custodio/c/ch-2.c) in **C**.
+
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-314/pokgopun/go/ch-2.go) in **Go**.
@@ -4416,6 +4422,8 @@ ____
 
 ##### **Marton Polgar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-313/2colours/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-313/2colours/prolog/ch-2.p) in **Prolog**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-313/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-313/paulo-custodio/c/ch-2.c) in **C**.
+
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-313/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-313/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-313/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-313/pokgopun/go/ch-2.go) in **Go**.
@@ -4471,6 +4479,8 @@ ____
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/luca-ferrari/python/ch-2.py) in **Python**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/paulo-custodio/c/ch-2.c) in **C**.
 
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-312/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
@@ -4530,6 +4540,8 @@ ____
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/lubos-kolouch/python/ch-2.py) in **Python**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/paulo-custodio/c/ch-2.c) in **C**.
+
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-311/pokgopun/go/ch-2.go) in **Go**.
@@ -4579,6 +4591,8 @@ ____
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-310/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-310/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-310/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-310/lubos-kolouch/python/ch-2.py) in **Python**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-310/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-310/paulo-custodio/c/ch-2.c) in **C**.
 
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-310/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-310/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
@@ -4642,6 +4656,8 @@ ____
 
 ##### **Marton Polgar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-309/2colours/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-309/2colours/prolog/ch-2.p) in **Prolog**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-309/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-309/paulo-custodio/c/ch-2.c) in **C**.
+
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-309/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-309/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-309/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-309/pokgopun/go/ch-2.go) in **Go**.
@@ -4693,6 +4709,8 @@ ____
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-308/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-308/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-308/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-308/lubos-kolouch/python/ch-2.py) in **Python**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-308/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-308/paulo-custodio/c/ch-2.c) in **C**.
 
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-308/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-308/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
@@ -4768,6 +4786,8 @@ ____
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/lubos-kolouch/python/ch-2.py) in **Python**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/paulo-custodio/c/ch-2.c) in **C**.
+
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-307/pokgopun/go/ch-2.go) in **Go**.
@@ -4817,6 +4837,8 @@ ____
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-306/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-306/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Marton Polgar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-306/2colours/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-306/2colours/prolog/ch-2.p) in **Prolog**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-306/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-306/paulo-custodio/c/ch-2.c) in **C**.
 
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-306/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-306/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
@@ -4869,6 +4891,8 @@ ____
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-305/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-305/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-305/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-305/luca-ferrari/python/ch-2.py) in **Python**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-305/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-305/paulo-custodio/c/ch-2.c) in **C**.
 
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-305/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-305/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
