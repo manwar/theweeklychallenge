@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-02-21T00:00:00+00:00
+date: 2026-02-22T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -20998,6 +20998,8 @@ ____
 ##### **Daniel Mita** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/js/ch-1.js) in **JavaScript**.
 
 ##### **Duncan C. White** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/duncan-c-white/postscript/ch-1.ps) in **Postscript**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/paulo-custodio/c/ch-1.c) in **C**.
 
