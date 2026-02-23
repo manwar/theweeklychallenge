@@ -323,25 +323,56 @@
 <br>
 <p>Below is my contributions to the <code>Task #1</code> of <code>Week #361</code>.</p>
 <h3 id="perl-source-codehttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-361mohammad-anwarperlch-1pl">Perl: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-361/mohammad-anwar/perl/ch-1.pl">source code</a></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">justify_text</span> {
-    <span style="color:#66d9ef">my</span> ($str, $width) <span style="color:#f92672">=</span> @_;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zeckendorf</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @f <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
 
-    <span style="color:#66d9ef">my</span> $pad <span style="color:#f92672">=</span> $width <span style="color:#f92672">-</span> length $str;
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;*&#34;</span> x int($pad <span style="color:#e6db74">/ 2) . $str . &#34;*&#34; x ($pad - int($pad /</span> <span style="color:#ae81ff">2</span>));
+    push(@f, $f[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $f[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]) <span style="color:#66d9ef">while</span> $f[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> $n;
+    pop @f;
+    <span style="color:#66d9ef">my</span> @r;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $#f; $i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">--</span>) {
+        <span style="color:#66d9ef">if</span> ($f[$i] <span style="color:#f92672">&lt;=</span> $n) {
+            push @r, $f[$i];
+            $n <span style="color:#f92672">-=</span> $f[$i];
+        }
+    }
+
+    <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;,&#34;</span>, @r;
 }
 </code></pre></div><br>
 <h3 id="raku-source-codehttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-361mohammad-anwarrakuch-1raku">Raku: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-361/mohammad-anwar/raku/ch-1.raku">source code</a></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">justify</span>-text(Str $str, Int $width) {
-    <span style="color:#66d9ef">my</span> $pad <span style="color:#f92672">=</span> $width <span style="color:#f92672">-</span> $str<span style="color:#f92672">.</span>chars;
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;*&#34;</span> x ($pad div <span style="color:#ae81ff">2</span>) <span style="color:#f92672">~</span> $str <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;*&#34;</span> x ($pad <span style="color:#f92672">-</span> ($pad div <span style="color:#ae81ff">2</span>));
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zeckendorf</span>($n is copy) {
+    <span style="color:#66d9ef">my</span> @f <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+
+    push @f, @f[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @f[<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>] <span style="color:#66d9ef">while</span> @f[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> $n;
+    @f<span style="color:#f92672">.</span>pop;
+    <span style="color:#66d9ef">my</span> @r;
+    loop (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> @f<span style="color:#f92672">.</span>end; $i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">--</span>) {
+        <span style="color:#66d9ef">if</span> @f[$i] <span style="color:#f92672">&lt;=</span> $n {
+            push @r, @f[$i];
+            $n <span style="color:#f92672">-=</span> @f[$i];
+        }
+    }
+
+    <span style="color:#66d9ef">return</span> @r<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;,&#34;</span>);
 }
 </code></pre></div><br>
 <h3 id="python-source-codehttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-361mohammad-anwarpythonch-1py">Python: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-361/mohammad-anwar/python/ch-1.py">source code</a></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">justify_text</span>(s: str, width: int) <span style="color:#f92672">-&gt;</span> str:
-    pad   <span style="color:#f92672">=</span> width <span style="color:#f92672">-</span> len(s)
-    left  <span style="color:#f92672">=</span> pad <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>
-    right <span style="color:#f92672">=</span> pad <span style="color:#f92672">-</span> left
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;*&#34;</span> <span style="color:#f92672">*</span> left <span style="color:#f92672">+</span> s <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;*&#34;</span> <span style="color:#f92672">*</span> right
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">zeckendorf</span>(n):
+    f <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>]
+
+    <span style="color:#66d9ef">while</span> f[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> n:
+        f<span style="color:#f92672">.</span>append(f[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> f[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>])
+    f<span style="color:#f92672">.</span>pop()
+    r <span style="color:#f92672">=</span> []
+    i <span style="color:#f92672">=</span> len(f) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">if</span> f[i] <span style="color:#f92672">&lt;=</span> n:
+            r<span style="color:#f92672">.</span>append(f[i])
+            n <span style="color:#f92672">-=</span> f[i]
+        i <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">.</span>join(str(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> r)
 </code></pre></div><br>
 <p>Thank you <code>Team PWC</code>, once again.</p>
 <p><code>Happy Hacking!!</code></p>

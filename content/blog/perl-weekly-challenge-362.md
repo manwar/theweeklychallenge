@@ -45,11 +45,21 @@ Below is my contributions to the `Task #1` of `Week #361`.
 ### Perl: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-361/mohammad-anwar/perl/ch-1.pl)
 
 ```perl
-sub justify_text {
-    my ($str, $width) = @_;
+sub zeckendorf {
+    my $n = shift;
+    my @f = (1, 2);
 
-    my $pad = $width - length $str;
-    return "*" x int($pad / 2) . $str . "*" x ($pad - int($pad / 2));
+    push(@f, $f[-1] + $f[-2]) while $f[-1] <= $n;
+    pop @f;
+    my @r;
+    for (my $i = $#f; $i >= 0; $i--) {
+        if ($f[$i] <= $n) {
+            push @r, $f[$i];
+            $n -= $f[$i];
+        }
+    }
+
+    return join ",", @r;
 }
 ```
 
@@ -58,9 +68,20 @@ sub justify_text {
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-361/mohammad-anwar/raku/ch-1.raku)
 
 ```raku
-sub justify-text(Str $str, Int $width) {
-    my $pad = $width - $str.chars;
-    return "*" x ($pad div 2) ~ $str ~ "*" x ($pad - ($pad div 2));
+sub zeckendorf($n is copy) {
+    my @f = (1, 2);
+
+    push @f, @f[*-1] + @f[*-2] while @f[*-1] <= $n;
+    @f.pop;
+    my @r;
+    loop (my $i = @f.end; $i >= 0; $i--) {
+        if @f[$i] <= $n {
+            push @r, @f[$i];
+            $n -= @f[$i];
+        }
+    }
+
+    return @r.join(",");
 }
 ```
 
@@ -69,11 +90,21 @@ sub justify-text(Str $str, Int $width) {
 ### Python: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-361/mohammad-anwar/python/ch-1.py)
 
 ```python
-def justify_text(s: str, width: int) -> str:
-    pad   = width - len(s)
-    left  = pad // 2
-    right = pad - left
-    return "*" * left + s + "*" * right
+def zeckendorf(n):
+    f = [1, 2]
+
+    while f[-1] <= n:
+        f.append(f[-1] + f[-2])
+    f.pop()
+    r = []
+    i = len(f) - 1
+    while i >= 0:
+        if f[i] <= n:
+            r.append(f[i])
+            n -= f[i]
+        i -= 1
+
+    return ",".join(str(x) for x in r)
 ```
 
 <br>
