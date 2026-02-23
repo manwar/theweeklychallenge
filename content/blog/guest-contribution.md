@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-02-22T00:00:00+00:00
+date: 2026-02-23T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -17,6 +17,9 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
     <div class="col-12">
       <div class="links-visible">
         <div class="row text-center">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
+             <span class="link-item"><a href="#362">[&nbsp;&nbsp;362&nbsp;&nbsp;]</a> &nbsp;</span>
+          </div>
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#361">[&nbsp;&nbsp;361&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
@@ -194,13 +197,13 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#303">[&nbsp;&nbsp;303&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
-             <span class="link-item"><a href="#302">[&nbsp;&nbsp;302&nbsp;&nbsp;]</a> &nbsp;</span>
-          </div>
         </div>
       </div>
       <div class="links-hidden" style="display: none;">
         <div class="row text-center">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
+             <span class="link-item"><a href="#302">[&nbsp;&nbsp;302&nbsp;&nbsp;]</a> &nbsp;</span>
+          </div>
           <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 mb-2">
              <span class="link-item"><a href="#301">[&nbsp;&nbsp;301&nbsp;&nbsp;]</a> &nbsp;</span>
           </div>
@@ -1169,6 +1172,14 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
   }
 </style>
 
+## [The Weekly Challenge - 362](/blog/perl-weekly-challenge-362) {#362}
+<br>
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-362/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-362/lubos-kolouch/python/ch-2.py) in **Python**.
+
+##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-362/mohammad-anwar/python/ch-1.py) in **Python**.
+
+___
 ## [The Weekly Challenge - 361](/blog/perl-weekly-challenge-361) {#361}
 <br>
 
