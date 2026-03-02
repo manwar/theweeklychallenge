@@ -252,7 +252,7 @@ Write a script that parses a self-referential string and determines whether its 
 #### Example 5
 
     Input: $str = "aei — three vowels and zero consonants"
-    Output: false
+    Output: true
 
 <br>
 
