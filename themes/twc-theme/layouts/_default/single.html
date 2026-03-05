@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <div class="page-label">{{ .Section | upper }}</div>
+        <h1 class="page-title">{{ .Title }}</h1>
+        {{ with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+        <nav class="breadcrumb">
+            <a href="{{ .Site.BaseURL }}">Home</a>
+            <span class="bc-sep">›</span>
+            {{ if .Section }}<a href="{{ .Site.BaseURL }}{{ .Section }}">{{ .Section | title }}</a><span class="bc-sep">›</span>{{ end }}
+            <span>{{ .Title }}</span>
+        </nav>
+    </div>
+</div>
+
+<div class="content-wrap">
+    <article class="prose">
+        {{ .Content }}
+    </article>
+</div>
+{{ end }}

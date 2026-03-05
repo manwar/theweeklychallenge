@@ -1,0 +1,48 @@
+{{ define "main" }}
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <div class="page-label">{{ .Section | upper }}</div>
+        <h1 class="page-title">{{ .Title }}</h1>
+        {{ with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+        <nav class="breadcrumb">
+            <a href="{{ .Site.BaseURL }}">Home</a>
+            <span class="bc-sep">›</span>
+            <span>{{ .Title }}</span>
+        </nav>
+    </div>
+</div>
+
+<div class="content-wrap">
+    {{ with .Content }}<div class="prose section-intro">{{ . }}</div>{{ end }}
+
+    {{ if .Pages }}
+    <div class="post-grid">
+        {{ range .Pages.ByDate.Reverse }}
+        <article class="post-card">
+            {{ with .Params.image }}
+            <div class="post-card-img">
+                <img src="{{ $.Site.BaseURL }}{{ . }}" alt="{{ $.Title }}" loading="lazy">
+            </div>
+            {{ end }}
+            <div class="post-card-body">
+                {{ with .Params.tags }}
+                <div class="post-tags">
+                    {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+                </div>
+                {{ end }}
+                <h2 class="post-card-title">
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </h2>
+                <div class="post-meta">
+                    <span><i class="fas fa-calendar-alt"></i> {{ .Date.Format "02 Jan 2006" }}</span>
+                    {{ with .Params.author }}<span><i class="fas fa-user"></i> {{ . }}</span>{{ end }}
+                </div>
+                {{ with .Description }}<p class="post-card-desc">{{ . }}</p>{{ end }}
+                <a href="{{ .Permalink }}" class="post-read-more">Read more →</a>
+            </div>
+        </article>
+        {{ end }}
+    </div>
+    {{ end }}
+</div>
+{{ end }}

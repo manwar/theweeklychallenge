@@ -1,0 +1,82 @@
+{{ define "main" }}
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <div class="page-label">ABOUT</div>
+        <h1 class="page-title">{{ .Title }}</h1>
+        <nav class="breadcrumb">
+            <a href="{{ .Site.BaseURL }}">Home</a>
+            <span class="bc-sep">›</span>
+            <span>{{ .Title }}</span>
+        </nav>
+    </div>
+</div>
+
+<div class="content-wrap">
+
+    {{/* ── Author bio (from config.toml [params.about]) ── */}}
+    {{ with .Site.Params.about }}{{ if .enable }}
+    <section class="about-section" style="padding: 3rem 0;">
+        <div class="about-grid">
+            <div class="about-image-col">
+                {{ if .image }}
+                <div class="about-img-wrap">
+                    <img src="{{ $.Site.BaseURL }}{{ .image }}" alt="About">
+                </div>
+                {{ end }}
+                <div class="about-social">
+                    {{ if .github }}<a href="{{ .github }}" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-github"></i></a>{{ end }}
+                    {{ if .twitter }}<a href="{{ .twitter }}" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-twitter"></i></a>{{ end }}
+                    {{ if .linkedIn }}<a href="{{ .linkedIn }}" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-linkedin"></i></a>{{ end }}
+                    {{ if .website }}<a href="{{ .website }}" target="_blank" rel="noopener" class="social-btn"><i class="fas fa-globe"></i></a>{{ end }}
+                </div>
+            </div>
+            <div class="about-content-col">
+                {{ if .subtitle1 }}
+                <div class="about-chapter">
+                    <h3 class="chapter-title">{{ .subtitle1 }}</h3>
+                    <p class="chapter-body">{{ .content1 | safeHTML }}</p>
+                </div>
+                {{ end }}
+                {{ if .subtitle2 }}
+                <div class="about-chapter">
+                    <h3 class="chapter-title">{{ .subtitle2 }}</h3>
+                    <p class="chapter-body">{{ .content2 | safeHTML }}</p>
+                </div>
+                {{ end }}
+                {{ if .subtitle3 }}
+                <div class="about-chapter">
+                    <h3 class="chapter-title">{{ .subtitle3 }}</h3>
+                    <p class="chapter-body">{{ .content3 | safeHTML }}</p>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+    {{ end }}{{ end }}
+
+    {{/* ── data/about.yml - image + description + aboutItems ── */}}
+    {{ with .Site.Data.about }}
+    {{ if .image }}
+    <div style="text-align:center; margin: 2rem 0;">
+        <img src="{{ $.Site.BaseURL }}{{ .image }}" alt="" style="max-width:100%; border-radius:8px;">
+    </div>
+    {{ end }}
+    {{ if .title }}<h2 class="section-title" style="margin-top:2rem;">{{ .title }}</h2>{{ end }}
+    {{ if .description }}<p class="prose">{{ .description | safeHTML }}</p>{{ end }}
+
+    {{ if .aboutItem }}
+    <div class="post-grid" style="margin-top:2rem;">
+        {{ range .aboutItem }}
+        <div class="post-card">
+            <div class="post-card-body">
+                {{ if .title }}<h3 class="post-card-title">{{ .title }}</h3>{{ end }}
+                {{ if .description }}<p class="post-card-desc">{{ .description }}</p>{{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+    {{ end }}
+    {{ end }}
+
+</div>
+{{ end }}

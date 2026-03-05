@@ -1,0 +1,26 @@
+<nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="{{ .Site.BaseURL }}" class="nav-logo">
+            {{ if .Site.Params.logo }}
+            <img src="{{ .Site.BaseURL }}{{ .Site.Params.logo }}" alt="{{ .Site.Title }}" height="36">
+            {{ else }}
+            <span class="nav-logo-text">TWC</span>
+            {{ end }}
+        </a>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="{{ .Site.BaseURL }}" class="nav-link{{ if .IsHome }} active{{ end }}">Home</a></li>
+            {{ range .Site.Menus.nav }}
+            <li>
+                <a href="{{ .URL }}" class="nav-link{{ if $.IsMenuCurrent "nav" . }} active{{ end }}">
+                    {{ .Name }}
+                </a>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+</nav>

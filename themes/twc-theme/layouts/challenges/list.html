@@ -1,0 +1,63 @@
+{{ define "main" }}
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <div class="page-label">CHALLENGES</div>
+        <h1 class="page-title">{{ .Title }}</h1>
+        <nav class="breadcrumb">
+            <a href="{{ .Site.BaseURL }}">Home</a>
+            <span class="bc-sep">›</span>
+            <span>{{ .Title }}</span>
+        </nav>
+    </div>
+</div>
+
+<div class="content-wrap">
+    {{ with .Site.Data.challenges }}{{ if .enable }}
+    <p style="text-align:center; margin-bottom:1.5rem;">
+        Do you want to see live coding?
+        <a href="https://www.youtube.com/c/mohammadsajidanwar" target="_blank" rel="noopener" class="post-read-more" style="margin-left:.5rem;">YouTube Channel →</a>
+    </p>
+
+    <div style="overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse; font-size:.9rem;">
+        <thead>
+            <tr style="border-bottom:2px solid rgba(255,255,255,.2);">
+                <th style="padding:.6rem 1rem; text-align:center;">Week</th>
+                <th style="padding:.6rem 1rem; text-align:right;">Date</th>
+                <th style="padding:.6rem 1rem; text-align:left;">Challenges</th>
+                <th style="padding:.6rem 1rem; text-align:center;" colspan="3">Reviews</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{ range .members }}
+        {{- $fmt   := printf "/blog/%%s-challenge-%s" .week }}
+        {{- $recap := $.Site.GetPage (printf $fmt "recap") }}
+        {{- $perl5 := $.Site.GetPage (printf $fmt "review") }}
+        {{- $raku  := $.Site.GetPage (printf $fmt "p6-review") }}
+        <tr style="border-bottom:1px solid rgba(255,255,255,.07);">
+            <td style="padding:.5rem 1rem; text-align:center;">
+                <a class="post-read-more" style="font-size:.85rem;" href="/blog/perl-weekly-challenge-{{ .week }}">{{ .week }}</a>
+            </td>
+            <td style="padding:.5rem 1rem; text-align:right; white-space:nowrap; opacity:.7;">{{ .date }}</td>
+            <td style="padding:.5rem 1rem;">
+                <ol style="margin:0; padding-left:1.2rem;">
+                    {{ range .tasks }}<li>{{ . }}</li>{{ end }}
+                </ol>
+            </td>
+            <td style="padding:.5rem .5rem; text-align:center; white-space:nowrap;">
+                {{- with $recap }}<a href="{{ .RelPermalink }}" class="post-read-more" style="font-size:.8rem;">Recap</a>{{- end }}
+            </td>
+            <td style="padding:.5rem .5rem; text-align:center; white-space:nowrap;">
+                {{- with $perl5 }}<a href="{{ .RelPermalink }}" class="post-read-more" style="font-size:.8rem;">Perl</a>{{- end }}
+            </td>
+            <td style="padding:.5rem .5rem; text-align:center; white-space:nowrap;">
+                {{- with $raku }}<a href="{{ .RelPermalink }}" class="post-read-more" style="font-size:.8rem;">Raku</a>{{- end }}
+            </td>
+        </tr>
+        {{ end }}
+        </tbody>
+    </table>
+    </div>
+    {{ end }}{{ end }}
+</div>
+{{ end }}

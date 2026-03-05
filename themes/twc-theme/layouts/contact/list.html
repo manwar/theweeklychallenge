@@ -1,0 +1,50 @@
+{{ define "main" }}
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <div class="page-label">CONTACT</div>
+        <h1 class="page-title">{{ .Title }}</h1>
+        <nav class="breadcrumb">
+            <a href="{{ .Site.BaseURL }}">Home</a>
+            <span class="bc-sep">›</span>
+            <span>{{ .Title }}</span>
+        </nav>
+    </div>
+</div>
+
+<div class="content-wrap">
+    {{ with .Site.Data.contact }}{{ if .enable }}
+    <section class="contact-section" style="padding:3rem 0;">
+        <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;">
+
+            {{ if .officeAddress1 }}
+            <div class="post-card" style="min-width:240px; flex:1;">
+                <div class="post-card-body">
+                    <div style="font-size:2rem; margin-bottom:.5rem;"><i class="fas fa-map-marker-alt"></i></div>
+                    <p>{{ .officeAddress1 }}</p>
+                </div>
+            </div>
+            {{ end }}
+
+            {{ if .mail1 }}
+            <div class="post-card" style="min-width:240px; flex:1;">
+                <div class="post-card-body">
+                    <div style="font-size:2rem; margin-bottom:.5rem;"><i class="fas fa-envelope"></i></div>
+                    <p><a href="mailto:{{ .mail1 }}" class="post-read-more">{{ .mail1 }}</a></p>
+                </div>
+            </div>
+            {{ end }}
+
+            {{ if .mail2 }}
+            <div class="post-card" style="min-width:240px; flex:1;">
+                <div class="post-card-body">
+                    <div style="font-size:2rem; margin-bottom:.5rem;"><i class="fas fa-envelope"></i></div>
+                    <p><a href="mailto:{{ .mail2 }}" class="post-read-more">{{ .mail2 }}</a></p>
+                </div>
+            </div>
+            {{ end }}
+
+        </div>
+    </section>
+    {{ end }}{{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,136 @@
+{{ define "main" }}
+
+<!-- ── HERO ──────────────────────────────────────────────────────────── -->
+{{ with .Site.Params.banner }}{{ if .enable }}
+<section class="hero">
+    <div class="hero-bg">
+        {{ if .bgImage }}<img src="{{ $.Site.BaseURL }}{{ .bgImage }}" alt="" class="hero-bg-img">{{ end }}
+        <div class="hero-overlay"></div>
+        <div class="hero-grid"></div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Challenge Active
+        </div>
+        <h1 class="hero-heading">
+            The Weekly
+            <span class="hero-flip-wrap">
+                <span class="hero-flip" id="hero-flip">Challenge</span>
+            </span>
+        </h1>
+        <p class="hero-quote">{{ .description }}</p>
+
+        <!-- Current tasks -->
+        <div class="hero-tasks">
+            {{ if .taskLabel1 }}
+            <div class="task-card">
+                <span class="task-num">Task #1</span>
+                <strong class="task-label">{{ .taskLabel1 }}</strong>
+                <p class="task-desc">{{ .taskDesc1 }}</p>
+            </div>
+            {{ end }}
+            {{ if .taskLabel2 }}
+            <div class="task-card">
+                <span class="task-num">Task #2</span>
+                <strong class="task-label">{{ .taskLabel2 }}</strong>
+                <p class="task-desc">{{ .taskDesc2 | markdownify }}</p>
+            </div>
+            {{ end }}
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="hero-ctas">
+            {{ if .btnURL }}<a href="{{ .btnURL }}" class="btn-primary">{{ .btnText }}</a>{{ end }}
+            {{ if .howToContributeURL }}<a href="{{ .howToContributeURL }}" class="btn-ghost">How to Contribute</a>{{ end }}
+        </div>
+
+        <!-- Quick links row -->
+        <div class="hero-quicklinks">
+            {{ if .guestContributionsURL }}
+            <a href="{{ .guestContributionsURL }}" class="quicklink">
+                <i class="fas fa-users"></i> Guest Contributions
+            </a>
+            {{ end }}
+            {{ if .latestChampionURL }}
+            <a href="{{ .latestChampionURL }}" class="quicklink">
+                <i class="fas fa-trophy"></i> Latest Champion
+            </a>
+            {{ end }}
+            {{ if .perlReviewURL }}
+            <a href="{{ .perlReviewURL }}" class="quicklink">
+                <i class="fas fa-code"></i> Perl Review
+            </a>
+            {{ end }}
+            {{ if .rakuReviewURL }}
+            <a href="{{ .rakuReviewURL }}" class="quicklink">
+                <i class="fas fa-dragon"></i> Raku Review
+            </a>
+            {{ end }}
+            {{ if .youTubeChannelURL }}
+            <a href="{{ .youTubeChannelURL }}" target="_blank" rel="noopener" class="quicklink">
+                <i class="fab fa-youtube"></i> YouTube
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}{{ end }}
+
+<!-- ── ABOUT ─────────────────────────────────────────────────────────── -->
+{{ with .Site.Params.about }}{{ if .enable }}
+<section class="section about-section" id="about">
+    <div class="section-inner">
+        <div class="section-label">About</div>
+        <h2 class="section-title">{{ .title }}</h2>
+
+        <div class="about-grid">
+            <div class="about-image-col">
+                {{ if .image }}
+                <div class="about-img-wrap">
+                    <img src="{{ $.Site.BaseURL }}{{ .image }}" alt="About">
+                </div>
+                {{ end }}
+                <div class="about-social">
+                    {{ if .github }}<a href="{{ .github }}" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-github"></i></a>{{ end }}
+                    {{ if .twitter }}<a href="{{ .twitter }}" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-twitter"></i></a>{{ end }}
+                    {{ if .linkedin }}<a href="{{ .linkedin }}" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-linkedin"></i></a>{{ end }}
+                </div>
+            </div>
+            <div class="about-content-col">
+                {{ if .subtitle1 }}
+                <div class="about-chapter">
+                    <h3 class="chapter-title">{{ .subtitle1 }}</h3>
+                    <p class="chapter-body">{{ .content1 }}</p>
+                </div>
+                {{ end }}
+                {{ if .subtitle2 }}
+                <div class="about-chapter">
+                    <h3 class="chapter-title">{{ .subtitle2 }}</h3>
+                    <p class="chapter-body">{{ .content2 }}</p>
+                </div>
+                {{ end }}
+                {{ if .subtitle3 }}
+                <div class="about-chapter">
+                    <h3 class="chapter-title">{{ .subtitle3 }}</h3>
+                    <p class="chapter-body">{{ .content3 }}</p>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}{{ end }}
+
+<!-- ── CTA ───────────────────────────────────────────────────────────── -->
+{{ with .Site.Params.cta }}{{ if .enable }}
+<section class="cta-section">
+    <div class="cta-inner">
+        <h2 class="cta-title">{{ .title }}</h2>
+        <p class="cta-body">{{ .content }}</p>
+        <a href="{{ .btnURL }}" class="btn-primary">{{ .btnText }}</a>
+    </div>
+</section>
+{{ end }}{{ end }}
+
+{{ end }}
