@@ -1,8 +1,7 @@
 {{ define "main" }}
 <div class="page-hero">
     <div class="page-hero-inner">
-        <div class="page-label">{{ .Section | upper }}</div>
-        <h1 class="page-title">{{ .Title }}</h1>
+        <h1 class="page-title">{{ .Title | replaceRE "^The Weekly Challenge - " "" }}</h1>
         {{ with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
         <nav class="breadcrumb">
             <a href="{{ .Site.BaseURL }}">Home</a>
@@ -14,7 +13,13 @@
 </div>
 
 <div class="content-wrap">
+    <a href="{{ .Site.BaseURL }}blogs" class="back-btn">&#8592; Back to Blogs</a>
     <article class="prose">
+        {{ with .Params.image }}
+        <div class="post-hero-img">
+            <img src="{{ . | absURL }}" alt="{{ $.Title }}">
+        </div>
+        {{ end }}
         {{ .Content }}
     </article>
 </div>
