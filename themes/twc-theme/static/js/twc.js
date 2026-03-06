@@ -10,14 +10,29 @@
             menu.classList.toggle('open');
             toggle.classList.toggle('open');
         });
-        /* Close on link click */
-        menu.querySelectorAll('.nav-link').forEach(function(link) {
-            link.addEventListener('click', function() {
-                menu.classList.remove('open');
-                toggle.classList.remove('open');
-            });
-        });
     }
+
+    /* ── Dropdown menus ── */
+    document.querySelectorAll('.nav-drop-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            var li = btn.closest('.nav-dropdown');
+            var isOpen = li.classList.contains('open');
+            /* Close all others */
+            document.querySelectorAll('.nav-dropdown').forEach(function(d) {
+                d.classList.remove('open');
+            });
+            if (!isOpen) li.classList.add('open');
+        });
+    });
+    /* Close dropdowns when clicking outside */
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-dropdown')) {
+            document.querySelectorAll('.nav-dropdown').forEach(function(d) {
+                d.classList.remove('open');
+            });
+        }
+    });
 
     /* ── Nav scroll shadow ── */
     var nav = document.getElementById('twc-nav');
