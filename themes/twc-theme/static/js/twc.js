@@ -2,6 +2,34 @@
 (function() {
     'use strict';
 
+    /* ── Theme toggle (dark/light) ── */
+    var themeBtn  = document.getElementById('theme-toggle');
+    var themeIcon = document.getElementById('theme-icon');
+
+    function applyTheme(mode) {
+        if (mode === 'light') {
+            document.body.classList.add('light-mode');
+            document.documentElement.classList.remove('light-mode-pre');
+            if (themeIcon) themeIcon.textContent = '🌙';
+        } else {
+            document.body.classList.remove('light-mode');
+            if (themeIcon) themeIcon.textContent = '☀️';
+        }
+    }
+
+    /* Apply saved preference immediately */
+    var saved = localStorage.getItem('twc-theme') || 'dark';
+    applyTheme(saved);
+
+    if (themeBtn) {
+        themeBtn.addEventListener('click', function() {
+            var current = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+            var next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('twc-theme', next);
+            applyTheme(next);
+        });
+    }
+
     /* ── Mobile nav toggle ── */
     var toggle = document.getElementById('nav-toggle');
     var menu   = document.getElementById('nav-menu');
