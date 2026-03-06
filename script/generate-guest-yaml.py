@@ -3,18 +3,46 @@
 Run this script whenever guest-contribution.md is updated:
   python3 generate-guest-yaml.py
 
-Reads:  content/blog/guest-contribution.md
-Writes: data/guestcontributions.yaml
+Can be run from anywhere. Locates the Hugo site root by searching
+upward from the current working directory for 'config.toml'.
+
+Reads:  <site-root>/content/blog/guest-contribution.md
+Writes: <site-root>/data/guestcontributions.yaml
 """
 
 import re, yaml, os, sys
 
-MARKDOWN = os.path.join(os.path.dirname(__file__), 'content/blog/guest-contribution.md')
-OUTPUT   = os.path.join(os.path.dirname(__file__), 'data/guestcontributions.yaml')
+
+def find_site_root():
+    """Walk up from the script's own location until we find config.toml."""
+    path = os.path.abspath(os.path.dirname(__file__))
+    while True:
+        if os.path.exists(os.path.join(path, 'config.toml')):
+            return path
+        parent = os.path.dirname(path)
+        if parent == path:
+            return None
+        path = parent
+
+
+ROOT = find_site_root()
+
+if ROOT is None:
+    print("ERROR: could not find Hugo site root (no config.toml found in current or parent directories)")
+    print("       Run this script from within your Hugo site directory.")
+    sys.exit(1)
+
+MARKDOWN = os.path.join(ROOT, 'content', 'blog', 'guest-contribution.md')
+OUTPUT   = os.path.join(ROOT, 'data', 'guestcontributions.yaml')
 
 if not os.path.exists(MARKDOWN):
     print(f"ERROR: {MARKDOWN} not found")
     sys.exit(1)
+
+print(f"Site root : {ROOT}")
+print(f"Reading   : {MARKDOWN}")
+print(f"Writing   : {OUTPUT}")
+print()
 
 with open(MARKDOWN, 'r') as f:
     content = f.read()
@@ -70,7 +98,7 @@ os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
 with open(OUTPUT, 'w') as f:
     yaml.dump(all_weeks, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
 
-print(f"✓ Written {len(all_weeks)} weeks, {sum(len(w['contributions']) for w in all_weeks)} entries → {OUTPUT}")
+print(f"✓ Written {len(all_weeks)} weeks, {sum(len(w['contributions']) for w in all_weeks)} entries")
 if errors:
     print(f"  {len(errors)} parse error(s):")
     for e in errors[:5]: print(f"    {e}")
