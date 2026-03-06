@@ -478,6 +478,14 @@ img { max-width: 100%; display: block; }
     border-color: var(--accent);
     background: rgba(34,211,238,.08);
 }
+.social-btn-web {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(34,211,238,.08);
+}
+.social-btn-web:hover {
+    background: rgba(34,211,238,.2);
+}
 
 .about-chapter { margin-bottom: 32px; }
 .chapter-title {
@@ -997,4 +1005,50 @@ img { max-width: 100%; display: block; }
 @media (max-width: 480px) {
     .hero-ctas { flex-direction: column; }
     .post-grid { grid-template-columns: 1fr; }
+
+    /* Week tabs: fewer columns on small screens */
+    #challenges-tabs, #guests-tabs {
+        grid-template-columns: repeat(8, 1fr);
+    }
+    #challenges-tabs-old, #guests-tabs-old {
+        gap: 4px;
+    }
+    #challenges-tabs-old .chart-tab,
+    #guests-tabs-old .chart-tab {
+        flex: 0 0 44px;
+        font-size: 9px;
+    }
+
+    /* Hero title row: stack on very small screens */
+    .hero-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .hero-brand-img {
+        display: none;
+    }
+
+    /* About section: full stack */
+    .about-image-col {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .about-img-wrap { width: 120px; height: 120px; }
+
+    /* Bootstrap col-1 shim: more columns on mobile */
+    .col-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xl-1 {
+        flex: 0 0 16.666%;
+        max-width: 16.666%;
+    }
+
+    /* Post hero image full width on mobile */
+    .post-hero-img { width: 100%; }
+}
+
+@media (max-width: 360px) {
+    #challenges-tabs, #guests-tabs {
+        grid-template-columns: repeat(6, 1fr);
+    }
 }
