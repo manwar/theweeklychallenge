@@ -1,0 +1,4 @@
+---
+title: "Regulars"
+type: "regulars"
+---
