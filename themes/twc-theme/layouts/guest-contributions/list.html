@@ -1,0 +1,114 @@
+{{ define "main" }}
+
+{{/* ── Build week→year lookup from config.toml [params.weekYears] ── */}}
+{{ $weekYears := dict }}
+{{ range $year, $range := .Site.Params.weekYears }}
+    {{ $first := index $range 0 }}
+    {{ $last  := index $range 1 }}
+    {{ range seq $first $last }}
+        {{ $weekYears = merge $weekYears (dict (string .) (string $year)) }}
+    {{ end }}
+{{ end }}
+
+{{/* ── Collect sorted year list (desc) ── */}}
+{{ $years := slice }}
+{{ range $year, $range := .Site.Params.weekYears }}
+    {{ $years = $years | append (int $year) }}
+{{ end }}
+{{ $years = sort $years | collections.Reverse }}
+
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Guest Contributions</h1>
+        <p class="page-desc">Solutions shared in languages beyond Perl &amp; Raku</p>
+        <nav class="breadcrumb">
+            <a href="{{ .Site.BaseURL }}">Home</a>
+            <span class="bc-sep">›</span>
+            <span>Guest Contributions</span>
+        </nav>
+    </div>
+</div>
+
+<div class="content-wrap">
+
+    <p class="gc-intro">
+        As you know, <strong>The Weekly Challenge</strong> primarily focuses on <strong>Perl</strong> and <strong>Raku</strong>.
+        During <strong>Week #018</strong>, <code>Orestis Zekai</code> submitted the first guest-language solution in <strong>Python</strong>.
+        Ever since, members have contributed in an ever-growing list of languages.
+    </p>
+
+    {{/* ── Year tabs ── */}}
+    <div class="gc-year-tabs">
+        {{ range $i, $year := $years }}
+        <button class="gc-year-tab{{ if eq $i 0 }} active{{ end }}" data-year="{{ $year }}">{{ $year }}</button>
+        {{ end }}
+    </div>
+
+    {{/* ── Week grid per year ── */}}
+    {{ range $i, $year := $years }}
+    {{ $range := index $.Site.Params.weekYears (string $year) }}
+    {{ $first := index $range 0 }}
+    {{ $last  := index $range 1 }}
+    <div class="gc-year-grid{{ if eq $i 0 }} active{{ end }}" data-year="{{ $year }}">
+        <div class="guest-week-grid">
+            {{ range seq $first $last | collections.Reverse }}
+            <a href="#week-{{ . }}">{{ . }}</a>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+
+    <hr class="gc-divider">
+
+    {{/* ── Contributions grouped by year, filtered on click ── */}}
+    {{ range $i, $year := $years }}
+    {{ $range := index $.Site.Params.weekYears (string $year) }}
+    {{ $first := index $range 0 }}
+    {{ $last  := index $range 1 }}
+    <div class="gc-year-section{{ if eq $i 0 }} active{{ end }}" data-year="{{ $year }}">
+        {{ range $.Site.Data.guestcontributions }}
+            {{ if and (ge .week $first) (le .week $last) }}
+            <section class="gc-week" id="week-{{ .week }}">
+                <h2 class="gc-week-title">
+                    <a href="{{ .blog }}">The Weekly Challenge - {{ .week }}</a>
+                </h2>
+                <div class="gc-entries">
+                    {{ range .contributions }}
+                    <div class="gc-entry">
+                        <span class="gc-name">{{ .name }}</span>
+                        <span class="gc-lang">{{ .language }}</span>
+                        <span class="gc-tasks">
+                            {{ if .task1 }}<a href="{{ .task1 }}" target="_blank" rel="noopener">Task #1</a>{{ end }}
+                            {{ if .task2 }}<a href="{{ .task2 }}" target="_blank" rel="noopener">Task #2</a>{{ end }}
+                        </span>
+                    </div>
+                    {{ end }}
+                </div>
+            </section>
+            {{ end }}
+        {{ end }}
+    </div>
+    {{ end }}
+
+</div>
+
+<script>
+(function() {
+    var tabs     = document.querySelectorAll('.gc-year-tab');
+    var grids    = document.querySelectorAll('.gc-year-grid');
+    var sections = document.querySelectorAll('.gc-year-section');
+
+    tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            var year = this.dataset.year;
+            tabs.forEach(function(t)     { t.classList.remove('active'); });
+            grids.forEach(function(g)    { g.classList.remove('active'); });
+            sections.forEach(function(s) { s.classList.remove('active'); });
+            this.classList.add('active');
+            document.querySelector('.gc-year-grid[data-year="'    + year + '"]').classList.add('active');
+            document.querySelector('.gc-year-section[data-year="' + year + '"]').classList.add('active');
+        });
+    });
+})();
+</script>
+{{ end }}

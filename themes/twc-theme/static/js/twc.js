@@ -101,4 +101,71 @@
         });
     }
 
+
+    /* ── Guest contributions week grid ── */
+    var visibleBox = document.querySelector('.links-visible');
+    var hiddenBox  = document.querySelector('.links-hidden');
+
+    if (visibleBox || hiddenBox) {
+        /* Collect all links from both containers */
+        var allLinks = [];
+        [visibleBox, hiddenBox].forEach(function(box) {
+            if (!box) return;
+            box.querySelectorAll('.link-item a').forEach(function(a) {
+                var num  = a.textContent.replace(/[\[\]\s ]/g, '').trim();
+                var href = a.getAttribute('href');
+                if (num) allLinks.push({ num: num, href: href });
+            });
+        });
+
+        if (allLinks.length) {
+            var COLS     = 20;
+            var ROWS     = 4;
+            var VISIBLE  = COLS * ROWS; /* 80 slots */
+
+            /* Build grid from an array slice */
+            function buildGrid(links) {
+                var grid = document.createElement('div');
+                grid.className = 'guest-week-grid';
+                links.forEach(function(l) {
+                    var a = document.createElement('a');
+                    a.href = l.href;
+                    a.textContent = l.num;
+                    grid.appendChild(a);
+                });
+                return grid;
+            }
+
+            var wrap = document.createElement('div');
+            wrap.className = 'guest-week-wrap';
+
+            var mainGrid = buildGrid(allLinks.slice(0, VISIBLE));
+            wrap.appendChild(mainGrid);
+
+            /* Older weeks toggle */
+            if (allLinks.length > VISIBLE) {
+                var older     = allLinks.slice(VISIBLE);
+                var olderGrid = buildGrid(older);
+                olderGrid.style.display = 'none';
+                olderGrid.style.marginTop = '10px';
+
+                var btn = document.createElement('button');
+                btn.className = 'guest-show-more';
+                btn.textContent = 'Show older weeks ↓';
+                btn.addEventListener('click', function() {
+                    var open = olderGrid.style.display !== 'none';
+                    olderGrid.style.display = open ? 'none' : 'grid';
+                    btn.textContent = open ? 'Show older weeks ↓' : 'Hide older weeks ↑';
+                });
+
+                wrap.appendChild(btn);
+                wrap.appendChild(olderGrid);
+            }
+
+            /* Insert wrap right after the last container */
+            var lastBox = hiddenBox || visibleBox;
+            lastBox.parentNode.insertBefore(wrap, lastBox.nextSibling);
+        }
+    }
+
 })();
