@@ -287,3 +287,38 @@ document.addEventListener('DOMContentLoaded', function() {
         h.appendChild(a);
     });
 });
+
+
+/* ── External link indicator ── */
+document.addEventListener('DOMContentLoaded', function() {
+    var host = window.location.hostname;
+    document.querySelectorAll('.prose a[href]').forEach(function(a) {
+        var href = a.getAttribute('href') || '';
+        /* Skip anchors, relative paths, mailto */
+        if (!href || href.startsWith('#') || href.startsWith('mailto:')) return;
+        /* Skip relative URLs (no protocol) */
+        if (!href.match(/^https?:\/\//i)) return;
+        /* Skip same-host links */
+        try {
+            if (new URL(href).hostname === host) return;
+        } catch(e) { return; }
+
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+        if (!a.querySelector('.ext-icon')) {
+            var icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            icon.setAttribute('width', '11');
+            icon.setAttribute('height', '11');
+            icon.setAttribute('viewBox', '0 0 24 24');
+            icon.setAttribute('fill', 'none');
+            icon.setAttribute('stroke', 'currentColor');
+            icon.setAttribute('stroke-width', '2.5');
+            icon.setAttribute('stroke-linecap', 'round');
+            icon.setAttribute('stroke-linejoin', 'round');
+            icon.classList.add('ext-icon');
+            icon.setAttribute('aria-label', 'opens in new tab');
+            icon.innerHTML = '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>';
+            a.appendChild(icon);
+        }
+    });
+});
