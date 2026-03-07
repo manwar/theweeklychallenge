@@ -31,6 +31,14 @@
 
         {{ .Content }}
     </article>
+    {{ with .Params.tags }}
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        {{ range . }}
+        <a href="{{ $.Site.BaseURL }}tags/{{ . | urlize }}" class="post-tag">{{ . }}</a>
+        {{ end }}
+    </div>
+    {{ end }}
 </div>
 <script>
 (function() {
