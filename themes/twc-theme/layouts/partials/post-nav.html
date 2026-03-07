@@ -1,5 +1,38 @@
-{{- $prev := .PrevInSection -}}
-{{- $next := .NextInSection -}}
+{{- $currentFile := .File.BaseFileName -}}
+{{- $section     := .Section -}}
+
+{{- /* Extract trailing number from filename, e.g. "perl-weekly-challenge-362" → "362" */ -}}
+{{- $currentNum  := "" -}}
+{{- $match       := findRE `\d+$` $currentFile -}}
+{{- if $match -}}
+  {{- $currentNum = index $match 0 -}}
+{{- end -}}
+
+{{- $prev := false -}}
+{{- $next := false -}}
+
+{{- if $currentNum -}}
+  {{- /* Strip leading zeros before int conversion (avoids octal parse error on "08","09") */ -}}
+  {{- $stripped := strings.TrimLeft "0" $currentNum -}}
+  {{- if not $stripped -}}{{- $stripped = "0" -}}{{- end -}}
+  {{- $n := int $stripped -}}
+  {{- $prevStr := printf "%d" (sub $n 1) -}}
+  {{- $nextStr := printf "%d" (add $n 1) -}}
+
+  {{- range where .Site.RegularPages "Section" $section -}}
+    {{- $f := .File.BaseFileName -}}
+    {{- $m := findRE `\d+$` $f -}}
+    {{- if $m -}}
+      {{- $raw := index $m 0 -}}
+      {{- $stripped2 := strings.TrimLeft "0" $raw -}}
+      {{- if not $stripped2 -}}{{- $stripped2 = "0" -}}{{- end -}}
+      {{- $num := printf "%d" (int $stripped2) -}}
+      {{- if eq $num $prevStr -}}{{- $prev = . -}}{{- end -}}
+      {{- if eq $num $nextStr -}}{{- $next = . -}}{{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
 {{- if or $prev $next }}
 <nav class="post-nav" aria-label="Post navigation">
   <div class="post-nav-inner">
