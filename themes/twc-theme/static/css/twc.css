@@ -1598,3 +1598,50 @@ img { max-width: 100%; display: block; }
     padding: 8px 0 4px;
     letter-spacing: 0.05em;
 }
+
+/* ── Blog post Table of Contents ── */
+/* TOC is rendered as h3 tags in markdown — wrap them in a flex pill row */
+.prose h2 + hr + h3,
+.prose h2 + hr ~ h3 {
+    display: inline-block;
+    margin: 0 !important;
+    font-size: .78rem !important;
+    font-weight: 700 !important;
+    letter-spacing: .04em;
+    line-height: 1 !important;
+}
+.prose h2 + hr {
+    display: none;
+}
+/* Wrap all consecutive h3s after TABLE OF CONTENTS into a flex row via CSS */
+.prose h2#table-of-contents {
+    margin-bottom: 12px;
+}
+.prose h2#table-of-contents ~ h3 {
+    display: inline-flex;
+    margin: 0 4px 6px 0 !important;
+    padding: 0 !important;
+    font-size: 0 !important; /* hides the number */
+}
+.prose h2#table-of-contents ~ h3 a {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, rgba(34,211,238,.15), rgba(34,211,238,.05));
+    border: 1px solid rgba(34,211,238,.35);
+    box-shadow: 0 2px 6px rgba(0,0,0,.4), inset 0 1px 0 rgba(34,211,238,.15);
+    color: var(--accent);
+    text-decoration: none;
+    transition: box-shadow .15s, background .15s, transform .15s;
+    white-space: nowrap;
+}
+.prose h2#table-of-contents ~ h3 a:hover {
+    background: linear-gradient(145deg, rgba(34,211,238,.25), rgba(34,211,238,.1));
+    box-shadow: 0 4px 12px rgba(34,211,238,.2), inset 0 1px 0 rgba(34,211,238,.2);
+    transform: translateY(-1px);
+    text-decoration: none;
+}

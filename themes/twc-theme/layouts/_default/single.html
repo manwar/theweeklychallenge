@@ -1,8 +1,7 @@
 {{ define "main" }}
 <div class="page-hero">
     <div class="page-hero-inner">
-        <h1 class="page-title">{{ .Title | replaceRE "^The Weekly Challenge - " "" }}</h1>
-        {{ with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+        <h1 class="page-title">{{ .Title | replaceRE "^The Weekly Challenge - (\\d+)$" "The Weekly Challenge: $1" }}</h1>
         <nav class="breadcrumb">
             <a href="{{ .Site.BaseURL }}">Home</a>
             <span class="bc-sep">›</span>
@@ -13,13 +12,13 @@
 </div>
 
 <div class="content-wrap">
+    {{ if (findRE "perl-weekly-challenge-\\d+" .File.BaseFileName) }}
+    <a href="{{ .Site.BaseURL }}challenges" class="back-btn">&#8592; Back to Challenges</a>
+    {{ else }}
     <a href="{{ .Site.BaseURL }}blogs" class="back-btn">&#8592; Back to Blogs</a>
+    {{ end }}
     <article class="prose">
-        {{ with .Params.image }}
-        <div class="post-hero-img">
-            <img src="{{ . | absURL }}" alt="{{ $.Title }}">
-        </div>
-        {{ end }}
+
         {{ .Content }}
     </article>
 </div>

@@ -12,51 +12,234 @@
 
 <div class="content-wrap">
     {{ with .Site.Data.challenges }}{{ if .enable }}
-    <p style="text-align:center; margin-bottom:1.5rem;">
-        Do you want to see live coding?
-        <a href="https://www.youtube.com/c/mohammadsajidanwar" target="_blank" rel="noopener" class="post-read-more" style="margin-left:.5rem;">YouTube Channel →</a>
-    </p>
 
-    <div style="overflow-x:auto;">
-    <table style="width:100%; border-collapse:collapse; font-size:.9rem;">
-        <thead>
-            <tr style="border-bottom:2px solid rgba(255,255,255,.2);">
-                <th style="padding:.6rem 1rem; text-align:center;">Week</th>
-                <th style="padding:.6rem 1rem; text-align:right;">Date</th>
-                <th style="padding:.6rem 1rem; text-align:left;">Challenges</th>
-                <th style="padding:.6rem 1rem; text-align:center;" colspan="3">Reviews</th>
-            </tr>
-        </thead>
-        <tbody>
-        {{ range .members }}
-        {{- $fmt   := printf "/blog/%%s-challenge-%s" .week }}
-        {{- $recap := $.Site.GetPage (printf $fmt "recap") }}
-        {{- $perl5 := $.Site.GetPage (printf $fmt "review") }}
-        {{- $raku  := $.Site.GetPage (printf $fmt "p6-review") }}
-        <tr style="border-bottom:1px solid rgba(255,255,255,.07);">
-            <td style="padding:.5rem 1rem; text-align:center;">
-                <a class="post-read-more" style="font-size:.85rem;" href="/blog/perl-weekly-challenge-{{ .week }}">{{ .week }}</a>
-            </td>
-            <td style="padding:.5rem 1rem; text-align:right; white-space:nowrap; opacity:.7;">{{ .date }}</td>
-            <td style="padding:.5rem 1rem;">
-                <ol style="margin:0; padding-left:1.2rem;">
-                    {{ range .tasks }}<li>{{ . }}</li>{{ end }}
-                </ol>
-            </td>
-            <td style="padding:.5rem .5rem; text-align:center; white-space:nowrap;">
-                {{- with $recap }}<a href="{{ .RelPermalink }}" class="post-read-more" style="font-size:.8rem;">Recap</a>{{- end }}
-            </td>
-            <td style="padding:.5rem .5rem; text-align:center; white-space:nowrap;">
-                {{- with $perl5 }}<a href="{{ .RelPermalink }}" class="post-read-more" style="font-size:.8rem;">Perl</a>{{- end }}
-            </td>
-            <td style="padding:.5rem .5rem; text-align:center; white-space:nowrap;">
-                {{- with $raku }}<a href="{{ .RelPermalink }}" class="post-read-more" style="font-size:.8rem;">Raku</a>{{- end }}
-            </td>
-        </tr>
-        {{ end }}
-        </tbody>
-    </table>
+    <div class="ch-live-banner">
+        <div class="ch-live-banner-bg"></div>
+        <div class="ch-live-banner-content">
+            <span class="ch-live-dot"></span>
+            <div class="ch-live-text">
+                <span class="ch-live-title">Watch Live Coding Sessions</span>
+                <span class="ch-live-sub">See how challenges are solved in real-time — Perl, Raku and more</span>
+            </div>
+            <a href="https://www.youtube.com/c/mohammadsajidanwar" target="_blank" rel="noopener" class="ch-live-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Watch on YouTube
+            </a>
+        </div>
     </div>
+
+    <div class="ch-grid">
+    {{ range .members }}
+    {{- $fmt   := printf "/blog/%%s-challenge-%s" .week }}
+    {{- $recap := $.Site.GetPage (printf $fmt "recap") }}
+    {{- $perl5 := $.Site.GetPage (printf $fmt "review") }}
+    {{- $raku  := $.Site.GetPage (printf $fmt "p6-review") }}
+
+    <div class="ch-card">
+        <div class="ch-card-header">
+            <a class="ch-week-num" href="/blog/perl-weekly-challenge-{{ .week }}">Week: {{ .week }}</a>
+            <span class="ch-date">{{ .date }}</span>
+        </div>
+        <ul class="ch-tasks">
+            {{ range .tasks }}<li>{{ . }}</li>{{ end }}
+        </ul>
+        {{ if or $recap $perl5 $raku }}
+        <div class="ch-reviews">
+            {{- with $recap }}<a href="{{ .RelPermalink }}" class="ch-pill ch-pill-recap">Recap</a>{{- end }}
+            {{- with $perl5 }}<a href="{{ .RelPermalink }}" class="ch-pill ch-pill-perl">Perl</a>{{- end }}
+            {{- with $raku  }}<a href="{{ .RelPermalink }}" class="ch-pill ch-pill-raku">Raku</a>{{- end }}
+        </div>
+        {{ end }}
+    </div>
+    {{ end }}
+    </div>
+
     {{ end }}{{ end }}
 </div>
+
+<style>
+.ch-live-banner {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 0, 0, 0.25);
+}
+.ch-live-banner-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,0,0,.08) 0%, rgba(34,211,238,.05) 100%);
+}
+.ch-live-banner-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 28px;
+    flex-wrap: wrap;
+}
+.ch-live-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ff0000;
+    box-shadow: 0 0 0 0 rgba(255,0,0,.4);
+    animation: pulse-red 1.5s infinite;
+    flex-shrink: 0;
+}
+@keyframes pulse-red {
+    0%   { box-shadow: 0 0 0 0 rgba(255,0,0,.5); }
+    70%  { box-shadow: 0 0 0 10px rgba(255,0,0,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,0,0,0); }
+}
+.ch-live-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+.ch-live-title {
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+.ch-live-sub {
+    font-size: .85rem;
+    color: var(--muted2);
+}
+.ch-live-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ff0000;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background .2s, transform .2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.ch-live-btn:hover {
+    background: #cc0000;
+    transform: translateY(-1px);
+    text-decoration: none;
+    color: #fff;
+}
+.ch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+.ch-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color .2s, transform .2s;
+}
+.ch-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+.ch-card-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+}
+.ch-week-num {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: .02em;
+}
+.ch-week-num:hover { color: var(--accent2); }
+.ch-date {
+    font-size: .75rem;
+    color: var(--muted);
+    white-space: nowrap;
+}
+.ch-tasks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+.ch-tasks li {
+    font-size: .82rem;
+    color: var(--muted2);
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.4;
+}
+.ch-tasks li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+}
+.ch-reviews {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+}
+.ch-pill {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background .15s, color .15s;
+}
+.ch-pill-recap {
+    background: rgba(34,211,238,.1);
+    color: var(--accent);
+    border-color: rgba(34,211,238,.25);
+}
+.ch-pill-recap:hover {
+    background: rgba(34,211,238,.2);
+    border-color: var(--accent);
+}
+.ch-pill-perl {
+    background: rgba(99,102,241,.1);
+    color: #818cf8;
+    border-color: rgba(99,102,241,.25);
+}
+.ch-pill-perl:hover {
+    background: rgba(99,102,241,.2);
+    border-color: #818cf8;
+}
+.ch-pill-raku {
+    background: rgba(251,146,60,.1);
+    color: var(--accent2);
+    border-color: rgba(251,146,60,.25);
+}
+.ch-pill-raku:hover {
+    background: rgba(251,146,60,.2);
+    border-color: var(--accent2);
+}
+</style>
 {{ end }}
