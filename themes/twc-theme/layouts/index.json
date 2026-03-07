@@ -1,0 +1,4 @@
+{{- $pages := where .Site.RegularPages "Section" "ne" "" -}}
+[{{ range $i, $p := $pages }}{{ if $i }},{{ end }}
+{"title":{{ $p.Title | jsonify }},"url":{{ $p.RelPermalink | jsonify }},"tags":{{ with $p.Params.tags }}{{ delimit . ", " | jsonify }}{{ else }}""{{ end }},"section":{{ $p.Section | jsonify }},"body":{{ $p.Plain | truncate 2000 | jsonify }}}{{ end }}
+]
