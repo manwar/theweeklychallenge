@@ -2288,3 +2288,175 @@ img { max-width: 100%; display: block; }
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   PRINT STYLESHEET
+══════════════════════════════════════════════════════════════════════ */
+@media print {
+
+    /* ── Reset colours to black on white ── */
+    *, *::before, *::after {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    /* ── Hide everything that isn't content ── */
+    .twc-nav,
+    .twc-footer,
+    #perl-ad-target,
+    #perl-ad,
+    #back-to-top,
+    #reading-progress-wrap,
+    .back-btn,
+    .post-nav,
+    .related-posts,
+    .post-tags,
+    .copy-code-btn,
+    .heading-anchor,
+    .toc-pill-row,
+    .search-wrap,
+    .ext-icon,
+    .reading-time {
+        display: none !important;
+    }
+
+    /* ── Page setup ── */
+    @page {
+        margin: 1.8cm 2cm;
+    }
+    body {
+        font-size: 11pt;
+        line-height: 1.5;
+    }
+
+    /* ── Hero: show title cleanly ── */
+    .page-hero {
+        background: none !important;
+        border: none !important;
+        padding: 0 0 10pt !important;
+        border-bottom: 1.5pt solid #000 !important;
+        margin-bottom: 14pt;
+    }
+    .page-hero::before { display: none; }
+    .page-title {
+        font-size: 20pt !important;
+        margin-bottom: 4pt !important;
+        line-height: 1.2 !important;
+    }
+    .breadcrumb {
+        font-size: 8pt;
+        color: #666 !important;
+        margin-bottom: 4pt;
+    }
+    .post-meta {
+        font-size: 8pt;
+        color: #666 !important;
+        margin-top: 4pt;
+    }
+
+    /* ── Content ── */
+    .content-wrap {
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+    .prose {
+        font-size: 10pt;
+        max-width: 100% !important;
+    }
+    .prose p { margin-bottom: 6pt; }
+    .prose h1 { font-size: 16pt; margin: 12pt 0 4pt; }
+    .prose h2 { font-size: 14pt; margin: 10pt 0 4pt; }
+    .prose h3 { font-size: 12pt; margin: 8pt 0 3pt; }
+    .prose h4 { font-size: 11pt; margin: 6pt 0 3pt; }
+
+    /* ── Avoid page breaks inside key elements ── */
+    .prose h1, .prose h2, .prose h3, .prose h4 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+    .prose pre, .prose blockquote, .prose table {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* ── Code blocks ── */
+    .prose pre {
+        background: #f5f5f5 !important;
+        border: 1pt solid #ccc !important;
+        border-radius: 0 !important;
+        padding: 8pt 10pt !important;
+        font-size: 8.5pt !important;
+        white-space: pre-wrap;
+        word-break: break-word;
+        margin-bottom: 8pt;
+    }
+    .prose pre code {
+        color: #000 !important;
+        font-size: 8.5pt !important;
+    }
+    .code-lang-label {
+        top: 6pt !important;
+        left: 8pt !important;
+        background: #e8e8e8 !important;
+        border: 1pt solid #ccc !important;
+        color: #333 !important;
+        font-size: 7pt !important;
+    }
+
+    /* ── Inline code ── */
+    .prose code {
+        background: #f0f0f0 !important;
+        border: 1pt solid #ddd !important;
+        color: #000 !important;
+        font-size: 8.5pt !important;
+    }
+
+    /* ── Links: NO URL expansion — too noisy for this site ── */
+    .prose a::after { content: none !important; }
+
+    /* ── Tables ── */
+    .prose table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 9pt;
+    }
+    .prose th, .prose td {
+        border: 1pt solid #ccc !important;
+        padding: 3pt 6pt;
+    }
+    .prose th {
+        background: #eee !important;
+        font-weight: bold;
+    }
+
+    /* ── Tighten vertical spacing ── */
+    .page-hero {
+        margin-bottom: 0 !important;
+    }
+    .content-wrap {
+        padding-top: 0 !important;
+    }
+    .prose p { margin: 0 0 5pt !important; }
+    .prose h2 { margin-top: 8pt !important; }
+    .prose hr { margin: 6pt 0 !important; }
+    .prose pre { margin-bottom: 6pt !important; }
+    .prose img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+    .post-hero-img { display: none; }
+
+    /* ── Print URL in footer ── */
+    body::after {
+        content: "theweeklychallenge.org  ·  " attr(data-url);
+        display: block;
+        margin-top: 16pt;
+        padding-top: 6pt;
+        border-top: 1pt solid #ccc;
+        font-size: 7.5pt;
+        color: #888 !important;
+    }
+}
