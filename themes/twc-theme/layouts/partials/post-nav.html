@@ -1,0 +1,39 @@
+{{- $prev := .PrevInSection -}}
+{{- $next := .NextInSection -}}
+{{- if or $prev $next }}
+<nav class="post-nav" aria-label="Post navigation">
+  <div class="post-nav-inner">
+    {{- if $prev }}
+    <a class="post-nav-item post-nav-prev" href="{{ $prev.RelPermalink }}">
+      <span class="post-nav-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Previous
+      </span>
+      <span class="post-nav-title">{{ $prev.Title }}</span>
+    </a>
+    {{- else }}
+    <div class="post-nav-item post-nav-prev post-nav-empty"></div>
+    {{- end }}
+
+    {{- if $next }}
+    <a class="post-nav-item post-nav-next" href="{{ $next.RelPermalink }}">
+      <span class="post-nav-label">
+        Next
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </span>
+      <span class="post-nav-title">{{ $next.Title }}</span>
+    </a>
+    {{- else }}
+    <div class="post-nav-item post-nav-next post-nav-empty"></div>
+    {{- end }}
+  </div>
+</nav>
+{{- end }}
