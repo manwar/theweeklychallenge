@@ -219,3 +219,27 @@ document.addEventListener('DOMContentLoaded', function() {
         pre.appendChild(btn);
     });
 });
+
+
+/* ── Reading Progress Bar ── */
+(function() {
+    var bar = document.getElementById('reading-progress');
+    if (!bar) return;
+    window.addEventListener('scroll', function() {
+        var doc    = document.documentElement;
+        var total  = doc.scrollHeight - doc.clientHeight;
+        var pct    = total > 0 ? (window.scrollY / total) * 100 : 0;
+        bar.style.width = pct + '%';
+    }, { passive: true });
+})();
+
+/* ── Keyboard shortcut: press / to focus search ── */
+document.addEventListener('keydown', function(e) {
+    /* Ignore if typing in an input/textarea */
+    var tag = document.activeElement && document.activeElement.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+    if (e.key === '/') {
+        e.preventDefault();
+        window.location.href = '/search';
+    }
+});
