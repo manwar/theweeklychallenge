@@ -25,10 +25,53 @@
     {{ with .Params.image }}<div class="post-hero-img"><img src="{{ . | absURL }}" alt="{{ $.Title }}"></div>{{ end }}
     {{ else }}
     <a href="{{ .Site.BaseURL }}blogs" class="back-btn">&#8592; Back to Blogs</a>
+    {{ with .Params.image }}<div class="post-hero-img"><img src="{{ . | absURL }}" alt="{{ $.Title }}"></div>{{ end }}
     {{ end }}
     <article class="prose">
 
         {{ .Content }}
     </article>
 </div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    // Skip hr, then collect all H3 siblings
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    // Extract the <a> from each H3
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    // Insert after the hr (or toc if no hr)
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
 {{ end }}

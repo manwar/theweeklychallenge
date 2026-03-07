@@ -1567,6 +1567,7 @@ img { max-width: 100%; display: block; }
     text-align: center;
 }
 .gc-tasks {
+    justify-content: center;
     display: flex;
     gap: 8px;
 }
@@ -1604,6 +1605,11 @@ img { max-width: 100%; display: block; }
 
 /* ── Blog post Table of Contents ── */
 /* TOC is rendered as h3 tags in markdown — wrap them in a flex pill row */
+/* Wrap all TOC h3s in a flex row */
+.prose h2#table-of-contents ~ h3:not(.toc-task) {
+    display: inline-flex;
+    margin: 0 4px 6px 0 !important;
+}
 .prose h2 + hr + h3,
 .prose h2 + hr ~ h3 {
     display: inline-block;
@@ -1618,7 +1624,7 @@ img { max-width: 100%; display: block; }
 }
 /* Wrap all consecutive h3s after TABLE OF CONTENTS into a flex row via CSS */
 .prose h2#table-of-contents {
-    margin-bottom: 12px;
+    display: none !important;
 }
 .prose h2#table-of-contents ~ h3 {
     display: inline-flex;
@@ -1657,4 +1663,35 @@ img { max-width: 100%; display: block; }
 .btn-sponsor:hover {
     background: rgba(251,191,36,.1) !important;
     border-color: #fbbf24 !important;
+}
+
+/* ── TOC pill rows ── */
+.toc-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+.toc-row-main  { justify-content: center; }
+.toc-row-tasks { justify-content: center; margin-top: 2px; }
+.toc-pill-row a {
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, rgba(34,211,238,.15), rgba(34,211,238,.05));
+    border: 1px solid rgba(34,211,238,.35);
+    box-shadow: 0 2px 6px rgba(0,0,0,.4), inset 0 1px 0 rgba(34,211,238,.15);
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: box-shadow .15s, background .15s, transform .15s;
+}
+.toc-pill-row a:hover {
+    background: linear-gradient(145deg, rgba(34,211,238,.25), rgba(34,211,238,.1));
+    box-shadow: 0 4px 12px rgba(34,211,238,.2), inset 0 1px 0 rgba(34,211,238,.2);
+    transform: translateY(-1px);
+    text-decoration: none;
 }
