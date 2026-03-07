@@ -243,3 +243,47 @@ document.addEventListener('keydown', function(e) {
         window.location.href = '/search';
     }
 });
+
+
+/* ── Code block language labels ── */
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.prose pre').forEach(function(pre) {
+        /* Hugo Chroma: <div class="highlight"><pre class="chroma"><code class="language-perl" data-lang="perl"> */
+        var code = pre.querySelector('code');
+        if (!code) return;
+
+        /* Try data-lang first, then class */
+        var lang = code.getAttribute('data-lang');
+        if (!lang) {
+            var m = (code.className || '').match(/language-(\w+)/);
+            lang = m ? m[1] : null;
+        }
+        if (!lang || lang === 'plaintext' || lang === 'text' || lang === 'fallback') return;
+
+        var label = document.createElement('span');
+        label.className = 'code-lang-label code-lang-' + lang;
+        label.textContent = lang;
+        pre.appendChild(label);
+    });
+});
+
+/* ── Anchor links on headings ── */
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.prose h1, .prose h2, .prose h3, .prose h4').forEach(function(h) {
+        /* Generate an id if Hugo didn't add one */
+        if (!h.id) {
+            h.id = h.textContent.trim()
+                .toLowerCase()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-');
+        }
+        if (!h.id) return;
+        var a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.className = 'heading-anchor';
+        a.setAttribute('aria-label', 'Link to this section');
+        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+        h.appendChild(a);
+    });
+});

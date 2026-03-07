@@ -2110,3 +2110,73 @@ img { max-width: 100%; display: block; }
     border-color: var(--accent);
     color: var(--accent);
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   CODE BLOCK LANGUAGE LABEL
+══════════════════════════════════════════════════════════════════════ */
+.prose pre {
+    padding-top: 40px; /* make room for label + copy btn */
+}
+.code-lang-label {
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(34,211,238,.1);
+    border: 1px solid rgba(34,211,238,.2);
+    color: var(--accent);
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+}
+
+/* Language-specific colours */
+.code-lang-label[data-lang="perl"],
+.prose pre .code-lang-label:has(+ code[data-lang="perl"]) {
+    background: rgba(99,102,241,.12);
+    border-color: rgba(99,102,241,.3);
+    color: #818cf8;
+}
+/* Simpler approach — colour by text content via JS class */
+.code-lang-perl   { background: rgba(99,102,241,.12) !important; border-color: rgba(99,102,241,.3) !important; color: #818cf8 !important; }
+.code-lang-raku   { background: rgba(249,115,22,.1)  !important; border-color: rgba(249,115,22,.3)  !important; color: #fb923c !important; }
+.code-lang-python { background: rgba(234,179,8,.1)   !important; border-color: rgba(234,179,8,.3)   !important; color: #facc15 !important; }
+.code-lang-bash, .code-lang-sh, .code-lang-shell {
+    background: rgba(34,197,94,.1)  !important;
+    border-color: rgba(34,197,94,.3) !important;
+    color: #4ade80 !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   ANCHOR LINKS ON HEADINGS
+══════════════════════════════════════════════════════════════════════ */
+.prose h1, .prose h2, .prose h3, .prose h4 {
+    position: relative;
+}
+.heading-anchor {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    opacity: 0;
+    color: var(--muted);
+    text-decoration: none;
+    vertical-align: middle;
+    transition: opacity .15s, color .15s;
+}
+.prose h1:hover .heading-anchor,
+.prose h2:hover .heading-anchor,
+.prose h3:hover .heading-anchor,
+.prose h4:hover .heading-anchor {
+    opacity: 1;
+}
+.heading-anchor:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
