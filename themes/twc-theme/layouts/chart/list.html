@@ -340,10 +340,10 @@ function ptVal(pt){
     if(typeof pt==='object') return pt.y!==undefined?pt.y:(pt.value!==undefined?pt.value:null);
     return parseFloat(pt)||null;
 }
-function buildDatasets(series, type, colorByPoint){
+function buildDatasets(series, type, colorByPoint, drillColor){
     var isLine=/line|spline|area/.test(type);
     return series.map(function(s,i){
-        var c=THEME.palette[i%THEME.palette.length];
+        var c=drillColor||THEME.palette[i%THEME.palette.length];
         var vals=(s.data||[]).map(ptVal);
         var ds={label:s.name||'Series '+(i+1), data:vals, borderRadius:3};
         if(isLine){
@@ -402,7 +402,7 @@ function renderChart(canvasId, raw){
     }
 
     var isLine=/line|spline|area/.test(type), isHBar=(type==='bar');
-    var datasets=buildDatasets(series, type, cbp);
+    var datasets=buildDatasets(series, type, raw._drillColor ? false : cbp, raw._drillColor);
 
     /* Scales — handle percent / normal stacking */
     var sx={grid:{color:THEME.border+'66'},ticks:{color:THEME.muted,maxRotation:90,minRotation:45,autoSkip:false}};
@@ -519,7 +519,7 @@ function renderBC(canvasId,wrap){
     var existing=parent.querySelector('.dd-bc'); if(existing) parent.removeChild(existing);
     parent.insertBefore(bar,wrap);
 }
-function drillDown(id,raw,childId,lbl){
+function drillDown(id,raw,childId,lbl,barColor){
     var dd=raw.drilldown; if(!dd||!dd.series) return;
     var child=dd.series.filter(function(s){return s.id===childId;})[0]; if(!child) return;
     _ddStack[id].push({raw:raw,title:lbl});
@@ -527,6 +527,8 @@ function drillDown(id,raw,childId,lbl){
     var cr2={chart:{type:(raw.chart&&raw.chart.type)||'column'},series:[cr],xAxis:{}};
     if(cr.data&&cr.data.length&&typeof cr.data[0]==='object')
         cr2.xAxis.categories=cr.data.map(function(p){return Array.isArray(p)?p[0]:(p&&p.name?p.name:'');});
+    /* pass the clicked bar colour so drilldown uses same colour */
+    if(barColor) cr2._drillColor=barColor;
     renderChart(id,cr2);
     var cvs=document.getElementById(id); if(cvs){cvs._ddPoints=cr.data||[];renderBC(id,cvs.parentNode);}
 }
@@ -549,7 +551,16 @@ function attachDrilldown(id,raw){
             var pt=s.data&&s.data[idx];
             if(pt&&typeof pt==='object'&&pt.drilldown&&!drillId){drillId=pt.drilldown;lbl=pt.name||(chart.data.labels[idx])||String(idx);}
         });
-        if(drillId) drillDown(id,raw,drillId,lbl);
+        var barColor=null;
+        if(drillId){
+            var chart2=_charts[id];
+            if(chart2&&chart2.data&&chart2.data.datasets){
+                var ds0=chart2.data.datasets[0];
+                if(ds0&&Array.isArray(ds0.borderColor)) barColor=ds0.borderColor[idx];
+                else if(ds0) barColor=ds0.borderColor;
+            }
+            drillDown(id,raw,drillId,lbl,barColor);
+        }
     });
     cvs.addEventListener('mousemove',function(evt){
         if((_ddStack[id]||[]).length){cvs.style.cursor='default';return;}
