@@ -14,6 +14,15 @@
 <div class="content-wrap">
     {{ if (findRE "perl-weekly-challenge-\\d+" .File.BaseFileName) }}
     <a href="{{ .Site.BaseURL }}challenges" class="back-btn">&#8592; Back to Challenges</a>
+    {{ else if (findRE "recap-challenge-\\d+" .File.BaseFileName) }}
+    <a href="{{ .Site.BaseURL }}recaps" class="back-btn">&#8592; Back to Recaps</a>
+    {{ with .Params.image }}<div class="post-hero-img"><img src="{{ . | absURL }}" alt="{{ $.Title }}"></div>{{ end }}
+    {{ else if (findRE "p6-review-challenge-\\d+" .File.BaseFileName) }}
+    <a href="{{ .Site.BaseURL }}p6-reviews" class="back-btn">&#8592; Back to Raku Reviews</a>
+    {{ with .Params.image }}<div class="post-hero-img"><img src="{{ . | absURL }}" alt="{{ $.Title }}"></div>{{ end }}
+    {{ else if (findRE "review-challenge-\\d+" .File.BaseFileName) }}
+    <a href="{{ .Site.BaseURL }}p5-reviews" class="back-btn">&#8592; Back to Perl Reviews</a>
+    {{ with .Params.image }}<div class="post-hero-img"><img src="{{ . | absURL }}" alt="{{ $.Title }}"></div>{{ end }}
     {{ else }}
     <a href="{{ .Site.BaseURL }}blogs" class="back-btn">&#8592; Back to Blogs</a>
     {{ end }}

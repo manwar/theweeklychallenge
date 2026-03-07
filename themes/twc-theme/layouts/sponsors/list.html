@@ -104,6 +104,25 @@
     </div>
     {{ end }}
 
+    {{/* ── Community Supporters ── */}}
+    {{ with .Site.Params.sponsors.supporters }}
+    <div class="sponsors-section">
+        <h2 class="sponsors-section-title">
+            <span class="sponsors-section-dot sponsors-dot-supporter"></span>
+            Community Supporters
+        </h2>
+        <p class="sponsors-section-sub">Over the years, many generous individuals from within the community have made one-off contributions to keep running the project. Every single one made a difference — thank you.</p>
+        <div class="supporters-list">
+            {{ range . }}
+            <div class="supporter-pill">
+                <span class="supporter-name">{{ .name }}</span>
+                {{ with .since }}<span class="supporter-since">{{ . }}</span>{{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+
 </div>
 
 <style>
@@ -317,6 +336,8 @@
     max-width: 480px;
     margin: 0 auto 20px;
     line-height: 1.6;
+    text-align: justify;
+    hyphens: auto;
 }
 .sponsor-empty-btn {
     display: inline-block;
@@ -341,6 +362,41 @@
     font-size: .72rem;
     color: var(--muted);
     letter-spacing: .04em;
+}
+/* ── Community Supporters ── */
+.sponsors-dot-supporter {
+    background: #a78bfa;
+}
+.supporters-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.supporter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(167,139,250,.08);
+    border: 1px solid rgba(167,139,250,.25);
+    border-radius: 24px;
+    padding: 6px 16px;
+    transition: background .15s, border-color .15s;
+}
+.supporter-pill:hover {
+    background: rgba(167,139,250,.15);
+    border-color: rgba(167,139,250,.5);
+}
+.supporter-name {
+    font-family: var(--font-head);
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--text);
+}
+.supporter-since {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: #a78bfa;
+    letter-spacing: .03em;
 }
 </style>
 {{ end }}
