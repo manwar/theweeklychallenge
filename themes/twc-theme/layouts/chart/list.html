@@ -126,6 +126,7 @@
                 <canvas id="cv_gl_2020"      style="display:none"></canvas>
                 <canvas id="cv_gl_2019"      style="display:none"></canvas>
             </div>
+            <div class="chart-count-label" id="guest-leaders-count"></div>
         </div>
     </section>
 
@@ -269,6 +270,8 @@ Chart.defaults.plugins.tooltip.titleColor      = THEME.text;
 Chart.defaults.plugins.tooltip.bodyColor       = THEME.muted;
 Chart.defaults.plugins.tooltip.borderColor     = THEME.border;
 Chart.defaults.plugins.tooltip.borderWidth     = 1;
+
+/* Global plugin: draw x-axis title stored on canvas element */
 Chart.defaults.plugins.tooltip.padding         = 10;
 Chart.defaults.plugins.tooltip.cornerRadius    = 6;
 
@@ -438,6 +441,7 @@ function renderChart(canvasId, raw){
     _charts[canvasId]=new Chart(canvas,{
         type:isLine?'line':'bar',
         data:{labels:labels,datasets:datasets},
+        plugins:[],
         options:{
             indexAxis:isHBar?'y':'x',responsive:true,maintainAspectRatio:false,
             interaction:{mode:'index',intersect:false},
@@ -482,6 +486,8 @@ function renderChart(canvasId, raw){
         }
     });
     canvas._rawJson=raw;
+    canvas._ddRaw=raw;
+    _charts[canvasId]._rawData=raw;
     attachDrilldown(canvasId,raw);
 }
 
@@ -527,27 +533,71 @@ function drillDown(id,raw,childId,lbl,barColor){
     var cr2={chart:{type:(raw.chart&&raw.chart.type)||'column'},series:[cr],xAxis:{}};
     if(cr.data&&cr.data.length&&typeof cr.data[0]==='object')
         cr2.xAxis.categories=cr.data.map(function(p){return Array.isArray(p)?p[0]:(p&&p.name?p.name:'');});
-    /* pass the clicked bar colour so drilldown uses same colour */
     if(barColor) cr2._drillColor=barColor;
     renderChart(id,cr2);
-    var cvs=document.getElementById(id); if(cvs){cvs._ddPoints=cr.data||[];renderBC(id,cvs.parentNode);}
+    var cvs=document.getElementById(id);
+    if(cvs){
+        cvs._ddPoints=cr.data||[];
+        renderBC(id,cvs.parentNode);
+        /* Show Languages: N in footer — only for guest leaders */
+        if(cvs.parentNode&&cvs.parentNode.id==='guest-leaders-wrap'){
+            var n=cr2.xAxis.categories?cr2.xAxis.categories.length:(cr.data?cr.data.length:0);
+            var card=cvs.parentNode.parentNode;
+            var lbl2=card&&card.querySelector('.chart-count-label');
+            if(lbl2){ lbl2._savedText=lbl2.textContent; lbl2.textContent='Languages: '+n; }
+        }
+    }
 }
+
 function drillUp(id){
     var stack=_ddStack[id]; if(!stack||!stack.length) return;
     var prev=stack.pop(); renderChart(id,prev.raw);
-    var cvs=document.getElementById(id); if(cvs){cvs._ddPoints=null;renderBC(id,cvs.parentNode);}
+    var cvs=document.getElementById(id);
+    if(cvs){
+        cvs._ddPoints=null;
+        renderBC(id,cvs.parentNode);
+        var wrap=cvs.parentNode;
+        /* Restore Languages label for guest-leaders */
+        if(wrap&&wrap.id==='guest-leaders-wrap'){
+            var card=wrap.parentNode;
+            var lbl2=card&&card.querySelector('.chart-count-label');
+            if(lbl2&&lbl2._savedText!==undefined){ lbl2.textContent=lbl2._savedText; lbl2._savedText=undefined; }
+        }
+        /* Recalculate count label for guests/challenges from restored data */
+        var countMap={'guests-wrap':'guests-count','challenges-wrap':'challenges-count'};
+        if(wrap&&countMap[wrap.id]){
+            var labelEl=document.getElementById(countMap[wrap.id]);
+            if(labelEl&&prev.raw){
+                var n=0;
+                if(prev.raw.xAxis&&prev.raw.xAxis.categories) n=prev.raw.xAxis.categories.length;
+                else if(prev.raw.series&&prev.raw.series[0]&&prev.raw.series[0].data) n=prev.raw.series[0].data.length;
+                var section=wrap.id==='guests-wrap'?'Guest':'Member';
+                var updated='';
+                if(prev.raw.subtitle&&prev.raw.subtitle.text){
+                    var m=prev.raw.subtitle.text.match(/Last updated at ([^<]+)/);
+                    if(m) updated=' · Last updated: '+m[1].trim();
+                }
+                if(n>0) labelEl.textContent=section+'s: '+n+updated;
+            }
+        }
+    }
 }
 function attachDrilldown(id,raw){
     if(!hasDrill(raw)) return;
     var cvs=document.getElementById(id); if(!cvs) return;
+    /* Prevent stacking multiple listeners across renderChart calls */
+    if(cvs._ddAttached) return;
+    cvs._ddAttached=true;
     cvs._ddRaw=raw;
     cvs.addEventListener('click',function(evt){
         if((_ddStack[id]||[]).length) return;
         var chart=_charts[id]; if(!chart) return;
+        /* Always use the current raw data from the canvas */
+        var activeRaw=document.getElementById(id)&&document.getElementById(id)._ddRaw||raw;
         var pts=chart.getElementsAtEventForMode(evt,'nearest',{intersect:true},false);
         if(!pts.length) return;
         var idx=pts[0].index,drillId=null,lbl='';
-        (raw.series||[]).forEach(function(s){
+        (activeRaw.series||[]).forEach(function(s){
             var pt=s.data&&s.data[idx];
             if(pt&&typeof pt==='object'&&pt.drilldown&&!drillId){drillId=pt.drilldown;lbl=pt.name||(chart.data.labels[idx])||String(idx);}
         });
@@ -559,16 +609,17 @@ function attachDrilldown(id,raw){
                 if(ds0&&Array.isArray(ds0.borderColor)) barColor=ds0.borderColor[idx];
                 else if(ds0) barColor=ds0.borderColor;
             }
-            drillDown(id,raw,drillId,lbl,barColor);
+            drillDown(id,activeRaw,drillId,lbl,barColor);
         }
     });
     cvs.addEventListener('mousemove',function(evt){
         if((_ddStack[id]||[]).length){cvs.style.cursor='default';return;}
         var chart=_charts[id]; if(!chart) return;
+        var activeRaw=document.getElementById(id)&&document.getElementById(id)._ddRaw||raw;
         var pts=chart.getElementsAtEventForMode(evt,'nearest',{intersect:true},false);
         if(!pts.length){cvs.style.cursor='default';return;}
         var idx=pts[0].index,drill=false;
-        (raw.series||[]).forEach(function(s){var pt=s.data&&s.data[idx];if(pt&&typeof pt==='object'&&pt.drilldown)drill=true;});
+        (activeRaw.series||[]).forEach(function(s){var pt=s.data&&s.data[idx];if(pt&&typeof pt==='object'&&pt.drilldown)drill=true;});
         cvs.style.cursor=drill?'pointer':'default';
     });
 }
@@ -646,6 +697,25 @@ function wireTabGroup(containerIds, wrapId, spinnerId){
                 /* Defer loadChart one frame so the canvas has layout before Chart.js measures it */
                 requestAnimationFrame(function(){
                     loadChart(canvasId,jsonFile,wrapId,spinnerId);
+                    /* If already cached, loadChart returns early — refresh count label from cached data */
+                    var countMap={'guests-wrap':'guests-count','challenges-wrap':'challenges-count'};
+                    if(countMap[wrapId]){
+                        var labelEl=document.getElementById(countMap[wrapId]);
+                        var chart=_charts[canvasId];
+                        if(labelEl&&chart&&chart._rawData){
+                            var data=chart._rawData;
+                            var n=0;
+                            if(data.xAxis&&data.xAxis.categories) n=data.xAxis.categories.length;
+                            else if(data.series&&data.series[0]&&data.series[0].data) n=data.series[0].data.length;
+                            var section=wrapId==='guests-wrap'?'Guest':'Member';
+                            var updated='';
+                            if(data.subtitle&&data.subtitle.text){
+                                var m=data.subtitle.text.match(/Last updated at ([^<]+)/);
+                                if(m) updated=' · Last updated: '+m[1].trim();
+                            }
+                            if(n>0) labelEl.textContent=section+'s: '+n+updated;
+                        }
+                    }
                 });
             });
         });
