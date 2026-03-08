@@ -895,21 +895,27 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── Prose typography ── */
-.prose h1,.prose h2,.prose h3,.prose h4 {
+.prose h1,.prose h2,.prose h3,.prose h4,.prose h5 {
     font-family: var(--font-head);
     font-weight: 700;
     color: var(--text);
     margin: 1.5em 0 .5em;
     letter-spacing: -.01em;
 }
-.prose h2 { font-size: 24px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.prose h1 { margin-top: .8em; }
+.prose h2 { font-size: 24px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: .2em; margin-top: .4em !important; }
+.prose h2 + p, .prose h2 + hr + p, .prose h2 + hr { margin-top: 0; }
+.prose h5 { font-size: 14px; margin: .1em 0 .2em; font-weight: 600; }
+.prose h2 + h5 { margin-top: .1em; }
 .prose h3 { font-size: 19px; color: var(--accent); }
+.prose h4 { font-size: 15px; margin: .3em 0 .1em; }
 .prose p  { color: var(--muted2); margin-bottom: 1em; line-height: 1.8; text-align: justify; hyphens: auto; }
 .champion-card p { text-align: center !important; hyphens: none !important; }
 .prose a  { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .prose a:hover { color: var(--text); }
 .prose ul,.prose ol { padding-left: 1.5em; color: var(--muted2); margin-bottom: 1em; }
-.prose li { margin-bottom: .4em; }
+.prose li { margin-bottom: .1em; }
+.prose ul li p, .prose ol li p { margin-top: 0; margin-bottom: 0; }
 
 /* ── Bootstrap grid shim (for blog post content using container/row/col) ── */
 .container-fluid { width:100%; padding: 0 15px; }
@@ -1610,54 +1616,12 @@ img { max-width: 100%; display: block; }
 
 /* ── Blog post Table of Contents ── */
 /* TOC is rendered as h3 tags in markdown — wrap them in a flex pill row */
-/* Wrap all TOC h3s in a flex row */
-.prose h2#table-of-contents ~ h3:not(.toc-task) {
-    display: inline-flex;
-    margin: 0 4px 6px 0 !important;
-}
-.prose h2 + hr + h3,
-.prose h2 + hr ~ h3 {
-    display: inline-block;
-    margin: 0 !important;
-    font-size: .78rem !important;
-    font-weight: 700 !important;
-    letter-spacing: .04em;
-    line-height: 1 !important;
-}
-.prose h2 + hr {
-    display: none;
-}
-/* Wrap all consecutive h3s after TABLE OF CONTENTS into a flex row via CSS */
+/* Wrap all TOC h3s in a flex row — handled by JS, only style the pill rows here */
 .prose h2#table-of-contents {
     display: none !important;
 }
-.prose h2#table-of-contents ~ h3 {
-    display: inline-flex;
-    margin: 0 4px 6px 0 !important;
-    padding: 0 !important;
-    font-size: 0 !important; /* hides the number */
-}
-.prose h2#table-of-contents ~ h3 a {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: .78rem;
-    font-weight: 700;
-    letter-spacing: .04em;
-    padding: 6px 16px;
-    border-radius: 20px;
-    background: linear-gradient(145deg, rgba(34,211,238,.15), rgba(34,211,238,.05));
-    border: 1px solid rgba(34,211,238,.35);
-    box-shadow: 0 2px 6px rgba(0,0,0,.4), inset 0 1px 0 rgba(34,211,238,.15);
-    color: var(--accent);
-    text-decoration: none;
-    transition: box-shadow .15s, background .15s, transform .15s;
-    white-space: nowrap;
-}
-.prose h2#table-of-contents ~ h3 a:hover {
-    background: linear-gradient(145deg, rgba(34,211,238,.25), rgba(34,211,238,.1));
-    box-shadow: 0 4px 12px rgba(34,211,238,.2), inset 0 1px 0 rgba(34,211,238,.2);
-    transform: translateY(-1px);
-    text-decoration: none;
+.prose h2#table-of-contents + hr {
+    display: none;
 }
 
 /* ── Sponsor button ── */
