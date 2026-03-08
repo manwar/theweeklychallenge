@@ -26,30 +26,36 @@ tags: ["Perl", "Raku"]
 ***
 Welcome to the `Week #364` of `The Weekly Challenge`.
 
-I am sure you all have noticed the new look of the weekly challenge website.
+I am sure you have all noticed the new look of the Weekly Challenge website.
 
-Why change the look and feel?
+#### Why the change?
 
-Well, there are many reasons. First, the old design was very scratchy in mobile devices. I have had few complaints from user, finding it hard to navigate. I knew the workaround, so I always reply with the workaround. Whether that makes the user happy or annoy, I don't know.
+There are several reasons. First, the old design was quite `clunky` on mobile devices. I received several complaints from users who found it difficult to navigate. While I knew the workarounds and would share them when asked, I wasn't sure if that was enough to keep everyone happy.
 
-But the most important reasons for the makeover was the use of [**Highcharts**](https://www.highcharts.com) JS library in our flashy charts. I remember when I first created the charts with the library, it was FREE for personal user. So I even used it in my personal website. Recently I found out that the library is no longer FREE. I decided to migrate to other FREE chart library. I found out about [**ChartJS**](https://www.chartjs.org) library. As you all know, I am not a frontend guy and knowledge is very limited.
+However, the primary driver for the makeover was our use of the [**Highcharts**](https://www.highcharts.com) library. When I first implemented these charts, the library was free for personal use. Recently, I discovered that is no longer the case, so I decided to migrate to [**ChartJS**](https://www.chartjs.org) library, which remains free.
 
-I decided to try few charts and see how we can migrate all existing charts. I find it very time consuming and difficult. I gave up, eventually. Few days ago, I managed to successfully migrated [**my personal website**](https://manwar.org) charts to `ChartJS`. That gave me confidence to give one more attempt, I finally managed to migrate the charts. While doing so, I decided to give a new look and fix the issues with the mobile devices. It wasn't that difficult when I dig deep.
+Admittedly, I am not a frontend expert, and my knowledge in this area is limited. My initial attempts to migrate the charts were time consuming and difficult, I almost gave up. However, after successfully migrating the charts on [**my personal website**](https://manwar.org) a few days ago. I gained the confidence to try again. I've finally managed to complete the migration! While I was at it, I decided to overhaul the design and fix those mobile responsiveness issues. It turned out to be less daunting once I really dug into the code.
 
-I am sure, you may find few glitches here and there. Please let me know and I will try to find the time to fix it.
+You may still find a few glitches here and there. Please let me know if you do, and I will find the time to fix them.
 
-My favourite features in the new design:
+#### New Features I Love:
 
-1. You can now comment on [**Challenges**](/challenges), [**Recaps**](/recaps), and [**BLOGS**](/blogs). Currently, I am using [**Disqus**](https://disqus.com) FREE Tier for comments.
+1. You can now comment on [**Challenges**](/challenges), [**Recaps**](/recaps), and [**BLOGS**](/blogs) (powered by [**Disqus**](https://disqus.com) free tier).
 2. Tag page: main menu `INFO` -> `TAGS`
-3. Search page: main menu `SEARCH`
-4. Sponsor page: main menu `INFO` -> `SPONSORS`
+3. Search: main menu `SEARCH`
+4. Sponsors: main menu `INFO` -> `SPONSORS`
 
 As you know, currently we have no sponsor for the monthly prize. So the first two months of 2026, I delayed the declaration of the monthly champions. Couple of weeks ago, a fellow team member and respected member of Perl community offered to sponsor the monthly prize money. I will share the details when things settled down.
 
-In the new design, the sponsors page has all past sponsors listed (from my memory). If you have donated in the past then please let me know and I will update the page.
+#### Sponsorship Update:
 
-I am very impressed by `Lubos Kolouch` and `Paulo Custodio`. They are working tirelessly solving past challenges in `C` and `Python`. This would definitely upset the chart list of languages.
+As many of you know, we currently lack a sponsor for the monthly prize. This led to a delay in declaring the champions for the first two months of 2026. Fortunately, a respected member of Perl community recently offered to sponsor the prize money. I will share more details once everything is finalised.
+
+The new [**Sponsors**](/sponsors) page lists all past sponsors (to the best of my memory). If you have donated in the past and don't see your name, please let me know so I can update the list.
+
+#### Community Shout-out:
+
+I am incredibly impressed by `Lubos Kolouch` and `Paulo Custodio`. They have been working tirelessly to solve past challenges in `C`, `Java` and `Python`. Their efforts are definitely going to shake up our language charts!
 
 ***
 
