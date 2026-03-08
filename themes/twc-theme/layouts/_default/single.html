@@ -55,6 +55,38 @@
     {{ end }}
     {{ partial "related-posts.html" . }}
     {{ partial "post-nav.html" . }}
+
+    {{/* ── Disqus comments — blogs, challenges and recaps only ── */}}
+    {{ if not (or (findRE "p6-review-challenge-\\d+" .File.BaseFileName) (findRE "review-challenge-\\d+" .File.BaseFileName)) }}
+    {{ if eq hugo.Environment "production" }}
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = '{{ .Permalink }}';
+            this.page.identifier = '{{ .File.UniqueID }}';
+        };
+    }
+    </script>
+    {{ else }}
+    <div class="disqus-wrap disqus-dev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        Comments available on the live site
+    </div>
+    {{ end }}
+    {{ end }}
 </div>
 <script>
 (function() {
