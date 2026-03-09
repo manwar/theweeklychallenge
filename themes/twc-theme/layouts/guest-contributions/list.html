@@ -1,12 +1,15 @@
 {{ define "main" }}
 
-{{/* ── Build week→year lookup from config.toml [params.weekYears] ── */}}
+{{/* ── Build week→year lookup from actual data ── */}}
 {{ $weekYears := dict }}
-{{ range $year, $range := .Site.Params.weekYears }}
-    {{ $first := index $range 0 }}
-    {{ $last  := index $range 1 }}
-    {{ range seq $first $last }}
-        {{ $weekYears = merge $weekYears (dict (string .) (string $year)) }}
+{{ range $.Site.Data.guestcontributions }}
+    {{ $w := .week }}
+    {{ range $year, $range := $.Site.Params.weekYears }}
+        {{ $first := index $range 0 }}
+        {{ $last  := index $range 1 }}
+        {{ if and (ge $w $first) (le $w $last) }}
+            {{ $weekYears = merge $weekYears (dict (string $w) (string $year)) }}
+        {{ end }}
     {{ end }}
 {{ end }}
 
@@ -51,7 +54,14 @@
     {{ $last  := index $range 1 }}
     <div class="gc-year-grid{{ if eq $i 0 }} active{{ end }}" data-year="{{ $year }}">
         <div class="guest-week-grid">
-            {{ range seq $first $last | collections.Reverse }}
+            {{/* Only show buttons for weeks that have actual data */}}
+            {{ $weeksWithData := slice }}
+            {{ range $.Site.Data.guestcontributions }}
+                {{ if and (ge .week $first) (le .week $last) }}
+                    {{ $weeksWithData = $weeksWithData | append .week }}
+                {{ end }}
+            {{ end }}
+            {{ range $weeksWithData | collections.Reverse }}
             <a href="#week-{{ . }}">{{ . }}</a>
             {{ end }}
         </div>
