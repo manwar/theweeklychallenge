@@ -63,7 +63,7 @@ Welcome back, `beespider`, and thanks for your contributions in [**Uiua**](https
 
 <br>
 
-Below is my contributions to the `Task #1` of `Week #363`.
+Below is my contributions to the `Task #1` of `Week #363`. No solution in `Raku` this time, sorry.
 
 ### Perl: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-363/mohammad-anwar/perl/ch-1.pl)
 ***
