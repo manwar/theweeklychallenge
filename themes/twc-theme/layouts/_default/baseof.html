@@ -6,7 +6,7 @@
 
     {{/* ── Canonical & Title ── */}}
     <link rel="canonical" href="{{ .Permalink }}">
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else if .IsPage }}{{ .Title }} | {{ .Date.Format "Jan 2006" }} | {{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
 
     {{/* ── Core SEO ── */}}
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
@@ -17,7 +17,7 @@
     <meta property="og:site_name"   content="{{ .Site.Title }}">
     <meta property="og:type"        content="{{ if .IsPage }}article{{ else }}website{{ end }}">
     <meta property="og:url"         content="{{ .Permalink }}">
-    <meta property="og:title"       content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+    <meta property="og:title"       content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
     <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     {{ with .Site.Params.ogImage }}<meta property="og:image" content="{{ $.Site.BaseURL }}{{ . }}">{{ end }}
     {{ if .IsPage }}
@@ -71,7 +71,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
     document.documentElement.classList.add('light-mode-pre');
 }
 </script>
-<body>
+<body data-url="{{ .Permalink }}">
     {{ partial "nav.html" . }}
     {{ if .IsPage }}<div id="reading-progress-wrap"><div id="reading-progress"></div></div>{{ end }}
 
