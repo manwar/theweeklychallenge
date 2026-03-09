@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/perl-weekly-challenge-364/">
+    <title>The Weekly Challenge - 364 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="The Weekly Challenge - 364">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/perl-weekly-challenge-364/">
+    <meta property="og:title"       content="The Weekly Challenge - 364 | The Weekly Challenge">
+    <meta property="og:description" content="The Weekly Challenge - 364">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/og-image.jpg">
+    
+    <meta property="article:published_time" content="2026-03-09T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-03-09T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="The Weekly Challenge - 364 | The Weekly Challenge">
+    <meta name="twitter:description" content="The Weekly Challenge - 364">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/og-image.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body>
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">The Weekly Challenge: 364</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>The Weekly Challenge - 364</span>
+        </nav>
+        <span class="reading-time" title="1353 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  6 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 9 Mar 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/challenges" class="back-btn">&#8592; Back to Challenges</a>
+    
+    <article class="prose">
+
+        <h2 id="table-of-contents">TABLE OF CONTENTS</h2>
+<hr>
+<h3 id="nbspnbsp1-headlinesheadlines">  1. <a href="#HEADLINES">HEADLINES</a></h3>
+<h3 id="nbspnbsp2-sponsorsponsor">  2. <a href="#SPONSOR">SPONSOR</a></h3>
+<h3 id="nbspnbsp3-recaprecap">  3. <a href="#RECAP">RECAP</a></h3>
+<h3 id="nbspnbsp4-perl-reviewperlreview">  4. <a href="#PERLREVIEW">PERL REVIEW</a></h3>
+<h3 id="nbspnbsp5-raku-reviewrakureview">  5. <a href="#RAKUREVIEW">RAKU REVIEW</a></h3>
+<h3 id="nbspnbsp6-chartchart">  6. <a href="#CHART">CHART</a></h3>
+<h3 id="nbspnbsp7-new-membersnewmembers">  7. <a href="#NEWMEMBERS">NEW MEMBERS</a></h3>
+<h3 id="nbspnbsp8-guestsguests">  8. <a href="#GUESTS">GUESTS</a></h3>
+<h3 id="nbspnbsp9-task-1-decrypt-stringtask1">  9. <a href="#TASK1">TASK #1: Decrypt String</a></h3>
+<h3 id="10-task-2-goal-parsertask2">10. <a href="#TASK2">TASK #2: Goal Parser</a></h3>
+<h2 id="HEADLINES">HEADLINES</h2>
+<hr>
+<p>Welcome to the <code>Week #364</code> of <code>The Weekly Challenge</code>.</p>
+<p>Last week was the quietest week of 2026 in terms of regular and guest contributions. I hope that changes this week!</p>
+<p>I am sure you have all noticed the new look of the Weekly Challenge website.</p>
+<h4 id="why-the-change">Why the change?</h4>
+<p>There are several reasons. First, the old design was quite <code>clunky</code> on mobile devices. I received several complaints from users who found it difficult to navigate. While I knew the workarounds and would share them when asked, I wasn&rsquo;t sure if that was enough to keep everyone happy.</p>
+<p>However, the primary driver for the makeover was our use of the <a href="https://www.highcharts.com"><strong>Highcharts</strong></a> library. When I first implemented these charts, the library was free for personal use. Recently, I discovered that is no longer the case, so I decided to migrate to <a href="https://www.chartjs.org"><strong>ChartJS</strong></a> library, which remains free.</p>
+<p>Admittedly, I am not a frontend expert, and my knowledge in this area is limited. My initial attempts to migrate the charts were time consuming and difficult, I almost gave up. However, after successfully migrating the charts on <a href="https://manwar.org"><strong>my personal website</strong></a> a few days ago. I gained the confidence to try again. I&rsquo;ve finally managed to complete the migration! While I was at it, I decided to overhaul the design and fix those mobile responsiveness issues. It turned out to be less daunting once I really dug into the code.</p>
+<p>You may still find a few glitches here and there. Please let me know if you do, and I will find the time to fix them.</p>
+<h4 id="new-features-i-love">New Features I Love:</h4>
+<ol>
+<li>You can now comment on <a href="/challenges"><strong>Challenges</strong></a>, <a href="/recaps"><strong>Recaps</strong></a>, and <a href="/blogs"><strong>BLOGS</strong></a> (powered by <a href="https://disqus.com"><strong>Disqus</strong></a> free tier).</li>
+<li>Tag page: main menu <code>INFO</code> -&gt; <code>TAGS</code></li>
+<li>Search: main menu <code>SEARCH</code></li>
+<li>Sponsors: main menu <code>INFO</code> -&gt; <code>SPONSORS</code></li>
+</ol>
+<h4 id="sponsorship-update">Sponsorship Update:</h4>
+<p>As many of you know, we currently lack a sponsor for the monthly prize. This led to a delay in declaring the champions for the first two months of 2026. Fortunately, a respected member of Perl community recently offered to sponsor the prize money. I will share more details once everything is finalised.</p>
+<p>The new <a href="/sponsors"><strong>Sponsors</strong></a> page lists all past sponsors (to the best of my memory). If you have donated in the past and don&rsquo;t see your name, please let me know so I can update the list.</p>
+<h4 id="community-shout-out">Community Shout-out:</h4>
+<p>I am incredibly impressed by <code>Lubos Kolouch</code> and <code>Paulo Custodio</code>. They have been working tirelessly to solve past challenges in <code>C</code>, <code>Java</code> and <code>Python</code>. Their efforts are definitely going to shake up our language charts! In fact, I can already see <code>Java</code> making it into the <code>TOP #10</code> pushing <code>BQN</code> down the list.</p>
+<p>Welcome back, <code>beespider</code>, and thanks for your contributions in <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-363/beespider/uiua"><strong>Uiua</strong></a>.</p>
+<hr>
+<br>
+<p>Below is my contributions to the <code>Task #1</code> of <code>Week #363</code>. No solution in <code>Raku</code> this time, sorry.</p>
+<h3 id="perl-source-codehttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-363mohammad-anwarperlch-1pl">Perl: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-363/mohammad-anwar/perl/ch-1.pl">source code</a></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lie_detector</span> {
+    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">my</span> ($word) <span style="color:#f92672">=</span> $str <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^([^-—]+)/</span>;
+    $word <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+$//</span>;
+
+    <span style="color:#66d9ef">my</span> $vow <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> $word <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[aeiou]/gi</span>;
+    <span style="color:#66d9ef">my</span> $con <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> $word <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[b-df-hj-np-tv-z]/gi</span>;
+
+    <span style="color:#66d9ef">my</span> ($v_phrase, $c_phrase) <span style="color:#f92672">=</span> $str <span style="color:#f92672">=~</span><span style="color:#e6db74"> /([\w\s]+?)\s+vowels?.*?([\w\s]+?)\s+consonants?/</span>;
+
+    <span style="color:#66d9ef">if</span> (defined $v_phrase <span style="color:#f92672">&amp;&amp;</span> defined $c_phrase) {
+        $v_phrase <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s+|\s+$//g</span>;
+        $c_phrase <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s+|\s+$//g</span>;
+
+        <span style="color:#66d9ef">my</span> $v_claim <span style="color:#f92672">=</span> words2nums($v_phrase);
+        <span style="color:#66d9ef">my</span> $c_claim <span style="color:#f92672">=</span> words2nums($c_phrase);
+
+        <span style="color:#66d9ef">return</span> (defined $v_claim <span style="color:#f92672">&amp;&amp;</span> defined $c_claim <span style="color:#f92672">&amp;&amp;</span>
+                $v_claim <span style="color:#f92672">==</span> $vow <span style="color:#f92672">&amp;&amp;</span> $c_claim <span style="color:#f92672">==</span> $con) ? <span style="color:#e6db74">&#34;true&#34;</span> : <span style="color:#e6db74">&#34;false&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>;
+}
+</code></pre></div><h3 id="python-source-codehttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-363mohammad-anwarpythonch-1py">Python: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-363/mohammad-anwar/python/ch-1.py">source code</a></h3>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lie_detector</span>(s):
+    match <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^([^-—]+)&#39;</span>, s)
+
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> match:
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>
+
+    word <span style="color:#f92672">=</span> match<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>strip()
+    vow  <span style="color:#f92672">=</span> len(re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;[aeiou]&#39;</span>, word, re<span style="color:#f92672">.</span>IGNORECASE))
+    con  <span style="color:#f92672">=</span> len(re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;[b-df-hj-np-tv-z]&#39;</span>, word, re<span style="color:#f92672">.</span>IGNORECASE))
+
+    m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;([\w\s]+?)\s+vowels?\b.*?([\w\s]+?)\s+consonants?\b&#39;</span>, s)
+    <span style="color:#66d9ef">if</span> m:
+        v_phrase <span style="color:#f92672">=</span> m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>strip()
+        c_phrase <span style="color:#f92672">=</span> m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>strip()
+
+        <span style="color:#66d9ef">try</span>:
+            v_claim <span style="color:#f92672">=</span> w2n<span style="color:#f92672">.</span>word_to_num(v_phrase)
+            c_claim <span style="color:#f92672">=</span> w2n<span style="color:#f92672">.</span>word_to_num(c_phrase)
+            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#66d9ef">if</span> v_claim <span style="color:#f92672">==</span> vow <span style="color:#f92672">and</span> c_claim <span style="color:#f92672">==</span> con <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;false&#34;</span>
+        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ValueError</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>
+
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>
+</code></pre></div><p>Thank you <code>Team PWC</code>, once again.</p>
+<p><code>Happy Hacking!!</code></p>
+<hr>
+<br>
+<p>Last <code>5 weeks</code> mainstream contribution stats. Thank you <code>Team PWC</code>  for your support and encouragements.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">  <code>Week</code>  </td>
+<td align="center">   <code>Perl</code>   </td>
+<td align="center">   <code>Raku</code>   </td>
+<td align="center">   <code>Blog</code>   </td>
+</tr>
+<tr>
+<td align="center">   <code>359</code>   </td>
+<td align="center">   54   </td>
+<td align="center">   20   </td>
+<td align="center">   21   </td>
+</tr>
+<tr>
+<td align="center">   <code>360</code>   </td>
+<td align="center">   57   </td>
+<td align="center">   19   </td>
+<td align="center">   17   </td>
+</tr>
+<tr>
+<td align="center">   <code>361</code>   </td>
+<td align="center">   55   </td>
+<td align="center">   25   </td>
+<td align="center">   16   </td>
+</tr>
+<tr>
+<td align="center">   <code>362</code>   </td>
+<td align="center">   52   </td>
+<td align="center">   25   </td>
+<td align="center">   19   </td>
+</tr>
+<tr>
+<td align="center">   <code>363</code>   </td>
+<td align="center">   41   </td>
+<td align="center">   14   </td>
+<td align="center">   12   </td>
+</tr>
+</tbody>
+</table>
+<hr>
+<br>
+<p>Last <code>5 weeks</code> guest contribution stats. Thank you each and every guest contributors for your time and efforts.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">  <code>Week</code>  </td>
+<td align="center">   <code>Guests</code>   </td>
+<td align="center">   <code>Contributions</code>   </td>
+<td align="center">   <code>Languages</code>   </td>
+</tr>
+<tr>
+<td align="center">   <code>359</code>   </td>
+<td align="center">   18   </td>
+<td align="center">   68   </td>
+<td align="center">   23   </td>
+</tr>
+<tr>
+<td align="center">   <code>360</code>   </td>
+<td align="center">   16   </td>
+<td align="center">   73   </td>
+<td align="center">   22   </td>
+</tr>
+<tr>
+<td align="center">   <code>361</code>   </td>
+<td align="center">   13   </td>
+<td align="center">   53   </td>
+<td align="center">   20   </td>
+</tr>
+<tr>
+<td align="center">   <code>362</code>   </td>
+<td align="center">   17   </td>
+<td align="center">   68   </td>
+<td align="center">   22   </td>
+</tr>
+<tr>
+<td align="center">   <code>363</code>   </td>
+<td align="center">   12   </td>
+<td align="center">   37   </td>
+<td align="center">   12   </td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="top-10-guest-languages">TOP 10 Guest Languages</h3>
+<hr>
+<p>Do you see your favourite language in the <code>Top #10</code>? If not then why not contribute regularly and make it to the top.</p>
+<pre><code> 1. Python     (4194)
+ 2. Rust       (1115)
+ 3. Ruby       (875)
+ 4. Haskell    (871)
+ 5. Lua        (852)
+ 6. C          (829)
+ 7. C++        (698)
+ 8. Go         (650)
+ 9. JavaScript (624)
+10. Java       (526)
+</code></pre>
+<h3 id="blogs-with-creative-title">Blogs with Creative Title</h3>
+<hr>
+<h4 id="1-sheriff-detectorhttpsraku-musingscomsheriff-detectorhtml-by-arne-sommer">1. <a href="https://raku-musings.com/sheriff-detector.html">Sheriff Detector</a> by Arne Sommer.</h4>
+<h4 id="2-lying-sheriffshttpsgithubsommreydethe-bears-den20260306ch-363html-by-jorg-sommrey">2. <a href="https://github.sommrey.de/the-bears-den/2026/03/06/ch-363.html">Lying Sheriffs</a> by Jorg Sommrey.</h4>
+<h4 id="3-i-dont-lie-sheriffhttpsgithubcommatthiasmuthperlweeklychallenge-clubtreemuthm-363challenge-363matthias-muthreadme-by-matthias-muth">3. <a href="https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-363/challenge-363/matthias-muth#readme">I Don&rsquo;t Lie, Sheriff!</a> by Matthias Muth.</h4>
+<h4 id="4-i-shot-the-subnethttpspackydardancombk8-by-packy-anderson">4. <a href="https://packy.dardan.com/b/k8">I Shot The Subnet…</a> by Packy Anderson.</h4>
+<h4 id="5-lies-and-lies-withinhttpccgicampbellsmithsforce9coukchallenge363-by-peter-campbell-smith">5. <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/363">Lies and lies within</a> by Peter Campbell Smith.</h4>
+<h4 id="6-stringy-sheriffhttpsblogfiredrakeorgarchive202603the_weekly_challenge_363__stringy_sheriffhtml-by-roger-bell_west">6. <a href="https://blog.firedrake.org/archive/2026/03/The_Weekly_Challenge_363__Stringy_Sheriff.html">Stringy Sheriff</a> by Roger Bell_West.</h4>
+<h4 id="7-the-subnet-detectorhttpsdevtosimongreennetweekly-challlenge-the-subnet-detector-1d9l-by-simon-green">7. <a href="https://dev.to/simongreennet/weekly-challlenge-the-subnet-detector-1d9l">The subnet detector</a> by Simon Green.</h4>
+<hr>
+<h3 id="githubhttpsgithubcommanwarperlweeklychallenge-club-repository-stats"><a href="https://github.com/manwar/perlweeklychallenge-club">GitHub</a> Repository Stats</h3>
+<hr>
+<h4 id="1-commits-48227-96">1. Commits: 48,227 (<code>+96</code>)</h4>
+<h4 id="2-pull-requests-13698-65">2. Pull Requests: 13,698 (<code>+65</code>)</h4>
+<h4 id="3-contributors-275">3. Contributors: 275</h4>
+<h4 id="4-fork-349">4. Fork: 349</h4>
+<h4 id="5-stars-210">5. Stars: 210</h4>
+<hr>
+<h2 id="SPONSOR">SPONSOR</h2>
+<hr>
+<p>We are looking for sponsor for monthly prize pot of <code>US $50</code>. If anyone interested please get in touch with us at <code>perlweeklychallenge@yahoo.com</code>. Thanks for your support in advance. You can find more informations <a href="/sponsors"><strong>here</strong></a>.</p>
+<h2 id="RECAP">RECAP</h2>
+<hr>
+<p>Quick recap of <strong><a href="/blog/recap-challenge-363">The Weekly Challenge - 363</a></strong> by <code>Mohammad Sajid Anwar</code>.</p>
+<h2 id="PERLREVIEW">PERL REVIEW</h2>
+<hr>
+<p>If you missed any past reviews then please check out the <a href="/p5-reviews"><strong>collection</strong></a>.</p>
+<h2 id="RAKUREVIEW">RAKU REVIEW</h2>
+<hr>
+<p>If you missed any past reviews then please check out the <a href="/p6-reviews"><strong>collection</strong></a>.</p>
+<h2 id="CHART">CHART</h2>
+<hr>
+<p>Please take a look at the <a href="/chart"><strong>charts</strong></a> showing interesting data.</p>
+<p>I would like to <code>THANK</code> every member of the team for their valuable suggestions. Please do share your experience with us.</p>
+<h2 id="NEWMEMBERS">NEW MEMBERS</h2>
+<hr>
+<p>Please find out <a href="/blog/how-to-contribute"><strong>How to contribute?</strong></a>, if you have any doubts.</p>
+<p>Please try the excellent tool <a href="https://github.com/saiftynet/EZPWC"><strong>EZPWC</strong></a> created by respected member <code>Saif Ahmed</code> of <strong>Team PWC</strong>.</p>
+<h2 id="GUESTS">GUESTS</h2>
+<hr>
+<p>Please check out the guest contributions for the <a href="/blog/guest-contribution/#363"><strong>Week #363</strong></a>.</p>
+<p>Please find <a href="/blog/guest-contribution"><strong>past solutions</strong></a> by respected <strong>guests</strong>. Please share your creative solutions in other languages.</p>
+<h2 id="TASK1">Task 1: Decrypt String</h2>
+<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<hr>
+<p>You are given a string formed by digits and &lsquo;#'.</p>
+<p>Write a script to map the given string to English lowercase characters following the given rules.</p>
+<pre><code>- Characters 'a' to 'i' are represented by '1' to '9' respectively.
+- Characters 'j' to 'z' are represented by '10#' to '26#' respectively.
+</code></pre>
+<h4 id="example-1">Example 1</h4>
+<pre><code>Input: $str = &quot;10#11#12&quot;
+Output: &quot;jkab&quot;
+
+10# -&gt; j
+11# -&gt; k
+1   -&gt; a
+2   -&gt; b
+</code></pre>
+<h4 id="example-2">Example 2</h4>
+<pre><code>Input: $str = &quot;1326#&quot;
+Output: &quot;acz&quot;
+
+1   -&gt; a
+3   -&gt; c
+26# -&gt; z
+</code></pre>
+<h4 id="example-3">Example 3</h4>
+<pre><code>Input: $str = &quot;25#24#123&quot;
+Output: &quot;yxabc&quot;
+
+25# -&gt; y
+24# -&gt; x
+1   -&gt; a
+2   -&gt; b
+3   -&gt; c
+</code></pre>
+<h4 id="example-4">Example 4</h4>
+<pre><code>Input: $str = &quot;20#5&quot;
+Output: &quot;te&quot;
+
+20# -&gt; t
+5   -&gt; e
+</code></pre>
+<h4 id="example-5">Example 5</h4>
+<pre><code>Input: $str = &quot;1910#26#&quot;
+Output: &quot;aijz&quot;
+
+1   -&gt; a
+9   -&gt; i
+10# -&gt; j
+26# -&gt; z
+</code></pre>
+<h2 id="TASK2">Task 2: Goal Parser</h2>
+<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg-1"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<hr>
+<p>You are given a string, <code>$str</code>.</p>
+<p>Write a script to interpret the given string using <code>Goal Parser</code>.</p>
+<blockquote>
+<p>The Goal Parser interprets &ldquo;G&rdquo; as the string &ldquo;G&rdquo;, &ldquo;()&rdquo; as the string &ldquo;o&rdquo;, and &ldquo;(al)&rdquo; as the string &ldquo;al&rdquo;. The interpreted strings are then concatenated in the original order.</p>
+</blockquote>
+<h4 id="example-1-1">Example 1</h4>
+<pre><code>Input: $str = &quot;G()(al)&quot;
+Output: &quot;Goal&quot;
+
+G    -&gt; &quot;G&quot;
+()   -&gt; &quot;o&quot;
+(al) -&gt; &quot;al&quot;
+</code></pre>
+<h4 id="example-2-1">Example 2</h4>
+<pre><code>Input: $str = &quot;G()()()()(al)&quot;
+Output: &quot;Gooooal&quot;
+
+G       -&gt; &quot;G&quot;
+four () -&gt; &quot;oooo&quot;
+(al)    -&gt; &quot;al&quot;
+</code></pre>
+<h4 id="example-3-1">Example 3</h4>
+<pre><code>Input: $str = &quot;(al)G(al)()()&quot;
+Output: &quot;alGaloo&quot;
+
+(al) -&gt; &quot;al&quot;
+G    -&gt; &quot;G&quot;
+(al) -&gt; &quot;al&quot;
+()   -&gt; &quot;o&quot;
+()   -&gt; &quot;o&quot;
+</code></pre>
+<h4 id="example-4-1">Example 4</h4>
+<pre><code>Input: $str = &quot;()G()G&quot;
+Output: &quot;oGoG&quot;
+
+() -&gt; &quot;o&quot;
+G  -&gt; &quot;G&quot;
+() -&gt; &quot;o&quot;
+G  -&gt; &quot;G&quot;
+</code></pre>
+<h4 id="example-5-1">Example 5</h4>
+<pre><code>Input: $str = &quot;(al)(al)G()()&quot;
+Output: &quot;alalGoo&quot;
+
+(al) -&gt; &quot;al&quot;
+(al) -&gt; &quot;al&quot;
+G    -&gt; &quot;G&quot;
+()   -&gt; &quot;o&quot;
+()   -&gt; &quot;o&quot;
+</code></pre>
+<hr>
+<p>Last date to submit the solution <code>23:59 (UK Time) Sunday 15th March 2026</code>.</p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">Perl</a>
+        
+        <a href="https://theweeklychallenge.org/tags/raku" class="post-tag">Raku</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/recap-challenge-363/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">RECAP - The Weekly Challenge - 363</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+            </span>
+            <span class="related-post-date">9 Mar 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/recap-challenge-362/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">RECAP - The Weekly Challenge - 362</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+            </span>
+            <span class="related-post-date">2 Mar 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/perl-weekly-challenge-363/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">The Weekly Challenge - 363</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+            </span>
+            <span class="related-post-date">2 Mar 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+<nav class="post-nav" aria-label="Post navigation">
+  <div class="post-nav-inner">
+    <a class="post-nav-item post-nav-prev" href="/blog/perl-weekly-challenge-363/">
+      <span class="post-nav-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Previous
+      </span>
+      <span class="post-nav-title">The Weekly Challenge - 363</span>
+    </a>
+    <div class="post-nav-item post-nav-next post-nav-empty"></div>
+  </div>
+</nav>
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/perl-weekly-challenge-364\/';
+            this.page.identifier = 'af4ff923adfdfe286aad9dc1364462e5';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an expert</span>
+            </p>
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ and Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
