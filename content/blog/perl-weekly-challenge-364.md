@@ -45,8 +45,6 @@ You may still find a few glitches here and there. Please let me know if you do, 
 3. Search: main menu `SEARCH`
 4. Sponsors: main menu `INFO` -> `SPONSORS`
 
-As you know, currently we have no sponsor for the monthly prize. So the first two months of 2026, I delayed the declaration of the monthly champions. Couple of weeks ago, a fellow team member and respected member of Perl community offered to sponsor the monthly prize money. I will share the details when things settled down.
-
 #### Sponsorship Update:
 
 As many of you know, we currently lack a sponsor for the monthly prize. This led to a delay in declaring the champions for the first two months of 2026. Fortunately, a respected member of Perl community recently offered to sponsor the prize money. I will share more details once everything is finalised.
@@ -56,6 +54,8 @@ The new [**Sponsors**](/sponsors) page lists all past sponsors (to the best of m
 #### Community Shout-out:
 
 I am incredibly impressed by `Lubos Kolouch` and `Paulo Custodio`. They have been working tirelessly to solve past challenges in `C`, `Java` and `Python`. Their efforts are definitely going to shake up our language charts!
+
+Welcome back, `beespider`, and thanks for your contributions in [**Uiua**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-363/beespider/uiua).
 
 ***
 
@@ -136,10 +136,11 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `360` &nbsp;&nbsp;|&nbsp;&nbsp; 57 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `361` &nbsp;&nbsp;|&nbsp;&nbsp; 55 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `362` &nbsp;&nbsp;|&nbsp;&nbsp; 52 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `363` &nbsp;&nbsp;|&nbsp;&nbsp; 37 &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|&nbsp;&nbsp; 11 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `363` &nbsp;&nbsp;|&nbsp;&nbsp; 39 &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|
 ***
 
 <br>
+
 Last `5 weeks` guest contribution stats. Thank you each and every guest contributors for your time and efforts.
 
 | | | | |
@@ -174,7 +175,7 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 #### 1. [Sheriff Detector](https://raku-musings.com/sheriff-detector.html) by Arne Sommer.
 #### 2. [Lying Sheriffs](https://github.sommrey.de/the-bears-den/2026/03/06/ch-363.html) by Jorg Sommrey.
 #### 3. []() by Luca Ferrari.
-#### 4. []() by Marc Perry.
+#### 4. [I Don't Lie, Sheriff!](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-363/challenge-363/matthias-muth#readme) by Matthias Muth.
 #### 5. [I Shot The Subnet…](https://packy.dardan.com/b/k8) by Packy Anderson.
 #### 6. [Lies and lies within](http://ccgi.campbellsmiths.force9.co.uk/challenge/363) by Peter Campbell Smith.
 #### 7. [Stringy Sheriff](https://blog.firedrake.org/archive/2026/03/The_Weekly_Challenge_363__Stringy_Sheriff.html) by Roger Bell_West.
