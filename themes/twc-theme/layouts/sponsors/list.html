@@ -1,0 +1,413 @@
+{{ define "main" }}
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Sponsors</h1>
+        <p class="page-desc">The Weekly Challenge is made possible by the generous support of our sponsors.</p>
+        <nav class="breadcrumb">
+            <a href="{{ .Site.BaseURL }}">Home</a>
+            <span class="bc-sep">›</span>
+            <span>Sponsors</span>
+        </nav>
+    </div>
+</div>
+
+<div class="content-wrap">
+
+    {{/* ── PayPal CTA ── */}}
+    {{ with .Site.Params.sponsors.paypal }}
+    <div class="sponsor-cta">
+        <div class="sponsor-cta-bg"></div>
+        <div class="sponsor-cta-content">
+            <div class="sponsor-cta-text">
+                <h2 class="sponsor-cta-title">Help Keep The Weekly Challenge Going</h2>
+                <p class="sponsor-cta-sub">Run by one person, for the love of Perl. Since March 2019, this community has grown from a fun side project into a beloved weekly tradition for hundreds of developers worldwide. If it has brought you value, consider giving something back.</p>
+                <div class="sponsor-tiers">
+                    <div class="sponsor-tier">
+                        <span class="sponsor-tier-icon">🏆</span>
+                        <div>
+                            <strong>Prize Pot Sponsor</strong>
+                            <span>$50/month · covers the monthly winner prize. Many past sponsors have paid a full year upfront.</span>
+                        </div>
+                    </div>
+                    <div class="sponsor-tier">
+                        <span class="sponsor-tier-icon">⚙️</span>
+                        <div>
+                            <strong>Running Costs Sponsor</strong>
+                            <span>Optional · helps managing the two domains, theweeklychallenge.org and perlweeklychallenge.org, to keep the site live.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="{{ . }}" target="_blank" rel="noopener" class="sponsor-cta-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
+                Sponsor via PayPal
+            </a>
+        </div>
+    </div>
+    {{ end }}
+
+    {{/* ── Current Sponsors ── */}}
+    <div class="sponsors-section">
+        <h2 class="sponsors-section-title">
+            <span class="sponsors-section-dot sponsors-dot-current"></span>
+            Current Sponsors
+        </h2>
+        {{ with .Site.Params.sponsors.current }}
+        <div class="sponsors-grid">
+            {{ range . }}
+            <div class="sponsor-card sponsor-card-current">
+                {{ if .logo }}<img src="{{ .logo }}" alt="{{ .name }}" class="sponsor-logo">{{ end }}
+                <div class="sponsor-info">
+                    <h3 class="sponsor-name">
+                        {{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}
+                    </h3>
+                    {{ with .description }}<p class="sponsor-desc">{{ . }}</p>{{ end }}
+                    {{ with .since }}<span class="sponsor-since">Sponsor since {{ . }}</span>{{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+        {{ else }}
+        <div class="sponsor-empty">
+            <div class="sponsor-empty-icon">🌟</div>
+            <h3 class="sponsor-empty-title">Be the Reason Someone Wins This Month</h3>
+            <p class="sponsor-empty-desc">We currently have no active sponsors. We're looking for someone to cover the <strong>monthly prize pot ($50/month)</strong> — paid annually upfront if you prefer — and optionally to help with <strong>running costs</strong> like hosting and infrastructure. There's no company, no accountant, just a passionate individual keeping this community alive week after week since 2019. Your name and link will be featured right here.</p>
+            {{ with $.Site.Params.sponsors.paypal }}
+            <a href="{{ . }}" target="_blank" rel="noopener" class="sponsor-empty-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
+                Sponsor via PayPal
+            </a>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+
+    {{/* ── Past Sponsors ── */}}
+    {{ with .Site.Params.sponsors.past }}
+    <div class="sponsors-section">
+        <h2 class="sponsors-section-title">
+            <span class="sponsors-section-dot sponsors-dot-past"></span>
+            Past Sponsors
+        </h2>
+        <p class="sponsors-section-sub">These wonderful people kept the prizes flowing. We are grateful for every one of them.</p>
+        <div class="sponsors-grid">
+            {{ range . }}
+            <div class="sponsor-card sponsor-card-past">
+                {{ if .logo }}<img src="{{ .logo }}" alt="{{ .name }}" class="sponsor-logo">{{ end }}
+                <div class="sponsor-info">
+                    <h3 class="sponsor-name">
+                        {{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}
+                    </h3>
+                    {{ with .description }}<p class="sponsor-desc">{{ . }}</p>{{ end }}
+                    {{ with .since }}<span class="sponsor-since">{{ . }}</span>{{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+
+    {{/* ── Community Supporters ── */}}
+    {{ with .Site.Params.sponsors.supporters }}
+    <div class="sponsors-section">
+        <h2 class="sponsors-section-title">
+            <span class="sponsors-section-dot sponsors-dot-supporter"></span>
+            Community Supporters
+        </h2>
+        <p class="sponsors-section-sub">Over the years, many generous individuals from within the community have made one-off contributions to keep running the project. Every single one made a difference — thank you.</p>
+        <div class="supporters-list">
+            {{ range . }}
+            <div class="supporter-pill">
+                <span class="supporter-name">{{ .name }}</span>
+                {{ with .since }}<span class="supporter-since">{{ . }}</span>{{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+
+</div>
+
+<style>
+/* ── Sponsor CTA ── */
+.sponsor-cta {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 48px;
+    border: 1px solid rgba(34,211,238,.2);
+}
+.sponsor-cta-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(34,211,238,.08) 0%, rgba(99,102,241,.06) 100%);
+}
+.sponsor-cta-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 32px 36px;
+    flex-wrap: wrap;
+}
+.sponsor-cta-title {
+    font-family: var(--font-head);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 0 0 8px 0;
+}
+.sponsor-cta-sub {
+    color: var(--muted2);
+    font-size: .9rem;
+    margin: 0;
+    line-height: 1.6;
+    text-align: justify;
+    text-align-last: left;
+    hyphens: auto;
+}
+.sponsor-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #003087;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background .2s, transform .2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(0,48,135,.4);
+}
+.sponsor-cta-btn:hover {
+    background: #002060;
+    transform: translateY(-2px);
+    text-decoration: none;
+    color: #fff;
+}
+
+/* ── Sponsors sections ── */
+.sponsors-section {
+    margin-bottom: 48px;
+}
+.sponsors-section-title {
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+.sponsors-section-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.sponsors-dot-current {
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(34,211,238,.6);
+    animation: pulse-teal 2s infinite;
+}
+.sponsors-dot-past {
+    background: var(--muted);
+}
+@keyframes pulse-teal {
+    0%   { box-shadow: 0 0 0 0 rgba(34,211,238,.5); }
+    70%  { box-shadow: 0 0 0 8px rgba(34,211,238,0); }
+    100% { box-shadow: 0 0 0 0 rgba(34,211,238,0); }
+}
+.sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+.sponsor-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: border-color .2s, transform .2s;
+}
+.sponsor-card:hover {
+    transform: translateY(-2px);
+}
+.sponsor-card-current { border-left: 3px solid var(--accent); }
+.sponsor-card-current:hover { border-color: var(--accent); }
+.sponsor-card-past { opacity: .75; }
+.sponsor-card-past:hover { opacity: 1; border-color: var(--muted); }
+.sponsor-logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: var(--surface2);
+    padding: 4px;
+    flex-shrink: 0;
+}
+.sponsor-name {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: var(--text);
+}
+.sponsor-name a {
+    color: var(--accent);
+    text-decoration: none;
+}
+.sponsor-name a:hover { text-decoration: underline; }
+.sponsor-desc {
+    font-size: .85rem;
+    color: var(--muted2);
+    margin: 0 0 6px 0;
+    line-height: 1.5;
+}
+.sponsors-section-sub {
+    font-size: .88rem;
+    color: var(--muted2);
+    margin: -10px 0 20px;
+    font-style: italic;
+}
+.sponsor-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+.sponsor-tier {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+}
+.sponsor-tier-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+.sponsor-tier strong {
+    display: block;
+    font-family: var(--font-head);
+    font-size: .9rem;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+.sponsor-tier span {
+    font-size: .82rem;
+    color: var(--muted2);
+    line-height: 1.5;
+    text-align: justify;
+}
+.sponsor-empty {
+    text-align: center;
+    padding: 48px 24px;
+    background: var(--surface);
+    border: 2px dashed var(--border);
+    border-radius: 16px;
+}
+.sponsor-empty-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+.sponsor-empty-title {
+    font-family: var(--font-head);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 10px 0;
+}
+.sponsor-empty-desc {
+    font-size: .9rem;
+    color: var(--muted2);
+    max-width: 480px;
+    margin: 0 auto 20px;
+    line-height: 1.6;
+    text-align: justify;
+    hyphens: auto;
+}
+.sponsor-empty-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #003087;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background .2s, transform .2s;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,48,135,.4);
+    border: none;
+}
+.sponsor-empty-btn:hover {
+    background: #002060;
+    transform: translateY(-2px);
+    text-decoration: none;
+    color: #fff;
+}
+.sponsor-since {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--muted);
+    letter-spacing: .04em;
+}
+/* ── Community Supporters ── */
+.sponsors-dot-supporter {
+    background: #a78bfa;
+}
+.supporters-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.supporter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(167,139,250,.08);
+    border: 1px solid rgba(167,139,250,.25);
+    border-radius: 24px;
+    padding: 6px 16px;
+    transition: background .15s, border-color .15s;
+}
+.supporter-pill:hover {
+    background: rgba(167,139,250,.15);
+    border-color: rgba(167,139,250,.5);
+}
+.supporter-name {
+    font-family: var(--font-head);
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--text);
+}
+.supporter-since {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: #a78bfa;
+    letter-spacing: .03em;
+}
+</style>
+{{ end }}

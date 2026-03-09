@@ -1,0 +1,35 @@
+{{ define "main" }}
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Regulars</h1>
+        <nav class="breadcrumb">
+            <a href="{{ .Site.BaseURL }}">Home</a>
+            <span class="bc-sep">›</span>
+            <span>Regulars</span>
+        </nav>
+    </div>
+</div>
+
+<div class="content-wrap">
+    {{ with .Site.Data.team }}{{ if .enable }}
+    <div class="champions-grid" style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center;">
+        {{ range .members }}
+        <div class="champion-card" style="width:160px; text-align:center; display:flex; flex-direction:column; align-items:center;">
+            {{ if .image }}
+            <div class="team-img" style="margin-bottom:.5rem;">
+                <img src="{{ .image | absURL }}" alt="{{ .name }}" style="width:120px; height:120px; object-fit:cover; border-radius:50%; border:2px solid var(--accent,#7c3aed);">
+            </div>
+            {{ end }}
+            {{ if .name }}<p style="font-size:.85rem; font-weight:600; margin:.25rem 0;">{{ .name }}</p>{{ end }}
+            {{ if .location }}<p style="font-size:.75rem; opacity:.7; margin:.1rem 0;">{{ .location }}</p>{{ end }}
+            <p style="margin-top:.4rem;">
+                {{ if .twitter }}<a href="{{ .twitter }}" target="_blank" rel="noopener" style="margin:0 .2rem;"><i class="fab fa-twitter"></i></a>{{ end }}
+                {{ if .linkedIn }}<a href="{{ .linkedIn }}" target="_blank" rel="noopener" style="margin:0 .2rem;"><i class="fab fa-linkedin"></i></a>{{ end }}
+                {{ if .facebook }}<a href="{{ .facebook }}" target="_blank" rel="noopener" style="margin:0 .2rem;"><i class="fab fa-facebook"></i></a>{{ end }}
+            </p>
+        </div>
+        {{ end }}
+    </div>
+    {{ end }}{{ end }}
+</div>
+{{ end }}

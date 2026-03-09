@@ -1,0 +1,133 @@
+{{ define "main" }}
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">{{ .Title | replaceRE "^The Weekly Challenge - (\\d+)$" "The Weekly Challenge: $1" }}</h1>
+        <nav class="breadcrumb">
+            <a href="{{ .Site.BaseURL }}">Home</a>
+            <span class="bc-sep">›</span>
+            {{ if .Section }}<a href="{{ .Site.BaseURL }}{{ .Section }}">{{ .Section | title }}</a><span class="bc-sep">›</span>{{ end }}
+            <span>{{ .Title }}</span>
+        </nav>
+        {{ partial "reading-time.html" . }}
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published {{ .Date.Format "2 Jan 2006" }}
+            </span>
+            {{ if .Lastmod }}{{ if gt (.Lastmod.Unix) (.Date.Unix) }}
+            <span class="post-meta-sep">·</span>
+            <span class="post-meta-item post-meta-updated">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                Updated {{ .Lastmod.Format "2 Jan 2006" }}
+            </span>
+            {{ end }}{{ end }}
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    {{ if (findRE "perl-weekly-challenge-\\d+" .File.BaseFileName) }}
+    <a href="{{ .Site.BaseURL }}challenges" class="back-btn">&#8592; Back to Challenges</a>
+    {{ else if (findRE "recap-challenge-\\d+" .File.BaseFileName) }}
+    <a href="{{ .Site.BaseURL }}recaps" class="back-btn">&#8592; Back to Recaps</a>
+    {{ with .Params.image }}<div class="post-hero-img"><img src="{{ . | absURL }}" alt="{{ $.Title }}"></div>{{ end }}
+    {{ else if (findRE "p6-review-challenge-\\d+" .File.BaseFileName) }}
+    <a href="{{ .Site.BaseURL }}p6-reviews" class="back-btn">&#8592; Back to Raku Reviews</a>
+    {{ with .Params.image }}<div class="post-hero-img"><img src="{{ . | absURL }}" alt="{{ $.Title }}"></div>{{ end }}
+    {{ else if (findRE "review-challenge-\\d+" .File.BaseFileName) }}
+    <a href="{{ .Site.BaseURL }}p5-reviews" class="back-btn">&#8592; Back to Perl Reviews</a>
+    {{ with .Params.image }}<div class="post-hero-img"><img src="{{ . | absURL }}" alt="{{ $.Title }}"></div>{{ end }}
+    {{ else }}
+    <a href="{{ .Site.BaseURL }}blogs" class="back-btn">&#8592; Back to Blogs</a>
+    {{ with .Params.image }}<div class="post-hero-img"><img src="{{ . | absURL }}" alt="{{ $.Title }}"></div>{{ end }}
+    {{ end }}
+    <article class="prose">
+
+        {{ .Content }}
+    </article>
+    {{ with .Params.tags }}
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        {{ range . }}
+        <a href="{{ $.Site.BaseURL }}tags/{{ . | urlize }}" class="post-tag">{{ . }}</a>
+        {{ end }}
+    </div>
+    {{ end }}
+    {{ partial "related-posts.html" . }}
+    {{ partial "post-nav.html" . }}
+
+    {{/* ── Disqus comments — blogs, challenges and recaps only ── */}}
+    {{ if not (or (findRE "p6-review-challenge-\\d+" .File.BaseFileName) (findRE "review-challenge-\\d+" .File.BaseFileName)) }}
+    {{ if eq hugo.Environment "production" }}
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = '{{ .Permalink }}';
+            this.page.identifier = '{{ .File.UniqueID }}';
+        };
+    }
+    </script>
+    {{ else }}
+    <div class="disqus-wrap disqus-dev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        Comments available on the live site
+    </div>
+    {{ end }}
+    {{ end }}
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    // Skip hr, then collect all H3 siblings
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    // Extract the <a> from each H3
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    // Insert after the hr (or toc if no hr)
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+{{ end }}

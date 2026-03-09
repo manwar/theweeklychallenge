@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Page Not Found | {{ .Site.Title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ .Site.BaseURL }}images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/twc.css">
+    <style>
+    .e404-stage {
+        margin-top: var(--nav-h, 64px);
+        padding: 80px 24px 80px;
+        display: flex;
+        justify-content: center;
+        background:
+            radial-gradient(ellipse 60% 80% at 50% 0%,
+                rgba(34,211,238,.07) 0%,
+                rgba(99,102,241,.04) 50%,
+                transparent 100%);
+    }
+    .e404-inner {
+        text-align: center;
+        max-width: 560px;
+        width: 100%;
+    }
+    .e404-code {
+        font-family: var(--font-head);
+        font-size: clamp(5rem, 18vw, 9rem);
+        font-weight: 900;
+        line-height: 1;
+        margin: 0;
+        color: var(--accent);
+        text-shadow: 0 0 40px rgba(34,211,238,.5), 0 0 100px rgba(34,211,238,.2);
+        letter-spacing: -2px;
+    }
+    .e404-camel {
+        font-size: clamp(2.5rem, 7vw, 4rem);
+        display: block;
+        margin: 4px 0 0;
+        animation: camel-wobble 3.5s ease-in-out infinite;
+        transform-origin: center bottom;
+    }
+    @keyframes camel-wobble {
+        0%, 100% { transform: rotate(-5deg) translateY(0); }
+        25%       { transform: rotate(0deg)  translateY(-4px); }
+        50%       { transform: rotate(5deg)  translateY(0); }
+        75%       { transform: rotate(0deg)  translateY(-4px); }
+    }
+    .e404-title {
+        font-family: var(--font-head);
+        font-size: clamp(1.3rem, 3vw, 1.7rem);
+        font-weight: 800;
+        color: var(--text);
+        margin: 24px 0 12px;
+    }
+    .e404-desc {
+        font-size: 1rem;
+        color: var(--muted2);
+        line-height: 1.75;
+        margin: 0 auto 32px;
+        max-width: 420px;
+    }
+    .e404-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+    }
+    .e404-divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 0 0 24px;
+    }
+    .e404-links-label {
+        font-family: var(--font-mono);
+        font-size: .72rem;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 16px;
+    }
+    .e404-links {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .e404-link {
+        font-family: var(--font-mono);
+        font-size: .76rem;
+        font-weight: 700;
+        letter-spacing: .05em;
+        text-transform: uppercase;
+        padding: 7px 15px;
+        border-radius: 6px;
+        border: 1px solid var(--border2);
+        color: var(--muted2);
+        background: var(--surface);
+        text-decoration: none;
+        transition: border-color .15s, color .15s, background .15s;
+    }
+    .e404-link:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(34,211,238,.06);
+        text-decoration: none;
+    }
+    </style>
+</head>
+<script>
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body>
+    {{ partial "nav.html" . }}
+
+    <div class="e404-stage">
+        <div class="e404-inner">
+            <p class="e404-code">404</p>
+            <span class="e404-camel">🐪</span>
+            <h1 class="e404-title">This page has gone walkabout</h1>
+            <p class="e404-desc">The page you're looking for was moved, removed, or never existed. Perhaps the camel wandered off with it.</p>
+
+            <div class="e404-actions">
+                <a href="{{ .Site.BaseURL }}" class="btn-primary">← Go Home</a>
+                <a href="{{ .Site.BaseURL }}challenges" class="btn-ghost">This Week's Challenge</a>
+            </div>
+
+            <hr class="e404-divider">
+            <p class="e404-links-label">Or browse</p>
+            <div class="e404-links">
+                <a href="{{ .Site.BaseURL }}blogs"      class="e404-link">Blog</a>
+                <a href="{{ .Site.BaseURL }}champions"  class="e404-link">Champions</a>
+                <a href="{{ .Site.BaseURL }}recaps"     class="e404-link">Recaps</a>
+                <a href="{{ .Site.BaseURL }}p5-reviews" class="e404-link">Perl Reviews</a>
+                <a href="{{ .Site.BaseURL }}p6-reviews" class="e404-link">Raku Reviews</a>
+                <a href="{{ .Site.BaseURL }}tags"       class="e404-link">Tags</a>
+                <a href="{{ .Site.BaseURL }}contact"    class="e404-link">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    {{ partial "footer.html" . }}
+    <script src="{{ .Site.BaseURL }}js/twc.js"></script>
+</body>
+</html>

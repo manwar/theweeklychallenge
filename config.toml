@@ -1,11 +1,25 @@
 baseURL = "https://theweeklychallenge.org/"
 languageCode = "en-us"
 title = "The Weekly Challenge"
-theme = "timer-hugo"
+theme = "twc-theme"
 publishDir = "docs"
 rssLimit = 10
 
 # We Used Ionicons Icon font for Icon, for more details check this link - https://ionicons.com/
+
+[taxonomies]
+  tag = "tags"
+
+[outputFormats]
+  [outputFormats.HTML]
+    notAlternative = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+  section = ["HTML"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
 
 # Site Menus
 [menu]
@@ -61,30 +75,78 @@ rssLimit = 10
     logo = "images/logo.svg"
     dateFormat = "25 March 2019"
     # Meta data
-    description = "The Weekly Challenge that includes Perl and Raku programming."
-    author = "The Weekly Challenge Team"
+    author        = "Mohammad Sajid Anwar"
+    description   = "You don't have to be an expert"
+    ogImage       = "images/og-image.jpg"
+    twitterHandle = "@PerlWChallenge"
+    currentWeek   = 364
+
+    [params.sponsors]
+    paypal = "https://paypal.me/perlweeklychallenge"
+
+    #[[params.sponsors.current]]
+    #  name        = ""
+    #  url         = ""
+    #  description = ""
+    #  since       = ""
+
+    [[params.sponsors.past]]
+      name        = "Pete Sergeant"
+      url         = "https://www.linkedin.com/in/petersergeant"
+      description = "Owner of Perl Careers, global recruitment agency."
+      since       = "Sponsored Jun 2021 – Dec 2023"
+
+    [[params.sponsors.past]]
+      name        = "Lance Wicks"
+      url         = "https://www.linkedin.com/in/lancew"
+      description = "Software Development Manager for a large UK recruitment website."
+      since       = "Sponsored Jan 2024 – Dec 2025"
+
+    [[params.sponsors.supporters]]
+      name  = "David Ferrone"
+      since = "One-off · Jan 2026"
+
+    [[params.sponsors.supporters]]
+      name  = "Ulrich Rieke"
+      since = "One-off · Jan 2025"
+
+    [[params.sponsors.supporters]]
+      name  = "Peter Meszaros"
+      since = "One-off · Dec 2025"
+
     # Google Analitycs
     googleAnalitycsID = "UA-136524905-1"
 
+    [params.weekYears]
+        "2019" = [1, 32]
+        "2020" = [33, 84]
+        "2021" = [85, 136]
+        "2022" = [137, 189]
+        "2023" = [190, 241]
+        "2024" = [242, 293]
+        "2025" = [294, 345]
+        "2026" = [346, 363]
+
     # Banner Section
     [params.banner]
+        brandImage = "images/about/about.jpg"
+        description = "You don't have to be an expert"
         enable  = true
         bgImage = "images/slider.jpg"
         heading = "The Weekly Challenge"
-        description = "You learn something valuable from all of the significant events and people, but you never touch your true potential until you challenge yourself to go beyond imposed limitations. - Roy T. Bennett"
         btn     = true
-        taskLabel1 = "String Lie Detector"
-        taskDesc1  = "You are given a string. Write a script that parses a self-referential string and determines whether its claims about itself are true. The string will make statements about its own composition, specifically the number of vowels and consonants it contains."
-        taskLabel2 = "Subnet Sheriff"
-        taskDesc2  = "You are given an IPv4 address and an IPv4 network (in CIDR format). Write a script to determine whether both are valid and the address falls within the network. For more information see the [**Wikipedia**](https://en.wikipedia.org/wiki/IPv4) article."
-        guestContributionsURL = "/blog/guest-contribution/#363"
+        taskLabel1 = "Decrypt String"
+        taskDesc1  = "You are given a string formed by digits and '#'. Write a script to map the given string to English lowercase characters following the given rules."
+        taskLabel2 = "Goal Parser"
+        taskDesc2  = "You are given a string, $str. Write a script to interpret the given string using 'Goal Parser'."
+        guestContributionsURL = "/guest-contributions"
         latestChampionURL = "/blog/meet-the-champion-2024-01"
         perlReviewURL = "/blog/review-challenge-180"
         rakuReviewURL = "/blog/p6-review-challenge-273"
         youTubeChannelURL = "https://www.youtube.com/c/mohammadsajidanwar"
         howToContributeURL = "/blog/how-to-contribute"
         btnText = "Please click for more details ..."
-        btnURL  = "/blog/perl-weekly-challenge-363"
+        btnURL  = "/blog/perl-weekly-challenge-364"
         [[params.banner.flipText]]
             title   = "Champion"
         [[params.banner.flipText]]
@@ -100,10 +162,12 @@ rssLimit = 10
     [params.about]
         enable  = true
         title   = "ABOUT ME"
-        image   = "images/about/about.jpg"
+        image   = "images/team/mohammad_anwar.jpg"
         github   = "https://github.com/manwar"
         twitter  = "https://twitter.com/cpan_author"
         linkedin = "http://www.linkedin.com/in/mohammadanwar"
+        mastodon = "https://fosstodon.org/@manwar"
+        website = "https://manwar.org"
         subtitle1 = "JAMSHEDPUR, INDIA (1993 - 1997)"
         content1 = "Let me share my journey of getting into computing. It all started in the year 1993, I just joined the 3 year degree course of B.Sc (Math Honours). It was during the first year, I realised doing just degree is not going to help me secure a job that I needed desparately to support my family. A friend of mine asked me if I am interested to join computer training course. Without giving any thought, I decided to join him and went to a local branch of APTECH, a well known name in computer training institute in India. When we reached their office and enquired about various courses they were offerings. We were told to give an aptitute test before we can join any course. I wasn't prepared for the test but decided to give it a try. We both secured over 90% mark in the test. My friend was fully prepared, so he started dicussing about the courses. At the end he decided to join one year course in \"Diploma In Information and System Management\" (DISM). At the time, the fee was INR 13,000. But I didn't have the money to join the course. I told my mother about it. Like any mother, she decided to sell her wedding jewellery to pay my fees. It was important for me to start earning asap. I was hoping this course would help me land a decent job. I joined the course 6 months later. On the very first day of course, I noticed the same friend is my course faculty. He was a bright student, therefore APTECH offered him the job while he was still doing his course there. We were taught Foxpro and COBOL programming language as a part of the course. At the end of the course, I wasn't satisfied with the knowledge I had. So I decided to learn few other programming languages. The trouble was, I didn't have PC/Laptop to practice and also not enough money to buy computer books. I joined a local library called \"Muslim Library\" as it was FREE and started borrowing books from there. The library was very far from where I lived. I had to take 2 bus journeys to get there. Sometimes, I didn't even have enough money to pay the bus fare. My older sister, who used to give home tution, always helped me. I learnt Pascal by just reading books. Then I learnt \"C\" but this time, I found out one of my friend is running computer training institute. So I went to him and asked if I can use his PC when ever it is available. In return I would teach his students. He kindly accepted my offer. While I was still exploring \"C\" language, I saw an advert about a multinational computer training center opening in Jamshedpur called INFOTECH. I decided to apply for the post of Faculty. But I only got the job of \"Lab Assistant\" for INR 2000 per month. For me that was a lot of money as I could support my family, specially my younger brother who was still in college. There was an added advantage being a Lab Assistant, I could have as much PC time as I like. I learnt Oracle during my time there and got promoted to Faculty after one year."
         subtitle2 = "MUMBAI, INDIA (1997 - 2000)"

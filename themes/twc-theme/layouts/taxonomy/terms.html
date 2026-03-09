@@ -1,0 +1,109 @@
+{{ define "main" }}
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Tags</h1>
+        <p class="page-desc">{{ len .Data.Terms }} tags across all posts — click any to browse</p>
+        <nav class="breadcrumb">
+            <a href="{{ .Site.BaseURL }}">Home</a>
+            <span class="bc-sep">›</span>
+            <span>Tags</span>
+        </nav>
+    </div>
+</div>
+
+<div class="content-wrap">
+    <div class="tags-wrap">
+
+        {{/* Group tags by first letter */}}
+        {{ $terms := .Data.Terms.Alphabetical }}
+        {{ $currentLetter := "" }}
+        {{ range $terms }}
+            {{ $letter := substr .Page.Title 0 1 | upper }}
+            {{ if ne $letter $currentLetter }}
+                {{ if ne $currentLetter "" }}</div></div>{{ end }}
+                {{ $currentLetter = $letter }}
+                <div class="tag-group">
+                    <div class="tag-group-letter">{{ $letter }}</div>
+                    <div class="tag-group-pills">
+            {{ end }}
+            <a href="{{ .Page.Permalink }}" class="tag-cloud-item">
+                <span class="tag-cloud-name">{{ .Page.Title }}</span>
+                <span class="tag-cloud-count">{{ .Count }}</span>
+            </a>
+        {{ end }}
+        {{ if ne $currentLetter "" }}</div></div>{{ end }}
+
+    </div>
+</div>
+
+<style>
+.tags-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+.tag-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+.tag-group:last-child {
+    border-bottom: none;
+}
+.tag-group-letter {
+    font-family: var(--font-head);
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--accent);
+    width: 36px;
+    flex-shrink: 0;
+    padding-top: 4px;
+    opacity: .7;
+}
+.tag-group-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1;
+}
+.tag-cloud-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color .15s, background .15s, transform .15s;
+}
+.tag-cloud-item:hover {
+    border-color: var(--accent);
+    background: rgba(34,211,238,.06);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+.tag-cloud-name {
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: var(--text);
+    text-transform: uppercase;
+}
+.tag-cloud-count {
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    background: rgba(34,211,238,.12);
+    border: 1px solid rgba(34,211,238,.25);
+    color: var(--accent);
+    border-radius: 10px;
+    padding: 1px 7px;
+    min-width: 20px;
+    text-align: center;
+}
+</style>
+{{ end }}

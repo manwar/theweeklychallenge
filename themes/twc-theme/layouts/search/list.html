@@ -1,0 +1,196 @@
+{{ define "head" }}
+<style>
+/* Kill the global min-height:100vh so footer sits tight */
+.main-content { min-height: 0 !important; }
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Search</h1>
+        <nav class="breadcrumb">
+            <a href="{{ .Site.BaseURL }}">Home</a>
+            <span class="bc-sep">›</span>
+            <span>Search</span>
+        </nav>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <div class="search-box-wrap">
+        <div class="search-input-group">
+            <svg class="search-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input id="search-input" class="search-input" type="search"
+                   placeholder="Search posts, tags…" autocomplete="off" autofocus />
+            <button class="search-clear" id="search-clear" aria-label="Clear" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <p class="search-status" id="search-status" aria-live="polite"></p>
+    </div>
+
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+</div>
+
+<!-- Fuse.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js"></script>
+<script>
+(function () {
+    var input   = document.getElementById('search-input');
+    var results = document.getElementById('search-results');
+    var status  = document.getElementById('search-status');
+    var clearBtn = document.getElementById('search-clear');
+
+    var fuse = null;
+    var pendingQuery = null;
+    var debounceTimer = null;
+
+    /* Load the search index */
+    fetch('{{ .Site.BaseURL }}index.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+            fuse = new Fuse(data, {
+                keys: [
+                    { name: 'title', weight: 3 },
+                    { name: 'tags',  weight: 2 },
+                    { name: 'body',  weight: 1 }
+                ],
+                threshold: 0.35,
+                includeMatches: true,
+                ignoreLocation: true,
+                minMatchCharLength: 2
+            });
+            /* If user already typed while index was loading, run it now */
+            if (pendingQuery) runSearch(pendingQuery);
+        })
+        .catch(function () {
+            status.textContent = 'Search index could not be loaded.';
+        });
+
+    input.addEventListener('input', function () {
+        var q = input.value.trim();
+        clearBtn.hidden = !q;
+        clearTimeout(debounceTimer);
+        if (!q) {
+            results.innerHTML = '';
+            status.textContent = '';
+            pendingQuery = null;
+            return;
+        }
+        if (!fuse) {
+            /* Index still loading — queue the query and show a soft hint */
+            pendingQuery = q;
+            status.textContent = 'Index loading, please wait…';
+            return;
+        }
+        debounceTimer = setTimeout(function () { runSearch(q); }, 150);
+    });
+
+    clearBtn.addEventListener('click', function () {
+        input.value = '';
+        clearBtn.hidden = true;
+        results.innerHTML = '';
+        status.textContent = '';
+        input.focus();
+    });
+
+    function highlight(text, matches, key) {
+        if (!matches) return esc(text);
+        var match = matches.find(function (m) { return m.key === key; });
+        if (!match || !match.indices || !match.indices.length) return esc(text);
+        var result = '';
+        var last = 0;
+        match.indices.forEach(function (pair) {
+            result += esc(text.slice(last, pair[0]));
+            result += '<mark>' + esc(text.slice(pair[0], pair[1] + 1)) + '</mark>';
+            last = pair[1] + 1;
+        });
+        result += esc(text.slice(last));
+        return result;
+    }
+
+    function esc(s) {
+        return String(s)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    function snippet(body, query) {
+        if (!body) return '';
+        var q   = query.toLowerCase();
+        var idx = body.toLowerCase().indexOf(q);
+        var start, end;
+        if (idx === -1) {
+            start = 0; end = 160;
+        } else {
+            start = Math.max(0, idx - 80);
+            end   = Math.min(body.length, idx + 160);
+        }
+        var text = (start > 0 ? '…' : '') + body.slice(start, end).trim() + (end < body.length ? '…' : '');
+        /* Simple bold of query in snippet */
+        return esc(text).replace(
+            new RegExp('(' + esc(q).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'),
+            '<mark>$1</mark>'
+        );
+    }
+
+    function runSearch(q) {
+        pendingQuery = null;
+        if (!q || q.length < 2) {
+            results.innerHTML = '';
+            status.textContent = q.length === 1 ? 'Keep typing…' : '';
+            return;
+        }
+        if (!fuse) return;
+
+        var hits = fuse.search(q, { limit: 25 });
+
+        status.textContent = hits.length
+            ? hits.length + ' result' + (hits.length !== 1 ? 's' : '') + ' for "' + q + '"'
+            : 'No results for "' + q + '"';
+
+        if (!hits.length) {
+            results.innerHTML =
+                '<div class="search-empty">' +
+                '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+                '<p>No results for <strong>' + esc(q) + '</strong></p>' +
+                '<p class="search-empty-hint">Try different keywords or check the <a href="{{ .Site.BaseURL }}tags">tags page</a>.</p>' +
+                '</div>';
+            return;
+        }
+
+        results.innerHTML = hits.map(function (hit) {
+            var p       = hit.item;
+            var matches = hit.matches;
+            var titleHtml = highlight(p.title, matches, 'title');
+            var snip      = snippet(p.body, q);
+            var section   = p.section
+                ? '<span class="search-result-section">' + esc(p.section) + '</span>'
+                : '';
+            var tags = p.tags
+                ? p.tags.split(',').map(function (t) {
+                    return '<span class="search-result-tag">' + esc(t.trim()) + '</span>';
+                  }).join('')
+                : '';
+
+            return '<a class="search-result-item" href="' + esc(p.url) + '">' +
+                '<div class="search-result-meta">' + section + tags + '</div>' +
+                '<div class="search-result-title">' + titleHtml + '</div>' +
+                (snip ? '<div class="search-result-snippet">' + snip + '</div>' : '') +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+{{ end }}

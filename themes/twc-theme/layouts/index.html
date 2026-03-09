@@ -1,0 +1,123 @@
+{{ define "main" }}
+
+<!-- ── HERO ──────────────────────────────────────────────────────────── -->
+{{ with .Site.Params.banner }}{{ if .enable }}
+<section class="hero">
+    <div class="hero-bg">
+        {{ if .bgImage }}<img src="{{ $.Site.BaseURL }}{{ .bgImage }}" alt="" class="hero-bg-img">{{ end }}
+        <div class="hero-overlay"></div>
+        <div class="hero-grid"></div>
+    </div>
+    <div class="hero-inner">
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Challenge Active
+        </div>
+        <!-- Title row: heading + brand image side by side -->
+        <div class="hero-title-row">
+            <div class="hero-heading-wrap">
+                <h1 class="hero-heading">
+                    The Weekly
+                    <span class="hero-flip-wrap">
+                        <span class="hero-flip" id="hero-flip">Challenge</span>
+                    </span>
+                </h1>
+                <p class="hero-quote">
+                    <span class="tq-you">You</span>
+                    <span class="tq-dont">don't</span>
+                    <span class="tq-have">have &nbsp; to</span>
+                    <span class="tq-be">be</span>
+                    <span class="tq-expert">an &nbsp; expert</span>
+                </p>
+            </div>
+            {{ if $.Site.Params.banner.brandImage }}
+            <div class="hero-brand-img">
+                <img src="{{ $.Site.BaseURL }}{{ $.Site.Params.banner.brandImage }}" alt="The Weekly Challenge">
+            </div>
+            {{ end }}
+        </div>
+
+        <!-- Current tasks -->
+        <div class="hero-tasks">
+            {{ if .taskLabel1 }}
+            <div class="task-card">
+                <span class="task-num">Task #1</span>
+                <strong class="task-label">{{ .taskLabel1 }}</strong>
+                <p class="task-desc">{{ .taskDesc1 }}</p>
+            </div>
+            {{ end }}
+            {{ if .taskLabel2 }}
+            <div class="task-card">
+                <span class="task-num">Task #2</span>
+                <strong class="task-label">{{ .taskLabel2 }}</strong>
+                <p class="task-desc">{{ .taskDesc2 | markdownify }}</p>
+            </div>
+            {{ end }}
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="hero-ctas">
+            {{ if .btnURL }}<a href="{{ .btnURL }}" class="btn-primary">{{ .btnText }}</a>{{ end }}
+            {{ if .howToContributeURL }}<a href="{{ .howToContributeURL }}" class="btn-ghost">How to Contribute</a>{{ end }}
+            <a href="{{ .Site.BaseURL }}sponsors" class="btn-ghost btn-sponsor">🏆 Sponsor Us</a>
+        </div>
+
+        <!-- Quick links row -->
+        <div class="hero-quicklinks">
+            {{ if .guestContributionsURL }}
+            <a href="{{ .guestContributionsURL }}" class="quicklink">
+                <i class="fas fa-users"></i> Guest Contributions
+            </a>
+            {{ end }}
+            {{ if .latestChampionURL }}
+            <a href="{{ .latestChampionURL }}" class="quicklink">
+                <i class="fas fa-trophy"></i> Latest Champion
+            </a>
+            {{ end }}
+            {{ if .perlReviewURL }}
+            <a href="{{ .perlReviewURL }}" class="quicklink">
+                <i class="fas fa-code"></i> Perl Review
+            </a>
+            {{ end }}
+            {{ if .rakuReviewURL }}
+            <a href="{{ .rakuReviewURL }}" class="quicklink">
+                <i class="fas fa-dragon"></i> Raku Review
+            </a>
+            {{ end }}
+            {{ if .youTubeChannelURL }}
+            <a href="{{ .youTubeChannelURL }}" target="_blank" rel="noopener" class="quicklink">
+                <i class="fab fa-youtube"></i> YouTube
+            </a>
+            {{ end }}
+        </div>
+    </div>
+    </div>
+</section>
+{{ end }}{{ end }}
+
+<!-- ── BOOK ───────────────────────────────────────────────────────────── -->
+<section class="book-banner">
+    <div class="book-banner-inner">
+        <img src="/images/design-patterns.jpg" alt="Design Patterns in Modern Perl" class="book-cover">
+        <div class="book-info">
+            <span class="book-eyebrow">📖 New Book by Mohammad Sajid Anwar</span>
+            <h3 class="book-title">Design Patterns in Modern Perl</h3>
+            <p class="book-desc">Classic object-oriented patterns in today's Perl — using core Perl, Moo and Object::Pad. Cleaner, more maintainable code.</p>
+            <a href="https://perlschool.com/books/design-patterns/" target="_blank" rel="noopener" class="book-btn">View Book →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ── CTA ───────────────────────────────────────────────────────────── -->
+{{ with .Site.Params.cta }}{{ if .enable }}
+<section class="cta-section">
+    <div class="cta-inner">
+        <h2 class="cta-title">{{ .title }}</h2>
+        <p class="cta-body">{{ .content }}</p>
+        <a href="{{ .btnURL }}" class="btn-primary">{{ .btnText }}</a>
+    </div>
+</section>
+{{ end }}{{ end }}
+
+{{ end }}

@@ -1,0 +1,62 @@
+{{- $current  := . -}}
+{{- $tags     := .Params.tags -}}
+{{- $section  := .Section -}}
+{{- $limit    := 3 -}}
+{{- $related  := slice -}}
+
+{{- if $tags -}}
+  {{- /* Score every page in the same section by shared tag count */ -}}
+  {{- $scored := slice -}}
+  {{- range where .Site.RegularPages "Section" $section -}}
+    {{- if ne .RelPermalink $current.RelPermalink -}}
+      {{- $score := 0 -}}
+      {{- range $tags -}}
+        {{- if in $.Params.tags . }}{{- end -}}{{/* no-op placeholder */}}
+      {{- end -}}
+      {{- range .Params.tags -}}
+        {{- if in $tags . -}}
+          {{- $score = add $score 1 -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if gt $score 0 -}}
+        {{- $scored = $scored | append (dict "page" . "score" $score) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Sort by score descending, take top $limit */ -}}
+  {{- $sorted := sort $scored "score" "desc" -}}
+  {{- range first $limit $sorted -}}
+    {{- $related = $related | append .page -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $related -}}
+<div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        {{- range $related }}
+        <a class="related-post-card" href="{{ .RelPermalink }}">
+            <span class="related-post-section">{{ .Section }}</span>
+            <span class="related-post-title">{{ .Title }}</span>
+            {{- with .Params.tags }}
+            <span class="related-post-tags">
+                {{- range first 3 . }}
+                <span class="related-post-tag">{{ . }}</span>
+                {{- end }}
+            </span>
+            {{- end }}
+            <span class="related-post-date">{{ .Date.Format "2 Jan 2006" }}</span>
+        </a>
+        {{- end }}
+    </div>
+</div>
+{{- end }}
