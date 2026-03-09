@@ -1216,6 +1216,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-363/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-363/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
+##### **Yitzchak Scott-Thoennes** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-363/ysth/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-363/ysth/python/ch-2.py) in **Python**.
+
 ___
 ## [The Weekly Challenge - 362](/blog/perl-weekly-challenge-362) {#362}
 <br>
