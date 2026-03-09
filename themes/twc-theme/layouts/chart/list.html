@@ -425,10 +425,13 @@ function renderChart(canvasId, raw){
     /* For percent stacking: convert raw values → percentages manually.
        Chart.js 4 stacking handles 'normal' natively but not 'percent',
        so we normalise the values ourselves and label the y-axis 0-100%. */
+    var rawCounts = null;
     if(stacking==='percent'&&datasets.length>1){
         var totals=labels.map(function(_,li){
             return datasets.reduce(function(sum,ds){return sum+(ds.data[li]||0);},0);
         });
+        /* Store raw counts before conversion */
+        rawCounts = datasets.map(function(ds){ return ds.data.slice(); });
         datasets.forEach(function(ds){
             ds.data=ds.data.map(function(v,li){
                 return totals[li]?Math.round((v/totals[li])*1000)/10:0;
@@ -470,7 +473,10 @@ function renderChart(canvasId, raw){
                         var author=rj&&rj.series&&rj.series[ctx.datasetIndex]&&
                                    rj.series[ctx.datasetIndex].meta&&
                                    rj.series[ctx.datasetIndex].meta[ctx.dataIndex];
-                        return (author||ctx.dataset.label)+': '+ctx.raw;
+                        var displayVal = (rawCounts && rawCounts[ctx.datasetIndex])
+                            ? rawCounts[ctx.datasetIndex][ctx.dataIndex]
+                            : ctx.raw;
+                        return (author||ctx.dataset.label)+': '+displayVal;
                     },
                     afterLabel:function(ctx){
                         if((_ddStack[canvasId]||[]).length) return '';
