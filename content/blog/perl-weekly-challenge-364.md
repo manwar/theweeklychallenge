@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - 364"
-date: 2026-03-08T00:00:00+00:00
+date: 2026-03-09T00:00:00+00:00
 description: "The Weekly Challenge - 364"
 type: post
 image: images/twc-logo.png
@@ -25,6 +25,8 @@ tags: ["Perl", "Raku"]
 ## HEADLINES {#HEADLINES}
 ***
 Welcome to the `Week #364` of `The Weekly Challenge`.
+
+Last week was the quietest week of 2026 in terms of regular and guest contributions. I hope that changes this week!
 
 I am sure you have all noticed the new look of the Weekly Challenge website.
 
@@ -53,7 +55,7 @@ The new [**Sponsors**](/sponsors) page lists all past sponsors (to the best of m
 
 #### Community Shout-out:
 
-I am incredibly impressed by `Lubos Kolouch` and `Paulo Custodio`. They have been working tirelessly to solve past challenges in `C`, `Java` and `Python`. Their efforts are definitely going to shake up our language charts!
+I am incredibly impressed by `Lubos Kolouch` and `Paulo Custodio`. They have been working tirelessly to solve past challenges in `C`, `Java` and `Python`. Their efforts are definitely going to shake up our language charts! In fact, I can already see `Java` making it into the `TOP #10` pushing `BQN` down the list.
 
 Welcome back, `beespider`, and thanks for your contributions in [**Uiua**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-363/beespider/uiua).
 
@@ -136,7 +138,7 @@ Last `5 weeks` mainstream contribution stats. Thank you `Team PWC`  for your sup
 |&nbsp;&nbsp; `360` &nbsp;&nbsp;|&nbsp;&nbsp; 57 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `361` &nbsp;&nbsp;|&nbsp;&nbsp; 55 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `362` &nbsp;&nbsp;|&nbsp;&nbsp; 52 &nbsp;&nbsp;|&nbsp;&nbsp; 25 &nbsp;&nbsp;|&nbsp;&nbsp; 19 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `363` &nbsp;&nbsp;|&nbsp;&nbsp; 39 &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `363` &nbsp;&nbsp;|&nbsp;&nbsp; 41 &nbsp;&nbsp;|&nbsp;&nbsp; 14 &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|
 ***
 
 <br>
@@ -150,7 +152,7 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 |&nbsp;&nbsp; `360` &nbsp;&nbsp;|&nbsp;&nbsp; 16 &nbsp;&nbsp;|&nbsp;&nbsp; 73 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `361` &nbsp;&nbsp;|&nbsp;&nbsp; 13 &nbsp;&nbsp;|&nbsp;&nbsp; 53 &nbsp;&nbsp;|&nbsp;&nbsp; 20 &nbsp;&nbsp;|
 |&nbsp;&nbsp; `362` &nbsp;&nbsp;|&nbsp;&nbsp; 17 &nbsp;&nbsp;|&nbsp;&nbsp; 68 &nbsp;&nbsp;|&nbsp;&nbsp; 22 &nbsp;&nbsp;|
-|&nbsp;&nbsp; `363` &nbsp;&nbsp;|&nbsp;&nbsp; 11 &nbsp;&nbsp;|&nbsp;&nbsp; 35 &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|
+|&nbsp;&nbsp; `363` &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|&nbsp;&nbsp; 37 &nbsp;&nbsp;|&nbsp;&nbsp; 12 &nbsp;&nbsp;|
 ***
 
 ### TOP 10 Guest Languages
@@ -158,36 +160,35 @@ Last `5 weeks` guest contribution stats. Thank you each and every guest contribu
 
 Do you see your favourite language in the `Top #10`? If not then why not contribute regularly and make it to the top.
 
-     1. Python     (4180)
-     2. Rust       (1111)
-     3. Ruby       (873)
-     4. Haskell    (869)
-     5. Lua        (850)
-     6. C          (769)
-     7. C++        (696)
-     8. Go         (648)
+     1. Python     (4194)
+     2. Rust       (1115)
+     3. Ruby       (875)
+     4. Haskell    (871)
+     5. Lua        (852)
+     6. C          (829)
+     7. C++        (698)
+     8. Go         (650)
      9. JavaScript (624)
-    10. BQN        (508)
+    10. Java       (526)
 
 ### Blogs with Creative Title
 ***
 
 #### 1. [Sheriff Detector](https://raku-musings.com/sheriff-detector.html) by Arne Sommer.
 #### 2. [Lying Sheriffs](https://github.sommrey.de/the-bears-den/2026/03/06/ch-363.html) by Jorg Sommrey.
-#### 3. []() by Luca Ferrari.
-#### 4. [I Don't Lie, Sheriff!](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-363/challenge-363/matthias-muth#readme) by Matthias Muth.
-#### 5. [I Shot The Subnet…](https://packy.dardan.com/b/k8) by Packy Anderson.
-#### 6. [Lies and lies within](http://ccgi.campbellsmiths.force9.co.uk/challenge/363) by Peter Campbell Smith.
-#### 7. [Stringy Sheriff](https://blog.firedrake.org/archive/2026/03/The_Weekly_Challenge_363__Stringy_Sheriff.html) by Roger Bell_West.
-#### 8. [The subnet detector](https://dev.to/simongreennet/weekly-challlenge-the-subnet-detector-1d9l) by Simon Green.
+#### 3. [I Don't Lie, Sheriff!](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-363/challenge-363/matthias-muth#readme) by Matthias Muth.
+#### 4. [I Shot The Subnet…](https://packy.dardan.com/b/k8) by Packy Anderson.
+#### 5. [Lies and lies within](http://ccgi.campbellsmiths.force9.co.uk/challenge/363) by Peter Campbell Smith.
+#### 6. [Stringy Sheriff](https://blog.firedrake.org/archive/2026/03/The_Weekly_Challenge_363__Stringy_Sheriff.html) by Roger Bell_West.
+#### 7. [The subnet detector](https://dev.to/simongreennet/weekly-challlenge-the-subnet-detector-1d9l) by Simon Green.
 ***
 
 ### [GitHub](https://github.com/manwar/perlweeklychallenge-club) Repository Stats
 ***
-#### 1. Commits: 48,131 (`+44`)
-#### 2. Pull Requests: 13,633 (`+27`)
-#### 3. Contributors: 275 (`+1`)
-#### 4. Fork: 349 (`+2`)
+#### 1. Commits: 48,227 (`+96`)
+#### 2. Pull Requests: 13,698 (`+65`)
+#### 3. Contributors: 275
+#### 4. Fork: 349
 #### 5. Stars: 210
 ***
 
