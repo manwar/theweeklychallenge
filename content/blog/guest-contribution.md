@@ -1188,7 +1188,7 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-364/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-364/paulo-custodio/basic/ch-2.bas) in **BASIC**.
 
-##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-364/paulo-custodio/brainfuck/ch-1.bf) and [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-364/paulo-custodio/brainfuck/ch-2.bf) in **Brainfuck**.
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-364/paulo-custodio/brainfuck/ch-1.bf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-364/paulo-custodio/brainfuck/ch-2.bf) in **Brainfuck**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-364/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-364/paulo-custodio/c/ch-2.c) in **C**.
 
