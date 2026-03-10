@@ -61,7 +61,7 @@
                     {{ $weeksWithData = $weeksWithData | append .week }}
                 {{ end }}
             {{ end }}
-            {{ range $weeksWithData | collections.Reverse }}
+            {{ range sort $weeksWithData | collections.Reverse }}
             <a href="#week-{{ . }}">{{ . }}</a>
             {{ end }}
         </div>
@@ -80,7 +80,7 @@
             {{ if and (ge .week $first) (le .week $last) }}
             <section class="gc-week" id="week-{{ .week }}">
                 <h2 class="gc-week-title">
-                    <a href="{{ .blog }}">The Weekly Challenge - {{ .week }}</a>
+                    <a href="{{ .blog }}">Week #{{ .week }}</a>
                 </h2>
                 <div class="gc-entries">
                     {{ range .contributions }}
