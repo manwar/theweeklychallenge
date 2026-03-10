@@ -53,7 +53,7 @@
             <button class="chart-tab"        data-canvas="cv_m_331_360" data-url="pwc-summary-331-360.json">331–360</button>
         </div>
         <div class="chart-card">
-            <div class="chart-card-title">The Weekly Challenge (2019–2025)</div>
+            <div class="chart-card-title" id="members-chart-title">The Weekly Challenge</div>
             <div class="chart-card-subtitle">Click columns to drill down into individual week details.</div>
             <div class="chart-wrap" id="members-wrap">
                 <div class="chart-spinner" id="members-spinner"></div>
@@ -520,6 +520,11 @@ function renderChart(canvasId, raw){
     canvas._rawJson=raw;
     canvas._ddRaw=raw;
     _charts[canvasId]._rawData=raw;
+    /* Update card title from JSON if available */
+    if(raw.title && raw.title.text){
+        var titleEl = document.getElementById(wrapId.replace('-wrap','-chart-title'));
+        if(titleEl) titleEl.textContent = raw.title.text;
+    }
     /* Auto-height for horizontal bar charts based on number of bars */
     if(isHBar){
         var barHeight=28;
