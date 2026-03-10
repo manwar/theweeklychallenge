@@ -1,5 +1,6 @@
 {{ define "head" }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 {{ end }}
 
 {{ define "main" }}
@@ -231,7 +232,7 @@
 <style>
 .weeks-toggle { display:flex; gap:10px; margin:8px 0 12px; }
 .weeks-btn {
-    font-family:'Space Mono',monospace; font-size:11px; color:var(--muted2);
+    font-family:'Outfit',sans-serif; font-size:12px; color:var(--muted2);
     background:var(--surface); border:1px solid var(--border);
     padding:5px 14px; border-radius:5px; cursor:pointer;
     transition:color .2s,border-color .2s;
@@ -261,8 +262,8 @@ var THEME = {
 };
 
 Chart.defaults.color                           = THEME.muted;
-Chart.defaults.font.family                     = "'Space Mono', monospace";
-Chart.defaults.font.size                       = 11;
+Chart.defaults.font.family                     = "'Outfit', sans-serif";
+Chart.defaults.font.size                       = 12;
 Chart.defaults.plugins.legend.labels.color     = THEME.text;
 Chart.defaults.plugins.legend.labels.boxWidth  = 12;
 Chart.defaults.plugins.tooltip.backgroundColor = THEME.panel;
@@ -286,7 +287,7 @@ function destroyChart(id){ if(_charts[id]){ try{_charts[id].destroy();}catch(e){
 function showError(id,msg){
     var c=document.getElementById(id); if(!c) return;
     var p=document.createElement('p');
-    p.style.cssText='color:#64748b;font-size:12px;padding:40px;text-align:center;font-family:"Space Mono",monospace;';
+    p.style.cssText='color:#64748b;font-size:12px;padding:40px;text-align:center;font-family:"Outfit",sans-serif;';
     p.textContent=msg||'No data.';
     c.parentNode.insertBefore(p,c); c.style.display='none';
 }
@@ -370,6 +371,7 @@ function renderChart(canvasId, raw){
     var canvas=document.getElementById(canvasId); if(!canvas) return;
     canvas.style.display='block';
     destroyChart(canvasId);
+    var wrapId = canvas.parentNode ? canvas.parentNode.id : '';
 
     var type=detectType(raw), stacking=detectStacked(raw), series=raw.series||[];
     var cbp=isColorByPoint(raw);
@@ -444,11 +446,35 @@ function renderChart(canvasId, raw){
     _charts[canvasId]=new Chart(canvas,{
         type:isLine?'line':'bar',
         data:{labels:labels,datasets:datasets},
-        plugins:[],
+        plugins:[ChartDataLabels],
         options:{
             indexAxis:isHBar?'y':'x',responsive:true,maintainAspectRatio:false,
+            layout:{padding:{top:20, right: isHBar ? 50 : 0}},
             interaction:{mode:'index',intersect:false},
             plugins:{
+                datalabels:{
+                    display:function(ctx){
+                        /* Hide labels on hbar charts or leaders chart — too cramped */
+                        if(isHBar) return false;
+                        if(wrapId === 'leaders-wrap') return false;
+                        var v = rawCounts
+                            ? rawCounts[ctx.datasetIndex][ctx.dataIndex]
+                            : ctx.dataset.data[ctx.dataIndex];
+                        return v > 0;
+                    },
+                    formatter:function(value, ctx){
+                        if(rawCounts && rawCounts[ctx.datasetIndex]){
+                            return rawCounts[ctx.datasetIndex][ctx.dataIndex];
+                        }
+                        return value;
+                    },
+                    anchor: stacking ? 'center' : (isHBar ? 'end' : 'end'),
+                    align: stacking ? 'center' : (isHBar ? 'right' : 'top'),
+                    clamp: true,
+                    offset: isHBar ? 4 : 0,
+                    color: isHBar ? THEME.text : '#ffffff',
+                    font:{family:"'Outfit',sans-serif", size:11, weight:'600'},
+                },
                 legend:{display:datasets.length>1},
                 tooltip:{callbacks:{
                     title:function(arr){
@@ -494,6 +520,14 @@ function renderChart(canvasId, raw){
     canvas._rawJson=raw;
     canvas._ddRaw=raw;
     _charts[canvasId]._rawData=raw;
+    /* Auto-height for horizontal bar charts based on number of bars */
+    if(isHBar){
+        var barHeight=28;
+        var minHeight=300;
+        var autoHeight=Math.max(minHeight, labels.length * barHeight + 80);
+        var wrap=canvas.parentNode;
+        if(wrap) wrap.style.height=autoHeight+'px';
+    }
     attachDrilldown(canvasId,raw);
 }
 
@@ -509,10 +543,10 @@ function renderBC(canvasId,wrap){
     if(old) old.parentNode.removeChild(old);
     var stack=_ddStack[canvasId]||[]; if(!stack.length) return;
     var bar=document.createElement('div'); bar.className='dd-bc';
-    bar.style.cssText='display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:7px 12px;background:#131720;border:1px solid #252d3e;border-radius:7px;font-family:"Space Mono",monospace;font-size:11px;';
+    bar.style.cssText='display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:7px 12px;background:#131720;border:1px solid #252d3e;border-radius:7px;font-family:"Outfit",sans-serif;font-size:12px;';
     var btn=document.createElement('button');
     btn.innerHTML='&#8592; Back';
-    btn.style.cssText='background:transparent;border:1px solid #22d3ee;color:#22d3ee;padding:3px 12px;border-radius:5px;cursor:pointer;font-family:"Space Mono",monospace;font-size:11px;';
+    btn.style.cssText='background:transparent;border:1px solid #22d3ee;color:#22d3ee;padding:3px 12px;border-radius:5px;cursor:pointer;font-family:"Outfit",sans-serif;font-size:12px;';
     btn.onmouseover=function(){this.style.background='rgba(34,211,238,.12)';};
     btn.onmouseout=function(){this.style.background='transparent';};
     btn.addEventListener('click',function(){drillUp(canvasId);});
