@@ -1,0 +1,16 @@
+{{- $challenges := where .Site.RegularPages "Section" "blog" -}}
+{{- $challenges = where $challenges "Params.task1_title" "ne" nil -}}
+{{- $challenges = $challenges.ByDate.Reverse -}}
+{{- $latest := index $challenges 0 -}}
+{{- if $latest -}}
+{
+  "week":        {{ $latest.Params.title | replaceRE `.*?(\d+).*` "$1" }},
+  "title":       {{ $latest.Title | jsonify }},
+  "url":         {{ $latest.Permalink | jsonify }},
+  "pubDate":     {{ $latest.Date.Format "2006-01-02" | jsonify }},
+  "task1_title": {{ $latest.Params.task1_title | jsonify }},
+  "task1_desc":  {{ $latest.Params.task1_desc  | jsonify }},
+  "task2_title": {{ $latest.Params.task2_title | jsonify }},
+  "task2_desc":  {{ $latest.Params.task2_desc  | jsonify }}
+}
+{{- end -}}

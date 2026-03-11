@@ -6,6 +6,10 @@ type: post
 image: images/twc-logo.png
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
+task1_title: "Decrypt String"
+task1_desc: "You are given a string formed by digits and '#'. Write a script to map the given string to English lowercase characters following the given rules."
+task2_title: "Goal Parser"
+task2_desc: "You are given a string, $str. Write a script to interpret the given string using Goal Parser."
 ---
 
 ## TABLE OF CONTENTS
