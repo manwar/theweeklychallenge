@@ -1,0 +1,18 @@
+{{- $all := where .Site.RegularPages "Section" "blog" -}}
+{{- $reviews := slice -}}
+{{- range $all -}}
+  {{- if strings.HasPrefix .Params.title "PERL REVIEW" -}}
+    {{- $reviews = $reviews | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- $reviews = sort $reviews "Date" "desc" -}}
+[
+{{- range $i, $p := $reviews }}{{ if $i }},{{ end }}
+{
+  "title": {{ $p.Title | jsonify }},
+  "url":   {{ $p.Permalink | jsonify }},
+  "date":  {{ $p.Date.Format "2 Jan 2006" | jsonify }},
+  "image": {{ with $p.Params.image }}{{ printf "https://theweeklychallenge.org/%s" . | jsonify }}{{ else }}""{{ end }}
+}
+{{- end }}
+]
