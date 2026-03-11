@@ -1,0 +1,16 @@
+{{- $slugs := slice "how-to-contribute" -}}
+[
+{{- range $i, $slug := $slugs -}}
+{{- with $.Site.GetPage (printf "/blog/%s" $slug) -}}
+{{ if $i }},{{ end }}
+{
+  "slug":    {{ $slug | jsonify }},
+  "title":   {{ .Title | jsonify }},
+  "author":  {{ .Params.author | jsonify }},
+  "date":    {{ .Date.Format "2 Jan 2006" | jsonify }},
+  "image":   {{ with .Params.image }}{{ printf "https://theweeklychallenge.org/%s" . | jsonify }}{{ else }}""{{ end }},
+  "content": {{ .RawContent | jsonify }}
+}
+{{- end -}}
+{{- end }}
+]
