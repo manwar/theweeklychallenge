@@ -1,8 +1,18 @@
-{{- $blogs := where .Site.RegularPages "Section" "blog" -}}
-{{- $blogs = where $blogs "Params.tags" "ne" nil -}}
-{{- $blogs = $blogs.ByDate.Reverse -}}
+{{- $all := where .Site.RegularPages "Section" "blog" -}}
+{{- $blogs := slice -}}
+{{- range $all -}}
+  {{- $t := .Params.title -}}
+  {{- $isChallenge := strings.HasPrefix $t "The Weekly Challenge -" -}}
+  {{- $isRecap     := strings.HasPrefix $t "RECAP" -}}
+  {{- $isChampion  := strings.HasPrefix $t "Meet The Champion" -}}
+  {{- $isGuest     := strings.HasPrefix $t "The Weekly Challenge - Guest" -}}
+  {{- if not (or $isChallenge $isRecap $isChampion $isGuest) -}}
+    {{- $blogs = $blogs | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- $blogs = sort $blogs "Date" "desc" -}}
 [
-{{- range $i, $p := first 20 $blogs }}{{ if $i }},{{ end }}
+{{- range $i, $p := $blogs }}{{ if $i }},{{ end }}
 {
   "title": {{ $p.Title | jsonify }},
   "url":   {{ $p.Permalink | jsonify }},
