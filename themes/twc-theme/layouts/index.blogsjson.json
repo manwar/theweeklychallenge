@@ -1,0 +1,14 @@
+{{- $blogs := where .Site.RegularPages "Section" "blog" -}}
+{{- $blogs = where $blogs "Params.tags" "ne" nil -}}
+{{- $blogs = $blogs.ByDate.Reverse -}}
+[
+{{- range $i, $p := first 20 $blogs }}{{ if $i }},{{ end }}
+{
+  "title": {{ $p.Title | jsonify }},
+  "url":   {{ $p.Permalink | jsonify }},
+  "date":  {{ $p.Date.Format "2 Jan 2006" | jsonify }},
+  "image": {{ with $p.Params.image }}{{ printf "https://theweeklychallenge.org/%s" . | jsonify }}{{ else }}""{{ end }},
+  "tags":  {{ with $p.Params.tags }}{{ jsonify . }}{{ else }}[]{{ end }}
+}
+{{- end }}
+]

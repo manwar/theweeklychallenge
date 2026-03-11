@@ -1,0 +1,18 @@
+{{- $all := where .Site.RegularPages "Section" "blog" -}}
+{{- $champions := slice -}}
+{{- range $all -}}
+  {{- if strings.HasPrefix .Params.title "Meet The Champion" -}}
+    {{- $champions = $champions | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- $champions = sort $champions "Date" "desc" -}}
+[
+{{- range $i, $p := $champions }}{{ if $i }},{{ end }}
+{
+  "name":  {{ $p.Params.description | replaceRE `^Get to know about (.+)\.$` "$1" | jsonify }},
+  "month": {{ $p.Date.Format "January 2006" | jsonify }},
+  "url":   {{ $p.Permalink | jsonify }},
+  "image": {{ with $p.Params.image }}{{ printf "https://theweeklychallenge.org/%s" . | jsonify }}{{ else }}""{{ end }}
+}
+{{- end }}
+]
