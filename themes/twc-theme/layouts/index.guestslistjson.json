@@ -1,0 +1,14 @@
+{{- $data := .Site.Data.guest -}}
+{
+  "title": {{ $data.title | jsonify }},
+  "members": [
+    {{- range $i, $m := $data.members }}{{ if $i }},{{ end }}
+    {
+      "name":        {{ $m.name | jsonify }},
+      "image":       {{ printf "https://theweeklychallenge.org/%s" $m.image | jsonify }},
+      "designation": {{ $m.designation | jsonify }},
+      "description": {{ $m.description | jsonify }}
+    }
+    {{- end }}
+  ]
+}

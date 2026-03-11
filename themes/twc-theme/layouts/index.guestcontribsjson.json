@@ -1,0 +1,19 @@
+{{- $data := .Site.Data.guestcontributions -}}
+[
+{{- range $i, $week := $data }}{{ if $i }},{{ end }}
+{
+  "week": {{ $week.week }},
+  "blog": {{ printf "https://theweeklychallenge.org%s" $week.blog | jsonify }},
+  "contributions": [
+    {{- range $j, $c := $week.contributions }}{{ if $j }},{{ end }}
+    {
+      "name":     {{ $c.name | jsonify }},
+      "language": {{ $c.language | jsonify }},
+      "task1":    {{ $c.task1 | jsonify }},
+      "task2":    {{ $c.task2 | jsonify }}
+    }
+    {{- end }}
+  ]
+}
+{{- end }}
+]
