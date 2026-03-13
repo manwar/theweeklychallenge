@@ -1,0 +1,46 @@
+{{- $isPWC := and (eq .Section "blog") (.Params.task1_title) (findRE `^perl-weekly-challenge-\d+$` .File.BaseFileName) -}}
+{{- if $isPWC -}}
+{{- $challenges := where .Site.RegularPages "Section" "blog" -}}
+{{- $challenges = where $challenges "Params.task1_title" "ne" nil -}}
+{{- $latest := index ($challenges.ByDate.Reverse) 0 -}}
+
+{{- $raw := .RawContent -}}
+
+{{- $t1Split := split $raw "## Task 1:" -}}
+{{- $afterTask1 := "" -}}
+{{- if gt (len $t1Split) 1 -}}{{- $afterTask1 = index $t1Split 1 -}}{{- end -}}
+
+{{- $t2Split  := split $afterTask1 "## Task 2:" -}}
+{{- $task1Raw := index $t2Split 0 -}}
+{{- $task2Raw := "" -}}
+{{- if gt (len $t2Split) 1 -}}{{- $task2Raw = index $t2Split 1 -}}{{- end -}}
+
+{{- $task1Body := replaceRE `(?s)^[^\n]*\n` "" $task1Raw -}}
+{{- $task2Body := replaceRE `(?s)^[^\n]*\n` "" $task2Raw -}}
+{{- $task1Body = replaceRE `(?m)^#{1,6}\s*\*\*Submitted by:\*\*.*\n?` "" $task1Body -}}
+{{- $task2Body = replaceRE `(?m)^#{1,6}\s*\*\*Submitted by:\*\*.*\n?` "" $task2Body -}}
+{{- $task1Body = replaceRE `(?m)^\*{3,}\s*\n?` "" $task1Body -}}
+{{- $task2Body = replaceRE `(?m)^\*{3,}\s*\n?` "" $task2Body -}}
+{{- $task1Body = trim $task1Body "\n\r\t " -}}
+{{- $task2Body = trim $task2Body "\n\r\t " -}}
+
+{{- $weekNum    := .Params.title | replaceRE `.*?(\d+).*` "$1" | int -}}
+{{- $latestWeek := $latest.Params.title | replaceRE `.*?(\d+).*` "$1" | int -}}
+{
+  "week":        {{ $weekNum }},
+  "title":       {{ .Title | jsonify }},
+  "url":         {{ .Permalink | jsonify }},
+  "pubDate":     {{ .Date.Format "2006-01-02" | jsonify }},
+  "latest_week": {{ $latestWeek }},
+  "prev_week":   {{ if gt $weekNum 1 }}{{ sub $weekNum 1 }}{{ else }}null{{ end }},
+  "next_week":   {{ if lt $weekNum $latestWeek }}{{ add $weekNum 1 }}{{ else }}null{{ end }},
+  "task1_title": {{ .Params.task1_title | jsonify }},
+  "task1_desc":  {{ .Params.task1_desc  | jsonify }},
+  "task1_body":  {{ $task1Body | jsonify }},
+  "task2_title": {{ .Params.task2_title | jsonify }},
+  "task2_desc":  {{ .Params.task2_desc  | jsonify }},
+  "task2_body":  {{ $task2Body | jsonify }}
+}
+{{- else -}}
+{}
+{{- end -}}
