@@ -241,7 +241,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <button class="chart-tab"        data-canvas="cv_gl_2019"         data-url="guest-language-breakdown-2019.json">2019</button>
         </div>
         <div class="chart-card">
-            <div class="chart-card-title">Guest Leaders (TOP 50)</div>
+            <div class="chart-card-title" id="guest-leaders-chart-title">Guest Leaders (TOP 50)</div>
             <div class="chart-card-subtitle">Click columns to drill down.</div>
             <div class="chart-wrap" id="guest-leaders-wrap" style="height:500px">
                 <div class="chart-spinner" id="guest-leaders-spinner"></div>
@@ -714,7 +714,8 @@ function renderChart(canvasId, raw){
      
     if(raw.title && raw.title.text){
         var titleEl = document.getElementById(wrapId.replace('-wrap','-chart-title'));
-        if(titleEl) titleEl.textContent = raw.title.text;
+        if(titleEl && !titleEl._tabTitle) titleEl.textContent = raw.title.text;
+        if(titleEl) titleEl._tabTitle = false;  
     }
      
     if(isHBar){
@@ -925,6 +926,37 @@ function wireTabGroup(containerIds, wrapId, spinnerId){
                     var el=document.getElementById(c); if(el) el.querySelectorAll('.chart-tab').forEach(function(b){b.classList.remove('active');});
                 });
                 this.classList.add('active');
+                 
+                var titleMap={
+                    'guest-leaders-wrap': 'guest-leaders-chart-title',
+                    'members-wrap':       'members-chart-title'
+                };
+                if(titleMap[wrapId]){
+                    var titleEl=document.getElementById(titleMap[wrapId]);
+                    if(titleEl){
+                        var label=this.textContent.trim();
+                        var titleLookup={
+                            'Summary':'Guest Leaders (TOP 50)',
+                            'Breakdown':'Guest Language Breakdown (All Years)',
+                            '2026':'Guest Language Breakdown — 2026',
+                            '2025':'Guest Language Breakdown — 2025',
+                            '2024':'Guest Language Breakdown — 2024',
+                            '2023':'Guest Language Breakdown — 2023',
+                            '2022':'Guest Language Breakdown — 2022',
+                            '2021':'Guest Language Breakdown — 2021',
+                            '2020':'Guest Language Breakdown — 2020',
+                            '2019':'Guest Language Breakdown — 2019',
+                            '1-30':'Members 1–30','31-60':'Members 31–60',
+                            '61-90':'Members 61–90','91-120':'Members 91–120',
+                            '121-150':'Members 121–150','151-180':'Members 151–180',
+                            '181-210':'Members 181–210','211-240':'Members 211–240',
+                            '241-270':'Members 241–270','271-300':'Members 271–300',
+                            '301-330':'Members 301–330','331-360':'Members 331–360'
+                        };
+                        titleEl.textContent = titleLookup[label] || label;
+                        titleEl._tabTitle = true;  
+                    }
+                }
                  
                 ensureCanvas(canvasId,wrapId);
                 var wrap=document.getElementById(wrapId);
