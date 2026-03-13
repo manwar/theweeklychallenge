@@ -1,19 +1,32 @@
-{{- $isPWC := and (eq .Section "blog") (.Params.task1_title) (findRE `^perl-weekly-challenge-\d+$` .File.BaseFileName) -}}
+{{- $filename := .File.BaseFileName -}}
+{{- $isPWC := and (eq .Section "blog") (findRE `^perl-weekly-challenge-[0-9]+$` $filename) -}}
 {{- if $isPWC -}}
+{{- $weekStr := replaceRE `^perl-weekly-challenge-0*([1-9][0-9]*)$` "$1" $filename -}}
+{{- if eq $weekStr $filename -}}{{- $weekStr = "0" -}}{{- end -}}
+{{- $weekNum := $weekStr | int -}}
+
 {{- $challenges := where .Site.RegularPages "Section" "blog" -}}
 {{- $challenges = where $challenges "Params.task1_title" "ne" nil -}}
-{{- $latest := index ($challenges.ByDate.Reverse) 0 -}}
+{{- $challenges = $challenges.ByDate.Reverse -}}
+{{- $latest := index $challenges 0 -}}
+{{- $latestWeek := 0 -}}
+{{- if $latest -}}
+  {{- $latestWeek = $latest.Params.title | replaceRE `[^0-9]` "" | replaceRE `^0+([0-9])` "$1" | int -}}
+{{- end -}}
 
 {{- $raw := .RawContent -}}
-
-{{- $t1Split := split $raw "## Task 1:" -}}
+{{- $t1Split := split $raw "Task 1:" -}}
 {{- $afterTask1 := "" -}}
 {{- if gt (len $t1Split) 1 -}}{{- $afterTask1 = index $t1Split 1 -}}{{- end -}}
-
 {{- $t2Split  := split $afterTask1 "## Task 2:" -}}
 {{- $task1Raw := index $t2Split 0 -}}
 {{- $task2Raw := "" -}}
 {{- if gt (len $t2Split) 1 -}}{{- $task2Raw = index $t2Split 1 -}}{{- end -}}
+
+{{- $task1Title := .Params.task1_title | default (index (split (index (split $task1Raw "\n") 0) " {") 0) | strings.TrimLeft " " -}}
+{{- $task1Desc  := .Params.task1_desc -}}
+{{- $task2Title := .Params.task2_title | default (index (split (index (split $task2Raw "\n") 0) " {") 0) | strings.TrimLeft " " -}}
+{{- $task2Desc  := .Params.task2_desc -}}
 
 {{- $task1Body := replaceRE `(?s)^[^\n]*\n` "" $task1Raw -}}
 {{- $task2Body := replaceRE `(?s)^[^\n]*\n` "" $task2Raw -}}
@@ -24,8 +37,8 @@
 {{- $task1Body = trim $task1Body "\n\r\t " -}}
 {{- $task2Body = trim $task2Body "\n\r\t " -}}
 
-{{- $weekNum    := .Params.title | replaceRE `.*?(\d+).*` "$1" | int -}}
-{{- $latestWeek := $latest.Params.title | replaceRE `.*?(\d+).*` "$1" | int -}}
+{{- $task1Desc = $task1Desc | default (index (split $task1Body "\n") 0) -}}
+{{- $task2Desc = $task2Desc | default (index (split $task2Body "\n") 0) -}}
 {
   "week":        {{ $weekNum }},
   "title":       {{ .Title | jsonify }},
@@ -34,11 +47,11 @@
   "latest_week": {{ $latestWeek }},
   "prev_week":   {{ if gt $weekNum 1 }}{{ sub $weekNum 1 }}{{ else }}null{{ end }},
   "next_week":   {{ if lt $weekNum $latestWeek }}{{ add $weekNum 1 }}{{ else }}null{{ end }},
-  "task1_title": {{ .Params.task1_title | jsonify }},
-  "task1_desc":  {{ .Params.task1_desc  | jsonify }},
+  "task1_title": {{ $task1Title | jsonify }},
+  "task1_desc":  {{ $task1Desc  | jsonify }},
   "task1_body":  {{ $task1Body | jsonify }},
-  "task2_title": {{ .Params.task2_title | jsonify }},
-  "task2_desc":  {{ .Params.task2_desc  | jsonify }},
+  "task2_title": {{ $task2Title | jsonify }},
+  "task2_desc":  {{ $task2Desc  | jsonify }},
   "task2_body":  {{ $task2Body | jsonify }}
 }
 {{- else -}}
