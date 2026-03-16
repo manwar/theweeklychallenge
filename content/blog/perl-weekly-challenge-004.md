@@ -4,7 +4,7 @@ date: 2019-04-14T22:00:00+00:00
 description: "Perl Weekly Challenge - 004"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 I noticed last week, less participation than the previous week. Why? Honestly speaking I have no clue. Could it be the questions were too tricky for the challenge? The week before, I received the feedback that the questions were too easy and simple. So I went for little trickier one this time. It seems that I have to balance it somehow.
@@ -19,10 +19,17 @@ Recap of last week challenge is now available [here](/blog/recap-challenge-003).
 
 Last but not the least if you have any suggestions for future challenges then please do share with us. Good luck and have fun.
 
-### Challenge #1
-> Write a script to output the same number of PI digits as the size of your script. Say, if your script size is 10, it should print 3.141592653.
 
-### Challenge #2
-> You are given a file containing a list of words (case insensitive 1 word per line) and a list of letters. Print each word from the file that can be made using only letters from the list. You can use each letter only once (though there can be duplicates and you can use each of them once), you don't have to use all the letters. (**Disclaimer**: The challenge was proposed by Scimon Proctor)
+## Task 1: Pi with output-sized script
+***
 
+Write a script to output the same number of PI digits as the size of your script. Say, if your script size is 10, it should print 3.141592653.
+
+
+## Task 2: Possible words given chars
+***
+
+You are given a file containing a list of words (case insensitive 1 word per line) and a list of letters. Print each word from the file that can be made using only letters from the list. You can use each letter only once (though there can be duplicates and you can use each of them once), you don't have to use all the letters. (**Disclaimer**: The challenge was proposed by Scimon Proctor)
+
+***
 Last date to submit the solution **6 pm (UK Time) Sunday 21st April 2019**.
