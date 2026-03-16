@@ -81,9 +81,9 @@ def build_week(week_num, latest_week):
     text = md_file.read_text(encoding='utf-8')
     fm, body = parse_front_matter(text)
 
-    title = fm.get('title', f"The Weekly Challenge - {week_num}")
+    title = fm.get('title', f"The Weekly Challenge - {week_num:03d}")
     date  = fm.get('date', '')[:10]
-    url   = f"{BASE_URL}/blog/perl-weekly-challenge-{week_num}/"
+    url   = f"{BASE_URL}/blog/perl-weekly-challenge-{week_num:03d}/"
 
     ext_t1_title, ext_t1_desc, t1_body = extract_task(body, 1)
     ext_t2_title, ext_t2_desc, t2_body = extract_task(body, 2)
@@ -104,7 +104,7 @@ def build_week(week_num, latest_week):
         "task2_body":  t2_body,
     }
 
-    out_dir = OUTPUT / f"perl-weekly-challenge-{week_num}"
+    out_dir = OUTPUT / f"perl-weekly-challenge-{week_num:03d}"
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / "challenge.json"
     out_file.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
@@ -112,7 +112,7 @@ def build_week(week_num, latest_week):
 
     # NEW: Link previous week to this one
     if week_num > 1:
-        prev_f = OUTPUT / f"perl-weekly-challenge-{week_num - 1}" / "challenge.json"
+        prev_f = OUTPUT / f"perl-weekly-challenge-{week_num - 1:03d}" / "challenge.json"
         if prev_f.exists():
             with open(prev_f, 'r+') as f:
                 p_data = json.load(f)
@@ -141,8 +141,8 @@ def main():
     ok = sum(build_week(w, latest_week) for w in weeks)
 
     # NEW: Generate the current.json for the App
-    (API_OUT / "current.json").write_text(json.dumps({"latest": latest_week}))
-    print(f"  ✓ Updated current.json to {latest_week}")
+    #(API_OUT / "current.json").write_text(json.dumps({"latest": latest_week}))
+    #print(f"  ✓ Updated current.json to {latest_week}")
     print(f"\nDone: {ok}/{len(weeks)} built successfully.")
 
 if __name__ == '__main__':
