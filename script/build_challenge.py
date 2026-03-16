@@ -73,7 +73,7 @@ def extract_task(raw, task_num):
     return title, desc, body
 
 def build_week(week_num, latest_week):
-    md_file = CONTENT / f"perl-weekly-challenge-{week_num}.md"
+    md_file = CONTENT / f"perl-weekly-challenge-{week_num:03d}.md"
     if not md_file.exists():
         print(f"  ✗ Week {week_num}: markdown file not found")
         return False

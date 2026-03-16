@@ -4,7 +4,7 @@ date: 2019-04-01T00:00:00+00:00
 description: "Perl Weekly Challenge - 002"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 It is already time for the second challenge of **"Perl Weekly Challenge"** event. We have had very positive response so far. We will soon share the review of first challenge. You can send us your solutions by replying the same email that drops the weekly challenge to your inbox. If you are active on twitter then you can DM **@PerlWChallenge** as well. Or if you have GitHub profile then you can even submit your solutions as PR to the [repository](https://github.com/manwar/perlweeklychallenge-club). A gentle reminder, please don't try to golf your solution. We are looking for unique way to solve the problem. Also please mention any prereqs to execute the solution i.e. version of Perl or Raku. Please add meaningful comment to your code, in case anyone (most likely me) reading your code. Avoid using external library as much as possible. Try to get the solution straight out of the language. We encourage you to blog about your solution, focus on how you achieve the result. If you do blog then please share with us.
@@ -13,10 +13,17 @@ Our aim is to engage the Perl community in sharing knowledge. You may find some 
 
 Last but not the least if you have any suggestions for future challenges then please do share with us. Good luck and have fun.
 
-### Challenge #1
-> Write a script or one-liner to remove leading zeros from positive numbers.
+## Task 1: Remove leading zeros
+##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)
+***
 
-### Challenge #2
-> Write a script that can convert integers to and from a base35 representation, using the characters 0-9 and A-Y. **Dave Jacoby** came up with nice description about [base35](https://gist.github.com/jacoby/764bb4e8a5d3a819b5fbfa497fcb3454), in case you needed some background.
+Write a script or one-liner to remove leading zeros from positive numbers.
 
+## Task 2: Base-35 numbers
+##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)
+***
+
+Write a script that can convert integers to and from a base35 representation, using the characters 0-9 and A-Y. **Dave Jacoby** came up with nice description about [base35](https://gist.github.com/jacoby/764bb4e8a5d3a819b5fbfa497fcb3454), in case you needed some background.
+
+***
 Last date to submit the solution **6 pm (UK Time) Sunday 7th April 2019**.

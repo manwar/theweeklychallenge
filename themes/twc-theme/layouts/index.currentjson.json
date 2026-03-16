@@ -1,49 +1,31 @@
-{{- $challenges := where .Site.RegularPages "Section" "blog" -}}
-{{- $challenges = where $challenges "Params.task1_title" "ne" nil -}}
-{{- $challenges = $challenges.ByDate.Reverse -}}
-{{- $latest := index $challenges 0 -}}
+{{- /* 1. Pull data directly from config.toml [params] */ -}}
+{{- $currentWeekNum := .Site.Params.currentWeek -}}
+{{- $banner         := .Site.Params.banner -}}
+
+{{- /* 2. Find the page for this week to get the URL and Date */ -}}
+{{- $paddedWeek   := printf "%03d" (int $currentWeekNum) -}}
+{{- $expectedFile := printf "perl-weekly-challenge-%s" $paddedWeek -}}
+{{- $challenges   := where .Site.RegularPages "Section" "blog" -}}
+{{- $latest       := "" -}}
+{{- range $challenges -}}
+    {{- if eq .File.BaseFileName $expectedFile -}}{{- $latest = . -}}{{- end -}}
+{{- end -}}
+
 {{- if $latest -}}
-
-{{- /* ── Extract full task body from raw markdown content ── */}}
-{{- $raw := $latest.RawContent -}}
-
-{{- /* Split on Task 1 heading first, take everything after it */}}
-{{- $t1Split := split $raw "## Task 1:" -}}
-{{- $afterTask1 := "" -}}
-{{- if gt (len $t1Split) 1 -}}{{- $afterTask1 = index $t1Split 1 -}}{{- end -}}
-
-{{- /* Now split on Task 2 heading to separate the two tasks */}}
-{{- $t2Split    := split $afterTask1 "## Task 2:" -}}
-{{- $task1Raw   := index $t2Split 0 -}}
-{{- $task2Raw   := "" -}}
-{{- if gt (len $t2Split) 1 -}}{{- $task2Raw = index $t2Split 1 -}}{{- end -}}
-
-{{- /* Strip the opening heading line (everything up to and including first newline) */}}
-{{- $task1Body := replaceRE `(?s)^[^\n]*\n` "" $task1Raw -}}
-{{- $task2Body := replaceRE `(?s)^[^\n]*\n` "" $task2Raw -}}
-
-{{- /* Strip "Submitted by" line */}}
-{{- $task1Body = replaceRE `(?m)^#{1,6}\s*\*\*Submitted by:\*\*.*\n?` "" $task1Body -}}
-{{- $task2Body = replaceRE `(?m)^#{1,6}\s*\*\*Submitted by:\*\*.*\n?` "" $task2Body -}}
-
-{{- /* Strip horizontal rule lines */}}
-{{- $task1Body = replaceRE `(?m)^\*{3,}\s*\n?` "" $task1Body -}}
-{{- $task2Body = replaceRE `(?m)^\*{3,}\s*\n?` "" $task2Body -}}
-
-{{- /* Trim leading/trailing whitespace */}}
-{{- $task1Body = trim $task1Body "\n\r\t " -}}
-{{- $task2Body = trim $task2Body "\n\r\t " -}}
-
-{
-  "week":        {{ $latest.Params.title | replaceRE `.*?(\d+).*` "$1" }},
-  "title":       {{ $latest.Title | jsonify }},
-  "url":         {{ $latest.Permalink | jsonify }},
-  "pubDate":     {{ $latest.Date.Format "2006-01-02" | jsonify }},
-  "task1_title": {{ $latest.Params.task1_title | jsonify }},
-  "task1_desc":  {{ $latest.Params.task1_desc  | jsonify }},
-  "task1_body":  {{ $task1Body | jsonify }},
-  "task2_title": {{ $latest.Params.task2_title | jsonify }},
-  "task2_desc":  {{ $latest.Params.task2_desc  | jsonify }},
-  "task2_body":  {{ $task2Body | jsonify }}
-}
+    {{- /* 3. Output JSON using ONLY config values for titles and descriptions */ -}}
+    {
+      "week":        {{ $currentWeekNum }},
+      "title":       {{ $latest.Title | jsonify }},
+      "url":         {{ $latest.Permalink | jsonify }},
+      "pubDate":     {{ $latest.Date.Format "2006-01-02" | jsonify }},
+      "task1_title": {{ $banner.taskLabel1 | jsonify }},
+      "task1_desc":  {{ $banner.taskDesc1  | jsonify }},
+      "task1_body":  "",
+      "task2_title": {{ $banner.taskLabel2 | jsonify }},
+      "task2_desc":  {{ $banner.taskDesc2  | jsonify }},
+      "task2_body":  ""
+    }
+{{- else -}}
+    {{- /* Stop build to protect existing current.json if the file isn't found */ -}}
+    {{- errorf "FATAL: Config says Week %v, but %s.md not found in content/blog/" $currentWeekNum $expectedFile -}}
 {{- end -}}
