@@ -15,18 +15,16 @@ import glob
 import os
 from pathlib import Path
 
+# FIX: resolve path properly to work from any directory
 SITE_ROOT  = Path(__file__).resolve().parent.parent
 CONTENT    = SITE_ROOT / "content" / "blog"
 OUTPUT     = SITE_ROOT / "docs" / "blog"
+API_OUT    = SITE_ROOT / "docs" # Where current.json will live
 BASE_URL   = "https://theweeklychallenge.org"
 
 def get_latest_week():
     search_pattern = str(CONTENT / "perl-weekly-challenge-*.md")
-    print(f"DEBUG: I am looking in: {CONTENT}") # <--- Add this
-    print(f"DEBUG: Using pattern: {search_pattern}") # <--- Add this
-
     files = glob.glob(search_pattern)
-    print(f"DEBUG: Files found: {files}") # <--- Add this
     nums = []
     for f in files:
         m = re.search(r'perl-weekly-challenge-(\d+)\.md$', f)
@@ -35,7 +33,6 @@ def get_latest_week():
     return max(nums) if nums else 0
 
 def parse_front_matter(text):
-    """Extract YAML front matter fields as a dict."""
     fm = {}
     m = re.match(r'^---\s*\n(.*?)\n---\s*\n', text, re.DOTALL)
     if not m:
@@ -49,45 +46,34 @@ def parse_front_matter(text):
     return fm, body
 
 def extract_task(raw, task_num):
-    """Extract title, desc, body for a task from raw markdown."""
     marker = f"Task {task_num}:"
     parts = raw.split(marker, 1)
     if len(parts) < 2:
         return "", "", ""
 
     after = parts[1]
-
-    # Split off next task or end
     next_marker = f"## Task {task_num + 1}:"
     task_raw = after.split(next_marker)[0]
 
-    # Title: first line, strip {#TASKn} anchor
     first_line = task_raw.split("\n")[0].strip()
     title = re.sub(r'\s*\{[^}]*\}', '', first_line).strip()
 
-    # Body: everything after first line, strip Submitted by and *** lines
     body_lines = task_raw.split("\n")[1:]
     body = "\n".join(body_lines)
     body = re.sub(r'(?m)^#{1,6}\s*\*\*Submitted by:\*\*.*\n?', '', body)
     body = re.sub(r'(?m)^\*{3,}\s*\n?', '', body)
     body = body.strip("\n\r\t ")
 
-    # Desc: first non-empty line of body
     desc = ""
     for line in body.splitlines():
         line = line.strip()
         if line:
             desc = line
             break
-
     return title, desc, body
 
 def build_week(week_num, latest_week):
-    padded = str(week_num).zfill(3) if week_num < 100 else str(week_num)
-    # Try both padded and unpadded filenames
     md_file = CONTENT / f"perl-weekly-challenge-{week_num}.md"
-    if not md_file.exists():
-        md_file = CONTENT / f"perl-weekly-challenge-{padded}.md"
     if not md_file.exists():
         print(f"  ✗ Week {week_num}: markdown file not found")
         return False
@@ -99,19 +85,8 @@ def build_week(week_num, latest_week):
     date  = fm.get('date', '')[:10]
     url   = f"{BASE_URL}/blog/perl-weekly-challenge-{week_num}/"
 
-    # Use front matter titles if present, else extract from markdown
-    t1_title = fm.get('task1_title', '')
-    t1_desc  = fm.get('task1_desc', '')
-    t2_title = fm.get('task2_title', '')
-    t2_desc  = fm.get('task2_desc', '')
-
     ext_t1_title, ext_t1_desc, t1_body = extract_task(body, 1)
     ext_t2_title, ext_t2_desc, t2_body = extract_task(body, 2)
-
-    t1_title = t1_title or ext_t1_title
-    t1_desc  = t1_desc  or ext_t1_desc
-    t2_title = t2_title or ext_t2_title
-    t2_desc  = t2_desc  or ext_t2_desc
 
     data = {
         "week":        week_num,
@@ -121,11 +96,11 @@ def build_week(week_num, latest_week):
         "latest_week": latest_week,
         "prev_week":   week_num - 1 if week_num > 1 else None,
         "next_week":   week_num + 1 if week_num < latest_week else None,
-        "task1_title": t1_title,
-        "task1_desc":  t1_desc,
+        "task1_title": fm.get('task1_title', ext_t1_title),
+        "task1_desc":  fm.get('task1_desc', ext_t1_desc),
         "task1_body":  t1_body,
-        "task2_title": t2_title,
-        "task2_desc":  t2_desc,
+        "task2_title": fm.get('task2_title', ext_t2_title),
+        "task2_desc":  fm.get('task2_desc', ext_t2_desc),
         "task2_body":  t2_body,
     }
 
@@ -134,6 +109,18 @@ def build_week(week_num, latest_week):
     out_file = out_dir / "challenge.json"
     out_file.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
     print(f"  ✓ Week {week_num}: {out_file}")
+
+    # NEW: Link previous week to this one
+    if week_num > 1:
+        prev_f = OUTPUT / f"perl-weekly-challenge-{week_num - 1}" / "challenge.json"
+        if prev_f.exists():
+            with open(prev_f, 'r+') as f:
+                p_data = json.load(f)
+                p_data['next_week'] = week_num
+                f.seek(0)
+                json.dump(p_data, f, indent=2)
+                f.truncate()
+
     return True
 
 def main():
@@ -152,6 +139,10 @@ def main():
 
     print(f"Building {len(weeks)} week(s)...")
     ok = sum(build_week(w, latest_week) for w in weeks)
+
+    # NEW: Generate the current.json for the App
+    (API_OUT / "current.json").write_text(json.dumps({"latest": latest_week}))
+    print(f"  ✓ Updated current.json to {latest_week}")
     print(f"\nDone: {ok}/{len(weeks)} built successfully.")
 
 if __name__ == '__main__':
