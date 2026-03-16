@@ -15,13 +15,18 @@ import glob
 import os
 from pathlib import Path
 
-SITE_ROOT  = Path(__file__).parent
+SITE_ROOT  = Path(__file__).resolve().parent.parent
 CONTENT    = SITE_ROOT / "content" / "blog"
 OUTPUT     = SITE_ROOT / "docs" / "blog"
 BASE_URL   = "https://theweeklychallenge.org"
 
 def get_latest_week():
-    files = glob.glob(str(CONTENT / "perl-weekly-challenge-*.md"))
+    search_pattern = str(CONTENT / "perl-weekly-challenge-*.md")
+    print(f"DEBUG: I am looking in: {CONTENT}") # <--- Add this
+    print(f"DEBUG: Using pattern: {search_pattern}") # <--- Add this
+
+    files = glob.glob(search_pattern)
+    print(f"DEBUG: Files found: {files}") # <--- Add this
     nums = []
     for f in files:
         m = re.search(r'perl-weekly-challenge-(\d+)\.md$', f)
