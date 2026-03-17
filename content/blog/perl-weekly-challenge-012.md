@@ -4,7 +4,7 @@ date: 2019-06-10T00:00:00+00:00
 description: "Perl Weekly Challenge - 012"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 With every week, the team is growing and participation is also growing. I also love the fact that members even taking on optional API challenge regularly now. I hope, you are having fun solving weekly challenges as much as I am.
@@ -36,16 +36,17 @@ Good luck for the weekly challenge and enjoy.
 
 ***
 
-### Challenge #1
 
-> The numbers formed by adding one to the products of the smallest primes are called the Euclid Numbers (see [wiki](https://en.wikipedia.org/wiki/Euclid_number)). Write a script that finds the smallest **Euclid Number** that is not prime. This challenge was proposed by Laurent Rosenfeld.
-
-
+## Task 1: Smallest non-prime Euclid number
 ***
 
-### Challenge #2
+The numbers formed by adding one to the products of the smallest primes are called the Euclid Numbers (see [wiki](https://en.wikipedia.org/wiki/Euclid_number)). Write a script that finds the smallest **Euclid Number** that is not prime. This challenge was proposed by Laurent Rosenfeld.
 
-> Write a script that finds the common directory path, given a collection of paths and directory separator. For example, if the following paths are supplied.
+
+## Task 2: Common directory
+***
+
+Write a script that finds the common directory path, given a collection of paths and directory separator. For example, if the following paths are supplied.
 
     /a/b/c/d
     /a/b/cd
@@ -54,12 +55,12 @@ Good luck for the weekly challenge and enjoy.
 
 and the path separator is **/**. Your script should return **/a/b** as common directory path.
 
+
+## Task 3: Synonyms API
 ***
 
-### Challenge #3
-
-> Find out the synonyms of a given word using the **[Synonyms API](https://www.synonyms.com/synonyms_api.php)**. The API challenge is **optional** but would love to see your solution.
+Find out the synonyms of a given word using the **[Synonyms API](https://www.synonyms.com/synonyms_api.php)**. The API challenge is **optional** but would love to see your solution.
 
 ***
-
 Last date to submit the solution **6 pm (UK Time) Sunday 16th June 2019**.
+

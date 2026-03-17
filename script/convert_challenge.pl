@@ -4,6 +4,202 @@ use warnings;
 use utf8;
 use open ':std', ':encoding(UTF-8)';
 
+# Usage: perl convert_challenge.pl input.md data/challenges.yml
+
+my ($md_file, $yaml_file) = @ARGV;
+die "Usage: $0 <input.md> <challenges.yml>\n" unless $md_file && $yaml_file;
+
+# 1. Parse YAML for Task Titles
+my %title_map;
+if (-e $yaml_file) {
+    open my $yfh, '<:encoding(UTF-8)', $yaml_file or die "Can't open $yaml_file: $!";
+    my $current_week = '';
+    while (my $line = <$yfh>) {
+        if ($line =~ /week:\s*'?(\d+)'?/) {
+            $current_week = int($1);
+        }
+        if ($line =~ /-\s+(.+)/ && $current_week) {
+            my $val = $1;
+            # Simple skip for keys
+            if ($val !~ /^(?:week|date|tasks|members|enable):/) {
+                push @{$title_map{$current_week}}, $val;
+            }
+        }
+    }
+    close $yfh;
+}
+
+# 2. Read the Markdown File
+open my $mfh, '<:encoding(UTF-8)', $md_file or die "Can't open $md_file: $!";
+my $content = do { local $/; <$mfh> };
+close $mfh;
+
+# 3. Identify the Week from Front Matter
+my ($this_week) = $content =~ /title:.*Challenge - (\d+)/i;
+$this_week = int($this_week) if $this_week;
+
+# 4. Extract sections
+my ($front, $body) = $content =~ m/^(---\n.*?\n---\n)(.*)$/s;
+if (!$front) { die "Could not find Front Matter in $md_file\n"; }
+
+# --- CHANGE AUTHOR IN FRONT MATTER ---
+$front =~ s/author: .*/author: Mohammad Sajid Anwar/g;
+
+# Extract intro (everything before the first challenge)
+my ($intro) = $body =~ m/^(.*?)(?=### Challenge)/s;
+$intro //= $body; # Fallback if no challenges found
+
+# Extract deadline (at the very end)
+my ($deadline) = $body =~ m/(Last date to submit.*)$/s;
+
+# 5. Process and Print
+print $front;
+print $intro;
+
+# 6. Iterate through challenges
+my $task_count = 0;
+while ($body =~ m/### Challenge #(\d+)\s+((?:>\s*.*?\n)+)(?=\n###|\n\*\*\*|\nLast date|$)/gs) {
+    $task_count++;
+    my $num = $1;
+    my $desc_block = $2;
+
+    # Clean up description but KEEP newlines
+    # 1. Remove leading '>' and any trailing whitespace from each line
+    $desc_block =~ s/^>\s?//gm;
+    $desc_block =~ s/\s+$//s;
+    $desc_block =~ s/^\s+//s;
+
+    # Fetch title from YAML map
+    my $title = "Unknown Task";
+    if (exists $title_map{$this_week} && defined $title_map{$this_week}->[$task_count - 1]) {
+        $title = $title_map{$this_week}->[$task_count - 1];
+        $title =~ s/^['"]|['"]$//g; # Strip quotes if present in YAML
+    }
+
+    print "\n## Task $num: $title\n";
+    print "***\n\n";
+    print "$desc_block\n\n";
+}
+
+print "***\n";
+print "$deadline\n" if $deadline;
+
+# 7. Helper for Common Directory Path (Optional Logic Reference)
+sub get_common_path {
+    my ($separator, @paths) = @_;
+    return "" unless @paths;
+
+    my @parts = map { [ split(/\Q$separator\E/, $_) ] } @paths;
+    my $first = shift @parts;
+    my @common;
+
+    for my $i (0 .. $#$first) {
+        my $match = 1;
+        for my $p (@parts) {
+            if ($i > $#$p || $p->[$i] ne $first->[$i]) {
+                $match = 0;
+                last;
+            }
+        }
+        last unless $match;
+        push @common, $first->[$i];
+    }
+    return join($separator, @common);
+}
+
+__END__
+#!/usr/bin/perl
+use strict;
+use warnings;
+use utf8;
+use open ':std', ':encoding(UTF-8)';
+
+# Usage: perl convert_challenge.pl input.md data/challenges.yml
+
+my ($md_file, $yaml_file) = @ARGV;
+die "Usage: $0 <input.md> <challenges.yml>\n" unless $md_file && $yaml_file;
+
+# 1. Parse YAML for Task Titles
+my %title_map;
+if (-e $yaml_file) {
+    open my $yfh, '<:encoding(UTF-8)', $yaml_file or die "Can't open $yaml_file: $!";
+    my $current_week = '';
+    while (my $line = <$yfh>) {
+        if ($line =~ /week:\s*'?(\d+)'?/) {
+            $current_week = int($1);
+        }
+        if ($line =~ /-\s+(.+)/ && $current_week) {
+            my $val = $1;
+            # Simple skip for keys
+            if ($val !~ /^(?:week|date|tasks|members|enable):/) {
+                push @{$title_map{$current_week}}, $val;
+            }
+        }
+    }
+    close $yfh;
+}
+
+# 2. Read the Markdown File
+open my $mfh, '<:encoding(UTF-8)', $md_file or die "Can't open $md_file: $!";
+my $content = do { local $/; <$mfh> };
+close $mfh;
+
+# 3. Identify the Week from Front Matter
+my ($this_week) = $content =~ /title:.*Challenge - (\d+)/i;
+$this_week = int($this_week) if $this_week;
+
+# 4. Extract sections
+my ($front, $body) = $content =~ m/^(---\n.*?\n---\n)(.*)$/s;
+if (!$front) { die "Could not find Front Matter in $md_file\n"; }
+
+# --- CHANGE AUTHOR IN FRONT MATTER ---
+$front =~ s/author: .*/author: Mohammad Sajid Anwar/g;
+
+# Extract intro (everything before the first challenge)
+my ($intro) = $body =~ m/^(.*?)(?=### Challenge)/s;
+$intro //= $body; # Fallback if no challenges found
+
+# Extract deadline (at the very end)
+my ($deadline) = $body =~ m/(Last date to submit.*)$/s;
+
+# 5. Process and Print
+print $front;
+print $intro;
+
+# 6. Iterate through challenges
+# Modified Regex: \s+ allows for 1 or more newlines/spaces between header and quote
+my $task_count = 0;
+while ($body =~ m/### Challenge #(\d+)\s+>\s*(.*?)(?=\n###|\nLast date|$)/gs) {
+    $task_count++;
+    my $num = $1;
+    my $desc = $2;
+
+    # Clean up description
+    $desc =~ s/\n/ /g;
+    $desc =~ s/\s+/ /g;
+    $desc =~ s/^\s+|\s+$//g;
+
+    # Fetch title from YAML map
+    my $title = "Unknown Task";
+    if (exists $title_map{$this_week} && defined $title_map{$this_week}->[$task_count - 1]) {
+        $title = $title_map{$this_week}->[$task_count - 1];
+        $title =~ s/^['"]|['"]$//g; # Strip quotes if present in YAML
+    }
+
+    print "\n## Task $num: $title\n";
+    print "***\n\n";
+    print "$desc\n\n";
+}
+
+print "***\n";
+print "$deadline\n" if $deadline;
+__END__
+#!/usr/bin/perl
+use strict;
+use warnings;
+use utf8;
+use open ':std', ':encoding(UTF-8)';
+
 # Usage: perl transform_challenge.pl input.md data/challenges.yml > output.md
 
 my ($md_file, $yaml_file) = @ARGV;
@@ -64,143 +260,8 @@ while ($body =~ m/### Challenge #(\d+)\n>\s*(.*?)(?=\n###|\nLast date|$)/gs) {
     my $title = $title_map{$this_week}->[$task_count - 1] // "Unknown Task";
 
     print "\n## Task $num: $title\n";
-    # --- UPDATED AUTHOR NAME HERE TOO ---
-    # print "##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)\n";
     print "***\n\n";
     print "$desc\n\n";
-}
-
-print "***\n";
-print "$deadline\n" if $deadline;
-
-__END__
-
-#!/usr/bin/perl
-use strict;
-use warnings;
-use utf8;
-
-# Usage: perl transform_challenge.pl input.md data/challenges.yml > output.md
-
-my ($md_file, $yaml_file) = @ARGV;
-die "Usage: $0 <input.md> <challenges.yml>\n" unless $md_file && $yaml_file;
-
-# 1. Parse YAML for Task Titles
-my %title_map;
-open my $yfh, '<', $yaml_file or die "Can't open $yaml_file: $!";
-my $current_week = '';
-while (my $line = <$yfh>) {
-    if ($line =~ /week:\s*'(\d+)'/) {
-        $current_week = int($1); # normalize to integer (e.g. 003 -> 3)
-    }
-    if ($line =~ /-\s+(.+)/ && $current_week) {
-        my $val = $1;
-        # Filter out keys, keep only actual titles
-        if ($val !~ /week:|date:|tasks:|members:|enable:/) {
-            push @{$title_map{$current_week}}, $val;
-        }
-    }
-}
-close $yfh;
-
-# 2. Read the Markdown File
-open my $mfh, '<:encoding(UTF-8)', $md_file or die "Can't open $md_file: $!";
-my $content = do { local $/; <$mfh> };
-close $mfh;
-
-# 3. Identify the Week from Front Matter
-my ($this_week) = $content =~ /title:.*Challenge - (\d+)/i;
-$this_week = int($this_week) if $this_week;
-
-#author: Mohammad S Anwar
-my ($this_week) = $content =~ /title:.*Challenge - (\d+)/i;
-
-
-
-# 4. Extract sections
-my ($front, $body) = $content =~ m/^(---\n.*?\n---\n)(.*)$/s;
-my ($intro) = $body =~ m/^(.*?)(?=### Challenge)/s;
-my ($deadline) = $body =~ m/(Last date to submit.*)$/m;
-
-# 5. Process and Print
-print $front;
-print $intro;
-
-# Iterate through challenges found in the text
-my $task_count = 0;
-while ($body =~ m/### Challenge #(\d+)\n>\s*(.*?)(?=\n###|\nLast date|$)/gs) {
-    $task_count++;
-    my $num = $1;
-    my $desc = $2;
-
-    # Clean up description
-    $desc =~ s/\n/ /g;
-    $desc =~ s/\s+/ /g;
-    $desc =~ s/^\s+|\s+$//g;
-
-    # Fetch title from YAML map
-    my $title = $title_map{$this_week}->[$task_count - 1] // "Unknown Task";
-
-    print "\n## Task $num: $title\n";
-    print "##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)\n";
-    print "***\n\n";
-    print "$desc\n\n";
-}
-
-print "***\n";
-print "$deadline\n" if $deadline;
-
-
-__END__
-#!/usr/bin/perl
-use strict;
-use warnings;
-use utf8;
-
-# Usage: perl convert_challenge.pl input.md > output.md
-
-my $input_file = shift or die "Usage: $0 <input_file>\n";
-open my $fh, '<:encoding(UTF-8)', $input_file or die "Could not open file: $!";
-my $content = do { local $/; <$fh> };
-close $fh;
-
-# 1. Separate Front Matter from Body
-my ($front_matter, $body) = $content =~ m/^(---\n.*?\n---\n)(.*)$/s;
-
-# 2. Extract Challenges
-# Older format usually uses "### Challenge #1" followed by a blockquote "> ..."
-my @tasks;
-while ($body =~ m/### Challenge #(\d+)\n>\s*(.*?)(?=\n###|\nLast date|$)/gs) {
-    push @tasks, {
-        num  => $1,
-        desc => $2
-    };
-}
-
-# 3. Extract the Intro Text (everything before the first challenge)
-my ($intro) = $body =~ m/^(.*?)(?=### Challenge)/s;
-$intro =~ s/^\s+|\s+$//g; # trim
-
-# 4. Extract the Deadline (usually at the very bottom)
-my ($deadline) = $body =~ m/(Last date to submit.*)$/m;
-
-# 5. Clean up Task descriptions
-# Remove potential markdown links or extra newlines inside the quote
-foreach my $task (@tasks) {
-    $task->{desc} =~ s/\n/ /g;       # Flatten newlines
-    $task->{desc} =~ s/\s+/ /g;      # Remove double spaces
-    $task->{desc} =~ s/^\s+|\s+$//g; # Trim
-}
-
-# 6. Generate New Output
-print $front_matter;
-print "\n$intro\n\n";
-
-foreach my $task (@tasks) {
-    print "## Task $task->{num}: [Insert Title Here]\n";
-    print "##### **Submitted by:** [Mohammad S Anwar](https://manwar.org)\n";
-    print "***\n\n";
-    print "$task->{desc}\n\n";
 }
 
 print "***\n";

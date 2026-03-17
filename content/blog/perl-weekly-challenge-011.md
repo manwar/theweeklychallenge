@@ -4,7 +4,7 @@ date: 2019-06-03T00:00:00+00:00
 description: "Perl Weekly Challenge - 011"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 I noticed regular flow of new members to the team of **Perl Weekly Challenge**. Some of them quite actively take part in the challenge as well as blog about it. Some while on vacation, didn't miss to take on weekly challenge. I remember, one member, submit the solution from her sickbed. I am gratefull to each of them for their support. I am equally thankfull to those who take time and blog about their solution. You guys are doing great service to the community in general. Keep the movement going and please do spread the word.
@@ -36,23 +36,24 @@ Good luck for the weekly challenge and enjoy.
 
 ***
 
-### Challenge #1
 
-> Write a script that computes the equal point in the Fahrenheit and Celsius scales, knowing that  the freezing point of water is 32 °F and 0 °C, and that the boiling point of water is 212 °F and 100 °C. This challenge was proposed by **Laurent Rosenfeld**.
-
-
+## Task 1: Equal point in Fahrenheit and Celsius
 ***
 
-### Challenge #2
+Write a script that computes the equal point in the Fahrenheit and Celsius scales, knowing that  the freezing point of water is 32 °F and 0 °C, and that the boiling point of water is 212 °F and 100 °C. This challenge was proposed by **Laurent Rosenfeld**.
 
-> Write a script to create an Indentity Matrix for the given size. For example, if the size is 4, then create Identity Matrix 4x4. For more information about **Indentity Matrix**, please read the [wiki](https://en.wikipedia.org/wiki/Identity_matrix) page.
 
+## Task 2: Identity matrix of given size
 ***
 
-### Challenge #3
+Write a script to create an Indentity Matrix for the given size. For example, if the size is 4, then create Identity Matrix 4x4. For more information about **Indentity Matrix**, please read the [wiki](https://en.wikipedia.org/wiki/Identity_matrix) page.
 
-> Using [Open Weather Map API](https://openweathermap.org/current), write a script to fetch the current weather for an arbitrary city.  Note that you will need to sign up for Open Weather Map's free tier and then wait a couple hours before your API key will be valid. This challenge was proposed by **Joelle Maslak**. The API challenge is **optional** but would love to see your solution.
 
+## Task 3: Open Weather Map API
 ***
 
+Using [Open Weather Map API](https://openweathermap.org/current), write a script to fetch the current weather for an arbitrary city.  Note that you will need to sign up for Open Weather Map's free tier and then wait a couple hours before your API key will be valid. This challenge was proposed by **Joelle Maslak**. The API challenge is **optional** but would love to see your solution.
+
+***
 Last date to submit the solution **6 pm (UK Time) Sunday 9th June 2019**.
+
