@@ -46,6 +46,48 @@ def parse_front_matter(text):
     return fm, body
 
 def extract_task(raw, task_num):
+    # FIX: Check for both "Task X:" and "### Challenge #X"
+    marker_task = f"Task {task_num}:"
+    marker_challenge = f"### Challenge #{task_num}"
+
+    if marker_task in raw:
+        parts = raw.split(marker_task, 1)
+    elif marker_challenge in raw:
+        parts = raw.split(marker_challenge, 1)
+    else:
+        return "", "", ""
+
+    after = parts[1]
+    # Check for the next header to stop extraction
+    next_task = f"## Task {task_num + 1}:"
+    next_challenge = f"### Challenge #{task_num + 1}"
+
+    # Split by whichever next marker comes first
+    task_raw = after.split(next_task)[0].split(next_challenge)[0]
+
+    # Clean up the title and body
+    first_line = task_raw.split("\n")[0].strip()
+    title = re.sub(r'\s*\{[^}]*\}', '', first_line).strip()
+    # Remove leading > and whitespace often found in old blockquotes
+    title = title.lstrip('>').strip()
+
+    body_lines = task_raw.split("\n")[1:]
+    body = "\n".join(body_lines)
+    # Your existing cleaning logic
+    body = re.sub(r'(?m)^#{1,6}\s*\*\*Submitted by:\*\*.*\n?', '', body)
+    body = re.sub(r'(?m)^\*{3,}\s*\n?', '', body)
+    body = body.strip("\n\r\t ")
+
+    # Extract the first non-empty line as the description
+    desc = ""
+    for line in body.splitlines():
+        clean_line = line.lstrip('>').strip()
+        if clean_line:
+            desc = clean_line
+            break
+    return title, desc, body
+
+def extract_task_(raw, task_num):
     marker = f"Task {task_num}:"
     parts = raw.split(marker, 1)
     if len(parts) < 2:

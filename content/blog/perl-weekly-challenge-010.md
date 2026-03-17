@@ -4,7 +4,7 @@ date: 2019-05-27T00:00:00+00:00
 description: "Perl Weekly Challenge - 010"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad Sajid Anwar
+author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---
 I came to know about one secret player of **Perl Weekly Challenge** just few days ago. Any guesses? He is the **Damian Conway**. He doesn't need any introduction. My first encounter with him was when I bought his book **Perl Best Practices**. I have been a big fan of him since then. Checkout his [blog](http://blogs.perl.org/users/damian_conway/2019/05/why-i-love-perl-6.html). I would also like to mention another newly joined member **Yozen Hernandez**. He blogged first time ever that too about his solution to the **Perl Weekly Challenge**. In his [blog](https://yzhernand.github.io/posts/perl-weekly-challenge-9/) he wrote something very nice and sweet at the end.
@@ -42,5 +42,22 @@ With the addition of above new members, we now have **85** members.
 
 ***
 
+### Challenge #1
+
+> Write a script to encode/decode Roman numerals. For example, given Roman numeral **CCXLVI**, it should return **246**. Similarly, for decimal number **39**, it should return **XXXIX**. Checkout wikipedia [page](https://en.wikipedia.org/wiki/Roman_numerals) for more informaiton.
+
 ***
+
+### Challenge #2
+
+> Write a script to find **Jaro-Winkler** distance between two strings. For more information check wikipedia [page](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance).
+
+***
+
+### Challenge #3
+
+> Send email using SendGrid API. For more information, visit the official [page](https://sendgrid.com/solutions/email-api/). This challenge was proposed by **Gabor Szabo**. The API challenge is **optional** but would love to see your solution.
+
+***
+
 Last date to submit the solution **6 pm (UK Time) Sunday 2nd June 2019**.
