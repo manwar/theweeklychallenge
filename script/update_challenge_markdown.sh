@@ -2,8 +2,8 @@
 
 # Check if week number is provided
 if [ -z "$1" ]; then
-    echo "Usage: ./update_challenge.sh <week_number>"
-    echo "Example: ./update_challenge.sh 3"
+    echo "Usage: ./update_challenge_markdown.sh <week_number>"
+    echo "Example: ./update_challenge_markdown.sh 3"
     exit 1
 fi
 
@@ -25,7 +25,7 @@ echo "Processing Week $WEEK_NUM..."
 
 # 4. Run the Perl conversion
 # Note: Ensure your perl script is named 'convert_challenge.pl'
-perl script/convert_challenge.pl "$INPUT_FILE" "$YAML_FILE" > "$TEMP_FILE"
+perl script/convert_challenge_markdown.pl "$INPUT_FILE" "$YAML_FILE" > "$TEMP_FILE"
 
 # 5. Check if perl script succeeded before overwriting
 if [ $? -eq 0 ]; then

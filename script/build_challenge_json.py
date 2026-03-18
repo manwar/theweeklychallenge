@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-build_challenge.py - Generate challenge.json for one or more weeks
+build_challenge_json.py - Generate challenge.json for one or more weeks
 
 Usage:
-  python3 build_challenge.py 362
-  python3 build_challenge.py 360 361 362
-  python3 build_challenge.py --all
+  python3 build_challenge_json.py 362
+  python3 build_challenge_json.py 360 361 362
+  python3 build_challenge_json.py --all
 """
 
 import sys
