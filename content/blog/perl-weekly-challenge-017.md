@@ -4,7 +4,7 @@ date: 2019-07-14T20:00:00+00:00
 description: "Perl Weekly Challenge - 017"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 ***
@@ -62,12 +62,8 @@ I would like to thank everyone for their valuable suggestions. Please do share y
 Check out current [team](/team) members.
 
 ***
-***
 
-## Task #1
-
-***
-***
+## Task 1: Ackermann function
 
 > Create a script to demonstrate Ackermann function. The Ackermann function is defined as below, m and n are positive number:
 
@@ -85,12 +81,8 @@ Check out current [team](/team) members.
 >>              = 4
 
 ***
-***
 
-## Task #2
-
-***
-***
+## Task 2: URL parsing
 
 > Create a script to parse URL and print the components of URL. According to [Wiki page](https://en.wikipedia.org/wiki/URL), the URL syntax is as below:
 
@@ -107,19 +99,14 @@ Check out current [team](/team) members.
 >>       fragment: h1
 
 ***
-***
 
-## Task #3
-
-***
-***
+## Task 3: Bhagavad Gita API
 
 > Write a script to use **Bhagavad Gita API**. For more information about API, please visit [page](https://bhagavadgita.io/api/). The API task is **optional** but we would love to see your solution.
 
 ***
-***
 
 Last date to submit the solution **23:59 (UK Time) Sunday 21st July 2019**.
+***
+Last date to submit the solution **23:59 (UK Time) Sunday 21st July 2019**.
 
-***
-***

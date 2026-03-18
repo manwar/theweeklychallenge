@@ -4,7 +4,7 @@ date: 2019-08-04T20:00:00+00:00
 description: "Perl Weekly Challenge - 020"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 ***
@@ -70,39 +70,24 @@ No new member joined last week. Check out current [team](/team) members.
 None joined last week.
 
 ***
+
+## Task 1: Same-character groups
 ***
 
-## Task #1
+Write a script to accept a string from command line and split it on change of character. For example, if the string is **"ABBCDEEF"**, then it should split like **"A"**, **"BB"**, **"C"**, **"D"**, **"EE"**, **"F"**.
 
-***
-***
 
-> Write a script to accept a string from command line and split it on change of character. For example, if the string is **"ABBCDEEF"**, then it should split like **"A"**, **"BB"**, **"C"**, **"D"**, **"EE"**, **"F"**.
-
-***
+## Task 2: Smallest Amicable Number pair
 ***
 
-## Task #2
+Write a script to print the smallest pair of **Amicable Numbers**. For more information, please checkout wikipedia [page](https://en.wikipedia.org/wiki/Amicable_numbers).
 
-***
-***
 
-> Write a script to print the smallest pair of **Amicable Numbers**. For more information, please checkout wikipedia [page](https://en.wikipedia.org/wiki/Amicable_numbers).
-
-***
+## Task 3: Mercedes-Benz Vehicle Images API
 ***
 
-## Task #3
+Write a script to use **Merceded-Benz Vehicle Images API**. For more information about API, please visit [page](https://developer.mercedes-benz.com/apis/vehicle_images/docs). The API task is **optional** but we would love to see your solution.
 
 ***
-***
-
-> Write a script to use **Merceded-Benz Vehicle Images API**. For more information about API, please visit [page](https://developer.mercedes-benz.com/apis/vehicle_images/docs). The API task is **optional** but we would love to see your solution.
-
-***
-***
-
 Last date to submit the solution **23:59 (UK Time) Sunday 11th August 2019**.
 
-***
-***

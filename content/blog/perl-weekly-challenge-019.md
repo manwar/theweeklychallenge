@@ -4,7 +4,7 @@ date: 2019-07-28T20:00:00+00:00
 description: "Perl Weekly Challenge - 019"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 ***
@@ -69,40 +69,23 @@ I would like to thank everyone for their valuable suggestions. Please do share y
 
 **Orestis Zekai** working as a **Software Engineer**. He is fluent in **Python**. He joined the team as guest contributor.
 
-***
-***
-
-## Task #1
-
-***
+## Task 1: Months with five weekends
 ***
 
-> Write a script to display months from the year 1900 to 2019 where you find 5 weekends i.e. 5 Friday, 5 Saturday and 5 Sunday.
+Write a script to display months from the year 1900 to 2019 where you find 5 weekends i.e. 5 Friday, 5 Saturday and 5 Sunday.
 
-***
-***
 
-## Task #2
-
-***
+## Task 2: Greedy line wrapping
 ***
 
-> Write a script that can wrap the given paragraph at a specified column using the [greedy algorithm](https://en.wikipedia.org/wiki/Line_wrap_and_word_wrap#Minimum_number_of_lines).
+Write a script that can wrap the given paragraph at a specified column using the [greedy algorithm](https://en.wikipedia.org/wiki/Line_wrap_and_word_wrap#Minimum_number_of_lines).
 
-***
-***
 
-## Task #3
-
-***
+## Task 3: NYT Books API
 ***
 
-> Write a script to use **NYT Books API**. You can get API key [here](https://developer.nytimes.com/get-started). For more information about API, please visit [page](https://developer.nytimes.com/docs/books-product/1/overview). The API task is **optional** but we would love to see your solution.
+Write a script to use **NYT Books API**. You can get API key [here](https://developer.nytimes.com/get-started). For more information about API, please visit [page](https://developer.nytimes.com/docs/books-product/1/overview). The API task is **optional** but we would love to see your solution.
 
 ***
-***
-
 Last date to submit the solution **23:59 (UK Time) Sunday 4th August 2019**.
 
-***
-***
