@@ -105,39 +105,21 @@ Check out current [team](/team) members.
 
 Last week, one of the team members, **Roger Bell West**, submitted solution in **Postscript**. He initially started with **Perl5** solutions only. Few weeks ago, he started submitting **Perl6** solutions as well. Now he went beyond my expectations and did it in [**Postscript**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-023/roger-bell-west/postscript). This is the proudest moment for me, when I see how members going out of their comfort zone and trying new challenges every week. I hope it inspires other as well to try something different and share with the team, so we also learn from their hard work.
 
-***
-***
+## Task 1: Smallest valid script
 
-## Task #1
+Create a smallest script in terms of size that on execution doesn't throw any error. The script doesn't have to do anything special. You could even come up with smallest one-liner.
 
-***
-***
+## Task 2: Inverted index fulltext search
 
-> Create a smallest script in terms of size that on execution doesn't throw any error. The script doesn't have to do anything special. You could even come up with smallest one-liner.
+Create a script to implement full text search functionality using **Inverted Index**. According to wikipedia:
 
-***
-***
-
-## Task #2
-
-***
-***
-
-> Create a script to implement full text search functionality using **Inverted Index**. According to wikipedia:
-
->> In computer science, an inverted index (also referred to as a postings file or inverted file) is a database index storing a mapping from content, such as words or numbers, to its locations in a table, or in a document or a set of documents (named in contrast to a forward index, which maps from documents to content). The purpose of an inverted index is to allow fast full-text searches, at a cost of increased processing when a document is added to the database.
+In computer science, an inverted index (also referred to as a postings file or inverted file) is a database index storing a mapping from content, such as words or numbers, to its locations in a table, or in a document or a set of documents (named in contrast to a forward index, which maps from documents to content). The purpose of an inverted index is to allow fast full-text searches, at a cost of increased processing when a document is added to the database.
 
 Here is a nice example of [**Inverted Index**](https://en.wikipedia.org/wiki/Search_engine_indexing#Inverted_indices).
 
-***
-***
+## Task 3: PayRun.io API
 
-## Task #3
-
-***
-***
-
-> Write a script to use **PayRun.io API**. Please follow the [page](https://developer.test.payrun.io/docs/home/index.html) for more information. The API task is **optional** but we would love to see your solution.
+Write a script to use **PayRun.io API**. Please follow the [page](https://developer.test.payrun.io/docs/home/index.html) for more information. The API task is **optional** but we would love to see your solution.
 
 ***
 ***

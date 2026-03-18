@@ -4,7 +4,7 @@ date: 2019-08-11T20:00:00+00:00
 description: "Perl Weekly Challenge - 021"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 ***
@@ -70,41 +70,28 @@ Olli-Antti Kivilahti joined the team while attending **The Perl Conference in Ri
 None joined last week.
 
 ***
-***
 
-## Task #1
+## Task 1: Euler's number
 
-***
-***
-
-> Write a script to calculate the value of **e**, also known as **Euler's number** and **Napier's constant**. Please checkout wiki [page](https://en.wikipedia.org/wiki/E_(mathematical_constant)) for more information.
+Write a script to calculate the value of **e**, also known as **Euler's number** and **Napier's constant**. Please checkout wiki [page](https://en.wikipedia.org/wiki/E_(mathematical_constant)) for more information.
 
 ***
-***
 
-## Task #2
+## Task 2: URL normalization (RFC 3986)
 
-***
-***
-
-> Write a script for URL normalization based on [rfc3986](https://en.wikipedia.org/wiki/URL_normalization). This task was shared by **Anonymous Contributor**.
+Write a script for URL normalization based on [rfc3986](https://en.wikipedia.org/wiki/URL_normalization). This task was shared by **Anonymous Contributor**.
 
 >> According to Wikipedia, **URL normalization** is the process by which URLs are modified and standardized in a consistent manner. The goal of the normalization process is to transform a URL into a normalized URL so it is possible to determine if two syntactically different URLs may be equivalent.
 
 ***
-***
 
-## Task #3
+## Task 3: BC Gov News API
 
-***
-***
+Write a script to use **BC Gov News API**. For more information about API, please visit [page](https://catalogue.data.gov.bc.ca/dataset/bc-gov-news-api-service/resource/3692fd5e-87e2-47ab-8eee-9131ea249436?view_id=923561b3-c814-444a-8199-d1fee36f9487). The API task is **optional** but we would love to see your solution.
 
-> Write a script to use **BC Gov News API**. For more information about API, please visit [page](https://catalogue.data.gov.bc.ca/dataset/bc-gov-news-api-service/resource/3692fd5e-87e2-47ab-8eee-9131ea249436?view_id=923561b3-c814-444a-8199-d1fee36f9487). The API task is **optional** but we would love to see your solution.
-
-***
 ***
 
 Last date to submit the solution **23:59 (UK Time) Sunday 18th August 2019**.
+***
+Last date to submit the solution **23:59 (UK Time) Sunday 18th August 2019**.
 
-***
-***

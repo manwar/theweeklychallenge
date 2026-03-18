@@ -4,7 +4,7 @@ date: 2019-08-18T20:00:00+00:00
 description: "Perl Weekly Challenge - 022"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 ***
@@ -88,41 +88,25 @@ Check out current [team](/team) members.
 We welcome contributions in other languages. So far we have had one guest submitting solutions in **Python** in the past. Last week, we didn't receive any contributions from guest.
 
 ***
-***
 
-## Task #1
+## Task 1: Sexy prime pairs
 
-***
-***
-
-> Write a script to print first **10 Sexy Prime Pairs**. Sexy primes are prime numbers that differ from each other by 6. For example, the numbers 5 and 11 are both sexy primes, because **11 - 5 = 6**. The term **"sexy prime"** is a pun stemming from the Latin word for six: sex. For more information, please checkout wiki [page](https://en.wikipedia.org/wiki/Sexy_prime).
+Write a script to print first **10 Sexy Prime Pairs**. Sexy primes are prime numbers that differ from each other by 6. For example, the numbers 5 and 11 are both sexy primes, because **11 - 5 = 6**. The term **"sexy prime"** is a pun stemming from the Latin word for six: sex. For more information, please checkout wiki [page](https://en.wikipedia.org/wiki/Sexy_prime).
 
 ***
-***
 
-## Task #2
+## Task 2: LZW Compression
 
-***
-***
-
-> Write a script to implement **Lempel–Ziv–Welch (LZW)** compression algorithm. The script should have method to **encode/decode** algorithm. The wiki [page](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch) explains the compression algorithm very nicely.
+Write a script to implement **Lempel–Ziv–Welch (LZW)** compression algorithm. The script should have method to **encode/decode** algorithm. The wiki [page](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch) explains the compression algorithm very nicely.
 
 I must confess, it took me many years to get my head around the compression algorithm, I finally understood while doing research for the task. So thanks to **Perl Weekly Challenge**, I can proudly say that now I understand the compression algorithm. I hope you will enjoy this task as much as I did.
 
 ***
-***
 
-## Task #3
+## Task 3: Amazon Pinpoint API
 
-***
-***
+Write a script to use **Amazon Pinpoint API**. For more information about the API, please visit [page](https://docs.aws.amazon.com/pinpoint/latest/apireference/welcome.html). The API task is **optional** but we would love to see your solution.
 
-> Write a script to use **Amazon Pinpoint API**. For more information about the API, please visit [page](https://docs.aws.amazon.com/pinpoint/latest/apireference/welcome.html). The API task is **optional** but we would love to see your solution.
-
-***
 ***
 
 Last date to submit the solution **23:59 (UK Time) Sunday 25th August 2019**.
-
-***
-***

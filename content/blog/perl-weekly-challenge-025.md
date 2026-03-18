@@ -99,39 +99,19 @@ Check out current [team](/team) members.
 
 Watch this space for contributions in language other than **Perl** and **Raku**.
 
-***
-***
+## Task 1: Head to tail Pokémon names
 
-## Task #1
+Generate a longest sequence of the following "**English Pokemon**" names where each name starts with the last letter of previous name.
 
-***
-***
-
-> Generate a longest sequence of the following "**English Pokemon**" names where each name starts with the last letter of previous name.
-
->> audino bagon baltoy banette bidoof braviary bronzor carracosta charmeleon cresselia croagunk darmanitan deino emboar emolga exeggcute gabite girafarig gulpin haxorus heatmor heatran ivysaur jellicent jumpluff kangaskhan kricketune landorus ledyba loudred lumineon lunatone machamp magnezone mamoswine nosepass petilil pidgeotto pikachu pinsir poliwrath poochyena porygon2 porygonz registeel relicanth remoraid rufflet sableye scolipede scrafty seaking sealeo silcoon simisear snivy snorlax spoink starly tirtouga trapinch treecko tyrogue vigoroth vulpix wailord wartortle whismur wingull yamask
+audino bagon baltoy banette bidoof braviary bronzor carracosta charmeleon cresselia croagunk darmanitan deino emboar emolga exeggcute gabite girafarig gulpin haxorus heatmor heatran ivysaur jellicent jumpluff kangaskhan kricketune landorus ledyba loudred lumineon lunatone machamp magnezone mamoswine nosepass petilil pidgeotto pikachu pinsir poliwrath poochyena porygon2 porygonz registeel relicanth remoraid rufflet sableye scolipede scrafty seaking sealeo silcoon simisear snivy snorlax spoink starly tirtouga trapinch treecko tyrogue vigoroth vulpix wailord wartortle whismur wingull yamask
 
 The above names borrowed from [wiki page](https://en.wikipedia.org/wiki/List_of_Pok%C3%A9mon).
 
-***
-***
+## Task 2: Chaocipher implementation
 
-## Task #2
+Create script to implement **Chaocipher**. Please checkout [wiki page](https://en.wikipedia.org/wiki/Chaocipher) for more information.
 
-***
-***
-
-> Create script to implement **Chaocipher**. Please checkout [wiki page](https://en.wikipedia.org/wiki/Chaocipher) for more information.
-
-***
-***
-
-## Task #3
-
-***
-***
-
-> We decided to put the optional API task on hold for the time being, while we are working on the format.
+We decided to put the optional API task on hold for the time being, while we are working on the format.
 
 ***
 ***

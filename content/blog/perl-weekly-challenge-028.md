@@ -85,25 +85,13 @@ Check out current [**team**](/team) members.
 
 [**Lubos Kolouch**](https://perlweeklychallenge.org/blog/meet-the-champion-024) surprised everyone by submitting **Python** solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/lubos-kolouch/python/ch27_1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/lubos-kolouch/python/ch27_2.py) of [**Perl Weekly Challenge - 027**](https://perlweeklychallenge.org/blog/perl-weekly-challenge-027/). Please do check out. Also please share your creative solutions in other languages.
 
-***
-***
+## Task 1: ASCII or binary files?
 
-## Task #1
+Write a script to check the file content without explicitly reading the content. It should accept file name with path as command line argument and print **"The file content is binary."** or else **"The file content is ascii."** accordingly.
 
-***
-***
+## Task 2: Digital clock
 
-> Write a script to check the file content without explicitly reading the content. It should accept file name with path as command line argument and print **"The file content is binary."** or else **"The file content is ascii."** accordingly.
-
-***
-***
-
-## Task #2
-
-***
-***
-
-> Write a script to display **Digital Clock**. Feel free to be as creative as you can when displaying digits. We expect bare minimum something like **"14:10:11"**.
+Write a script to display **Digital Clock**. Feel free to be as creative as you can when displaying digits. We expect bare minimum something like **"14:10:11"**.
 
 ***
 ***

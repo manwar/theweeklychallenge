@@ -103,37 +103,19 @@ Check out current [team](/team) members.
 
 We welcome contributions in other languages. So far we have had one guest submitting solutions in **Python** in the past. Last week, we didn't receive any contributions from guest.
 
-***
-***
+## Task 1: nth order forward difference series
 
-## Task #1
+Create a script that prints nth order forward difference series. You should be a able to pass the list of numbers and order number as command line parameters. Let me show you with an example.
 
-***
-***
+Suppose we have list (X) of numbers: 5, 9, 2, 8, 1, 6 and we would like to create 1st order forward difference series (Y). So using the formula Y(i) = X(i+1) - X(i), we get the following numbers: (9-5), (2-9), (8-2), (1-8), (6-1). In short, the final series would be: 4, -7, 6, -7, 5. If you noticed, it has one less number than the original series. Similary you can carry on 2nd order forward difference series like: (-7-4), (6+7), (-7-6), (5+7) => -11, 13, -13, 12.
 
-> Create a script that prints nth order forward difference series. You should be a able to pass the list of numbers and order number as command line parameters. Let me show you with an example.
+## Task 2: Prime decomposition
 
->> Suppose we have list (X) of numbers: 5, 9, 2, 8, 1, 6 and we would like to create 1st order forward difference series (Y). So using the formula Y(i) = X(i+1) - X(i), we get the following numbers: (9-5), (2-9), (8-2), (1-8), (6-1). In short, the final series would be: 4, -7, 6, -7, 5. If you noticed, it has one less number than the original series. Similary you can carry on 2nd order forward difference series like: (-7-4), (6+7), (-7-6), (5+7) => -11, 13, -13, 12.
+Create a script that prints **Prime Decomposition** of a given number. The prime decomposition of a number is defined as a list of prime numbers which when all multiplied together, are equal to that number. For example, the Prime decomposition of 228 is 2,2,3,19 as 228 = 2 * 2 * 3 * 19.
 
-***
-***
+## Task 3: Random Poems API
 
-## Task #2
-
-***
-***
-
-> Create a script that prints **Prime Decomposition** of a given number. The prime decomposition of a number is defined as a list of prime numbers which when all multiplied together, are equal to that number. For example, the Prime decomposition of 228 is 2,2,3,19 as 228 = 2 * 2 * 3 * 19.
-
-***
-***
-
-## Task #3
-
-***
-***
-
-> Write a script to use **Random Poems API**. This is the easiset API, I have come across so far. You don't need API key for this. They have only [route](https://www.poemist.com/api/v1/randompoems) to work with (GET). The API task is **optional** but we would love to see your solution.
+Write a script to use **Random Poems API**. This is the easiset API, I have come across so far. You don't need API key for this. They have only [route](https://www.poemist.com/api/v1/randompoems) to work with (GET). The API task is **optional** but we would love to see your solution.
 
 ***
 ***

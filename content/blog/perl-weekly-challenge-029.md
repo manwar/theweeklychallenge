@@ -97,33 +97,21 @@ Check out current [**team**](/team) members.
 
 Also please share your creative solutions in other languages.
 
-***
-***
+## Task 1: Brace expansion
 
-## Task #1
+Write a script to demonstrate **brace expansion**. For example, script would take command line argument **Perl {Daily,Weekly,Monthly,Yearly} Challenge** and should expand it and print like below:
 
-***
-***
+Perl Daily Challenge
 
-> Write a script to demonstrate **brace expansion**. For example, script would take command line argument **Perl {Daily,Weekly,Monthly,Yearly} Challenge** and should expand it and print like below:
+Perl Weekly Challenge
 
-      Perl Daily Challenge
+Perl Monthly Challenge
 
-      Perl Weekly Challenge
+Perl Yearly Challenge
 
-      Perl Monthly Challenge
+## Task 2: Calling C functions
 
-      Perl Yearly Challenge
-
-***
-***
-
-## Task #2
-
-***
-***
-
-> Write a script to demonstrate calling a **C function**. It could be any user defined or standard **C** function.
+Write a script to demonstrate calling a **C function**. It could be any user defined or standard **C** function.
 
 ***
 ***

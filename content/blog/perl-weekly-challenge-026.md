@@ -93,35 +93,15 @@ None joined last week. Check out current [team](/team) members.
 
 Watch this space for contributions in language other than **Perl** and **Raku**.
 
-***
-***
+## Task 1: Stones and jewels alphabets
 
-## Task #1
+Create a script that accepts two strings, let us call it, **"stones"** and **"jewels"**. It should print the count of "alphabet" from the string **"stones"** found in the string **"jewels"**. For example, if your **stones** is **"chancellor"** and **"jewels"** is **"chocolate"**, then the script should print **"8"**. To keep it simple, only A-Z,a-z characters are acceptable. Also make the comparison case sensitive.
 
-***
-***
+## Task 2: Mean angles
 
-> Create a script that accepts two strings, let us call it, **"stones"** and **"jewels"**. It should print the count of "alphabet" from the string **"stones"** found in the string **"jewels"**. For example, if your **stones** is **"chancellor"** and **"jewels"** is **"chocolate"**, then the script should print **"8"**. To keep it simple, only A-Z,a-z characters are acceptable. Also make the comparison case sensitive.
+Create a script that prints **mean angles** of the given list of angles in degrees. Please read [wiki page](https://en.wikipedia.org/wiki/Mean_of_circular_quantities) that explains the formula in details with an example.
 
-***
-***
-
-## Task #2
-
-***
-***
-
-> Create a script that prints **mean angles** of the given list of angles in degrees. Please read [wiki page](https://en.wikipedia.org/wiki/Mean_of_circular_quantities) that explains the formula in details with an example.
-
-***
-***
-
-## Task #3
-
-***
-***
-
-> We decided to put the optional API task on hold for the time being, while we are working on the format.
+We decided to put the optional API task on hold for the time being, while we are working on the format.
 
 ***
 ***

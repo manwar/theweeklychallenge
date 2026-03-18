@@ -105,25 +105,13 @@ Check out current [**team**](/team) members.
 
 Also please share your creative solutions in other languages.
 
-***
-***
+## Task 1: Divide by zero checking
 
-## Task #1
+Create a function to check **divide by zero error** without checking if the denominator is zero.
 
-***
-***
+## Task 2: Dynamic variable names
 
-> Create a function to check **divide by zero error** without checking if the denominator is zero.
-
-***
-***
-
-## Task #2
-
-***
-***
-
-> Create a script to demonstrate creating **dynamic variable name**, assign a value to the variable and finally print the variable. The **variable name** would be passed as command line argument.
+Create a script to demonstrate creating **dynamic variable name**, assign a value to the variable and finally print the variable. The **variable name** would be passed as command line argument.
 
 ***
 ***

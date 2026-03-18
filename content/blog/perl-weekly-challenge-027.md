@@ -85,35 +85,23 @@ Check out current [team](/team) members.
 
 Watch this space for contributions in language other than **Perl5** and **Perl6**.
 
-***
-***
+## Task 1: Intersection of two lines
 
-## Task #1
+Write a script to find the intersection of two straight lines. The co-ordinates of the two lines should be provided as command line parameter. For example:
 
-***
-***
+The two ends of **Line 1** are represented as co-ordinates **(a,b)** and **(c,d)**.
 
-> Write a script to find the intersection of two straight lines. The co-ordinates of the two lines should be provided as command line parameter. For example:
-
->> The two ends of **Line 1** are represented as co-ordinates **(a,b)** and **(c,d)**.
->>
->> The two ends of **Line 2** are represented as co-ordinates **(p,q)** and **(r,s)**.
+The two ends of **Line 2** are represented as co-ordinates **(p,q)** and **(r,s)**.
 
 The script should print the co-ordinates of point of intersection of the above two lines.
 
-***
-***
+## Task 2: Historical values
 
-## Task #2
+Write a script that allows you to capture/display historical data. It could be an object or a scalar. For example
 
-***
-***
-
-> Write a script that allows you to capture/display historical data. It could be an object or a scalar. For example
-
->> my $x = 10;
->> $x = 20;
->> $x -= 5;
+my $x = 10;
+$x = 20;
+$x -= 5;
 
 After the above operations, it should list **$x** historical value in order.
 
