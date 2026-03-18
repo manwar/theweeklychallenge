@@ -1178,6 +1178,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ## [The Weekly Challenge - 365](/blog/perl-weekly-challenge-365) {#365}
 <br>
 
+##### **beespider** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/beespider/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/beespider/uiua/ch-2.ua) in **Uiua**.
+
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/conor-hoekstra/apl/ch-1.tinyapl) in **APL**.
 
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/conor-hoekstra/kap/ch-1.kap) in **Kap**.
@@ -1193,6 +1195,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/luca-ferrari/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/luca-ferrari/python/ch-2.py) in **Python**.
+
+##### **Marton Polgar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/2colours/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/2colours/prolog/ch-2.p) in **Prolog**.
 
 ##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/mohammad-anwar/python/ch-1.py) in **Python**.
 
