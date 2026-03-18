@@ -32,35 +32,6 @@ Check out other [team](/team) members.
 
 ***
 
-### Task #1
-
-> Pythagoras Pie Puzzle, proposed by **Jo Christian Oterhals**.
-
->> At a party a pie is to be shared by 100 guest. The first guest gets 1% of the pie, the second guest gets 2% of the remaining pie, the third gets 3% of the remaining pie, the fourth gets 4% and so on.
-
-> Write a script that figures out which guest gets the largest piece of pie.
-
-***
-
-### Task #2
-
-> Write a script to validate a given bitcoin address. Most Bitcoin addresses are 34 characters. They consist of random digits and uppercase and lowercase letters, with the exception that the uppercase letter "O", uppercase letter "I", lowercase letter "l", and the number "0" are never used to prevent visual ambiguity. A bitcoin address encodes 25 bytes. The last four bytes are a checksum check. They are the first four bytes of a double SHA-256 digest of the previous 21 bytes. For more information, please refer [wiki](https://en.bitcoin.it/wiki/Address) page. Here are some valid bitcoin addresses:
-
-```perl
-    1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2
-    3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy
-```
-
-***
-
-### Task #3
-
-> Write a script to use Winning Email API. For more information about API, please visit [page](https://winning.email/api/v1/docs). The API task is **optional** but we would love to see your solution.
-
-***
-
-Last date to submit the solution **23:59 (UK Time) Sunday 14th July 2019**.
-
 ## Task 1: Pythagoras Pie Puzzle
 ***
 

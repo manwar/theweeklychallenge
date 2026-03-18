@@ -44,42 +44,6 @@ Check out other [team](/team) members.
 
 ***
 
-### Task #1
-
-> Write a script to generate first 10 strong and weak prime numbers.
-
-```perl
-  For example, the nth prime number is represented by p(n).
-
-  p(1) = 2
-  p(2) = 3
-  p(3) = 5
-  p(4) = 7
-  p(5) = 11
-
-  Strong Prime number p(n) when p(n) > [ p(n-1) + p(n+1) ] / 2
-  Weak   Prime number p(n) when p(n) < [ p(n-1) + p(n+1) ] / 2
-```
-
-***
-
-### Task #2
-
-> Write a script to implement Vigenère cipher. The script should be able encode and decode. Checkout wiki [page](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) for more information.
-
-***
-
-### Task #3
-
-> Write a script to use Language Detection API. For more information about API, please visit [page](https://detectlanguage.com/). The API task is **optional** but we would love to see your solution.
-
-***
-
-Last date to submit the solution **23:59 (UK Time) Sunday 7th July 2019**.
-***
-Last date to submit the solution **23:59 (UK Time) Sunday 7th July 2019**.
-
-
 ## Task 1: Strong and weak primes
 ***
 
@@ -110,8 +74,6 @@ Write a script to implement Vigenère cipher. The script should be able encode a
 
 Write a script to use Language Detection API. For more information about API, please visit [page](https://detectlanguage.com/). The API task is **optional** but we would love to see your solution.
 
-***
-Last date to submit the solution **23:59 (UK Time) Sunday 7th July 2019**.
 ***
 Last date to submit the solution **23:59 (UK Time) Sunday 7th July 2019**.
 

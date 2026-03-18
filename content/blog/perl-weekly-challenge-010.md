@@ -42,19 +42,19 @@ With the addition of above new members, we now have **85** members.
 
 ***
 
-### Challenge #1
+### Task 1: Roman numeral encode/decode
 
 > Write a script to encode/decode Roman numerals. For example, given Roman numeral **CCXLVI**, it should return **246**. Similarly, for decimal number **39**, it should return **XXXIX**. Checkout wikipedia [page](https://en.wikipedia.org/wiki/Roman_numerals) for more informaiton.
 
 ***
 
-### Challenge #2
+### Task 2: Jaro-Winkler string distance
 
 > Write a script to find **Jaro-Winkler** distance between two strings. For more information check wikipedia [page](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance).
 
 ***
 
-### Challenge #3
+### Task 3: Words API
 
 > Send email using SendGrid API. For more information, visit the official [page](https://sendgrid.com/solutions/email-api/). This challenge was proposed by **Gabor Szabo**. The API challenge is **optional** but would love to see your solution.
 
