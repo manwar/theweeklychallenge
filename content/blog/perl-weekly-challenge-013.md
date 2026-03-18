@@ -4,7 +4,7 @@ date: 2019-06-16T20:00:00+00:00
 description: "Perl Weekly Challenge - 013"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 Couple of weeks ago, I tweet below about a surprise for all registered members.
@@ -44,9 +44,11 @@ Check out other [team](/team) members.
 
 ***
 
-### Challenge #1
 
-> Write a script to print the date of last **Friday** of every month of a given year. For example, if the given year is **2019** then it should print the following:
+## Task 1: Last Fridays of every month
+***
+
+Write a script to print the date of last **Friday** of every month of a given year. For example, if the given year is **2019** then it should print the following:
 
     2019/01/25
     2019/02/22
@@ -61,22 +63,22 @@ Check out other [team](/team) members.
     2019/11/29
     2019/12/27
 
+
+## Task 2: Mutually recursive methods
 ***
 
-### Challenge #2
-
-> Write a script to demonstrate **Mutually Recursive** methods. Two methods are mutually recursive if the first method calls the second and the second calls first in turn. Using the mutually recursive methods, generate [Hofstadter Female and Male sequences](https://en.wikipedia.org/wiki/Hofstadter_sequence#Hofstadter_Female_and_Male_sequences).
+Write a script to demonstrate **Mutually Recursive** methods. Two methods are mutually recursive if the first method calls the second and the second calls first in turn. Using the mutually recursive methods, generate [Hofstadter Female and Male sequences](https://en.wikipedia.org/wiki/Hofstadter_sequence#Hofstadter_Female_and_Male_sequences).
 
      F ( 0 ) = 1   ;   M ( 0 ) = 0
      F ( n ) = n − M ( F ( n − 1 ) ) , n > 0
      M ( n ) = n − F ( M ( n − 1 ) ) , n > 0.
 
+
+## Task 3: Words API
 ***
 
-### Challenge #3
-
-> Find the details of a given word using the [Words API](https://www.wordsapi.com/docs/). The API challenge is **optional** but would love to see your solution.
+Find the details of a given word using the [Words API](https://www.wordsapi.com/docs/). The API challenge is **optional** but would love to see your solution.
 
 ***
-
 Last date to submit the solution **6 pm (UK Time) Sunday 23rd June 2019**.
+

@@ -4,7 +4,7 @@ date: 2019-06-30T20:00:00+00:00
 description: "Perl Weekly Challenge - 015"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 Let me announce the winner of **Perl Weekly Challenge - 014** and the name is **Jaldhar H. Vyas**. Many congratulations to **Jaldhar**. You should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. Please do let us know how you feel about it. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
@@ -76,3 +76,43 @@ Check out other [team](/team) members.
 ***
 
 Last date to submit the solution **23:59 (UK Time) Sunday 7th July 2019**.
+***
+Last date to submit the solution **23:59 (UK Time) Sunday 7th July 2019**.
+
+
+## Task 1: Strong and weak primes
+***
+
+Write a script to generate first 10 strong and weak prime numbers.
+
+```perl
+  For example, the nth prime number is represented by p(n).
+
+  p(1) = 2
+  p(2) = 3
+  p(3) = 5
+  p(4) = 7
+  p(5) = 11
+
+  Strong Prime number p(n) when p(n) > [ p(n-1) + p(n+1) ] / 2
+  Weak   Prime number p(n) when p(n) < [ p(n-1) + p(n+1) ] / 2
+```
+
+
+## Task 2: Vigenère cipher
+***
+
+Write a script to implement Vigenère cipher. The script should be able encode and decode. Checkout wiki [page](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) for more information.
+
+
+## Task 3: Language Detection API
+***
+
+Write a script to use Language Detection API. For more information about API, please visit [page](https://detectlanguage.com/). The API task is **optional** but we would love to see your solution.
+
+***
+Last date to submit the solution **23:59 (UK Time) Sunday 7th July 2019**.
+***
+Last date to submit the solution **23:59 (UK Time) Sunday 7th July 2019**.
+
+

@@ -60,7 +60,7 @@ print $intro;
 
 # 6. Iterate through challenges
 my $task_count = 0;
-while ($body =~ m/### Challenge #(\d+)\s+((?:>\s*.*?\n)+)(?=\n###|\n\*\*\*|\nLast date|$)/gs) {
+while ($body =~ m/### (?:Task|Challenge) #(\d+)\s+((?:>\s*.*?\n)+)(?=\n###|\n\*\*\*|\nLast date|$)/gs) {
     $task_count++;
     my $num = $1;
     my $desc_block = $2;
