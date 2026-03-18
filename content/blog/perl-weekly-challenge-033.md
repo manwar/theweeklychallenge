@@ -98,12 +98,7 @@ Please do share your creative solutions in other languages.
 ***
 ***
 
-## Task #1
-
-***
-***
-
-#### Count Letters (A..Z)
+## Task 1: Count Letters (A..Z)
 
 Create a script that accepts one or more files specified on the command-line and count the number of times letters appeared in the files.
 
@@ -143,12 +138,7 @@ the script would display something like:
 ***
 ***
 
-## Task #2
-
-***
-***
-
-#### Formatted Multiplication Table
+## Task 2: Formatted Multiplication Table
 
 Write a script to print 11x11 multiplication table, only the top half triangle.
 

@@ -98,13 +98,11 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 ***
 ***
 
-## TASK #1
-##### Contributed by Paul Johnson
+### Both tasks contributed by Paul Johnson
 
-***
-***
+## Task 1: Encode binary morse code
 
-### Write a program to encode text into binary encoded morse code.
+Write a program to encode text into binary encoded morse code.
 
 ***
 
@@ -112,36 +110,25 @@ Pay attention to any changes which might need to be made to the text to make it 
 
 [**Morse code**](https://en.wikipedia.org/wiki/Morse_code) consists of dots, dashes and gaps. It can be encoded in binary in the following fashion:
 
-##### dot: 1
+    dot: 1
+    dash: 111
+    intra-character gap: 0
+    character gap: 000
 
-##### dash: 111
-
-##### intra-character gap: 0
-
-##### character gap: 000
-
-##### word gap: 0000000
+    word gap: 0000000
 
 An intra-character gap is inserted between the dots and dashes in a character.
 
 ***
-***
 
-## TASK #2
-##### Contributed by Paul Johnson
+## Task 2: Decode binary morse code
 
-***
-***
-
-### Write a program to decode binary morse code.
-
-***
+Write a program to decode binary morse code.
 
 Consider how it might be possible to recover from badly formed morse code.
 
-##### a) by splitting the morse code on gaps
-
-##### b)  without looking further than one digit ahead
+    a) by splitting the morse code on gaps
+    b)  without looking further than one digit ahead
 
 ***
 ***

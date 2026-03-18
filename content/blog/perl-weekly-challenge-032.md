@@ -96,15 +96,9 @@ Please do share your creative solutions in other languages.
 ***
 ***
 
-## Task #1
-##### Contributed by Neil Bowers
+Both tasks contributed by Neil Bowers.
 
-***
-***
-
-#### Count instances
-
-***
+## Task 1: Count Instances
 
 Create a script that either reads standard input or one or more files specified on the command-line. Count the number of times and then print a summary, sorted by the count of each entry.
 
@@ -130,17 +124,8 @@ For extra credit, add a -csv option to your script, which would generate:
     banana,1
 
 ***
-***
 
-## Task #2
-##### Contributed by Neil Bowers
-
-***
-***
-
-####  ASCII bar chart
-
-***
+## Task 2: ASCII bar chart
 
 Write a function that takes a hashref where the keys are labels and the values are integer or floating point values. Generate a bar graph of the data and display it to stdout.
 

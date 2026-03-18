@@ -108,24 +108,17 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 ***
 ***
 
-## Task #1
-##### Contributed by Dave Cross
+### Both tasks contributed by Dave Cross
+
+## Task 1: Hash and/or array slices
+
+Write a program that demonstrates using hash slices and/or array slices.
 
 ***
-***
 
-#### Write a program that demonstrates using hash slices and/or array slices.
+## Task 2: Dispatch tables
 
-***
-***
-
-## Task #2
-##### Contributed by Dave Cross
-
-***
-***
-
-#### Write a program that demonstrates a dispatch table.
+Write a program that demonstrates a dispatch table.
 
 ***
 ***
