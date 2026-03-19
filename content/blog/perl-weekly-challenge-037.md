@@ -91,15 +91,9 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
+## Task 1: Weekdays in 2019
 
-## TASK #1
-
-***
-***
-
-### Write a script to calculate the total number of weekdays (Mon-Fri) in each month of the year 2019.
+Write a script to calculate the total number of weekdays (Mon-Fri) in each month of the year 2019.
 
 ##### Jan: 23 days
 ##### Feb: 20 days
@@ -114,15 +108,9 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 ##### Nov: 21 days
 ##### Dec: 22 days
 
-***
-***
+## Task 2: Daylight gain/loss
 
-## TASK #2
-
-***
-***
-
-### Write a script to find out the **DayLight** gain/loss in the month of **December 2019** as compared to **November 2019** in the city of **London**. You can find out sunrise and sunset data for [November 2019](https://www.timeanddate.com/sun/uk/london?month=11&year=2019) and [December 2019](https://www.timeanddate.com/sun/uk/london?month=12&year=2019) for **London**.
+Write a script to find out the **DayLight** gain/loss in the month of **December 2019** as compared to **November 2019** in the city of **London**. You can find out sunrise and sunset data for [November 2019](https://www.timeanddate.com/sun/uk/london?month=11&year=2019) and [December 2019](https://www.timeanddate.com/sun/uk/london?month=12&year=2019) for **London**.
 
 ***
 ***

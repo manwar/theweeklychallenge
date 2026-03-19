@@ -91,25 +91,13 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
+## Task 1: Vehicle Identification Numbers
 
-## TASK #1
+Write a program to validate given Vehicle Identification Number (VIN). For more information, please checkout [**wikipedia**](https://en.wikipedia.org/wiki/Vehicle_identification_number).
 
-***
-***
+## Task 2: Knapsack problem
 
-### Write a program to validate given Vehicle Identification Number (VIN). For more information, please checkout [**wikipedia**](https://en.wikipedia.org/wiki/Vehicle_identification_number).
-
-***
-***
-
-## TASK #2
-
-***
-***
-
-### Write a program to solve Knapsack Problem.
+Write a program to solve Knapsack Problem.
 
 ***
 

@@ -83,38 +83,29 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
+## Task 1: Guest house lights
 
-## TASK #1
-
-***
-***
-
-### A guest house had a policy that the light remain ON as long as the at least one guest is in the house. There is guest book which tracks all guest in/out time. Write a script to find out how long in minutes the light were ON.
+A guest house had a policy that the light remain ON as long as the at least one guest is in the house. There is guest book which tracks all guest in/out time. Write a script to find out how long in minutes the light were ON.
 
 ## Guest Book
 
-    1) Alex    IN: 09:10 OUT: 09:45
-    2) Arnold  IN: 09:15 OUT: 09:33
-    3) Bob     IN: 09:22 OUT: 09:55
-    4) Charlie IN: 09:25 OUT: 10:05
-    5) Steve   IN: 09:33 OUT: 10:01
-    6) Roger   IN: 09:44 OUT: 10:12
-    7) David   IN: 09:57 OUT: 10:23
-    8) Neil    IN: 10:01 OUT: 10:19
-    9) Chris   IN: 10:10 OUT: 11:00
+1) Alex    IN: 09:10 OUT: 09:45
+2) Arnold  IN: 09:15 OUT: 09:33
+3) Bob     IN: 09:22 OUT: 09:55
+4) Charlie IN: 09:25 OUT: 10:05
+5) Steve   IN: 09:33 OUT: 10:01
+6) Roger   IN: 09:44 OUT: 10:12
+7) David   IN: 09:57 OUT: 10:23
+8) Neil    IN: 10:01 OUT: 10:19
+9) Chris   IN: 10:10 OUT: 11:00
 
-***
-***
-
-## TASK #2
+## Task 2: Reverse Polish Notation
 #### Contributed by Andrezgz
 
 ***
 ***
 
-### Write a script to demonstrate **Reverse Polish notation(RPN)**. Checkout the [**wiki page**](https://en.wikipedia.org/wiki/Reverse_Polish_notation) for more information about **RPN**.
+Write a script to demonstrate **Reverse Polish notation(RPN)**. Checkout the [**wiki page**](https://en.wikipedia.org/wiki/Reverse_Polish_notation) for more information about **RPN**.
 
 ***
 ***

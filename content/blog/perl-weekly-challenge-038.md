@@ -91,15 +91,7 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### Date Finder
+## Task 1: Date finder
 
 Create a script to accept a **7 digits** number, where the first number can only be **1** or **2**. The second and third digits can be anything **0-9**. The fourth and fifth digits corresponds to the month i.e. **01,02,03...,11,12**. And the last **2 digits** respresents the days in the month i.e. **01,02,03....29,30,31**. Your script should validate if the given number is valid as per the rule and then convert into human readable format date.
 
@@ -113,37 +105,29 @@ Create a script to accept a **7 digits** number, where the first number can only
 
 For example, the given number is **2230120**, it should print **1923-01-20**.
 
-***
-***
-
-## TASK #2
-
-***
-***
-
-### Word Game
+## Task 2: Word game
 
 Lets assume we have tiles as listed below, with an alphabet (**A..Z**) printed on them. Each tile has a value, e.g. **A (1 point), B (4 points)** etc. You are allowed to draw **7 tiles** from the lot randomly. Then try to form a word using the **7 tiles** with maximum points altogether. You don't have to use all the **7 tiles** to make a word. You should try to use as many tiles as possible to get the maximum points.
 
 For example, A (x8) means there are 8 tiles with letter A.
 
 #### 1 point
-> A (x8), G (x3), I (x5), S (x7), U (x5), X (x2), Z (x5)
+A (x8), G (x3), I (x5), S (x7), U (x5), X (x2), Z (x5)
 
 #### 2 points
-> E (x9), J (x3), L (x3), R (x3), V (x3), Y (x5)
+E (x9), J (x3), L (x3), R (x3), V (x3), Y (x5)
 
 #### 3 points
-> F (x3), D (x3), P (x5), W (x5)
+F (x3), D (x3), P (x5), W (x5)
 
 #### 4 points
-> B (x5), N (x4)
+B (x5), N (x4)
 
 #### 5 points
-> T (x5), O (x3), H (x3), M (x4), C (x4)
+T (x5), O (x3), H (x3), M (x4), C (x4)
 
 #### 10 points
-> K (x2), Q (x2)
+K (x2), Q (x2)
 
 ***
 ***

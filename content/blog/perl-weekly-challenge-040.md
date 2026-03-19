@@ -87,15 +87,9 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
+## Task 1: Multiple arrays
 
-## TASK #1
-
-***
-***
-
-### Show multiple arrays content
+Show multiple arrays content
 
 You are given **two** or more arrays. Write a script to display values of each list at a given index.
 
@@ -109,24 +103,18 @@ For example:
 
 We expect the following output:
 
-    I 2 !
-    L 4 ?
-    O 0 £
-    V 3 $
-    E 2 %
-    Y 0 ^
-    O 1 &
-    U 9 *
+I 2 !
+L 4 ?
+O 0 £
+V 3 $
+E 2 %
+Y 0 ^
+O 1 &
+U 9 *
 
-***
-***
+## Task 2: Sorting sublists
 
-## TASK #2
-
-***
-***
-
-### Sort SubList
+Sort SubList
 
 You are given a list of numbers and set of indices belong to the list. Write a script to sort the values belongs to the indices.
 
