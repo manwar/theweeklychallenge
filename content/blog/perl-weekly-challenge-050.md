@@ -101,21 +101,11 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### Merge Intervals
-
-***
+## Task 1: Merge Intervals
 
 Write a script to merge the given intervals where ever possible.
 
-> [2,7], [3,9], [10,12], [15,19], [18,22]
+[2,7], [3,9], [10,12], [15,19], [18,22]
 
 The script should merge **[2, 7]** and **[3, 9]** together to return **[2, 9]**.
 
@@ -123,21 +113,11 @@ Similarly it should also merge **[15, 19]** and **[18, 22]** together to return 
 
 The final result should be something like below:
 
-> [2, 9], [10, 12], [15, 22]
+[2, 9], [10, 12], [15, 22]
 
-***
-***
+The following task is contributed by Ryan Thompson.
 
-## TASK #2
-
-##### Contributed by Ryan Thompson.
-
-***
-***
-
-### Noble Integer
-
-***
+## Task 2: Noble Integer
 
 You are given a list, `@L`, of three or more random integers between 1 and 50. A Noble Integer is an integer *N* in `@L`, such that there are exactly *N* integers greater than *N* in `@L`. Output any Noble Integer found in `@L`, or an empty list if none were found.
 

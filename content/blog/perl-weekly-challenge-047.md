@@ -101,35 +101,19 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### Roman Calculator
+## Task 1: Roman Calculator
 
 Write a script that accepts two roman numbers and operation. It should then perform the operation on the give roman numbers and print the result.
 
 For example,
 
-    perl ch-1.pl V + VI
+perl ch-1.pl V + VI
 
 It should print
 
-    XI
+XI
 
-***
-***
-
-## TASK #2
-
-***
-***
-
-### Gapful Number
+## Task 2: Gapful Number
 
 Write a script to print first **20 Gapful Numbers** greater than or equal to 100. Please check out the [**page**](https://oeis.org/A108343) for more information about **Gapful Numbers**.
 

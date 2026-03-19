@@ -99,29 +99,13 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### Survivor
+## Task 1: Survivor
 
 There are 50 people standing in a circle in position 1 to 50. The person standing at position 1 has a sword. He kills the next person i.e. standing at position 2 and pass on the sword to the immediate next i.e. person standing at position 3. Now the person at position 3 does the same and it goes on until only one survives.
 
 Write a script to find out the survivor.
 
-***
-***
-
-## TASK #2
-
-***
-***
-
-### Palindrome Dates
+## Task 2: Palindrome Dates
 
 Write a script to print all **Palindrome Dates** between **2000** and **2999**. The format of date is **mmddyyyy**. For example, the first one was on **October 2, 2001** as it is represented as **10022001**.
 

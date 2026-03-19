@@ -105,67 +105,51 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### Smallest Multiple
+## Task 1: Smallest Multiple
 
 Write a script to accept a positive number as command line argument and print the smallest multiple of the given number consists of digits **0** and **1**.
 
 For example:
 
-###    For given number **55**, the smallest multiple is **110** consisting of digits **0** and **1**.
+For given number **55**, the smallest multiple is **110** consisting of digits **0** and **1**.
 
-***
-***
-
-## TASK #2
-
-***
-***
-
-### LRU Cache
+## Task 2: LRU Cache
 
 Write a script to demonstrate **LRU Cache** feature. It should support operations **get** and **set**. Accept the capacity of the **LRU Cache** as command line argument.
 
-> Definition of LRU: An access to an item is defined as a get or a set operation of the item. “Least recently used” item is the one with the oldest access time.
+Definition of LRU: An access to an item is defined as a get or a set operation of the item. “Least recently used” item is the one with the oldest access time.
 
 For example:
 
-    capacity = 3
-    set(1, 3)
-    set(2, 5)
-    set(3, 7)
+capacity = 3
+set(1, 3)
+set(2, 5)
+set(3, 7)
 
-    Cache at this point:
-    [Least recently used] 1,2,3 [most recently used]
+Cache at this point:
+[Least recently used] 1,2,3 [most recently used]
 
-    get(2)      # returns 5
+get(2)      # returns 5
 
-    Cache looks like now:
-    [Least recently used] 1,3,2 [most recently used]
+Cache looks like now:
+[Least recently used] 1,3,2 [most recently used]
 
-    get(1)      # returns 3
+get(1)      # returns 3
 
-    Cache looks like now:
-    [Least recently used] 3,2,1 [most recently used]
+Cache looks like now:
+[Least recently used] 3,2,1 [most recently used]
 
-    get(4)      # returns -1
+get(4)      # returns -1
 
-    Cache unchanged:
-    [Least recently used] 3,2,1 [most recently used]
+Cache unchanged:
+[Least recently used] 3,2,1 [most recently used]
 
-    set(4, 9)
+set(4, 9)
 
-    Cache is full, so pushes out key = 3:
-    [Least recently used] 2,1,4 [most recently used]
+Cache is full, so pushes out key = 3:
+[Least recently used] 2,1,4 [most recently used]
 
-    get(3)      # returns -1
+get(3)      # returns -1
 
 I found this amazing post talking about [**LRU Cache**](https://www.interviewcake.com/concept/java/lru-cache).
 
