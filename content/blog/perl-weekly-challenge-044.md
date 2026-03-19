@@ -89,26 +89,11 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### Only 100, please.
+## Task 1: Only 100, please
 
 You are given a string **"123456789"**. Write a script that would insert **"+"** or **"-"** in between digits so that when you evaluate, the result should be **100**.
 
-***
-
-## TASK #2
-
-***
-***
-
-### Make it $200
+## Task 2: Make it $200
 
 You have only $1 left at the start of the week. You have been given an opportunity to make it $200. The rule is simple with every move you can either **double** what you have or add another $1. Write a script to help you get $200 with the smallest number of moves.
 

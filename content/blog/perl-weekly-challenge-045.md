@@ -87,15 +87,7 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### Square Secret Code
+## Task 1: Square Secret Code
 
 The square secret code mechanism first removes any space from the original message. Then it lays down the message in a row of 8 columns. The coded message is then obtained by reading down the columns going left to right.
 
@@ -115,15 +107,7 @@ The code message would be as below:
 
 Write a script that accepts a message from command line and prints the equivalent coded message.
 
-***
-***
-
-## TASK #2
-
-***
-***
-
-### Source Dumper
+## Task 2: Source Dumper
 
 Write a script that dumps its own source code. For example, say, the script name is **ch-2.pl** then the following command should returns nothing.
 

@@ -91,60 +91,34 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### Octal Number System
+## Task 1: Octal Number System
 
 Write a script to print decimal number 0 to 50 in **Octal Number System**.
 
 For example:
 
-##### Decimal 0  = Octal 0
-
-##### Decimal 1  = Octal 1
-
-##### Decimal 2  = Octal 2
-
-##### Decimal 3  = Octal 3
-
-##### Decimal 4  = Octal 4
-
-##### Decimal 5  = Octal 5
-
-##### Decimal 6  = Octal 6
-
-##### Decimal 7  = Octal 7
-
-##### Decimal 8  = Octal 10
+    Decimal 0  = Octal 0
+    Decimal 1  = Octal 1
+    Decimal 2  = Octal 2
+    Decimal 3  = Octal 3
+    Decimal 4  = Octal 4
+    Decimal 5  = Octal 5
+    Decimal 6  = Octal 6
+    Decimal 7  = Octal 7
+    Decimal 8  = Octal 10
 
 and so on.
 
-***
-
-## TASK #2
-
-***
-***
-
-### Balanced Brackets
+## Task 2: Balanced Brackets
 
 Write a script to generate a string with random number of **(** and **)** brackets. Then make the script validate the string if it has balanced brackets.
 
 For example:
 
-##### () - OK
-
-##### (()) - OK
-
-##### )( - NOT OK
-
-##### ())() - NOT OK
+    () - OK
+    (()) - OK
+    )( - NOT OK
+    ())() - NOT OK
 
 ***
 ***

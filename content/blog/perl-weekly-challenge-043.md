@@ -101,15 +101,7 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### Olympic Rings
+## Task 1: Olympic Rings
 
 There are **5 rings** in the Olympic Logo as shown below. They are color coded as in **Blue**, **Black**, **Red**, **Yellow** and **Green**.
 
@@ -117,30 +109,20 @@ There are **5 rings** in the Olympic Logo as shown below. They are color coded a
 
 We have allocated some numbers to these rings as below:
 
-#### Blue: 8
-
-#### Yellow: 7
-
-#### Green: 5
-
-#### Red: 9
+    Blue: 8
+    Yellow: 7
+    Green: 5
+    Red: 9
 
 The **Black** ring is empty currently. You are given the numbers **1, 2, 3, 4** and **6**. Write a script to place these numbers in the rings so that the sum of numbers in each ring is exactly **11**.
 
-***
+The following task is contributed by Laurent Rosenfeld.
 
-## TASK #2
-
-***
-***
-
-### Self-descriptive Numbers
-
-##### Contributed by Laurent Rosenfeld
+## Task 2: Self-descriptive Numbers
 
 Write a script to generate **Self-descriptive Numbers** in a given base.
 
-> In mathematics, a self-descriptive number is an integer m that in a given base b is b digits long in which each digit d at position n (the most significant digit being at position 0 and the least significant at position b - 1) counts how many instances of digit n are in m.
+In mathematics, a self-descriptive number is an integer m that in a given base b is b digits long in which each digit d at position n (the most significant digit being at position 0 and the least significant at position b - 1) counts how many instances of digit n are in m.
 
 For example, if the given base is **10**, then script should print **6210001000**. For more information, please checkout [**wiki page**](https://en.wikipedia.org/wiki/Self-descriptive_number).
 

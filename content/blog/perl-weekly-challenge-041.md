@@ -97,28 +97,17 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
+## Task 1: Attractive Numbers
 
-## TASK #1
+Write a script to display **attractive number** between 1 and 50.
 
-***
-***
-
-### Write a script to display **attractive number** between 1 and 50.
-
-> A number is an *attractive number* if the number of its prime factors is also prime number.
+A number is an *attractive number* if the number of its prime factors is also prime number.
 
 The number **20** is an **attractive number**, whose prime factors are **2**, **2** and **5**. The total prime factors is **3** which is also a **prime number**.
 
-***
+## Task 2: Leonardo Numbers
 
-## TASK #2
-
-***
-***
-
-### Write a script to display first 20 **Leonardo Numbers**. Please checkout [wiki page](https://en.wikipedia.org/wiki/Leonardo_number) for more information.
+Write a script to display first 20 **Leonardo Numbers**. Please checkout [wiki page](https://en.wikipedia.org/wiki/Leonardo_number) for more information.
 
 For example:
 
