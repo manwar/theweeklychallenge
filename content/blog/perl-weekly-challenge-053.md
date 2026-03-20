@@ -4,7 +4,7 @@ date: 2020-03-23T00:00:00+00:00
 description: "Perl Weekly Challenge - 053"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 ***
@@ -95,38 +95,21 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-
-### Rotate Matrix
-
-***
+## Task 1: Rotate Matrix
 
 Write a script to rotate the followin matrix by given **90/180/270 degrees** clockwise.
 
-    [ 1, 2, 3 ]
-    [ 4, 5, 6 ]
-    [ 7, 8, 9 ]
+[ 1, 2, 3 ]
+[ 4, 5, 6 ]
+[ 7, 8, 9 ]
 
 For example, if you rotate by **90 degrees** then expected result should be like below
 
-    [ 7, 4, 1 ]
-    [ 8, 5, 2 ]
-    [ 9, 6, 3 ]
+[ 7, 4, 1 ]
+[ 8, 5, 2 ]
+[ 9, 6, 3 ]
 
-***
-***
-
-## TASK #2
-
-***
-***
-
-### Vowel Strings
+## Task 2: Vowel Strings
 
 Write a script to accept an integer **1 <= N <= 5** that would print all possible strings of size **N** formed by using only vowels (**a, e, i, o, u**).
 
@@ -144,17 +127,17 @@ The string should follow the following rules:
 
 For example, if the given integer **N = 2** then script should print the following strings:
 
-    ae
-    ai
-    ei
-    ia
-    io
-    iu
-    ie
-    oa
-    ou
-    uo
-    ue
+ae
+ai
+ei
+ia
+io
+iu
+ie
+oa
+ou
+uo
+ue
 
 ***
 ***

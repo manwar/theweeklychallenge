@@ -4,7 +4,7 @@ date: 2020-04-27T00:00:00+00:00
 description: "Perl Weekly Challenge - 058"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -70,26 +70,22 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-## TASK #1 › Compare Version
-
-#### Reviewed by Ryan Thompson
-
-***
+## Task 1: Compare Version
 
 Compare two given version number strings **v1** and **v2** such that:
 
- * If **v1** > **v2** return 1
- * If **v1** < **v2** return -1
- * Otherwise, return 0
+* If **v1** > **v2** return 1
+* If **v1** < **v2** return -1
+* Otherwise, return 0
 
 The version numbers are non-empty strings containing only digits, and the dot ("`.`") and underscore ("`_`") characters. ("`_`" denotes an alpha/development version, and has a lower precedence than a dot, "`.`"). Here are some examples:
 
 ```
-   v1   v2    Result
+v1   v2    Result
 ------ ------ ------
-  0.1 < 1.1     -1
-  2.0 > 1.2      1
-  1.2 < 1.2_5   -1
+0.1 < 1.1     -1
+2.0 > 1.2      1
+1.2 < 1.2_5   -1
 1.2.1 > 1.2_1    1
 1.2.1 = 1.2.1    0
 ```
@@ -97,18 +93,14 @@ The version numbers are non-empty strings containing only digits, and the dot ("
 Version numbers may also contain leading zeros. You may handle these how you wish, as long as it's consistent.
 
 
-## TASK #2 › Ordered Lineup
-
-#### Reviewed by Ryan Thompson
-
-***
+## Task 2: Ordered Lineup
 
 Write a script to arrange people in a lineup according to how many taller people are in front of each person in line. You are given two arrays. **@H** is a list of unique heights, in any order. **@T** is a list of how many taller people are to be put in front of the corresponding person in **@H**. The output is the final ordering of people's heights, or an error if there is no solution.
 
 Here is a small example:
 
- * `@H = (2, 6, 4, 5, 1, 3) # Heights`
- * `@T = (1, 0, 2, 0, 1, 2) # Number of taller people in front`
+* `@H = (2, 6, 4, 5, 1, 3) # Heights`
+* `@T = (1, 0, 2, 0, 1, 2) # Number of taller people in front`
 
 The ordering of both arrays lines up, so `H[i]` and `T[i]` refer to the same person. For example, there are 2 taller people in front of the person with height 4, and there is 1 person in front of the person with height 1.
 
@@ -129,21 +121,21 @@ Here's a 64-person example, with answer provided:
 ```perl
 # Heights
 @H = (27, 21, 37,  4, 19, 52, 23, 64,  1,  7, 51, 17, 24, 50,  3,  2,
-      34, 40, 47, 20,  8, 56, 14, 16, 42, 38, 62, 53, 31, 41, 55, 59,
-      48, 12, 32, 61,  9, 60, 46, 26, 58, 25, 15, 36, 11, 44, 63, 28,
-       5, 54, 10, 49, 57, 30, 29, 22, 35, 39, 45, 43, 18,  6, 13, 33);
+34, 40, 47, 20,  8, 56, 14, 16, 42, 38, 62, 53, 31, 41, 55, 59,
+48, 12, 32, 61,  9, 60, 46, 26, 58, 25, 15, 36, 11, 44, 63, 28,
+5, 54, 10, 49, 57, 30, 29, 22, 35, 39, 45, 43, 18,  6, 13, 33);
 
 # Number taller people in front
 @T = ( 6, 41,  1, 49, 38, 12,  1,  0, 58, 47,  4, 17, 26,  1, 61, 12,
-      29,  3,  4, 11, 45,  1, 32,  5,  9, 19,  1,  4, 28, 12,  2,  2,
-      13, 18, 19,  3,  4,  1, 10, 16,  4,  3, 29,  5, 49,  1,  1, 24,
-       2,  1, 38,  7,  7, 14, 35, 25,  0,  5,  4, 19, 10, 13,  4, 12);
+29,  3,  4, 11, 45,  1, 32,  5,  9, 19,  1,  4, 28, 12,  2,  2,
+13, 18, 19,  3,  4,  1, 10, 16,  4,  3, 29,  5, 49,  1,  1, 24,
+2,  1, 38,  7,  7, 14, 35, 25,  0,  5,  4, 19, 10, 13,  4, 12);
 
 # Expected answer
 @A = (35, 23,  5, 64, 37,  9, 13, 25, 16, 44, 50, 40,  2, 27, 36,  6,
-      18, 54, 20, 39, 56, 45, 12, 47, 17, 33, 55, 30, 26, 51, 42, 53,
-      49, 41, 32, 15, 22, 60, 14, 46, 24, 59, 10, 28, 62, 38, 58, 63,
-       8, 48,  4,  7, 31, 19, 61, 43, 57, 11,  1, 34, 21, 52, 29,  3);
+18, 54, 20, 39, 56, 45, 12, 47, 17, 33, 55, 30, 26, 51, 42, 53,
+49, 41, 32, 15, 22, 60, 14, 46, 24, 59, 10, 28, 62, 38, 58, 63,
+8, 48,  4,  7, 31, 19, 61, 43, 57, 11,  1, 34, 21, 52, 29,  3);
 ```
 
 You're free to come up with your own inputs. Here is a [1000-person list](https://ry.ca/wp-content/uploads/2020/04/pwc_058_1000.txt), if you like!

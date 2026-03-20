@@ -4,7 +4,7 @@ date: 2020-03-09T00:00:00+00:00
 description: "Perl Weekly Challenge - 051"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 ***
@@ -97,17 +97,7 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### 3 Sum
-
-***
+## Task 1: 3 Sum
 
 Given an array `@L`of integers. Write a script to find all unique **triplets** such that **a + b + c** is same as the given target `T`. Also make sure **a <= b <= c**.
 
@@ -115,25 +105,15 @@ Here is **[wiki page](https://en.wikipedia.org/wiki/3SUM)** for more information
 
 Example:
 
->    @L = (-25, -10, -7, -3, 2, 4, 8, 10);
+@L = (-25, -10, -7, -3, 2, 4, 8, 10);
 
 One such triplet for target `0` i.e. **-10 + 2 + 8 = 0**.
 
-***
-***
-
-## TASK #2
-
-***
-***
-
-### Colourful Number
-
-***
+## Task 2: Colourful Number
 
 Write a script to display all **Colorful Number** with 3 digits.
 
-> A number can be declare **Colorful Number** where all the products of consecutive subsets of digit are different.
+A number can be declare **Colorful Number** where all the products of consecutive subsets of digit are different.
 
 For example, **263** is a **Colorful Number** since **2, 6, 3, 2x6, 6x3, 2x6x3** are unique.
 

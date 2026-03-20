@@ -68,7 +68,7 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-## TASK #1 › Invert Tree
+## Task 1: Invert Tree
 
 ***
 
@@ -82,32 +82,32 @@ Write a script to **invert** the tree, by mirroring the children of every node, 
 
 The input can be any sensible machine-readable binary tree format of your choosing, and the output should be the same format.
 
-### BONUS
+BONUS
 
 *In addition* to the above, you may wish to pretty-print your binary tree in a human readable text-based format similar to the following:
 
 ```
-       1
-      /  \
-     3    2
-    / \  / \
-   7   6 5  4
+      1
+    /   \
+   3     2
+  / \   / \
+ 7   6 5   4
 
 ```
 
-## TASK #2 › Shortest Unique Prefix
+## Task 2: Shortest Unique Prefix
 
 ***
 
 Write a script to find the **shortest unique prefix** for each each word in the given list. The prefixes will not necessarily be of the same length.
 
-### Sample Input
+Sample Input
 
-        [ "alphabet", "book", "carpet", "cadmium", "cadeau", "alpine" ]
+[ "alphabet", "book", "carpet", "cadmium", "cadeau", "alpine" ]
 
-### Expected Output
+Expected Output
 
-        [ "alph", "b", "car", "cadm", "cade", "alpi" ]
+[ "alph", "b", "car", "cadm", "cade", "alpi" ]
 
 ***
 

@@ -4,7 +4,7 @@ date: 2020-04-13T00:00:00+00:00
 description: "Perl Weekly Challenge - 056"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 ***
@@ -19,26 +19,26 @@ As you all know how **COVID-19** has affected our daily life and in this difficu
 
 **Saif Ahmed**, currently ranked **#033** has contributed **40 solutions** in **Perl** and one **BLOG**.
 
-        Perl Weekly Challenge - 036: Perl (2)
-        Perl Weekly Challenge - 037: Perl (2)
-        Perl Weekly Challenge - 038: Perl (2)
-        Perl Weekly Challenge - 039: Perl (2), Blog (1)
-        Perl Weekly Challenge - 040: Perl (2)
-        Perl Weekly Challenge - 041: Perl (2)
-        Perl Weekly Challenge - 042: Perl (2)
-        Perl Weekly Challenge - 043: Perl (2)
-        Perl Weekly Challenge - 044: Perl (2)
-        Perl Weekly Challenge - 045: Perl (2)
-        Perl Weekly Challenge - 046: Perl (2)
-        Perl Weekly Challenge - 047: Perl (2)
-        Perl Weekly Challenge - 048: Perl (2)
-        Perl Weekly Challenge - 049: Perl (2)
-        Perl Weekly Challenge - 050: Perl (2)
-        Perl Weekly Challenge - 051: Perl (2)
-        Perl Weekly Challenge - 052: Perl (2)
-        Perl Weekly Challenge - 053: Perl (2)
-        Perl Weekly Challenge - 054: Perl (2)
-        Perl Weekly Challenge - 055: Perl (2)
+Perl Weekly Challenge - 036: Perl (2)
+Perl Weekly Challenge - 037: Perl (2)
+Perl Weekly Challenge - 038: Perl (2)
+Perl Weekly Challenge - 039: Perl (2), Blog (1)
+Perl Weekly Challenge - 040: Perl (2)
+Perl Weekly Challenge - 041: Perl (2)
+Perl Weekly Challenge - 042: Perl (2)
+Perl Weekly Challenge - 043: Perl (2)
+Perl Weekly Challenge - 044: Perl (2)
+Perl Weekly Challenge - 045: Perl (2)
+Perl Weekly Challenge - 046: Perl (2)
+Perl Weekly Challenge - 047: Perl (2)
+Perl Weekly Challenge - 048: Perl (2)
+Perl Weekly Challenge - 049: Perl (2)
+Perl Weekly Challenge - 050: Perl (2)
+Perl Weekly Challenge - 051: Perl (2)
+Perl Weekly Challenge - 052: Perl (2)
+Perl Weekly Challenge - 053: Perl (2)
+Perl Weekly Challenge - 054: Perl (2)
+Perl Weekly Challenge - 055: Perl (2)
 
 Last but not the least, I woud like to thank each and every member for their support and encouragement.
 
@@ -124,18 +124,7 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### Diff-K
-
-***
-***
+## Task 1: Diff-K
 
 You are given an array **@N** of positive integers (sorted) and another non negative integer **k**.
 
@@ -145,22 +134,12 @@ It should print the pairs of indices, if any such pairs exist.
 
 Example:
 
-        @N = (2, 7, 9)
-        $k = 2
+@N = (2, 7, 9)
+$k = 2
 
 Output : 2,1
 
-***
-***
-
-## TASK #2
-
-***
-***
-
-### Path Sum
-
-***
+## Task 2: Path Sum
 
 You are given a binary tree and a sum, write a script to find if the tree has a path such that adding up all the values along the path equals the given sum. Only complete paths (from root to leaf node) may be considered for a sum.
 
@@ -168,13 +147,13 @@ You are given a binary tree and a sum, write a script to find if the tree has a 
 
 Given the below binary tree and sum = 22,
 
-              5
-             / \
-            4   8
-           /   / \
-          11  13  9
-         /  \      \
-        7    2      1
+         5
+        / \
+       4   8
+      /   / \
+    11   13  9
+   /  \       \
+  7    2       1
 
 For the given binary tree, the partial path sum **5 → 8 → 9 = 22** is **not** valid.
 

@@ -103,50 +103,29 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### kth Permutation Sequence
-
-***
-***
+## Task 1: kth Permutation Sequence
 
 Write a script to accept two integers **n (>=1)** and **k (>=1)**. It should print the **kth permutation** of **n integers**. For more information, please follow the **[wiki page](https://en.wikipedia.org/wiki/Permutation#k-permutations_of_n)**.
 
 For example, **n=3** and **k=4**, the possible permutation sequences are listed below:
 
-    123
-    132
-    213
-    231
-    312
-    321
+123
+132
+213
+231
+312
+321
 
 The script should print the **4th** permutation sequence **231**.
 
-***
-***
+The following task is contributed by Ryan Thompson
 
-## TASK #2
-
-***
-***
-
-### Collatz Conjecture
-
-##### Contributed by Ryan Thompson
-
-***
+## Task 2: Collatz Conjecture
 
 It is thought that the following sequence will always reach 1:
 
- * `$n =   $n / 2` when `$n` is even
- * `$n = 3*$n + 1` when `$n` is odd
+* `$n =   $n / 2` when `$n` is even
+* `$n = 3*$n + 1` when `$n` is odd
 
 For example, if we start at **23**, we get the following sequence:
 

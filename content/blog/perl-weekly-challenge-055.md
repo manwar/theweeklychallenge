@@ -4,7 +4,7 @@ date: 2020-04-06T00:00:00+00:00
 description: "Perl Weekly Challenge - 055"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 ***
@@ -17,26 +17,26 @@ tags: ["Perl", "Raku"]
 
 Today is the first Monday of the month and time to select the **Champion of the Month**. With great pleasure, we announce the Champion of last month, **Alicia Bielsa**, currently ranked **#029** with score of **86**. As of today, she has contributed **Perl (35)** and **Raku (8)** solutions. Contributions breakdown are listed as below:
 
-    Perl Weekly Challenge - 004: Perl (2)
-    Perl Weekly Challenge - 006: Perl (1)
-    Perl Weekly Challenge - 007: Perl (1)
-    Perl Weekly Challenge - 008: Perl (2)
-    Perl Weekly Challenge - 010: Perl (1)
-    Perl Weekly Challenge - 011: Perl (2)
-    Perl Weekly Challenge - 012: Perl (2)
-    Perl Weekly Challenge - 042: Perl (2)
-    Perl Weekly Challenge - 043: Perl (1)
-    Perl Weekly Challenge - 044: Perl (2)
-    Perl Weekly Challenge - 045: Perl (2)
-    Perl Weekly Challenge - 046: Perl (2)
-    Perl Weekly Challenge - 047: Perl (2), Raku (1)
-    Perl Weekly Challenge - 048: Perl (2), Raku (2)
-    Perl Weekly Challenge - 049: Perl (2)
-    Perl Weekly Challenge - 050: Perl (2), Raku (1)
-    Perl Weekly Challenge - 051: Perl (2), Raku (1)
-    Perl Weekly Challenge - 052: Perl (2), Raku (1)
-    Perl Weekly Challenge - 053: Perl (2), Raku (2)
-    Perl Weekly Challenge - 054: Perl (1)
+Perl Weekly Challenge - 004: Perl (2)
+Perl Weekly Challenge - 006: Perl (1)
+Perl Weekly Challenge - 007: Perl (1)
+Perl Weekly Challenge - 008: Perl (2)
+Perl Weekly Challenge - 010: Perl (1)
+Perl Weekly Challenge - 011: Perl (2)
+Perl Weekly Challenge - 012: Perl (2)
+Perl Weekly Challenge - 042: Perl (2)
+Perl Weekly Challenge - 043: Perl (1)
+Perl Weekly Challenge - 044: Perl (2)
+Perl Weekly Challenge - 045: Perl (2)
+Perl Weekly Challenge - 046: Perl (2)
+Perl Weekly Challenge - 047: Perl (2), Raku (1)
+Perl Weekly Challenge - 048: Perl (2), Raku (2)
+Perl Weekly Challenge - 049: Perl (2)
+Perl Weekly Challenge - 050: Perl (2), Raku (1)
+Perl Weekly Challenge - 051: Perl (2), Raku (1)
+Perl Weekly Challenge - 052: Perl (2), Raku (1)
+Perl Weekly Challenge - 053: Perl (2), Raku (2)
+Perl Weekly Challenge - 054: Perl (1)
 
 Last but not the least, I woud like to thank each and every member for their support and encouragement.
 
@@ -114,18 +114,7 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-***
-
-## TASK #1
-
-***
-***
-
-### Flip Binary
-
-***
-***
+## Task 1: Flip Binary
 
 You are given a binary number **B**, consisting of **N** binary digits `0` or `1`: **s0, s1, …, s(N-1)**.
 
@@ -144,17 +133,7 @@ Write a script to find the indices (**L,R**) that results in a binary number wit
 
 Continuing our example, note that we had three pairs **(L=0, R=0)**, **(L=0, R=2)**, and **(L=2, R=2)** that resulted in a binary number with two **1**s, which was the maximum. So we would print all three pairs.
 
-***
-***
-
-## TASK #2
-
-***
-***
-
-### Wave Array
-
-***
+## Task 2: Wave Array
 
 Any array **N** of non-unique, unsorted integers can be arranged into a wave-like array such that **n1 ≥ n2 ≤ n3 ≥ n4 ≤ n5** and so on.
 
