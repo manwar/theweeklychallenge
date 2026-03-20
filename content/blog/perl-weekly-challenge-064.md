@@ -4,7 +4,7 @@ date: 2020-06-08T00:00:00+00:00
 description: "Perl Weekly Challenge - 064"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -72,14 +72,7 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 
 <br>
 
-***
-
-## TASK #1 › Minimum Sum Path
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
-##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
-
-***
-<br>
+## Task 1: Minimum Sum Path
 
 Given an *m* × *n* matrix with non-negative integers, write a script to find a path from top left to bottom right which minimizes the sum of all numbers along its path. You can only move either down or right at any point in time.
 
@@ -97,23 +90,17 @@ The minimum sum path looks like this:
 
 ```
 1→2→3
-    ↓
-    6
-    ↓
-    9
+↓
+6
+↓
+9
 ```
 
 Thus, your script could output: 21 ( 1 → 2 → 3 → 6 → 9 )
 
 <br>
 
-***
-
-## TASK #2 › Word Break
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
-
-***
-<br>
+## Task 2: Word Break
 
 You are given a string `$S` and an array of words `@W`.
 
@@ -123,25 +110,25 @@ Print the all the words if found otherwise print 0.
 
 ## Example 1:
 
-    Input:
+Input:
 
-    $S = "perlweeklychallenge"
-    @W = ("weekly", "challenge", "perl")
+$S = "perlweeklychallenge"
+@W = ("weekly", "challenge", "perl")
 
-    Output:
+Output:
 
-    "perl", "weekly", "challenge"
+"perl", "weekly", "challenge"
 
 ## Example 2:
 
-    Input:
+Input:
 
-    $S = "perlandraku"
-    @W = ("python", "ruby", "haskell")
+$S = "perlandraku"
+@W = ("python", "ruby", "haskell")
 
-    Output:
+Output:
 
-    0 as none matching word found.
+0 as none matching word found.
 
 ***
 

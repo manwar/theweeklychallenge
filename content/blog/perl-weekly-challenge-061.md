@@ -72,23 +72,17 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-## TASK #1 › Product SubArray
-##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
-
-***
+## Task 1: Product SubArray
 
 Given a list of **4 or more** numbers, write a script to find the contiguous sublist that has the maximum product. The length of the sublist is irrelevant; your job is to maximize the product.
 
-### Example
+Example
 
 Input: `[ 2, 5, -1, 3 ]`
 
 Output: `[ 2, 5 ]` which gives maximum product `10`.
 
-## TASK #2 › IPv4 Partition
-##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
-
-***
+## Task 2: IPv4 Partition
 
 You are given a string containing only digits **(0..9)**. The string should have between **4** and **12** digits.
 
@@ -98,7 +92,7 @@ For the purpose of this challenge, a valid **IPv4** address consists of **four "
 
 Each octet must be between **0** and **255**, and must not have any leading zeroes. (e.g., `0` is OK, but `01` is not.)
 
-### Example
+Example
 
 Input: `25525511135`,
 

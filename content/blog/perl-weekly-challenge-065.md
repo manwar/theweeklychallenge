@@ -4,7 +4,7 @@ date: 2020-06-15T00:00:00+00:00
 description: "Perl Weekly Challenge - 065"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -52,19 +52,19 @@ I would like to thank every member of the team for their valuable suggestions. P
 
 #### **Craig**
 
-    I'm originally from London but now live in Tennessee and just started my career as a software engineer a few months ago
+I'm originally from London but now live in Tennessee and just started my career as a software engineer a few months ago
 
 #### **Richard Bains Hainsworth**
 
-    I was born in Uganda, schooled in the UK. My first experience with a computer - at Leeds University department close to my school, needed to have it's Fortran compiler loaded from paper tape. I've worked forty years in USSR/Russia, where I found Perl. Then I began following Perl6 aka Raku from the Appocalypse days. I have made tiny contributions to Pugs, Perl6 Roast, Perl6/Raku documentation.
+I was born in Uganda, schooled in the UK. My first experience with a computer - at Leeds University department close to my school, needed to have it's Fortran compiler loaded from paper tape. I've worked forty years in USSR/Russia, where I found Perl. Then I began following Perl6 aka Raku from the Appocalypse days. I have made tiny contributions to Pugs, Perl6 Roast, Perl6/Raku documentation.
 
-    I have programmed in Fortran, Pascal, Basic, Snobol, Assembler, Forth, Java, Javascript, etc. But of them all, I preferred Perl, now Raku.
+I have programmed in Fortran, Pascal, Basic, Snobol, Assembler, Forth, Java, Javascript, etc. But of them all, I preferred Perl, now Raku.
 
-    Currently, I am setting up a **[ceramics studio](https://draigenwaith.wales/), and beginning work on a Cro based CMS.
+Currently, I am setting up a **[ceramics studio](https://draigenwaith.wales/), and beginning work on a Cro based CMS.
 
 #### **Stephanie Stein**
 
-    I have no Perl experience at all, but I'm looking forward to learning! I know a little bit of Python, so I'm hoping that helps me to learn. I live in the Silicon Valley in California.
+I have no Perl experience at all, but I'm looking forward to learning! I know a little bit of Python, so I'm hoping that helps me to learn. I live in the Silicon Valley in California.
 
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
@@ -84,14 +84,7 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 
 <br>
 
-***
-
-## TASK #1 › Digits Sum
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
-##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
-
-***
-<br>
+## Task 1: Digits Sum
 
 You are given two positive numbers `$N` and `$S`.
 
@@ -99,23 +92,16 @@ Write a script to list all positive numbers having exactly `$N` digits where sum
 
 ## Example
 
-    Input:
-        $N = 2
-        $S = 4
+Input:
+$N = 2
+$S = 4
 
-    Output:
-        13, 22, 31, 40
+Output:
+13, 22, 31, 40
 
 <br>
 
-***
-
-## TASK #2 › Palindrome Partition
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
-##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
-
-***
-<br>
+## Task 2: Palindrome Partition
 
 You are given a string `$S`. Write a script print all possible partitions that gives Palindrome. Return -1 if none found.
 
@@ -123,21 +109,21 @@ Please make sure, partition should not overlap. For example, for given string "a
 
 ## Example 1
 
-    Input: $S = 'aabaab'
-    Ouput:
-     There are 3 possible solutions.
-     a) 'aabaa'
-     b) 'aa', 'baab'
-     c) 'aba'
+Input: $S = 'aabaab'
+Ouput:
+There are 3 possible solutions.
+a) 'aabaa'
+b) 'aa', 'baab'
+c) 'aba'
 
 ## Example 2
 
-    Input: $S = 'abbaba'
-    Output:
-     There are 3 possible solutions.
-     a) 'abba'
-     b) 'bb', 'aba'
-     c) 'bab'
+Input: $S = 'abbaba'
+Output:
+There are 3 possible solutions.
+a) 'abba'
+b) 'bb', 'aba'
+c) 'bab'
 
 ***
 

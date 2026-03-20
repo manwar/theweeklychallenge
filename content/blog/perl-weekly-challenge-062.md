@@ -76,12 +76,9 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-## TASK #1 › Sort Email Addresses
-##### **Submitted by:** [Neil Bowers](http://neilb.org)
-##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
+The following task is submitted by  Neil Bowers.
 
-***
-<br>
+## Task 1: Sort Email Addresses
 
 Write a script that takes a list of email addresses (one per line) and sorts them first by the domain part of the email address, and then by the part to the left of the @ (known as the mailbox).
 
@@ -124,13 +121,9 @@ Name@example.org
 name@example.org
 ```
 
-***
+The following task is submitted by Ryan Thompson,
 
-## TASK #2 › N Queens
-##### **Submitted by:** [Ryan Thompson](https://ry.ca)
-
-***
-<br>
+## Task 2: N Queens
 
 A standard 8×8 chessboard has 64 squares. The Queen is a chesspiece that can attack in 8 directions, as shown by the green shaded squares below:
 
@@ -148,11 +141,11 @@ A trivial 2×2×2 solution might look like this (1 = queen, 0 = empty):
 
 ```perl
 [
-    [[1,0],     # Layer 1
-     [0,0]],
+[[1,0],     # Layer 1
+[0,0]],
 
-    [[0,0],     # Layer 2
-     [0,0]],
+[[0,0],     # Layer 2
+[0,0]],
 ]
 ```
 
