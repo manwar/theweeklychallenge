@@ -4,22 +4,22 @@ date: 2020-08-31T00:00:00+00:00
 description: "The Weekly Challenge - 076"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
 ## TABLE OF CONTENTS
 ***
 
-### 1. [HEADLINES](#HEADLINES)
-### 2. [RECAP](#RECAP)
-### 3. [PERL REVIEW](#PERLREVIEW)
-### 4. [RAKU REVIEW](#RAKUREVIEW)
-### 5. [CHART](#CHART)
-### 6. [NEW MEMBERS](#NEWMEMBERS)
-### 7. [GUESTS](#GUESTS)
-### 8. [TASK #1: Prime Sum](#TASK1)
-### 9. [TASK #2: Word Search](#TASK2)
+1. [HEADLINES](#HEADLINES)
+2. [RECAP](#RECAP)
+3. [PERL REVIEW](#PERLREVIEW)
+4. [RAKU REVIEW](#RAKUREVIEW)
+5. [CHART](#CHART)
+6. [NEW MEMBERS](#NEWMEMBERS)
+7. [GUESTS](#GUESTS)
+8. [TASK #1: Prime Sum](#TASK1)
+9. [TASK #2: Word Search](#TASK2)
 
 <br>
 
@@ -115,11 +115,11 @@ I would like to thank every member of the team for their valuable suggestions. P
 #### [Alex Mauney](https://github.com/mathmauney), an experienced Perl hacker.
 #### [Alexander Pankoff](https://github.com/ccntrq), an experienced Perl hacker from Hannover, Germany.
 
-> I started using Perl professionally and recreationally around 5 years ago. I also work with TypeScript and use Haskell for hobby projects.
+I started using Perl professionally and recreationally around 5 years ago. I also work with TypeScript and use Haskell for hobby projects.
 
 #### [Tyler Wardhaugh](https://github.com/tylerw)
 
-> I've been using Perl for a long time, on and off. Mostly Perl 5, but I have followed Raku development from afar. I've been using Clojure for a few years for personal projects and would like to do "guest" submissions in that to improve my skills in it. I notice you have Common Lisp, but no Clojure.
+I've been using Perl for a long time, on and off. Mostly Perl 5, but I have followed Raku development from afar. I've been using Clojure for a few years for personal projects and would like to do "guest" submissions in that to improve my skills in it. I notice you have Common Lisp, but no Clojure.
 
 <br>
 
@@ -151,7 +151,7 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 #### 8) Lubos Kolouch shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/lubos-kolouch/python/ch-1.py) in Python.
 
-#### 9) Mohammad S Anwar shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/mohammad-anwar/swift/ch-1.swift) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/mohammad-anwar/swift/ch-2.swift) in Swift.
+#### 9) Mohammad Sajid Anwar shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/mohammad-anwar/swift/ch-1.swift) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/mohammad-anwar/swift/ch-2.swift) in Swift.
 
 #### 10) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/jeongoon/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/jeongoon/haskell/ch-2.hs) in Haskell.
 
@@ -175,8 +175,7 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 
 <br>
 
-***
-## TASK #1 › Prime Sum {#TASK1}
+## Task 1: Prime Sum {#TASK1}
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
 ***
@@ -187,17 +186,16 @@ For the sake of this task, please assume `1` is not a prime number.
 
 ## Example:
 
-    Input:
-        $N = 9
+Input:
+$N = 9
 
-    Ouput:
-        2 as sum of 2 prime numbers i.e. 2 and 7 is same as the input number.
-        2 + 7 = 9.
+Ouput:
+2 as sum of 2 prime numbers i.e. 2 and 7 is same as the input number.
+2 + 7 = 9.
 
 <br>
 
-***
-## TASK #2 › Word Search {#TASK2}
+## Task 2: Word Search {#TASK2}
 ##### **Submitted by:** [Neil Bowers](http://neilb.org)
 ##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
 ***

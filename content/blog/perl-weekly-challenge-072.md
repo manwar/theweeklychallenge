@@ -4,7 +4,7 @@ date: 2020-08-03T00:00:00+00:00
 description: "Perl Weekly Challenge - 072"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -84,8 +84,7 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 
 <br>
 
-***
-## TASK #1 › Trailing Zeroes
+## Task 1: Trailing Zeroes
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
@@ -114,8 +113,7 @@ Write a script to print number of trailing zeroes in `$N!`.
 
 <br>
 
-***
-## TASK #2 › Lines Range
+## Task 2: Lines Range
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
@@ -128,31 +126,31 @@ Write a script to display lines range `$A` and `$B` in the given file.
 #### Input:
 
 ```perl
-    $ cat input.txt
-    L1
-    L2
-    L3
-    L4
-    ...
-    ...
-    ...
-    ...
-    L100
+$ cat input.txt
+L1
+L2
+L3
+L4
+...
+...
+...
+...
+L100
 ```
-    $A = 4 and $B = 12
+$A = 4 and $B = 12
 
 #### Output:
 
 ```perl
-    L4
-    L5
-    L6
-    L7
-    L8
-    L9
-    L10
-    L11
-    L12
+L4
+L5
+L6
+L7
+L8
+L9
+L10
+L11
+L12
 ```
 
 ***

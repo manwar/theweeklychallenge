@@ -4,7 +4,7 @@ date: 2020-08-09T00:00:00+00:00
 description: "Perl Weekly Challenge - 073"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -130,9 +130,8 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 
 <br>
 
-***
-## TASK #1 › Min Sliding Window
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 1: Min Sliding Window
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given an array of integers `@A` and sliding window size `$S`.
@@ -141,8 +140,8 @@ Write a script to create an array of min from each sliding window.
 
 ## Example
 
-### Input: @A = (1, 5, 0, 2, 9, 3, 7, 6, 4, 8) and $S = 3
-### Output: (0, 0, 0, 2, 3, 3, 4, 4)
+Input: @A = (1, 5, 0, 2, 9, 3, 7, 6, 4, 8) and $S = 3
+Output: (0, 0, 0, 2, 3, 3, 4, 4)
 
 <br>
 
@@ -157,9 +156,8 @@ Write a script to create an array of min from each sliding window.
 
 <br>
 
-***
-## TASK #2 › Smallest Neighbour
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 2: Smallest Neighbour
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given an array of integers `@A`.
@@ -168,8 +166,8 @@ Write a script to create an array that represents the smallest element to the le
 
 ## Example 1
 
-### Input: @A = (7, 8, 3, 12, 10)
-### Output: (0, 7, 0, 3, 3)
+Input: @A = (7, 8, 3, 12, 10)
+Output: (0, 7, 0, 3, 3)
 
 <br>
 
@@ -183,8 +181,8 @@ Write a script to create an array that represents the smallest element to the le
 
 ## Example 2
 
-### Input: @A = (4, 6, 5)
-### Output: (0, 4, 4)
+Input: @A = (4, 6, 5)
+Output: (0, 4, 4)
 
 <br>
 

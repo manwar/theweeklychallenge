@@ -4,7 +4,7 @@ date: 2020-07-27T00:00:00+00:00
 description: "Perl Weekly Challenge - 071"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -69,7 +69,7 @@ I would like to thank every member of the team for their valuable suggestions. P
 
 #### Bob Lied
 
->  I live in the US, near Chicago. I have been a software developer for nearly forty years. I had a C decade, a C++ decade, a Java decade, and now a Perl decade.
+I live in the US, near Chicago. I have been a software developer for nearly forty years. I had a C decade, a C++ decade, a Java decade, and now a Perl decade.
 
 We have a private **Early Bird Club**, whose members have the privilege to check out the weekly challenge before **Monday**, the launch day. Not only that they get more time to work on the tasks. Joining is very easy, just drop me a line at <perlweeklychallenge@yahoo.com> and you are good to go.
 
@@ -97,9 +97,8 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-## TASK #1 › Peak Element
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 1: Peak Element
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given positive integer `$N` (>1).
@@ -108,7 +107,7 @@ Write a script to create an array of size `$N` with random unique elements betwe
 
 In the end it should print `peak elements` in the array, if found.
 
-> An array element is called peak if it is bigger than it's neighbour.
+An array element is called peak if it is bigger than it's neighbour.
 
 ## Example 1
 
@@ -122,9 +121,8 @@ In the end it should print `peak elements` in the array, if found.
 
 <br>
 
-***
-## TASK #2 › Trim Linked List
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 2: Trim Linked List
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given a singly linked list and a positive integer `$N` (>0).

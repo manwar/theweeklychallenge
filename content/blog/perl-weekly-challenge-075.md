@@ -4,7 +4,7 @@ date: 2020-08-24T00:00:00+00:00
 description: "The Weekly Challenge - 075"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -127,7 +127,7 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 #### 2) Lubos Kolouch shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/lubos-kolouch/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/lubos-kolouch/python/ch-2.py) in Python.
 
-#### 3) Mohammad S Anwar shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/mohammad-anwar/swift/ch-1.swift) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/mohammad-anwar/swift/ch-2.swift) in Swift.
+#### 3) Mohammad Sajid Anwar shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/mohammad-anwar/swift/ch-1.swift) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/mohammad-anwar/swift/ch-2.swift) in Swift.
 
 #### 4) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/jeongoon/elm/src/Ch1.elm) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/jeongoon/elm/src/Ch2.elm) in Elm.
 
@@ -157,9 +157,8 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-## TASK #1 › Coins Sum
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 1: Coins Sum
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given a set of coins `@C`, assuming you have infinite amount of each coin in the set.
@@ -168,24 +167,23 @@ Write a script to find how many ways you make sum `$S` using the coins from the 
 
 ## Example:
 
-    Input:
-        @C = (1, 2, 4)
-        $S = 6
+Input:
+@C = (1, 2, 4)
+$S = 6
 
-    Output: 6
-    There are 6 possible ways to make sum 6.
-    a) (1, 1, 1, 1, 1, 1)
-    b) (1, 1, 1, 1, 2)
-    c) (1, 1, 2, 2)
-    d) (1, 1, 4)
-    e) (2, 2, 2)
-    f) (2, 4)
+Output: 6
+There are 6 possible ways to make sum 6.
+a) (1, 1, 1, 1, 1, 1)
+b) (1, 1, 1, 1, 2)
+c) (1, 1, 2, 2)
+d) (1, 1, 4)
+e) (2, 2, 2)
+f) (2, 4)
 
 <br>
 
-***
-## TASK #2 › Largest Rectangle Histogram
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 2: Largest Rectangle Histogram
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given an array of positive numbers `@A`.
@@ -202,15 +200,15 @@ Write a script to find the largest rectangle histogram created by the given arra
 
 #### Input: @A = (2, 1, 4, 5, 3, 7)
 
-         7           #
-         6           #
-         5       #   #
-         4     # #   #
-         3     # # # #
-         2 #   # # # #
-         1 # # # # # #
-         _ _ _ _ _ _ _
-           2 1 4 5 3 7
+7           #
+6           #
+5       #   #
+4     # #   #
+3     # # # #
+2 #   # # # #
+1 # # # # # #
+_ _ _ _ _ _ _
+2 1 4 5 3 7
 
 Looking at the above histogram, the largest rectangle (4 x 3) is formed by columns (4, 5, 3 and 7).
 
@@ -226,15 +224,15 @@ Looking at the above histogram, the largest rectangle (4 x 3) is formed by colum
 
 #### Input: @A = (3, 2, 3, 5, 7, 5)
 
-         7         #
-         6         #
-         5       # # #
-         4       # # #
-         3 #   # # # #
-         2 # # # # # #
-         1 # # # # # #
-         _ _ _ _ _ _ _
-           3 2 3 5 7 5
+7         #
+6         #
+5       # # #
+4       # # #
+3 #   # # # #
+2 # # # # # #
+1 # # # # # #
+_ _ _ _ _ _ _
+3 2 3 5 7 5
 
 Looking at the above histogram, the largest rectangle (3 x 5) is formed by columns (5, 7 and 5).
 

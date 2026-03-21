@@ -4,7 +4,7 @@ date: 2020-08-17T00:00:00+00:00
 description: "Perl Weekly Challenge - 074"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -122,7 +122,7 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 #### 4) Lubos Kolouch shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/lubos-kolouch/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/lubos-kolouch/python/ch-2.py) in Python.
 
-#### 5) Mohammad S Anwar shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/mohammad-anwar/swift/ch-1.swift) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/mohammad-anwar/swift/ch-2.swift) in Swift.
+#### 5) Mohammad Sajid Anwar shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/mohammad-anwar/swift/ch-1.swift) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/mohammad-anwar/swift/ch-2.swift) in Swift.
 
 #### 6) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/jeongoon/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/jeongoon/haskell/ch-2.hs) in Haskell.
 
@@ -140,16 +140,15 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 
 <br>
 
-***
-## TASK #1 › Majority Element
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 1: Majority Element
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given an array of integers of size `$N`.
 
 Write a script to find the majority element. If none found then print -1.
 
->   Majority element in the list is the one that appears more than floor(size_of_list/2).
+Majority element in the list is the one that appears more than floor(size_of_list/2).
 
 ## Example 1
 
@@ -165,9 +164,8 @@ Write a script to find the majority element. If none found then print -1.
 
 <br>
 
-***
-## TASK #2 › FNR Character
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 2: FNR Character
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given a string `$S`.
