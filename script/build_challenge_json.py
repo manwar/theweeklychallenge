@@ -46,45 +46,66 @@ def parse_front_matter(text):
     return fm, body
 
 def extract_task(raw, task_num):
-    # FIX: Check for both "Task X:" and "### Challenge #X"
-    marker_task = f"Task {task_num}:"
-    marker_challenge = f"### Challenge #{task_num}"
+    """Extract task title, desc, body supporting multiple heading formats:
+    - ## TASK #1 › Fibonacci Sum {#TASK1}   (old format with ›)
+    - ## Task 1: Echo Chamber {#TASK1}       (newer format)
+    - ### Challenge #1                        (very old format)
+    """
+    import re as _re
 
-    if marker_task in raw:
-        parts = raw.split(marker_task, 1)
-    elif marker_challenge in raw:
-        parts = raw.split(marker_challenge, 1)
-    else:
+    # Try all known patterns
+    patterns = [
+        rf"##\s+TASK\s+#{task_num}\s*[›:>]\s*",   # ## TASK #1 › Title
+        rf"##\s+Task\s+{task_num}:",                 # ## Task 1:
+        rf"###\s+Challenge\s+#{task_num}",           # ### Challenge #1
+        rf"Task\s+{task_num}:",                      # Task 1: (bare)
+    ]
+
+    after = None
+    for pat in patterns:
+        m = _re.search(pat, raw)
+        if m:
+            after = raw[m.end():]
+            break
+
+    if after is None:
         return "", "", ""
 
-    after = parts[1]
-    # Check for the next header to stop extraction
-    next_task = f"## Task {task_num + 1}:"
-    next_challenge = f"### Challenge #{task_num + 1}"
+    # Split off at next task heading
+    next_patterns = [
+        rf"##\s+TASK\s+#{task_num + 1}",
+        rf"##\s+Task\s+{task_num + 1}",
+        rf"###\s+Challenge\s+#{task_num + 1}",
+    ]
+    task_raw = after
+    for np in next_patterns:
+        m = _re.search(np, task_raw)
+        if m:
+            task_raw = task_raw[:m.start()]
+            break
 
-    # Split by whichever next marker comes first
-    task_raw = after.split(next_task)[0].split(next_challenge)[0]
-
-    # Clean up the title and body
+    # Extract title from first line
     first_line = task_raw.split("\n")[0].strip()
-    title = re.sub(r'\s*\{[^}]*\}', '', first_line).strip()
-    # Remove leading > and whitespace often found in old blockquotes
-    title = title.lstrip('>').strip()
+    title = _re.sub(r'\s*\{[^}]*\}', '', first_line).strip()
+    title = title.lstrip('>#›').strip()
+    # Remove ##### Submitted by lines from title
+    title = _re.sub(r'#+\s*\*\*Submitted by.*', '', title).strip()
 
+    # Extract body
     body_lines = task_raw.split("\n")[1:]
     body = "\n".join(body_lines)
-    # Your existing cleaning logic
-    body = re.sub(r'(?m)^#{1,6}\s*\*\*Submitted by:\*\*.*\n?', '', body)
-    body = re.sub(r'(?m)^\*{3,}\s*\n?', '', body)
+    body = _re.sub(r'(?m)^#{1,6}\s*\*\*Submitted by:\*\*.*\n?', '', body)
+    body = _re.sub(r'(?m)^\*{3,}\s*\n?', '', body)
     body = body.strip("\n\r\t ")
 
-    # Extract the first non-empty line as the description
+    # Description: first non-empty line of body
     desc = ""
     for line in body.splitlines():
-        clean_line = line.lstrip('>').strip()
+        clean_line = line.lstrip('>#+').strip()
         if clean_line:
             desc = clean_line
             break
+
     return title, desc, body
 
 def extract_task_(raw, task_num):
@@ -152,16 +173,16 @@ def build_week(week_num, latest_week):
     out_file.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
     print(f"  ✓ Week {week_num}: {out_file}")
 
-    # NEW: Link previous week to this one
+    # Link previous week to this one
     if week_num > 1:
         prev_f = OUTPUT / f"perl-weekly-challenge-{week_num - 1:03d}" / "challenge.json"
         if prev_f.exists():
-            with open(prev_f, 'r+') as f:
-                p_data = json.load(f)
+            try:
+                p_data = json.loads(prev_f.read_text(encoding='utf-8'))
                 p_data['next_week'] = week_num
-                f.seek(0)
-                json.dump(p_data, f, indent=2)
-                f.truncate()
+                prev_f.write_text(json.dumps(p_data, indent=2, ensure_ascii=False), encoding='utf-8')
+            except json.JSONDecodeError as e:
+                print(f"  ⚠ Could not update prev week link: {e}")
 
     return True
 
