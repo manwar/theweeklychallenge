@@ -31,7 +31,4 @@ This app is built with the following open source technologies:
 
 ## Source Code
 
-The source code for this app is available on GitHub:
-github.com/manwar/theweeklychallenge-app
-
-Contributions are welcome under the MIT License.
+This app is developed and maintained by Mohammad Sajid Anwar. For enquiries about the source code, please contact mohammad.anwar@yahoo.com.
