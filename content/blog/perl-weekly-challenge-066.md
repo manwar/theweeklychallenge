@@ -4,7 +4,7 @@ date: 2020-06-22T00:00:00+00:00
 description: "Perl Weekly Challenge - 066"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -78,9 +78,7 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 
 <br>
 
-***
-
-## TASK #1 › Divide Integers
+## Task 1: Divide Integers
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 
 ***
@@ -92,23 +90,22 @@ Write a script to divide the given two integers i.e. `$M / $N` without using mul
 
 ## Example 1:
 
-    Input: $M = 5, $N = 2
-    Output: 2
+Input: $M = 5, $N = 2
+Output: 2
 
 ## Example 2:
 
-    Input: $M = -5, $N = 2
-    Output: -3
+Input: $M = -5, $N = 2
+Output: -3
 
 ## Example 3:
 
-    Input: $M = -5, $N = -2
-    Output: 2
+Input: $M = -5, $N = -2
+Output: 2
 
 <br>
 
-***
-## TASK #2 › Power Integers
+## Task 2: Power Integers
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 

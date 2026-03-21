@@ -4,7 +4,7 @@ date: 2020-07-06T00:00:00+00:00
 description: "Perl Weekly Challenge - 068"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -81,9 +81,8 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-## TASK #1 › Zero Matrix
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 1: Zero Matrix
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given a matrix of size `M x N` having only `0s` and `1s`.
@@ -92,43 +91,42 @@ Write a script to set the entire row and column to `0` if an element is `0`.
 
 ## Example 1
 
-    Input: [1, 0, 1]
-           [1, 1, 1]
-           [1, 1, 1]
+Input: [1, 0, 1]
+[1, 1, 1]
+[1, 1, 1]
 
-    Output: [0, 0, 0]
-            [1, 0, 1]
-            [1, 0, 1]
+Output: [0, 0, 0]
+[1, 0, 1]
+[1, 0, 1]
 
 ## Example 2
 
-    Input: [1, 0, 1]
-           [1, 1, 1]
-           [1, 0, 1]
+Input: [1, 0, 1]
+[1, 1, 1]
+[1, 0, 1]
 
-    Output: [0, 0, 0]
-            [1, 0, 1]
-            [0, 0, 0]
+Output: [0, 0, 0]
+[1, 0, 1]
+[0, 0, 0]
 
-***
-## TASK #2 › Reorder List
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 2: Reorder List
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given a singly linked list `$L` as below:
 
-    L0 →  L1 →  … →  Ln-1 →  Ln
+L0 →  L1 →  … →  Ln-1 →  Ln
 
 Write a script to reorder list as below:
 
-    L0 →  Ln →  L1 →  Ln-1 →  L2 →  Ln-2 →
+L0 →  Ln →  L1 →  Ln-1 →  L2 →  Ln-2 →
 
 You are **ONLY** allowed to do this in-place without altering the nodes’ values.
 
 ## Example
 
-    Input:  1 →  2 →  3 →  4
-    Output: 1 →  4 →  2 →  3
+Input:  1 →  2 →  3 →  4
+Output: 1 →  4 →  2 →  3
 
 ***
 

@@ -4,7 +4,7 @@ date: 2020-07-13T00:00:00+00:00
 description: "Perl Weekly Challenge - 069"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -52,19 +52,19 @@ I would like to thank every member of the team for their valuable suggestions. P
 
 We have a private **Early Bird Club**, whose members have the privilege to check out the weekly challenge before **Monday**, the launch day. Not only that they get more time to work on the tasks. Joining is very easy, just drop me a line at <perlweeklychallenge@yahoo.com> and you are good to go.
 
-### 1. Vinod Kumar Pal joined the team to learn **Perl**.
+1. Vinod Kumar Pal joined the team to learn **Perl**.
 
 <br>
 
-### 2. [Myoungjin Jeon](https://github.com/jeongoon), Perl enthusiast joined the team from Sydney, Australia.
+2. [Myoungjin Jeon](https://github.com/jeongoon), Perl enthusiast joined the team from Sydney, Australia.
 
->    I'm a Japanese chef. I used to write some tiny codes in **Perl** from 2002 to 201. They are only for personal study and curiosity. There are not so much about talking my background but I love free software and GNU/Linux and use them everyday.
+I'm a Japanese chef. I used to write some tiny codes in **Perl** from 2002 to 201. They are only for personal study and curiosity. There are not so much about talking my background but I love free software and GNU/Linux and use them everyday.
 
 <br>
 
-### 3. [Simon Green](https://github.com/simongreen-net), Perl enthusiast joined the team from Sydney, Australia.
+3. [Simon Green](https://github.com/simongreen-net), Perl enthusiast joined the team from Sydney, Australia.
 
->    I first used **Perl** in 1995 at an ISP when you still had to explain to your parents what the Internet was. Since then I've used **Perl** as my main language at most jobs, although am using **Python** more recently.
+I first used **Perl** in 1995 at an ISP when you still had to explain to your parents what the Internet was. Since then I've used **Perl** as my main language at most jobs, although am using **Python** more recently.
 
 <br>
 
@@ -86,9 +86,8 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-## TASK #1 › Strobogrammatic Number
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 1: Strobogrammatic Number
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 A strobogrammatic number is a number that looks the same when looked at upside down.
@@ -99,38 +98,37 @@ Write a script to print all strobogrammatic numbers between the given two number
 
 ## Example
 
-    Input: $A = 50, $B = 100
-        Output: 69, 88, 96
+Input: $A = 50, $B = 100
+Output: 69, 88, 96
 
-***
-## TASK #2 › 0/1 String
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 2: 0/1 String
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 A `0/1 string` is a string in which every character is either 0 or 1.
 
 Write a script to perform `switch` and `reverse` to generate `S30` as described below:
 
-    switch:
+switch:
 
-    Every 0 becomes 1 and every 1 becomes 0. For example, “101” becomes “010”.
+Every 0 becomes 1 and every 1 becomes 0. For example, “101” becomes “010”.
 
-    reverse:
+reverse:
 
-    The string is reversed. For example, "001” becomes “100”.
+The string is reversed. For example, "001” becomes “100”.
 
 <br>
 
-### UPDATE (2020-07-13 17:00:00):
+UPDATE (2020-07-13 17:00:00):
 
 It was brought to my notice that generating `S1000` string would be nearly impossible. So I have decided to lower it down to `S30`. Please follow the rule as below:
 
-    S0 = “”
-    S1 = “0”
-    S2 = “001”
-    S3 = “0010011”
-    …
-    SN = SN-1 + “0” + switch(reverse(SN-1))
+S0 = “”
+S1 = “0”
+S2 = “001”
+S3 = “0010011”
+…
+SN = SN-1 + “0” + switch(reverse(SN-1))
 
 ***
 

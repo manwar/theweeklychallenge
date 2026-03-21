@@ -4,7 +4,7 @@ date: 2020-07-20T00:00:00+00:00
 description: "Perl Weekly Challenge - 070"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -85,9 +85,8 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-## TASK #1 › Character Swapping
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 1: Character Swapping
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given a string `$S` of size `$N`.
@@ -103,31 +102,30 @@ You are also given swap count `$C` and offset `$O` such that $C >= 1, $O >= 1, $
 
 Write a script to perform character swapping like below:
 
-    $S[ 1 % $N ] <=> $S[ (1 + $O) % $N ]
-    $S[ 2 % $N ] <=> $S[ (2 + $O) % $N ]
-    $S[ 3 % $N ] <=> $S[ (3 + $O) % $N ]
-    ...
-    ...
-    $S[ $C % $N ] <=> $S[ ($C + $O) % $N ]
+$S[ 1 % $N ] <=> $S[ (1 + $O) % $N ]
+$S[ 2 % $N ] <=> $S[ (2 + $O) % $N ]
+$S[ 3 % $N ] <=> $S[ (3 + $O) % $N ]
+...
+...
+$S[ $C % $N ] <=> $S[ ($C + $O) % $N ]
 
 ## Example 1
 
-    Input:
-        $S = 'perlandraku'
-        $C = 3
-        $O = 4
+Input:
+$S = 'perlandraku'
+$C = 3
+$O = 4
 
-    Character Swapping:
-        swap 1: e <=> n = pnrlaedraku
-        swap 2: r <=> d = pndlaerraku
-        swap 3: l <=> r = pndraerlaku
+Character Swapping:
+swap 1: e <=> n = pnrlaedraku
+swap 2: r <=> d = pndlaerraku
+swap 3: l <=> r = pndraerlaku
 
-    Output:
-        pndraerlaku
+Output:
+pndraerlaku
 
-***
-## TASK #2 › Gray Code Sequence
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+## Task 2: Gray Code Sequence
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 ***
 
 You are given an integer `2 <= $N <= 5`.
@@ -136,36 +134,36 @@ Write a script to generate `$N-bit` [gray code sequence](https://www.tutorialspo
 
 ## 2-bit Gray Code Sequence
 
-    [0, 1, 3, 2]
+[0, 1, 3, 2]
 
 To generate the 3-bit Gray code sequence from the 2-bit Gray code sequence, follow the step below:
 
-    2-bit Gray Code sequence
-    [0, 1, 3, 2]
+2-bit Gray Code sequence
+[0, 1, 3, 2]
 
-    Binary form of the sequence
-    a) S1 = [00, 01, 11, 10]
+Binary form of the sequence
+a) S1 = [00, 01, 11, 10]
 
-    Reverse of S1
-    b) S2 = [10, 11, 01, 00]
+Reverse of S1
+b) S2 = [10, 11, 01, 00]
 
-    Prefix all entries of S1 with '0'
-    c) S1 = [000, 001, 011, 010]
+Prefix all entries of S1 with '0'
+c) S1 = [000, 001, 011, 010]
 
-    Prefix all entries of S2 with '1'
-    d) S2 = [110, 111, 101, 100]
+Prefix all entries of S2 with '1'
+d) S2 = [110, 111, 101, 100]
 
-    Concatenate S1 and S2 gives 3-bit Gray Code sequence
-    e) [000, 001, 011, 010, 110, 111, 101, 100]
+Concatenate S1 and S2 gives 3-bit Gray Code sequence
+e) [000, 001, 011, 010, 110, 111, 101, 100]
 
-    3-bit Gray Code sequence
-    [0, 1, 3, 2, 6, 7, 5, 4]
+3-bit Gray Code sequence
+[0, 1, 3, 2, 6, 7, 5, 4]
 
 ## Example
 
-    Input: $N = 4
+Input: $N = 4
 
-    Output: [0, 1, 3, 2, 6, 7, 5, 4, 12, 13, 15, 14, 10, 11, 9, 8]
+Output: [0, 1, 3, 2, 6, 7, 5, 4, 12, 13, 15, 14, 10, 11, 9, 8]
 
 ***
 

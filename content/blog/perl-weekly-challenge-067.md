@@ -4,7 +4,7 @@ date: 2020-06-29T00:00:00+00:00
 description: "Perl Weekly Challenge - 067"
 type: post
 image: images/blog/pwc-base.svg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
@@ -63,11 +63,11 @@ I would like to thank every member of the team for their valuable suggestions. P
 
 ***
 
-### **3ter**
+**3ter**
 
 **GitHub** user **[3ter](https://github.com/3ter)** joined the **Team PWC**.
 
-### **Niels van Dijke**
+**Niels van Dijke**
 
 I remember I started using Perl on a UNIX server in 1994 version 4.036. Didn't like it that much coming from a awk/grep/etc. scripting environment. Because I was assigned to another project for a while I rediscovered Perl at a 5.x version in 1995-ish. Much better! Used it for a while on Windows NT 4 workstation with 16MiB RAM. Oh boy the good old days where people seriously struggled with ASCII files of 4-8MiB!
 Since 1995 Perl has been my swish army knife. I've used Perl for instance for:
@@ -100,13 +100,8 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 
 <br>
 
-***
-
-## TASK #1 › Number Combinations
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
-
-***
-<br>
+## Task 1: Number Combinations
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
 
 You are given two integers `$m` and `$n`. Write a script print all possible combinations of `$n` numbers from the list 1 2 3 ... $m.
 
@@ -114,18 +109,15 @@ Every combination should be sorted i.e. [2,3] is valid combination but [3,2] is 
 
 ## Example:
 
-      Input: $m = 5, $n = 2
+Input: $m = 5, $n = 2
 
-      Output: [ [1,2], [1,3], [1,4], [1,5], [2,3], [2,4], [2,5], [3,4], [3,5], [4,5] ]
-
-<br>
-
-***
-## TASK #2 › Letter Phone
-##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
-***
+Output: [ [1,2], [1,3], [1,4], [1,5], [2,3], [2,4], [2,5], [3,4], [3,5], [4,5] ]
 
 <br>
+
+## Task 2: Letter Phone
+##### **Submitted by:** [Mohammad Sajid Anwar](http://www.manwar.org)
+***
 
 You are given a digit string `$S`. Write a script to print all possible letter combinations that the given digit string could represent.
 
@@ -135,9 +127,9 @@ You are given a digit string `$S`. Write a script to print all possible letter c
 
 ## Example:
 
-      Input: $S = '35'
+Input: $S = '35'
 
-      Output: ["dj", "dk", "dl", "ej", "ek", "el", "fj", "fk", "fl"].
+Output: ["dj", "dk", "dl", "ej", "ek", "el", "fj", "fk", "fl"].
 
 ***
 
