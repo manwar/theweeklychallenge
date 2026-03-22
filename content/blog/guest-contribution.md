@@ -1204,6 +1204,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Jorg Sommrey** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/jo-37/j/ch-1.ijs) in **J**.
 
+##### **HVukman** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/hvukman/racket/part1/365_p1.rkt) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/hvukman/racket/part1/365_p2.rkt) in **Racket**.
+
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/luca-ferrari/pljava/src/main/java/Task1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/luca-ferrari/pljava/src/main/java/Task2.java) in **Java**.
