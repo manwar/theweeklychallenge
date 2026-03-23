@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-03-22T00:00:00+00:00
+date: 2026-03-23T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1175,6 +1175,14 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
   }
 </style>
 
+## [The Weekly Challenge - 366](/blog/perl-weekly-challenge-366) {#366}
+<br>
+
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-366/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-366/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-366/mohammad-anwar/python/ch-1.py) in **Python**.
+
+___
 ## [The Weekly Challenge - 365](/blog/perl-weekly-challenge-365) {#365}
 <br>
 
