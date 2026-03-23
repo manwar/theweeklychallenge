@@ -1,6 +1,6 @@
 ---
 title: "Privacy Policy"
-date: 2026-03-12
+date: 2026-03-23
 layout: "privacy-policy"
 ---
 
@@ -70,11 +70,31 @@ We do not store personal data on our own servers. Google Analytics data is retai
 
 Our website and app are not directed at children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal data, please contact us and we will delete it promptly.
 
-## 9. Changes to This Policy
+## 9. Contributor Names, Pseudonyms, and Personal Data
+
+By submitting a solution to The Weekly Challenge, contributors agree that their name or pseudonym, links to their solutions, blog posts, and any other information they choose to include in their submission may be published on the website (theweeklychallenge.org) and in the official mobile application. This includes display in leaderboards, contribution statistics, recap posts, and community pages.
+
+Contributors who wish to have their information removed from the website or app may contact us at mohammad.anwar@yahoo.com and we will honour such requests promptly in accordance with your rights under the UK Data Protection Act 2018 and UK GDPR.
+
+We display only information that contributors have voluntarily made public through their submissions. We do not publish private contact details or any information not provided as part of a challenge submission.
+
+## 10. Intellectual Property
+
+All solutions, blog posts, and other content submitted to The Weekly Challenge remain the intellectual property of their respective authors, unless the author has explicitly stated that their work is in the public domain or released under an open licence.
+
+The Weekly Challenge does not claim ownership of any submitted solutions or associated content. By submitting, contributors grant The Weekly Challenge a non-exclusive, royalty-free licence to display and link to their work on the website and in the mobile application for the purposes of running the challenge and showcasing community participation.
+
+## 11. Challenge Sources
+
+Challenge tasks published each week are sourced by the organiser, primarily by searching publicly available resources including Google Search and other open references. Unless a challenge task has been explicitly suggested or co-created by a team member or community contributor (in which case full credit is given), the challenges are independently composed.
+
+The Weekly Challenge does not claim ownership of any underlying mathematical concepts, algorithms, or problem types that may appear in the tasks, as these are part of the wider public domain of computer science and mathematics.
+
+## 12. Changes to This Policy
 
 We may update this Privacy Policy from time to time. Any changes will be published at this URL with a revised date at the top. Continued use of our website or app after changes constitutes acceptance of the updated policy.
 
-## 10. Contact
+## 13. Contact
 
 - **Name:** Mohammad Sajid Anwar
 - **Email:** mohammad.anwar@yahoo.com
