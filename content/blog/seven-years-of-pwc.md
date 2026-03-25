@@ -28,7 +28,7 @@ With the website updated, I set my sights on a mobile app. **The catch?** I had 
 
 This is where I need your help. `Google` requires a minimum of `12 testers` to use the app for at least `14 days` before they will approve it for the public store.
 
-If you have an `Android` device and are willing to help me get my first app off the ground, please send me the email address linked to your `Google Play Store` account privately. Once you accept the invite, you just need to keep the app installed for two weeks. You don’t need to spend hours on it - just a few random clicks throughout the day is plenty.
+If you have an `Android` device and are willing to help me get my first app off the ground, please send me the email address linked to your `Google Play Store` account privately to `mohammad.anwar@yahoo.com`. Once you accept the invite, you just need to keep the app installed for two weeks. You don’t need to spend hours on it - just a few random clicks throughout the day is plenty.
 
 <div class="container">
     <div class="row g-4 justify-content-center">
