@@ -32,7 +32,7 @@ with no comments could be used. For this regex I prefer commenting it like below
 
 Search for the quoted comments in the code below in [**here**](https://docs.raku.org/language/regexes) for more information.
 
-```perl6
+```perl
 
 use v6.d;
 

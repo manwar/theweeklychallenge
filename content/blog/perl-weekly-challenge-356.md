@@ -69,7 +69,7 @@ sub thousand_separator {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-355/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub thousand-separator(Int $num --> Str) {
     my $reversed = $num.flip;
     $reversed ~~ s:g/(\d**3) <?before \d>/$0,/;

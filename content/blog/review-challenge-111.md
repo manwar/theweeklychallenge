@@ -61,7 +61,7 @@ You are given 5×5 matrix filled with integers such that each row is sorted from
 Write a script to find a given integer in the matrix using an efficient search algorithm.
 
 **Example**
-```
+```perl
     Matrix: [  1,  2,  3,  5,  7 ]
             [  9, 11, 15, 19, 20 ]
             [ 23, 24, 25, 29, 31 ]
@@ -1100,11 +1100,11 @@ Well that's the theory, at least.
 In practicality the longest words in the dictionary are the least likely to be sorted, and it's only once the words get down to medium length, 7 or 8 letters, that any at all come in ordered. It makes sense to cut to the chase, but can we really expect "pathologicopsychological" to come out ordered? Let's look at the math: a random arrangement of letters (which real words are not) would cancel out the probability imbalances so each letter has on average only a 27/52 chance of being ordered in relation to the previous — 50% above, 50% below and one chance of being the same —  and these probabilities multiply at each letter. So all things being equal that 24-letter monstrosity about monsters has a 0.000015% chance of starting out sorted. Letter frequency analysis could give us a more accurate prediction, but you get the idea. In reality the situation is even worse, as the limited number of vowels available restricts this number further, rather radically. As it works out, after finding "aegilops" in the big list of 466,000 words we still will have to have read over 275,000 of those to check the last 9-letter word. In the BSD dict the situation is even worse: the maximum word is only 7 letters long, and to exhaust the 7-letter range we need to check 201,000 out of 235,000 words.
 
 One might think the word list would be heavily skewed towards the low end in length, but in fact this is limited by complexity: there are only about 4000 3-letter combinations that include a vowel, and most of these won't be words. For the
-```
+```perl
     /usr/share/dict/words
 ```
 list of 235,886 entries:
-```
+```perl
     length | words
     -------+-------
          1   52

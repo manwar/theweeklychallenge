@@ -61,7 +61,7 @@ sub justify_text {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-360/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub justify-text(Str $str, Int $width) {
     my $pad = $width - $str.chars;
     return "*" x ($pad div 2) ~ $str ~ "*" x ($pad - ($pad div 2));

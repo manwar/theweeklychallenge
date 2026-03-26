@@ -68,7 +68,7 @@ The famous Pythagorean theorem states that in a right angle triangle, the length
 A Pythagorean triple refers to the triple of three integers whose lengths can compose a right-angled triangle.
 
 **Example**
-```
+```perl
     Input: $N = 5
     Output:
         (3, 4, 5)
@@ -109,7 +109,7 @@ The required input value could be either the lesser of the two legs, the greater
 
 I used 60 for my test example, which should give 14 solutions. The last is a the (3,4,5) primitive scaled times 12.
 
-```
+```perl
 
   60² +  899² = 901²
   60² +  448² = 452²
@@ -595,7 +595,7 @@ And finally, we have Roger, who uses what he refers to as [Barning's matrices](h
 *Submitted by: Mohammad S Anwar*<br>
 You are given binary tree as below:
 
-```
+```perl
             1
            / \
           2   5
@@ -702,7 +702,7 @@ I find this simultaniously both fascinating and distracting, as it ends up being
 
 Matthew gives us his, to me at least, unique take on the construction part of the exercise, which we'll pause to look at. The whole structure is an array of trees, the trees themselves nest hashes of hashes.
 
-```
+```perl
     # Tree 1 (for testing- diameter does not
     # pass through the root node):
     #
@@ -908,7 +908,7 @@ And the construction of an example, with context commentary:
 
 The result:
 
-```
+```perl
     5) Tree with node further down having two children - but distance from
        root to node is less than the depth of both children
       1

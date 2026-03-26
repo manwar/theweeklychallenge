@@ -704,13 +704,13 @@ You are given a fraction, member of the tree created similar to the above sample
 Write a script to find out the parent and grandparent of the given member.
 
 **Example 1:**
-```
+```perl
     Input: $member = '3/5';
     Output: parent = '3/2' and grandparent = '1/2'
 ```
 
 **Example 2:**
-```
+```perl
     Input: $member = '4/3';
     Output: parent = '1/3' and grandparent = '1/2'
 ```
@@ -975,7 +975,7 @@ Abigail hones this action down to a simple ternary switch with two outcomes, eac
 
 By copying the altered fraction components into new variables instead of overwriting the original values, Peter is able to report the parent and grandparents in a verbose manner:
 
-```
+```perl
     The      parent of 13/20 is 13/7
     The grandparent of 13/20 is 6/7
 

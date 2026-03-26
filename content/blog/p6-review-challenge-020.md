@@ -23,7 +23,7 @@ The challenge reads as follows:
 
 For this, it seemed fairly obvious to me that a simple regex in a one-liner should do the trick.
 
-``` shell
+```shell
 $ perl6 -e 'say ~$/ if "ABBBCDEEF" ~~ m:g/( (.) $0*)/;'
 A BBB C D EE F
 
@@ -35,14 +35,14 @@ The `((.)$0*)` pattern looks for repeated characters and stores the captured gro
 
 Just in case the quote marks and commas are part of the desired output (which I don't really believe), we can fix that easily:
 
-``` shell
+```shell
 $ perl6 -e 'print join ", ", map {"\"$_\""}, "ABBCDEEF" ~~ m:g/((.)$0*)/'
 "A", "BB", "C", "D", "EE", "F"
 ```
 
 If we don't want to use a regex and prefer a more traditional procedural approach, we can split the input string, loop through each letter individually, and take actions depending on whether the current letter is equal to the previous one. For example:
 
-``` perl6
+```perl
 use v6;
 
 sub split-str ($in) {
@@ -84,7 +84,7 @@ When using the default input parameter (`"ABBBCDEEF"`), this prints the followin
 
 [Francis Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/fjwhittle/perl6/ch-1.p6), [Martin Barth](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/martin-barth/perl6/ch-1.p6), [Randy Lauen](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/randy-lauen/perl6/ch-1.p6), [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/joelle-maslak/perl6/ch-1.p6), and [Feng Chang](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/feng-chang/perl6/ch-1.p6) used regex patterns almost identical to mine above, but used that pattern as a parameter to the `comb` built-in function. As an example, this is Joelle's solution:
 
-``` perl6
+```perl
 sub MAIN(Str:D $input) {
     my @matches = $input.comb( / (.) $0* / );
     say @matches.join("\n");
@@ -95,14 +95,14 @@ sub MAIN(Str:D $input) {
 
 [Ozzy](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/ozzy/perl6/ch-1.p6) also used a regex, but with named captures rather than using the `$0` special variable (which is really a shortcut for `$/[0]`):
 
-``` perl6
+```perl
 $string.match: / ( $<l>=<.alpha> $<l>* )+ /;    # Quantified capture yields array $/[0] of Match objects
 say $/[0][*].Str;                               # Stringify each Match object to see the overall match
 ```
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/roger-bell-west/perl6/ch-1.p6) also used something similar to a named capture (although it is really assigning a capture number to a variable):
 
-``` perl6
+```perl
 sub splitchange ($in) {
    return map {$_.Str}, $in ~~ m:g/(.) {} :my $c = $0; ($c*)/;
 }
@@ -110,7 +110,7 @@ sub splitchange ($in) {
 
 Although Damian Conway doesn't participate directly to the Perl Weekly Challenge, but usually comments on it afterwards, his beautifully crafted solutions are always worth contemplating. His [latest blog](http://blogs.perl.org/users/damian_conway/2019/08/with-friends-like-these.html) suggests a regex as a parameter to the `comb` builtin subroutine:
 
-``` perl6
+```perl
 use v6.d;
 
 sub MAIN (\str) {
@@ -132,7 +132,7 @@ Amicable numbers are two different numbers so related that the sum of the proper
 
 We'll use the `sum-divisors` subroutine to find the divisors of a given number and return their sum. This subroutine uses trial division, i.e. tries division by all integers below a certain limit (here, half of the input number), and then sums up all those that evenly divide the input number. Then, we just loop over a lazy infinite list of integers from 2 onward and call `sum_divisors` subroutine. If the sum of divisors is larger than the integer being examined (if it is smaller, then it is a pair of numbers that we have already checked), then we check the sum of divisors of the sum of divisors. If it is equal to the current integer, then we've found two amicable numbers and can print them and exit the loop.
 
-``` perl6
+```perl
 use v6;
 
 sub sum-divisors (Int $num) {
@@ -164,7 +164,7 @@ Note that the Wikipedia article shows some rules to quickly find some amicable n
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/ruben-westerberg/perl6/ch-2.p6) also uses essentially the same method, but his `proper` subroutine is particularly concise:
 
-``` perl6
+```perl
 sub proper(\n) {
     sum (1..n-1).grep({ n%%$_});
 }
@@ -177,7 +177,7 @@ sub proper(\n) {
 [Adam Russell](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/adam-russell/perl6/ch-2.p6) used the same general algorithm, but interestingly used [promises](https://docs.perl6.org/type/Promise) to parallelize part of the work over several concurrent threads and presumably speed up the search.
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/athanasius/perl6/ch-2.p6) used the `divisor_sum` subroutine of the CPAN `Math::Prime::Util` *Perl 5* module and further created an alias on it presumably to make its use easier:
-``` Perl6
+```perl
 use Math::Prime::Util:from<Perl5> <divisor_sum>;
 my Sub $divisor-sum := &Math::Prime::Util::divisor_sum;     # Alias
 ```
@@ -185,7 +185,7 @@ This is really cool, as it is a good example showing how a fairly large part of 
 
 [Feng Chang](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/feng-chang/perl6/ch-2.p6) made a very nice and concise script using infinite lists:
 
-``` perl6
+```perl
 my @a = (0..∞).map:  { sod($_) };
 my @b = (0..∞).grep: { @a[$_] > $_ and @a[@a[$_]] == $_ };
 say(@b[0], ' ', @a[@b[0]]);
@@ -211,13 +211,13 @@ Given a function that returns the divisors of a number, Damian says it is easy e
 
 The problem is that, since Perl 6 does not have a built-in function that returns the proper divisors of a number, we obviously need to write one. Damian comes up with a handful of such subroutines using the naive trial division algorithm, for example:
 
-``` perl6
+```perl
 multi divisors (\N) { (1..N).grep(N %% *) }
 ```
 
 The problem with it is that it is very inefficient when the input numbers become large. The first thing that Damian does is more or less the same improvement that Joelle and Roger used: iterate up to the square root of the input number and compute the larger missing divisors as the division of the input integer by each of the smaller divisors. For example:
 
-``` perl6
+```perl
 multi divisors (\N) {
     my \small-divisors = (1..sqrt N).grep(N %% *);
     my \big-divisors   = N «div« small-divisors;

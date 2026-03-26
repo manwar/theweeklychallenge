@@ -22,7 +22,7 @@ To start with, I read the Wikipedia page referenced in the challenge, and realiz
 
 So that’s what I’ll talk about below – the part of the code that converts an integer to a Roman number.
 
-```perl6
+```perl
  1 sub decimal-to-roman(UInt:D $decimal is copy -->Str:D) {
  2    my $str = '';
  3

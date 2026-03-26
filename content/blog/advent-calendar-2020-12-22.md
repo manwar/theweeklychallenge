@@ -42,7 +42,7 @@ Using the prime decomposition of `N`, the number of divisors of `N` is odd if an
 
 Therefore, the only open rooms are the rooms with a squared number equal or below 500. A one-liner in Raku (Perl 6) is:
 
-```perl6
+```perl
 say $_**2 for 1..(500.sqrt);
 ```
 

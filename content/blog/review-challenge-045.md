@@ -44,7 +44,7 @@ For example, the message is **“The quick brown fox jumps over the lazy dog”.
 
 Then the message would be laid out as below:
 
-```
+```perl
 thequick
 brownfox
 jumpsove
@@ -55,7 +55,7 @@ dog
 
 The code message would be as below:
 
-```
+```perl
 tbjrd hruto eomhg qwpe unsl ifoa covz kxey
 ```
 

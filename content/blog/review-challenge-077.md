@@ -426,7 +426,7 @@ Write a script to count the total number of X surrounded by O only.
 Print 0 if none found.
 
  **Example 1:**
-```
+```perl
     Input: [ O O X ]
            [ X O O ]
            [ X O O ]
@@ -435,7 +435,7 @@ Print 0 if none found.
 ```
 
  **Example 2:**
-```
+```perl
     Input: [ O O X O ]
            [ X O O O ]
            [ X O O X ]
@@ -600,7 +600,7 @@ Niels is careful to save the coordinates of the lonely elements in the same mann
 
 The line at the end there does the bookkeeping so that in the final report he can produce this:
 
-```
+```perl
     Input:
     [ 0 0 x 0 ]
     [ x 0 0 0 ]

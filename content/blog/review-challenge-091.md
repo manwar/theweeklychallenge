@@ -61,20 +61,20 @@ You are given a positive number $N.
 Write a script to count number and display as you read it.
 
 Example 1:
-```
+```perl
     Input: $N = 1122234
     Output:   21321314
     (as we read "two 1 three 2 one 3 one 4")
 ```
 Example 2:
-```
+```perl
     Input: $N = 2333445
     Output: 12332415
 
     (as we read "one 2 three 3 two 4 one 5")
 ```
  Example 3:
-```
+```perl
     Input: $N = 12345
     Output: 1112131415
 
@@ -373,7 +373,7 @@ Several members of the team took a more literal and literary approach, focusing 
 [**Cheok-Yin Fung**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/cheok-yin-fung/perl/ch-1.pl)
 
 CY gives us a "split and walk the array" solution, with a twist. Rather than simply joining up and outputting the quantity and digit pair, she goes through the trouble of also doing a hash lookup for the English number words, which she substitutes in for the quantity in a written string. A few commas and she has recreated the output as read in the examples. In the end, both are displayed.
-```
+```perl
     11333115
     two 1, three 2, two 1, one 5.
 ```
@@ -402,7 +402,7 @@ She also addressed the issue where the quantities in the challenge as stated can
 
 Julio starts with a regular expression of the type we've seen before, and then brings in the module `Lingua::EN::Numbers` to convert the quantities into written words.
 
-```
+```perl
     one 2 two 1 two 3 one 4 two 2 three 5
 ```
 
@@ -410,7 +410,7 @@ Julio starts with a regular expression of the type we've seen before, and then b
 
 Pete gives another split, walk and count solution, but then brings in the `Lingua::EN::Inflexion` module to help him construct a proper sentence. When all is said and done his output looks something like this:
 
-```
+```perl
     22131435
     There are two 2s, one 3, one 4 and three 5s.
 ```
@@ -438,7 +438,7 @@ For my own solution, I first came up with a split, walk and count method quite s
 
 I immediately reached for `Lingua::EN::Inflexion`, anticipating several problems with pluralization. Although that module does contain a `noun()->cardinal` method to convert numbers to words, combining it with the markup interface proved more trouble than it was worth, so I made a quick lookup, providing the plural forms. Then I discovered it really wanted to write the word "twoes" for some reason I couldn't fathom. Appalled, I made the lookup refer to the plurals and had the module alter them back as required. That worked out fine. Between managing the commas, the pluralization and the final "and", the construction of a proper English sentence became quite complicated.
 
-```
+```perl
     input:               17786622222222222222222222222222222
     numerically:         11271826292
     now using a regex:   11271826292
@@ -588,12 +588,12 @@ You are given an array of positive numbers @N, where value at each index determi
 Write a script to decide if you can jump to the last index. Print 1 if you are able to reach the last index otherwise 0.
 
 Example 1:
-```
+```perl
     Input: @N = (1, 2, 1, 2)
     Output: 1
 ```
 Example 2:
-```
+```perl
     Input: @N = (2,1,1,0,2)
     Output: 0
 ```
@@ -1028,7 +1028,7 @@ Following the trend of allowing zero, even though the specification states "posi
 
 Several times now I recall having made mention of Niels' efforts in providing clear visual representations of his process. A picture is worth a thousand words, they say, and *showing* the results artfully is a far better demonstration of an idea than simply *listing* the progress. Niels gives to us a `printLocation()` subroutine which, longer than the code itself, provides just that demonstration. Enjoy.
 
-```
+```perl
     Input: (2,6,1,2,12,1,100)
 
     2 6 1 2 12 1 100

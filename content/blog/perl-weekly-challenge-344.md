@@ -69,7 +69,7 @@ sub zero_friend { my ($nums) = @_; return min map abs, @$nums }
 
 <br>
 
-```raku
+```perl
 #!/usr/bin/env raku
 
 use Test;

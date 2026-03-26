@@ -648,7 +648,7 @@ You are given 2 positive numbers, $m and $n.
 Write a script to generate multiplcation table and display count of distinct terms.
 
 **Example 1**
-```
+```perl
     Input: $m = 3, $n = 3
     Output:
 
@@ -663,7 +663,7 @@ Write a script to generate multiplcation table and display count of distinct ter
 ```
 
 **Example 2**
-```
+```perl
     Input: $m = 3, $n = 5
     Output:
 
@@ -748,7 +748,7 @@ Of note here we have another mysterious occurrence of the number 42. Any [connec
 
 For some reason.
 
-```
+```perl
     $ ./distinct-terms-count-perl 10 10
      x |  1   2   3   4   5   6   7   8   9  10
     ---+----------------------------------------

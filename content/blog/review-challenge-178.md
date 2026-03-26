@@ -76,7 +76,7 @@ Write a script to convert a given number (base 10) to quater-imaginary base numb
 
 **For example:**
 
-```
+```perl
     $number_base_10 = 4
     $number_quater_imaginary_base = 10300
 ```
@@ -419,7 +419,7 @@ This opens us up to another set of far more complicated solutions.
 
 Choroba also imports `Math::Complex`, to handle arbitrary conversions from quater-imaginary into the more standard component representation. For conversion *to* quater-imaginary, on the other hand, he employs a remarkable bitwise conversion to base (-4), using the magic number `0xCCCCCCCC`:
 
-```
+```perl
     (value + 0xCCCCCCCC) XOR 0xCCCCCCCC
 ```
 

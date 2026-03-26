@@ -860,7 +860,7 @@ Jorg generates a series of regular expressions to try, dividing the target strin
 
 This matches 5 capture groups of between 1 to 4 characters, internally matching those odd-numbered captures against the first string, the evens against the second. Referring back to our data strings, the solution to that set is:
 
-```
+```perl
     $A = "AXXZ";
     $B = "XXYZ";
     $C = "AXXYXZXZ";
@@ -1065,7 +1065,7 @@ I mentioned before on how I considered a simple 1 or 0 to be "the most boring ou
 
 One of my favorite parts from the Apostle of Alexandria's communication is a carefully crafted `explain` routine, documenting the interleaving in a unique manner.
 
-```
+```perl
 Input:
     $A = "XXYZ"
     $B = "AXXZ"

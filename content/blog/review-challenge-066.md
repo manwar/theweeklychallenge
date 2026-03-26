@@ -34,19 +34,19 @@ without using multiplication, division and mod operator and
 return the floor of the result of the division.
 
 Example 1:
-```
+```perl
     Input: $M = 5, $N = 2
     Output: 2
 ```
 
 Example 2:
-```
+```perl
     Input: $M = -5, $N = 2
     Output: -3
 ```
 
 Example 3:
-```
+```perl
     Input: $M = -5, $N = -2
     Output: 2
 ```
@@ -296,15 +296,15 @@ Please make sure m > 1 and n > 1.
 BONUS: If there are more than one ways to express the given number then print all possible solutions.
 
 Example 1:
-```
+```perl
 For given $N = 9, it should print 32 or 3^2.
 ```
 Example 2:
-```
+```perl
 For given $N = 45, it should print 0.
 ```
 Example 3:
-```
+```perl
 For given $N = 64, it should print all or one of 8^2 or 2^6 or 4^3.
 ```
 

@@ -56,7 +56,7 @@ Another group is taking the sub-arrays using trivial computations of the indices
 
 For example, in a loop using an array slice, as [Noud Aldenhoven did it](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/noud/raku/ch-1.p6).
 
-```perl6
+```perl
     gather for 0..@A.elems-$S -> $i {
         take min(@A[$i..$i+$S-1]);
     }
@@ -66,7 +66,7 @@ For example, in a loop using an array slice, as [Noud Aldenhoven did it](https:/
 
 There is a cluster of solutions where scanning is done using the `map` routine. For example, look at the nice one-liner [by Ben Davies](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/ben-davies/raku/ch-1.raku):
 
-```perl6
+```perl
     say (0...@array - $s).map({ @array.skip($_).head($s).min });
 ```
 
@@ -76,20 +76,20 @@ Not a surprise that the built-in `min` routine was used widely. But its usage di
 
 For example, [Colin Crain](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/colin-crain/raku/ch-1.raku) used it in a `WhateverCode` block inside a `map`:
 
-```perl6
+```perl
     my @windows = @A.rotor($S=>-$S+1);
     my @output = @windows.map( *.min );
 ```
 
 A similar solution is [proposed by Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/markus-holzer/raku/ch-1.raku):
 
-```perl6
+```perl
     say join ' ', @A.rotor( $S => -($S - 1) ).map: *.min;
 ```
 
 In [my solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/ash/raku/ch-1.raku), I am using `for` and calling `.min` on a topicalized variable:
 
-```perl6
+```perl
     .min.say for @a.rotor($s => 1 - $s);
 ```
 
@@ -97,7 +97,7 @@ In [my solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/
 
 In those solutions where the result is not printed immediately, the resulting values are usually collected in an array, and there are two main approaches to it. First, by `push`ing the newly computed item. Look at [Roger Bell_West’s variant](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/roger-bell-west/raku/ch-1.p6) for the reference:
 
-```perl6
+```perl
     my @out;
     for (0..(@a.elems-$s)) -> $i {
         push @out,min(@a[$i..$i+$s-1]);
@@ -106,7 +106,7 @@ In those solutions where the result is not printed immediately, the resulting va
 
 Second, by using a `gather` and `take` pair, for example, as [in Laurent Rosendeld’s code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/laurent-rosenfeld/raku/ch-1.raku):
 
-```perl6
+```perl
     my @result = gather {
         for 0..@a.elems - $s  -> $i {
             take min @a[$i..^$i + $s];
@@ -118,7 +118,7 @@ Second, by using a `gather` and `take` pair, for example, as [in Laurent Rosende
 
 An outstanding solution is [demonstrated by Jan Krnavek](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/wambash/raku/ch-1.raku), where all the main steps of the algorithm are connected together using the [`andthen` infix](https://docs.raku.org/routine/andthen):
 
-```perl6
+```perl
     sub min-sliding-window (@a, $s) {
         @a
         andthen .rotor: $s => - $s.pred
@@ -172,26 +172,26 @@ In the solutions, we again see similar ways of finding the minimum values of a p
 
 To simplify finding the minimum, some participants used `grep` to ignore all the items which are bigger than the current one. For example, you can see it in a [solution by Mark Andreson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/mark-anderson/raku/ch-2.raku):
 
-```perl6
+```perl
     @A.kv.map(-> $k,$v {(@A.head($k+1).grep(* < $v) or 0).min}).join(", ").List.say;
 ```
 
 Or as [Markus Holzer did it](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/markus-holzer/raku/ch-2.raku) in his compact solution:
 
-```perl6
+```perl
     say join ' ', 0, gather for 1 .. +@A - 1 -> $i {
         take .min with @A[ 0..$i-1 ].grep( * < @A[$i] ) or 0 };
 ```
 
 By the way, [Roger Bell_West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/roger-bell-west/raku/ch-2.p6) demonstrated the method of computing the minumum without using any explicit comparisons. Just add the current minimum value to the new data set, and find the minimum again:
 
-```perl6
+```perl
     $wm=min($wm,@a[$i-1]);
 ```
 
 [Myoungjin Jeon](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/jeongoon/raku/ch-2.raku) reminds us how to mixin a role in Raku with `but`:
 
-```perl6
+```perl
     role zero { method raku { "0" } }
 
     . . .
@@ -201,7 +201,7 @@ By the way, [Roger Bell_West](https://github.com/manwar/perlweeklychallenge-club
 
 Later, when you call the `raku` method on a value, the role’s method is used for the elements where that role was applied:
 
-```perl6
+```perl
     say "Output: {@answer.map( *.raku ).map( *.Int ).Array.raku}"
 ```
 
@@ -209,7 +209,7 @@ Later, when you call the `raku` method on a value, the role’s method is used f
 
 As a side story, [watch](https://www.youtube.com/watch?v=kfdHK5m2vQo&t=2738s) the deparsing and modifying the regular expression that [Mohammad S Anwar used](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/mohammad-anwar/raku/ch-2.raku) in his solution, where he takes the input data as a string:
 
-```perl6
+```perl
     sub MAIN(Str $list = "7, 8, 3, 12, 10") {
         say $list;
         smallest-neighbour($list).join(', ').say;

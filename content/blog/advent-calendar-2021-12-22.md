@@ -171,7 +171,7 @@ acies, aimed, align, alose, angil, antes, argos, arose, ashed, ation, blunt, blu
 
 <br>
 
-```perl6
+```perl
 # Test: perl6 ch-2.p6
 
 multi MAIN { MAIN("challenge.txt", "words.txt") };
@@ -258,7 +258,7 @@ sub dictionary-to-hash(Str $filename) {
 <br>
 
 
-```perl6
+```perl
 $ perl6 ch-2.p6
 
 Found 87 words:

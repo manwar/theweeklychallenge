@@ -37,21 +37,21 @@ In this task, you need to swap a few characters in the given string. The swappin
 
 The task of swapping two characters is mostly solved using one of the two forms of assigning two items at the same time. Either individually:
 
-```perl6
+```perl
     my @s = $s.comb;
     (@s[0], @s[7]) = @s[7], @s[0];
 ```
 
 Or using an array slice:
 
-```perl6
+```perl
     my @s = $s.comb;
     @s[0, 7] = @s[7, 0];
 ```
 
 A few of the solutions offer an interesting alternative and use the built-in `substr-rw` method (or function):
 
-```perl6
+```perl
     my $t = $s.substr(0, 1);
     $s.substr-rw(0, 1) = $s.substr(7, 1);
     $s.substr-rw(7, 1) = $t;
@@ -59,7 +59,7 @@ A few of the solutions offer an interesting alternative and use the built-in `su
 
 It is not possible to subscript a string in Raku (actually, why?), so Laurent Rosenfeld created his own version of the operator `[ ]`:
 
-```perl6
+```perl
     multi sub postcircumfix:<[ ]> (Str $s, Int $n) {
         substr-rw $s, $n, 1;
     }
@@ -91,13 +91,13 @@ Note that the character at position 0 can still be swapped, even if you do not s
 
 The main swapping loop is most often organised with a `for` loop over the range `1..$C`. In the solution by Mark Anderson, the loop is indirectly run via `map`:
 
-```perl6
+```perl
     map { @S[$_ % $N, ($_ + $O) % $N] = @S[($_ + $O) % $N, $_ % $N] }, 1..$C;
 ```
 
 But you can solve the task even without loops! Myoungjin Jeon demonstrates how:
 
-```perl6
+```perl
     $N = $S.chars;
     my $K = $C > $O;
 
@@ -125,7 +125,7 @@ The second task is to generate an _N_-bit sequence of Gray code. The task defini
 
 Here is the minimum solution brought by Andrew Shitov that uses bit operations:
 
-```perl6
+```perl
     put map {$_ +^ ($_ div 2)}, ^2**@*ARGS[0];
 ```
 
@@ -133,7 +133,7 @@ This is the whole program and it prints the sequence for the given input number 
 
 A number of solutions use recursion. As you may notice, the first half of the _N_-bit sequence fully repeats the _(N-1)_-bit sequence. For example, here is the solution demonstrated by Noud Aldenhoven:
 
-```perl6
+```perl
     sub gray-code-sequence($n) {
         if ($n == 1) {
             return [0, 1];
@@ -150,7 +150,7 @@ A number of solutions use the so-called flattening, in the form of either callin
 
 Flattening is often used when the two parts of the current sequence are joined, for example:
 
-```perl6
+```perl
     my @gray-seq = |@s1, |@s2;
 ```
 
@@ -158,7 +158,7 @@ In such a case, you can simply call `append` and join the lists using a cleaner 
 
 Examine the following example and its output to see the difference:
 
-```perl6
+```perl
     my @a = 3, 4, 5;
     my @b = 10, 20, 30;
 
@@ -180,7 +180,7 @@ There is more than one way to convert a string with a binary representation of a
 
 In the first group, the [parse-based routine](https://docs.raku.org/routine/parse-base) is used:
 
-```perl6
+```perl
     @sequence.map( *.parse-base( 2 ) )
 
     my @result = map { .parse-base(2) },  @gray-seq;
@@ -188,7 +188,7 @@ In the first group, the [parse-based routine](https://docs.raku.org/routine/pars
 
 The second group uses the [adverbal form](https://docs.raku.org/syntax/Number%20literals) `:2<1010>`:
 
-```perl6
+```perl
     @A.map({ ":2<$_>".Int })
 
     return ":2<$binary>".Int;
@@ -196,7 +196,7 @@ The second group uses the [adverbal form](https://docs.raku.org/syntax/Number%20
 
 And in the third group, we create a `0b`-prefixed string and coerce it to an integer by calling a method on the string:
 
-```perl6
+```perl
     @S1 = @S1.map({ "0b$_".Int });
 
     my UInt @gray-codes =

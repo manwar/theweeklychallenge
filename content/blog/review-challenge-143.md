@@ -64,12 +64,12 @@ You are given a string, $s, containing mathematical expression.
 Write a script to print the result of the mathematical expression. To keep it simple, please only accept + - * ().
 
 **Example 1:**
-```
+```perl
     Input: $s = "10 + 20 - 5"
     Output: 25
 ```
 **Example 2:**
-```
+```perl
     Input: $s = "(10 + 20 - 5) * 2"
     Output: 50
 ```
@@ -178,7 +178,7 @@ So after a quick one-liner, he continues on to construct a tokenizer to parse th
 A token here is a two-element tuple, containing a type and a value. Numbers have type N and others are the type of their operator.
 
 The tokens are defined as either expressions, terms, simple terms (which include parenthetical expressions) or numbers. In Luis terminology we have:
-```
+```perl
     e -> [t | e] + [t | e] - t
     t -> [s | t*s | t/s]
     s -> [n | -s | +s | (e)]
@@ -970,7 +970,7 @@ Write a script to find out if the given number is Stealthy Number.
 A positive integer N is stealthy, if there exist positive integers a, b, c, d such that a * b = c * d = N and a + b = c + d + 1.
 
 **Example 1**
-```
+```perl
     Input: $n = 36
     Output: 1
 
@@ -978,7 +978,7 @@ A positive integer N is stealthy, if there exist positive integers a, b, c, d su
             and     4 (a) + 9 (b) = 6 (c) + 6 (d) + 1.
 ```
 **Example 2**
-```
+```perl
     Input: $n = 12
     Output: 1
 
@@ -986,7 +986,7 @@ A positive integer N is stealthy, if there exist positive integers a, b, c, d su
             and     2 + 6 = 3 + 4 + 1
 ```
 **Example 3**
-```
+```perl
     Input: $n = 6
     Output: 0
 
@@ -1441,7 +1441,7 @@ Almost.
 
 Annoyingly, this doesn't hold true in every case, as sometimes there is a bump in the jump closest to the square root before things descend a step and proceed in an orderly fashion. Take for instance the number 2964:
 
-```
+```perl
     2964 :
         factors: 1 2 3 4 6 12 13 19 26 38 39 52 57 76 78 114 156 228 247 494 741 988 1482 2964
         	1 + 2964 = 2965
@@ -1524,7 +1524,7 @@ Put another way we're really demonstrating the properties they have that fit the
 
 The results look lke this:
 
-```
+```perl
     4 :
         factors: 1 2 4
         	1 + 4 = 5

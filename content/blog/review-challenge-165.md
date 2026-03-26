@@ -72,13 +72,13 @@ For this task, you may use external library, such as Perl’s SVG library, maint
 
 Your task is to accept a series of points and lines in the following format, one per line, in arbitrary order:
 
-```
+```perl
     Point: x,y
     Line:  x1,y1,x2,y2
 ```
 
 **Example:**
-```
+```perl
     53,10
     53,10,23,30
     23,30
@@ -370,7 +370,7 @@ The data has been read in and placed in an array of arrays, one per line, and it
 
 That's it. That's all you need.
 
-```
+```perl
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>                                   <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">                                                                          <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <circle cx="53" cy="10" r="1" /><line x1="53" x2="23" y1="10" y2="30" style="stroke:#006600;" /><circle cx="23" cy="30" r="1" /></svg>
 ```
@@ -718,7 +718,7 @@ The method most often used is known as the least squares method, as it is straig
 
 Calculate the line of best fit for the following 48 points:
 
-```
+```perl
     333,129    39,189   140,156   292,134   393,52    160,166   362,122    13,193       341,104   320,113   109,177   203,152   343,100   225,110    23,186   282,102       284,98    205,133   297,114   292,126   339,112   327,79    253,136    61,169       128,176   346,72    316,103   124,162    65,181   159,137   212,116   337,86       215,136   153,137   390,104   100,180    76,188    77,181    69,195    92,186       275,96    250,147    34,174   213,134   186,129   189,154   361,82    363,89
 ```
 
@@ -785,7 +785,7 @@ The least-squares line of best fit for a given set of *N* individual points can 
 
 Those formulae require four independent summations from the x- and y-coordinates, and give a slope *m*:
 
-```
+```perl
          N Σ(xy) − Σx Σy
     m = —————————————————
          N Σ(x^2) − (Σx)^2
@@ -793,7 +793,7 @@ Those formulae require four independent summations from the x- and y-coordinates
 
 and an intercept *b*:
 
-```
+```perl
           Σy − m Σx
     b =  ———————————
               N
@@ -1027,7 +1027,7 @@ One could argue, I suppose, that the graphical output of an SVG image was only a
 
 Without that code the computation of the least-squares line is much more compact, as demonstrated here by Laurent. Furthermore, without the need to produce (*x*,*y*) endpoints for a line we can directly report the slope/intercept equation.
 
-```
+```perl
     Slope: -0.299956500261231, intercept = 200.132272535582
     The equation of the line of best fit is: y = -0.30 x + 200.13
 ```

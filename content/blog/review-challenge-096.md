@@ -64,14 +64,14 @@ Write a script to reverse the order of words in the given string. The string may
 
 **Example 1:**
 
-```
+```perl
     Input: $S = "The Weekly Challenge"
     Output: "Challenge Weekly The"
 ```
 
 **Example 2:**
 
-```
+```perl
     Input: $S = "    Perl and   Raku are  part of the same family  "
     Output: "family same the of part are Raku and Perl"
 ```
@@ -342,7 +342,7 @@ character. Please check out Wikipedia page for more information.
 [Edit_distance](https://en.wikipedia.org/wiki/Edit_distance)
 
 **Example 1:**
-```
+```perl
     Input: $S1 = "kitten"; $S2 = "sitting"
     Output: 3
 
@@ -351,7 +351,7 @@ character. Please check out Wikipedia page for more information.
         Operation 3: insert 'g' at the end
 ```
 **Example 2:**
-```
+```perl
     Input: $S1 = "sunday"; $S2 = "monday"
     Output: 2
 
@@ -879,14 +879,14 @@ We're not sure *exactly* what James' job description is, so we'll just go with t
 The focus of Smith–Waterman is not to find a path of transformation from one string to the other, but rather to pair up common nucleotide runs, and note differences between them. The output shows these correspondences, along with other notation signifying mismatches and the addition and deletion of elements.
 
 For example, 'boat riding' to 'bat ridding':
-```
+```perl
     boat rid-ing
     |^||||||v||| (2)
     b-at ridding
 ```
 
 or 'kitten' to 'sitting':
-```
+```perl
     kitten-
      ||| |v (3)
     sitting
@@ -917,7 +917,7 @@ James also provides an abridged version. Notice how when put it like this how si
 
 Jorg delivers unto us another sampling of the awesomeness that is the PDL, the Perl Data Language.
 
-```
+```perl
     kitten -> sitting:
     repl(k,s) keep(i) keep(t) keep(t) repl(e,i) keep(n) ins(g)
     Levenshtein distance = 3

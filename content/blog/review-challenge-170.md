@@ -81,7 +81,7 @@ Write a script to generate first 10 Primorial Numbers.
 Primorial numbers are those formed by multiplying successive prime numbers.
 
 *For example,*
-```
+```perl
     P(0) = 1    (1)
     P(1) = 2    (1x2)
     P(2) = 6    (1x2×3)
@@ -246,7 +246,7 @@ Dave has been exploring iterator closures lately, and this time makes one that p
 
 With a list of all the primes at once, Dave can make a pretty output report, which is clever:
 
-```
+```perl
     P(0) = 1 (1)
 
     P(1) = 2 (1x2)
@@ -683,7 +683,7 @@ For more information, please refer wikipedia page.
 
 
 **For example,**
-```
+```perl
     A = [ 1 2 ]
         [ 3 4 ]
 

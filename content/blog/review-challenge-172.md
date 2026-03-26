@@ -77,7 +77,7 @@ You are given two positive integers, $m and $n.
 Write a script to find out the Prime Partition of the given number. No duplicates allowed.
 
 For example,
-```
+```perl
     Input: $m = 18, $n = 2
     Output: 5, 13 or 7, 11
 
@@ -782,7 +782,7 @@ As we are extracting median points and not means (save when averaging between tw
 
 Note as well Duncan presents the summary is a common geometric way, based around a tree structure: the median is at a centra peak, flanked by the first and third quartiles and the minimum and maximum below them:
 
-```
+```perl
     7.5
  0.5   44.0
  0.0   63.0

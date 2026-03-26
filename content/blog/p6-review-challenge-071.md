@@ -35,31 +35,31 @@ The task is to find peak elements in an array of integers. A couple of additiona
 
 In most of the solutions, the input array is generated using either `pick` or `roll` method. To make the elements unique, you must use `pick`. Here is the most popular method that the participants used:
 
-```perl6
+```perl
     my @array = (1..50).pick($N);
 ```
 
 Always remember that you can use column notation when calling a method, for example:
 
-```perl6
+```perl
     my UInt @array = (1 .. $MAX).pick: $N;
 ```
 
 The tricky part of this task is the problem of the two elements at the edges of the array. They only have one neighbour, so you need to make some exceptions to treat them properly. Some of the participants had a wise idea to simply add a couple of elements before and after the main data:
 
-```perl6
+```perl
     my @a = 0, |(1..50).pick($n), 0;
 ```
 
 Now, the ‘peak check’ is trivial, and it does not depend on the index of the element:
 
-```perl6
+```perl
     if @a[$_-1] < @a[$_] && @a[$_] > @a[$_+1]
 ```
 
 For some reason, not everyone wanted to use a great opportunity to chain the comparisons and simplify the code:
 
-```perl6
+```perl
     @data[$_ - 1] < @data[$_] > @data[$_ + 1]
 ```
 
@@ -67,25 +67,25 @@ For some reason, not everyone wanted to use a great opportunity to chain the com
 
 [Mark Andreson demonstrated](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mark-anderson/raku/ch-1.raku) an interesting example of using regexes to find the elements we need. The check for the peak is encoded in an assertion:
 
-```perl6
+```perl
     my $regex = / [^|\s] (\d+) \s (\d+) \s (\d+) [\s|$] <?{ $0 < $1 > $2 }> /;
 ```
 
 [Simon Proctor uses](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/simon-proctor/raku/ch-1.raku) another intersting trick and applies `rotor` with an overlapping option to get the chunks of three items:
 
-```perl6
+```perl
     my @peaks = ( 0, |@list, |0 ).rotor(3 => -2).grep( { $_[0] < $_[1] > $_[2] } ).map( { $_[1] } );
 ```
 
 In general, the peaks are either collected in a loop (by `push`ing or `gather`ing the items) or by using a combination of `grep` and `map`. Here is a good [example by Colin Crain](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/colin-crain/raku/ch-1.raku) with only one `map`:
 
-```perl6
+```perl
     my @output = (1..^@a.end).map: { @a[$_] if @a[$_-1] < @a[$_] && @a[$_] > @a[$_+1] };
 ```
 
 And, of course, it can be simplified further:
 
-```perl6
+```perl
     my @output = (1..^@a.end).map: { @a[$_] if @a[$_-1] < @a[$_] > @a[$_+1] };
 ```
 
@@ -97,7 +97,7 @@ The second task is much more difficult than the first one. For a given singly li
 
 There is no ready-to-use implementation for linked lists built-in in Raku, so the participants created their own versions. Most of them used the idea of a class with the two fields for keeping the data and the next element:
 
-```perl6
+```perl
     class Node {
         has $.data;
         has $.next is rw;
@@ -106,7 +106,7 @@ There is no ready-to-use implementation for linked lists built-in in Raku, so th
 
 That’s the only common part of the solutions. The rest differs significantly. In some of the solutions, a separate class represents a linked list and defines the operations. For example, as we see in the [solution from Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/ulrich-rieke/raku/ch-2.raku):
 
-```perl6
+```perl
     class Node {
         has Int $.value is rw ;
         has Node $.next is rw ;
@@ -133,7 +133,7 @@ That’s the only common part of the solutions. The rest differs significantly. 
 
 In some of the implementations, the list-operating methods are implemented directly in the class representing the node. For example, [as Arne Sommer did it](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/arne-sommer/raku/ch-2.raku):
 
-```perl6
+```perl
     class LinkedElement
     {
         has $.value is rw;
@@ -158,7 +158,7 @@ In some of the implementations, the list-operating methods are implemented direc
 
 Another way to organise classes is to have nested definitions, [as Jaldhar H. Vyas did it](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/jaldhar-h-vyas/raku/ch-2.p6):
 
-```perl6
+```perl
     class LinkedList {
 
         class Node {
@@ -174,7 +174,7 @@ Another way to organise classes is to have nested definitions, [as Jaldhar H. Vy
 
 [Javier Luque offers](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/javier-luque/raku/ch-2.p6) another way of doing that by explicitly giving the fully-qualified names to the classes:
 
-```perl6
+```perl
     class LinkedList::Node {
         has Int $.value is rw;
         has LinkedList::Node $.next is rw;
@@ -188,7 +188,7 @@ Another way to organise classes is to have nested definitions, [as Jaldhar H. Vy
 
 And that’s not all in this TIMTOWTDI series. In Raku, one class can `trust` another class, and we see that option in the solution [submitted by Myoungjin Jeon](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/jeongoon/raku/ch-2.raku):
 
-```perl6
+```perl
     class LinkedList { ... }
     class Iter {
         trusts LinkedList;
@@ -208,7 +208,7 @@ And that’s not all in this TIMTOWTDI series. In Raku, one class can `trust` an
 
 The methods of the class that we trust to may call private methods of another class. For example:
 
-```perl6
+```perl
     $itr!Iter::set-next( $after!Iter::replace-next( $itr ) );
 ```
 
@@ -216,7 +216,7 @@ Despite the note “Please use pure linked list implementation,” it is not ver
 
 In the case your list only keeps data and references to the next items, you can always [count the elements](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/ash/raku/ch-2.raku) easily enough:
 
-```perl6
+```perl
     my $length = 1;
     my $curr = $head;
     $length++ while $curr = $curr.next;

@@ -65,7 +65,7 @@ A good description of the recursive algorithm is written [by Arne Sommer](https:
 
 [Jan Krňávek created](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/wambash/raku/ch-1.raku#L5) a cute and distilled Raku program that implements the conclusions of the Goldbach’s conjecture. Here is its core:
 
-```perl6
+```perl
     subset OddPrime      of Int where { $_ !%% 2 &       .is-prime };
     subset OddPrimeSucc  of Int where { $_ !%% 2 & ($_-2).is-prime };
     subset Even of Int where *  %% 2;
@@ -80,7 +80,7 @@ A good description of the recursive algorithm is written [by Arne Sommer](https:
 
 A similar but completely different approach is [demonstrated by Mark Anderson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/mark-anderson/raku/ch-1.raku#L27):
 
-```perl6
+```perl
     sub MAIN(UInt $N where $N > 1) {
         given $N {
             when .is-prime {
@@ -103,7 +103,7 @@ A similar but completely different approach is [demonstrated by Mark Anderson](h
 
 [Colin Crain used sets](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/colin-crain/raku/ch-1.raku#L31) in his solutions just to enjoy using the set operators such as `∈`:
 
-```perl6
+```perl
     my @primes = (2..$num).grep: { .is-prime };
     my $p = @primes.Set;
 
@@ -117,7 +117,7 @@ A similar but completely different approach is [demonstrated by Mark Anderson](h
 
 [Jason Messer submitted](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/jason-messer/raku/ch-1.p6#L3) an example of a very Raku-ish solution that combines the primes to find the input number.
 
-```perl6
+```perl
     my $N = 9;
     my @p = gather for (2..^$N) { .take if .is-prime }
     say @p.combinations.grep(
@@ -126,7 +126,7 @@ A similar but completely different approach is [demonstrated by Mark Anderson](h
 
 Another example of a great Raku style gives (as always) [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/markus-holzer/raku/ch-1.raku#L3):
 
-```perl6
+```perl
     my @primes = (2..^$N)
         .grep( *.is-prime );
 
@@ -175,7 +175,7 @@ In the second task, you are given a grid (matrix) of letters, and you need to fi
 
 It should be obvious that the second option seems to give much slower programs if the dictionary is big. Loading a dictionary to a hash or a set is an almost one-line task and is executed quickly, for example, we can see this in [Arne Sommer’s solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/arne-sommer/raku/ch-2.p6#L14):
 
-```perl6
+```perl
     my %dict = get-dictionary($dict);
 
     . . .
@@ -195,13 +195,13 @@ At the next step, we again have at least two options:
 
 In the first case, you loop over the candidates and search the words that exist in the dictionary. Again, a good example is [shown by Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/arne-sommer/raku/ch-2.p6#L29):
 
-```perl6
+```perl
     my @words = @candidates.unique.sort.grep({ %dict{$_} }).grep( *.chars >= $min-length);
 ```
 
 An interesting idea for the second case is used in the [program by Shahed Nooshmand](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/shahed-nooshmand/raku/ch-2.raku#L21):
 
-```perl6
+```perl
     for @words -> $word {
         @found.push: $word if (@rows | @columns | @diagonals).grep: *.contains: $word | $word.flip;
     }
@@ -216,7 +216,7 @@ The problem of scanning the grid in different directions is a separate interesti
 
 What can also be a useful observation is the fact that for our task, we do not distinguish between the words found in horizontal, or vertical, or diagonal lines. That means that you can collect all the word candidates in a single array (and make it `unique` afterwards for better performance). Here is a snippet from the [code by Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/athanasius/raku/ch-2.raku#L94):
 
-```perl6
+```perl
     my Str @search-lines = @grid-lines;     # The horizontal lines
     @search-lines.push: $_ for get-vertical-lines(@grid-lines);
     @search-lines.push: $_ for get-diagl-dn-lines(@grid-lines);

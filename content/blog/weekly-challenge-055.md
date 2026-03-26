@@ -201,31 +201,31 @@ done_testing;
 
 Talking about **Raku** solutions is always fun and it goes through so much experimentations. Just like **Perl** solutions, I decided to define the core subroutines first i.e. **sub flip-binary(Str)** and **sub flipped-binary(Hash)**. Let me share my fight with **Raku** when working with **sub flip-binary(Str)**. For the first time, I used the method **substr()**. Luckily it is not much different than similar function **substr()** in **Perl**.
 
-```perl6
+```perl
    my $c = $_binary-str.substr($i, 1);
 ```
 
 The actual trouble started when I wanted to replace the character using the same **substr()** in **Raku**. Having looked at official documentation, I was still lost. I decided to throw the question to the friends at the official Twitter handle `@PerlWChallenge`. Within minutes I had the solution, thanks to **JJ Merelo** and it is called **substr-rw()**.
 
-```perl6
+```perl
    $_binary-str.substr-rw($i, 1) = $c;
 ```
 
 The big find of this task was the line below. I am told by default **$i** is readonly, so you can't manipulate. In my code below, I wanted to do **--$i** and I kept getting the error it is readonly. So I asked again friends at the Twitter handle `@PerlWChallenge` and got the response by `Elizabeth Mattijsen @liztormato` as below:
 
-```perl6
+```perl
    for $left .. $right -> $i is copy {
 ```
 
 Other than that it was smooth run. Now it was time to return all wave binary strings with maximum **1s**. To do this in **Perl**, I sort the hash, containing binary string with count of **1s**, by values first and then by keys. I wanted to do the same in **Raku** but had no clue how to do it. So once again, I popped the question on the Twitter handle. I didn't have to wait too long for the solution, `PawgChamp (@Mrofnet)` proposed the magical one-liner like below.
 
-```perl6
+```perl
    for %result.sort({ $^b.value <=> $^a.value || $^a.key cmp $^b.key }) -> $pair {
 ```
 
 However, I am still not happy with the quality. For now, it does the job.
 
-```perl6
+```perl
 sub flip-binary(Str $binary-str) {
 
     my %result;
@@ -275,7 +275,7 @@ sub flipped-binary(%result) {
 
 Having done the handy subroutines, it is time to create standalone app. For the first time, I am using **multi** operator with **MAIN()**. Having seen how others have used it to get the **Usage** bit generated. It is so easy with the power of **Raku** as you can seen below. The **MAIN()** also handles the data validation without any extra effort.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6.c;
@@ -292,7 +292,7 @@ multi sub MAIN(Str :$binary-str where { m/^ <[01]>+ $/ }) {
 
 Lets do unit test script in **Raku**, it turned to be one-liner and nothing much to talk about.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use Test;
@@ -315,13 +315,13 @@ done-testing;
 
 For the **Wave Array** task, I created two subroutines i.e. **sub fetch-wave-array(Int)** and **sub is-wave(Array)**. For the **sub is-wave(Array)**, I was looking for **Raku** code for **$i % 2 == 1** as in **Perl**. I didn't have struggle much for this and found this.
 
-```perl6
+```perl
    ($i mod 2 == 1)
 ```
 
 Rest of the code are below:
 
-```perl6
+```perl
 sub fetch-wave-array($size) {
     die "ERROR: Invalid array size [$size]\n"
         unless ($size ~~ /^\d+$/ && $size > 0);
@@ -357,7 +357,7 @@ sub is-wave(@array) {
 Time to do standarlone app for **Wave Array** task. It doesn't warrant any explanation.
 
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6.c;
@@ -375,7 +375,7 @@ multi sub MAIN(Int :$N = 4) {
 
 Same goes for unit test script. Did you notice the expected the results in the **$unit-tests**. I tried really hard to match with **[ [1] ]** but for some strange reason beyond my knowledge, it expects it to be **[ (1,), ]**. It is plain ugly.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use Test;

@@ -64,7 +64,7 @@ I cheated here, if you haven't noticed it.
 
 I literally translated the **Perl** solution. The good thing about **Raku** is that it is very accepting. The only difference is the strange use of `return` statement.
 
-```perl6
+```perl
 sub find-trailing-zeroes(Int $N is copy where $N <= 10) {
 
     # generate factorial
@@ -98,25 +98,25 @@ Here is alternate solution:
 
 instead of this:
 
-```perl6
+```perl
 say sprintf("%d => %d", $factorial, $zero-count);
 ```
 
 I could use below:
 
-```perl6
+```perl
 ($factorial, $zero-count).join(" => ").say;
 ```
 
 In fact, If I am not scared, I could replace both lines with the following line.
 
-```perl6
+```perl
 find-trailing-zeroes($N).join(" => ").say;
 ```
 
 **Raku** rocks as always.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Int :$N where { $N <= 10 } = 10 ) {
@@ -179,7 +179,7 @@ done_testing;
 
 raku unit test.
 
-```perl6
+```perl
 use Test;
 
 my %test-cases = (
@@ -238,7 +238,7 @@ sub lines_range {
 
 I don't get to work with file when it comes to **Raku**. I use the weekly challenge to keep practicing it. Use of `Empty` is elegant. Also `$file.IO` is such powerful statement.
 
-```perl6
+```perl
 sub lines-range(Str $file, Int $A is copy, Int $B is copy) {
 
     my @lines = Empty;
@@ -265,7 +265,7 @@ lines_range($F, $A, $B);
 
 With `MAIN()` taking care of parameter validation, the one-liner body is enough to deal with the task.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$file where *.IO.f,
@@ -326,7 +326,7 @@ done_testing;
 
 **Raku** unit is plain out of box.
 
-```perl6
+```perl
 use Test;
 
 my Str $file   = "input.txt";

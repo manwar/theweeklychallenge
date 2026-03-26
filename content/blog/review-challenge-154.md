@@ -67,7 +67,7 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 *Submitted by: Mohammad S Anwar*
 You are given possible permutations of the string 'PERL'.
 
-```
+```perl
     PELR, PREL, PERL, PRLE, PLER, PLRE, EPRL, EPLR, ERPL,
     ERLP, ELPR, ELRP, RPEL, RPLE, REPL, RELP, RLPE, RLEP,
     LPER, LPRE, LEPR, LRPE, LREP
@@ -617,19 +617,19 @@ A Padovan Prime is a Padovan Number that’s also prime.
 
 In number theory, the Padovan sequence is the sequence of integers P(n) defined by the initial values.
 
-```
+```perl
     P(0) = P(1) = P(2) = 1
 ```
 
 and then followed by
 
-```
+```perl
     P(n) = P(n-2) + P(n-3)
 ```
 
 First few Padovan Numbers are as below:
 
-```
+```perl
     1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, 37, ...
 ```
 
@@ -637,7 +637,7 @@ Write a script to compute first 10 distinct Padovan Primes.
 
 **Expected Output**
 
-```
+```perl
     2, 3, 5, 7, 37, 151, 3329, 23833, 13091204281, 3093215881333057
 ```
 

@@ -105,7 +105,7 @@ If you noticed, I didn't have to filter the result of combinations. Less work fo
 
 It turned out to be a one-liner in **Raku** without being difficult to understand.
 
-```perl6
+```perl
 sub number-combinations(Int $m where { $m > 0 },
                         Int $n where { $n > 0 }) {
     $n > $m and say "ERROR: Invalid n=$n (n <= m)" and exit;
@@ -133,7 +133,7 @@ print join "\n", comb($m, $n), '';
 
 Even **Raku** is not behind either. I must admit, it looks more attractive.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Int :$m where { $m > 0 } = 5, Int :$n where { $n > 0 } = 2) {
@@ -165,7 +165,7 @@ done_testing;
 
 Similarly, **Raku** unit test followed the same path.
 
-```perl6
+```perl
 use Test;
 
 is number-combinations(5, 2),
@@ -245,7 +245,7 @@ sub phone_letters {
 
 With the power of **Raku**, I used the `map()` and reduction meta-operator `[]`, to get the job done.
 
-```perl6
+```perl
 sub phone-letters(Str $digits where { $digits ~~ /^ <[0..9\*\#]>+ $/ }) {
 
     # letter phone
@@ -292,7 +292,7 @@ With **Raku**, no need to deal with unicode character separately.
 
 **Raku Rocks once again !!!***
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$digits where { $digits ~~ /^ <[0..9\*\#]>+ $/ } = '35') {
@@ -321,7 +321,7 @@ done_testing;
 
 And **Raku** unit test goes alone the line.
 
-```perl6
+```perl
 use Test;
 
 is sprintf("[ %s ]", phone-letters('35').join(", ")),

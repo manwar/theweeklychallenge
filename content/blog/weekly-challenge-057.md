@@ -198,7 +198,7 @@ done_testing;
 
 I basically cheated here to be very honest. I simply translated the **Perl** version of **sub mirror()** defined above. I am happy as long as it doesn't look like **Perl**.
 
-```perl6
+```perl
 sub mirror($branch) {
 
     ($branch.[0], $branch.[1]) = ($branch.[1], $branch.[0]);
@@ -211,7 +211,7 @@ sub mirror($branch) {
 
 Thin wrapper around the above **sub mirror()** gave me the desired result. For the first time, I used **.raku** to capture the data structure. It was suggested by **JJ Merelo**.
 
-```perl6
+```perl
 use v6.d;
 
 my $tree = {
@@ -235,7 +235,7 @@ say sprintf("After : %s", $tree.raku);
 
 Getting unit test version wasn't difficult either as you see.
 
-```perl6
+```perl
 my $tree_1 = {
     1 => [ [ 2,
              [ [ 4 ],
@@ -317,7 +317,7 @@ done-testing;
 
 For this task, I used something new that I learnt last week i.e. "|$word". Once I shared my solution on the official **Twitter** handle `PerlWChallenge`, a friend of mine, `@HrBollermann` suggested I should use **starts-with()** instead of heavy loaded **regex**.
 
-```perl6
+```perl
 sub shortest-unique-prefix($words where .all ~~ Str) {
     my $p = [];
     for |$words -> $word {
@@ -342,7 +342,7 @@ sub shortest-unique-prefix($words where .all ~~ Str) {
 
 A very straight forward solution didn't took long to setup.
 
-```perl6
+```perl
 use v6.d;
 
 unit sub MAIN();
@@ -355,7 +355,7 @@ say sprintf("[ %s ]", $unique.join(", "));
 
 Unit test version didn't trouble me this time.
 
-```perl6
+```perl
 use Test;
 
 my $unit-tests = [

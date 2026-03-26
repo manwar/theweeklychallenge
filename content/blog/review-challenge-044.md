@@ -22,7 +22,7 @@ Additional feedback to our Perl Weekly Challenge’s [Twitter account](https://t
 
 There are either eleven or twelve possible expressions that equal 100:
 
-```
+```perl
 100 == +1+2+3-4+5+6+78+9    100 == +12+3-4+5+67+8+9
 100 == +1+2+34-5+67-8+9     100 == +12-3-4+5-6+7+89
 100 == +1+23-4+5+6+78-9     100 == +123+4-5+67-89
@@ -650,7 +650,7 @@ Instead of essentially writing a base-3 counter as many did, my recursion step r
 
 I also did some experimentation with more operators, including the outrageous set `@ops = qw( + - * / % >> << & | )`. That took a few minutes to run, since the number of permutations jumps to a few hundred million. There were [22,675 solutions](http://ry.ca/misc/all_ops.txt) (573KiB), like the following:
 
-```
+```perl
 100 = +1 + 2 + 3 / 4 << 5 | 6 & 78 - 9
 ```
 
@@ -717,7 +717,7 @@ while ( my $c = $iter->next ) {
 
 `$iter` is an iterator that now spits out a `$string` length - 1 sized array of operators, like so:
 
-```
+```perl
 + + + + + + + +
 + + + + + + + -
 + + + + + + +
@@ -1161,7 +1161,7 @@ for (reverse @moves) {
 }
 ```
 
-```
+```perl
 Start:            1
 Move:   Double:   2
 Move:   Add 1:    3

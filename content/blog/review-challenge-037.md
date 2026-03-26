@@ -32,7 +32,7 @@ And as usual, a few things that caught our attention.
 
 The `Date::Manip::Recur` **CPAN** module used by [**Colin Crain**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/colin-crain/perl5/ch-1.pl) was rather interesting and unique compare to typical **CPAN** modules found in most submitted solutions. The **CPAN** module provides a way to parse and manipulate recurrence which was used by the participant to filter out all weekdays.
 
-```
+```perl
     my $recur   = new Date::Manip::Recur;
     $recur->parse("0:0:0:1*0:0:0*IBD","Jan 1  2019","Jan 1  2019","Dec 31 2019");
     my @date    = $recur->dates();
@@ -41,7 +41,7 @@ The `Date::Manip::Recur` **CPAN** module used by [**Colin Crain**](https://githu
 
 Now, if the above recurrence modifier string was rather obscure, look at the solution by [**Javier Luque**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl5/ch-1.pl) which use the `DateTime::Event::Recurrence` **CPAN** module. As shown below, the code is pretty much self-explanatory.
 
-```
+```perl
     my $working_days =
         DateTime::Event::Recurrence->weekly(
             days => [1 .. 5]

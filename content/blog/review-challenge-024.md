@@ -59,7 +59,7 @@ challenge-024/andrezgz/perl5/ch-1.pl: ASCII text
 
 For those who use code linter in their development environment, [`perlcritic`](https://metacpan.org/pod/Perl::Critic), even at the most gentle setting will raise some concerns. Well, this is not part of the requirement of the task, it's good to know how `perlcritic` evaluates a basic **Perl** script.
 
-```
+```perl
 $ perlcritic --gentle challenge-024/lubos-kolouch/perl5/ch-1.pl
 challenge-024/lubos-kolouch/perl5/ch-1.pl: [TestingAndDebugging::RequireUseStrict]
 Code before strictures are enabled at line 1, column 1 (Severity 5).

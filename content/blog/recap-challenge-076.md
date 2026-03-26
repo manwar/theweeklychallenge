@@ -33,7 +33,7 @@ We have a new member **Andinus** in the **Team PWC**. He shared solution to **Pr
 
 **[Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-076/markus-holzer/raku)** kindly added a small **4x4** grid example and a version of the script with verbose output for me to understand the logic of **Word Search** task. A very big **THANK YOU** to **Markus Holzer**.
 
-```perl6
+```perl
    $ cd challenge-076/markus-holzer/raku
    $ perl6 ch-2.explained.raku ch-2.words.small ch-2.board.small
 ```

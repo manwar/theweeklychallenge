@@ -68,22 +68,22 @@ The patterns can also have the following characters:
      * - Match any sequence of characters.
 
 **Example 1:**
-```
+```perl
     Input: $S = "abcde" $P = "a*e"
     Output: 1
 ```
 **Example 2:**
-```
+```perl
     Input: $S = "abcde" $P = "a*d"
     Output: 0
 ```
 **Example 3:**
-```
+```perl
     Input: $S = "abcde" $P = "?b*d"
     Output: 0
 ```
 **Example 4:**
-```
+```perl
     Input: $S = "abcde" $P = "a*c?e"
     Output: 1
 ```
@@ -540,7 +540,7 @@ Write a script to find out count of different unique subsequences matching $T wi
 missing entry [5].
 
 **Example 1:**
-```
+```perl
     Input: $S = "littleit', $T = 'lit'
     Output: 5
 
@@ -551,7 +551,7 @@ missing entry [5].
         5: [l] ittle [it]
 ```
 **Example 2:**
-```
+```perl
     Input: $S = "london', $T = 'lon'
     Output: 3
 
@@ -708,7 +708,7 @@ Laurent gives us another version of using a loop to continue searching for a let
 Cy's recursive `check` routine returns stringified lists of offsets, with one offset for each of the characters in the target string, one list per working solution. She can then decode these into the bracketed output strings displayed in the example:
 
 The internal strings look like this:
-```
+```perl
     0,0,0
     0,0,1
     0,0,5
@@ -717,7 +717,7 @@ The internal strings look like this:
 ```
 
 This translates to the positional offsets for the characters "l", "i" and "t". The strings are decoded and reused to create this lovely output:
-```
+```perl
     1: [lit]tleit
     2: [li]t[t]leit
     3: [li]ttlei[t]
@@ -884,7 +884,7 @@ Jaldar  takes a novel approach where he applies conbinatorics to a model regular
 
 Internally, for the example "littleit" and "lit", the patterns look like this:
 
-```
+```perl
     lit
     l.{1}it
     l.{2}it
@@ -930,7 +930,7 @@ As Niels is really getting dirty down in the guts of the RE engine I'd say it be
 
 Anyway, let's do some internal snooping on the regexes and subsequent groupings formed:
 
-```
+```perl
     ^(.{3})$
     lit
     ^(.{1})(.{2})$
@@ -944,7 +944,7 @@ Anyway, let's do some internal snooping on the regexes and subsequent groupings 
 
 This method, however, will still find adjacent target subsequences, equivalent to larger groupings, so a little clever filtering removes all the duplicate sequences before producing a nice verbose output.
 
-```
+```perl
 [
     [0] "[l]ittle[it]",
     [1] "[li]t[t]leit",
@@ -1022,7 +1022,7 @@ Here the three letters are placed into capture groups, with a standard set of fl
 
 The number of matches is the element count for the `@match` array.
 
-```
+```perl
     sequence: 'lit'
     matcher:  (?^u:(l).*?(i).*?(t))
     littleit

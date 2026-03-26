@@ -63,7 +63,7 @@ But in going through the documentation I also discovered that I could anchor my 
 
 <br>
 
-```raku
+```perl
 my regex vowels { <[aeiou]> };
 
 my regex starts_or_ends_with_vowel {
@@ -237,7 +237,7 @@ But when I actually started working on the problem in Raku, I remembered that Ra
 
 <br>
 
-```raku
+```perl
 sub minCommon(@arr1, @arr2) {
   my $set1   = Set.new(@arr1);
   my $set2   = Set.new(@arr2);

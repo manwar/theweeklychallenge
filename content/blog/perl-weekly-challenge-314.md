@@ -67,7 +67,7 @@ For a complete review, you can check out the [**latest newsletter**](https://per
 **Jorg Sommrey**
 ***
 
-```
+```perl
 sub broken_keys ($name, $typed) {
     $typed =~ /^(??{$name =~ s#.#\Q$&\E+#gr})$/;
 }
@@ -78,7 +78,7 @@ sub broken_keys ($name, $typed) {
 **Mathias Muth**
 ***
 
-```
+```perl
 sub broken_keys( $name, $typed ) {
     my $pattern = join "", map "$_+", split "", $name;
     return $typed =~ /^$pattern$/;
@@ -90,7 +90,7 @@ sub broken_keys( $name, $typed ) {
 **Peter Campbell Smith**
 ***
 
-```
+```perl
 sub broken_keys {
 
     my ($correct, $wrong, $pattern);
@@ -111,7 +111,7 @@ sub broken_keys {
 **Simon Green**
 ***
 
-```
+```perl
 sub main ( $name, $typed ) {
     my $r = '^' . join( '+', map { quotemeta } split //, $name ) . '+$';
     say $typed =~ $r ? 'true' : 'false';

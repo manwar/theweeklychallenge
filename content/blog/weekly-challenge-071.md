@@ -93,13 +93,13 @@ didn't work as is in **Raku**.
 
 So I had to resort to something like this:
 
-```perl6
+```perl
         if $array[*-1] > $array[*-2] {
 ```
 
 The complete subroutine is shown below:
 
-```perl6
+```perl
 sub find-peak-elements-in($array where { $_ > 0 }) {
 
     my @peak-elements = Empty;
@@ -129,12 +129,12 @@ sub find-peak-elements-in($array where { $_ > 0 }) {
 
 Fun bit to generate an array with random elements between 1 and 50. The magical line in the subroutine is below:
 
-```perl6
+```perl
         my $element = (^50).pick;
 ```
 
 
-```perl6
+```perl
 sub random-array(Int $size is copy) {
 
     my %elements = ();
@@ -165,7 +165,7 @@ print sprintf(" Peak: [%s]\n", join(", ", @$peak_elements));
 
 **Raku** solution looks identical to the **Perl**.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Int :$N where { $N > 1 } = 10) {
@@ -211,7 +211,7 @@ done_testing;
 
 **Raku** unit test is even more simpler and less demanding.
 
-```perl6
+```perl
 use Test;
 
 my %test-cases = (
@@ -347,7 +347,7 @@ sub create_linked_list {
 
 Creating **Raku** class is unbelievable easy. It hardly took any time to translate the above `package Node`.
 
-```perl6
+```perl
 class Node {
     has Int  $.v is rw;
     has Node $.p is rw;
@@ -407,7 +407,7 @@ class Node {
 
 Time to get the thin wrapper around the **Raku** `class Node`.
 
-```perl6
+```perl
 sub create-linked-list(Str $list is copy) {
 
     $list ~~ s:g/\s//;
@@ -437,7 +437,7 @@ print create_linked_list($L)->trim($N)->show, "\n";
 
 **Raku** looks even more elegant.
 
-```perl6
+```perl
 sub MAIN(Str :$list = '1 -> 2 -> 3 -> 4 -> 5', Int :$position = 2) {
     create-linked-list($list).trim($position).show.say;
 }
@@ -457,7 +457,7 @@ print create_linked_list($L)->trim($N)->show, "\n";
 
 #### Raku
 
-```perl6
+```perl
 create-linked-list($list).trim($position).show.say;
 ```
 
@@ -575,7 +575,7 @@ create_linked_list($L)->trim($N)->show->say;
 
 which looks almost identical?
 
-```perl6
+```perl
 create-linked-list($list).trim($position).show.say;
 ```
 
@@ -607,7 +607,7 @@ done_testing;
 
 Followed by **Raku** unit test like below:
 
-```perl6
+```perl
 use Test;
 
 my Str $list   = '1 -> 2 -> 3 -> 4 -> 5';

@@ -33,7 +33,7 @@ In the first problem, the task is to take a number and print it backwards. A cou
 
 Obviously, the most Rakuish solution is to use the `flip` method. It works with strings, but Raku will implicitly translate numbers to it. To keep the sign, you can use the `sign` method that returns `+1` for positive numbers, `-1` for negative numbers and `0` for `0`. Try it in the REPL shell:
 
-```perl6
+```perl
     $ raku
     > 0.sign
     0
@@ -44,14 +44,14 @@ Obviously, the most Rakuish solution is to use the `flip` method. It works with 
 ```
 So, here is [a possible solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/ash/raku/ch-1.raku#L26):
 
-```perl6
+```perl
     my $r = $n.sign * $n.abs.flip;
     say -2147483648 <= $r <= 2147483647 ?? $r !! 0;
 ```
 
 [Feng Chang split](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/feng-chang/raku/ch-1.raku) the task into the four clear options:
 
-```perl6
+```perl
     given $n {
         when (0)             { put 0 }
         when (0 < $n ≤ imax) { put $n.flip; }
@@ -62,7 +62,7 @@ So, here is [a possible solution](https://github.com/manwar/perlweeklychallenge-
 
 [Jan Krnavek used](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/wambash/raku/ch-1.raku) a combination of the above-mentioned methods:
 
-```perl6
+```perl
     with $n.abs.flip * $n.sign {
         when -2³¹ ..^ 2³¹ { $_ };
         default           { 0  };
@@ -71,7 +71,7 @@ So, here is [a possible solution](https://github.com/manwar/perlweeklychallenge-
 
 [Mark Anderson uses](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/mark-anderson/raku/ch-1.p6) smartmatch directly (without the `given` block):
 
-```perl6
+```perl
     $N = $N.abs.flip * $N.sign;
     my \MAX = 2**31;
     say $N ~~ -MAX .. MAX-1 ?? $N !! 0;
@@ -79,7 +79,7 @@ So, here is [a possible solution](https://github.com/manwar/perlweeklychallenge-
 
 [Markus Holzer decided](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/markus-holzer/raku/ch-1.raku) to use the `subst` method to replace the digits in the number and thus to keep the minus sign in place:
 
-```perl6
+```perl
     say -2³¹ <= $i <= 2³¹
         ?? $i.subst( / \d+ /, + *.flip )
         !! 0;
@@ -87,14 +87,14 @@ So, here is [a possible solution](https://github.com/manwar/perlweeklychallenge-
 
 Notice how [Stuart Little keeps](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/stuart-little/raku/ch-1.p6) the sign by removing the last character from what `sign` returns:
 
-```perl6
+```perl
     return ($nr >= 2**31) ?? (0)
     !! ($nr.sign.chop ~ $nr.abs.flip);
 ```
 
 Of course, nobody stops you from determining the sign by comparing the number with 0, as [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/arne-sommer/raku/ch-1.p6), [Colin Crain](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/colin-crain/raku/ch-1.raku), and [Kang-min Liu](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/gugod/raku/ch-1.raku) did it:
 
-```perl6
+```perl
     my $sign = $N < 0
         ?? "-"
         !! "";
@@ -114,7 +114,7 @@ Of course, nobody stops you from determining the sign by comparing the number wi
 
 [Roger Bell_West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/roger-bell-west/raku/ch-1.p6) and [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/ulrich-rieke/raku/ch-1.raku) used regexes to extract the digits and the sign from the number:
 
-```perl6
+```perl
     my $r=$s.comb.reverse.join('');
     if ($r ~~ /(<[0..9]>+)\-$/) {
         $r="-$0";
@@ -165,7 +165,7 @@ In the second task, you take a matrix with 1s and 0s and have to find the number
 
 To solve the task, you can scan each and every cell of the matrix, and from there ‘blow’ the squares of different sizes before you reach one of the edges. Here is [an example](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/ash/raku/ch-2.raku) of how you do it with three nested loops:
 
-```perl6
+```perl
     for ^$w -> $x {
         for ^$h -> $y {
             for 1..* -> $z {
@@ -176,7 +176,7 @@ To solve the task, you can scan each and every cell of the matrix, and from ther
 
 To test and count the squares, just check the values at the corresponding coordinates:
 
-```perl6
+```perl
     $count++ if all(
         @m[$x; $y     ], @m[$x + $z; $y     ],
         @m[$x; $y + $z], @m[$x + $z; $y + $z]
@@ -187,14 +187,14 @@ A number of participants noted that you could optimise this approach by skipping
 
 Instead of nesting loops, you can use Raku’s cross operator `X` to [make the table](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/feng-chang/raku/ch-2.raku#L8) of cell coordinates:
 
-```perl6
+```perl
     for 0..^@N[0].elems-1 X 0..^@N.elems-1 -> ($i, $j) {
         . . .
 ```
 
 [Or](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/wambash/raku/ch-2.raku#L15):
 
-```perl6
+```perl
     multi find-square ( @n, ) {
         my $rows     = @n.elems;
         my $columns  = @n[0].elems;
@@ -207,7 +207,7 @@ Instead of nesting loops, you can use Raku’s cross operator `X` to [make the t
 
 Another interesting approach is to — again! — use `combinations` to [test different square sizes](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/mark-anderson/raku/ch-2.p6#L61). This fragment also uses the above-mentioned optimisation to skip the squares with 0 in the corner:
 
-```perl6
+```perl
     for ^@matrix.end -> $i {
         my @indices = @matrix[$i].grep(1, :k);
 

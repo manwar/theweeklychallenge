@@ -41,7 +41,7 @@ In the first approach, we compare the current element with the elements followin
 
 Let me show [my program](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/ash/raku/ch-1.raku) as an example of the first approach:
 
-```perl6
+```perl
     my @a = 9, 10, 7, 5, 6, 1;
 
     for @a.kv -> $i, $v {
@@ -55,7 +55,7 @@ It is still interesting to implement a more efficient algorithm. All you need to
 
 [Kang-min Liu demonstrates](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/gugod/raku/ch-1.raku) an example of the this approach:
 
-```perl6
+```perl
     sub leaders(@A) {
         my $max = -Inf;
         return @A.reverse.grep(-> $v { ($v > $max) ?? ( $max = $v ; True ) !! False }).reverse();
@@ -68,7 +68,7 @@ It is still interesting to implement a more efficient algorithm. All you need to
 
 [Julio de Castro offered](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/juliodcs/raku/ch-1.raku) an attractive program written in a functional style:
 
-```perl6
+```perl
     sub get-leaders {
         my \A          = ( 9, 10, 7, 5, 6, 1 );
         sub is-last    { $^i == A.elems - 1 }
@@ -89,7 +89,7 @@ There is a tiny mistake there and you can watch [the video review](https://www.y
 
 [Markus Holzer created](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/markus-holzer/raku/ch-1.raku#L9) an additional solution that uses recursion:
 
-```perl6
+```perl
     sub leader-elements-recursive( @stuff ) {
         sub find( $that, *@the-rest ) {
             take $that      if $that > all @the-rest;
@@ -142,7 +142,7 @@ In the second task, we need to rotate an array.
 
 The simplest possible solution in Raku is to use the built-in `rotate` routine, as, for example, [in my solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/ash/raku/ch-2.raku):
 
-```perl6
+```perl
     my @a = 10, 20, 30, 40, 50;
     my @b = 3, 4;
 
@@ -151,7 +151,7 @@ The simplest possible solution in Raku is to use the built-in `rotate` routine, 
 
 The way you scan the values in `@b` can be different. For instance, with the help of `map` as in the [solution by Jan Krňávek](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/wambash/raku/ch-2.raku):
 
-```perl6
+```perl
     sub left-rotate ( @a, @b ) {
         @b.map: { @a.rotate: $_ }
     }
@@ -159,7 +159,7 @@ The way you scan the values in `@b` can be different. For instance, with the hel
 
 Collecting the result pieces can be done with `gather` and `take`. Actually, this is one of the most favourite features of Raku among the participants of The Weekly Challenge. Look, for example, at how it is used in the [program submitted by Jason Messer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jason-messer/raku/ch-2.p6#L9):
 
-```perl6
+```perl
     sub rotate-array-by(:@array, :@indices) {
         gather for @indices {
             take @array.rotate: $_;
@@ -171,7 +171,7 @@ Collecting the result pieces can be done with `gather` and `take`. Actually, thi
 
 Another approach to the problem is to swap the source data `@a` around the [pivot](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/simon-proctor/raku/ch-2.raku#L12) positions from `@b`. Here is the essence of it demonstrated in the [program by Kang-min Liu](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/gugod/raku/ch-2.raku):
 
-```perl6
+```perl
     sub rot($n, @A) {
         return @A[ $n .. *, 0 .. $n-1 ].flat;
     }
@@ -183,7 +183,7 @@ The two ranges `$n .. *` and `0 .. $n-1` define the two slices of the source arr
 
 Another way to rotate the data is to subscript it with the index that is first incremented and then corrected by the modulo operation. In this case, the index loops to the beginning of the array. The [solution by Julio de Castro](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/juliodcs/raku/ch-2.raku) demonstrates this approach:
 
-```perl6
+```perl
     sub rotate {
         my \A = (7, 4, 2, 6, 3);
         my \B = (1, 3, 4);
@@ -199,14 +199,14 @@ Also notice the usage of sigilless variables.
 
 Markus Holzer also gives a [solution with the modulo operator](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/markus-holzer/raku/ch-2.raku#L29) as one of the possible variants:
 
-```perl6
+```perl
     sub rotate-array-concise( @a, $i ) {
         ( @a + $i ) % @a andthen [ |@a[ $_..* ], |@a[ ^$_ ] ] }
 ```
 
 Markus also [noticed](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/markus-holzer/raku/ch-2.raku#L23) that rotation values which are bigger than the length of the source data should be corrected before real rotation to avoid redundant loops:
 
-```perl6
+```perl
     multi rotate-array-multi( @a, $i where $i >= @a ) {
         rotate-array-multi( @a, $i % @a ) }
 ```
@@ -215,7 +215,7 @@ Markus also [noticed](https://github.com/manwar/perlweeklychallenge-club/blob/ma
 
 Another interesting idea (well, formally it can be classified to the previous group) is [proposed by Roger Bell_West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/roger-bell-west/raku/ch-2.p6#L17). The array is first doubled so that it contains two copies of itself, and then you take its middle part starting from the given rotation position:
 
-```perl6
+```perl
     sub leftrot(@a,@b) {
         my $l=@a.end;
         my @t=(@a,@a).flat;

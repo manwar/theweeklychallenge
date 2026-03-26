@@ -17,7 +17,7 @@ The first task was to find and display the number of either positive or negative
 
 Let us start from the easy part. In Raku, there is a a built-in `max` function (or method if you want to use an object notation: `@array.max`). So, the code is:
 
-```raku
+```perl
 say max($neg, $pos);
 ```
 
@@ -29,7 +29,7 @@ Now, the second part is to indeed get the number of positives and negatives. At 
 
 Scan the array using `for` and count the numbers:
 
-```
+```perl
 my @data = -3, 1, 2, -1, 3, -2, 4;
 
 my $neg = 0;
@@ -51,7 +51,7 @@ This approach is used in the following solutions by:
 
 The second way is to use `grep`, again as a method or as a function. For example:
 
-```raku
+```perl
 say max(
     (@data.grep: * > 0).elems,
     (@data.grep: * < 0).elems
@@ -60,7 +60,7 @@ say max(
 
 If you prefer a more explicit syntax, use codeblocks instead of [the WhatEver `*` magic](https://perl6advent.wordpress.com/2017/12/11/all-the-stars-of-perl-6/):
 
-```raku
+```perl
 say max(
     +(@data.grep({$_ > 0})),
     +(@data.grep({$_ < 0}))
@@ -87,7 +87,7 @@ The most sophisticated—and at the same time simple—way is to use [the `class
 
 To see how it works with our input data, let’s add a zero element to it and dump the result of `classify`:
 
-```raku
+```perl
 my @data = -3, 1, 2, -1, 3, -2, 4, 0;
 
 dd (@data.classify: * <=> 0);
@@ -95,7 +95,7 @@ dd (@data.classify: * <=> 0);
 
 This program prints:
 
-```
+```perl
 (my Any %{Any} = Order::Less => $[-3, -1, -2], Order::Same => $[0], Order::More => $[1, 2, 3, 4])
 ```
 
@@ -103,7 +103,7 @@ You can see that there are three elements classified as `Order::Less`—those wh
 
 Putting it back and getting the maximum of the clusters, here’s a possible program:
 
-```raku
+```perl
 my @data = -3, 1, 2, -1, 3, -2, 4;
 
 my $c = @data.classify: * <=> 0;
@@ -133,12 +133,12 @@ The core idea of the solution suggested by [Bruce Gray](https://github.com/manwa
 
 The input data `@ns` is first converted to an array that has the values `-1`, `0`, or `1` depending on the sign of the data item. For the first test sample it will be:
 
-```raku
+```perl
 Array element = [-1, 1, 1, -1, 1, -1, 1]
 ```
 
 The next step is to coerce this array to a bag and find the maximum:
 
-```raku
+```perl
 return $negatives max $positives;
 ```

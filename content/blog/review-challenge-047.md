@@ -42,7 +42,7 @@ We'd greatly appreciate any feedback you'd like to give.
 
 The first task is to write a script that accepts two Roman numbers and an arithmetic operator. It should then calculate the result and return it as another Roman number. For example:
 
-```
+```perl
 perl ch-1.pl V + VI
 XI
 ```
@@ -658,7 +658,7 @@ sub roman_expr {
 
 [Saif Ahmed's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/saiftynet/perl/ch-1.pl), as I've come to expect, is comprehensive, and interesting. Saif went to some effort to support larger Roman numbers, which are typically depicted with an overline, which means "multiply this digit by 1000". So, when I put `MCM * X` into Saif's prompt, it shows (roughly):
 
-```
+```perl
          _ _
 Answer = XMX
 ```

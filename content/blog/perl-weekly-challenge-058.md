@@ -80,7 +80,7 @@ Compare two given version number strings **v1** and **v2** such that:
 
 The version numbers are non-empty strings containing only digits, and the dot ("`.`") and underscore ("`_`") characters. ("`_`" denotes an alpha/development version, and has a lower precedence than a dot, "`.`"). Here are some examples:
 
-```
+```perl
 v1   v2    Result
 ------ ------ ------
 0.1 < 1.1     -1

@@ -284,7 +284,7 @@ It would probably be possible to serialize the _**%words**_ hash with some **JSO
 
 As noted in the **Perl** section of this task, there is nothing complicated in writing our own plain text serializer for a simple hash of arrays. For example, we can write a plain text file with one line for each hash item, with the key at the beginning of the line and then a list of the values. Let's do it in a little toy module, which could look like something like this:
 
-```perl6
+```perl
 unit package Store;
 
 sub store (%hash, $file) is export {
@@ -319,7 +319,7 @@ As an example, the first few lines of the [**word_store_4**](https://github.com/
 
 Now that we have solved the problem of storing and retrieving the hash of arrays, adapting the **Perl** script into **Raku** is fairly easy:
 
-```perl6
+```perl
 use v6;
 use Store;
 

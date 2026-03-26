@@ -1030,7 +1030,7 @@ The `~-` operators (i.e., unary `~` and unary `-`) are together doing a sort of 
 
 `~` does a [ones complement negation](https://en.wikipedia.org/wiki/Ones%27_complement), but `-` (at least on all the CPUs I have that can run Perl) is twos complement. See also [`perlop`](https://perldoc.perl.org/perlop.html#Symbolic-Unary-Operators) and [`perlnumber`](https://perldoc.perl.org/perlnumber.html#Storing-numbers).
 
-```
+```perl
       Expr   Decimal  Binary
    --------+--------+-----------------------
       @foo |    3   | 0000 ... 0011
@@ -1062,7 +1062,7 @@ This approach involves iterating through the list of integers, and then having a
 
 By `sort`ing the list of integers first, you can avoid the inner loop altogether, and subtract the index of the integer from the last array index (`$#L`) to get the number of integers greater than the current one. For example, if the (sorted) list is `1 2 4 8`, the array (and its indices) looks like this:
 
-```
+```perl
     idx | $L[idx]
     ----+-------
      0  |    1

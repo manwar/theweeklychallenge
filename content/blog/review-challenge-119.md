@@ -65,7 +65,7 @@ A nibble is a four-bit aggregation, or half an octet.
 To keep the task simple, we only allow integer less than or equal to 255.
 
 **Example**
-```
+```perl
     Input: $N = 101
     Output: 86
 
@@ -601,13 +601,13 @@ On close examination we can plainly see something that very much resembles our `
 *Submitted by: Cheok-Yin Fung*<br>
 Write a script to generate sequence starting at 1. Consider the increasing sequence of integers which contain only 1’s, 2’s and 3’s, and do not have any doublets of 1’s like below. Please accept a positive integer $N and print the $Nth term in the generated sequence.
 
-```
+```perl
     1, 2, 3, 12, 13, 21, 22, 23, 31, 32, 33, 121, 122, 123, 131, …
 ```
 
 **Example**
 
-```
+```perl
     Input:  $N = 5
     Output: 13
 
@@ -1271,7 +1271,7 @@ As we noted earlier in the cross-product solutions, there is what appears to be 
 
 Choroba performs this computation in the PDL:
 
-```
+```perl
     Let's consider a sequence s[1], s[2], s[3], ... where each s[i] says how many
     elements of length i exist in Sw1. This sequence can be computed from a matrix,
     using

@@ -29,7 +29,7 @@ Perl 6 has most of the Perl 5 test file operators (albeit with a slightly differ
 
 The slight difficulty, though, is to determine exactly what should be considered a non-printable character. For lack of a standard definition of such characters, I've decided to consider that byte decimal values 0 to 8 and 14 to 31 correspond to ASCII non-printable characters. Those values will be stored in a set. With such a small number of non-printable characters compared to the full extended ASCII, the proportion of non-printable character would be around 10% on a random bytes binary file. I have decided to consider that a file shall be deemed to be text (ASCII) if there is less than one byte out of 32 that is non-printable, and binary otherwise. In addition, any file for which the buffer contains at least one null byte (value 0) is considered to be binary.
 
-``` Perl6
+```perl
 use v6;
 
 sub is-binary ($file) {
@@ -81,7 +81,7 @@ This appears to work as desired:
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/arne-sommer/perl6/ch-1.p6) used the `is-text` subroutine exported by Jonathan Worthington's [Data::TextOrBinary](https://github.com/jnthn/p6-data-textorbinary) module, which applies more or less the same heuristics as the one I used above. Using such a module makes the code pretty simple:
 
-``` Perl6
+```perl
 use Data::TextOrBinary;
 
 sub MAIN ($file, :$test-bytes = 4096)
@@ -107,7 +107,7 @@ Note that Arne's [blog post](https://perl6.eu/binary-clock.html) has an extended
 
 [Yet Ebreo](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/yet-ebreo/perl6/ch-1.p6) also used the `is-text` function of the [Data::TextOrBinary](https://github.com/jnthn/p6-data-textorbinary) module:
 
-``` Perl6
+```perl
 use Data::TextOrBinary;
 
 sub MAIN (
@@ -125,7 +125,7 @@ sub MAIN (
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/athanasius/perl6/ch-1.p6) chose to use the Perl 5 [File::Util](https://metacpan.org/pod/File::Util) module within Perl 6, which provides a good example on how Perl 6 can benefit from the Perl 5 ecosystem:
 
-``` Perl6
+```perl
 use File::Util:from<Perl5> <file_type>;
 
 BEGIN say '';
@@ -163,7 +163,7 @@ sub MAIN(Str:D $path)
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/kevin-colyer/perl6/ch-1.p6) decided to read a single byte using the `getc` method in a `try` block in order to decide whether a file is ASCII or binary. I'm not convinced this is very reliable, but Kevin's program uses some interesting Perl 6 features:
 
-``` Perl6
+```perl
 use Test;
 
 sub MAIN(Str $file where *.IO.e) {
@@ -183,7 +183,7 @@ sub MAIN(Str $file where *.IO.e) {
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ulrich-rieke/perl6/ch-1.p6), who is a new member of the team (welcome, Ulrich), used a solution similar to Kevin's:
 
-``` Perl6
+```perl
 sub MAIN( Str $filename ) {
   my $fh = open $filename , :r ;
   try $fh.get ;
@@ -198,7 +198,7 @@ sub MAIN( Str $filename ) {
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/kevin-colyer/perl6/ch-1.p6) used the [file](http://gnuwin32.sourceforge.net/packages/file.htm) external GNU Windows utility:
 
-``` Perl6
+```perl
 sub MAIN( $file )
 {
     my $magic = run( "file", $file, :out ).out.slurp;
@@ -208,7 +208,7 @@ sub MAIN( $file )
 
 [Feng Chang](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/feng-chang/perl6/ch-1.p6) chose to read 16 bytes from the file and apply the `is-ascii` subroutine, which checks for bytes numeric ranges 9 to 13 and 32 to 126:
 
-``` Perl6
+```perl
 sub is-ascii(uint8 $c --> Bool) {
     9 <= $c <= 13 or 32 <= $c <= 126
 }
@@ -221,7 +221,7 @@ sub MAIN(Str:D $file-name where *.IO.e) {
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/joelle-maslak/perl6/ch-1.p6) wrote a `File-Info` class, which considers bytes 7, 9 to 13 and 32 to 126 to be printable ASCII characters. Her program reads 512 bytes from the file and deems the file to be *possibly* ASCII if less that one third of the characters are non printable.
 
-``` Perl6
+```perl
 class File-Info {
     my uint8 @print-default;
     BEGIN {
@@ -258,7 +258,7 @@ class File-Info {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ruben-westerberg/perl6/ch-1.p6) based his determination of the file type on the file extension:
 
-``` Perl6
+```perl
 #!/usr/bin/env perl6
 my %ext;
 data.lines.map({
@@ -313,7 +313,7 @@ This can actually be made simpler:
 
 So, job done? Yes, sure, we're displaying a digital clock. But the task specification suggests to feel free to be creative when displaying the digits. So, let's try to get a nicer output. We could probably use some graphical library such as `Tk`, but I haven't used it for a fairly long time and I'm also not sure how to use it in Perl 6. We could also possibly use an HTML display, but I fear that would require to run a Web server, and I don't want to run into annoying environment problems. So I decided to simply display the time with ASCII art.
 
-``` Perl6
+```perl
 use v6;
 
 my @digit_strings = (
@@ -371,7 +371,7 @@ Quite a few of the solutions below used system-specific features that did not wo
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/athanasius/perl6/ch-2.p6) wrote a `while` loop using the `\r` carriage return character to overwrite the previous display with the new one each time, just as in my one-liners:
 
-``` Perl6
+```perl
 while 1
 {
     sleep 1;
@@ -393,7 +393,7 @@ while 1
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/daniel-mita/perl6/ch-2.p6) suggested a program which I don't fully understand and which I could not run (perhaps not the right terminal):
 
-``` Perl6
+```perl
 my @num-groups = (^0x20000)
   .map( { .chr } )
   .grep( { .uniprop eq "Nd" } )
@@ -420,7 +420,7 @@ loop {
 
 I also could not run [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/markus-holzer/perl6/ch-2.p6) solution, probably for similar reasons:
 
-``` Perl6
+```perl
 
 subset CoordStr of Str where / ^ \d+ \, \d+ $ /;
 
@@ -468,7 +468,7 @@ sub escape( $value ) { "\e[" ~ $value; }
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/kevin-colyer/perl6/ch-2.p6) wrote a bare-bone program essentially similar to one of my one-liners:
 
-``` Perl6
+```perl
 sub MAIN() {
     # bare minimum
     say DateTime.now.hh-mm-ss;
@@ -477,7 +477,7 @@ sub MAIN() {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/simon-proctor/perl6/ch-2.p6) used the `\r` carriage-return character to do something similar to my one-liners:
 
-``` Perl6
+```perl
 multi sub MAIN() {
     END say "";
     loop {
@@ -490,14 +490,14 @@ multi sub MAIN() {
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ulrich-rieke/perl6/ch-2.p6)'s solution uses an external `figlet` command which I do not know and can't test adequately:
 
-``` Perl6
+```perl
 use v6 ;
 run 'figlet' , "{DateTime.now.Str.substr(11,8)}" ;
 ```
 
 [Feng Chang](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/feng-chang/perl6/ch-2.p6) also suggested a solution which I am not able to run:
 
-``` Perl6
+```perl
 my $clock = Supply.interval: 1;
 $clock.tap: { print "\r", DateTime.now.hh-mm-ss };
 
@@ -507,7 +507,7 @@ sleep ∞;
 
 [Joelle M%aslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/joelle-maslak/perl6/ch-2.p6) used a solution similar to one of my one-liners:
 
-``` Perl6
+```perl
 sub MAIN() {
     say DateTime.now.hh-mm-ss;
 }
@@ -515,7 +515,7 @@ sub MAIN() {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ruben-westerberg/perl6/ch-2.p6) provided code using supplies, `react` and `whenever` features and I must admit that I get an idea of what it is doing, but don't fully understand it:
 
-``` Perl6
+```perl
 my $offset=0;
 #my @codes=("\x1b[{$offset}D"
 react { whenever Supply.interval(.1) {
@@ -531,7 +531,7 @@ react { whenever Supply.interval(.1) {
 
 [Yet Ebreo](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/yet-ebreo/perl6/ch-2.p6) provided an ASCII art solution:
 
-``` Perl6
+```perl
 my @ascii_num= (
     ["  0000  "," 00  00 "," 00  00 "," 00  00 ","  0000  "],
     ["   11   ","   11   ","   11   ","   11   ","   11   "],

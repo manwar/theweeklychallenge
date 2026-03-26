@@ -94,7 +94,7 @@ Add a `-u` option which only includes unique email addresses in the output, just
 
 If given the following list:
 
-```
+```perl
 name@example.org
 rjt@cpan.org
 Name@example.org
@@ -104,7 +104,7 @@ user@alpha.example.org
 
 Your script (without `-u`) would return:
 
-```
+```perl
 user@alpha.example.org
 rjt@cpan.org
 rjt@CPAN.org
@@ -114,7 +114,7 @@ name@example.org
 
 With `-u`, the script would return:
 
-```
+```perl
 user@alpha.example.org
 rjt@CPAN.org
 Name@example.org

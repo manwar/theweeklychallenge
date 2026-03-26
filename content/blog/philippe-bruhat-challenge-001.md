@@ -12,7 +12,7 @@ This is actually as we received in response to the challenge by Philippe Bruhat.
 
 Write a script to replace the character ‘e’ with ‘E’ in the string ‘Perl Weekly Challenge’. Also print the number of times the character ‘e’ found in the string.
 
-```
+```perl
     $ perl -E '$_=shift;say y/e/E/;say' 'Perl Weekly Challenge'
     5
     PErl WEEkly ChallEngE
@@ -28,7 +28,7 @@ Write one-liner to solve FizzBuzz problem and print number 1-20. However, any nu
 
 This one works by modifying the string until what's we're left with is the expected result:
 
-```
+```perl
     perl -E '
       say for map {
         s/\d+/$&%5?$&:"$& buzz"/e;
@@ -42,7 +42,7 @@ This one works by modifying the string until what's we're left with is the expec
 
 Same idea, but with a list, and each step being handled individually by a map expression:
 
-```
+```perl
    perl -E '
      say for
       map @$_ > 1 ? join( $", splice @$_, 0, -1 ) : @$_,
@@ -54,7 +54,7 @@ Same idea, but with a list, and each step being handled individually by a map ex
 
 This one is the one I actually wanted to avoid writing: the simple enumeration of all possible case:
 
-```
+```perl
    perl -E '
      say for map
       $_ % 5 ? $_ % 3 ? $_
@@ -67,7 +67,7 @@ This one is the one I actually wanted to avoid writing: the simple enumeration o
 
 And then I realized, the four cases can be seen as the four values of a two bit vector, and use that to index the array of all possible values:
 
-```
+```perl
    perl -E '
      say for map
       [ "fizz buzz" => buzz => fizz => $_ ]
@@ -78,7 +78,7 @@ And then I realized, the four cases can be seen as the four values of a two bit 
 
 We can shorten it a bit by using ! instead of !! and moving the values around:
 
-```
+```perl
   perl -E '
     say for map
      [ $_ => fizz => buzz => "fizz buzz" ]
@@ -89,7 +89,7 @@ We can shorten it a bit by using ! instead of !! and moving the values around:
 
 Using the fact that a number is divisible by 5 if it ends with 0 or 5:
 
-```
+```perl
    perl -E '
      say for map
       [ $_ => fizz => buzz => "fizz buzz" ]

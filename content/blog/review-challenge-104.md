@@ -278,14 +278,14 @@ Lubos also chose a hash structure to park his previous values...
 
 Several submissions noticed that if we apply a little algebra to our definition, it can be reworked into a arguably simpler form. In the second part of the definition, where the index is odd, the value is stated to be
 
-```
+```perl
     fusc(n) = fusc((n-1)/2) + fusc((n+1)/2)
 
 ```
 
 As the given index is known to be odd, one half the index will be a fractional value ending in one-half. The above equation can then be said to resolve to one-half the value *n* minus the fraction, rounded down, and one-half the value rounded *up*. Or alternately  first subtracting one from the value, making it even, then using one-half *n* and one-half *n* plus 1.
 
-```
+```perl
     fusc(n) = fusc((n-1)/2) + fusc((n+1)/2)
 
     -->       fusc( floor n/2 ) + fusc( floor n/2 + 1 )
@@ -294,7 +294,7 @@ As the given index is known to be odd, one half the index will be a fractional v
 
 We can then isolate out the floored half and the function becomes
 
-```
+```perl
     half    = floor n/2
     fusc(n) = fusc( half ) + fusc( half + 1)
 
@@ -406,7 +406,7 @@ Duncan White actually makes the argument that memoization is *not* required in t
 
 Of course whatever the rate, the complexity does grow exponentially, if not immediately, cripplingly so. Planting a counter within the code does reveal considerably more work being done as the sequence lengths get larger. For this short sequence starting from 0 the gain might be insignificant, but larger values show the speedup both obvious and accelerating.
 
-```
+```perl
    0..10000  values:    3873034  vs  15000   function calls   258x speedup
    0..100000 values:  149830797  vs  150000  function calls   999x speedup
 ```
@@ -1143,7 +1143,7 @@ The underlying logic is now built on delivering your opponent a multiple of 4 *p
 
 Another cute trick I pulled out was if you give the computer bogus input, it becomes less polite. Notice how on being forced to reiterate itself, "There are now 9 tokens on the pot" becomes "There are 9 tokens on the pot", removing the "now". Once the pot size changes it will be reinstated.
 
-```
+```perl
     There are 12 tokens on the pot. Please draw 1, 2 or 3 tokens.
     2
     You drew two tokens.

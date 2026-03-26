@@ -70,7 +70,7 @@ You are given two strings having same number of digits, $a and $b.
 Write a script to generate Fibonacci Words by concatenation of the previous two strings. Finally print 51st digit of the first term having at least 51 digits.
 
 **Example:**
-```
+```perl
     Input: $a = '1234' $b = '5678'
     Output: 7
 
@@ -616,7 +616,7 @@ Write a script to generate all square-free integers <= 500.
 In mathematics, a square-free integer (or squarefree integer) is an integer which is divisible by no perfect square other than 1. That is, its prime factorization has exactly one factor for each prime that appears in it. For example, 10 = 2 ⋅ 5 is square-free, but 18 = 2 ⋅ 3 ⋅ 3 is not, because 18 is divisible by 9 = 3**2.
 
 **Example**
-```
+```perl
     The smallest positive square-free integers are
 
     1, 2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23, 26, 29, 30, ...
@@ -1004,7 +1004,7 @@ With all this talk of prime factorization I was wondering whether anyone would a
 
 Well my wish has been granted by the monk Athanasius, who implements an algorithm he attributes to one Vladimir Shevelev. From his notes:
 
-```
+```perl
     From Vladimir Shevelev in [1], "an Eratosthenes-type sieve for squarefree num-
     bers":
       1. Record 1 as a square-free number

@@ -38,7 +38,7 @@ I've tried several formulae known for centuries (François Viète, John Wallis, 
 
 We can build two lazy infinite lists, one for the numerator and one for the denominator and use the reduction operator to calculate Wallis's infinite product:
 
-``` Perl6
+```perl
 my @numerators =  2, 2, -> $a, $b {| ($a + 2, $b + 2) } ... *;
 my @denominators = 1, 3, 3, -> $a, $b {| ($a + 2, $b + 2) } ... *;
 my $pi = 2 * ([*] @numerators[0..2000]) / ([*] @denominators[0..2000]);
@@ -56,7 +56,7 @@ In 2006, Franco-Canadian mathematician Simon Plouffe used the so-called PSLQ int
 
 We can write the following `plouffe` subroutine:
 
-``` Perl6
+```perl
 sub plouffe (Int $k) {
     my $result = (1 / 16 ** $k) * (  (4 / (8 * $k + 1)) - (2 / (8 * $k + 4)) - (1 / (8 * $k + 5)) - (1 / (8 * $k + 6) )  );
 }
@@ -64,7 +64,7 @@ sub plouffe (Int $k) {
 
 to calculate the individual terms of the infinite sum and then compute pi as follows:
 
-``` Perl6
+```perl
 my $pi = [\+]  (plouffe $_ for 0..20);
 ```
 
@@ -96,7 +96,7 @@ is correct only up to the 16th digit.
 
 So, let's try to use the `FatRat` type:
 
-``` Perl6
+```perl
 sub plouffe (Int $k) {
     my $result = 1.FatRat *  (1 / 16 ** $k) * (  (4 / (8 * $k + 1)) - (2 / (8 * $k + 4)) - (1 / (8 * $k + 5)) - (1 / (8 * $k + 6) )  );
 }
@@ -129,7 +129,7 @@ It is a bit better, but we are again falling back to `Num` when the subroutine i
 
 For some reason, coercing the input value to a `FatRat`:
 
-``` Perl6
+```perl
 sub plouffe (FatRat $k) {
     my $result =  (1 / 16 ** $k) * (  (4 / (8 * $k + 1)) - (2 / (8 * $k + 4)) - (1 / (8 * $k + 5)) - (1 / (8 * $k + 6) )  );
 }
@@ -142,7 +142,7 @@ While still trying to understand why we are falling from `FatRat` to `Num`, I po
 
 The following syntax suggested by Brian works properly:
 
-``` Perl6
+```perl
 sub plouffe (Int $k) {
     my $result = (1.FatRat / 16 ** $k) * (  (4 / (8 * $k + 1)) - (2 / (8 * $k + 4)) - (1 / (8 * $k + 5)) - (1 / (8 * $k + 6) )  );
 }
@@ -157,7 +157,7 @@ Now, `$pi` is populated with about 750 digits, two thirds of which are wrong, bu
 
 It is now fairly easy to output the same number of PI digits as the size of the script:
 
-``` Perl6
+```perl
 sub plouffe (Int $k) {
     my $result = (1.FatRat / 16 ** $k) * (  (4 / (8 * $k + 1)) - (2 / (8 * $k + 4)) - (1 / (8 * $k + 5)) - (1 / (8 * $k + 6) )  );
 }
@@ -177,13 +177,13 @@ The script runs in slightly less than 1.5 sec.
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/arne-sommer/perl6/ch-1.p6) provided a solution very similar to my initial one-liner:
 
-``` Perl6
+```perl
 say pi.fmt('%.19f')
 ```
 
 He also suggested [another solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/arne-sommer/perl6/say-pi-module) using the following `PiXL.pm6`module:
 
-``` Perl6
+```perl
 use v6.d;
 
 unit module PiXL;
@@ -193,7 +193,7 @@ our constant $PI is export = "3.141592653589793238462643383279502884197169399375
 
 and then used the module as follows:
 
-``` Perl6
+```perl
 use lib "lib";
 use PiXL;
 
@@ -204,7 +204,7 @@ The trick is clear: store so many digits of pi as you want in a separate module,
 
 [Jo Christian Oterhals](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/jo-christian-oterhals/perl6/ch-1.p6) used essentially the same trick and first  created the following `BigPi.pm6` module:
 
-``` Perl6
+```perl
 # Perl 6 Module BigPI.pm6
 # Place in script directory and use perl6 with -I flag
 # i.e. perl6 -I. <calling script>
@@ -232,7 +232,7 @@ END
 
 and then used it as follows:
 
-``` Perl6
+```perl
 use BigPI;
 
 say BigPI::pi $?FILE.IO.s;
@@ -240,7 +240,7 @@ say BigPI::pi $?FILE.IO.s;
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/joelle-maslak/perl6/ch-1.p6) also hard-coded the digits of pi but had the clever idea of using a base-32 representation of pi, thus making the script shorter:
 
-``` Perl6
+```perl
 say 3~'.'~:32<35IPR975H1E3E2K2GQK0D32I3C1U7N>
 ```
 
@@ -255,7 +255,7 @@ This works properly as shown under the REPL:
 
 For this, he first implemented a `sqrt-rat` subroutine to compute a `FatRat` estimate of the square root of 2:
 
-``` Perl6
+```perl
 my $chars = $*PROGRAM.slurp.chars;
 say pi-rat.Str.substr(0,$chars);
 say "$chars digits!";
@@ -292,7 +292,7 @@ where (2k + 1)!! denotes the product of the odd integers up to 2k + 1.
 His program first computes a lazy list of the various terms of the sum and then multiplies by two the sum of the 608 first terms:
 
 
-``` Perl6
+```perl
 my $eu-seq = gather {
   take 1;
   for 1..* -> $n { take $eu-seq[$n - 1] * FatRat.new($n, 2 * $n + 1) }
@@ -305,7 +305,7 @@ put π.Str.substr: ^($?FILE.IO.s+1);
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/jaldhar-h-vyas/perl6/ch-1.p6) provided a very simple solution using the `Rat::Precise` module:
 
-``` Perl6
+```perl
 # Thanks to thundergnat for the module and informing me about it on IRC.
 use Rat::Precise;
 
@@ -317,7 +317,7 @@ I also did not know about that module, so thanks to *thundergnat* and to Jaldhar
 
 [James A. Smith](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/james-smith/perl6/ch-1.p6) provided a solution similar to my initial one-liner:
 
-``` Perl6
+```perl
 say 2*atan2 1,0;
 ```
 
@@ -325,7 +325,7 @@ Actually, this almost exactly the idea I suggested in my Perl 5 solution.
 
 [Nick Logan](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/nick-logan/perl6/ch-1.p6) submitted a polyglot script, i.e. a script running both in Perl 5 and Perl 6:
 
-``` Perl6
+```perl
 # WARNING: this polyglot breaks best practices of both Perl 5 and Perl 6 in order to run on both
 
 sub eval($_)      { &EVAL($_) };
@@ -373,13 +373,13 @@ print join "", @out[$i-15+4 .. $digits-2], "\n";
 ```
 [Rob4t](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/rob4t/perl6/ch-1.p6) used basically the same idea as in my initial one-liner:
 
-``` Perl6
+```perl
 say π;#size 16
 ```
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/ruben-westerberg/perl6/ch-1.p6) used, if I understand well, one of the numerous continued fraction formulae:
 
-``` Perl6
+```perl
 #!/usr/bin/env perl6
 my $places= $*PROGRAM-NAME.IO.s + 1;
 printf "Places: $places\n";
@@ -404,7 +404,7 @@ until ($stable) {
 
 [Mark Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/mark-senn/perl6/ch-1.p6) used the same formula by Simon Plouffe formula as I did:
 
-``` Perl6
+```perl
 sub plouffe (Int $k)
 {
     (1.FatRat/16**$k) *
@@ -438,7 +438,7 @@ Mark acknowledges in his blog post that he was prompted to use this formula by m
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/simon-proctor/perl6/ch-1.p6) created a `///` operator to transform simple division into `FatRat` constructor and assignment, thus avoiding the `Rat` falling to `Num` problem I reported at the beginning of this post. Otherwise, he used the same Plouffe formula as I did:
 
-``` Perl6
+```perl
 sub infix:<///> ( Int() $nu, Int() $de ) { FatRat.new( $nu, $de ) }
 
 sub bbp-digit ( Int $k ) {
@@ -463,7 +463,7 @@ Simon was also reports in his blog post that he was prompted to use this formula
 
 [Tim Smith](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-004/tim-smith/perl6/ch-1.p6) used another so-called [spigot algorithm](http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/spigot.pdf) like so:
 
-``` Perl6
+```perl
 #| http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/spigot.pdf
 sub gibbons-spigot() {
     my ($q, $r, $t, $i) = 1, 180, 60, 2;

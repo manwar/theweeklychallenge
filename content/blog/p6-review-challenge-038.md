@@ -33,7 +33,7 @@ The challenge reads as follows:
 
 This time, rather than concentrating on a test suite, I decided to focus on trying to provide useful warnings and error messages when the input value is not valid, which led me to test the input data piece by piece. The following program is basically a port to Raku of the program I had initially written in Perl 5 for the same task:
 
-``` Perl 6
+```perl
 use v6;
 
 sub MAIN ($in where * ~~ /^\d ** 7$/ = '2230120') {
@@ -74,7 +74,7 @@ We first validate that each data piece. For example, I've decided that the first
 
 Rather than having the relatively complicated regexes above for checking the month and day digits, we have tried to use `subsets`, for example:
 
-``` Perl6
+```perl
 subset Day of Str where * eq ("01" .. "31").any;
 subset Month of Str where * eq ("01" .. "12").any;
 ```
@@ -129,7 +129,7 @@ TIMTOWTDI. Even for such a relatively simple task, the challengers have implemen
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/arne-sommer/perl6/ch-1.p6) used [named captures](https://docs.raku.org/language/regexes#index-entry-regex__Named_captures-Named_captures) to collect the input data pieces and a `try` statement prefix followed by a `Date` object creation to perform date validation:
 
 
-``` Perl 6
+```perl
 if $date ~~ /^
     $<century> = (<[12]>)
     $<year>    = (<[0..9]><[0..9]>)
@@ -152,7 +152,7 @@ Note that Arne provided several other implementations, together with a detailed 
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/daniel-mita/perl6/ch-1.p6) used a named rule:
 
-``` Perl 6
+```perl
 my token date-number {
   ^
   ( ( <[12]> ) ( <[0..9]> ** 2 ) )
@@ -162,7 +162,7 @@ my token date-number {
 ```
 to parse the input data, and then used the [make](https://docs.raku.org/routine/make) and [made](https://docs.raku.org/routine/made) methods of the Raku [Match](https://docs.raku.org/type/Match) class to handle the necessary transformations:
 
-``` Perl 6
+```perl
 sub MAIN(
   $number where * ~~ &date-number, #= 7 digit number starting with 1 or 2 followed by YYMMDD
   --> Nil
@@ -182,7 +182,7 @@ So far, I had always used the `make` and `made` methods solely in the context of
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/kevin-colyer/perl6/ch-1.p6) wrote a `validate` subroutine to check the input data, and constructed a `DateTime` object within a `try` block with a `CATCH` clause to validate the date:
 
-``` Perl 6
+```perl
 sub validate($d where *>0) {
     my $s=$d.Str;
     return "Input must be only 7 digits in length" if $d.chars!==7;
@@ -201,7 +201,7 @@ I find that using the [polymod](https://docs.raku.org/routine/polymod) method to
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/noud/perl6/ch-1.p6) used a grammar with a `ConvDate` actions class to handle the input data:
 
-``` Perl 6
+```perl
 grammar DATE {
     token TOP { <century> <year> <month> <day> }
     regex century { 1 | 2 }
@@ -218,7 +218,7 @@ say DATE.parse(2230120, actions => ConvDate).made;
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/simon-proctor/perl6/ch-1.p6) used named captures within a constant regex and also was able to use a subset without encountering the problems I mentioned above. He then constructed a `Date` object and used a `CATCH` block to catch any error.
 
-``` Perl6
+```perl
 constant $DATE-MATCH = rx/^ $<century>=(<[12]>) $<year>=(<[0..9]>**2) $<month>=("01"|"02"|"03"|"04"|"05"|"06"|"07"|"08"|"09"|"10"|"11"|"12") $<day>=(<[0..3]><[0..9]>) $/;
 subset PossData of Str where * ~~ $DATE-MATCH;
 multi sub MAIN($s) is hidden-from-USAGE {
@@ -245,7 +245,7 @@ multi sub MAIN(
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/javier-luque/perl6/ch-1.p6) used a regex to parse the input data and constructed a `Date`  object within a `try` block with a `CATCH` block to validate the date:
 
-``` Perl 6
+```perl
 sub parse-date(Int $date) {
     # Regex to test date format
     return "Invalid date format"
@@ -282,7 +282,7 @@ sub parse-date(Int $date) {
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/roger-bell-west/perl6/ch-1.p6) used a series of regexes to check the input data and then constructed a `Date` object within a `CATCH` block to validate the date:
 
-``` Perl 6
+```perl
 for @*ARGS -> $dc {
   unless ($dc.chars==7) {
     warn "$dc is wrong length\n";
@@ -320,7 +320,7 @@ for @*ARGS -> $dc {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ruben-westerberg/perl6/ch-1.p6) used a quite interesting method to construct his regexes:
 
-``` Perl 6
+```perl
 my $m=(1..12)>>.fmt("%02d").join("|");
 ```
 
@@ -330,7 +330,7 @@ Just in case you don't get it, the value of `$m` is now:
 
 He also used the same method for building a regex for days in the `01..31` range. Ruben's program is fairly compact:
 
-``` Perl 6
+```perl
 my $m=(1..12)>>.fmt("%02d").join("|");
 my $d=(1..31)>>.fmt("%02d").join("|");
 
@@ -346,7 +346,7 @@ for @*ARGS {
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl6/ch-1.p6) rolled out manually the whole validation process:
 
-``` Perl 6
+```perl
 sub MAIN( Int $date ) {
     $date ~~ /^
         $<cent> = [ <[12]> ]                         # Century (1:1900,2:2000)
@@ -507,7 +507,7 @@ I know that some words found above may seem funny or uncommon, but they belong t
 
 [Arno Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/arne-sommer/perl6/ch-2.p6) populated a `%value` hash and a `%count` hash with, respectively, the letter values and the time count. He then populated a `%dict` hash with the uppercase versions of the words of his word file. The program then generates an array of combinations of the picked tiles and keeps the combinations that exists in the dictionary, and finally look the the most valuable combination.
 
-``` Perl 6
+```perl
 sub get-dictionary ($file where $file.IO.r)
 {
   return $file.IO.lines.grep(* !~~ /\W/)>>.uc.Set;
@@ -530,7 +530,7 @@ I may misunderstand something, but some code lines seem to be missing from Arne'
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/daniel-mita/perl6/ch-2.p6) created a `%value` hash and a `%tiles` bag to store, respectively, the letter values and the time count. His program then picks some tiles, loads them in a bag, and reads the words file and keeps the words which are contained in or equal to the bag of picked letters. Finally, it sorts the candidates by value to find the most valuable one:
 
-``` Perl 6
+```perl
 sub MAIN (
   Int $amount where * > 0 = 7, #= Number of tiles to pick (default: 7)
   --> Nil
@@ -558,7 +558,7 @@ sub MAIN (
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/kevin-colyer/perl6/ch-2.p6) wrote a fairly long program doing all kinds of interesting things, but I'll quote only the subroutine doing the most important work. Kevin's program first populates a `%points` hash and a `%tilebag` BagHash with letter values and tile counts. His program then loads the word list into a `%wordlist` hash where the keys are strings containing the words' sorted letters and the values the original word and the score. Kevin's program then uses the `drawTiles` subroutine which uses the `roll` method to select some tiles (using the `pick` method would have been easier). His program then sorts the picked letters, generates combinations and looks up the hash of presorted words:
 
-``` Perl6
+```perl
 sub makeWords(@tiles) {
     my @result = "", 0;
     for @tiles.combinations -> @cand {
@@ -576,7 +576,7 @@ sub makeWords(@tiles) {
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/noud/perl6/ch-2.p6) first populated a `%points` hash and a `%num_tiles` hash with letter values  and tile counts. Noud's program then reads sequentially the word file and retains all the words whose letters are a subset of Bag containing the picked letters. This is Noud's subroutine doing the bulk of the work:
 
-``` Perl 6
+```perl
 sub get_best_word(%picked) {
     my @picked_words;
     for "/usr/share/dict/words".IO.slurp.uc.words -> $word {
@@ -591,7 +591,7 @@ sub get_best_word(%picked) {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/simon-proctor/perl6/ch-2.p6) first populated a constant `%SCORES` hash with the letter values and a constant `$BAG` Bag with the tile counts. He also built a `Tile` class providing a number of utility methods. He then picked some letters and inserted them in the `$match-bag` Bag. The bulk of the work is done in the `MAIN` subroutine:
 
-``` Perl 6
+```perl
 sub MAIN(
     Int() $tile-count = 7 #= Number of tiles to draw from the bag (Default 7)
 ) {
@@ -626,7 +626,7 @@ Note that Simon is using channels for parallel processing. In my tests, it took 
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/javier-luque/perl6/ch-2.p6) first populated a `%tile_metadata` hash containing both the values and time counts. Most of the work is done in the following subroutine using the `permutations` method::
 
-```Perl 6
+```perl
 sub find-best-word(@tiles) {
     my $top_score = 0;
     my $top_word;
@@ -654,7 +654,7 @@ sub find-best-word(@tiles) {
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/roger-bell-west/perl6/ch-2.p6) first populated a `%tilecount` and a `tilevalue` hashes. He then used the `grab` method (which I did not know about before) to pick the wanted number of tiles from the `%tilecount` hash. Then, he populated a `%w` hash with uppercase versions of the words in the word list having less characters that the wanted number of tiles. Finally, his program computes all permutations of the picked letters and tries them against `%w` word hash, and looks for the best score:
 
-``` Perl 6
+```perl
 for @bag.permutations -> $n {
   my @candidate=$n.list;
   while (@candidate) {
@@ -684,7 +684,7 @@ print "$maxscore: ",join(' ',sort @maxcandidate),"\n";
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ruben-westerberg/perl6/ch-2.p6) also populated various data structures for letter values and letter counts, but did it in an impressively compact way:
 
-``` Perl 6
+```perl
 my @l=comb "", "AGISUXZEJLRVYFDPWBNTOHMCKQ";
 my @c=(8,3,5,7,5,2,5,9,3,3,3,3,5,3,3,5,5,5,4,5,3,3,4,4,2,2);
 my @v=((1) xx 7, (2) xx 6,(3) xx 4,(4) xx 2,(5) xx 5,(10) xx 2).flat;
@@ -696,7 +696,7 @@ my BagHash $drawBag;        #Bag of drawn tiles
 
 Ruben's way of selecting tiles is impressively less concise:
 
-``` Perl 6
+```perl
 for 1..7 {
     my $i=$tileBag.total.rand.Int;
     my $t=0;
@@ -716,7 +716,7 @@ Using the `pick` method could have reduced all this to a single code statement.
 
 The bulk of the work is then done as follows:
 
-```Perl 6
+```perl
 #Find all words which can be made from the drawn bag
 "../words_alpha.txt".IO.lines.map({.uc}).grep({$_.chars <= 7}) ==>
 grep({ .comb.BagHash (<=) $drawBag; }) ==>
@@ -733,7 +733,7 @@ put "\nDrawn tiles: $drawBag";
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl6/ch-2.p6) first populated a `%val` hash, a `@bag` array, and a `dict`hash with, respectively, the letter values, tile counts and words of the word list. The bulk of the work is then done in the following subroutine using permutations of the selected tiles:
 
-``` Perl 6
+```perl
 sub best-word( @seven ) {
     my %best = ( word => '', score => 0 );
 

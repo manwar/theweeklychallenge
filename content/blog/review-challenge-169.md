@@ -74,7 +74,7 @@ The number should have exactly two prime factors, i.e. it’s the product of two
 
 For example,
 
-```
+```perl
     24287 = 149 x 163
     24289 = 107 x 227
 ```
@@ -83,7 +83,7 @@ Therefore 24287 and 24289 are 2-brilliant numbers.
 
 These two brilliant numbers happen to be consecutive as there are no even brilliant numbers greater than 14.
 
-```
+```perl
     Output
     4,   6,   9,   10,  14,  15,  21,  25,  35,  49,
     121, 143, 169, 187, 209, 221, 247, 253, 289, 299
@@ -658,7 +658,7 @@ But 72 factors to (2, 2, 2, 3, 3); it similarly has 4 and 9 as divisors, but it 
 
 
 **Output**
-```
+```perl
         72,  108,  200,  288,  392,  432,  500,  648,  675,  800,
         864, 968,  972, 1125, 1152, 1323, 1352, 1372, 1568, 1800
 ```

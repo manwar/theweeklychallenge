@@ -44,7 +44,7 @@ The best part was `$_ ~~ $regex`.
 
 I am pretty sure there must be better way of doing the same. But I am satisfied with my effort, so far.
 
-```perl6
+```perl
 sub last-word(Str $string, Regex $regex) {
     return ($string.split(" ").reverse.grep: { $_ ~~ $regex }).[0];
 }
@@ -60,7 +60,7 @@ also `.[0]` became `.head`.
 
 So the improved **sub last-word()** looks like below:
 
-```perl6
+```perl
 sub last-word(Str $string, Regex $regex) {
     return $string.split(" ").reverse.grep($regex).head;
 }
@@ -80,7 +80,7 @@ print last_word($string, $regex), "\n";
 
 For **Raku** counter, I always try to explore the power of **sub MAIN()**. I have used **Regex** type for the first time. Also I had to lookup up web for how to set the default regex. After a quick lookup, I ended up with this `rx / /`. The only other bit that is different from **Perl** regex was that it was surrounded by `<` and `>`. So this `qr/[ea]l/` becomes `rx/ <[ea]>l /`.
 
-```perl6
+```perl
 sub MAIN(Str :$string = '  hello world', Regex :$regex = rx/ <[ea]>l /) {
     last-word($string, $regex).say;
 }
@@ -119,7 +119,7 @@ I wanted to do it differently, so I decided to do it this way `(1..1e6).join(' '
 
 Also `undef` became `Nil` for fun.
 
-```perl6
+```perl
 use Test;
 
 is last-word('  hello world',                rx  / <[ea]>l   /), 'hello';
@@ -190,7 +190,7 @@ my $size = length($string);
 ```
 became this
 
-```perl6
+```perl
 my $size = $string.chars;
 ```
 
@@ -201,14 +201,14 @@ $temp = sprintf("%s%s", $part_b, $part_a);
 ```
 became
 
-```perl6
+```perl
 $temp = ($part_b, $part_a).join;
 ```
 <br>
 
 Rest of the code is same as before.
 
-```perl6
+```perl
 sub rotate(Str $string where { $_ ~~ rx:i/^ <[xy]>+ $/ }, Bool $verbose?) {
 
     my $size = $string.chars;
@@ -249,7 +249,7 @@ print "Rotation: $count\n";
 
 **Raku** counterpart with optional `--verbose`.
 
-```perl6
+```perl
 sub MAIN(Str :$string = 'xyxx', Bool :$verbose?) {
     rotate($string, $verbose).say;
 }
@@ -271,7 +271,7 @@ done_testing;
 
 Same applied here as well.
 
-```perl6
+```perl
 use Test;
 
 is rotate('xyxx'), 7, 'xyxx';

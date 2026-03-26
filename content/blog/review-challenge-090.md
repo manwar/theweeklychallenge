@@ -60,13 +60,13 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 DNA is a long, chainlike molecule which has two strands twisted into a double helix. The two strands are made up of simpler molecules called nucleotides. Each nucleotide is composed of one of the four nitrogen-containing nucleobases cytosine (C), guanine (G), adenine (A) and thymine (T).
 
 You are given DNA sequence,
-```
+```perl
     GTAAACCCCTTTTCATTTAGACAGATCGACTCCTTATCCATTCTCAGAGATGTGTTGCTGGTCGCCG.
 ```
 Write a script to print nucleiobase count in the given DNA sequence. Also print the complementary sequence where Thymine (T) on one strand is always facing an adenine (A) and vice versa; guanine (G) is always facing a cytosine (C) and vice versa.
 
 To get the complementary sequence use the following mapping:
-```
+```perl
     T => A
     A => T
     G => C
@@ -430,7 +430,7 @@ Stylistic variations abound. Some versions place a tick mark next to the odd row
 
 [**Alexander Pankoff**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/alexander-pankoff/perl/ch-2.pl) describes the process:
 
-```
+```perl
     halving 149, doubling 127, till 149 becomes 1
     149 & 127
     74 & 254
@@ -474,7 +474,7 @@ The three lines in the `ethopian_mul` sub do the work. To start, `ethopian_mul_c
 
 [**Julio de Castro**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/juliodcs/perl/ch-2.pl)
 
-```
+```perl
     Ethiopian multiplication of 149 and 127
 
     Steps:
@@ -523,7 +523,7 @@ Julio also places his multiplicand and multiplier into 2-tuple array, and then a
 
 Pete provides a nice commentary of the action as it progresses.
 
-```
+```perl
     Starting with 149 and 127 we iterate by halving and doubling
 
       149,   127       149 is odd so add this value of 127 to give a running total of 127
@@ -563,7 +563,7 @@ Again with the commentary code removed, we can see the method is quite simple:
 
 Joel also comments on his process, but his method is a a little different:
 
-```
+```perl
     The initial twos table looks like:
     2^0 = 1
     2^1 = 2
@@ -624,7 +624,7 @@ Joel's code contains many different parts to perform the various tasks, but here
 
 CY gathers the selected values to add up separately below, but to do this she needs to keep lists of the two inputs as they evolve through time.
 
-```
+```perl
         149    127   *
          74    254
          37    508   *
@@ -671,7 +671,7 @@ This ends up complicating things, but makes the demonstration possible.
 
 [**Roger Bell_West**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/perl/ch-2.pl)
 
-```
+```perl
       149   127 ->   127
        74   254
        37   508 ->   508
@@ -720,7 +720,7 @@ Conversely, when we ask whether a number is odd, we are also determining whether
 
 Dave is lighter on commentary, but adds more information to his table, which would benefit the uninitiated with a legend header. But I can provide:
 
-```
+```perl
         m 149
         n 127
 
@@ -749,7 +749,7 @@ Ok *now* I wish I'd picked smaller numbers for the example. But what we're looki
 9 × (10<sup>0</sup> × 127) + 4 × (10<sup>1</sup> × 127) + 1 × (10<sup>2</sup> × 127) = 18923
 
 Which if you look at it right you will recognize is just grade-school multiplication drawn out into explicit steps:
-```
+```perl
       127
     x 149
     -----
@@ -792,7 +792,7 @@ Here's Dave's routine. It's not hard to follow the logic. I'm still impressed th
 
 [**Abigail**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/perl/ch-2.pl)
 
-```
+```perl
     149    127 ✓
      74    254
      37    508 ✓
@@ -809,7 +809,7 @@ Here's Dave's routine. It's not hard to follow the logic. I'm still impressed th
 Abigail's demonstration brings to light to some interesting philosophical ramifications that had occurred to me earlier. The thing is, we have observed that there is no trick here — multiplication is multiplication, whatever base we perform it in, and the algorithm is simply working through long multiplication. Dividing by two and checking for oddness is the same as shifting right 1 and performing a bitwise AND with 1, which will tell us the value of each bit in a binary representation of a number. In binary the multiplication tables are quite simple, but it's still multiplication: the only options are 1 times or 0 times, which is the same as keep the number or scratch it out.
 
 So if the algorithm isn't just *like* multiplication, but actually *is* multiplication, what exactly is the difference between using it versus calling
-```
+```perl
     $A*$B ?
 ```
 I mean, depending on what hardware you're using, the computer may in fact be [using the same algorithm to compute the result](https://en.wikipedia.org/wiki/Multiplication_algorithm#Binary_multiplication_in_computers).

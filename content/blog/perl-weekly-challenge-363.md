@@ -60,7 +60,7 @@ sub echo_chamber {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-362/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub echo-chamber($str) {
     $str.subst: :g, /(.)/, { $0 x ($/.from + 1) };
 }

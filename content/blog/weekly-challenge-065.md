@@ -71,7 +71,7 @@ sub find_numbers {
 
 Doing the **Raku** version was more satisfying. The end result looked so much cleaner with the help of method chaining.
 
-```perl6
+```perl
 sub find-numbers(Int $N, Int $S) {
 
     my $start = ('1' ~ '0' x ($N - 1)).Int;
@@ -94,7 +94,7 @@ print sprintf("%s\n", join(", ", find_numbers($N, $S)));
 
 and the same goes with **Raku** as well.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Int :$N? where { $N > 1 } = 2, Int :$S? where { $S > 0 } = 4) {
@@ -124,7 +124,7 @@ done_testing;
 
 **Raku** unit test solution is not behind either.
 
-```perl6
+```perl
 use Test;
 
 is find-numbers(2, 4),  (13, 22, 31, 40), 'N=2, S=4';
@@ -207,7 +207,7 @@ sub find_palindromes {
 
 Unlike last week, I managed to complete both tasks in **Raku**. This week, I tried few things for the first time e.g. `$str.defined`, `%hash{$key}:exists`. I am sure you must have guessed it what it is doing. There were bits, I got to try again like sorting hash by value first and then by key. Also reverse a string using `flip`.
 
-```perl6
+```perl
 sub find-partitions(Str $string) {
 
     my %partitions;
@@ -266,7 +266,7 @@ print sprintf("%s\n", join(", ", @$_)) for @$palindromes;
 
 **Raku** solution looks elegant too.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$string? where $string.chars > 1 = 'aabaab') {
@@ -300,7 +300,7 @@ done_testing;
 
 Basic standard unit test in **Raku**.
 
-```perl6
+```perl
 use Test;
 
 is-deeply find-partitions('aabaab'),

@@ -64,7 +64,7 @@ sub natural_div {
 
 Standard **Perl** to **Raku** translation and we have **sub natural-div()**.
 
-```perl6
+```perl
 sub natural-div(Int $m, Int $n where $n != 0) {
 
     my $sign = '';
@@ -105,7 +105,7 @@ print sprintf("%d / %d = %s\n", $M, $N, natural_div($M, $N));
 
 Similar **Raku** app using the **sub natural-div()**,
 
-```perl6
+```perl
 use v6.d;
 
 
@@ -132,7 +132,7 @@ done_testing;
 
 Along with **Raku** unit test.
 
-```perl6
+```perl
 use Test;
 
 is natural-div( 5,  2),  2, ' 5 /  2 =  2';
@@ -187,7 +187,7 @@ sub get_power_integers {
 
 Doing **Raku** version was fun as you can see below.
 
-```perl6
+```perl
 sub get-power-integers(Int $n where { $n > 1 }) {
 
     my $power_integers = [];
@@ -221,7 +221,7 @@ print sprintf("%d = %s\n", $N, join(", ", @{get_power_integers($N)}));
 
 Similar **Raku** app for the same task.
 
-```perl6
+```perl
 use Test;
 
 is sprintf("%d = %s", 9, get-power-integers(9).join(", ")),
@@ -261,7 +261,7 @@ done_testing;
 
 Finally **Raku** unit test in the end.
 
-```perl6
+```perl
 use Test;
 
 is sprintf("%d = %s", 9, get-power-integers(9).join(", ")),

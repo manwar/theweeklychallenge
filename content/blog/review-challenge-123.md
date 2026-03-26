@@ -66,7 +66,7 @@ For example, the first 10 Ugly Numbers are 1, 2, 3, 4, 5, 6, 8, 9, 10, 12.
 
 **Example**
 
-```
+```perl
     Input: $n = 7
     Output: 8
 
@@ -731,7 +731,7 @@ Bonus for nicely commented code. It's the little things.
 *Submitted by: Mohammad S Anwar*<br>
 You are given coordinates of four points i.e.
 
-```
+```perl
         (x1, y1), (x2, y2), (x3, y3) and (x4, y4).
 ```
 
@@ -739,7 +739,7 @@ Write a script to find out if the given four points form a square.
 
 **Example**
 
-```
+```perl
     Input: x1 = 10, y1 = 20
            x2 = 20, y2 = 20
            x3 = 20, y3 = 10
@@ -798,7 +798,7 @@ For an alternate example, the points
 
 also form a square, very similar to our first example only racked a bit anti-clockwise. A more general-purpose solver will need to find this square as well, perhaps even with its coordinates in a more random order on top of things. Again the two short examples can lead us astray here: both describe concave polygons, where the points are ordered as one would list vertices, one ordered clockwise, the other anti-clockwise. But again I see no reason whatsoever to assume this from just the description. Given the polygon
 
-```
+```perl
     A - B
     |   |
     D - C
@@ -1011,7 +1011,7 @@ As we can then be assured of the sides of our polygon, we can then decisively co
 
 Going above and beyond, he also includes a really nice little ascii graphical display for each input point set, allowing a quick and easy visual confirmation of the conclusions;
 
-```
+```perl
 
     #    . . . . . . . .
     #    . . . . X . . .
@@ -1235,7 +1235,7 @@ What's going on here is that should the first and fourth be equal in a sorted li
 **additional languages:**
 [Raku](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/colin-crain/raku/ch-2.raku)
 
-```
+```perl
 
                         A           AB, BC, BD and CD are the unit value
                         |
@@ -1251,7 +1251,7 @@ What's going on here is that should the first and fourth be equal in a sorted li
 
 Ok, I said I was trying to avoid this, but as I wasn't the only one troubled by these terrible dreams here it goes. Consider the polygon above, CADB, with the edges CA-AD-DB-BC. This is a *concave* polygon with 2 sides and 2 diagonals equal, and the remaining 2 sides also equal to each other. Note one of the diagonals is *outside* the shape. No one ever said the polygon needed to be convex.
 
-```
+```perl
     CB = BD = CD = AB
     AC = AD
 ```

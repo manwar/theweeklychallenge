@@ -164,7 +164,7 @@ Now it is time to get serious and focus. One of my favourite **[routine comb()](
 
 With the above handy routine and metaoperators, I was ready to formulate my logic and came up with this:
 
-```perl6
+```perl
     ([==] $start.comb("") Z- <0 1 2>);
 ```
 
@@ -182,7 +182,7 @@ Just to explain, the **[==]** is basically doing this and return true or false:
 
 Here is the final version:
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6.c;
@@ -217,7 +217,7 @@ I noticed, defining **hash** doesn't need braces. For example, in **Perl**, I al
 
 but in **Raku**, I can do something like this to define all the coins used in this task:
 
-```perl6
+```perl
     my %coins =
         100 => "£1", 50 => "50p",   1 => "1p", 10 => "10p",
           5 => "5p", 20 => "20p", 200 => "£2",  2 => "2p"
@@ -228,7 +228,7 @@ Now I wanted to create a list of keys of the hash **%coins**.
 
 So this is what I did.
 
-```perl6
+```perl
     my @table = ();
     for %coins.keys -> $c {
         push @table, $c;
@@ -239,7 +239,7 @@ Now time to mix up the coins in the list, so it arranges the coins in random ord
 
 I used **[routine pick](https://docs.raku.org/routine/pick)** to ramdomize the elements in the list.
 
-```perl6
+```perl
     @table = @table.pick(@table);
 ```
 
@@ -247,7 +247,7 @@ The best finding of this task to figure out how find random number between 0 and
 
 This is what I found on the web using the **routine pick**.
 
-```perl6
+```perl
     my Int $current = (^2).pick;
 ```
 
@@ -257,7 +257,7 @@ However, in **Raku**, it is completely out of this world, **@array[*-1]**.
 
 Rest is as usual stuff and the final version is as below:
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6.c;

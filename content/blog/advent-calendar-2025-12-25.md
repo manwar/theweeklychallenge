@@ -252,7 +252,7 @@ sub zero_friend {
 
 #### [[**Raku Source Code**]](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-343/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub zero_friend($nums) {
     return min $nums.map(&abs);
 }
@@ -291,7 +291,7 @@ sub add_to_array_form {
 
 #### [[**Raku Source Code**]](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-344/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub add-to-array-form($arr, $x) {
     ($arr.join('') + $x).comb».Int
 }
@@ -334,7 +334,7 @@ sub peak_point {
 
 #### [[**Raku Source Code**]](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-345/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub peak-point(@n) {
     return @n.keys.grep({
         $_ == 0             ?? @n > 1 && @n[0]   > @n[1]   !!
@@ -396,7 +396,7 @@ sub valid_longest_parenthesis {
 
 #### [[**Raku Source Code**]](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-346/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub valid-longest-parenthesis(Str $s) {
     my @stack   = (-1);
     my $max-len = 0;
@@ -466,7 +466,7 @@ sub format_date {
 
 #### [[**Raku Source Code**]](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-347/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub format-date(Str $str) {
     $str ~~ /(\d+) \w**2 \s (\w**3) \s (\d+)/;
     sprintf("%04d-%02d-%02d", $2,
@@ -514,7 +514,7 @@ sub string_alike {
 
 #### [[**Raku Source Code**]](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-348/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub string-alike(Str $s) {
     my $l = $s.chars div 2;
     my $v = $s.substr(0, $l).comb.grep({ /<[aeiouAEIOU]>/ }).elems;
@@ -574,7 +574,7 @@ sub power_string {
 
 #### [[**Raku Source Code**]](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub power_string(Str $s) {
     return 0 if $s.chars == 0;
 
@@ -647,7 +647,7 @@ sub good_substring {
 
 #### [[**Raku Source Code**]](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-350/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub good-substring(Str $str) {
     $str.comb.rotor(3 => -2)
         .map(*.join)
@@ -698,7 +698,7 @@ sub special_average {
 
 #### [[**Raku Source Code**]](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub special-average(*@nums) {
     return 0 unless @nums.elems;
 
@@ -763,7 +763,7 @@ sub match_string {
 
 #### [[**Raku Source Code**]](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-352/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub match-string(*@words) {
     my %seen;
 
@@ -819,7 +819,7 @@ sub max_word {
 
 #### [[**Raku Source Code**]](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-353/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub max_word(@sentences) {
     my @w = @sentences.map: { $_.words.elems };
     return @w ?? @w.sort.reverse[0] !! 0;

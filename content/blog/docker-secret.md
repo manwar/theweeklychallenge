@@ -145,7 +145,7 @@ Here is the configuration file, `docker-compose-open.yml`:
 
 <br>
 
-```
+```perl
 version: '3.8'
 
 services:
@@ -225,7 +225,7 @@ For this, we would create another configuration file, `docker-compose-env.yml`:
 
 <br>
 
-```
+```perl
 version: '3.8'
 services:
   mongodb:
@@ -444,7 +444,7 @@ It's time to create the configuration file, `docker-compose-secret.yml` as below
 
 <br>
 
-```
+```perl
 version: '3.8'
 
 services:

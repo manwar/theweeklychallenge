@@ -34,7 +34,7 @@ Ugh maths again. Not being able to make head nor tail of the referenced wikipedi
 
 <br>
 
-```perl6
+```perl
 sub bellNumber(Int $n) {
     my @bell;
     @bell[0][0] = 1;

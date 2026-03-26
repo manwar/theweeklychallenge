@@ -206,7 +206,7 @@ Print out a list of all words seen on the grid, looking both orthogonally and di
 
 ## Search Grid
 
-```
+```perl
 B I D E M I A T S U C C O R S T
 L D E G G I W Q H O D E E H D P
 U S E I R U B U T E A S L A G U

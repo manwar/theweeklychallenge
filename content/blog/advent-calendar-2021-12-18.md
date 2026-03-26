@@ -44,7 +44,7 @@ Let’s exploit these observation:
 
 <br>
 
-```perl6
+```perl
 sub is-isomorphic($a, $b) {
     +(([==] ($a, $b)>>.chars) &&
       ([==] ($a.comb, $b.comb, ($a.comb Z~ $b.comb))>>.unique));
@@ -61,7 +61,7 @@ Test it:
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 # . . .

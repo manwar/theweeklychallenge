@@ -23,7 +23,7 @@ The challenge reads as follows:
 
 In Perl 6/Raku, the `Date` data type offers the built-in methods we need for date computations, including finding day of week.
 
-``` Perl6
+```perl
 use v6;
 for 2019..2100 -> $year {
     say "Christmas of year $year falls on a Sunday."
@@ -56,7 +56,7 @@ We could also do it in the form of a Perl 6 one-liner:
 
  [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/arne-sommer/perl6/ch-1.p6) suggested a solution quite similar to mine:
 
-``` Perl6
+```perl
 unit sub MAIN (UInt :$from = 2019, UInt :$to = 2100);
 for $from ... $to -> $year
 {
@@ -66,13 +66,13 @@ for $from ... $to -> $year
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/kevin-colyer/perl6/ch-1.p6) took essentially the same approach as my one-liner above, but using the `==>` forward feed operator to chain the statements:
 
-``` Perl6
+```perl
 2019..2100 ==> map { Date.new($_,12,25) } ==> grep { $_.day-of-week==7} ==> map { say $_.yyyy-mm-dd };
 ```
 
 [Mark Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/mark-senn/perl6/ch-1.p6) also used essentially the same idea:
 
-``` Perl6
+```perl
 for (2019..2100) -> $year  {
     (Date.new(day =>25, month=>12, year=>$year).day-of-week == 7)
         and  say "25 Dec $year";
@@ -81,7 +81,7 @@ for (2019..2100) -> $year  {
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/noud/perl6/ch-1.p6) worked along the same lines:
 
-``` Perl6
+```perl
 for 2019 .. 2100 -> $year {
     if (Date.new($year, 12, 25).day-of-week == 7) {
         $year.say;
@@ -91,13 +91,13 @@ for 2019 .. 2100 -> $year {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/simon-proctor/perl6/ch-1.p6)'s program is similar to most others seen so far:
 
-``` Perl6
+```perl
 .say for (2019..2100).map( { Date.new( :year($_), :day(25), :month(12) ) } ).grep( *.day-of-week == 7 );
 ```
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/athanasius/perl6/ch-1.p6) made, as often, a relatively long full-fledged program, but using the same `Date` methods as other challengers:
 
-``` Perl6
+```perl
 
 my UInt constant $START-YEAR    = 2019;
 my UInt constant $END-YEAR      = 2100;
@@ -125,7 +125,7 @@ sub MAIN()
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/daniel-mita/perl6/ch-1.p6) planned some extra features, but, when removing them, the gist of his implementation is essentially along the same lines as most others:
 
-``` Perl6
+```perl
 for 2019 .. 2100 -> $year {
     given Date.new( :$year, :12month, :25day ) {
       if .day-of-week == 7 { .say }
@@ -148,7 +148,7 @@ which was apparently influenced by his Perl 5 implementation and doesn't work pr
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/joelle-maslak/perl6/ch-1.p6) also used the same general idea:
 
-``` Perl6
+```perl
 sub MAIN(:$start = 2019, :$end = 2100) {
     my $christmasses = ($start..$end).map({ DateTime.new(:25day, :12month, :year($_)) });
     my $on-sunday = $christmasses.grep: *.day-of-week == 7;
@@ -158,7 +158,7 @@ sub MAIN(:$start = 2019, :$end = 2100) {
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/markus-holzer/perl6/ch-1.p6) also used the same feature as others, with just a different syntax:
 
-```Perl6
+```perl
 constant \SUNDAY = 7;
 .say for
     ( 2019 .. 2100 )
@@ -170,13 +170,13 @@ constant \SUNDAY = 7;
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/roger-bell-west/perl6/ch-1.p6) made a one-line version of the same:
 
-```Perl6
+```perl
 map {say "$_"}, grep {Date.new($_,12,25).day-of-week==7}, (2019..2100);
 ```
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ruben-westerberg/perl6/ch-1.p6) made yet another version of essentially the same:
 
-```Perl6
+```perl
 (2020..2099).map({
     my $t=Date.new(year=>$_,month=>12,day=>25);
     $t.day-of-week==7??$t!!|();
@@ -185,7 +185,7 @@ map {say "$_"}, grep {Date.new($_,12,25).day-of-week==7}, (2019..2100);
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ulrich-rieke/perl6/ch-1.p6) also used the same basic technique:
 
-```Perl6
+```perl
 my @dates ;
 for (2019..2100) -> $year {
   my $d = Date.new( $year , 12 , 25 ) ;
@@ -198,7 +198,7 @@ for (2019..2100) -> $year {
 
 [Yet Ebreo](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/yet-ebreo/perl6/ch-1.p6) used essentially the same technique as most others:
 
-```Perl6
+```perl
 for 2019..2100 -> $year {
     my $date = Date.new($year, 12, 25);
     if ($date.day-of-week == 7) {
@@ -246,7 +246,7 @@ we obtain duplicate triplets:
 
 We can get rid of this problem by keeping only triplets in which the numbers are in (non strict) ascending order:
 
-``` Perl6
+```perl
 use v6;
 for 1..10 X 1..10 X 1..10 -> $triplet {
     next unless [<=] | $triplet;  # ascending order
@@ -272,7 +272,7 @@ which produces the desired result:
 
 Note that the header of the `for` loop could be made slightly more concise using the `xx` sequence repetition operator and the `[X]` cross operator associated with the reduction meta-operator:
 
-``` Perl6
+```perl
 for [X] (1..10) xx 3 -> $triplet { # ...
 ```
 
@@ -282,7 +282,7 @@ This week's challenge was highly successful for Perl6/Raku solutions. The [Chris
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/arne-sommer/perl6/ch-2.p6) used the [combinations](https://docs.perl6.org/type/List#routine_combinations) method to generate triplets, filtered them on their sum (equal to 12), and then removed duplicates by storing in a hash the sorted individual triplets:
 
-``` Perl6
+```perl
 my %seen;
 
 for (1 .. 10, 1..10, 1..10).flat.combinations(3).unique(:with(&[eqv])).grep(*.sum == 12)
@@ -297,7 +297,7 @@ for (1 .. 10, 1..10, 1..10).flat.combinations(3).unique(:with(&[eqv])).grep(*.su
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/kevin-colyer/perl6/ch-2.p6) used three nested `for` loops and a separate `SumsTwelve` subroutine to check the triplets' sums:
 
-``` Perl6
+```perl
 sub SumsTwelve(*@tri) {
     return True if ( [+] @tri ) == 12; # this will always fullfil condition one of number is even as can only add to twelve is ALL even or TWO odd. sum of all odd or one odd can never an even number!
     return False;
@@ -372,7 +372,7 @@ Note that Kevin's interpretation of the challenge doesn't not consider (2 1 9), 
 
 [Marl Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/mark-senn/perl6/ch-2.p6) first suggested a Wolfram (formerly known as Mathematica) implementation which you can check by following the link. He then proposed two Perl6/Raku implementations using nested `for` loops. The first one is this:
 
-``` Perl6
+```perl
 for (1..10) -> $i  {
     for (1..10) -> $j  {
         for (1..10) -> $k  {
@@ -386,7 +386,7 @@ Just like Kevin, Mark doesn't not consider (2 1 9), (2 9 1), (1 2 9), (1 9 2), (
 
 Mark also provided an optimized version of the same modifying the `for`loops to reduce the number of unnecessary calculations:
 
-``` Perl6
+```perl
     for (1..10) -> $i  {
         for (1..12-$i-1) -> $j  {
             for (12-$i-$j..10) -> $k  {
@@ -399,7 +399,7 @@ Mark also provided an optimized version of the same modifying the `for`loops to 
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/noud/perl6/ch-2.p6) cleverly used *two* nested `for` loops combined with the `permutations` built-in method:
 
-``` Perl6
+```perl
 my $total = 12;
 my @triplets = [];
 for 2, 4 ... $total -> $i {
@@ -417,7 +417,7 @@ It seems to me that there is a problem in this program: the `unique` method does
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/jaldhar-h-vyas/perl6/ch-2.p6) also cleverly used only two nested `for` loops:
 
-``` Perl6
+```perl
 my %results;
 for (1 .. 10) -> $i {
     for (1 .. (12 - $i - 1)) -> $j {
@@ -430,7 +430,7 @@ for (1 .. 10) -> $i {
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/roger-bell-west/perl6/ch-2.p6) also used the same clever technique to have only two nested `for` loops:
 
-``` Perl6
+```perl
 my $target=12;
 for (0..$target) -> $a {
   for ($a..$target) -> $b {
@@ -444,7 +444,7 @@ for (0..$target) -> $a {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ruben-westerberg/perl6/ch-2.p6) also managed to use only two nested `for` loops, but with a slightly different approach:
 
-``` Perl6
+```perl
 my %s;
 for (2,4,6,8,10) {
     my $e=$_;
@@ -461,20 +461,20 @@ for %s.keys.sort {
 
 [Ozzy](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ozzy/perl6/ch-2.p6) adopted yet another interpretation of the challenge: for him, all three numbers of a triplet have to be different. He used the `combinations` method to generate triplets of unique integers adding up to 12 (yielding `(0 4 8) (0 5 7) (1 3 8) (1 4 7) (1 5 6) (2 3 7) (2 4 6) (3 4 5)`) and then applied the `permutations` method on each triplet:
 
-``` Perl6
+```perl
 say "Combinations: ", my @c = (^9).combinations(3).grep: { .sum == 12 && (.first: * %% 2).defined };
 say "Permutations: ", my @p = gather { my @x; for @c -> $l { @x = $l.permutations; .take for @x } };
 ```
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/simon-proctor/perl6/ch-2.p6) had the same interpretation as Ozzy and also used the `combinations` method to generate triplets of integers in strict ascending order adding up to 12:
 
-``` Perl6
+```perl
 .join(",").say for (1..9).combinations(3).grep( { [<] $_ } ).grep( { 12 == [+] $_ } ).grep( { any($_) %% 2 } );
 ```
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/athanasius/perl6/ch-2.p6) also went for monotonic ascending series of 3 positive numbers summing to 12. He used three nested `for` loops essentially boiling down to this:
 
-``` Perl6
+```perl
 my UInt constant $SUM = 12;
 for 0 .. $SUM -> UInt $i
 {
@@ -495,7 +495,7 @@ for 0 .. $SUM -> UInt $i
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/daniel-mita/perl6/ch-2.p6) considered that (2 1 9) and (2 9 1) are different triplets. His solution uses the `[X]` cross operator and reduction meta-operator combination to produce the triplets and then prints those whose sum is 12:
 
-``` Perl6
+```perl
 for [X] ( 1..10 ) xx 3 {
   .fmt('%2u', '|').say when .sum == 12;
 }
@@ -503,7 +503,7 @@ for [X] ( 1..10 ) xx 3 {
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/joelle-maslak/perl6/ch-2.p6) used chained methods in a data pipeline to solve the problem:
 
-``` Perl6
+```perl
 cross((1..9) xx 3)\             # Create a list where each element is a list of
                                 #   3 numbers inclusively between 1 and 9.
     ».Set                       # Turn those elements into sets
@@ -521,7 +521,7 @@ cross((1..9) xx 3)\             # Create a list where each element is a list of
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/markus-holzer/perl6/ch-2.p6) wrote his own `combinations` recursive subroutine generating all possible permutations of two integers in the range 1 to 10. He then used it together with the `X` cross operator to generate the triplets:
 
-``` Perl6
+```perl
 .say for
     ( ( 2, 4 ... 10 ) X combinations( 1 .. 10, 2 ) )
     .map(  { .flat.cache  })
@@ -535,7 +535,7 @@ I'm not sure Markus's program is correct, though. As an example of the possible 
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ulrich-rieke/perl6/ch-2.p6) use three nested `for` loops to generate the triplets:
 
-``` Perl6
+```perl
 my @triples ;
 for (1..10) -> $a {
   for (1..10) -> $b {
@@ -552,7 +552,7 @@ say @triples.unique(:with(&[eqv])) ;
 
 [Yet Ebreo](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/yet-ebreo/perl6/ch-2.p6) wrote a very concise one-liner solution:
 
-``` Perl6
+```perl
 $_.sum == 12 && .say for [X] (0 .. 12) xx 3;
 ```
 

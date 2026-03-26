@@ -62,14 +62,14 @@ Write a script to check if $N can be represented as a sum of positive integers h
 
 **Example**
 
-```
+```perl
     Input: $N = 25, $D = 7
     Output: 0
 ```
 
 As there are 2 numbers between 1 and 25 having the digit 7 i.e. 7 and 17. If we add up both we don't get 25.
 
-```
+```perl
     Input: $N = 24, $D = 7
     Output: 1
 ```
@@ -715,7 +715,7 @@ Write a script to replace each node of the tree with the sum of all the remainin
 
 **Example**
 
-```
+```perl
     Input Binary Tree
 
             1
@@ -771,7 +771,7 @@ Do not misunderstand me; generally I find ambiguity in the task definitions to b
 ### the I/O problem
 
 Consider the example tree:
-```
+```perl
        1
       / \
      2   3
@@ -815,7 +815,7 @@ So why don't we draw the lines too? Well this brings us full circle to our openi
 Because a text-based solution is just freaking terrible at that job.
 
 I chose my trivial example carefully because it nicely encapsulates the problems with the idea. The tree only works in a clean and readable way because node 5 is missing. If we need that data node, then the tradeoffs begin:
-```
+```perl
           1
        /     \
       2       3
@@ -823,7 +823,7 @@ I chose my trivial example carefully because it nicely encapsulates the problems
     4   5   6   7
 ```
 The spacing is all dependent on keeping the elements in the last row separated, which leads to increasingly larger gaps on the levels above. Further, our toy example has only single-character values. What about this:
-```
+```perl
                         1
                /                 \
           22222                   3
@@ -959,7 +959,7 @@ The essential quality of the set-theory definition for a binary tree is the recu
 
 [**W. Luis Mochan**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-113/wlmb/perl/ch-2.pl)
 
-```
+```perl
     Input:  [1,[2,[4,[],[7,[],[]]],[]],[3,[5,[],[]],[6,[],[]]]]
     Output: [27,[26,[24,[],[21,[],[]]],[]],[25,[23,[],[]],[22,[],[]]]]
 ```
@@ -1196,7 +1196,7 @@ Adam states that he likes the consistency of having the `Graph` module to work w
 The `Graph::Easy` boxes are a little easier to see as a tree if you tilt your head a little to the left.
 
 
-```
+```perl
     +----+     +----+     +----+     +----+
     | 27 | ==> | 26 | ==> | 24 | ==> | 21 |
     +----+     +----+     +----+     +----+
@@ -1252,7 +1252,7 @@ Tree::DAG_Node
 
 Simon also brings us a module we haven't seen in quite some time, `Tree::DAG_Node`.
 
-```
+```perl
     27
         |--- 26
         |    |--- 24
@@ -1364,7 +1364,7 @@ As I've stated previously, presenting a binary tree for terminal or text output 
 
 Last year, I spent way too much time trying to figure this out, and with a little extra time this week decide to revisit that code and do the refactoring I always wanted to get around to. Inspired in part by Simon Proctor and his Raku submission for PWC 057, I also swapped my slashes for Unicode box-drawing characters, giving what I consider a quite pleasing result. It makes me think of art-deco robots for some reason, which is, obviously, also pleasing to me.
 
-```
+```perl
     Input:
 
             ┏━━━━━━┫6┣━━━━━━┓

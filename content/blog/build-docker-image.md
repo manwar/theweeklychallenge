@@ -95,7 +95,7 @@ Here's the `Dockerfile`, I came up with initially:
 
 <br>
 
-```
+```perl
 FROM perl:5.38.0
 
 EXPOSE 1414
@@ -121,7 +121,7 @@ In the meantime, I decided to switch the base image to `alpine` as `Dave` had su
 
 <br>
 
-```
+```perl
 FROM alpine:latest
 
 EXPOSE 1414
@@ -162,7 +162,7 @@ So as per his suggestion, my `Dockerfile` now looks like below:
 
 <br>
 
-```
+```perl
 FROM alpine:latest
 
 RUN apk add --no-cache libc6-compat
@@ -198,7 +198,7 @@ So now my `Dockerfile` looks like below:
 
 <br>
 
-```
+```perl
 FROM alpine:latest
 
 RUN apk add --no-cache libc6-compat
@@ -229,7 +229,7 @@ I added the following `Dockerfile` to the [**main repository**](https://github.c
 
 <br>
 
-```
+```perl
 FROM alpine:latest
 LABEL maintainer="mohammad.anwar@yahoo.com"
 
@@ -248,7 +248,7 @@ Also added the configuration file, [**docker-compose.yml**](https://github.com/m
 
 <br>
 
-```
+```perl
 version: '3.8'
 services:
   theweeklychallenge:
@@ -295,7 +295,7 @@ I have a simple `Dockerfile` in the repository.
 
 <br>
 
-```
+```perl
 FROM alpine:latest
 CMD echo "Hello, World!"
 ```
@@ -306,7 +306,7 @@ And then I created workflow configuration file: `.github/workflow/dockerhub.yml`
 
 <br>
 
-```
+```perl
 name: Docker Build and Push
 
 on:

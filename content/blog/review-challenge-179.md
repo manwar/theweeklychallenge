@@ -77,7 +77,7 @@ You are given a positive number, $n.
 Write a script to spell the ordinal number.
 
 For example,
-```
+```perl
     11 => eleventh
     62 => sixty-second
     99 => ninety-ninth
@@ -455,7 +455,7 @@ Component tasks are generally broken down into their own routines. Here are a fe
 
 Writing out the same absurdly large number I came up with for Flavio using `Lingua::EN::Numbers`, we interestingly get a very different result:
 
-```
+```perl
     one point one four five seven five seven three four nine zero five seven six five times ten to the twenty-seventh
 ```
 
@@ -1058,7 +1058,7 @@ There's no rigid constraint that a sparkline can only be a single line, either. 
 
 James eschews the more common bar graph of linear-values-and positions today for a different vision: a multiline histogram of values on one axis and incidence on the other. They look something like this:
 
-```
+```perl
    ╷
   ╷│╷                                              ╷
 ─┴┴┴┴──────────────────────────────┴────────────┴─┴┴┴

@@ -63,7 +63,7 @@ Write a script to figure out if they are disjoint.
 The two sets are disjoint if they don’t have any common members.
 
 **Example**
-```
+```perl
     Input:  @S1 = (1, 2, 5, 3, 4)
             @S2 = (4, 6, 7, 8, 9)
     Output: 0 as the given two sets have common member 4.
@@ -493,7 +493,7 @@ You are given a list of intervals.
 Write a script to find out if the current interval conflicts with any of the previous intervals.
 
 **Example**
-```
+```perl
     Input: @Intervals = [ (1,4), (3,5), (6,8), (12, 13), (3,20) ]
     Output: [ (3,5), (3,20) ]
 ```
@@ -504,7 +504,7 @@ Write a script to find out if the current interval conflicts with any of the pre
 - The 4th interval (12,13) again do not conflicts with any of the previous intervals (1,4), (3,5) and (6,8), so skip it.
 - The 5th interval (3,20) conflicts with the first interval (1,4).
 
-```
+```perl
     Input: @Intervals = [ (3,4), (5,7), (6,9), (10, 12), (13,15) ]
     Output: [ (6,9) ]
 ```
@@ -724,7 +724,7 @@ When the end of the list is reached, the remaining list is shifted again and the
 
 Paul goes to great length to precisely duplicate the verbose text given in the examples, enumerating the intervals being compared left-to-right and for each case detailing either a list of all the other intervals it does not conflict with or the first example of a conflict found.
 
-```
+```perl
     The 1st interval (1,4) do not have any previous intervals to compare with, so skip it.
     The 2nd interval (3,5) does conflict with the previous interval (1,4).
     The 3rd interval (6,8) do not conflict with any of the previous intervals (1,4), (3,5) so skip it.

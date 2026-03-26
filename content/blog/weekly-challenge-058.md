@@ -186,7 +186,7 @@ Usual translation of **Perl** solution into **Raku**. I am getting better with *
 
 ***
 
-```perl6
+```perl
 sub cmp-version(Str $v1, Str $v2) {
 
     # Short circuit, good idea?
@@ -247,7 +247,7 @@ sub cmp-version(Str $v1, Str $v2) {
 
 Here is standalone app to go with the above **sub cmp-version()**.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$v1 = '0.1', Str :$v2 = '1.1') {
@@ -257,7 +257,7 @@ sub MAIN(Str :$v1 = '0.1', Str :$v2 = '1.1') {
 
 And unit test as well to make it complete.
 
-```perl6
+```perl
 use Test;
 
 is cmp-version('0.1',   '1.1'),   -1, '0.1   cmp 1.1';
@@ -278,7 +278,7 @@ For this task, I had to try few things for the first time. For example, sorting 
 
 ***
 
-```perl6
+```perl
 sub order-lineup($args) {
 
     my @H = $args.{'H'}.<>;
@@ -309,7 +309,7 @@ sub order-lineup($args) {
 ```
 Here is **Raku** app using the above **sub order-lineup()**.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN() {
@@ -325,7 +325,7 @@ sub MAIN() {
 
 And light weight unit test wrapper.
 
-```perl6
+```perl
 use Test;
 
 my $H = [2, 6, 4, 5, 1, 3];

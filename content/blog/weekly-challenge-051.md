@@ -110,7 +110,7 @@ Other than that nothing new to me.
 
 ***
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6;
@@ -141,7 +141,7 @@ sub MAIN() {
 
 The **Colorful number** task involved more as compare to the other task. I decided to split the 3 digits number, so looked up in the documentation for the help. I found **[Str](https://docs.raku.org/type/Str)** class very handy. There is a method **[comb()](https://docs.raku.org/type/Str#routine_comb)** provided by **Str** class. With the power method chaining of **Raku**, the line below does the following:
 
-```perl6
+```perl
    my $j = $i.comb.unique.join;
 ```
 
@@ -153,7 +153,7 @@ The **Colorful number** task involved more as compare to the other task. I decid
 
 Other than this, nothing new to talk about except `@S.unique.elems`, removing duplicate entry from the list and return the count.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6;

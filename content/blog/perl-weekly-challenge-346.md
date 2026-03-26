@@ -89,7 +89,7 @@ sub peak_point {
 
 <br>
 
-```raku
+```perl
 #!/usr/bin/env raku
 
 use Test;

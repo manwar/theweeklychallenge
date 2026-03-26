@@ -41,7 +41,7 @@ This task was a little longer than the first one: you have to built a `function 
 
 My implementation to such function is:
 
-```perl6
+```perl
 sub f( Int:D $a, Int:D $b ) {
     my $different-bits = 0;
 
@@ -69,7 +69,7 @@ Then it does suffice to walk the arrays, that now have the very same length, and
 
 Having done so, the task asked to sum the number of different bits among couple of arguments, as easy as:
 
-```perl6
+```perl
 my $sum = 0;
 for 0 ..^ @*ARGS.elems  -> $first {
     for $first + 1 ..^ @*ARGS.elems  -> $second {

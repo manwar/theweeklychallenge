@@ -40,7 +40,7 @@ In theory, we could build directly the next palindrome number from the current o
 
 <br>
 
-```perl6
+```perl
 use v6;
 
 my $input = @*ARGS[0] // 1234;
@@ -57,7 +57,7 @@ This program displays the following output:
 
 <br>
 
-```perl6
+```perl
 $ raku ./palin.raku
 1331
 

@@ -162,7 +162,7 @@ Most of he other examples choose a scalar variable, but the head-body constructi
 
 In this example the reference tells us the variable is an array type:
 
-```
+```perl
     The address of @cities is ARRAY(0x7fcbe001f280)!
 ```
 
@@ -366,7 +366,7 @@ Wanderdoc, on the other hand, allows both 10 and 16-digit representations to coe
 
 For my own submission, I first built a fairly bog-standard solution to match the hex string out from a reference, in the manner we've seen many times now. But this left me unsatisfied, and poking around I ended up discovering `Devel::Peek`, which, with its `Dump` routine, allows a much more thorough examination of the various structures that compose a Perl variable. Although I believe the "regex over ref" solution properly answers to the task, the `Dump` output is far more interesting.
 
-```
+```perl
     The variable head is stored at 0x7ff8c6829a70
     The variable is a scalar
     -------------------------
@@ -398,7 +398,7 @@ For my own submission, I first built a fairly bog-standard solution to match the
 
 The monk also reaches for the very worthy `Devel::Peek` module to look deeply inside a variable. One thing though, is that being a debugging tool `Dump` writes its report to `STDERR` directly. Using the capabilities of `Capture::Tiny` solves that problem, allowing them to grab the output and store it in a string, which can then be parsed with a regular expression to note the locations of the "head" and "body" segments. In this case the body is an **IV**, or Integer Value, type. In the example output above, the string body is a **PV**, or Pointer Value type (**SV** was already taken for Scalar Values).
 
-```
+```perl
     Memory location of $var following the statement "my $var = 42;"
     - The scalar's head is allocated at address 0x7ff6ad051248
     - The scalar's body is allocated at address 0x7ff6ad051238
@@ -464,7 +464,7 @@ This function, when given a reference, returns a memory address as an integer. H
     say locate_memory(bless {}, 'Whatever');
 ```
 
-```
+```perl
     140468944016688
     140468944016688
     140468943897248
@@ -584,7 +584,7 @@ The Bell triangle is constructed methodically from a single row with 1 element: 
 
 In continuing to build out our base triangle we add the 1 that starts the second row to the single 1 above it on the first row to get 2, which we use to extend the second row. We have now run out of number pairs to add, and the second row has one more element than the first. We carry the 2 down and begin the third row:
 
-```
+```perl
     1
     1 2
     2
@@ -592,7 +592,7 @@ In continuing to build out our base triangle we add the 1 that starts the second
 
 Adding the accumulating values from row three and row two, we get 2 + 1 = 3, then our newly calculated 3 + 2 = 5, and we have finished the row again. We carry down the 5 to begin the next row, and continue:
 
-```
+```perl
     1
     1   2
     2   3   5
@@ -884,7 +884,7 @@ Luis provides us today with two solutions. In his first solution he manually ass
 
 He keeps his partition sets as lists of lists... of lists, because each partition set member is also a set of items. With each new added item, he augments his existing sets in two ways. In the first every set is given an additional member, the new element. In the second the new element is added to every existing list within each set; each one of these variations makes a new partition set. Combining these two augmentations produces the complete new set of partitions for the given number.
 
-```
+```perl
     bell(0)=1
         {}
 

@@ -61,7 +61,7 @@ You are given a positive integer $N.
 Write a script to sum GCD of all possible unique pairs between 1 and $N.
 
 **Example 1:**
-```
+```perl
     Input : 3
     Output: 3
 
@@ -69,7 +69,7 @@ Write a script to sum GCD of all possible unique pairs between 1 and $N.
 ```
 
 **Example 2:**
-```
+```perl
     Input : 4
     Output: 7
 
@@ -593,13 +593,13 @@ Niels imports `Bit::Vector`, which, among its talents, allows a suite of large i
 *Submitted by: Mohammad S Anwar*
 
 Write a script to display matrix as below with numbers 1 - 9. Please make sure numbers are used once.
-```
+```perl
     [ a b c ]
     [ d e f ]
     [ g h i ]
 ```
 So that it satisfies the following:
-```
+```perl
     a + b + c = 15
     d + e + f = 15
     g + h + i = 15
@@ -813,7 +813,7 @@ starts us off by reducing the solution space to a 2x2 matrix, as each two values
 
 CY delivers us a solution that uses logic to reduce the configuration to two cells beyond placing an initial value of 5 in the center. [In her blog](http://blogs.perl.org/users/c_y_fung/2020/12/magic-square-and-magic-cube.html) she provides a mathematical proof that the center is indeed 5, so I've decided to excerpt that proof here rather than the code she produced to implement it. I like a well-reasoned deduction, and this approach in particular. As a bonus, appended to her submission she also delivers a similarly formed solution to a 3x3x3 *magic cube*, with lines that add to 42. Nice. Follow the link to have a look.
 
-```
+```perl
     a b c
     d e f
     g h i

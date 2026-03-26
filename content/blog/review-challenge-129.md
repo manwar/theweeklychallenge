@@ -62,7 +62,7 @@ You are given a tree and a node of the given tree.
 Write a script to find out the distance of the given node from the root.
 
 **Example 1:**
-```
+```perl
     Tree:
             1
            / \
@@ -86,7 +86,7 @@ Write a script to find out the distance of the given node from the root.
 ```
 
 **Example 2:**
-```
+```perl
     Tree:
             1
            / \
@@ -284,7 +284,7 @@ As the format only describes complete trees, each level of depth adds another 2<
 
 For example *example 1*:
 
-```
+```perl
     [          1,
            2,      3,
          0,  0,  0,  4,
@@ -323,7 +323,7 @@ In a remarkably different vein, we have Pete.
 
 Pete takes a very literal and direct approach to scanning a tree, by taking a the ascii drawing of a tree:
 
-```
+```perl
             1
            / \
           2   3
@@ -451,7 +451,7 @@ To build his tree he uses a collection of nested structs, with this functionalit
 
 Much like what we saw with Pete earlier, Luis analyzes a *textual* representation of the tree, looking for the specified node value. To get around the obvious — and perhaps less-than-obvious — limitations of ASCII tree representations, he has adopted instead an indentation-based outline format borrowed from the venerable text editor emacs' org-mode. For example, the first example —
 
-```
+```perl
         1
        / \
       2   3
@@ -464,7 +464,7 @@ Much like what we saw with Pete earlier, Luis analyzes a *textual* representatio
 
 comes out like this:
 
-```
+```perl
     - 1
       - 2
       - 3
@@ -626,7 +626,7 @@ Write a script to add the two linked list and create a new linked representing t
 
 HINT: Just a suggestion, feel free to come up with your own unique way to deal with the task. I am expecting a class representing linked list. It should have methods to create a linked list given list of single digit positive numbers and a method to add new member. Also have a method that takes 2 linked list objects and returns a new linked list. Finally a method to print the linked list object in a user friendly format.
 **Example 1:**
-```
+```perl
 Input: L1 = 1 -> 2 -> 3
        L2 = 3 -> 2 -> 1
 Output: 4 -> 4 -> 4
@@ -634,7 +634,7 @@ Output: 4 -> 4 -> 4
 Operation: Pick the first rightmost element of L1 i.e. 3 and adds to the first rightmost element of L2 i.e. 1. Finally store the result i.e. 3 in the new linked list. Move to the next one of both linked lists L1 and L2, perform the same operation. In case the sum >= 10 then you apply the same rule you would do to regular addition problem i.e. divide the sum by 10 keep the remainder and push to the new linked list. Don't forget to carry, 1, to the next operation. In case one linked list is smaller than the other, you can safely assume it is 0.
 
 **Example 2:**
-```
+```perl
 Input: L1 = 1 -> 2 -> 3 -> 4 -> 5
        L2 =           6 -> 5 -> 5
 Output:     1 -> 3 -> 0 -> 0 -> 0
@@ -661,7 +661,7 @@ Operations:
 18. 1 pushed to the new linked list.
 
 So the new linked list now have:
-```
+```perl
     1 -> 3 -> 0 -> 0 -> 0.
 ```
 The above suggestion is one way, not necessarily the best way to deal with it.

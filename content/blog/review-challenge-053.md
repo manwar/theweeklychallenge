@@ -917,7 +917,7 @@ my $matrix2=[[qw{- - - █ - -}],
 
 The output makes it extremely obvious to verify:
 
-```
+```perl
 Rotating by 0
 ---█--
 ---░█-
@@ -1092,7 +1092,7 @@ Here is Mohammad's description, abridged:
 
 *For example, if the given integer N = 2 then script should print the following strings:*
 
-```
+```perl
 ae ai ei ia io iu ie oa ou uo ue
 ```
 

@@ -53,7 +53,7 @@ I have specified the type of as many variables as possible as this (I hope!) ena
 
 (4) We know the length of the chain so cache it in `@length` for the next run.
 
-```perl6
+```perl
 sub collatzSeqChain(Int $n is copy) {
     my Str $seq = "$n";
     while $n > 1 {

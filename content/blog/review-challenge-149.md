@@ -69,7 +69,7 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 Given an input $N, generate the first $N numbers for which the sum of their digits is a Fibonacci number.
 
 **Example**
-```
+```perl
     f(20)=[0, 1, 2, 3, 5, 8, 10, 11, 12, 14, 17, 20, 21, 23, 26, 30, 32, 35, 41, 44]
 
 ```
@@ -638,7 +638,7 @@ Given a number base, derive the largest perfect square with no repeated digits a
 (For base>10, use ‘A’..‘Z’.)
 
 **Example:**
-```
+```perl
     f(2)="1"
     f(4)="3201"
     f(10)="9814072356"
@@ -911,7 +911,7 @@ The massive number-crunching requirements to examine millions, if not billions, 
 
 With a unflappable determination he sets one leg back and uses that little beckoning wave with his outstretched hand, silently mouthing the words: "You want some?"
 
-```
+```perl
     --------------------------------------------------------------------------------
     |  N | v         | v^2                | v^2 (base N)    | Time      | Evals    |
     | -: | --------: | -----------------: | --------------: | --------: | -------: |

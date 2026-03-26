@@ -968,7 +968,7 @@ In the `Playlist` object that lies within, Bob has two methods to compute the cu
 
 [**Flavio Poletti**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-103/polettix/perl/ch-2.pl)
 
-```
+```perl
     "Les Miserables, Episode 1: The Bishop (broadcast date: 1937-07-23)"
     00:10:24.160
 
@@ -994,7 +994,7 @@ This scrutiny on millisecond accuracy carries over into this final report, addin
 
 [**Niels van Dijke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-103/perlboy1967/perl/ch-2.pl)
 
-```
+```perl
     start time  : 1606134123 (Mon Nov 23 07:22:03 2020)
     current time: 1614591276 (Mon Mar  1 04:34:36 2021)
     Playing: 'Les Miserables, Episode 1: The Bishop (broadcast date: 1937-07-23)'

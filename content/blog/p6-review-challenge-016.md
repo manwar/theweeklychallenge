@@ -86,7 +86,7 @@ But I'm afraid this is now becoming a little bit too hairy. It will be cleaner t
 
 Since we've already done it with one-liner, writing a full-fledged script in Perl 6 is not complicated:
 
-``` Perl6
+```perl
 use v6;
 
 constant $share-fact = 0.01;
@@ -107,7 +107,7 @@ This procedural iterative solution prints the following output:
 
 But we can do something much more concise in Perl 6 using the sequence operator, a pinch of functional programming and some built-in functions:
 
-``` Perl6
+```perl
 use v6;
 
 my $rest = 1;
@@ -123,7 +123,7 @@ We start with the sequence operator `...` to build a list of 101 relative shares
 
 Since we know from the output of two of the one-liners above that only one guest gets the largest share, we don't really bother to find several largest shares. But it would take only one more code line to do so:
 
-``` Perl6
+```perl
 my $rest = 1;
 my @shares = map { my $sh = $rest * $_; $rest -= $sh; $sh}, (0, .01 ... 1);
 my $max = @shares.keys.max({@shares[$_]});
@@ -132,7 +132,7 @@ say map { $_, @shares[$_] }, grep {@shares[$_] == @shares[$max]}, 1..100;
 
 Another approach is to build directly the `@shares` array with the sequence operator and a generator (i.e. a code block to generate the next item from the previous one):
 
-``` Perl6
+```perl
 use v6;
 
 my ($rest, $a) = 1, .01;
@@ -151,7 +151,7 @@ Now that the code has become more compact, we could possibly use again a Perl 6 
 ## Alternative Solutions
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/ch-1.p6) constructed a lazy infinite list of Pythagoras pie shares using the `gather ... take` construct:
-``` perl6
+```perl
 my $pythagoras-pie := gather
 {
   my $remainder = 100;
@@ -168,7 +168,7 @@ my $pythagoras-pie := gather
 It is then ~~a share of a pie~~ a piece of cake to find the largest part with the `max` built-in routine (limiting the values to the `0..100`, since the `max` routine doesn't work too well on an infinite list. I really like this imaginative approach.
 
 [Francis J. Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/fjwhittle/perl6/ch-1.p6) used `FatRat` numbers to get accurate computation. He computed the slices is a nice functional way:
-``` Perl6
+```perl
 # my $guests = 100;
 my @slices = (0..$guests).map: -> $n is copy {
   $n *= $pie / $guests;
@@ -182,12 +182,12 @@ It is then again a piece of cake to find the largest share.
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/noud/perl6/ch-1.p6) took a very different, more mathematical-oriented and probably more efficient approach. Noting that a person *n* gets `99 / 100 * 98 / 100 * ... * (99 - n + 1) / 100 * n / 100`, which is equal to `99! / (100 - n)! * n / 100^n`, Noud first implements a `!` factorial operator and then computes the shares in just one line:
 
-```Perl6
+```perl
 sub postfix:<!>(Int $n) { [*] 1..$n };
 my @pieces = (1..100).map(-> Int \n { 99! / (100 - n)! * n / 100**n });
 ```
 Finding then the lucky guest is then fairly easy:
-``` Perl6
+```perl
     my $person_no = @pieces.maxpairs()[0].key + 1;
 ```
 To me, Noud's solution is undoubtedly one of the best ones.
@@ -196,13 +196,13 @@ To me, Noud's solution is undoubtedly one of the best ones.
 
 [Fench Chang](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/feng-chang/perl6/ch-1.p6) wrote a very simple `for` loop to populate a `@share` array and then used chained built-in method invocations to find the largest share:
 
-``` Perl6
+```perl
 @share.pairs.max(*.value).key.say;
 ```
 
 [Jaldhar M. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/jaldhar-h-vyas/perl6/ch-1.p6) used a `map` and chained methods to produce the result is just one (multiline) statement, and then another code line to print the result:
 
-``` Perl6
+```perl
 my ($topguest, $topshare) = (1 .. 100)
     .map({
         state $pie = 100.0;
@@ -218,7 +218,7 @@ say "Guest $topguest gets ", sprintf("%0.2f", $topshare), '% of the pie.';
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/joelle-maslak/perl6/ch-1.p6) also took another very different (and quite unusual) approach: she wrote two subroutines, `firsts` and `seconds`, which, given an array of arrays (AoA), return respectively a list of the first and of the second elements of each nested array. Her program then uses the `seconds` subroutine to incrementally build a `@slices` AoA, where its nested arrays contain a pair of values, i.e.  the guest number and the allocated share, using the sum of the previously allocated shares. Quite a surprising method! Then, the program uses the `max` built-in method on the list of shares (i.e. the return value of `seconds` on the `@shares` AoA) to find the size of the largest share. And finally, it uses a `grep`  on the list of guests (produced by the `firsts` subroutine on the `@shares` AoA) to find all the guests (in fact, only one) who received that largest share. This is both a bit contrived and fairly clever, in fact so clever that I can't resist quoting the whole program:
 
-``` Perl6
+```perl
 my @slices;
 for 1..100 -> $i {
     @slices.push: @( $i, ( FatRat(1) - seconds(@slices).sum ) * $i / 100 );
@@ -246,7 +246,7 @@ Yet another red flag in the code, in Damian's view, is the need to add comments 
 
 So this is Damian's second solution with all this improvements:
 
-``` Perl6
+```perl
 # Add a percentage operator...
 sub postfix:<%> (Numeric $x) { $x / 100 }
 
@@ -268,7 +268,7 @@ Notice how this script create a `%` postfix operator that divides its argument b
 
 But Damian isn't satisfied when he sees a hash being populated and then used *only once*, and in that case, he often prefers to use `gather/take`. So, he would like to use something along these lines:
 
-``` Perl6
+```perl
 # Attention: code not working
 say maxpairs gather for 1..100 -> $N {
     state $pie = 100%;
@@ -281,7 +281,7 @@ But that wouldn't work, because the `maxpairs` built-in is defined only as a met
 
 Let me just point out, though, that it is possible to use the built-in `maxpairs` method with `gather/take` with just a little bit of syntax tweak;
 
-``` Perl6
+```perl
 sub postfix:<%> (Numeric $x) { $x / 100 };
 (gather for 1..100 -> $N {
     state $pie = 100%;

@@ -22,7 +22,7 @@ The gift is presented by **Khalid**. Today he is talking about his solutions to 
 
 At first here is the code :
 
-```perl6
+```perl
 grammar Grammer {
     token TOP {<sign>? <int> <decimal>?}
     token decimal {<dot><digit>?}

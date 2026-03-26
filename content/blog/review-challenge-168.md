@@ -670,7 +670,7 @@ Further information can be found on [Wikipedia](https://en.wikipedia.org/wiki/Ho
 
 As taken from the Wikipedia page,
 
-```
+```perl
     The mth intermediate stage in the process of determining HP(n) is designated HPn(m).
 
     HP(10) = 773, as
@@ -991,7 +991,7 @@ Peter's short program gives rapid, accurate results for the integers from 2 to 4
 
 It took me a moment to understand Robert's output, as instead of listing a number of sequential home primes as many chose to, he prints the intermediate numbers that are produced until a prime is found. Preloaded with a default value of 8, then, this produces a wild ride:
 
-```
+```perl
     8
     222
     2337
@@ -1012,7 +1012,7 @@ A little cross-checking shows we arrive at the correct value. I find this view v
 
 I made a quick little script like this myself earlier, when writing this review, to see what exactly was going on inside the long chain from 8. After producing a result like Robert's, I further modified it to include a space between the individual primes before concatenation. This yielded the following variation that shows how we got these particular values.
 
-```
+```perl
     2 2 2
     2 3 37
     3 19 41

@@ -10,13 +10,13 @@ tags: ["Perl", "Raku"]
 
 Before I say anything about my contributions, I would like to share my sweet encounter with **Raku**. Last week while working on the task **Flip Binary** using **Raku**, I was struggling to figure out all the binary strings with maximum **1s**. I had the results in a **Hash** where key was the binary string and value was the total count of **1s** in it. The idea was to sort the **Hash** by values first then sort by keys. After posting the question on the Twitter handle `@PerlWChallenge`, I received the below solution by `PawgChamp (@Mrofnet)`.
 
-```perl6
+```perl
 for %result.sort({ $^b.value <=> $^a.value || $^a.key cmp $^b.key }) -> $pair {
 ```
 
 With the above suggestions, I wrote the following subroutine flipped-binary():
 
-```perl6
+```perl
 sub flipped-binary(%result) {
 
     my Int $value;
@@ -45,7 +45,7 @@ Although, it does the job but somewhere deep, I wasn't still happy with the end 
 
 While going through the blogs by the **Team PWC**, I came across a [blog](https://rafraichisso.ir/2020/04/11/pwc-55) by **Shahed Nooshmand**. In the blog, I found magical one-liner in **Raku** below:
 
-```perl6
+```perl
 say .key for %flips.grep: *.value == max %flips.values
 ```
 
@@ -53,7 +53,7 @@ The above one-liner in **Raku** does all what I was trying to do in the **sub fl
 
 However, I noticed one small issue that it wasn't returning keys in sorted order. With little **Raku** knowledge that I have gathered so far, I decided to improve it. For this I came up with short test script **pwc.p6** to re-create the issue.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6.c;
@@ -77,7 +77,7 @@ The above script on execution, returns this:
 
 I was expecting to return keys in sorted order, so I added **sort** in it.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6.c;
@@ -103,7 +103,7 @@ Almost there, it returned the same result as my bulky **sub flipped-binary(%resu
 
 Time to do the join, so I did an experiment and it worked first time. I am not sure if it is the right thing to do.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6.c;
@@ -126,7 +126,7 @@ Final execution gives the expected result.
 
 So now I can replace the chunky **sub flipped-binary(%result)** with the following one-liner.
 
-```perl6
+```perl
 %(%result.grep: *.value == max %result.values).keys.sort.join(" | ").say;
 ```
 ***
@@ -313,7 +313,7 @@ done_testing;
 
 For the first time, I put the constraint alongwith the parameters as I have learnt from others. I know even a better way of dealing with constraint. I will try that next time by creating. I know it is still not there yet. I am happy that it doesn't look like **Perl** anymore.
 
-```perl6
+```perl
 sub find-match(Int $K, @L where .all ~~ Int) {
     my $matched = [];
     my $S = @L.elems;
@@ -333,25 +333,25 @@ sub find-match(Int $K, @L where .all ~~ Int) {
 
 For this standalone app, the main challenge was to pick sample numbers from the given list of numbers. I know from my past solutions, **pick()** is the right candidate.
 
-```perl6
+```perl
 my @L = (1..50).pick(10);
 ```
 
 The above line would given 10 random numbers between 1 and 50. Next I wanted to sort the list.
 
-```perl6
+```perl
 my @L = (1..50).pick(10).sort;
 ```
 
 One last bit, I want to reverse it.
 
-```perl6
+```perl
 my @L = (1..50).pick(10).sort.reverse;
 ```
 
 Now I have the numbers to play with. The rest is history as they say.
 
-```perl6
+```perl
 use v6.d;
 
 multi sub MAIN(*@) is hidden-from-USAGE {
@@ -375,7 +375,7 @@ multi sub MAIN(Int :$K where * > 0 = 3, Int :$S = 10) {
 
 The unit version of the above gave me really hard time. I troubled many friends on `PerlWChallenge` with my stupid questions. Having setup the test cases, I wanted to fetch list assigned to the key **in** and pass it to the **sub find-match()**. I keep getting constraint error.
 
-```perl6
+```perl
 my @L = $unit-tests{$K}<in>;
 ```
 
@@ -383,19 +383,19 @@ I blame it to my **Perl** thinking. It turned out there are ways to deal with it
 
 Below one suggested by `@smokemachine`
 
-```perl6
+```perl
 my @L = $unit-tests{$K}<in><>;
 ```
 
 And this one suggested by `@khaledelboray`
 
-```perl6
+```perl
 my @L = $unit-tests{$K}<in>.Slip;
 ```
 
 I kept both, for future reference purpose. Other than that, everything is just cake walk.
 
-```perl6
+```perl
 use Test;
 
 my $unit-tests = :{
@@ -436,7 +436,7 @@ done-testing;
 
 This one just pure **Raku** translation of my earlier **Perl** solution. I made sure it doesn't look like **Perl**.
 
-```perl6
+```perl
 sub find-matched-paths(Hash[] $TREE, Int $SUM) {
 
     my $paths = [];
@@ -470,7 +470,7 @@ sub find-matched-paths(Hash[] $TREE, Int $SUM) {
 
 One thing, I tried new in this solution is the use of **Hash[]**. What does this mean? As per my understanding, the value of the keys in hash **$TREE** is **Hash**.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN() {
@@ -490,7 +490,7 @@ sub MAIN() {
 
 I just love doing unit test in **Raku**. It is so much fun.
 
-```perl6
+```perl
 use Test;
 
 my $unit-tests = :{

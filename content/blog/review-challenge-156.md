@@ -71,7 +71,7 @@ A pernicious number is a positive integer which has prime number of ones in its 
 The first pernicious number is 3 since binary representation of 3 = (11) and 1 + 1 = 2, which is a prime.
 
 **Expected Output**
-```
+```perl
     Expected Output
     3, 5, 6, 7, 9, 10, 11, 12, 13, 14
 ```
@@ -452,7 +452,7 @@ It is, as to be expected, quick. I've been quite fond of `redo` lately.
 
 At this point, after reviewing thousands of scripts, any time I receive a loading error on running a submission:
 
-```
+```perl
     Can't locate Math/Primality.pm in @INC (you may need to install the Math::Primality module) (@INC contains: ...
 ```
 
@@ -661,7 +661,7 @@ According to Wikipedia, it is defined as:
 The sum of the proper divisors (divisors including 1 but not itself) of the number is greater than the number, but no subset of those divisors sums to the number itself.
 
 **Example 1:**
-```
+```perl
     Example
         Input: $n = 12
 ```
@@ -670,7 +670,7 @@ The sum of the proper divisors (divisors including 1 but not itself) of the numb
 Since the proper divisors of 12 are 1, 2, 3, 4, and 6, which sum to 16; but 2 + 4 + 6 = 12.
 
 **Example 2:**
-```
+```perl
     Example
         Input: $n = 70
 ```

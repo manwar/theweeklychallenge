@@ -67,7 +67,7 @@ sub double_or_plus( $start, $end ) {
 
 ### Raku
 
-```perl6
+```perl
 sub double-or-plus( Int $start, Int $end is copy ) {
     my @path = $end;
     while ($end != $start) {

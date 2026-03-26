@@ -62,7 +62,7 @@ Write a script to find out maximum sub-matrix having only 0.
 
 **Example 1:**
 
-```
+```perl
     Input : [ 1 0 0 0 1 0 ]
             [ 1 1 0 0 0 1 ]
             [ 1 0 0 0 0 0 ]
@@ -72,7 +72,7 @@ Write a script to find out maximum sub-matrix having only 0.
 ```
 
 **Example 2:**
-```
+```perl
     Input : [ 0 0 1 1 ]
             [ 0 0 0 1 ]
             [ 0 0 1 0 ]
@@ -658,7 +658,7 @@ You are given two arrays of arrival and departure times of trains at a railway s
 Write a script to find out the minimum number of platforms needed so that no train needs to wait.
 
 **Example 1:**
-```
+```perl
     Input: @arrivals   = (11:20, 14:30)
            @departures = (11:50, 15:00)
     Output: 1
@@ -667,7 +667,7 @@ Write a script to find out the minimum number of platforms needed so that no tra
 * Before the second arrival at 14:30, the first train left the station at 11:50, so you still need only 1 platform.
 
 **Example 2:**
-```
+```perl
     Input: @arrivals   = (10:20, 11:00, 11:10, 12:20, 16:20, 19:00)
            @departures = (10:30, 13:20, 12:40, 12:50, 20:20, 21:20)
     Output: 3
@@ -848,7 +848,7 @@ Stuart gives us a functional example, repeatedly treating the input list of firs
 
 Well now it makes sense to me. What a cool way to approach this.
 
-```
+```perl
     10:20 0
         1 0 0 0 0 0
     10:30 0

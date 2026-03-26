@@ -59,7 +59,7 @@ sub string_alike {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-348/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub string-alike(Str $s) {
     my $l = $s.chars div 2;
     my $v = $s.substr(0, $l).comb.grep({ /<[aeiouAEIOU]>/ }).elems;

@@ -82,7 +82,7 @@ foreach my $c (split //, scalar(reverse(uc $arg))) {
 
 to **Raku** equivalent like below:
 
-```perl6
+```perl
 for $name.uc.flip.comb -> $c {
 ```
 
@@ -90,7 +90,7 @@ Don't you think, it is beautiful?
 
 I did this in my head, for a change. Normally I do hit and run process. When it works, I make a note of it for future.
 
-```perl6
+```perl
 multi sub excel-column(Str $name) {
 
     my $i = 0;
@@ -117,7 +117,7 @@ I am sure, there are plenty of ways dealing with it in **Raku**. With my limited
 
 When I did the same in **Raku**, the second element of `@name` had all the alphabets instead of one in each cell. So I decided to take the shortcut, I know it is not nice but does the job. If you know better way then please do let me know.
 
-```perl6
+```perl
 my @name = 'A'..'Z';
 @name.unshift(0);
 ```
@@ -130,7 +130,7 @@ my $i = int $arg / 26;
 
 Again, I thought the same line would work in **Raku**. I was wrong once again. Looked around documentation and I found this.
 
-```perl6
+```perl
 my $i = $number div 26;
 ```
 
@@ -138,7 +138,7 @@ Is it correct way of dealing with it?
 
 Rest of the solution was simple straight forward.
 
-```perl6
+```perl
 multi sub excel-column(Int $number is copy) {
 
     my $name = '';
@@ -172,7 +172,7 @@ print sprintf("%s => %s\n", $arg, excel_column($arg));
 
 I also love the `<cond> ?? <exp> !! <exp>` construct. I use it whenever I get the opportunity.
 
-```perl6
+```perl
 use v6.d;
 
 multi sub MAIN(*@) is hidden-from-USAGE {
@@ -205,7 +205,7 @@ done_testing;
 
 The same applied to **Raku** as well. They both look so identical. I am amazed.
 
-```perl6
+```perl
 use Test;
 
 is excel-column('Z'),  26, 'Z  => 26';
@@ -252,7 +252,7 @@ But for **Raku**, I was not aware of any such module. So I decided to get my han
 
 First I tried `@numbers.combinations(2)` which didn't give me the expected pairs:
 
-```perl6
+```perl
 > say <0 1 2 5>.combinations(2);
 ((0 1) (0 2) (0 5) (1 2) (1 5) (2 5))
 >
@@ -264,7 +264,7 @@ Once again after trying all the tricks from my notes, I wasn't going anywhere. S
 
 Then suddenly it clicked and got the solution.
 
-```perl6
+```perl
 > say <0 1 2 5> X <0 1 2 5>;
 ((0 0) (0 1) (0 2) (0 5) (1 0) (1 1) (1 2) (1 5) (2 0) (2 1) (2 2) (2 5) (5 0) (5 1) (5 2) (5 5))
 >
@@ -276,19 +276,19 @@ The next challenge was to join both integers from the pair and deal with pair ha
 
 To join the pair elements, my note came handy this time.
 
-```perl6
+```perl
 my $number = [~] @x;
 ```
 
 To get rid of `0`, I simply used the trick from **Perl**.
 
-```perl6
+```perl
 my $number = ([~] @x) + 0;
 ```
 
 Rest of the code was nothing new to me.
 
-```perl6
+```perl
 sub find-numbers(@n, $x, $y) {
 
     my @numbers = ();
@@ -313,7 +313,7 @@ print join(", ", @numbers), "\n";
 
 Other than that, it is pretty straight forward.
 
-```perl6
+```perl
 sub MAIN(:@n where .all ~~ Int = <0 1 2 5>, Int :$x = 2, Int :$y = 21) {
 
     my @numbers = find-numbers(@n, $x, $y);
@@ -334,7 +334,7 @@ done_testing;
 
 **Raku** is even slimmer as always.
 
-```perl6
+```perl
 use Test;
 
 is-deeply find-numbers(<0 1 2 5>, 2, 21), [10, 11, 12, 15, 20];

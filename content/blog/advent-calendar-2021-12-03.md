@@ -32,7 +32,7 @@ The expression `alphabets A..Z only` is wrong, as the example has several spaces
 
 File: caesar-cipher
 
-```perl6
+```perl
 #! /usr/bin/env raku
 
 subset AZ-space of Str where /^ <[ A .. Z \s ]>+ $/;   # [1]
@@ -86,7 +86,7 @@ See [**docs.raku.org/routine/chr**](https://docs.raku.org/routine/chr)  for more
 
 ## Running it:
 
-```perl6
+```perl
 $ ./caesar-cipher 'THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG' 3
 QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD
 
@@ -108,7 +108,7 @@ File: caesar-cipher-map
 
 <br>
 
-```perl6
+```perl
 #! /usr/bin/env raku
 
 subset AZ-space of Str where /^ <[ A .. Z \s ]>+ $/;
@@ -138,7 +138,7 @@ See [**docs.raku.org/routine/chrs**](https://docs.raku.org/routine/chrs) for mor
 
 Running it gives the same result as before:
 
-```perl6
+```perl
 $ ./caesar-cipher-map 'THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG' 3
 QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD
 

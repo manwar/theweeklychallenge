@@ -25,7 +25,7 @@ An identity matrix is a square matrix with ones on the main diagonal (top left t
 
 Let's start with a boring plain-vanilla solution using two nested loops, as I would probably have to do in C, Pascal, Ada, or Java:
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN (Int $size where * > 0) {
@@ -49,7 +49,7 @@ This works as expected, but it is a bit difficult to understand the printed outp
 
 In such cases, it is useful to write an additional subroutine that can display the result in a way that is easy to understand. This is what the `pretty-print` subroutine below does:
 
-``` Perl6
+```perl
 use v6;
 
 sub pretty-print (@matrix) {
@@ -90,7 +90,7 @@ Using the techniques of functional programming can make our code simpler.
 
 A functional implementation in Raku / Perl 6 may look like this:
 
-``` Perl6
+```perl
 use v6;
 
 sub prettify (@matrix) {
@@ -108,7 +108,7 @@ Note that the populating the identity matrix takes only one code line. The rest 
 
 We could also use data pipelines with chained method invocations:
 
-``` Perl6
+```perl
 sub prettify (@matrix) {
     @matrix.map({join(" ",$_)}).join("\n");
 }
@@ -123,7 +123,7 @@ although I'm not really convinced this is any better in this specific case, as i
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/arne-sommer/perl6/ch-2c.p6) provided not less than four solutions. One of them uses the [Math::Matrix](https://github.com/pierre-vigier/Perl6-Math-Matrix) module, whose `new-identity` method just creates an identity matrix out-of-the-box! My favorite solution, however,might probably be this quite concise one, which populates a matrix with zeros and then overwrites the zeros of the first diagonal with ones:
 
-``` Perl6
+```perl
 unit sub MAIN (Int $size where $size > 0);
 
 my @im[$size;$size] = 0 xx $size xx $size;
@@ -135,7 +135,7 @@ Note the use of [shaped arrays](https://docs.perl6.org/language/list#Fixed_size_
 
 [Fench Chang](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/feng-chang/perl6/ch-2.p6) used the same strategy. His program populates a matrix with zeros and then overwrites the zeros of the first diagonal with ones:
 
-``` Perl6
+```perl
 sub MAIN(Int $n where * > 0) {
     my @a = [0 xx $n] xx $n;
     @a[$_][$_] = 1 for 0 .. $n - 1;
@@ -145,7 +145,7 @@ sub MAIN(Int $n where * > 0) {
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/joelle-maslak/perl6/ch-2.p6) also used the same strategy, although in a different manner, i.e. doing it row by row:
 
-``` Perl6
+```perl
 sub MAIN(UInt:D $size where * ≥ 1) {
     for ^$size -> $row {
         my @row = (^$size).map: { 0 };
@@ -157,13 +157,13 @@ sub MAIN(UInt:D $size where * ≥ 1) {
 
 [Francis J. Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/fjwhittle/perl6/ch-2.p6) made a very imaginative solution. His program loops over the range (the matrix's dimension) and, for each position, check if the row and column are equal, and finally coerces the Boolean result of that comparison into an integer, thus yielding 1 when they are equal, and 0 otherwise. The matrix is created in just one code line:
 
-``` Perl6
+```perl
 (^$n).map: -> $i { (^$n).map: -> $j { Int($j == $i) } };
 ```
 
 [Jo-Christian Oterhals](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jo-christian-oterhals/perl6/ch-2.p6) also delivered a creative solution using an `&idm` code block that uses a `gather ... take` construct and returns an array of arrays.
 
-``` Perl6
+```perl
 my &idm = -> $size { gather for ^$size -> $y { take map { Int($_ == $y) }, ^$size } };
 .join(' ').say for idm(4); # 4... 2... 16... or whatever...
 ```
@@ -177,14 +177,14 @@ The second line of the code above provided pretty printing of the resulting matr
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/ruben-westerberg/perl6/ch-2.p6)'s solution is also quite creative. He created for each line an array consisting of one 1 and as many zeros are required by the matrix's dimension, and used the [rotate](https://docs.perl6.org/routine/rotate) built-in function to place the 1 in its proper position. Here, populating the matrix and displaying it prettily take just one code line:
 
-``` Perl6
+```perl
 my $s=@*ARGS[0]//10;
 (([1,|(0 xx $s-1)].rotate: -$++)  xx $s).map: *.join(" ").say;
 ```
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/simon-proctor/perl6/ch-2.p6) also succeeded to populate and display prettily the matrix in just one code line:
 
-``` Perl6
+```perl
 sub MAIN ( UInt \N where * > 0 ) {
     (1..N).map( -> $i { (1..N).map( -> $j { $j == $i ?? 1 !! 0 }).join(" ") } ).join("\n").say;
 }
@@ -192,7 +192,7 @@ sub MAIN ( UInt \N where * > 0 ) {
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/jaldhar-h-vyas/perl6/ch-2.p6) used a straight forward technique quite similar to my first solution, with two nested loops to populate the matrix's cells with 1 when the row and column indexes are equal and with zeros otherwise
 
-``` Perl6
+```perl
 multi sub MAIN(
     Int $n where $n > 1#= the size of the identity matrix
 ) {
@@ -208,7 +208,7 @@ multi sub MAIN(
 
 [Ozzy](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/ozzy/perl6/ch-2.p6) used essentially the same strategy with two nested `for` loops:
 
-``` Perl6
+```perl
 sub MAIN (Int $dim)
 {
     my @md[$dim;$dim];

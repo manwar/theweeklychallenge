@@ -68,7 +68,7 @@ For more information about Semiprime, please checkout [the wikipedia page](https
 
 
 **Example**
-```
+```perl
     10 is Semiprime as 10 = 2 x 5
     15 is Semiprime as 15 = 3 x 5
 ```
@@ -723,14 +723,14 @@ The standard Ulam sequence (the (1, 2)-Ulam sequence) starts with U1 = 1 and U2 
 
 **Example 1**
 
-```
+```perl
     Input: $u = 1, $v = 2
     Output: 1, 2, 3, 4, 6, 8, 11, 13, 16, 18
 ```
 
 **Example 2**
 
-```
+```perl
     Input: $u = 2, $v = 3
     Output: 2, 3, 5, 7, 8, 9, 13, 14, 18, 19
 
@@ -738,7 +738,7 @@ The standard Ulam sequence (the (1, 2)-Ulam sequence) starts with U1 = 1 and U2 
 
 **Example 3**
 
-```
+```perl
     Input: $u = 2, $v = 5
     Output: 2, 5, 7, 9, 11, 12, 13, 15, 19, 23
 

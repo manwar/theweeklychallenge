@@ -173,7 +173,7 @@ We will now create the configuration file.
 
 <br>
 
-```
+```perl
 services:
   nginx:
     image: nginx
@@ -418,7 +418,7 @@ One last time, we will create a container using the configuration file with dock
 
 <br>
 
-```
+```perl
 services:
   nginx:
     image: nginx

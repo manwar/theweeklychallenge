@@ -130,7 +130,7 @@ Jared shared a trivial solution, but then brought us this gem:
     }
 ```
 
-```
+```perl
     ♀︎
 ```
 
@@ -480,7 +480,7 @@ If called without arguments, James' script will print the trivial task from an e
 
 One thing though: James makes the curious decision to uncouple the dimensions of his circle and cross, allowing us to draw bobble-headed Venus shapes and other oddities, as we systematically torture the algorithm with more extreme differences.
 
-```
+```perl
           ^^^^^^^
         ^^       ^^
       ^^           ^^
@@ -560,7 +560,7 @@ Matthew presents us with a another systematic, methodical solution that walks us
 
 Of note is the carefully constructed padding around his drawn symbol, which makes it more the presentation piece that is is.
 
-```
+```perl
 
 
     ^^^
@@ -837,7 +837,7 @@ It got quite involved. Here's Bresenham's algorithm and the noise step. I tried 
 
 As we noted at the very beginning, the Unicode character `\x{2640}` exists, described as
 
-```
+```perl
     ♀︎
     FEMALE SIGN
     Unicode: U+2640 U+FE0E, UTF-8: E2 99 80 EF B8 8E
@@ -1061,7 +1061,7 @@ Write a script to divide the set in two subsets of n/2 sizes each so that the di
 
 **Example**
 
-```
+```perl
 
     Input:        Set = (10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
     Output:  Subset 1 = (30, 40, 60, 70, 80)
@@ -1273,7 +1273,7 @@ Stuart provides us with a short functional solution, based on Set Theory. Starti
 When we ask to `use ntheory`, what we get is `Math::Prime::Util`. The lowercase sits fine with me, because it's almost a pragma.
 
 The vast tomb of knowledge that is `Math::Prime::Util` has, among its several hundred available functions, a really handy set of combined functions with iterators included:
-```
+```perl
     forprimes()
     forcomposites()
     foroddcomposites()

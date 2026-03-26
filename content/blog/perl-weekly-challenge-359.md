@@ -54,7 +54,7 @@ sub max_str_val {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-358/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub max-str-val(*@str) {
     my $max = 0;
     for @str -> $s {

@@ -88,7 +88,7 @@ Input:
 
 The minimum sum path looks like this:
 
-```
+```perl
 1→2→3
 ↓
 6

@@ -54,7 +54,7 @@ sub good_substring {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-350/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub good-substring(Str $str) {
     $str.comb.rotor(3 => -2).map(*.join).grep({!/(.).*$0/}).elems
 }

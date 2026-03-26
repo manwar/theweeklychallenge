@@ -62,7 +62,7 @@ You are given set of co-ordinates @N.
 Write a script to count maximum points on a straight line when given co-ordinates plotted on 2-d plane.
 
 **Example 1:**
-```
+```perl
     |
     |     x
     |   x
@@ -74,7 +74,7 @@ Write a script to count maximum points on a straight line when given co-ordinate
 ```
 
 **Example 2:**
-```
+```perl
     |
     |
     | x       x
@@ -702,7 +702,7 @@ Write a script to sum all possible paths from root to leaf.
 
 **Example 1:**
 
-```
+```perl
     Input:
 
          1
@@ -717,7 +717,7 @@ Write a script to sum all possible paths from root to leaf.
 
 **Example 2:**
 
-```
+```perl
     Input:
 
          1
@@ -900,12 +900,12 @@ I'm just going to assume it works, and suggest reading from `<DATA>` and putting
 [**Cheok-Yin Fung**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/cheok-yin-fung/perl/ch-2.pl)
 
 Encoding her tree as a structured Perl array, CY is able to reduce the list using a breadth-first search. Example 2 in this format would look like
-```
+```perl
     (1, 2, 3, 4, undef, 5, 6)
 ```
 representing the binary tree
 
-```
+```perl
          1
         / \
        2   3

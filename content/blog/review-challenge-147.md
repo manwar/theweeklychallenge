@@ -68,7 +68,7 @@ Write a script to generate first 20 left-truncatable prime numbers in base 10.
 In number theory, a left-truncatable prime is a prime number which, in a given base, contains no 0, and if the leading left digit is successively removed, then all resulting numbers are primes.
 
 **Example**
-```
+```perl
     9137 is one such left-truncatable prime since 9137, 137, 37
     and 7 are all prime numbers.
 
@@ -337,7 +337,7 @@ Anywho, in Peter's otherwise well commented, thoughtful and methodical solution 
 
 One thing I liked about this solution is that a scheme is devised to collect the diminishing number fragments to output a verbose chain of action for each final product:
 
-```
+```perl
     83 > 3
     97 > 7
     113 > 13 > 3
@@ -748,7 +748,7 @@ Write a sript to find the first pair of Pentagon Numbers whose sum and differenc
 Pentagon numbers can be defined as P(n) = n(3n - 1)/2.
 
 **Example**
-```
+```perl
     The first 10 Pentagon Numbers are:
     1, 5, 12, 22, 35, 51, 70, 92, 117 and 145.
 
@@ -816,7 +816,7 @@ There were 23 correct submissions for the second task this past week.
 
 I find it really interesting that counter to the somewhat freewheeling interpretations of the directives we usually find amongst the submissions, not one member chose to broaden the search to the generalized pentagonal numbers. After all, the function remains the same. The ordering of the sequence by index or value is not declared. A quick modification of my own script reveals an alternative solution:
 
-```
+```perl
     found pair n = 29, m = 22 :
 
     P(29) = 1247

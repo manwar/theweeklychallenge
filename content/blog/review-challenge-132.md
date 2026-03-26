@@ -68,7 +68,7 @@ Dave Cross has built cool site that does something similar.
 Assuming today is 2021/09/22:
 
 **Example 1:**
-```
+```perl
     Input: 2021/09/18
     Output: 2021/09/14, 2021/09/26
 ```
@@ -76,7 +76,7 @@ On the date you were born, someone who was your current age, would have been bor
 Someone born today will be your current age on 2021/09/26.
 
 **Example 2:**
-```
+```perl
     Input: 1975/10/10
     Output: 1929/10/27, 2067/09/05
 ```
@@ -84,7 +84,7 @@ On the date you were born, someone who was your current age, would have been bor
 Someone born today will be your current age on 2067/09/05.
 
 **Example 3:**
-```
+```perl
     Input: 1967/02/14
     Output: 1912/07/08, 2076/04/30
 ```
@@ -633,7 +633,7 @@ Write a script to implement Hash Join algorithm as suggested by wikipedia.
 **Example**
 
 Input:
-```
+```perl
     @player_ages = (
         [20, "Alex"  ],
         [28, "Joe"   ],
@@ -654,7 +654,7 @@ Input:
 ```
 
 Output:
-```
+```perl
     Based on index = 1 of @players_age and index = 0 of @players_name.
 
     20, "Alex",  "Stewart"
@@ -832,7 +832,7 @@ He first assembles a hash from the player names. For each first name, used as th
 
 Of note Luis uses YAML to input his record arrays, which appears to be a pretty good way to go about that. Most of the other submissions opted instead to hard-code the example and call it a day. But using the `YMAL_XS` module, the process is straightforward, human-readable and easy.
 
-```
+```perl
     -
       - [ 20, Alex ]
       - [ 28, Joe ]

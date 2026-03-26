@@ -71,7 +71,7 @@ You are given a triangle array.
 Write a script to find the minimum sum path from top to bottom.
 
 **Example 1:**
-```
+```perl
     Input: $triangle = [ [1], [5,3], [2,3,4], [7,1,0,2], [6,4,5,2,8] ]
 
                 1
@@ -86,7 +86,7 @@ Write a script to find the minimum sum path from top to bottom.
 ```
 
 **Example 2:**
-```
+```perl
     Input: $triangle = [ [5], [2,3], [4,1,5], [0,1,2,3], [7,2,4,1,9] ]
 
 
@@ -235,7 +235,7 @@ Of note: to find the array minimum they employ the trick of sorting the array an
 
 Here's an example of the output:
 
-```
+```perl
     Input: $triangle = [ [1], [5,3], [2,3,4], [7,1,0,2], [6,4,5,2,8] ]
 
              1
@@ -477,7 +477,7 @@ Dave seemed outright perplexed by the first task, describing it as "disconcertin
 
 Perhaps to make up for it he does go out of his way to draw us some nice triangles, though. Which is pretty cool, actually.
 
-```
+```perl
         Input:  $triangle=[ [1], [5,3], [2,3,4], [7,1,0,2], [6,4,5,2,8] ]
         Output: 8
         Minimum Sum Path = 1 + 3 + 2 + 0 + 2 => 8
@@ -594,7 +594,7 @@ two rectangles in a 2D plane.
 Write a script to find the total area covered by the two rectangles.
 
 **Example 1:**
-```
+```perl
         Input: Rectangle 1 => (-1,0), (2,2)
                Rectangle 2 => (0,-1), (4,4)
 
@@ -603,7 +603,7 @@ Write a script to find the total area covered by the two rectangles.
 ```
 
 **Example 2:**
-```
+```perl
         Input: Rectangle 1 => (-3,-1), (1,3)
                Rectangle 2 => (-1,-3), (2,2)
 
@@ -802,7 +802,7 @@ Abigail has found a decidedly minimal solution, doing away with all abstraction 
 
 I'll let them describe their logic:
 
-```
+```perl
     We calculate the total area as the sum of the areas of each
     rectangle, minus the area of the overlap.
     The area of a rectangle is the product of the absolute difference of the
@@ -1053,7 +1053,7 @@ Let's look at the lines:
 
 One quality of the monk's submissions is their generally extensive notes to their process. Here they have included an ASCII diagram as a visual aid, something I considered doing in the introduction but apparently never got around to. In any case it's welcome here, along with a detailed explanation of the logic behind selecting out the overlap based on the horizontal and vertical ranges.
 
-```
+```perl
     Consider 2 rectangles:
 
         +------------a1
@@ -1119,7 +1119,7 @@ In CY's breakdown, if you recall, we circumscribed the compound shape of the two
 
 For any of you finding that description hard to follow, Jorg has provided a reference using box-drawing characters:
 
-```
+```perl
     Original rectangles in bold lines within the surrounding rectangle and
     the product of the subrectangle's area and the OR'ed characteristic
     functions inside the subrectangle.
@@ -1142,7 +1142,7 @@ See it now?
 
 What Jorg has done next is to generalize the process to an arbitrary number of rectangles.
 
-```
+```perl
     Generalizing the task to N rectangles.
     These rectangles, given by their bottom left and upper right vertices,
     are contained within a unique minimal rectangle. This outer rectangle

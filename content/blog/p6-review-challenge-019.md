@@ -23,7 +23,7 @@ The challenge reads as follows:
 
 My first idea was to loop over each month in the range 1900-2019. For each month, find the first Friday and then count the number of Sundays after that in the month. Then, even before I started to code that, it came to my mind that I didn't need to loop over all the days of the month, but just to count how many days there were in the month after the first Friday: there will five weekends if there are more than 29 days (4 weeks plus 1 day) after that first Friday of the month.
 
-``` perl6
+```perl
 use v6;
 
 for 1900..2019 -> $year {
@@ -55,7 +55,7 @@ That works fine:
 
 Then, I started to check the result and looked at a calendar, and it immediately became obvious to me that it is actually even much simpler than that: to have 5 full weekends (Friday through Sunday), a month needs to have 31 days (so January, March, May, etc.) *and* to start with a Friday. So this is my new simpler script:
 
-``` perl6
+```perl
 use v6;
 
 for 1900..2019 -> $year {
@@ -98,7 +98,7 @@ The most typical way to solve such a problem is usually to split the input into 
 
 I tend to think it will be more efficient to look for a space backward (with the `rindex` built-in function) from the maximal length position, because this will be doing less string manipulations:
 
-``` perl6
+```perl
 use v6;
 
 sub wrap (Str $line is copy, Int $width) {
@@ -153,7 +153,7 @@ This produces the following output:
 
 [Francis J. Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/fjwhittle/perl6/ch-2.p6)'s fairly original solution also provides for the possibility of taking a string or a file as input parameter, and then uses a single relatively complex regex (with three alternatives) as a parameter to the `comb` built-in function to process the input. For a single paragraph, part of the regex might look like this:
 
-``` perl6
+```perl
 / \s * <( <-[ \n ]> ** { 1..($column-1) } \S )> [ \s+ || $ ] /
 ```
 
@@ -165,7 +165,7 @@ Note that Joelle and one or two other challengers decided to abort the script if
 
 Damian Conway blogged about this challenge in [Greed is good, balance is better, beauty is best.](http://blogs.perl.org/users/damian_conway/2019/08/greed-is-good-balance-is-better-beauty-is-best.html). His basic solution is somewhat similar to Francis: it uses the `comb` built-in with a regex to split the input into lines of less than the maximal length and then joins those lines with a new line character. The beauty of his solution is that it consists in one single statement:
 
-``` perl6
+```perl
 sub MAIN (:$width = 80) {
     $*IN.slurp.words
         .join(' ')

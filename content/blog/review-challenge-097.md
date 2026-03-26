@@ -62,7 +62,7 @@ You are given string $S containing alphabets A..Z only and a number $N.
 Write a script to encrypt the given string $S using Caesar Cipher with left shift of size $N.
 
 **Example**
-```
+```perl
     Input: $S = "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", $N = 3
     Output: "QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD"
 

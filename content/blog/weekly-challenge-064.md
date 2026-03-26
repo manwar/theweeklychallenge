@@ -81,7 +81,7 @@ sub min_sum_path {
 
 This is my unsuccessfull attempt of translating the above **sub find_path()**. If look at it carefully, I am not doing anything extravagant here, just line by line translation, but still not getting the desired result for some strange reason.
 
-```perl6
+```perl
 sub find-path(Array[] $matrix, Int $row, Int $col, @path? = ()) {
 
     my $rows = $matrix.elems - 1;
@@ -182,7 +182,7 @@ sub word_break {
 
 I enjoyed getting the **Raku** solution for the above **Perl** solution. I no longer have to look at the notes, thanks to the weekly challenge. Having said, I still learn something new every week. So what did I learn this time? I learnt how to sort hash key numerially. As you know, by default hash key sort alphabetically. Fot this task, I wanted to sort the hash key numerically. A quick google lookup and I had the answer as noted below.
 
-```perl6
+```perl
 sub word-break(Str $string, @words where .all ~~ Str) {
 
     my @matched = @words.grep: -> $word { $string ~~ / $word / };
@@ -210,7 +210,7 @@ print sprintf("%s\n", join (", ", @$match));
 
 The equivalent **Raku** standalone app as below.
 
-```perl6
+```perl
 sub MAIN(Str :$string = "perlweeklychallenge",
          :@words where .all ~~ Str = ("weekly", "challenge", "perl")) {
 
@@ -234,7 +234,7 @@ done_testing;
 
 And **Raku** unit test is even cleaner.
 
-```perl6
+```perl
 use Test;
 
 is word-break("perlweeklychallenge", [ "weekly", "challenge", "perl" ]),

@@ -63,7 +63,7 @@ Write a script to split the given number such that the difference between two co
 Print the given number if it impossible to split the number.
 
 **Example**
-```
+```perl
     Input : $N = 1234
     Output: 1,2,3,4
 
@@ -670,7 +670,7 @@ You are given a number $N >= 10.
 Write a script to find out if the given number $N is such that sum of squares of all digits is a perfect square. Print 1 if it is otherwise 0.
 
 **Example**
-```
+```perl
     Input: $N = 34
     Ouput: 1 as 3^2 + 4^2 => 9 + 16 => 25 => 5^2
 

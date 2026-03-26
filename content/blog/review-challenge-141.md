@@ -599,7 +599,7 @@ Write a script to find total count of integers created using the digits of $m wh
 Repeating of digits are not allowed. Order/Sequence of digits can’t be altered. You are only allowed to use (n-1) digits at the most. For example, 432 is not acceptable integer created using the digits of 1234. Also for 1234, you can only have integers having no more than three digits.
 
 **Example 1:**
-```
+```perl
     Input: $m = 1234, $n = 2
     Output: 9
 
@@ -610,7 +610,7 @@ Repeating of digits are not allowed. Order/Sequence of digits can’t be altered
         2, 4, 12, 14, 24, 34, 124, 134 and 234.
 ```
 **Example 2:**
-```
+```perl
     Input: $m = 768, $n = 4
     Output: 3
 

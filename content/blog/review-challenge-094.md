@@ -66,7 +66,7 @@ An Anagram is a word or phrase formed by rearranging the letters of a different 
 
 **Example 1:**
 
-```
+```perl
     Input: ("opt", "bat", "saw", "tab", "pot", "top", "was")
     Output: [ ("bat", "tab"),
               ("saw", "was"),
@@ -75,7 +75,7 @@ An Anagram is a word or phrase formed by rearranging the letters of a different 
 
 **Example 2:**
 
-```
+```perl
     Input: ("x")
     Output: [ ("x") ]
 ```
@@ -436,7 +436,7 @@ In closing I'd like to add one might have considered the *real* task here to hav
 
 Abigail constructs a unique system for string-encoding his tree, asking for a text file containing data something like this:
 
-```
+```perl
     [[[[] 4 []] 2 [[[] 6 []] 5 [[] 7 []]]] 1 [[] 3 []]]
 ```
 

@@ -117,7 +117,7 @@ The sigil also changed in the **Raku**.
 
 <br>
 
-```perl6
+```perl
 sub fibonacci-series-upto(Int $num where $num > 0) {
 
     my @fibonacci = (1, 2);
@@ -131,7 +131,7 @@ sub fibonacci-series-upto(Int $num where $num > 0) {
 
 For **subtask #2** and **subtask #3**, I simply translated the **Perl** subroutine. My favourite bit in the subroutine is line:
 
-```perl6
+```perl
 my $_sum = [+] $comb;
 ```
 
@@ -145,7 +145,7 @@ $_sum += $_ for @$comb;
 Isn't **Raku** cool?
 
 
-```perl6
+```perl
 sub fibonacci-sum(Int $sum where $sum > 0) {
 
     my @fibonacci     = fibonacci-series-upto($sum);
@@ -188,7 +188,7 @@ Here is the compact solution to the task in **Raku**.
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Int :$N where $N > 0) {
@@ -226,7 +226,7 @@ done_testing;
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 is-deeply fibonacci-sum(6), ((1,5), (1,2,3)), "fibonacci sum = 6";
@@ -354,7 +354,7 @@ The **Raku** solution is just full of special effects. My favourite is `$array.p
 
 <br>
 
-```perl6
+```perl
 sub get-matrix(Int $rows where { $rows >= 1 },
                Int $cols where { $cols >= 1 }) {
 
@@ -376,7 +376,7 @@ sub get-matrix(Int $rows where { $rows >= 1 },
 
 To display the generated matrix, here is the `sub display-matrix()`.
 
-```perl6
+```perl
 sub display-matrix($label, $matrix) {
 
     say $label;
@@ -388,7 +388,7 @@ sub display-matrix($label, $matrix) {
 
 The `sub find-lonely-x()` is shamelessly translated line-by-line from **Perl** counterpart.
 
-```perl6
+```perl
 sub find-lonely-x($matrix) {
 
     my $rows = $matrix.elems - 1;
@@ -458,7 +458,7 @@ I used **Raku** powerful `MAIN()` to take care of command line paramerter valida
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Int :$R is copy where { $R >= 2 } = 3,
@@ -503,7 +503,7 @@ done_testing;
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 my $example_1 = [ ('O', 'O', 'X'),

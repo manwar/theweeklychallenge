@@ -60,7 +60,7 @@ i.e. $C <= $O. He presented the use case $S =
 
 Write a script to perform character swapping like below:
 
-```
+```perl
 $S[ 1 % $N ] <=> $S[ (1 + $O) % $N ]
 $S[ 2 % $N ] <=> $S[ (2 + $O) % $N ]
 $S[ 3 % $N ] <=> $S[ (3 + $O) % $N ]
@@ -70,19 +70,19 @@ $S[ $C % $N ] <=> $S[ ($C + $O) % $N ]
 ```
 Example 1
 Input:
-```
+```perl
     $S = 'perlandraku'
     $C = 3
     $O = 4
 ```
 Character Swapping:
-```
+```perl
     swap 1: e <=> n = pnrlaedraku
     swap 2: r <=> d = pndlaerraku
     swap 3: l <=> r = pndraerlaku
 ```
 Output:
-```
+```perl
     pndraerlaku
 ```
 
@@ -597,7 +597,7 @@ Jorg opens with a comment on how impressed he was with the ease with which [E. C
 And he's not wrong; I am impressed on how very easy it is to do myself. Without much familiarity with PDL at all I went headlong into the task of following this code and found it remarkably easy to figure out. Printing a matrix is as easy as `say @g`, so having a look to follow the logic was dead simple. Rather than just pointing you to look into it yourselvs I'm going to take a minute and explain it.
 
 The first of two parts is an *n* x *n* encoder matrix, with n being the bit length of the Gray Code required. We will use 5 bits for this example. The matrix G has the diagonal filled with 1s, as well as the superdiagonal, the diagonal row immediately above the diagonal. If this is unclear, our example G looks like this:
-```
+```perl
     [1 1 0 0 0]
     [0 1 1 0 0]
     [0 0 1 1 0]
@@ -609,7 +609,7 @@ For a given position in the sequence, take the position number in binary and tur
 
 For example for the 3rd position, 3 in binary is 00011, which becomes
 
-```
+```perl
     [0 0 0 1 1]
 ```
 
@@ -621,7 +621,7 @@ my $out = ($in x $g) % 2;
 
 with 'x' being the matrix product. The output here is
 
-```
+```perl
     [0 0 0 1 0]
 ```
 
@@ -668,20 +668,20 @@ Jeon gives a completely original take on a solution, after noticing a deep patte
 He determines that every octet of 8 numbers follows the same pattern of deltas from a base, and the sequence of multipliers for the base follows the same  ( 0, 1, 3, 2 ) progression.
 
 Here's a demonstration with g4. To get the sequence:
-```
+```perl
 [ 0,  1,  3,  2,    6,  7,   5, 4,    12, 13, 15, 14,    10, 11,  9,  8 ]
 ```
 
 you sum the elements of each quad of numbers with a base multiplier x 4.
 The quads can be seen themselves to derive from **G**<sub>3</sub> and before that **G**<sub>2</sub>
-```
+```perl
 [ 0,  1,  3,  2 ] [ 2,  3,  1,  0 ]  [ 0,  1,  3,  2 ]  [ 2,  3,  1,  0 ]
 +(0)*4 = 0        +(1)*4 = 4         +(3)*4 = 12        +(2)*4 = 8
 ```
 
 the multiplier increases as the bit count increases. I find the fractal nature underlying the sequence fascinating. In case anyone is wondering, here's a semi-random octet from a the middle of **G**<sub>30</sub>:
 
-```
+```perl
 8392176, 8392177, 8392179, 8392178, 8392182, 8392183, 8392181, 8392180,
 ```
 

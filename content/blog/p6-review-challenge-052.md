@@ -29,7 +29,7 @@ Just to make things slightly clearer, I would say that all adjacent digits shoul
 
 Given that the range is quite small, we can use a brute force approach on all numbers between the input values: check for every number in  the range whether it fits the definition.
 
- ``` Perl6
+ ```Perl6
  use v6;
 
  subset Three-digits of Int where 99 < * < 1000;
@@ -67,7 +67,7 @@ This is an example output:
 
 But we could also use a different algorithm: we could construct only stepping numbers and check that they are in the range. This leads to the following solution:
 
-``` Perl6
+```perl
 use v6;
 subset Three-digits of Int where 99 < * < 1000;
 
@@ -92,7 +92,7 @@ Many challengers had different interpretations on the challenge. Some believed t
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/arne-sommer/raku/ch-1.p6) suggested two programs along the same lines as me: first a brute force approach (checking all numbers within the range), and then a program constructing stepping numbers and checking their range. This is his second solution:
 
-``` Perl6
+```perl
 subset SteppingLimit of Int where 100 <= * <= 999;
 
 unit sub MAIN (SteppingLimit $from,
@@ -125,7 +125,7 @@ say $stepping.join(", ");
 ```
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/kevin-colyer/raku/ch-1.p6) first created a list of stepping numbers and then filtered out those not within the requested range:
 
-``` Perl6
+```perl
 # create a list of stepping numbers
 # task is not clear if ascending digits only so calculating both
 my @steppings = gather for 1..7 -> $a {
@@ -155,7 +155,7 @@ I'm afraid that Kevin's construction of stepping numbers is incomplete (at least
 
 [Luca Ferrari](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/luca-ferrari/raku/ch-1.p6) also constructed a list of all stepping numbers within a range slightly broader than the requested range and then kept only those really within the requested range:
 
-``` Perl6
+```perl
 sub MAIN( Int:D :$from where {  100 <= $from <= 999 },
           Int:D :$to where   { 100 <= $to <= 999 && $to > $from } ) {
 
@@ -188,7 +188,7 @@ sub MAIN( Int:D :$from where {  100 <= $from <= 999 },
 
 [Mark Anderson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/mark-anderson/raku/ch-1.p6)'s program is also constructing a list of stepping numbers within the input range:
 
-``` Perl6
+```perl
 my @results;
 
 sub MAIN($arg1, $arg2 where $arg1 >= 100 < $arg2 <= 999) {
@@ -233,7 +233,7 @@ Note the use of the `%` modulo operator and `polymod` method to handle the digit
 
 [Noud Aldenhoven](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/noud/raku/ch-1.p6) used a recursive `stepping-numbers` subroutine to build a list of stepping numbers:
 
-``` Perl6
+```perl
 multi sub stepping-numbers($start, 0) {
     [[$start],];
 }
@@ -267,7 +267,7 @@ say stepping-number-range(545, 987);
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/simon-proctor/raku/ch-1.p6) wrote a fairly short program using the `is-consecutive` subroutine to filter numbers within the range that have consecutive digits (brute force approach):
 
-``` Perl6
+```perl
 sub is-consecutive( UInt $number ) {
     my @test = $number.comb();
     [==] ((@test.elems,*-1...0) Z+ @test)
@@ -286,7 +286,7 @@ Simon's understanding of stepping numbers as numbers with "consecutive" digits i
 
 [Alicia Bielsa](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/alicia-bielsa/raku/ch-1.p6) also used the brute force approach of testing each number within the input range. The main work (filtering the stepping numbers) is done in the following `printIfSteppingNumber` subroutine:
 
-``` Perl6
+```perl
 sub printIfSteppingNumber ( Int $number ) {
     my @aDigits = split('',$number);
     @aDigits.pop;
@@ -308,7 +308,7 @@ Alicia's program is otherwise spending quite a bit of energy to validate the two
 
 [Colin Crain](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/colin-crain/raku/ch-1.p6) also used the brute force approach of testing each number within the input range. But Colin wrote not less than 4 subroutines to check is an input number is a stepping number. The first one is straight forward and works only with numbers that have three digits (as requested in the task specification):
 
-``` Perl6
+```perl
 sub stepping1 ($num) {
     my ($a, $b, $c) = $num.comb;
     ($a - $b).abs == 1 && ($b - $c).abs == 1 ?? 1 !! 0;
@@ -317,7 +317,7 @@ sub stepping1 ($num) {
 
 The other three subroutines use regexes with the `ex` (exhaustive) adverb to generate overlapping pairs of digits (with more or less the same effect as the use of the `rotor` method in my first solution) and can work with numbers having less or more than 3 digits:
 
-``` Perl6
+```perl
 sub stepping2 ($num) {
     my @parts = $num ~~ m:ex/\d\d/;
     @parts .= map({([-] $_.comb).abs });
@@ -339,7 +339,7 @@ Colin's program starts with a very detailed comment explaining how these subrout
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/javier-luque/raku/ch-1.p6) used  brute force to generate all numbers within a range and then checked for each value that it is a stepping number by looping through each digit and comparing it to the digit before it.
 
-``` Perl6
+```perl
 multi MAIN { MAIN(100, 999) };
 multi MAIN(Int $start, Int $end) {
     die "End smaller than start" if $end < $start;
@@ -366,7 +366,7 @@ Note the interesting use of multi `MAIN` subroutines to provide default input va
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/markus-holzer/raku/ch-1.p6) used the `rotor` method to generate overlapping pairs of digits much in the same way as I did in my first solution, but came up with a very concise program:
 
-``` Perl6
+```perl
 sub is-stepping( UInt $n ) {
     not so $n.comb.rotor( 2 => -1 ).first: -> ($a, $b) { abs($a - $b) != 1 }
 }
@@ -378,7 +378,7 @@ sub MAIN (UInt $start = 100, UInt $end = 999) {
 
 [Mohammad Anwar](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/mohammad-anwar/raku/ch-1.p6) also came up with a very concise brute force program using in a quite clever fashion the `Z-` meta-operator and the `[==]` reduction meta-operator together with the equal sign:
 
-``` Perl6
+```perl
 sub MAIN(Int $start is copy = 100, Int $stop = 999) {
 
     die "ERROR: Invalid start [$start]." if $start < 100;
@@ -397,7 +397,7 @@ I'm afraid however that Mohammad's program matches strictly ascending or strictl
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/roger-bell-west/raku/ch-1.p6) also used brute force and subsequent filtering:
 
-``` Perl6
+```perl
 for min(@*ARGS)..max(@*ARGS) -> $c {
   my @d=$c.comb(/./);
   my $v=1;
@@ -422,7 +422,7 @@ I like very much the way Roger's program is using `min(@*ARGS)..max(@*ARGS)` for
 my ($start,$end)=(@*ARGS[0]//100, @*ARGS[1]//999).sort;
 die "Arguments not in range\n"  unless 2 == ($start,$end).grep({100 <= $_ <= 999});
 
-``` Perl6
+```perl
 ($start..$end)==>
 grep({
     my @a=$_.comb;
@@ -438,7 +438,7 @@ Ruben's program has the same defect as Roger's: it finds only stepping numbers w
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/ryan-thompson/raku/ch-1.p6) used a constructive approach:
 
-``` Perl6
+```perl
 my @step;
 for 1..9 -> $n {
     @step.push: |map { $n ~ ($n+1..$_)        .join: '' }, $n..9;

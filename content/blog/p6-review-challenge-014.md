@@ -25,7 +25,7 @@ Jan Ritsema van Eck's sequence is an integer sequence defined recursively as fol
 
 The definition is quite simple, but, for some reason (maybe the heatwave striking a good part of Western Europe at the time), it took me more time (about 30 minutes) than I expected to get it right. Anyway, here we go:
 
-``` Perl6
+```perl
 use v6;
 
 my @a = 0,;
@@ -55,7 +55,7 @@ it appears that, except at the very beginning of the sequence, zeros are relativ
 
 Maybe a solution using the `gather/take` construct to produce lazy lists would be more idiomatic Perl 6 code. Let's see what we can do.
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN ( UInt $max ) {
@@ -79,7 +79,7 @@ It works and produces the same output as before, and using a lazy infinite list 
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/arne-sommer/perl6/ch-1.p6) decided, contrary to me, to use a look-up hash. As already mentioned, it may be a better solution, after all.
 
-``` Perl6
+```perl
 my @van-eck = (0);
 my %seen;
 for ^($limit -1) -> $pos
@@ -94,7 +94,7 @@ for ^($limit -1) -> $pos
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/athanasius/perl6/ch-1.p6) also went for a hash look-up:
 
-``` Perl6
+```perl
 sub van-eck(Int:D $length --> Array)
 {
     my @seq = (Nil, 0);
@@ -114,7 +114,7 @@ sub van-eck(Int:D $length --> Array)
 
 [Francis J. Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/fjwhittle/perl6/ch-1.p6) also used a hash look-up, but created an infinite sequence of Van Eck numbers:
 
-``` Perl6
+```perl
 my \Van_Eck := gather {
   take $start;
   my %m = $start => 0;
@@ -128,7 +128,7 @@ my \Van_Eck := gather {
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/joelle-maslak/perl6/ch-1.p6) also used hash look-up:
 
-``` Perl6
+```perl
 sub MAIN(UInt:D $length = 19) {
     my $seq = lazy gather { for 0..∞ -> $n { take van-eck($n) } }
     say $seq[^$length].join(" ");
@@ -179,7 +179,7 @@ sub MAIN(UInt $n) {
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/jaldhar-h-vyas/perl6/ch-1.p6) wrote the `backtrack` subroutine to traverse the current  `@vanEcks` array backward:
 
-``` Perl6
+```perl
 sub backtrack($n, @vanEcks) {
     loop (my $i = @vanEcks.elems - 1; $i > 0; $i--) {
         if @vanEcks[$i - 1] == $n {
@@ -201,7 +201,7 @@ multi sub MAIN() {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/ruben-westerberg/perl6/ch-1.p6) also chose to traverse the current Van Eck sequence to find the previous matching value:
 
-``` Perl6
+```perl
 my @a=(0);
 for 0..^$nn -> $n {
     my $max= @a[0..^$n].grep(@a[$n],:k).max();

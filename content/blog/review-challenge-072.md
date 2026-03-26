@@ -350,7 +350,7 @@ You are given a text file name $file and range $A - $B where $A <= $B. Write a s
 
 Input:
 
-```
+```perl
     $ cat input.txt
     L1
     L2
@@ -367,7 +367,7 @@ $A = 4 and $B = 12
 
 Output:
 
-```
+```perl
     L4
     L5
     L6
@@ -381,13 +381,13 @@ Output:
 
 ## Solution Types
 
-When Larry Wall first hobbled together Perl back in 1987, he did so to improve his own workflow. It was a practical hack, freely borrowing and bringing together elements of other tools in his workbox — like the UNIX utilities, the ```awk``` programming language or the `sed` stream editor — under one blanket. A such it it has a very useful well-rounded base of operators, but is also full of special-case syntax to either directly emulate these tools in action or otherwise facilitate common tasks.
+When Larry Wall first hobbled together Perl back in 1987, he did so to improve his own workflow. It was a practical hack, freely borrowing and bringing together elements of other tools in his workbox — like the UNIX utilities, the `awk` programming language or the `sed` stream editor — under one blanket. A such it it has a very useful well-rounded base of operators, but is also full of special-case syntax to either directly emulate these tools in action or otherwise facilitate common tasks.
 
 I once was taught that Perl works so well manipulating text files because UNIX is made of text files. "It's all text." As such when working in a *NIX environment, one such action would be filtering text files down into more manageable chunks: stripping headers or such. This challenge draws directly on that application.
 
 Larry designed two operators to address this particular task, for reading a file and selecting lines by line numbers; these are the angle-bracket readline operator and the flip-flop range operator. And each of these in turn has a special mode to make this common job even easier. If we were to know our parameters in advance and take advantage of the full power of these  hacks, the task could be reduced to
 
-```
+```perl
     while (<>) {
         print if 4..10;
     }

@@ -107,7 +107,7 @@ sub prepare {
 
 For **Raku** version, it is literally translated from the **Perl** without any special effects except the following one line.
 
-```perl6
+```perl
 my $_coins = [ $coins.split(',').map({ .Int }) ];
 ```
 
@@ -115,7 +115,7 @@ The above line takes a string and split by `,`. In the end cast every element as
 
 <br>
 
-```perl6
+```perl
 sub coins-sum(Str $coins is copy, Int $sum) returns Int {
 
     die "ERROR: Invalid coins [$coins].\n"
@@ -179,7 +179,7 @@ Followed by **Raku** one-liner with power of `MAIN()`.
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$COINS = "1, 2, 4", Int :$SUM = 6) {
@@ -214,7 +214,7 @@ done_testing;
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 is coins-sum("1, 2", 5), 3,        "Coins=[1, 2]       Sum=5";
@@ -339,7 +339,7 @@ sub prepare {
 
 Once again, **Raku** version is literal translation of the above **Perl** solution with just one special magical line.
 
-```perl6
+```perl
 my $heights = $list.[$i - $left .. $i + $right];
 ```
 
@@ -347,7 +347,7 @@ The above line does list slicing.
 
 <br>
 
-```perl6
+```perl
 sub largest-rectangle-histogram($list where .all ~~ Int) returns Int {
 
     my Int $i   = 0;
@@ -459,7 +459,7 @@ print "Largest Rectangle Histogram: ", largest_rectangle_histogram($list), "\n";
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$LIST = "2, 1, 4, 5, 3, 7") {
@@ -494,7 +494,7 @@ done_testing;
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 is largest-rectangle-histogram(prepare("2, 1, 4, 5, 3, 7")), 12, "example 1";

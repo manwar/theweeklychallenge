@@ -72,7 +72,7 @@ The other Perl 6 functionality that we will use here is the the `Set` type and t
 
 We can now code the largest common substring in Perl 6:
 
-``` perl6
+```perl
 use v6;
 use Test;
 
@@ -120,7 +120,7 @@ My solution returns only one longest substring, even when there are two (or more
 
 [Mark Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/mark-senn/perl6/ch-1.p6) also used nested loops to find all the substrings of each of the input strings and stored them in an array `@set` of sets (well actually of `SetHash` objects). That's a nice idea, but the true beauty of Mark's solution lies in the way he uses the set intersection operator within the reduction metaoperator and sorts the result by substring length to find the LCS and print it, all in one single code line:
 
-``` perl6
+```perl
 ([(&)] @set).keys.sort({.chars}).tail.say;
 ```
 
@@ -128,7 +128,7 @@ I am really impressed. Congratulations, Mark, very good job! One possible minor 
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/simon-proctor/perl6/ch-1.p6) also wrote a subroutine to generate all substrings of a given string. And he also cleverly thought about using the set intersection operator within the reduction metaoperator to find all the common substrings. Simon's final step is a bit more complex than Mark's, because his program finds all the longest common substrings when there is more than one:
 
-``` perl6
+```perl
     my @word-subs = @words.map( &all-substrings );
     .say for ([(&)] @word-subs).keys.sort( { $^b.codes <=> $^a.codes } ).grep( { state $len = $_.codes; $_.codes == $len });
 ```
@@ -140,7 +140,7 @@ I am really impressed. Congratulations, Mark, very good job! One possible minor 
 
 [Veesh Goldman](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/veesh-goldman/perl6/ch-1.p6) also reduced the intersection operator, but with a different syntax. He is the only one who used a regex with the `:ex` or `:exhaustive` adverb. Veesh is clearly the winner in terms of the most concise syntax:
 
-``` perl6
+```perl
 sub MAIN ( *@strings where .elems > 1 ) {
   @strings.map( { m:ex/.+/>>.Str } ).reduce( { $^a ∩ $^b } ).keys.max(*.chars).say
 }
@@ -150,7 +150,7 @@ And also certainly one of the best and most perl-sixish solutions, IMHO. I wish 
 
 [Francis Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/fjwhittle/perl6/ch-1.p6) also wrote a subroutine to generate all substrings of a given string, but he used the `hyper` method to accelerate his nested loops:
 
-``` perl6
+```perl
 sub all-substrings(Str $in) {
   gather for (^($in.chars - 1)).hyper -> $i {
     for (1..^$in.chars).hyper -> $j {
@@ -171,7 +171,7 @@ This is quite clever, and I must admit that don't think about this easy possible
 
 [Fench Chang](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/feng-chang/perl6/ch-1.p6) interestingly created an infix `LCS` operator. The good thing about creating such an operator is that you can then use it within the reduction operator `[]` to process more than two input strings. I'm afraid, though, that this approach will fail on some input strings. Suppose for example that you want to compare 3 strings, *ABCDEFUVWXY*,  *ABCDEFGHUVWX* and *ABUVWXY*. If I understand correctly, Feng's program first looks for the LCS between the first two strings, and finds *ABCDEF*; then, the script looks for the LCS between *ABCDEF* and *ABUVWXY*, and finds *AB*. But, in reality, *UVWX* was a longer substring common to the three input strings. Well, after having written the preceding sentences, I decided that I should better test to check. So, I copied Feng's `LCS` infix operator definition and tested it with the input strings of my example just above:
 
-``` perl6
+```perl
 say [LCS] <ABCDEFUVWXY ABCDEFGHUVWX ABUVWXY>.flat;
 ```
 
@@ -191,13 +191,13 @@ The idea is to get sets of all substrings of each input word and then find the i
 
 His first solution uses a regex with the `:ex` (exhaustive) adverb to find all the substrings and the `∩` set intersection operator, together with the reduction metaoperator, to find all the common substrings:
 
-``` perl6
+```perl
 keys [∩] @strings».match(/.+/, :ex)».Str
 ```
 
 We could then use the builtin `max` function (as I did in my solution), but that returns only one longest substring, whereas Damian wants to find them all (when there is more than one LCS). So he decided to augment the `max` function so that it takes a new adverb, `:all` to indicate that we want all the maxima, not just one:
 
-``` perl6
+```perl
 # "Exhaustive" maximal...
 multi max (:&by = {$_}, :$all!, *@list) {
     # Find the maximal value...
@@ -209,7 +209,7 @@ multi max (:&by = {$_}, :$all!, *@list) {
 ```
 
 So, with this revised version of `max`, finding the longest common substring*s* now looks like this:
-``` perl6
+```perl
 max :all, :by{.chars}, keys [∩] @strings».match(/.+/, :ex)».Str
 ```
 
@@ -235,7 +235,7 @@ There are numerous ways to design simple priority queues (at least when performa
 
 Another way is to build a hash of arrays (HoA), where the hash keys are the priorities and the hash values are references to arrays. When the number of priorities is relatively small (compared to the number of items in the queues), this tends to be more efficient, but note that we still need to traverse the keys of the hash until we find the highest priority. An AoA with the index being the priority and the sub-hashes the item might be more efficient (because the priorities remain sorted), but this requires the priorities to be relatively small positive integers. We still have to traverse the top data structure until we find the first non-empty sub-array. This could be done as follows:
 
-``` perl6
+```perl
 use v6;
 
 sub new-queue {
@@ -357,7 +357,7 @@ The children of `b` are `d` and `c` and are larger than their parent `b`. Simila
 their parent. And so on. But it is rather inconvenient to manually check that we have a valid heap. So, we may want to write a helper subroutine
 to display the heap in a slightly more graphical way:
 
-``` perl6
+```perl
     sub print-heap (@heap) {
         my $start = 0;
         my $end = 0;
@@ -417,7 +417,7 @@ We can see it's a valid heap (the children are always smaller than their parent)
 
 Let's now add a new item, say 45, at the end of this array (for example with the `push` function). Of course, this item is not at its right place and the array is no longer a valid heap, but we can now use the following subroutine to move items around in order to obtain again a valid heap:
 
-``` perl6
+```perl
 sub add-in-heap ($index is rw) {
     my $index-val = @heap[$index];
     while ($index) {
@@ -485,7 +485,7 @@ If we run that subroutine on our existing heap, it will return the largest item 
 
 OK, this works, but reconstructing the full heap each time we remove an item is somewhat inefficient, which goes against the very purpose of heaps. What should a proper `take-from-heap` subroutine do?  Take a look again at the binary tree displayed above. If we take off the root node value (`a`), we should replace it by `b` which is larger than `g`. It should be clear that we won't need to change anything in the `g` sub-tree. And we can recursively replace `b` by `c`, and then `c` by `e` and finally `e` by `v`. Nothing else needs to be changed. So basically we have to move up one step each of the nodes on the path of the smallest nodes in the `b` sub-tree. And, by the way, it is thanks to the fact that, whether we add a new item or remove an item from the heap, we only need to traverse one single path through the heap that insertion and deletion operations have a *0(log n)* complexity and are therefore fairly fast. Implementing the ideas just described is not too difficult, but, for each visited node, we need to take into account three possible cases: this node may have 0, 1 or 2 children.
 
-``` perl6
+```perl
 sub take-from-heap {
     my $result = @heap[0];
     my $index = 0;
@@ -525,7 +525,7 @@ If we run this new subroutine on our previous heap, we obtain this new heap:
 
 Note that this is not the same heap as the one obtained before (same data but not in the same order), but this is another valid heap for such data. Using this subroutine repeatedly, we'll get the nodes in the same order: 45, 36, 25, 19, 17 etc.  For example, let's run the new `take-from-heap` 10 times on our original heap and print out each time the removed first item and the resulting heap:
 
-``` perl6
+```perl
 say "First item = ", take-from-heap, "; Heap: ", @heap for 1..10;
 ```
 
@@ -554,7 +554,7 @@ The first item in the queue displayed above, `[10 [10 20]]`, is the data structu
 
 When we are inserting elements (item and priority), we first call `insert_with_prio` to check whether there is already an array for the given priority. If it already exists, we just add the item to the array of elements associated with this priority. If there no array with such priority, then we call `add-to-queue` to add a priority data structure into the heap (and reorganize the heap as we've done before). Similarly, when we call `pull_highest_prio`, we just pick up and return the first element from the data array of the first priority item. In the event that the data array of a given priority becomes empty, then we call `take-from-heap` to remove the priority data structure from the heap (and reorganize the heap as we've done before).
 
-``` perl6
+```perl
 use v6;
 sub new-queue {
     my @queue;  # an AoA

@@ -62,7 +62,7 @@ sub alphabet_index_digit_sum {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-365/mohammad-anwar/raku/ch-1.raku)
 ***
-```raku
+```perl
 sub alphabet-index-digit-sum (@args) {
     my ($s, $k) = @args;
 

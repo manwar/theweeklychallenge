@@ -63,7 +63,7 @@ First of all, let’s do a couple of utility functions:
 
 <br>
 
-```perl6
+```perl
 sub is-mine( @input, $row, $column ) {
     return @input[ $row ][ $column ] ~~ 'x';
 }
@@ -107,7 +107,7 @@ It is now turn to use the above functions in the main program:
 
 <br>
 
-```perl6
+```perl
 sub MAIN() {
     my @input =
      qw/ x * * * x * x x x x /,

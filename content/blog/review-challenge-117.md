@@ -58,7 +58,7 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 *Submitted by: Mohammad S Anwar*<br>
 You are given text file with rows numbered 1-15 in random order but there is a catch one row in missing in the file.
 
-```
+```perl
     11, Line Eleven
     1, Line one
     9, Line Nine
@@ -520,7 +520,7 @@ In each step, we can either move horizontally to the right (H), or move downward
 BONUS: Try if it can handle triangle of size 10 or 20.
 
 **Example 1**:
-```
+```perl
     Input: $N = 2
 
                S
@@ -534,7 +534,7 @@ BONUS: Try if it can handle triangle of size 10 or 20.
 **Example 2:**
 
 Input: $N = 1
-```
+```perl
                S
               / \
              / _ \ E
@@ -580,7 +580,7 @@ Many people noted that after calculating the million-odd paths for *n* = 10, the
 
 Once we've hammered out a solver, and worked out the kinks, we can use it to extend our list of solution counts forward:
 
-```
+```perl
     depth | solutions
     ------+----------
         1   2
@@ -969,7 +969,7 @@ James shares with us several ways to count Schröder numbers. In his writeup he 
 
 The first two involve modifying algorithms similar to what we've seen before, only not actually storing the paths, but only counting them. As such the actual code is greatly simplified; we can directly sum the counts from all connected locations in one action if we don't care which path directive R, L or H needs to be appended:
 
-```
+```perl
         T0,m = 1
     n = Tn,0 = Tn-1,0 + Tn-1,1
         Tn,m = Tn-1,m + Tn-1,m+1 + Tn,m-1
@@ -994,7 +994,7 @@ The resulting code for a dynamic walk through the nodes:
 
 The Schröder Numbers can also be computed directly without a triangle, using a recurrence relation:
 
-```
+```perl
         S[0] = 1
         S[1] = 2
 
@@ -1111,7 +1111,7 @@ Finally, Jorg, unsatisfied with merely computing the pathways in our given trian
 
 Each edge is defined as a start vertex and an end vertex, along the direction of travel, and a label to attach to that edge, such as L, R or H. An example triangle might be:
 
-```
+```perl
     a-b-L a-c-R b-c-H b-d-L b-e-R c-e-L c-f-R d-e-H e-f-H
 ```
 
@@ -1150,7 +1150,7 @@ After sorting, we walk through this ordering and, for every vertex, we can take 
 
 The graphs don't need to be triangular, only properly directed and acyclic. For example we have this unusual test example:
 
-```
+```perl
         a
        ⇙ ⇘
       b   c   d

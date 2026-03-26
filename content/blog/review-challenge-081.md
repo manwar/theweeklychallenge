@@ -48,7 +48,7 @@ A substring of a string $S is called base string if repeated concatenation of th
 
 Example 1:
 
-```
+```perl
 Input:
     $A = "abcdabcd"
     $B = "abcdabcdabcdabcd"
@@ -59,7 +59,7 @@ Output:
 
 Example 2:
 
-```
+```perl
 Input:
     $A = "aaa"
     $B = "aa"
@@ -86,7 +86,7 @@ single letter, as in the second example. I came up with
 
 which produces the result:
 
-```
+```perl
 aaaaaa
 aaa
 aa
@@ -518,7 +518,7 @@ It should print the result as first column of each line should be the frequency 
 
 For the sake of this task, please ignore the following in the input file:
 
-```
+```perl
 . " ( ) , 's --
 ```
 

@@ -162,7 +162,7 @@ done_testing;
 
 For **Raku**, I didn't create any helper method. Everything needed for the task brought together in the following `sub leader-elements()`.
 
-```perl6
+```perl
 sub leader-elements(Str $list) {
 
     die "ERROR: Invalid list [$list].\n" unless $list ~~ /^[\-?\d\,?\s?]+$/;
@@ -191,7 +191,7 @@ My favourite line is below, which coverts the given string into an array of inte
 
 <br>
 
-```perl6
+```perl
 my @array = $list.split(',').map: { .Int };
 ```
 
@@ -201,7 +201,7 @@ and one small magic is array slicing and max combined.
 
 <br>
 
-```perl6
+```perl
 @array[$index+1 .. @array.elems-1].max;
 ```
 
@@ -211,7 +211,7 @@ Same goes to **Raku** as well. Here I present my one-liner solution in **Raku**.
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$L = "9, 10, 7, 5, 6, 1") {
@@ -225,7 +225,7 @@ sub MAIN(Str :$L = "9, 10, 7, 5, 6, 1") {
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 is-deeply leader-elements("9, 10, 7, 5, 6, 1"),

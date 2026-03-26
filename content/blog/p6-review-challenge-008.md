@@ -29,7 +29,7 @@ Let me also be clear on something before we start: 1 is *not* a perfect number, 
 
 Let's try brute force approach to grasp the problem. I'll start with my assignment of 1991, i.e. finding the perfect numbers below 10,000:
 
-``` Perl6
+```perl
 use v6;
 
 sub divisors (Int $num) {
@@ -51,7 +51,7 @@ Easy, nothing complicated. I made a separate `divisors` subroutine because we ma
 
 The `divisors` subroutine is so short that we could inline it in the main code:
 
-``` Perl6
+```perl
 use v6;
 
 for 2..10000 -> $num {
@@ -82,7 +82,7 @@ The article provides an additional piece of information: all even perfect number
 
 You start with 0. Add 1 to it to get the next one (1). Add 2 to second one to get the third one (3). Add 3 to the third one (6). And so on. This is interesting because there becoming increasingly sparse and we'll need to check the divisors of much fewer numbers.
 
-``` Perl6
+```perl
 use v6;
 
 sub divisors (Int $num) {
@@ -112,7 +112,7 @@ Now, finding the first four perfect numbers takes about a third of a second:
 
 One of the difficulties in the code above is to determine the required range for `$num`. The math is not too difficult to compute that the upper bound should be close the square root of twice the ceiling for perfect numbers (i.e. about 141 for a ceiling of 10,000), but I used an upper bound of 200 to be on the safe side of things. The best would be not to have to compute that upper bound. Here come to the rescue lazy infinite lists. For example, we can generate an infinite list `@nums` of consecutive integers for `$num`, and Perl 6 will compute them as and when needed until it reaches the limit for `$triangular-num`:
 
-``` Perl6
+```perl
 use v6;
 
 sub divisors (Int $num) {
@@ -131,7 +131,7 @@ say now -  INIT now;
 
 It is more concise and probably more idiomatic to generate directly an infinite sequence of triangular numbers:
 
-``` Perl6
+```perl
 use v6;
 
 sub divisors (Int $num) {
@@ -150,7 +150,7 @@ The key code line here is where the `@triangular-numbers` is defined. It is an i
 
 Rather than building an infinite list, we could also build a list of the triangular numbers less than 10,000 (thereby making the `last` statement in the loop unnecessary) by adding a code block saying where the sequence should stop:
 
-``` Perl6
+```perl
 use v6;
 
 sub divisors (Int $num) {
@@ -190,7 +190,7 @@ The other advantage of P6 is its built-in ability to do integer calculations wit
 
 This a Perl 6 program displaying the first 12 perfect numbers in about half a tenth of a second:
 
-``` Perl6
+```perl
 use v6;
 
 for grep { is-prime $_ }, 0..300 -> $prime {
@@ -231,7 +231,7 @@ Computing the first 15 perfect numbers took 0.64 second on my old rather ineffic
 
 [Francis J. Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/fjwhittle/perl6/ch-1.p6) created a lazy infinite sequence of prime Mersenne numbers and derived from it an infinite lazy sequence of perfect numbers:
 
-``` Perl6
+```perl
 # Mersenne prime generator.
 my \M := (^∞)
            .grep(*.is-prime)
@@ -247,7 +247,7 @@ P[^5]».put
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/jaldhar-h-vyas/perl6/ch-1.p6) used the Mersenne numbers as a source for perfect candidates and then checked manually the divisors to find out whether the candidate is really perfect:
 
-``` Perl6
+```perl
 sub perfectCandidate(Int $p) {
     my $q = 2 ** $p - 1;          # Mersenne number
     return $q * ($q + 1) div 2;   # perfect candidate
@@ -266,7 +266,7 @@ sub isPerfect(Int $number) {
 Checking for primality of the Mersenne numbers (using the `is-prime` built-in function) would make the program significantly faster than checking if the candidate is perfect, but Jaldar's program does find the first five perfect number in a reasonable time.
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/joelle-maslak/perl6/ch-1.p6) did essentially the same thing as Jaldhar: her program uses a lazy `gather` to generate a lazy infinite sequence of perfect candidates from the Mersenne numbers and then sums the factors of the candidates to determine whether the candidate is actually perfect:
-``` Perl6
+```perl
 my @vals = lazy gather {
     loop {
         state $p = 1;
@@ -278,7 +278,7 @@ my @vals = lazy gather {
 }
 ```
 And I can only make the same comment as for Jaldhar: checking for primality of the intermediate Mersenne numbers would have made this program much faster. Joelle's program has this warning:
-``` Perl6
+```perl
 if $max > 7 {
     say "More than 7 perfect numbers may take too long to calculate";
 }
@@ -286,7 +286,7 @@ if $max > 7 {
 Indeed. Checking primality of the Mersenne number (as in James Smith's program just below, Ozzy's program immediately thereafter, or my last program above) makes it possible to compute the first 20 perfect number in about ten seconds. This being said, Joelle's program does find the first five perfect number in a reasonable time.
 
 [James Smith](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/james-smith/perl6/ch-1.p6) used the Mersenne numbers and a lazy `gather` block to generate a lazy infinite sequence of perfect numbers. James's implementation is very concise and very fast:
-``` Perl6
+```perl
 my @perfect = lazy gather {
   my $q = 1;
   take $q*($q+1)/2 if (++($q+<=1)).is-prime while 1;
@@ -295,7 +295,7 @@ say @perfect[$_] for 0..19;
 ```
 
 [Ozzy](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/ozzy/perl6/ch-1.p6) also used the Mersenne numbers and a primality check in a quite concise program:
-``` Perl6
+```perl
 for 1..17 -> $p {
     my $b = (2**$p -1);
     say "$p : { 2**($p-1) * $b }" if $b.is-prime;
@@ -305,7 +305,7 @@ for 1..17 -> $p {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/simon-proctor/perl6/ch-1.p6) also used the Mersenne numbers. He implemented a `is-mersine` multi subroutine and a `perfect-from-prime` subroutine
 
-``` Perl6
+```perl
 sub perfect-from-prime( Int $p where { $p.is-prime && is-mersine( $p ) } ) is pure {
     return (2**($p-1)) * ((2**$p) -1 );
 }
@@ -313,7 +313,7 @@ multi sub is-mersine( Int $ ) is pure { False; }
 multi sub is-mersine( Int $p where ((2**$p)-1).is-prime ) is pure { True; }
 ```
 Simon's main code then makes a lazy infinite list of perfect numbers and picks the first five:
-``` Perl6
+```perl
 .say for (0..*).grep( *.is-prime ).grep( { is-mersine( $_ ) } ).map( { perfect-from-prime($_) } )[^$x];
 ```
 

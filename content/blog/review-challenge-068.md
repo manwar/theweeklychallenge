@@ -35,7 +35,7 @@ You are given a matrix of size M x N having only 0s and 1s.
 Write a script to set the entire row and column to 0 if an element is 0.
 
 Example 1
-```
+```perl
     Input:  [1, 0, 1]
             [1, 1, 1]
             [1, 1, 1]
@@ -46,7 +46,7 @@ Example 1
 ```
 
 Example 2
-```
+```perl
     Input:  [1, 0, 1]
             [1, 1, 1]
             [1, 0, 1]
@@ -145,7 +145,7 @@ Although it mostly dwells on his Raku solution, in his [blog](https://raku-musin
 
 **Bartosz** has outdone himself, creating an intricate system of interconnected first-order functions to do his work for him. Rather than collect flags signifying the locations of the 0s on traversal, he collects code references, which he calls 'rules' that will return the correct values on execution. To resolve the matrix we traverse again, evaluating these stored routines and inserting the new values.
 
-I couldn't figure out how to pull out just a piece of this mosaic as a sample, so here's the bulk of it in all its functional self-reflexive glory. Things to notice are that the subroutines have subroutines, and the the ```make_rule()``` routine, being generic, doesn't really belong encapsulated in with the other task-specific ```zero_matrix()``` stuff so it rests outside. Oh, and `transform_forth()` is applied before `transform_back()`, in case that doesn't make sense.
+I couldn't figure out how to pull out just a piece of this mosaic as a sample, so here's the bulk of it in all its functional self-reflexive glory. Things to notice are that the subroutines have subroutines, and the the `make_rule()` routine, being generic, doesn't really belong encapsulated in with the other task-specific `zero_matrix()` stuff so it rests outside. Oh, and `transform_forth()` is applied before `transform_back()`, in case that doesn't make sense.
 
 ```perl
 sub make_rule {
@@ -295,19 +295,19 @@ This stands as a quite clever way to simultaneously check and zero out an entire
 ***
 # TASK #2 › Reorder List
 You are given a singly linked list $L as below:
-```
+```perl
     L0 →  L1 →  … →  Ln-1 →  Ln
 ```
 
 Write a script to reorder list as below:
-```
+```perl
     L0 →  Ln →  L1 →  Ln-1 →  L2 →  Ln-2 →
 ```
 You are ONLY allowed to do this in-place without altering
 the nodes’ values.
 
 Example
-```
+```perl
     Input:  1 →  2 →  3 →  4
     Output: 1 →  4 →  2 →  3
 ```
@@ -435,11 +435,11 @@ while (-reordering) {
 }
 ```
 
-It even says it right there: "while reordering". Wait what? A bareword? Really? And discovering it even ran under ```strict``` had me really puzzled. I couldn't let this one go, so I found myself down the rabbit hole some time later with the following tidbit, from [perlop](https://perldoc.perl.org/perlop.html#Symbolic-Unary-Operators):
+It even says it right there: "while reordering". Wait what? A bareword? Really? And discovering it even ran under `strict` had me really puzzled. I couldn't let this one go, so I found myself down the rabbit hole some time later with the following tidbit, from [perlop](https://perldoc.perl.org/perlop.html#Symbolic-Unary-Operators):
 
 >Unary "-" performs arithmetic negation if the operand is numeric, including any string that looks like a number. If the operand is an identifier, a string consisting of a minus sign concatenated with the identifier is returned. Otherwise, if the string starts with a plus or minus, a string starting with the opposite sign is returned. One effect of these rules is that -bareword is equivalent to the string "-bareword".
 
-So the string evaluates to true, is informative to the reader, and it seems all of this happens *before* ```strict``` comes into play. Ok then, carry on.
+So the string evaluates to true, is informative to the reader, and it seems all of this happens *before* `strict` comes into play. Ok then, carry on.
 
 ### [E. Choroba](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/e-choroba/perl/ch-2.pl){#CHOROBA2}
 
@@ -543,7 +543,7 @@ sub reorderList ($) {
 
 ### [Roger Bell_West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/roger-bell-west/perl/ch-2.pl) [[BLOG]](https://blog.firedrake.org/archive/2020/07/Perl_Weekly_Challenge_68__zero_matrix_and_list_reordering.html)
 
-Roger does not actually use a linked list, but in his solution he states his intent is indeed to keep to the spirit of the challenge. That's good enough for me, so he gets a pass. Instead of a linked list he uses a basic Perl array, but then he goes about compiling a properly ordered set of array indices, rearranging the input array in one fell swoop by feeding the index *array* as the index *data* for an array *slice*. This is a remarkable use of an array slice I never considered before. For example, at this point ```@i``` may look like ```(0, 4, 1, 3, 2)``` and the line is:
+Roger does not actually use a linked list, but in his solution he states his intent is indeed to keep to the spirit of the challenge. That's good enough for me, so he gets a pass. Instead of a linked list he uses a basic Perl array, but then he goes about compiling a properly ordered set of array indices, rearranging the input array in one fell swoop by feeding the index *array* as the index *data* for an array *slice*. This is a remarkable use of an array slice I never considered before. For example, at this point `@i` may look like `(0, 4, 1, 3, 2)` and the line is:
 
 ```perl
 @{$list}=@{$list}[@i];

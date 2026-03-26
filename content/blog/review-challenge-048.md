@@ -76,7 +76,7 @@ As to why this works, the rotation is what essentially moves the cursor along. I
 
 Here is an example for five people:
 
-```
+```perl
 Start              Rotation     Killed
 1 2 3 4 5       -> 2 3 4 5 1 -> 3 4 5 1
     3 4 5 1     -> 4 5 1 3   -> 5 1 3
@@ -505,7 +505,7 @@ Next, in `push @men, my ($d,) = `, the `my ($d)` takes the first element (effect
 
 This is probably easier to understand in motion. For *n* = 5, it results in the following sequence:
 
-```
+```perl
 1,2,3,4,5
 3,4,5,1
 5,1,3
@@ -538,7 +538,7 @@ print "Survivor is at position $people[0]\n";
 
 [Phillip Harris's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/phillip-harris/perl/ch-1.pl) uses a brute force looping method to iterate over the `@ppl` array, which is filled with the following symbols:
 
-```
+```perl
 K - The killer      P - Living person       V - Victim
 ```
 
@@ -571,7 +571,7 @@ while () {
 
 Phillip's solution not only finds the survivor, it provides an ASCII visualization of each step of the result (shown here for 11 people):
 
-```
+```perl
 KVPPPPPPPPP
 P_KVPPPPPPP
 P_P_KVPPPPP
@@ -659,7 +659,7 @@ For my second solution, I went ahead and derived a constant-time formula:
 
 [Saif Ahmed's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/saiftynet/perl/ch-1.pl) really went above and beyond this week. The solution uses `shift`/`push` to get the survivor, which is all well and good, but then Saif decided to animate it by using `clear`/`cls` and then redrawing, plotting all of the victims in an ever-shrinking circle. Here's one "frame":
 
-```
+```perl
                           13    11    9    7    5    3
                 17  15                                      1
             19                                                    50

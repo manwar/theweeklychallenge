@@ -61,7 +61,7 @@ You are given a positive integer $N less than or equal to 255.
 Write a script to swap the odd positioned bit with even positioned bit and print the decimal equivalent of the new binary representation.
 
 **Example **
-```
+```perl
     Input : $N = 101
     Output: 154
 
@@ -608,7 +608,7 @@ Write a script to find the smaller angle formed by the hands of an analog clock 
 
 **Example**
 
-```
+```perl
 
     Input: $T = '03:10'
     Output: 35 degree
@@ -895,7 +895,7 @@ The rest, as they say, is up to you.
 
 The results:
 
-```
+```perl
                Rate    std 1-line   fast
     std    283286/s     --   -56%   -61%
     1-line 645161/s   128%     --   -12%

@@ -68,7 +68,7 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 
 Write a script to compute Left Factorials of 1 to 10. Please refer OEIS A003422 for more information.
 
-```
+```perl
     Expected Output:
     1, 2, 4, 10, 34, 154, 874, 5914, 46234, 409114
 
@@ -638,14 +638,14 @@ A factorion is a natural number that equals the sum of the
 factorials of its digits.
 
 **Example 1:**
-```
+```perl
     Input: $n = 145
     Output: 1
     Since 1! + 4! + 5! => 1 + 24 + 120 = 145
 ```
 
 **Example 2:**
-```
+```perl
     Input: $n = 123
     Output: 0
     Since 1! + 2! + 3! => 1 + 2 + 6 <> 123
@@ -715,7 +715,7 @@ There does not seem to be any way to predict the locations of the factorions, so
 
 Robert will start us off today with a verbose solution of the the task as given. A number is input, broken into its digital components, the factorials taken with the help of the `factorial` function from `ntheory`, and summed. A comparison is made to the input and reported. Along the way, the various components of the process are collected to make a proper explanation of the reasoning, analogous to the examples given in the description.
 
-```
+```perl
     Input $n = 145
     1! + 4! + 5!  = 145
     Output: 1

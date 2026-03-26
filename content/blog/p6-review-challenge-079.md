@@ -37,14 +37,14 @@ This week, the participants were solving a variation of the classical problem of
 
 The most direct method is to check all the bits in the number and repeat the procedure for all the numbers from `1` to `$N`. Here is a possible way to do that that we see in the solution by [Kang-min Liu](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/gugod/raku/ch-1.raku#L10):
 
-```perl6
+```perl
     $c += ($n % 2);
     $n div= 2;
 ```
 
 Another way is to use bitwise operations, as [Roger Bell_West did it](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/roger-bell-west/raku/ch-1.p6#L16):
 
-```perl6
+```perl
     $bits += $k +& 1;
     $k +>= 1;
 ```
@@ -61,19 +61,19 @@ In Raku, you can easily convert any number to a string with its binary represent
 
 [My solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/ash/raku/ch-1a.raku#L20) with a regex:
 
-```perl6
+```perl
     [+] ((.base(2) ~~ m:g/1/).elems for 1..$n)
 ```
 
 [Mark Anderson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/mark-anderson/raku/ch-1.raku) with a non-default argument to `comb`:
 
-```perl6
+```perl
     (1..$N).map(*.base(2)).comb(/1/).elems
 ```
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/simon-proctor/raku/ch-1.raku):
 
-```perl6
+```perl
     [+] (1..$N).race.map( *.base(2).comb ).flat
 ```
 
@@ -81,13 +81,13 @@ Notice a good idea to use `race` here, as we can make the computations faster an
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/arne-sommer/raku/ch-1.raku):
 
-```perl6
+```perl
     (1..$N).map({ $_.fmt('%b') })>>.comb.flat.sum
 ```
 
 [Colin Crain](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/colin-crain/raku/ch-1.raku#L69):
 
-```perl6
+```perl
     my $tot += .base(2).comb.sum for ^$input;
 ```
 
@@ -95,19 +95,19 @@ Once again, let me point out how easily Raku switches between the string and num
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/jaldhar-h-vyas/raku/ch-1.p6):
 
-```perl6
+```perl
     my $total = [+] (1 .. $N).map({ sprintf("%b", $_) ~~ m:g/ 1 /; });
 ```
 
 [Laurent Rosenfeld](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/laurent-rosenfeld/raku/ch-1.sh):
 
-```perl6
+```perl
     [+] map { .fmt("%b").comb.sum }, 1..@*ARGS[0]
 ```
 
 [Mohammad S Anwar](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/mohammad-anwar/raku/ch-1.raku):
 
-```perl6
+```perl
     (1..$n).map( -> $i { $c += [+] $i.base(2).comb; });
 ```
 
@@ -115,7 +115,7 @@ A pointy block `-> $i { . . . }` often helps to introduce a named variable inste
 
 [Myoungjin Jeon](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/jeongoon/raku/ch-1.raku#L8):
 
-```perl6
+```perl
     [+] (.base(2).indices(1).elems for ^$_[0]+1)
 ```
 
@@ -129,7 +129,7 @@ You can also notice that in the sequence of numbers, the least significant bit (
 
 [Julio de Castro](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/juliodcs/raku/ch-1.raku#L16) used the built-in [method called `msb`](https://docs.raku.org/routine/msb) for detecting the most significant bit and to count its flips:
 
-```perl6
+```perl
     sub ms-flips(UInt:D \number) returns UInt:D {
         number == 1 ?? 1 !! 1 + number.msb * 2 ** (number.msb - 1)
     }
@@ -139,7 +139,7 @@ Such programs are much more efficient comparing to those using bare bit testing,
 
 Let me show the complete text of the [program by Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/markus-holzer/raku/ch-1.raku) that also uses sigil-less variables to speed it up:
 
-```perl6
+```perl
     unit sub MAIN( Int \N );
 
     my Int \t = 2;
@@ -164,7 +164,7 @@ Notice that we do not loop over the whole range between `1` and `N` but only ove
 
 Another interesting solution has been submitted by Athanasius, here is [it’s main part](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/athanasius/raku/ch-1.raku#L140):
 
-```perl6
+```perl
     my UInt $total-count-set-bit = 0;
 
     loop (my UInt $bit = 1; $bit <= $N; $bit +<= 1)
@@ -221,7 +221,7 @@ In one of the methods, you scan the histogram along its horizontal coordinate an
 
 [Mark Andreson uses regexes](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/mark-anderson/raku/ch-2.raku#L35) to find those unit cells that can keep water.
 
-```perl6
+```perl
     while @ints.join ~~ m:c($pos)/ (\d)(\d+)(\d) <?{ $0 > $1.comb.all < $2 }> / {
         $sum += (($0, $2).min <<->> $1.comb).sum;
         $pos = $/.to - 1;
@@ -232,7 +232,7 @@ Water can be trapped within those areas where there are higher walls on the righ
 
 [Colin Crain finds](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/colin-crain/raku/ch-2.raku#L58) the peaks inside the histogram and then computes the free area between them:
 
-```perl6
+```perl
     for (@input.min..@input.max).reverse -> $level {
         my @peaks = @input.keys.grep({ @input[$_] >= $level });
         $vol += ($_[1] - $_[0] - 1) for @peaks.rotor(2=>-1);

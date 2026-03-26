@@ -39,7 +39,7 @@ Write a script to divide the given two integers i.e. `$M / $N` without using mul
 
 Division is just subtraction in a loop. Off we go. Off we go. Off we go...:
 
-```perl6
+```perl
 #! /usr/bin/env raku
 
 unit sub MAIN (Int $M, Int $N where $N != 0, :$verbose);  # [1]
@@ -94,7 +94,7 @@ See [docs.raku.org/routine/abs](https://docs.raku.org/routine/abs) for more info
 
 Running it:
 
-```perl6
+```perl
 $ raku divint 5 2
 2
 
@@ -110,7 +110,7 @@ $ raku divint 5 -2
 
 With verbose mode (which would benefit from a rethink, me think...):
 
-```perl6
+```perl
 $ raku divint --verbose 5 2
 : Negate the result: No
 : M: 3 N: 2 = 1

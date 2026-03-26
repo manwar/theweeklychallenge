@@ -32,7 +32,7 @@ Input: `25525511135`,
 
 Output:
 
-```
+```perl
 255.255.11.135
 255.255.111.35
 ```
@@ -45,7 +45,7 @@ so a string like: 12345
 
 Will produce these combinations
 
-```
+```perl
     1.2.3.45
     1.2.34.5
     1.23.4.5
@@ -118,14 +118,14 @@ sub validate_ip_string {
 
 Output perl ch-2.pl
 
-```
+```perl
 255.255.11.135
 255.255.111.35
 ```
 
 ## Raku
 
-```perl6
+```perl
 # Test: perl6 ch-2.p6
 multi MAIN() {
     MAIN('25525511135');
@@ -179,7 +179,7 @@ sub validate-ip-string(Str $str) {
 
 Output perl6 ch-2.p6
 
-```
+```perl
 255.255.11.135
 255.255.111.35
 ```

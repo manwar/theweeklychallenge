@@ -42,7 +42,7 @@ $ perl -e 'map { printf "Decimal %d = Octal %o\n", $_, $_ } (0 .. 50);'
 
 ...and this is Raku:
 
-```perl6
+```perl
 $ perl6 -e '[0 .. 50].map({ printf("Deciamal %d = Octal %o\n", $_, $_) });'
 ```
 
@@ -81,7 +81,7 @@ Inside the loop, int rand 2 gives the values 0 or 1 which are used to select the
 
 This is the Raku version:
 
-```perl6
+```perl
 for 1 .. (2, 4, 6).pick {
     @brackets.push(Bool.pick ?? '(' !! ')');
 }
@@ -115,7 +115,7 @@ One small optimization is that if we attempt to pop an empty stack, we can immed
 
 This is the Raku version:
 
-```perl6
+```perl
 sub isBalanced(@brackets) {
     my @stack;
 

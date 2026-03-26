@@ -161,7 +161,7 @@ As usual, my approach to **Raku** coding is to use functional-style method calls
 
 which uses a negated character class **(<-[...]>)** to match any character outside the allowed Bitcoin address alphabet.
 
-```perl6
+```perl
 use v6;
 use experimental :pack;
 use Crypt::Misc:from<Perl5> <decode_b58b>;

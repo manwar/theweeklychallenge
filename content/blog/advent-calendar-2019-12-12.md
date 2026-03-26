@@ -154,7 +154,7 @@ OK, enough experimenting with the REPL, we now know how to solve the challenge a
 
 <br>
 
-```perl6
+```perl
 use v6;
 
 sub fwd-diff (*@in) {

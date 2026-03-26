@@ -27,7 +27,7 @@ Note that (1, 7) is not a sexy prime pair (despite having a gap of 6), because 1
 
 We first build a lazy infinite list `@sexy-primes` of prime numbers such that each such prime + 6 is also prime, and then print the pairs:
 
-``` Perl6
+```perl
     use v6;
 
     my @sexy-primes = grep { .is-prime and ($_ + 6).is-prime}, (2, 3, *+2 ... Inf);
@@ -74,27 +74,27 @@ This program is so short that we can easily get rid of the `@sexy-primes` tempor
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/simon-proctor/perl6/ch-1.p6) used a one-real-code line solution:
 
-```Perl6
+```perl
 .say for (^Inf).hyper.grep( { $_.is-prime && ($_ + 6).is-prime } ).map( { ($_,$_+6).join(",") } )[^$n];
 ```
 Note the use of the `hyper` method to enable the processing of items in parallel (and preserving the order). It probably doesn't boost performance very much with such a small dataset, but it is still a good idea to keep in mind.
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/athanasius/perl6/ch-1.p6) used a lexical construct that I had never seen before to loop over prime numbers:
-``` Perl6
+```perl
 Nil until is-prime(++$prime);
 # Now do something with $prime
 ```
 Otherwise, he defines a `$partner` of `$prime` as `$prime + 6`, checks if the partner is prime and, if so, stores `[$prime, $partner]` into a `@pairs` array. His main `while` loop stops when the `@pairs` array has ten elements.
 
 [Jaldhar M. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/jaldhar-h-vyas/perl6/ch-1.sh) made a Perl 6 one-liner fairly similar to my second solution:
-``` Perl6
+```perl
 perl6 -e '(1..∞).grep({.is-prime}).map({($_,$_+6) if ($_+6).is-prime})[^10].map({.join(q{, }).say});'
 ```
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/joelle-maslak/perl6/ch-1.p6) also used a lazy infinite list of primes, but then she used a `lazy gather ... take` statement to pick up the sexy pairs.
 
 [Randy Lauen](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/randy-lauen/perl6/ch-1.p6)'s solution uses a single line of real code:
 
-``` Perl 6
+```perl
 say (1 .. Inf).map( { $_, $_+6 } ).flat.grep( { $^a.is-prime && $^b.is-prime } ).head(10).join("\n");
 ```
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/roger-bell-west/perl6/ch-1.p6) made an iterative solution with an infinite `for` loop. It appears that Roger did not read the challenge specification closely enough, since his solution only prints 6 sexy pairs.
@@ -103,7 +103,7 @@ say (1 .. Inf).map( { $_, $_+6 } ).flat.grep( { $^a.is-prime && $^b.is-prime } )
 
 [Yet Ebreo](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/yet-ebreo/perl6/ch-1.p6), who just joined this challenge team (welcome, Yet!) and was writing a Perl 6 script for the first time (congratulations!). He supplied actually two solutions. The first one is a quite original one-liner generating all pairs of numbers between 0 and 55 with the `combinations` method and then grepping them for primality and a gap of 6:
 
-``` Perl6
+```perl
 say grep { $_[1]-$_[0] == 6 }, (grep { $_.is-prime }, 0..55).combinations: 2;
 ```
 Yet does not say how he knew he could stop his range at 55. His second solution implements manually a sieve of Eratosthenes (i.e. basically crossing out all composite numbers in a `0..55` range in order to retain only the primes), using a `grep` statement in a highly uncommon way. Then, his solution does another `grep` to find the primes with a gap of 6.
@@ -239,7 +239,7 @@ The description of the LZW algorithm is a fairly detailed specification that lea
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/ruben-westerberg/perl6/ch-2.p6) also started with a dictionary consisting only of the letters occurring in the string to be compressed. His `encode` subroutine does what it is supposed to do. But his `decode` subroutine uses the full dictionary prepared by `encode` as a parameter, so that it does not have anything to do other than a simple dictionary lookup:
 
-```Perl6
+```perl
 sub decode(@dict, @in, @out) {
     for @in {
         push @out, @dict[$_];
@@ -277,7 +277,7 @@ OK, fair enough, this is simple and it works, but, IMHO, that's not really the s
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/simon-proctor/perl6/ch-2.p6) created a program with not less than 8 multi MAIN subroutines, to provide possibilities to encode or decode from a passed argument, from STDIN, from a file, etc. He used an alphabet somewhat intermediate between only upper case ASCII letters and full extended ASCII range, with all alphanumerical characters and some additional punctuation and other signs:
 
-``` Perl6
+```perl
 subset ValidToEncode of Str where m/^<[a..z A..Z 0..9 \  _ \n \. , ]>* \n?$/;
 ```
 

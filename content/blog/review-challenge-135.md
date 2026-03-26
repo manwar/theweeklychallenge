@@ -64,22 +64,22 @@ You are given an integer.
 Write a script find out the middle 3-digits of the given integer, if possible otherwise throw sensible error.
 
 **Example 1**
-```
+```perl
     Input: $n = 1234567
     Output: 345
 ```
 **Example 2**
-```
+```perl
     Input: $n = -123
     Output: 123
 ```
 **Example 3**
-```
+```perl
     Input: $n = 1
     Output: too short
 ```
 **Example 4**
-```
+```perl
     Input: $n = 10
     Output: even number of digits
 ```
@@ -215,7 +215,7 @@ I like this algorithm. It also happens to be the method I came up with, so perha
 
 After running a brief gauntlet of validation challenges, Jorg delivers us with an alternate mathematical solution to finding the center triplet:
 
-```
+```perl
     ($length - 3) / 2
 ```
 
@@ -614,17 +614,17 @@ Print 1 if it is a valid SEDOL otherwise 0.
 For more information about SEDOL, please checkout [the wikipedia page](https://en.wikipedia.org/wiki/SEDOL).
 
 **Example 1**
-```
+```perl
     Input: $SEDOL = '2936921'
     Output: 1
 ```
 **Example 2**
-```
+```perl
     Input: $SEDOL = '1234567'
     Output: 0
 ```
 **Example 3**
-```
+```perl
     Input: $SEDOL = 'B0YBKL9'
     Output: 1
 ```

@@ -507,7 +507,7 @@ sub displayRings{
 
 The output looks like this:
 
-```
+```perl
 Final state:-
      RED 9                 BLACK 6                     BLUE 8
         RedGrn 2    GrnBlk 4     BlkYel 1      YelBlu 3
@@ -871,7 +871,7 @@ throws_ok { self_descriptive_number(6) } qr/base 6/, 'base 6';
 
 [Jaldhar's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/jaldhar-h-vyas/perl/ch-2.pl) uses the numeric formula, and hard-coded list of bases to ignore. However, the formula does not work for bases smaller than 7, so the results for bases 4 and 5 are incorrect:
 
-```
+```perl
 [weekly/rjt] challenge-043/⋯/perl %> ./ch-2.pl 4
 1210
 [weekly/rjt] challenge-043/⋯/perl %> ./ch-2.pl 5
@@ -1014,7 +1014,7 @@ The `map` and `foreach` lines concisely count the digits, so the `join`s can che
 
 The `$n[$i]=$o{$i} || 0` line modifies `@n`, but the `%o` hash is dependent on `@o`, which itself was a copy of `@n` at the top of the loop. It starts to make a lot more sense when you look at the actual values being produced. For base-5, this results in the following interesting sequence:
 
-```
+```perl
 1 0 0 0 0
 4 1 0 0 0
 3 1 0 0 1
@@ -1032,7 +1032,7 @@ One problem with Roger's method is with the base-4 numbers; it only finds the fi
 
 I did not think I would see signal handling when reviewing the solutions to this challenge. Ruben hooks `$SIG{INT}` to display all self-descriptive numbers found before exiting, so you can let the program run, press `^C` and then see the results:
 
-```
+```perl
 :
 NO: 3545165
 NO: 3545166
