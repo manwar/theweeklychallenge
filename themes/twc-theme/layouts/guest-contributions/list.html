@@ -2,7 +2,7 @@
 
 {{/* ── Build week→year lookup from actual data ── */}}
 {{ $weekYears := dict }}
-{{ range $hugo.Data.guestcontributions }}
+{{ range hugo.Data.guestcontributions }}
     {{ $w := .week }}
     {{ range $year, $range := $.Site.Params.weekYears }}
         {{ $first := index $range 0 }}
@@ -56,7 +56,7 @@
         <div class="guest-week-grid">
             {{/* Only show buttons for weeks that have actual data */}}
             {{ $weeksWithData := slice }}
-            {{ range $hugo.Data.guestcontributions }}
+            {{ range hugo.Data.guestcontributions }}
                 {{ if and (ge .week $first) (le .week $last) }}
                     {{ $weeksWithData = $weeksWithData | append .week }}
                 {{ end }}
@@ -76,7 +76,7 @@
     {{ $first := index $range 0 }}
     {{ $last  := index $range 1 }}
     <div class="gc-year-section{{ if eq $i 0 }} active{{ end }}" data-year="{{ $year }}">
-        {{ range $hugo.Data.guestcontributions }}
+        {{ range hugo.Data.guestcontributions }}
             {{ if and (ge .week $first) (le .week $last) }}
             <section class="gc-week" id="week-{{ .week }}">
                 <h2 class="gc-week-title">
