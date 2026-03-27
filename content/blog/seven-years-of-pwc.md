@@ -1,6 +1,6 @@
 ---
 title: "7 Years of The Weekly Challenge"
-date: 2025-03-25T00:00:00+00:00
+date: 2026-03-25T00:00:00+00:00
 description: "Celebration of 7 years of The Weekly Challenge."
 type: post
 image: images/blog/seven-years-of-pwc.jpg
