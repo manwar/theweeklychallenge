@@ -1,5 +1,7 @@
 {{- $content := .RawContent -}}
 {{- $content = $content | replaceRE `<br\s*/?>` "\n" -}}
+{{- $content = $content | replaceRE `src="(/[^"]+)"` "src=\"https://theweeklychallenge.org$1\"" -}}
+{{- $content = $content | replaceRE `<img\s[^>]*src="([^"]+)"[^>]*>` "![image]($1)" -}}
 {{- $content = $content | replaceRE `<[^>]+>` "" -}}
 {
   "slug":    {{ .File.BaseFileName | jsonify }},
