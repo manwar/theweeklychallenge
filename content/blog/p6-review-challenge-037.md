@@ -46,7 +46,7 @@ The program first reads through the input data and stores the daylight data into
 
 The `sec2hrs` subroutine is much simpler than what I had to do for solving the same task in Perl 5 because it uses the multiple modulo [polymod](https://docs.raku.org/routine/polymod) method to convert directly seconds into hours, minutes and seconds. Also, we used the `Z-` [zip](https://docs.raku.org/language/operators#index-entry-Z_(zip_metaoperator)) metaoperator along with the `-` subtract operator to compute all the duration differences in just one single statement.
 
-``` Perl 6
+```perl
 use v6;
 sub hrs2sec ($hms) {
     my ($hrs, $min, $sec) = split /\:/, $hms;
@@ -108,7 +108,7 @@ I said at the beginning that I found the requirement not to be very clear. This 
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/arne-sommer/perl6/ch-2.p6) used the `LWP::Simple` module to retrieve the data directly from the Web page, but also cached the pages locally to avoid waste of time and resources. His program also converts durations in HMS into seconds to perform the calculations and back to HMS when needed (see the `hms2s `and `s2hms` subroutine below). This is the part of Arne's code for comparing the monthly data:
 
-``` Perl 6
+```perl
 for 1..31 -> $day
 {
   my $left-value  = %data{$left}{$day};
@@ -143,7 +143,7 @@ sub s2hms ($s is copy)
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/kevin-colyer/perl6/ch-2.p6) used the day-length difference data from the web pages and obviously did not understand the task in the same way as me and Arne: if I understand correctly, he computed the daylight gain or loss in the course of November (i.e. between Nov. 1 and Nov. 30) and likewise in December. This is his code doing the computations from the daily day-length difference column of the Web pages:
 
-``` Perl 6
+```perl
 sub parse-duration($s) {
     my $sign=$s.substr(0,1);
     my @min-secs = $s.substr(1..*).split(":"); # assumes no hours... not robust!
@@ -162,7 +162,7 @@ say "Dec (gain/loss) hh:mm:ss " ~ say-duration [+] ( parse-duration $_ for %d.va
 
 [Richard Nuttall](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/rnuttall/perl6/ch-2.p6), who is new to the challenge if I am not wrong, apparently also understood that the task was to compute the daylight loss in November and the daylight loss in December. He used the `LWP::Simple` and `HTML::Parser::XML` modules to fetch and parse the Web page data. This is his code to parse the input data and perform the relevant calculations:
 
-``` Perl 6
+```perl
 sub GetDaytime($url,$fn --> Int:D) {
     my $parser  = HTML::Parser::XML.new;
     my $xmldoc  = $parser.parse(GetPage($url,$fn));
@@ -191,7 +191,7 @@ sub MAIN($year = 2019) {
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ulrich-rieke/perl6/ch-2.p6) apparently also understood that the task was to compute the daylight loss in November and the daylight loss in December. He created `DateTime` objects for sunrise and sunset on the first and last day of each month, for example:
 
-``` Perl 6
+```perl
 my $novemberstart_sunrise = DateTime.new( year => 2019 ,
                                           month => 11 ,
                       day => 1 ,
@@ -203,7 +203,7 @@ my $novemberstart_sunrise = DateTime.new( year => 2019 ,
 
 and then simply used subtraction between `DateTime` objects to find the November and the December loss:
 
-``` Perl 6
+```perl
 my $daylength1 = $novemberstart_sunset - $novemberstart_sunrise ;
 my $daylength2 = $novemberend_sunset - $novemberend_sunrise ;
 my $novemberloss = $daylength1 - $daylength2 ;
@@ -216,7 +216,7 @@ say "Loss of daylength in december : " ~ $decemberloss.Str ~ " seconds!" ;
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/perl6/ch-2.p6) apparently understood the challenge the same way as Kevin, Richard and Ulrich, but I'm not entirely sure, since his program uses a JSON file as source data, and I'm not quite sure where this JSON file is coming from and what it contains. Anyway, this is Daniel's code:
 
-``` Perl6
+```perl
 my %data = 'sun-data.json'.IO.slurp.&from-json.map(|*);
 my Duration ( $nov, $dec );
 
@@ -243,7 +243,7 @@ say "Difference: {($nov - $dec).abs} seconds";
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl6/ch-2.p6) understood yet some other thing. If I understand his program well, it computes the cumulated daylight time in November and in December, and then computes the difference between the two months. The main part of Javier's program is as follows:
 
-``` Perl6
+```perl
 sub compare_lengths(Date $date1, Date $date2) {
     # Months
     my @mon = (
@@ -289,7 +289,7 @@ sub calculate-daylight-total(@data) {
 
 [Mark Anserson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/mark-anderson/perl6/ch-2.p6) used the `HTTP::UserAgent` and `DOM::Tiny`module to fetch and process the input data. His program is among the most concise ones:
 
-``` Perl 6
+```perl
 use HTTP::UserAgent;
 use DOM::Tiny;
 
@@ -314,7 +314,7 @@ sub secs($month) {
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/roger-bell-west/perl6/ch-2.p6) used the [Gombo](https://github.com/Skarsnik/perl6-gumbo) module, which is a binding to the C [Gombo](https://github.com/google/gumbo-parser) library to parse HTML5 and which I had not heard about before. This module provides a `parse-html` routine that parses an input HTML string and returns a `XML::Document` object.
 
-``` Perl 6
+```perl
 use Gumbo;
 
 my @dtime;
@@ -344,7 +344,7 @@ say 'delta ',@dtime[1]-@dtime[0],' s';
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ruben-westerberg/perl6/ch-2.p6) used the `HTTP::UserAgent` module to fetch the two needed Web pages. Roger's interpretation of the task was apparently to compute the total day light duration in December with the total daylight duration in November (which is sort of unfair to November since it has one day less).
 
-``` Perl 6
+```perl
 use HTTP::UserAgent;
 
 print "Downloading November Data...\n";
@@ -440,7 +440,7 @@ We will iterate only over the days after the 28th day of any month to find the n
 
 The program is very simple:
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN (UInt $yr = 2019) {
@@ -476,7 +476,7 @@ And it works fine with another year passed as an argument. If no argument is pas
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/arne-sommer/perl6/ch-1.p6) used the `day-of-week` and `later` methods of the `Date` class and iterated over all the days of the year, similarly to what I did in my one-liner solutions:
 
-``` Perl6
+```perl
 unit sub MAIN (Int $year = 2019, Bool :$sum);
 
 my @day-count;
@@ -495,7 +495,7 @@ say "Total: { @day-count.sum}" if $sum;
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/kevin-colyer/perl6/ch-1.p6) did something similar using the `day-of-week` and `later` methods of the `DateTime` class to iterate over all days of the each month:
 
-``` Perl6
+```perl
 my @month-abbrv=<Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec>;
 
 sub weekdays-in-month(DateTime $date) {
@@ -513,7 +513,7 @@ for 1..12 -> $month {
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/noud/perl6/ch-1.p6) also used the `day-of-week` and `later` methods of the `Date` class to iterate over all days of the year:
 
-``` Perl6
+```perl
 my @a = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 for ^365 -> $day {
     my $now = Date.new(2019, 1, 1).later(days => $day);
@@ -530,7 +530,7 @@ for <Jan Feb Mar Apr May Jun
 
 [Richard Nuttall](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/rnuttall/perl6/ch-1.p6), who is new to the challenge if I am not wrong, wrote a nice data pipeline computing for each month the number of days in the month in a single chained-methods statement. Note the interesting use of the `strftime` function of the [DateTime::Format](https://github.com/supernovus/perl6-datetime-format/blob/master/lib/DateTime/Format.pm6) module to provide the month names.
 
-``` Perl6
+```perl
 use v6;
 use DateTime::Format;
 
@@ -547,7 +547,7 @@ sub MAIN(Int() $year = Date.today().year()) {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/simon-proctor/perl6/ch-1.p6) also wrote a data pipeline of chained methods. Note the use of the `weekday-of-month` method of the [Dateish](https://docs.raku.org/type/Dateish#method_weekday-of-month) role:
 
-``` Perl 6
+```perl
 constant %MONTHS := Map.new( (1..12) Z <Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec> );
 
 sub MAIN(
@@ -563,7 +563,7 @@ sub MAIN(
 
 [Ulrich Rielke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ulrich-rieke/perl6/ch-1.p6) wrote two nested loops (over months and over days of the month) to iterate over all days of the year and used the `day-of-week` method of the `Date` class to populate a weekday counter for each month:
 
-``` Perl 6
+```perl
 my %daycount = "Jan" => 31 , "Feb" => 28 , "Mar" => 31 , "Apr" => 30 ,
   "May" => 31 , "Jun" => 30 , "Jul" => 31 , "Aug" => 31 , "Sep" => 30 ,
   "Oct" => 31 , "Nov" => 30 , "Dec" => 31 ;
@@ -588,7 +588,7 @@ for @months -> $month {
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/perl6/ch-1.p6)'s solution is quite innovative in several respects, and I must admit that I have some trouble understanding parts of his solution. I leave it to you to discover it:
 
-``` Perl 6
+```perl
 enum Months «
   :Jan(1) Feb Mar
    Apr    May Jun
@@ -606,7 +606,7 @@ This is probably the first time that I see an enumeration used in Perl 6 (well a
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl6/ch-1.p6) wrote a program that iterates over all day of the year and increments a counter in a hash of monthly counters each time a date corresponds to a week day:
 
-``` Perl 6
+```perl
 sub show-weekdays-per-year(Int $year) {
     my $current = Date.new($year, 1, 1);
     my %months{Int};
@@ -632,7 +632,7 @@ sub show-weekdays-per-year(Int $year) {
 
 [Mark Anderson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/mark-anderson/perl6/ch-1.p6) used two nested `while` loops to iterate over each day of each month and the `day-of-week` method of the `Date` class to increment a counter for each weekday. Note the use of the [Date::Names](https://github.com/tbrowder/Date-Names-Perl6) module to handle month names.
 
-``` Perl 6
+```perl
 use Date::Names;
 
 my $dt = DateTime.new(year => 2019, month => 1);
@@ -656,7 +656,7 @@ while ($dt.year == 2019) {
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/roger-bell-west/perl6/ch-1.p6) made a program based on the same observation as I did for my last solution: any month had 20 weekdays in its first 28 days, and it is therefore sufficient to count the weekdays after the 28th of each month, using the `day-of-week` method (starting the counter at 20). This being said, his detailed implementation is quite different from mine and works its way backward from the last day of the month using the `earlier` method:
 
-``` Perl 6
+```perl
 my $y=2019;
 for (1..12) -> $m {
   my $mm=$m+1;
@@ -679,7 +679,7 @@ for (1..12) -> $m {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ruben-westerberg/perl6/ch-1.p6) made one of shortest implementations among the challengers, despite the fact that his use of the `DateTime` class made it slightly more complicated than it would have been using the `Date` class.
 
-``` Perl 6
+```perl
 my $t=DateTime.new(:2019year);
 my %months;
 my @names= <January February March April May June July August September October November December>;

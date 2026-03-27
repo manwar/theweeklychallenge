@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2023blogadvent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
-<h3 id="-nbsp-day-12blogadvent-calendar-2023-12-12-nbsp--nbsp-day-13-nbsp--nbsp-day-14blogadvent-calendar-2023-12-14-nbsp-">|   <a href="/blog/advent-calendar-2023-12-12"><strong>Day 12</strong></a>   |   <strong>Day 13</strong>   |   <a href="/blog/advent-calendar-2023-12-14"><strong>Day 14</strong></a>   |</h3>
+        <h2 id="advent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
+<h3 id="--day-12----day-13----day-14--">|   <a href="/blog/advent-calendar-2023-12-12"><strong>Day 12</strong></a>   |   <strong>Day 13</strong>   |   <a href="/blog/advent-calendar-2023-12-14"><strong>Day 14</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Arne Sommer</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-222"><strong>The Weekly Challenge - 222</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://raku-musings.com/members.html"><strong>post</strong></a>.</p>
 <hr>
@@ -220,28 +220,28 @@ Example 3:
     Compare the two lists, we found 5 matching members.
 </code></pre>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#! /usr/bin/env raku</span>
-
-unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (*@ints where @ints.elems &gt; 1 &amp;&amp; all(@ints) ~~ Int
-                        &amp;&amp; all(@ints) &gt; 0);                # [1]
-
-say (@ints Z @ints.sort).grep( { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> $_[<span style="color:#ae81ff">1</span>] })<span style="color:#f92672">.</span>elems;  <span style="color:#75715e"># [2]</span>
-<span style="color:#75715e"># D  # A ############### # B ##################### # C ##</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#! /usr/bin/env raku</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (*@ints where @ints.elems &gt; 1 &amp;&amp; all(@ints) ~~ Int
+</span></span><span style="display:flex;"><span>                        &amp;&amp; all(@ints) &gt; 0);                # [1]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say (@ints Z @ints.sort).grep( { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> $_[<span style="color:#ae81ff">1</span>] })<span style="color:#f92672">.</span>elems;  <span style="color:#75715e"># [2]</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># D  # A ############### # B ##################### # C ##</span>
+</span></span></code></pre></div><br>
 <p><code>[1]</code> At least two elements, all of them integers, and greater than zero.</p>
 <p><code>[2]</code> We start with the list itself and a sorted copy, merging them with the <code>Z (zip)</code> operator <code>[A]</code>. The result is a list with pair objects; one element from the original list, and one from the sorted one. Then we use grep to keep the pairs where the two values are equal <code>[B]</code>. Then we count the number of elements (i.e. pairs) in the resulting list <code>[C]</code> and print that number <code>[D]</code>.</p>
 <p>See <a href="https://docs.raku.org/routine/Z"><strong>docs.raku.org/routine/Z</strong></a> for more information about the <code>infix zip</code> operator <code>Z</code>.</p>
 <p>Running it:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>matching<span style="color:#f92672">-</span>members <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>
-<span style="color:#ae81ff">3</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>matching<span style="color:#f92672">-</span>members <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>
-<span style="color:#ae81ff">0</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>matching<span style="color:#f92672">-</span>members <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span>
-<span style="color:#ae81ff">5</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>matching<span style="color:#f92672">-</span>members <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>matching<span style="color:#f92672">-</span>members <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>matching<span style="color:#f92672">-</span>members <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><br>
 <p>Looking good.</p>
 <br>
 <h3 id="challenge-2222-last-member">Challenge #222.2: Last Member</h3>
@@ -277,34 +277,34 @@ Example 3:
     Step 1: pick 1 and 1, we remove both and we left with none.
 </code></pre>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#! /usr/bin/env raku</span>
-
-unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (*@ints where @ints.elems &gt; 0 &amp;&amp; all(@ints) ~~ Int
-                            &amp;&amp; all(@ints) &gt; 0,                     # [1]
-               :v(:$verbose));
-
-@ints = @ints&gt;&gt;.Int.sort.reverse;                                  # [2]
-
-while @ints.elems &gt; 1                                              # [3]
-{
-  say <span style="color:#e6db74">&#34;:Sorted: @ints[]&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
-
-  <span style="color:#66d9ef">my</span> $y    <span style="color:#f92672">=</span> @ints<span style="color:#f92672">.</span>shift;                                          <span style="color:#75715e"># [4]</span>
-  <span style="color:#66d9ef">my</span> $x    <span style="color:#f92672">=</span> @ints<span style="color:#f92672">.</span>shift;                                          <span style="color:#75715e"># [4]</span>
-  <span style="color:#66d9ef">my</span> $diff <span style="color:#f92672">=</span> $y <span style="color:#f92672">-</span> $x;                                              <span style="color:#75715e"># [5]</span>
-
-  say <span style="color:#e6db74">&#34;:List:   @ints[] { $diff ?? &#34;</span><span style="color:#f92672">|</span> add $diff (source: $y <span style="color:#f92672">-</span> $x)<span style="color:#e6db74">&#34; \
-</span><span style="color:#e6db74">      !! &#34;</span><span style="color:#f92672">|</span> <span style="color:#66d9ef">no</span> add (source $y <span style="color:#f92672">==</span> $x)<span style="color:#e6db74">&#34; }&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
-
-  <span style="color:#66d9ef">if</span> $diff                                                         <span style="color:#75715e"># [6]</span>
-  {
-    @ints<span style="color:#f92672">.</span>push: $diff;                                             <span style="color:#75715e"># [6a]</span>
-    @ints <span style="color:#f92672">=</span> @ints<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>reverse;                                    <span style="color:#75715e"># [6b]</span>
-  }
-}
-
-say @ints<span style="color:#f92672">.</span>elems ?? @ints[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!!</span> <span style="color:#ae81ff">0</span>;                                  <span style="color:#75715e"># [7]</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#! /usr/bin/env raku</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (*@ints where @ints.elems &gt; 0 &amp;&amp; all(@ints) ~~ Int
+</span></span><span style="display:flex;"><span>                            &amp;&amp; all(@ints) &gt; 0,                     # [1]
+</span></span><span style="display:flex;"><span>               :v(:$verbose));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@ints = @ints&gt;&gt;.Int.sort.reverse;                                  # [2]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>while @ints.elems &gt; 1                                              # [3]
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  say <span style="color:#e6db74">&#34;:Sorted: @ints[]&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $y    <span style="color:#f92672">=</span> @ints<span style="color:#f92672">.</span>shift;                                          <span style="color:#75715e"># [4]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $x    <span style="color:#f92672">=</span> @ints<span style="color:#f92672">.</span>shift;                                          <span style="color:#75715e"># [4]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $diff <span style="color:#f92672">=</span> $y <span style="color:#f92672">-</span> $x;                                              <span style="color:#75715e"># [5]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  say <span style="color:#e6db74">&#34;:List:   @ints[] { $diff ?? &#34;</span><span style="color:#f92672">|</span> add $diff (source: $y <span style="color:#f92672">-</span> $x)<span style="color:#e6db74">&#34; \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      !! &#34;</span><span style="color:#f92672">|</span> <span style="color:#66d9ef">no</span> add (source $y <span style="color:#f92672">==</span> $x)<span style="color:#e6db74">&#34; }&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> $diff                                                         <span style="color:#75715e"># [6]</span>
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    @ints<span style="color:#f92672">.</span>push: $diff;                                             <span style="color:#75715e"># [6a]</span>
+</span></span><span style="display:flex;"><span>    @ints <span style="color:#f92672">=</span> @ints<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>reverse;                                    <span style="color:#75715e"># [6b]</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say @ints<span style="color:#f92672">.</span>elems ?? @ints[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!!</span> <span style="color:#ae81ff">0</span>;                                  <span style="color:#75715e"># [7]</span>
+</span></span></code></pre></div><br>
 <p><code>[1]</code> At least 1 element, all of them must be positve integers.</p>
 <p><code>[2]</code> Coerce the values to integers (from the undecided IntStr that we get from using the command line), just to make the verbose mode output looks nice. We sort the values with the highest one first.</p>
 <p><code>[3]</code> As long as there are at least two elements left,</p>
@@ -314,37 +314,37 @@ say @ints<span style="color:#f92672">.</span>elems ?? @ints[<span style="color:#
 <p><code>[7]</code> If we have elements in the list (just one, really), print that value. If not, print 0.</p>
 <p>Running it:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">1</span>
-<span style="color:#ae81ff">1</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#ae81ff">1</span>
-<span style="color:#ae81ff">1</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
-<span style="color:#ae81ff">0</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><br>
 <p>Looking good.</p>
 <p>With verbose mode:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#f92672">-</span>v <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">1</span>
-:Sorted: <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
-:List:   <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> add <span style="color:#ae81ff">1</span> (source: <span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>)
-:Sorted: <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
-:List:   <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> add <span style="color:#ae81ff">2</span> (source: <span style="color:#ae81ff">4</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)
-:Sorted: <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
-:List:   <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> add <span style="color:#ae81ff">1</span> (source: <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
-:Sorted: <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
-:List:   <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">no</span> add (source <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
-<span style="color:#ae81ff">1</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#f92672">-</span>v <span style="color:#ae81ff">1</span>
-<span style="color:#ae81ff">1</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#f92672">-</span>v <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
-:Sorted: <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
-:List:    <span style="color:#f92672">|</span> <span style="color:#66d9ef">no</span> add (source <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
-<span style="color:#ae81ff">0</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#f92672">-</span>v <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>:Sorted: <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>:List:   <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> add <span style="color:#ae81ff">1</span> (source: <span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span>:Sorted: <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>:List:   <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> add <span style="color:#ae81ff">2</span> (source: <span style="color:#ae81ff">4</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>:Sorted: <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>:List:   <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> add <span style="color:#ae81ff">1</span> (source: <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>:Sorted: <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>:List:   <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">no</span> add (source <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#f92672">-</span>v <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>last<span style="color:#f92672">-</span>member <span style="color:#f92672">-</span>v <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>:Sorted: <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>:List:    <span style="color:#f92672">|</span> <span style="color:#66d9ef">no</span> add (source <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><br>
 <p>And that&rsquo;s it.</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>

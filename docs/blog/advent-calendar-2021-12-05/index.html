@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-4blogadvent-calendar-2021-12-04--day-5--day-6blogadvent-calendar-2021-12-06-">| <a href="/blog/advent-calendar-2021-12-04"><strong>Day 4</strong></a> | <strong>Day 5</strong> | <a href="/blog/advent-calendar-2021-12-06"><strong>Day 6</strong></a> |</h3>
+        <h2 id="advent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
+<h3 id="-day-4--day-5--day-6-">| <a href="/blog/advent-calendar-2021-12-04"><strong>Day 4</strong></a> | <strong>Day 5</strong> | <a href="/blog/advent-calendar-2021-12-06"><strong>Day 6</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-2020-11"><strong>Simon Green</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-101"><strong>&ldquo;The Weekly Challenge - 101&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://dev.to/simongreennet/weekly-challenge-101-jeo"><strong>post</strong></a> by <code>Simon Green</code>.</p>
 <hr>
@@ -213,92 +213,92 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h2 id="code">Code</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;max&#39;</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_get_tightest_grid</span> {
-    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> shift;
-    <span style="color:#66d9ef">my</span> $max_x <span style="color:#f92672">=</span> $count;
-    <span style="color:#66d9ef">my</span> $max_y <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $y ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
-        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $count <span style="color:#f92672">/</span> $y;
-        <span style="color:#66d9ef">if</span> ( $count % <span style="color:#960050;background-color:#1e0010">$</span>y <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> abs( $x <span style="color:#f92672">-</span> $y ) <span style="color:#f92672">&lt;</span> abs( $max_x <span style="color:#f92672">-</span> $max_y ) ) {
-            <span style="color:#75715e"># We have found a tighter solution</span>
-            ( $max_x, $max_y ) <span style="color:#f92672">=</span> ( $x, $y );
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> ( $max_x, $max_y );
-
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
-    <span style="color:#66d9ef">my</span> @values <span style="color:#f92672">=</span> @_;
-    die <span style="color:#e6db74">&#34;You must specify at least one value\n&#34;</span> <span style="color:#66d9ef">unless</span> scalar(@values);
-
-    <span style="color:#75715e"># Work out the tightest grid. This is when the x + y values are the least</span>
-    <span style="color:#66d9ef">my</span> ( $max_x, $max_y ) <span style="color:#f92672">=</span> _get_tightest_grid( scalar(@values) );
-
-    <span style="color:#75715e"># The directions we can move (right, up, left, down)</span>
-    <span style="color:#66d9ef">my</span> @directions <span style="color:#f92672">=</span> ( [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> ], [ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ], [ <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> ], [ <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ] );
-
-    <span style="color:#75715e"># Populate the grid</span>
-    <span style="color:#66d9ef">my</span> @grid <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">my</span> $x    <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $direction <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;    <span style="color:#75715e"># Bottom left, going rightward</span>
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#values ) {
-        $grid[$y][$x] <span style="color:#f92672">=</span> $values[$i];
-
-        <span style="color:#75715e"># Determine the next position</span>
-        <span style="color:#66d9ef">my</span> $next_x <span style="color:#f92672">=</span> $x <span style="color:#f92672">+</span> $directions[$direction][<span style="color:#ae81ff">0</span>];
-        <span style="color:#66d9ef">my</span> $next_y <span style="color:#f92672">=</span> $y <span style="color:#f92672">+</span> $directions[$direction][<span style="color:#ae81ff">1</span>];
-
-        <span style="color:#75715e"># We need to switch directions if we are out of bounds or the cell already has a value</span>
-        <span style="color:#66d9ef">if</span> (   $next_x <span style="color:#f92672">&gt;=</span> $max_x
-            <span style="color:#f92672">or</span> $next_y <span style="color:#f92672">&gt;=</span> $max_y
-            <span style="color:#f92672">or</span> $next_x <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
-            <span style="color:#f92672">or</span> $next_y <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
-            <span style="color:#f92672">or</span> defined( $grid[$next_y][$next_x] ) )
-        {
-            $direction <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>$direction % 4;
-        }
-
-        <span style="color:#75715e"># Move to the next cell</span>
-        $x <span style="color:#f92672">+=</span> $directions[$direction][<span style="color:#ae81ff">0</span>];
-        $y <span style="color:#f92672">+=</span> $directions[$direction][<span style="color:#ae81ff">1</span>];
-    }
-
-    <span style="color:#75715e"># Display the output. Right aligned for all numbers, else left aligned</span>
-    <span style="color:#66d9ef">my</span> $max_length   <span style="color:#f92672">=</span> max( map { length($_) } @values );
-    <span style="color:#66d9ef">my</span> $all_integers <span style="color:#f92672">=</span> grep { <span style="color:#e6db74">/^\d+$/</span> } @values;
-    <span style="color:#66d9ef">my</span> $format       <span style="color:#f92672">=</span> $all_integers ? <span style="color:#e6db74">&#34;\%${max_length}d&#34;</span> : <span style="color:#e6db74">&#34;\%-${max_length}s&#34;</span>;
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $row ( reverse @grid ) {
-        say join <span style="color:#e6db74">&#39; &#39;</span>, map { sprintf $format, $_ } @$row;
-    }
-}
-
-main(@ARGV);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;max&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_get_tightest_grid</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max_x <span style="color:#f92672">=</span> $count;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max_y <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $y ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $count <span style="color:#f92672">/</span> $y;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( $count % <span style="color:#960050;background-color:#1e0010">$</span>y <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> abs( $x <span style="color:#f92672">-</span> $y ) <span style="color:#f92672">&lt;</span> abs( $max_x <span style="color:#f92672">-</span> $max_y ) ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># We have found a tighter solution</span>
+</span></span><span style="display:flex;"><span>            ( $max_x, $max_y ) <span style="color:#f92672">=</span> ( $x, $y );
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ( $max_x, $max_y );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @values <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;You must specify at least one value\n&#34;</span> <span style="color:#66d9ef">unless</span> scalar(@values);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Work out the tightest grid. This is when the x + y values are the least</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ( $max_x, $max_y ) <span style="color:#f92672">=</span> _get_tightest_grid( scalar(@values) );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The directions we can move (right, up, left, down)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @directions <span style="color:#f92672">=</span> ( [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> ], [ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ], [ <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> ], [ <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ] );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Populate the grid</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @grid <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $x    <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $direction <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;    <span style="color:#75715e"># Bottom left, going rightward</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#values ) {
+</span></span><span style="display:flex;"><span>        $grid[$y][$x] <span style="color:#f92672">=</span> $values[$i];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Determine the next position</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $next_x <span style="color:#f92672">=</span> $x <span style="color:#f92672">+</span> $directions[$direction][<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $next_y <span style="color:#f92672">=</span> $y <span style="color:#f92672">+</span> $directions[$direction][<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># We need to switch directions if we are out of bounds or the cell already has a value</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (   $next_x <span style="color:#f92672">&gt;=</span> $max_x
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">or</span> $next_y <span style="color:#f92672">&gt;=</span> $max_y
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">or</span> $next_x <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">or</span> $next_y <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">or</span> defined( $grid[$next_y][$next_x] ) )
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            $direction <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>$direction % 4;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Move to the next cell</span>
+</span></span><span style="display:flex;"><span>        $x <span style="color:#f92672">+=</span> $directions[$direction][<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>        $y <span style="color:#f92672">+=</span> $directions[$direction][<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Display the output. Right aligned for all numbers, else left aligned</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max_length   <span style="color:#f92672">=</span> max( map { length($_) } @values );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $all_integers <span style="color:#f92672">=</span> grep { <span style="color:#e6db74">/^\d+$/</span> } @values;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $format       <span style="color:#f92672">=</span> $all_integers ? <span style="color:#e6db74">&#34;\%${max_length}d&#34;</span> : <span style="color:#e6db74">&#34;\%-${max_length}s&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $row ( reverse @grid ) {
+</span></span><span style="display:flex;"><span>        say join <span style="color:#e6db74">&#39; &#39;</span>, map { sprintf $format, $_ } @$row;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>main(@ARGV);
+</span></span></code></pre></div><br>
 <h2 id="examples">Examples</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>
-<span style="color:#ae81ff">6</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">4</span>
-<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span>
- <span style="color:#ae81ff">9</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">6</span>
-<span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span>  <span style="color:#ae81ff">5</span>
- <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl the quick brown fox jumps over the lazy dog
-the   over  jumps
-lazy  dog   fox
-the   quick brown
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">9</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span>  <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl the quick brown fox jumps over the lazy dog
+</span></span><span style="display:flex;"><span>the   over  jumps
+</span></span><span style="display:flex;"><span>lazy  dog   fox
+</span></span><span style="display:flex;"><span>the   quick brown
+</span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></p>
 

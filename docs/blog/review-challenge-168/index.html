@@ -201,7 +201,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
 <div align= center><strong>...Enough? Fine. So without even further ado...</strong></div>
 <hr>
-<h2 id="---nbsp--nbsp--nbsp---task-1pwc168task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc168task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc168blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC168TASK1">Task 1</a>                 •             <a href="#PWC168TASK2">Task 2</a>             	•             <a href="#PWC168BLOGS">BLOGS</a>              	•</h2>
+<h2 id="----------task-1------------------------task-2--------------------blogs-----------">•             <a href="#PWC168TASK1">Task 1</a>                 •             <a href="#PWC168TASK2">Task 2</a>             	•             <a href="#PWC168BLOGS">BLOGS</a>              	•</h2>
 <hr>
 <h1 id="PWC168TASK1">TASK 1</h1>
 <h1 id="perrin-prime">Perrin Prime</h1>
@@ -269,135 +269,135 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>We&rsquo;ll start the ball rolling with Jaldhar, with an example of the steps for a straightforward solution: we successively generate Perrin numbers, and then check them for primality.</p>
 <p>The main loop cycles a sort array of current Perrin numbers, adding the <code>[1]</code> and <code>[2]</code> indices and appending the sum using <code>push</code>. The holding array then has its first element shifted off, reducing the index count to three again.</p>
 <p>In the middle of this loop a validation check is made with <code>isPrime</code>, which uses trial division to check possible divisors of a number up to the square root. Numbers found to be prime are added to the output.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isPrime</span> {
-        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>) {
-            <span style="color:#66d9ef">return</span> undef;
-        }
-        <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-        }
-
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt($n)) {
-            <span style="color:#66d9ef">if</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-                <span style="color:#66d9ef">return</span> undef;
-            }
-        }
-
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-
-    <span style="color:#66d9ef">my</span> @perrins <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>);
-    <span style="color:#66d9ef">my</span> @perrinPrimes;
-
-    <span style="color:#66d9ef">while</span> (scalar @perrinPrimes <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">13</span>) {
-        <span style="color:#66d9ef">if</span> (isPrime($perrins[<span style="color:#ae81ff">2</span>]) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span> grep { $_ <span style="color:#f92672">==</span> $perrins[<span style="color:#ae81ff">2</span>] } @perrinPrimes) {
-            push @perrinPrimes, $perrins[<span style="color:#ae81ff">2</span>];
-        }
-        push @perrins,  $perrins[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $perrins[<span style="color:#ae81ff">1</span>];
-        shift @perrins;
-    }
-
-    say join <span style="color:#e6db74">q{, }</span>, sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @perrinPrimes;
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isPrime</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> undef;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt($n)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> undef;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @perrins <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @perrinPrimes;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (scalar @perrinPrimes <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">13</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (isPrime($perrins[<span style="color:#ae81ff">2</span>]) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span> grep { $_ <span style="color:#f92672">==</span> $perrins[<span style="color:#ae81ff">2</span>] } @perrinPrimes) {
+</span></span><span style="display:flex;"><span>            push @perrinPrimes, $perrins[<span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        push @perrins,  $perrins[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $perrins[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>        shift @perrins;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say join <span style="color:#e6db74">q{, }</span>, sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @perrinPrimes;
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
 <p>Matthew gives us two functions to accomplish his goals, <code>next_perrin</code> and <code>is_prime</code>. The Perrin producer has an option to limit the preserved sequence to those values necessary to produce the next or keep everything, depending on what you want to do with the values.</p>
 <p>In his primality test, though, he uses a significant improvement on trial division, in that all primes greater than 3 can be written in the form 6<em>k</em> ± 1 for some <em>k</em>. Using this we can reduce the number of division tests to check the values up to the square root by a not-insignificant factor of 3.</p>
-<p>Matthew has a habit of extensively documenting his functions as he writes them, which I will go out of my way to thank him for, even if I have eliminated the comments here for the sake of brevity. Keep &lsquo;em coming, Matthew.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_perrin</span>{
-        <span style="color:#66d9ef">my</span> $perrin <span style="color:#f92672">=</span> shift();
-
-        <span style="color:#75715e"># Add the next number in the sequence</span>
-        push(
-            @{$perrin},
-            $perrin<span style="color:#f92672">-&gt;</span>[$#$perrin <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> $perrin<span style="color:#f92672">-&gt;</span>[$#$perrin <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]
-        );
-
-        <span style="color:#75715e"># If specified, toss out the oldest number</span>
-        shift(@{$perrin})
-            <span style="color:#66d9ef">if</span>(defined(shift()));
-
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span>{
-        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> int(shift());
-
-        <span style="color:#66d9ef">my</span> $i;
-
-        <span style="color:#75715e"># Take care of a few easy cases</span>
-        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">1</span>)
-            <span style="color:#66d9ef">if</span>(($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">||</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>));
-        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>)
-            <span style="color:#66d9ef">if</span>(($n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>($n % 2) <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>($n % 3));
-
-        <span style="color:#75715e"># See if certain factors divide evenly</span>
-        <span style="color:#66d9ef">for</span>($i <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>; $i <span style="color:#f92672">*</span> $i <span style="color:#f92672">&lt;=</span> $n; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">6</span>){
-            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>($n % <span style="color:#960050;background-color:#1e0010">$</span>i) <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>($n % <span style="color:#960050;background-color:#1e0010">($</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>))){
-                <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>);
-            }
-        }
-
-        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">1</span>);
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>Matthew has a habit of extensively documenting his functions as he writes them, which I will go out of my way to thank him for, even if I have eliminated the comments here for the sake of brevity. Keep &rsquo;em coming, Matthew.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_perrin</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $perrin <span style="color:#f92672">=</span> shift();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Add the next number in the sequence</span>
+</span></span><span style="display:flex;"><span>        push(
+</span></span><span style="display:flex;"><span>            @{$perrin},
+</span></span><span style="display:flex;"><span>            $perrin<span style="color:#f92672">-&gt;</span>[$#$perrin <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> $perrin<span style="color:#f92672">-&gt;</span>[$#$perrin <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If specified, toss out the oldest number</span>
+</span></span><span style="display:flex;"><span>        shift(@{$perrin})
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(defined(shift()));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> int(shift());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $i;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Take care of a few easy cases</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">||</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(($n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>($n % 2) <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>($n % 3));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># See if certain factors divide evenly</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>($i <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>; $i <span style="color:#f92672">*</span> $i <span style="color:#f92672">&lt;=</span> $n; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">6</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>($n % <span style="color:#960050;background-color:#1e0010">$</span>i) <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>($n % <span style="color:#960050;background-color:#1e0010">($</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>))){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/rust/ch-1.rs">Rust</a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://blog.firedrake.org/archive/2022/06/The_Weekly_Challenge_168__At_Home_with_the_Perrins.html">RogerBW&rsquo;s Blog: The Weekly Challenge 168: At Home with the Perrins</a></p>
 <p>Roger gives us a second example of the refined trial division technique, looking only at candidate divisors of the form 6<em>k</em> ± 1 for <em>k</em> such that the product is less than or eqal to square root of the target.</p>
 <p>Roger gives us a second example of this refined technique, where we look only at candidate divisors of the form 6<em>k</em> ± 1. Not all numbers of this form will be prime of course, but all primes will be of this form.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isprime</span> {
-      <span style="color:#66d9ef">my</span> $candidate<span style="color:#f92672">=</span>shift;
-      <span style="color:#66d9ef">if</span> ($candidate<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>) {
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-      } <span style="color:#66d9ef">elsif</span> ($candidate<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>) {
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-      } <span style="color:#66d9ef">elsif</span> ($candidate<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>) {
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-      } <span style="color:#66d9ef">elsif</span> ($candidate % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-      } <span style="color:#66d9ef">elsif</span> ($candidate % 3 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-      }
-      <span style="color:#66d9ef">my</span> $anchor<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-      <span style="color:#66d9ef">my</span> $limit<span style="color:#f92672">=</span>int(sqrt($candidate));
-      <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-        $anchor<span style="color:#f92672">+=</span><span style="color:#ae81ff">6</span>;
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $t ($anchor<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$anchor<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) {
-          <span style="color:#66d9ef">if</span> ($t <span style="color:#f92672">&gt;</span> $limit) {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-          }
-          <span style="color:#66d9ef">if</span> ($candidate % <span style="color:#960050;background-color:#1e0010">$</span>t <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-          }
-        }
-      }
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isprime</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $candidate<span style="color:#f92672">=</span>shift;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> ($candidate<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">elsif</span> ($candidate<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">elsif</span> ($candidate<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">elsif</span> ($candidate % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">elsif</span> ($candidate % 3 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $anchor<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $limit<span style="color:#f92672">=</span>int(sqrt($candidate));
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        $anchor<span style="color:#f92672">+=</span><span style="color:#ae81ff">6</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $t ($anchor<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$anchor<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> ($t <span style="color:#f92672">&gt;</span> $limit) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> ($candidate % <span style="color:#960050;background-color:#1e0010">$</span>t <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/lubos-kolouch/python/ch-1.py">Python</a></p>
 <p>With modern cryptography directly intersecting with the search for ever-larger prime numbers, the challange of testing for primality has gotten quite a bit of attention since the later part of the 20th century, with no end in sight. Accurate and rapid, albeit complex, tests have been constructed for all integers up to 2<sup>64</sup>, with verified results. It is conjecture that some pseudoprimes exist above this to evade the current state-of-the-art methods, but so far none have been discovered.</p>
 <p>A <a href="https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test">Miller–Rabin primality test</a> and a parallel <a href="https://en.wikipedia.org/wiki/Lucas_pseudoprime">filter for Lucas probable primes</a>, which combined together make up a <a href="https://en.wikipedia.org/wiki/Baillie%E2%80%93PSW_primality_test">Baillie–PSW primality test</a>, involves some quite complicated math. Constructing an implementation of this  would be a difficult problem to someone without the proper background. Fortunately this is not necessary just to use the algorithm, as we can import it from <code>Math::Prime::Util</code>, as <code>is_prime()</code>. This function uses a Baillie–PSW test but also incorporates several optimizations when faster algorithms can be substituted with mathematical certainty.</p>
 <p>To address the uncertainties that remain in the techniques, the function returns one of three values: a 0 if a number is not prime, a 2 if a number is known to be prime, and a 1 if a number is thought to be prime but is unable to be proven as such. It has been independently proven that no number less than 2<sup>64</sup> will ever return a 1.</p>
 <p>Using this module function the code becomes quite speedy and compact. Not that it was slow going around the long way, mind you, but for testing a large number of values for primality quickly, <code>Math::Prime::Util</code> is the way to go.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime)</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_perrin_sequence</span> {
-        <span style="color:#66d9ef">my</span> $n               <span style="color:#f92672">=</span> shift;
-        <span style="color:#66d9ef">my</span> @perrin_sequence <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span> );
-
-        <span style="color:#66d9ef">my</span> %perrin_primes;
-
-        <span style="color:#66d9ef">while</span> ( scalar keys %perrin_primes <span style="color:#f92672">&lt;</span> $n ) {
-            <span style="color:#66d9ef">my</span> $next_number <span style="color:#f92672">=</span> $perrin_sequence[<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>] <span style="color:#f92672">+</span> $perrin_sequence[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>];
-            push @perrin_sequence, $next_number;
-            $perrin_primes{$next_number} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> is_prime($next_number);
-        }
-
-        <span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %perrin_primes;
-
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@primes;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_perrin_sequence</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $n               <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @perrin_sequence <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> %perrin_primes;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ( scalar keys %perrin_primes <span style="color:#f92672">&lt;</span> $n ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $next_number <span style="color:#f92672">=</span> $perrin_sequence[<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>] <span style="color:#f92672">+</span> $perrin_sequence[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>            push @perrin_sequence, $next_number;
+</span></span><span style="display:flex;"><span>            $perrin_primes{$next_number} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> is_prime($next_number);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %perrin_primes;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@primes;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/athanasius/raku/ch-1.raku">Raku</a></p>
 <p>The monk always goes through the effort to bring a certain meticulous construction to the challenge that I always find attractive. Long-time readers will have perhaps by this time noticed a penchant of mine towards aesthetic and economical display of information. Communication, I like to say, is neither viewing or presenting, but rather a combination of these actions shared between two or more people. It takes two to tango, you know. When data is presented correctly the transfer of both information and meaning — a far more nuanced task — can appear effortless to the point of transparency.</p>
@@ -405,79 +405,79 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>That particular rabbit-hole is a fun one to fall down, but that will be for another day. Here, the script itself is information describing a process and can definitely be presented in better or worse manners. And here it is nice, clearly organized, and easy to scan. These things matter should anyone, even, you, ever need to revisit what you wrote.</p>
 <p>Have a look at the source and you will see even my sample is trimmed a bit from the base formatting, which is more even more structured into discrete sections.</p>
 <p>The control flow is plain to see. The Perrin primes are recorded to a hash and printed if their incidence count is 1, eliminating some duplicate values at the beginning of the sequence. We are, after, all, not looking for the first 13 values of the Perrin numbers, but the first 13 primes we find. The focus is on the primes, not the sequence.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Const::Fast;
-    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw( is_prime )</span>;
-
-    const <span style="color:#66d9ef">my</span> @INIT_TRIPLET <span style="color:#f92672">=&gt;</span> (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>);
-    const <span style="color:#66d9ef">my</span> $TARGET       <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">13</span>;
-    const <span style="color:#66d9ef">my</span> $USAGE        <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Usage:\n  perl $0\n&#34;</span>;
-
-    MAIN:
-    {
-        <span style="color:#66d9ef">my</span> $args <span style="color:#f92672">=</span> scalar @ARGV;
-           $args <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#39;ERROR: Expected 0 command line arguments, found &#39;</span> <span style="color:#f92672">.</span>
-                             <span style="color:#e6db74">&#34;$args\n$USAGE&#34;</span>;
-
-        <span style="color:#66d9ef">my</span> @triplet <span style="color:#f92672">=</span> @INIT_TRIPLET;
-        <span style="color:#66d9ef">my</span> %primes  <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } grep { is_prime $_ } @triplet;
-
-        printf <span style="color:#e6db74">&#34;f(%d) =\n  %s&#34;</span>, $TARGET,
-                                join <span style="color:#e6db74">&#39;, &#39;</span>, sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %primes;
-
-        <span style="color:#66d9ef">while</span> (scalar keys %primes <span style="color:#f92672">&lt;</span> $TARGET)
-        {
-            <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $triplet[ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">+</span> $triplet[ <span style="color:#ae81ff">1</span> ];
-
-            shift @triplet;
-            push  @triplet, $n;
-
-            <span style="color:#66d9ef">if</span> (is_prime $n)
-            {
-                <span style="color:#f92672">++</span>$primes{ $n };
-
-                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;, $n&#34;</span> <span style="color:#66d9ef">if</span> $primes{ $n } <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
-            }
-        }
-
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Const::Fast;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw( is_prime )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    const <span style="color:#66d9ef">my</span> @INIT_TRIPLET <span style="color:#f92672">=&gt;</span> (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    const <span style="color:#66d9ef">my</span> $TARGET       <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">13</span>;
+</span></span><span style="display:flex;"><span>    const <span style="color:#66d9ef">my</span> $USAGE        <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Usage:\n  perl $0\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    MAIN:
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $args <span style="color:#f92672">=</span> scalar @ARGV;
+</span></span><span style="display:flex;"><span>           $args <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#39;ERROR: Expected 0 command line arguments, found &#39;</span> <span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#e6db74">&#34;$args\n$USAGE&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @triplet <span style="color:#f92672">=</span> @INIT_TRIPLET;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> %primes  <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } grep { is_prime $_ } @triplet;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        printf <span style="color:#e6db74">&#34;f(%d) =\n  %s&#34;</span>, $TARGET,
+</span></span><span style="display:flex;"><span>                                join <span style="color:#e6db74">&#39;, &#39;</span>, sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %primes;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (scalar keys %primes <span style="color:#f92672">&lt;</span> $TARGET)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $triplet[ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">+</span> $triplet[ <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            shift @triplet;
+</span></span><span style="display:flex;"><span>            push  @triplet, $n;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (is_prime $n)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">++</span>$primes{ $n };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;, $n&#34;</span> <span style="color:#66d9ef">if</span> $primes{ $n } <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
 <p>In a compact solution, Choroba handles the duplicate values in a novel manner, with a test that each generated value is larger than that previous. This filters the values properly, as no new prime is ever introduced that is less than the last one generated.</p>
 <p>You do have to know this fact before you start, though, to code it in.</p>
 <p>Again we find <code>is_prime()</code> from <code>Math::Prime::Util</code> doing the heavy lifting.</p>
 <p>Note again the use of a short array of just preserving the necessary values to construct the next value. This is sometimes known as a &ldquo;sliding window&rdquo;.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw{ is_prime }</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perrin_prime</span> {
-        <span style="color:#66d9ef">my</span> ($length) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span> @perrin_sliding <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>);
-        <span style="color:#66d9ef">my</span> @perrin_primes;
-        <span style="color:#66d9ef">while</span> (@perrin_primes <span style="color:#f92672">&lt;</span> $length) {
-            push @perrin_sliding, shift(@perrin_sliding) <span style="color:#f92672">+</span> $perrin_sliding[<span style="color:#ae81ff">0</span>];
-            push @perrin_primes, $perrin_sliding[<span style="color:#ae81ff">1</span>]
-                <span style="color:#66d9ef">if</span> $perrin_sliding[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> ($perrin_primes[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">0</span>)
-                <span style="color:#f92672">&amp;&amp;</span> is_prime($perrin_sliding[<span style="color:#ae81ff">1</span>]);
-        }
-        <span style="color:#66d9ef">return</span> @perrin_primes
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw{ is_prime }</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perrin_prime</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($length) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @perrin_sliding <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @perrin_primes;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (@perrin_primes <span style="color:#f92672">&lt;</span> $length) {
+</span></span><span style="display:flex;"><span>            push @perrin_sliding, shift(@perrin_sliding) <span style="color:#f92672">+</span> $perrin_sliding[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>            push @perrin_primes, $perrin_sliding[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> $perrin_sliding[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> ($perrin_primes[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&amp;&amp;</span> is_prime($perrin_sliding[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> @perrin_primes
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://wlmb.github.io/2022/06/06/PWC168/">Perl Weekly Challenge 168 – W. Luis Mochán</a></p>
 <p>Saving the located primes as keys in a hash is another easy way to ensure the results are unique. We only need to access and sort the key list once we have achieved 13 values.</p>
 <p>This will collect values whatever order they happen to arrive in.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime)</span>;
-    die <span style="color:#e6db74">&#34;Usage: $0 N\n to write the first N Perrin Primes&#34;</span> <span style="color:#66d9ef">unless</span> @ARGV;
-    <span style="color:#66d9ef">my</span> $N<span style="color:#f92672">=</span>shift;
-    <span style="color:#66d9ef">my</span> @last_perrins<span style="color:#f92672">=</span>(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>);
-    <span style="color:#66d9ef">my</span> @perrin_primes;
-    <span style="color:#66d9ef">my</span> %seen;
-    <span style="color:#66d9ef">while</span>(@perrin_primes<span style="color:#f92672">&lt;</span>$N){
-        push @last_perrins, <span style="color:#66d9ef">my</span> $perrin<span style="color:#f92672">=</span>$last_perrins[<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>]<span style="color:#f92672">+</span>$last_perrins[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>];
-        shift @last_perrins; <span style="color:#75715e"># no need to keep old Perrins</span>
-        $seen{$perrin}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, push @perrin_primes, $perrin <span style="color:#66d9ef">if</span> is_prime($perrin) <span style="color:#f92672">and</span> <span style="color:#f92672">!</span>$seen{$perrin};
-    }
-    say join <span style="color:#e6db74">&#34; &#34;</span>, sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} @perrin_primes;
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime)</span>;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;Usage: $0 N\n to write the first N Perrin Primes&#34;</span> <span style="color:#66d9ef">unless</span> @ARGV;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $N<span style="color:#f92672">=</span>shift;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @last_perrins<span style="color:#f92672">=</span>(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @perrin_primes;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %seen;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(@perrin_primes<span style="color:#f92672">&lt;</span>$N){
+</span></span><span style="display:flex;"><span>        push @last_perrins, <span style="color:#66d9ef">my</span> $perrin<span style="color:#f92672">=</span>$last_perrins[<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>]<span style="color:#f92672">+</span>$last_perrins[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>        shift @last_perrins; <span style="color:#75715e"># no need to keep old Perrins</span>
+</span></span><span style="display:flex;"><span>        $seen{$perrin}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, push @perrin_primes, $perrin <span style="color:#66d9ef">if</span> is_prime($perrin) <span style="color:#f92672">and</span> <span style="color:#f92672">!</span>$seen{$perrin};
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    say join <span style="color:#e6db74">&#34; &#34;</span>, sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} @perrin_primes;
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/adam-russell/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/adam-russell/prolog/ch-1.p">Prolog</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -486,25 +486,25 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/06/12">Take the Long Way Home — Prolog — RabbitFarm</a></p>
 <p>Adam: rebel, logician, oh-so-calculated risk-taker, breaks from the pack to bring us an alternate prime module, <code>Math::Primality</code>, with its own version of a strong Baillie–PSW test. The technique is rigorously defined, so it is no surprise more than one implementation is out there to choose from.</p>
 <p>The fundamental method of invoking the recurrence relation is recursive in this technique, which was unusual among the submissions.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Primality <span style="color:#e6db74">qw/is_prime/</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">n_perrin_prime_r</span>{
-        <span style="color:#66d9ef">my</span>($n, $perrins, $perrin_primes) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">return</span> $perrin_primes <span style="color:#66d9ef">if</span> keys %{$perrin_primes} <span style="color:#f92672">==</span> $n;
-        <span style="color:#66d9ef">my</span> $perrin <span style="color:#f92672">=</span> $perrins<span style="color:#f92672">-&gt;</span>[@{$perrins} <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>] <span style="color:#f92672">+</span> $perrins<span style="color:#f92672">-&gt;</span>[@{$perrins} <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>];
-        push @{$perrins}, $perrin;
-        $perrin_primes<span style="color:#f92672">-&gt;</span>{$perrin} <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> is_prime($perrin);
-        n_perrin_prime_r($n, $perrins, $perrin_primes);
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perrin_primes</span>{
-        <span style="color:#66d9ef">return</span> n_perrin_prime_r(<span style="color:#ae81ff">13</span>, [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>], {});
-    }
-
-    MAIN:{
-        <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;, &#34;</span>, sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} keys %{perrin_primes()}) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Primality <span style="color:#e6db74">qw/is_prime/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">n_perrin_prime_r</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>($n, $perrins, $perrin_primes) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $perrin_primes <span style="color:#66d9ef">if</span> keys %{$perrin_primes} <span style="color:#f92672">==</span> $n;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $perrin <span style="color:#f92672">=</span> $perrins<span style="color:#f92672">-&gt;</span>[@{$perrins} <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>] <span style="color:#f92672">+</span> $perrins<span style="color:#f92672">-&gt;</span>[@{$perrins} <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>        push @{$perrins}, $perrin;
+</span></span><span style="display:flex;"><span>        $perrin_primes<span style="color:#f92672">-&gt;</span>{$perrin} <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> is_prime($perrin);
+</span></span><span style="display:flex;"><span>        n_perrin_prime_r($n, $perrins, $perrin_primes);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perrin_primes</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> n_perrin_prime_r(<span style="color:#ae81ff">13</span>, [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>], {});
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    MAIN:{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;, &#34;</span>, sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} keys %{perrin_primes()}) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/ryan-thompson/raku/ch-1.raku">Raku</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -513,21 +513,21 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <a href="https://ry.ca/2022/06/home-prime/">PWC 168 › Home Prime - Ryan J Thompson</a></p>
 <p>Ryan&rsquo;s solution stands out as having quite some fewer characters than the ones we&rsquo;ve seen so far. Part of this is in how he never keeps a proper array of Perrins, only maintaining the three variables needed to construct the next value, which are then updated as lists in one shared assignment. This is elegance in action without unnecessary clutter.</p>
 <p>As there is no <code>return</code> present anywhere else in the subroutine, the result of the last evaluation is returned, in this case <code>@r</code>, the requested primes.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw&lt; is_prime &gt;</span>;
-
-    <span style="color:#75715e"># Calculate the first $n Perrin primes</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perrin</span> {
-        <span style="color:#66d9ef">my</span> ($n2, $n1, $n0) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>); <span style="color:#75715e"># Sliding window</span>
-        <span style="color:#66d9ef">my</span> @r;
-
-        <span style="color:#66d9ef">while</span> (@r <span style="color:#f92672">&lt;</span> $_[<span style="color:#ae81ff">0</span>]) {
-            push @r, $n0 <span style="color:#66d9ef">if</span> $n0 <span style="color:#f92672">&gt;</span> $r[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">and</span> is_prime($n0);
-            ($n2, $n1, $n0) <span style="color:#f92672">=</span> ($n1, $n0, $n2 <span style="color:#f92672">+</span> $n1);
-        }
-
-        @r;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw&lt; is_prime &gt;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Calculate the first $n Perrin primes</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perrin</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($n2, $n1, $n0) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>); <span style="color:#75715e"># Sliding window</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @r;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (@r <span style="color:#f92672">&lt;</span> $_[<span style="color:#ae81ff">0</span>]) {
+</span></span><span style="display:flex;"><span>            push @r, $n0 <span style="color:#66d9ef">if</span> $n0 <span style="color:#f92672">&gt;</span> $r[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">and</span> is_prime($n0);
+</span></span><span style="display:flex;"><span>            ($n2, $n1, $n0) <span style="color:#f92672">=</span> ($n1, $n0, $n2 <span style="color:#f92672">+</span> $n1);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @r;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/polettix/raku/ch-1.raku">Raku</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -542,19 +542,19 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Well put. We&rsquo;re looking for the first <em>primes</em> we find, not sequence values.</p>
 <p>As for the duplication, then, he takes an angle that seems as good as any: the irregularities occur only at the beginning and quickly stabilize, therefore we observe and extract the first few primes and re-commence from a stable point a few cycles ahead.</p>
 <p>Filtering out duplicates, or making sure the collected values continually increase, both  also rely on observation to verify that the strategy will work. So hence this is in fact good as any. If you&rsquo;re going to look, you might as well act on it. And it is quite clear that after an initial hiccup caused by the unusual initialization parameters, the sequence settles down and stabilizes with increasing values.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">&#39;is_prime&#39;</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perrin_primes</span> ($n) {
-       <span style="color:#66d9ef">my</span> @pps <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>);
-       <span style="color:#66d9ef">my</span> @state <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>);
-       <span style="color:#66d9ef">while</span> (@pps <span style="color:#f92672">&lt;</span> $n) {
-          push @state, <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> $state[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $state[<span style="color:#ae81ff">1</span>];
-          shift @state;
-          push @pps, $candidate <span style="color:#66d9ef">if</span> is_prime($candidate);
-       }
-       <span style="color:#66d9ef">return</span> @pps;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">&#39;is_prime&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perrin_primes</span> ($n) {
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">my</span> @pps <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">my</span> @state <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">while</span> (@pps <span style="color:#f92672">&lt;</span> $n) {
+</span></span><span style="display:flex;"><span>          push @state, <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> $state[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $state[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>          shift @state;
+</span></span><span style="display:flex;"><span>          push @pps, $candidate <span style="color:#66d9ef">if</span> is_prime($candidate);
+</span></span><span style="display:flex;"><span>       }
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">return</span> @pps;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
 <p>And lastly we have Jorg.</p>
 <p>Jorg, apparently, got bored.</p>
 <p>Jorg&rsquo;s solution then, is <em>not</em> boring. What, then, is <code>List::Gen</code>? From the documentation:</p>
@@ -563,25 +563,25 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </blockquote>
 <p>I believe I have wanted this for some time. We are given a list comprehension with a defining function to iterate over, and take the results and chain a few filters on it. That&rsquo;s all it takes.</p>
 <p>I plan to look into this one.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> bigint;
-    <span style="color:#66d9ef">use</span> List::Gen <span style="color:#e6db74">qw(:iterate :zip :source)</span>;
-    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(product)</span>;
-    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime gcd)</span>;
-
-    <span style="color:#75715e"># Building a generator for a sequence having the initial values</span>
-    <span style="color:#75715e"># S(1),...,S(k) and a recurrence relation defined by a linear</span>
-    <span style="color:#75715e"># combination of preceding elements:</span>
-    <span style="color:#75715e"># S(n) = F(1) * S(n - k) + ... + F(k) * S(n - 1) for n &gt; k.</span>
-    <span style="color:#75715e"># and taking unique primes thereof.</span>
-    <span style="color:#75715e">#</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lin_recur_primes</span> ($s, $f) {
-
-        <span style="color:#75715e"># Lazily extend the initial sequence using the recurrence relation.</span>
-        ($s <span style="color:#f92672">+</span> iterate {($s <span style="color:#f92672">=</span> [$s<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[</span>1 <span style="color:#f92672">..</span> $#$s],
-                        tuples($f, $s)<span style="color:#f92672">-&gt;</span>map(<span style="color:#e6db74">&#39;product @$_&#39;</span>)<span style="color:#f92672">-&gt;</span>sum])<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            })<span style="color:#f92672">-&gt;</span>uniq<span style="color:#f92672">-&gt;</span>filter(<span style="color:#66d9ef">sub</span> {is_prime $_});
-    }
-</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> bigint;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Gen <span style="color:#e6db74">qw(:iterate :zip :source)</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(product)</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime gcd)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Building a generator for a sequence having the initial values</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># S(1),...,S(k) and a recurrence relation defined by a linear</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># combination of preceding elements:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># S(n) = F(1) * S(n - k) + ... + F(k) * S(n - 1) for n &gt; k.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># and taking unique primes thereof.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lin_recur_primes</span> ($s, $f) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Lazily extend the initial sequence using the recurrence relation.</span>
+</span></span><span style="display:flex;"><span>        ($s <span style="color:#f92672">+</span> iterate {($s <span style="color:#f92672">=</span> [$s<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[</span>1 <span style="color:#f92672">..</span> $#$s],
+</span></span><span style="display:flex;"><span>                        tuples($f, $s)<span style="color:#f92672">-&gt;</span>map(<span style="color:#e6db74">&#39;product @$_&#39;</span>)<span style="color:#f92672">-&gt;</span>sum])<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>            })<span style="color:#f92672">-&gt;</span>uniq<span style="color:#f92672">-&gt;</span>filter(<span style="color:#66d9ef">sub</span> {is_prime $_});
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/arne-sommer/raku/ch-1.raku">Raku</a></p>
@@ -618,21 +618,21 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Further information can be found on <a href="https://en.wikipedia.org/wiki/Home_prime">Wikipedia</a> and <a href="https://oeis.org/A037274">OEIS</a>.</p>
 <p><strong>Example</strong></p>
 <p>As taken from the Wikipedia page,</p>
-<pre><code>    The mth intermediate stage in the process of determining HP(n) is designated HPn(m).
-
-    HP(10) = 773, as
-        10 factors as 2×5 yielding
-            HP10(1) = 25,
-
-        25 factors as 5×5 yielding
-            HP10(2) = HP25(1) = 55,
-
-        55  = 5×11 implies
-            HP10(3) = HP25(2) = HP55(1) = 511, and
-
-        511 = 7×73 gives
-            HP10(4) = HP25(3) = HP55(2) = HP511(1) = 773, a prime number.
-</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    The mth intermediate stage in the process of determining HP(n) is designated HPn(m)<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    HP(<span style="color:#ae81ff">10</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">773</span>, as
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">10</span> factors as <span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">5</span> yielding
+</span></span><span style="display:flex;"><span>            HP10(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">25</span> factors as <span style="color:#ae81ff">5</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">5</span> yielding
+</span></span><span style="display:flex;"><span>            HP10(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">=</span> HP25(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">55</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">55</span>  <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">11</span> implies
+</span></span><span style="display:flex;"><span>            HP10(<span style="color:#ae81ff">3</span>) <span style="color:#f92672">=</span> HP25(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">=</span> HP55(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">511</span>, <span style="color:#f92672">and</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">511</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">73</span> gives
+</span></span><span style="display:flex;"><span>            HP10(<span style="color:#ae81ff">4</span>) <span style="color:#f92672">=</span> HP25(<span style="color:#ae81ff">3</span>) <span style="color:#f92672">=</span> HP55(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">=</span> HP511(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">773</span>, a prime number<span style="color:#f92672">.</span>
+</span></span></code></pre></div><h2 id="about-the-solutions-1">about the solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
@@ -684,50 +684,50 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>When employing a module the factorization is a simple function call, so the resulting loop can be quite compact.</p>
 <p>The main logic can be condensed to a pair of lines, golfed to a bare minimum of characters. Fortunately there isn&rsquo;t too much going on. A temporary variable is continuously reassigned to the joined concatenation of its prime factors until a test for primeness is satisfied, using the two imported functions <code>factor()</code> and <code>is_prime()</code>.</p>
 <p>I think we&rsquo;re going to see a few of these. Hopefully with a few more spaces involved, to keep the peace.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(factor is_prime)</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">home_prime</span> {
-      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">my</span>$t<span style="color:#f92672">=</span>shift)<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>;
-      is_prime($t)?(<span style="color:#66d9ef">return</span>$t):($t<span style="color:#f92672">=</span>join<span style="color:#e6db74">&#39;&#39;</span>,factor$t)<span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(factor is_prime)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">home_prime</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">my</span>$t<span style="color:#f92672">=</span>shift)<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>      is_prime($t)?(<span style="color:#66d9ef">return</span>$t):($t<span style="color:#f92672">=</span>join<span style="color:#e6db74">&#39;&#39;</span>,factor$t)<span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://wlmb.github.io/2022/06/06/PWC168/">Perl Weekly Challenge 168 – W. Luis Mochán</a></p>
 <p>Here&rsquo;s another dense, quick version from Luis. Note the caveat on both of these that the input must be greater than 1. Given a 1 the program will loop infinitely, and, you know, that&rsquo;s bad form.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime factor)</span>;
-    die <span style="color:#e6db74">&#34;Usage: $0 n1 [n2... ]\n to obtain the home primes of n1...&#34;</span> <span style="color:#66d9ef">unless</span> @ARGV;
-    <span style="color:#66d9ef">for</span>(@ARGV){
-        say(<span style="color:#e6db74">&#34;The argument ($_) should have been &gt;=2&#34;</span>), <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $_<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">2</span>;
-        <span style="color:#66d9ef">my</span> $N<span style="color:#f92672">=</span>$_;
-        $N<span style="color:#f92672">=</span>join <span style="color:#e6db74">&#34;&#34;</span>, factor($N) <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>is_prime($N));
-        say <span style="color:#e6db74">&#34;HP$_=$N&#34;</span>
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime factor)</span>;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;Usage: $0 n1 [n2... ]\n to obtain the home primes of n1...&#34;</span> <span style="color:#66d9ef">unless</span> @ARGV;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(@ARGV){
+</span></span><span style="display:flex;"><span>        say(<span style="color:#e6db74">&#34;The argument ($_) should have been &gt;=2&#34;</span>), <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $_<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $N<span style="color:#f92672">=</span>$_;
+</span></span><span style="display:flex;"><span>        $N<span style="color:#f92672">=</span>join <span style="color:#e6db74">&#34;&#34;</span>, factor($N) <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>is_prime($N));
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">&#34;HP$_=$N&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
 <p>Next we have Niels, who brings us two imports, <code>Math::Prime::XS</code> and <code>Math::Factor::XS</code>. These provide the functions <code>is_prime</code> and <code>prime_factors</code>.</p>
 <p>The main loop processes the numbers from 2 to 1000, calling a <code>homeprime</code> routine to follow the chain for each value. This is turn uses a <code>try/catch</code> construct, from <code>Try::Tiny</code> to catch an exception, which is presumably when he runs out of bytes in an integer.</p>
 <p>It&rsquo;s a neat construct, and I&rsquo;ve left it in even though it appears to not actually do what it&rsquo;s supposed to. This is unfortunate. My first suspicions arose when it produced an answer for the unsolved problem of 49. I believe oversized values are corrupting the process for the largest numbers. 8 is ok, as is 20, but 48, which should be 6,161,791,591,356,884,791,277 is mangled, and 49, of course, cannot be currently assigned a value.</p>
 <p>Nice try, though. [ed note: <em>Sorry about the pun.</em>]</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::XS <span style="color:#e6db74">qw(is_prime)</span>;
-    <span style="color:#66d9ef">use</span> Math::Factor::XS <span style="color:#e6db74">qw(prime_factors)</span>;
-    <span style="color:#66d9ef">use</span> Try::Tiny;
-
-    <span style="color:#75715e"># prototype(s)</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">homePrime</span> ($);
-
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span>) {
-      <span style="color:#66d9ef">my</span>  $h <span style="color:#f92672">=</span> homePrime($n);
-      printf <span style="color:#e6db74">&#34;%d\t=&gt; %s\n&#34;</span>, $n, (<span style="color:#f92672">!</span>defined $h ? <span style="color:#e6db74">&#39;Too big to handle&#39;</span> : $h);
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">homePrime</span> ($) {
-      <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
-
-      try { $n  <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, prime_factors($n) <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>is_prime($n)) }
-      catch { <span style="color:#66d9ef">return</span> };
-
-      <span style="color:#66d9ef">return</span> $n;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::XS <span style="color:#e6db74">qw(is_prime)</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Factor::XS <span style="color:#e6db74">qw(prime_factors)</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Try::Tiny;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># prototype(s)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">homePrime</span> ($);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span>  $h <span style="color:#f92672">=</span> homePrime($n);
+</span></span><span style="display:flex;"><span>      printf <span style="color:#e6db74">&#34;%d\t=&gt; %s\n&#34;</span>, $n, (<span style="color:#f92672">!</span>defined $h ? <span style="color:#e6db74">&#39;Too big to handle&#39;</span> : $h);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">homePrime</span> ($) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      try { $n  <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, prime_factors($n) <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>is_prime($n)) }
+</span></span><span style="display:flex;"><span>      catch { <span style="color:#66d9ef">return</span> };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> $n;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/arne-sommer/raku/ch-2.raku">Raku</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -735,62 +735,62 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Well this is an interesting ride so far, isn&rsquo;t it? Not all the submissions allowed modules to do <em>all</em> the heavy lifting, with some taking a more nuanced approach.</p>
 <p>For instance, Arne accepts the help of <code>is_prime</code>, from <code>Math::Prime::Util</code> but choses to make his own factoring. With the <code>is_prime</code> function he can (relatively) quickly produce a list of all primes less than half the targe value, which then can be tested by dividing the candidate, noting the prime and reducing the value on every success.</p>
 <p>The algorithm as written does not like the number 8. This presumably occurs during step 12 of the process, which requires the factoring of the value 97,130,517,917,327 into 53 (quick and easy) and 1,832,651,281,459 (which turns out to be prime). None of these numbers are above 2<sup>64</sup>, so they won&rsquo;t cause an overflow error, but filtering a list of primes below 47 trillion or so is going to be a slog. Presumably, though, it will finish. Someday.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">&#39;is_prime&#39;</span>;
-
-    $number <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#34;&#34;</span>, factors($number)) <span style="color:#66d9ef">until</span> is_prime($number);
-    say $number;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factors</span> ($number)
-    {
-      <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">1</span>)       <span style="color:#66d9ef">if</span> $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
-      <span style="color:#66d9ef">return</span> ($number) <span style="color:#66d9ef">if</span> is_prime($number);
-
-      <span style="color:#66d9ef">my</span> @factors;
-
-      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $candidate (grep { is_prime($_) } <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
-      {
-        <span style="color:#66d9ef">while</span> ($number % <span style="color:#960050;background-color:#1e0010">$</span>candidate <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
-        {
-          push(@factors, $candidate);
-          $number <span style="color:#f92672">/=</span> $candidate;
-        }
-      }
-
-      <span style="color:#66d9ef">return</span> @factors;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">&#39;is_prime&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $number <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#34;&#34;</span>, factors($number)) <span style="color:#66d9ef">until</span> is_prime($number);
+</span></span><span style="display:flex;"><span>    say $number;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factors</span> ($number)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">1</span>)       <span style="color:#66d9ef">if</span> $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> ($number) <span style="color:#66d9ef">if</span> is_prime($number);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @factors;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $candidate (grep { is_prime($_) } <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ($number % <span style="color:#960050;background-color:#1e0010">$</span>candidate <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          push(@factors, $candidate);
+</span></span><span style="display:flex;"><span>          $number <span style="color:#f92672">/=</span> $candidate;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> @factors;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://jacoby.github.io/2022/06/08/this-is-gonna-take-forever-weekly-challenge-168.html">This Is Gonna Take FOREVER!: Weekly Challenge #168 | Committed to Memory</a></p>
 <p>Dave brings us another <code>try/catch</code> control structure within his main loop, again trying to field an error from his home prime routine, <code>get_home_prime</code>. This approach still doesn&rsquo;t like the number 8, though, as the bottleneck occurs in factoring well before an actual error is tripped. Logically the program is sound, but factoring by trial division over all numbers up to half the value is going to be crippling for certain values: 8, 20, 48, 49 and so on.</p>
 <p>So the <code>catch</code> apparently never engages.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Carp;
-    <span style="color:#66d9ef">use</span> Try::Tiny;
-    <span style="color:#66d9ef">use</span> Math::Prime::XS <span style="color:#e6db74">qw{ is_prime }</span>;
-
-    <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> @ARGV;
-
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@n) {
-        try {
-            <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> get_home_prime($i);
-            say join <span style="color:#e6db74">&#34;\t&#34;</span>, <span style="color:#e6db74">&#39;-&#39;</span>, $i, $p;
-        }
-        catch {
-            say $_;
-        };
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_home_prime</span>($n) {
-        <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $n;
-        <span style="color:#66d9ef">while</span> ( <span style="color:#f92672">!</span>is_prime($p) ) {
-            <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> get_factors($p);
-            $p <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @factors;
-            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">qq{$p }</span>;
-            <span style="color:#75715e"># croak &#39;Too Big, Too Slow&#39; if length $p &gt; 10;</span>
-        }
-        say <span style="color:#e6db74">&#39;&#39;</span>;
-        <span style="color:#66d9ef">return</span> $p;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Carp;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Try::Tiny;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::XS <span style="color:#e6db74">qw{ is_prime }</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> @ARGV;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@n) {
+</span></span><span style="display:flex;"><span>        try {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> get_home_prime($i);
+</span></span><span style="display:flex;"><span>            say join <span style="color:#e6db74">&#34;\t&#34;</span>, <span style="color:#e6db74">&#39;-&#39;</span>, $i, $p;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        catch {
+</span></span><span style="display:flex;"><span>            say $_;
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_home_prime</span>($n) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $n;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ( <span style="color:#f92672">!</span>is_prime($p) ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> get_factors($p);
+</span></span><span style="display:flex;"><span>            $p <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @factors;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">qq{$p }</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># croak &#39;Too Big, Too Slow&#39; if length $p &gt; 10;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $p;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/roger-bell-west/rust/ch-2.rs">Rust</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -799,25 +799,25 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>I jest, I jest. I will not disparage Roger&rsquo;s noble calling.</p>
 <p>Reusing some factorization and prime-generation code, Roger generates hashes of factors and sorts them into lists, stopping when the list only contains a single prime, the number itself. This obviates the need for an explicit prime check.</p>
 <p>The <code>primefactor()</code> function returns a hash of primes with their occurrences as values, so as we iterate through our sorted list of factors we need to consult this hash to concatenate the prime the correct number of times.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">homeprime</span>($n0) {
-      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>$n0;
-      <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> primefactor($n);
-        <span style="color:#66d9ef">my</span> @tk <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} keys %{$t};
-        <span style="color:#66d9ef">if</span> (scalar @tk <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $t<span style="color:#f92672">-&gt;</span>{$tk[<span style="color:#ae81ff">0</span>]} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
-          <span style="color:#66d9ef">last</span>;
-        }
-        <span style="color:#66d9ef">my</span> $ns <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $d (@tk) {
-          <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$t<span style="color:#f92672">-&gt;</span>{$d}) {
-            $ns <span style="color:#f92672">.=</span> $d;
-          }
-        }
-        $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> $ns;
-      }
-      <span style="color:#66d9ef">return</span> $n;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">homeprime</span>($n0) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>$n0;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> primefactor($n);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @tk <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} keys %{$t};
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (scalar @tk <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $t<span style="color:#f92672">-&gt;</span>{$tk[<span style="color:#ae81ff">0</span>]} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $ns <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $d (@tk) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$t<span style="color:#f92672">-&gt;</span>{$d}) {
+</span></span><span style="display:flex;"><span>            $ns <span style="color:#f92672">.=</span> $d;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> $ns;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> $n;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://pjcs-pwc.blogspot.com/2022/06/more-funny-numbers-and-very-big-one.html">More funny numbers &hellip; and a very big one</a></p>
 <p>One of the beauties of working with <code>Math::Prime:Util</code> is that it is specifically made for number theory. And in number theory, it is not uncommon at all to find yourself exploring really, really big numbers. As such it quietly, magically uses arbitrary-sized number libraries automatically when required, switching this more expensive functionality on and off to optimize for speed.</p>
@@ -825,98 +825,98 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>So by performing the primality testing and factorization within the module, only the concatenation is done within the script, and that value is, within the script, just a string of characters that happen to be digits. When handed to the <code>factor()</code> function it <em>remains</em> a string, where it is then parsed and processed as a possibly oversized number.</p>
 <p>At least I&rsquo;m reasonably sure that&rsquo;s what happens. The point is it&rsquo;s magical and doesn&rsquo;t complain. Someone, obviously, has given this quite a lot of thought. It&rsquo;s effortless. They rock.</p>
 <p>Peter&rsquo;s short program gives rapid, accurate results for the integers from 2 to 48, but balks at 49. After all, I said it was magical, not that it could work miracles.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw[factor is_prime]</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">home</span> {
-
-        <span style="color:#66d9ef">my</span> (@prime_factors, $concat);
-
-        <span style="color:#75715e"># get prime factors</span>
-        @prime_factors <span style="color:#f92672">=</span> factor(shift);
-
-        <span style="color:#75715e"># concatenate them</span>
-        $concat <span style="color:#f92672">.=</span> $_ <span style="color:#66d9ef">for</span> @prime_factors;
-
-        <span style="color:#75715e"># either we have an answer or need to go round again</span>
-        <span style="color:#66d9ef">return</span> $concat <span style="color:#66d9ef">if</span> is_prime($concat);
-        home($concat);
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw[factor is_prime]</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">home</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> (@prime_factors, $concat);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># get prime factors</span>
+</span></span><span style="display:flex;"><span>        @prime_factors <span style="color:#f92672">=</span> factor(shift);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># concatenate them</span>
+</span></span><span style="display:flex;"><span>        $concat <span style="color:#f92672">.=</span> $_ <span style="color:#66d9ef">for</span> @prime_factors;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># either we have an answer or need to go round again</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $concat <span style="color:#66d9ef">if</span> is_prime($concat);
+</span></span><span style="display:flex;"><span>        home($concat);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/robert-dicicco/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/robert-dicicco/raku/ch-2.raku">Raku</a></p>
 <p>It took me a moment to understand Robert&rsquo;s output, as instead of listing a number of sequential home primes as many chose to, he prints the intermediate numbers that are produced until a prime is found. Preloaded with a default value of 8, then, this produces a wild ride:</p>
-<pre><code>    8
-    222
-    2337
-    31941
-    33371313
-    311123771
-    7149317941
-    22931219729
-    112084656339
-    3347911118189
-    11613496501723
-    97130517917327
-    531832651281459
-    3331113965338635107
-</code></pre><p>A little cross-checking shows we arrive at the correct value. I find this view very interesting, as this is one of those explorations where the result isn&rsquo;t really what we&rsquo;re necessarily looking at, rather it&rsquo;s the process we take getting there.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">222</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2337</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">31941</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">33371313</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">311123771</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">7149317941</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">22931219729</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">112084656339</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3347911118189</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">11613496501723</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">97130517917327</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">531832651281459</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3331113965338635107</span>
+</span></span></code></pre></div><p>A little cross-checking shows we arrive at the correct value. I find this view very interesting, as this is one of those explorations where the result isn&rsquo;t really what we&rsquo;re necessarily looking at, rather it&rsquo;s the process we take getting there.</p>
 <p>I made a quick little script like this myself earlier, when writing this review, to see what exactly was going on inside the long chain from 8. After producing a result like Robert&rsquo;s, I further modified it to include a space between the individual primes before concatenation. This yielded the following variation that shows how we got these particular values.</p>
-<pre><code>    2 2 2
-    2 3 37
-    3 19 41
-    3 3 3 7 13 13
-    3 11123771
-    7 149 317 941
-    229 31219729
-    11 2084656339
-    3 347 911 118189
-    11 613 496501723
-    97 130517 917327
-    53 1832651281459
-    3 3 3 11 139 653 3863 5107
-    3331113965338635107
-</code></pre><p>This in turn revealed the need to factor 1832651281459 that we spoke of earlier.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">37</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">41</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">13</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">11123771</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">149</span> <span style="color:#ae81ff">317</span> <span style="color:#ae81ff">941</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">229</span> <span style="color:#ae81ff">31219729</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">2084656339</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">347</span> <span style="color:#ae81ff">911</span> <span style="color:#ae81ff">118189</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">613</span> <span style="color:#ae81ff">496501723</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">97</span> <span style="color:#ae81ff">130517</span> <span style="color:#ae81ff">917327</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">53</span> <span style="color:#ae81ff">1832651281459</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">139</span> <span style="color:#ae81ff">653</span> <span style="color:#ae81ff">3863</span> <span style="color:#ae81ff">5107</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3331113965338635107</span>
+</span></span></code></pre></div><p>This in turn revealed the need to factor 1832651281459 that we spoke of earlier.</p>
 <p>Anyway, I just thought some of you might have been interested in that tidbit. Robert has a <code>homeprime()</code> function that factors a number and performs the concatenation for us, returning the new number as a string.</p>
 <p>A little more bookkeeping in required to preserve the intermediate steps, but we can see the check for primality that triggers the end of the search.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">homeprime</span> {
-      <span style="color:#66d9ef">my</span> $hp <span style="color:#f92672">=</span> shift;
-      <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> factor($hp);
-      <span style="color:#66d9ef">my</span> $hp_new <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>,@factors);
-      <span style="color:#66d9ef">return</span>($hp_new);
-    }
-
-    <span style="color:#66d9ef">my</span> $flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    push(@results, $hp);
-
-    <span style="color:#66d9ef">while</span> ( $flag <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-      <span style="color:#66d9ef">my</span> $retval <span style="color:#f92672">=</span> homeprime($hp);
-      <span style="color:#66d9ef">if</span> ( is_prime($retval) ){
-
-        push(@results, $retval);
-        $flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-      } <span style="color:#66d9ef">else</span> {
-
-        push(@results, $retval);
-        $hp <span style="color:#f92672">=</span> $retval;
-
-      }
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">homeprime</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $hp <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> factor($hp);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $hp_new <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>,@factors);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>($hp_new);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    push(@results, $hp);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ( $flag <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $retval <span style="color:#f92672">=</span> homeprime($hp);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> ( is_prime($retval) ){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        push(@results, $retval);
+</span></span><span style="display:flex;"><span>        $flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        push(@results, $retval);
+</span></span><span style="display:flex;"><span>        $hp <span style="color:#f92672">=</span> $retval;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/steve-g-lynn/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/steve-g-lynn/raku/ch-2.p6">Raku</a></p>
 <p>Finally, new member Stephen brings recursion into consideration to perform his looping, which, with a little help from <code>Math::Prime::Util::GMP</code> gives us very compact, tight solution.</p>
 <p>It really isn&rsquo;t necessary to specify the <code>GMP</code> library directly for <code>Math::Prime::Util</code>, as we have noted previously an inherent sneakiness to the module: it will already automatically use the <code>GMP</code> library when it is available. All you need to do is make sure <code>Math::Prime::Util::GMP</code> has been installed, meaning complied of course, so we can switch on over. Calling it like this will, however, ensure the user has it installed.</p>
 <p>As we have seen, some of the factoring required really isn&rsquo;t practical in Perl.</p>
 <p>Of note as well, though, Stephen is absolutely correct in his comment!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util::GMP <span style="color:#e6db74">qw(is_prime factor)</span>; <span style="color:#75715e"># very fast!</span>
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">home_prime</span> {
-        <span style="color:#66d9ef">my</span> ($n)<span style="color:#f92672">=</span>@_;
-        is_prime($n) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span> $n;
-        <span style="color:#66d9ef">return</span>	<span style="color:#f92672">&amp;</span>home_prime(join(<span style="color:#e6db74">&#39;&#39;</span>,sort{$a<span style="color:#e6db74">&lt;=&gt;</span>$b}(factor($n))));
-    }
-</code></pre></div><p>Bring it on, Stephen, bring it on.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util::GMP <span style="color:#e6db74">qw(is_prime factor)</span>; <span style="color:#75715e"># very fast!</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">home_prime</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($n)<span style="color:#f92672">=</span>@_;
+</span></span><span style="display:flex;"><span>        is_prime($n) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span> $n;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>	<span style="color:#f92672">&amp;</span>home_prime(join(<span style="color:#e6db74">&#39;&#39;</span>,sort{$a<span style="color:#e6db74">&lt;=&gt;</span>$b}(factor($n))));
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Bring it on, Stephen, bring it on.</p>
 <h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
 <p>  <strong>additional languages:</strong>

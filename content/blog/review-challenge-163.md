@@ -71,7 +71,7 @@ You are given list positive numbers, @n.
 Write script to calculate the sum of bitwise & operator for all unique pairs.
 
 **Example 1**
-```
+```perl
     Input: @n = (1, 2, 3)
     Output: 3
 ```
@@ -79,7 +79,7 @@ Write script to calculate the sum of bitwise & operator for all unique pairs.
 Since (1 & 2) + (2 & 3) + (1 & 3) => 0 + 2 + 1 =>  3.
 
 **Example 2**
-```
+```perl
     Input: @n = (2, 3, 4)
     Output: 2
 ```
@@ -223,7 +223,7 @@ I find the string assembly to be the more interesting part of the solution. Most
 
 You may notice that we are still treating "unique" to mean unique index pairings. This was by far the most common approach.
 
-```
+```perl
     Input: @n = (3, 4, 3, 3)
     Output: 9
 
@@ -579,7 +579,7 @@ Write a script to find out the summations as described below.
 
 **Example 2**
 
-```
+```perl
     Input: @n = (1, 2, 3, 4, 5)
     Output: 42
 
@@ -594,7 +594,7 @@ The nth Row starts with the second element of the (n-1)th row. The following ele
 
 **Example 2**
 
-```
+```perl
     Input: @n = (1, 3, 5, 7, 9)
     Output: 70
 
@@ -679,7 +679,7 @@ The second step of the process is to create a new list, with each element replac
 
 For the third step we replace the previous list with the new and repeat the process. By trimming the list one element every time we go around, we will, as we said, eventually and inevitably only have one element left.
 
-```
+```perl
     Input: @n = (2, 4, 50, 83, 6, 5, 9)
     Output: 4710
 

@@ -209,95 +209,95 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>In the example below, I create one process for each task i.e. <code>5 processes</code> for <code>5 tasks</code>.</p>
 <p><a href="https://github.com/manwar/Concurrent-Parallel-Programming/blob/main/scripts/mce/mce-process.pl">[<strong>Source Code</strong>]</a></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> MCE;
-<span style="color:#66d9ef">use</span> MCE::Shared;
-
-<span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> MCE::Shared<span style="color:#f92672">-&gt;</span>scalar(<span style="color:#ae81ff">0</span>);
-
-<span style="color:#66d9ef">my</span> $mce <span style="color:#f92672">=</span> MCE<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
-    max_workers <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
-    chunk_size  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
-    user_func   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-        <span style="color:#66d9ef">my</span> ($mce, $chunk_ref, $chunk_id) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span> $task <span style="color:#f92672">=</span> $chunk_ref<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
-
-        $counter<span style="color:#f92672">-&gt;</span>lock;
-        <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> $counter<span style="color:#f92672">-&gt;</span>get;
-        $value <span style="color:#f92672">+=</span> $task;
-        $counter<span style="color:#f92672">-&gt;</span>set($value);
-        $counter<span style="color:#f92672">-&gt;</span>unlock;
-
-        say <span style="color:#e6db74">&#34;Process $$: task $task&#34;</span>;
-    },
-);
-
-$mce<span style="color:#f92672">-&gt;</span>spawn;
-$mce<span style="color:#f92672">-&gt;</span>process([<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>]);
-$mce<span style="color:#f92672">-&gt;</span>shutdown;
-
-say <span style="color:#e6db74">&#34;Final counter: &#34;</span>, $counter<span style="color:#f92672">-&gt;</span>get;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> MCE;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> MCE::Shared;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> MCE::Shared<span style="color:#f92672">-&gt;</span>scalar(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $mce <span style="color:#f92672">=</span> MCE<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+</span></span><span style="display:flex;"><span>    max_workers <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>    chunk_size  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    user_func   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($mce, $chunk_ref, $chunk_id) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $task <span style="color:#f92672">=</span> $chunk_ref<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $counter<span style="color:#f92672">-&gt;</span>lock;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> $counter<span style="color:#f92672">-&gt;</span>get;
+</span></span><span style="display:flex;"><span>        $value <span style="color:#f92672">+=</span> $task;
+</span></span><span style="display:flex;"><span>        $counter<span style="color:#f92672">-&gt;</span>set($value);
+</span></span><span style="display:flex;"><span>        $counter<span style="color:#f92672">-&gt;</span>unlock;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">&#34;Process $$: task $task&#34;</span>;
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$mce<span style="color:#f92672">-&gt;</span>spawn;
+</span></span><span style="display:flex;"><span>$mce<span style="color:#f92672">-&gt;</span>process([<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>]);
+</span></span><span style="display:flex;"><span>$mce<span style="color:#f92672">-&gt;</span>shutdown;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">&#34;Final counter: &#34;</span>, $counter<span style="color:#f92672">-&gt;</span>get;
+</span></span></code></pre></div><br>
 <p>Running the above code, you should see a new process, <code>PID</code>, for each task.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl mce<span style="color:#f92672">-</span>process<span style="color:#f92672">.</span>pl
-Process <span style="color:#ae81ff">15295</span>: task <span style="color:#ae81ff">2</span>
-Process <span style="color:#ae81ff">15292</span>: task <span style="color:#ae81ff">1</span>
-Process <span style="color:#ae81ff">15291</span>: task <span style="color:#ae81ff">5</span>
-Process <span style="color:#ae81ff">15293</span>: task <span style="color:#ae81ff">4</span>
-Process <span style="color:#ae81ff">15294</span>: task <span style="color:#ae81ff">3</span>
-Final counter: <span style="color:#ae81ff">15</span>
-$
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl mce<span style="color:#f92672">-</span>process<span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span>Process <span style="color:#ae81ff">15295</span>: task <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>Process <span style="color:#ae81ff">15292</span>: task <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>Process <span style="color:#ae81ff">15291</span>: task <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>Process <span style="color:#ae81ff">15293</span>: task <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>Process <span style="color:#ae81ff">15294</span>: task <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>Final counter: <span style="color:#ae81ff">15</span>
+</span></span><span style="display:flex;"><span>$
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s use <code>MCE</code> once again but this time for <code>thread-based parallelism</code>.</p>
 <p>In the example below, within a process, there is one thread per task i.e. <code>1 process</code> spawning <code>5 threads</code> for <code>5 tasks</code>.</p>
 <p><a href="https://github.com/manwar/Concurrent-Parallel-Programming/blob/main/scripts/mce/mce-thread.pl">[<strong>Source Code</strong>]</a></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> threads;
-<span style="color:#66d9ef">use</span> threads::shared;
-<span style="color:#66d9ef">use</span> MCE;
-
-<span style="color:#66d9ef">my</span> $counter :shared <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-<span style="color:#66d9ef">my</span> $mce <span style="color:#f92672">=</span> MCE<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
-    max_workers <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
-    chunk_size  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
-    user_func   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-        <span style="color:#66d9ef">my</span> ($mce, $chunk_ref, $chunk_id) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span> $task <span style="color:#f92672">=</span> $chunk_ref<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
-
-        {
-            lock($counter);
-            $counter <span style="color:#f92672">+=</span> $task;
-        }
-
-        <span style="color:#66d9ef">my</span> $tid <span style="color:#f92672">=</span> threads<span style="color:#f92672">-&gt;</span>tid;
-        say <span style="color:#e6db74">&#34;Process $$ - Thread $tid: task $task&#34;</span>;
-    },
-);
-
-$mce<span style="color:#f92672">-&gt;</span>spawn;
-$mce<span style="color:#f92672">-&gt;</span>process([<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>]);
-$mce<span style="color:#f92672">-&gt;</span>shutdown;
-
-say <span style="color:#e6db74">&#34;Final counter: $counter&#34;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> threads;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> threads::shared;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> MCE;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $counter :shared <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $mce <span style="color:#f92672">=</span> MCE<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+</span></span><span style="display:flex;"><span>    max_workers <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>    chunk_size  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    user_func   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($mce, $chunk_ref, $chunk_id) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $task <span style="color:#f92672">=</span> $chunk_ref<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            lock($counter);
+</span></span><span style="display:flex;"><span>            $counter <span style="color:#f92672">+=</span> $task;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $tid <span style="color:#f92672">=</span> threads<span style="color:#f92672">-&gt;</span>tid;
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">&#34;Process $$ - Thread $tid: task $task&#34;</span>;
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$mce<span style="color:#f92672">-&gt;</span>spawn;
+</span></span><span style="display:flex;"><span>$mce<span style="color:#f92672">-&gt;</span>process([<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>]);
+</span></span><span style="display:flex;"><span>$mce<span style="color:#f92672">-&gt;</span>shutdown;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">&#34;Final counter: $counter&#34;</span>;
+</span></span></code></pre></div><br>
 <p>Run the above code, you can see the <code>5 threads</code> inside <code>1 process</code> dealings with <code>5 tasks</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl mce<span style="color:#f92672">-</span>thread<span style="color:#f92672">.</span>pl
-Process <span style="color:#ae81ff">15333</span> <span style="color:#f92672">-</span> Thread <span style="color:#ae81ff">3</span>: task <span style="color:#ae81ff">1</span>
-Process <span style="color:#ae81ff">15333</span> <span style="color:#f92672">-</span> Thread <span style="color:#ae81ff">1</span>: task <span style="color:#ae81ff">2</span>
-Process <span style="color:#ae81ff">15333</span> <span style="color:#f92672">-</span> Thread <span style="color:#ae81ff">5</span>: task <span style="color:#ae81ff">3</span>
-Process <span style="color:#ae81ff">15333</span> <span style="color:#f92672">-</span> Thread <span style="color:#ae81ff">4</span>: task <span style="color:#ae81ff">4</span>
-Process <span style="color:#ae81ff">15333</span> <span style="color:#f92672">-</span> Thread <span style="color:#ae81ff">2</span>: task <span style="color:#ae81ff">5</span>
-Final counter: <span style="color:#ae81ff">15</span>
-$
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl mce<span style="color:#f92672">-</span>thread<span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span>Process <span style="color:#ae81ff">15333</span> <span style="color:#f92672">-</span> Thread <span style="color:#ae81ff">3</span>: task <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>Process <span style="color:#ae81ff">15333</span> <span style="color:#f92672">-</span> Thread <span style="color:#ae81ff">1</span>: task <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>Process <span style="color:#ae81ff">15333</span> <span style="color:#f92672">-</span> Thread <span style="color:#ae81ff">5</span>: task <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>Process <span style="color:#ae81ff">15333</span> <span style="color:#f92672">-</span> Thread <span style="color:#ae81ff">4</span>: task <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>Process <span style="color:#ae81ff">15333</span> <span style="color:#f92672">-</span> Thread <span style="color:#ae81ff">2</span>: task <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>Final counter: <span style="color:#ae81ff">15</span>
+</span></span><span style="display:flex;"><span>$
+</span></span></code></pre></div><br>
 <h4 id="note-the-use-mce-should-be-the-last-import-otherwise-you-wouldnt-get-the-expected-behaviour"><strong>NOTE:</strong> The <code>use MCE</code> should be the last import otherwise you wouldn&rsquo;t get the expected behaviour.</h4>
 
     </article>

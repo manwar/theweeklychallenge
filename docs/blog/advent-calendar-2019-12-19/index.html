@@ -177,27 +177,27 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2019blogadvent-calendar-2019"><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></h2>
-<h3 id="-day-18blogadvent-calendar-2019-12-18--day-19--day-20blogadvent-calendar-2019-12-20-">| <a href="/blog/advent-calendar-2019-12-18"><strong>Day 18</strong></a> | <strong>Day 19</strong> | <a href="/blog/advent-calendar-2019-12-20"><strong>Day 20</strong></a> |</h3>
+        <h2 id="advent-calendar-2019"><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></h2>
+<h3 id="-day-18--day-19--day-20-">| <a href="/blog/advent-calendar-2019-12-18"><strong>Day 18</strong></a> | <strong>Day 19</strong> | <a href="/blog/advent-calendar-2019-12-20"><strong>Day 20</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <strong>Khalid</strong>. Today he is talking about his solutions to <strong>Task #1: Strip leading zeros</strong> of <strong><a href="/blog/perl-weekly-challenge-002">&ldquo;The Weekly Challenge - 002&rdquo;</a></strong>.</p>
 <h4 id="write-a-script-or-one-liner-to-remove-leading-zeros-from-positive-numbers">Write a script or one-liner to remove leading zeros from positive numbers.</h4>
 <hr>
 <h1 id="this-solution-uses-raku-grammer">This solution uses Raku Grammer</h1>
 <p>At first here is the code :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">grammar Grammer {
-    token TOP {<span style="color:#e6db74">&lt;sign&gt;</span>? <span style="color:#e6db74">&lt;int&gt;</span> <span style="color:#e6db74">&lt;decimal&gt;</span>?}
-    token decimal {<span style="color:#e6db74">&lt;dot&gt;&lt;digit&gt;</span>?}
-    token int {<span style="color:#e6db74">&lt;zeros&gt;</span>? <span style="color:#e6db74">&lt;digit&gt;</span>?}
-    token digit { <span style="color:#f92672">\</span>d<span style="color:#f92672">+</span> }
-    token dot { <span style="color:#e6db74">&#39;.&#39;</span> }
-    token zeros {<span style="color:#ae81ff">0</span><span style="color:#f92672">+</span>}
-    token sign {<span style="color:#e6db74">&#39;+&#39;</span>}
-}
-<span style="color:#66d9ef">my</span> $match <span style="color:#f92672">=</span> Grammer<span style="color:#f92672">.</span>parse(@<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>]);
-<span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span>  ($match<span style="color:#e6db74">&lt;int&gt;&lt;digit&gt;</span> <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>)  <span style="color:#f92672">~</span> ($match<span style="color:#e6db74">&lt;decimal&gt;</span> <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>);
-say $number;
-</code></pre></div><p>at the first line we simply creat a <strong>Grammer</strong> with name &lsquo;Grammer&rsquo; which is a <strong>Class</strong> that have methods (<strong>rules</strong>, <strong>tokens</strong> and <strong>regexes</strong>) as <a href="https://docs.raku.org/language/grammars"><strong>documented here</strong></a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>grammar Grammer {
+</span></span><span style="display:flex;"><span>    token TOP {<span style="color:#e6db74">&lt;sign&gt;</span>? <span style="color:#e6db74">&lt;int&gt;</span> <span style="color:#e6db74">&lt;decimal&gt;</span>?}
+</span></span><span style="display:flex;"><span>    token decimal {<span style="color:#e6db74">&lt;dot&gt;&lt;digit&gt;</span>?}
+</span></span><span style="display:flex;"><span>    token int {<span style="color:#e6db74">&lt;zeros&gt;</span>? <span style="color:#e6db74">&lt;digit&gt;</span>?}
+</span></span><span style="display:flex;"><span>    token digit { <span style="color:#f92672">\</span>d<span style="color:#f92672">+</span> }
+</span></span><span style="display:flex;"><span>    token dot { <span style="color:#e6db74">&#39;.&#39;</span> }
+</span></span><span style="display:flex;"><span>    token zeros {<span style="color:#ae81ff">0</span><span style="color:#f92672">+</span>}
+</span></span><span style="display:flex;"><span>    token sign {<span style="color:#e6db74">&#39;+&#39;</span>}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $match <span style="color:#f92672">=</span> Grammer<span style="color:#f92672">.</span>parse(@<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>]);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span>  ($match<span style="color:#e6db74">&lt;int&gt;&lt;digit&gt;</span> <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>)  <span style="color:#f92672">~</span> ($match<span style="color:#e6db74">&lt;decimal&gt;</span> <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span>say $number;
+</span></span></code></pre></div><p>at the first line we simply creat a <strong>Grammer</strong> with name &lsquo;Grammer&rsquo; which is a <strong>Class</strong> that have methods (<strong>rules</strong>, <strong>tokens</strong> and <strong>regexes</strong>) as <a href="https://docs.raku.org/language/grammars"><strong>documented here</strong></a>.</p>
 <h2 id="lets-get-the-zeros-token-first">Let&rsquo;s get the zeros token first:</h2>
 <h4 id="0-matches-any-number-of-zeros-in-the-input"><code>0+</code> matches any number of Zeros in the input</h4>
 <h4 id="dot-token--matches-only-"><code>dot</code> token : matches only <code>.</code></h4>

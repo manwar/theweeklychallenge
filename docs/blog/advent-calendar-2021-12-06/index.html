@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-5blogadvent-calendar-2021-12-05--day-6--day-7blogadvent-calendar-2021-12-07-">| <a href="/blog/advent-calendar-2021-12-05"><strong>Day 5</strong></a> | <strong>Day 6</strong> | <a href="/blog/advent-calendar-2021-12-07"><strong>Day 7</strong></a> |</h3>
+        <h2 id="advent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
+<h3 id="-day-5--day-6--day-7-">| <a href="/blog/advent-calendar-2021-12-05"><strong>Day 5</strong></a> | <strong>Day 6</strong> | <a href="/blog/advent-calendar-2021-12-07"><strong>Day 7</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-2021-04"><strong>Aaron Smith</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-102"><strong>&ldquo;The Weekly Challenge - 102&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://aaronreidsmith.github.io/blog/perl-weekly-challenge-102"><strong>post</strong></a> by <code>Aaron Smith</code>.</p>
 <hr>
@@ -198,29 +198,29 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h3 id="see-below-for-explanation-and-any-implementation-specific-comments">See below for explanation and any implementation-specific comments.</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">ub challenge(Int $N) returns Str {
-    <span style="color:#66d9ef">my</span> @output;
-    <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> $N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">while</span> $index <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> {
-        @output[$index] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span>;
-        <span style="color:#66d9ef">my</span> $position <span style="color:#f92672">=</span> $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># Position is 1-based while index is 0-based</span>
-        <span style="color:#66d9ef">for</span> $position<span style="color:#f92672">.</span>flip<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $offset, $digit {
-            @output[$index <span style="color:#f92672">-</span> ($offset <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)] <span style="color:#f92672">=</span> $digit;
-        }
-        $index <span style="color:#f92672">-=</span> ($position<span style="color:#f92672">.</span>chars <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
-    }
-    @output<span style="color:#f92672">.</span>join;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $N) {
-    say challenge($N);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>ub challenge(Int $N) returns Str {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @output;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> $N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> $index <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        @output[$index] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $position <span style="color:#f92672">=</span> $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># Position is 1-based while index is 0-based</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> $position<span style="color:#f92672">.</span>flip<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $offset, $digit {
+</span></span><span style="display:flex;"><span>            @output[$index <span style="color:#f92672">-</span> ($offset <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)] <span style="color:#f92672">=</span> $digit;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $index <span style="color:#f92672">-=</span> ($position<span style="color:#f92672">.</span>chars <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    @output<span style="color:#f92672">.</span>join;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $N) {
+</span></span><span style="display:flex;"><span>    say challenge($N);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="this-program-runs-as-such">This program runs as such:</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">$ raku ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>raku <span style="color:#ae81ff">14</span>
-<span style="color:#ae81ff">2</span><span style="color:#75715e">#4#6#8#11#14#</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ raku ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>raku <span style="color:#ae81ff">14</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span><span style="color:#75715e">#4#6#8#11#14#</span>
+</span></span></code></pre></div><br>
 <h2 id="explanation">Explanation</h2>
 <br>
 <p>We are given two really concrete details about the sequence:</p>

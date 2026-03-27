@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-3blogadvent-calendar-2021-12-03--day-4--day-5blogadvent-calendar-2021-12-05-">| <a href="/blog/advent-calendar-2021-12-03"><strong>Day 3</strong></a> | <strong>Day 4</strong> | <a href="/blog/advent-calendar-2021-12-05"><strong>Day 5</strong></a> |</h3>
+        <h2 id="advent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
+<h3 id="-day-3--day-4--day-5-">| <a href="/blog/advent-calendar-2021-12-03"><strong>Day 3</strong></a> | <strong>Day 4</strong> | <a href="/blog/advent-calendar-2021-12-05"><strong>Day 5</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-2021-07"><strong>Flavio Poletti</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-100"><strong>&ldquo;The Weekly Challenge - 100&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://github.polettix.it/ETOOBUSY/2021/02/18/pwc100-triangle-sum/"><strong>post</strong></a> by <code>Flavio Poletti</code>.</p>
 <hr>
@@ -192,8 +192,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <p>I can definitely hear <code>Mohammad S Anwar</code> muttering to himself about that objectively annoying <code>polettix</code> insisting on having a more specific example for the input of this challenge. Because… it’s nice to see this:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    Input: Triangle <span style="color:#f92672">=</span> [ [<span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">9</span>], [<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">2</span>] ]
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    Input: Triangle <span style="color:#f92672">=</span> [ [<span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">9</span>], [<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">2</span>] ]
+</span></span></code></pre></div><br>
 <p>A-ha! I will assume that there’s no parsing involved then, and that the representation is already in easy-to-use Perl arrays of arrays. Thanks!</p>
 <p>Reading through the <a href="/blog/review-challenge-097">Perl Weekly Review #097</a> by <code>Colin Crain</code> I got to understand how much stuff I give for granted when I read these challenges. For example, the fact that the the minimum number of changes in the binary substrings might land on none of the actual sub-sequences was an epiphany!</p>
 <p>So I wonder… what might I be missing here?!?.</p>
@@ -205,35 +205,35 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>I said: no parsing, yay!</p>
 <p>Alas, I like to have programs around the functions that solve these challenges, which usually means messing up with the command line. So let’s take this away first:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangularize</span> (@list) {
-   <span style="color:#66d9ef">my</span> @retval;
-   <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-   <span style="color:#66d9ef">while</span> (@list) {
-      die <span style="color:#e6db74">&#34;invalid number of elements\n&#34;</span> <span style="color:#66d9ef">unless</span> @list <span style="color:#f92672">&gt;=</span> $n;
-      push @retval, [splice @list, <span style="color:#ae81ff">0</span>, $n];
-      <span style="color:#f92672">++</span>$n;
-   }
-   <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@retval;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangularize</span> (@list) {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> @retval;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">while</span> (@list) {
+</span></span><span style="display:flex;"><span>      die <span style="color:#e6db74">&#34;invalid number of elements\n&#34;</span> <span style="color:#66d9ef">unless</span> @list <span style="color:#f92672">&gt;=</span> $n;
+</span></span><span style="display:flex;"><span>      push @retval, [splice @list, <span style="color:#ae81ff">0</span>, $n];
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">++</span>$n;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@retval;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>This takes a flat list of items and groups them in the right way for the puzzle, producing an array of arrays as output.</p>
 <p>OK, back on the main track, let’s see my solution to this challenge:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangle_sum</span> ($tri) {
-   <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> $tri<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>];
-   <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-   <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> $tri<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>) {
-      <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $tri<span style="color:#f92672">-&gt;</span>[$i];
-      <span style="color:#66d9ef">my</span> @ns <span style="color:#f92672">=</span> $s[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $l<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
-      push @ns, $l<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">+</span> ($s[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $s[$_] ? $s[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] : $s[$_])
-         <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $l<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">-</span> 1;
-      push @ns, $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $l<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
-      @s <span style="color:#f92672">=</span> @ns;
-      <span style="color:#f92672">++</span>$i;
-   }
-   <span style="color:#66d9ef">return</span> min(@s);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangle_sum</span> ($tri) {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> $tri<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> $tri<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $tri<span style="color:#f92672">-&gt;</span>[$i];
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @ns <span style="color:#f92672">=</span> $s[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $l<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>      push @ns, $l<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">+</span> ($s[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $s[$_] ? $s[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] : $s[$_])
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $l<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">-</span> 1;
+</span></span><span style="display:flex;"><span>      push @ns, $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $l<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>      @s <span style="color:#f92672">=</span> @ns;
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">++</span>$i;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> min(@s);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>We keep an array <code>@s</code> of the best sums so far that landed us on a specific spot. This starts with the very first line in our triangle, which contains only one single item (<code>$tri-&gt;[0][0]</code>).</p>
 <p>For each following line, we calculate the next sums in <code>@ns</code>. There are three cases:</p>
 <pre><code>* the left-most item can only come from the left-most item in the previous line;
@@ -245,42 +245,42 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>When we’re done with the last line, we just have to calculate the minimum of all the possible sums up to the last line and we’re done!</p>
 <p>Here is the whole program, for the masochists:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-<span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.024</span>;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw&lt; postderef signatures &gt;</span>;
-<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw&lt; experimental::postderef experimental::signatures &gt;</span>;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;min&#39;</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangle_sum</span> ($tri) {
-   <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> $tri<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>];
-   <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-   <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> $tri<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>) {
-      <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $tri<span style="color:#f92672">-&gt;</span>[$i];
-      <span style="color:#66d9ef">my</span> @ns <span style="color:#f92672">=</span> $s[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $l<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
-      push @ns, $l<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">+</span> ($s[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $s[$_] ? $s[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] : $s[$_])
-         <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $l<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">-</span> 1;
-      push @ns, $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $l<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
-      @s <span style="color:#f92672">=</span> @ns;
-      <span style="color:#f92672">++</span>$i;
-   }
-   <span style="color:#66d9ef">return</span> min(@s);
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangularize</span> (@list) {
-   <span style="color:#66d9ef">my</span> @retval;
-   <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-   <span style="color:#66d9ef">while</span> (@list) {
-      die <span style="color:#e6db74">&#34;invalid number of elements\n&#34;</span> <span style="color:#66d9ef">unless</span> @list <span style="color:#f92672">&gt;=</span> $n;
-      push @retval, [splice @list, <span style="color:#ae81ff">0</span>, $n];
-      <span style="color:#f92672">++</span>$n;
-   }
-   <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@retval;
-}
-
-<span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> @ARGV ? @ARGV : <span style="color:#e6db74">qw&lt; 1 2 4 6 4 9 5 1 7 2 &gt;</span>;
-say triangle_sum(triangularize(@list));
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.024</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw&lt; postderef signatures &gt;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw&lt; experimental::postderef experimental::signatures &gt;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;min&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangle_sum</span> ($tri) {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> $tri<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> $tri<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $tri<span style="color:#f92672">-&gt;</span>[$i];
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @ns <span style="color:#f92672">=</span> $s[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $l<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>      push @ns, $l<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">+</span> ($s[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $s[$_] ? $s[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] : $s[$_])
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $l<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">-</span> 1;
+</span></span><span style="display:flex;"><span>      push @ns, $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $l<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>      @s <span style="color:#f92672">=</span> @ns;
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">++</span>$i;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> min(@s);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangularize</span> (@list) {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> @retval;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">while</span> (@list) {
+</span></span><span style="display:flex;"><span>      die <span style="color:#e6db74">&#34;invalid number of elements\n&#34;</span> <span style="color:#66d9ef">unless</span> @list <span style="color:#f92672">&gt;=</span> $n;
+</span></span><span style="display:flex;"><span>      push @retval, [splice @list, <span style="color:#ae81ff">0</span>, $n];
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">++</span>$n;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@retval;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> @ARGV ? @ARGV : <span style="color:#e6db74">qw&lt; 1 2 4 6 4 9 5 1 7 2 &gt;</span>;
+</span></span><span style="display:flex;"><span>say triangle_sum(triangularize(@list));
+</span></span></code></pre></div><br>
 <p>Stay safe folks!</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>

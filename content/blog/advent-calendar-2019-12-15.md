@@ -55,7 +55,7 @@ say 'Variable test is: ' .  $test
 
 ## RAKU SOLUTION
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN (Str $variable) {

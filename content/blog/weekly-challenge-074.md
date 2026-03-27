@@ -98,7 +98,7 @@ What I have got now is borrowed from **Perl**. I vaguely remember someone told m
 
 <br>
 
-```perl6
+```perl
 sub find-majority-element(Str $list is copy) {
 
     die "ERROR: Invalid list [$list].\n"
@@ -137,7 +137,7 @@ For **Raku** solution, I didn't bother creating helper subroutine. Other than th
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$list = "1, 2, 2, 3, 2, 4, 2") {
@@ -199,7 +199,7 @@ I didn't do anything extravagant when it comes to unit test in **Raku**.
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 is find-majority-element("1, 2, 2, 3, 2, 4, 2"), 2, "example 1";
@@ -267,7 +267,7 @@ I would also like to point out the use of `False`, isn't it cool?
 
 <br>
 
-```perl6
+```perl
 
 sub fnr-character(Str $string) {
 
@@ -317,7 +317,7 @@ print join "\n", (join ' => ', $S, fnr_character($S)), '';
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$S = 'ababc') {
@@ -385,7 +385,7 @@ For **Raku**, I kept is simple and easy.
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 is fnr-character('ababc'),  'abb#c',  'example 1';

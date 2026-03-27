@@ -592,7 +592,7 @@ sub rotate_45
 
 Ok, I can't not show this:
 
-```
+```perl
 b
 i l
 d d u
@@ -837,7 +837,7 @@ The two variables `$di` and `$gi` are the indices for the dictionary and grid wo
 
 Niels has outdone himself again, crafting an elaborate output that not only lists the words found, but in which direction they were found. He does this by instead of just storing word matches in an output array, he stashes them is a complex data structure that he later turns into a proper report.
 
-```
+```perl
 25 uniq words found in grid of length 5 or more (using dictionary containing 205058 words).
 
 Word         | DLRBT | DLRTB | DRLBT | DRLTB |   HLR |   HRL |   VBT |   VTB

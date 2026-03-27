@@ -529,7 +529,7 @@ Write a script to convert the fraction into decimal string. If the fractional pa
 
 **Example**
 
-```
+```perl
     Input:  $N = 1, $D = 3
     Output: "0.(3)"
 

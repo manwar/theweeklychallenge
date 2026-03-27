@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2022blogadvent-calendar-2022"><a href="/blog/advent-calendar-2022"><strong>Advent Calendar 2022</strong></a></h2>
-<h3 id="-nbsp-day-14blogadvent-calendar-2022-12-14-nbsp--nbsp-day-15-nbsp--nbsp-day-16blogadvent-calendar-2022-12-16-nbsp-">|   <a href="/blog/advent-calendar-2022-12-14"><strong>Day 14</strong></a>   |   <strong>Day 15</strong>   |   <a href="/blog/advent-calendar-2022-12-16"><strong>Day 16</strong></a>   |</h3>
+        <h2 id="advent-calendar-2022"><a href="/blog/advent-calendar-2022"><strong>Advent Calendar 2022</strong></a></h2>
+<h3 id="--day-14----day-15----day-16--">|   <a href="/blog/advent-calendar-2022-12-14"><strong>Day 14</strong></a>   |   <strong>Day 15</strong>   |   <a href="/blog/advent-calendar-2022-12-16"><strong>Day 16</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>E. Choroba</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-189"><strong>&ldquo;The Weekly Challenge - 189&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2022</strong> from the original <a href="https://blogs.perl.org/users/e_choroba/2022/11/array-degree.html"><strong>post</strong></a> by him.</p>
 <hr>
@@ -198,101 +198,101 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>The idea is simple. Write a function that computes the degree of an array, then try all possible combinations of the start and end positions to find the shortest slice that still has the same degree. It’s a bit ineffective, but we can start optimising later.</p>
 <p>Computing the degree is simple:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">degree</span> ($arr) {
-    <span style="color:#66d9ef">my</span> %freq;
-    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $e (@$arr) {
-        $max <span style="color:#f92672">=</span> $freq{$e} <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$freq{$e} <span style="color:#f92672">&gt;</span> $max;
-    }
-    <span style="color:#66d9ef">return</span> $max
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">degree</span> ($arr) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %freq;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $e (@$arr) {
+</span></span><span style="display:flex;"><span>        $max <span style="color:#f92672">=</span> $freq{$e} <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$freq{$e} <span style="color:#f92672">&gt;</span> $max;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $max
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Using this function to find the shortest slice is straight-forward:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">array_degree</span> (@array) {
-    <span style="color:#66d9ef">my</span> $degree <span style="color:#f92672">=</span> degree(<span style="color:#f92672">\</span>@array);
-    <span style="color:#66d9ef">my</span> @min <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, $#array);
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $from (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#array <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $to ($from <span style="color:#f92672">..</span> $#array) {
-            <span style="color:#66d9ef">if</span> (degree([@array[$from <span style="color:#f92672">..</span> $to]]) <span style="color:#f92672">==</span> $degree) {
-                @min <span style="color:#f92672">=</span> ($from, $to)
-                    <span style="color:#66d9ef">if</span> $to <span style="color:#f92672">-</span> $from <span style="color:#f92672">&lt;</span> $min[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $min[<span style="color:#ae81ff">0</span>];
-            }
-        }
-    }
-    <span style="color:#66d9ef">return</span> [@array[ $min[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">..</span> $min[<span style="color:#ae81ff">1</span>] ]]
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">array_degree</span> (@array) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $degree <span style="color:#f92672">=</span> degree(<span style="color:#f92672">\</span>@array);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @min <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, $#array);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $from (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#array <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $to ($from <span style="color:#f92672">..</span> $#array) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (degree([@array[$from <span style="color:#f92672">..</span> $to]]) <span style="color:#f92672">==</span> $degree) {
+</span></span><span style="display:flex;"><span>                @min <span style="color:#f92672">=</span> ($from, $to)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> $to <span style="color:#f92672">-</span> $from <span style="color:#f92672">&lt;</span> $min[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $min[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [@array[ $min[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">..</span> $min[<span style="color:#ae81ff">1</span>] ]]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>We can now write some tests. They’ll help us once we start optimising the code to make sure we don’t break anything.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test2::V0;
-plan <span style="color:#ae81ff">5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>;
-
-is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>), [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>], <span style="color:#e6db74">&#39;Example 1&#39;</span>;
-is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>), [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;Example 2&#39;</span>;
-is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>), [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], <span style="color:#e6db74">&#39;Example 3&#39;</span>;
-is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>), [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;Example 4&#39;</span>;
-is array_degree(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;Example 5&#39;</span>;
-
-is array_degree(), <span style="color:#f92672">[]</span>, <span style="color:#e6db74">&#39;Degree 0&#39;</span>;
-is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>), [<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;Degree 1&#39;</span>;
-is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>), [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>], <span style="color:#e6db74">&#39;3/3&#39;</span>;
-is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>), [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>], <span style="color:#e6db74">&#39;3/4&#39;</span>;
-is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>), [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>], <span style="color:#e6db74">&#39;3/5&#39;</span>;
-is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>), [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>], <span style="color:#e6db74">&#39;3/6&#39;</span>;
-is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>), [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;3/7&#39;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test2::V0;
+</span></span><span style="display:flex;"><span>plan <span style="color:#ae81ff">5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>), [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>], <span style="color:#e6db74">&#39;Example 1&#39;</span>;
+</span></span><span style="display:flex;"><span>is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>), [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;Example 2&#39;</span>;
+</span></span><span style="display:flex;"><span>is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>), [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], <span style="color:#e6db74">&#39;Example 3&#39;</span>;
+</span></span><span style="display:flex;"><span>is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>), [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;Example 4&#39;</span>;
+</span></span><span style="display:flex;"><span>is array_degree(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;Example 5&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is array_degree(), <span style="color:#f92672">[]</span>, <span style="color:#e6db74">&#39;Degree 0&#39;</span>;
+</span></span><span style="display:flex;"><span>is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>), [<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;Degree 1&#39;</span>;
+</span></span><span style="display:flex;"><span>is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>), [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>], <span style="color:#e6db74">&#39;3/3&#39;</span>;
+</span></span><span style="display:flex;"><span>is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>), [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>], <span style="color:#e6db74">&#39;3/4&#39;</span>;
+</span></span><span style="display:flex;"><span>is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>), [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>], <span style="color:#e6db74">&#39;3/5&#39;</span>;
+</span></span><span style="display:flex;"><span>is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>), [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>], <span style="color:#e6db74">&#39;3/6&#39;</span>;
+</span></span><span style="display:flex;"><span>is array_degree(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>), [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;3/7&#39;</span>;
+</span></span></code></pre></div><br>
 <h2 id="optimisation">Optimisation</h2>
 <br>
 <p>Isn’t it good enough?</p>
 <p>Nested loops never perform well on larger inputs. Let’s generate an array of <code>300 elements</code>:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">srand <span style="color:#ae81ff">1</span>;  <span style="color:#75715e"># To always have the same input.</span>
-<span style="color:#66d9ef">my</span> @long <span style="color:#f92672">=</span> map int rand <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">300</span>;
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@{ array_degree(@long) }&#34;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>srand <span style="color:#ae81ff">1</span>;  <span style="color:#75715e"># To always have the same input.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @long <span style="color:#f92672">=</span> map int rand <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">300</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@{ array_degree(@long) }&#34;</span>;
+</span></span></code></pre></div><br>
 <p>It takes a bit more than <code>1 second</code> on my machine. So, how can we improve it?</p>
 <p>As usually, we can trade time for space. As we calculate the degree of the whole array, we can cache the position of the first and last occurrence of each element (we already need to cache the frequency of each element to find the maximal one).</p>
 <p>The <code>%from_to</code> hash maps each element to the position of its first and last occurrence, i.e. to the shortest slice containing all of its occurrences. The <code>@max</code> array keeps all the elements with the maximal frequency, plus the frequency itself as the last element.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">array_degree</span> (@array) {
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">unless</span> @array;
-
-    <span style="color:#66d9ef">my</span> %freq;
-    <span style="color:#66d9ef">my</span> %from_to;
-    <span style="color:#66d9ef">my</span> @max <span style="color:#f92672">=</span> (undef, <span style="color:#ae81ff">0</span>);
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pos (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#array) {
-        <span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> $array[$pos];
-        <span style="color:#f92672">++</span>$freq{$e};
-        <span style="color:#66d9ef">if</span> (exists $from_to{$e}) {
-            $from_to{$e}[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $pos;
-        } <span style="color:#66d9ef">else</span> {
-            $from_to{$e} <span style="color:#f92672">=</span> [$pos, $pos];
-        }
-        <span style="color:#66d9ef">if</span> ($freq{$e} <span style="color:#f92672">&gt;=</span> $max[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) {
-            @max <span style="color:#f92672">=</span> ($freq{$e}) <span style="color:#66d9ef">if</span> $freq{$e} <span style="color:#f92672">&gt;</span> $max[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
-            unshift @max, $e;
-        }
-    }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">array_degree</span> (@array) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">unless</span> @array;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %freq;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %from_to;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @max <span style="color:#f92672">=</span> (undef, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pos (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#array) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> $array[$pos];
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">++</span>$freq{$e};
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (exists $from_to{$e}) {
+</span></span><span style="display:flex;"><span>            $from_to{$e}[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $pos;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            $from_to{$e} <span style="color:#f92672">=</span> [$pos, $pos];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($freq{$e} <span style="color:#f92672">&gt;=</span> $max[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) {
+</span></span><span style="display:flex;"><span>            @max <span style="color:#f92672">=</span> ($freq{$e}) <span style="color:#66d9ef">if</span> $freq{$e} <span style="color:#f92672">&gt;</span> $max[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>            unshift @max, $e;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><br>
 <p>Now, we have all the slices in <code>%from_to</code>. We can get each slice’s length by subtracting the start position from the end position. To find the shortest one, we’ll need <a href="https://p3rl.org/List::Util"><strong>List::Util</strong></a>’s min:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %by_length <span style="color:#f92672">=</span> map <span style="color:#f92672">+</span>($_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=&gt;</span> $_),
-                    @from_to{@max[ <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#max <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]};
-    <span style="color:#66d9ef">my</span> $shortest <span style="color:#f92672">=</span> $by_length{ min(keys %by_length) };
-    <span style="color:#66d9ef">return</span> [@array[ $shortest<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">..</span> $shortest<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] ]]
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %by_length <span style="color:#f92672">=</span> map <span style="color:#f92672">+</span>($_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=&gt;</span> $_),
+</span></span><span style="display:flex;"><span>                    @from_to{@max[ <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#max <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $shortest <span style="color:#f92672">=</span> $by_length{ min(keys %by_length) };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [@array[ $shortest<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">..</span> $shortest<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] ]]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>If there are several slices with the maximal degree of the same length, our code returns the leftmost one (that’s why we used unshift when adding new elements to <code>@max</code>).</p>
 <p>Run all the tests with the new function to verify we still get the same results. Moreover, let’s benchmark it:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Benchmark <span style="color:#e6db74">qw{ cmpthese }</span>;
-is array_degree(@long), array_degree_naive(@long), <span style="color:#e6db74">&#39;Same&#39;</span>;
-cmpthese(<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, {
-    naive     <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { array_degree_naive(@long) },
-    optimised <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { array_degree(@long) },
-});
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Benchmark <span style="color:#e6db74">qw{ cmpthese }</span>;
+</span></span><span style="display:flex;"><span>is array_degree(@long), array_degree_naive(@long), <span style="color:#e6db74">&#39;Same&#39;</span>;
+</span></span><span style="display:flex;"><span>cmpthese(<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, {
+</span></span><span style="display:flex;"><span>    naive     <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { array_degree_naive(@long) },
+</span></span><span style="display:flex;"><span>    optimised <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { array_degree(@long) },
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><br>
 <p>The additional test is important to make sure the code gives the same result even for the input we use in the benchmark.</p>
 <p>The result? It was definitely worth it!</p>
 <br>

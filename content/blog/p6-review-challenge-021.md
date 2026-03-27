@@ -41,7 +41,7 @@ Let's try the formula investigated by Jacob Bernoulli in 1683: *e* is equal to t
 
 We can just use this formula with a large input number:
 
-``` perl6
+```perl
 use v6;
 
 sub eul ($n) { (1 + 1/$n)**$n}
@@ -78,19 +78,19 @@ Let's try with a better formula. Isaac Newton found in 1669 that what is known a
 
 For computing this, we will first define a new postfix operator, `!`, to compute the factorial of any number, and then use it to compute the sum. For this, we will use twice the `[...]` reduction metaoperator, which reduces a list of values with the given infix operator. For example,
 
-``` perl6
+```perl
 say [+] 1, 2, 3, 4;   #  -> 10
 ```
 
 is equivalent to:
 
-``` perl6
+```perl
 say 1 + 2 + 3 + 4;
 ```
 
 i.e. works as if the infix operator (`+` in this example) was placed between each item of the list to produce an arithmetic expression yielding a single numerical value. This is the perfect functionality for computing both the factorial of an integer and the sum of terms of the formula.
 
-``` perl6
+```perl
 use v6;
 
 sub postfix:<!> (Int $n) {   # factorial operator
@@ -114,7 +114,7 @@ The version with this new formula converges much faster than the original one:
 
 The digits are all accurate, but if we wanted more significant digits, we would need to use `FatRat` numbers. For example, like so:
 
-``` perl6
+```perl
 sub postfix:<!> (Int $n) {   # factorial operator
     [*] (2..$n).FatRat;
 }
@@ -122,7 +122,7 @@ sub postfix:<!> (Int $n) {   # factorial operator
 
 or, probably better, by making the change in the `eul` subroutine rather than in the definition of the factorial operator:
 
-``` perl6
+```perl
 sub eul (Int $n) {
     [+] map { 1 / ($_!).FatRat}, 0..$n;
 }
@@ -179,7 +179,7 @@ There is more than on way to do it. In some cases in the past, many solutions to
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/kevin-colyer/perl6/ch-1.p6) apparently has quite a bit of fun with that and suggested not less than 5 different ways of computing *e*: the two formulas I gave at the beginning of this post, two continued fractions and even a probabilistic or stochastic computation. I had probably the same  amount of fun reading and trying his solutions as he did writing them, and I think you should really follow the link and read his solutions to enjoy the same fun. This one of his subroutines, for the fun:
 
-```Perl6
+```perl
 sub e_continued_fraction($n) {
     # calculated in reverse order to avoid recursion
     my $frac=1;

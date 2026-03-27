@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-17blogadvent-calendar-2024-12-17-nbsp--nbsp-day-18-nbsp--nbsp-day-19blogadvent-calendar-2024-12-19-nbsp-">|   <a href="/blog/advent-calendar-2024-12-17"><strong>Day 17</strong></a>   |   <strong>Day 18</strong>   |   <a href="/blog/advent-calendar-2024-12-19"><strong>Day 19</strong></a>   |</h3>
+        <h2 id="advent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
+<h3 id="--day-17----day-18----day-19--">|   <a href="/blog/advent-calendar-2024-12-17"><strong>Day 17</strong></a>   |   <strong>Day 18</strong>   |   <a href="/blog/advent-calendar-2024-12-19"><strong>Day 19</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Cheok-Yin Fung</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-281"><strong>The Weekly Challenge - 281</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://cylivesstem.wordpress.com/2024/08/10/where-is-the-chess-piece-going-to/"><strong>post</strong></a>.</p>
 <hr>
@@ -205,94 +205,94 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <p>For the <code>*</code>, if <code>S</code> is the corner point, the number of moves required is <code>4</code>, else it is <code>2</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">small_dist</span> {
-    <span style="color:#66d9ef">my</span> $pos_a <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">my</span> $pos_b <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">my</span> $diff0 <span style="color:#f92672">=</span> abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]);
-    <span style="color:#66d9ef">my</span> $diff1 <span style="color:#f92672">=</span> abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
-    <span style="color:#66d9ef">if</span> ($diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
-        {<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;}
-    <span style="color:#66d9ef">if</span> ($diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
-        {<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span>;}
-    <span style="color:#66d9ef">if</span> ($diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> $diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
-        {<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">3</span>;}
-    <span style="color:#66d9ef">if</span> ($diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">if</span> (is_corner($pos_a)<span style="color:#f92672">||</span> is_corner($pos_b)) {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">4</span>;
-        }
-        <span style="color:#66d9ef">else</span> {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span>;
-        }
-    }
-    <span style="color:#66d9ef">if</span> ($diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">4</span>;
-    }
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_corner</span> {
-    <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">if</span> (($pos<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $pos<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>)
-            <span style="color:#f92672">&amp;&amp;</span>
-       ($pos<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $pos<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>))
-    {
-       <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">small_dist</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos_a <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos_b <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $diff0 <span style="color:#f92672">=</span> abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $diff1 <span style="color:#f92672">=</span> abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        {<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        {<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span>;}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> $diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        {<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">3</span>;}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (is_corner($pos_a)<span style="color:#f92672">||</span> is_corner($pos_b)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($diff0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $diff1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_corner</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (($pos<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $pos<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>       ($pos<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $pos<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>))
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Then here comes the cases where the distance between the two grids is large. I used a way (can I call it a heuristic?): pick the next grid(s) which reduces the taxicab distance between the target grid and the position of the knight, until (ultimately they definitely will be) two fall into a <code>3×3</code> region.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">taxicab_dist</span> {
-    <span style="color:#66d9ef">my</span> $pos_a <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">my</span> $pos_b <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">my</span> $taxicab_dist <span style="color:#f92672">=</span>
-        abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>])
-                <span style="color:#f92672">+</span>
-        abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
-    <span style="color:#66d9ef">return</span> $taxicab_dist;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dist</span> {
-    <span style="color:#66d9ef">my</span> $pos_a <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">my</span> $pos_b <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">if</span> ((abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;&amp;</span> (abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span>)) {
-        <span style="color:#66d9ef">return</span> small_dist($pos_a, $pos_b);
-    }
-    <span style="color:#66d9ef">my</span> $cur_tc_dist <span style="color:#f92672">=</span> taxicab_dist($pos_a, $pos_b);
-    <span style="color:#66d9ef">my</span> @px <span style="color:#f92672">=</span> (<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
-    <span style="color:#66d9ef">my</span> @py <span style="color:#f92672">=</span> (<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
-    <span style="color:#66d9ef">my</span> @nxt;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>) {
-        <span style="color:#66d9ef">my</span> $npx <span style="color:#f92672">=</span> $pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>$px[$k];
-        <span style="color:#66d9ef">my</span> $npy <span style="color:#f92672">=</span> $pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$py[$k];
-        <span style="color:#66d9ef">if</span> ($npx <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $npx <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">7</span>) {<span style="color:#66d9ef">next</span>;}
-        <span style="color:#66d9ef">if</span> ($npy <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $npy <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">7</span>) {<span style="color:#66d9ef">next</span>;}
-        <span style="color:#66d9ef">my</span> $tc_dist <span style="color:#f92672">=</span> taxicab_dist($pos_a, [$npx, $npy]);
-        push @nxt, [$npx, $npy] <span style="color:#66d9ef">if</span> $tc_dist <span style="color:#f92672">&lt;</span> $cur_tc_dist;
-    }
-    <span style="color:#66d9ef">if</span> (scalar @nxt <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">return</span> ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> dist($pos_a, $nxt[<span style="color:#ae81ff">0</span>]) );
-    } <span style="color:#66d9ef">else</span> {
-        <span style="color:#66d9ef">my</span> @choice_val;
-        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#nxt) {
-            $choice_val[$_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> dist($pos_a, $nxt[$_]);
-        }
-        <span style="color:#75715e">#say(chr(ord(&#39;a&#39;)+$pos_b-&gt;[0]).(1+$pos_b-&gt;[1]).&#34; &#34;, min(@choice_val));</span>
-        <span style="color:#66d9ef">return</span> min(@choice_val);
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">taxicab_dist</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos_a <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos_b <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $taxicab_dist <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>        abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $taxicab_dist;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dist</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos_a <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos_b <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ((abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;&amp;</span> (abs($pos_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> small_dist($pos_a, $pos_b);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $cur_tc_dist <span style="color:#f92672">=</span> taxicab_dist($pos_a, $pos_b);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @px <span style="color:#f92672">=</span> (<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @py <span style="color:#f92672">=</span> (<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @nxt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $npx <span style="color:#f92672">=</span> $pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>$px[$k];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $npy <span style="color:#f92672">=</span> $pos_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$py[$k];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($npx <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $npx <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">7</span>) {<span style="color:#66d9ef">next</span>;}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($npy <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $npy <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">7</span>) {<span style="color:#66d9ef">next</span>;}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $tc_dist <span style="color:#f92672">=</span> taxicab_dist($pos_a, [$npx, $npy]);
+</span></span><span style="display:flex;"><span>        push @nxt, [$npx, $npy] <span style="color:#66d9ef">if</span> $tc_dist <span style="color:#f92672">&lt;</span> $cur_tc_dist;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (scalar @nxt <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> dist($pos_a, $nxt[<span style="color:#ae81ff">0</span>]) );
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @choice_val;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#nxt) {
+</span></span><span style="display:flex;"><span>            $choice_val[$_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> dist($pos_a, $nxt[$_]);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#say(chr(ord(&#39;a&#39;)+$pos_b-&gt;[0]).(1+$pos_b-&gt;[1]).&#34; &#34;, min(@choice_val));</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> min(@choice_val);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Here my code has a recursion on the subroutine dist.</p>
 <p>This almost completes the task. Finally format the chessboard notation into pair of integers we are using:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">km</span> {
-    <span style="color:#66d9ef">my</span> $targt <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">my</span> $begin <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">my</span> $pos_a <span style="color:#f92672">=</span> [ord(substr($begin,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>))<span style="color:#f92672">-</span>ord(<span style="color:#e6db74">&#34;a&#34;</span>), substr($begin,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">my</span> $pos_b <span style="color:#f92672">=</span> [ord(substr($targt,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>))<span style="color:#f92672">-</span>ord(<span style="color:#e6db74">&#34;a&#34;</span>), substr($targt,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">return</span> dist($pos_a, $pos_b);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">km</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $targt <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $begin <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos_a <span style="color:#f92672">=</span> [ord(substr($begin,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>))<span style="color:#f92672">-</span>ord(<span style="color:#e6db74">&#34;a&#34;</span>), substr($begin,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos_b <span style="color:#f92672">=</span> [ord(substr($targt,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>))<span style="color:#f92672">-</span>ord(<span style="color:#e6db74">&#34;a&#34;</span>), substr($targt,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dist($pos_a, $pos_b);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>And that’s all!</p>
 <p>As usual, I peeked on others’ solutions/blogposts. Experts in the TWC team have mentioned the difference between <code>breath-first search(BFS)</code> and <code>depth-first search(DFS)</code>. My current recursive code is a <code>DFS</code>, [<a href="https://stackoverflow.com/questions/2549541/performing-breadth-first-search-recursively"><strong>SO ref</strong></a> to know more] so it has a room of improvement.</p>
 <p>Links for CY’s full code: <a href="https://github.com/E7-87-83/perlweeklychallenge-club/blob/newh/challenge-281/cheok-yin-fung/perl/ch-2.pl"><strong>ch-2.pl</strong></a></p>

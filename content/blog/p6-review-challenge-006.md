@@ -45,7 +45,7 @@ Initially, I did not see any way of doing this that would be very different from
 
 This is a Perl 6 adaptation of the corrected P5 version:
 
-``` Perl6
+```perl
 use v6;
 sub compare ($prev, $start) {
     return $prev > $start + 1 ?? "$start-$prev"
@@ -81,7 +81,7 @@ Then I thought again about one of my pet subjects: why not try a functional prog
 
 Here we go:
 
-``` Perl6
+```perl
 use v6;
 sub get($start, $prev) {
     take $prev > $start + 1 ?? "$start-$prev"
@@ -109,7 +109,7 @@ That may not be perfect, but I'm much more satisfied with this than with all my 
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/arne-sommer/perl6/ch-1.p6)'s main loop is as follows:
 
-``` Perl6
+```perl
 while @values
 {
   my $next = @values.shift;
@@ -133,7 +133,7 @@ sub fix-it (@list)
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/jaldhar-h-vyas/perl6/ch-1.p6) made two nested `while` loops, which is unlikely to be optimal, but that probablly doesn't matter with a small or even medium input dataset:
 
-``` Perl6
+```perl
 while ($current <= $lastelem) {
     $start = $current;
 
@@ -154,7 +154,7 @@ while ($current <= $lastelem) {
 
 [Joelle Maslack](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/joelle-maslak/perl6/ch-1.p6) first sorted the input arguments, and then used a `for` loop to go through the values:
 
-``` Perl6
+```perl
 for @*ARGS.sort( { $^a <=> $^b } ) -> Int() $num {
     if ! defined $run {
         $run = Pair.new($num, $num);
@@ -175,7 +175,7 @@ Note that the Pair `freeze` method is now deprecated (as of 6.d language version
 
 [Ozzy](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ozzy/perl6/ch-1.p6) used two successive `for` loops to go through the input data:
 
-``` Perl6
+```perl
 for @numbers -> $n {
     my $i = @output.elems;
     if $i == 0 || $n > @output[$i-1].max+1 { @output[$i] = Range.new($n.Int, $n.Int); }
@@ -198,7 +198,7 @@ for 0..(@output.elems-1) -> $i {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ruben-westerberg/perl6/ch-1.p6) first joined the input numbers into a CSV string, and immediately thereafter splitted the string on commas and stored the result in a bag (presumably to remove duplicates). I fail to see why this was necessary, as I have the feeling that he could have worked directly on the input numbers. This being said, Ruben's code is the most compact solution:
 
-``` Perl6
+```perl
 my $string= @*ARGS ?? @*ARGS.join(",")!! prompt "Enter numbers: ";
 my $a=$string.split(",",:skip-empty)>>.trim.grep({!/^$/})>>.Int.Bag;
 my @r1=$a.keys.sort;
@@ -211,7 +211,7 @@ say join ",", map {@r1[$^a]==@r1[$^b]??@r1[$^a]!!"@r1[$^a]-@r1[$^b]"}, @p;
 I like very much concise solutions, but the downside here is that Ruben's solution may be a bit too terse and somewhat difficult to follow.
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/simon-proctor/perl6/ch-1.p6) took an diametrically opposite approach and wrote a fairly  verbose (and somewhat over-engineered, IMHO) approach. Simon created a `GrowableRange` class, with five method definitions such as:
-``` Perl6
+```perl
     method next() { $!max + 1 }
     method grow() { $!max++; return self }
 ```
@@ -219,7 +219,7 @@ These methods basically do almost nothing and this is typically what I don't lik
 
 [Tim Smith](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/tim-smith/perl6/ch-1.p6) provided a simple and easy to understand solution:
 
-``` Perl6
+```perl
 my @vals = @*ARGS».comb(/\d+/).Seq.flat».Int.sort.unique
     or die "Usage: {$?FILE.IO.basename} 1 2,3 4/5/6 '7 8 9'";
 my @groups;
@@ -289,7 +289,7 @@ Only five challengers contributed to this challenge (in addition to me).
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/arne-sommer/perl6/ch-2.p6) suggested the following program:
 
-``` Perl6
+```perl
 sub FatRatRoot (Int $int where $int > 0, :$precision = 10)
 {
   my @x =
@@ -303,7 +303,7 @@ say $e ** ($pi * FatRatRoot(163));
 
 I wasn't able to run it, because `$e` and `$pi` are not declared. Changing the last code line to this:
 
-``` Perl6
+```perl
 say e ** (pi * FatRatRoot(163));
 ```
 makes the program runnable, but still doesn't really produce any result with a 32-digit accuracy:
@@ -312,24 +312,24 @@ makes the program runnable, but still doesn't really produce any result with a 3
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/jaldhar-h-vyas/perl6/ch-2.p6) started by trying essentially the same formula as the one just above:
 
-``` Perl6
+```perl
 constant RAMANUJAN = 𝑒 ** (π * sqrt(163));
 ```
 but found out that doesn't work and produces the same floating point approximation as Arne's program above. So Jaldhar admits that he decided to cheat a little bit and reuse his Perl 5 program:
 
-``` Perl6
+```perl
 shell('../perl5/ch-2.pl');
 ```
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/joelle-maslak/perl6/ch-2.p6) used the same approximation formula as my solution and also obtained 33 accurate digits (262537412640768743.999999999999250):
 
-``` Perl6
+```perl
 say (640320³ + 744 - 196844.FatRat/(640320³ + 744)).Str.substr(0,34);
 ```
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ruben-westerberg/perl6/ch-2.p6) implemented a `FatRat` factorial subroutine, a `FatRat` square root subroutine using the Newton-Raphson method, and a `FatRat` Taylor series exponential subroutine, and also hard-coded pi to 100 digits. Having done all this, he was able to write a version the original formula producing an accurate result:
 
-``` Perl6
+```perl
 my $bigPi=FatRat.new(31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679,10**100);
 
 sub factorial($n) {
@@ -371,7 +371,7 @@ which produces the right result after slightly more than 130 iterations:
 
 [Tim Smith](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/tim-smith/perl6/ch-2.p6) used the same approximation as Joelle Maslak and myself:
 
-``` Perl6
+```perl
 
 # Ramanujan's constant is _almost_ this integer ...
 my $r = 640_320 ** 3 + 744;

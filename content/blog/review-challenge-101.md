@@ -66,7 +66,7 @@ Your task is to pack that array into an MxN matrix spirally counterclockwise, as
 ‘Tightly’ means the absolute value |M-N| of the difference has to be as small as possible.
 
 **Example 1:**
-```
+```perl
     Input: @A = (1,2,3,4)
 
     Output:
@@ -80,7 +80,7 @@ Since the given array is already a 1x4 matrix on its own, but that's not as tigh
     1 2
 
 **Example 2:**
-```
+```perl
     Input: @A = (1..6)
 
     Output:
@@ -888,7 +888,7 @@ After first copying the first point onto the end of his point array, Roger facto
 
 For example, the first iteration of the loop ends up looking like:
 
-```
+```perl
     x1 * (y2 - y1) - y1 * (x2 - x1)
 
 ```
@@ -1044,7 +1044,7 @@ Dave [borrows his area coding from Flavio Poletti](https://github.polettix.it/ET
     }
 ```
 
-```
+```perl
     0,1  1,0  2,2
     0 : 0
 

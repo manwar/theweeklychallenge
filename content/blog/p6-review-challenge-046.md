@@ -42,7 +42,7 @@ We'd greatly appreciate any feedback you'd like to give.
 
 This task had us resolving "unreliable transmissions" that were sent repeatedly, each time with errors in different locations in the string, such as this one:
 
-```
+```perl
 P + 2 l ! a t o
 1 e 8 0 R $ 4 u
 5 - r ] + a > /
@@ -66,7 +66,7 @@ Both example ciphers show that each plaintext character appears exactly twice in
 
 [Arne Sommer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/arne-sommer/raku/ch-1.p6) accepts a string of rows separated by spaces, which he then splits to `@strings` (rows), calculates the `$max` row length, and iterates over the character indices:
 
-```raku
+```perl
 $string = 'P+2l!ato 1e80R$4u 5-r]+a>/ Pxwlb3k\ 2e35R8yu <!r^()k0' if $another;
 my @strings = $string.words;
 my $max     = @strings>>.chars.max;
@@ -84,7 +84,7 @@ The `@result` is built up by taking the character at `$index` from each string, 
 
 Arne also submitted a [more in-depth solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/arne-sommer/raku/cryptic) that better handles ambiguous input (i.e., more than one character is repeated). The main difference is the addition of a recursive `expand` routine as follows:
 
-```raku
+```perl
 expand( "", @result );
 
 sub expand ( $current, @strings ) {
@@ -113,7 +113,7 @@ Arne's solutions include some verbose output, which provides good introspection 
 [Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/javier-luque/raku/ch-1.p6) accepts a multiline string, gets the length of the first line, and then starts building the frequency table:
 
 
-```raku
+```perl
 # Initialize the columns hash
 my @column_hash;
 my ($first_line) = $message.split("\n", 2);
@@ -130,7 +130,7 @@ for ($message.split("\n")) -> $line {
 
 The loop splits the input into lines, and then builds a `@column_hash`, which is a mapping of a character's count in a particular column. From there, each column is processed, and the most frequent character is appended to the `$output`:
 
-```
+```perl
 # Sort
 my $output = '';
 for (@column_hash) -> %column {
@@ -148,7 +148,7 @@ say $output;
 
 [Kevin Colyer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/kevin-colyer/raku/ch-1.p6) also accepts a multiline string in `$m`, taking advantage of Raku's string builtin `.lines` to split it into `@m`. (Kevin uses `.words` as well, since his input has spaces between each character):
 
-```raku
+```perl
 my %seen;
 my $unscramble="";
 my @m;
@@ -157,7 +157,7 @@ for $m.lines {  @m.push( .words.list ) };
 
 Now Kevin iterates from 0 to one less than the first row's length (`$m[0].elems`), to get his `$c`olumn index. He maintains a `%seen` frequency map for each column and appends the character seen twice to the `$unscramble`d output string:
 
-```raku
+```perl
 for ^@m[0].elems -> $c {
     my %seen;
     %seen{ @m[$_][$c] }++ for ^@m.elems;
@@ -170,7 +170,7 @@ for ^@m[0].elems -> $c {
 
 [Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/laurent-rosenfeld/raku/ch-1.p6) also accepts a multiline string with space-separated characters, but uses a more complex `map` and `split` chain to turn it into an array of arrays (AoA), which he then transposes to a column-major representation:
 
-```raku
+```perl
 my @AoA = map { my @a = split /\s+/, $_; @a }, split /<[\r\n]>+/, $garbled;
 my @transposed;
 for (0 .. @AoA.end) -> $i {
@@ -180,7 +180,7 @@ for (0 .. @AoA.end) -> $i {
 
 Now, the results are easy; each `$line` in `@transposed` corresponds to a column in the original input, so Laurent can simply tally the characters and select the character that appears more than once (assuming there is no ambiguity):
 
-```raku
+```perl
 my @msg = "";
 for @transposed -> $line {
     my BagHash $counter;
@@ -198,7 +198,7 @@ I like the transposition approach.
 
 [Luca Ferrari's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/luca-ferrari/raku/ch-1.p6) accepts an array of strings with space-separated characters, in `@message`. Luca turns the input into an AoA, transposed at the same time:
 
-```raku
+```perl
 my @chars;
 my $decoded;
 for @message -> $single-line {
@@ -211,7 +211,7 @@ for @message -> $single-line {
 
 As with Laurent's solution, all Luca has to do now is count the characters in each sublist and append the one that appears more than once:
 
-```raku
+```perl
 for @chars -> @line {
     for @line -> $searching_for {
         if @line.grep( { $_ eq $searching_for} ).elems > 1 {
@@ -228,7 +228,7 @@ for @chars -> @line {
 
 [Mark Anderson's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/mark-anderson/raku/ch-1.p6) accepts a multiline string with space-separated characters, and compactly turns that into an AoA:
 
-```raku
+```perl
 my @AoL;
 my $result;
 for $msg.split(/\n/, :skip-empty) -> $str {
@@ -238,7 +238,7 @@ for $msg.split(/\n/, :skip-empty) -> $str {
 
 Mark then transposes `@AoL` with `[Z]`, so each `$list` is a column. Then, Mark uses a regex on `$list`s string representation to find the repeated character:
 
-```raku
+```perl
 for [Z] @AoL -> $list {
     $list.Str ~~ /(\S) .* {} :my $letter = $0; $letter/;
     $result ~= $letter;
@@ -249,7 +249,7 @@ for [Z] @AoL -> $list {
 
 [Markus Holzer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/markus-holzer/raku/ch-1.p6) accepts a multi-line string, uses `zip` to transpose it, and then uses the `Bag` representation of each column list to make finding the most frequent character very concise thanks to `maxpairs`, which returns the pair(s) with the maximum value:
 
-```raku
+```perl
 [~] zip(
     $encrypted.lines.map: *.words
 ).map(
@@ -263,7 +263,7 @@ Impressive.
 
 [Noud Aldenhoven's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/noud/raku/ch-1.p6) accepts an AoA as input, and then `decrypt` works on a transposed version of that:
 
-```raku
+```perl
 sub decrypt(@a) {
     return [~] ([Z] @a).map({ select-double($_) });
 }
@@ -271,7 +271,7 @@ sub decrypt(@a) {
 
 The `select-double` routine takes a column list and returns the character that appears most frequently:
 
-```raku
+```perl
 sub select-double(@a) {
     for @a -> $elm {
         if (@a.grep($elm).elems == 2) {
@@ -287,7 +287,7 @@ This is a nice modular approach to the problem.
 
 [Roger Bell West's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/roger-bell-west/raku/ch-1.p6) accepts strings from standard input, and puts those into a column-character frequency map (`@place`):
 
-```raku
+```perl
 my @place;
 for lines() {
   .chomp;
@@ -298,7 +298,7 @@ for lines() {
 
 The putout is then printed character-wise by iterating over each column in `@place`, `sort`ing in decreasing numeric order and printing the first (most frequent) result:
 
-```raku
+```perl
 for @place -> %h {
   my @v=values %h;
   my @k=keys %h;
@@ -312,7 +312,7 @@ print "\n";
 
 [Ruben Westerberg's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ruben-westerberg/raku/ch-1.p6) accepts an AoA, and then iterates over each column index. The most frequent character key/value pair is fetched by taking a vertical slice of `@inComming` as a `Bag`, and then taking all pairs that appear twice. The `key` is the character itself, so that's what Ruben `push`es to the result:
 
-```raku
+```perl
 my @decoded;
 for (0..@inComming[0]-1) {
     my $col=@inComming[0..@inComming-1;$_].Bag.grep({$_.value==2});
@@ -327,7 +327,7 @@ Ruben has done a great job of producing concise, expressive code that I was able
 
 [My solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ryan-thompson/raku/ch-1.p6) accepts an array of `@strings`, splits those into rows, and then maintains a column-character frequency map in `@col-count`:
 
-```raku
+```perl
 my @col-count;
 for @strings».split: ' ' -> $row {
     @col-count[.key]{.value}++ for |$row.pairs;
@@ -336,7 +336,7 @@ for @strings».split: ' ' -> $row {
 
 After that, I built up the result by sorting in decreasing numerical order by value, picking the `first` (most frequent) result, grabbing its key, and joining everything together:
 
-```raku
+```perl
 @col-count».sort(-*.value)».first».key.join;
 ```
 
@@ -346,7 +346,7 @@ After that, I built up the result by sorting in decreasing numerical order by va
 
 [Simon Proctor's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/simon-proctor/raku/ch-1.p6) accepts an AoA in `$data`, doing the decoding with one statement (I've added some whitespace):
 
-```raku
+```perl
  zip( $data.List )
 .map( { Bag.new($_) } )
 .map( *.pairs
@@ -364,7 +364,7 @@ It's important to note that, unlike Perl's `cmp` (based on C's `strcmp`) which i
 
 [Ulrich Rieke's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/raku/ch-1.p6) accepts an array of `@strings`, and then iterates through each column index, building up a `%letterfrequency` map for the current column:
 
-```raku
+```perl
 my $len = @words[0].chars ;
 my $decoded ;
 for (0..$len - 1 ) -> $i {
@@ -376,7 +376,7 @@ for (0..$len - 1 ) -> $i {
 
 Following a reverse-numerical order sort, the first element of `@sorted` (the most frequent character) is appended to the `$decoded` output:
 
-```raku
+```perl
     my @sorted = %letterfrequency.keys.sort( {
         %letterfrequency{$^b} <=> %letterfrequency{$^a} } ) ;
     $decoded ~= @sorted[ 0 ] ;
@@ -421,7 +421,7 @@ Of course, neither of these solutions is necessarily "better" in the context of 
 
 [Arne Sommer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/arne-sommer/raku/ch-2.p6) uses nested loops to toggle the doors in `@open`:
 
-```raku
+```perl
 my @open;
 for 1 .. 500 -> $employee {
     for ($employee, $employee + $employee ... 500) -> $index {
@@ -439,7 +439,7 @@ The inner loop will only iterate over every `$employee`th index.
 
 [Colin Crain's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/colin-crain/raku/ch-2.p6) has an outer loop for each employee, but the inner loop builds a list of `@doors` that employee will toggle, and then applies it like a mask over `@hotel` using zip+XOR (`Z+^`):
 
-```raku
+```perl
 my @hotel = 0 xx $size;
 for (1..$size) -> $emp {
     my @doors = map { $_ %% $emp ?? 1 !! 0 }, ( 1..$size );
@@ -450,7 +450,7 @@ for (1..$size) -> $emp {
 Then it's just a matter of printing the numbers of the `@hotel` rooms that are
 open:
 
-```raku
+```perl
 for (0..$size-1) {
     printf "room %3s is open\n", $_+1 if @hotel[$_];
 }
@@ -460,7 +460,7 @@ for (0..$size-1) {
 
 [Jaldhar H. Vyas's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/jaldhar-h-vyas/raku/ch-2.p6) uses a nested loop to toggle each door *iff* the employee number, `$i` divides the room number, `$j`:
 
-```raku
+```perl
 constant $end = 500;
 my Bool @rooms[$end];
 for 0 ..^ $end -> $i {
@@ -474,7 +474,7 @@ for 0 ..^ $end -> $i {
 
 Printing the results is accomplished similarly, taking care to work with the 0-based indexing set up in the previous section:
 
-```raku
+```perl
 for 0 ..^ $end -> $i {
     if @rooms[$i] {
         print $i + 1, q{ };
@@ -488,7 +488,7 @@ print "\n";
 
 [Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/javier-luque/raku/ch-2.p6) uses a nested loop as well:
 
-```raku
+```perl
 my @doors;
 @doors[0 .. 500] = 0;
 for (1 .. 500) -> $employee {
@@ -509,7 +509,7 @@ for (1 .. 500) -> $i {
 
 [Kevin Colyer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/kevin-colyer/raku/ch-2.p6) does a nested loop as well, but optimizes the inner loop by incrementing `$i` by the `$e`mployee number:
 
-```raku
+```perl
 my Int @doors = 1 xx 500;
 for 2..500 -> $e {
     my $i=0;
@@ -527,7 +527,7 @@ Kevin outputs `@doors.sum`, which effectively counts how many doors are open.  I
 
 [Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/laurent-rosenfeld/raku/ch-2.p6) does the efficient nested looping method as well:
 
-```raku
+```perl
 my @rooms = 1 xx MAX + 1; # (first employee)
 my $start = 1;
 for 2..MAX {
@@ -549,7 +549,7 @@ Laurent opted to print a string of 1s and 0s (1 = open, 0 = closed). In his blog
 
 [Luca Ferrari's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/luca-ferrari/raku/ch-2.p6) stores his door status in a `%rooms` hash, but the resulting code is similar to array-based nested loop solutions:
 
-```raku
+```perl
 my %rooms = ( 1 .. $room-count).map: * => False;
 for 1 .. $room-count -> $employee {
     %rooms{ $_ } = ! %rooms{ $_ } if $_ %% $employee for 1 .. $room-count;
@@ -559,7 +559,7 @@ for 1 .. $room-count -> $employee {
 Since `%rooms` is a hash, the room numbers (keys) will be in random order, so
 they must be sorted:
 
-```raku
+```perl
 say "Room $_ is Open" if %rooms{ $_ } for %rooms.keys.sort: *.Int <=> *.Int;
 ```
 
@@ -569,7 +569,7 @@ say "Room $_ is Open" if %rooms{ $_ } for %rooms.keys.sort: *.Int <=> *.Int;
 
 [Mark Anderson's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/mark-anderson/raku/ch-2.p6) has a little fun with control flow in the nested loop:
 
-```raku
+```perl
 my \open = True;
 my @doors = open xx 500;
 for 1 .. 500 -> $emp {
@@ -588,16 +588,16 @@ Mark also uses a special sequence to loop over `$emp`th door in the inner loop. 
 
 [Markus Holzer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/markus-holzer/raku/ch-2.p6) makes note of the fact that only the square numbered doors will be open (check the link for his informal proof). He then offers three ways to generate the list of square numbers below 500:
 
-```raku
+```perl
 say "Open rooms: ", ( 1..500 ).grep: *.&is-open;
 sub is-open( $room ) { $room.sqrt.narrow ~~ Int }
 ```
 
-```raku
+```perl
 say "Open rooms: ", (1..500.sqrt.Int).map: * ** 2;
 ```
 
-```raku
+```perl
 say "Open rooms: ", (1..500.sqrt.Int)>>²; # nicest idiom by jnthn
 ```
 
@@ -607,7 +607,7 @@ say "Open rooms: ", (1..500.sqrt.Int)>>²; # nicest idiom by jnthn
 
 [Noud Aldenhoven's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/noud/raku/ch-2.p6) also prints out a list of square numbers, and also includes an informal proof in the comments of his solution. Here is the code:
 
-```raku
+```perl
 say "Open rooms:";
 say $_**2 for 1..(500.sqrt);
 ```
@@ -620,7 +620,7 @@ Noud's blog contains essentially the same proof, but with better typesetting tha
 
 [Roger Bell West's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/roger-bell-west/raku/ch-2.p6) loops efficiently, thanks to the C-style inner `loop`, which advances the index by the current employee `$n`umber:
 
-```raku
+```perl
 my @rooms=1 xx 500;
 for 2..500 -> $n {
   loop (my $k=$n-1 ; $k <500 ; $k+=$n) {
@@ -634,7 +634,7 @@ map {say $_+1}, grep {@rooms[$_]==1}, (0..@rooms.end);
 
 [Ruben Westerberg's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ruben-westerberg/raku/ch-2.p6) generates an intermediate `@index` array, which is essentially a mask of doors to toggle for the current employee (`$i`):
 
-```raku
+```perl
 my @doors=False xx 500; #doors initally closed
 @doors[$_]=!@doors[$_] for 0..499; #First person opens all
 for (2..500) -> $i {
@@ -650,7 +650,7 @@ Ruben's `@doors` is an array of `Bool`s, so he coerces each to a `Num` in order 
 
 [My submission](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ryan-thompson/raku/ch-2.p6) includes two solutions. The first is to simply output the square numbers directly:
 
-```raku
+```perl
 say (1..$doors.sqrt.Int) »**» 2;
 ```
 
@@ -658,7 +658,7 @@ As justification for the above method, I provided an informal correctness proof 
 
 For completeness, I decided to also submit a looping solution:
 
-```raku
+```perl
 my %doors;
 for 1..$doors -> $m {
     %doors{$m*$_} ^^= 1 for 1..$doors/$m;
@@ -670,7 +670,7 @@ The looping is optimal, as I only loop over every `$m` doors (`$m` is the curren
 
 As a dispassionate reviewer of my own code a week later, I don't know why I used a hash, here. An array would have been cleaner, avoiding a potentially costly `sort`:
 
-```raku
+```perl
 say %doors.grep(*.value)».key».Int.sort; # <-- This
 say @doors.pairs.grep(*.value)».key;     # <-- Becomes this
 ```
@@ -681,7 +681,7 @@ say @doors.pairs.grep(*.value)».key;     # <-- Becomes this
 
 [Simon Proctor's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/simon-proctor/raku/ch-2.p6) loops optimally, thanks to the increment in the `while` loop:
 
-```raku
+```perl
 my @doors-open = 501 xx False;
 for 1..500 -> $inc {
     my $cur = $inc;
@@ -694,7 +694,7 @@ for 1..500 -> $inc {
 
 Since Simon added a dummy element zero, for 501 elements in total, he can work directly with 1-based indexing, which simplifies everything, including the output loop:
 
-```raku
+```perl
 for 1..500 -> $door {
     say "$door is Open" if @doors-open[$door];
 }
@@ -706,7 +706,7 @@ for 1..500 -> $door {
 defining a custom `flip` routine, that returns the opposite of the `open` or
 `closed` keyword passed in:
 
-```raku
+```perl
 sub flip( $state ) {
     return $state eq "open" ?? "closed" !! "open"  ;
 }
@@ -714,7 +714,7 @@ sub flip( $state ) {
 
 The main body of Ulrich's solution is a familiar nested loop:
 
-```raku
+```perl
 my @current = "open" xx 500 ;
 for (2..500) -> $i {
     if ( $i < 251 ) {
@@ -732,13 +732,13 @@ At this point, `@current` is an array of strings, `closed` or `open`,
 accordingly. So Ulrich then zips that into `@doors` to map the `open`/`closed`
 state to the room number:
 
-```raku
+```perl
 my @doors = @current Z (1..500) ;
 ```
 
 That is a neat way to do it. I would normally use `@current.pairs` (or `@current.antipairs` in this case), but it's always nice to consider another way to do the same thing.
 
-```raku
+```perl
 for @doors -> $pair {
     say "door {$pair[ 1 ]} is open!" if $pair[0] eq "open" ;
 }

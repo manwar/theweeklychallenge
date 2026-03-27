@@ -179,19 +179,19 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
 <br>
-<h3 id="1-introductionintroduction"><a href="#introduction"><strong>1. Introduction</strong></a></h3>
-<h3 id="2-installationinstallation"><a href="#installation"><strong>2. Installation</strong></a></h3>
-<h3 id="3-examplesexamples"><a href="#examples"><strong>3. Examples</strong></a></h3>
-<h3 id="4-chicachechicache"><a href="#chicache"><strong>4. CHI::Cache</strong></a></h3>
-<h3 id="5-chitieredchitiered"><a href="#chitiered"><strong>5. CHI::Tiered</strong></a></h3>
-<h3 id="6-conclusionconclusion"><a href="#conclusion"><strong>6. Conclusion</strong></a></h3>
+<h3 id="1-introduction"><a href="#introduction"><strong>1. Introduction</strong></a></h3>
+<h3 id="2-installation"><a href="#installation"><strong>2. Installation</strong></a></h3>
+<h3 id="3-examples"><a href="#examples"><strong>3. Examples</strong></a></h3>
+<h3 id="4-chicache"><a href="#chicache"><strong>4. CHI::Cache</strong></a></h3>
+<h3 id="5-chitiered"><a href="#chitiered"><strong>5. CHI::Tiered</strong></a></h3>
+<h3 id="6-conclusion"><a href="#conclusion"><strong>6. Conclusion</strong></a></h3>
 <br>
 <h2 id="introduction">Introduction</h2>
 <hr>
 <p>This is the third and last post in the series <code>Caching in Perl</code>. If you missed the first two then please follow the links below:</p>
 <br>
-<h4 id="1-caching-using-redisvalkeyhttpstheweeklychallengeorgblogcaching-in-perl"><a href="https://theweeklychallenge.org/blog/caching-in-perl"><strong>1. Caching using Redis/Valkey</strong></a></h4>
-<h4 id="2-caching-using-memcachedhttpstheweeklychallengeorgblogcaching-using-memcached"><a href="https://theweeklychallenge.org/blog/caching-using-memcached"><strong>2. Caching using Memcached</strong></a></h4>
+<h4 id="1-caching-using-redisvalkey"><a href="https://theweeklychallenge.org/blog/caching-in-perl"><strong>1. Caching using Redis/Valkey</strong></a></h4>
+<h4 id="2-caching-using-memcached"><a href="https://theweeklychallenge.org/blog/caching-using-memcached"><strong>2. Caching using Memcached</strong></a></h4>
 <br>
 <p>In this post, I&rsquo;m sharing my experience with <a href="https://metacpan.org/pod/CHI"><strong>CHI</strong></a>.</p>
 <p>While working on my previous post for <code>Redis</code>, I fell in love with it as I had never used it before.</p>
@@ -216,73 +216,73 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Here is the docker configuration, <code>docker-compose.yml</code>, to create docker container running <code>Valkey</code>.</p>
 <p><strong>NOTE</strong>: <code>Valkey</code> is the new open source project name for <code>Redis</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">version: <span style="color:#e6db74">&#39;3.8&#39;</span>
-
-services:
-  valkey:
-    image: valkey/valkey:latest
-    container_name: valkey
-    ports:
-      - <span style="color:#e6db74">&#34;6379:6379&#34;</span>
-    restart: unless-stopped
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  valkey:
+</span></span><span style="display:flex;"><span>    image: valkey/valkey:latest
+</span></span><span style="display:flex;"><span>    container_name: valkey
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;6379:6379&#34;</span>
+</span></span><span style="display:flex;"><span>    restart: unless-stopped
+</span></span></code></pre></div><br>
 <p>Now, we can start the container like below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up -d
-Creating valkey ... <span style="color:#66d9ef">done</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker-compose up -d
+</span></span><span style="display:flex;"><span>Creating valkey ... <span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><br>
 <p>We can now install the <code>memcached</code> if missing as below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt install memcached libmemcached-tools
-$ sudo systemctl enable memcached
-$ sudo systemctl start memcached
-$ sudo systemctl status memcached
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo apt install memcached libmemcached-tools
+</span></span><span style="display:flex;"><span>$ sudo systemctl enable memcached
+</span></span><span style="display:flex;"><span>$ sudo systemctl start memcached
+</span></span><span style="display:flex;"><span>$ sudo systemctl status memcached
+</span></span></code></pre></div><br>
 <p>We can now install the <code>Perl</code> client as below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cpanm -vS CHI Cache::Memcached::Fast Redis::Fast
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cpanm -vS CHI Cache::Memcached::Fast Redis::Fast
+</span></span></code></pre></div><br>
 <h2 id="examples">Examples</h2>
 <hr>
 <p>Here is a very simple example showing file-based caching using <code>CHI</code>.</p>
 <p><strong>File:</strong> <code>chi-file.pl</code></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> CHI;
-
-<span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>, root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/my_cache&#39;</span>);
-<span style="color:#66d9ef">my</span> $key   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;key&#39;</span>;
-
-<span style="color:#75715e"># Clear cache.</span>
-$cache<span style="color:#f92672">-&gt;</span>clear;
-
-get($cache, $key);
-get($cache, $key);
-
-<span style="color:#75715e">#</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># SUBROUTINES</span>
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span>($cache, $key) {
-    <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> $cache<span style="color:#f92672">-&gt;</span>get($key);
-    <span style="color:#66d9ef">if</span> (defined $val) {
-        say <span style="color:#e6db74">&#34;Cache HIT, serving from cache.&#34;</span>;
-    } <span style="color:#66d9ef">else</span> {
-        say <span style="color:#e6db74">&#34;Cache MISS, fetching from database.&#34;</span>;
-        sleep <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># Simulate slow query</span>
-        $val <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;val&#39;</span>;
-        $cache<span style="color:#f92672">-&gt;</span>set($key, $val);
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> CHI;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>, root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/my_cache&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $key   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;key&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clear cache.</span>
+</span></span><span style="display:flex;"><span>$cache<span style="color:#f92672">-&gt;</span>clear;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>get($cache, $key);
+</span></span><span style="display:flex;"><span>get($cache, $key);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># SUBROUTINES</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span>($cache, $key) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> $cache<span style="color:#f92672">-&gt;</span>get($key);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (defined $val) {
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">&#34;Cache HIT, serving from cache.&#34;</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">&#34;Cache MISS, fetching from database.&#34;</span>;
+</span></span><span style="display:flex;"><span>        sleep <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># Simulate slow query</span>
+</span></span><span style="display:flex;"><span>        $val <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;val&#39;</span>;
+</span></span><span style="display:flex;"><span>        $cache<span style="color:#f92672">-&gt;</span>set($key, $val);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s check the result:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl chi-file.pl
-Cache MISS, fetching from database.
-Cache HIT, serving from cache.
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl chi-file.pl
+</span></span><span style="display:flex;"><span>Cache MISS, fetching from database.
+</span></span><span style="display:flex;"><span>Cache HIT, serving from cache.
+</span></span></code></pre></div><br>
 <p>So far, so good.</p>
 <p>But did you notice something new in the code above? The use of <code>driver</code>.</p>
 <p>It is the storage backends for <code>CHI</code>. Below is some of the most commonly used backends:</p>
@@ -302,45 +302,45 @@ and many more
 <p>Here is a simple example showing the power of <code>CHI</code> layered caches i.e. <code>Memory</code> and <code>File</code>.</p>
 <p><strong>File:</strong> <code>chi-l1-cache.pl</code></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> CHI;
-
-<span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
-    driver   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,
-    root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/file_cache&#39;</span>,
-    l1_cache <span style="color:#f92672">=&gt;</span> { driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>, global <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
-);
-
-$cache<span style="color:#f92672">-&gt;</span>clear;
-
-<span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;key&#39;</span>;
-<span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;val&#39;</span>;
-
-is($cache<span style="color:#f92672">-&gt;</span>get($key), undef, <span style="color:#e6db74">&#39;First get miss&#39;</span>);
-
-$cache<span style="color:#f92672">-&gt;</span>set($key, $val);
-is($cache<span style="color:#f92672">-&gt;</span>get($key), $val, <span style="color:#e6db74">&#39;Found key after set&#39;</span>);
-
-<span style="color:#66d9ef">my</span> $file_cache <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>, root <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/file_cache&#39;</span>);
-$file_cache<span style="color:#f92672">-&gt;</span>remove($key);
-is($file_cache<span style="color:#f92672">-&gt;</span>get($key), undef, <span style="color:#e6db74">&#39;Key missing in file cache&#39;</span>);
-
-is($cache<span style="color:#f92672">-&gt;</span>get($key), $val, <span style="color:#e6db74">&#39;Found key in L1 cache&#39;</span>);
-
-done_testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> CHI;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+</span></span><span style="display:flex;"><span>    driver   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,
+</span></span><span style="display:flex;"><span>    root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/file_cache&#39;</span>,
+</span></span><span style="display:flex;"><span>    l1_cache <span style="color:#f92672">=&gt;</span> { driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>, global <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$cache<span style="color:#f92672">-&gt;</span>clear;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;key&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;val&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is($cache<span style="color:#f92672">-&gt;</span>get($key), undef, <span style="color:#e6db74">&#39;First get miss&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$cache<span style="color:#f92672">-&gt;</span>set($key, $val);
+</span></span><span style="display:flex;"><span>is($cache<span style="color:#f92672">-&gt;</span>get($key), $val, <span style="color:#e6db74">&#39;Found key after set&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $file_cache <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>, root <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/file_cache&#39;</span>);
+</span></span><span style="display:flex;"><span>$file_cache<span style="color:#f92672">-&gt;</span>remove($key);
+</span></span><span style="display:flex;"><span>is($file_cache<span style="color:#f92672">-&gt;</span>get($key), undef, <span style="color:#e6db74">&#39;Key missing in file cache&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is($cache<span style="color:#f92672">-&gt;</span>get($key), $val, <span style="color:#e6db74">&#39;Found key in L1 cache&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><br>
 <p>Time for some action now.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl chi-l1-cache.pl
-ok <span style="color:#ae81ff">1</span> - First get miss
-ok <span style="color:#ae81ff">2</span> - Found key after set
-ok <span style="color:#ae81ff">3</span> - Key missing in file cache
-ok <span style="color:#ae81ff">4</span> - Found key in L1 cache
-1..4
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl chi-l1-cache.pl
+</span></span><span style="display:flex;"><span>ok <span style="color:#ae81ff">1</span> - First get miss
+</span></span><span style="display:flex;"><span>ok <span style="color:#ae81ff">2</span> - Found key after set
+</span></span><span style="display:flex;"><span>ok <span style="color:#ae81ff">3</span> - Key missing in file cache
+</span></span><span style="display:flex;"><span>ok <span style="color:#ae81ff">4</span> - Found key in L1 cache
+</span></span><span style="display:flex;"><span>1..4
+</span></span></code></pre></div><br>
 <h2 id="chicache">CHI::Cache</h2>
 <hr>
 <p>During my research, one thing keep bothering me about cache operation stats.</p>
@@ -351,126 +351,126 @@ ok <span style="color:#ae81ff">4</span> - Found key in L1 cache
 <p>This is my initial draft.</p>
 <p><strong>File:</strong> <code>chi-cache.pl</code></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> CHI::Cache;
-
-<span style="color:#66d9ef">use</span> CHI;
-<span style="color:#66d9ef">use</span> Moo;
-<span style="color:#66d9ef">use</span> Time::HiRes <span style="color:#e6db74">qw(time)</span>;
-
-has <span style="color:#e6db74">&#39;cache&#39;</span> <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>, required <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
-has <span style="color:#e6db74">&#39;stats&#39;</span> <span style="color:#f92672">=&gt;</span> (
-    is      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>,
-    lazy    <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
-    builder <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;_build_stats&#39;</span>,
-);
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_build_stats</span> {
-    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> $stats <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span>stats;
-    $stats<span style="color:#f92672">-&gt;</span>enable;
-
-    <span style="color:#66d9ef">return</span> $stats;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">label</span> {
-    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>label;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span> {
-    <span style="color:#66d9ef">my</span> ($self, @args) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> $t0   <span style="color:#f92672">=</span> time;
-    <span style="color:#66d9ef">my</span> $val  <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>get(@args);
-    <span style="color:#66d9ef">my</span> $t1   <span style="color:#f92672">=</span> time;
-    <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>data;
-
-    $data<span style="color:#f92672">-&gt;</span>{gets}<span style="color:#f92672">++</span>;
-    (defined $val) ? ($data<span style="color:#f92672">-&gt;</span>{hits}<span style="color:#f92672">++</span>) : ($data<span style="color:#f92672">-&gt;</span>{misses}<span style="color:#f92672">++</span>);
-    $data<span style="color:#f92672">-&gt;</span>{get_time_ms} <span style="color:#f92672">+=</span> int(($t1 <span style="color:#f92672">-</span> $t0) <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
-
-    <span style="color:#66d9ef">return</span> $val;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">set</span> {
-    <span style="color:#66d9ef">my</span> ($self, @args) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> $t0   <span style="color:#f92672">=</span> time;
-    <span style="color:#66d9ef">my</span> $val  <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>set(@args);
-    <span style="color:#66d9ef">my</span> $t1   <span style="color:#f92672">=</span> time;
-    <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>data;
-
-    $data<span style="color:#f92672">-&gt;</span>{sets}<span style="color:#f92672">++</span>;
-    $data<span style="color:#f92672">-&gt;</span>{set_time_ms} <span style="color:#f92672">+=</span> int(($t1 <span style="color:#f92672">-</span> $t0) <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
-
-    <span style="color:#66d9ef">return</span> $val;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">data</span> {
-    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>stats<span style="color:#f92672">-&gt;</span>stats_for_driver($self<span style="color:#f92672">-&gt;</span>cache);
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">AUTOLOAD</span> {
-    <span style="color:#66d9ef">our</span> $AUTOLOAD;
-    <span style="color:#66d9ef">my</span> ($self, @args) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> $method <span style="color:#f92672">=</span> $AUTOLOAD;
-    $method <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/.*:://</span>;
-
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $method <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;DESTROY&#39;</span>;
-    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>$method(@args);
-}
-
-<span style="color:#66d9ef">package</span> main;
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> CHI;
-<span style="color:#66d9ef">use</span> CHI::Cache;
-<span style="color:#66d9ef">use</span> Data::Dumper;
-
-<span style="color:#66d9ef">my</span> $caches <span style="color:#f92672">=</span> [
-    CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>, global   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>),
-    CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,   root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/chi_file_cache&#39;</span>),
-];
-
-<span style="color:#66d9ef">foreach</span> (@$caches) {
-    <span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI::Cache<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(cache <span style="color:#f92672">=&gt;</span> $_);
-    $cache<span style="color:#f92672">-&gt;</span>set(<span style="color:#e6db74">&#39;foo&#39;</span>, <span style="color:#e6db74">&#39;bar&#39;</span>);
-    $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;foo&#39;</span>);
-    $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;baz&#39;</span>);
-    say <span style="color:#e6db74">&#34;Cache: &#34;</span>, $cache<span style="color:#f92672">-&gt;</span>label;
-    say Dumper($cache<span style="color:#f92672">-&gt;</span>data);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> CHI::Cache;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> CHI;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Time::HiRes <span style="color:#e6db74">qw(time)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>has <span style="color:#e6db74">&#39;cache&#39;</span> <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>, required <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>has <span style="color:#e6db74">&#39;stats&#39;</span> <span style="color:#f92672">=&gt;</span> (
+</span></span><span style="display:flex;"><span>    is      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>,
+</span></span><span style="display:flex;"><span>    lazy    <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    builder <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;_build_stats&#39;</span>,
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_build_stats</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $stats <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span>stats;
+</span></span><span style="display:flex;"><span>    $stats<span style="color:#f92672">-&gt;</span>enable;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $stats;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">label</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>label;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, @args) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $t0   <span style="color:#f92672">=</span> time;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $val  <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>get(@args);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $t1   <span style="color:#f92672">=</span> time;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>data;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $data<span style="color:#f92672">-&gt;</span>{gets}<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    (defined $val) ? ($data<span style="color:#f92672">-&gt;</span>{hits}<span style="color:#f92672">++</span>) : ($data<span style="color:#f92672">-&gt;</span>{misses}<span style="color:#f92672">++</span>);
+</span></span><span style="display:flex;"><span>    $data<span style="color:#f92672">-&gt;</span>{get_time_ms} <span style="color:#f92672">+=</span> int(($t1 <span style="color:#f92672">-</span> $t0) <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $val;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">set</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, @args) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $t0   <span style="color:#f92672">=</span> time;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $val  <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>set(@args);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $t1   <span style="color:#f92672">=</span> time;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>data;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $data<span style="color:#f92672">-&gt;</span>{sets}<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    $data<span style="color:#f92672">-&gt;</span>{set_time_ms} <span style="color:#f92672">+=</span> int(($t1 <span style="color:#f92672">-</span> $t0) <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $val;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">data</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>stats<span style="color:#f92672">-&gt;</span>stats_for_driver($self<span style="color:#f92672">-&gt;</span>cache);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">AUTOLOAD</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">our</span> $AUTOLOAD;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, @args) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $method <span style="color:#f92672">=</span> $AUTOLOAD;
+</span></span><span style="display:flex;"><span>    $method <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/.*:://</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $method <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;DESTROY&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>cache<span style="color:#f92672">-&gt;</span>$method(@args);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> main;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> CHI;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> CHI::Cache;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Data::Dumper;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $caches <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>, global   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>    CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,   root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/chi_file_cache&#39;</span>),
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> (@$caches) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI::Cache<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(cache <span style="color:#f92672">=&gt;</span> $_);
+</span></span><span style="display:flex;"><span>    $cache<span style="color:#f92672">-&gt;</span>set(<span style="color:#e6db74">&#39;foo&#39;</span>, <span style="color:#e6db74">&#39;bar&#39;</span>);
+</span></span><span style="display:flex;"><span>    $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;foo&#39;</span>);
+</span></span><span style="display:flex;"><span>    $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;baz&#39;</span>);
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;Cache: &#34;</span>, $cache<span style="color:#f92672">-&gt;</span>label;
+</span></span><span style="display:flex;"><span>    say Dumper($cache<span style="color:#f92672">-&gt;</span>data);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s test the script.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl chi-cache.pl
-Cache: Memory
-$VAR1 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
-          <span style="color:#e6db74">&#39;hits&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
-          <span style="color:#e6db74">&#39;set_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; 0,
-          <span style="color:#e6db74">&#39;sets&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
-          <span style="color:#e6db74">&#39;misses&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
-          <span style="color:#e6db74">&#39;start_time&#39;</span> <span style="color:#f92672">=</span>&gt; 1757341995,
-          <span style="color:#e6db74">&#39;gets&#39;</span> <span style="color:#f92672">=</span>&gt; 2,
-          <span style="color:#e6db74">&#39;get_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">0</span>
-        <span style="color:#f92672">}</span>;
-
-Cache: File
-$VAR1 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
-          <span style="color:#e6db74">&#39;gets&#39;</span> <span style="color:#f92672">=</span>&gt; 2,
-          <span style="color:#e6db74">&#39;get_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; 0,
-          <span style="color:#e6db74">&#39;set_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; 3,
-          <span style="color:#e6db74">&#39;start_time&#39;</span> <span style="color:#f92672">=</span>&gt; 1757341995,
-          <span style="color:#e6db74">&#39;sets&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
-          <span style="color:#e6db74">&#39;misses&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
-          <span style="color:#e6db74">&#39;hits&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">1</span>
-        <span style="color:#f92672">}</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl chi-cache.pl
+</span></span><span style="display:flex;"><span>Cache: Memory
+</span></span><span style="display:flex;"><span>$VAR1 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;hits&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;set_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; 0,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;sets&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;misses&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;start_time&#39;</span> <span style="color:#f92672">=</span>&gt; 1757341995,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;gets&#39;</span> <span style="color:#f92672">=</span>&gt; 2,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;get_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Cache: File
+</span></span><span style="display:flex;"><span>$VAR1 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;gets&#39;</span> <span style="color:#f92672">=</span>&gt; 2,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;get_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; 0,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;set_time_ms&#39;</span> <span style="color:#f92672">=</span>&gt; 3,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;start_time&#39;</span> <span style="color:#f92672">=</span>&gt; 1757341995,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;sets&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;misses&#39;</span> <span style="color:#f92672">=</span>&gt; 1,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;hits&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>;
+</span></span></code></pre></div><br>
 <p>Decent result, not a perfect one though.</p>
 <br>
 <h2 id="chitiered">CHI::Tiered</h2>
@@ -478,59 +478,59 @@ $VAR1 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
 <p>I was wondering, why limit to just <code>l1_cache</code>.</p>
 <p>I decided to work on solution where user can choose how many layers and type of cache to pick.</p>
 <br>
-<h3 id="github-repository-chitieredhttpsgithubcommanwarchi-tiered">GitHub Repository: <a href="https://github.com/manwar/CHI-Tiered">CHI::Tiered</a></h3>
+<h3 id="github-repository-chitiered">GitHub Repository: <a href="https://github.com/manwar/CHI-Tiered">CHI::Tiered</a></h3>
 <br>
 <p>There are two ways to work with <code>CHI::Tiered</code> as below:</p>
 <p>First passing list of arrayrefs.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI::Tiered<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
-    [driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>,    global   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>                  ],
-    [driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,      root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/cache&#39;</span>       ],
-    [driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memcached&#39;</span>, servers  <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;127.0.0.1:11211&#39;</span>]],
-);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI::Tiered<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+</span></span><span style="display:flex;"><span>    [driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>,    global   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>                  ],
+</span></span><span style="display:flex;"><span>    [driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,      root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/cache&#39;</span>       ],
+</span></span><span style="display:flex;"><span>    [driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memcached&#39;</span>, servers  <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;127.0.0.1:11211&#39;</span>]],
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><br>
 <p>Or passing list of <code>CHI::Driver</code> objects.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $memory    <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>,    global   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
-<span style="color:#66d9ef">my</span> $file      <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,      root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/cache&#39;</span>);
-<span style="color:#66d9ef">my</span> $memcached <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memcached&#39;</span>, servers  <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;127.0.0.1:11211&#39;</span>]);
-
-<span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI::Tiered<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($memory, $file, $memcached);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $memory    <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memory&#39;</span>,    global   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $file      <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;File&#39;</span>,      root_dir <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/tmp/cache&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $memcached <span style="color:#f92672">=</span> CHI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(driver <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Memcached&#39;</span>, servers  <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;127.0.0.1:11211&#39;</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> CHI::Tiered<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($memory, $file, $memcached);
+</span></span></code></pre></div><br>
 <p>The order of cache is important, fastest to slowest. You can decide the order.</p>
 <p>Standard operations are as below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$cache<span style="color:#f92672">-&gt;</span>set($key, $val, <span style="color:#e6db74">&#39;1 hour&#39;</span>);
-<span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> $cache<span style="color:#f92672">-&gt;</span>get($key);
-$cache<span style="color:#f92672">-&gt;</span>remove($key);
-$cache<span style="color:#f92672">-&gt;</span>clear;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$cache<span style="color:#f92672">-&gt;</span>set($key, $val, <span style="color:#e6db74">&#39;1 hour&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> $cache<span style="color:#f92672">-&gt;</span>get($key);
+</span></span><span style="display:flex;"><span>$cache<span style="color:#f92672">-&gt;</span>remove($key);
+</span></span><span style="display:flex;"><span>$cache<span style="color:#f92672">-&gt;</span>clear;
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s build and test the package <code>CHI::Tiered</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl Makefile.PL
-Checking <span style="color:#66d9ef">if</span> your kit is complete...
-Looks good
-Generating a Unix-style Makefile
-Writing Makefile <span style="color:#66d9ef">for</span> CHI::Tiered
-Writing MYMETA.yml and MYMETA.json
-
-$ make
-cp lib/CHI/Tiered.pm blib/lib/CHI/Tiered.pm
-Manifying <span style="color:#ae81ff">1</span> pod document
-
-$ make test
-PERL_DL_NONLAZY<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#e6db74">&#34;/usr/bin/perl&#34;</span> <span style="color:#e6db74">&#34;-MExtUtils::Command::MM&#34;</span> <span style="color:#e6db74">&#34;-MTest::Harness&#34;</span> <span style="color:#e6db74">&#34;-e&#34;</span> <span style="color:#e6db74">&#34;undef *Test::Harness::Switches; test_harness(0, &#39;blib/lib&#39;, &#39;blib/arch&#39;)&#34;</span> t/*.t
-t/00-load.t ............. 1/1 <span style="color:#75715e"># Testing CHI::Tiered 0.01, Perl 5.038002, /usr/bin/perl</span>
-t/00-load.t ............. ok
-t/01_driver_name.t ...... ok
-t/02_driver_obj.t ....... ok
-t/03_driver_extended.t .. ok
-t/manifest.t ............ ok
-t/pod.t ................. ok
-All tests successful.
-Files<span style="color:#f92672">=</span>6, Tests<span style="color:#f92672">=</span>39,  <span style="color:#ae81ff">0</span> wallclock secs <span style="color:#f92672">(</span> 0.01 usr  0.00 sys +  0.40 cusr  0.07 csys <span style="color:#f92672">=</span>  0.48 CPU<span style="color:#f92672">)</span>
-Result: PASS
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl Makefile.PL
+</span></span><span style="display:flex;"><span>Checking <span style="color:#66d9ef">if</span> your kit is complete...
+</span></span><span style="display:flex;"><span>Looks good
+</span></span><span style="display:flex;"><span>Generating a Unix-style Makefile
+</span></span><span style="display:flex;"><span>Writing Makefile <span style="color:#66d9ef">for</span> CHI::Tiered
+</span></span><span style="display:flex;"><span>Writing MYMETA.yml and MYMETA.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ make
+</span></span><span style="display:flex;"><span>cp lib/CHI/Tiered.pm blib/lib/CHI/Tiered.pm
+</span></span><span style="display:flex;"><span>Manifying <span style="color:#ae81ff">1</span> pod document
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ make test
+</span></span><span style="display:flex;"><span>PERL_DL_NONLAZY<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#e6db74">&#34;/usr/bin/perl&#34;</span> <span style="color:#e6db74">&#34;-MExtUtils::Command::MM&#34;</span> <span style="color:#e6db74">&#34;-MTest::Harness&#34;</span> <span style="color:#e6db74">&#34;-e&#34;</span> <span style="color:#e6db74">&#34;undef *Test::Harness::Switches; test_harness(0, &#39;blib/lib&#39;, &#39;blib/arch&#39;)&#34;</span> t/*.t
+</span></span><span style="display:flex;"><span>t/00-load.t ............. 1/1 <span style="color:#75715e"># Testing CHI::Tiered 0.01, Perl 5.038002, /usr/bin/perl</span>
+</span></span><span style="display:flex;"><span>t/00-load.t ............. ok
+</span></span><span style="display:flex;"><span>t/01_driver_name.t ...... ok
+</span></span><span style="display:flex;"><span>t/02_driver_obj.t ....... ok
+</span></span><span style="display:flex;"><span>t/03_driver_extended.t .. ok
+</span></span><span style="display:flex;"><span>t/manifest.t ............ ok
+</span></span><span style="display:flex;"><span>t/pod.t ................. ok
+</span></span><span style="display:flex;"><span>All tests successful.
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">=</span>6, Tests<span style="color:#f92672">=</span>39,  <span style="color:#ae81ff">0</span> wallclock secs <span style="color:#f92672">(</span> 0.01 usr  0.00 sys +  0.40 cusr  0.07 csys <span style="color:#f92672">=</span>  0.48 CPU<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Result: PASS
+</span></span></code></pre></div><br>
 <h2 id="conclusion">Conclusion</h2>
 <hr>
 <p>This exercise was worth it. In the end, I have got two solutions: <code>CHI::Cache</code> and <code>CHI::Tiered</code>.</p>

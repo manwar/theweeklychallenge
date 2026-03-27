@@ -178,16 +178,16 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <h2 id="table-of-contents">TABLE OF CONTENTS</h2>
 <hr>
-<h3 id="nbspnbsp1-headlinesheadlines">  1. <a href="#HEADLINES">HEADLINES</a></h3>
-<h3 id="nbspnbsp2-sponsorsponsor">  2. <a href="#SPONSOR">SPONSOR</a></h3>
-<h3 id="nbspnbsp3-recaprecap">  3. <a href="#RECAP">RECAP</a></h3>
-<h3 id="nbspnbsp4-perl-reviewperlreview">  4. <a href="#PERLREVIEW">PERL REVIEW</a></h3>
-<h3 id="nbspnbsp5-raku-reviewrakureview">  5. <a href="#RAKUREVIEW">RAKU REVIEW</a></h3>
-<h3 id="nbspnbsp6-chartchart">  6. <a href="#CHART">CHART</a></h3>
-<h3 id="nbspnbsp7-new-membersnewmembers">  7. <a href="#NEWMEMBERS">NEW MEMBERS</a></h3>
-<h3 id="nbspnbsp8-guestsguests">  8. <a href="#GUESTS">GUESTS</a></h3>
-<h3 id="nbspnbsp9-task-1-duplicate-removalstask1">  9. <a href="#TASK1">TASK #1: Duplicate Removals</a></h3>
-<h3 id="10-task-2-ascending-numberstask2">10. <a href="#TASK2">TASK #2: Ascending Numbers</a></h3>
+<h3 id="1-headlines">  1. <a href="#HEADLINES">HEADLINES</a></h3>
+<h3 id="2-sponsor">  2. <a href="#SPONSOR">SPONSOR</a></h3>
+<h3 id="3-recap">  3. <a href="#RECAP">RECAP</a></h3>
+<h3 id="4-perl-review">  4. <a href="#PERLREVIEW">PERL REVIEW</a></h3>
+<h3 id="5-raku-review">  5. <a href="#RAKUREVIEW">RAKU REVIEW</a></h3>
+<h3 id="6-chart">  6. <a href="#CHART">CHART</a></h3>
+<h3 id="7-new-members">  7. <a href="#NEWMEMBERS">NEW MEMBERS</a></h3>
+<h3 id="8-guests">  8. <a href="#GUESTS">GUESTS</a></h3>
+<h3 id="9-task-1-duplicate-removals">  9. <a href="#TASK1">TASK #1: Duplicate Removals</a></h3>
+<h3 id="10-task-2-ascending-numbers">10. <a href="#TASK2">TASK #2: Ascending Numbers</a></h3>
 <br>
 <h2 id="HEADLINES">HEADLINES</h2>
 <hr>
@@ -196,57 +196,57 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Welcome back, <code>Mariano Spadaccini</code> and thanks for contributions in <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-339/spadacciniweb/elixir/ch-2.exs"><strong>Elixir</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-339/spadacciniweb/go/ch-2.go"><strong>Go</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-339/spadacciniweb/perl/ch-2.pl"><strong>Perl</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-339/spadacciniweb/python/ch-2.py"><strong>Python</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-339/spadacciniweb/ruby/ch-2.rb"><strong>Ruby</strong></a>.</p>
 <p>Finally I found the time and energy to make a comeback and join the fun. The last time I participated was in the <code>Week #196 (Dec, 2022)</code>. That seems like a long time, I agree. The comeback wasn&rsquo;t smooth, though.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">max_diff</span> {
-    <span style="color:#66d9ef">my</span> @nums <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#75715e"># For 4 elements, there are only 3 possible pairings</span>
-    <span style="color:#66d9ef">if</span> (@nums <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
-        <span style="color:#66d9ef">my</span> ($a, $b, $c, $d) <span style="color:#f92672">=</span> @nums;
-        <span style="color:#66d9ef">return</span> max(
-            $a<span style="color:#f92672">*</span>$b <span style="color:#f92672">-</span> $c<span style="color:#f92672">*</span>$d,
-            $a<span style="color:#f92672">*</span>$c <span style="color:#f92672">-</span> $b<span style="color:#f92672">*</span>$d,
-            $a<span style="color:#f92672">*</span>$d <span style="color:#f92672">-</span> $b<span style="color:#f92672">*</span>$c,
-        );
-    }
-
-    <span style="color:#75715e"># For larger arrays, we need to consider extreme values</span>
-    <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @nums;
-
-    <span style="color:#75715e"># The maximum difference will likely come from:</span>
-    <span style="color:#75715e"># Option 1: (two largest) vs (two smallest)</span>
-    <span style="color:#75715e"># Option 2: (largest*smallest) vs (second largest*second smallest)</span>
-    <span style="color:#75715e"># Option 3: (largest*second smallest) vs (second largest*smallest)</span>
-
-    <span style="color:#66d9ef">my</span> $opt1 <span style="color:#f92672">=</span> $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$s[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">-</span>  $s[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>$s[<span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">my</span> $opt2 <span style="color:#f92672">=</span> $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$s[<span style="color:#ae81ff">0</span>]  <span style="color:#f92672">-</span> $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">*</span>$s[<span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">my</span> $opt3 <span style="color:#f92672">=</span> $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$s[<span style="color:#ae81ff">1</span>]  <span style="color:#f92672">-</span> $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">*</span>$s[<span style="color:#ae81ff">0</span>];
-
-    <span style="color:#66d9ef">return</span> max($opt1, $opt2, $opt3);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">max_diff</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @nums <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># For 4 elements, there are only 3 possible pairings</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (@nums <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($a, $b, $c, $d) <span style="color:#f92672">=</span> @nums;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> max(
+</span></span><span style="display:flex;"><span>            $a<span style="color:#f92672">*</span>$b <span style="color:#f92672">-</span> $c<span style="color:#f92672">*</span>$d,
+</span></span><span style="display:flex;"><span>            $a<span style="color:#f92672">*</span>$c <span style="color:#f92672">-</span> $b<span style="color:#f92672">*</span>$d,
+</span></span><span style="display:flex;"><span>            $a<span style="color:#f92672">*</span>$d <span style="color:#f92672">-</span> $b<span style="color:#f92672">*</span>$c,
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># For larger arrays, we need to consider extreme values</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @nums;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The maximum difference will likely come from:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Option 1: (two largest) vs (two smallest)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Option 2: (largest*smallest) vs (second largest*second smallest)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Option 3: (largest*second smallest) vs (second largest*smallest)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $opt1 <span style="color:#f92672">=</span> $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$s[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">-</span>  $s[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>$s[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $opt2 <span style="color:#f92672">=</span> $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$s[<span style="color:#ae81ff">0</span>]  <span style="color:#f92672">-</span> $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">*</span>$s[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $opt3 <span style="color:#f92672">=</span> $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$s[<span style="color:#ae81ff">1</span>]  <span style="color:#f92672">-</span> $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">*</span>$s[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> max($opt1, $opt2, $opt3);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>As soon as I shared this on <a href="https://www.facebook.com/photo?fbid=10163195075987641"><strong>Facebook</strong></a>, <code>James Smith</code>, a fellow <code>Team PWC</code> member, pointed out that it would fail a few edge cases.</p>
 <p>Normally <code>Task #1</code> is supposed to be easier than <code>Task #2</code> but this time it turned out to be the opposite.</p>
 <p>This final contribution addresses the edge cases shared by <code>James</code>.</p>
 <p>With this, my current rank on the leaderboard is <code>#31</code>. I remember, there was a time when I was in the <code>Top 10</code> gang.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">max_diff</span> {
-    <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> @pairs <span style="color:#f92672">=</span> map {
-        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $_;
-        map { [$i, $_, $n[$i]<span style="color:#f92672">*</span>$n[$_]] } $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#n
-    } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-
-    <span style="color:#66d9ef">return</span> max
-        grep { defined }
-        map {
-            <span style="color:#66d9ef">my</span> ($i,$j,$p1) <span style="color:#f92672">=</span> @$_;
-            map {
-                <span style="color:#66d9ef">my</span> ($k,$l,$p2) <span style="color:#f92672">=</span> @$_;
-                ($i<span style="color:#f92672">==</span>$k<span style="color:#f92672">||</span>$i<span style="color:#f92672">==</span>$l<span style="color:#f92672">||</span>$j<span style="color:#f92672">==</span>$k<span style="color:#f92672">||</span>$j<span style="color:#f92672">==</span>$l) ? () : $p1<span style="color:#f92672">-</span>$p2
-            } @pairs
-        } @pairs;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">max_diff</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @pairs <span style="color:#f92672">=</span> map {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $_;
+</span></span><span style="display:flex;"><span>        map { [$i, $_, $n[$i]<span style="color:#f92672">*</span>$n[$_]] } $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#n
+</span></span><span style="display:flex;"><span>    } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> max
+</span></span><span style="display:flex;"><span>        grep { defined }
+</span></span><span style="display:flex;"><span>        map {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> ($i,$j,$p1) <span style="color:#f92672">=</span> @$_;
+</span></span><span style="display:flex;"><span>            map {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span> ($k,$l,$p2) <span style="color:#f92672">=</span> @$_;
+</span></span><span style="display:flex;"><span>                ($i<span style="color:#f92672">==</span>$k<span style="color:#f92672">||</span>$i<span style="color:#f92672">==</span>$l<span style="color:#f92672">||</span>$j<span style="color:#f92672">==</span>$k<span style="color:#f92672">||</span>$j<span style="color:#f92672">==</span>$l) ? () : $p1<span style="color:#f92672">-</span>$p2
+</span></span><span style="display:flex;"><span>            } @pairs
+</span></span><span style="display:flex;"><span>        } @pairs;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>I&rsquo;ll try to find some time to share my work every week, atleast <code>Task #1</code> (the easier option).</p>
 <p>Guest contributions continue to rise and have reached a peak over the last five weeks.</p>
 <p>The gap between guest contributions and regular contributions in <code>Perl</code> and <code>Raku</code> is getting smaller.</p>
@@ -256,102 +256,102 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <p>Last <code>5 weeks</code> mainstream contribution stats. Thank you <code>Team PWC</code>  for your support and encouragements.</p>
 <table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">  <code>Week</code>  </td>
-<td align="center">   <code>Perl</code>   </td>
-<td align="center">   <code>Raku</code>   </td>
-<td align="center">   <code>Blog</code>   </td>
-</tr>
-<tr>
-<td align="center">   <code>335</code>   </td>
-<td align="center">   40   </td>
-<td align="center">   21   </td>
-<td align="center">   12   </td>
-</tr>
-<tr>
-<td align="center">   <code>336</code>   </td>
-<td align="center">   46   </td>
-<td align="center">   24   </td>
-<td align="center">   13   </td>
-</tr>
-<tr>
-<td align="center">   <code>337</code>   </td>
-<td align="center">   48   </td>
-<td align="center">   20   </td>
-<td align="center">   14   </td>
-</tr>
-<tr>
-<td align="center">   <code>338</code>   </td>
-<td align="center">   45   </td>
-<td align="center">   23   </td>
-<td align="center">   14   </td>
-</tr>
-<tr>
-<td align="center">   <code>339</code>   </td>
-<td align="center">   47   </td>
-<td align="center">   23   </td>
-<td align="center">   15   </td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">  <code>Week</code>  </td>
+          <td style="text-align: center">   <code>Perl</code>   </td>
+          <td style="text-align: center">   <code>Raku</code>   </td>
+          <td style="text-align: center">   <code>Blog</code>   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>335</code>   </td>
+          <td style="text-align: center">   40   </td>
+          <td style="text-align: center">   21   </td>
+          <td style="text-align: center">   12   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>336</code>   </td>
+          <td style="text-align: center">   46   </td>
+          <td style="text-align: center">   24   </td>
+          <td style="text-align: center">   13   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>337</code>   </td>
+          <td style="text-align: center">   48   </td>
+          <td style="text-align: center">   20   </td>
+          <td style="text-align: center">   14   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>338</code>   </td>
+          <td style="text-align: center">   45   </td>
+          <td style="text-align: center">   23   </td>
+          <td style="text-align: center">   14   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>339</code>   </td>
+          <td style="text-align: center">   47   </td>
+          <td style="text-align: center">   23   </td>
+          <td style="text-align: center">   15   </td>
+      </tr>
+  </tbody>
 </table>
 <br>
 <p>Last <code>5 weeks</code> guest contribution stats. Thank you each and every guest contributors for your time and efforts.</p>
 <table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">  <code>Week</code>  </td>
-<td align="center">   <code>Guests</code>   </td>
-<td align="center">   <code>Contributions</code>   </td>
-<td align="center">   <code>Languages</code>   </td>
-</tr>
-<tr>
-<td align="center">   <code>335</code>   </td>
-<td align="center">   13   </td>
-<td align="center">   56   </td>
-<td align="center">   19   </td>
-</tr>
-<tr>
-<td align="center">   <code>336</code>   </td>
-<td align="center">   13   </td>
-<td align="center">   54   </td>
-<td align="center">   18   </td>
-</tr>
-<tr>
-<td align="center">   <code>337</code>   </td>
-<td align="center">   13   </td>
-<td align="center">   54   </td>
-<td align="center">   19   </td>
-</tr>
-<tr>
-<td align="center">   <code>338</code>   </td>
-<td align="center">   13   </td>
-<td align="center">   58   </td>
-<td align="center">   19   </td>
-</tr>
-<tr>
-<td align="center">   <code>339</code>   </td>
-<td align="center">   13   </td>
-<td align="center">   64   </td>
-<td align="center">   21   </td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">  <code>Week</code>  </td>
+          <td style="text-align: center">   <code>Guests</code>   </td>
+          <td style="text-align: center">   <code>Contributions</code>   </td>
+          <td style="text-align: center">   <code>Languages</code>   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>335</code>   </td>
+          <td style="text-align: center">   13   </td>
+          <td style="text-align: center">   56   </td>
+          <td style="text-align: center">   19   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>336</code>   </td>
+          <td style="text-align: center">   13   </td>
+          <td style="text-align: center">   54   </td>
+          <td style="text-align: center">   18   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>337</code>   </td>
+          <td style="text-align: center">   13   </td>
+          <td style="text-align: center">   54   </td>
+          <td style="text-align: center">   19   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>338</code>   </td>
+          <td style="text-align: center">   13   </td>
+          <td style="text-align: center">   58   </td>
+          <td style="text-align: center">   19   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>339</code>   </td>
+          <td style="text-align: center">   13   </td>
+          <td style="text-align: center">   64   </td>
+          <td style="text-align: center">   21   </td>
+      </tr>
+  </tbody>
 </table>
 <br>
 <h3 id="top-10-guest-languages">TOP 10 Guest Languages</h3>
@@ -371,15 +371,15 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h3 id="blogs-with-creative-title">Blogs with Creative Title</h3>
 <hr>
-<h4 id="1-diff-peakhttpsraku-musingscomdiff-peakhtml-by-arne-sommer">1. <a href="https://raku-musings.com/diff-peak.html">Diff Peak</a> by Arne Sommer.</h4>
-<h4 id="2-sorting-for-the-winhttpsdevtobobliedpwc-339-max-diff-sorting-for-the-win-43c8-by-bob-lied">2. <a href="https://dev.to/boblied/pwc-339-max-diff-sorting-for-the-win-43c8">Sorting for the win</a> by Bob Lied.</h4>
-<h4 id="3-max-complication-for-min-brute-forcehttpsgithubcommatthiasmuthperlweeklychallenge-clubtreemuthm-339challenge-339matthias-muthreadme-by-matthias-muth">3. <a href="https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-339/challenge-339/matthias-muth#readme">Max Complication for Min Brute Force</a> by Matthias Muth.</h4>
-<h4 id="4-points-whats-the-diffhttpspackydardancombbn-by-packy-anderson">4. <a href="https://packy.dardan.com/b/bN">Points? What’s the diff?</a> by Packy Anderson.</h4>
-<h4 id="5-pair-products-peak-pointshttpccgicampbellsmithsforce9coukchallenge339-by-peter-campbell-smith">5. <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/339">Pair products, peak points</a> by Peter Campbell Smith.</h4>
-<h4 id="6-the-difference-has-peakedhttpsblogfiredrakeorgarchive202509the_weekly_challenge_339__the_difference_has_peakedhtml-by-roger-bell_west">6. <a href="https://blog.firedrake.org/archive/2025/09/The_Weekly_Challenge_339__The_Difference_has_Peaked.html">The Difference has Peaked</a> by Roger Bell_West.</h4>
-<h4 id="7-maximum-climbhttpsdevtosimongreennetweekly-challenge-maximum-climb-28i3-by-simon-green">7. <a href="https://dev.to/simongreennet/weekly-challenge-maximum-climb-28i3">Maximum climb</a> by Simon Green.</h4>
+<h4 id="1-diff-peak-by-arne-sommer">1. <a href="https://raku-musings.com/diff-peak.html">Diff Peak</a> by Arne Sommer.</h4>
+<h4 id="2-sorting-for-the-win-by-bob-lied">2. <a href="https://dev.to/boblied/pwc-339-max-diff-sorting-for-the-win-43c8">Sorting for the win</a> by Bob Lied.</h4>
+<h4 id="3-max-complication-for-min-brute-force-by-matthias-muth">3. <a href="https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-339/challenge-339/matthias-muth#readme">Max Complication for Min Brute Force</a> by Matthias Muth.</h4>
+<h4 id="4-points-whats-the-diff-by-packy-anderson">4. <a href="https://packy.dardan.com/b/bN">Points? What’s the diff?</a> by Packy Anderson.</h4>
+<h4 id="5-pair-products-peak-points-by-peter-campbell-smith">5. <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/339">Pair products, peak points</a> by Peter Campbell Smith.</h4>
+<h4 id="6-the-difference-has-peaked-by-roger-bell_west">6. <a href="https://blog.firedrake.org/archive/2025/09/The_Weekly_Challenge_339__The_Difference_has_Peaked.html">The Difference has Peaked</a> by Roger Bell_West.</h4>
+<h4 id="7-maximum-climb-by-simon-green">7. <a href="https://dev.to/simongreennet/weekly-challenge-maximum-climb-28i3">Maximum climb</a> by Simon Green.</h4>
 <br>
-<h3 id="githubhttpsgithubcommanwarperlweeklychallenge-club-repository-stats"><a href="https://github.com/manwar/perlweeklychallenge-club">GitHub</a> Repository Stats</h3>
+<h3 id="github-repository-stats"><a href="https://github.com/manwar/perlweeklychallenge-club">GitHub</a> Repository Stats</h3>
 <hr>
 <h4 id="1-commits-45366-109">1. Commits: 45,366 (<code>+109</code>)</h4>
 <h4 id="2-pull-requests-12668-35">2. Pull Requests: 12,668 (<code>+35</code>)</h4>
@@ -419,7 +419,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Please find <a href="/blog/guest-contribution"><strong>past solutions</strong></a> by respected <strong>guests</strong>. Please share your creative solutions in other languages.</p>
 <br>
 <h2 id="TASK1">Task 1: Duplicate Removals</h2>
-<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<h5 id="submitted-by-mohammad-sajid-anwar"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
 <hr>
 <p>You are given a string, <code>$str</code>, consisting of lowercase English letters.</p>
 <p>Write a script to return the final string after all duplicate removals have been made. Repeat duplicate removals on the given string until we no longer can.</p>
@@ -473,7 +473,7 @@ Step 4: Remove 'aa' =&gt; ''
 </code></pre>
 <br>
 <h2 id="TASK2">Task 2: Ascending Numbers</h2>
-<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg-1"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<h5 id="submitted-by-mohammad-sajid-anwar-1"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
 <hr>
 <p>You are given a string, <code>$str</code>, is a list of tokens separated by a single space. Every token is either a positive number consisting of digits 0-9 with no leading zeros, or a word consisting of lowercase English letters.</p>
 <p>Write a script to check if all the numbers in the given string are strictly increasing from left to right.</p>

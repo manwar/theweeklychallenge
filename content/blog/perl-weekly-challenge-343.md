@@ -114,7 +114,7 @@ sub balance_string($s) {
 
 <br>
 
-```raku
+```perl
 #!/usr/bin/env raku
 
 my @examples = (

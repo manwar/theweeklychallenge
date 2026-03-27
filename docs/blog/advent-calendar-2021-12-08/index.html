@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-7blogadvent-calendar-2021-12-07--day-8--day-9blogadvent-calendar-2021-12-09-">| <a href="/blog/advent-calendar-2021-12-07"><strong>Day 7</strong></a> | <strong>Day 8</strong> | <a href="/blog/advent-calendar-2021-12-09"><strong>Day 9</strong></a> |</h3>
+        <h2 id="advent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
+<h3 id="-day-7--day-8--day-9-">| <a href="/blog/advent-calendar-2021-12-07"><strong>Day 7</strong></a> | <strong>Day 8</strong> | <a href="/blog/advent-calendar-2021-12-09"><strong>Day 9</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <code>Colin Crain</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-112"><strong>&ldquo;The Weekly Challenge - 112&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://colincrain.com/2021/05/15/after-finding-our-bearings-one-two-and-up-we-go/"><strong>post</strong></a> by <code>Colin Crain</code>.</p>
 <hr>
@@ -230,138 +230,138 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <p>This properly resolves the relative expressions <code>./</code> and <code>../</code>, also removing redundant and trailing slashes. We need to futz at the end to make sure we start with a leading slash, even if there’s no path left, say in the case we gave it <code>../../../</code> to resolve.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canonical</span> ($path) {
-    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{//+}{/}g</span>;
-    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{/\./}{/}g</span>;
-    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{/$}{}</span>;
-
-    <span style="color:#66d9ef">my</span> @parts <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#39;/&#39;</span>, $path;
-
-    <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> ($pos <span style="color:#f92672">&lt;</span> @parts) {
-        <span style="color:#66d9ef">if</span> ($parts[$pos] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;..&#39;</span>) {
-            <span style="color:#66d9ef">if</span> ($pos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-                splice @parts, $pos<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>;
-                $pos <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span>;
-            }
-            <span style="color:#66d9ef">else</span> {
-                splice @parts, $pos, <span style="color:#ae81ff">1</span>;
-                $pos<span style="color:#f92672">--</span>;
-            }
-        }
-        $pos<span style="color:#f92672">++</span>;
-    }
-    @parts <span style="color:#f92672">=</span> (undef, undef) <span style="color:#66d9ef">unless</span> scalar @parts;
-    unshift @parts, <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#66d9ef">if</span> $parts[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;&#39;</span>;
-    join <span style="color:#e6db74">&#39;/&#39;</span>, @parts;
-
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canonical</span> ($path) {
+</span></span><span style="display:flex;"><span>    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{//+}{/}g</span>;
+</span></span><span style="display:flex;"><span>    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{/\./}{/}g</span>;
+</span></span><span style="display:flex;"><span>    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{/$}{}</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @parts <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#39;/&#39;</span>, $path;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($pos <span style="color:#f92672">&lt;</span> @parts) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($parts[$pos] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;..&#39;</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($pos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>                splice @parts, $pos<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>                $pos <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                splice @parts, $pos, <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                $pos<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $pos<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    @parts <span style="color:#f92672">=</span> (undef, undef) <span style="color:#66d9ef">unless</span> scalar @parts;
+</span></span><span style="display:flex;"><span>    unshift @parts, <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#66d9ef">if</span> $parts[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>    join <span style="color:#e6db74">&#39;/&#39;</span>, @parts;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>The <code>Cwd</code> core module has a function <code>abs_path()</code> which seems quite handy, but only works relative to the current working directory. If the location given exists, and the script has sufficient privileges, we could <code>chdir</code> to the path location and then this will work to resolve soft links to reveal the canonical path:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Cwd <span style="color:#e6db74">qw( abs_path )</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canonical_softlinks</span> ($path) {
-    chdir $path;
-    <span style="color:#66d9ef">return</span> abs_path( $path );
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Cwd <span style="color:#e6db74">qw( abs_path )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canonical_softlinks</span> ($path) {
+</span></span><span style="display:flex;"><span>    chdir $path;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> abs_path( $path );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>But that’s quite a workaround; incomplete and fraught with peril. Not really a robust way to proceed, but sometimes that’s all you get.</p>
 <p>A better way would be to ask the system directly:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canon_sys</span> ($path) {
-    <span style="color:#66d9ef">my</span> $cur <span style="color:#f92672">=</span> <span style="color:#e6db74">`pwd`</span>;
-    chdir <span style="color:#e6db74">&#39;/&#39;</span>;
-    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">`realpath -m $path`</span> ;
-    chomp $out;
-    chdir $cur;
-    <span style="color:#66d9ef">return</span> $out;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canon_sys</span> ($path) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $cur <span style="color:#f92672">=</span> <span style="color:#e6db74">`pwd`</span>;
+</span></span><span style="display:flex;"><span>    chdir <span style="color:#e6db74">&#39;/&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">`realpath -m $path`</span> ;
+</span></span><span style="display:flex;"><span>    chomp $out;
+</span></span><span style="display:flex;"><span>    chdir $cur;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $out;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>The only problem here is if you don’t have proper permissions to <code>chdir</code> down to root and switch back. We could avoid this detail but the <code>cwd</code> would be prepended to the result.</p>
 <br>
 <h2 id="complete-solution">COMPLETE SOLUTION</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#34;:5.26&#34;</span>;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw(signatures)</span>;
-<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">&#39;experimental::signatures&#39;</span>;
-<span style="color:#66d9ef">use</span> Cwd <span style="color:#e6db74">qw( abs_path )</span>;
-
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canonical</span> ($path) {
-    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{//+}{/}g</span>;
-    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{/\./}{/}g</span>;
-    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{/$}{}</span>;
-
-    <span style="color:#66d9ef">my</span> @parts <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#39;/&#39;</span>, $path;
-
-    <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> ($pos <span style="color:#f92672">&lt;</span> @parts) {
-        <span style="color:#66d9ef">if</span> ($parts[$pos] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;..&#39;</span>) {
-            <span style="color:#66d9ef">if</span> ($pos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-                splice @parts, $pos<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>;
-                $pos <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span>;
-            }
-            <span style="color:#66d9ef">else</span> {
-                splice @parts, $pos, <span style="color:#ae81ff">1</span>;
-                $pos<span style="color:#f92672">--</span>;
-            }
-        }
-        $pos<span style="color:#f92672">++</span>;
-    }
-    @parts <span style="color:#f92672">=</span> (undef, undef) <span style="color:#66d9ef">unless</span> scalar @parts;
-    unshift @parts, <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#66d9ef">if</span> $parts[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;&#39;</span>;
-    join <span style="color:#e6db74">&#39;/&#39;</span>, @parts;
-}
-
-<span style="color:#75715e">## this will resolve relative paths, and soft links, with the Cwd package, which</span>
-<span style="color:#75715e">## doesn&#39;t really solve that problem in a general way. We need to `chdir` over to</span>
-<span style="color:#75715e">## the place in question, which would need to both exist and have the right</span>
-<span style="color:#75715e">## permissions. The whole thing is a bit of a mess, really, and I don&#39;t think</span>
-<span style="color:#75715e">## that&#39;s what Mohammad is asking of us.</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canonical_softlinks</span> ($path) {
-    chdir $path;
-    <span style="color:#66d9ef">return</span> abs_path( $path );
-}
-
-<span style="color:#75715e">## a solution using realpath from the system utilities</span>
-<span style="color:#75715e">## we still need to chdir down to root unless we want the cwd prepended to an assumed</span>
-<span style="color:#75715e">## relative path</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canon_sys</span> ($path) {
-    <span style="color:#66d9ef">my</span> $cur <span style="color:#f92672">=</span> <span style="color:#e6db74">`pwd`</span>;
-    chdir <span style="color:#e6db74">&#39;/&#39;</span>;
-    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">`realpath -m $path`</span> ;
-    chomp $out;
-    chdir $cur;
-    <span style="color:#66d9ef">return</span> $out;
-}
-
-
-
-<span style="color:#66d9ef">use</span> Test::More;
-
-is canonical(<span style="color:#e6db74">&#34;/a/&#34;</span>), <span style="color:#e6db74">&#34;/a&#34;</span>             , <span style="color:#e6db74">&#39;ex-1&#39;</span>;
-is canonical(<span style="color:#e6db74">&#34;/a/b//c/&#34;</span>), <span style="color:#e6db74">&#34;/a/b/c&#34;</span>    , <span style="color:#e6db74">&#39;ex-2&#39;</span>;
-is canonical(<span style="color:#e6db74">&#34;/a/b/c/../..&#34;</span>), <span style="color:#e6db74">&#34;/a&#34;</span>    , <span style="color:#e6db74">&#39;ex-3&#39;</span>;
-is canonical(<span style="color:#e6db74">&#39;a/b/c//.//../d/&#39;</span>), <span style="color:#e6db74">&#34;/a/b/d&#34;</span>    , <span style="color:#e6db74">&#39;hateful&#39;</span>;
-is canonical(<span style="color:#e6db74">&#34;../../../b&#34;</span>), <span style="color:#e6db74">&#34;/b&#34;</span>             , <span style="color:#e6db74">&#39;rogers bane&#39;</span>;
-is canonical(<span style="color:#e6db74">&#34;..&#34;</span>), <span style="color:#e6db74">&#34;/&#34;</span>             , <span style="color:#e6db74">&#39;no path&#39;</span>;
-is canonical(<span style="color:#e6db74">&#34;/&#34;</span>), <span style="color:#e6db74">&#34;/&#34;</span>             , <span style="color:#e6db74">&#39;no path2&#39;</span>;
-
-
-is canon_sys(<span style="color:#e6db74">&#34;/a/&#34;</span>), <span style="color:#e6db74">&#34;/a&#34;</span>             , <span style="color:#e6db74">&#39;sys-ex-1&#39;</span>;
-is canon_sys(<span style="color:#e6db74">&#34;/a/b//c/&#34;</span>), <span style="color:#e6db74">&#34;/a/b/c&#34;</span>    , <span style="color:#e6db74">&#39;sys-ex-2&#39;</span>;
-is canon_sys(<span style="color:#e6db74">&#34;/a/b/c/../..&#34;</span>), <span style="color:#e6db74">&#34;/a&#34;</span>    , <span style="color:#e6db74">&#39;sys-ex-3&#39;</span>;
-is canon_sys(<span style="color:#e6db74">&#39;a/b/c//.//../d/&#39;</span>), <span style="color:#e6db74">&#34;/a/b/d&#34;</span>    , <span style="color:#e6db74">&#39;sys-hateful&#39;</span>;
-is canon_sys(<span style="color:#e6db74">&#34;../../../b&#34;</span>), <span style="color:#e6db74">&#34;/b&#34;</span>             , <span style="color:#e6db74">&#39;sys-rogers bane&#39;</span>;
-is canon_sys(<span style="color:#e6db74">&#34;..&#34;</span>), <span style="color:#e6db74">&#34;/&#34;</span>             , <span style="color:#e6db74">&#39;sys-no path&#39;</span>;
-is canon_sys(<span style="color:#e6db74">&#34;/&#34;</span>), <span style="color:#e6db74">&#34;/&#34;</span>             , <span style="color:#e6db74">&#39;sys-no path2&#39;</span>;
-
-
-done_testing();
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#34;:5.26&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw(signatures)</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">&#39;experimental::signatures&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Cwd <span style="color:#e6db74">qw( abs_path )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canonical</span> ($path) {
+</span></span><span style="display:flex;"><span>    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{//+}{/}g</span>;
+</span></span><span style="display:flex;"><span>    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{/\./}{/}g</span>;
+</span></span><span style="display:flex;"><span>    $path <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{/$}{}</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @parts <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#39;/&#39;</span>, $path;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($pos <span style="color:#f92672">&lt;</span> @parts) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($parts[$pos] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;..&#39;</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($pos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>                splice @parts, $pos<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>                $pos <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                splice @parts, $pos, <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                $pos<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $pos<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    @parts <span style="color:#f92672">=</span> (undef, undef) <span style="color:#66d9ef">unless</span> scalar @parts;
+</span></span><span style="display:flex;"><span>    unshift @parts, <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#66d9ef">if</span> $parts[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>    join <span style="color:#e6db74">&#39;/&#39;</span>, @parts;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## this will resolve relative paths, and soft links, with the Cwd package, which</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## doesn&#39;t really solve that problem in a general way. We need to `chdir` over to</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## the place in question, which would need to both exist and have the right</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## permissions. The whole thing is a bit of a mess, really, and I don&#39;t think</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## that&#39;s what Mohammad is asking of us.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canonical_softlinks</span> ($path) {
+</span></span><span style="display:flex;"><span>    chdir $path;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> abs_path( $path );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## a solution using realpath from the system utilities</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## we still need to chdir down to root unless we want the cwd prepended to an assumed</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## relative path</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canon_sys</span> ($path) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $cur <span style="color:#f92672">=</span> <span style="color:#e6db74">`pwd`</span>;
+</span></span><span style="display:flex;"><span>    chdir <span style="color:#e6db74">&#39;/&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">`realpath -m $path`</span> ;
+</span></span><span style="display:flex;"><span>    chomp $out;
+</span></span><span style="display:flex;"><span>    chdir $cur;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $out;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is canonical(<span style="color:#e6db74">&#34;/a/&#34;</span>), <span style="color:#e6db74">&#34;/a&#34;</span>             , <span style="color:#e6db74">&#39;ex-1&#39;</span>;
+</span></span><span style="display:flex;"><span>is canonical(<span style="color:#e6db74">&#34;/a/b//c/&#34;</span>), <span style="color:#e6db74">&#34;/a/b/c&#34;</span>    , <span style="color:#e6db74">&#39;ex-2&#39;</span>;
+</span></span><span style="display:flex;"><span>is canonical(<span style="color:#e6db74">&#34;/a/b/c/../..&#34;</span>), <span style="color:#e6db74">&#34;/a&#34;</span>    , <span style="color:#e6db74">&#39;ex-3&#39;</span>;
+</span></span><span style="display:flex;"><span>is canonical(<span style="color:#e6db74">&#39;a/b/c//.//../d/&#39;</span>), <span style="color:#e6db74">&#34;/a/b/d&#34;</span>    , <span style="color:#e6db74">&#39;hateful&#39;</span>;
+</span></span><span style="display:flex;"><span>is canonical(<span style="color:#e6db74">&#34;../../../b&#34;</span>), <span style="color:#e6db74">&#34;/b&#34;</span>             , <span style="color:#e6db74">&#39;rogers bane&#39;</span>;
+</span></span><span style="display:flex;"><span>is canonical(<span style="color:#e6db74">&#34;..&#34;</span>), <span style="color:#e6db74">&#34;/&#34;</span>             , <span style="color:#e6db74">&#39;no path&#39;</span>;
+</span></span><span style="display:flex;"><span>is canonical(<span style="color:#e6db74">&#34;/&#34;</span>), <span style="color:#e6db74">&#34;/&#34;</span>             , <span style="color:#e6db74">&#39;no path2&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is canon_sys(<span style="color:#e6db74">&#34;/a/&#34;</span>), <span style="color:#e6db74">&#34;/a&#34;</span>             , <span style="color:#e6db74">&#39;sys-ex-1&#39;</span>;
+</span></span><span style="display:flex;"><span>is canon_sys(<span style="color:#e6db74">&#34;/a/b//c/&#34;</span>), <span style="color:#e6db74">&#34;/a/b/c&#34;</span>    , <span style="color:#e6db74">&#39;sys-ex-2&#39;</span>;
+</span></span><span style="display:flex;"><span>is canon_sys(<span style="color:#e6db74">&#34;/a/b/c/../..&#34;</span>), <span style="color:#e6db74">&#34;/a&#34;</span>    , <span style="color:#e6db74">&#39;sys-ex-3&#39;</span>;
+</span></span><span style="display:flex;"><span>is canon_sys(<span style="color:#e6db74">&#39;a/b/c//.//../d/&#39;</span>), <span style="color:#e6db74">&#34;/a/b/d&#34;</span>    , <span style="color:#e6db74">&#39;sys-hateful&#39;</span>;
+</span></span><span style="display:flex;"><span>is canon_sys(<span style="color:#e6db74">&#34;../../../b&#34;</span>), <span style="color:#e6db74">&#34;/b&#34;</span>             , <span style="color:#e6db74">&#39;sys-rogers bane&#39;</span>;
+</span></span><span style="display:flex;"><span>is canon_sys(<span style="color:#e6db74">&#34;..&#34;</span>), <span style="color:#e6db74">&#34;/&#34;</span>             , <span style="color:#e6db74">&#39;sys-no path&#39;</span>;
+</span></span><span style="display:flex;"><span>is canon_sys(<span style="color:#e6db74">&#34;/&#34;</span>), <span style="color:#e6db74">&#34;/&#34;</span>             , <span style="color:#e6db74">&#39;sys-no path2&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing();
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></p>

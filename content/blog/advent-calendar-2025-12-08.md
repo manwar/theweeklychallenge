@@ -45,7 +45,7 @@ This is another challenge we can solve with a `Raku` one-liner:
 
 <br>
 
-```raku
+```perl
 say q{(},([∩] @*ARGS».words).keys.sort({$^a <=> $^b}).join(q{, }),q{)}
 ```
 
@@ -138,7 +138,7 @@ Write a script to sort odd index elements in decreasing order and even index ele
 
 <br>
 
-```raku
+```perl
 @ints.keys.classify({ $_ %% 2 ?? 'evens' !! 'odds' }, as => { @ints[$_] }, into => my %oe);
 ```
 
@@ -148,7 +148,7 @@ Once we have the odds and evens we can sort them the way the spec suggests and a
 
 <br>
 
-```raku
+```perl
 my @evens = %oe<evens>.sort({$^a <=> $^b});
 my @odds =  %oe<odds>.sort({$^b <=> $^a});
 ```
@@ -159,7 +159,7 @@ I thought an easy way to create the result would be two take elements from each 
 
 <br>
 
-```raku
+```perl
 my @result;
 while @evens || @odds {
     if @evens {
@@ -177,7 +177,7 @@ After this process, we can just print out @result in the style suggested by the 
 
 <br>
 
-```raku
+```perl
 say q{(}, @result.join(q{, }), q{)};
 ```
 

@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>Colin Crain › Perl Weekly Review #074</span>
         </nav>
-        <span class="reading-time" title="5073 words">
+        <span class="reading-time" title="5074 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -191,19 +191,19 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
 <p><strong>So finally, without further ado&hellip;</strong></p>
 <hr>
-<h1 id="---nbsp--nbsp--nbsp---task-1pwc074task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc074task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc074blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC074TASK1">Task 1</a>                 •             <a href="#PWC074TASK2">Task 2</a>                 •             <a href="#PWC074BLOGS">BLOGS</a>                  •</h1>
+<h1 id="----------task-1------------------------task-2------------------------blogs---------------">•             <a href="#PWC074TASK1">Task 1</a>                 •             <a href="#PWC074TASK2">Task 2</a>                 •             <a href="#PWC074BLOGS">BLOGS</a>                  •</h1>
 <hr>
 <h1 id="PWC074TASK1">TASK #1 › Majority Element</h1>
 <p>You are given an array of integers of size $N.
 Write a script to find the majority element. If none found then print -1.
 Majority element in the list is the one that appears more than floor(size_of_list/2).</p>
 <p>Example 1</p>
-<pre><code>    Input : @A = (1, 2, 2, 3, 2, 4, 2)
-    Output: 2, as 2 appears 4 times in the list which is more than floor(7/2).
-</code></pre><p>Example 2</p>
-<pre><code>    Input : @A = (1, 3, 1, 2, 4, 5)
-    Output: -1 as none of the elements appears more than floor(6/2).
-</code></pre><h2 id="solutions">Solutions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    Input : @A <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    Output: <span style="color:#ae81ff">2</span>, as <span style="color:#ae81ff">2</span> appears <span style="color:#ae81ff">4</span> times in the list which is more than floor(<span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>
+</span></span></code></pre></div><p>Example 2</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    Input : @A <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>    Output: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> as none of the elements appears more than floor(<span style="color:#ae81ff">6</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>
+</span></span></code></pre></div><h2 id="solutions">Solutions</h2>
 <p>In the wide field of submissions this week, a clear main pattern emerged, bifurcated with a couple of sub-versions of that form found about evenly split down the middle.</p>
 <p>When confronted with the challenge of finding out whether one element in an array occurs more than all the other elements combined, it seems the first go-to idea was to count the frequency of all the elements to see where we stand. From there, one group proceeded by making a reverse sort of the array, according to the frequency data, to find the most common element, then checked to see if this count was greater than half the number of elements. The other half simply iterated through the keys to the counting hash, checking values against the cutoff until a match is found (or not).</p>
 <h3 id="sort-by-frequency-to-find-the-maximal-element-then-check-it-for-majority-status">SORT BY FREQUENCY to find the MAXIMAL ELEMENT, then CHECK it for MAJORITY STATUS</h3>
@@ -218,61 +218,60 @@ Majority element in the list is the one that appears more than floor(size_of_lis
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
 <p>Going through the frequencies and pulling out the most common element struck me a sensible way to proceed, albeit the fact the there&rsquo;s seemingly no direct way to accomplish this act. <code>List::Util::max()</code> won&rsquo;t take an auxiliary function to make the determination, so one workaround was to <code>reverse</code> <code>sort</code> the array, which <em>can</em> be told to use the hashed count value, then take the leading value from there.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/pavel_kuptsov/perl/ch-1.pl"><strong>Pavel Kuptsov</strong></a> demonstrates the idea:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">majority_el</span>
-{
-  <span style="color:#66d9ef">my</span> $arr_ref <span style="color:#f92672">=</span> shift;
-  <span style="color:#66d9ef">my</span> $o <span style="color:#f92672">=</span> {};
-  map { $o<span style="color:#f92672">-&gt;</span>{$_}<span style="color:#f92672">++</span> } @$arr_ref;
-  <span style="color:#66d9ef">my</span> ($max) <span style="color:#f92672">=</span> sort { $o<span style="color:#f92672">-&gt;</span>{$b} <span style="color:#e6db74">&lt;=&gt;</span> $o<span style="color:#f92672">-&gt;</span>{$a} } keys %$o;
-
-  <span style="color:#66d9ef">return</span> $o<span style="color:#f92672">-&gt;</span>{$max} <span style="color:#f92672">&gt;=</span> floor(@$arr_ref<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>) ? $max : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-}
-</code></pre></div><p>This approach was also taken by
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">majority_el</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $arr_ref <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $o <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>  map { $o<span style="color:#f92672">-&gt;</span>{$_}<span style="color:#f92672">++</span> } @$arr_ref;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> ($max) <span style="color:#f92672">=</span> sort { $o<span style="color:#f92672">-&gt;</span>{$b} <span style="color:#e6db74">&lt;=&gt;</span> $o<span style="color:#f92672">-&gt;</span>{$a} } keys %$o;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> $o<span style="color:#f92672">-&gt;</span>{$max} <span style="color:#f92672">&gt;=</span> floor(@$arr_ref<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>) ? $max : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This approach was also taken by
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a>, although I ended up taking a few different strategies to work around the problem space a bit.</p>
 <p>If the <code>List::Util</code> version of <code>max</code> doesn&rsquo;t suit, another way would be write your own, as shown here by</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $maxValue <span style="color:#f92672">=</span> List::Util::reduce { $count{$b} <span style="color:#f92672">&gt;</span> $count{$a} ? $b : $a } keys %count;
-</code></pre></div><p>The <code>reduce</code> function here applies the hash criteria to the list, finding the element with the maximum hash value in the same way the simple <code>max</code> could not. Very nice.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $maxValue <span style="color:#f92672">=</span> List::Util::reduce { $count{$b} <span style="color:#f92672">&gt;</span> $count{$a} ? $b : $a } keys %count;
+</span></span></code></pre></div><p>The <code>reduce</code> function here applies the hash criteria to the list, finding the element with the maximum hash value in the same way the simple <code>max</code> could not. Very nice.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$histogram{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @A;
-<span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $key (keys %histogram) {
-    $max <span style="color:#f92672">=</span> $key <span style="color:#66d9ef">unless</span> $max;
-    $max <span style="color:#f92672">=</span> $key <span style="color:#66d9ef">if</span> $histogram{$key} <span style="color:#f92672">&gt;</span> $histogram{$max};
-}
-say $histogram{$max} <span style="color:#f92672">&gt;</span> ( @A <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>) ? $max : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-</code></pre></div><p>does not even need to make his max function a separate routine, but by any other name that is what is going on here.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$histogram{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @A;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $key (keys %histogram) {
+</span></span><span style="display:flex;"><span>    $max <span style="color:#f92672">=</span> $key <span style="color:#66d9ef">unless</span> $max;
+</span></span><span style="display:flex;"><span>    $max <span style="color:#f92672">=</span> $key <span style="color:#66d9ef">if</span> $histogram{$key} <span style="color:#f92672">&gt;</span> $histogram{$max};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>say $histogram{$max} <span style="color:#f92672">&gt;</span> ( @A <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>) ? $max : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>does not even need to make his max function a separate routine, but by any other name that is what is going on here.</p>
 <p>When I said before there was no direct way to find the max via the hashed count, I left out a curious simple twist that was noticed by
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a> and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>.
 Generally speaking, reversing a hash is an unsafe way to find the key to a given value; as there is no requirement for values to be unique key collisions seem inevitable. But by definition the count of our Majority Element is larger than half the array, so no other element can have that value. Knowing this we really can just reverse the hash and let the smaller values step on each other, as we only need one reverse lookup.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a> shows us nicely:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $output  <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-<span style="color:#66d9ef">my</span> %count;
- <span style="color:#f92672">++</span>$count{$_} <span style="color:#66d9ef">for</span> @A;
-
-<span style="color:#66d9ef">if</span> ((<span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max values %count) <span style="color:#f92672">&gt;</span> $mean_fl)
-{
-    <span style="color:#66d9ef">my</span> %rev <span style="color:#f92672">=</span> reverse %count;
-    $output <span style="color:#f92672">=</span> $rev{$max};
-}
-</code></pre></div><p>Just use <code>max</code> and reverse the hash. It really can be that easy.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $output  <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %count;
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">++</span>$count{$_} <span style="color:#66d9ef">for</span> @A;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ((<span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max values %count) <span style="color:#f92672">&gt;</span> $mean_fl)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %rev <span style="color:#f92672">=</span> reverse %count;
+</span></span><span style="display:flex;"><span>    $output <span style="color:#f92672">=</span> $rev{$max};
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Just use <code>max</code> and reverse the hash. It really can be that easy.</p>
 <p>In a last expression of this pre-counting technique, I&rsquo;ll mention a variation I came up with that no one else seems to have hit on. Remember when I described the challenge as &ldquo;finding out whether one element in an array occurs more than all the other elements combined&rdquo;? Once I had the frequencies hashed, I decided I could implement this directly. It&rsquo;s a little longer than the other versions, but I do like the logic.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %count;
-$count{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @A;
-<span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> sort {$count{$b} <span style="color:#e6db74">&lt;=&gt;</span> $count{$a}} @A;
-
-<span style="color:#75715e">## is maximum count greater than the sum for all other values?</span>
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum)</span>;
-<span style="color:#66d9ef">my</span> ($candidate, $count) <span style="color:#f92672">=</span> ($sorted[<span style="color:#ae81ff">0</span>], $count{$sorted[<span style="color:#ae81ff">0</span>]});
-delete $count{$sorted[<span style="color:#ae81ff">0</span>]};
-<span style="color:#66d9ef">my</span> $others <span style="color:#f92672">=</span> sum values %count;
-say $count <span style="color:#f92672">&gt;</span> $others ? $candidate : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-
-</code></pre></div><h3 id="hash-the-frequencies-then-iterate-over-the-keys">HASH the FREQUENCIES, then ITERATE over the keys</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %count;
+</span></span><span style="display:flex;"><span>$count{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @A;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> sort {$count{$b} <span style="color:#e6db74">&lt;=&gt;</span> $count{$a}} @A;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## is maximum count greater than the sum for all other values?</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum)</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> ($candidate, $count) <span style="color:#f92672">=</span> ($sorted[<span style="color:#ae81ff">0</span>], $count{$sorted[<span style="color:#ae81ff">0</span>]});
+</span></span><span style="display:flex;"><span>delete $count{$sorted[<span style="color:#ae81ff">0</span>]};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $others <span style="color:#f92672">=</span> sum values %count;
+</span></span><span style="display:flex;"><span>say $count <span style="color:#f92672">&gt;</span> $others ? $candidate : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><h3 id="hash-the-frequencies-then-iterate-over-the-keys">HASH the FREQUENCIES, then ITERATE over the keys</h3>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/bob-lied/perl/ch-1.pl"><strong>Bob Lied</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
@@ -285,43 +284,43 @@ say $count <span style="color:#f92672">&gt;</span> $others ? $candidate : <span 
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a>.</p>
 <p>Once we have a frequency hash, though, it takes work to sort it. Why not just iterate directly through the key/value pairs in some way and check to see if any of them fit the criteria? This reasoning guided the solutions to a host of answers, like this on by</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/bob-lied/perl/ch-1.pl"><strong>Bob Lied</strong></a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $majorityThreshold <span style="color:#f92672">=</span> int(scalar(@arr)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
-
-<span style="color:#75715e"># Count the repetitions.</span>
-$presence{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">foreach</span> @arr;
-
-<span style="color:#75715e"># Select the one that passes the threshold.  There can only be one or none.</span>
-$result <span style="color:#f92672">=</span> (grep { $presence{$_} <span style="color:#f92672">&gt;</span> $majorityThreshold } keys %presence)[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a> used <code>grep</code> to do the iteration for him, filtering the keys and checking the to see if anything made it thorough:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @majority <span style="color:#f92672">=</span> grep { $count{$_} <span style="color:#f92672">&gt;</span> $N; } keys %count;
-<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>scalar @majority) {
-    @majority <span style="color:#f92672">=</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
-}
-</code></pre></div><p>and</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $majorityThreshold <span style="color:#f92672">=</span> int(scalar(@arr)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Count the repetitions.</span>
+</span></span><span style="display:flex;"><span>$presence{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">foreach</span> @arr;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Select the one that passes the threshold.  There can only be one or none.</span>
+</span></span><span style="display:flex;"><span>$result <span style="color:#f92672">=</span> (grep { $presence{$_} <span style="color:#f92672">&gt;</span> $majorityThreshold } keys %presence)[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a> used <code>grep</code> to do the iteration for him, filtering the keys and checking the to see if anything made it thorough:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @majority <span style="color:#f92672">=</span> grep { $count{$_} <span style="color:#f92672">&gt;</span> $N; } keys %count;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>scalar @majority) {
+</span></span><span style="display:flex;"><span>    @majority <span style="color:#f92672">=</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>and</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a> uses <code>List::Util::first</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">majority</span>
-{
-     <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> @_;
-     <span style="color:#66d9ef">my</span> $level <span style="color:#f92672">=</span> int((scalar @array)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
-     <span style="color:#66d9ef">my</span> %count;
-
-     $count{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @array;
-     <span style="color:#66d9ef">return</span> (first { $count{$_} <span style="color:#f92672">&gt;</span> $level } keys %count) <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-}
-</code></pre></div><p>Alternately, if you want to get gussied up all fancy like,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">majority</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">my</span> $level <span style="color:#f92672">=</span> int((scalar @array)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">my</span> %count;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     $count{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @array;
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">return</span> (first { $count{$_} <span style="color:#f92672">&gt;</span> $level } keys %count) <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Alternately, if you want to get gussied up all fancy like,</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
 <p>imported a couple of handy module functions to help him perform pretty much the same actions, but in a nicely condensed form, to what ends up to be a single powerful line:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(frequency)</span>;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(pairfirst)</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">majority_element</span> {
-
-    <span style="color:#75715e"># As there can be at most one element with a frequency</span>
-    <span style="color:#75715e"># above floor(size_of_list / 2), only the first matching</span>
-    <span style="color:#75715e"># value/frequency-pair may have the result.</span>
-    (pairfirst {$b <span style="color:#f92672">&gt;</span> floor(@_ <span style="color:#e6db74">/ 2)} frequency @_)[0] /</span><span style="color:#f92672">/</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-}
-</code></pre></div><p>As you can see we&rsquo;re getting progressively shorter and terser. <code>frequency</code> makes our counting hash right out of the box, and <code>pairfirst</code> give us the first found key/value pair that satisfies the condition, of which we then take the first element. It&rsquo;s worth mentioning that although not clearly stated, <code>pairfirst</code> has no problem taking a hash as input, rather than an explicit array constructed from a hash, as implied in the documentation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(frequency)</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(pairfirst)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">majority_element</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># As there can be at most one element with a frequency</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># above floor(size_of_list / 2), only the first matching</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># value/frequency-pair may have the result.</span>
+</span></span><span style="display:flex;"><span>    (pairfirst {$b <span style="color:#f92672">&gt;</span> floor(@_ <span style="color:#e6db74">/ 2)} frequency @_)[0] /</span><span style="color:#f92672">/</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>As you can see we&rsquo;re getting progressively shorter and terser. <code>frequency</code> makes our counting hash right out of the box, and <code>pairfirst</code> give us the first found key/value pair that satisfies the condition, of which we then take the first element. It&rsquo;s worth mentioning that although not clearly stated, <code>pairfirst</code> has no problem taking a hash as input, rather than an explicit array constructed from a hash, as implied in the documentation.</p>
 <p>There is, however, one last step we can streamline.</p>
 <h3 id="progressively-build-the-count-as-we-go">PROGRESSIVELY BUILD the COUNT as we go</h3>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
@@ -331,10 +330,10 @@ $result <span style="color:#f92672">=</span> (grep { $presence{$_} <span style="
 <p>The final step along our walk to minimalism is when we realize that there&rsquo;s no need to even loop through the array more than once. The nature of the Majority Element means that any element with a count beyond the threshold is the one and only, so if we both increment the count and validate for each element when we first see it, if there is a Majority Element eventually it will regester as found. Look at
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/e-choroba/perl/ch-1.pl"><strong>E. Choroba&rsquo;s</strong></a>
 submission. Simplicity itself. The others listed saw this too and followed a similar path.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $e (@arr) {
-    <span style="color:#66d9ef">return</span> $e <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$count{$e} <span style="color:#f92672">&gt;</span> int(@arr <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
-}
-</code></pre></div><h2 id="on-the-subject-of-the-floor">on the subject of the FLOOR</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $e (@arr) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $e <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$count{$e} <span style="color:#f92672">&gt;</span> int(@arr <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="on-the-subject-of-the-floor">on the subject of the FLOOR</h2>
 <p>Most everyone, on seeing the equation for determining the Majority Element, moved straight in to implementing it without further fuss. To rephrase that definition, it&rsquo;s the quantity one needs to exceed to guarantee that the partition is more than half, irrespective of whether the list has an even or odd number of elements.</p>
 <p>Almost everyone focused on implementing the formula at face value, without closely examining that rephrasing of what the formula actually means. Only a few people did notice, though, that in the end, for the purposes of evaluating the formula given, the &ldquo;floor()&rdquo; aspect was completely superfluous. On the one hand, many people realized that the size of an array can never be negative, so in this case the floor is identical to integer truncation. But on the other hand, we are specifically asking for a value <em>greater</em> than ⎣size/2⎦, and because what we are referencing here are array indices, we are constrained to using integer arithmetic. So what we are looking for is to be at least the value of the next <em>integer</em> greater than the physical midpoint, (size/2). As this is by definition greater than size/2, any fractional component to that quantity will have no effect on the value we are looking to reach, and can be safely ignored. So there is no harm to truncate it to an integer, or take the floor(), but the values for the count of the majority will always be greater than the simple quotient, be it 3 or 3.5 makes no difference. So curiously, none of that matters in the end; what matters is that we reach our mark. Huh. <em>(scratches head, nods and moves on)</em></p>
 <p>Oh, and for those thinking about setting the limit to the ceiling, remember that when the value is whole, the ceiling equals the floor, so that doesn&rsquo;t help us when the size of the array is even. What we need is that the value, an integer, is greater than the the midpoint, a rational number.</p>
@@ -345,19 +344,19 @@ submission. Simplicity itself. The others listed saw this too and followed a sim
 <p>The core idea here is to treat an array not as a collection of discreet elements, but rather as one thing, composed simultaneously of varying amounts of other things, with its composition able to be described statistically rather than concretely.</p>
 <p>The capabilities of the entire module suite is beyond the scope of this review, but it contains concepts of states and superimpositions and the calculations one can do with them, and the operators to do it. It&rsquo;s an impressive work.</p>
 <p>In the context of the task at hand, viewed through the lens of <code>Quantum::Superpositions::Lazy</code> an array can be considered a complex object that can be evaluated for truth by a Bayesian weighted model built from its components. In essence, a ten element array containing two 2s can be said to be equal to 2 with a probability of 20%. So what Bartosz does here is set up the array as a superimposition, finds the most probable state from that composition, then checks to see if that state has a probability of over 0.5, which in turn means the value of that state is that of the majority element.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_majority</span>
-{
-<span style="color:#75715e"># a superposition will automate all the counting for us</span>
-<span style="color:#66d9ef">my</span> $list <span style="color:#f92672">=</span> superpos(@_);
-
-<span style="color:#75715e"># superpositions have a built in statistics module</span>
-<span style="color:#75715e"># the result of most_probable is actually a new superposition, it can have multiple states</span>
-<span style="color:#66d9ef">my</span> ($state) <span style="color:#f92672">=</span> $list<span style="color:#f92672">-&gt;</span>stats<span style="color:#f92672">-&gt;</span>most_probable<span style="color:#f92672">-&gt;</span>states<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-
-<span style="color:#960050;background-color:#1e0010">#</span> we now know that this element is certainly most frequent, but does it have proper weight?
-<span style="color:#66d9ef">return</span> $state<span style="color:#f92672">-&gt;</span>weight <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span> ? $state<span style="color:#f92672">-&gt;</span>value : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-}
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_majority</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># a superposition will automate all the counting for us</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $list <span style="color:#f92672">=</span> superpos(@_);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># superpositions have a built in statistics module</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># the result of most_probable is actually a new superposition, it can have multiple states</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> ($state) <span style="color:#f92672">=</span> $list<span style="color:#f92672">-&gt;</span>stats<span style="color:#f92672">-&gt;</span>most_probable<span style="color:#f92672">-&gt;</span>states<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> we now know that this element is certainly most frequent, but does it have proper weight?
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> $state<span style="color:#f92672">-&gt;</span>weight <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span> ? $state<span style="color:#f92672">-&gt;</span>value : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
 <p>Although she wrote a version of the familiar pattern to verify her results, CY wanted more and so here gives us an implementation of the <a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm">&ldquo;Boyer–Moore majority vote algorithm&rdquo;</a>. This little jewel will find the majority because it&rsquo;s frequency is larger than all of the other elements combined. Thus if we increase a counter every time it is observed, and decrement the counter every time anything else is found, if the counter is positive we have found the majority element. If there is no majority element, on the other hand, we get garbage, but it still has uses.</p>
 <p>From the wiki page:</p>
 <ul>
@@ -372,46 +371,46 @@ submission. Simplicity itself. The others listed saw this too and followed a sim
 <li>Return m</li>
 </ul>
 <p>Here&rsquo;s CY&rsquo;s version:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bm_majority_vote_alg</span> {
-    <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> @{$_[<span style="color:#ae81ff">0</span>]};
-    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">my</span> $m;
-    <span style="color:#66d9ef">for</span> (@array) {
-        <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-            $m <span style="color:#f92672">=</span> $_;
-            $i<span style="color:#f92672">++</span>
-        }
-        <span style="color:#66d9ef">else</span> {
-            $m <span style="color:#f92672">==</span> $_ ? $i<span style="color:#f92672">++</span> : $i<span style="color:#f92672">--</span>;
-        }
-    }
-
-
-    <span style="color:#66d9ef">return</span> ( verify(<span style="color:#f92672">\</span>@array, $m) ? $m : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> );
-}
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/jeongoon/perl/ch-1.pl"><strong>Myoungjin Jeon</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bm_majority_vote_alg</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> @{$_[<span style="color:#ae81ff">0</span>]};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $m;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (@array) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            $m <span style="color:#f92672">=</span> $_;
+</span></span><span style="display:flex;"><span>            $i<span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            $m <span style="color:#f92672">==</span> $_ ? $i<span style="color:#f92672">++</span> : $i<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ( verify(<span style="color:#f92672">\</span>@array, $m) ? $m : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/jeongoon/perl/ch-1.pl"><strong>Myoungjin Jeon</strong></a></p>
 <p>Jeon has his usual unusual take on this problem, first sorting the array to bring equal elements adjacent, then shifting the array elements off one by one. If the current element is equal to the previous, a counter is incremented; if this counter ever exceeds the half-way point of the array (the floor is ignored, rightly so), then the majority element has been found. Elegant.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_major</span> (@) {
-    @_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    @_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>];
-
-    <span style="color:#66d9ef">my</span> @sorted  <span style="color:#f92672">=</span> sort @_;
-    <span style="color:#66d9ef">my</span> $halflen <span style="color:#f92672">=</span> int <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> @sorted;     <span style="color:#75715e"># (halflen)gth</span>
-    <span style="color:#66d9ef">my</span> $pnum    <span style="color:#f92672">=</span> shift @sorted;        <span style="color:#75715e"># (p)revious (num)ber</span>
-    <span style="color:#66d9ef">my</span> $pcnt    <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;                    <span style="color:#75715e"># (p)revious (c)ou(nt)</span>
-
-    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $cnum ( @sorted ) {
-        <span style="color:#66d9ef">if</span> ( $pnum <span style="color:#f92672">==</span> $cnum ) {
-            <span style="color:#f92672">++</span>$pcnt <span style="color:#f92672">&gt;</span> $halflen <span style="color:#f92672">and</span> ( $result <span style="color:#f92672">=</span> $cnum, <span style="color:#66d9ef">last</span> );
-        }
-        <span style="color:#66d9ef">else</span> {
-            ( $pnum, $pcnt ) <span style="color:#f92672">=</span> ( $cnum, <span style="color:#ae81ff">1</span> );
-        }
-    }
-    $result
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_major</span> (@) {
+</span></span><span style="display:flex;"><span>    @_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    @_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @sorted  <span style="color:#f92672">=</span> sort @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $halflen <span style="color:#f92672">=</span> int <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> @sorted;     <span style="color:#75715e"># (halflen)gth</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pnum    <span style="color:#f92672">=</span> shift @sorted;        <span style="color:#75715e"># (p)revious (num)ber</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pcnt    <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;                    <span style="color:#75715e"># (p)revious (c)ou(nt)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $cnum ( @sorted ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( $pnum <span style="color:#f92672">==</span> $cnum ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">++</span>$pcnt <span style="color:#f92672">&gt;</span> $halflen <span style="color:#f92672">and</span> ( $result <span style="color:#f92672">=</span> $cnum, <span style="color:#66d9ef">last</span> );
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            ( $pnum, $pcnt ) <span style="color:#f92672">=</span> ( $cnum, <span style="color:#ae81ff">1</span> );
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    $result
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <h1 id="PWC074TASK2">TASK #2 › FNR Character</h1>
 <p>You are given a string $S.
 Write a script to print the series of first non-repeating character for the given string.  Print # if none found.</p>
@@ -473,42 +472,42 @@ Pass 6: “xyzzyx”, no FNR found, hence ‘#’
 <h3 id="the-architype">the ARCHITYPE</h3>
 <p>the archetypical form walks through the steps notated above, as demonstrated here by</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char (@characters) {
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>exists $charcount{$char} ) {
-        push @uniquestack , $char;
-        $charcount{$char} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        $ans <span style="color:#f92672">.=</span> $char;
-    }
-    <span style="color:#66d9ef">else</span> {
-        $charcount{$char}<span style="color:#f92672">++</span>;
-        @uniquestack <span style="color:#f92672">=</span> grep { $charcount{$_} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } @uniquestack;
-        $ans <span style="color:#f92672">.=</span> (scalar @uniquestack <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) ? $uniquestack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  : <span style="color:#e6db74">&#34;#&#34;</span>;
-    }
-}
-</code></pre></div><p>CY makes the choice to maintain an array of unique letters, that is elements whose count is 1. The upper <code>if</code> handles the case that the letter has never been seen, hashing it and outputting it; the lower <code>else</code> removes it from the unique list and instead takes the last member of that list for the output letter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char (@characters) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>exists $charcount{$char} ) {
+</span></span><span style="display:flex;"><span>        push @uniquestack , $char;
+</span></span><span style="display:flex;"><span>        $charcount{$char} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        $ans <span style="color:#f92672">.=</span> $char;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        $charcount{$char}<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        @uniquestack <span style="color:#f92672">=</span> grep { $charcount{$_} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } @uniquestack;
+</span></span><span style="display:flex;"><span>        $ans <span style="color:#f92672">.=</span> (scalar @uniquestack <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) ? $uniquestack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  : <span style="color:#e6db74">&#34;#&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>CY makes the choice to maintain an array of unique letters, that is elements whose count is 1. The upper <code>if</code> handles the case that the letter has never been seen, hashing it and outputting it; the lower <code>else</code> removes it from the unique list and instead takes the last member of that list for the output letter.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#chars)
-{
-    <span style="color:#66d9ef">my</span> $fnr <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span>;
-
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">++</span>$count{ <span style="color:#66d9ef">my</span> $chr <span style="color:#f92672">=</span> $chars[$i] } <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
-    {
-        $fnr <span style="color:#f92672">=</span> $chr;
-    }
-    <span style="color:#66d9ef">else</span>
-    {
-        INNER: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (reverse <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
-        {
-            <span style="color:#66d9ef">if</span> ($count{ $chr <span style="color:#f92672">=</span> $chars[$j] } <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
-            {
-                $fnr <span style="color:#f92672">=</span> $chr;
-                <span style="color:#66d9ef">last</span> INNER;
-            }
-        }
-    }
-    $FNR <span style="color:#f92672">.=</span> $fnr;
-}
-</code></pre></div><p>The Monk proceeds in much the same manner, only on finding replication instead chooses to iterate back down from the current index to zero, checking each letter along the way. The output for that index is the first unique candidate found.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#chars)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $fnr <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">++</span>$count{ <span style="color:#66d9ef">my</span> $chr <span style="color:#f92672">=</span> $chars[$i] } <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $fnr <span style="color:#f92672">=</span> $chr;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        INNER: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (reverse <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($count{ $chr <span style="color:#f92672">=</span> $chars[$j] } <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                $fnr <span style="color:#f92672">=</span> $chr;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">last</span> INNER;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    $FNR <span style="color:#f92672">.=</span> $fnr;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The Monk proceeds in much the same manner, only on finding replication instead chooses to iterate back down from the current index to zero, checking each letter along the way. The output for that index is the first unique candidate found.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
 <p>Roger in his usual efficient way stripped off the chaff from the problem to reveal the simplicity of the form beneath:</p>
 <ul>
@@ -517,46 +516,46 @@ Pass 6: “xyzzyx”, no FNR found, hence ‘#’
 <li>take rightmost char from end of list, or #</li>
 </ul>
 <p>Here i is spread out for clarity, comments are mine:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c ( split <span style="color:#e6db74">&#39;&#39;</span>, $in ) {
-    push @s, $c;
-    $s{ $c }<span style="color:#f92672">++</span>;                         <span style="color:#75715e">## %s is count hash</span>
-    @s <span style="color:#f92672">=</span> grep { $s{ $_ }<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span> } @s;        <span style="color:#75715e">## keeps @s unique characters</span>
-    <span style="color:#66d9ef">if</span> ( @s ) {
-        push @o, $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];                <span style="color:#75715e">## get rightmost</span>
-    } <span style="color:#66d9ef">else</span> {
-        push @o, <span style="color:#e6db74">&#39;#&#39;</span>;
-    }
-}
-</code></pre></div><h3 id="the-slice">the SLICE</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c ( split <span style="color:#e6db74">&#39;&#39;</span>, $in ) {
+</span></span><span style="display:flex;"><span>    push @s, $c;
+</span></span><span style="display:flex;"><span>    $s{ $c }<span style="color:#f92672">++</span>;                         <span style="color:#75715e">## %s is count hash</span>
+</span></span><span style="display:flex;"><span>    @s <span style="color:#f92672">=</span> grep { $s{ $_ }<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span> } @s;        <span style="color:#75715e">## keeps @s unique characters</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( @s ) {
+</span></span><span style="display:flex;"><span>        push @o, $s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];                <span style="color:#75715e">## get rightmost</span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        push @o, <span style="color:#e6db74">&#39;#&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="the-slice">the SLICE</h3>
 <p>While still incrementally processing the string one letter at a time, as each letter came up for consideration some preferred to carve out a slice from the beginning of the string up to the current position; it stands to reason would hold all required information to determine the output letter. This proved an effective way of going about things.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
 <p>Jaldhar uses <code>substr</code> to section the original string, then later divides the slice into an array and examines each character. If a letter is only found once, he updates a $fnr variable; the last updated value will be the last non-repeating character.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> length $S) {
-    <span style="color:#66d9ef">my</span> $slice <span style="color:#f92672">=</span> substr $S, <span style="color:#ae81ff">0</span>, $i;
-    <span style="color:#66d9ef">my</span> $fnr <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span>;
-
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c (split <span style="color:#e6db74">//</span>, $slice) {
-        <span style="color:#66d9ef">my</span> @matches <span style="color:#f92672">=</span> ($slice <span style="color:#f92672">=~</span><span style="color:#e6db74"> /$c/g</span>);
-        <span style="color:#66d9ef">if</span> (scalar @matches <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
-            $fnr <span style="color:#f92672">=</span> $c;
-        }
-    }
-
-    push @output, $fnr;
-}
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> length $S) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $slice <span style="color:#f92672">=</span> substr $S, <span style="color:#ae81ff">0</span>, $i;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $fnr <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c (split <span style="color:#e6db74">//</span>, $slice) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @matches <span style="color:#f92672">=</span> ($slice <span style="color:#f92672">=~</span><span style="color:#e6db74"> /$c/g</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (scalar @matches <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>            $fnr <span style="color:#f92672">=</span> $c;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    push @output, $fnr;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
 <p>on the other hand, divided his string first, and selected a proper array slice to work on. He can then call <code>'grep</code> on the slice for elements with count 1 and select the last element, or <code>#</code> if none found.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#letters )
- {
-      <span style="color:#66d9ef">my</span> @pass <span style="color:#f92672">=</span> @letters[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i];
-      <span style="color:#66d9ef">my</span> %count;
-      $count{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @pass;
-
-
-      <span style="color:#66d9ef">my</span> $fnr <span style="color:#f92672">=</span> (grep {<span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> $count{$_}} @pass)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;#&#39;</span>;
-      $output <span style="color:#f92672">.=</span> $fnr
- }
-</code></pre></div><p>The slice method was popular,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span> <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#letters )
+</span></span><span style="display:flex;"><span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @pass <span style="color:#f92672">=</span> @letters[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i];
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> %count;
+</span></span><span style="display:flex;"><span>      $count{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @pass;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $fnr <span style="color:#f92672">=</span> (grep {<span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> $count{$_}} @pass)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;#&#39;</span>;
+</span></span><span style="display:flex;"><span>      $output <span style="color:#f92672">.=</span> $fnr
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p>The slice method was popular,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/lance-wicks/perl/ch-2.pl"><strong>Lance Wicks</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/jeongoon/perl/ch-2.pl"><strong>Myoungjin Jeon</strong></a> used it as well.</p>
@@ -565,110 +564,110 @@ Pass 6: “xyzzyx”, no FNR found, hence ‘#’
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/bob-lied/perl/ch-2.pl"><strong>Bob Lied</strong></a></p>
 <p>has done here. By keeping both the count and the last index found in a more complex version of the frequency hash, he can construct a list of unique characters from the frequency hash keys, and order it correctly by index to find the last element. As is all these examples, there are no non-repeating characters found, <code>#</code> is written to output.</p>
 <p>Bob stashed jis firstNonRepeat() function off in its own FNR.pm namespace. Here&rsquo;s a selection from it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length($s)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> )
-{
-    <span style="color:#66d9ef">my</span> $char <span style="color:#f92672">=</span> substr($s, $i, <span style="color:#ae81ff">1</span>);
-    $charData{$char}{cnt}<span style="color:#f92672">++</span>;
-    $charData{$char}{pos} <span style="color:#f92672">=</span> $i <span style="color:#66d9ef">unless</span> exists $charData{$char}{pos};
-
-    <span style="color:#75715e"># Select non-repeating characters and sort by position</span>
-    <span style="color:#66d9ef">my</span> @nr <span style="color:#f92672">=</span> sort { $charData{$a}{pos} <span style="color:#f92672">lt</span> $charData{$b}{pos} }
-                grep { $charData{$_}{cnt} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } keys %charData;
-
-    $result <span style="color:#f92672">.=</span> $nr[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;#&#39;</span>;
-}
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/steven-wilson/perl/ch-2.pl"><strong>Steven Wilson</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length($s)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> )
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $char <span style="color:#f92672">=</span> substr($s, $i, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    $charData{$char}{cnt}<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    $charData{$char}{pos} <span style="color:#f92672">=</span> $i <span style="color:#66d9ef">unless</span> exists $charData{$char}{pos};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Select non-repeating characters and sort by position</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @nr <span style="color:#f92672">=</span> sort { $charData{$a}{pos} <span style="color:#f92672">lt</span> $charData{$b}{pos} }
+</span></span><span style="display:flex;"><span>                grep { $charData{$_}{cnt} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } keys %charData;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $result <span style="color:#f92672">.=</span> $nr[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;#&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/steven-wilson/perl/ch-2.pl"><strong>Steven Wilson</strong></a></p>
 <p>Steven adds a different unique twist, keeping the frequency data in a pair of arrays instead of a hash, one for repeating characters, another for non-repeating. When a letter is examined, it&rsquo;s determined to be either in one or another of these arrays or uncategorized. If it&rsquo;s never been seen before it&rsquo;s obviously the output character, but if shows up in the non-repeating list it must be first moved to the repeating list, then the last element of the non-repeating list is the selection. A slightly more complicated but i find very elegant solution.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">first_non_repeating_characters</span> {
-    <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> shift;
-    <span style="color:#66d9ef">my</span> @non_repeating;
-    <span style="color:#66d9ef">my</span> @repeating;
-    <span style="color:#66d9ef">my</span> $result;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char ( split <span style="color:#e6db74">//</span>, $string ) {
-        <span style="color:#66d9ef">my</span> $in_repeating     <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">eq</span> $char } @repeating;
-        <span style="color:#66d9ef">my</span> $in_non_repeating <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">eq</span> $char } @non_repeating;
-        <span style="color:#66d9ef">if</span> ($in_non_repeating) {
-            <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> first_index { $_ <span style="color:#f92672">eq</span> $char } @non_repeating;
-            splice @non_repeating, $index, <span style="color:#ae81ff">1</span>;
-            push @repeating, $char;
-        }
-        <span style="color:#66d9ef">elsif</span> ( <span style="color:#f92672">!</span>$in_repeating <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>$in_non_repeating ) {
-            push @non_repeating, $char;
-        }
-        scalar @non_repeating <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
-          ? ( $result <span style="color:#f92672">.=</span> $non_repeating[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] )
-          : ( $result <span style="color:#f92672">.=</span> <span style="color:#e6db74">qw/ # /</span> );
-    }
-    <span style="color:#66d9ef">return</span> $result;
-}
-</code></pre></div><h3 id="an-ordered-hash-tieixhash">an ORDERED HASH: Tie::IxHash</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">first_non_repeating_characters</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @non_repeating;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @repeating;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $result;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char ( split <span style="color:#e6db74">//</span>, $string ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $in_repeating     <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">eq</span> $char } @repeating;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $in_non_repeating <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">eq</span> $char } @non_repeating;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($in_non_repeating) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> first_index { $_ <span style="color:#f92672">eq</span> $char } @non_repeating;
+</span></span><span style="display:flex;"><span>            splice @non_repeating, $index, <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            push @repeating, $char;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elsif</span> ( <span style="color:#f92672">!</span>$in_repeating <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>$in_non_repeating ) {
+</span></span><span style="display:flex;"><span>            push @non_repeating, $char;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        scalar @non_repeating <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>          ? ( $result <span style="color:#f92672">.=</span> $non_repeating[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] )
+</span></span><span style="display:flex;"><span>          : ( $result <span style="color:#f92672">.=</span> <span style="color:#e6db74">qw/ # /</span> );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $result;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="an-ordered-hash-tieixhash">an ORDERED HASH: Tie::IxHash</h3>
 <p>In the spirit of Bob Lied&rsquo;s submission detailed above, it&rsquo;d be nice if the frequency hash and the list of characters already seen could be held in the same data structure, and this can be done with the <code>Tie::IxHash</code> module, which supplies an indexed associative array. Cool. Internally it contains a hash where the keys point not immediately to the value but to an index in a pair of matching arrays, and overrides the standard hash behavior to return the value indexed in the array.  In this way the keys retain the order in which they are assigned, and unlike a normal hash can be iterated through sequentially.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">tie <span style="color:#66d9ef">my</span> %cf, <span style="color:#e6db74">&#39;Tie::IxHash&#39;</span>;
-
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (split(<span style="color:#e6db74">//</span>, $S)) {
-  $cf{$c}<span style="color:#f92672">++</span>;
-  <span style="color:#66d9ef">my</span> @c <span style="color:#f92672">=</span> grep { $_ <span style="color:#66d9ef">if</span> $cf{$_} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } keys %cf;
-  $O <span style="color:#f92672">.=</span>  (scalar @c ? $c[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] : <span style="color:#e6db74">&#39;#&#39;</span>);
-}
-</code></pre></div><p>As each letter is accessed, it&rsquo;s added to the indexed count hash. An array is constructed of elements with count 1 from the keys, and the LNR is the last value on that list.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>tie <span style="color:#66d9ef">my</span> %cf, <span style="color:#e6db74">&#39;Tie::IxHash&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (split(<span style="color:#e6db74">//</span>, $S)) {
+</span></span><span style="display:flex;"><span>  $cf{$c}<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> @c <span style="color:#f92672">=</span> grep { $_ <span style="color:#66d9ef">if</span> $cf{$_} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } keys %cf;
+</span></span><span style="display:flex;"><span>  $O <span style="color:#f92672">.=</span>  (scalar @c ? $c[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] : <span style="color:#e6db74">&#39;#&#39;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>As each letter is accessed, it&rsquo;s added to the indexed count hash. An array is constructed of elements with count 1 from the keys, and the LNR is the last value on that list.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/shawn-wagner/perl/ch-2.pl"><strong>Shawn Wagner</strong></a> also uses an IxHash.</p>
 <h3 id="do-everything">do EVERYTHING</h3>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
 <p>Jorg has given us a rather novel, complete solution that although unusual looking, works in basically the same way as the others mentioned here. Using <code>map</code> to iterate over the divided array made from the string, he does three things to each <code>$_</code> letter as it is processed. First he increments a counting hash with the incidence, then, depending on a <code>$lnr</code> switch passed in, adds that character to either the front or rear of a running <code>@head</code> array. The result of obtaining either the first or last non-repeating character list in the end depends on the direction in which the list of previous characters is accessed; from the first in or the last in. Alternately instead of reversing the viewing, we can reverse the construction, as Jorg has done here. Depending on a flag, the list of previous characters is added to either from the beginning or the end, and the behavior can be selected by passing a second parameter. Finally the first instance of a character with frequency 1 is returned by the mapped function for the letter, or <code>#</code> if none present.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">nr_char</span> {
-    <span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, shift;
-    <span style="color:#75715e"># mode: fnr or lnr</span>
-    <span style="color:#66d9ef">my</span> $lnr <span style="color:#f92672">=</span> shift;
-    <span style="color:#66d9ef">my</span> (%freq, @head);
-
-    join <span style="color:#e6db74">&#39;&#39;</span>, map {
-        <span style="color:#75715e"># While traversing the input string character-wise,</span>
-        <span style="color:#75715e"># count frequencies and collect the (reversed) head.</span>
-        $freq{$_}<span style="color:#f92672">++</span>;
-
-        <span style="color:#75715e"># Emulate unshift (lnr, reversed) or push (fnr, forward)</span>
-        <span style="color:#75715e"># to augment the head.</span>
-        splice @head, $lnr ? <span style="color:#ae81ff">0</span> : @head, <span style="color:#ae81ff">0</span>, $_;
-
-        <span style="color:#75715e"># The first singleton character from the (reversed) head</span>
-        <span style="color:#75715e"># is the requested output character.</span>
-        (first {$freq{$_} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>} @head) <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;#&#39;</span>;
-    } @arr;
-}
-</code></pre></div><h2 id="a-truly-original-method">A TRULY ORIGINAL method</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">nr_char</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, shift;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># mode: fnr or lnr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $lnr <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> (%freq, @head);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    join <span style="color:#e6db74">&#39;&#39;</span>, map {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># While traversing the input string character-wise,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># count frequencies and collect the (reversed) head.</span>
+</span></span><span style="display:flex;"><span>        $freq{$_}<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Emulate unshift (lnr, reversed) or push (fnr, forward)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># to augment the head.</span>
+</span></span><span style="display:flex;"><span>        splice @head, $lnr ? <span style="color:#ae81ff">0</span> : @head, <span style="color:#ae81ff">0</span>, $_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># The first singleton character from the (reversed) head</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># is the requested output character.</span>
+</span></span><span style="display:flex;"><span>        (first {$freq{$_} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>} @head) <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;#&#39;</span>;
+</span></span><span style="display:flex;"><span>    } @arr;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="a-truly-original-method">A TRULY ORIGINAL method</h2>
 <p>You can&rsquo;t get more original than using your own brand-new cpan module to help you out.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/brtastic/perl/ch-2.pl"><strong>Bartosz Jarzyna</strong></a></p>
 <p>Bartosz again pulls out his impressive <code>Quantum::Superpositions::Lazy</code> module to help him find the <em>first</em> non-repeating character. He quite specifically chooses this behavior, bucking the trend, but the whole solution is bucking the trend, so why do something half -way? He discusses the whole thing is his <strong>blog</strong> in a manner more thorough than I can do here, so I recommend going there to hear him explain things himself, on the two tasks he has presented to us and further comments of the creation of the modules themselves.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">first_non_repeating</span>
-{
-    <span style="color:#66d9ef">my</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_fnt</span>
-    {
-        <span style="color:#66d9ef">my</span> @split <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, shift;
-
-        <span style="color:#75715e"># a superposition will automate some of the counting for us</span>
-        <span style="color:#66d9ef">my</span> $split_pos <span style="color:#f92672">=</span> superpos(@split);
-
-        <span style="color:#75715e"># the default weight for an element is 1, and weights are merged by values</span>
-        <span style="color:#66d9ef">my</span> @non_repeating <span style="color:#f92672">=</span> grep { $_<span style="color:#f92672">-&gt;</span>weight <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } $split_pos<span style="color:#f92672">-&gt;</span>states<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-
-        return <span style="color:#e6db74">&#34;#&#34;</span> <span style="color:#66d9ef">if</span> @non_repeating <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">return</span> (shift @non_repeating)<span style="color:#f92672">-&gt;</span>value <span style="color:#66d9ef">if</span> @non_repeating <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
-
-        <span style="color:#75715e"># since we have a couple of non-repeating characters, we get the first one</span>
-        <span style="color:#75715e"># (the superposition here helps so that we solve this by a simple eq)</span>
-        <span style="color:#66d9ef">my</span> $alternatives <span style="color:#f92672">=</span> superpos(@non_repeating);
-        <span style="color:#66d9ef">return</span> first { $_ <span style="color:#f92672">eq</span> $alternatives } @split;
-    }
-
-    <span style="color:#66d9ef">my</span> ($string) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
-    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> length $string) {
-        $result <span style="color:#f92672">.=</span> find_fnt(substr $string, <span style="color:#ae81ff">0</span>, $_);
-    }
-    <span style="color:#66d9ef">return</span> $result;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">first_non_repeating</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_fnt</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @split <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, shift;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># a superposition will automate some of the counting for us</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $split_pos <span style="color:#f92672">=</span> superpos(@split);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># the default weight for an element is 1, and weights are merged by values</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @non_repeating <span style="color:#f92672">=</span> grep { $_<span style="color:#f92672">-&gt;</span>weight <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } $split_pos<span style="color:#f92672">-&gt;</span>states<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        return <span style="color:#e6db74">&#34;#&#34;</span> <span style="color:#66d9ef">if</span> @non_repeating <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (shift @non_repeating)<span style="color:#f92672">-&gt;</span>value <span style="color:#66d9ef">if</span> @non_repeating <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># since we have a couple of non-repeating characters, we get the first one</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># (the superposition here helps so that we solve this by a simple eq)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $alternatives <span style="color:#f92672">=</span> superpos(@non_repeating);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> first { $_ <span style="color:#f92672">eq</span> $alternatives } @split;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($string) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> length $string) {
+</span></span><span style="display:flex;"><span>        $result <span style="color:#f92672">.=</span> find_fnt(substr $string, <span style="color:#ae81ff">0</span>, $_);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $result;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h1 id="PWC074BLOGS">BLOGS</h1>
 <hr>
 <p><strong>That&rsquo;s it for me this week, people!</strong></p>

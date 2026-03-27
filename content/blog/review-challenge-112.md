@@ -75,7 +75,7 @@ The canonical path format:
 - The path only contains the directories on the path from the root directory to the target file or directory
 
 **Example**
-```
+```perl
     Input: "/a/"
     Output: "/a"
 
@@ -141,7 +141,7 @@ This also threw up red flags all over the place, and I ended up addressing those
 
 The results of all my tinkering, when things got weird, were verified by the GNU utility `realpath -m`:
 
-```
+```perl
     [colincrain@boris:/]$  realpath -m 'a/b/c//.///../d/'
     /a/b/d
 ```
@@ -209,7 +209,7 @@ Two of the actions, removing the current directory links and empty links, are we
 
 Notably, Dimitar also includes a "human readable" solution that employs `split`, `push` and `pop` to get the various jobs done, even including a one-liner version:
 
-```
+```perl
    perl -E'for(split/\//,pop){/^\.$/&&next;if(/^\.\.$/){pop@path}else{push@path,$_ if length}}say"/",join"/",@path'
 ```
 
@@ -266,7 +266,7 @@ The monk makes a couple of judgement calls for their solution:
 
 This last criteria makes me curious, as my UNIX resolves the parent directory for root as root. To demonstrate:
 
-```
+```perl
     [colincrain@boris:/]$  cd /
     [colincrain@boris:/]$  cd ..
     [colincrain@boris:/]$  pwd
@@ -570,14 +570,14 @@ You are given $n steps to climb
 Write a script to find out the distinct ways to climb to the top. You are allowed to climb either 1 or 2 steps at a time.
 
 **Example**
-```
+```perl
     Input:  $n = 3
     Output: 3
 ```
 **Option 1:** 1 step  + 1 step<br>
 **Option 2:** 1 step  + 2 steps<br>
 **Option 3:** 2 steps + 1 step<br>
-```
+```perl
     Input:  $n = 4
     Output: 5
 ```
@@ -666,7 +666,7 @@ To start us off, here's my own solution. Nothing fancy; quick, to the point, in 
 
 I did, after the fact, add a little NLP prettification to the text:
 
-```
+```perl
     For 1 step there is 1 possible way to climb it.
     For 2 steps there are 2 possible ways to climb them.
     For 3 steps there are 3 possible ways to climb them.
@@ -773,7 +773,7 @@ Here's a sampling: the global cache, Binet and a 1-liner version of that, that a
 
 Flavio presents us with an unusual mathematical way of producing a member of the Fibonaci sequence, based around the matrix representation. He provides a function for the matrix multiplication, with an adjunct for performing the exponentiation broken down using repeated powers of two. It's a neat way to do it, listed as a remembrance of a revisitation of a previous analysis, given a [through writeup in a blog breakdown](https://github.polettix.it/ETOOBUSY/2020/12/03/the-blessing-of-forgetting/) for those interested. Although it's certainly better to start the [trail at the source](https://github.polettix.it/ETOOBUSY/2021/05/13/pwc112-climb-stairs/).
 
-```
+```perl
     ⎛ 1 1 ⎞ⁿ = ⎛ F(n+1) F(n)   ⎞
     ⎝ 1 0 ⎠    ⎝ F(n)   F(n-1) ⎠
 ```
@@ -831,7 +831,7 @@ Or in other words, F(*n*) = F(*n*-1) + F(*n*-2).
 
 What Stuart's double mapping also accomplishes is to produce the actual step patterns taken to ascend the staircase:
 
-```
+```perl
     [colincrain@boris]$  perl 112-2-StuartLittle.pl 5
     8
     ----------
@@ -884,7 +884,7 @@ In order to have a record of the step choices made at every juncture, a good str
 
 Dave breaks the problem down into two phases: taking either 1 or 2 steps, then climbing the remaining number of steps. Repeat until clean.
 
-```
+```perl
     INPUT:  4
     OUTPUT: 5
         Option 1: 1 step + 1 step + 1 step + 1 step
@@ -1048,7 +1048,7 @@ summed over floor(*steps*/2), all possible values of *twos*.
 
 Thia marvelous logic produces the answer in a manner we haven't seen before. Unsatisfied, though, he continues on to provide two more submissions for producing the actual final permuted groups. First he gives us a [naive solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/wlmb/perl/ch-2a.pl), followed by one [more sophisticated](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/wlmb/perl/ch-2b.pl). His output even has his own take on things:
 
-```
+```perl
     Input: 1
     Combinations:
     single

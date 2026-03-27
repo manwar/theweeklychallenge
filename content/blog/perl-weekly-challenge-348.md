@@ -52,7 +52,7 @@ sub format_date {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-347/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub format-date(Str $str) {
     $str ~~ /(\d+) \w**2 \s (\w**3) \s (\d+)/;
     sprintf("%04d-%02d-%02d", $2, 1+index("JanFebMarAprMayJunJulAugSepOctNovDec", $1)/3, $0);

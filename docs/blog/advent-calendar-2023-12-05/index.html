@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2023blogadvent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
-<h3 id="-nbsp-day-4blogadvent-calendar-2023-12-04-nbsp--nbsp-day-5-nbsp--nbsp-day-6blogadvent-calendar-2023-12-06-nbsp-">|   <a href="/blog/advent-calendar-2023-12-04"><strong>Day 4</strong></a>   |   <strong>Day 5</strong>   |   <a href="/blog/advent-calendar-2023-12-06"><strong>Day 6</strong></a>   |</h3>
+        <h2 id="advent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
+<h3 id="--day-4----day-5----day-6--">|   <a href="/blog/advent-calendar-2023-12-04"><strong>Day 4</strong></a>   |   <strong>Day 5</strong>   |   <a href="/blog/advent-calendar-2023-12-06"><strong>Day 6</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Avery Adams</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-210"><strong>The Weekly Challenge - 210</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://dev.to/oldtechaa/perl-weekly-challenge-210-1ojj"><strong>post</strong></a>.</p>
 <hr>
@@ -191,22 +191,22 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>For this challenge I decided to use some of the tools I learned about in the solutions other people submitted for <code>#208</code>, especially the ways hashes can make the process more efficient. The goal is to find the number in the list where you can delete the most points by deleting the number and its adjacent numbers plus and minus one. You get to count each number however many times it appears in the list.</p>
 <p>My code is actually very simple for this one. I hope it&rsquo;s fairly elegant looking to others, but I&rsquo;ll have to see the solutions others provide. Essentially I just create a hash where for every number appearing in the list, it tells us how many times it appears. The key is the number, the value is the number of times it appears. It then iterates once through all the numbers that occur in the list and tests the total of it and its adjacent numbers if they exist. Then it checks the total against the previous winner. Pretty simple, really.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;
-
-<span style="color:#66d9ef">my</span> %hash;
-$hash{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @ARGV;
-
-<span style="color:#66d9ef">my</span> $max;
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $int (keys %hash) {
-    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> (($int <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> $hash{$int <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>}) <span style="color:#f92672">+</span> ($int <span style="color:#f92672">*</span> $hash{$int}) <span style="color:#f92672">+</span> (($int <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> $hash{$int <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>});
-    $max <span style="color:#f92672">=</span> $total <span style="color:#66d9ef">if</span> $total <span style="color:#f92672">&gt;</span> $max <span style="color:#f92672">or</span> <span style="color:#f92672">!</span>defined($max);
-}
-
-say $max <span style="color:#66d9ef">if</span> defined $max;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %hash;
+</span></span><span style="display:flex;"><span>$hash{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @ARGV;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $max;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $int (keys %hash) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> (($int <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> $hash{$int <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>}) <span style="color:#f92672">+</span> ($int <span style="color:#f92672">*</span> $hash{$int}) <span style="color:#f92672">+</span> (($int <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> $hash{$int <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>});
+</span></span><span style="display:flex;"><span>    $max <span style="color:#f92672">=</span> $total <span style="color:#66d9ef">if</span> $total <span style="color:#f92672">&gt;</span> $max <span style="color:#f92672">or</span> <span style="color:#f92672">!</span>defined($max);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say $max <span style="color:#66d9ef">if</span> defined $max;
+</span></span></code></pre></div><br>
 <h3 id="number-collision">Number Collision</h3>
 <hr>
 <p>Here&rsquo;s another interesting project. Originally I thought the first one would be hard and this one easy, but it turned out the opposite. This one I have to imagine has a better solution than I came up with, so I look forward to seeing the other solutions. Maybe others will use a sort of shifting mechanism, whereas I&rsquo;m using good old-fashioned comparisons and splices.</p>
@@ -216,40 +216,40 @@ say $max <span style="color:#66d9ef">if</span> defined $max;
 <h3 id="heres-the-code">Here&rsquo;s the code:</h3>
 <hr>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;
-
-<span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> @ARGV;
-<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $index <span style="color:#f92672">&lt;</span> $#list; $index<span style="color:#f92672">++</span>) {
-    <span style="color:#66d9ef">my</span> $collision <span style="color:#f92672">=</span> $list[$index] <span style="color:#f92672">+</span> $list[$index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">if</span> ($collision <span style="color:#f92672">&gt;</span> $list[$index]) {<span style="color:#66d9ef">next</span>}
-    <span style="color:#66d9ef">elsif</span> ($collision <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-        splice @list, $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;
-        $index<span style="color:#f92672">--</span>;
-    } <span style="color:#66d9ef">elsif</span> ($collision <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-        splice @list, $index, <span style="color:#ae81ff">2</span>;
-        $index <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span>;
-    } <span style="color:#66d9ef">elsif</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">&gt;</span> $collision <span style="color:#f92672">&gt;</span> $list[$index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) {
-        splice @list, $index, <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $index2 <span style="color:#f92672">=</span> $index <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; $index2 <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> $list[$index2] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; $index2<span style="color:#f92672">--</span>) {
-            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-</span>$list[$index] <span style="color:#f92672">&gt;</span> $list[$index2]) {
-                splice @list, $index2, <span style="color:#ae81ff">1</span>;
-                $index<span style="color:#f92672">--</span>;
-                $index2<span style="color:#f92672">--</span>;
-            } <span style="color:#66d9ef">elsif</span> (<span style="color:#f92672">-</span>$list[$index] <span style="color:#f92672">==</span> $list[$index2]) {
-                splice @list, $index2, <span style="color:#ae81ff">2</span>;
-                $index <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span>;
-            } <span style="color:#66d9ef">else</span> {
-                splice @list, $index, <span style="color:#ae81ff">1</span>;
-                $index<span style="color:#f92672">--</span>;
-            }
-        }
-    }
-}
-say $_ <span style="color:#66d9ef">for</span> @list;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> @ARGV;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $index <span style="color:#f92672">&lt;</span> $#list; $index<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $collision <span style="color:#f92672">=</span> $list[$index] <span style="color:#f92672">+</span> $list[$index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($collision <span style="color:#f92672">&gt;</span> $list[$index]) {<span style="color:#66d9ef">next</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> ($collision <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        splice @list, $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        $index<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">elsif</span> ($collision <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        splice @list, $index, <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        $index <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">elsif</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">&gt;</span> $collision <span style="color:#f92672">&gt;</span> $list[$index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) {
+</span></span><span style="display:flex;"><span>        splice @list, $index, <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $index2 <span style="color:#f92672">=</span> $index <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; $index2 <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> $list[$index2] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; $index2<span style="color:#f92672">--</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-</span>$list[$index] <span style="color:#f92672">&gt;</span> $list[$index2]) {
+</span></span><span style="display:flex;"><span>                splice @list, $index2, <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                $index<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>                $index2<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">elsif</span> (<span style="color:#f92672">-</span>$list[$index] <span style="color:#f92672">==</span> $list[$index2]) {
+</span></span><span style="display:flex;"><span>                splice @list, $index2, <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>                $index <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                splice @list, $index, <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                $index<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>say $_ <span style="color:#66d9ef">for</span> @list;
+</span></span></code></pre></div><br>
 <p>That&rsquo;s all for this week. Hopefully I should have more solutions for you next week. Stay tuned!</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>

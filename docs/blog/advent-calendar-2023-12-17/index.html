@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2023blogadvent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
-<h3 id="-nbsp-day-16blogadvent-calendar-2023-12-16-nbsp--nbsp-day-17-nbsp--nbsp-day-18blogadvent-calendar-2023-12-18-nbsp-">|   <a href="/blog/advent-calendar-2023-12-16"><strong>Day 16</strong></a>   |   <strong>Day 17</strong>   |   <a href="/blog/advent-calendar-2023-12-18"><strong>Day 18</strong></a>   |</h3>
+        <h2 id="advent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
+<h3 id="--day-16----day-17----day-18--">|   <a href="/blog/advent-calendar-2023-12-16"><strong>Day 16</strong></a>   |   <strong>Day 17</strong>   |   <a href="/blog/advent-calendar-2023-12-18"><strong>Day 18</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Luca Ferrari</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-228"><strong>The Weekly Challenge - 228</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://fluca1978.github.io/2023/07/31/PerlWeeklyChallenge228.html"><strong>post</strong></a>.</p>
 <hr>
@@ -211,11 +211,11 @@ Example 3
 <br>
 <p>The first task was about <code>summing</code> only the <code>non-repeated</code> numbers given as input.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( *@nums  where { @nums<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> @nums<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*</span> <span style="color:#f92672">~~</span> Int )<span style="color:#f92672">.</span>elems } ) {
-    <span style="color:#66d9ef">my</span> $bag <span style="color:#f92672">=</span> @nums<span style="color:#f92672">.</span>Bag;
-    $bag<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>grep( { $bag{ $_ } <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } )<span style="color:#f92672">.</span>sum<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( *@nums  where { @nums<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> @nums<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*</span> <span style="color:#f92672">~~</span> Int )<span style="color:#f92672">.</span>elems } ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $bag <span style="color:#f92672">=</span> @nums<span style="color:#f92672">.</span>Bag;
+</span></span><span style="display:flex;"><span>    $bag<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>grep( { $bag{ $_ } <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } )<span style="color:#f92672">.</span>sum<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>My solution is to classify the input array as a <code>Bag</code>, then to <code>grep</code> only those keys that have a value of <code>1</code>, and sum those keys.</p>
 <br>
 <h3 id="pwc-228---task-2---raku-implementation">PWC 228 - Task 2 - Raku Implementation</h3>
@@ -246,135 +246,135 @@ Example 2
 <br>
 <p>This task was about doing a kind of <code>bubble sort</code> on an array, removing the <code>smallest one</code> if it is the <code>leftmost</code>, and counting the operations required to <code>empty</code> the array.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( *@nums where { @nums<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*</span> <span style="color:#f92672">~~</span> Int )<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> @nums<span style="color:#f92672">.</span>elems } ) {
-    <span style="color:#66d9ef">my</span> @current <span style="color:#f92672">=</span> @nums;
-    <span style="color:#66d9ef">my</span> $moves <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-    <span style="color:#66d9ef">while</span> ( @current ) {
-        <span style="color:#66d9ef">my</span> $swap <span style="color:#f92672">=</span> @current<span style="color:#f92672">.</span>shift;
-        @current<span style="color:#f92672">.</span>push: $swap  <span style="color:#66d9ef">if</span> $swap <span style="color:#f92672">&gt;</span> @current<span style="color:#f92672">.</span>min;
-        $moves<span style="color:#f92672">++</span>;
-    }
-
-    $moves<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( *@nums where { @nums<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*</span> <span style="color:#f92672">~~</span> Int )<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> @nums<span style="color:#f92672">.</span>elems } ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @current <span style="color:#f92672">=</span> @nums;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $moves <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ( @current ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $swap <span style="color:#f92672">=</span> @current<span style="color:#f92672">.</span>shift;
+</span></span><span style="display:flex;"><span>        @current<span style="color:#f92672">.</span>push: $swap  <span style="color:#66d9ef">if</span> $swap <span style="color:#f92672">&gt;</span> @current<span style="color:#f92672">.</span>min;
+</span></span><span style="display:flex;"><span>        $moves<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $moves<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Until the <code>@current</code> array is empty, I extract the leftmost value in the array by means of a <code>shift</code> operation. If such value is the <code>current minimum</code>, than nothing else is required (since the element has been already removed from the array), otherwise I need to push it to the end of the array. In any case, an operation has been performed, so <code>$moves</code> is increased.</p>
 <br>
 <h3 id="pwc-228---task-1---plperl-implementation">PWC 228 - Task 1 - PL/Perl Implementation</h3>
 <br>
 <p>Same idea as in the <code>Raku</code> implementation: I do classify the input array, then <code>grep</code> to keep only <code>unique</code> keys, and then <code>sum</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">CREATE OR REPLACE FUNCTION
-pwc228<span style="color:#f92672">.</span>task1_plperl( int<span style="color:#f92672">[]</span> )
-RETURNS int
-AS $CODE$
-   my ( $array ) <span style="color:#f92672">=</span> @_;
-   <span style="color:#66d9ef">my</span> $bag <span style="color:#f92672">=</span> {};
-
-   <span style="color:#75715e"># classify the elements</span>
-   $bag<span style="color:#f92672">-&gt;</span>{ $_ }<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> ( $array<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> );
-
-   <span style="color:#66d9ef">my</span> ( @uniques ) <span style="color:#f92672">=</span> grep( { $bag<span style="color:#f92672">-&gt;</span>{ $_ } <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } keys( $bag<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span> ) );
-   <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-   $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> ( @uniques );
-   <span style="color:#66d9ef">return</span> $sum;
-$CODE$
-LANGUAGE plperl;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>CREATE OR REPLACE FUNCTION
+</span></span><span style="display:flex;"><span>pwc228<span style="color:#f92672">.</span>task1_plperl( int<span style="color:#f92672">[]</span> )
+</span></span><span style="display:flex;"><span>RETURNS int
+</span></span><span style="display:flex;"><span>AS $CODE$
+</span></span><span style="display:flex;"><span>   my ( $array ) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> $bag <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># classify the elements</span>
+</span></span><span style="display:flex;"><span>   $bag<span style="color:#f92672">-&gt;</span>{ $_ }<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> ( $array<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> ( @uniques ) <span style="color:#f92672">=</span> grep( { $bag<span style="color:#f92672">-&gt;</span>{ $_ } <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } keys( $bag<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span> ) );
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>   $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> ( @uniques );
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> $sum;
+</span></span><span style="display:flex;"><span>$CODE$
+</span></span><span style="display:flex;"><span>LANGUAGE plperl;
+</span></span></code></pre></div><br>
 <h3 id="pwc-228---task-2---plperl-implementation">PWC 228 - Task 2 - PL/Perl Implementation</h3>
 <br>
 <p>The same idea of the <code>Raku</code> implementation, but a little more verbose since I define a <code>min</code> inner function to calculate the <code>min value</code> of the given array. Also please note that there is the need to terminate the loop when the <code>min</code> function returns an <code>undef</code> value.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">CREATE OR REPLACE FUNCTION
-pwc228<span style="color:#f92672">.</span>task2_plperl( int<span style="color:#f92672">[]</span> )
-RETURNS int
-AS $CODE$
-   my ( $array ) <span style="color:#f92672">=</span> @_;
-   <span style="color:#66d9ef">my</span> $moves <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-   <span style="color:#75715e"># a function to find out the min value</span>
-   <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> {
-      <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> undef;
-      <span style="color:#66d9ef">for</span> ( $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
-            $min <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span> $min <span style="color:#f92672">||</span> $min <span style="color:#f92672">&gt;</span> $_ );
-      }
-
-      <span style="color:#66d9ef">return</span> $min;
-   };
-
-   <span style="color:#66d9ef">while</span> ( scalar $array<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
-        <span style="color:#66d9ef">my</span> ( $swap, $min ) <span style="color:#f92672">=</span> ( shift( $array<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ), $min<span style="color:#f92672">-&gt;</span>( $array ) );
-     $moves<span style="color:#f92672">++</span>;
-     <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span> $swap;
-     <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span> $min;
-     push $array<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $swap  <span style="color:#66d9ef">if</span> ( $swap <span style="color:#f92672">&gt;</span> $min );
-
-   }
-
-   <span style="color:#66d9ef">return</span> $moves;
-$CODE$
-LANGUAGE plperl;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>CREATE OR REPLACE FUNCTION
+</span></span><span style="display:flex;"><span>pwc228<span style="color:#f92672">.</span>task2_plperl( int<span style="color:#f92672">[]</span> )
+</span></span><span style="display:flex;"><span>RETURNS int
+</span></span><span style="display:flex;"><span>AS $CODE$
+</span></span><span style="display:flex;"><span>   my ( $array ) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> $moves <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># a function to find out the min value</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> ( $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+</span></span><span style="display:flex;"><span>            $min <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span> $min <span style="color:#f92672">||</span> $min <span style="color:#f92672">&gt;</span> $_ );
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> $min;
+</span></span><span style="display:flex;"><span>   };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">while</span> ( scalar $array<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ( $swap, $min ) <span style="color:#f92672">=</span> ( shift( $array<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ), $min<span style="color:#f92672">-&gt;</span>( $array ) );
+</span></span><span style="display:flex;"><span>     $moves<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span> $swap;
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span> $min;
+</span></span><span style="display:flex;"><span>     push $array<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $swap  <span style="color:#66d9ef">if</span> ( $swap <span style="color:#f92672">&gt;</span> $min );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> $moves;
+</span></span><span style="display:flex;"><span>$CODE$
+</span></span><span style="display:flex;"><span>LANGUAGE plperl;
+</span></span></code></pre></div><br>
 <h3 id="pwc-228---task-1---plpgsql-implementation">PWC 228 - Task 1 - PL/PgSQL Implementation</h3>
 <br>
 <p>This task can be solved with a single <code>SQL</code> query:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">CREATE OR REPLACE FUNCTION
-pwc228<span style="color:#f92672">.</span>task1_plpgsql( a int<span style="color:#f92672">[]</span> )
-RETURNS int
-AS $CODE$
-   WITH BAG as (
-      SELECT v
-      FROM unnest( a ) v
-      GROUP BY v
-      HAVING count(<span style="color:#f92672">*</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-   )
-   SELECT sum( v )
-   FROM bag;
-$CODE$
-LANGUAGE sql;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>CREATE OR REPLACE FUNCTION
+</span></span><span style="display:flex;"><span>pwc228<span style="color:#f92672">.</span>task1_plpgsql( a int<span style="color:#f92672">[]</span> )
+</span></span><span style="display:flex;"><span>RETURNS int
+</span></span><span style="display:flex;"><span>AS $CODE$
+</span></span><span style="display:flex;"><span>   WITH BAG as (
+</span></span><span style="display:flex;"><span>      SELECT v
+</span></span><span style="display:flex;"><span>      FROM unnest( a ) v
+</span></span><span style="display:flex;"><span>      GROUP BY v
+</span></span><span style="display:flex;"><span>      HAVING count(<span style="color:#f92672">*</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>   )
+</span></span><span style="display:flex;"><span>   SELECT sum( v )
+</span></span><span style="display:flex;"><span>   FROM bag;
+</span></span><span style="display:flex;"><span>$CODE$
+</span></span><span style="display:flex;"><span>LANGUAGE sql;
+</span></span></code></pre></div><br>
 <p>The <code>bag</code> part of the query materializes the <code>unique set</code> of values that are not repeated, then the other part of the query performs the <code>sum</code>.</p>
 <br>
 <h3 id="pwc-228---task-2---plpgsql-implementation">PWC 228 - Task 2 - PL/PgSQL Implementation</h3>
 <br>
 <p>The second task can be solved as in the <code>PL/Perl</code> way, but it is importan to note that <code>PostgreSQL</code> does not provide a <code>shift</code> like array operation.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">CREATE OR REPLACE FUNCTION
-pwc228<span style="color:#f92672">.</span>task2_plpgsql( a int<span style="color:#f92672">[]</span> )
-RETURNS int
-AS $CODE$
-DECLARE
-    current_min int;
-    current_swap int;
-    moves int :<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">BEGIN</span>
-    WHILE array_length( a, <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> LOOP
-          <span style="color:#f92672">--</span> find the min value
-          SELECT min( v )
-          INTO current_min
-          FROM unnest( a ) v;
-
-
-
-          <span style="color:#f92672">--</span> unshift the first element
-          current_swap :<span style="color:#f92672">=</span> a[ <span style="color:#ae81ff">1</span> ];
-          a :<span style="color:#f92672">=</span> a[ <span style="color:#ae81ff">2</span> : array_length( a, <span style="color:#ae81ff">1</span> ) ];
-
-          IF current_swap <span style="color:#f92672">&gt;</span> current_min THEN
-               a :<span style="color:#f92672">=</span> array_append( a, current_swap );
-          <span style="color:#66d9ef">END</span> IF;
-
-          moves :<span style="color:#f92672">=</span> moves <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-
-    <span style="color:#66d9ef">END</span> LOOP;
-
-    RETURN moves;
-
-<span style="color:#66d9ef">END</span>
-$CODE$
-LANGUAGE plpgsql;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>CREATE OR REPLACE FUNCTION
+</span></span><span style="display:flex;"><span>pwc228<span style="color:#f92672">.</span>task2_plpgsql( a int<span style="color:#f92672">[]</span> )
+</span></span><span style="display:flex;"><span>RETURNS int
+</span></span><span style="display:flex;"><span>AS $CODE$
+</span></span><span style="display:flex;"><span>DECLARE
+</span></span><span style="display:flex;"><span>    current_min int;
+</span></span><span style="display:flex;"><span>    current_swap int;
+</span></span><span style="display:flex;"><span>    moves int :<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">BEGIN</span>
+</span></span><span style="display:flex;"><span>    WHILE array_length( a, <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> LOOP
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">--</span> find the min value
+</span></span><span style="display:flex;"><span>          SELECT min( v )
+</span></span><span style="display:flex;"><span>          INTO current_min
+</span></span><span style="display:flex;"><span>          FROM unnest( a ) v;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">--</span> unshift the first element
+</span></span><span style="display:flex;"><span>          current_swap :<span style="color:#f92672">=</span> a[ <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>          a :<span style="color:#f92672">=</span> a[ <span style="color:#ae81ff">2</span> : array_length( a, <span style="color:#ae81ff">1</span> ) ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          IF current_swap <span style="color:#f92672">&gt;</span> current_min THEN
+</span></span><span style="display:flex;"><span>               a :<span style="color:#f92672">=</span> array_append( a, current_swap );
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">END</span> IF;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          moves :<span style="color:#f92672">=</span> moves <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">END</span> LOOP;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    RETURN moves;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">END</span>
+</span></span><span style="display:flex;"><span>$CODE$
+</span></span><span style="display:flex;"><span>LANGUAGE plpgsql;
+</span></span></code></pre></div><br>
 <p>The trick to simulate the <code>shift</code> operation is to access an <code>array slice</code> starting from <code>2</code> (because in <code>SQL</code> the arrays all start at index <code>1</code>).</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>

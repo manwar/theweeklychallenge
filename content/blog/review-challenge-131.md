@@ -64,22 +64,22 @@ You are given a sorted list of unique positive integers.
 Write a script to return list of arrays where the arrays are consecutive integers.
 
 **Example 1:**
-```
+```perl
     Input:  (1, 2, 3, 6, 7, 8, 9)
     Output: ([1, 2, 3], [6, 7, 8, 9])
 ```
 **Example 2:**
-```
+```perl
     Input:  (11, 12, 14, 17, 18, 19)
     Output: ([11, 12], [14], [17, 18, 19])
 ```
 **Example 3:**
-```
+```perl
     Input:  (2, 4, 6, 8)
     Output: ([2], [4], [6], [8])
 ```
 **Example 4:**
-```
+```perl
     Input:  (1, 2, 3, 4, 5)
     Output: ([1, 2, 3, 4, 5])
 ```
@@ -346,7 +346,7 @@ Here Dave uses a `map` between a couple of `join` statements to first join the i
 
 I do like the attention to detail when someone goes to great length to produce the output exactly as described in the examples. It's not necessary in my book, but the effort is admirable. And adding that extra space after "Input: " to get the data to line up gives me a warm fuzzy feeling inside. Data visualization is so often overlooked, and I find too often that presenting data is viewed as synonymous with having ones audience comprehend it, the onus landing on the user to make sense of what is in front of them.
 
-```
+```perl
     Input:  ( 1, 2, 3, 6, 7, 8, 9 )
     Output: ( [1, 2, 3], [6, 7, 8, 9] )
 
@@ -391,7 +391,7 @@ I do like the attention to detail when someone goes to great length to produce t
 
 And, because nothing in this world is simple, in direct contrast to what I just said, we have this minimalist example from Rich. Noteworthy is the inversion of the usual comparisons we've seen, using the `if` to select the new-sub-array case and defaulting to adding to the existing sequence. The array-of-arrays is constructed, as requested, and to verify it the `@results` array is examined with the `Data::Dumper` module:
 
-```
+```perl
     $VAR1 = [
               [
                 1,
@@ -559,7 +559,7 @@ You are given a string of delimiter pairs and a string to search.
 Write a script to return two strings, the first with any characters matching the “opening character” set, the second with any matching the “closing character” set.
 
 **Example 1:**
-```
+```perl
     Input:
         Delimiter pairs: ""[]()
         Search String:
@@ -570,7 +570,7 @@ Write a script to return two strings, the first with any characters matching the
         ")]"
 ```
 **Example 2:**
-```
+```perl
     Input:
         Delimiter pairs: **//<>
         Search String:

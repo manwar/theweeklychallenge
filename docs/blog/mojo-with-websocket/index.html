@@ -200,38 +200,37 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <p>We start by importing <a href="https://metacpan.org/pod/Mojolicious::Lite"><strong>Mojolicious::Lite</strong></a>, the lightweight version of <strong>Mojo</strong> that’s perfect for quick apps. <a href="https://metacpan.org/pod/Mojo::JSON"><strong>Mojo::JSON</strong></a> handles <strong>JSON</strong> encoding/decoding, essential for <strong>WebSocket</strong> messaging.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> Mojolicious::Lite;
-<span style="color:#66d9ef">use</span> Mojo::JSON <span style="color:#e6db74">qw(decode_json encode_json)</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Mojolicious::Lite;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Mojo::JSON <span style="color:#e6db74">qw(decode_json encode_json)</span>;
+</span></span></code></pre></div><br>
 <h3 id="global-state"><strong>Global State</strong></h3>
 <hr>
 <p>Since <strong>WebSocket</strong> connections are persistent, we need to track connected clients and message history. <strong>$clients</strong> is a hashref keyed by connection ID, and <strong>@history</strong> keeps the last 10 messages for newcomers.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $clients <span style="color:#f92672">=</span> {};
-<span style="color:#66d9ef">my</span> @history;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $clients <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @history;
+</span></span></code></pre></div><br>
 <h3 id="the-homepage"><strong>The Homepage</strong></h3>
 <hr>
 <p>A simple <strong>GET</strong> route serves the <strong>HTML</strong> frontend (from a template named index). Mojo’s <strong>$c</strong> is the controller object, similar to <strong>Dancer2</strong>’s request object.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">get <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> shift;
-
-    $c<span style="color:#f92672">-&gt;</span>render(template <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;index&#39;</span>, title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Online Chat App&#39;</span>);
-};
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>render(template <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;index&#39;</span>, title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Online Chat App&#39;</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><br>
 <h3 id="the-websocket-handler"><strong>The WebSocket Handler</strong></h3>
 <hr>
 <p>When a client connects to <strong>/chat</strong>, we create a unique ID from the transaction object (<strong>$c-&gt;tx</strong>) and store the connection along with a default username.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">websocket <span style="color:#e6db74">&#39;/chat&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-    <span style="color:#66d9ef">my</span> $c  <span style="color:#f92672">=</span> shift;
-    <span style="color:#66d9ef">my</span> $id <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%p&#34;</span>, $c<span style="color:#f92672">-&gt;</span>tx;
-    $clients<span style="color:#f92672">-&gt;</span>{$id} <span style="color:#f92672">=</span> { tx <span style="color:#f92672">=&gt;</span> $c<span style="color:#f92672">-&gt;</span>tx, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Anonymous&#39;</span> };
-
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>websocket <span style="color:#e6db74">&#39;/chat&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $c  <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $id <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%p&#34;</span>, $c<span style="color:#f92672">-&gt;</span>tx;
+</span></span><span style="display:flex;"><span>    $clients<span style="color:#f92672">-&gt;</span>{$id} <span style="color:#f92672">=</span> { tx <span style="color:#f92672">=&gt;</span> $c<span style="color:#f92672">-&gt;</span>tx, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Anonymous&#39;</span> };
+</span></span></code></pre></div><br>
 <h3 id="handling-incoming-messages"><strong>Handling Incoming Messages</strong></h3>
 <hr>
 <p><strong>Mojo</strong> uses event-driven callbacks.</p>
@@ -248,87 +247,87 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </li>
 </ul>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $c<span style="color:#f92672">-&gt;</span>on(message <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-        <span style="color:#66d9ef">my</span> ($self, $msg) <span style="color:#f92672">=</span> @_;
-
-        <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> eval { decode_json($msg) };
-        <span style="color:#66d9ef">if</span> ($@ <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>$data) {
-            app<span style="color:#f92672">-&gt;</span>log<span style="color:#f92672">-&gt;</span>error(<span style="color:#e6db74">&#34;Bad JSON received: $@&#34;</span>);
-            <span style="color:#66d9ef">return</span>;
-        }
-
-        <span style="color:#66d9ef">if</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;typing&#39;</span>) {
-            <span style="color:#75715e"># Send the typing status to everyone EXCEPT the person typing</span>
-            broadcast({
-                type     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;typing&#39;</span>,
-                user     <span style="color:#f92672">=&gt;</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name},
-                isTyping <span style="color:#f92672">=&gt;</span> $data<span style="color:#f92672">-&gt;</span>{isTyping}
-            }, $id);
-        }
-        <span style="color:#66d9ef">elsif</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;join&#39;</span>) {
-            $clients<span style="color:#f92672">-&gt;</span>{$id}{name} <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span>{name};
-
-            <span style="color:#75715e"># Send existing history ONLY to the user who just joined</span>
-            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $old_msg (@history) {
-                $c<span style="color:#f92672">-&gt;</span>send(encode_json($old_msg));
-            }
-
-            broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;system&#39;</span>, text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$data-&gt;{name} joined&#34;</span> });
-            send_user_list();
-        }
-        <span style="color:#66d9ef">elsif</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;message&#39;</span>) {
-            <span style="color:#66d9ef">my</span> (undef, $min, $hour) <span style="color:#f92672">=</span> localtime();
-            <span style="color:#66d9ef">my</span> $timestamp <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%02d:%02d&#34;</span>, $hour, $min);
-            <span style="color:#66d9ef">my</span> $msg_out   <span style="color:#f92672">=</span> {
-                user      <span style="color:#f92672">=&gt;</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name},
-                text      <span style="color:#f92672">=&gt;</span> $data<span style="color:#f92672">-&gt;</span>{text},
-                timestamp <span style="color:#f92672">=&gt;</span> $timestamp
-            };
-
-            <span style="color:#75715e"># Push to history and keep only the last 10</span>
-            push @history, $msg_out;
-            shift @history <span style="color:#66d9ef">if</span> @history <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>;
-
-            broadcast($msg_out);
-        }
-    });
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>on(message <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($self, $msg) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> eval { decode_json($msg) };
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($@ <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>$data) {
+</span></span><span style="display:flex;"><span>            app<span style="color:#f92672">-&gt;</span>log<span style="color:#f92672">-&gt;</span>error(<span style="color:#e6db74">&#34;Bad JSON received: $@&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;typing&#39;</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Send the typing status to everyone EXCEPT the person typing</span>
+</span></span><span style="display:flex;"><span>            broadcast({
+</span></span><span style="display:flex;"><span>                type     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;typing&#39;</span>,
+</span></span><span style="display:flex;"><span>                user     <span style="color:#f92672">=&gt;</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name},
+</span></span><span style="display:flex;"><span>                isTyping <span style="color:#f92672">=&gt;</span> $data<span style="color:#f92672">-&gt;</span>{isTyping}
+</span></span><span style="display:flex;"><span>            }, $id);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elsif</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;join&#39;</span>) {
+</span></span><span style="display:flex;"><span>            $clients<span style="color:#f92672">-&gt;</span>{$id}{name} <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span>{name};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Send existing history ONLY to the user who just joined</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $old_msg (@history) {
+</span></span><span style="display:flex;"><span>                $c<span style="color:#f92672">-&gt;</span>send(encode_json($old_msg));
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;system&#39;</span>, text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$data-&gt;{name} joined&#34;</span> });
+</span></span><span style="display:flex;"><span>            send_user_list();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elsif</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;message&#39;</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> (undef, $min, $hour) <span style="color:#f92672">=</span> localtime();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $timestamp <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%02d:%02d&#34;</span>, $hour, $min);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $msg_out   <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>                user      <span style="color:#f92672">=&gt;</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name},
+</span></span><span style="display:flex;"><span>                text      <span style="color:#f92672">=&gt;</span> $data<span style="color:#f92672">-&gt;</span>{text},
+</span></span><span style="display:flex;"><span>                timestamp <span style="color:#f92672">=&gt;</span> $timestamp
+</span></span><span style="display:flex;"><span>            };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Push to history and keep only the last 10</span>
+</span></span><span style="display:flex;"><span>            push @history, $msg_out;
+</span></span><span style="display:flex;"><span>            shift @history <span style="color:#66d9ef">if</span> @history <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            broadcast($msg_out);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span></code></pre></div><br>
 <h3 id="cleaning-up-on-disconnect"><strong>Cleaning Up on Disconnect</strong></h3>
 <hr>
 <p>When a <strong>WebSocket</strong> closes, we remove the client from <strong>$clients</strong> and notify everyone.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $c<span style="color:#f92672">-&gt;</span>on(finish <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-        <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name};
-        delete $clients<span style="color:#f92672">-&gt;</span>{$id};
-        broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;system&#39;</span>, text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$name left&#34;</span> });
-        send_user_list();
-    });
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>on(finish <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name};
+</span></span><span style="display:flex;"><span>        delete $clients<span style="color:#f92672">-&gt;</span>{$id};
+</span></span><span style="display:flex;"><span>        broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;system&#39;</span>, text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$name left&#34;</span> });
+</span></span><span style="display:flex;"><span>        send_user_list();
+</span></span><span style="display:flex;"><span>    });
+</span></span></code></pre></div><br>
 <h3 id="helper-subs"><strong>Helper Subs</strong></h3>
 <hr>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">broadcast</span> {
-    <span style="color:#66d9ef">my</span> $msg <span style="color:#f92672">=</span> encode_json(shift);
-    $_<span style="color:#f92672">-&gt;</span>{tx}<span style="color:#f92672">-&gt;</span>send($msg) <span style="color:#66d9ef">for</span> values %$clients;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">send_user_list</span> {
-    <span style="color:#66d9ef">my</span> @names <span style="color:#f92672">=</span> sort map { $_<span style="color:#f92672">-&gt;</span>{name} } values %$clients;
-    broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;users&#39;</span>, list <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>@names });
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">broadcast</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $msg <span style="color:#f92672">=</span> encode_json(shift);
+</span></span><span style="display:flex;"><span>    $_<span style="color:#f92672">-&gt;</span>{tx}<span style="color:#f92672">-&gt;</span>send($msg) <span style="color:#66d9ef">for</span> values %$clients;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">send_user_list</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @names <span style="color:#f92672">=</span> sort map { $_<span style="color:#f92672">-&gt;</span>{name} } values %$clients;
+</span></span><span style="display:flex;"><span>    broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;users&#39;</span>, list <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>@names });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="kicking-things-off"><strong>Kicking Things Off</strong></h3>
 <hr>
 <p>Finally, we start the Mojo app.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">app<span style="color:#f92672">-&gt;</span>start;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>app<span style="color:#f92672">-&gt;</span>start;
+</span></span></code></pre></div><br>
 <p>With the built-in web server, launch the deamon like below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl chat-server deamon
-<span style="color:#f92672">[</span>2026-02-07 21:43:08.63656<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>368424<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>info<span style="color:#f92672">]</span> Listening at <span style="color:#e6db74">&#34;http://*:3000&#34;</span>
-Web application available at http://127.0.0.1:3000
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl chat-server deamon
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>2026-02-07 21:43:08.63656<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>368424<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>info<span style="color:#f92672">]</span> Listening at <span style="color:#e6db74">&#34;http://*:3000&#34;</span>
+</span></span><span style="display:flex;"><span>Web application available at http://127.0.0.1:3000
+</span></span></code></pre></div><br>
 <h3 id="final-look"><strong>Final Look</strong></h3>
 <hr>
 <p><img src="/images/blog/mojo-with-websocket-img-1.jpg" alt="Welcome Screen"></p>
@@ -337,7 +336,7 @@ Web application available at http://127.0.0.1:3000
 <br>
 <h3 id="first-impressions"><strong>First Impressions</strong></h3>
 <hr>
-<p>Coming from <strong>Dancer2</strong>, I appreciated <strong>Mojo</strong>&lsquo;s all-in-one approach, no need for extra <strong>PSGI</strong> setup or external modules for <strong>WebSockets</strong>. The event-driven style felt natural for real-time apps, and the built-in <strong>JSON</strong> handling kept things tidy.</p>
+<p>Coming from <strong>Dancer2</strong>, I appreciated <strong>Mojo</strong>&rsquo;s all-in-one approach, no need for extra <strong>PSGI</strong> setup or external modules for <strong>WebSockets</strong>. The event-driven style felt natural for real-time apps, and the built-in <strong>JSON</strong> handling kept things tidy.</p>
 <p>Is <strong>Mojo</strong> going to replace <strong>Dancer2</strong> for me?</p>
 <p>Not necessarily, but for real-time features, it’s a powerful tool to have in the toolbox. And building this chat server was a fun way to dive in.</p>
 <p>You can find the full code (including the frontend template) on <a href="https://github.com/manwar/Mojo-with-WebSocket"><strong>GitHub</strong></a>.</p>

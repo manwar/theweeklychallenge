@@ -93,7 +93,7 @@ It clearly appears that there is at most only one solution, since each time thro
 
 Once we have the algorithm, implementing it is fairly easy. The first thing we want to do is to make the link between the height and the number of taller people before in the line more robust than two parallel arrays. This is what we do with the `%mapping` hash. Then we pick each height in ascending order and place it in the `@result` array in accordance with the rules described above. At the end of the process, each slot of the array should be populated if there was a solution to the problem. If the problem had no solution, then some of the values in the array should be undefined. So we can just check that: if all values are defined, we just display the array; if there is one or more undefined values, then we print that the problem has no solution.
 
-``` Perl 6
+```perl
 use v6;
 
 # Heights
@@ -131,7 +131,7 @@ We obtain the following output:
 
 [Luca Ferrari](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/luca-ferrari/raku/ch-2.p6) wrote a brute force solution generating all permutations of the original heights array and checking for each of them whether the number of taller people matches the taller people array.
 
-``` Perl 6
+```perl
 sub MAIN(){
     my @H = 2, 6, 4, 5, 1, 3;
     my @T = 1, 0, 2, 0, 1, 2;
@@ -169,7 +169,7 @@ Luca's solution is certainly OK for a 6-item array, but I'm afraid it might enco
 
 [Shahed Nooshmand](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/shahed-nooshmand/raku/ch-2.p6) wrote an impressively concise program to solve the task:
 
-``` Perl 6
+```perl
 my @H = (2, 6, 4, 5, 1, 3);
 my @T = (1, 0, 2, 0, 1, 2);
 my @Q;
@@ -181,7 +181,7 @@ Contrary to mine, Shahed's program visits the heights in descending order. This 
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/simon-proctor/raku/ch-2.p6) used essentially the same algorithm as mine, but in a more clever and more concise form:
 
-``` Perl 6
+```perl
 multi sub MAIN (
     Str $data where *.IO.f #= list of comma seperated heights and expected number before
 ) {
@@ -231,7 +231,7 @@ And the final result is: `(5, 1, 2, 6, 3, 4)`.
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/arne-sommer/raku/ch-2.p6) used a `Lineup` class to represent an individual, with attributes for the individual heights and the number of taller people placed before in the line. Arne decided to sort the people in descending order. The program takes the tallest person and initially inserts it at the first position in the `@result` array. Then still using the example in the task description, the next (second tallest) person has no taller person; this person will be places at the first position ad the tallest person moved to the right by one position. The third person has two taller persons before, so will be placed to the right of the two persons already placed. The fourth person has one taller person and will be placed in the second position, with two persons being moved to the right. Finally, the last (smallest) person has one taller person before and will thus be placed in the second position, and all persons from the second position on will be shifted to the right.
 
 
-``` Perl6
+```perl
 unit sub MAIN (:$H, :$T, :$A = "", :$verbose, :$verbose2);
 
 my @H = $H.words>>.Int;
@@ -280,7 +280,7 @@ say @result>>.height eqv @A if @A;
 
 [Colin Crain](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/colin-crain/raku/ch-2.p6) used a method similar to Arne's. He sorted the individuals by heights (tallest to shortest) after having preserved the association between heights and the required number of taller people in front in a hash  Then he proceeded down this line starting with the tallest, moving each person in turn to the new index determined by the hash. Colin's solution is remarkably simple.
 
-``` Perl6
+```perl
 my %in_front;
 %in_front{@heights} = @taller_than;
 
@@ -308,7 +308,7 @@ Colin’s program starts with a fairly long comment explaining how he designed h
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/javier-luque/raku/ch-2.p6) sorted the individuals from the shortest to the tallest and then placed the people using a reasoning very similar to what I described for my solution.
 
-``` Perl6
+```perl
 my %data;
 for ^@H.elems -> $i {
     %data{@H[$i]} = @T[$i];
@@ -332,7 +332,7 @@ say @answers.perl;
 
 [Mark Anderson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/mark-anderson/raku/ch-2.p6) designed a remarkably concise solution:
 
-``` Perl6
+```perl
 my @Z = (@H Z @T).sort;
 my @Ans;
 while @Z.pop -> ($h, $t) {
@@ -343,7 +343,7 @@ say @Ans.rotor(10)>>.fmt("%-4d").join("\n");
 
 [Mohammad Anwar](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/mohammad-anwar/raku/ch-2.p6) first created a hash to preserve the association between heights and the required number of taller people in front, then sorted the hash by heights (from tallest to smallest), and then computed the proper place for each individual with a `while` loop:
 
-``` Perl6
+```perl
 sub order-lineup($args) {
 
     my @H = $args.{'H'}.<>;

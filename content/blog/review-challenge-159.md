@@ -69,13 +69,13 @@ You are given a positive number, $n.
 Write a script to compute Farey Sequence of the order $n.
 
 **Example 1:**
-```
+```perl
         Input: $n = 5
         Output: 0/1, 1/5, 1/4, 1/3, 2/5, 1/2, 3/5, 2/3, 3/4, 4/5, 1/1
 ```
 
 **Example 2:**
-```
+```perl
         Input: $n = 7
         Output: 0/1, 1/7, 1/6, 1/5, 1/4, 2/7, 1/3, 2/5, 3/7,
                 1/2, 4/7, 3/5, 2/3, 5/7, 3/4, 4/5, 5/6, 6/7, 1/1
@@ -83,7 +83,7 @@ Write a script to compute Farey Sequence of the order $n.
 
 
 **Example 3:**
-```
+```perl
         Input: $n = 4
         Output: 0/1, 1/4, 1/3, 1/2, 2/3, 3/4, 1/1
 ```
@@ -565,21 +565,21 @@ You are given a positive number $n.
 Write a script to generate the Moebius Number for the given number. Please refer to wikipedia page for more informations.
 
 **Example 1:**
-```
+```perl
         Input: $n = 5
         Output: -1
 ```
 
 
 **Example 2:**
-```
+```perl
         Input: $n = 10
         Output: 1
 ```
 
 
 **Example 3:**
-```
+```perl
         Input: $n = 20
         Output: 0
 ```
@@ -848,7 +848,7 @@ I'm quite fond of this short-circuiting behavior, of counting the primes as they
 
 The monk also uses a sieve to determine their primes, but with the factorization step they do a much more thorough job of recording the results, creating a list of tuples, each a prime paired with its exponent. This not only makes ascertaining whether a number is squarefree straightforward, but also is used to create a quite attractive explanatory text accompaniment with the result:
 
-```
+```perl
     Challenge 159, Task #2: Moebius Number (Perl)
 
     Input:  $n = 330
@@ -925,7 +925,7 @@ We said there were mathematical solutions, and here Adam brings one to the table
 
 >The Mertens Function of $n is defined as the sum of the first $n Moebius Numbers. There is an alternative and equivalent definition of the Mertens Function, however, that use the Farey Sequence. In the alternative definition The Mertens Function is equivalent to what is shown in sub mertens: the sum of the natural logarithm base raised to the power of two times pi times i times the k-th element of the Farey Sequence. In Perl:
 
-```
+```perl
     map {$mertens += exp(2 * M_PI * i * eval($_))} @farey;
 ```
 

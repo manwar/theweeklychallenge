@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2025blogadvent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
-<h3 id="-nbsp-day-21blogadvent-calendar-2025-12-21-nbsp--nbsp-day-22-nbsp--nbsp-day-23blogadvent-calendar-2025-12-23-nbsp-">|   <a href="/blog/advent-calendar-2025-12-21"><strong>Day 21</strong></a>   |   <strong>Day 22</strong>   |   <a href="/blog/advent-calendar-2025-12-23"><strong>Day 23</strong></a>   |</h3>
+        <h2 id="advent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
+<h3 id="--day-21----day-22----day-23--">|   <a href="/blog/advent-calendar-2025-12-21"><strong>Day 21</strong></a>   |   <strong>Day 22</strong>   |   <a href="/blog/advent-calendar-2025-12-23"><strong>Day 23</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>David Ferrone</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-285"><strong>The Weekly Challenge - 285</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://dev.to/zapwai/lost-connections-and-making-changes-anp"><strong>post</strong></a>.</p>
 <hr>
@@ -206,66 +206,66 @@ There are three ways to make change for 10 cents (2N, N + 5P, or 10P).
 <h3 id="solution-to-task-one">Solution to task one</h3>
 <p>I make two lists, in-routes and out-routes, and then I see if there is an out that is not also an in.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">my</span> @routes <span style="color:#f92672">=</span> ([<span style="color:#e6db74">&#34;B&#34;</span>,<span style="color:#e6db74">&#34;C&#34;</span>], [<span style="color:#e6db74">&#34;D&#34;</span>,<span style="color:#e6db74">&#34;B&#34;</span>], [<span style="color:#e6db74">&#34;C&#34;</span>,<span style="color:#e6db74">&#34;A&#34;</span>]);
-proc(@routes);
-@routes <span style="color:#f92672">=</span> ([<span style="color:#e6db74">&#34;A&#34;</span>,<span style="color:#e6db74">&#34;Z&#34;</span>]);
-proc(@routes);
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">proc</span>(@routes) {
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Input: &#34;</span>;
-    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;,&#34;</span>, @{$routes[$_]}),<span style="color:#e6db74">&#34; &#34;</span> <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#routes);
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
-    <span style="color:#66d9ef">my</span> @in;
-    <span style="color:#66d9ef">my</span> @out;
-    <span style="color:#66d9ef">foreach</span> (@routes) {
-    push @in, ${$_}[<span style="color:#ae81ff">0</span>];
-    push @out, ${$_}[<span style="color:#ae81ff">1</span>];
-    }
-    <span style="color:#66d9ef">my</span> $ans <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;a&#34;</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $needle (@out) {
-    <span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $hay (@in) {
-        <span style="color:#66d9ef">if</span> ($needle <span style="color:#f92672">eq</span> $hay) {
-        $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">last</span>;
-        }
-    }
-    <span style="color:#66d9ef">if</span> ($found <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-        $ans <span style="color:#f92672">=</span> $needle;
-    }
-    }
-    say <span style="color:#e6db74">&#34;Output: $ans&#34;</span>;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @routes <span style="color:#f92672">=</span> ([<span style="color:#e6db74">&#34;B&#34;</span>,<span style="color:#e6db74">&#34;C&#34;</span>], [<span style="color:#e6db74">&#34;D&#34;</span>,<span style="color:#e6db74">&#34;B&#34;</span>], [<span style="color:#e6db74">&#34;C&#34;</span>,<span style="color:#e6db74">&#34;A&#34;</span>]);
+</span></span><span style="display:flex;"><span>proc(@routes);
+</span></span><span style="display:flex;"><span>@routes <span style="color:#f92672">=</span> ([<span style="color:#e6db74">&#34;A&#34;</span>,<span style="color:#e6db74">&#34;Z&#34;</span>]);
+</span></span><span style="display:flex;"><span>proc(@routes);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">proc</span>(@routes) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Input: &#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;,&#34;</span>, @{$routes[$_]}),<span style="color:#e6db74">&#34; &#34;</span> <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#routes);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @in;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @out;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> (@routes) {
+</span></span><span style="display:flex;"><span>    push @in, ${$_}[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    push @out, ${$_}[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $ans <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;a&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $needle (@out) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $hay (@in) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($needle <span style="color:#f92672">eq</span> $hay) {
+</span></span><span style="display:flex;"><span>        $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($found <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        $ans <span style="color:#f92672">=</span> $needle;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;Output: $ans&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="solution-to-task-two">Solution to task two</h3>
 <p>This challenge was inspired by an analysis book of <code>Pólya</code>. (Problems and Theorems in Analysis) The first question is to count the number of ways to make change for a dollar, which is arduous. It&rsquo;s a trivial task for a computer, though.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">my</span> $amt <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">100</span>;
-<span style="color:#66d9ef">my</span> $cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $h (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">50</span>) {
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $q (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">25</span>) {
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $d (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>) {
-            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">5</span>) {
-                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt) {
-                    <span style="color:#66d9ef">if</span> (tally($p, $n, $d, $q, $h) <span style="color:#f92672">==</span> $amt) {
-                        $cnt<span style="color:#f92672">++</span>;
-                    }
-                }
-            }
-        }
-    }
-}
-
-say <span style="color:#e6db74">&#34;There are $cnt ways to make change for $amt cents&#34;</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tally</span>($p, $n, $d, $q, $h) { $p <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">*</span>$n <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">*</span>$d <span style="color:#f92672">+</span> <span style="color:#ae81ff">25</span><span style="color:#f92672">*</span>$q <span style="color:#f92672">+</span> <span style="color:#ae81ff">50</span><span style="color:#f92672">*</span>$h
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $amt <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $h (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">50</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $q (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">25</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $d (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt<span style="color:#f92672">/</span><span style="color:#ae81ff">5</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $amt) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (tally($p, $n, $d, $q, $h) <span style="color:#f92672">==</span> $amt) {
+</span></span><span style="display:flex;"><span>                        $cnt<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">&#34;There are $cnt ways to make change for $amt cents&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tally</span>($p, $n, $d, $q, $h) { $p <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">*</span>$n <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">*</span>$d <span style="color:#f92672">+</span> <span style="color:#ae81ff">25</span><span style="color:#f92672">*</span>$q <span style="color:#f92672">+</span> <span style="color:#ae81ff">50</span><span style="color:#f92672">*</span>$h
+</span></span></code></pre></div><br>
 <p>I have used a for loop for each coin, in a stunning display of brute force.</p>
 <h2 id="ps">P.S.</h2>
 <p>The original question was to be done by hand; In a manner similar to the above code, you could first divide to find the max possible number of pennies, nickels, etc that can be used. Then split into cases (i.e. <code>H = 0, 1, or 2; Q = 0, 1, 2, 3, or 4; etc.</code>)</p>
-<p>The second question in <code>Pólya</code>'s book asks for a function whose coefficients <code>A_n</code> (in a series expansion) would equal the number of ways to make change for n cents.</p>
+<p>The second question in <code>Pólya</code>&rsquo;s book asks for a function whose coefficients <code>A_n</code> (in a series expansion) would equal the number of ways to make change for n cents.</p>
 <p>The concept there is that if you took a product like <code>(1 + x + x^2 + x^3 + ... )(1 + x^5 + x^10 + x^15 + ...)</code> the resulting series has coefficients which provide the number of ways to <code>&quot;make change&quot;</code> using pennies and nickels. (That is, a term like x^6 in our product could only have come from <code>x * x^5</code> or from <code>x^6 * 1</code>, coinciding with the two unique ways we can make change for <code>6 cents</code>.)</p>
 <p>So theoretically, one could form the correct product (using five such factors, since there are five coins) - then expand and find the coefficient of the <code>100th</code> term in order to find the number of ways to make change for <code>100</code> cents. That&rsquo;s easier said than done, however.</p>
 <br>

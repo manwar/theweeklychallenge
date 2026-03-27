@@ -58,7 +58,7 @@ sub count_one {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-356/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub count_one($n) {
     my @k = 1, 2, 2;
     my $i = 2;

@@ -177,7 +177,7 @@ Easy, right? No, it wasn't easy as my brain isn't trained to do it so.
 
 So I started with **Task #1**. This is what I got in my first attempt.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6;
@@ -196,7 +196,7 @@ Do you see any issues? No, hang on, this is **Raku**, so everything has to be in
 
 So this is what I have now:
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6;
@@ -219,7 +219,7 @@ Technically yes, it does the job. But hang on, it still doesn't look like **Raku
 
 Lets get rid off extra parenthesis this time.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6;
@@ -246,7 +246,7 @@ Having done the **Task #1** in **Raku**, I thought why not do the **Task #2** as
 
 Since the task was related to **Date**, I looked into the [**documentation**](https://docs.raku.org/type/Date) first.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6;
@@ -272,7 +272,7 @@ First run, gave a nice warning **Date** is a built-in module, no need to import.
 
 **Scimon Proctor**, pointed out that *$date.later()* returns new **Date** object, so I have to catch the return value.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6;
@@ -294,7 +294,7 @@ All good? No, still something missing.
 
 If you noticed, I named the variable **"$date_as_str"** which is **Perlish**. So I changed it to **"$date-as-str"**, more like **Raku**.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6;
@@ -322,7 +322,7 @@ After sharing the code on Twitter, **Elizabeth Mattijsen**, suggested I could us
 
 Here is the final version as of today.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6;

@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2025blogadvent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
-<h3 id="-nbsp-day-10blogadvent-calendar-2025-12-10-nbsp--nbsp-day-11-nbsp--nbsp-day-12blogadvent-calendar-2025-12-12-nbsp-">|   <a href="/blog/advent-calendar-2025-12-10"><strong>Day 10</strong></a>   |   <strong>Day 11</strong>   |   <a href="/blog/advent-calendar-2025-12-12"><strong>Day 12</strong></a>   |</h3>
+        <h2 id="advent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
+<h3 id="--day-10----day-11----day-12--">|   <a href="/blog/advent-calendar-2025-12-10"><strong>Day 10</strong></a>   |   <strong>Day 11</strong>   |   <a href="/blog/advent-calendar-2025-12-12"><strong>Day 12</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Adam Russell</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-313"><strong>The Weekly Challenge - 313</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="http://rabbitfarm.com/cgi-bin/blosxom/perl/2025/03/23"><strong>post</strong></a>.</p>
 <hr>
@@ -194,139 +194,139 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Our solution is to loop over the letters in the candidate string guided by the original word. We do this all in one subroutine, the code is not so unwieldy to need to be broken into smaller pieces.</p>
 <p>⟨loop and compare 1 ⟩≡</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">loop_compare</span>{
-        <span style="color:#66d9ef">my</span>($n, $s) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $n;
-        <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $s;
-        <span style="color:#66d9ef">my</span> $current_n  <span style="color:#f92672">=</span> <span style="color:#e6db74">q//</span>;
-        <span style="color:#66d9ef">my</span> $current_s <span style="color:#f92672">=</span> <span style="color:#e6db74">q//</span>;
-        {
-            <span style="color:#66d9ef">my</span> $previous_n <span style="color:#f92672">=</span> $current_n;
-            $current_n <span style="color:#f92672">=</span> shift @n;
-            $current_s <span style="color:#f92672">=</span> shift @s;
-            <span style="color:#66d9ef">if</span>($current_s <span style="color:#f92672">ne</span> $current_n <span style="color:#f92672">&amp;&amp;</span> $current_s <span style="color:#f92672">eq</span> $previous_n){
-                unshift @n, $current_n;
-                {
-                    $current_s <span style="color:#f92672">=</span> shift @s;
-                    <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> $current_s <span style="color:#f92672">eq</span> $previous_n <span style="color:#f92672">&amp;&amp;</span> @s <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
-                    unshift @s, $current_s;
-                }
-            }
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $current_s <span style="color:#f92672">ne</span> $current_n <span style="color:#f92672">&amp;&amp;</span> $current_s <span style="color:#f92672">ne</span> $previous_n;
-            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> @s <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
-        }
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> (@n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> @s <span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) <span style="color:#f92672">||</span> (@s <span style="color:#f92672">==</span> grep {$_ <span style="color:#f92672">eq</span> $current_s} @s);
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-    }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">loop_compare</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>($n, $s) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $n;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $s;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $current_n  <span style="color:#f92672">=</span> <span style="color:#e6db74">q//</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $current_s <span style="color:#f92672">=</span> <span style="color:#e6db74">q//</span>;
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $previous_n <span style="color:#f92672">=</span> $current_n;
+</span></span><span style="display:flex;"><span>            $current_n <span style="color:#f92672">=</span> shift @n;
+</span></span><span style="display:flex;"><span>            $current_s <span style="color:#f92672">=</span> shift @s;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>($current_s <span style="color:#f92672">ne</span> $current_n <span style="color:#f92672">&amp;&amp;</span> $current_s <span style="color:#f92672">eq</span> $previous_n){
+</span></span><span style="display:flex;"><span>                unshift @n, $current_n;
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    $current_s <span style="color:#f92672">=</span> shift @s;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> $current_s <span style="color:#f92672">eq</span> $previous_n <span style="color:#f92672">&amp;&amp;</span> @s <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>                    unshift @s, $current_s;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $current_s <span style="color:#f92672">ne</span> $current_n <span style="color:#f92672">&amp;&amp;</span> $current_s <span style="color:#f92672">ne</span> $previous_n;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> @s <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> (@n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> @s <span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) <span style="color:#f92672">||</span> (@s <span style="color:#f92672">==</span> grep {$_ <span style="color:#f92672">eq</span> $current_s} @s);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><br>
 <p>Fragment referenced in 2.</p>
 <p>We really just need one subroutine to co-ordinate the inputs and run the main loop that’s required.</p>
 <p>Putting it all together&hellip;</p>
 <br>
 <p>&ldquo;ch-1.pl&rdquo; 2≡</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    ⟨preamble <span style="color:#ae81ff">3</span> ⟩
-    ⟨loop and compare <span style="color:#ae81ff">1</span> ⟩
-    ⟨main <span style="color:#ae81ff">4</span> ⟩
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    ⟨preamble <span style="color:#ae81ff">3</span> ⟩
+</span></span><span style="display:flex;"><span>    ⟨loop and compare <span style="color:#ae81ff">1</span> ⟩
+</span></span><span style="display:flex;"><span>    ⟨main <span style="color:#ae81ff">4</span> ⟩
+</span></span></code></pre></div><br>
 <p>⟨preamble 3 ⟩≡</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>  <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+</span></span></code></pre></div><br>
 <p>Fragment referenced in 2, 9.</p>
 <p>The rest of the code just runs some simple tests.</p>
 <p>⟨main 4 ⟩≡</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  MAIN:{
-    say loop_compare <span style="color:#e6db74">q/perl/</span>, <span style="color:#e6db74">q/perrrl/</span>;
-    say loop_compare <span style="color:#e6db74">q/raku/</span>, <span style="color:#e6db74">q/rrakuuuu/</span>;
-    say loop_compare <span style="color:#e6db74">q/python/</span>, <span style="color:#e6db74">q/perl/</span>;
-    say loop_compare <span style="color:#e6db74">q/coffeescript/</span>, <span style="color:#e6db74">q/cofffeescccript/</span>;
-  }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>  MAIN:{
+</span></span><span style="display:flex;"><span>    say loop_compare <span style="color:#e6db74">q/perl/</span>, <span style="color:#e6db74">q/perrrl/</span>;
+</span></span><span style="display:flex;"><span>    say loop_compare <span style="color:#e6db74">q/raku/</span>, <span style="color:#e6db74">q/rrakuuuu/</span>;
+</span></span><span style="display:flex;"><span>    say loop_compare <span style="color:#e6db74">q/python/</span>, <span style="color:#e6db74">q/perl/</span>;
+</span></span><span style="display:flex;"><span>    say loop_compare <span style="color:#e6db74">q/coffeescript/</span>, <span style="color:#e6db74">q/cofffeescccript/</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><br>
 <p>Fragment referenced in 2.</p>
 <p>Sample Run</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl perl/ch-1.pl
-<span style="color:#ae81ff">1</span>
-<span style="color:#ae81ff">1</span>
-<span style="color:#ae81ff">0</span>
-<span style="color:#ae81ff">1</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl perl/ch-1.pl
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><br>
 <h2 id="part-2-reverse-letters">Part 2: Reverse Letters</h2>
 <p>You are given a string. Write a script to reverse only the alphabetic characters in the string.</p>
 <p>First we separate the alphabetic characters from the string, then we reverse them, then we finish by recombining the reversed alphabetic characters with the non-alphabetic characters.</p>
 <br>
 <p>⟨remove alphabetic characters 5 ⟩≡</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> [grep {$_ <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/[[:alpha:]]/</span>} @{$s}];
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> [grep {$_ <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/[[:alpha:]]/</span>} @{$s}];
+</span></span></code></pre></div><br>
 <p>Fragment referenced in 8.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Defines: $a 6, 7.
-
-Uses: $s 8.
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Defines: $a 6, 7.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Uses: $s 8.
+</span></span></code></pre></div><br>
 <p>⟨reverse the alphabetic characters 6 ⟩≡</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $a <span style="color:#f92672">=</span> [reverse @{$a}];
-</code></pre></div><br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Fragment referenced in 8.
-
-Uses: $a 5.
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    $a <span style="color:#f92672">=</span> [reverse @{$a}];
+</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Fragment referenced in 8.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Uses: $a 5.
+</span></span></code></pre></div><br>
 <p>⟨combine the sorted alphabetic characters with the non-alphabetic characters 7 ⟩≡</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {
-        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> shift @{$s};
-        push @{$reverse_letters}, $c <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">!~</span> <span style="color:#e6db74">m/[[:alpha:]]/</span>;
-        push @{$reverse_letters}, shift @{$a} <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/[[:alpha:]]/</span>;
-        <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @{$s} <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
-    }
-</code></pre></div><br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Fragment referenced in 8.
-
-Uses: $a 5, $reverse_letters 8, $s 8.
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> shift @{$s};
+</span></span><span style="display:flex;"><span>        push @{$reverse_letters}, $c <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">!~</span> <span style="color:#e6db74">m/[[:alpha:]]/</span>;
+</span></span><span style="display:flex;"><span>        push @{$reverse_letters}, shift @{$a} <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/[[:alpha:]]/</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @{$s} <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Fragment referenced in 8.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Uses: $a 5, $reverse_letters 8, $s 8.
+</span></span></code></pre></div><br>
 <p>We’ll put everything together in a single subroutine.</p>
 <p>⟨reverse_letters: co-ordinates all the swaps and checks 8 ⟩≡</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reverse_letters</span>{
-      <span style="color:#66d9ef">my</span>($s) <span style="color:#f92672">=</span> (@_);
-      $s <span style="color:#f92672">=</span> [split <span style="color:#e6db74">//</span>, $s];
-      <span style="color:#66d9ef">my</span> $reverse_letters <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-      <span style="color:#960050;background-color:#1e0010">⟨</span>remove alphabetic characters <span style="color:#ae81ff">5</span> <span style="color:#960050;background-color:#1e0010">⟩</span>
-      <span style="color:#960050;background-color:#1e0010">⟨</span>reverse the alphabetic characters <span style="color:#ae81ff">6</span> <span style="color:#960050;background-color:#1e0010">⟩</span>
-      <span style="color:#960050;background-color:#1e0010">⟨</span>combine the sorted alphabetic characters with the non<span style="color:#f92672">-</span>alphabetic characters <span style="color:#ae81ff">7</span> <span style="color:#960050;background-color:#1e0010">⟩</span>
-      <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">q//</span>, @{$reverse_letters};
-  }
-</code></pre></div><br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Fragment referenced in 9.
-
-Defines: $reverse_letters 7, $s 5, 7.
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>  <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reverse_letters</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span>($s) <span style="color:#f92672">=</span> (@_);
+</span></span><span style="display:flex;"><span>      $s <span style="color:#f92672">=</span> [split <span style="color:#e6db74">//</span>, $s];
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $reverse_letters <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">⟨</span>remove alphabetic characters <span style="color:#ae81ff">5</span> <span style="color:#960050;background-color:#1e0010">⟩</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">⟨</span>reverse the alphabetic characters <span style="color:#ae81ff">6</span> <span style="color:#960050;background-color:#1e0010">⟩</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">⟨</span>combine the sorted alphabetic characters with the non<span style="color:#f92672">-</span>alphabetic characters <span style="color:#ae81ff">7</span> <span style="color:#960050;background-color:#1e0010">⟩</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">q//</span>, @{$reverse_letters};
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Fragment referenced in 9.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Defines: $reverse_letters 7, $s 5, 7.
+</span></span></code></pre></div><br>
 <p>The rest of the code drives some tests.</p>
 <p>&ldquo;ch-2.pl&rdquo; 9≡</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    ⟨preamble <span style="color:#ae81ff">3</span> ⟩
-    ⟨reverse_letters: co-ordinates all the swaps and checks <span style="color:#ae81ff">8</span> ⟩
-    ⟨main <span style="color:#ae81ff">10</span> ⟩
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    ⟨preamble <span style="color:#ae81ff">3</span> ⟩
+</span></span><span style="display:flex;"><span>    ⟨reverse_letters: co-ordinates all the swaps and checks <span style="color:#ae81ff">8</span> ⟩
+</span></span><span style="display:flex;"><span>    ⟨main <span style="color:#ae81ff">10</span> ⟩
+</span></span></code></pre></div><br>
 <p>⟨main 10 ⟩≡</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  MAIN:{
-    say reverse_letters <span style="color:#e6db74">q/p-er?l/</span>;
-    say reverse_letters <span style="color:#e6db74">q/wee-k!L-y/</span>;
-    say reverse_letters <span style="color:#e6db74">q/_c-!h_all-en!g_e/</span>;
-  }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>  MAIN:{
+</span></span><span style="display:flex;"><span>    say reverse_letters <span style="color:#e6db74">q/p-er?l/</span>;
+</span></span><span style="display:flex;"><span>    say reverse_letters <span style="color:#e6db74">q/wee-k!L-y/</span>;
+</span></span><span style="display:flex;"><span>    say reverse_letters <span style="color:#e6db74">q/_c-!h_all-en!g_e/</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><br>
 <p>Fragment referenced in 9.</p>
 <p>Sample Run</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl perl/ch-2.pl
-l-re?p
-yLk-e!e-w
-_e-!g_nel-la!h_c
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl perl/ch-2.pl
+</span></span><span style="display:flex;"><span>l-re?p
+</span></span><span style="display:flex;"><span>yLk-e!e-w
+</span></span><span style="display:flex;"><span>_e-!g_nel-la!h_c
+</span></span></code></pre></div><br>
 <h2 id="references">References</h2>
 <br>
 <p><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-313"><strong>The Weekly Challenge 313</strong></a></p>

@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2019blogadvent-calendar-2019"><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></h2>
-<h3 id="-day-1--day-2blogadvent-calendar-2019-12-02-">| <strong>Day 1</strong> | <a href="/blog/advent-calendar-2019-12-02"><strong>Day 2</strong></a> |</h3>
+        <h2 id="advent-calendar-2019"><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></h2>
+<h3 id="-day-1--day-2-">| <strong>Day 1</strong> | <a href="/blog/advent-calendar-2019-12-02"><strong>Day 2</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-013"><strong>Laurent Rosenfeld</strong></a>. Today he is talking about his solutions to <strong>Task #2: Word Ladder</strong> of <strong><a href="/blog/perl-weekly-challenge-007">&ldquo;The Weekly Challenge - 007&rdquo;</a></strong>.</p>
 <blockquote>
@@ -224,28 +224,28 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <h5 id="computing-the-edit-distance-in-perl">Computing the Edit Distance In Perl</h5>
 <p>There are a number of <strong>CPAN</strong> modules to compute the Levenshtein distance on the CPAN, such as Text::Levenshtein and some variants. However, we will not use any of them for several reasons. One is that using a ready-made library for solving such a challenge is kind of cheating; I especially don&rsquo;t wish to use a non-core module. The second reason is that, as we have seen above, the general Levenshtein distance is the smallest number of single-character edits (insertions, deletions or substitutions) required to change one word into the other, where as, since our input words have the same length, we&rsquo;re interested with only the smallest number of substitutions. The last reason is that, because of the second reason just stated, computing the full Levenshtein distance would be overkill: we really need to compute only the number of letter differences for each given position in the input words. Because of that, I&rsquo;ll use the term edit distance, rather than Levenshtein distance.</p>
 <p>Once we&rsquo;ve clarified in our head what we need, it is quite simple to write our <strong>sub edit_distance()</strong> and some code to test it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw/say/</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">edit_distance</span> {
-    <span style="color:#66d9ef">my</span> ($word1, $word2) <span style="color:#f92672">=</span> @_;
-    die <span style="color:#e6db74">&#34;Words $word1 and $word2 have different lengths\n&#34;</span> <span style="color:#66d9ef">unless</span> length $word1 <span style="color:#f92672">==</span> length $word2;
-    <span style="color:#66d9ef">my</span> @w1 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $word1;
-    <span style="color:#66d9ef">my</span> @w2 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $word2;
-    <span style="color:#66d9ef">my</span> $dist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#w1) {
-        $dist<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $w1[$i] <span style="color:#f92672">ne</span> $w2[$i];
-    }
-    <span style="color:#66d9ef">return</span> $dist;
-}
-
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word_pair_ref ([<span style="color:#e6db74">&#34;cold&#34;</span>, <span style="color:#e6db74">&#34;cord&#34;</span>], [<span style="color:#e6db74">&#34;cord&#34;</span>, <span style="color:#e6db74">&#34;core&#34;</span>], [<span style="color:#e6db74">&#34;cord&#34;</span>, <span style="color:#e6db74">&#34;cord&#34;</span>],
-                       [<span style="color:#e6db74">&#34;cold&#34;</span>, <span style="color:#e6db74">&#34;warm&#34;</span>], [<span style="color:#e6db74">&#34;kitten&#34;</span>, <span style="color:#e6db74">&#34;sittin&#34;</span>], [<span style="color:#e6db74">&#34;kitten&#34;</span>, <span style="color:#e6db74">&#34;sitting&#34;</span>]) {
-    <span style="color:#66d9ef">my</span> ($w1, $w2) <span style="color:#f92672">=</span> @$word_pair_ref;
-    say <span style="color:#e6db74">&#34;Distance between $w1 and $w2 is: \t&#34;</span>, edit_distance ($w1, $w2);
-}
-</code></pre></div><p>This script displays the expected output:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw/say/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">edit_distance</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($word1, $word2) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;Words $word1 and $word2 have different lengths\n&#34;</span> <span style="color:#66d9ef">unless</span> length $word1 <span style="color:#f92672">==</span> length $word2;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @w1 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $word1;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @w2 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $word2;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $dist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#w1) {
+</span></span><span style="display:flex;"><span>        $dist<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $w1[$i] <span style="color:#f92672">ne</span> $w2[$i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $dist;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word_pair_ref ([<span style="color:#e6db74">&#34;cold&#34;</span>, <span style="color:#e6db74">&#34;cord&#34;</span>], [<span style="color:#e6db74">&#34;cord&#34;</span>, <span style="color:#e6db74">&#34;core&#34;</span>], [<span style="color:#e6db74">&#34;cord&#34;</span>, <span style="color:#e6db74">&#34;cord&#34;</span>],
+</span></span><span style="display:flex;"><span>                       [<span style="color:#e6db74">&#34;cold&#34;</span>, <span style="color:#e6db74">&#34;warm&#34;</span>], [<span style="color:#e6db74">&#34;kitten&#34;</span>, <span style="color:#e6db74">&#34;sittin&#34;</span>], [<span style="color:#e6db74">&#34;kitten&#34;</span>, <span style="color:#e6db74">&#34;sitting&#34;</span>]) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($w1, $w2) <span style="color:#f92672">=</span> @$word_pair_ref;
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;Distance between $w1 and $w2 is: \t&#34;</span>, edit_distance ($w1, $w2);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This script displays the expected output:</p>
 <pre><code>Distance between cold and cord is:      1
 Distance between cord and core is:      1
 Distance between cord and cord is:      0
@@ -254,13 +254,13 @@ Distance between kitten and sittin is:  2
 Words kitten and sitting have different lengths
 </code></pre>
 <p>So, we have a working <strong>sub edit_distance()</strong>, a ladder subroutine might look in part like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ladder</span> {
-    <span style="color:#66d9ef">my</span> $word1, $word2) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">return</span> ($word1) <span style="color:#66d9ef">if</span> edit_distance($word1, $word2) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">return</span> ($word1, $word2) <span style="color:#66d9ef">if</span> edit_distance($word1, $word2) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#75715e"># ...</span>
-}
-</code></pre></div><p>The problem, of course, is to write the code that will replace the ellipsis. Eventually, the real code will not really look like that, but it could.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ladder</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $word1, $word2) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ($word1) <span style="color:#66d9ef">if</span> edit_distance($word1, $word2) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ($word1, $word2) <span style="color:#66d9ef">if</span> edit_distance($word1, $word2) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The problem, of course, is to write the code that will replace the ellipsis. Eventually, the real code will not really look like that, but it could.</p>
 <h3 id="finding-the-ladders-in-perl">Finding the Ladders in Perl</h3>
 <p>Let&rsquo;s try an improved brute force algorithm. For this, we will first analyze our input file and prepare data structures that are likely to make brute force relatively fast.</p>
 <h3 id="preparing-the-data">Preparing the Data</h3>
@@ -301,93 +301,93 @@ Words kitten and sitting have different lengths
 <p>As you can see, this process takes quite a lot of time when there are many words in the input file (more than <strong>71 minutes</strong> for words having <strong>8 characters</strong>), it is good to store the data produced to avoid recomputing it. Note that is might be quicker not to do that and to go directly for the ladders if we were to determine a path between only two words, but I ran the program probably a couple of hundred times for the purpose of testing and finding information about our word lists, so I&rsquo;m happy that I first took the time to prepare the data for faster processing later. When the word store already exists, it takes about <strong>0.1</strong> to <strong>0.3</strong> second to reconstruct the hash from the store.</p>
 <h3 id="finding-the-word-ladders">Finding the Word Ladders</h3>
 <p>This is my Perl code for finding word ladders:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw/say/</span>;
-<span style="color:#66d9ef">use</span> Storable;
-<span style="color:#66d9ef">use</span> Data::Dumper;
-
-die <span style="color:#e6db74">&#34;Please pass two words as parameters&#34;</span> <span style="color:#66d9ef">unless</span> @ARGV <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
-<span style="color:#66d9ef">my</span> ($word1, $word2)<span style="color:#f92672">=</span> @ARGV;
-<span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> length $word1;
-die <span style="color:#e6db74">&#34;The two words must have the same length\n&#34;</span> <span style="color:#66d9ef">if</span> $length <span style="color:#f92672">!=</span> length $word2;
-
-<span style="color:#66d9ef">my</span> $store_file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;word_store_$length&#34;</span>;
-<span style="color:#66d9ef">my</span> ($store_ref, %words);
-<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-</span>e $store_file) {
-    <span style="color:#66d9ef">my</span> $store_ref <span style="color:#f92672">=</span> retrieve($store_file);
-    %words <span style="color:#f92672">=</span> %$store_ref;
-} <span style="color:#66d9ef">else</span> {
-    <span style="color:#66d9ef">my</span> $file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;words$length.txt&#34;</span>;
-    open <span style="color:#66d9ef">my</span> $IN, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot open $file$!&#34;</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$IN&gt;</span>) {
-        chomp $word;
-        $words{$word} <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $key (keys %words) {
-            <span style="color:#66d9ef">if</span> (edit_distance($key, $word) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
-                push @{$words{$key}}, $word;
-                push @{$words{$word}}, $key;
-            }
-        }
-    }
-    close $IN;
-    <span style="color:#66d9ef">my</span> $orphans <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;aloof_$length.txt&#34;</span>;
-    open <span style="color:#66d9ef">my</span> $OUT, <span style="color:#e6db74">&#34;&gt;&#34;</span>, $orphans <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot open file $orphans$!&#34;</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $key (keys %words){
-        <span style="color:#66d9ef">if</span> (scalar @{$words{$key}} <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-            say $OUT <span style="color:#e6db74">&#34;$key&#34;</span>;
-            delete $words{$key};
-        }
-    }
-    close $OUT;
-    store <span style="color:#f92672">\</span>%words, $store_file;
-}
-
-<span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> $le   ngth <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">edit_distance</span> {
-    <span style="color:#66d9ef">my</span> ($word1, $word2) <span style="color:#f92672">=</span> @_;
-    <span style="color:#75715e"># die &#34;Words $word1 and $word2 ...&#34; -&gt; No longer needed as this is checked before</span>
-    <span style="color:#66d9ef">my</span> @w1 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $word1;
-    <span style="color:#66d9ef">my</span> @w2 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $word2;
-    <span style="color:#66d9ef">my</span> $dist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#w1) {
-        $dist<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $w1[$i] <span style="color:#f92672">ne</span> $w2[$i];
-    }
-    <span style="color:#66d9ef">return</span> $dist;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ladder</span> {
-    <span style="color:#66d9ef">my</span> ($word1, $word2, $tmp_result) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">return</span> $tmp_result <span style="color:#66d9ef">if</span> $word1 <span style="color:#f92672">eq</span> $word2;
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">if</span> scalar @$tmp_result <span style="color:#f92672">&gt;=</span> $max;
-    <span style="color:#66d9ef">my</span> @temp_solutions;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (@{$words{$word1}}) {
-        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $word <span style="color:#f92672">eq</span> $word1;
-        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> grep { $_ <span style="color:#f92672">eq</span> $word } @$tmp_result; <span style="color:#75715e"># not really needed but a bit faster</span>
-        push @temp_solutions, [@$tmp_result, $word] <span style="color:#f92672">and</span> <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $word <span style="color:#f92672">eq</span> $word2;
-        <span style="color:#66d9ef">my</span> $new_tmp <span style="color:#f92672">=</span> ladder($word, $word2, [@$tmp_result, $word]);
-        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> scalar @$new_tmp <span style="color:#f92672">==</span> scalar @$tmp_result;
-        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> scalar @$new_tmp;
-        push @temp_solutions, $new_tmp;
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">unless</span> @temp_solutions;
-    <span style="color:#66d9ef">my</span> $best_sol <span style="color:#f92672">=</span> (sort { scalar @$a <span style="color:#e6db74">&lt;=&gt;</span> scalar @$b } @temp_solutions)[<span style="color:#ae81ff">0</span>];
-    $max <span style="color:#f92672">=</span> scalar @$best_sol <span style="color:#66d9ef">if</span> scalar @$best_sol <span style="color:#f92672">&lt;</span> $max;
-    <span style="color:#66d9ef">return</span> $best_sol;
-}
-
-<span style="color:#66d9ef">for</span> ($word1, $word2) {
-    die <span style="color:#e6db74">&#34;Word $_ not found\n&#34;</span> <span style="color:#66d9ef">unless</span> exists $words{$_};
-}
-<span style="color:#66d9ef">my</span> $ladder <span style="color:#f92672">=</span> ladder $word1, $word2, [$word1];
-
-<span style="color:#66d9ef">if</span> (@$ladder) {
-    say join <span style="color:#e6db74">&#34;-&gt;&#34;</span>, @$ladder;
-} <span style="color:#66d9ef">else</span> {
-    say <span style="color:#e6db74">&#34;No ladder found for $word1 and $word2&#34;</span>
-}
-</code></pre></div><p>The bulk of the work is done in the <strong>sub ladder()</strong>, which calls itself recursively for all words connected to the <em><strong>$word1</strong></em> input word. The <em><strong>$max</strong></em> variable, which controls how deep we go into the recursive research, may not be needed for the correctness of the algorithm (provided we find another way to stop recursion), but it enables the program to run tens to hundreds of times faster, depending on the input words.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw/say/</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Storable;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Data::Dumper;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>die <span style="color:#e6db74">&#34;Please pass two words as parameters&#34;</span> <span style="color:#66d9ef">unless</span> @ARGV <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> ($word1, $word2)<span style="color:#f92672">=</span> @ARGV;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> length $word1;
+</span></span><span style="display:flex;"><span>die <span style="color:#e6db74">&#34;The two words must have the same length\n&#34;</span> <span style="color:#66d9ef">if</span> $length <span style="color:#f92672">!=</span> length $word2;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $store_file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;word_store_$length&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> ($store_ref, %words);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">-</span>e $store_file) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $store_ref <span style="color:#f92672">=</span> retrieve($store_file);
+</span></span><span style="display:flex;"><span>    %words <span style="color:#f92672">=</span> %$store_ref;
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;words$length.txt&#34;</span>;
+</span></span><span style="display:flex;"><span>    open <span style="color:#66d9ef">my</span> $IN, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot open $file$!&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$IN&gt;</span>) {
+</span></span><span style="display:flex;"><span>        chomp $word;
+</span></span><span style="display:flex;"><span>        $words{$word} <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $key (keys %words) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (edit_distance($key, $word) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>                push @{$words{$key}}, $word;
+</span></span><span style="display:flex;"><span>                push @{$words{$word}}, $key;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    close $IN;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $orphans <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;aloof_$length.txt&#34;</span>;
+</span></span><span style="display:flex;"><span>    open <span style="color:#66d9ef">my</span> $OUT, <span style="color:#e6db74">&#34;&gt;&#34;</span>, $orphans <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot open file $orphans$!&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $key (keys %words){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (scalar @{$words{$key}} <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            say $OUT <span style="color:#e6db74">&#34;$key&#34;</span>;
+</span></span><span style="display:flex;"><span>            delete $words{$key};
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    close $OUT;
+</span></span><span style="display:flex;"><span>    store <span style="color:#f92672">\</span>%words, $store_file;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> $le   ngth <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">edit_distance</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($word1, $word2) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># die &#34;Words $word1 and $word2 ...&#34; -&gt; No longer needed as this is checked before</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @w1 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $word1;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @w2 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $word2;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $dist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#w1) {
+</span></span><span style="display:flex;"><span>        $dist<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $w1[$i] <span style="color:#f92672">ne</span> $w2[$i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $dist;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ladder</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($word1, $word2, $tmp_result) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $tmp_result <span style="color:#66d9ef">if</span> $word1 <span style="color:#f92672">eq</span> $word2;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">if</span> scalar @$tmp_result <span style="color:#f92672">&gt;=</span> $max;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @temp_solutions;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (@{$words{$word1}}) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $word <span style="color:#f92672">eq</span> $word1;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> grep { $_ <span style="color:#f92672">eq</span> $word } @$tmp_result; <span style="color:#75715e"># not really needed but a bit faster</span>
+</span></span><span style="display:flex;"><span>        push @temp_solutions, [@$tmp_result, $word] <span style="color:#f92672">and</span> <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $word <span style="color:#f92672">eq</span> $word2;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $new_tmp <span style="color:#f92672">=</span> ladder($word, $word2, [@$tmp_result, $word]);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> scalar @$new_tmp <span style="color:#f92672">==</span> scalar @$tmp_result;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> scalar @$new_tmp;
+</span></span><span style="display:flex;"><span>        push @temp_solutions, $new_tmp;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">unless</span> @temp_solutions;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $best_sol <span style="color:#f92672">=</span> (sort { scalar @$a <span style="color:#e6db74">&lt;=&gt;</span> scalar @$b } @temp_solutions)[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    $max <span style="color:#f92672">=</span> scalar @$best_sol <span style="color:#66d9ef">if</span> scalar @$best_sol <span style="color:#f92672">&lt;</span> $max;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $best_sol;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> ($word1, $word2) {
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;Word $_ not found\n&#34;</span> <span style="color:#66d9ef">unless</span> exists $words{$_};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $ladder <span style="color:#f92672">=</span> ladder $word1, $word2, [$word1];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (@$ladder) {
+</span></span><span style="display:flex;"><span>    say join <span style="color:#e6db74">&#34;-&gt;&#34;</span>, @$ladder;
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;No ladder found for $word1 and $word2&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The bulk of the work is done in the <strong>sub ladder()</strong>, which calls itself recursively for all words connected to the <em><strong>$word1</strong></em> input word. The <em><strong>$max</strong></em> variable, which controls how deep we go into the recursive research, may not be needed for the correctness of the algorithm (provided we find another way to stop recursion), but it enables the program to run tens to hundreds of times faster, depending on the input words.</p>
 <p>This is an example run:</p>
 <pre><code>$ time perl ladder2.pl warm cold
 warm-&gt;ward-&gt;card-&gt;cord-&gt;cold
@@ -410,26 +410,26 @@ warm ward card cord cold
 <p>There doesn&rsquo;t seem to be a Storable module in <strong>Raku</strong>, but I did not worry about that, since I thought that the gist routine would provide a serialized image of the <em><strong>%words</strong></em> hash which could then be EVALed to retrieve the hash. This seems to work fine with a small hash. But that does not work with our big <em><strong>%words</strong></em> hash of arrays, because it turns out that, apparently, gist truncates its output to a few thousands characters.</p>
 <p>It would probably be possible to serialize the <em><strong>%words</strong></em> hash with some <strong>JSON</strong> or <strong>YAML</strong> module, but there doesn&rsquo;t seem to be any core module for that.</p>
 <p>As noted in the <strong>Perl</strong> section of this task, there is nothing complicated in writing our own plain text serializer for a simple hash of arrays. For example, we can write a plain text file with one line for each hash item, with the key at the beginning of the line and then a list of the values. Let&rsquo;s do it in a little toy module, which could look like something like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">unit <span style="color:#66d9ef">package</span> Store;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">store</span> (%hash, $file) is export {
-    <span style="color:#75715e"># stores a hash or array as lines containing key et values</span>
-    <span style="color:#75715e"># such as: key | val1 val2 val3</span>
-    <span style="color:#66d9ef">my</span> $out;
-    <span style="color:#66d9ef">for</span> %hash<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $key, $val {
-        $out <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#34;$key | $val \n&#34;</span>;
-    }
-    spurt $file, $out;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">retrieve</span> (%hash, $file) is export {
-    <span style="color:#75715e"># populates a hash of arrays with stored data</span>
-    <span style="color:#66d9ef">for</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line {
-        <span style="color:#66d9ef">my</span> ($key, $val) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\s?\|\s?/</span>, $line;
-        %hash{$key} <span style="color:#f92672">=</span> $val<span style="color:#f92672">.</span>words;
-    }
-}
-</code></pre></div><p>As an example, the first few lines of the <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/laurent-rosenfeld/perl6/word_store_4"><strong>word_store_4</strong></a> file look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>unit <span style="color:#66d9ef">package</span> Store;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">store</span> (%hash, $file) is export {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># stores a hash or array as lines containing key et values</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># such as: key | val1 val2 val3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $out;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> %hash<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $key, $val {
+</span></span><span style="display:flex;"><span>        $out <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#34;$key | $val \n&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    spurt $file, $out;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">retrieve</span> (%hash, $file) is export {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># populates a hash of arrays with stored data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($key, $val) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\s?\|\s?/</span>, $line;
+</span></span><span style="display:flex;"><span>        %hash{$key} <span style="color:#f92672">=</span> $val<span style="color:#f92672">.</span>words;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>As an example, the first few lines of the <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/laurent-rosenfeld/perl6/word_store_4"><strong>word_store_4</strong></a> file look like this:</p>
 <pre><code>yawl | bawl pawl wawl yawn yawp yaws yowl
 pled | fled bled pied plea peed gled pleb plod sled
 pita | dita pima pica pika pina pith pits pity vita
@@ -439,71 +439,71 @@ frug | frig frog frag drug
 </code></pre>
 <h3 id="the-ladder-script-in-raku">The Ladder Script in Raku</h3>
 <p>Now that we have solved the problem of storing and retrieving the hash of arrays, adapting the <strong>Perl</strong> script into <strong>Raku</strong> is fairly easy:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6;
-<span style="color:#66d9ef">use</span> Store;
-
-die <span style="color:#e6db74">&#34;Please pass two words as parameters&#34;</span> <span style="color:#66d9ef">unless</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
-<span style="color:#66d9ef">my</span> ($word1, $word2)<span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
-<span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> $word1<span style="color:#f92672">.</span>chars;
-die <span style="color:#e6db74">&#34;The two words must have the same length\n&#34;</span> <span style="color:#66d9ef">if</span> $length <span style="color:#f92672">!=</span> $word2<span style="color:#f92672">.</span>chars;
-
-<span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $length;
-<span style="color:#66d9ef">my</span> $store<span style="color:#f92672">-</span>file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;word_store_$length&#34;</span>;
-<span style="color:#66d9ef">my</span> ($stored, %words);
-<span style="color:#66d9ef">if</span> ($store<span style="color:#f92672">-</span>file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>e) {
-    retrieve %words, $store<span style="color:#f92672">-</span>file;
-} <span style="color:#66d9ef">else</span> {
-    <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#34;words$length.txt&#34;</span><span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $word {
-        %words{$word} <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-        <span style="color:#66d9ef">for</span> keys %words <span style="color:#f92672">-&gt;</span> $key {
-            <span style="color:#66d9ef">if</span> (edit<span style="color:#f92672">-</span>distance($key, $word) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
-                push @<span style="color:#960050;background-color:#1e0010">(%</span>words{$key}), $word;
-                push @<span style="color:#960050;background-color:#1e0010">(%</span>words{$word}), $key;
-            }
-        }
-    }
-    %words <span style="color:#f92672">=</span> grep { $_<span style="color:#f92672">.</span>value<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> }, %words<span style="color:#f92672">.</span>pairs;
-    store %words, $store<span style="color:#f92672">-</span>file;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">edit</span>-distance (Str $word1, Str $word2) {
-    <span style="color:#66d9ef">my</span> @w1 <span style="color:#f92672">=</span> $word1<span style="color:#f92672">.</span>comb;
-    <span style="color:#66d9ef">my</span> @w2 <span style="color:#f92672">=</span> $word2<span style="color:#f92672">.</span>comb;
-    <span style="color:#66d9ef">my</span> $dist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    $dist<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> @w1[$_] <span style="color:#f92672">ne</span> @w2[$_] <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@w1<span style="color:#f92672">.</span>end) ;
-    <span style="color:#66d9ef">return</span> $dist;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ladder</span> (Str $word1, Str $word2, $tmp-result) {
-    <span style="color:#66d9ef">return</span> $tmp<span style="color:#f92672">-</span>result <span style="color:#66d9ef">if</span> ($word1 <span style="color:#f92672">eq</span> $word2);
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">if</span> @$tmp<span style="color:#f92672">-</span>result<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;=</span> $max;
-    <span style="color:#66d9ef">my</span> @temp<span style="color:#f92672">-</span>solutions;
-    <span style="color:#66d9ef">for</span> @<span style="color:#960050;background-color:#1e0010">(%</span>words{$word1}) <span style="color:#f92672">-&gt;</span> $word {
-        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $word <span style="color:#f92672">eq</span> $word1;
-        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> grep { $_ <span style="color:#f92672">eq</span> $word }, @$tmp<span style="color:#f92672">-</span>result;
-        push @temp<span style="color:#f92672">-</span>solutions, [<span style="color:#f92672">|</span>@$tmp<span style="color:#f92672">-</span>result, $word] <span style="color:#f92672">and</span> <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $word <span style="color:#f92672">eq</span> $word2;
-        <span style="color:#66d9ef">my</span> $new_tmp <span style="color:#f92672">=</span> ladder($word, $word2, [<span style="color:#f92672">|</span>@$tmp<span style="color:#f92672">-</span>result, $word]);
-        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> @$new_tmp<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> @$tmp<span style="color:#f92672">-</span>result<span style="color:#f92672">.</span>elems;
-        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> @$new_tmp<span style="color:#f92672">.</span>elems;
-        push @temp<span style="color:#f92672">-</span>solutions, $new_tmp;
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">if</span> @temp<span style="color:#f92672">-</span>solutions<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">my</span> $best_sol <span style="color:#f92672">=</span> (sort { $_<span style="color:#f92672">.</span>elems }, @temp<span style="color:#f92672">-</span>solutions)[<span style="color:#ae81ff">0</span>];
-    $max <span style="color:#f92672">=</span> @$best_sol<span style="color:#f92672">.</span>elems <span style="color:#66d9ef">if</span> @$best_sol<span style="color:#f92672">.</span>elems <span style="color:#f92672">&lt;</span> $max;
-    <span style="color:#66d9ef">return</span> $best_sol;
-}
-
-<span style="color:#66d9ef">for</span> ($word1, $word2) {
-    die <span style="color:#e6db74">&#34;Word $_ not found\n&#34;</span> <span style="color:#66d9ef">unless</span>  %words{$_} :exists;
-}
-<span style="color:#66d9ef">my</span> $ladder <span style="color:#f92672">=</span> ladder $word1, $word2, [$word1];
-
-<span style="color:#66d9ef">if</span> (@$ladder) {
-    say join <span style="color:#e6db74">&#34;-&gt;&#34;</span>, @$ladder;
-} <span style="color:#66d9ef">else</span> {
-    say <span style="color:#e6db74">&#34;No ladder found for $word1 and $word2&#34;</span>
-}
-</code></pre></div><p>Running the script with the words <strong>&ldquo;warm&rdquo;</strong> and <strong>&ldquo;cold&rdquo;</strong> produces the following output:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Store;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>die <span style="color:#e6db74">&#34;Please pass two words as parameters&#34;</span> <span style="color:#66d9ef">unless</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> ($word1, $word2)<span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> $word1<span style="color:#f92672">.</span>chars;
+</span></span><span style="display:flex;"><span>die <span style="color:#e6db74">&#34;The two words must have the same length\n&#34;</span> <span style="color:#66d9ef">if</span> $length <span style="color:#f92672">!=</span> $word2<span style="color:#f92672">.</span>chars;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $length;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $store<span style="color:#f92672">-</span>file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;word_store_$length&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> ($stored, %words);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($store<span style="color:#f92672">-</span>file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>e) {
+</span></span><span style="display:flex;"><span>    retrieve %words, $store<span style="color:#f92672">-</span>file;
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#34;words$length.txt&#34;</span><span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $word {
+</span></span><span style="display:flex;"><span>        %words{$word} <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> keys %words <span style="color:#f92672">-&gt;</span> $key {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (edit<span style="color:#f92672">-</span>distance($key, $word) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>                push @<span style="color:#960050;background-color:#1e0010">(%</span>words{$key}), $word;
+</span></span><span style="display:flex;"><span>                push @<span style="color:#960050;background-color:#1e0010">(%</span>words{$word}), $key;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    %words <span style="color:#f92672">=</span> grep { $_<span style="color:#f92672">.</span>value<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> }, %words<span style="color:#f92672">.</span>pairs;
+</span></span><span style="display:flex;"><span>    store %words, $store<span style="color:#f92672">-</span>file;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">edit</span>-distance (Str $word1, Str $word2) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @w1 <span style="color:#f92672">=</span> $word1<span style="color:#f92672">.</span>comb;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @w2 <span style="color:#f92672">=</span> $word2<span style="color:#f92672">.</span>comb;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $dist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    $dist<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> @w1[$_] <span style="color:#f92672">ne</span> @w2[$_] <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@w1<span style="color:#f92672">.</span>end) ;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $dist;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ladder</span> (Str $word1, Str $word2, $tmp-result) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $tmp<span style="color:#f92672">-</span>result <span style="color:#66d9ef">if</span> ($word1 <span style="color:#f92672">eq</span> $word2);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">if</span> @$tmp<span style="color:#f92672">-</span>result<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;=</span> $max;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @temp<span style="color:#f92672">-</span>solutions;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> @<span style="color:#960050;background-color:#1e0010">(%</span>words{$word1}) <span style="color:#f92672">-&gt;</span> $word {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $word <span style="color:#f92672">eq</span> $word1;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> grep { $_ <span style="color:#f92672">eq</span> $word }, @$tmp<span style="color:#f92672">-</span>result;
+</span></span><span style="display:flex;"><span>        push @temp<span style="color:#f92672">-</span>solutions, [<span style="color:#f92672">|</span>@$tmp<span style="color:#f92672">-</span>result, $word] <span style="color:#f92672">and</span> <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $word <span style="color:#f92672">eq</span> $word2;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $new_tmp <span style="color:#f92672">=</span> ladder($word, $word2, [<span style="color:#f92672">|</span>@$tmp<span style="color:#f92672">-</span>result, $word]);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> @$new_tmp<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> @$tmp<span style="color:#f92672">-</span>result<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> @$new_tmp<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>        push @temp<span style="color:#f92672">-</span>solutions, $new_tmp;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">if</span> @temp<span style="color:#f92672">-</span>solutions<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $best_sol <span style="color:#f92672">=</span> (sort { $_<span style="color:#f92672">.</span>elems }, @temp<span style="color:#f92672">-</span>solutions)[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    $max <span style="color:#f92672">=</span> @$best_sol<span style="color:#f92672">.</span>elems <span style="color:#66d9ef">if</span> @$best_sol<span style="color:#f92672">.</span>elems <span style="color:#f92672">&lt;</span> $max;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $best_sol;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> ($word1, $word2) {
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;Word $_ not found\n&#34;</span> <span style="color:#66d9ef">unless</span>  %words{$_} :exists;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $ladder <span style="color:#f92672">=</span> ladder $word1, $word2, [$word1];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (@$ladder) {
+</span></span><span style="display:flex;"><span>    say join <span style="color:#e6db74">&#34;-&gt;&#34;</span>, @$ladder;
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;No ladder found for $word1 and $word2&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Running the script with the words <strong>&ldquo;warm&rdquo;</strong> and <strong>&ldquo;cold&rdquo;</strong> produces the following output:</p>
 <pre><code>$ perl6  ladder.p6 warm cold
 warm-&gt;worm-&gt;word-&gt;cord-&gt;cold
 

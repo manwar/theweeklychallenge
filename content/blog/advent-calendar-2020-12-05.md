@@ -34,7 +34,7 @@ The input can be any sensible machine-readable binary tree format of your choosi
 
 *In addition* to the above, you may wish to pretty-print your binary tree in a human readable text-based format similar to the following:
 
-```
+```perl
        1
       /  \
      3    2
@@ -259,7 +259,7 @@ sub display_tree ( $node, $depth = 0, $arrayref = [] ) {
 
 In short, we pull it into an array-of-arrays and display and indent things based on that. There’s alignment and tweaking to be done, but below is the code
 
-```
+```perl
                     1
                   /   \
                  2     3

@@ -82,7 +82,7 @@ sub special_average {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-351/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub special-average(*@nums) {
     return 0 unless @nums.elems;
 

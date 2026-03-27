@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2020blogadvent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
-<h3 id="-day-1blogadvent-calendar-2020-12-01--day-2--day-3blogadvent-calendar-2020-12-03-">| <a href="/blog/advent-calendar-2020-12-01"><strong>Day 1</strong></a> | <strong>Day 2</strong> | <a href="/blog/advent-calendar-2020-12-03"><strong>Day 3</strong></a> |</h3>
+        <h2 id="advent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
+<h3 id="-day-1--day-2--day-3-">| <a href="/blog/advent-calendar-2020-12-01"><strong>Day 1</strong></a> | <strong>Day 2</strong> | <a href="/blog/advent-calendar-2020-12-03"><strong>Day 3</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-038"><strong>Ryan Thompson</strong></a>. Today he is talking about his solutions to the task <code>Make it $200</code> of <strong><a href="/blog/perl-weekly-challenge-044">&ldquo;The Weekly Challenge - 044&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="http://ry.ca/2020/01/make-it-200/"><strong>post</strong></a> by <strong>Ryan Thompson</strong>.</p>
 <hr>
@@ -188,61 +188,61 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>“Greedy never works”</p>
 </blockquote>
 <p>In a 75-minute lecture some decades ago, my Advanced Algorithms professor said, over and over, “greedy never works,” while all the while showing us exceptions to that mantra. Greedy algorithms operate by always making the locally optimal choice, which might be the biggest/smallest, closest to the goal, etc., depending on the problem. However, for a great many problems, the locally optimal choice is not always the best. For example, suppose you’re trying to climb the following mountain range (The ASCIIHorn):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        B
-   A   <span style="color:#e6db74">/\
-</span><span style="color:#e6db74">  /</span><span style="color:#f92672">\</span>  <span style="color:#e6db74">/  \
-</span><span style="color:#e6db74"> /</span>  <span style="color:#f92672">\</span><span style="color:#e6db74">/    \
-</span><span style="color:#e6db74">/</span>    C     <span style="color:#f92672">\</span>
-</code></pre></div><p>Let’s say you’re at position (A), and your goal is to find the highest point. A greedy algorithm would always choose to go higher, never lower (even temporarily), so you’d reach the smaller left peak, and be stuck there. This is known as a hill climbing problem, for which greedy doesn’t work, because you have to go down through the valley (C) before you go up to the goal (B).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>        B
+</span></span><span style="display:flex;"><span>   A   <span style="color:#e6db74">/\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  /</span><span style="color:#f92672">\</span>  <span style="color:#e6db74">/  \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> /</span>  <span style="color:#f92672">\</span><span style="color:#e6db74">/    \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">/</span>    C     <span style="color:#f92672">\</span>
+</span></span></code></pre></div><p>Let’s say you’re at position (A), and your goal is to find the highest point. A greedy algorithm would always choose to go higher, never lower (even temporarily), so you’d reach the smaller left peak, and be stuck there. This is known as a hill climbing problem, for which greedy doesn’t work, because you have to go down through the valley (C) before you go up to the goal (B).</p>
 <p>But in the case of this challenge, greedy does work, but only if we go in the opposite direction: given $200, you can divide by 2 or subtract $1, and your goal is now to get to $1 in the least number of steps. So how does it work? If we can divide by two (i.e., if our amount is an even number), then divide by two. Otherwise, subtract 1. This is greedy, because dividing by two will always result in the biggest deduction (or at least a tie, in the case you had $2). We can easily work this out by hand:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$200    even, divide by <span style="color:#ae81ff">2</span>
- <span style="color:#ae81ff">100</span>    even, divide by <span style="color:#ae81ff">2</span>
-  <span style="color:#ae81ff">50</span>    even, divide by <span style="color:#ae81ff">2</span>
-  <span style="color:#ae81ff">25</span>     odd, subtract  <span style="color:#ae81ff">1</span>
-  <span style="color:#ae81ff">12</span>    even, divide by <span style="color:#ae81ff">2</span>
-   <span style="color:#ae81ff">6</span>    even, divide by <span style="color:#ae81ff">2</span>
-   <span style="color:#ae81ff">3</span>     odd, subtract  <span style="color:#ae81ff">1</span>
-   <span style="color:#ae81ff">2</span>    even, divide by <span style="color:#ae81ff">2</span> (subtract <span style="color:#ae81ff">1</span> is equivalent)
-   <span style="color:#ae81ff">1</span>    done<span style="color:#f92672">.</span>
-</code></pre></div><p>Thus, the solution is achieved in 8 moves. The moves are in the opposite order to what we want, but making a reversed list is trivial in Perl and Raku.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$200    even, divide by <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">100</span>    even, divide by <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">50</span>    even, divide by <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">25</span>     odd, subtract  <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>    even, divide by <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">6</span>    even, divide by <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">3</span>     odd, subtract  <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">2</span>    even, divide by <span style="color:#ae81ff">2</span> (subtract <span style="color:#ae81ff">1</span> is equivalent)
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">1</span>    done<span style="color:#f92672">.</span>
+</span></span></code></pre></div><p>Thus, the solution is achieved in 8 moves. The moves are in the opposite order to what we want, but making a reversed list is trivial in Perl and Raku.</p>
 <h2 id="greedy-solution">Greedy Solution</h2>
 <h3 id="perl">Perl</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">double_or_plus</span>( $start, $end ) {
-    <span style="color:#66d9ef">my</span> @path <span style="color:#f92672">=</span> $end;
-    <span style="color:#66d9ef">while</span> ($end <span style="color:#f92672">!=</span> $start) {
-        $end <span style="color:#f92672">=</span> $end % 2 ? $end <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> : $end <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
-        unshift @path, $end;
-    }
-    @path;
-}
-</code></pre></div><h3 id="raku">Raku</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">double</span>-or-plus( Int $start, Int $end is copy ) {
-    <span style="color:#66d9ef">my</span> @path <span style="color:#f92672">=</span> $end;
-    <span style="color:#66d9ef">while</span> ($end <span style="color:#f92672">!=</span> $start) {
-        $end <span style="color:#f92672">=</span> $end %% 2 ?? ($end <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>Int <span style="color:#f92672">!!</span> $end <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-        @path<span style="color:#f92672">.</span>unshift($end);
-    }
-    @path;
-}
-</code></pre></div><p>Note the use of unshift in both cases, to produce a reversed array on the fly.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">double_or_plus</span>( $start, $end ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @path <span style="color:#f92672">=</span> $end;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($end <span style="color:#f92672">!=</span> $start) {
+</span></span><span style="display:flex;"><span>        $end <span style="color:#f92672">=</span> $end % 2 ? $end <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> : $end <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        unshift @path, $end;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    @path;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="raku">Raku</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">double</span>-or-plus( Int $start, Int $end is copy ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @path <span style="color:#f92672">=</span> $end;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($end <span style="color:#f92672">!=</span> $start) {
+</span></span><span style="display:flex;"><span>        $end <span style="color:#f92672">=</span> $end %% 2 ?? ($end <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>Int <span style="color:#f92672">!!</span> $end <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        @path<span style="color:#f92672">.</span>unshift($end);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    @path;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Note the use of unshift in both cases, to produce a reversed array on the fly.</p>
 <h2 id="exhaustive-solution">Exhaustive Solution</h2>
 <p>If you don’t yet trust the greedy solution, it’s easy to write an efficient exhaustive validator (shown here in Perl). This one takes the $start and $end, but it also takes a $max_path value, which is the length of the path from double_or_plus(). That allows us to avoid pointlessly searching paths that are already longer than the one we found.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">exhaustive</span>( $start, $end, $max_path ) {
-    <span style="color:#66d9ef">my</span> @shortest <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x ($max_path <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
-
-    <span style="color:#66d9ef">sub</span> ( $start, $end, @path ) {
-        push @path, $start;
-
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> @path <span style="color:#f92672">&gt;</span> @shortest <span style="color:#f92672">or</span> $start <span style="color:#f92672">&gt;</span>  $end;
-        @shortest <span style="color:#f92672">=</span> @path <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $start <span style="color:#f92672">==</span> $end;
-
-        __SUB__<span style="color:#f92672">-&gt;</span>($start <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $end, @path);
-        __SUB__<span style="color:#f92672">-&gt;</span>($start <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>, $end, @path);
-    }<span style="color:#f92672">-&gt;</span>($start, $end);
-
-    @shortest;
-}
-</code></pre></div><p>This uses some newer Perl features: signatures, and current_sub. These made my closure a little bit cleaner looking, but are absolutely not required.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">exhaustive</span>( $start, $end, $max_path ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @shortest <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x ($max_path <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> ( $start, $end, @path ) {
+</span></span><span style="display:flex;"><span>        push @path, $start;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> @path <span style="color:#f92672">&gt;</span> @shortest <span style="color:#f92672">or</span> $start <span style="color:#f92672">&gt;</span>  $end;
+</span></span><span style="display:flex;"><span>        @shortest <span style="color:#f92672">=</span> @path <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $start <span style="color:#f92672">==</span> $end;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        __SUB__<span style="color:#f92672">-&gt;</span>($start <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $end, @path);
+</span></span><span style="display:flex;"><span>        __SUB__<span style="color:#f92672">-&gt;</span>($start <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>, $end, @path);
+</span></span><span style="display:flex;"><span>    }<span style="color:#f92672">-&gt;</span>($start, $end);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @shortest;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This uses some newer Perl features: signatures, and current_sub. These made my closure a little bit cleaner looking, but are absolutely not required.</p>
 <p>With this sub, we can purchase a bit of confidence that our greedy result really is the optimal one. I ran this in a loop, increasing the $end as high as I was patient enough to wait. (It’s not necessary to increase $start, because we will have already validated 1..$start.) The greedy solution was optimal up to an end of 100,000, which is about when I hit Ctrl-C.</p>
 <h2 id="why-greedy-works">Why Greedy Works?</h2>
 <p>A full proof is beyond the scope of this blog post. However, conceptually, you can imagine that dividing by two will always get you at least as close as subtracting $1. (That’s the greedy part.) It’s optimal in this case, because we are always only in one of the following states:</p>

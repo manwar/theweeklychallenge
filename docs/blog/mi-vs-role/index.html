@@ -192,71 +192,71 @@ if (localStorage.getItem('twc-theme') === 'light') {
         v           v
          Application
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
-
-<span style="color:#66d9ef">package</span> Dumper;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
-    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
-}
-
-<span style="color:#66d9ef">package</span> Logger;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
-    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
-}
-
-<span style="color:#66d9ef">package</span> Application;
-
-<span style="color:#66d9ef">use</span> parent <span style="color:#f92672">-</span>norequire, <span style="color:#e6db74">qw/Dumper Logger/</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>($class) {
-    <span style="color:#66d9ef">return</span> bless {}, $class;
-}
-
-<span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);     <span style="color:#75715e"># DUMP: this</span>
-$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);      <span style="color:#75715e"># LOG: that</span>
-</code></pre></div><p>In the above implementation, the use of <code>-norequire</code> is needed because of package defined in the same script, please ignore this for now.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Dumper;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Logger;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Application;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> parent <span style="color:#f92672">-</span>norequire, <span style="color:#e6db74">qw/Dumper Logger/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>($class) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> bless {}, $class;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);     <span style="color:#75715e"># DUMP: this</span>
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);      <span style="color:#75715e"># LOG: that</span>
+</span></span></code></pre></div><p>In the above implementation, the use of <code>-norequire</code> is needed because of package defined in the same script, please ignore this for now.</p>
 <p><strong>So far so good, right?</strong></p>
 <p>The child class, <code>Application</code>, inherits two unique methods i.e. <code>dump()</code> and <code>log()</code> from two parent classes <code>Dumper</code> and <code>Logger</code> respectively..</p>
 <p>However the trouble starts when the parent classes shared common method.</p>
 <p>Let&rsquo;s add a method <code>d()</code> to both parent classes as below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
-
-<span style="color:#66d9ef">package</span> Dumper;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
-    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
-    say <span style="color:#e6db74">&#34;DUMP: $m.&#34;</span>;
-}
-
-<span style="color:#66d9ef">package</span> Logger;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
-    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
-    say <span style="color:#e6db74">&#34;LOG: $m.&#34;</span>;
-}
-
-<span style="color:#66d9ef">package</span> Application;
-
-<span style="color:#66d9ef">use</span> parent <span style="color:#f92672">-</span>norequire, <span style="color:#e6db74">qw/Dumper Logger/</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>($class) {
-    <span style="color:#66d9ef">return</span> bless {}, $class;
-}
-
-<span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);     <span style="color:#75715e"># DUMP: this.</span>
-$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);      <span style="color:#75715e"># LOG: that.</span>
-$app<span style="color:#f92672">-&gt;</span>d(<span style="color:#e6db74">&#34;what&#34;</span>);        <span style="color:#75715e"># DUMP: what.</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Dumper;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;DUMP: $m.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Logger;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;LOG: $m.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Application;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> parent <span style="color:#f92672">-</span>norequire, <span style="color:#e6db74">qw/Dumper Logger/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>($class) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> bless {}, $class;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);     <span style="color:#75715e"># DUMP: this.</span>
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);      <span style="color:#75715e"># LOG: that.</span>
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>d(<span style="color:#e6db74">&#34;what&#34;</span>);        <span style="color:#75715e"># DUMP: what.</span>
+</span></span></code></pre></div><br>
 <p><strong>Did you notice the output of <code>$app-&gt;d(&quot;what&quot;)</code>?</strong></p>
 <p><strong>But why?</strong></p>
 <p>Because of the order of inheritance in the line: <code>use parent -norequire, qw/Dumper Logger/;</code></p>
@@ -272,83 +272,83 @@ $app<span style="color:#f92672">-&gt;</span>d(<span style="color:#e6db74">&#34;w
 <hr>
 <p>Let&rsquo;s redefine the above implementation with the help of <code>Moo::Role</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
-
-<span style="color:#66d9ef">package</span> Dumper;
-
-<span style="color:#66d9ef">use</span> Moo::Role;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
-    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
-    say <span style="color:#e6db74">&#34;DUMP: $m.&#34;</span>;
-}
-
-<span style="color:#66d9ef">package</span> Logger;
-
-<span style="color:#66d9ef">use</span> Moo::Role;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
-    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
-    say <span style="color:#e6db74">&#34;LOG: $m.&#34;</span>;
-}
-
-<span style="color:#66d9ef">package</span> Application;
-
-<span style="color:#66d9ef">use</span> Moo;
-with <span style="color:#e6db74">qw/Dumper Logger/</span>;
-
-<span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);
-$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);
-$app<span style="color:#f92672">-&gt;</span>d(<span style="color:#e6db74">&#34;what&#34;</span>);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Dumper;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo::Role;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;DUMP: $m.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Logger;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo::Role;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;LOG: $m.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Application;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span>with <span style="color:#e6db74">qw/Dumper Logger/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>d(<span style="color:#e6db74">&#34;what&#34;</span>);
+</span></span></code></pre></div><br>
 <p>If we run the above the script, it would throw error as below:</p>
 <blockquote>
-<p>Due to a method name conflict between roles &lsquo;Dumper&rsquo; and &lsquo;Logger&rsquo;, the method &lsquo;d&rsquo; must be implemented by &lsquo;Application&rsquo; &hellip;</p>
+<p>Due to a method name conflict between roles &lsquo;Dumper&rsquo; and &lsquo;Logger&rsquo;, the method &rsquo;d&rsquo; must be implemented by &lsquo;Application&rsquo; &hellip;</p>
 </blockquote>
 <p>The error is self explanatory and reported the first issue of <code>method conflict</code> straight back to the user during the design stage.</p>
 <p>Another benefit with role is <code>flexible composition</code> as it can be applied to any class allowing cleaner and modular design.</p>
 <p>The biggest advantage is that it <strong>doesn&rsquo;t</strong> impose a <code>strict inheritance hierarchy</code>.</p>
 <p>Just for the sake of completion, let&rsquo;s fix the reported issue.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
-
-<span style="color:#66d9ef">package</span> Dumper;
-
-<span style="color:#66d9ef">use</span> Moo::Role;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
-    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
-}
-
-<span style="color:#66d9ef">package</span> Logger;
-
-<span style="color:#66d9ef">use</span> Moo::Role;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
-    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
-}
-
-<span style="color:#66d9ef">package</span> Application;
-
-<span style="color:#66d9ef">use</span> Moo;
-with <span style="color:#e6db74">qw/Dumper Logger/</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
-    say <span style="color:#e6db74">&#34;APP: $m.&#34;</span>;
-}
-
-<span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);     <span style="color:#75715e"># DUMP: this.</span>
-$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);      <span style="color:#75715e"># LOG: that.</span>
-$app<span style="color:#f92672">-&gt;</span>d(<span style="color:#e6db74">&#34;what&#34;</span>);        <span style="color:#75715e"># APP: what.</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Dumper;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo::Role;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump</span>($self, $message) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;DUMP: $message.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Logger;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo::Role;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">log</span>($self, $message) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;LOG: $message.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Application;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span>with <span style="color:#e6db74">qw/Dumper Logger/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">d</span>($self, $m) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;APP: $m.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> Application<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>dump(<span style="color:#e6db74">&#34;this&#34;</span>);     <span style="color:#75715e"># DUMP: this.</span>
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>log(<span style="color:#e6db74">&#34;that&#34;</span>);      <span style="color:#75715e"># LOG: that.</span>
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>d(<span style="color:#e6db74">&#34;what&#34;</span>);        <span style="color:#75715e"># APP: what.</span>
+</span></span></code></pre></div>
     </article>
     
     <div class="post-tags">

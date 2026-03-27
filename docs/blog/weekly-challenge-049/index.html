@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>BLOG: The Weekly Challenge #049</span>
         </nav>
-        <span class="reading-time" title="537 words">
+        <span class="reading-time" title="538 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -179,96 +179,94 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <p>This is my second blog for <strong>The Weekly Challenge</strong>. I am only able to participate, thanks to <strong>Ryan Thompson</strong> for helping me with the <strong><a href="/p5-reviews">Perl</a></strong> and <strong><a href="/p6-reviews">Raku</a></strong> reviews. I am going for <strong>Perl</strong> solutions first then will try to translate it into <strong>Raku</strong> next. I believe in coding to learn the language. With so many <strong>Raku</strong> experts around, I am not shy throwing questions up. I am now going to share my experience doing <strong><a href="/blog/perl-weekly-challenge-049">&ldquo;The Weekly Challenge - 049&rdquo;</a></strong>.</p>
 <h2 id="challenge-049-task-1">Challenge #049 (Task #1)</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
-die <span style="color:#e6db74">&#34;Missing number.\n&#34;</span> <span style="color:#66d9ef">unless</span> defined $num;
-
-<span style="color:#66d9ef">my</span> ($res, $i);
-<span style="color:#66d9ef">do</span> { $res <span style="color:#f92672">=</span> $num <span style="color:#f92672">*</span> <span style="color:#f92672">++</span>$i; } <span style="color:#66d9ef">until</span> ($res <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[01]+$/</span>);
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$num =&gt; $res\n&#34;</span>;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>die <span style="color:#e6db74">&#34;Missing number.\n&#34;</span> <span style="color:#66d9ef">unless</span> defined $num;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> ($res, $i);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span> { $res <span style="color:#f92672">=</span> $num <span style="color:#f92672">*</span> <span style="color:#f92672">++</span>$i; } <span style="color:#66d9ef">until</span> ($res <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[01]+$/</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$num =&gt; $res\n&#34;</span>;
+</span></span></code></pre></div><hr>
 <h2 id="challenge-049-task-2">Challenge #049 (Task #2)</h2>
 <p>Technically I cheated and took the help of <strong>CPAN</strong> module <strong><a href="https://metacpan.org/pod/Cache::LRU">Cache::LRU</a></strong>. However it makes the end result so clean and tidy. It just worked out of the box. I just had to hack to handle the missing key return value. By design <strong>Cache::LRU</strong> returns <em>undef</em>, if it can&rsquo;t find the key. As per the task, I had to print <strong>-1</strong> instead, hence the hack came in action. Otherwise it is self explanatory.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">use</span> Cache::LRU;
-
-<span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> Cache::LRU<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(size <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>);
-
-$cache<span style="color:#f92672">-&gt;</span>set(<span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>);
-$cache<span style="color:#f92672">-&gt;</span>set(<span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>);
-$cache<span style="color:#f92672">-&gt;</span>set(<span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">7</span>);
-
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;get(2) =&gt; &#34;</span>, $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#ae81ff">2</span>), <span style="color:#e6db74">&#34;\n&#34;</span>;
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;get(1) =&gt; &#34;</span>, $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#ae81ff">1</span>), <span style="color:#e6db74">&#34;\n&#34;</span>;
-
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;get(4) =&gt; &#34;</span>, $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#ae81ff">4</span>)<span style="color:#f92672">||-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;\n&#34;</span>;
-
-$cache<span style="color:#f92672">-&gt;</span>set(<span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">9</span>);
-
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;get(3) =&gt; &#34;</span>, $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#ae81ff">3</span>)<span style="color:#f92672">||-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;\n&#34;</span>;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Cache::LRU;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $cache <span style="color:#f92672">=</span> Cache::LRU<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(size <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$cache<span style="color:#f92672">-&gt;</span>set(<span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>$cache<span style="color:#f92672">-&gt;</span>set(<span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>$cache<span style="color:#f92672">-&gt;</span>set(<span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">7</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;get(2) =&gt; &#34;</span>, $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#ae81ff">2</span>), <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;get(1) =&gt; &#34;</span>, $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#ae81ff">1</span>), <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;get(4) =&gt; &#34;</span>, $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#ae81ff">4</span>)<span style="color:#f92672">||-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$cache<span style="color:#f92672">-&gt;</span>set(<span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">9</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;get(3) =&gt; &#34;</span>, $cache<span style="color:#f92672">-&gt;</span>get(<span style="color:#ae81ff">3</span>)<span style="color:#f92672">||-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span></code></pre></div><hr>
 <p>Now the fun part to translate the <strong>Perl</strong> solution to <strong>Task #1</strong>.</p>
 <p>Here is my first draft in <strong>Raku</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl6</span>
-
-<span style="color:#66d9ef">use</span> v6;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>($num) {
-    <span style="color:#66d9ef">my</span> (Int $res, Int $i);
-    repeat { $res <span style="color:#f92672">=</span> $num <span style="color:#f92672">*</span> <span style="color:#f92672">++</span>$i } <span style="color:#66d9ef">until</span> $res <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^[01]+$/</span>;
-    $res<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><p>Now running the script gets the following response:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6
-Usage:
-  ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 <span style="color:#e6db74">&lt;num&gt;</span>
-$
-</code></pre></div><p>What if we pass <strong>non-integer</strong> command line parameter:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 dummy
-Cannot convert string to number: base<span style="color:#f92672">-</span><span style="color:#ae81ff">10</span> number must begin with valid digits <span style="color:#f92672">or</span> <span style="color:#e6db74">&#39;.&#39;</span> in <span style="color:#e6db74">&#39;⏏a&#39;</span> (indicated by <span style="color:#960050;background-color:#1e0010">⏏</span>)
-  in <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">ch</span><span style="color:#960050;background-color:#1e0010">-1.</span><span style="color:#a6e22e">p6</span> <span style="color:#a6e22e">line</span> <span style="color:#960050;background-color:#1e0010">7</span>
-  <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">block</span> <span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#a6e22e">unit</span><span style="color:#960050;background-color:#1e0010">&gt;</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">ch</span><span style="color:#960050;background-color:#1e0010">-1.</span><span style="color:#a6e22e">p6</span> <span style="color:#a6e22e">line</span> <span style="color:#960050;background-color:#1e0010">5</span>
-</code></pre></div><p>Lets force the data type of command line parameter:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl6</span>
-
-<span style="color:#66d9ef">use</span> v6;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $num) {
-    <span style="color:#66d9ef">my</span> (Int $res, Int $i);
-    repeat { $res <span style="color:#f92672">=</span> $num <span style="color:#f92672">*</span> <span style="color:#f92672">++</span>$i } <span style="color:#66d9ef">until</span> $res <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^[01]+$/</span>;
-    $res<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><p>Now lets check what difference it made:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 dummy
-Usage:
-  ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 <span style="color:#e6db74">&lt;num&gt;</span>
-</code></pre></div><p>I am now happy with the response. I am now ready for real test.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 <span style="color:#ae81ff">5</span>
-
-
-</code></pre></div><p>It just goes into the wild without giving any result. I am confused what&rsquo;s goind on here. I started looking for reason and found out that my regex is causing this behaviour. So I modified it like below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl6</span>
-
-<span style="color:#66d9ef">use</span> v6;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $num) {
-    <span style="color:#66d9ef">my</span> (Int $res, Int $i);
-    repeat { $res <span style="color:#f92672">=</span> $num <span style="color:#f92672">*</span> <span style="color:#f92672">++</span>$i } <span style="color:#66d9ef">until</span> $res <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^&lt;[01]&gt;+$/</span>;
-    $res<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><p>Now running the script again:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 <span style="color:#ae81ff">5</span>
-<span style="color:#ae81ff">10</span>
-$
-</code></pre></div><h2 id="what-did-i-learn-today">What did I learn today?</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>($num) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> (Int $res, Int $i);
+</span></span><span style="display:flex;"><span>    repeat { $res <span style="color:#f92672">=</span> $num <span style="color:#f92672">*</span> <span style="color:#f92672">++</span>$i } <span style="color:#66d9ef">until</span> $res <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^[01]+$/</span>;
+</span></span><span style="display:flex;"><span>    $res<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now running the script gets the following response:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6
+</span></span><span style="display:flex;"><span>Usage:
+</span></span><span style="display:flex;"><span>  ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 <span style="color:#e6db74">&lt;num&gt;</span>
+</span></span><span style="display:flex;"><span>$
+</span></span></code></pre></div><p>What if we pass <strong>non-integer</strong> command line parameter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 dummy
+</span></span><span style="display:flex;"><span>Cannot convert string to number: base<span style="color:#f92672">-</span><span style="color:#ae81ff">10</span> number must begin with valid digits <span style="color:#f92672">or</span> <span style="color:#e6db74">&#39;.&#39;</span> in <span style="color:#e6db74">&#39;⏏a&#39;</span> (indicated by <span style="color:#960050;background-color:#1e0010">⏏</span>)
+</span></span><span style="display:flex;"><span>  in <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">ch</span><span style="color:#960050;background-color:#1e0010">-1.</span><span style="color:#a6e22e">p6</span> <span style="color:#a6e22e">line</span> <span style="color:#960050;background-color:#1e0010">7</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">block</span> <span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#a6e22e">unit</span><span style="color:#960050;background-color:#1e0010">&gt;</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">ch</span><span style="color:#960050;background-color:#1e0010">-1.</span><span style="color:#a6e22e">p6</span> <span style="color:#a6e22e">line</span> <span style="color:#960050;background-color:#1e0010">5</span>
+</span></span></code></pre></div><p>Lets force the data type of command line parameter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $num) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> (Int $res, Int $i);
+</span></span><span style="display:flex;"><span>    repeat { $res <span style="color:#f92672">=</span> $num <span style="color:#f92672">*</span> <span style="color:#f92672">++</span>$i } <span style="color:#66d9ef">until</span> $res <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^[01]+$/</span>;
+</span></span><span style="display:flex;"><span>    $res<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now lets check what difference it made:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 dummy
+</span></span><span style="display:flex;"><span>Usage:
+</span></span><span style="display:flex;"><span>  ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 <span style="color:#e6db74">&lt;num&gt;</span>
+</span></span></code></pre></div><p>I am now happy with the response. I am now ready for real test.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 <span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><p>It just goes into the wild without giving any result. I am confused what&rsquo;s goind on here. I started looking for reason and found out that my regex is causing this behaviour. So I modified it like below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $num) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> (Int $res, Int $i);
+</span></span><span style="display:flex;"><span>    repeat { $res <span style="color:#f92672">=</span> $num <span style="color:#f92672">*</span> <span style="color:#f92672">++</span>$i } <span style="color:#66d9ef">until</span> $res <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^&lt;[01]&gt;+$/</span>;
+</span></span><span style="display:flex;"><span>    $res<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now running the script again:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>p6 <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>$
+</span></span></code></pre></div><h2 id="what-did-i-learn-today">What did I learn today?</h2>
 <p>a) Command line parameter data type handling.</p>
 <p>b) The loop construct <em>repeat {  } until</em> as per the <strong><a href="https://docs.raku.org/language/control#index-entry-control_flow_repeat-repeat/while,_repeat/until">documentation</a></strong>.</p>
 <p>c)  Regex using with <strong>&lt;</strong> and <strong>&gt;</strong>.</p>

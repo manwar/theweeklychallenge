@@ -44,7 +44,7 @@ For example, the message is **“The quick brown fox jumps over the lazy dog”.
 
 Then the message would be laid out as below:
 
-```
+```perl
 thequick
 brownfox
 jumpsove
@@ -55,7 +55,7 @@ dog
 
 The code message would be as below:
 
-```
+```perl
 tbjrd hruto eomhg qwpe unsl ifoa covz kxey
 ```
 
@@ -88,7 +88,7 @@ If my plain English descriptions don't make complete sense yet, don't worry; the
 
 [Arne Sommer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/arne-sommer/raku/ch-1.p6) removes spaces (and also removes double quotes) and then splits the input into a character array. Finally, he uses a nested loop to print the solution character by character:
 
-```raku
+```perl
 unit sub MAIN ($string is copy = "The quick brown fox jumps over the lazy dog", :$verbose);
 $string ~~ tr/" "//;
 say ": { $string.lc }" if $verbose;
@@ -115,7 +115,7 @@ Arne's loops allow him to scan over `@a` 8 characters at a time, shifting the st
 
 [Burkhard Nickels' solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/raku/ch-1.p6) uses a C-style `loop` to advance 8 characters at a time:
 
-```raku
+```perl
 $msg ~~ s:g/\s//;
 $msg = $msg.lc;
 my @l = split("",$msg);
@@ -136,7 +136,7 @@ print "Coded   : $coded_msg\n";
 
 [Colin Crain's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/colin-crain/raku/ch-1.p6) is a first example we'll see of a `zip` or `roundrobin` solution:
 
-```raku
+```perl
 sub MAIN (Str:D $raw = "The quick brown fox jumps over the lazy dog" ) {
     my $input = $raw.comb.grep( /\w/ ).join( '' ).lc;
     my @output = roundrobin ($input.comb(8)).map({ .comb });
@@ -154,7 +154,7 @@ The [roundrobin](https://docs.perl6.org/routine/roundrobin) routine (which is si
 
 [Jaldhar H. Vyas' solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/jaldhar-h-vyas/raku/ch-1.p6) is another very compact one:
 
-```raku
+```perl
 multi sub MAIN(*@ARGS) {
     my $input = @*ARGS.lc.join(q{ }).subst(/\s+/, q{}, :g);
     $input ~= q{ } x 8 - ($input.chars % 8);
@@ -172,7 +172,7 @@ The third line first splits `$input` into a character array with `.comb`, and th
 
 [Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/javier-luque/raku/ch-1.p6) uses the `.comb` and modulo arithmetic approach to build up `@new_words` character by character:
 
-```raku
+```perl
 sub MAIN(Str $string) {
     my @new_words;
     @new_words[$_] = '' for (0..7);
@@ -197,7 +197,7 @@ sub MAIN(Str $string) {
 
 [Jan Ole Kraft's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/jokraft/raku/ch-1.p6) splits the string into characters, and then uses a nested loop with indexing arithmetic to build up the output, character by character:
 
-```raku
+```perl
 $str = $str.subst(" ","",:g);
 my @arr = $str.split("", :skip-empty);
 my $out = "";
@@ -216,7 +216,7 @@ say $out;
 
 [Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/laurent-rosenfeld/raku/ch-1.p6) chunks the input into 8-character strings, and then loops over each column. Laurent prints each `join`ed segment together, built up from the `$i`th character of each 8-character string via `substr`:
 
-```raku
+```perl
 my $msg = @*ARGS ?? shift @*ARGS
     !! "The quick brown fox jumps over the lazy dog";
 $msg ~~ s:g/\s+//;
@@ -233,7 +233,7 @@ for 0..7 -> $i {
 
 [Luca Ferrari's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/luca-ferrari/raku/ch-1.p6) is another that uses `rotor` to chunk the filtered input into `$columns`-character arrays:
 
-```raku
+```perl
 my @matrix = $message.lc.comb( /\w/ ).rotor: $columns, :partial;
 
 say "Your original message is \n\t$message\n and encoded results:\n";
@@ -253,7 +253,7 @@ Luca's nested loop takes care of the indexing into both arrays to print out the 
 
 [Mark Anderson's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/mark-anderson/raku/ch-1.p6) uses the `zip` method to elegant effect:
 
-```raku
+```perl
 my @array.push: [.split({}, :skip-empty)] for $string.comb(8);
 @array[*-1].push: " " for @array[*-1].elems..7;
 @array = [Z] @array;
@@ -267,7 +267,7 @@ Once the `@array` has been put through `[Z]`, each of the sub-arrays may contain
 
 [Markus Holzer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/markus-holzer/raku/ch-1.p6) is another good example of the `zip` or `roundrobin` method:
 
-```raku
+```perl
 sub encrypt-squarely( $message ) {
     roundrobin(
       $message
@@ -286,7 +286,7 @@ As you can see, after removing spaces and converting to lowercase, `$message` is
 
 [Noud Aldenhoven's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/noud/raku/ch-1.p6) once again uses `[Z~]` to make short work of this problem:
 
-```raku
+```perl
 sub encode($str) {
     my $stripped = $str.lc.subst(/\s/, '', :g);
     my @r = ($stripped ~ " " x (8 - $stripped.chars % 8)).comb.rotor(8, :partial);
@@ -298,7 +298,7 @@ sub encode($str) {
 
 [Roger Bell West's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/roger-bell-west/raku/ch-1.p6) first joins the input into `$in`:
 
-```raku
+```perl
 my $n=8;
 my $in='';
 for lines() {
@@ -311,7 +311,7 @@ for lines() {
 
 From there, Roger's nested loop advances `$n = 8` characters at a time, from all 8 starting positions, to build up the output one character at a time:
 
-```raku
+```perl
 my $l=chars($in)-1;
 my @out;
 for (0..$n-1) -> $c {
@@ -331,7 +331,7 @@ say @out.join(' ');
 
 [Ruben Westerberg's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ruben-westerberg/raku/ch-1.p6) is a beautiful example of the `[Z~]` method:
 
-```raku
+```perl
 my $string="The quick brown fox jumps over the lazy dog";
 my $padded=$string.trans(" "=>"");
 my $a=$padded.comb.rotor: 8;
@@ -344,7 +344,7 @@ While we're all sometimes tempted to chain together as many things as possible, 
 
 [My solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ryan-thompson/raku/ch-1.p6) uses the `.comb` and modulo arithmetic approach:
 
-```raku
+```perl
 my @s;
 $plain.lc.subst(/\s/,'',:g).comb.kv.map: { @s[$^i % $width] ~= $^str };
 @s.join(' ')
@@ -359,7 +359,7 @@ I used `.kv` so I could conveniently access both the character and its index.
 
 [Simon Proctor's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/simon-proctor/raku/ch-1.p6) gives us an encoder and decoder using `roundrobin`, and packages this up in two `multi` main subs. Here's the encoder:
 
-```raku
+```perl
 #| Given a string encoded it using the square code
 multi sub MAIN(
     *@clear-text #= Phrase to encode
@@ -370,7 +370,7 @@ multi sub MAIN(
 
 And here is the decoder:
 
-```raku
+```perl
 #| Given a square encoded string decode it
 multi sub MAIN(
     Bool :d(:$decode)!, #= Turn on decode mode
@@ -386,7 +386,7 @@ This is the first example of a decoder we've seen in Raku, and I'm impressed by 
 
 [Ulrich Rieke's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ulrich-rieke/raku/ch-1.p6) partitions the string using `.rotor`, and then uses `substr` in a nested loop to build up `$encoded` character by character:
 
-```raku
+```perl
 sub convertString( Str $str is copy ) {
     $str ~~ s:g/\s+// ;
     my @strings = $str.comb.rotor( 8, :partial).map( {.join} ).Array ;
@@ -402,7 +402,7 @@ sub convertString( Str $str is copy ) {
 
 At this point, we have the characters in the right order, but each column needs to now be separated by spaces:
 
-```raku
+```perl
     my $lastwordlen = @strings[$len - 1].chars ;
     my @cycle ;
     for (1..$lastwordlen) {
@@ -438,7 +438,7 @@ There are two ways to interpret this problem, resulting in very different soluti
 
 A straight reading of the challenge, with no additional constraints, means our script can simply read its own source file and print it. For example, here is my first solution:
 
-```raku
+```perl
 $*PROGRAM.lines».say
 ```
 
@@ -457,7 +457,7 @@ Several of the Perl solutions this week were quines, so if you'd like to see mor
 
 [Arne Sommer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/arne-sommer/raku/ch-2.p6) uses the compile-time `$?FILE` variable to get the script name, then converts it to an IO object, and `.slurp`s its contents:
 
-```raku
+```perl
 print $?FILE.IO.slurp;
 ```
 
@@ -468,7 +468,7 @@ print $?FILE.IO.slurp;
 
 [Burkhard Nickels's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/raku/ch-2.p6) is not quite as feature-packed as [his Perl version](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/perl/ch-2.pl), but Chuck still produces a complete program:
 
-```raku
+```perl
 # print "ch-2.p6 - PWC #45 Task #2: Source Dumper\n";
 # print $*PROGRAM, ", ", $*PROGRAM-NAME, "\n";
 
@@ -490,7 +490,7 @@ Chuck uses `$*PROGRAM` to get the `IO::Path` object of the program.
 
 [Colin Crain's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/colin-crain/raku/ch-2.p6) again uses `$*PROGRAM`, but avoids the loop by reading the contents into a string with `slurp`:
 
-```raku
+```perl
 sub MAIN () {
     print $*PROGRAM.open.slurp.gist;
 }
@@ -500,7 +500,7 @@ sub MAIN () {
 
 [Jaldhar H. Vyas' solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/jaldhar-h-vyas/raku/ch-2.p6) is another slurpy one:
 
-```raku
+```perl
 open(:r, $*PROGRAM).slurp.print;
 ```
 
@@ -510,7 +510,7 @@ open(:r, $*PROGRAM).slurp.print;
 
 [Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/javier-luque/raku/ch-2.p6) instead uses `$*PROGRAM-NAME.IO` to get the IO object needed to print the lines:
 
-```raku
+```perl
 sub MAIN () {
     for $*PROGRAM-NAME.IO.lines -> $line {
         say $line;
@@ -524,7 +524,7 @@ sub MAIN () {
 
 [Jan Ole Kraft's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/jokraft/raku/ch-2.p6) is another example of using the compile-time variable `$?FILE`. Instead of using `.IO`, the more explicit `.open` is used. After that, `readchars` reads up to 64KiB characters, and `prints` those:
 
-```raku
+```perl
 IO::Path.new($?FILE).open().readchars().print();
 ```
 
@@ -534,7 +534,7 @@ The 64KiB number comes from `$*DEFAULT-READ-ELEMS`, which is 65536 on my version
 
 [Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/laurent-rosenfeld/raku/ch-2.p6) pulls the filename from `$?FILE` uses the `IO` role of Str to enable `slurp`ing its contents:
 
-```raku
+```perl
 $?FILE.IO.slurp.say;
 ```
 
@@ -544,7 +544,7 @@ $?FILE.IO.slurp.say;
 
 [Luca Ferrari's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/luca-ferrari/raku/ch-2.p6) uses the ready-made `$*PROGRAM` IO object to `say` each line:
 
-```raku
+```perl
 sub MAIN {
     .say for $*PROGRAM.lines;
 }
@@ -556,7 +556,7 @@ sub MAIN {
 
 [Markus Holzer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/markus-holzer/raku/ch-2.p6) goes with `$*PROGRAM-NAME`, but the effect is the same as using `$?FILE`:
 
-```raku
+```perl
 $*PROGRAM-NAME.IO.slurp.say;
 ```
 
@@ -565,7 +565,7 @@ $*PROGRAM-NAME.IO.slurp.say;
 
 [Noud Aldenhoven's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/noud/raku/ch-2.p6) is another `$?FILE` solution:
 
-```raku
+```perl
 $?FILE.IO.slurp.trim.say;
 ```
 
@@ -574,7 +574,7 @@ $?FILE.IO.slurp.trim.say;
 
 [Roger Bell West's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/roger-bell-west/raku/ch-2.p6) uses the more explicit `open` symtax:
 
-```raku
+```perl
 my $f=open :r,$*PROGRAM-NAME;
 for $f.lines {
   say $_;
@@ -586,7 +586,7 @@ for $f.lines {
 
 [Ruben Westerberg's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ruben-westerberg/raku/ch-2.p6) uses `$*PROGRAM`:
 
-```raku
+```perl
 $*PROGRAM.IO.lines.map: *.put;
 ```
 
@@ -594,13 +594,13 @@ $*PROGRAM.IO.lines.map: *.put;
 
 [My file read solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ryan-thompson/raku/ch-2.p6) uses `$*PROGRAM`, and a hyper operator to call `.say` on each line:
 
-```raku
+```perl
 $*PROGRAM.lines».say
 ```
 
 However, I also submitted a [full quine](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ryan-thompson/raku/ch-2a.p6):
 
-```raku
+```perl
 {.printf($_)}(<{.printf($_)}(<%s>)>)
 ```
 
@@ -613,7 +613,7 @@ You can see that the `<>` quote contains a copy of the program, and the `printf`
 
 [Simon Proctor's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/simon-proctor/raku/ch-2.p6) `slurps` right from `$*PROGRAM`:
 
-```raku
+```perl
 $*PROGRAM.slurp.print;
 ```
 
@@ -621,7 +621,7 @@ $*PROGRAM.slurp.print;
 
 [Ulrich Rieke's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ulrich-rieke/raku/ch-2.p6) is another example of a more explicit approach with `open`:
 
-```raku
+```perl
 my $fh = open $?FILE , :r ;
 .say for $fh.lines ;
 close $fh ;

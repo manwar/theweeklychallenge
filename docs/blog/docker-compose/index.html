@@ -211,18 +211,18 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h2 id="docker-compose">Docker Compose</h2>
 <hr>
-<h3 id="1-setupsetup"><a href="#setup">1. Setup</a></h3>
-<h3 id="2-docker-compose-vs-docker-composedocker-compose-vs-docker-compose"><a href="#docker-compose-vs-docker-compose">2. docker-compose vs docker compose</a></h3>
-<h3 id="3-planplan"><a href="#plan">3. Plan</a></h3>
-<h3 id="-nbspnbspnbsp-a-create-a-docker-networkcreate-a-docker-network"><a href="#create-a-docker-network">     a) Create a Docker Network</a></h3>
-<h3 id="-nbspnbspnbsp-b-create-the-mongodb-containercreate-the-mongodb-container"><a href="#create-the-mongodb-container">     b) Create the MongoDB Container</a></h3>
-<h3 id="-nbspnbspnbsp-c-create-the-mongo-express-containercreate-the-mongo-express-container"><a href="#create-the-mongo-express-container">     c) Create the Mongo Express Container</a></h3>
-<h3 id="-nbspnbspnbsp-d-verify-containersverify-containers"><a href="#verify-containers">     d) Verify Containers</a></h3>
-<h3 id="-nbspnbspnbsp-e-test-connectiontest-connection"><a href="#test-connection">     e) Test Connection</a></h3>
-<h3 id="4-observationsobservations"><a href="#observations">4. Observations</a></h3>
-<h3 id="5-docker-composedocker-compose"><a href="#docker-compose">5. Docker Compose</a></h3>
-<h3 id="6-cleanupcleanup"><a href="#cleanup">6. Cleanup</a></h3>
-<h3 id="7-conclusionconclusion"><a href="#conclusion">7. Conclusion</a></h3>
+<h3 id="1-setup"><a href="#setup">1. Setup</a></h3>
+<h3 id="2-docker-compose-vs-docker-compose"><a href="#docker-compose-vs-docker-compose">2. docker-compose vs docker compose</a></h3>
+<h3 id="3-plan"><a href="#plan">3. Plan</a></h3>
+<h3 id="a-create-a-docker-network"><a href="#create-a-docker-network">     a) Create a Docker Network</a></h3>
+<h3 id="b-create-the-mongodb-container"><a href="#create-the-mongodb-container">     b) Create the MongoDB Container</a></h3>
+<h3 id="c-create-the-mongo-express-container"><a href="#create-the-mongo-express-container">     c) Create the Mongo Express Container</a></h3>
+<h3 id="d-verify-containers"><a href="#verify-containers">     d) Verify Containers</a></h3>
+<h3 id="e-test-connection"><a href="#test-connection">     e) Test Connection</a></h3>
+<h3 id="4-observations"><a href="#observations">4. Observations</a></h3>
+<h3 id="5-docker-compose"><a href="#docker-compose">5. Docker Compose</a></h3>
+<h3 id="6-cleanup"><a href="#cleanup">6. Cleanup</a></h3>
+<h3 id="7-conclusion"><a href="#conclusion">7. Conclusion</a></h3>
 <br>
 <h3 id="setup">Setup</h3>
 <hr>
@@ -397,27 +397,27 @@ $ docker network rm mongo-network
 <p>Re-creating <code>MongoDB</code> and <code>Mongo Express</code> containers using <code>docker compose</code>.</p>
 <p>First, we will create the configuration file: <code>docker-compose.yml</code></p>
 <br>
-<pre><code>version: '3.8'
-services:
-  mongodb:
-    image: mongo
-    ports:
-      - 27017:27017
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=supersecret
-
-  mongo-express:
-    image: mongo-express
-    ports:
-      - 8081:8081
-    environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=supersecret
-      - ME_CONFIG_MONGODB_SERVER=mongodb
-    depends_on:
-      - &quot;mongodb&quot;
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  mongodb:
+</span></span><span style="display:flex;"><span>    image: mongo
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#ae81ff">27017</span>:<span style="color:#ae81ff">27017</span>
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> MONGO_INITDB_ROOT_USERNAME<span style="color:#f92672">=</span>admin
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> MONGO_INITDB_ROOT_PASSWORD<span style="color:#f92672">=</span>supersecret
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  mongo<span style="color:#f92672">-</span>express:
+</span></span><span style="display:flex;"><span>    image: mongo<span style="color:#f92672">-</span>express
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#ae81ff">8081</span>:<span style="color:#ae81ff">8081</span>
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> ME_CONFIG_MONGODB_ADMINUSERNAME<span style="color:#f92672">=</span>admin
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> ME_CONFIG_MONGODB_ADMINPASSWORD<span style="color:#f92672">=</span>supersecret
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> ME_CONFIG_MONGODB_SERVER<span style="color:#f92672">=</span>mongodb
+</span></span><span style="display:flex;"><span>    depends_on:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#e6db74">&#34;mongodb&#34;</span>
+</span></span></code></pre></div><br>
 <p>That&rsquo;s it all, we need.</p>
 <p>To start the containers, simply run one command:</p>
 <br>

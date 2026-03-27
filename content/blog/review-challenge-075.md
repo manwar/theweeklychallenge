@@ -46,13 +46,13 @@ Write a script to find how many ways you make sum $S using the coins from the se
 
 Example:
 Input:
-```
+```perl
     @C = (1, 2, 4)
     $S = 6
 ```
 Output: 6
 There are 6 possible ways to make sum 6.
-```
+```perl
     a) (1, 1, 1, 1, 1, 1)
     b) (1, 1, 1, 1, 2)
     c) (1, 1, 2, 2)
@@ -482,7 +482,7 @@ possible.
 
 Input: @A = (2, 1, 4, 5, 3, 7)
 
-```
+```perl
       7           #
       6           #
       5       #   #
@@ -503,7 +503,7 @@ Output: 12
 
 Input: @A = (3, 2, 3, 5, 7, 5)
 
-```
+```perl
       7         #
       6         #
       5       # # #
@@ -830,7 +830,7 @@ sub printHistogram ( \@$$\@ ) {
 
 because it looks like this:
 
-```
+```perl
 Surface size: 18 (3 x 6)
 
 12 |             #

@@ -66,21 +66,21 @@ Write a script to find out if the given two numbers are Two Friendly.
 Two positive numbers, m and n are two friendly when gcd(m, n) = 2 ^ p where p > 0. The greatest common divisor (gcd) of a set of numbers is the largest positive number that divides all the numbers in the set without remainder.
 
 **Example 1**
-```
+```perl
     Input:  $m = 8, $n = 24
     Output: 1
 
     Reason: gcd(8,24) = 8 => 2 ^ 3
 ```
 **Example 2**
-```
+```perl
     Input:  $m = 26, $n = 39
     Output: 0
 
     Reason: gcd(26,39) = 13
 ```
 **Example 3**
-```
+```perl
     Input:  $m = 4, $n = 10
     Output: 1
 
@@ -530,7 +530,7 @@ Write a script to find how many different sequences you can create using Fibonac
 Fibonacci Numbers: 1,2,3,5,8,13,21,34,55,89, …
 
 **Example 1**
-```
+```perl
     Input:  $n = 16
     Output: 4
 
@@ -541,7 +541,7 @@ Fibonacci Numbers: 1,2,3,5,8,13,21,34,55,89, …
 ```
 
 **Example 2**
-```
+```perl
     Input:  $n = 9
     Output: 2
 
@@ -551,7 +551,7 @@ Fibonacci Numbers: 1,2,3,5,8,13,21,34,55,89, …
 ```
 
 **Example 3**
-```
+```perl
     Input:  $n = 15
     Output: 2
 
@@ -673,7 +673,7 @@ In other words, for those so inclined, there's a lot of meat to be had.
 There is, for instance, a known integer sequence in the Online Encyclopedia of Integer Sequences, [A000119](https://oeis.org/A000119), described as "Number of representations of n as a sum of distinct Fibonacci numbers". Astute observers will also note that this is only sequence number 119 of some 350,000 entries in a continually growing database, evidence of the importance given the sequence in these pursuits.
 
 By it's description, the data from this sequence seems to be exactly what is being requested. A function is provided, credited to Reinhard Zumkeller:
-```
+```perl
     a(n) = f(n,1,1) with f(x,y,z) = if x<y then 0^x else f(x-y,y+z,y)+f(x,y+z,y)
 ```
 

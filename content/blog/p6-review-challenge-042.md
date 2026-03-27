@@ -59,32 +59,32 @@ Many challengers used the same [base](https://docs.raku.org/routine/base) method
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/arne-sommer/raku/ch-1.p6):
 
-``` Perl6
+```perl
 say "Decimal $_ = Octal { $_.base(8) }" for ^51;
 ```
 
 [Daniel Mita]'https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-1.sh) did it in the form of a one-liner:
 
-``` Perl6
+```perl
 raku -e '.base(8).say for ^51'
 ```
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/markus-holzer/raku/ch-1.p6):
 
-``` Perl6
+```perl
 .base(8).say for ^51
 ```
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/simon-proctor/raku/ch-1.p6):
 
-``` Perl6
+```perl
 for $start-val..$end-val -> \val {
     say "Decimal {val} = Octal {val.base(8)}";
 ```
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ulrich-rieke/raku/ch-1.p6):
 
-``` Perl6
+```perl
 for (1..50) -> $i {
   say "Decimal $i = Octal " ~ $i.base(8).Str ;
 }
@@ -97,7 +97,7 @@ Many other challengers used the `%o` option of the `printf`, `sprintf`, and `fmt
 
 [Burkhard Nickels](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/raku/ch-1.p6):
 
-``` Perl6
+```perl
 for (0 .. 50) {
     printf("Decimal: %d - Octal: %o\n",$_,$_);
 }
@@ -106,7 +106,7 @@ for (0 .. 50) {
 
 [Noud Aldenhoven](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/noud/raku/ch-1.p6)
 
-``` Perl6
+```perl
 say $_.fmt("Decimal $_ = Octal %o") for ^51;
 ```
 
@@ -116,7 +116,7 @@ say $_.fmt("Decimal $_ = Octal %o") for ^51;
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/javier-luque/raku/ch-1.p6) used a format string (`%o`option) to do the job:
 
-``` Perl6
+```perl
 sub to-octal(Int $i) {
     return sprintf('%o', $i);
 }
@@ -130,7 +130,7 @@ for (0..50) {
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ryan-thompson/raku/ch-1.p6) also used a format string:
 
-```Perl6
+```perl
 say (0..50).fmt('Decimal %1$2d = Octal %2o', "\n");
 ```
 
@@ -140,7 +140,7 @@ Two challengers decided to implement a full conversion algorithm:
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kevin-colyer/raku/ch-1.p6) knows that there are easier ways to do it, but decided to roll his own version, perhaps for the fun of the exercise. He did it in the old assembly language (or C hacker) way:
 
-``` Perl6
+```perl
 sub dec-to-oct(Int $n is copy) returns Str {
     return "0" if $n==0;
     my Str $o = "";
@@ -158,7 +158,7 @@ Just in case you don't know or don't remember (I didn't and had to look it up), 
 
 [Colin Crain](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/colin-crain/raku/ch-1.p6) used the standard CS integer division and remainder to compute octal numbers. Even though this is not required in the task, Colin even expanded the definition domain to Z (inclluding negative integers):
 
-``` Perl6
+```perl
 sub MAIN () {
 
     for -50 .. 50 {
@@ -210,7 +210,7 @@ Well, I have a slight problem with this task requirement. A script generating a 
 
 I admit that this may be slight technological overkill, but seeing such a task leads me immediately to use grammars, which are naturally capable to manage such tasks, since their rules can easily be called recursively to parse any number of nested parentheses. So, this is my first solution:
 
-``` Perl6
+```perl
 use v6;
 
 grammar Parens {
@@ -245,7 +245,7 @@ This script displays the following output:
 
 As I said, using grammars for such a simple task might be considered over-engineering. We had recently a challenge about reverse Polish notation that led us to use a stack. Recursion and stacks are intimately related. We could use a stack to perform the same task: push to the stack if we get a `(`, and pop from the stack if we get a `)`, unless the stack is empty; and, at the end, check that the stack is empty. Some people might think that this approach is conceptually simpler than a grammar. But I tend to think this is wrong. Except for a small typo, my grammar approach worked the first time I tested it. Not only is the stack code below significantly longer, but I had to debug the stack approach below for about 15 minutes before it got right:
 
-``` Perl6
+```perl
 use v6;
 
 sub check-parens (Str $expr) {
@@ -286,7 +286,7 @@ This is the output:
 
 In fact, we don't really need a stack, as we can use a simple counter starting at 0, which we increment when we get an opening parenthesis, and decrement when we get a closing parenthesis. If we get a closing parenthesis when the counter is 0, or if the counter is not 0 at the end of the parsing, then the parens are not properly balanced. The `check-parens` subroutine is rewritten as follows:
 
-``` Perl6
+```perl
 sub check-parens (Str $expr) {
     my $count;
     my $s = $expr;
@@ -308,7 +308,7 @@ The output is the same as before.
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/arne-sommer/raku/ch-2.p6) suggested a solution in which the most important element is a counter that is incremented for an opening parenthesis and decremented for a closing parenthesis, much along the idea of my last solution above:
 
-``` Perl6
+```perl
 sub is-balanced ($brackets)
 {
   return False if $brackets.chars % 2; # An odd number
@@ -332,7 +332,7 @@ sub is-balanced ($brackets)
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-2.p6) used a counter much in the same way as my last solution:
 
-``` Perl6
+```perl
 my $count = 0;
 
 for roll <( )>: (^$parens).pick {
@@ -350,7 +350,7 @@ if $count {
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kevin-colyer/raku/ch-2.p6) also used a counter (`$open`):
 
-``` Perl6
+```perl
 sub match-brackets(Str $t) {
     # can never match condition
     return False if $t.chars < 2;
@@ -371,7 +371,7 @@ sub match-brackets(Str $t) {
 ```
 [Noud Aldenhoven](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/noud/raku/ch-2.p6) also used a counter:
 
-``` Perl6
+```perl
 sub balanced($brackets) {
     my $c = 0;
     for $brackets.comb() -> $b {
@@ -387,7 +387,7 @@ sub balanced($brackets) {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/simon-proctor/raku/ch-2.p6) also used a counter:
 
-``` Perl6
+```perl
 sub balanced( Str \brackets ) {
     my @list = brackets.comb("");
     my $count = 0;
@@ -408,7 +408,7 @@ sub balanced( Str \brackets ) {
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ulrich-rieke/raku/ch-2.p6) implemented two separate counters:
 
-```Perl6
+```perl
 sub validateBrackets( Str $term --> Bool) {
   if ( $term ~~ /^ ')' | '(' $/ ) {
       return False ;
@@ -431,7 +431,7 @@ I'm afraid Ulrich's code returns the wrong answer for some input strings. For ex
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/markus-holzer/raku/ch-2.p6) didn't quite use a grammar, but nonetheless used the grammar main building blocks, named rules (in this case, more precisely, tokens), to solve the problem:
 
-``` Perl6
+```perl
 sub test-string( $string )
 {
     my token opening-brace { \( };
@@ -444,7 +444,7 @@ sub test-string( $string )
 ```
 [Burhhard Nickels](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/raku/ch-2.p6) used a recursive `balanced_brackets` subroutine that removes a `()` pair each time it is called. When all such pairs have been removed (it is no longer found), then we know that the initial string was a properly balanced if there is no opening or closing parenthesis found. Phew, it took me a few minutes to understand the logic of his algorithm (essentially because I had originally missed that the found parentheses pairs are removed from the string and thought that they were just being matched).
 
-``` Perl6
+```perl
 sub balanced_brackets ($arg) {
     my $str = $arg;  # Cannot assign to a read-only.
     my $found = ($str ~~ s/\(\)//);
@@ -464,20 +464,20 @@ In this case, I would think that a simple loop to remove the parentheses pairs w
 
 Note also that Burhhard is making a copy of the input parameter, because subroutine parameters are read-only by default. This is perfectly correct, but Raku offers some features making this simpler: you can use some traits (`is rw` or `is copy`) in the signature to make a parameter mutable or to make it a copy of the argument passed to the subroutine. So,
 
-``` Perl6
+```perl
 sub balanced_brackets ($arg) {
     my $str = $arg;  # Cannot assign to a read-only.
 ```
 
 could be replaced by something like:
 
-``` Perl6
+```perl
 sub balanced_brackets ($str is copy) {
 ```
 
 [Colin Crain](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/colin-crain/raku/ch-2.p6) used essentially the same technique of eliminating progressively all `()` pairs with a regex substitution:
 
-```Perl6
+```perl
 sub validate (Str:D $orig) {
     my $str = $orig;
     unless $str.chars %% 2 { return "IMBALANCED - odd number of parens"};
@@ -490,7 +490,7 @@ sub validate (Str:D $orig) {
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/roger-bell-west/raku/ch-2.p6) also used the same approach with regex substitutions to eliminate `()` pairs:
 
-```Perl6
+```perl
 while ($s ~~ s:g/\(\)//) {
 }
 if ($s) {
@@ -502,7 +502,7 @@ if ($s) {
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ryan-thompson/raku/ch-2.p6) also used a regex substitution to eliminate `()` pairs, and did it in a very concise manner:
 
-``` Perl6
+```perl
 sub balanced( Str $str is copy --> Bool ) {
     Nil while $str ~~ s:g/'()'//;
     $str.chars == 0
@@ -510,7 +510,7 @@ sub balanced( Str $str is copy --> Bool ) {
 ```
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/jaldhar-h-vyas/raku/ch-2.p6) used a stack, in spirit much similar to my second solution:
 
-```Perl6
+```perl
 sub isBalanced(@brackets) {
     my @stack;
     (0 ..^ @brackets.elems).map({
@@ -528,7 +528,7 @@ sub isBalanced(@brackets) {
 ```
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/javier-luque/raku/ch-2.p6) used a counter:
 
-``` Perl6
+```perl
 sub validate-string(Str $word) {
     my $open_p;
     for $word.comb -> $letter {
@@ -541,7 +541,7 @@ sub validate-string(Str $word) {
 ```
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ruben-westerberg/raku/ch-2.p6) built an array `@v` of counters and then checked that none of the counter was below 0 and that the last one was equal to 0:
 
-``` Perl6
+```perl
 my $maxLength=@*ARGS[0]//20; #If no max on command line use 20
 while 1 {
     my $str="";

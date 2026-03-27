@@ -70,7 +70,7 @@ Please refer [wikipedia](https://en.wikipedia.org/wiki/ISBN#ISBN-13_check_digit_
 
 **Example**
 
-```
+```perl
     ISBN-13 check digit for '978-0-306-40615-7' is 7.
 ```
 
@@ -552,7 +552,7 @@ As I have taken the time on many occasions to relate, `substr` is a speed demon 
 Implement encryption and decryption using the Wheatstone-Playfair cipher.
 
 **Examples:**
-```
+```perl
     (These combine I and J, and use X as padding.)
 
     encrypt("playfair example", "hide the gold in the tree stump") = "bmodzbxdnabekudmuixmmouvif"

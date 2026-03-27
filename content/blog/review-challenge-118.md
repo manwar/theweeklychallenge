@@ -558,7 +558,7 @@ There are 6 squares with treasures.
 
 Write a script to find the path such that Knight can capture all treasures. The Knight can start from the top-left square.
 
-```
+```perl
       a b c d e f g h
     8 N * * * * * * * 8
     7 * * * * * * * * 7

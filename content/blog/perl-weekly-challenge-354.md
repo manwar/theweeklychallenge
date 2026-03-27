@@ -55,7 +55,7 @@ sub max_word {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-353/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub max_word(@sentences) {
     my @w = @sentences.map: { $_.words.elems };
     return @w ?? @w.sort.reverse[0] !! 0;

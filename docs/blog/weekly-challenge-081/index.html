@@ -179,10 +179,10 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <h2 id="table-of-contents">TABLE OF CONTENTS</h2>
 <hr>
-<h3 id="1-headlinesheadlines">1. <a href="#HEADLINES">HEADLINES</a></h3>
-<h3 id="2-youtube-weeklyyoutubeweekly">2. <a href="#YOUTUBEWEEKLY">YouTube WEEKLY</a></h3>
-<h3 id="3-task-1-common-base-stringtask1">3. <a href="#TASK1">TASK #1: Common Base String</a></h3>
-<h3 id="4-task-2-frequency-sorttask2">4. <a href="#TASK2">TASK #2: Frequency Sort</a></h3>
+<h3 id="1-headlines">1. <a href="#HEADLINES">HEADLINES</a></h3>
+<h3 id="2-youtube-weekly">2. <a href="#YOUTUBEWEEKLY">YouTube WEEKLY</a></h3>
+<h3 id="3-task-1-common-base-string">3. <a href="#TASK1">TASK #1: Common Base String</a></h3>
+<h3 id="4-task-2-frequency-sort">4. <a href="#TASK2">TASK #2: Frequency Sort</a></h3>
 <br>
 <h2 id="HEADLINES">HEADLINES</h2>
 <hr>
@@ -205,7 +205,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Let me share my solutions to the <strong><a href="/perl-weekly-challenge-081">The Weekly Challenge - 081</a></strong>.</p>
 <br>
 <h2 id="TASK1">TASK #1 › Common Base String</h2>
-<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<h4 id="submitted-by-mohammad-s-anwar">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
 <hr>
 <p>You are given 2 strings, <code>$A</code> and <code>$B</code>.</p>
 <p>Write a script to find out common base string in <code>$A</code> and <code>$B</code>.</p>
@@ -217,107 +217,107 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>I did this task only after the <strong>Frequency Sort</strong> task. Still, I am not fully satisfied with my solution.</p>
 <p>At least, it worked when used against the given examples in the task. I am sure if it wont behave when faced with edge-cases.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">common_base_strings</span> {
-    <span style="color:#66d9ef">my</span> ($string1, $string2) <span style="color:#f92672">=</span> @_;
-
-    die <span style="color:#e6db74">&#34;ERROR: Missing string1.\n&#34;</span> <span style="color:#66d9ef">unless</span> defined $string1;
-    die <span style="color:#e6db74">&#34;ERROR: Missing string2.\n&#34;</span> <span style="color:#66d9ef">unless</span> defined $string2;
-
-    <span style="color:#66d9ef">my</span> $len_string1 <span style="color:#f92672">=</span> length($string1);
-    <span style="color:#66d9ef">my</span> $len_string2 <span style="color:#f92672">=</span> length($string2);
-
-    <span style="color:#66d9ef">my</span> ($min_size, $min_string);
-    <span style="color:#66d9ef">if</span> ($len_string1 <span style="color:#f92672">&gt;</span> $len_string2) {
-        $min_string <span style="color:#f92672">=</span> $string2;
-        $min_size   <span style="color:#f92672">=</span> $len_string2;
-    }
-    <span style="color:#66d9ef">else</span> {
-        $min_string <span style="color:#f92672">=</span> $string1;
-        $min_size   <span style="color:#f92672">=</span> $len_string1;
-    }
-
-    <span style="color:#66d9ef">my</span> @common_base_strings <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $min_size) {
-        <span style="color:#66d9ef">my</span> $base_str <span style="color:#f92672">=</span> substr($min_string, <span style="color:#ae81ff">0</span>, $i);
-        push @common_base_strings, $base_str
-            <span style="color:#66d9ef">if</span> (($string1 <span style="color:#f92672">eq</span> $base_str x <span style="color:#ae81ff">2</span>)
-                <span style="color:#f92672">||</span>
-                ($string2 <span style="color:#f92672">eq</span> $base_str x <span style="color:#ae81ff">2</span>));
-    }
-
-    <span style="color:#66d9ef">return</span> @common_base_strings;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">common_base_strings</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($string1, $string2) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing string1.\n&#34;</span> <span style="color:#66d9ef">unless</span> defined $string1;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing string2.\n&#34;</span> <span style="color:#66d9ef">unless</span> defined $string2;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $len_string1 <span style="color:#f92672">=</span> length($string1);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $len_string2 <span style="color:#f92672">=</span> length($string2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($min_size, $min_string);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($len_string1 <span style="color:#f92672">&gt;</span> $len_string2) {
+</span></span><span style="display:flex;"><span>        $min_string <span style="color:#f92672">=</span> $string2;
+</span></span><span style="display:flex;"><span>        $min_size   <span style="color:#f92672">=</span> $len_string2;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        $min_string <span style="color:#f92672">=</span> $string1;
+</span></span><span style="display:flex;"><span>        $min_size   <span style="color:#f92672">=</span> $len_string1;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @common_base_strings <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $min_size) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $base_str <span style="color:#f92672">=</span> substr($min_string, <span style="color:#ae81ff">0</span>, $i);
+</span></span><span style="display:flex;"><span>        push @common_base_strings, $base_str
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (($string1 <span style="color:#f92672">eq</span> $base_str x <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>                ($string2 <span style="color:#f92672">eq</span> $base_str x <span style="color:#ae81ff">2</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @common_base_strings;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>I did this on Sunday evening, just to feel better.</p>
 <p>I simply translated my <strong>Perl</strong> solution to be quick.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">common</span>-base-strings(Str $string1, Str $string2 --&gt; Str) {
-
-    <span style="color:#66d9ef">my</span> $len_string1 <span style="color:#f92672">=</span> $string1<span style="color:#f92672">.</span>chars;
-    <span style="color:#66d9ef">my</span> $len_string2 <span style="color:#f92672">=</span> $string2<span style="color:#f92672">.</span>chars;
-
-    <span style="color:#66d9ef">my</span> ($min_size, $min_string);
-    <span style="color:#66d9ef">if</span> ($len_string1 <span style="color:#f92672">&gt;</span> $len_string2) {
-        $min_string <span style="color:#f92672">=</span> $string2;
-        $min_size   <span style="color:#f92672">=</span> $len_string2;
-    }
-    <span style="color:#66d9ef">else</span> {
-        $min_string <span style="color:#f92672">=</span> $string1;
-        $min_size   <span style="color:#f92672">=</span> $len_string1;
-    }
-
-    <span style="color:#66d9ef">my</span> @common_base_strings <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $min_size <span style="color:#f92672">-&gt;</span> $i {
-        <span style="color:#66d9ef">my</span> $base_str <span style="color:#f92672">=</span> substr($min_string, <span style="color:#ae81ff">0</span>, $i);
-        @common_base_strings<span style="color:#f92672">.</span>push: $base_str
-            <span style="color:#66d9ef">if</span> ($string1 <span style="color:#f92672">eq</span> $base_str x <span style="color:#ae81ff">2</span>)
-               <span style="color:#f92672">||</span>
-               ($string2 <span style="color:#f92672">eq</span> $base_str x <span style="color:#ae81ff">2</span>);
-    }
-
-    <span style="color:#66d9ef">return</span> @common_base_strings<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">common</span>-base-strings(Str $string1, Str $string2 --&gt; Str) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $len_string1 <span style="color:#f92672">=</span> $string1<span style="color:#f92672">.</span>chars;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $len_string2 <span style="color:#f92672">=</span> $string2<span style="color:#f92672">.</span>chars;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($min_size, $min_string);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($len_string1 <span style="color:#f92672">&gt;</span> $len_string2) {
+</span></span><span style="display:flex;"><span>        $min_string <span style="color:#f92672">=</span> $string2;
+</span></span><span style="display:flex;"><span>        $min_size   <span style="color:#f92672">=</span> $len_string2;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        $min_string <span style="color:#f92672">=</span> $string1;
+</span></span><span style="display:flex;"><span>        $min_size   <span style="color:#f92672">=</span> $len_string1;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @common_base_strings <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $min_size <span style="color:#f92672">-&gt;</span> $i {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $base_str <span style="color:#f92672">=</span> substr($min_string, <span style="color:#ae81ff">0</span>, $i);
+</span></span><span style="display:flex;"><span>        @common_base_strings<span style="color:#f92672">.</span>push: $base_str
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($string1 <span style="color:#f92672">eq</span> $base_str x <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>               <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>               ($string2 <span style="color:#f92672">eq</span> $base_str x <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @common_base_strings<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>A very thin wrapper around helper subroutine to get the task done.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">my</span> $S1 <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;abcdabcd&#34;</span>;
-<span style="color:#66d9ef">my</span> $S2 <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;abcdabcdabcdabcd&#34;</span>;
-
-printf(<span style="color:#e6db74">&#34;Common Base String(s): %s\n&#34;</span>,
-       join(<span style="color:#e6db74">&#34;, &#34;</span>, common_base_strings($S1, $S2)));
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $S1 <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;abcdabcd&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $S2 <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;abcdabcdabcdabcd&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;Common Base String(s): %s\n&#34;</span>,
+</span></span><span style="display:flex;"><span>       join(<span style="color:#e6db74">&#34;, &#34;</span>, common_base_strings($S1, $S2)));
+</span></span></code></pre></div><br>
 <p>Same applies to <strong>Raku</strong> solution.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$string1 = &#34;abcdabcd&#34;,
-         Str :$string2 = &#34;abcdabcdabcdabcd&#34;) {
-
-    common<span style="color:#f92672">-</span>base<span style="color:#f92672">-</span>strings($string1, $string2)<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$string1 = &#34;abcdabcd&#34;,
+</span></span><span style="display:flex;"><span>         Str :$string2 = &#34;abcdabcdabcdabcd&#34;) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    common<span style="color:#f92672">-</span>base<span style="color:#f92672">-</span>strings($string1, $string2)<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Standard unit test just to cover the example in the task.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> Test::Deep;
-
-is_deeply( [ common_base_strings(<span style="color:#e6db74">&#34;abcdabcd&#34;</span>, <span style="color:#e6db74">&#34;abcdabcdabcdabcd&#34;</span>) ],
-           [ <span style="color:#e6db74">&#34;abcd&#34;</span>, <span style="color:#e6db74">&#34;abcdabcd&#34;</span> ],
-           <span style="color:#e6db74">&#34;testing example 1&#34;</span> );
-
-is_deeply( [ common_base_strings(<span style="color:#e6db74">&#34;aa&#34;</span>, <span style="color:#e6db74">&#34;aaa&#34;</span>) ],
-           [ <span style="color:#e6db74">&#34;a&#34;</span> ],
-           <span style="color:#e6db74">&#34;testing example 2&#34;</span> );
-
-done_testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::Deep;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is_deeply( [ common_base_strings(<span style="color:#e6db74">&#34;abcdabcd&#34;</span>, <span style="color:#e6db74">&#34;abcdabcdabcdabcd&#34;</span>) ],
+</span></span><span style="display:flex;"><span>           [ <span style="color:#e6db74">&#34;abcd&#34;</span>, <span style="color:#e6db74">&#34;abcdabcd&#34;</span> ],
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#34;testing example 1&#34;</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is_deeply( [ common_base_strings(<span style="color:#e6db74">&#34;aa&#34;</span>, <span style="color:#e6db74">&#34;aaa&#34;</span>) ],
+</span></span><span style="display:flex;"><span>           [ <span style="color:#e6db74">&#34;a&#34;</span> ],
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#34;testing example 2&#34;</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><br>
 <h2 id="TASK2">TASK #2 › Frequency Sort</h2>
-<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<h4 id="submitted-by-mohammad-s-anwar-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
 <hr>
 <p>You are given file named <code>input</code>.</p>
 <p>Write a script to find the frequency of all the words.</p>
@@ -328,92 +328,92 @@ done_testing;
 <p>I felt better after getting the task done in <strong>Perl</strong>  at least.</p>
 <p>For this, I created two subroutines <code>sub fetch_words()</code> and <code>sub frequency_count()</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch_words</span> {
-    <span style="color:#66d9ef">my</span> ($file) <span style="color:#f92672">=</span> @_;
-
-    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#34;&lt;:encoding(UTF-8)&#34;</span>, $file)
-        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Unable to open $file: $!\n&#34;</span>;
-
-    <span style="color:#66d9ef">my</span> %words <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
-        chomp $line;
-        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\.//g</span>;
-        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\&#34;//g</span>;
-        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\(//g</span>;
-        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\)//g</span>;
-        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\,//g</span>;
-        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\&#39;s//g</span>;
-        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\-\-/ /g</span>;
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $word (split <span style="color:#e6db74">/\s/</span>, $line) {
-            $words{$word} <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-        }
-    }
-
-    close($fh);
-
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%words;
-}
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">frequency_count</span> {
-    <span style="color:#66d9ef">my</span> ($words) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> %frequency <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $word (keys %$words) {
-        $frequency{$words<span style="color:#f92672">-&gt;</span>{$word}} <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">.</span> $word;
-    }
-
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $count (sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %frequency) {
-        <span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> split <span style="color:#e6db74">/ /</span>, $frequency{$count};
-        printf(<span style="color:#e6db74">&#34;%d%s\n&#34;</span>, $count, join(<span style="color:#e6db74">&#34; &#34;</span>, sort @words));
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch_words</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($file) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#34;&lt;:encoding(UTF-8)&#34;</span>, $file)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Unable to open $file: $!\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %words <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
+</span></span><span style="display:flex;"><span>        chomp $line;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\.//g</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\&#34;//g</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\(//g</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\)//g</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\,//g</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\&#39;s//g</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\-\-/ /g</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $word (split <span style="color:#e6db74">/\s/</span>, $line) {
+</span></span><span style="display:flex;"><span>            $words{$word} <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    close($fh);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%words;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">frequency_count</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($words) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %frequency <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $word (keys %$words) {
+</span></span><span style="display:flex;"><span>        $frequency{$words<span style="color:#f92672">-&gt;</span>{$word}} <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">.</span> $word;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $count (sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %frequency) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> split <span style="color:#e6db74">/ /</span>, $frequency{$count};
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d%s\n&#34;</span>, $count, join(<span style="color:#e6db74">&#34; &#34;</span>, sort @words));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Simply translated the <strong>Perl</strong> solution here.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch</span>-words(Str $file where *.IO.f) {
-
-    <span style="color:#66d9ef">my</span> $words;
-    <span style="color:#66d9ef">for</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line is copy {
-        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\./</span><span style="color:#f92672">/</span>;
-        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\&#34;/</span><span style="color:#f92672">/</span>;
-        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\(/</span><span style="color:#f92672">/</span>;
-        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\)/</span><span style="color:#f92672">/</span>;
-        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\,/</span><span style="color:#f92672">/</span>;
-        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\&#39;s/</span><span style="color:#f92672">/</span>;
-        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\-\-/</span> <span style="color:#f92672">/</span>;
-        <span style="color:#66d9ef">for</span> $line<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">-&gt;</span> $word {
-            $words<span style="color:#f92672">.</span>{$word} <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> $words;
-}
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">frequency</span>-count($words) {
-
-    <span style="color:#66d9ef">my</span> %frequency <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">for</span> $words<span style="color:#f92672">.</span>keys <span style="color:#f92672">-&gt;</span> $word {
-        %frequency{$words<span style="color:#f92672">.</span>{$word}}<span style="color:#f92672">.</span>push: $word;
-    }
-
-    <span style="color:#66d9ef">for</span> %frequency<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort({ $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b }) <span style="color:#f92672">-&gt;</span> $count {
-        ($count, %frequency{$count}<span style="color:#f92672">.</span>sort)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>)<span style="color:#f92672">.</span>say;
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch</span>-words(Str $file where *.IO.f) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $words;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line is copy {
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\./</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\&#34;/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\(/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\)/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\,/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\&#39;s/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>        $line <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\-\-/</span> <span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> $line<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">-&gt;</span> $word {
+</span></span><span style="display:flex;"><span>            $words<span style="color:#f92672">.</span>{$word} <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $words;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">frequency</span>-count($words) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %frequency <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> $words<span style="color:#f92672">.</span>keys <span style="color:#f92672">-&gt;</span> $word {
+</span></span><span style="display:flex;"><span>        %frequency{$words<span style="color:#f92672">.</span>{$word}}<span style="color:#f92672">.</span>push: $word;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> %frequency<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort({ $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b }) <span style="color:#f92672">-&gt;</span> $count {
+</span></span><span style="display:flex;"><span>        ($count, %frequency{$count}<span style="color:#f92672">.</span>sort)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>)<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>One-liner solution in <strong>Perl</strong>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-frequency_count(fetch_words($ARGV[<span style="color:#ae81ff">0</span>]));
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>frequency_count(fetch_words($ARGV[<span style="color:#ae81ff">0</span>]));
+</span></span></code></pre></div><br>
 <p>Please find below the solution in <strong>Raku</strong>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$file where *.IO.f) {
-    frequency<span style="color:#f92672">-</span>count(fetch<span style="color:#f92672">-</span>words($file));
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$file where *.IO.f) {
+</span></span><span style="display:flex;"><span>    frequency<span style="color:#f92672">-</span>count(fetch<span style="color:#f92672">-</span>words($file));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>That&rsquo;s it for this week. Speak to you soon.</p>
 
     </article>

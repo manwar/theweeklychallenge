@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-1--day-2blogadvent-calendar-2021-12-02-">| <strong>Day 1</strong> | <a href="/blog/advent-calendar-2021-12-02"><strong>Day 2</strong></a> |</h3>
+        <h2 id="advent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
+<h3 id="-day-1--day-2-">| <strong>Day 1</strong> | <a href="/blog/advent-calendar-2021-12-02"><strong>Day 2</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <code>Abigail</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-095"><strong>&ldquo;The Weekly Challenge - 095&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://programmingblog702692439.wordpress.com/2021/01/14/perl-weekly-challenge-95-part-1/"><strong>post</strong></a> by <code>Abigail</code>.</p>
 <hr>
@@ -203,61 +203,61 @@ if (localStorage.getItem('twc-theme') === 'light') {
 4) If a string which starts with a digit, ends with the same digit, and the remaining substring is a numberic palindrome, then the complete string is a numeric palindrome.
 </code></pre>
 <p>We can then write the pattern to match a numeric palindrome as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#f92672">/^</span>(<span style="color:#f92672">*</span>sr:            <span style="color:#75715e"># Start a script run</span>
-        (?<span style="color:#e6db74">&lt;PAL&gt;</span>        <span style="color:#75715e"># Start a group named &#34;PAL&#34;</span>
-           <span style="color:#f92672">\.</span>?(?<span style="color:#f92672">=\</span>d)   <span style="color:#75715e"># Empty string, or a dot, followed by a digit</span>
-         <span style="color:#f92672">|</span> <span style="color:#f92672">\</span>d          <span style="color:#75715e"># Or a single digit</span>
-         <span style="color:#f92672">|</span> (<span style="color:#f92672">\</span>d)        <span style="color:#75715e"># Or a digit</span>
-           (?<span style="color:#f92672">&amp;</span>PAL)     <span style="color:#75715e"># ... followed by a palindrome</span>
-           <span style="color:#f92672">\</span>g{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}      <span style="color:#75715e"># ... and the same digit again</span>
-        )              <span style="color:#75715e"># End of the &#34;PAL&#34; group</span>
-     )$<span style="color:#960050;background-color:#1e0010">/</span>x              <span style="color:#75715e"># End of the script run.</span>
-</code></pre></div><p><a href="https://perldoc.perl.org/perlre#Script-Runs"><strong>Script runs</strong></a> were introduced in Perl 5.28, and can be used to assert we don’t have mixing of scripts inside.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#f92672">/^</span>(<span style="color:#f92672">*</span>sr:            <span style="color:#75715e"># Start a script run</span>
+</span></span><span style="display:flex;"><span>        (?<span style="color:#e6db74">&lt;PAL&gt;</span>        <span style="color:#75715e"># Start a group named &#34;PAL&#34;</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">\.</span>?(?<span style="color:#f92672">=\</span>d)   <span style="color:#75715e"># Empty string, or a dot, followed by a digit</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">|</span> <span style="color:#f92672">\</span>d          <span style="color:#75715e"># Or a single digit</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">|</span> (<span style="color:#f92672">\</span>d)        <span style="color:#75715e"># Or a digit</span>
+</span></span><span style="display:flex;"><span>           (?<span style="color:#f92672">&amp;</span>PAL)     <span style="color:#75715e"># ... followed by a palindrome</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">\</span>g{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}      <span style="color:#75715e"># ... and the same digit again</span>
+</span></span><span style="display:flex;"><span>        )              <span style="color:#75715e"># End of the &#34;PAL&#34; group</span>
+</span></span><span style="display:flex;"><span>     )$<span style="color:#960050;background-color:#1e0010">/</span>x              <span style="color:#75715e"># End of the script run.</span>
+</span></span></code></pre></div><p><a href="https://perldoc.perl.org/perlre#Script-Runs"><strong>Script runs</strong></a> were introduced in Perl 5.28, and can be used to assert we don’t have mixing of scripts inside.</p>
 <p>All that is left to do is match the input against the pattern above. Which can be seen in the full program below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/opt/perl/bin/perl</span>
-
-<span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.032</span>;
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">no</span>  warnings <span style="color:#e6db74">&#39;syntax&#39;</span>;
-
-<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;signatures&#39;</span>;
-<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;lexical_subs&#39;</span>;
-
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># Run as &#34;perl ch-1.pl &lt; input-file&#34;</span>
-<span style="color:#75715e"># with one or more possible palidromes, each on their own line.</span>
-<span style="color:#75715e">#</span>
-
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># A recursive definition of a palindrome:</span>
-<span style="color:#75715e">#      - Empty, but followed by a digit          (1)</span>
-<span style="color:#75715e">#      - A decimal dot, but followed by a digit  (1)</span>
-<span style="color:#75715e">#      - A single digit</span>
-<span style="color:#75715e">#      - A digit, followed by a palindrome, followed by the same digit</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># (1) The &#34;followed by a digit&#34; is to prevent an empty string, or a</span>
-<span style="color:#75715e">#     a lone dot to be considered a palindrome.</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># We also wrap the pattern into a script run assertion; this means we</span>
-<span style="color:#75715e"># accept palindromes from different scripts -- but we don&#39;t allow mixing</span>
-<span style="color:#75715e"># scripts.</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># That is, we accept</span>
-<span style="color:#75715e">#      &#34;\N{TAMIL DIGIT ONE}\N{TAMIL DIGIT TWO}\N{TAMIL DIGIT ONE}&#34;</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># But not</span>
-<span style="color:#75715e">#      &#34;\N{TAMIL DIGIT ONE}\N{THAI DIGIT TWO}\N{TAMIL DIGIT ONE}&#34;</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># As the latter mixes digits from two different scripts.</span>
-<span style="color:#75715e">#</span>
-
-binmode <span style="color:#f92672">*</span>STDIN, <span style="color:#e6db74">&#39;:utf8&#39;</span>;
-say <span style="color:#e6db74">/^(*sr: (?&lt;PAL&gt; \.?(?=\d) | \d | (\d) (?&amp;PAL) \g{-1}))$/x</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">while</span> <span style="color:#f92672">&lt;&gt;</span>;
-
-<span style="color:#75715e">__END__
-</span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/opt/perl/bin/perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.032</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">no</span>  warnings <span style="color:#e6db74">&#39;syntax&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;signatures&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;lexical_subs&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run as &#34;perl ch-1.pl &lt; input-file&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># with one or more possible palidromes, each on their own line.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># A recursive definition of a palindrome:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#      - Empty, but followed by a digit          (1)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#      - A decimal dot, but followed by a digit  (1)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#      - A single digit</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#      - A digit, followed by a palindrome, followed by the same digit</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># (1) The &#34;followed by a digit&#34; is to prevent an empty string, or a</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     a lone dot to be considered a palindrome.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># We also wrap the pattern into a script run assertion; this means we</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># accept palindromes from different scripts -- but we don&#39;t allow mixing</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># scripts.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># That is, we accept</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#      &#34;\N{TAMIL DIGIT ONE}\N{TAMIL DIGIT TWO}\N{TAMIL DIGIT ONE}&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># But not</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#      &#34;\N{TAMIL DIGIT ONE}\N{THAI DIGIT TWO}\N{TAMIL DIGIT ONE}&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># As the latter mixes digits from two different scripts.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>binmode <span style="color:#f92672">*</span>STDIN, <span style="color:#e6db74">&#39;:utf8&#39;</span>;
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">/^(*sr: (?&lt;PAL&gt; \.?(?=\d) | \d | (\d) (?&amp;PAL) \g{-1}))$/x</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">while</span> <span style="color:#f92672">&lt;&gt;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">__END__
+</span></span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></p>
 

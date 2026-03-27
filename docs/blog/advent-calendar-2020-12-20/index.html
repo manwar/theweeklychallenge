@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2020blogadvent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
-<h3 id="-day-19blogadvent-calendar-2020-12-19--day-20--day-21blogadvent-calendar-2020-12-21-">| <a href="/blog/advent-calendar-2020-12-19"><strong>Day 19</strong></a> | <strong>Day 20</strong> | <a href="/blog/advent-calendar-2020-12-21"><strong>Day 21</strong></a> |</h3>
+        <h2 id="advent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
+<h3 id="-day-19--day-20--day-21-">| <a href="/blog/advent-calendar-2020-12-19"><strong>Day 19</strong></a> | <strong>Day 20</strong> | <a href="/blog/advent-calendar-2020-12-21"><strong>Day 21</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-017"><strong>Yozen Hernandez</strong></a>. Today he is talking about his solution to the task <code>Ackermann function</code> of <strong><a href="/blog/perl-weekly-challenge-017">&ldquo;The Weekly Challenge - 017&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="https://yzhernand.github.io/posts/perl-weekly-challenge-17-1/"><strong>post</strong></a> by <strong>Yozen Hernandez</strong>.</p>
 <hr>
@@ -191,19 +191,19 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </blockquote>
 <p>Technically, the above formulation is known as the <strong>“Ackermann-Péter function”</strong>, but as the Wikipedia page states, many authors refer to it as “the” Ackermann function.</p>
 <p>This is looked like a fairly straightforward implementation of a recursive function, but it did have a few hairs. Firstly, as can be seen above, the function is <a href="https://en.wikipedia.org/wiki/Piecewise">piecewise</a>, and is defined only for non-negative integers. In fact, the recursive calls gradually step the values down to 0, with the deepest call possible being reached when m=0.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">A</span> ( $m = 3, $n = 3) {
-    croak <span style="color:#e6db74">&#34;Error: function only defined for nonnegative integers.&#34;</span>
-        <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;(got: m = $m, n = $n)&#34;</span>
-        <span style="color:#66d9ef">if</span> ( $m <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> );
-
-    <span style="color:#75715e"># A(m, n) = n + 1                  if m = 0</span>
-    <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $m <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-
-    <span style="color:#75715e"># A(m, n) = A(m - 1, 1)            if m &gt; 0 and n = 0</span>
-    <span style="color:#75715e"># A(m, n) = A(m - 1, A(m, n - 1))  if m &gt; 0 and n &gt; 0</span>
-    <span style="color:#66d9ef">return</span> A( $m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#ae81ff">1</span> : A($m, $n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) );
-}
-</code></pre></div><p>One thing I initially missed when implementing this, is that the function not only should subtract 1 from $n when both values are greater than 0, but it should actually make a second, embedded call there! It took me forever to notice that was missing 😒.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">A</span> ( $m = 3, $n = 3) {
+</span></span><span style="display:flex;"><span>    croak <span style="color:#e6db74">&#34;Error: function only defined for nonnegative integers.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;(got: m = $m, n = $n)&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( $m <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># A(m, n) = n + 1                  if m = 0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $m <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># A(m, n) = A(m - 1, 1)            if m &gt; 0 and n = 0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># A(m, n) = A(m - 1, A(m, n - 1))  if m &gt; 0 and n &gt; 0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> A( $m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#ae81ff">1</span> : A($m, $n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>One thing I initially missed when implementing this, is that the function not only should subtract 1 from $n when both values are greater than 0, but it should actually make a second, embedded call there! It took me forever to notice that was missing 😒.</p>
 <p>Once that was implemented, I decided to test it with larger values, because I don’t read whole Wikipedia pages. After about a minute of waiting, I decided to scoll down… You should check out the table of values on the wiki page. The short version is that the Ackermann function grows. VERY quickly. I kept my testing down to some smaller values, and those all passed.</p>
 <p>Finally, I decided to compare performance with and without memoization. Memoizing really only makes sense with repeated execution, and I don’t know of the actual applications of this function so I don’t know how true that would be.</p>
 <p>With default parameters, using <code>Benchmark::Forking</code> gets me the following results;</p>

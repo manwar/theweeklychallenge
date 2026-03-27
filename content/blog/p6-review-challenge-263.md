@@ -19,7 +19,7 @@ In the first task, you have an array of integers `@ints` and a target number `$k
 
 What does Raku offer that can be used in this task? First, the [`sort` routine](https://docs.raku.org/routine/sort), which you can use as a method or as a stand-alone function:
 
-```raku
+```perl
 my @ints = 1, 5, 3, 2, 4, 2;
 
 say @ints.sort;  # (1 2 2 3 4 5)
@@ -28,7 +28,7 @@ say sort(@ints); # (1 2 2 3 4 5)
 
 By the way, the `sort` routine in Raku is smart enough to take care of correclty sorting both numbers and strings. Compare the following two sortings:
 
-```raku
+```perl
 my @ints = 1, 2, 10, 20;
 say @ints.sort;
 
@@ -38,14 +38,14 @@ say @strs.sort;
 
 The result is expectedly correct:
 
-```
+```perl
 (1 2 10 20)
 (1 10 2 20)
 ```
 
 Back to the task, and the second mean in Raku to be used here is [the `grep` routine](https://docs.raku.org/routine/grep) that finds the elements with the given condition. Our condition is the equality with the target value `$k`, so in terms of Raku you can choose one of the following approaches:
 
-```raku
+```perl
 my @data = @ints.sort;
 my $k = 2;
 say @data.grep: * == $k;    # (2 2)
@@ -54,7 +54,7 @@ say @data.grep({$_ == $k}); # (2 2)
 
 The tricky point here is to get the indices of the elements that match the condition. You cannot do it directly after you have already filtered the data. Instead, you may think of making a loop over the values and gathering the indices:
 
-```raku
+```perl
 say gather {
     for ^@data -> $index {
         take $index if @data[$index] == $k;
@@ -64,7 +64,7 @@ say gather {
 
 Raku, nevertheless, has a better solution. Just use the [`:k` flag of `grep`](https://docs.raku.org/routine/grep#(List)_routine_grep). In this case, instead of returing the values, `grep` returns the indices of the matched elements, which is exactly what is needed.
 
-```raku
+```perl
 say @data.grep: * == $k, :k; # (1 2)
 ```
 
@@ -72,7 +72,7 @@ say @data.grep: * == $k, :k; # (1 2)
 
 All of the above steps can be chained to get a construction like this, as you can see in the solutions propopsed by a number of authors. Notice that you even don’t have to explicitly use comparison and thus the condition can be shortened to a bare minumum: `$k`.
 
-```raku
+```perl
 @ints.sort.grep: $k, :k
 ```
 
@@ -91,7 +91,7 @@ All of the above steps can be chained to get a construction like this, as you ca
 
 <br>
 
-```raku
+```perl
 sub target-index (+ints,:$k) {
     ints
     andthen .sort
@@ -105,13 +105,13 @@ sub target-index (+ints,:$k) {
 
 <br>
 
-```raku
+```perl
 @nums.sort.grep( * ~~ $k, :k ).say;
 ```
 
 A slightly different algorithm is used by some authors. Instead of grepping and looking for an index, they use a tricky condition to grep indices directly:
 
-```raku
+```perl
 my @sorted = @in.sort;
 my @out = grep {@sorted[$_] == $target}, 0..@sorted.end;
 ```
@@ -125,7 +125,7 @@ my @out = grep {@sorted[$_] == $target}, 0..@sorted.end;
 
 You can code it differently, for example:
 
-```raku
+```perl
 sub targetindex(@a0, $k) {
     my @a = @a0.sort({$^a <=> $^b});
     return [(0 .. @a.end).grep({@a[$_] == $k})];
@@ -141,7 +141,7 @@ sub targetindex(@a0, $k) {
 
 Further, let’s look at the solutions with a loop, for example:
 
-```raku
+```perl
 for @sorted.kv -> $i, $v {
     next unless $v == $k;
     @output.push($i);
@@ -156,7 +156,7 @@ for @sorted.kv -> $i, $v {
 
 <br>
 
-```raku
+```perl
 #-------------------------------------------------------------------------------
 sub find-target-indices( List:D[Int:D] $ints, Int:D $k --> List:D[UInt:D] )
 #-------------------------------------------------------------------------------
@@ -179,7 +179,7 @@ sub find-target-indices( List:D[Int:D] $ints, Int:D $k --> List:D[UInt:D] )
 
 <br>
 
-```raku
+```perl
 sub target-index(Int:D $k, @ints --> Positional) {
     indices(@ints.sort.join, $k)
 }
@@ -191,7 +191,7 @@ As a bonus, examine the following alternative code submitted by [Bruce Gray](htt
 
 <br>
 
-```raku
+```perl
 sub task1_single_pass_without_sorting ( UInt $k, @ns ) {
     return flat .{Less} + ^.{Same} given ( @ns »<=>» $k ).Bag;
 }

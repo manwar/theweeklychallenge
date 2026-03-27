@@ -33,7 +33,7 @@ So Pascal's Triangle is pretty and I decided I wanted to get it nicely laid out 
 
 So this challenge has two parts. Generating the numbers for the triangle and then laying it out. In this case I didn't read the article too much but had a neat idea. For a given row (eg **[1,2,1]** you can generate the next row by implementing doing the following):
 
-```perl6
+```perl
 # Here's our row
 my @row = [1,2,1];
 # Make a copy with a 0 at the start
@@ -60,7 +60,7 @@ But you can give **Z** and inline operator to apply list for instance **+** givi
 
 Which looks very nice. So if we just wanted our script to out lists of lists that make up Pascal's Triangle we could to this :
 
-```perl6
+```perl
  Note the challenge says we need at least 3 lines so we catch that here.
 multi sub MAIN( Int() $lines is copy where * > 2 ) {
     # Set up the initial state.
@@ -98,7 +98,7 @@ Which is.... a bit meh.
 
 Of course you could make those lines up then find the length of the last line and left pad all the other by half that amount.
 
-```perl6
+```perl
 @out = @out.map( { $_.join(" ") } );
 
 my $len = @out[*-1].codes;
@@ -122,7 +122,7 @@ And that's a bit nicer :
 
 But it falls apart when larger numbers get added. So we need to pad our output based on the length of the biggers number. Here's what I came up with :
 
-```perl6
+```perl
 sub pad( Str $val, Int $len ) {
     my $diff = $len - $val.codes;
     my $rpad = " " x ( ( $diff div 2 ) + 1 );
@@ -133,7 +133,7 @@ sub pad( Str $val, Int $len ) {
 
 Pass in the number to pad and the length of the largest number and it returns the number all laiud out nicely. With that here's my final code :
 
-```perl6
+```perl
 sub pad( Str $val, Int $len ) {
     my $diff = $len - $val.codes;
     my $rpad = " " x ( ( $diff div 2 ) + 1 );

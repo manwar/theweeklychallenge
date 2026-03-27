@@ -62,18 +62,18 @@ You are given two strings $A and $B.
 Write a script to check if the given strings are Isomorphic. Print 1 if they are otherwise 0.
 
 **Example 1:**
-```
+```perl
     Input : $A = "abc"; $B = "xyz"
     Output: 1
 ```
 
 **Example 2:**
-```
+```perl
     Input : $A = "abb"; $B = "xyy"
     Output: 1
 ```
 **Example 3:**
-```
+```perl
     Input : $A = "sum"; $B = "add"
     Output: 0
 ```
@@ -618,17 +618,17 @@ You are given a set of sorted non-overlapping intervals and a new interval.
 Write a script to merge the new interval to the given set of intervals.
 
 **Example 1:**
-```
+```perl
     Input $S = (1,4), (8,10); $N = (2,6)
     Output: (1,6), (8,10)
 ```
 **Example 2:**
-```
+```perl
     Input $S = (1,2), (3,7), (8,10); $N = (5,8)
     Output: (1,2), (3,10)
 ```
 **Example 3:**
-```
+```perl
     Input $S = (1,5), (7,9); $N = (10,11)
     Output: (1,5), (7,9), (10,11)
 ```

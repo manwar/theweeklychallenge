@@ -66,7 +66,7 @@ Similarly, `my @array = split //, $string;` became `my @array = $string.comb;`
 
 Finally `return join '', @array;` became `return @array.join('');`
 
-```perl6
+```perl
 sub swap(Str $string, Int $count, Int $offset) {
 
     my $length = $string.chars;
@@ -96,7 +96,7 @@ print sprintf("%s => %s\n", $S, swap($S, $C, $O));
 
 **Raku** is showing off the power of **sub MAIN()** making code looks cleaner for sure.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$S = 'perlandraku', Int :$C = 3, Int :$O = 4) {
@@ -122,7 +122,7 @@ done_testing;
 
 Near identical to the **Perl** except one bit, here I didn't use parenthesis around `is()`.
 
-```perl6
+```perl
 use Test;
 
 is swap('perlandraku', 3, 4),
@@ -192,7 +192,7 @@ What does it do?
 
 If I am not wrong then it expands the list.
 
-```perl6
+```perl
 sub generate-gray-code-sequence(Int $n) {
 
     my %S = (
@@ -220,7 +220,7 @@ sub generate-gray-code-sequence(Int $n) {
 
 Did you notice the use of `sub to-decimal()`? It is user defined subroutine like below:
 
-```perl6
+```perl
 sub to-decimal(Str $binary) {
     return ":2<$binary>".Int;
 }
@@ -240,7 +240,7 @@ print sprintf("%d-bit Gray Code Sequence:\n[%s]\n",
 
 **Raku** solution looks like below, a very thin wrapper around the above subroutine.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Int :$N = 3) {
@@ -268,7 +268,7 @@ done_testing;
 
 Same goes with **Raku**.
 
-```perl6
+```perl
 use Test;
 
 is-deeply generate-gray-code-sequence(3),

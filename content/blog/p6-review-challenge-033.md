@@ -58,7 +58,7 @@ This is not specified explicitly, but from the example, we gather that what is d
 
 When solving the same task in Perl 5 for the weekly challenge, we used a hash as an histogram, i.e. as a collection of counters. We could do the same in Raku (formerly known as Perl 6). In Raku, however, we can also use a `Bag`, named `$histo`, rather than a hash, to easily implement an histogram. With just a little bit of work, we're able to populate the bag in just one statement, without any explicit loop (otherwise, we would have had to use a `BagHash` instead, since a `bag` is not mutable and therefore needs to be populated in one single step). Also, if a letter does not exist in the `$histo` bag, the bag will report 0, so that, contrary to the hash solution, we don't need any special code to avoid an `undefined` warning for such an edge case. All this makes the code much more concise than its Perl 5 counterpart.
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN (*@files) {
@@ -111,7 +111,7 @@ Not less than 17 solutions were submitted for this task, which is probably the l
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/arne-sommer/perl6/ch-1.p6) provided a very compact solution, at least in terms of the way of populating a `Bag` of counters:
 
-``` Perl6
+```perl
 my %result = $*ARGFILES.comb>>.lc.grep(* ~~ /<:L>/).Bag;
 
 for %result.keys.sort -> $key
@@ -122,7 +122,7 @@ for %result.keys.sort -> $key
 
 [Mark Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/mark-senn/perl6/ch-1.p6) also suggested a fairly concise solution, using a hash:
 
-``` Perl6
+```perl
 my %count;
 $*ARGFILES.lines.lc.comb(/<[a..z]>/).map({%count{$_}++});
 %count.keys.sort.map({"$_: %count{$_}".say});
@@ -130,7 +130,7 @@ $*ARGFILES.lines.lc.comb(/<[a..z]>/).map({%count{$_}++});
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/markus-holzer/perl6/ch-1.p6) also contributed a rather compact solution (even though it does not look so at first glance because of its formatting), holding in just one statement:
 
-``` Perl6
+```perl
 sub MAIN( *@files )
 {
     .say for @files
@@ -148,13 +148,13 @@ sub MAIN( *@files )
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ryan-thompson/perl6/ch-1.p6) also used a `Bag` and provided perhaps the most concise solution of all:
 
-``` Perl6
+```perl
 .fmt('%s: %d').say for $*ARGFILES.comb».lc.Bag{'a'..'z'}:p;
 ```
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/kevin-colyer/perl6/ch-1.p6) went the other way around and provided a comprehensive  solution using a `count` subroutine to populate a temporary and anonymous `BagHash` for each input file, and then merging the result into a final `BagHash`:
 
-``` Perl6
+```perl
 sub count($text) {
     return BagHash.new( $text.lc.comb.grep: * ~~ / <alpha> / );
 }
@@ -176,7 +176,7 @@ Note that Kevin also provided a `pod` outlining the challenge task and an altern
 
 [Richard Nutall](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/rnuttall/perl6/ch-1.p6), a new member of the Perl Weekly Challenge, used the infix `⊎` baggy addition operator together with the assignment operator to populate his `Bag` of counters in just one statement:
 
-``` Perl6
+```perl
 sub MAIN(*@files) {
     #Task 1 - a Test of Bag and Bag addition
     my Bag $counts = bag { 'a' .. 'z' => 0 };
@@ -191,7 +191,7 @@ Note that I don't think that the loop to initialize the 'a' to 'z' counters of t
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/noud/perl6/ch-1.p6) also supplied a comprehensive detailed solution using a hash:
 
-``` Perl6
+```perl
 sub MAIN(*@files) {
     my %letter_count;
     %letter_count<a b c d e f g h i j k l m
@@ -213,7 +213,7 @@ sub MAIN(*@files) {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/simon-proctor/perl6/ch-1.p6) also went for a quite comprehensive program. He created a `read-files` subroutine to do almost all the work with a `Bag`, as well as three multi `MAIN` subroutines to handle various possible arguments passed to the program:
 
-``` Perl6
+```perl
 multi sub MAIN( Bool :h($help) where so * ) {
     say $*USAGE;
 }
@@ -238,7 +238,7 @@ sub read-files( IO::CatHandle $files ) {
 
 [Adam Russell](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/adam-russell/perl6/ch-1.p6) used a hash for storing the counters and a `for` loop to iterate over the lines of the input:
 
-``` Perl6
+```perl
 sub MAIN {
     my %letter_count;
     for $*IN.lines() -> $line {
@@ -255,7 +255,7 @@ sub MAIN {
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/athanasius/perl6/ch-1.p6) is not a challenger from whom I have come to expect very terse programs. As usual, his program, which uses a hash to host the counters, is quite comprehensive:
 
-``` Perl6
+```perl
 sub MAIN
 (
     Bool:D :$count = False,         #= Order by letter counts (highest first)
@@ -290,7 +290,7 @@ sub MAIN
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/jaldhar-h-vyas/perl6/ch-1.p6)  also used a hash to store the counters:
 
-```Perl6
+```perl
 sub MAIN(
     *@files
 ) {
@@ -312,7 +312,7 @@ sub MAIN(
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/javier-luque/perl6/ch-1.p6) also used a hash for his letter histogram:
 
-``` Perl6
+```perl
 sub MAIN (*@filenames) {
     my %counts;
 
@@ -335,7 +335,7 @@ sub MAIN (*@filenames) {
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/joelle-maslak/perl6/ch-1.p6) also used a hash for storing the counters, but the innovative side of her solution is that it is Unicode compliant and that it uses graphemes matching the `<alpha>` character class to define its letters:
 
-``` Perl6
+```perl
 sub MAIN(+@filenames) {
     my %letters;
     for @filenames -> $fn {
@@ -353,7 +353,7 @@ sub MAIN(+@filenames) {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ruben-westerberg/perl6/ch-1.p6) also used a hash for hosting the counters, and he took special care on the formatting of his output (right-aligning the counters having more than one digit):
 
-``` Perl6
+```perl
 my %letters;
 for lines() {
     for $_.split("",:skip-empty) {
@@ -382,7 +382,7 @@ This is a sample of this program output with a relatively large input file:
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/roger-bell-west/perl6/ch-1.p6) also used a hash for the counters:
 
-``` Perl6
+```perl
 my %o;
 
 for lines() {
@@ -398,7 +398,7 @@ for sort keys %o -> $k {
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ulrich-rieke/perl6/ch-1.p6) also used a hash for storing the counters:
 
-``` Perl6
+```perl
 sub MAIN( *@ARGS )  {
   for @ARGS -> $file {
       if $file.IO.e {
@@ -429,7 +429,7 @@ sub MAIN( *@ARGS )  {
 ```
 I must say that I dislike Ulrich's program inconsistent indentation (this may be due to a problem of tabulations and spaces between his editor and the Github format, but it looks quite bad IMHO) and that his code isn't very perlish (or shall we say "rakuish"?) and sort of looks like C written in Raku. As a minimal attempt to rewrite this fixing the formatting, I would suggest this:
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN( *@ARGS )  {
@@ -457,7 +457,7 @@ sub MAIN( *@ARGS )  {
 ```
 And, trying to make it look more idiomatic while still keeping the original logic:
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN( *@ARGS )  {
@@ -572,7 +572,7 @@ Again quite a high number of solutions (17) this time.
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/arne-sommer/perl6/ch-2.p6) chose the simple strategy of hard coding the header, and then used two nested `for`loops for computing the products. He used the built-in [fmt](https://docs.perl6.org/routine/fmt#class_Cool) formatting function, which, for numbers, essentially works in the same way as the `sprintf` function (or `printf`, except that `fmt` does not print the result but only returns the formatted string, so you have to add the print statement):
 
-``` Perl6
+```perl
 say "  x|   1   2   3   4   5   6   7   8   9  10  11";
 say "---+--------------------------------------------";
 
@@ -591,7 +591,7 @@ for 1 .. 11 -> $row
 
 [Mark Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/mark-senn/perl6/ch-2.p6) also hard-coded the printing of the header. He used two `for` loops for computing the results and the `printf` function for formatting the products:
 
-``` Perl6
+```perl
 print q:to/END/;
   x|   1   2   3   4   5   6   7   8   9  10  11
 ---+--------------------------------------------
@@ -614,7 +614,7 @@ for (1..$n) -> $row
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/daniel-mita/perl6/ch-2.p6) also used two `for` loops for computing the results and used the built-in [sprintf](https://docs.perl6.org/routine/sprintf) function to format the output:
 
-``` Perl6
+```perl
 sub MAIN (
   Int $max where * > 0 = 11, #= The max number of the multiplication table (defaults to 11)
   --> Nil
@@ -644,7 +644,7 @@ sub MAIN (
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/kevin-colyer/perl6/ch-2.p6) also used two `for` loops for computing the results and the `sprintf` function to format the results:
 
-```
+```perl
 sub MAIN($table=11) {
 
     # header
@@ -670,7 +670,7 @@ sub frmt($i, $pad=4, --> Str) {
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/markus-holzer/perl6/ch-2.p6) created two subroutines, `header` and `line`, to manage the various types of output. His program uses a single `for` loop to run the `line` subroutine *n* times, each time with a different multiplier, and the `line` subroutine uses the range operator to create *n* multiplicands and store the products in an array. Quite a nice and imaginative solution in my view:
 
-``` Perl6
+```perl
 sub MAIN( Int $n = 11 )
 {
     my $ln = ( $n * $n ).chars + 1;
@@ -697,7 +697,7 @@ sub MAIN( Int $n = 11 )
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/noud/perl6/ch-2.p6) contributed a program that, contrary to my solution, can print out the multiplication tables for any upper value, since it first dynamically calculates the needed gap between numbers.
 
-``` perl6
+```perl
 sub print_mult_table($size) {
     # Determine the gap between the numbers.
     my $gap = ceiling(log10($size * $size)) + 1;
@@ -763,7 +763,7 @@ In theory, you could use any larger upper range values, but you'll be quickly li
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ryan-thompson/perl6/ch-2.p6) contributed a quite creative solution that can also handle large multipliers, since its `$fmt` formating string is dynamically adapted to the size of the largest product. His program uses the `fmt`function for format the output.
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN(Int $max = 11) {
@@ -784,7 +784,7 @@ With an input value of 33, Ryan's program displays almost the same as the output
 
 [Richard Nuttall](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/rnuttall/perl6/ch-2.p6) made a fairly concise solution using a `for` loop and a range, and a single format string for everything:
 
-``` Perl6
+```perl
 sub MAIN($lim = 11) {
     my         $fmt = "%3s%1s" ~ "%4s" x $lim ~ "\n";
     printf     $fmt,  'x', '|',        1..$lim;
@@ -797,7 +797,7 @@ sub MAIN($lim = 11) {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/simon-proctor/perl6/ch-2.p6) made, as often, a quite verbose solution with several multi `MAIN` subroutines, as well as a `format-row`, a `get-header`, and a `get-row` subroutines. This is part of his solution:
 
-``` Perl6
+```perl
 multi sub MAIN(
     UInt $max = 11 #= Max number to print the table to
 ) {
@@ -822,7 +822,7 @@ sub get-header( UInt $max, &formater ) {
 
 [Adam Russel](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/adam-russell/perl6/ch-2.p6) also hard-coded the header and otherwise used the [form](https://github.com/perl6/form) module to emulate the Perl 5 `format` fix-width output templating features for the header. For the result lines, his program uses a quite creative solution: it iterates over the `1..11` range and, for each value, creates an array `@a` of zeros followed by integers from the values to 11. For example, for `$x` value equal to 5, it would generate this array: `[0 0 0 0 5 6 7 8 9 10 11]`. The program then uses two chained `map` statements that multiply the non-zero integers by the value being used and the zeros by an empty string, so that the result `@b` array for value 5 is this: `["", "", "", "", 25, 30, 35, 40, 45, 50, 55]`. Finally, the program uses `sprintf` to properly format this array.
 
-``` Perl6
+```perl
 sub print_table11 {
     my ($x,$x1,$x2,$x3,$x4,$x5,$x6,$x7,$x8,$x9,$x10,$x11);
     my $header = form
@@ -843,7 +843,7 @@ sub print_table11 {
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/jaldhar-h-vyas/perl6/ch-2.p6) also contributed a quite creative solution. His program uses the `X` cross operator, chained with a `grep` and a `map`, to generate an array `@table` of all the products to be displayed in the multiplication table. It finally iterates over the multiplier range, picks up the desired array slice with the `splice` built-in function, format the results with `fmt` function and finally outputs them with the `printf` function:
 
-``` Perl6
+```perl
 constant $N = 11;
 
 say '  x|', (1 .. $N).fmt('% 4s', q{}), "\n", '---+', ('----' x $N);
@@ -858,7 +858,7 @@ for (1 .. $N) {
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/athanasius/perl6/ch-2.p6) used two straight forward `for` loops for computing the values and `printf` for formatting the output:
 
-``` Perl6
+```perl
 # Print the multipliers
 '  x|'.print;
 ' %3d'.printf: $_ for 1 .. $MAX;
@@ -881,7 +881,7 @@ for 1 .. $MAX -> UInt $row
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/javier-luque/perl6/ch-2.p6) created a `generate-x-table` subroutine looping over the multipliers range and two multi `table-content` subroutines, one to produce the header and the other to generate and format the results, using the `sprintf` function:
 
-``` Perl6
+```perl
 # Generates the multiplication table
 sub generate-x-table (Int $num) {
     table-content($_, $num).say for (0..$num);
@@ -909,7 +909,7 @@ multi table-content(Int $current, Int $num) {
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/joelle-maslak/perl6/ch-2.p6) used two nested `for` loops to generate the results and the `fmt` built-in function to format them:
 
-``` Perl6
+```perl
 sub MAIN(UInt:D $max = 11) {
     die "Max must be ≥ 1" if $max < 1;
 
@@ -942,7 +942,7 @@ sub MAIN(UInt:D $max = 11) {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ruben-westerberg/perl6/ch-2.p6) also used two nested `for` loops to compute the values, and he used `sprintf` to format the output:
 
-``` Perl6
+```perl
 my $limit=@*ARGS[0]//11;
 my $maxWidth=1+(chars $limit**2);
 printRow "", (1..$limit), $maxWidth;
@@ -973,7 +973,7 @@ sub printRow($header, $data, $minWidth) {
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/roger-bell-west/perl6/ch-2.p6) also used two nested `for` loops and used the `printf` function to format and output the results:
 
-``` Perl6
+```perl
 my $n=11;
 my $m1=$n.chars+1;
 my $m2=($n*$n).chars+1;
@@ -995,7 +995,7 @@ for 1 .. $n -> $row {
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ulrich-rieke/perl6/ch-2.p6) also used two nested `for` loops and used the `sprintf` function to format the output:
 
-``` Perl6
+```perl
 sprintf("%4s" , "x|" ).print ;
 for (1..11) -> $num {
   sprintf("%4d" , $num ).print ;

@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>BLOG: The Weekly Challenge #076</span>
         </nav>
-        <span class="reading-time" title="753 words">
+        <span class="reading-time" title="754 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -192,8 +192,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Let me share my solutions to the <strong><a href="/perl-weekly-challenge-076">The Weekly Challenge - 076</a></strong>.</p>
 <hr>
 <h2 id="task-1--prime-sum">TASK #1 › Prime Sum</h2>
-<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
-<h4 id="reviewed-by-ryan-thompsonhttpsryca">Reviewed by <strong><a href="https://ry.ca/">Ryan Thompson</a></strong></h4>
+<h4 id="submitted-by-mohammad-s-anwar">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<h4 id="reviewed-by-ryan-thompson">Reviewed by <strong><a href="https://ry.ca/">Ryan Thompson</a></strong></h4>
 <hr>
 <p>You are given a number <code>$N</code>. Write a script to find the minimum number of prime numbers required, whose summation gives you <code>$N</code>.</p>
 <p>For the sake of this task, please assume 1 is not a prime number.</p>
@@ -201,131 +201,131 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <p>To solve the task, I created the <code>sub sieve_of_eratosthenes()</code> to clean up the range.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sieve_of_eratosthenes</span> {
-    <span style="color:#66d9ef">my</span> ($i, $range) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j (sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %$range) {
-        delete $range<span style="color:#f92672">-&gt;</span>{$j} <span style="color:#66d9ef">unless</span> ($j % <span style="color:#960050;background-color:#1e0010">$</span>i);
-    }
-
-    $i  <span style="color:#f92672">=</span> (sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %$range)[<span style="color:#ae81ff">0</span>];
-    $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> defined $i;
-
-    <span style="color:#66d9ef">return</span> ($i, $range);
-}
-</code></pre></div><p>Now it is time to create <code>sub find_prime_upto()</code> which takes the help of above subroutine.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_prime_upto</span> {
-    <span style="color:#66d9ef">my</span> ($sum) <span style="color:#f92672">=</span> @_;
-
-    die <span style="color:#e6db74">&#34;ERROR: Invalid sum [$sum].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> (($sum <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span>) <span style="color:#f92672">&amp;&amp;</span> ($sum <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>));
-
-    <span style="color:#66d9ef">my</span> $range <span style="color:#f92672">=</span> { map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$sum };
-    <span style="color:#66d9ef">my</span> $prime <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-
-    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-    <span style="color:#66d9ef">while</span> (keys %$range) {
-        push @$prime, $i;
-        ($i, $range) <span style="color:#f92672">=</span> sieve_of_eratosthenes($i, $range);
-        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> defined $i;
-    }
-
-    <span style="color:#66d9ef">return</span> $prime;
-}
-</code></pre></div><p>Now we have list of prime numbers upto the given <code>$sum</code>. We just to have make all possible unique combinations and find out which combination gives the desired result.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_sum</span> {
-    <span style="color:#66d9ef">my</span> ($primes, $sum) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> $prime_sum <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $sum) {
-        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span> @$primes);
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $comb (combinations($primes, $i)) {
-            <span style="color:#66d9ef">my</span> $_sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-            $_sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @$comb;
-            push @$prime_sum, $comb <span style="color:#66d9ef">if</span> ($_sum <span style="color:#f92672">==</span> $sum);
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> $prime_sum;
-}
-</code></pre></div><p>Finally print the combinations</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_print</span> {
-    <span style="color:#66d9ef">my</span> ($prime_sum) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">foreach</span> (@$prime_sum) {
-        <span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;%s\n&#34;</span>, join <span style="color:#e6db74">&#34;, &#34;</span>, @$_);
-    }
-}
-</code></pre></div><p><strong>Raku</strong> once again just showing-off.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sieve_of_eratosthenes</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($i, $range) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j (sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %$range) {
+</span></span><span style="display:flex;"><span>        delete $range<span style="color:#f92672">-&gt;</span>{$j} <span style="color:#66d9ef">unless</span> ($j % <span style="color:#960050;background-color:#1e0010">$</span>i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $i  <span style="color:#f92672">=</span> (sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %$range)[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> defined $i;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ($i, $range);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now it is time to create <code>sub find_prime_upto()</code> which takes the help of above subroutine.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_prime_upto</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($sum) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid sum [$sum].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> (($sum <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span>) <span style="color:#f92672">&amp;&amp;</span> ($sum <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $range <span style="color:#f92672">=</span> { map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$sum };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $prime <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (keys %$range) {
+</span></span><span style="display:flex;"><span>        push @$prime, $i;
+</span></span><span style="display:flex;"><span>        ($i, $range) <span style="color:#f92672">=</span> sieve_of_eratosthenes($i, $range);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> defined $i;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $prime;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now we have list of prime numbers upto the given <code>$sum</code>. We just to have make all possible unique combinations and find out which combination gives the desired result.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_sum</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($primes, $sum) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $prime_sum <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $sum) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span> @$primes);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $comb (combinations($primes, $i)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $_sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            $_sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @$comb;
+</span></span><span style="display:flex;"><span>            push @$prime_sum, $comb <span style="color:#66d9ef">if</span> ($_sum <span style="color:#f92672">==</span> $sum);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $prime_sum;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Finally print the combinations</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_print</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($prime_sum) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> (@$prime_sum) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;%s\n&#34;</span>, join <span style="color:#e6db74">&#34;, &#34;</span>, @$_);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Raku</strong> once again just showing-off.</p>
 <p>With built-in <code>is-prime</code>, finding all primes up to the given number is like school boy task.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find</span>-prime-upto(Int $sum) {
-    <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$sum)<span style="color:#f92672">.</span>grep: { <span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime };
-}
-</code></pre></div><p>Once we have list of prime numbers, we again use <code>combinations</code> to generate possible combinations and then picked the one which gives the end result.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime</span>-sum(Int $sum) {
-
-    <span style="color:#66d9ef">my</span> @prime <span style="color:#f92672">=</span> find<span style="color:#f92672">-</span>prime<span style="color:#f92672">-</span>upto($sum);
-    <span style="color:#66d9ef">my</span> @prime<span style="color:#f92672">-</span>sum <span style="color:#f92672">=</span> Empty;
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$sum <span style="color:#f92672">-&gt;</span> $i {
-        <span style="color:#66d9ef">for</span> @prime<span style="color:#f92672">.</span>combinations: $i <span style="color:#f92672">-&gt;</span> $j {
-            <span style="color:#66d9ef">my</span> $_sum <span style="color:#f92672">=</span> [<span style="color:#f92672">+</span>] $j;
-            @prime<span style="color:#f92672">-</span>sum<span style="color:#f92672">.</span>push: $j <span style="color:#66d9ef">if</span> $_sum <span style="color:#f92672">==</span> $sum;
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> @prime<span style="color:#f92672">-</span>sum;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find</span>-prime-upto(Int $sum) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$sum)<span style="color:#f92672">.</span>grep: { <span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Once we have list of prime numbers, we again use <code>combinations</code> to generate possible combinations and then picked the one which gives the end result.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime</span>-sum(Int $sum) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @prime <span style="color:#f92672">=</span> find<span style="color:#f92672">-</span>prime<span style="color:#f92672">-</span>upto($sum);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @prime<span style="color:#f92672">-</span>sum <span style="color:#f92672">=</span> Empty;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$sum <span style="color:#f92672">-&gt;</span> $i {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> @prime<span style="color:#f92672">.</span>combinations: $i <span style="color:#f92672">-&gt;</span> $j {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $_sum <span style="color:#f92672">=</span> [<span style="color:#f92672">+</span>] $j;
+</span></span><span style="display:flex;"><span>            @prime<span style="color:#f92672">-</span>sum<span style="color:#f92672">.</span>push: $j <span style="color:#66d9ef">if</span> $_sum <span style="color:#f92672">==</span> $sum;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @prime<span style="color:#f92672">-</span>sum;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>As always, the final solution is just a wrapper around the helper subroutines.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(combinations)</span>;
-
-<span style="color:#66d9ef">my</span> $SUM <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
-
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;USAGE: perl $0 &lt;positive_number&gt;\n&#34;</span> <span style="color:#f92672">and</span> exit <span style="color:#66d9ef">unless</span> defined $SUM;
-_print(prime_sum(find_prime_upto($SUM), $SUM));
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(combinations)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $SUM <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;USAGE: perl $0 &lt;positive_number&gt;\n&#34;</span> <span style="color:#f92672">and</span> exit <span style="color:#66d9ef">unless</span> defined $SUM;
+</span></span><span style="display:flex;"><span>_print(prime_sum(find_prime_upto($SUM), $SUM));
+</span></span></code></pre></div><br>
 <p><strong>Raku</strong> solution looks clean, I must admit.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $SUM where $SUM &gt; 0) {
-    prime<span style="color:#f92672">-</span>sum($SUM)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>)<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $SUM where $SUM &gt; 0) {
+</span></span><span style="display:flex;"><span>    prime<span style="color:#f92672">-</span>sum($SUM)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>)<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Just basic unit test to complete the task.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> Test::Deep;
-<span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(combinations)</span>;
-
-is_deeply(prime_sum(find_prime_upto(<span style="color:#ae81ff">6</span>), <span style="color:#ae81ff">6</span>),
-          <span style="color:#f92672">[]</span>,
-          <span style="color:#e6db74">&#34;testing prime sum = 6&#34;</span>);
-is_deeply(prime_sum(find_prime_upto(<span style="color:#ae81ff">9</span>), <span style="color:#ae81ff">9</span>),
-          [[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>]],
-          <span style="color:#e6db74">&#34;testing prime sum = 9&#34;</span>);
-is_deeply(prime_sum(find_prime_upto(<span style="color:#ae81ff">12</span>), <span style="color:#ae81ff">12</span>),
-          [[<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>]],
-          <span style="color:#e6db74">&#34;testing prime sum = 12&#34;</span>);
-
-done_testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::Deep;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(combinations)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is_deeply(prime_sum(find_prime_upto(<span style="color:#ae81ff">6</span>), <span style="color:#ae81ff">6</span>),
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[]</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;testing prime sum = 6&#34;</span>);
+</span></span><span style="display:flex;"><span>is_deeply(prime_sum(find_prime_upto(<span style="color:#ae81ff">9</span>), <span style="color:#ae81ff">9</span>),
+</span></span><span style="display:flex;"><span>          [[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>]],
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;testing prime sum = 9&#34;</span>);
+</span></span><span style="display:flex;"><span>is_deeply(prime_sum(find_prime_upto(<span style="color:#ae81ff">12</span>), <span style="color:#ae81ff">12</span>),
+</span></span><span style="display:flex;"><span>          [[<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>]],
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;testing prime sum = 12&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><br>
 <p>And <strong>Raku</strong> unit test as well.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-is<span style="color:#f92672">-</span>deeply prime<span style="color:#f92672">-</span>sum(<span style="color:#ae81ff">6</span>)<span style="color:#f92672">.&lt;&gt;</span>,  <span style="color:#f92672">[]</span>,                  <span style="color:#e6db74">&#34;prime sum = 6&#34;</span>;
-is<span style="color:#f92672">-</span>deeply prime<span style="color:#f92672">-</span>sum(<span style="color:#ae81ff">9</span>)<span style="color:#f92672">.&lt;&gt;</span>,  [(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>),],           <span style="color:#e6db74">&#34;prime sum = 9&#34;</span>;
-is<span style="color:#f92672">-</span>deeply prime<span style="color:#f92672">-</span>sum(<span style="color:#ae81ff">12</span>)<span style="color:#f92672">.&lt;&gt;</span>, [(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>), (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>)], <span style="color:#e6db74">&#34;prime sum = 12&#34;</span>;
-
-done<span style="color:#f92672">-</span>testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is<span style="color:#f92672">-</span>deeply prime<span style="color:#f92672">-</span>sum(<span style="color:#ae81ff">6</span>)<span style="color:#f92672">.&lt;&gt;</span>,  <span style="color:#f92672">[]</span>,                  <span style="color:#e6db74">&#34;prime sum = 6&#34;</span>;
+</span></span><span style="display:flex;"><span>is<span style="color:#f92672">-</span>deeply prime<span style="color:#f92672">-</span>sum(<span style="color:#ae81ff">9</span>)<span style="color:#f92672">.&lt;&gt;</span>,  [(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>),],           <span style="color:#e6db74">&#34;prime sum = 9&#34;</span>;
+</span></span><span style="display:flex;"><span>is<span style="color:#f92672">-</span>deeply prime<span style="color:#f92672">-</span>sum(<span style="color:#ae81ff">12</span>)<span style="color:#f92672">.&lt;&gt;</span>, [(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>), (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>)], <span style="color:#e6db74">&#34;prime sum = 12&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span></code></pre></div><br>
 <p>That&rsquo;s it for this week. Speak to you soon.</p>
 
     </article>

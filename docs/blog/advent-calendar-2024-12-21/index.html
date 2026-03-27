@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-20blogadvent-calendar-2024-12-20-nbsp--nbsp-day-21-nbsp--nbsp-day-22blogadvent-calendar-2024-12-22-nbsp-">|   <a href="/blog/advent-calendar-2024-12-20"><strong>Day 20</strong></a>   |   <strong>Day 21</strong>   |   <a href="/blog/advent-calendar-2024-12-22"><strong>Day 22</strong></a>   |</h3>
+        <h2 id="advent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
+<h3 id="--day-20----day-21----day-22--">|   <a href="/blog/advent-calendar-2024-12-20"><strong>Day 20</strong></a>   |   <strong>Day 21</strong>   |   <a href="/blog/advent-calendar-2024-12-22"><strong>Day 22</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Bruce Gray</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-277"><strong>The Weekly Challenge - 277</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://blogs.perl.org/users/bruce_gray/2024/07/twc-277-strength-uncombined.html"><strong>post</strong></a>.</p>
 <hr>
@@ -198,44 +198,44 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <p><code>Map</code> each array of strings into a <code>Set of words</code> and a <code>list of words</code> that occur more than once, subtracting the list from the <code>Set</code> to create a new <code>Set of only words occurring once in the array</code>. Then, take the intersection of <code>(all)</code> those <code>Sets</code> via <code>reduce(spelled [∩])</code>, and <code>return the size of that intersection by +</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task1</span> ( @LoLists --&gt; UInt ) {
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">+</span>[<span style="color:#960050;background-color:#1e0010">∩</span>] map { <span style="color:#f92672">.</span>Set (<span style="color:#f92672">-</span>) <span style="color:#f92672">.</span>repeated }, @LoLists;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task1</span> ( @LoLists --&gt; UInt ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">+</span>[<span style="color:#960050;background-color:#1e0010">∩</span>] map { <span style="color:#f92672">.</span>Set (<span style="color:#f92672">-</span>) <span style="color:#f92672">.</span>repeated }, @LoLists;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>After doing the <code>Perl</code> solution below, I realized that while <code>.Set (-) .repeated</code> is concise inside the <code>map</code>, a change to <code>.Bag.grep(*.value == 1).Set</code> would make the task clearer to a maintenance programmer. I left it unchanged, to mention it here.</p>
 <h3 id="perl">Perl</h3>
 <hr>
 <p>The algorithm is the same as in <code>Raku</code> (after the mentioned clearer change), but since the <code>Per</code> module for <code>Bags</code> lacks some methods that <code>Raku</code> builds-in, I tried augmenting <code>Set::Bag</code> instead of writing the extra logic into the task1 sub. I am pleased with how this turned out.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
-<span style="color:#66d9ef">use</span> Set::Bag;
-
-<span style="color:#66d9ef">package</span> Set::Bag { <span style="color:#75715e"># Extending the class with methods I wish were already included.</span>
-    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt;pairgrep&gt;</span>;
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new_from_list</span> ($self, $list_aref) {
-        <span style="color:#66d9ef">my</span> $bag <span style="color:#f92672">=</span> Set::Bag<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>();
-        $bag<span style="color:#f92672">-&gt;</span>insert($_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> @{$list_aref};
-        <span style="color:#66d9ef">return</span> $bag;
-    }
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">singles</span> ($self) {
-        <span style="color:#66d9ef">return</span> Set::Bag<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( pairgrep { $b <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } $self<span style="color:#f92672">-&gt;</span>grab );
-    }
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count</span> ($self) {
-        <span style="color:#66d9ef">my</span> @e <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>elements();
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> @e;
-    }
-}
-
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt;reduce&gt;</span>;
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task1</span> ( @LoLists ) {
-    <span style="color:#66d9ef">my</span> $intersections_bag <span style="color:#f92672">=</span>
-        reduce { $a <span style="color:#f92672">&amp;</span> $b }
-        map { Set::Bag<span style="color:#f92672">-&gt;</span>new_from_list($_)<span style="color:#f92672">-&gt;</span>singles }
-        @LoLists;
-
-    <span style="color:#66d9ef">return</span> $intersections_bag<span style="color:#f92672">-&gt;</span>count;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.40</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Set::Bag;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Set::Bag { <span style="color:#75715e"># Extending the class with methods I wish were already included.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt;pairgrep&gt;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new_from_list</span> ($self, $list_aref) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $bag <span style="color:#f92672">=</span> Set::Bag<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>();
+</span></span><span style="display:flex;"><span>        $bag<span style="color:#f92672">-&gt;</span>insert($_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> @{$list_aref};
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $bag;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">singles</span> ($self) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Set::Bag<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( pairgrep { $b <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } $self<span style="color:#f92672">-&gt;</span>grab );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count</span> ($self) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @e <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>elements();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> @e;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt;reduce&gt;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task1</span> ( @LoLists ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $intersections_bag <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        reduce { $a <span style="color:#f92672">&amp;</span> $b }
+</span></span><span style="display:flex;"><span>        map { Set::Bag<span style="color:#f92672">-&gt;</span>new_from_list($_)<span style="color:#f92672">-&gt;</span>singles }
+</span></span><span style="display:flex;"><span>        @LoLists;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $intersections_bag<span style="color:#f92672">-&gt;</span>count;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="task-2-strong-pair">Task #2: Strong Pair</h3>
 <pre><code>Given an array of integers, return the count of all strong pairs in the given array.
 
@@ -253,14 +253,14 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <p>Straight translation of the task.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task2_combo_unique</span> ( @ns --&gt; UInt ) {
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_strong_pair</span> ( (\x,\y) --&gt; Bool )
-        { <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> abs(x <span style="color:#f92672">-</span> y) <span style="color:#f92672">&lt;</span> min(x,y) }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">+</span>grep <span style="color:#f92672">&amp;</span>is_strong_pair, combinations(@ns<span style="color:#f92672">.</span>unique, <span style="color:#ae81ff">2</span>);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task2_combo_unique</span> ( @ns --&gt; UInt ) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_strong_pair</span> ( (\x,\y) --&gt; Bool )
+</span></span><span style="display:flex;"><span>        { <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> abs(x <span style="color:#f92672">-</span> y) <span style="color:#f92672">&lt;</span> min(x,y) }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">+</span>grep <span style="color:#f92672">&amp;</span>is_strong_pair, combinations(@ns<span style="color:#f92672">.</span>unique, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Now, let&rsquo;s do some logic and algebra, to transform <code>0 &lt; abs(x - y) &lt; min(x,y)</code> into something more informative and performative.</p>
 <pre><code>0 &lt; abs(x - y) &lt; min(x,y)
 0 &lt; abs(x - y) and abs(x - y) &lt; min(x,y)
@@ -287,11 +287,11 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </code></pre>
 <p>This simplification allows us to remove <code>min</code>, <code>abs</code>, and <code>0&lt;</code> from the <code>grep</code> code. This gives use a <code>2x performance</code> improvement, even with the added cost of the sort (which is partial paid for by <code>.squish</code> being cheaper than <code>.unique</code>).</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task2_combo_sort</span> ( @ns --&gt; UInt ) {
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">+</span>grep <span style="color:#f92672">-&gt;</span>(<span style="color:#f92672">\</span>x,<span style="color:#f92672">\</span>y){ (y <span style="color:#f92672">-</span> x) <span style="color:#f92672">&lt;</span> x },
-            combinations( @ns<span style="color:#f92672">.</span>sort(<span style="color:#f92672">+*</span>)<span style="color:#f92672">.</span>squish, <span style="color:#ae81ff">2</span> );
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task2_combo_sort</span> ( @ns --&gt; UInt ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">+</span>grep <span style="color:#f92672">-&gt;</span>(<span style="color:#f92672">\</span>x,<span style="color:#f92672">\</span>y){ (y <span style="color:#f92672">-</span> x) <span style="color:#f92672">&lt;</span> x },
+</span></span><span style="display:flex;"><span>            combinations( @ns<span style="color:#f92672">.</span>sort(<span style="color:#f92672">+*</span>)<span style="color:#f92672">.</span>squish, <span style="color:#ae81ff">2</span> );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Both versions of <code>task2_combo_*</code> are <code>O(N²)</code>.</p>
 <p>We can do even better though!</p>
 <p>A last bit of algebra; if we take the prior simplification:</p>
@@ -313,45 +313,45 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>To make room for the first two optimizations, we must abandon both the uncontrolled <code>.combinations</code> method and the use of a <code>inner $y loop</code>. Instead, we will have an <code>outer $x loop</code>, and a <code>$y pointer</code> that can remember its location across <code>$x loops</code>.</p>
 <p><code>O(N)</code> algorithm: (Well, it is <code>O(N lnN)</code> on paper, but with the numeric sort running in down in <code>NQP</code>, I am not seeing the impact of the sort, at the <code>under-10-million scale</code> I am testing.)</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task2_linear_after_sort</span> ( @ns --&gt; UInt ) {
-    <span style="color:#66d9ef">my</span> @ns_ss <span style="color:#f92672">=</span> @ns<span style="color:#f92672">.</span>sort(<span style="color:#f92672">+*</span>)<span style="color:#f92672">.</span>squish;
-
-    <span style="color:#66d9ef">my</span> ( $y, $r ) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> xx <span style="color:#f92672">*</span>;
-    <span style="color:#66d9ef">for</span> @ns_ss<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $x, $xv {
-        <span style="color:#66d9ef">my</span> $x2 <span style="color:#f92672">=</span> $xv <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
-
-        $y<span style="color:#f92672">++</span> <span style="color:#66d9ef">while</span> ($y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;=</span> @ns_ss<span style="color:#f92672">.</span>end <span style="color:#f92672">and</span> @ns_ss[$y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $x2;
-
-        $r <span style="color:#f92672">+=</span> $y <span style="color:#f92672">-</span> $x;
-    }
-
-    <span style="color:#66d9ef">return</span> $r;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task2_linear_after_sort</span> ( @ns --&gt; UInt ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @ns_ss <span style="color:#f92672">=</span> @ns<span style="color:#f92672">.</span>sort(<span style="color:#f92672">+*</span>)<span style="color:#f92672">.</span>squish;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ( $y, $r ) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> xx <span style="color:#f92672">*</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> @ns_ss<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $x, $xv {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $x2 <span style="color:#f92672">=</span> $xv <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $y<span style="color:#f92672">++</span> <span style="color:#66d9ef">while</span> ($y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;=</span> @ns_ss<span style="color:#f92672">.</span>end <span style="color:#f92672">and</span> @ns_ss[$y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $x2;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $r <span style="color:#f92672">+=</span> $y <span style="color:#f92672">-</span> $x;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $r;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>To enable the third optimization, all that we need is my <code>$highest = @ns_ss.tail</code> outside the loop, and then to watch for <code>2x</code> to exceed that <code>highest</code>, then add in all the pairs we would have counted past that point. e.g. if it happens <code>5-away</code> from the end, the count of pairs would be <code>4+3+2+1</code>, or <code>[+]1..4</code>, or <code>Triangle(4)</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task2_linear_after_sort_early_return</span> ( @ns --&gt; UInt ) {
-    <span style="color:#66d9ef">my</span> @ns_ss <span style="color:#f92672">=</span> @ns<span style="color:#f92672">.</span>sort(<span style="color:#f92672">+*</span>)<span style="color:#f92672">.</span>squish;
-
-    <span style="color:#66d9ef">my</span> $highest <span style="color:#f92672">=</span> @ns_ss<span style="color:#f92672">.</span>tail;
-
-    <span style="color:#66d9ef">my</span> ( $y, $r ) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> xx <span style="color:#f92672">*</span>;
-    <span style="color:#66d9ef">for</span> @ns_ss<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $x, $xv {
-        <span style="color:#66d9ef">my</span> $x2 <span style="color:#f92672">=</span> $xv <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
-
-        <span style="color:#66d9ef">if</span> $x2 <span style="color:#f92672">&gt;</span> $highest {
-            $r <span style="color:#f92672">+=</span> Triangle(<span style="color:#f92672">+</span>@ns_ss <span style="color:#f92672">-</span> $x);
-            <span style="color:#66d9ef">last</span>;
-        }
-
-        $y<span style="color:#f92672">++</span> <span style="color:#66d9ef">while</span> ($y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;=</span> @ns_ss<span style="color:#f92672">.</span>end <span style="color:#f92672">and</span> @ns_ss[$y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $x2;
-
-        $r <span style="color:#f92672">+=</span> $y <span style="color:#f92672">-</span> $x;
-    }
-
-    <span style="color:#66d9ef">return</span> $r;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task2_linear_after_sort_early_return</span> ( @ns --&gt; UInt ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @ns_ss <span style="color:#f92672">=</span> @ns<span style="color:#f92672">.</span>sort(<span style="color:#f92672">+*</span>)<span style="color:#f92672">.</span>squish;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $highest <span style="color:#f92672">=</span> @ns_ss<span style="color:#f92672">.</span>tail;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ( $y, $r ) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> xx <span style="color:#f92672">*</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> @ns_ss<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $x, $xv {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $x2 <span style="color:#f92672">=</span> $xv <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> $x2 <span style="color:#f92672">&gt;</span> $highest {
+</span></span><span style="display:flex;"><span>            $r <span style="color:#f92672">+=</span> Triangle(<span style="color:#f92672">+</span>@ns_ss <span style="color:#f92672">-</span> $x);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $y<span style="color:#f92672">++</span> <span style="color:#66d9ef">while</span> ($y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;=</span> @ns_ss<span style="color:#f92672">.</span>end <span style="color:#f92672">and</span> @ns_ss[$y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $x2;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $r <span style="color:#f92672">+=</span> $y <span style="color:#f92672">-</span> $x;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $r;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>The performance differences are as severe as one would expect with <code>O(N²) vs anything-close-to-O(N)</code>; in the time that the slowest solution can solve a <code>1_000</code> element input array, the fastest can solve <code>1_000_000</code> elements.</p>
 <br>
 <hr>

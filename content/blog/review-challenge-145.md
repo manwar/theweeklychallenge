@@ -64,7 +64,7 @@ You are given 2 arrays of same size, @a and @b.
 Write a script to implement Dot Product.
 
 **Example:**
-```
+```perl
     @a = (1, 2, 3);
     @b = (4, 5, 6);
 
@@ -253,7 +253,7 @@ For the actual preparation of the dot product we iterate over the two lists inde
 
 Peter, on the other hand, takes a decidely less formal approach. Instead of providing either a drop-in function or a configurable script he's delivered us a nice demonstration of the process in a careful, verbose way, in the exact manner as given in the examples:
 
-```
+```perl
     @a = (93, 72, 11)
     @b = (-1, 1000, 0)
     $dot_product = (93 * -1) + (72 * 1000) + (11 * 0) => -93 + 72000 + 0 => 71907
@@ -522,37 +522,37 @@ Write a script to create a Palindromic Tree for the given string.
 I found this blog exaplaining Palindromic Tree in detail.
 
 **Example 1:**
-```
+```perl
     Input: $s = 'redivider'
     Output: r redivider e edivide d divid i ivi v
 ```
 
 **Example 2:**
-```
+```perl
     Input: $s = 'deific'
     Output: d e i ifi f c
 ```
 
 **Example 3:**
-```
+```perl
     Input: $s = 'rotors'
     Output: r rotor o oto t s
 ```
 
 **Example 4:**
-```
+```perl
     Input: $s = 'challenge'
     Output: c h a l ll e n g
 ```
 
 **Example 5:**
-```
+```perl
     Input: $s = 'champion'
     Output: c h a m p i o n
 ```
 
 **Example 6:**
-```
+```perl
     Input: $s = 'christmas'
     Output: c h r i s t m a
 ```

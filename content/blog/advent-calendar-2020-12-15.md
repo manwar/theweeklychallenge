@@ -68,7 +68,7 @@ Write a script to left rotate `@A` so that the number at the first index of `@B`
 
 We can simply use array slices to get what we need. The only slight difficulty is that we need to flatten the two index slices into a single list.
 
-```perl6
+```perl
 use v6;
 
 my @a = 10, 20, 30, 40, 50;
@@ -83,7 +83,7 @@ for @indices -> $i {
 
 ## Output:
 
-```perl6
+```perl
 $ raku left_rotate.raku
 Input array: [10 20 30 40 50]
 [40 50 10 20 30]

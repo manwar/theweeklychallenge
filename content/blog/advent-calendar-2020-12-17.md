@@ -45,7 +45,7 @@ Write a script to print number of trailing zeroes in `$N!`.
 
 First thing to note is we can define the ! factorial operator quite easily :
 
-```perl6
+```perl
 sub postfix:<!> (UInt $N) {...}
 ```
 
@@ -59,7 +59,7 @@ Personally I can think of three different ways of doing it off the top of my hea
 
 A **Raku** `Seq` is a iterable object that returns values that are generally calculated as required. There's a couple of sequences that can provide factorials. This first uses the `...` [**Sequence operator**](https://docs.raku.org/language/operators#index-entry-..._operators)
 
-```perl6
+```perl
 @F = (1,{$_ * $++}...*)
 ```
 
@@ -67,7 +67,7 @@ Here we define our starting condition `@F[0] == 1` then our iterator in this $_ 
 
 Another way to create a `Sequence` would be to use [gather and take]{https://docs.raku.org/syntax/gather%20take} to explictly define it :
 
-```perl6
+```perl
 my @F = lazy gather {
     my $idx = 1;
     my $val = 1;
@@ -84,7 +84,7 @@ A bit more wordy but sometimes this can be good. For a simple sequence like this
 
 A classic way to do factorials (and in some languages the only way) is to use recursion. Raku lends itself to this with multi subs for example :
 
-```perl6
+```perl
 multi sub fact( 0 ) { 1 }
 
 multi sub fact( UInt $N ) { $N * fact( $N - 1 ) }
@@ -100,7 +100,7 @@ Still nice to know it's easy enough.
 
 When I did the challenge my first thought was to turn to Meta Operators. As 5! can be written as `1 * 2 * 3 * 4 * 5` this looks to me like a reduction on the list `(1,2,3,4,5)` with the `*` operator. the `[]` reduction metaoperator lets you write this like so :
 
-```perl6
+```perl
 sub fact(UInt $N) { [*] (1..$N) }
 ```
 
@@ -110,7 +110,7 @@ Note this works for `0` as the Range `1..0` is the list `(1)`.
 
 So we've got our factorial using one of the above options how do we find trailing zeros? Well as an old school Perl dev the first thing that comes to my mind is to use a Regex. The expression `0*$` will match 0 or more `0's` at the end of a string. We then can count the length of this match and return it:
 
-```perl6
+```perl
 say (fact($N) ~~ m!(0*)$!)[0].Str.codes;
 ```
 

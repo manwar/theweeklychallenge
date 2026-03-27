@@ -37,7 +37,7 @@ In this task, we need to find the combinations of non-repeating Fibonacci number
 
 Most of the participants employed the [sequence operator](https://docs.raku.org/routine/...) of Raku to generate Fibonacci numbers below and including `$N`:
 
-```perl6
+```perl
     my @fib = 1, 2, * + * ...^ * > $N;
 ```
 
@@ -45,7 +45,7 @@ The next steps fall into two groups.
 
 In the first, brute force is applied to find the valid result by filtering all the combinations that you can make with the given list of Fibonacci numbers. For example, a self-explanatory code in [Laurent Rosenfeld’s program](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/laurent-rosenfeld/raku/ch-1.raku#L6):
 
-```perl6
+```perl
     for @fib.combinations -> $s {
         say $s if $n == [+] $s;
     }
@@ -53,7 +53,7 @@ In the first, brute force is applied to find the valid result by filtering all t
 
 In [Colin Crane’s solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/colin-crain/raku/ch-1.raku#L46), there’s an exciting addition to speed up the computations:
 
-```perl6
+```perl
     my @output = @fib.combinations.race:8degree:200batch.grep( *.sum == $target );
 ```
 
@@ -61,7 +61,7 @@ The [`race` method](https://docs.raku.org/routine/race) together with its `degre
 
 A more traditional method call can replace the non-standard syntax with colons:
 
-```perl6
+```perl
     @fib.combinations.race(degree => 8, batch => 200)
 ```
 
@@ -112,7 +112,7 @@ The general approach is to scan the source matrix so that we visit all of its ce
 
 A straightforward pair of nested loops can be used to scan the cells. As in [Arne Sommer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/arne-sommer/raku/ch-2.p6#L17), for example:
 
-```perl6
+```perl
     for ^$rows -> $row
     {
         for ^$cols -> $col
@@ -125,7 +125,7 @@ A straightforward pair of nested loops can be used to scan the cells. As in [Arn
 
 Visiting the neighbours is equivalent to [changing one or both](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/arne-sommer/raku/ch-2.p6#L32) of the coordinates to `±1` and checking the contents of the cell:
 
-```perl6
+```perl
     for (-1, 0, 1) -> $r
     {
         for (-1, 0, 1) -> $c
@@ -140,7 +140,7 @@ Visiting the neighbours is equivalent to [changing one or both](https://github.c
 
 A very attractive and useful feature of Raku that help to simplify the code is a [junction](https://docs.raku.org/type/Junction). There are different forms of it, in particular, the `any`- and `all`-junctions. Just look at the [program submitted by Feng Chang](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/feng-chang/raku/ch-2.raku#L15) to see the advantage immediately:
 
-```perl6
+```perl
     for 1..$rows -> $i {
         for 1..$width -> $j {
             my $junc = all(@a[$i-1;$j-1], @a[$i-1;$j], @a[$i-1;$j+1],
@@ -156,7 +156,7 @@ In the body of the inner loop, the `$junc` variable encloses all eight neighbour
 
 In the same solution, [we can also see](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/feng-chang/raku/ch-2.raku#L5) a step to prepare the input data to surround the whole matrix with ‘good neighbours‘:
 
-```perl6
+```perl
     @a.push($line.comb.Array.unshift('O').push('O'));
 
     . . .
@@ -169,7 +169,7 @@ By doing that, you do not have to check if the neighbour exists when visiting it
 
 But checking if we are withing the borders is another delightful small task that you can solve differently. For example, [Mark Anderson uses](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/mark-anderson/raku/ch-2.raku#L14) the defined-or operator `//` to substitute an empty string for the non-existing cells:
 
-```perl6
+```perl
     take [$r, $c] unless any((@matrix[$r-1][$c-1] // q{}),
                              (@matrix[$r-1][$c  ] // q{}),
                              (@matrix[$r-1][$c+1] // q{}),
@@ -184,25 +184,25 @@ But checking if we are withing the borders is another delightful small task that
 
 [Markus Holzer uses](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/markus-holzer/raku/ch-2.raku#L12) `andthen` to go on only with defined cells:
 
-```perl6
+```perl
     $matrix[ $x + $c[0]; $y + $c[1] ] andthen $_ eq "X"
 ```
 
 To build the ‘guest map’ of the local neighbours, we can use different tricks. [For example](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/shahed-nooshmand/raku/ch-2.raku), the following construct gives the deltas such as (-1, 1) or (0, 1) that you can add to the coordinates of the current cell:
 
-```perl6
+```perl
     <1 0 -1> X <1 0 -1>
 ```
 
 Of course, nobody stops you from [hard-coding the list](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/markus-holzer/raku/ch-2.raku#L9) of relative coordinates:
 
-```perl6
+```perl
     state @maybe-neighbours = (-1,-1), (-1,0), (-1,1), (0,-1), (0, 1), (1,-1), (1,0), (1,1);
 ```
 
 When computing the absolute coordinates, you can even [use it](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/raku/ch-2.raku#L24) with a cute [hyper-operator](https://docs.raku.org/language/operators#Hyper_operators):
 
-```perl6
+```perl
     @neighbours.map(* <<+>> @coord))
 ```
 

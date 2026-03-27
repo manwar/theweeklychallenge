@@ -64,7 +64,7 @@ Write a script to find all the years between 1900 and 2100 which is a Long Year.
 A year is Long if it has 53 weeks.
 
 **Expected Output**
-```
+```perl
     1903, 1908, 1914, 1920, 1925,
     1931, 1936, 1942, 1948, 1953,
     1959, 1964, 1970, 1976, 1981,
@@ -521,7 +521,7 @@ According to wikipedia:
 A Lychrel number is a natural number that cannot form a palindrome through the iterative process of repeatedly reversing its digits and adding the resulting numbers.
 
 **Example 1**
-```
+```perl
     Input: $n = 56
     Output: 0
 
@@ -529,7 +529,7 @@ A Lychrel number is a natural number that cannot form a palindrome through the i
     56 + 65 = 121
 ```
 **Example 2**
-```
+```perl
     Input: $n = 57
     Output: 0
 
@@ -538,7 +538,7 @@ A Lychrel number is a natural number that cannot form a palindrome through the i
     132 + 231 = 363
 ```
 **Example 3**
-```
+```perl
     Input: $n = 59
     Output: 0
 
@@ -845,7 +845,7 @@ Ulrich provides us with another example of the `split/reverse/join` idiom for fl
 [**Wanderdoc**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/wanderdoc/perl/ch-2.pl)
 
 The doctor chooses to make a far more thorough exploration into the thousand or so numbers in the designated range. Keeping the maximum iteration count at 500, he imports the `bigint` pragma, set to preserve 50 digits, and ups the maximum allowable value to 1e50. Even allowing these huge numbers the maximum number of iterations for resolved calculations was 24, and the maximum until exceeding the upper limit was 111. In the end 13 Lychrel candidates are found using these expanded parameters:
-```
+```perl
     196, 295, 394, 493, 592,
     689, 691, 788, 790,
     879, 887, 978, 986

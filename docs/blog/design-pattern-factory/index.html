@@ -179,11 +179,11 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
 <br>
-<h3 id="1-introductionintroduction"><a href="#introduction"><strong>1. Introduction</strong></a></h3>
-<h3 id="2-define-shape-roledefine-shape-role"><a href="#define-shape-role"><strong>2. Define Shape Role</strong></a></h3>
-<h3 id="3-implement-concrete-shapesimplement-concrete-shapes"><a href="#implement-concrete-shapes"><strong>3. Implement Concrete Shapes</strong></a></h3>
-<h3 id="4-create-shape-factorycreate-shape-factory"><a href="#create-shape-factory"><strong>4. Create Shape Factory</strong></a></h3>
-<h3 id="5-test-factorytest-factory"><a href="#test-factory"><strong>5. Test Factory</strong></a></h3>
+<h3 id="1-introduction"><a href="#introduction"><strong>1. Introduction</strong></a></h3>
+<h3 id="2-define-shape-role"><a href="#define-shape-role"><strong>2. Define Shape Role</strong></a></h3>
+<h3 id="3-implement-concrete-shapes"><a href="#implement-concrete-shapes"><strong>3. Implement Concrete Shapes</strong></a></h3>
+<h3 id="4-create-shape-factory"><a href="#create-shape-factory"><strong>4. Create Shape Factory</strong></a></h3>
+<h3 id="5-test-factory"><a href="#test-factory"><strong>5. Test Factory</strong></a></h3>
 <br>
 <h3 id="introduction">Introduction</h3>
 <hr>
@@ -201,7 +201,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Each shape will implement a common interface, <code>draw</code>, enforced through a <code>Moo</code> role.</p>
 <p>Finally, I’ll add unit tests to validate the behaviour.</p>
 <br>
-<h3 id="update-2025-09-12-i-decided-to-share-the-implementation-using-objectpadhttpsmetacpanorgpodobjectpad-as-well"><strong>UPDATE:</strong> <code>2025-09-12</code>, I decided to share the implementation using <a href="https://metacpan.org/pod/Object::Pad"><strong>Object::Pad</strong></a> as well.</h3>
+<h3 id="update-2025-09-12-i-decided-to-share-the-implementation-using-objectpad-as-well"><strong>UPDATE:</strong> <code>2025-09-12</code>, I decided to share the implementation using <a href="https://metacpan.org/pod/Object::Pad"><strong>Object::Pad</strong></a> as well.</h3>
 <br>
 <p>Those who are new, it was created by <code>Paul &quot;LeoNerd&quot; Evans</code>. It started as an external <code>CPAN</code> module that used the <code>XS</code> language to add new keywords (<code>class</code>, <code>role</code>, <code>method</code>, <code>has</code> etc.) to <code>Perl</code>. It&rsquo;s a standalone project that you can choose to use today. The experimental feature <code>class</code> borrowed ideas from it.</p>
 <br>
@@ -209,11 +209,11 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <p>Let&rsquo;s create the <code>Shape</code> role using <code>Moo::Role</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Shape;
-
-<span style="color:#66d9ef">use</span> Moo::Role;
-requires <span style="color:#e6db74">&#39;draw&#39;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Shape;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo::Role;
+</span></span><span style="display:flex;"><span>requires <span style="color:#e6db74">&#39;draw&#39;</span>;
+</span></span></code></pre></div><br>
 <p><a href="https://metacpan.org/pod/Moo::Role"><strong>Moo::Role</strong></a> is similar to a <code>trait</code> or <code>interface</code>.</p>
 <p>It declares behaviour that consuming classes must implement.</p>
 <p>Here, we say: Any class that does with <code>Shape</code> must provide a <code>draw</code> method.</p>
@@ -221,20 +221,20 @@ requires <span style="color:#e6db74">&#39;draw&#39;</span>;
 <p>Let&rsquo;s do the same using experimental <code>class</code> feature now.</p>
 <p>Please note, this isn&rsquo;t drop-in replacement for <code>Moo</code> version, just workaround until we have support for <code>roles</code> in the <code>class</code> feature.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
-
-class Shape {
-    method draw { die <span style="color:#e6db74">&#34;draw() must be implemented by subclass&#34;</span> }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Shape {
+</span></span><span style="display:flex;"><span>    method draw { die <span style="color:#e6db74">&#34;draw() must be implemented by subclass&#34;</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Finally using <code>Object::Pad</code>, this can be your drop-in replacement for <code>Moo</code> version.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Object::Pad;
-
-role Shape {
-    method draw;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Object::Pad;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>role Shape {
+</span></span><span style="display:flex;"><span>    method draw;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="implement-concrete-shapes">Implement Concrete Shapes</h3>
 <hr>
 <p>Each shape consumes the <code>Shape</code> role and implements the required <code>draw</code> method.</p>
@@ -245,59 +245,59 @@ role Shape {
 - This makes the interface uniform across all shapes.
 </code></pre>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Shape::Circle;
-
-<span style="color:#66d9ef">use</span> Moo;
-with <span style="color:#e6db74">&#39;Shape&#39;</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span> { <span style="color:#e6db74">&#34;Inside Shape::Circle::draw()&#34;</span> }
-
-<span style="color:#66d9ef">package</span> Shape::Rectangle;
-
-<span style="color:#66d9ef">use</span> Moo;
-with <span style="color:#e6db74">&#39;Shape&#39;</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span> { <span style="color:#e6db74">&#34;Inside Shape::Rectangle::draw()&#34;</span> }
-
-<span style="color:#66d9ef">package</span> Shape::Square;
-
-<span style="color:#66d9ef">use</span> Moo;
-with <span style="color:#e6db74">&#39;Shape&#39;</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span> { <span style="color:#e6db74">&#34;Inside Shape::Square::draw()&#34;</span> }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Shape::Circle;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span>with <span style="color:#e6db74">&#39;Shape&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span> { <span style="color:#e6db74">&#34;Inside Shape::Circle::draw()&#34;</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Shape::Rectangle;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span>with <span style="color:#e6db74">&#39;Shape&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span> { <span style="color:#e6db74">&#34;Inside Shape::Rectangle::draw()&#34;</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Shape::Square;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span>with <span style="color:#e6db74">&#39;Shape&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span> { <span style="color:#e6db74">&#34;Inside Shape::Square::draw()&#34;</span> }
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s do it using <code>class</code> feature.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
-
-class Shape::Circle :isa(Shape) {
-    method draw { <span style="color:#e6db74">&#34;Inside Shape::Circle::draw()&#34;</span> }
-}
-
-class Shape::Rectangle :isa(Shape) {
-    method draw { <span style="color:#e6db74">&#34;Inside Shape::Rectangle::draw()&#34;</span> }
-}
-
-class Shape::Square :isa(Shape) {
-    method draw { <span style="color:#e6db74">&#34;Inside Shape::Square::draw()&#34;</span> }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Shape::Circle :isa(Shape) {
+</span></span><span style="display:flex;"><span>    method draw { <span style="color:#e6db74">&#34;Inside Shape::Circle::draw()&#34;</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Shape::Rectangle :isa(Shape) {
+</span></span><span style="display:flex;"><span>    method draw { <span style="color:#e6db74">&#34;Inside Shape::Rectangle::draw()&#34;</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Shape::Square :isa(Shape) {
+</span></span><span style="display:flex;"><span>    method draw { <span style="color:#e6db74">&#34;Inside Shape::Square::draw()&#34;</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Then with <code>Object::Pad</code> as below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Object::Pad;
-
-class Shape::Circle :does(Shape) {
-    method draw { <span style="color:#e6db74">&#34;Inside Shape::Circle::draw()&#34;</span> }
-}
-
-class Shape::Rectangle :does(Shape) {
-    method draw { <span style="color:#e6db74">&#34;Inside Shape::Rectangle::draw()&#34;</span> }
-}
-
-class Shape::Square :does(Shape) {
-    method draw { <span style="color:#e6db74">&#34;Inside Shape::Square::draw()&#34;</span> }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Object::Pad;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Shape::Circle :does(Shape) {
+</span></span><span style="display:flex;"><span>    method draw { <span style="color:#e6db74">&#34;Inside Shape::Circle::draw()&#34;</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Shape::Rectangle :does(Shape) {
+</span></span><span style="display:flex;"><span>    method draw { <span style="color:#e6db74">&#34;Inside Shape::Rectangle::draw()&#34;</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Shape::Square :does(Shape) {
+</span></span><span style="display:flex;"><span>    method draw { <span style="color:#e6db74">&#34;Inside Shape::Square::draw()&#34;</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="create-shape-factory">Create Shape Factory</h3>
 <hr>
 <p>Finally, I&rsquo;ll create the shape factory using the dispatch table.</p>
@@ -305,89 +305,89 @@ class Shape::Square :does(Shape) {
 <p>If the shape isn’t known, it returns <code>undef</code>.</p>
 <p>First using <code>Moo</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> ShapeFactory;
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> Moo;
-
-<span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span> (
-    CIRCLE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Circle&#39;</span>,
-    SQUARE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Square&#39;</span>,
-    RECTANGLE <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Rectangle&#39;</span>
-);
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">getShape</span>($self, $shapeType) {
-    <span style="color:#66d9ef">my</span> $class <span style="color:#f92672">=</span> $dispatch{ uc $shapeType };
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $class;
-    <span style="color:#66d9ef">return</span> $class<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> ShapeFactory;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    CIRCLE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Circle&#39;</span>,
+</span></span><span style="display:flex;"><span>    SQUARE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Square&#39;</span>,
+</span></span><span style="display:flex;"><span>    RECTANGLE <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Rectangle&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">getShape</span>($self, $shapeType) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $class <span style="color:#f92672">=</span> $dispatch{ uc $shapeType };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $class;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $class<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Then with <code>class</code> feature as below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
-
-class ShapeFactory {
-    <span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span> (
-        CIRCLE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Circle&#39;</span>,
-        SQUARE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Square&#39;</span>,
-        RECTANGLE <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Rectangle&#39;</span>
-    );
-
-    method getShape($shapeType) {
-        <span style="color:#66d9ef">my</span> $class <span style="color:#f92672">=</span> $dispatch{ uc $shapeType };
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $class;
-        <span style="color:#66d9ef">return</span> $class<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class ShapeFactory {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        CIRCLE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Circle&#39;</span>,
+</span></span><span style="display:flex;"><span>        SQUARE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Square&#39;</span>,
+</span></span><span style="display:flex;"><span>        RECTANGLE <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Rectangle&#39;</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    method getShape($shapeType) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $class <span style="color:#f92672">=</span> $dispatch{ uc $shapeType };
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $class;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $class<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Finally using <code>Object::Pad</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> Object::Pad;
-
-class ShapeFactory {
-    <span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span> (
-        CIRCLE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Circle&#39;</span>,
-        SQUARE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Square&#39;</span>,
-        RECTANGLE <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Rectangle&#39;</span>
-    );
-
-    method getShape($shapeType) {
-        <span style="color:#66d9ef">my</span> $class <span style="color:#f92672">=</span> $dispatch{ uc $shapeType };
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $class;
-        <span style="color:#66d9ef">return</span> $class<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Object::Pad;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class ShapeFactory {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        CIRCLE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Circle&#39;</span>,
+</span></span><span style="display:flex;"><span>        SQUARE    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Square&#39;</span>,
+</span></span><span style="display:flex;"><span>        RECTANGLE <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Shape::Rectangle&#39;</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    method getShape($shapeType) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $class <span style="color:#f92672">=</span> $dispatch{ uc $shapeType };
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $class;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $class<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Now, the <code>Factory Pattern</code> is ready for action, the factory hides object creation logic and provides a simple interface for clients.</p>
 <br>
 <h3 id="test-factory">Test Factory</h3>
 <hr>
 <p>Here is the standard test script.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> ShapeFactory;
-
-<span style="color:#66d9ef">my</span> $shapeFactory <span style="color:#f92672">=</span> ShapeFactory<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-
-<span style="color:#66d9ef">my</span> $shape1 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;CIRCLE&#39;</span>);
-is($shape1<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Circle::draw()&#39;</span>);
-
-<span style="color:#66d9ef">my</span> $shape2 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;SQUARE&#39;</span>);
-is($shape2<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Square::draw()&#39;</span>);
-
-<span style="color:#66d9ef">my</span> $shape3 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;RECTANGLE&#39;</span>);
-is($shape3<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Rectangle::draw()&#39;</span>);
-
-<span style="color:#66d9ef">my</span> $shape4 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;rectangle&#39;</span>);
-is($shape4<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Rectangle::draw()&#39;</span>);
-
-<span style="color:#66d9ef">my</span> $no_shape <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;TRIQUETRA&#39;</span>);
-ok(<span style="color:#f92672">!</span> defined $no_shape);
-
-done_testing;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> ShapeFactory;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $shapeFactory <span style="color:#f92672">=</span> ShapeFactory<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $shape1 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;CIRCLE&#39;</span>);
+</span></span><span style="display:flex;"><span>is($shape1<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Circle::draw()&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $shape2 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;SQUARE&#39;</span>);
+</span></span><span style="display:flex;"><span>is($shape2<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Square::draw()&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $shape3 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;RECTANGLE&#39;</span>);
+</span></span><span style="display:flex;"><span>is($shape3<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Rectangle::draw()&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $shape4 <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;rectangle&#39;</span>);
+</span></span><span style="display:flex;"><span>is($shape4<span style="color:#f92672">-&gt;</span>draw(), <span style="color:#e6db74">&#39;Inside Shape::Rectangle::draw()&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $no_shape <span style="color:#f92672">=</span> $shapeFactory<span style="color:#f92672">-&gt;</span>getShape(<span style="color:#e6db74">&#39;TRIQUETRA&#39;</span>);
+</span></span><span style="display:flex;"><span>ok(<span style="color:#f92672">!</span> defined $no_shape);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><hr>
 <br>
 <p><code>Happy Hacking !!!</code></p>
 

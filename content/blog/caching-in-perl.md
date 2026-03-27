@@ -95,7 +95,7 @@ services:
 
 <br>
 
-``` bash
+```bash
 $ docker-compose up -d
 Creating valkey ... done
 ```

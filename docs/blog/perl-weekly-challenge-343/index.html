@@ -178,16 +178,16 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <h2 id="table-of-contents">TABLE OF CONTENTS</h2>
 <hr>
-<h3 id="nbspnbsp1-headlinesheadlines">  1. <a href="#HEADLINES">HEADLINES</a></h3>
-<h3 id="nbspnbsp2-sponsorsponsor">  2. <a href="#SPONSOR">SPONSOR</a></h3>
-<h3 id="nbspnbsp3-recaprecap">  3. <a href="#RECAP">RECAP</a></h3>
-<h3 id="nbspnbsp4-perl-reviewperlreview">  4. <a href="#PERLREVIEW">PERL REVIEW</a></h3>
-<h3 id="nbspnbsp5-raku-reviewrakureview">  5. <a href="#RAKUREVIEW">RAKU REVIEW</a></h3>
-<h3 id="nbspnbsp6-chartchart">  6. <a href="#CHART">CHART</a></h3>
-<h3 id="nbspnbsp7-new-membersnewmembers">  7. <a href="#NEWMEMBERS">NEW MEMBERS</a></h3>
-<h3 id="nbspnbsp8-guestsguests">  8. <a href="#GUESTS">GUESTS</a></h3>
-<h3 id="nbspnbsp9-task-1-zero-friendtask1">  9. <a href="#TASK1">TASK #1: Zero Friend</a></h3>
-<h3 id="10-task-2-champion-teamtask2">10. <a href="#TASK2">TASK #2: Champion Team</a></h3>
+<h3 id="1-headlines">  1. <a href="#HEADLINES">HEADLINES</a></h3>
+<h3 id="2-sponsor">  2. <a href="#SPONSOR">SPONSOR</a></h3>
+<h3 id="3-recap">  3. <a href="#RECAP">RECAP</a></h3>
+<h3 id="4-perl-review">  4. <a href="#PERLREVIEW">PERL REVIEW</a></h3>
+<h3 id="5-raku-review">  5. <a href="#RAKUREVIEW">RAKU REVIEW</a></h3>
+<h3 id="6-chart">  6. <a href="#CHART">CHART</a></h3>
+<h3 id="7-new-members">  7. <a href="#NEWMEMBERS">NEW MEMBERS</a></h3>
+<h3 id="8-guests">  8. <a href="#GUESTS">GUESTS</a></h3>
+<h3 id="9-task-1-zero-friend">  9. <a href="#TASK1">TASK #1: Zero Friend</a></h3>
+<h3 id="10-task-2-champion-team">10. <a href="#TASK2">TASK #2: Champion Team</a></h3>
 <br>
 <h2 id="HEADLINES">HEADLINES</h2>
 <hr>
@@ -199,303 +199,303 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Please don&rsquo;t push yourself too hard. Take it easy and enjoy the process.</p>
 <h3 id="perl">Perl</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> Test::More;
-
-<span style="color:#66d9ef">my</span> @examples <span style="color:#f92672">=</span> (
-    [<span style="color:#e6db74">&#34;a0b1c2&#34;</span>,  <span style="color:#e6db74">&#34;0a1b2c&#34;</span> ],
-    [<span style="color:#e6db74">&#34;abc12&#34;</span>,   <span style="color:#e6db74">&#34;a1b2c&#34;</span>  ],
-    [<span style="color:#e6db74">&#34;0a2b1c3&#34;</span>, <span style="color:#e6db74">&#34;0a1b2c3&#34;</span>],
-    [<span style="color:#e6db74">&#34;1a23&#34;</span>,    <span style="color:#e6db74">&#34;&#34;</span>       ],
-    [<span style="color:#e6db74">&#34;ab123&#34;</span>,   <span style="color:#e6db74">&#34;1a2b3&#34;</span>  ],
-);
-
-<span style="color:#66d9ef">for</span> (@examples) {
-    is(balance_string($_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]), $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
-}
-
-done_testing;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balance_string</span>($s) {
-    <span style="color:#75715e"># Extract all digits and sort them</span>
-    <span style="color:#66d9ef">my</span> @d <span style="color:#f92672">=</span> sort grep <span style="color:#e6db74">/\d/</span>, split <span style="color:#e6db74">//</span>, $s;
-    <span style="color:#75715e"># Extract all letters and sort them</span>
-    <span style="color:#66d9ef">my</span> @l <span style="color:#f92672">=</span> sort grep <span style="color:#e6db74">/\D/</span>, split <span style="color:#e6db74">//</span>, $s;
-
-    <span style="color:#75715e"># Return empty string if impossible</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">if</span> abs(@d <span style="color:#f92672">-</span> @l) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
-
-    <span style="color:#75715e"># If more digits than letters:</span>
-    @d <span style="color:#f92672">&gt;</span> @l ?
-        <span style="color:#75715e">#   Join all elements into a string</span>
-        join <span style="color:#e6db74">&#34;&#34;</span>,
-        <span style="color:#75715e">#   For each index: digit + letter (or empty if no letter)</span>
-        map $d[$_] <span style="color:#f92672">.</span> ($l[$_] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;&#34;</span>),
-        <span style="color:#75715e">#   Iterate through all digit indices</span>
-        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#d
-    :
-    <span style="color:#75715e"># If more letters than digits:</span>
-    @l <span style="color:#f92672">&gt;</span> @d ?
-        <span style="color:#75715e">#   Join all elements into a string</span>
-        join <span style="color:#e6db74">&#34;&#34;</span>,
-        <span style="color:#75715e">#   For each index: letter + digit (or empty if no digit)</span>
-        map $l[$_] <span style="color:#f92672">.</span> ($d[$_] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;&#34;</span>),
-        <span style="color:#75715e">#   Iterate through all letter indices</span>
-        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#l
-    <span style="color:#75715e"># Else (equal counts):</span>
-    :
-    <span style="color:#75715e"># If first digit &lt; first letter lexicographically:</span>
-    $d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">lt</span> $l[<span style="color:#ae81ff">0</span>] ?
-        <span style="color:#75715e">#   Join all elements into a string</span>
-        join <span style="color:#e6db74">&#34;&#34;</span>,
-        <span style="color:#75715e">#   For each index: digit + letter</span>
-        map $d[$_] <span style="color:#f92672">.</span> $l[$_],
-        <span style="color:#75715e">#   Iterate through all indices (both arrays same size)</span>
-        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#d
-    :   <span style="color:#75715e"># Else:</span>
-        <span style="color:#75715e">#   Join all elements into a string</span>
-        join <span style="color:#e6db74">&#34;&#34;</span>,
-        <span style="color:#75715e">#   For each index: letter + digit</span>
-        map $l[$_] <span style="color:#f92672">.</span> $d[$_],
-        <span style="color:#75715e">#   Iterate through all indices (both arrays same size)</span>
-        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#d
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @examples <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;a0b1c2&#34;</span>,  <span style="color:#e6db74">&#34;0a1b2c&#34;</span> ],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;abc12&#34;</span>,   <span style="color:#e6db74">&#34;a1b2c&#34;</span>  ],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;0a2b1c3&#34;</span>, <span style="color:#e6db74">&#34;0a1b2c3&#34;</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;1a23&#34;</span>,    <span style="color:#e6db74">&#34;&#34;</span>       ],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;ab123&#34;</span>,   <span style="color:#e6db74">&#34;1a2b3&#34;</span>  ],
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (@examples) {
+</span></span><span style="display:flex;"><span>    is(balance_string($_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]), $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balance_string</span>($s) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Extract all digits and sort them</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @d <span style="color:#f92672">=</span> sort grep <span style="color:#e6db74">/\d/</span>, split <span style="color:#e6db74">//</span>, $s;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Extract all letters and sort them</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @l <span style="color:#f92672">=</span> sort grep <span style="color:#e6db74">/\D/</span>, split <span style="color:#e6db74">//</span>, $s;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Return empty string if impossible</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">if</span> abs(@d <span style="color:#f92672">-</span> @l) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If more digits than letters:</span>
+</span></span><span style="display:flex;"><span>    @d <span style="color:#f92672">&gt;</span> @l ?
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>        join <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   For each index: digit + letter (or empty if no letter)</span>
+</span></span><span style="display:flex;"><span>        map $d[$_] <span style="color:#f92672">.</span> ($l[$_] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;&#34;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   Iterate through all digit indices</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#d
+</span></span><span style="display:flex;"><span>    :
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If more letters than digits:</span>
+</span></span><span style="display:flex;"><span>    @l <span style="color:#f92672">&gt;</span> @d ?
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>        join <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   For each index: letter + digit (or empty if no digit)</span>
+</span></span><span style="display:flex;"><span>        map $l[$_] <span style="color:#f92672">.</span> ($d[$_] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;&#34;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   Iterate through all letter indices</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#l
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Else (equal counts):</span>
+</span></span><span style="display:flex;"><span>    :
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If first digit &lt; first letter lexicographically:</span>
+</span></span><span style="display:flex;"><span>    $d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">lt</span> $l[<span style="color:#ae81ff">0</span>] ?
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>        join <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   For each index: digit + letter</span>
+</span></span><span style="display:flex;"><span>        map $d[$_] <span style="color:#f92672">.</span> $l[$_],
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   Iterate through all indices (both arrays same size)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#d
+</span></span><span style="display:flex;"><span>    :   <span style="color:#75715e"># Else:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>        join <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   For each index: letter + digit</span>
+</span></span><span style="display:flex;"><span>        map $l[$_] <span style="color:#f92672">.</span> $d[$_],
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   Iterate through all indices (both arrays same size)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#d
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="raku">Raku</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e">#!/usr/bin/env raku</span>
-
-<span style="color:#66d9ef">my</span> @examples <span style="color:#f92672">=</span> (
-    [<span style="color:#e6db74">&#34;a0b1c2&#34;</span>,  <span style="color:#e6db74">&#34;0a1b2c&#34;</span> ],
-    [<span style="color:#e6db74">&#34;abc12&#34;</span>,   <span style="color:#e6db74">&#34;a1b2c&#34;</span>  ],
-    [<span style="color:#e6db74">&#34;0a2b1c3&#34;</span>, <span style="color:#e6db74">&#34;0a1b2c3&#34;</span>],
-    [<span style="color:#e6db74">&#34;1a23&#34;</span>,    <span style="color:#e6db74">&#34;&#34;</span>       ],
-    [<span style="color:#e6db74">&#34;ab123&#34;</span>,   <span style="color:#e6db74">&#34;1a2b3&#34;</span>  ],
-);
-
-<span style="color:#66d9ef">for</span> @examples <span style="color:#f92672">-&gt;</span> @example {
-    <span style="color:#66d9ef">my</span> ($input, $expected) <span style="color:#f92672">=</span> @example;
-    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> balance<span style="color:#f92672">-</span>string($input);
-    say <span style="color:#e6db74">&#34;Pass: {$result eq $expected}&#34;</span>;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balance</span>-string(Str $s) {
-    <span style="color:#75715e"># Extract all digits and sort them</span>
-    <span style="color:#66d9ef">my</span> @d <span style="color:#f92672">=</span> $s<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>grep({ <span style="color:#e6db74">/&lt;digit&gt;/</span> })<span style="color:#f92672">.</span>sort;
-    <span style="color:#75715e"># Extract all letters and sort them</span>
-    <span style="color:#66d9ef">my</span> @l <span style="color:#f92672">=</span> $s<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>grep({ <span style="color:#e6db74">/&lt;alpha&gt;/</span> })<span style="color:#f92672">.</span>sort;
-
-    <span style="color:#75715e"># Return empty string if impossible</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">if</span> abs(@d<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> @l<span style="color:#f92672">.</span>elems) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
-
-    <span style="color:#75715e"># If more digits than letters:</span>
-    <span style="color:#66d9ef">if</span> @d<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> @l<span style="color:#f92672">.</span>elems {
-        <span style="color:#75715e"># Join all elements into a string</span>
-        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
-            <span style="color:#75715e"># For each index: digit + letter (or empty if no letter)</span>
-            map { @d[$_] <span style="color:#f92672">~</span> (@l[$_] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span>) },
-            <span style="color:#75715e"># Iterate through all digit indices</span>
-            <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@d<span style="color:#f92672">.</span>elems;
-    }
-    <span style="color:#75715e"># Else if more letters than digits:</span>
-    <span style="color:#66d9ef">elsif</span> @l<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> @d<span style="color:#f92672">.</span>elems {
-        <span style="color:#75715e"># Join all elements into a string</span>
-        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
-            <span style="color:#75715e"># For each index: letter + digit (or empty if no digit)</span>
-            map { @l[$_] <span style="color:#f92672">~</span> (@d[$_] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span>) },
-            <span style="color:#75715e"># Iterate through all letter indices</span>
-            <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@l<span style="color:#f92672">.</span>elems;
-    }
-    <span style="color:#75715e"># Else (equal counts):</span>
-    <span style="color:#66d9ef">else</span> {
-        <span style="color:#75715e"># If first digit &lt; first letter lexicographically:</span>
-        <span style="color:#66d9ef">if</span> @d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">lt</span> @l[<span style="color:#ae81ff">0</span>] {
-            <span style="color:#75715e"># Join all elements into a string</span>
-            <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
-                <span style="color:#75715e"># For each index: digit + letter</span>
-                map { @d[$_] <span style="color:#f92672">~</span> @l[$_] },
-                <span style="color:#75715e"># Iterate through all indices (both arrays same size)</span>
-                <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@d<span style="color:#f92672">.</span>elems;
-        }
-        <span style="color:#75715e"># Else:</span>
-        <span style="color:#66d9ef">else</span> {
-            <span style="color:#75715e"># Join all elements into a string</span>
-            <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
-                <span style="color:#75715e"># For each index: letter + digit</span>
-                map { @l[$_] <span style="color:#f92672">~</span> @d[$_] },
-                <span style="color:#75715e"># Iterate through all indices (both arrays same size)</span>
-                <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@d<span style="color:#f92672">.</span>elems;
-        }
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env raku</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @examples <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;a0b1c2&#34;</span>,  <span style="color:#e6db74">&#34;0a1b2c&#34;</span> ],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;abc12&#34;</span>,   <span style="color:#e6db74">&#34;a1b2c&#34;</span>  ],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;0a2b1c3&#34;</span>, <span style="color:#e6db74">&#34;0a1b2c3&#34;</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;1a23&#34;</span>,    <span style="color:#e6db74">&#34;&#34;</span>       ],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;ab123&#34;</span>,   <span style="color:#e6db74">&#34;1a2b3&#34;</span>  ],
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> @examples <span style="color:#f92672">-&gt;</span> @example {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($input, $expected) <span style="color:#f92672">=</span> @example;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> balance<span style="color:#f92672">-</span>string($input);
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;Pass: {$result eq $expected}&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balance</span>-string(Str $s) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Extract all digits and sort them</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @d <span style="color:#f92672">=</span> $s<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>grep({ <span style="color:#e6db74">/&lt;digit&gt;/</span> })<span style="color:#f92672">.</span>sort;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Extract all letters and sort them</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @l <span style="color:#f92672">=</span> $s<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>grep({ <span style="color:#e6db74">/&lt;alpha&gt;/</span> })<span style="color:#f92672">.</span>sort;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Return empty string if impossible</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">if</span> abs(@d<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> @l<span style="color:#f92672">.</span>elems) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If more digits than letters:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> @d<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> @l<span style="color:#f92672">.</span>elems {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># For each index: digit + letter (or empty if no letter)</span>
+</span></span><span style="display:flex;"><span>            map { @d[$_] <span style="color:#f92672">~</span> (@l[$_] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span>) },
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Iterate through all digit indices</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@d<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Else if more letters than digits:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> @l<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> @d<span style="color:#f92672">.</span>elems {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># For each index: letter + digit (or empty if no digit)</span>
+</span></span><span style="display:flex;"><span>            map { @l[$_] <span style="color:#f92672">~</span> (@d[$_] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span>) },
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Iterate through all letter indices</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@l<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Else (equal counts):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If first digit &lt; first letter lexicographically:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> @d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">lt</span> @l[<span style="color:#ae81ff">0</span>] {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># For each index: digit + letter</span>
+</span></span><span style="display:flex;"><span>                map { @d[$_] <span style="color:#f92672">~</span> @l[$_] },
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Iterate through all indices (both arrays same size)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@d<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Else:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># For each index: letter + digit</span>
+</span></span><span style="display:flex;"><span>                map { @l[$_] <span style="color:#f92672">~</span> @d[$_] },
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Iterate through all indices (both arrays same size)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>@d<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="python">Python</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
-
-<span style="color:#f92672">import</span> re
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">balance_string</span>(s):
-    <span style="color:#75715e"># Extract all digits and sort them</span>
-    d <span style="color:#f92672">=</span> sorted([c <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> s <span style="color:#66d9ef">if</span> c<span style="color:#f92672">.</span>isdigit()])
-    <span style="color:#75715e"># Extract all letters and sort them</span>
-    l <span style="color:#f92672">=</span> sorted([c <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> s <span style="color:#66d9ef">if</span> c<span style="color:#f92672">.</span>isalpha()])
-
-    <span style="color:#75715e"># Return empty string if impossible</span>
-    <span style="color:#66d9ef">if</span> abs(len(d) <span style="color:#f92672">-</span> len(l)) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>:
-        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
-
-    <span style="color:#75715e"># If more digits than letters:</span>
-    <span style="color:#66d9ef">if</span> len(d) <span style="color:#f92672">&gt;</span> len(l):
-        <span style="color:#75715e"># Join all elements into a string</span>
-        result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
-        <span style="color:#75715e"># For each index: digit + letter (or empty if no letter)</span>
-        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(d)):
-            result <span style="color:#f92672">+=</span> d[i] <span style="color:#f92672">+</span> (l[i] <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&lt;</span> len(l) <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;&#34;</span>)
-        <span style="color:#66d9ef">return</span> result
-    <span style="color:#75715e"># Else if more letters than digits:</span>
-    <span style="color:#66d9ef">elif</span> len(l) <span style="color:#f92672">&gt;</span> len(d):
-        <span style="color:#75715e"># Join all elements into a string</span>
-        result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
-        <span style="color:#75715e"># For each index: letter + digit (or empty if no digit)</span>
-        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(l)):
-            result <span style="color:#f92672">+=</span> l[i] <span style="color:#f92672">+</span> (d[i] <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&lt;</span> len(d) <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;&#34;</span>)
-        <span style="color:#66d9ef">return</span> result
-    <span style="color:#75715e"># Else (equal counts):</span>
-    <span style="color:#66d9ef">else</span>:
-        <span style="color:#75715e"># If first digit &lt; first letter lexicographically:</span>
-        <span style="color:#66d9ef">if</span> d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> l[<span style="color:#ae81ff">0</span>]:
-            <span style="color:#75715e"># Join all elements into a string</span>
-            result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
-            <span style="color:#75715e"># For each index: digit + letter</span>
-            <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(d)):
-                result <span style="color:#f92672">+=</span> d[i] <span style="color:#f92672">+</span> l[i]
-            <span style="color:#66d9ef">return</span> result
-        <span style="color:#75715e"># Else:</span>
-        <span style="color:#66d9ef">else</span>:
-            <span style="color:#75715e"># Join all elements into a string</span>
-            result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
-            <span style="color:#75715e"># For each index: letter + digit</span>
-            <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(d)):
-                result <span style="color:#f92672">+=</span> l[i] <span style="color:#f92672">+</span> d[i]
-            <span style="color:#66d9ef">return</span> result
-
-examples <span style="color:#f92672">=</span> [
-    [<span style="color:#e6db74">&#34;a0b1c2&#34;</span>,  <span style="color:#e6db74">&#34;0a1b2c&#34;</span> ],
-    [<span style="color:#e6db74">&#34;abc12&#34;</span>,   <span style="color:#e6db74">&#34;a1b2c&#34;</span>  ],
-    [<span style="color:#e6db74">&#34;0a2b1c3&#34;</span>, <span style="color:#e6db74">&#34;0a1b2c3&#34;</span>],
-    [<span style="color:#e6db74">&#34;1a23&#34;</span>,    <span style="color:#e6db74">&#34;&#34;</span>       ],
-    [<span style="color:#e6db74">&#34;ab123&#34;</span>,   <span style="color:#e6db74">&#34;1a2b3&#34;</span>  ],
-]
-
-<span style="color:#66d9ef">for</span> example <span style="color:#f92672">in</span> examples:
-    input_str, expected <span style="color:#f92672">=</span> example
-    result <span style="color:#f92672">=</span> balance_string(input_str)
-    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Pass: {result == expected}&#34;</span>)
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> re
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">balance_string</span>(s):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Extract all digits and sort them</span>
+</span></span><span style="display:flex;"><span>    d <span style="color:#f92672">=</span> sorted([c <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> s <span style="color:#66d9ef">if</span> c<span style="color:#f92672">.</span>isdigit()])
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Extract all letters and sort them</span>
+</span></span><span style="display:flex;"><span>    l <span style="color:#f92672">=</span> sorted([c <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> s <span style="color:#66d9ef">if</span> c<span style="color:#f92672">.</span>isalpha()])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Return empty string if impossible</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> abs(len(d) <span style="color:#f92672">-</span> len(l)) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If more digits than letters:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> len(d) <span style="color:#f92672">&gt;</span> len(l):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># For each index: digit + letter (or empty if no letter)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(d)):
+</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">+=</span> d[i] <span style="color:#f92672">+</span> (l[i] <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&lt;</span> len(l) <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Else if more letters than digits:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> len(l) <span style="color:#f92672">&gt;</span> len(d):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># For each index: letter + digit (or empty if no digit)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(l)):
+</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">+=</span> l[i] <span style="color:#f92672">+</span> (d[i] <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&lt;</span> len(d) <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Else (equal counts):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If first digit &lt; first letter lexicographically:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> l[<span style="color:#ae81ff">0</span>]:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># For each index: digit + letter</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(d)):
+</span></span><span style="display:flex;"><span>                result <span style="color:#f92672">+=</span> d[i] <span style="color:#f92672">+</span> l[i]
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Else:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Join all elements into a string</span>
+</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># For each index: letter + digit</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(d)):
+</span></span><span style="display:flex;"><span>                result <span style="color:#f92672">+=</span> l[i] <span style="color:#f92672">+</span> d[i]
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>examples <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;a0b1c2&#34;</span>,  <span style="color:#e6db74">&#34;0a1b2c&#34;</span> ],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;abc12&#34;</span>,   <span style="color:#e6db74">&#34;a1b2c&#34;</span>  ],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;0a2b1c3&#34;</span>, <span style="color:#e6db74">&#34;0a1b2c3&#34;</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;1a23&#34;</span>,    <span style="color:#e6db74">&#34;&#34;</span>       ],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;ab123&#34;</span>,   <span style="color:#e6db74">&#34;1a2b3&#34;</span>  ],
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> example <span style="color:#f92672">in</span> examples:
+</span></span><span style="display:flex;"><span>    input_str, expected <span style="color:#f92672">=</span> example
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> balance_string(input_str)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Pass: </span><span style="color:#e6db74">{</span>result <span style="color:#f92672">==</span> expected<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><br>
 <p>Thank you <code>Team PWC</code>, once again.</p>
 <p><code>Happy Hacking!!</code></p>
 <hr>
 <p>Last <code>5 weeks</code> mainstream contribution stats. Thank you <code>Team PWC</code>  for your support and encouragements.</p>
 <table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">  <code>Week</code>  </td>
-<td align="center">   <code>Perl</code>   </td>
-<td align="center">   <code>Raku</code>   </td>
-<td align="center">   <code>Blog</code>   </td>
-</tr>
-<tr>
-<td align="center">   <code>338</code>   </td>
-<td align="center">   45   </td>
-<td align="center">   23   </td>
-<td align="center">   14   </td>
-</tr>
-<tr>
-<td align="center">   <code>339</code>   </td>
-<td align="center">   47   </td>
-<td align="center">   23   </td>
-<td align="center">   15   </td>
-</tr>
-<tr>
-<td align="center">   <code>340</code>   </td>
-<td align="center">   51   </td>
-<td align="center">   25   </td>
-<td align="center">   13   </td>
-</tr>
-<tr>
-<td align="center">   <code>341</code>   </td>
-<td align="center">   57   </td>
-<td align="center">   25   </td>
-<td align="center">   25   </td>
-</tr>
-<tr>
-<td align="center">   <code>342</code>   </td>
-<td align="center">   51   </td>
-<td align="center">   22   </td>
-<td align="center">   15   </td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">  <code>Week</code>  </td>
+          <td style="text-align: center">   <code>Perl</code>   </td>
+          <td style="text-align: center">   <code>Raku</code>   </td>
+          <td style="text-align: center">   <code>Blog</code>   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>338</code>   </td>
+          <td style="text-align: center">   45   </td>
+          <td style="text-align: center">   23   </td>
+          <td style="text-align: center">   14   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>339</code>   </td>
+          <td style="text-align: center">   47   </td>
+          <td style="text-align: center">   23   </td>
+          <td style="text-align: center">   15   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>340</code>   </td>
+          <td style="text-align: center">   51   </td>
+          <td style="text-align: center">   25   </td>
+          <td style="text-align: center">   13   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>341</code>   </td>
+          <td style="text-align: center">   57   </td>
+          <td style="text-align: center">   25   </td>
+          <td style="text-align: center">   25   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>342</code>   </td>
+          <td style="text-align: center">   51   </td>
+          <td style="text-align: center">   22   </td>
+          <td style="text-align: center">   15   </td>
+      </tr>
+  </tbody>
 </table>
 <br>
 <p>Last <code>5 weeks</code> guest contribution stats. Thank you each and every guest contributors for your time and efforts.</p>
 <table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">  <code>Week</code>  </td>
-<td align="center">   <code>Guests</code>   </td>
-<td align="center">   <code>Contributions</code>   </td>
-<td align="center">   <code>Languages</code>   </td>
-</tr>
-<tr>
-<td align="center">   <code>338</code>   </td>
-<td align="center">   13   </td>
-<td align="center">   58   </td>
-<td align="center">   19   </td>
-</tr>
-<tr>
-<td align="center">   <code>339</code>   </td>
-<td align="center">   13   </td>
-<td align="center">   64   </td>
-<td align="center">   21   </td>
-</tr>
-<tr>
-<td align="center">   <code>340</code>   </td>
-<td align="center">   13   </td>
-<td align="center">   55   </td>
-<td align="center">   17   </td>
-</tr>
-<tr>
-<td align="center">   <code>341</code>   </td>
-<td align="center">   15   </td>
-<td align="center">   67   </td>
-<td align="center">   19   </td>
-</tr>
-<tr>
-<td align="center">   <code>342</code>   </td>
-<td align="center">   14   </td>
-<td align="center">   46   </td>
-<td align="center">   14   </td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">  <code>Week</code>  </td>
+          <td style="text-align: center">   <code>Guests</code>   </td>
+          <td style="text-align: center">   <code>Contributions</code>   </td>
+          <td style="text-align: center">   <code>Languages</code>   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>338</code>   </td>
+          <td style="text-align: center">   13   </td>
+          <td style="text-align: center">   58   </td>
+          <td style="text-align: center">   19   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>339</code>   </td>
+          <td style="text-align: center">   13   </td>
+          <td style="text-align: center">   64   </td>
+          <td style="text-align: center">   21   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>340</code>   </td>
+          <td style="text-align: center">   13   </td>
+          <td style="text-align: center">   55   </td>
+          <td style="text-align: center">   17   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>341</code>   </td>
+          <td style="text-align: center">   15   </td>
+          <td style="text-align: center">   67   </td>
+          <td style="text-align: center">   19   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>342</code>   </td>
+          <td style="text-align: center">   14   </td>
+          <td style="text-align: center">   46   </td>
+          <td style="text-align: center">   14   </td>
+      </tr>
+  </tbody>
 </table>
 <br>
 <h3 id="top-10-guest-languages">TOP 10 Guest Languages</h3>
@@ -515,14 +515,14 @@ examples <span style="color:#f92672">=</span> [
 <br>
 <h3 id="blogs-with-creative-title">Blogs with Creative Title</h3>
 <hr>
-<h4 id="1-maximum-balancehttpsraku-musingscommaximum-balancehtml-by-arne-sommer">1. <a href="https://raku-musings.com/maximum-balance.html">Maximum Balance</a> by Arne Sommer.</h4>
-<h4 id="2-and-a-1-and-a-2httpsdevtobobliedpwc-342-balance-4eh4-by-bob-lied">2. <a href="https://dev.to/boblied/pwc-342-balance-4eh4">And a 1, and a 2</a> by Bob Lied.</h4>
-<h4 id="3-balanced-adagio-for-stringshttpspackydardancombcq-by-packy-anderson">3. <a href="https://packy.dardan.com/b/cQ">Balanced Adagio for Strings</a> by Packy Anderson.</h4>
-<h4 id="4-fun-with-charactershttpccgicampbellsmithsforce9coukchallenge342-by-peter-campbell-smith">4. <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/342">Fun with characters</a> by Peter Campbell Smith.</h4>
-<h4 id="5-balanced-max-scores-the-stringhttpsblogfiredrakeorgarchive202510the_weekly_challenge_342__balanced_max_scores_the_stringhtml-by-roger-bell_west">5. <a href="https://blog.firedrake.org/archive/2025/10/The_Weekly_Challenge_342__Balanced_Max_Scores_the_String.html">Balanced Max Scores the String</a> by Roger Bell_West.</h4>
-<h4 id="6-balancing-the-scorehttpsdevtosimongreennetweekly-challenge-balancing-the-score-38kd-by-simon-green">6. <a href="https://dev.to/simongreennet/weekly-challenge-balancing-the-score-38kd">Balancing the Score</a> by Simon Green.</h4>
+<h4 id="1-maximum-balance-by-arne-sommer">1. <a href="https://raku-musings.com/maximum-balance.html">Maximum Balance</a> by Arne Sommer.</h4>
+<h4 id="2-and-a-1-and-a-2-by-bob-lied">2. <a href="https://dev.to/boblied/pwc-342-balance-4eh4">And a 1, and a 2</a> by Bob Lied.</h4>
+<h4 id="3-balanced-adagio-for-strings-by-packy-anderson">3. <a href="https://packy.dardan.com/b/cQ">Balanced Adagio for Strings</a> by Packy Anderson.</h4>
+<h4 id="4-fun-with-characters-by-peter-campbell-smith">4. <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/342">Fun with characters</a> by Peter Campbell Smith.</h4>
+<h4 id="5-balanced-max-scores-the-string-by-roger-bell_west">5. <a href="https://blog.firedrake.org/archive/2025/10/The_Weekly_Challenge_342__Balanced_Max_Scores_the_String.html">Balanced Max Scores the String</a> by Roger Bell_West.</h4>
+<h4 id="6-balancing-the-score-by-simon-green">6. <a href="https://dev.to/simongreennet/weekly-challenge-balancing-the-score-38kd">Balancing the Score</a> by Simon Green.</h4>
 <br>
-<h3 id="githubhttpsgithubcommanwarperlweeklychallenge-club-repository-stats"><a href="https://github.com/manwar/perlweeklychallenge-club">GitHub</a> Repository Stats</h3>
+<h3 id="github-repository-stats"><a href="https://github.com/manwar/perlweeklychallenge-club">GitHub</a> Repository Stats</h3>
 <hr>
 <h4 id="1-commits-45698-101">1. Commits: 45,698 (<code>+101</code>)</h4>
 <h4 id="2-pull-requests-12792-38">2. Pull Requests: 12,792 (<code>+38</code>)</h4>
@@ -562,7 +562,7 @@ examples <span style="color:#f92672">=</span> [
 <p>Please find <a href="/blog/guest-contribution"><strong>past solutions</strong></a> by respected <strong>guests</strong>. Please share your creative solutions in other languages.</p>
 <br>
 <h2 id="TASK1">Task 1: Zero Friend</h2>
-<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<h5 id="submitted-by-mohammad-sajid-anwar"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
 <hr>
 <p>You are given a list of numbers.</p>
 <p>Find the number that is closest to zero and return its distance to zero.</p>
@@ -604,7 +604,7 @@ Values closest to 0: -1 and 1 (distance = 1)
 </code></pre>
 <br>
 <h2 id="TASK2">Task 2: Champion Team</h2>
-<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg-1"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<h5 id="submitted-by-mohammad-sajid-anwar-1"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
 <hr>
 <p>You have n teams in a tournament. A matrix grid tells you which team is stronger between any two teams:</p>
 <pre><code>If grid[i][j] == 1, then team i is stronger than team j

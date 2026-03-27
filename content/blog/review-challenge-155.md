@@ -71,7 +71,7 @@ According to Wikipedia
 > A Fortunate number, named after Reo Fortune, is the smallest integer m > 1 such that, for a given positive integer n, pn# + m is a prime number, where the primorial pn# is the product of the first n prime numbers.
 
 **Expected Output**
-```
+```perl
   3, 5, 7, 13, 17, 19, 23, 37
 ```
 
@@ -649,14 +649,14 @@ In number theory, the nth Pisano period, written as π(n), is the period with wh
 
 The Fibonacci numbers are the numbers in the integer sequence:
 
-```
+```perl
     0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144,
         233, 377, 610, 987, 1597, 2584, 4181, 6765, ...
 ```
 
 For any integer n, the sequence of Fibonacci numbers F(i) taken modulo n is periodic. The Pisano period, denoted π(n), is the value of the period of this sequence. For example, the sequence of Fibonacci numbers modulo 3 begins:
 
-```
+```perl
     0, 1, 1, 2, 0, 2, 2, 1,
     0, 1, 1, 2, 0, 2, 2, 1,
     0, 1, 1, 2, 0, 2, 2, 1, ...

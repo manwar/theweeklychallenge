@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2020blogadvent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
-<h3 id="-day-7blogadvent-calendar-2020-12-07--day-8--day-9blogadvent-calendar-2020-12-09-">| <a href="/blog/advent-calendar-2020-12-07"><strong>Day 7</strong></a> | <strong>Day 8</strong> | <a href="/blog/advent-calendar-2020-12-09"><strong>Day 9</strong></a> |</h3>
+        <h2 id="advent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
+<h3 id="-day-7--day-8--day-9-">| <a href="/blog/advent-calendar-2020-12-07"><strong>Day 7</strong></a> | <strong>Day 8</strong> | <a href="/blog/advent-calendar-2020-12-09"><strong>Day 9</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-026"><strong>Roger Bell_West</strong></a>. Today he is talking about his solution to the task <code>Sort Email Adresses</code> of <strong><a href="/blog/perl-weekly-challenge-062">&ldquo;The Weekly Challenge - 062&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="https://blog.firedrake.org/archive/2020/05/Perl_Weekly_Challenge_62__email_sorting_and_3d_queens.html"><strong>post</strong></a> by <strong>Roger Bell_West</strong>.</p>
 <hr>
@@ -196,62 +196,62 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </blockquote>
 <hr>
 <p>The trick here is to construct an easily-sortable representation. This code will fail on some of the more exotic constructs possible in a user-part.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %o;
-getopts(<span style="color:#e6db74">&#39;u&#39;</span>,<span style="color:#f92672">\</span>%o);
-<span style="color:#66d9ef">my</span> %l;
-<span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
-  chomp;
-  <span style="color:#66d9ef">my</span> @e<span style="color:#f92672">=</span>split <span style="color:#e6db74">/@/</span>,$_;
-  <span style="color:#66d9ef">my</span> $k<span style="color:#f92672">=</span>lc($e[<span style="color:#ae81ff">1</span>])<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;@&#39;</span><span style="color:#f92672">.</span>$e[<span style="color:#ae81ff">0</span>];
-</code></pre></div><p>That&rsquo;s the sortable representation. <a href="mailto:billG@microSOFT.com">billG@microSOFT.com</a> becomes microsoft.com@billG – which I can feed to a standard sort to get the desired results.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %o;
+</span></span><span style="display:flex;"><span>getopts(<span style="color:#e6db74">&#39;u&#39;</span>,<span style="color:#f92672">\</span>%o);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %l;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+</span></span><span style="display:flex;"><span>  chomp;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> @e<span style="color:#f92672">=</span>split <span style="color:#e6db74">/@/</span>,$_;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $k<span style="color:#f92672">=</span>lc($e[<span style="color:#ae81ff">1</span>])<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;@&#39;</span><span style="color:#f92672">.</span>$e[<span style="color:#ae81ff">0</span>];
+</span></span></code></pre></div><p>That&rsquo;s the sortable representation. <a href="mailto:billG@microSOFT.com">billG@microSOFT.com</a> becomes microsoft.com@billG – which I can feed to a standard sort to get the desired results.</p>
 <p>If we&rsquo;re being unique, delete any previous addresses with this key.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">if</span> ($o{u}) {
-    delete $l{$k};
-  }
-</code></pre></div><p>Under this key, store a list of email addresses that match it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  push @{$l{$k}},$_;
-}
-</code></pre></div><p>Then for output just look at each key and print the addresses stored under it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $k (sort keys %l) {
-  <span style="color:#66d9ef">print</span> map {<span style="color:#e6db74">&#34;$_\n&#34;</span>} @{$l{$k}};
-}
-</code></pre></div><p>In Raku it was more work to sort out the option parsing than to rewrite the code. The built-in libraries will let me have command-line options, certainly – but not, at least not trivially, combined with raw filenames. So in this first part I iterate through the command-line arguments, putting any that are the names of files into the files list, and parsing &ldquo;-u&rdquo; separately.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> ($o{u}) {
+</span></span><span style="display:flex;"><span>    delete $l{$k};
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>Under this key, store a list of email addresses that match it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>  push @{$l{$k}},$_;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Then for output just look at each key and print the addresses stored under it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $k (sort keys %l) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">print</span> map {<span style="color:#e6db74">&#34;$_\n&#34;</span>} @{$l{$k}};
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In Raku it was more work to sort out the option parsing than to rewrite the code. The built-in libraries will let me have command-line options, certainly – but not, at least not trivially, combined with raw filenames. So in this first part I iterate through the command-line arguments, putting any that are the names of files into the files list, and parsing &ldquo;-u&rdquo; separately.</p>
 <p>(If there exists a file called &ldquo;-u&rdquo;… frankly, you deserve all you get.)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $u<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">my</span> @fn;
-<span style="color:#66d9ef">for</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS <span style="color:#f92672">-&gt;</span> $p {
-  <span style="color:#66d9ef">if</span> ($p<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>e) {
-    push @fn,$p;
-  } <span style="color:#66d9ef">elsif</span> ($p <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;-u&#39;</span>) {
-    $u<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
-  }
-}
-<span style="color:#66d9ef">unless</span> (@fn) {
-  push @fn,<span style="color:#e6db74">&#39;-&#39;</span>;
-}
-</code></pre></div><p>The rest is basically the same algorithm, with syntactic tweaks for Raku.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %l;
-<span style="color:#66d9ef">for</span> @fn <span style="color:#f92672">-&gt;</span> $fn {
-  <span style="color:#66d9ef">my</span> $fh<span style="color:#f92672">=</span>open :r,$fn;
-  <span style="color:#66d9ef">for</span> $fh<span style="color:#f92672">.</span>lines {
-    <span style="color:#f92672">.</span>chomp;
-    <span style="color:#66d9ef">my</span> @e<span style="color:#f92672">=</span>comb(<span style="color:#e6db74">/&lt;-[@]&gt;+/</span>,$_);
-    <span style="color:#66d9ef">my</span> $k<span style="color:#f92672">=</span>lc(@e[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;@&#39;</span> <span style="color:#f92672">~</span> @e[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">if</span> ($u) {
-      %l{$k}:delete;
-    }
-    push %l{$k},$_;
-  }
-  close $fh;
-}
-
-<span style="color:#66d9ef">for</span> (sort keys %l) <span style="color:#f92672">-&gt;</span> $k {
-  <span style="color:#66d9ef">my</span> @q<span style="color:#f92672">=</span>%l{$k}<span style="color:#f92672">.</span>flat;
-  <span style="color:#66d9ef">for</span> @q <span style="color:#f92672">-&gt;</span> $e {
-    say $e;
-  }
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $u<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @fn;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS <span style="color:#f92672">-&gt;</span> $p {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> ($p<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>e) {
+</span></span><span style="display:flex;"><span>    push @fn,$p;
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">elsif</span> ($p <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;-u&#39;</span>) {
+</span></span><span style="display:flex;"><span>    $u<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">unless</span> (@fn) {
+</span></span><span style="display:flex;"><span>  push @fn,<span style="color:#e6db74">&#39;-&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The rest is basically the same algorithm, with syntactic tweaks for Raku.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %l;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> @fn <span style="color:#f92672">-&gt;</span> $fn {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $fh<span style="color:#f92672">=</span>open :r,$fn;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> $fh<span style="color:#f92672">.</span>lines {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>chomp;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @e<span style="color:#f92672">=</span>comb(<span style="color:#e6db74">/&lt;-[@]&gt;+/</span>,$_);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $k<span style="color:#f92672">=</span>lc(@e[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;@&#39;</span> <span style="color:#f92672">~</span> @e[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($u) {
+</span></span><span style="display:flex;"><span>      %l{$k}:delete;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    push %l{$k},$_;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  close $fh;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (sort keys %l) <span style="color:#f92672">-&gt;</span> $k {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> @q<span style="color:#f92672">=</span>%l{$k}<span style="color:#f92672">.</span>flat;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> @q <span style="color:#f92672">-&gt;</span> $e {
+</span></span><span style="display:flex;"><span>    say $e;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></p>
 

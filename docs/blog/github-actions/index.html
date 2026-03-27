@@ -211,23 +211,23 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h1 id="github-actions">GitHub Actions</h1>
 <hr>
-<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
-<h3 id="2-workflowworkflow"><a href="#workflow">2. Workflow</a></h3>
-<h3 id="3-top-level-keystop-level-keys"><a href="#top-level-keys">3. Top Level Keys</a></h3>
-<h3 id="-nbspnbspnbsp-a-required-keysrequired-keys"><a href="#required-keys">     a) Required Keys</a></h3>
-<h3 id="-nbspnbspnbsp-b-optional-keysoptional-keys"><a href="#optional-keys">     b) Optional Keys</a></h3>
-<h3 id="4-event-typesevent-types"><a href="#event-types">4. Event Types</a></h3>
-<h3 id="5-repository-eventsrepository-events"><a href="#repository-events">5. Repository Events</a></h3>
-<h3 id="6-job-componentsjob-components"><a href="#job-components">6. Job Components</a></h3>
-<h3 id="-nbspnbspnbsp-a-required-componentsrequired-components"><a href="#required-components">     a) Required Components</a></h3>
-<h3 id="-nbspnbspnbsp-b-optional-componentsoptional-components"><a href="#optional-components">     b) Optional Components</a></h3>
-<h3 id="7-exampleexample"><a href="#example">7. Example</a></h3>
-<h3 id="-nbspnbspnbsp-a-proof-of-conceptproof-of-concept"><a href="#proof-of-concept">     a) Proof of Concept</a></h3>
+<h3 id="1-introduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-workflow"><a href="#workflow">2. Workflow</a></h3>
+<h3 id="3-top-level-keys"><a href="#top-level-keys">3. Top Level Keys</a></h3>
+<h3 id="a-required-keys"><a href="#required-keys">     a) Required Keys</a></h3>
+<h3 id="b-optional-keys"><a href="#optional-keys">     b) Optional Keys</a></h3>
+<h3 id="4-event-types"><a href="#event-types">4. Event Types</a></h3>
+<h3 id="5-repository-events"><a href="#repository-events">5. Repository Events</a></h3>
+<h3 id="6-job-components"><a href="#job-components">6. Job Components</a></h3>
+<h3 id="a-required-components"><a href="#required-components">     a) Required Components</a></h3>
+<h3 id="b-optional-components"><a href="#optional-components">     b) Optional Components</a></h3>
+<h3 id="7-example"><a href="#example">7. Example</a></h3>
+<h3 id="a-proof-of-concept"><a href="#proof-of-concept">     a) Proof of Concept</a></h3>
 <br>
 <h2 id="introduction">Introduction</h2>
 <hr>
 <p>I have been planning to learn <code>GitHub Actions</code> for a long time. I attended a <a href="https://www.youtube.com/watch?v=ol_Qk31v17g"><strong>talk</strong></a> by <code>Dave Cross</code> in <code>2023</code> at the <code>Perl Conference</code> in <code>Toronto</code> but when I came back home, I got distracted. Then came the book, <a href="https://leanpub.com/githubactionsessentials"><strong>GitHub Actions Essentials</strong></a> by <code>Dave Cross</code>, which reminded me again to get my act together and learn the tool.</p>
-<p>Now, in <code>2025</code>, I have finally decided to crack the nut or at least familiarise myself with it. I haven&rsquo;t bought <code>Dave Cross</code>'s book yet, so I can&rsquo;t comment on it. However, I am pretty confident, it must be good since it is written by <code>Dave Cross</code>. If you have read the book then please let me know your thoughts.</p>
+<p>Now, in <code>2025</code>, I have finally decided to crack the nut or at least familiarise myself with it. I haven&rsquo;t bought <code>Dave Cross</code>&rsquo;s book yet, so I can&rsquo;t comment on it. However, I am pretty confident, it must be good since it is written by <code>Dave Cross</code>. If you have read the book then please let me know your thoughts.</p>
 <p>In this post, I am sharing my learning process and documenting it for future reference.</p>
 <br>
 <h2 id="github-actions-1">GitHub Actions</h2>
@@ -319,41 +319,41 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <p>The following workflow named, <code>CI/CD Pipeline</code>, triggers on a <code>push</code> to the <code>main</code> branch and runs a job named <code>build</code> followed by the job <code>test</code> as it has <code>needs: build</code>. After that it runs <code>deploy</code> job as it has <code>needs: test</code>.</p>
 <br>
-<pre><code>name: CI/CD Pipeline
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Build project
-        run: npm run build
-
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Run tests
-        run: npm test
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: test
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Deploy to production
-        run: ./deploy.sh
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>name: CI<span style="color:#f92672">/</span>CD Pipeline
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>on:
+</span></span><span style="display:flex;"><span>  push:
+</span></span><span style="display:flex;"><span>    branches:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>jobs:
+</span></span><span style="display:flex;"><span>  build:
+</span></span><span style="display:flex;"><span>    runs<span style="color:#f92672">-</span>on: ubuntu<span style="color:#f92672">-</span>latest
+</span></span><span style="display:flex;"><span>    steps:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: Checkout code
+</span></span><span style="display:flex;"><span>        uses: actions<span style="color:#f92672">/</span>checkout@v3
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: Build project
+</span></span><span style="display:flex;"><span>        run: npm run build
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  test:
+</span></span><span style="display:flex;"><span>    runs<span style="color:#f92672">-</span>on: ubuntu<span style="color:#f92672">-</span>latest
+</span></span><span style="display:flex;"><span>    needs: build
+</span></span><span style="display:flex;"><span>    steps:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: Checkout code
+</span></span><span style="display:flex;"><span>        uses: actions<span style="color:#f92672">/</span>checkout@v3
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: Run tests
+</span></span><span style="display:flex;"><span>        run: npm test
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  deploy:
+</span></span><span style="display:flex;"><span>    runs<span style="color:#f92672">-</span>on: ubuntu<span style="color:#f92672">-</span>latest
+</span></span><span style="display:flex;"><span>    needs: test
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>: github<span style="color:#f92672">.</span>ref <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;refs/heads/main&#39;</span>
+</span></span><span style="display:flex;"><span>    steps:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: Checkout code
+</span></span><span style="display:flex;"><span>        uses: actions<span style="color:#f92672">/</span>checkout@v3
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: Deploy to production
+</span></span><span style="display:flex;"><span>        run: <span style="color:#f92672">./</span>deploy<span style="color:#f92672">.</span>sh
+</span></span></code></pre></div><br>
 <p>With a basic knowledge of <code>GitHub Actions</code>, I am ready to create workflow in the <a href="https://github.com/manwar/Map-Tube"><strong>GitHub repository</strong></a> of my <code>CPAN</code> module <a href="https://metacpan.org/pod/Map::Tube"><strong>Map::Tube</strong></a>.</p>
 <p>I need to create a new <code>Personal Access Token (PAT)</code> with the <code>workflow</code> scope.</p>
 <br>
@@ -386,84 +386,84 @@ jobs:
 <p><code>GitHub</code> has a nice feature called <code>GitHub Release</code> that I never bothered to use. It allows developers to package and distribute a specific version of a project along with release notes, binaries and other assets.</p>
 <p>Now, I am going to create a basic workflow file in the repository to automatically create a release every time I tag the master branch using the format <code>v*</code>.</p>
 <br>
-<h3 id="source-nbsp-githubworkflowsreleaseyml-nbsphttpsgithubcommanwarmap-tubeblobmastergithubworkflowsreleaseyml"><strong>Source:</strong> <a href="https://github.com/manwar/Map-Tube/blob/master/.github/workflows/release.yml">[  .github/workflows/release.yml  ]</a></h3>
+<h3 id="source-"><strong>Source:</strong> <a href="https://github.com/manwar/Map-Tube/blob/master/.github/workflows/release.yml">[  .github/workflows/release.yml  ]</a></h3>
 <hr>
-<pre><code>name: Release on Tag
-
-on:
-  push:
-    tags:
-      - 'v*'
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.WORKFLOW_PAT }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>name: Release on Tag
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>on:
+</span></span><span style="display:flex;"><span>  push:
+</span></span><span style="display:flex;"><span>    tags:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;v*&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>jobs:
+</span></span><span style="display:flex;"><span>  build:
+</span></span><span style="display:flex;"><span>    runs<span style="color:#f92672">-</span>on: ubuntu<span style="color:#f92672">-</span>latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    steps:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> name: Checkout code
+</span></span><span style="display:flex;"><span>      uses: actions<span style="color:#f92672">/</span>checkout@v3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  release:
+</span></span><span style="display:flex;"><span>    needs: build
+</span></span><span style="display:flex;"><span>    runs<span style="color:#f92672">-</span>on: ubuntu<span style="color:#f92672">-</span>latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    steps:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> name: Checkout code
+</span></span><span style="display:flex;"><span>      uses: actions<span style="color:#f92672">/</span>checkout@v3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> name: Create Release
+</span></span><span style="display:flex;"><span>      id: create_release
+</span></span><span style="display:flex;"><span>      uses: actions<span style="color:#f92672">/</span>create<span style="color:#f92672">-</span>release@v1
+</span></span><span style="display:flex;"><span>      env:
+</span></span><span style="display:flex;"><span>        GITHUB_TOKEN: ${{ secrets<span style="color:#f92672">.</span>WORKFLOW_PAT }}
+</span></span><span style="display:flex;"><span>      with:
+</span></span><span style="display:flex;"><span>        tag_name: ${{ github<span style="color:#f92672">.</span>ref }}
+</span></span><span style="display:flex;"><span>        release_name: Release ${{ github<span style="color:#f92672">.</span>ref }}
+</span></span><span style="display:flex;"><span>        draft: false
+</span></span><span style="display:flex;"><span>        prerelease: false
+</span></span></code></pre></div><br>
 <h2 id="2025-03-23-update">[2025-03-23] UPDATE</h2>
 <hr>
 <p>If you don&rsquo;t want to create your own secret, <code>WORKFLOW_PAT</code>, like above then you can use the special secret <code>GITHUB_TOKEN</code> provided by <code>GitHub</code> automatically.</p>
 <p>It expires after the workflow run completes. In order to be able to create release, we need to give <code>write</code> permission explicitly.</p>
 <p>So the configuration would look like below using <code>GITHUB_TOKEN</code>:</p>
-<pre><code>name: Release on Tag
-
-on:
-  push:
-    tags:
-      - 'v*'
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>name: Release on Tag
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>on:
+</span></span><span style="display:flex;"><span>  push:
+</span></span><span style="display:flex;"><span>    tags:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;v*&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>jobs:
+</span></span><span style="display:flex;"><span>  build:
+</span></span><span style="display:flex;"><span>    runs<span style="color:#f92672">-</span>on: ubuntu<span style="color:#f92672">-</span>latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    steps:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> name: Checkout code
+</span></span><span style="display:flex;"><span>      uses: actions<span style="color:#f92672">/</span>checkout@v3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  release:
+</span></span><span style="display:flex;"><span>    needs: build
+</span></span><span style="display:flex;"><span>    runs<span style="color:#f92672">-</span>on: ubuntu<span style="color:#f92672">-</span>latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    permissions:
+</span></span><span style="display:flex;"><span>      contents: write
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    steps:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> name: Checkout code
+</span></span><span style="display:flex;"><span>      uses: actions<span style="color:#f92672">/</span>checkout@v3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> name: Create Release
+</span></span><span style="display:flex;"><span>      id: create_release
+</span></span><span style="display:flex;"><span>      uses: actions<span style="color:#f92672">/</span>create<span style="color:#f92672">-</span>release@v1
+</span></span><span style="display:flex;"><span>      env:
+</span></span><span style="display:flex;"><span>        GITHUB_TOKEN: ${{ secrets<span style="color:#f92672">.</span>GITHUB_TOKEN }}
+</span></span><span style="display:flex;"><span>      with:
+</span></span><span style="display:flex;"><span>        tag_name: ${{ github<span style="color:#f92672">.</span>ref }}
+</span></span><span style="display:flex;"><span>        release_name: Release ${{ github<span style="color:#f92672">.</span>ref }}
+</span></span><span style="display:flex;"><span>        draft: false
+</span></span><span style="display:flex;"><span>        prerelease: false
+</span></span></code></pre></div><br>
 <p>I am all set now. Next time I push a new release to <code>CPAN</code>, I will tag it and see if the workflow automatically creates a release for me, <code>fingers crossed</code>.</p>
 <br>
 <h2 id="2025-03-27-update">[2025-03-27] UPDATE</h2>

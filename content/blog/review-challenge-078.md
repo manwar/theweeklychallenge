@@ -55,12 +55,12 @@ Print (0) if none found.
 An element is leader if it is greater than all the elements to its right side.
 
 Example 1:
-```
+```perl
     Input: @A = (9, 10, 7, 5, 6, 1)
     Output: (10, 7, 6, 1)
 ```
 Example 2:
-```
+```perl
     Input: @A = (3, 4, 5)
     Output: (5)
 ```
@@ -411,7 +411,7 @@ You are given array @A containing positive numbers and @B containing one or more
 Write a script to left rotate @A so that the number at the first index of @B becomes the first element in the array. Similary, left rotate @A again so that the number at the second index of @B becomes the first element in the array.
 
 Example 1:
-```
+```perl
     Input:
         @A = (10 20 30 40 50)
         @B = (3 4)

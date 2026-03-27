@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2022blogadvent-calendar-2022"><a href="/blog/advent-calendar-2022"><strong>Advent Calendar 2022</strong></a></h2>
-<h3 id="-nbsp-day-5blogadvent-calendar-2022-12-05-nbsp--nbsp-day-6-nbsp--nbsp-day-7blogadvent-calendar-2022-12-07-nbsp-">|   <a href="/blog/advent-calendar-2022-12-05"><strong>Day 5</strong></a>   |   <strong>Day 6</strong>   |   <a href="/blog/advent-calendar-2022-12-07"><strong>Day 7</strong></a>   |</h3>
+        <h2 id="advent-calendar-2022"><a href="/blog/advent-calendar-2022"><strong>Advent Calendar 2022</strong></a></h2>
+<h3 id="--day-5----day-6----day-7--">|   <a href="/blog/advent-calendar-2022-12-05"><strong>Day 5</strong></a>   |   <strong>Day 6</strong>   |   <a href="/blog/advent-calendar-2022-12-07"><strong>Day 7</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Dave Jacoby</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-158"><strong>&ldquo;The Weekly Challenge - 158&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2022</strong> from the original <a href="https://jacoby.github.io/2022/03/28/in-our-primes-weekly-challenge-158.html"><strong>post</strong></a> by him.</p>
 <hr>
@@ -193,37 +193,37 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h2 id="show-me-the-code">Show Me The Code!</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say postderef signatures state }</span>;
-<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw{ experimental }</span>;
-
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ sum0 product }</span>;
-<span style="color:#66d9ef">use</span> Memoize;
-
-memoize(<span style="color:#e6db74">&#39;is_prime&#39;</span>);
-
-<span style="color:#66d9ef">my</span> @aprimes;
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">100</span> ) {
-    <span style="color:#66d9ef">if</span> ( is_prime($i) ) {
-        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> sum0 split <span style="color:#e6db74">//</span>, $i;
-        <span style="color:#66d9ef">if</span> ( is_prime($sum) ) { push @aprimes, $i; }
-    }
-}
-say join <span style="color:#e6db74">&#39;, &#39;</span>, @aprimes;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> ($n) {
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt $n ) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>_ }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-}
-</code></pre></div><br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl
-<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">83</span>, <span style="color:#ae81ff">89</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say postderef signatures state }</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw{ experimental }</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ sum0 product }</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Memoize;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>memoize(<span style="color:#e6db74">&#39;is_prime&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @aprimes;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">100</span> ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( is_prime($i) ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> sum0 split <span style="color:#e6db74">//</span>, $i;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( is_prime($sum) ) { push @aprimes, $i; }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>say join <span style="color:#e6db74">&#39;, &#39;</span>, @aprimes;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> ($n) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt $n ) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>_ }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">83</span>, <span style="color:#ae81ff">89</span>
+</span></span></code></pre></div><br>
 <h2 id="task-2-first-series-cuban-primes">Task #2: First Series Cuban Primes</h2>
 <p>Write a script to compute first series Cuban Primes &lt;= 1000. Please refer <a href="https://en.wikipedia.org/wiki/Cuban_prime"><strong>wikipedia page</strong></a> for more informations.</p>
 <br>
@@ -239,42 +239,42 @@ say join <span style="color:#e6db74">&#39;, &#39;</span>, @aprimes;
 <br>
 <h2 id="show-me-the-code-1">Show Me The Code!</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say postderef signatures state }</span>;
-<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw{ experimental }</span>;
-
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ sum0 }</span>;
-
-<span style="color:#66d9ef">my</span> @cprimes;
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span> ) {
-    <span style="color:#66d9ef">if</span> ( is_prime($n) ) {
-        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> is_cuban_prime($n);
-        push @cprimes, $n <span style="color:#66d9ef">if</span> $c;
-    }
-}
-say join <span style="color:#e6db74">&#39;, &#39;</span>, @cprimes;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_cuban_prime</span> ($n) {
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span>  $n ) {
-        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> sum0 <span style="color:#ae81ff">1</span>, ( <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $i ), ( <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> ( $i<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> ) );
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">==</span> $n;
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> ($n) {
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt $n ) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>_ }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-}
-</code></pre></div><br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>pl
-<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">271</span>, <span style="color:#ae81ff">331</span>, <span style="color:#ae81ff">397</span>, <span style="color:#ae81ff">547</span>, <span style="color:#ae81ff">631</span>, <span style="color:#ae81ff">919</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say postderef signatures state }</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw{ experimental }</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ sum0 }</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @cprimes;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span> ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( is_prime($n) ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> is_cuban_prime($n);
+</span></span><span style="display:flex;"><span>        push @cprimes, $n <span style="color:#66d9ef">if</span> $c;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>say join <span style="color:#e6db74">&#39;, &#39;</span>, @cprimes;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_cuban_prime</span> ($n) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span>  $n ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> sum0 <span style="color:#ae81ff">1</span>, ( <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $i ), ( <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> ( $i<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> ) );
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">==</span> $n;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> ($n) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt $n ) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>_ }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">271</span>, <span style="color:#ae81ff">331</span>, <span style="color:#ae81ff">397</span>, <span style="color:#ae81ff">547</span>, <span style="color:#ae81ff">631</span>, <span style="color:#ae81ff">919</span>
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p>|   <a href="/blog/advent-calendar-2022"><strong>Advent Calendar 2022</strong></a>   |</p>

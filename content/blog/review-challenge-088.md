@@ -65,12 +65,12 @@ Write a script to return an array @M where $M[i] is the product of all elements 
 
 Input:
 
-```
+```perl
     @N = (5, 2, 1, 4, 3)
 ```
 Output:
 
-```
+```perl
     @M = (24, 60, 120, 30, 40)
 
     $M[0] = 2 x 1 x 4 x 3 = 24
@@ -84,13 +84,13 @@ Output:
 
 Input:
 
-```
+```perl
     @N = (2, 1, 4, 3)
 ```
 
 Output:
 
-```
+```perl
     @M = (12, 24, 6, 8)
 
     $M[0] = 1 x 4 x 3 = 12
@@ -547,7 +547,7 @@ You are given m x n matrix of positive integers.
 Write a script to print spiral matrix as list.
 
 #### Example 1:
-```
+```perl
     Input:
         [ 1, 2, 3 ]
         [ 4, 5, 6 ]
@@ -557,7 +557,7 @@ Write a script to print spiral matrix as list.
 ```
 
 ##### Example 2:
-```
+```perl
     Input:
         [  1,  2,  3,  4 ]
         [  5,  6,  7,  8 ]

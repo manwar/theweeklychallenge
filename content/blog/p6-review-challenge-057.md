@@ -60,20 +60,20 @@ I have shown in that post and also [there](https://github.com/LaurentRosenfeld/P
 
 As an alternative, we might implement an array of arrays in which each of the sub-arrays contain one level of the tree, i.e. a breadth-first representation of the tree. The tree of the task description might look like this:
 
-``` Perl 6
+```perl
     [ [1], [2, 3], [4, 5, 6, 7] ]
 ```
 
 With such an implementation, inverting the tree can be done in a simple one-liner:
 
-``` Perl 6
+```perl
 $ perl6 -e '([1], [2, 3], [4, 5, 6, 7]).map({[ .reverse ]}).say;'
 ([1] [3 2] [7 6 5 4])
 ```
 
 or possibly even:
 
-``` Perl 6
+```perl
 $ perl6 -e '( (1), (2, 3), (4, 5, 6, 7) )>>.reverse.say;'
 ((1) (3 2) (7 6 5 4))
 ```
@@ -94,7 +94,7 @@ The root node is at index 0, and its children are at positions 1 and 2. The chil
 
 These rules may seem a bit complicated (and it is a bit tedious to compute these things manually), but they're in fact quite easy to implement in a program:
 
-``` Perl 6
+```perl
 sub children (Int $i) { 2*$i+1, 2*$i+2 }
 sub parent (Int $i) { ($i-1)/2; }
 ```
@@ -111,19 +111,19 @@ Note that it is very easy to populate the binary-heap-like array from a graphica
 
 can be encoded as:
 
-``` Perl6
+```perl
 my $tree = [1, 2, 3, 4, 5, 6, 7];
 ```
 
 or even:
 
-``` Perl6
+```perl
 my $tree = [1 .. 7];
 ```
 
 With this flat array representation, the `invert` subroutine can be very simple (and needs not be recursive, since the data structure is not nested): we just use the `bft` subroutine to get an array of arrays by level, reverse the components and flatten the overall structure:
 
-``` Perl 6
+```perl
 sub invert ($tree) {
     return [ map { | reverse @$_ }, bft($tree) ];
 }
@@ -131,7 +131,7 @@ sub invert ($tree) {
 
 This is the complete code for this program:
 
-``` Perl 6
+```perl
 use v6;
 
 sub children (Int $i) { 2*$i+1, 2*$i+2 }
@@ -214,7 +214,7 @@ can be encoded as:
 
 In this quick and simple implementation, we use global variables for the tree and for the breadth-first array, to avoid the pain of carrying them around back and forth in the successive recursive subroutine calls. In a real-life application, it would be more proper to pass them as arguments and return values of subroutines, or to use dynamic variables.
 
-``` Perl 6
+```perl
 use v6;
 
 my %tree =  v => 1,
@@ -271,7 +271,7 @@ This program produces the following output:
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/arne-sommer/raku/ch-1.p6) created a `BinaryNode` class to store the tree node data structure, along with a `swap` method to invert left and right children:
 
-``` Perl 6
+```perl
 class BinaryNode
 {
   has Int        $.value;
@@ -287,7 +287,7 @@ class BinaryNode
 
 His recursive `traverse` subroutine is fairly simple:
 
-``` Perl 6
+```perl
 sub traverse ($current)
 {
   $current.swap;
@@ -299,7 +299,7 @@ sub traverse ($current)
 
 The following subroutine (with its lexical recursive `do-it` subroutine) is used to prepare the tree display:
 
-``` Perl 6
+```perl
 sub tree2string ($tree)
 {
   my @level;
@@ -321,7 +321,7 @@ sub tree2string ($tree)
 
 Arne also wrote another version with just one actual code line:
 
-``` Perl 6
+```perl
 unit sub MAIN ($tree = "1 | 2 3 | 4 5 6 7");
 say $tree.split(" | ")>>.words>>.reverse>>.join(" ").join(" | ");
 ```
@@ -333,7 +333,7 @@ which produces the following output:
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/kevin-colyer/raku/ch-1.p6) used a `node` class to represent a tree node, with three methods:
 
-``` Perl 6
+```perl
 class node {
     has Int $.value;
     has node $.left;
@@ -347,7 +347,7 @@ class node {
 I wonder why Kevin uses the `has` keyword to define his methods, but it seems to work fine.
 
 The tree construction is a bit tedious:
-``` Perl 6
+```perl
 my $root = node.new(value => 1,
     left => node.new(value => 2, left => node.new(value =>4),right => node.new(value => 5,left => node.new(value => 10, left => node.new(value=>11) ))),
     right => node.new(value=>3,left=>node.new(value=>6),right=> node.new(value=>7,left=>node.new(value => 8),right=>node.new(value => 9,right=>node.new(value=>12)) ) )
@@ -356,7 +356,7 @@ my $root = node.new(value => 1,
 
 Tree inversion, on the other hand is quite simple:
 
-``` Perl 6
+```perl
 sub invert-tree($node) {
     return if not $node.defined;
     return node.new(value => $node.value, left=>invert-tree($node.right),right => invert-tree($node.left));
@@ -365,7 +365,7 @@ sub invert-tree($node) {
 
 For preparing the pretty-printing, Kevin's program converts the tree to an array:
 
-``` Perl 6
+```perl
 sub tree-to-array($tree,@array,$parent=0,$depth=0) {
     state $maxdepth;
     # reset maxdepth on call to root node
@@ -390,7 +390,7 @@ But I won't quote here Kevin's `pretty-print-tree` subroutine, as it is about 70
 
 [Luca Ferrari](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/luca-ferrari/raku/ch-1.p6) implemented a simple `Node` class:
 
-``` Perl 6
+```perl
 class Node {
     has Int  $.value;
     has Node $.left  is rw;
@@ -400,7 +400,7 @@ class Node {
 
 The tree inversion is done in the following `switch` recursive subroutine:
 
-``` Perl 6
+```perl
 sub switch( Node $current-node is rw ) {
     return if ! $current-node
         && ! $current-node.left
@@ -417,7 +417,7 @@ sub switch( Node $current-node is rw ) {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/simon-proctor/raku/ch-1.p6) wrote a full-fledged object-oriented program, with three classes, one role and even one grammar. the `BTree` defines most of the method used in the program:
 
-``` Perl 6
+```perl
 role BTree[::T] {
     has T $.value is required;
     has BTree @!nodes[2];
@@ -483,7 +483,7 @@ The recursive `reverse` method shown above does the main work.
 
 This role is applied to the `UBTree`
 
-``` Perl 6
+```perl
 class UBTree does BTree[UInt] {
     submethod BUILD ( UInt() :$value, :@nodes ) {
         $!value = $value;
@@ -496,7 +496,7 @@ For those who don't know, the default `BUILD` submethod is automatically called 
 
 Note that the `from-Str` method of the `BTree` role uses a grammar, `BTreeGrammar`, to parse the input string representing the input binary tree:
 
-``` Perl 6
+```perl
 # Example tree 5(4(11(7)(2)))(8(13)(9(1)))
 grammar BTreeGrammar {
     token TOP { <tree> };
@@ -537,7 +537,7 @@ Quite impressive!
 
 Inverting a tree in this format is reduced to selecting out the various levels within the array, reversing them and reconstituting the structure.  This is accomplished in the following `invert_tree` subroutine:
 
-```
+```perl
 sub invert_tree (@tree) {
 ## symmetrically mirrors a binary tree on the right/left axis
 ## I wouldn't use the word "invert" here
@@ -567,7 +567,7 @@ Colin made a very nice job to pretty print the tree, even with relatively deep t
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/javier-luque/raku/ch-1.p6) wrote a full-fledged object-oriented program, with a `BTree` class that has a `Node` class composed into it and a number of methods, including the  `print-tree` and recursive `invert-tree` multi methods to do the work:
 
-``` Perl6
+```perl
 class BTree {
 
     my class Node {
@@ -645,7 +645,7 @@ class BTree {
 
 [Mohammad S. Anwar](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/mohammad-anwar/raku/ch-1.p6) used a hash of arrays of arrays to represent the binary tree and the `mirror` recursive subroutine to perform the tree inversion:
 
-``` Perl 6
+```perl
 my $tree = {
      1 => [ [ 2,
               [ [ 4 ],
@@ -676,7 +676,7 @@ sub mirror($branch) {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/ruben-westerberg/raku/ch-1.p6) used a hash of hashes to represent the binary tree:
 
-``` Perl 6
+```perl
 my $tree={
     v=>1,
     l=>{
@@ -702,7 +702,7 @@ my $tree={
 
 Rather than using a recursive subroutine, Ruben used a stack to walk through the tree depth-first:
 
-``` Perl 6
+```perl
 my @stack=($tree);
 
 while @stack {
@@ -727,7 +727,7 @@ sub createTree( Int $depth ) {
 
 With the choice of this data structure, the `inverTree` subroutine doesn't need recursion and can use simple `for` loops:
 
-```
+```perl
 sub invertTree( @array ) {
   my @inverted ;
   my $depth = log( @array.elems + 1 , 2 ) ;

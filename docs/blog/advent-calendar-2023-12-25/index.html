@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2023blogadvent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
-<h3 id="-nbsp-day-24blogadvent-calendar-2023-12-24-nbsp--nbsp-day-25-nbsp-">|   <a href="/blog/advent-calendar-2023-12-24"><strong>Day 24</strong></a>   |   <strong>Day 25</strong>   |</h3>
+        <h2 id="advent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
+<h3 id="--day-24----day-25--">|   <a href="/blog/advent-calendar-2023-12-24"><strong>Day 24</strong></a>   |   <strong>Day 25</strong>   |</h3>
 <hr>
 <p>The gift is presented by <code>Cheok-Yin Fung</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-246"><strong>The Weekly Challenge - 246</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://e7-87-83.github.io/coding/challenge_246.html"><strong>post</strong></a>.</p>
 <hr>
@@ -188,18 +188,18 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <h3 id="task-1-6-out-of-49">Task 1: 6 out of 49</h3>
 <p>Instead of picking out the balls from a box, we can imagine we line up a set of balls labelled <code>1, 2, 3 ..., 49</code>, and pick out a ball one by one via randomly selecting the <code>k-th</code> ball on the line to be removed.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.30.0</span>;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">my</span> @ans;
-<span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">49</span>);
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>) {
-    <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> int(rand(<span style="color:#ae81ff">49</span><span style="color:#f92672">-</span>$i));
-    push @ans, splice(@arr, $k, <span style="color:#ae81ff">1</span>);
-}
-
-say join <span style="color:#e6db74">&#34;\n&#34;</span>, sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} @ans;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.30.0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @ans;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">49</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> int(rand(<span style="color:#ae81ff">49</span><span style="color:#f92672">-</span>$i));
+</span></span><span style="display:flex;"><span>    push @ans, splice(@arr, $k, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say join <span style="color:#e6db74">&#34;\n&#34;</span>, sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} @ans;
+</span></span></code></pre></div><br>
 <h3 id="task-2-linear-recurrence-of-second-order">Task 2: Linear Recurrence of Second Order</h3>
 <p>Let&rsquo;s have a brief analysis for the task first. It is given 5 integers, and they form some linear recurrence; we have <code>three linear (Diophantine)</code> equations to play with.</p>
 <br>
@@ -209,142 +209,142 @@ say join <span style="color:#e6db74">&#34;\n&#34;</span>, sort {$a<span style="c
 <p>The pros of the approach are <code>(1)</code> it identifies <code>non-integral linear equations</code> early on; <code>(2)</code> instead of <code>two degeneracies</code> which may be found in solving the <code>two coefficients</code> through the first <code>two linear equations</code>, it reduces to <code>one degeneracy (a[2]*a[0]-a[1]*a[1]</code> may be <code>zero</code>). And by number theoretic arguments, we know <code>a[2] = k a[1] = k^2 a[0]</code> in case of the <code>degeneracy</code> occurs, then we have <code>p + qk = k^2. a[3] = p a[1] + q a[2] = p k a[0] + q k^2 a[0] = k^3 a[0]</code>. Similarly we can deduce <code>a[4] = k^4 a[0]</code>.</p>
 <p>The code is full of printing of equations which may not be so relevant to the <code>&quot;solution&quot;</code> but for verifying <code>number theoretic algorithms</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># The Weekly Challenge 246</span>
-<span style="color:#75715e"># Task 2 Linear Recurrence of Second Order</span>
-<span style="color:#75715e"># a[n] = p * a[n-2] + q * a[n-1] with n &gt; 1</span>
-<span style="color:#75715e"># where p and q must be integers.</span>
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.30.0</span>;
-<span style="color:#66d9ef">use</span> warnings;
-
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ex_euc_alg</span> {
-    <span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> ($_[<span style="color:#ae81ff">0</span>], $_[<span style="color:#ae81ff">1</span>]);
-    <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
-    <span style="color:#66d9ef">my</span> @t <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>);
-    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> ($r[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
-        <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> int($r[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">/</span>$r[$i]);
-        $r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $r[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $q <span style="color:#f92672">*</span> $r[$i];
-        <span style="color:#66d9ef">while</span> ($r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> abs($r[$i])) {
-            $r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> abs($r[$i]);
-            $q <span style="color:#f92672">=</span> $q <span style="color:#f92672">+</span> abs($r[$i])<span style="color:#f92672">/</span>$r[$i]
-        }
-        <span style="color:#66d9ef">while</span> ($r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
-            $r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> abs($r[$i]);
-            $q <span style="color:#f92672">=</span> $q <span style="color:#f92672">-</span> abs($r[$i])<span style="color:#f92672">/</span>$r[$i]
-        }
-        $s[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $s[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $q<span style="color:#f92672">*</span>$s[$i];
-        $t[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $t[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $q<span style="color:#f92672">*</span>$t[$i];
-        $i<span style="color:#f92672">++</span>;
-    }
-    <span style="color:#66d9ef">my</span> $a0 <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">my</span> $b0 <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
-    say <span style="color:#e6db74">&#34;$r[$i-1] = $a0*$s[$i-1]+$b0*$t[$i-1]&#34;</span>;
-    <span style="color:#66d9ef">my</span> ($d,$x,$y) <span style="color:#f92672">=</span> ($r[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], $s[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], $t[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
-    <span style="color:#75715e"># for my $k (-10..10) {</span>
-    <span style="color:#75715e">#     my $x1 = $x - $k*$b0/$d;</span>
-    <span style="color:#75715e">#     my $y1 = $y + $k*$a0/$d;</span>
-    <span style="color:#75715e">#     say &#34;$d = $a0*$x1+$b0*$y1&#34;;</span>
-    <span style="color:#75715e"># }</span>
-
-    <span style="color:#66d9ef">return</span> [$r[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], $s[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], $t[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]];
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check</span> {
-    <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#75715e"># consective zeros check</span>
-    <span style="color:#66d9ef">if</span> ($a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $a[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-        <span style="color:#66d9ef">return</span> ($a[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $a[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $a[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
-    }
-    <span style="color:#66d9ef">if</span> ($a[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-        <span style="color:#66d9ef">if</span> ($a[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-            <span style="color:#66d9ef">return</span> ($a[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $a[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
-        }
-        <span style="color:#66d9ef">if</span> ($a[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-            <span style="color:#66d9ef">return</span> ($a[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
-        }
-    }
-
-    <span style="color:#66d9ef">my</span> ($d0, $d1, $x0, $y0, $u0, $v0);
-    <span style="color:#66d9ef">my</span> ($a0, $b0);
-    <span style="color:#66d9ef">my</span> ($a1, $b1);
-
-    ($d0, $x0, $y0) <span style="color:#f92672">=</span> ex_euc_alg($a[<span style="color:#ae81ff">0</span>], $a[<span style="color:#ae81ff">1</span>])<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-    <span style="color:#960050;background-color:#1e0010">($</span>a0, $b0) <span style="color:#f92672">=</span> ($a[<span style="color:#ae81ff">0</span>], $a[<span style="color:#ae81ff">1</span>]);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $a[<span style="color:#ae81ff">2</span>] % <span style="color:#960050;background-color:#1e0010">$</span>d0 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
-    $x0 <span style="color:#f92672">=</span> $x0 <span style="color:#f92672">*</span>($a[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">/</span>$d0);
-    $y0 <span style="color:#f92672">=</span> $y0 <span style="color:#f92672">*</span>($a[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">/</span>$d0);
-    say <span style="color:#e6db74">&#34;$a[2] = $a0*$x0+$b0*$y0&#34;</span>;
-    <span style="color:#75715e"># for my $k (-10..10) {</span>
-    <span style="color:#75715e">#     my $x1 = $x0 + $b0/$d0*$k ;</span>
-    <span style="color:#75715e">#     my $y1 = $y0 - $a0/$d0*$k;</span>
-    <span style="color:#75715e">#     say &#34;$a[2] = $a0*$x1+$b0*$y1&#34;;</span>
-    <span style="color:#75715e"># }</span>
-
-    ($d1, $u0, $v0) <span style="color:#f92672">=</span> ex_euc_alg($a[<span style="color:#ae81ff">1</span>], $a[<span style="color:#ae81ff">2</span>])<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-    <span style="color:#960050;background-color:#1e0010">($</span>a1, $b1) <span style="color:#f92672">=</span> ($a[<span style="color:#ae81ff">1</span>], $a[<span style="color:#ae81ff">2</span>]);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $a[<span style="color:#ae81ff">3</span>] % <span style="color:#960050;background-color:#1e0010">$</span>d1 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
-    $u0 <span style="color:#f92672">=</span> $u0 <span style="color:#f92672">*</span>($a[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">/</span>$d1);
-    $v0 <span style="color:#f92672">=</span> $v0 <span style="color:#f92672">*</span>($a[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">/</span>$d1);
-    say <span style="color:#e6db74">&#34;$a[3] = $a1*$u0+$b1*$v0&#34;</span>;
-    <span style="color:#75715e"># for my $j (-10..10) {</span>
-    <span style="color:#75715e">#     my $x1 = $u0 + $b1/$d1*$j ;</span>
-    <span style="color:#75715e">#     my $y1 = $v0 - $a1/$d1*$j;</span>
-    <span style="color:#75715e">#     say &#34;$a[3] = $a1*$x1+$b1*$y1&#34;;</span>
-    <span style="color:#75715e"># }</span>
-
-
-    <span style="color:#75715e"># $x0 + $b0/$d0*$k == $u0 + $b1/$d1*$j</span>
-    <span style="color:#75715e"># $y0 - $a0/$d0*$k == $v0 - $a1/$d1*$j</span>
-
-    <span style="color:#75715e"># $a0$x0 + $a0$b0/$d0*$k == $a0$u0 + $a0$b1/$d1*$j</span>
-    <span style="color:#75715e"># $b0$y0 - $b0$a0/$d0*$k == $b0$v0 - $b0$a1/$d1*$j</span>
-
-    <span style="color:#66d9ef">if</span> ($a[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $a[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">1</span>]) {
-        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> ($a0<span style="color:#f92672">*</span>$x0 <span style="color:#f92672">+</span> $b0<span style="color:#f92672">*</span>$y0 <span style="color:#f92672">-</span> $a0<span style="color:#f92672">*</span>$u0 <span style="color:#f92672">-</span> $b0<span style="color:#f92672">*</span>$v0)<span style="color:#f92672">*</span>$d1<span style="color:#f92672">/</span>($a0<span style="color:#f92672">*</span>$b1 <span style="color:#f92672">-</span> $b0<span style="color:#f92672">*</span>$a1);
-        <span style="color:#66d9ef">my</span> $x1 <span style="color:#f92672">=</span> $u0 <span style="color:#f92672">+</span> $b1<span style="color:#f92672">/</span>$d1<span style="color:#f92672">*</span>$j;
-        <span style="color:#66d9ef">my</span> $y1 <span style="color:#f92672">=</span> $v0 <span style="color:#f92672">-</span> $a1<span style="color:#f92672">/</span>$d1<span style="color:#f92672">*</span>$j;
-        say <span style="color:#e6db74">&#34;($x1, $y1)&#34;</span>;
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> int($x1) <span style="color:#f92672">!=</span> $x1 <span style="color:#f92672">||</span> int($y1) <span style="color:#f92672">!=</span> $y1;
-        <span style="color:#66d9ef">return</span> ($a[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">==</span> $a[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">*</span>$x1<span style="color:#f92672">+</span>$a[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">*</span>$y1) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
-    }
-    <span style="color:#66d9ef">else</span> {
-        <span style="color:#66d9ef">return</span> ( $a[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> $a[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">0</span>]
-                             <span style="color:#f92672">&amp;&amp;</span>
-                $a[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> $a[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">0</span>]) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
-        <span style="color:#75715e"># Explanation:</span>
-        <span style="color:#75715e"># if a[2] = a[1]*a[1]/$a[0],</span>
-        <span style="color:#75715e"># z d0 = x^2/y d0</span>
-        <span style="color:#75715e"># since d0 = gcd(x d0, y d0), x, y coprime</span>
-        <span style="color:#75715e"># then y must be 1, i.e. x a[0] = a[1]</span>
-        <span style="color:#75715e"># and a[2] = x^2 d0 = x a[1]</span>
-        <span style="color:#75715e"># i.e. x a[1] = a[2]</span>
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e"># The Weekly Challenge 246</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Task 2 Linear Recurrence of Second Order</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># a[n] = p * a[n-2] + q * a[n-1] with n &gt; 1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># where p and q must be integers.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.30.0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ex_euc_alg</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> ($_[<span style="color:#ae81ff">0</span>], $_[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @t <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($r[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> int($r[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">/</span>$r[$i]);
+</span></span><span style="display:flex;"><span>        $r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $r[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $q <span style="color:#f92672">*</span> $r[$i];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ($r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> abs($r[$i])) {
+</span></span><span style="display:flex;"><span>            $r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> abs($r[$i]);
+</span></span><span style="display:flex;"><span>            $q <span style="color:#f92672">=</span> $q <span style="color:#f92672">+</span> abs($r[$i])<span style="color:#f92672">/</span>$r[$i]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ($r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            $r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $r[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> abs($r[$i]);
+</span></span><span style="display:flex;"><span>            $q <span style="color:#f92672">=</span> $q <span style="color:#f92672">-</span> abs($r[$i])<span style="color:#f92672">/</span>$r[$i]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $s[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $s[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $q<span style="color:#f92672">*</span>$s[$i];
+</span></span><span style="display:flex;"><span>        $t[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $t[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $q<span style="color:#f92672">*</span>$t[$i];
+</span></span><span style="display:flex;"><span>        $i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $a0 <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $b0 <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;$r[$i-1] = $a0*$s[$i-1]+$b0*$t[$i-1]&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($d,$x,$y) <span style="color:#f92672">=</span> ($r[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], $s[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], $t[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># for my $k (-10..10) {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#     my $x1 = $x - $k*$b0/$d;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#     my $y1 = $y + $k*$a0/$d;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#     say &#34;$d = $a0*$x1+$b0*$y1&#34;;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># }</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [$r[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], $s[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], $t[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># consective zeros check</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $a[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ($a[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $a[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $a[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($a[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($a[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> ($a[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $a[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($a[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> ($a[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($d0, $d1, $x0, $y0, $u0, $v0);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($a0, $b0);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($a1, $b1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ($d0, $x0, $y0) <span style="color:#f92672">=</span> ex_euc_alg($a[<span style="color:#ae81ff">0</span>], $a[<span style="color:#ae81ff">1</span>])<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">($</span>a0, $b0) <span style="color:#f92672">=</span> ($a[<span style="color:#ae81ff">0</span>], $a[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $a[<span style="color:#ae81ff">2</span>] % <span style="color:#960050;background-color:#1e0010">$</span>d0 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    $x0 <span style="color:#f92672">=</span> $x0 <span style="color:#f92672">*</span>($a[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">/</span>$d0);
+</span></span><span style="display:flex;"><span>    $y0 <span style="color:#f92672">=</span> $y0 <span style="color:#f92672">*</span>($a[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">/</span>$d0);
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;$a[2] = $a0*$x0+$b0*$y0&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># for my $k (-10..10) {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#     my $x1 = $x0 + $b0/$d0*$k ;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#     my $y1 = $y0 - $a0/$d0*$k;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#     say &#34;$a[2] = $a0*$x1+$b0*$y1&#34;;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># }</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ($d1, $u0, $v0) <span style="color:#f92672">=</span> ex_euc_alg($a[<span style="color:#ae81ff">1</span>], $a[<span style="color:#ae81ff">2</span>])<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">($</span>a1, $b1) <span style="color:#f92672">=</span> ($a[<span style="color:#ae81ff">1</span>], $a[<span style="color:#ae81ff">2</span>]);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $a[<span style="color:#ae81ff">3</span>] % <span style="color:#960050;background-color:#1e0010">$</span>d1 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    $u0 <span style="color:#f92672">=</span> $u0 <span style="color:#f92672">*</span>($a[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">/</span>$d1);
+</span></span><span style="display:flex;"><span>    $v0 <span style="color:#f92672">=</span> $v0 <span style="color:#f92672">*</span>($a[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">/</span>$d1);
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;$a[3] = $a1*$u0+$b1*$v0&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># for my $j (-10..10) {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#     my $x1 = $u0 + $b1/$d1*$j ;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#     my $y1 = $v0 - $a1/$d1*$j;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#     say &#34;$a[3] = $a1*$x1+$b1*$y1&#34;;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># }</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># $x0 + $b0/$d0*$k == $u0 + $b1/$d1*$j</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># $y0 - $a0/$d0*$k == $v0 - $a1/$d1*$j</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># $a0$x0 + $a0$b0/$d0*$k == $a0$u0 + $a0$b1/$d1*$j</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># $b0$y0 - $b0$a0/$d0*$k == $b0$v0 - $b0$a1/$d1*$j</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($a[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $a[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">1</span>]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> ($a0<span style="color:#f92672">*</span>$x0 <span style="color:#f92672">+</span> $b0<span style="color:#f92672">*</span>$y0 <span style="color:#f92672">-</span> $a0<span style="color:#f92672">*</span>$u0 <span style="color:#f92672">-</span> $b0<span style="color:#f92672">*</span>$v0)<span style="color:#f92672">*</span>$d1<span style="color:#f92672">/</span>($a0<span style="color:#f92672">*</span>$b1 <span style="color:#f92672">-</span> $b0<span style="color:#f92672">*</span>$a1);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $x1 <span style="color:#f92672">=</span> $u0 <span style="color:#f92672">+</span> $b1<span style="color:#f92672">/</span>$d1<span style="color:#f92672">*</span>$j;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $y1 <span style="color:#f92672">=</span> $v0 <span style="color:#f92672">-</span> $a1<span style="color:#f92672">/</span>$d1<span style="color:#f92672">*</span>$j;
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">&#34;($x1, $y1)&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> int($x1) <span style="color:#f92672">!=</span> $x1 <span style="color:#f92672">||</span> int($y1) <span style="color:#f92672">!=</span> $y1;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ($a[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">==</span> $a[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">*</span>$x1<span style="color:#f92672">+</span>$a[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">*</span>$y1) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ( $a[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> $a[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>                             <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>                $a[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> $a[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">*</span>$a[<span style="color:#ae81ff">0</span>]) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Explanation:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># if a[2] = a[1]*a[1]/$a[0],</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># z d0 = x^2/y d0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># since d0 = gcd(x d0, y d0), x, y coprime</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># then y must be 1, i.e. x a[0] = a[1]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># and a[2] = x^2 d0 = x a[1]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># i.e. x a[1] = a[2]</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h2 id="test-cases">Test Cases</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test::More tests<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">11</span>;
-ok check(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>);
-ok <span style="color:#f92672">!</span>check(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>);
-ok check(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">8</span>);
-
-ok check(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">243</span>);
-ok check(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">243</span>);
-ok check(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
-
-ok check(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
-ok check(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
-ok check(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
-
-ok <span style="color:#f92672">!</span>check(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
-ok check(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">32</span>);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More tests<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">11</span>;
+</span></span><span style="display:flex;"><span>ok check(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>ok <span style="color:#f92672">!</span>check(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>);
+</span></span><span style="display:flex;"><span>ok check(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ok check(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">243</span>);
+</span></span><span style="display:flex;"><span>ok check(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">243</span>);
+</span></span><span style="display:flex;"><span>ok check(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ok check(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>ok check(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>ok check(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ok <span style="color:#f92672">!</span>check(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>ok check(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">32</span>);
+</span></span></code></pre></div><br>
 <p><strong>Hope for Peace!</strong></p>
 <br>
 <hr>
-<h4 id="the-image-of-fibonacci-spiral-is-taken-from-wikimedia-commonshttpscommonswikimediaorgwikifilefibonacci_spiral_geogebrasvg-released-in-public-domin">The image of Fibonacci spiral is taken from <a href="https://commons.wikimedia.org/wiki/File:Fibonacci_Spiral_GeoGebra.svg"><strong>Wikimedia Commons</strong></a>, released in public domin.</h4>
+<h4 id="the-image-of-fibonacci-spiral-is-taken-from-wikimedia-commons-released-in-public-domin">The image of Fibonacci spiral is taken from <a href="https://commons.wikimedia.org/wiki/File:Fibonacci_Spiral_GeoGebra.svg"><strong>Wikimedia Commons</strong></a>, released in public domin.</h4>
 <h4 id="acknowledgement-thanks-to-discussion-of-the-paa-discord-channel-maintained-by-adam-crussell"><strong>Acknowledgement:</strong> Thanks to discussion of the <code>PA&amp;A Discord Channel</code> (maintained by <code>Adam Crussell</code>).</h4>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>

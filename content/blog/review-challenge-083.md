@@ -519,7 +519,7 @@ Choroba gives us regular expressions cooked three ways. In the third of note is 
 
 Jaldhar gives us everything we need to know in a regex one-liner:
 
-```
+```perl
     perl -E '$_ = join q{ }, @ARGV; s/ \A .+? \s+ (.+) \s+ .+? \z / $1 =~ s{\s}{}gr; /emsx; say length;' $@
 ```
 
@@ -663,7 +663,7 @@ Arrays with sums greater than 0 (the `grep` part) are sorted by sum and then neg
 
 The output, not show in code, is quite descriptive:
 
-```
+```perl
     Input: 3 10 8 23 34 52 343 23 123 11 898 238 2 567 98
     Output: 5
     Flipping the sign of just 5 elements (23, 34, 23, 898, 238) gives the result 1.

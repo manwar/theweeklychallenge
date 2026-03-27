@@ -173,7 +173,7 @@ sub collect_points_wh (@slots) {
 
 ### Raku
 
-```raku
+```perl
 #!/usr/bin/env raku
 use v6;
 sub MAIN (*@args) { put collect-points(@args) }

@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-22blogadvent-calendar-2021-12-22--day-23--day-24blogadvent-calendar-2021-12-24-">| <a href="/blog/advent-calendar-2021-12-22"><strong>Day 22</strong></a> | <strong>Day 23</strong> | <a href="/blog/advent-calendar-2021-12-24"><strong>Day 24</strong></a> |</h3>
+        <h2 id="advent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
+<h3 id="-day-22--day-23--day-24-">| <a href="/blog/advent-calendar-2021-12-22"><strong>Day 22</strong></a> | <strong>Day 23</strong> | <a href="/blog/advent-calendar-2021-12-24"><strong>Day 24</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-038"><strong>Ryan Thompson</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-110"><strong>&ldquo;The Weekly Challenge - 110&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://ry.ca/2021/04/transpose-csv-file/"><strong>post</strong></a> by <code>Ryan Thompson</code>.</p>
 <hr>
@@ -218,13 +218,13 @@ sex,m,m,f,f
 <p>Since we’re only asked to output the result, we don’t need to store it. Solutions which work in-place or on a copy of an input array could be made to work, but we don’t need the added effort in this case.</p>
 <p>The general algorithm for printing an array transposition is to loop with $col from 0 to the width of the original array, and then print the $col-th element of every row.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Read input into an array of arrays</span>
-<span style="color:#66d9ef">my</span> @rows <span style="color:#f92672">=</span> map { chomp; [ split <span style="color:#e6db74">&#39;,&#39;</span> ] } <span style="color:#f92672">&lt;&gt;</span>;
-
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#{$rows[<span style="color:#ae81ff">0</span>]}) {
-    say join <span style="color:#e6db74">&#39;,&#39;</span>, map { $_<span style="color:#f92672">-&gt;</span>[$col] } @rows
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e"># Read input into an array of arrays</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @rows <span style="color:#f92672">=</span> map { chomp; [ split <span style="color:#e6db74">&#39;,&#39;</span> ] } <span style="color:#f92672">&lt;&gt;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#{$rows[<span style="color:#ae81ff">0</span>]}) {
+</span></span><span style="display:flex;"><span>    say join <span style="color:#e6db74">&#39;,&#39;</span>, map { $_<span style="color:#f92672">-&gt;</span>[$col] } @rows
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>This runs in <code>O(m×n)</code> time, and uses <code>O(m×n)</code> total memory (importing the original array into <code>@rows</code>), which is the best we can do.</p>
 <p>There is also the <a href="https://metacpan.org/pod/List::MoreUtils#zip6"><strong>zip6</strong></a> function from <a href="https://metacpan.org/pod/List::MoreUtils"><strong>List::MoreUtils</strong></a>, but it only works on <code>arrays</code>, not <code>array refs</code>, so it would not be immediately helpful here.</p>
 <br>
@@ -232,25 +232,25 @@ sex,m,m,f,f
 <br>
 <p><code>Raku</code> gives us a built-in <a href="https://docs.raku.org/routine/zip"><strong>zip</strong></a> operator ([Z]), which does just what we need.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Str $file ) {
-    ([Z] $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)))<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>join(<span style="color:#e6db74">&#39;,&#39;</span>))<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>say;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Str $file ) {
+</span></span><span style="display:flex;"><span>    ([Z] $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)))<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>join(<span style="color:#e6db74">&#39;,&#39;</span>))<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Here, we <code>split()</code> each input line on commas, and then <code>[Z] (zip)</code> that result, and our file is already transposed. We simply need to <code>join()</code> each of the resulting rows back up with commas, and output each string with <code>say()</code>.</p>
 <p>Both <code>Perl</code> and <code>Raku</code> solutions give the same result on the example input:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">[pwc<span style="color:#e6db74">/rjt_110] challenge-110/</span><span style="color:#960050;background-color:#1e0010">⋯</span><span style="color:#e6db74">/raku %&gt; cat ../</span>perl<span style="color:#f92672">/</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>csv
-name,age,sex
-Mohammad,<span style="color:#ae81ff">45</span>,m
-Joe,<span style="color:#ae81ff">20</span>,m
-Julie,<span style="color:#ae81ff">35</span>,f
-Cristina,<span style="color:#ae81ff">10</span>,f
-
-[pwc<span style="color:#e6db74">/rjt_110] challenge-110/</span><span style="color:#960050;background-color:#1e0010">⋯</span><span style="color:#e6db74">/raku %&gt; ./c</span>h<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>raku <span style="color:#f92672">..</span><span style="color:#e6db74">/perl/c</span>h<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>csv
-name,Mohammad,Joe,Julie,Cristina
-age,<span style="color:#ae81ff">45</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">35</span>,<span style="color:#ae81ff">10</span>
-sex,m,m,f,f
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>[pwc<span style="color:#e6db74">/rjt_110] challenge-110/</span><span style="color:#960050;background-color:#1e0010">⋯</span><span style="color:#e6db74">/raku %&gt; cat ../</span>perl<span style="color:#f92672">/</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>csv
+</span></span><span style="display:flex;"><span>name,age,sex
+</span></span><span style="display:flex;"><span>Mohammad,<span style="color:#ae81ff">45</span>,m
+</span></span><span style="display:flex;"><span>Joe,<span style="color:#ae81ff">20</span>,m
+</span></span><span style="display:flex;"><span>Julie,<span style="color:#ae81ff">35</span>,f
+</span></span><span style="display:flex;"><span>Cristina,<span style="color:#ae81ff">10</span>,f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[pwc<span style="color:#e6db74">/rjt_110] challenge-110/</span><span style="color:#960050;background-color:#1e0010">⋯</span><span style="color:#e6db74">/raku %&gt; ./c</span>h<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>raku <span style="color:#f92672">..</span><span style="color:#e6db74">/perl/c</span>h<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>csv
+</span></span><span style="display:flex;"><span>name,Mohammad,Joe,Julie,Cristina
+</span></span><span style="display:flex;"><span>age,<span style="color:#ae81ff">45</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">35</span>,<span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>sex,m,m,f,f
+</span></span></code></pre></div><hr>
 <br>
 <h2 id="full-code">Full Code</h2>
 <br>

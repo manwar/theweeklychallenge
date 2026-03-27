@@ -73,7 +73,7 @@ Having said that it still look elegant, at least to me.
 
 <br>
 
-```perl6
+```perl
 sub count-set-bits(Int $n) {
     my $c = 0;
     (1..$n).map( -> $i { $c += [+] $i.base(2).comb; });
@@ -102,7 +102,7 @@ and here goes **Raku** solution.
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Int :$N = 4) { count-set-bits($N).say }
@@ -131,7 +131,7 @@ along with **Raku** unit test as well.
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 is count-set-bits(4), 5, "testing example 1";
@@ -269,7 +269,7 @@ Literal translation of **Perl** solution.
 
 <br>
 
-```perl6
+```perl
 sub trapped-rain-water(*@array where .all ~~ PositiveInt) {
 
     my @a   = ();
@@ -297,7 +297,7 @@ sub trapped-rain-water(*@array where .all ~~ PositiveInt) {
 }
 ```
 
-```perl6
+```perl
 sub fetch-trapped-water(*@array where .all ~~ PositiveInt) {
 
     # remove any smaller tower from the start
@@ -324,7 +324,7 @@ sub fetch-trapped-water(*@array where .all ~~ PositiveInt) {
 
 Here also I borrowed this `sub chart()` from my past week solutions.
 
-```perl6
+```perl
 sub chart(*@list where @list.elems > 1 && all(@list) ~~ PositiveInt --> Str) {
 
     my $max   = @list.max;
@@ -377,7 +377,7 @@ Followed by **Raku**.
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 subset PositiveInt of Int where * >= 0;
@@ -420,7 +420,7 @@ Unit testing in **Raku** as well.
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 subset PositiveInt of Int where * >= 0;

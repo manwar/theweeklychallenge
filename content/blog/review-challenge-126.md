@@ -61,13 +61,13 @@ You are given a positive integer $N.
 Write a script to print count of numbers from 1 to $N that don’t contain digit 1.
 
 **Example**
-```
+```perl
     Input: $N = 15
     Output: 8
 ```
 There are 8 numbers between 1 and 15 that don't contain digit 1.
 2, 3, 4, 5, 6, 7, 8, 9.
-```
+```perl
     Input: $N = 25
     Output: 13
 ```
@@ -532,7 +532,7 @@ Write a script to print a rectangle with numbers and x as in the Minesweeper gam
 A number in a square of the minesweeper game indicates the number of mines within the neighbouring squares (usually 8), also implies that there are no bombs on that square.
 
 **Example**
-```
+```perl
     Input:
         x * * * x * x x x x
         * * * * * * * * * x
@@ -843,7 +843,7 @@ Of note in the comparisons I used to make sure the surrounding cell indices are 
 
 I also added a random map generator to make it interesting, so I got that going on, which is nice.
 
-```
+```perl
     Input:
 
     * x * * x * * x * * x

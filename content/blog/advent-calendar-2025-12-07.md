@@ -37,7 +37,7 @@ Given a sorted array of integers, find out the integer that has the min differen
 
 <br>
 
-```raku
+```perl
 sub MAIN( *@nums where { @nums.grep( * ~~ Int ).elems == @nums.elems } ) {
     my %gaps;
     for 1 ..^ @nums.elems {
@@ -60,7 +60,7 @@ Given an array of integers, find out the smallest difference between any element
 
 <br>
 
-```raku
+```perl
 sub MAIN( *@nums where { @nums.grep( * ~~ Int ).elems == @nums.elems } ) {
 
     my $min = Inf;

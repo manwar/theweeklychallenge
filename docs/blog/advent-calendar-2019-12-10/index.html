@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2019blogadvent-calendar-2019"><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></h2>
-<h3 id="-day-9blogadvent-calendar-2019-12-09--day-10--day-11blogadvent-calendar-2019-12-11-">| <a href="/blog/advent-calendar-2019-12-09"><strong>Day 9</strong></a> | <strong>Day 10</strong> | <a href="/blog/advent-calendar-2019-12-11"><strong>Day 11</strong></a> |</h3>
+        <h2 id="advent-calendar-2019"><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></h2>
+<h3 id="-day-9--day-10--day-11-">| <a href="/blog/advent-calendar-2019-12-09"><strong>Day 9</strong></a> | <strong>Day 10</strong> | <a href="/blog/advent-calendar-2019-12-11"><strong>Day 11</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-031"><strong>Mark Senn</strong></a>. Today he is talking about his solutions to <strong>Task #1: Split word on change of character</strong> of <strong><a href="/blog/perl-weekly-challenge-020">&ldquo;The Weekly Challenge - 020&rdquo;</a></strong>.</p>
 <hr>
@@ -191,29 +191,28 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </code></pre>
 <p>with no comments could be used. For this regex I prefer commenting it like below to explain it to people who may have not used regexes before.</p>
 <p>Search for the quoted comments in the code below in <a href="https://docs.raku.org/language/regexes"><strong>here</strong></a> for more information.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">
-<span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
-
-$_ <span style="color:#f92672">=</span> shift @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
-
-<span style="color:#f92672">/</span>                 <span style="color:#75715e"># Start a Raku regex (called &#34;regular expression&#34; in Perl).</span>
-    (                 <span style="color:#75715e"># Start a group to match a string of identical characters.</span>
-        (<span style="color:#f92672">.</span>)               <span style="color:#75715e"># Match a single character.</span>
-        {}                <span style="color:#75715e"># &#34;This code block publishes the capture inside the</span>
-                          <span style="color:#75715e"># regex, so that it can be assigned to other variables</span>
-                          <span style="color:#75715e"># or used for subsequent matches.&#34;</span>
-        $0<span style="color:#f92672">*</span>               <span style="color:#75715e"># Match the previously matched character</span>
-                          <span style="color:#75715e"># zero or more times.</span>
-    )<span style="color:#f92672">*</span>                <span style="color:#75715e"># End the group to match a string of identical characters.</span>
-                      <span style="color:#75715e"># There are zero or more groups of identical characters.</span>
-<span style="color:#f92672">/</span>;                <span style="color:#75715e"># End the Raku regex.</span>
-
-<span style="color:#75715e"># &#34;Coercing the match object to a list gives an easy way</span>
-<span style="color:#75715e"># to programmatically access all elements :&#34;</span>
-
-say $/<span style="color:#f92672">.</span>list<span style="color:#f92672">.</span>join;
-
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$_ <span style="color:#f92672">=</span> shift @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">/</span>                 <span style="color:#75715e"># Start a Raku regex (called &#34;regular expression&#34; in Perl).</span>
+</span></span><span style="display:flex;"><span>    (                 <span style="color:#75715e"># Start a group to match a string of identical characters.</span>
+</span></span><span style="display:flex;"><span>        (<span style="color:#f92672">.</span>)               <span style="color:#75715e"># Match a single character.</span>
+</span></span><span style="display:flex;"><span>        {}                <span style="color:#75715e"># &#34;This code block publishes the capture inside the</span>
+</span></span><span style="display:flex;"><span>                          <span style="color:#75715e"># regex, so that it can be assigned to other variables</span>
+</span></span><span style="display:flex;"><span>                          <span style="color:#75715e"># or used for subsequent matches.&#34;</span>
+</span></span><span style="display:flex;"><span>        $0<span style="color:#f92672">*</span>               <span style="color:#75715e"># Match the previously matched character</span>
+</span></span><span style="display:flex;"><span>                          <span style="color:#75715e"># zero or more times.</span>
+</span></span><span style="display:flex;"><span>    )<span style="color:#f92672">*</span>                <span style="color:#75715e"># End the group to match a string of identical characters.</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#75715e"># There are zero or more groups of identical characters.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">/</span>;                <span style="color:#75715e"># End the Raku regex.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># &#34;Coercing the match object to a list gives an easy way</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># to programmatically access all elements :&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say $/<span style="color:#f92672">.</span>list<span style="color:#f92672">.</span>join;
+</span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 

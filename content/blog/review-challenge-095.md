@@ -62,17 +62,17 @@ You are given a number $N.
 Write a script to figure out if the given number is Palindrome. Print 1 if true otherwise 0.
 
 **Example 1:**
-```
+```perl
     Input: 1221
     Output: 1
 ```
 **Example 2:**
-```
+```perl
     Input: -101
     Output: 0, since -101 and 101- are not the same.
 ```
 **Example 3:**
-```
+```perl
     Input: 90
     Output: 0
 ```
@@ -496,7 +496,7 @@ Write a script to demonstrate Stack operations like below:
 
 Example:
 
-```
+```perl
     my $stack = Stack->new;
     $stack->push(2);
     $stack->push(-1);

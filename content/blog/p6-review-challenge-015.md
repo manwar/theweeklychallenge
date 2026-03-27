@@ -57,7 +57,7 @@ Originally, I kept letters within the `a..z` range (folding the input message to
 
 In this script, the bulk of the work is done in the `rotate-msg` and `rotate-one-letter` subroutines. The `encode` and `decode` subroutines are only calling them with the proper arguments. And the `create-code` subroutine is used to transform the password into an array of numeric values.
 
-``` Perl6
+```perl
 use v6;
 
 subset Letter of Str where .chars == 1;
@@ -145,7 +145,7 @@ In the [autokey cypher](https://en.wikipedia.org/wiki/Autokey_cipher) improvemen
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/arne-sommer/perl6/ch-2.p6) made a very simple and very concise implementation of the cypher dealing only with uppercase letters (as in Vigenère's original cypher). His program loops on the input string's numerical codes and at the same time on the key's numerical codes. It adds the key's codes when encrypting and subtract them when decrypting.
 
-``` Perl6
+```perl
 subset UCASE of Str where * ~~ /^<[A .. Z]>+$/;
 
 unit sub MAIN (UCASE $uppercase-string, UCASE $key, :$decrypt = False);
@@ -168,18 +168,18 @@ for ^@string.elems -> $p
 
 [Francis J. Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/fjwhittle/perl6/ch-2.p6) first wrote an `ordinate` helper subroutine to transform the password or the message into a list of numeric codes. Once this is done, encoding a message boils down to:
 
-``` Perl6
+```perl
 put ordinate($message).rotor(@key.elems, :partial).map({ (($_ Z+ @key) X% 26) X+ 'A'.ord})».Slip».chr.join
 ```
 and decoding an encrypted message to:
-``` Perl6
+```perl
 put ordinate($message).rotor(@key.elems, :partial).map({ (($_ Z- @key) X% 26) X+ 'A'.ord})».Slip».chr.join
 ```
 Wow, that's quite impressive! And also a little bit cryptic: it took me quite a few minutes to understand these code lines.
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/kevin-colyer/perl6/ch-2.p6) also limited the input text and the key to uppercase letters, and his program also loops on the input string's numeric codes and at the same time on the key's numerical codes. It multiplies the key numerical codes by -1 when decrypting. His central subroutine is also fairly simple and looks as follows:
 
-``` Perl6
+```perl
 sub VigenereCipher($text,$key,$encode) {
     my $offset="A".ord;
     my @t = $text.uc.comb.map(*.ord-$offset);
@@ -201,7 +201,7 @@ One little surprising thing is that Kevin decided to abort his program when the 
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/athanasius/perl6/ch-2.p6) wrote two helper subroutines, `str2num` and `num2str`, to convert a string into an array of numerical items and back, which can be used both for the input string and the key. Before starting to encode or decode, the program copies the key numeric codes as many times as needed to obtain a final key equal to or longer than the text. At this point, encrypting a message from the array of its numeric codes becomes fairly easy:
 
-``` Perl6
+```perl
 while @plain
     {
         my $m = @plain.shift;
@@ -219,7 +219,7 @@ and decrypting is just about the same with a minus sign instead of a plus.
 
 i.e. Vigenère's original table of alphabets written out 26 times, each time shifted by one letter, in the form of hash of strings: `A => ABCDEFGHIJKLMNOPQRSTUVWXYZ, B => BCDEFGHIJKLMNOPQRSTUVWXYZA, ...`. Once this preparation work is done, this encrypt subroutine becomes quite concise:
 
-``` Perl6
+```perl
 sub encrypt(@key, $keylength, %tabulaRecta, $c) {
     state $i = 0;
 
@@ -231,7 +231,7 @@ sub encrypt(@key, $keylength, %tabulaRecta, $c) {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/ruben-westerberg/perl6/ch-2.p6) decided to use an alphabet containing upper case and lower case ASCII letters plus spaces and a few punctuation symbols. His program reads line by line from a file and writes to a file. It uses heavily the `>>` hyper-operator to encode in just one statement the input array of integer ASCII codes into an array of encoded numbers. I must say that it took me a while to understand that statement.
 
-``` Perl6
+```perl
 sub MAIN ( Str $key, Bool :$decode, Str :$file ) {
     my $f=$decode??1!!-1;
     $*OUT.out-buffer=0;
@@ -275,7 +275,7 @@ We don't know in advance how many prime numbers we'll need to check to find 10 s
 
 In the first code example below, we first build a lazy infinite list of prime numbers, and then use `grep` to filter the strong (and weak) primes, so as to construct lazy infinite lists of strong and weak primes, and we finally print out the first 10 numbers of each such list. This is fairly straight forward:
 
-```  Perl6
+```perl
 use v6;
 
 my @p = grep { .is-prime }, 1..*;   #Lazy infinite list of primes
@@ -296,7 +296,7 @@ This script displays the following output:
 We don't really need to build the intermediate `@strong` and `@weak` lazy infinite lists, but can print out the results directly:
 
 
-``` Perl6
+```perl
 use v6;
 
 my @p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
@@ -318,7 +318,7 @@ We're now down to three code lines instead of five (except that I have to format
 
 One slight problem with the implementation above is that, once we have generated our list of primes, we need to go through it twice with the `map ... grep` chained statements, one for the strong primes and once for the weak primes; and we'd need to visit the prime list a third time for finding balanced primes. Although the script runs very fast, it would be better if we could do the categorizing in one go. Perl 6 has two built-in routines to do that, `categorize` and `classify`. Let's try to use the first one:
 
-``` Perl6
+```perl
 use v6;
 
 my @p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
@@ -364,7 +364,7 @@ I want to use the opportunity of this challenge to illustrate once more some pos
 
 In fact, the first solution suggested above is in fact already largely functional in spirit. We're using a data pipeline programming model. The code lines with `map` and `grep` statements should be read from bottom to top (when they are formatted over more than one line)  and from right to left. For example, to understand this code line:
 
-``` Perl6
+```perl
 my @strong = map $p[$_],
     grep { $p[$_] - $p[$_-1] > $p[$_+1] - $p[$_] } 1..25;
 ```
@@ -379,7 +379,7 @@ I hate to say that, but an easy solution is to write a non (or less) functional 
 
 For example, this could be something like this:
 
-``` Perl6
+```perl
 use v6;
 
 my @p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
@@ -415,7 +415,7 @@ Let's come back to the `categorize` and `classify` built-in functions. As alread
 
 Let's see if we can write our own version of  `categorize` or `classify` which would have the same calling syntax and be able to handle infinite lists. Our version of this function will be called `distribute`.
 
-``` Perl6
+```perl
 @p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
     sub mapper(UInt $i) {
         @p[$i] > (@p[$i - 1] + @p[$i + 1])/2 ?? 'Strong' !!
@@ -448,7 +448,7 @@ I am not fully satisfied, though, because our `distribute` subroutine is tailore
 
 These two changes  will make our `distribute` subroutine more generic:
 
-``` Perl6
+```perl
 use v6;
 
 my @p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
@@ -484,7 +484,7 @@ The output is what we want:
 
 A final comment on all this. I called `distribute` my new version of the `classify` or `categorize` subroutines because I did not want to mess around the semantics of those existing functions. But it works to define the `distribute` subroutine as a `multi sub classify` subroutine:
 
-``` Perl6
+```perl
 use v6;
 
 my @p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
@@ -515,7 +515,7 @@ I no longer get the `Cannot classify a lazy list` error message, this code works
 
 It is worth noting that Arne used a sigil-less variable, `p`, for his array of primes, as well as for his `for` loop iteration variable (`n`), so that his code to compute whether a prime is strong or weak looks almost exactly the same as the math formulas of the challenge specification:
 
-``` Perl6
+```perl
 if p[n] > ( p[n-1] + p[n+1] ) / 2 { # ...
 ```
 
@@ -525,7 +525,7 @@ That's quite a nice feature, because the code can be understood and possibly eve
 
 [Jaldhar M. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/jaldhar-h-vyas/perl6/ch-1.p6) created first a lazy infinite list of primes, and then use a `grep` to create a lazy infinite list of strong primes and a lazy infinite list of weak primes, and finally printed the first ten items of each of those two last lists. Essentially the same thing as my first solution, except that Jaldhar's program is using chained method invocations (where mine uses chained function calls). Here is the example for the strong primes:
 
-``` Perl6
+```perl
 my @strongPrimes = (1 .. ∞)
    .grep({ @primes[$_] > (@primes[$_ - 1] + @primes[$_ + 1]) / 2 })
    .map({ @primes[$_] });
@@ -533,7 +533,7 @@ my @strongPrimes = (1 .. ∞)
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/joelle-maslak/perl6/ch-1.p6) also created a lazy infinite list of primes. Then, she created the lists of strong and weak primes using a `lazy gather/take` block. For example for the strong primes:
 
-``` Perl6
+```perl
 my @strong = lazy gather {
     for 1..∞ -> $i {
         take @primes[$i] if @primes[$i] > @primes[$i-1,$i+1].sum / 2

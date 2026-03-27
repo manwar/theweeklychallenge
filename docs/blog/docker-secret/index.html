@@ -211,11 +211,11 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h2 id="dockeri-secret">Dockeri Secret</h2>
 <hr>
-<h3 id="1-setupsetup"><a href="#setup">1. Setup</a></h3>
-<h3 id="2-hard-wired-secretshard-wired-secrets"><a href="#hard-wired-secrets">2. Hard Wired Secrets</a></h3>
-<h3 id="3-environment-variablesenvironment-variables"><a href="#environment-variables">3. Environment Variables</a></h3>
-<h3 id="4-env-fileenv-file"><a href="#env-file">4. Env File</a></h3>
-<h3 id="5-swarm-modeswarm-mode"><a href="#swarm-mode">5. Swarm Mode</a></h3>
+<h3 id="1-setup"><a href="#setup">1. Setup</a></h3>
+<h3 id="2-hard-wired-secrets"><a href="#hard-wired-secrets">2. Hard Wired Secrets</a></h3>
+<h3 id="3-environment-variables"><a href="#environment-variables">3. Environment Variables</a></h3>
+<h3 id="4-env-file"><a href="#env-file">4. Env File</a></h3>
+<h3 id="5-swarm-mode"><a href="#swarm-mode">5. Swarm Mode</a></h3>
 <br>
 <h2 id="setup">Setup</h2>
 <hr>
@@ -276,18 +276,18 @@ docker-compose version 1.29.2, build unknown
 <p>Well, in this case, we save the secrets in the configuration, though it&rsquo;s not a good idea.</p>
 <p>Here is the configuration file, <code>docker-compose-open.yml</code>:</p>
 <br>
-<pre><code>version: '3.8'
-
-services:
-  mongodb:
-    image: mongo
-    container_name: mongodb
-    ports:
-      - 27017:27017
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=supersecret
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  mongodb:
+</span></span><span style="display:flex;"><span>    image: mongo
+</span></span><span style="display:flex;"><span>    container_name: mongodb
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#ae81ff">27017</span>:<span style="color:#ae81ff">27017</span>
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> MONGO_INITDB_ROOT_USERNAME<span style="color:#f92672">=</span>admin
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> MONGO_INITDB_ROOT_PASSWORD<span style="color:#f92672">=</span>supersecret
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s start the container now:</p>
 <br>
 <pre><code>$ docker-compose -f docker-compose-open.yml up -d
@@ -334,17 +334,17 @@ mongodb
 <hr>
 <p>For this, we would create another configuration file, <code>docker-compose-env.yml</code>:</p>
 <br>
-<pre><code>version: '3.8'
-services:
-  mongodb:
-    image: mongo
-    container_name: mongodb
-    ports:
-      - 27017:27017
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ADMIN_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ADMIN_PASS}
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  mongodb:
+</span></span><span style="display:flex;"><span>    image: mongo
+</span></span><span style="display:flex;"><span>    container_name: mongodb
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#ae81ff">27017</span>:<span style="color:#ae81ff">27017</span>
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> MONGO_INITDB_ROOT_USERNAME<span style="color:#f92672">=</span>${MONGO_ADMIN_USER}
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> MONGO_INITDB_ROOT_PASSWORD<span style="color:#f92672">=</span>${MONGO_ADMIN_PASS}
+</span></span></code></pre></div><br>
 <p>You have two choices for creating environment variables: either use <code>EXPORT key=value</code> or define them when creating container:</p>
 <br>
 <pre><code>$ export MONGO_ADMIN_USER=admin
@@ -491,34 +491,34 @@ x3lswvc8mkwh0x5opoyvkucca   mongo_user             About a minute ago   About a 
 <br>
 <p>It&rsquo;s time to create the configuration file, <code>docker-compose-secret.yml</code> as below:</p>
 <br>
-<pre><code>version: '3.8'
-
-services:
-  mongo:
-    image: mongo
-    container_name: mongodb
-    secrets:
-      - mongo_user
-      - mongo_pass
-    ports:
-      - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/mongo_user
-      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_pass
-    networks:
-      - mongo_network
-
-secrets:
-  mongo_user:
-    external: true
-  mongo_pass:
-    external: true
-
-networks:
-  mongo_network:
-    driver: overlay
-    attachable: true
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  mongo:
+</span></span><span style="display:flex;"><span>    image: mongo
+</span></span><span style="display:flex;"><span>    container_name: mongodb
+</span></span><span style="display:flex;"><span>    secrets:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> mongo_user
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> mongo_pass
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#ae81ff">27017</span>:<span style="color:#ae81ff">27017</span>
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      MONGO_INITDB_ROOT_USERNAME_FILE: <span style="color:#e6db74">/run/s</span>ecrets<span style="color:#f92672">/</span>mongo_user
+</span></span><span style="display:flex;"><span>      MONGO_INITDB_ROOT_PASSWORD_FILE: <span style="color:#e6db74">/run/s</span>ecrets<span style="color:#f92672">/</span>mongo_pass
+</span></span><span style="display:flex;"><span>    networks:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> mongo_network
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>secrets:
+</span></span><span style="display:flex;"><span>  mongo_user:
+</span></span><span style="display:flex;"><span>    external: true
+</span></span><span style="display:flex;"><span>  mongo_pass:
+</span></span><span style="display:flex;"><span>    external: true
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>networks:
+</span></span><span style="display:flex;"><span>  mongo_network:
+</span></span><span style="display:flex;"><span>    driver: overlay
+</span></span><span style="display:flex;"><span>    attachable: true
+</span></span></code></pre></div><br>
 <p>To create a container in <code>Swarm</code> mode and use the secrets, we need to create the stack as follows:</p>
 <br>
 <pre><code>$ docker stack deploy -c docker-compose-secret.yml mongo_stack

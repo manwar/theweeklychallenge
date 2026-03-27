@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-4blogadvent-calendar-2024-12-04-nbsp--nbsp-day-5-nbsp--nbsp-day-6blogadvent-calendar-2024-12-06-nbsp-">|   <a href="/blog/advent-calendar-2024-12-04"><strong>Day 4</strong></a>   |   <strong>Day 5</strong>   |   <a href="/blog/advent-calendar-2024-12-06"><strong>Day 6</strong></a>   |</h3>
+        <h2 id="advent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
+<h3 id="--day-4----day-5----day-6--">|   <a href="/blog/advent-calendar-2024-12-04"><strong>Day 4</strong></a>   |   <strong>Day 5</strong>   |   <a href="/blog/advent-calendar-2024-12-06"><strong>Day 6</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Laurent Rosenfeld</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-255"><strong>The Weekly Challenge - 255</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://blogs.perl.org/users/laurent_r/2024/02/perl-weekly-challenge-255-odd-character.html"><strong>post 1</strong></a>. and <a href="https://blogs.perl.org/users/laurent_r/2024/02/perl-weekly-challenge-255-most-frequent-word.html"><strong>post 2</strong></a>.</p>
 <hr>
@@ -197,49 +197,49 @@ Write a script to find the additional character in the string $t.
 <br>
 <p>This task is really simple in <code>Raku</code>: we simply convert each input string into a <code>Bag</code> of its letters, and then use the <code>(-) infix</code> set difference operator to find the extra item in <code>$t</code>. So we end up with a short one-line subroutine.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">odd</span>-char ($s, $t) {
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">~</span> ($t<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>Bag (<span style="color:#f92672">-</span>) $s<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>Bag);
-}
-
-<span style="color:#66d9ef">for</span> <span style="color:#f92672">&lt;</span>Perl Preel<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>Weekly Weeakly<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>Box Boxy<span style="color:#f92672">&gt;</span> <span style="color:#f92672">-&gt;</span> @test {
-    printf <span style="color:#e6db74">&#34;%-8s %-8s =&gt; &#34;</span>, @test;
-    say odd<span style="color:#f92672">-</span>char @test[<span style="color:#ae81ff">0</span>], @test[<span style="color:#ae81ff">1</span>];
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">odd</span>-char ($s, $t) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">~</span> ($t<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>Bag (<span style="color:#f92672">-</span>) $s<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>Bag);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">&lt;</span>Perl Preel<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>Weekly Weeakly<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>Box Boxy<span style="color:#f92672">&gt;</span> <span style="color:#f92672">-&gt;</span> @test {
+</span></span><span style="display:flex;"><span>    printf <span style="color:#e6db74">&#34;%-8s %-8s =&gt; &#34;</span>, @test;
+</span></span><span style="display:flex;"><span>    say odd<span style="color:#f92672">-</span>char @test[<span style="color:#ae81ff">0</span>], @test[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>This program displays the following output:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ raku <span style="color:#f92672">./</span>odd<span style="color:#f92672">-</span>characters<span style="color:#f92672">.</span>raku
-Perl     Preel    <span style="color:#f92672">=&gt;</span> e
-Weekly   Weeakly  <span style="color:#f92672">=&gt;</span> a
-Box      Boxy     <span style="color:#f92672">=&gt;</span> y
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ raku <span style="color:#f92672">./</span>odd<span style="color:#f92672">-</span>characters<span style="color:#f92672">.</span>raku
+</span></span><span style="display:flex;"><span>Perl     Preel    <span style="color:#f92672">=&gt;</span> e
+</span></span><span style="display:flex;"><span>Weekly   Weeakly  <span style="color:#f92672">=&gt;</span> a
+</span></span><span style="display:flex;"><span>Box      Boxy     <span style="color:#f92672">=&gt;</span> y
+</span></span></code></pre></div><br>
 <h3 id="odd-character-in-perl">Odd Character in Perl</h3>
 <hr>
 <br>
 <p>The solution is slightly more complicated in <code>Perl</code>, because <code>Perl</code> doesn&rsquo;t have <code>Bags</code> and <code>set</code> difference operators. We can easily replace bags with hashes (with values being the frequency of each letter). Then we have to find the extra hash item in <code>%t</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict; <span style="color:#66d9ef">use</span> warnings; <span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">odd_char</span> {
-    <span style="color:#66d9ef">my</span> (%s, %t);
-    %s <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">++</span>$s{$_} } split <span style="color:#e6db74">//</span>, $_[<span style="color:#ae81ff">0</span>];
-    %t <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">++</span>$t{$_} } split <span style="color:#e6db74">//</span>, $_[<span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> grep { (<span style="color:#f92672">not</span> defined $s{$_})
-        <span style="color:#f92672">or</span> $t{$_} <span style="color:#f92672">-</span> $s{$_} <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> } keys %t;
-}
-
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $test ([<span style="color:#f92672">&lt;</span>Perl Preel<span style="color:#f92672">&gt;</span>], [<span style="color:#f92672">&lt;</span>Weekly Weeakly<span style="color:#f92672">&gt;</span>], [<span style="color:#f92672">&lt;</span>Box Boxy<span style="color:#f92672">&gt;</span>]) {
-    printf <span style="color:#e6db74">&#34;%-8s %-8s =&gt; &#34;</span>, @$test;
-    say odd_char $test<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $test<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict; <span style="color:#66d9ef">use</span> warnings; <span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">odd_char</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> (%s, %t);
+</span></span><span style="display:flex;"><span>    %s <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">++</span>$s{$_} } split <span style="color:#e6db74">//</span>, $_[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    %t <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">++</span>$t{$_} } split <span style="color:#e6db74">//</span>, $_[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> grep { (<span style="color:#f92672">not</span> defined $s{$_})
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">or</span> $t{$_} <span style="color:#f92672">-</span> $s{$_} <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> } keys %t;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $test ([<span style="color:#f92672">&lt;</span>Perl Preel<span style="color:#f92672">&gt;</span>], [<span style="color:#f92672">&lt;</span>Weekly Weeakly<span style="color:#f92672">&gt;</span>], [<span style="color:#f92672">&lt;</span>Box Boxy<span style="color:#f92672">&gt;</span>]) {
+</span></span><span style="display:flex;"><span>    printf <span style="color:#e6db74">&#34;%-8s %-8s =&gt; &#34;</span>, @$test;
+</span></span><span style="display:flex;"><span>    say odd_char $test<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $test<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>This program displays the following output:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl  <span style="color:#f92672">./</span>odd<span style="color:#f92672">-</span>characters<span style="color:#f92672">.</span>pl
-Perl     Preel    <span style="color:#f92672">=&gt;</span> e
-Weekly   Weeakly  <span style="color:#f92672">=&gt;</span> a
-Box      Boxy     <span style="color:#f92672">=&gt;</span> y
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl  <span style="color:#f92672">./</span>odd<span style="color:#f92672">-</span>characters<span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span>Perl     Preel    <span style="color:#f92672">=&gt;</span> e
+</span></span><span style="display:flex;"><span>Weekly   Weeakly  <span style="color:#f92672">=&gt;</span> a
+</span></span><span style="display:flex;"><span>Box      Boxy     <span style="color:#f92672">=&gt;</span> y
+</span></span></code></pre></div><br>
 <h2 id="task-2-most-frequent-word">Task 2: Most Frequent Word</h2>
 <hr>
 <br>
@@ -253,58 +253,58 @@ Write a script to return the most frequent word that is not banned.
 <br>
 <p>We first use the <code>tr///</code> in-place transliteration operator to remove punctuation characters from the input paragraph, which makes it possible to use the words to split the paragraph into words. We then use <code>grep</code> to remove the banned word from the word list and convert the resulting list into a <code>Bag</code>, histo (for histogram). Finally, we return the item from the bag having the highest frequency.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">most</span>-frequent-word ($para is copy, $banned) {
-    $para <span style="color:#f92672">~~</span> tr<span style="color:#e6db74">/,.:;?!/</span><span style="color:#f92672">/</span>;
-    <span style="color:#66d9ef">my</span> $histo <span style="color:#f92672">=</span> $para<span style="color:#f92672">.</span>words<span style="color:#f92672">.</span>grep({$_ <span style="color:#f92672">ne</span> $banned})<span style="color:#f92672">.</span>Bag;
-    <span style="color:#66d9ef">return</span> $histo<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>max({$histo{$_}});
-}
-
-<span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Joe hit a ball, the hit ball flew far after it was hit.&#34;</span>;
-printf <span style="color:#e6db74">&#34;%-30s... =&gt; &#34;</span>, substr $t, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">28</span>;
-say most<span style="color:#f92672">-</span>frequent<span style="color:#f92672">-</span>word $t, <span style="color:#e6db74">&#34;hit&#34;</span>;
-
-$t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Perl and Raku belong to the same family. Perl is the most popular language in the weekly challenge.&#34;</span>;
-printf <span style="color:#e6db74">&#34;%-30s... =&gt; &#34;</span>, substr $t, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">28</span>;
-say most<span style="color:#f92672">-</span>frequent<span style="color:#f92672">-</span>word $t, <span style="color:#e6db74">&#34;the&#34;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">most</span>-frequent-word ($para is copy, $banned) {
+</span></span><span style="display:flex;"><span>    $para <span style="color:#f92672">~~</span> tr<span style="color:#e6db74">/,.:;?!/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $histo <span style="color:#f92672">=</span> $para<span style="color:#f92672">.</span>words<span style="color:#f92672">.</span>grep({$_ <span style="color:#f92672">ne</span> $banned})<span style="color:#f92672">.</span>Bag;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $histo<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>max({$histo{$_}});
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Joe hit a ball, the hit ball flew far after it was hit.&#34;</span>;
+</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;%-30s... =&gt; &#34;</span>, substr $t, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">28</span>;
+</span></span><span style="display:flex;"><span>say most<span style="color:#f92672">-</span>frequent<span style="color:#f92672">-</span>word $t, <span style="color:#e6db74">&#34;hit&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Perl and Raku belong to the same family. Perl is the most popular language in the weekly challenge.&#34;</span>;
+</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;%-30s... =&gt; &#34;</span>, substr $t, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">28</span>;
+</span></span><span style="display:flex;"><span>say most<span style="color:#f92672">-</span>frequent<span style="color:#f92672">-</span>word $t, <span style="color:#e6db74">&#34;the&#34;</span>;
+</span></span></code></pre></div><br>
 <p>This program displays the following output:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ raku <span style="color:#f92672">./</span>most<span style="color:#f92672">-</span>frequent<span style="color:#f92672">-</span>word<span style="color:#f92672">.</span>raku
-Joe hit a ball, the hit ball  <span style="color:#f92672">...</span> <span style="color:#f92672">=&gt;</span> ball
-Perl <span style="color:#f92672">and</span> Raku belong to the   <span style="color:#f92672">...</span> <span style="color:#f92672">=&gt;</span> Perl
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ raku <span style="color:#f92672">./</span>most<span style="color:#f92672">-</span>frequent<span style="color:#f92672">-</span>word<span style="color:#f92672">.</span>raku
+</span></span><span style="display:flex;"><span>Joe hit a ball, the hit ball  <span style="color:#f92672">...</span> <span style="color:#f92672">=&gt;</span> ball
+</span></span><span style="display:flex;"><span>Perl <span style="color:#f92672">and</span> Raku belong to the   <span style="color:#f92672">...</span> <span style="color:#f92672">=&gt;</span> Perl
+</span></span></code></pre></div><br>
 <h3 id="most-frequent-word-in-perl">Most Frequent Word in Perl</h3>
 <hr>
 <br>
 <p>This is a port to <code>Perl</code> of the <code>Raku</code> program above, using a <code>hash</code> instead of a <code>Bag</code> and the <code>split</code> function instead of words.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">most_frequent_word</span> {
-    <span style="color:#66d9ef">my</span> ($para, $banned) <span style="color:#f92672">=</span> @_;
-    $para <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/,.:;?!/</span><span style="color:#f92672">/</span>;
-    <span style="color:#66d9ef">my</span> %histo;
-    %histo <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">++</span>$histo{$_} }
-        grep {$_ <span style="color:#f92672">ne</span> $banned} split <span style="color:#e6db74">/\W/</span>, $para;
-    <span style="color:#66d9ef">return</span> (sort { $histo{$b} <span style="color:#e6db74">&lt;=&gt;</span> $histo{$a} } keys %histo )[<span style="color:#ae81ff">0</span>];
-}
-
-<span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Joe hit a ball, the hit ball flew far after it was hit.&#34;</span>;
-printf <span style="color:#e6db74">&#34;%-30s... =&gt; &#34;</span>, substr $t, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">28</span>;
-say most_frequent_word $t, <span style="color:#e6db74">&#34;hit&#34;</span>;
-
-$t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Perl and Raku belong to the same family. Perl is the most popular language in the weekly challenge.&#34;</span>;
-printf <span style="color:#e6db74">&#34;%-30s... =&gt; &#34;</span>, substr $t, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">28</span>;
-say most_frequent_word $t, <span style="color:#e6db74">&#34;the&#34;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">most_frequent_word</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($para, $banned) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    $para <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/,.:;?!/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %histo;
+</span></span><span style="display:flex;"><span>    %histo <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">++</span>$histo{$_} }
+</span></span><span style="display:flex;"><span>        grep {$_ <span style="color:#f92672">ne</span> $banned} split <span style="color:#e6db74">/\W/</span>, $para;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (sort { $histo{$b} <span style="color:#e6db74">&lt;=&gt;</span> $histo{$a} } keys %histo )[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Joe hit a ball, the hit ball flew far after it was hit.&#34;</span>;
+</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;%-30s... =&gt; &#34;</span>, substr $t, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">28</span>;
+</span></span><span style="display:flex;"><span>say most_frequent_word $t, <span style="color:#e6db74">&#34;hit&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Perl and Raku belong to the same family. Perl is the most popular language in the weekly challenge.&#34;</span>;
+</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;%-30s... =&gt; &#34;</span>, substr $t, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">28</span>;
+</span></span><span style="display:flex;"><span>say most_frequent_word $t, <span style="color:#e6db74">&#34;the&#34;</span>;
+</span></span></code></pre></div><br>
 <p>This program displays the following output:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl <span style="color:#f92672">./</span>most<span style="color:#f92672">-</span>frequent<span style="color:#f92672">-</span>word<span style="color:#f92672">.</span>pl
-Joe hit a ball, the hit ball  <span style="color:#f92672">...</span> <span style="color:#f92672">=&gt;</span> ball
-Perl <span style="color:#f92672">and</span> Raku belong to the   <span style="color:#f92672">...</span> <span style="color:#f92672">=&gt;</span> Perl
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl <span style="color:#f92672">./</span>most<span style="color:#f92672">-</span>frequent<span style="color:#f92672">-</span>word<span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span>Joe hit a ball, the hit ball  <span style="color:#f92672">...</span> <span style="color:#f92672">=&gt;</span> ball
+</span></span><span style="display:flex;"><span>Perl <span style="color:#f92672">and</span> Raku belong to the   <span style="color:#f92672">...</span> <span style="color:#f92672">=&gt;</span> Perl
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
 <p>|   <a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a>   |</p>

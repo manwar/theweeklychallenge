@@ -69,7 +69,7 @@ Write a script to generate all Eban Numbers <= 100.
 An Eban number is a number that has no letter ‘e’ in it when the number is spelled in English (American or British).
 
 **Example**
-```
+```perl
         2, 4, 6, 30, 32 are the first 5 Eban numbers.
 ```
 
@@ -591,7 +591,7 @@ A triplet of positive integers (a,b,c) is called a Cardano Triplet if it satisfi
 ∛(a + b√c) + ∛(a - b√c) = 1
 
 **Example**
-```
+```perl
      (2,1,5) is the first Cardano Triplets.
 ```
 
@@ -703,7 +703,7 @@ Jaldhar chooses, in his words, "the absolute slowest way of slowing this" which 
 
 Which is to say he constructs three nested loops from one to 100 and tries fitting in the values. Remarkably for all his reservations this frontal assult takes very little time to find his solutions:
 
-```
+```perl
     2, 1, 5
     5, 1, 52
     5, 2, 13

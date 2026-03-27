@@ -184,36 +184,36 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>In the first task, you have an array of integers <code>@ints</code> and a target number <code>$k</code>. You need to print the indices of those elements, which are equal to the target, but you need to search in the sorted source data.</p>
 <h2 id="thoughts">Thoughts</h2>
 <p>What does Raku offer that can be used in this task? First, the <a href="https://docs.raku.org/routine/sort"><code>sort</code> routine</a>, which you can use as a method or as a stand-alone function:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @ints <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>;
-
-say @ints<span style="color:#f92672">.</span>sort;  <span style="color:#75715e"># (1 2 2 3 4 5)</span>
-say sort(@ints); <span style="color:#75715e"># (1 2 2 3 4 5)</span>
-</code></pre></div><p>By the way, the <code>sort</code> routine in Raku is smart enough to take care of correclty sorting both numbers and strings. Compare the following two sortings:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @ints <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>;
-say @ints<span style="color:#f92672">.</span>sort;
-
-<span style="color:#66d9ef">my</span> @strs <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;10&#39;</span>, <span style="color:#e6db74">&#39;20&#39;</span>;
-say @strs<span style="color:#f92672">.</span>sort;
-</code></pre></div><p>The result is expectedly correct:</p>
-<pre><code>(1 2 10 20)
-(1 10 2 20)
-</code></pre><p>Back to the task, and the second mean in Raku to be used here is <a href="https://docs.raku.org/routine/grep">the <code>grep</code> routine</a> that finds the elements with the given condition. Our condition is the equality with the target value <code>$k</code>, so in terms of Raku you can choose one of the following approaches:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> @ints<span style="color:#f92672">.</span>sort;
-<span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-say @data<span style="color:#f92672">.</span>grep: <span style="color:#f92672">*</span> <span style="color:#f92672">==</span> $k;    <span style="color:#75715e"># (2 2)</span>
-say @data<span style="color:#f92672">.</span>grep({$_ <span style="color:#f92672">==</span> $k}); <span style="color:#75715e"># (2 2)</span>
-</code></pre></div><p>The tricky point here is to get the indices of the elements that match the condition. You cannot do it directly after you have already filtered the data. Instead, you may think of making a loop over the values and gathering the indices:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">say gather {
-    <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>@data <span style="color:#f92672">-&gt;</span> $index {
-        take $index <span style="color:#66d9ef">if</span> @data[$index] <span style="color:#f92672">==</span> $k;
-    }
-} <span style="color:#75715e"># (1 2)</span>
-</code></pre></div><p>Raku, nevertheless, has a better solution. Just use the <a href="https://docs.raku.org/routine/grep#(List)_routine_grep"><code>:k</code> flag of <code>grep</code></a>. In this case, instead of returing the values, <code>grep</code> returns the indices of the matched elements, which is exactly what is needed.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">say @data<span style="color:#f92672">.</span>grep: <span style="color:#f92672">*</span> <span style="color:#f92672">==</span> $k, :k; <span style="color:#75715e"># (1 2)</span>
-</code></pre></div><h2 id="solutions">Solutions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @ints <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say @ints<span style="color:#f92672">.</span>sort;  <span style="color:#75715e"># (1 2 2 3 4 5)</span>
+</span></span><span style="display:flex;"><span>say sort(@ints); <span style="color:#75715e"># (1 2 2 3 4 5)</span>
+</span></span></code></pre></div><p>By the way, the <code>sort</code> routine in Raku is smart enough to take care of correclty sorting both numbers and strings. Compare the following two sortings:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @ints <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span>say @ints<span style="color:#f92672">.</span>sort;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @strs <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;10&#39;</span>, <span style="color:#e6db74">&#39;20&#39;</span>;
+</span></span><span style="display:flex;"><span>say @strs<span style="color:#f92672">.</span>sort;
+</span></span></code></pre></div><p>The result is expectedly correct:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">20</span>)
+</span></span></code></pre></div><p>Back to the task, and the second mean in Raku to be used here is <a href="https://docs.raku.org/routine/grep">the <code>grep</code> routine</a> that finds the elements with the given condition. Our condition is the equality with the target value <code>$k</code>, so in terms of Raku you can choose one of the following approaches:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> @ints<span style="color:#f92672">.</span>sort;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>say @data<span style="color:#f92672">.</span>grep: <span style="color:#f92672">*</span> <span style="color:#f92672">==</span> $k;    <span style="color:#75715e"># (2 2)</span>
+</span></span><span style="display:flex;"><span>say @data<span style="color:#f92672">.</span>grep({$_ <span style="color:#f92672">==</span> $k}); <span style="color:#75715e"># (2 2)</span>
+</span></span></code></pre></div><p>The tricky point here is to get the indices of the elements that match the condition. You cannot do it directly after you have already filtered the data. Instead, you may think of making a loop over the values and gathering the indices:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>say gather {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>@data <span style="color:#f92672">-&gt;</span> $index {
+</span></span><span style="display:flex;"><span>        take $index <span style="color:#66d9ef">if</span> @data[$index] <span style="color:#f92672">==</span> $k;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>} <span style="color:#75715e"># (1 2)</span>
+</span></span></code></pre></div><p>Raku, nevertheless, has a better solution. Just use the <a href="https://docs.raku.org/routine/grep#(List)_routine_grep"><code>:k</code> flag of <code>grep</code></a>. In this case, instead of returing the values, <code>grep</code> returns the indices of the matched elements, which is exactly what is needed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>say @data<span style="color:#f92672">.</span>grep: <span style="color:#f92672">*</span> <span style="color:#f92672">==</span> $k, :k; <span style="color:#75715e"># (1 2)</span>
+</span></span></code></pre></div><h2 id="solutions">Solutions</h2>
 <p>All of the above steps can be chained to get a construction like this, as you can see in the solutions propopsed by a number of authors. Notice that you even don’t have to explicitly use comparison and thus the condition can be shortened to a bare minumum: <code>$k</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">@ints<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>grep: $k, :k
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>@ints<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>grep: $k, :k
+</span></span></code></pre></div><br>
 <ul>
 <li><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/arne-sommer/raku/ch-1.raku"><strong>Arne Sommer</strong></a></li>
 <li><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/asherbhs/raku/ch-1.raku"><strong>Asher Harvey-Smith</strong></a></li>
@@ -226,73 +226,73 @@ say @data<span style="color:#f92672">.</span>grep({$_ <span style="color:#f92672
 </ul>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/wambash/raku/ch-1.raku"><strong>Jan Krňávek</strong></a> does effectively the same but he prefers to use <a href="https://docs.raku.org/routine/andthen"><code>andthen</code></a> instead of dots:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">target</span>-index (+ints,:$k) {
-    ints
-    andthen <span style="color:#f92672">.</span>sort
-    andthen <span style="color:#f92672">.</span>grep: { $_ <span style="color:#f92672">==</span> $k },:k
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">target</span>-index (+ints,:$k) {
+</span></span><span style="display:flex;"><span>    ints
+</span></span><span style="display:flex;"><span>    andthen <span style="color:#f92672">.</span>sort
+</span></span><span style="display:flex;"><span>    andthen <span style="color:#f92672">.</span>grep: { $_ <span style="color:#f92672">==</span> $k },:k
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/luca-ferrari/raku/ch-1.raku"><strong>Luca Ferrari</strong></a> uses the <a href="https://docs.raku.org/routine/~~">smartmatch <code>~~</code> oprartor</a> for comparison. In our case, it compares numbers, so it is equivalent to <code>==</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">@nums<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*</span> <span style="color:#f92672">~~</span> $k, :k )<span style="color:#f92672">.</span>say;
-</code></pre></div><p>A slightly different algorithm is used by some authors. Instead of grepping and looking for an index, they use a tricky condition to grep indices directly:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> @in<span style="color:#f92672">.</span>sort;
-<span style="color:#66d9ef">my</span> @out <span style="color:#f92672">=</span> grep {@sorted[$_] <span style="color:#f92672">==</span> $target}, <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@sorted<span style="color:#f92672">.</span>end;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>@nums<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*</span> <span style="color:#f92672">~~</span> $k, :k )<span style="color:#f92672">.</span>say;
+</span></span></code></pre></div><p>A slightly different algorithm is used by some authors. Instead of grepping and looking for an index, they use a tricky condition to grep indices directly:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> @in<span style="color:#f92672">.</span>sort;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @out <span style="color:#f92672">=</span> grep {@sorted[$_] <span style="color:#f92672">==</span> $target}, <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@sorted<span style="color:#f92672">.</span>end;
+</span></span></code></pre></div><br>
 <ul>
 <li><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/jaldhar-h-vyas/raku/ch-1.raku"><strong>Jaldhar H. Vyas</strong></a></li>
 <li><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/laurent-rosenfeld/raku/ch-1.raku"><strong>Laurent Rosenfeld</strong></a></li>
 </ul>
 <br>
 <p>You can code it differently, for example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">targetindex</span>(@a0, $k) {
-    <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> @a0<span style="color:#f92672">.</span>sort({$<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b});
-    <span style="color:#66d9ef">return</span> [(<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @a<span style="color:#f92672">.</span>end)<span style="color:#f92672">.</span>grep({@a[$_] <span style="color:#f92672">==</span> $k})];
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">targetindex</span>(@a0, $k) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> @a0<span style="color:#f92672">.</span>sort({$<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b});
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [(<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @a<span style="color:#f92672">.</span>end)<span style="color:#f92672">.</span>grep({@a[$_] <span style="color:#f92672">==</span> $k})];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <ul>
 <li><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/roger-bell-west/raku/ch-1.p6"><strong>Roger Bell_West</strong></a>:</li>
 <li><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/ulrich-rieke/raku/ch-1.raku"><strong>Ulrich Rieke</strong></a></li>
 </ul>
 <br>
 <p>Further, let’s look at the solutions with a loop, for example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> @sorted<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $i, $v {
-    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $v <span style="color:#f92672">==</span> $k;
-    @output<span style="color:#f92672">.</span>push($i);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> @sorted<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $i, $v {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $v <span style="color:#f92672">==</span> $k;
+</span></span><span style="display:flex;"><span>    @output<span style="color:#f92672">.</span>push($i);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <ul>
 <li><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/packy-anderson/raku/ch-1.raku"><strong>Packy Anderson</strong></a></li>
 </ul>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/athanasius/raku/ch-1.raku"><strong>Athanasius</strong></a> uses a loop too, but it is always interesting to see that Raku allows completely different style of programming with more control over the types of the variables, function arguments and return values.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e">#-------------------------------------------------------------------------------</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find</span>-target-indices( List:D[Int:D] $ints, Int:D $k --&gt; List:D[UInt:D] )
-#-------------------------------------------------------------------------------
-{
-    <span style="color:#66d9ef">my</span> UInt @indices;
-    <span style="color:#66d9ef">my</span> Int  @sorted <span style="color:#f92672">=</span> $ints<span style="color:#f92672">.</span>sort;
-
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @sorted<span style="color:#f92672">.</span>end <span style="color:#f92672">-&gt;</span> UInt $i
-    {
-        @indices<span style="color:#f92672">.</span>push: $i <span style="color:#66d9ef">if</span> @sorted[ $i ] <span style="color:#f92672">==</span> $k;
-    }
-
-    <span style="color:#66d9ef">return</span> @indices;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#-------------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find</span>-target-indices( List:D[Int:D] $ints, Int:D $k --&gt; List:D[UInt:D] )
+</span></span><span style="display:flex;"><span>#-------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> UInt @indices;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> Int  @sorted <span style="color:#f92672">=</span> $ints<span style="color:#f92672">.</span>sort;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @sorted<span style="color:#f92672">.</span>end <span style="color:#f92672">-&gt;</span> UInt $i
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        @indices<span style="color:#f92672">.</span>push: $i <span style="color:#66d9ef">if</span> @sorted[ $i ] <span style="color:#f92672">==</span> $k;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @indices;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/barroff/raku/ch-1.p6"><strong>BarrOff</strong></a> demonstrates another appoach. The program uses <a href="https://docs.raku.org/routine/indices">the <code>indices</code> function</a>. It works on strings and returns the indices of the matching characters, so you need to convert the array of integers to a string first. The method works with the test samples, where all the numbers are below 10, so they can be spellt with a single character.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">target</span>-index(Int:D $k, @ints --&gt; Positional) {
-    indices(@ints<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join, $k)
-}
-</code></pre></div><h2 id="bonus">Bonus</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">target</span>-index(Int:D $k, @ints --&gt; Positional) {
+</span></span><span style="display:flex;"><span>    indices(@ints<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join, $k)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="bonus">Bonus</h2>
 <p>As a bonus, examine the following alternative code submitted by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-263/bruce-gray/raku/ch-1.raku">Bruce Gray</a> in Raku:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task1_single_pass_without_sorting</span> ( UInt $k, @ns ) {
-    <span style="color:#66d9ef">return</span> flat <span style="color:#f92672">.</span>{Less} <span style="color:#f92672">+</span> <span style="color:#f92672">^.</span>{Same} given ( @ns <span style="color:#960050;background-color:#1e0010">»</span><span style="color:#e6db74">&lt;=&gt;</span><span style="color:#960050;background-color:#1e0010">»</span> $k )<span style="color:#f92672">.</span>Bag;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task1_single_pass_without_sorting</span> ( UInt $k, @ns ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> flat <span style="color:#f92672">.</span>{Less} <span style="color:#f92672">+</span> <span style="color:#f92672">^.</span>{Same} given ( @ns <span style="color:#960050;background-color:#1e0010">»</span><span style="color:#e6db74">&lt;=&gt;</span><span style="color:#960050;background-color:#1e0010">»</span> $k )<span style="color:#f92672">.</span>Bag;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Open the source code to find additional information about this algorithm and the link to <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/263/1"><strong>the solution by Peter Campbell Smith in Perl</strong></a> .</p>
 
     </article>

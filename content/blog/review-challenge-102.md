@@ -64,7 +64,7 @@ Write a script to generate all Rare numbers of size $N if exists.
 Please checkout the [page](http://www.shyamsundergupta.com/rare.htm) for more information about it.
 
 **Examples**
-```
+```perl
     (a) 2 digits: 65
     (b) 6 digits: 621770
     (c) 9 digits: 281089082
@@ -1239,7 +1239,7 @@ The definition of a hash-counting string is as follows:
 It can be shown that for every positive integer N there is exactly one such length-N string.
 
 **Examples:**
-```
+```perl
     (a) "#" is the counting string of length 1
     (b) "2#" is the counting string of length 2
     (c) "#3#" is the string of length 3

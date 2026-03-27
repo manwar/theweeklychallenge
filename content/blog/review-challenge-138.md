@@ -66,13 +66,13 @@ Write a script to calculate the total number of workdays in the given year.
 For the task, we consider, Monday - Friday as workdays.
 
 **Example 1**
-```
+```perl
     Input: $year = 2021
     Output: 261
 ```
 
 **Example 2**
-```
+```perl
     Input: $year = 2020
     Output: 262
 ```

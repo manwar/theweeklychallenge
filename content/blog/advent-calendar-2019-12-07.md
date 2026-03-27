@@ -61,7 +61,7 @@ In **Raku**, we can use the **multi** sub functionality for **each case** and **
 
 <br>
 
-```perl6
+```perl
 multi sub ackermann (
     Int $m where { $m == 0 },
     Int $n where { $n >= 0 },

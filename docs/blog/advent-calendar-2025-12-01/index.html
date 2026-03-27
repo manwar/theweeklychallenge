@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2025blogadvent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
-<h3 id="-nbsp-day-1-nbsp--nbsp-day-2blogadvent-calendar-2025-12-02-nbsp-">|   <strong>Day 1</strong>   |   <a href="/blog/advent-calendar-2025-12-02"><strong>Day 2</strong></a>   |</h3>
+        <h2 id="advent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
+<h3 id="--day-1----day-2--">|   <strong>Day 1</strong>   |   <a href="/blog/advent-calendar-2025-12-02"><strong>Day 2</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Ali Moradi</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-303"><strong>The Weekly Challenge - 303</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://deadmarshal.blogspot.com/2025/01/twc303.html"><strong>post</strong></a>.</p>
 <hr>
@@ -187,48 +187,48 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <p>We find all 3 variations of digits, and check if it is even, then remove the duplicates:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(variations)</span>;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(uniq)</span>;
-<span style="color:#66d9ef">use</span> Data::Show;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">three_digits_even</span>{
-  @{$_[<span style="color:#ae81ff">0</span>]} <span style="color:#f92672">=</span> sort{$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @{$_[<span style="color:#ae81ff">0</span>]};
-  uniq map{join <span style="color:#e6db74">&#39;&#39;</span>,@$_} grep{$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>($_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>] % 2)}
-    variations($_[<span style="color:#ae81ff">0</span>],<span style="color:#ae81ff">3</span>)
-}
-
-<span style="color:#66d9ef">print</span> show three_digits_even([<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">0</span>]);
-<span style="color:#66d9ef">print</span> show three_digits_even([<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">2</span>]);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(variations)</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(uniq)</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Data::Show;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">three_digits_even</span>{
+</span></span><span style="display:flex;"><span>  @{$_[<span style="color:#ae81ff">0</span>]} <span style="color:#f92672">=</span> sort{$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @{$_[<span style="color:#ae81ff">0</span>]};
+</span></span><span style="display:flex;"><span>  uniq map{join <span style="color:#e6db74">&#39;&#39;</span>,@$_} grep{$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>($_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>] % 2)}
+</span></span><span style="display:flex;"><span>    variations($_[<span style="color:#ae81ff">0</span>],<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> show three_digits_even([<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">0</span>]);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> show three_digits_even([<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">2</span>]);
+</span></span></code></pre></div><br>
 <h2 id="task-2">Task #2</h2>
 <hr>
 <p>We keep deleting and keeping points to get the final result:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(max)</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">delete_and_earn</span>{
-  <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max @{$_[<span style="color:#ae81ff">0</span>]};
-  <span style="color:#66d9ef">my</span> @total <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x ($max<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
-  map{$total[$_] <span style="color:#f92672">+=</span> $_} @{$_[<span style="color:#ae81ff">0</span>]};
-  <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> $total[<span style="color:#ae81ff">0</span>];
-  <span style="color:#66d9ef">my</span> $second <span style="color:#f92672">=</span> max($total[<span style="color:#ae81ff">0</span>],$total[<span style="color:#ae81ff">1</span>]);
-  <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i(<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$max){
-    <span style="color:#66d9ef">my</span> $curr <span style="color:#f92672">=</span> max(($first<span style="color:#f92672">+</span>$total[$i]),$second);
-    $first <span style="color:#f92672">=</span> $second;
-    $second <span style="color:#f92672">=</span> $curr
-  }
-  $second
-}
-
-printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,delete_and_earn([<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>]);
-printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,delete_and_earn([<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(max)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">delete_and_earn</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max @{$_[<span style="color:#ae81ff">0</span>]};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> @total <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x ($max<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  map{$total[$_] <span style="color:#f92672">+=</span> $_} @{$_[<span style="color:#ae81ff">0</span>]};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> $total[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $second <span style="color:#f92672">=</span> max($total[<span style="color:#ae81ff">0</span>],$total[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i(<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$max){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $curr <span style="color:#f92672">=</span> max(($first<span style="color:#f92672">+</span>$total[$i]),$second);
+</span></span><span style="display:flex;"><span>    $first <span style="color:#f92672">=</span> $second;
+</span></span><span style="display:flex;"><span>    $second <span style="color:#f92672">=</span> $curr
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  $second
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,delete_and_earn([<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>]);
+</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;%d\n&#34;</span>,delete_and_earn([<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]);
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
 <p>|   <a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a>   |</p>

@@ -61,7 +61,7 @@ tags: ["Perl", "Raku"]
 
 ### Task #1
 
-```perl6
+```perl
 
 sub to-min(Str $str) {
     do given $str.comb(/\d+/) {
@@ -88,7 +88,7 @@ say calc 0, 0, @in.sort, @out.sort
 
 ### Task #2
 
-```perl6
+```perl
 
 multi calc(@mem,                        Int $num) { [ $num, |@mem ]   }
 multi calc([Int() $x, Int() $y, *@mem], "+"     ) { [ $y + $x, |@mem] }

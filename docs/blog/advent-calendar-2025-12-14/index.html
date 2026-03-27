@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2025blogadvent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
-<h3 id="-nbsp-day-13blogadvent-calendar-2025-12-13-nbsp--nbsp-day-14-nbsp--nbsp-day-15blogadvent-calendar-2025-12-15-nbsp-">|   <a href="/blog/advent-calendar-2025-12-13"><strong>Day 13</strong></a>   |   <strong>Day 14</strong>   |   <a href="/blog/advent-calendar-2025-12-15"><strong>Day 15</strong></a>   |</h3>
+        <h2 id="advent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
+<h3 id="--day-13----day-14----day-15--">|   <a href="/blog/advent-calendar-2025-12-13"><strong>Day 13</strong></a>   |   <strong>Day 14</strong>   |   <a href="/blog/advent-calendar-2025-12-15"><strong>Day 15</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Bob Lied</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-318"><strong>The Weekly Challenge - 318</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://dev.to/boblied/pwc-318-task-2-reverse-equals-o5n"><strong>post</strong></a>.</p>
 <hr>
@@ -209,40 +209,40 @@ Output: true
 </code></pre>
 <br>
 <p>The string has three parts. Somewhere in the middle is a sequence that can be reversed (maybe), and on either side of that are sequences that are equal. With that in mind, let&rsquo;s put on some music and write some <code>Perl</code>.</p>
-<h4 id="shot-reverse-shot-jack-johnsonhttpswwwyoutubecomwatchvnkmzajxogi4"><a href="https://www.youtube.com/watch?v=nkmZaJxogI4"><strong>Shot Reverse Shot, Jack Johnson</strong></a></h4>
-<h4 id="run-back-to-your-side-eric-claptonhttpswwwyoutubecomwatchvgh8tjvjqz4y"><a href="https://www.youtube.com/watch?v=gh8tJvJQz4Y"><strong>Run Back to Your Side, Eric Clapton</strong></a></h4>
+<h4 id="shot-reverse-shot-jack-johnson"><a href="https://www.youtube.com/watch?v=nkmZaJxogI4"><strong>Shot Reverse Shot, Jack Johnson</strong></a></h4>
+<h4 id="run-back-to-your-side-eric-clapton"><a href="https://www.youtube.com/watch?v=gh8tJvJQz4Y"><strong>Run Back to Your Side, Eric Clapton</strong></a></h4>
 <br>
 <h2 id="the-fun-part">The fun part</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">revEq</span> ($source, $target)
-{
-    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw/zip/</span>;
-    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw/first_index last_index/</span>;
-
-    <span style="color:#75715e"># Arrays must be the same size</span>
-    <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span> $source<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">!=</span> <span style="color:#960050;background-color:#1e0010">$</span>target<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*;</span>
-
-    <span style="color:#960050;background-color:#1e0010">#</span> Combine the two arrays into pairs
-    <span style="color:#66d9ef">my</span> @pair <span style="color:#f92672">=</span> zip($source, $target);
-
-    <span style="color:#75715e"># Find the left segment of equal elements</span>
-    <span style="color:#66d9ef">my</span> $left <span style="color:#f92672">=</span> first_index { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @pair;
-
-    <span style="color:#75715e"># If strings are equal, we can stop</span>
-    <span style="color:#66d9ef">return</span> true <span style="color:#66d9ef">if</span> $left <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-
-    <span style="color:#75715e"># Find the right segment of equal elements</span>
-    <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> last_index { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @pair;
-
-    <span style="color:#75715e"># Extract the middle that could be reversed.</span>
-    <span style="color:#66d9ef">my</span> @midsrc <span style="color:#f92672">=</span> $source<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[$</span>left <span style="color:#f92672">..</span> $right];
-    <span style="color:#66d9ef">my</span> @midtrg <span style="color:#f92672">=</span> $target<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[$</span>left <span style="color:#f92672">..</span> $right];
-
-    <span style="color:#75715e"># Check that one is the reverse of the other</span>
-    <span style="color:#66d9ef">while</span> ( @midsrc  <span style="color:#f92672">&amp;&amp;</span>  shift @midsrc <span style="color:#f92672">==</span> pop @midtrg ) {}
-    <span style="color:#66d9ef">return</span> @midsrc <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">revEq</span> ($source, $target)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw/zip/</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw/first_index last_index/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Arrays must be the same size</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span> $source<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">!=</span> <span style="color:#960050;background-color:#1e0010">$</span>target<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">#</span> Combine the two arrays into pairs
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @pair <span style="color:#f92672">=</span> zip($source, $target);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Find the left segment of equal elements</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $left <span style="color:#f92672">=</span> first_index { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @pair;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If strings are equal, we can stop</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> true <span style="color:#66d9ef">if</span> $left <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Find the right segment of equal elements</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> last_index { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @pair;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Extract the middle that could be reversed.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @midsrc <span style="color:#f92672">=</span> $source<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[$</span>left <span style="color:#f92672">..</span> $right];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @midtrg <span style="color:#f92672">=</span> $target<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[$</span>left <span style="color:#f92672">..</span> $right];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check that one is the reverse of the other</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ( @midsrc  <span style="color:#f92672">&amp;&amp;</span>  shift @midsrc <span style="color:#f92672">==</span> pop @midtrg ) {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @midsrc <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h2 id="programming-notes">Programming notes</h2>
 <ul>
 <li>

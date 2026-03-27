@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-9blogadvent-calendar-2021-12-09--day-10--day-11blogadvent-calendar-2021-12-11-">| <a href="/blog/advent-calendar-2021-12-09"><strong>Day 9</strong></a> | <strong>Day 10</strong> | <a href="/blog/advent-calendar-2021-12-11"><strong>Day 11</strong></a> |</h3>
+        <h2 id="advent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
+<h3 id="-day-9--day-10--day-11-">| <a href="/blog/advent-calendar-2021-12-09"><strong>Day 9</strong></a> | <strong>Day 10</strong> | <a href="/blog/advent-calendar-2021-12-11"><strong>Day 11</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-026"><strong>Roger Bell_West</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-120"><strong>&ldquo;The Weekly Challenge - 120&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://blog.firedrake.org/archive/2021/07/Perl_Weekly_Challenge_120__Swap_Clock.html"><strong>post</strong></a> by <code>Roger Bell_West</code>.</p>
 <hr>
@@ -193,58 +193,58 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Which seems again as though it has a fairly straightforward solution: determine the angle of each hand, then reduce the difference.</p>
 <h3 id="raku">Raku:</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ca</span>($n) {
-  <span style="color:#66d9ef">my</span> $a<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ca</span>($n) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $a<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span></code></pre></div><br>
 <p>Extract hour and minute:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">  <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">~~</span> <span style="color:#e6db74">/(&lt;[0..9]&gt;+)\:(&lt;[0..9]&gt;+)/</span>) {
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">~~</span> <span style="color:#e6db74">/(&lt;[0..9]&gt;+)\:(&lt;[0..9]&gt;+)/</span>) {
+</span></span></code></pre></div><br>
 <p>Convert each one to an angle (note that each minute puts half a degree on the hour hand, so we&rsquo;re in floating point territory):</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    <span style="color:#66d9ef">my</span> ($ha,$ma)<span style="color:#f92672">=</span>map {$_ % 360}, ($0<span style="color:#f92672">*</span><span style="color:#ae81ff">30</span><span style="color:#f92672">+</span>$1<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,$1<span style="color:#f92672">*</span><span style="color:#ae81ff">6</span>);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($ha,$ma)<span style="color:#f92672">=</span>map {$_ % 360}, ($0<span style="color:#f92672">*</span><span style="color:#ae81ff">30</span><span style="color:#f92672">+</span>$1<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,$1<span style="color:#f92672">*</span><span style="color:#ae81ff">6</span>);
+</span></span></code></pre></div><br>
 <p>Take the absolute difference:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $a<span style="color:#f92672">=</span>abs($ha<span style="color:#f92672">-</span>$ma);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    $a<span style="color:#f92672">=</span>abs($ha<span style="color:#f92672">-</span>$ma);
+</span></span></code></pre></div><br>
 <p>Reduce until we get an angle lying in (-180..180):</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    <span style="color:#66d9ef">while</span> ($a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">180</span>) {
-      $a<span style="color:#f92672">-=</span><span style="color:#ae81ff">360</span>;
-    }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">180</span>) {
+</span></span><span style="display:flex;"><span>      $a<span style="color:#f92672">-=</span><span style="color:#ae81ff">360</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><br>
 <p>And take the absolute again.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    $a<span style="color:#f92672">=</span>abs($a);
-  }
-  <span style="color:#66d9ef">return</span> $a;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    $a<span style="color:#f92672">=</span>abs($a);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> $a;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>The complete solution in <strong>Raku</strong>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#! /usr/bin/perl6</span>
-
-<span style="color:#66d9ef">use</span> Test;
-
-plan <span style="color:#ae81ff">2</span>;
-
-is(ca(<span style="color:#e6db74">&#39;03:10&#39;</span>),<span style="color:#ae81ff">35</span>,<span style="color:#e6db74">&#39;example 1&#39;</span>);
-is(ca(<span style="color:#e6db74">&#39;04:00&#39;</span>),<span style="color:#ae81ff">120</span>,<span style="color:#e6db74">&#39;example 2&#39;</span>);
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ca</span>($n) {
-  <span style="color:#66d9ef">my</span> $a<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-  <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">~~</span> <span style="color:#e6db74">/(&lt;[0..9]&gt;+)\:(&lt;[0..9]&gt;+)/</span>) {
-    <span style="color:#66d9ef">my</span> ($ha,$ma)<span style="color:#f92672">=</span>map {$_ % 360}, ($0<span style="color:#f92672">*</span><span style="color:#ae81ff">30</span><span style="color:#f92672">+</span>$1<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,$1<span style="color:#f92672">*</span><span style="color:#ae81ff">6</span>);
-    $a<span style="color:#f92672">=</span>abs($ha<span style="color:#f92672">-</span>$ma);
-    <span style="color:#66d9ef">while</span> ($a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">180</span>) {
-      $a<span style="color:#f92672">-=</span><span style="color:#ae81ff">360</span>;
-    }
-    $a<span style="color:#f92672">=</span>abs($a);
-  }
-  <span style="color:#66d9ef">return</span> $a;
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#! /usr/bin/perl6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plan <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is(ca(<span style="color:#e6db74">&#39;03:10&#39;</span>),<span style="color:#ae81ff">35</span>,<span style="color:#e6db74">&#39;example 1&#39;</span>);
+</span></span><span style="display:flex;"><span>is(ca(<span style="color:#e6db74">&#39;04:00&#39;</span>),<span style="color:#ae81ff">120</span>,<span style="color:#e6db74">&#39;example 2&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ca</span>($n) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">my</span> $a<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">~~</span> <span style="color:#e6db74">/(&lt;[0..9]&gt;+)\:(&lt;[0..9]&gt;+)/</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($ha,$ma)<span style="color:#f92672">=</span>map {$_ % 360}, ($0<span style="color:#f92672">*</span><span style="color:#ae81ff">30</span><span style="color:#f92672">+</span>$1<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,$1<span style="color:#f92672">*</span><span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>    $a<span style="color:#f92672">=</span>abs($ha<span style="color:#f92672">-</span>$ma);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">180</span>) {
+</span></span><span style="display:flex;"><span>      $a<span style="color:#f92672">-=</span><span style="color:#ae81ff">360</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    $a<span style="color:#f92672">=</span>abs($a);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> $a;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></p>
 

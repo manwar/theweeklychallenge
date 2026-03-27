@@ -103,7 +103,7 @@ There is also the [**zip6**](https://metacpan.org/pod/List::MoreUtils#zip6) func
 
 <br>
 
-```perl6
+```perl
 sub MAIN( Str $file ) {
     ([Z] $file.IO.lines.map(*.split(','))).map(*.join(','))».say;
 }

@@ -74,7 +74,7 @@ The minimum depth is the number of nodes from the root to the nearest leaf node 
 
 **Example 1:**
 
-```
+```perl
     Input: '1 | 2 3 | 4 5'
 
 
@@ -89,7 +89,7 @@ The minimum depth is the number of nodes from the root to the nearest leaf node 
 
 **Example 2:**
 
-```
+```perl
     Input: '1 | 2 3 | 4 *  * 5 | * 6'
 
 
@@ -160,7 +160,7 @@ Or, you know, a group of otherwise very capable people has screwed up *en masse*
 
 To explain my point of view, consider the following tree:
 
-```
+```perl
     Input: '1 | 2 3 | 4 *  * 5 | * 6 * * * * 7 8'
 
             ┏━━━━━━┫1┣━━━━━━┓
@@ -606,7 +606,7 @@ Write a script to find the highest possible gain that can be
 achieved.
 
 **Example 1:**
-```
+```perl
         Input: @valuables = (2, 4, 5);
         Output: 7
 ```
@@ -617,7 +617,7 @@ rob is house (index=2) where we have 5. So the total valuables in
 this case is (2 + 5) = 7.
 
 **Example 2:**
-```
+```perl
         Input: @valuables = (4, 2, 3, 6, 5, 3);
         Output: 13
 ```

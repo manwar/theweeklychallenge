@@ -179,12 +179,12 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
 <br>
-<h3 id="1-what-is-grafanawhat-is-grafana"><a href="#what-is-grafana">1. What is Grafana?</a></h3>
-<h3 id="2-what-is-prometheuswhat-is-prometheus"><a href="#what-is-prometheus">2. What is Prometheus?</a></h3>
-<h3 id="3-docker-setupdocker-setup"><a href="#docker-setup">3. Docker Setup</a></h3>
-<h3 id="4-test-environmenttest-environment"><a href="#test-environment">4. Test Environment</a></h3>
-<h3 id="5-datasourcedatasource"><a href="#datasource">5. Datasource</a></h3>
-<h3 id="6-dashboarddashboard"><a href="#dashboard">6. Dashboard</a></h3>
+<h3 id="1-what-is-grafana"><a href="#what-is-grafana">1. What is Grafana?</a></h3>
+<h3 id="2-what-is-prometheus"><a href="#what-is-prometheus">2. What is Prometheus?</a></h3>
+<h3 id="3-docker-setup"><a href="#docker-setup">3. Docker Setup</a></h3>
+<h3 id="4-test-environment"><a href="#test-environment">4. Test Environment</a></h3>
+<h3 id="5-datasource"><a href="#datasource">5. Datasource</a></h3>
+<h3 id="6-dashboard"><a href="#dashboard">6. Dashboard</a></h3>
 <br>
 <h2 id="what-is-grafana">What is Grafana?</h2>
 <hr>
@@ -225,196 +225,196 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Here we will create two applications one in <code>Perl</code> and another in <code>Python</code>.</p>
 <br>
 <p><strong>File:</strong> <code>perl-app/app.pl</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> Prometheus::Tiny;
-<span style="color:#66d9ef">use</span> Mojolicious::Lite;
-
-<span style="color:#66d9ef">my</span> $prom <span style="color:#f92672">=</span> Prometheus::Tiny<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-
-$prom<span style="color:#f92672">-&gt;</span>declare(
-    <span style="color:#e6db74">&#39;http_requests_total&#39;</span>,
-    help <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Total HTTP requests&#39;</span>,
-    type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;counter&#39;</span>
-);
-
-get <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> shift;
-    $prom<span style="color:#f92672">-&gt;</span>inc(<span style="color:#e6db74">&#39;http_requests_total&#39;</span>);
-    $c<span style="color:#f92672">-&gt;</span>render(text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Hello from Perl!\n&#34;</span>);
-};
-
-get <span style="color:#e6db74">&#39;/metrics&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> shift;
-    $c<span style="color:#f92672">-&gt;</span>render(text <span style="color:#f92672">=&gt;</span> $prom<span style="color:#f92672">-&gt;</span>format, format <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;txt&#39;</span>);
-};
-
-app<span style="color:#f92672">-&gt;</span>start(<span style="color:#e6db74">&#39;daemon&#39;</span>, <span style="color:#e6db74">&#39;-l&#39;</span>, <span style="color:#e6db74">&#39;http://*:7000&#39;</span>);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Prometheus::Tiny;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Mojolicious::Lite;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $prom <span style="color:#f92672">=</span> Prometheus::Tiny<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$prom<span style="color:#f92672">-&gt;</span>declare(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;http_requests_total&#39;</span>,
+</span></span><span style="display:flex;"><span>    help <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Total HTTP requests&#39;</span>,
+</span></span><span style="display:flex;"><span>    type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;counter&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>    $prom<span style="color:#f92672">-&gt;</span>inc(<span style="color:#e6db74">&#39;http_requests_total&#39;</span>);
+</span></span><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>render(text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Hello from Perl!\n&#34;</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/metrics&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>render(text <span style="color:#f92672">=&gt;</span> $prom<span style="color:#f92672">-&gt;</span>format, format <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;txt&#39;</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app<span style="color:#f92672">-&gt;</span>start(<span style="color:#e6db74">&#39;daemon&#39;</span>, <span style="color:#e6db74">&#39;-l&#39;</span>, <span style="color:#e6db74">&#39;http://*:7000&#39;</span>);
+</span></span></code></pre></div><br>
 <p><strong>File:</strong> <code>python-app/app.py</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python</span>
-
-<span style="color:#f92672">import</span> os
-os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#39;PROMETHEUS_DISABLE_CREATED_SERIES&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span>
-
-<span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, Response
-<span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> Counter, generate_latest, CollectorRegistry
-
-app <span style="color:#f92672">=</span> Flask(__name__)
-
-registry <span style="color:#f92672">=</span> CollectorRegistry()
-http_requests_total <span style="color:#f92672">=</span> Counter(<span style="color:#e6db74">&#39;http_requests_total&#39;</span>, <span style="color:#e6db74">&#39;Total HTTP requests&#39;</span>, registry<span style="color:#f92672">=</span>registry)
-
-<span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/&#39;</span>)
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello</span>():
-    http_requests_total<span style="color:#f92672">.</span>inc()
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello from Python!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-
-<span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/metrics&#39;</span>)
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">metrics</span>():
-    <span style="color:#66d9ef">return</span> Response(generate_latest(registry), mimetype<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;text/plain&#39;</span>)
-
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
-    app<span style="color:#f92672">.</span>run(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;0.0.0.0&#39;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span>)
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#39;PROMETHEUS_DISABLE_CREATED_SERIES&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, Response
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> Counter, generate_latest, CollectorRegistry
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(__name__)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>registry <span style="color:#f92672">=</span> CollectorRegistry()
+</span></span><span style="display:flex;"><span>http_requests_total <span style="color:#f92672">=</span> Counter(<span style="color:#e6db74">&#39;http_requests_total&#39;</span>, <span style="color:#e6db74">&#39;Total HTTP requests&#39;</span>, registry<span style="color:#f92672">=</span>registry)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello</span>():
+</span></span><span style="display:flex;"><span>    http_requests_total<span style="color:#f92672">.</span>inc()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello from Python!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/metrics&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">metrics</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Response(generate_latest(registry), mimetype<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;text/plain&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    app<span style="color:#f92672">.</span>run(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;0.0.0.0&#39;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span>)
+</span></span></code></pre></div><br>
 <p>It&rsquo;s now time to create <code>Dockerfile</code> for each of the applications.</p>
 <br>
 <p><strong>File:</strong> <code>perl-app/Dockerfile</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">FROM perl:5.38
-RUN cpanm Mojolicious Prometheus::Tiny --notest
-WORKDIR /app
-COPY app.pl /app/
-EXPOSE <span style="color:#ae81ff">7000</span>
-CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;perl&#34;</span>, <span style="color:#e6db74">&#34;app.pl&#34;</span><span style="color:#f92672">]</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>FROM perl:5.38
+</span></span><span style="display:flex;"><span>RUN cpanm Mojolicious Prometheus::Tiny --notest
+</span></span><span style="display:flex;"><span>WORKDIR /app
+</span></span><span style="display:flex;"><span>COPY app.pl /app/
+</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">7000</span>
+</span></span><span style="display:flex;"><span>CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;perl&#34;</span>, <span style="color:#e6db74">&#34;app.pl&#34;</span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><br>
 <p><strong>File:</strong> <code>python-app/Dockerfile</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">FROM python:3.11-slim
-RUN pip install flask prometheus_client
-WORKDIR /app
-COPY app.py /app/
-EXPOSE <span style="color:#ae81ff">8000</span>
-CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;app.py&#34;</span><span style="color:#f92672">]</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>FROM python:3.11-slim
+</span></span><span style="display:flex;"><span>RUN pip install flask prometheus_client
+</span></span><span style="display:flex;"><span>WORKDIR /app
+</span></span><span style="display:flex;"><span>COPY app.py /app/
+</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;app.py&#34;</span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s create configuration file for <code>Prometheus</code>.</p>
 <br>
 <p><strong>File:</strong> <code>prometheus.yml</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">global:
-  scrape_interval: 5s
-
-scrape_configs:
-  - job_name: <span style="color:#e6db74">&#39;prometheus&#39;</span>
-    static_configs:
-      - targets: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;prometheus:9090&#39;</span><span style="color:#f92672">]</span>
-
-  - job_name: <span style="color:#e6db74">&#39;perl-app&#39;</span>
-    static_configs:
-      - targets: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;perl-app:7000&#39;</span><span style="color:#f92672">]</span>
-
-  - job_name: <span style="color:#e6db74">&#39;python-app&#39;</span>
-    static_configs:
-      - targets: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;python-app:8000&#39;</span><span style="color:#f92672">]</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>global:
+</span></span><span style="display:flex;"><span>  scrape_interval: 5s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>scrape_configs:
+</span></span><span style="display:flex;"><span>  - job_name: <span style="color:#e6db74">&#39;prometheus&#39;</span>
+</span></span><span style="display:flex;"><span>    static_configs:
+</span></span><span style="display:flex;"><span>      - targets: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;prometheus:9090&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - job_name: <span style="color:#e6db74">&#39;perl-app&#39;</span>
+</span></span><span style="display:flex;"><span>    static_configs:
+</span></span><span style="display:flex;"><span>      - targets: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;perl-app:7000&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - job_name: <span style="color:#e6db74">&#39;python-app&#39;</span>
+</span></span><span style="display:flex;"><span>    static_configs:
+</span></span><span style="display:flex;"><span>      - targets: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;python-app:8000&#39;</span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><br>
 <p>Finally create the docker compose configuration file.</p>
 <br>
 <p><strong>File:</strong> <code>docker-compose.yml</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">version: <span style="color:#e6db74">&#39;3&#39;</span>
-
-services:
-  grafana:
-    image: grafana/grafana
-    container_name: grafana
-    ports:
-      - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
-    depends_on:
-      - prometheus
-    environment:
-      - GF_SECURITY_ADMIN_USER<span style="color:#f92672">=</span>admin
-      - GF_SECURITY_ADMIN_PASSWORD<span style="color:#f92672">=</span>admin
-    networks:
-      - monitoring
-
-  prometheus:
-    image: prom/prometheus
-    container_name: prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - <span style="color:#e6db74">&#34;9090:9090&#34;</span>
-    networks:
-      - monitoring
-
-  perl-app:
-    build: ./perl-app
-    container_name: perl-app
-    ports:
-      - <span style="color:#e6db74">&#34;7000:7000&#34;</span>
-    networks:
-      - monitoring
-
-  python-app:
-    build: ./python-app
-    container_name: python-app
-    ports:
-      - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
-    networks:
-      - monitoring
-
-networks:
-  monitoring:
-    driver: bridge
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  grafana:
+</span></span><span style="display:flex;"><span>    image: grafana/grafana
+</span></span><span style="display:flex;"><span>    container_name: grafana
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
+</span></span><span style="display:flex;"><span>    depends_on:
+</span></span><span style="display:flex;"><span>      - prometheus
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      - GF_SECURITY_ADMIN_USER<span style="color:#f92672">=</span>admin
+</span></span><span style="display:flex;"><span>      - GF_SECURITY_ADMIN_PASSWORD<span style="color:#f92672">=</span>admin
+</span></span><span style="display:flex;"><span>    networks:
+</span></span><span style="display:flex;"><span>      - monitoring
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  prometheus:
+</span></span><span style="display:flex;"><span>    image: prom/prometheus
+</span></span><span style="display:flex;"><span>    container_name: prometheus
+</span></span><span style="display:flex;"><span>    volumes:
+</span></span><span style="display:flex;"><span>      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;9090:9090&#34;</span>
+</span></span><span style="display:flex;"><span>    networks:
+</span></span><span style="display:flex;"><span>      - monitoring
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  perl-app:
+</span></span><span style="display:flex;"><span>    build: ./perl-app
+</span></span><span style="display:flex;"><span>    container_name: perl-app
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;7000:7000&#34;</span>
+</span></span><span style="display:flex;"><span>    networks:
+</span></span><span style="display:flex;"><span>      - monitoring
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  python-app:
+</span></span><span style="display:flex;"><span>    build: ./python-app
+</span></span><span style="display:flex;"><span>    container_name: python-app
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
+</span></span><span style="display:flex;"><span>    networks:
+</span></span><span style="display:flex;"><span>      - monitoring
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>networks:
+</span></span><span style="display:flex;"><span>  monitoring:
+</span></span><span style="display:flex;"><span>    driver: bridge
+</span></span></code></pre></div><br>
 <p>Start the container now:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up -d
-Creating network <span style="color:#e6db74">&#34;grafana_monitoring&#34;</span> with driver <span style="color:#e6db74">&#34;bridge&#34;</span>
-Creating prometheus ... <span style="color:#66d9ef">done</span>
-Creating python-app ... <span style="color:#66d9ef">done</span>
-Creating perl-app   ... <span style="color:#66d9ef">done</span>
-Creating grafana    ... <span style="color:#66d9ef">done</span>
-</code></pre></div><p>Check the status of containers:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker-compose up -d
+</span></span><span style="display:flex;"><span>Creating network <span style="color:#e6db74">&#34;grafana_monitoring&#34;</span> with driver <span style="color:#e6db74">&#34;bridge&#34;</span>
+</span></span><span style="display:flex;"><span>Creating prometheus ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Creating python-app ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Creating perl-app   ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Creating grafana    ... <span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>Check the status of containers:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose ps
-   Name                 Command               State                    Ports
-----------------------------------------------------------------------------------------------
-grafana      /run.sh                          Up      0.0.0.0:3000-&gt;3000/tcp,:::3000-&gt;3000/tcp
-perl-app     perl app.pl                      Up      0.0.0.0:7000-&gt;7000/tcp,:::7000-&gt;7000/tcp
-prometheus   /bin/prometheus --config.f ...   Up      0.0.0.0:9090-&gt;9090/tcp,:::9090-&gt;9090/tcp
-python-app   python app.py                    Up      0.0.0.0:8000-&gt;8000/tcp,:::8000-&gt;8000/tcp
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker-compose ps
+</span></span><span style="display:flex;"><span>   Name                 Command               State                    Ports
+</span></span><span style="display:flex;"><span>----------------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>grafana      /run.sh                          Up      0.0.0.0:3000-&gt;3000/tcp,:::3000-&gt;3000/tcp
+</span></span><span style="display:flex;"><span>perl-app     perl app.pl                      Up      0.0.0.0:7000-&gt;7000/tcp,:::7000-&gt;7000/tcp
+</span></span><span style="display:flex;"><span>prometheus   /bin/prometheus --config.f ...   Up      0.0.0.0:9090-&gt;9090/tcp,:::9090-&gt;9090/tcp
+</span></span><span style="display:flex;"><span>python-app   python app.py                    Up      0.0.0.0:8000-&gt;8000/tcp,:::8000-&gt;8000/tcp
+</span></span></code></pre></div><br>
 <h2 id="test-environment">Test Environment</h2>
 <hr>
 <p>Time to test the <code>Perl</code> and <code>Python</code> applications:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl http://localhost:7000
-Hello from Perl!
-</code></pre></div><br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl http://localhost:8000
-Hello from Python!
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:7000
+</span></span><span style="display:flex;"><span>Hello from Perl!
+</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:8000
+</span></span><span style="display:flex;"><span>Hello from Python!
+</span></span></code></pre></div><br>
 <p>Inspecting the perl app logs:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose logs perl-app
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker-compose logs perl-app
+</span></span></code></pre></div><br>
 <p>Similarly for python app logs:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose logs python-app
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker-compose logs python-app
+</span></span></code></pre></div><br>
 <p>Now fetch the metrics from <code>Perl</code> application:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl http://localhost:7000/metrics
-<span style="color:#75715e"># HELP http_requests_total Total HTTP requests</span>
-<span style="color:#75715e"># TYPE http_requests_total counter</span>
-http_requests_total <span style="color:#ae81ff">1</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:7000/metrics
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># HELP http_requests_total Total HTTP requests</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TYPE http_requests_total counter</span>
+</span></span><span style="display:flex;"><span>http_requests_total <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><br>
 <p>From <code>Python</code> application this time:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl http://localhost:8000/metrics
-<span style="color:#75715e"># HELP http_requests_total Total HTTP requests</span>
-<span style="color:#75715e"># TYPE http_requests_total counter</span>
-http_requests_total 1.0
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:8000/metrics
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># HELP http_requests_total Total HTTP requests</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TYPE http_requests_total counter</span>
+</span></span><span style="display:flex;"><span>http_requests_total 1.0
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s check all the targets state in <code>Prometheus</code>: http://localhost:9090/targets</p>
 <p>You should have all the state <code>UP</code>.</p>
 <br>
@@ -544,6 +544,16 @@ http_requests_total 1.0
         Related Posts
     </h3>
     <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/aws-s3-bucket-events/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">AWS S3 Bucket Events</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">python</span>
+                <span class="related-post-tag">aws</span>
+            </span>
+            <span class="related-post-date">7 Nov 2025</span>
+        </a>
         <a class="related-post-card" href="/blog/aws-lambda/">
             <span class="related-post-section">blog</span>
             <span class="related-post-title">AWS Lambda</span>
@@ -554,25 +564,15 @@ http_requests_total 1.0
             </span>
             <span class="related-post-date">5 Aug 2025</span>
         </a>
-        <a class="related-post-card" href="/blog/localstack-aws-s3/">
+        <a class="related-post-card" href="/blog/aws-customer-key-encryption/">
             <span class="related-post-section">blog</span>
-            <span class="related-post-title">LocalStack with AWS S3</span>
+            <span class="related-post-title">AWS Customer Key Encryption</span>
             <span class="related-post-tags">
                 <span class="related-post-tag">perl</span>
                 <span class="related-post-tag">python</span>
                 <span class="related-post-tag">aws</span>
             </span>
-            <span class="related-post-date">24 May 2025</span>
-        </a>
-        <a class="related-post-card" href="/blog/aws-s3-encryption/">
-            <span class="related-post-section">blog</span>
-            <span class="related-post-title">AWS S3 Encryption</span>
-            <span class="related-post-tags">
-                <span class="related-post-tag">perl</span>
-                <span class="related-post-tag">python</span>
-                <span class="related-post-tag">aws</span>
-            </span>
-            <span class="related-post-date">5 Jun 2025</span>
+            <span class="related-post-date">15 Jun 2025</span>
         </a>
     </div>
 </div>

@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>BLOG: The Weekly Challenge #063</span>
         </nav>
-        <span class="reading-time" title="1164 words">
+        <span class="reading-time" title="1165 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -182,55 +182,55 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Let me share my solutions to the <strong><a href="/perl-weekly-challenge-063">Perl Weekly Challenge - 063</a></strong>.</p>
 <hr>
 <h2 id="task-1--last-word">TASK #1 › Last Word</h2>
-<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
-<h4 id="reviewed-by-ryan-thompsonhttpsryca">Reviewed by <strong><a href="https://ry.ca">Ryan Thompson</a></strong></h4>
+<h4 id="submitted-by-mohammad-s-anwar">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<h4 id="reviewed-by-ryan-thompson">Reviewed by <strong><a href="https://ry.ca">Ryan Thompson</a></strong></h4>
 <hr>
 <p>Define sub <code>last_word($string, $regexp)</code> that returns the last word matching <code>$regexp</code> found in the given string, or <code>undef</code> if the string does not contain a word matching <code>$regexp</code>.</p>
 <hr>
 <p>For the first time, I wanted to do it in <strong>one-liner</strong> as there is plenty of scope for it in this task. First I started with the aim to get the desired the result. Then I started merging lines to a point when it became <strong>one-liner</strong>. I am not sure if this is correct approach as I have never done it before. I found it easier to do this way, anyway.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">last_word</span> {
-    <span style="color:#66d9ef">my</span> ($string, $regex) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">return</span> [ grep <span style="color:#e6db74">/$regex/</span>, reverse ( split <span style="color:#e6db74">/\s/</span>, $string ) ]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">last_word</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($string, $regex) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [ grep <span style="color:#e6db74">/$regex/</span>, reverse ( split <span style="color:#e6db74">/\s/</span>, $string ) ]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Having done the <strong>sub last_word()</strong> in <strong>one-liner</strong>, as it was easier to do <strong>one-liner</strong> in <strong>Raku</strong>.</p>
 <p>Luckily, I knew about <strong>split()</strong>, <strong>reverse()</strong> and <strong>grep()</strong> in <strong>Raku</strong>. It was just a matter of chaining it together. In my experience so far, <strong>Raku</strong> is ideal for chaining.</p>
 <p>The best part was <code>$_ ~~ $regex</code>.</p>
 <p>I am pretty sure there must be better way of doing the same. But I am satisfied with my effort, so far.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">last</span>-word(Str $string, Regex $regex) {
-    <span style="color:#66d9ef">return</span> ($string<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)<span style="color:#f92672">.</span>reverse<span style="color:#f92672">.</span>grep: { $_ <span style="color:#f92672">~~</span> $regex })<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>];
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">last</span>-word(Str $string, Regex $regex) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ($string<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)<span style="color:#f92672">.</span>reverse<span style="color:#f92672">.</span>grep: { $_ <span style="color:#f92672">~~</span> $regex })<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>As soon I posted this solution on my <strong>Twitter</strong> handle <code>@cpan_author</code>, I had improvement suggestion by <code>@HrBollermann</code></p>
 <p><code>grep: { $_ ~~ $regex}</code> can be replaced with <code>grep($regex)</code></p>
 <p>also <code>.[0]</code> became <code>.head</code>.</p>
 <p>So the improved <strong>sub last-word()</strong> looks like below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">last</span>-word(Str $string, Regex $regex) {
-    <span style="color:#66d9ef">return</span> $string<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)<span style="color:#f92672">.</span>reverse<span style="color:#f92672">.</span>grep($regex)<span style="color:#f92672">.</span>head;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">last</span>-word(Str $string, Regex $regex) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $string<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)<span style="color:#f92672">.</span>reverse<span style="color:#f92672">.</span>grep($regex)<span style="color:#f92672">.</span>head;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Building standalone app using the above helper <strong>sub last_word()</strong> was way too easy to create. In theory, the app itself became one-liner.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;  hello world&#39;</span>;
-<span style="color:#66d9ef">my</span> $regex  <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">qr/[ea]l/</span>;
-
-<span style="color:#66d9ef">print</span> last_word($string, $regex), <span style="color:#e6db74">&#34;\n&#34;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;  hello world&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $regex  <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">qr/[ea]l/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> last_word($string, $regex), <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span></code></pre></div><br>
 <p>For <strong>Raku</strong> counter, I always try to explore the power of <strong>sub MAIN()</strong>. I have used <strong>Regex</strong> type for the first time. Also I had to lookup up web for how to set the default regex. After a quick lookup, I ended up with this <code>rx / /</code>. The only other bit that is different from <strong>Perl</strong> regex was that it was surrounded by <code>&lt;</code> and <code>&gt;</code>. So this <code>qr/[ea]l/</code> becomes <code>rx/ &lt;[ea]&gt;l /</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$string = &#39;  hello world&#39;, Regex :$regex = rx/ &lt;[ea]&gt;l /) {
-    <span style="color:#66d9ef">last</span><span style="color:#f92672">-</span>word($string, $regex)<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$string = &#39;  hello world&#39;, Regex :$regex = rx/ &lt;[ea]&gt;l /) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">last</span><span style="color:#f92672">-</span>word($string, $regex)<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Doing unit test becomes easier with the given test cases. Looks like <strong>poetry</strong> to me.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test::More;
-
-is(last_word(<span style="color:#e6db74">&#39;  hello world&#39;</span>,                <span style="color:#e6db74">qr/[ea]l/</span>),      <span style="color:#e6db74">&#39;hello&#39;</span>);
-is(last_word(<span style="color:#e6db74">&#34;Don&#39;t match too much, Chet!&#34;</span>,  <span style="color:#e6db74">qr/ch.t/</span>i),      <span style="color:#e6db74">&#39;Chet!&#39;</span>);
-is(last_word(<span style="color:#e6db74">&#34;spaces in regexp won&#39;t match&#34;</span>, <span style="color:#e6db74">qr/in re/</span>),      undef);
-is(last_word( join(<span style="color:#e6db74">&#39; &#39;</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1e6</span>),             <span style="color:#e6db74">qr/^(3.*?){3}/</span>), <span style="color:#e6db74">&#39;399933&#39;</span>);
-
-done_testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is(last_word(<span style="color:#e6db74">&#39;  hello world&#39;</span>,                <span style="color:#e6db74">qr/[ea]l/</span>),      <span style="color:#e6db74">&#39;hello&#39;</span>);
+</span></span><span style="display:flex;"><span>is(last_word(<span style="color:#e6db74">&#34;Don&#39;t match too much, Chet!&#34;</span>,  <span style="color:#e6db74">qr/ch.t/</span>i),      <span style="color:#e6db74">&#39;Chet!&#39;</span>);
+</span></span><span style="display:flex;"><span>is(last_word(<span style="color:#e6db74">&#34;spaces in regexp won&#39;t match&#34;</span>, <span style="color:#e6db74">qr/in re/</span>),      undef);
+</span></span><span style="display:flex;"><span>is(last_word( join(<span style="color:#e6db74">&#39; &#39;</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1e6</span>),             <span style="color:#e6db74">qr/^(3.*?){3}/</span>), <span style="color:#e6db74">&#39;399933&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><br>
 <p><strong>Raku</strong> unit test is no different except the following variance of <strong>Raku</strong> regex:</p>
 <ol>
 <li>
@@ -247,18 +247,18 @@ done_testing;
 <p>I didn&rsquo;t use <code>join(' ', 1..1e6)</code> in <strong>Raku</strong> even though I knew it would work without any issue.</p>
 <p>I wanted to do it differently, so I decided to do it this way <code>(1..1e6).join(' ')</code> instead.</p>
 <p>Also <code>undef</code> became <code>Nil</code> for fun.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-is <span style="color:#66d9ef">last</span><span style="color:#f92672">-</span>word(<span style="color:#e6db74">&#39;  hello world&#39;</span>,                rx  <span style="color:#e6db74">/ &lt;[ea]&gt;l   /</span>), <span style="color:#e6db74">&#39;hello&#39;</span>;
-is <span style="color:#66d9ef">last</span><span style="color:#f92672">-</span>word(<span style="color:#e6db74">&#34;Don&#39;t match too much, Chet!&#34;</span>,  rx:i<span style="color:#e6db74">/ ch.t      /</span>), <span style="color:#e6db74">&#39;Chet!&#39;</span>;
-is <span style="color:#66d9ef">last</span><span style="color:#f92672">-</span>word(<span style="color:#e6db74">&#34;spaces in regexp won&#39;t match&#34;</span>, rx:s<span style="color:#e6db74">/ in re     /</span>), Nil;
-is <span style="color:#66d9ef">last</span><span style="color:#f92672">-</span>word( (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1e6</span>)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39; &#39;</span>),            rx  <span style="color:#e6db74">/^^(3.*?)**3/</span>), <span style="color:#e6db74">&#39;399933&#39;</span>;
-
-done<span style="color:#f92672">-</span>testing;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is <span style="color:#66d9ef">last</span><span style="color:#f92672">-</span>word(<span style="color:#e6db74">&#39;  hello world&#39;</span>,                rx  <span style="color:#e6db74">/ &lt;[ea]&gt;l   /</span>), <span style="color:#e6db74">&#39;hello&#39;</span>;
+</span></span><span style="display:flex;"><span>is <span style="color:#66d9ef">last</span><span style="color:#f92672">-</span>word(<span style="color:#e6db74">&#34;Don&#39;t match too much, Chet!&#34;</span>,  rx:i<span style="color:#e6db74">/ ch.t      /</span>), <span style="color:#e6db74">&#39;Chet!&#39;</span>;
+</span></span><span style="display:flex;"><span>is <span style="color:#66d9ef">last</span><span style="color:#f92672">-</span>word(<span style="color:#e6db74">&#34;spaces in regexp won&#39;t match&#34;</span>, rx:s<span style="color:#e6db74">/ in re     /</span>), Nil;
+</span></span><span style="display:flex;"><span>is <span style="color:#66d9ef">last</span><span style="color:#f92672">-</span>word( (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1e6</span>)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39; &#39;</span>),            rx  <span style="color:#e6db74">/^^(3.*?)**3/</span>), <span style="color:#e6db74">&#39;399933&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span></code></pre></div><hr>
 <h2 id="task-2--rotate-string">TASK #2 › Rotate String</h2>
-<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
-<h4 id="reviewed-by-ryan-thompsonhttpsryca-1">Reviewed by <strong><a href="https://ry.ca">Ryan Thompson</a></strong></h4>
+<h4 id="submitted-by-mohammad-s-anwar-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<h4 id="reviewed-by-ryan-thompson-1">Reviewed by <strong><a href="https://ry.ca">Ryan Thompson</a></strong></h4>
 <hr>
 <p>Given a word made up of an arbitrary number of <code>x</code> and <code>y</code> characters, that word can be rotated as follows: For the <em>i</em>th rotation (starting at <em>i</em> = 1), <em>i</em> % length(<em>word</em>) characters are moved from the front of the string to the end. Thus, for the string <code>xyxx</code>, the initial (<em>i</em> = 1) % 4 = 1 character (<code>x</code>) is moved to the end, forming <code>yxxx</code>. On the second rotation, (<em>i</em> = 2) % 4 = 2 characters (<code>yx</code>) are moved to the end, forming <code>xxyx</code>, and so on. See below for a complete example.</p>
 <p>Your task is to write a function that takes a string of <code>x</code>s and <code>y</code>s and returns the minimum non-zero number of rotations required to obtain the original string. You may show the individual rotations if you wish, but that is not required.</p>
@@ -266,93 +266,93 @@ done<span style="color:#f92672">-</span>testing;
 <br>
 <p>The core of this task depends on <strong>substr()</strong>. My approach for the task may not be ideal but it is easier to read and follow.</p>
 <p>The catch line in the <strong>sub rotate()</strong> is below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span> $size);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span> $size);
+</span></span></code></pre></div><br>
 <p>The complete definition is as below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate</span> {
-    <span style="color:#66d9ef">my</span> ($string, $verbose) <span style="color:#f92672">=</span> @_;
-
-    die <span style="color:#e6db74">&#34;ERROR: Missing string.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> defined $string;
-    die <span style="color:#e6db74">&#34;ERROR: Invalid string [$string].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> ($string <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[xy]+$/i</span>);
-
-    <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> length($string);
-    <span style="color:#66d9ef">my</span> $temp <span style="color:#f92672">=</span> $string;
-    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> $size) {
-        <span style="color:#66d9ef">my</span> $part_a <span style="color:#f92672">=</span> substr($temp, <span style="color:#ae81ff">0</span>, $i);
-        <span style="color:#66d9ef">my</span> $part_b <span style="color:#f92672">=</span> substr($temp, $i);
-        $temp <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%s%s&#34;</span>, $part_b, $part_a);
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;[$c]: [$temp]\n&#34;</span> <span style="color:#66d9ef">if</span> ($verbose);
-        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> ($temp <span style="color:#f92672">eq</span> $string);
-
-        $i<span style="color:#f92672">++</span>; $c<span style="color:#f92672">++</span>;
-        $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span> $size);
-    }
-
-    <span style="color:#66d9ef">return</span> $c;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($string, $verbose) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing string.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined $string;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid string [$string].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($string <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[xy]+$/i</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> length($string);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $temp <span style="color:#f92672">=</span> $string;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> $size) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $part_a <span style="color:#f92672">=</span> substr($temp, <span style="color:#ae81ff">0</span>, $i);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $part_b <span style="color:#f92672">=</span> substr($temp, $i);
+</span></span><span style="display:flex;"><span>        $temp <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%s%s&#34;</span>, $part_b, $part_a);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;[$c]: [$temp]\n&#34;</span> <span style="color:#66d9ef">if</span> ($verbose);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> ($temp <span style="color:#f92672">eq</span> $string);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $i<span style="color:#f92672">++</span>; $c<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span> $size);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $c;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s get the <strong>Perl</strong> translated into <strong>Raku</strong>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> length($string);
-</code></pre></div><p>became this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> $string<span style="color:#f92672">.</span>chars;
-</code></pre></div><p>and the following</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$temp <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%s%s&#34;</span>, $part_b, $part_a);
-</code></pre></div><p>became</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">$temp <span style="color:#f92672">=</span> ($part_b, $part_a)<span style="color:#f92672">.</span>join;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> length($string);
+</span></span></code></pre></div><p>became this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> $string<span style="color:#f92672">.</span>chars;
+</span></span></code></pre></div><p>and the following</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$temp <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%s%s&#34;</span>, $part_b, $part_a);
+</span></span></code></pre></div><p>became</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$temp <span style="color:#f92672">=</span> ($part_b, $part_a)<span style="color:#f92672">.</span>join;
+</span></span></code></pre></div><br>
 <p>Rest of the code is same as before.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate</span>(Str $string where { $_ <span style="color:#f92672">~~</span> rx:i<span style="color:#e6db74">/^ &lt;[xy]&gt;+ $/</span> }, Bool $verbose?) {
-
-    <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> $string<span style="color:#f92672">.</span>chars;
-    <span style="color:#66d9ef">my</span> $temp <span style="color:#f92672">=</span> $string;
-    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">while</span> $i <span style="color:#f92672">&lt;=</span> $size {
-        <span style="color:#66d9ef">my</span> $part_a <span style="color:#f92672">=</span> substr($temp, <span style="color:#ae81ff">0</span>, $i);
-        <span style="color:#66d9ef">my</span> $part_b <span style="color:#f92672">=</span> substr($temp, $i);
-        $temp <span style="color:#f92672">=</span> ($part_b, $part_a)<span style="color:#f92672">.</span>join;
-        say <span style="color:#e6db74">&#34;[$c]: [$temp]&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
-        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $temp <span style="color:#f92672">eq</span> $string;
-
-        $i<span style="color:#f92672">++</span>; $c<span style="color:#f92672">++</span>;
-        $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> $size;
-    }
-
-    <span style="color:#66d9ef">return</span> $c;
-}
-</code></pre></div><p>I received another improvement suggestion by <code>@khalidelboray</code> like below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate</span>(Str $string where { $_ <span style="color:#f92672">~~</span> rx:i<span style="color:#e6db74">/^ &lt;[xy]&gt;+ $/</span> }, Bool $verbose?) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> $string<span style="color:#f92672">.</span>chars;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $temp <span style="color:#f92672">=</span> $string;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> $i <span style="color:#f92672">&lt;=</span> $size {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $part_a <span style="color:#f92672">=</span> substr($temp, <span style="color:#ae81ff">0</span>, $i);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $part_b <span style="color:#f92672">=</span> substr($temp, $i);
+</span></span><span style="display:flex;"><span>        $temp <span style="color:#f92672">=</span> ($part_b, $part_a)<span style="color:#f92672">.</span>join;
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">&#34;[$c]: [$temp]&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $temp <span style="color:#f92672">eq</span> $string;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $i<span style="color:#f92672">++</span>; $c<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> $size;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $c;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I received another improvement suggestion by <code>@khalidelboray</code> like below:</p>
 <p><code>Str $string where { $_ ~~ rx:i/^ &lt;[xy]&gt;+ $/ }</code></p>
 <p>can be shortened to</p>
 <p><code>Str $string where rx:i/^ &lt;[xy]&gt;+ $/</code></p>
 <p>Here is one-liner <strong>Perl</strong> standalone app. No brainer though.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> rotate($ARGV[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">1</span>);
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Rotation: $count\n&#34;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> rotate($ARGV[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Rotation: $count\n&#34;</span>;
+</span></span></code></pre></div><br>
 <p><strong>Raku</strong> counterpart with optional <code>--verbose</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$string = &#39;xyxx&#39;, Bool :$verbose?) {
-    rotate($string, $verbose)<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$string = &#39;xyxx&#39;, Bool :$verbose?) {
+</span></span><span style="display:flex;"><span>    rotate($string, $verbose)<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Fun with unit test using couple of standard test cases.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test::More;
-
-is (rotate(<span style="color:#e6db74">&#39;xyxx&#39;</span>), <span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#39;xyxx&#39;</span>);
-is (rotate(<span style="color:#e6db74">&#39;xyxy&#39;</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;xyxy&#39;</span>);
-
-done_testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is (rotate(<span style="color:#e6db74">&#39;xyxx&#39;</span>), <span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#39;xyxx&#39;</span>);
+</span></span><span style="display:flex;"><span>is (rotate(<span style="color:#e6db74">&#39;xyxy&#39;</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;xyxy&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><br>
 <p>Same applied here as well.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-is rotate(<span style="color:#e6db74">&#39;xyxx&#39;</span>), <span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#39;xyxx&#39;</span>;
-is rotate(<span style="color:#e6db74">&#39;xyxy&#39;</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;xyxy&#39;</span>;
-
-done<span style="color:#f92672">-</span>testing;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is rotate(<span style="color:#e6db74">&#39;xyxx&#39;</span>), <span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#39;xyxx&#39;</span>;
+</span></span><span style="display:flex;"><span>is rotate(<span style="color:#e6db74">&#39;xyxy&#39;</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;xyxy&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span></code></pre></div><hr>
 <p>That&rsquo;s it for this week. Speak to you soon.</p>
 
     </article>

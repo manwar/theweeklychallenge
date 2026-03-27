@@ -223,32 +223,32 @@ C
 <p>The <code>rotor</code> subroutine can in fact do much more than that (check the <a href="https://docs.perl6.org/routine/rotor">rotor documentation</a>), but I&rsquo;ve basically shown the features that we&rsquo;ll use here.</p>
 <p>The other Perl 6 functionality that we will use here is the the <code>Set</code> type and the associated intersection (<code>∩</code> or <code>(&amp;)</code>) operator. This operator does exactly what set intersection does in the mathematical set theory: it returns the elements that are common to the two sets.</p>
 <p>We can now code the largest common substring in Perl 6:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6;
-<span style="color:#66d9ef">use</span> Test;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">substrings</span> (Str $in) {
-    <span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> $in<span style="color:#f92672">.</span>comb;
-    append @result,  map { <span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;&#39;</span>) }, $in<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>rotor: $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>$_ <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$in<span style="color:#f92672">.</span>chars;
-    <span style="color:#66d9ef">return</span> set @result;
-}
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">largest</span>-substring (@words) {
-    <span style="color:#66d9ef">my</span> Set $intersection <span style="color:#f92672">=</span> substrings shift @words;
-    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> shift @words) {
-        $intersection <span style="color:#960050;background-color:#1e0010">∩</span><span style="color:#f92672">=</span> substrings $word;
-    }
-    <span style="color:#66d9ef">return</span> $intersection<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>max({<span style="color:#f92672">.</span>chars});
-}
-multi MAIN (<span style="color:#f92672">*</span>@words where <span style="color:#f92672">*.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
-    say largest<span style="color:#f92672">-</span>substring @words;
-}
-multi MAIN () {
-    plan <span style="color:#ae81ff">2</span>;
-    <span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>ABABC BABCA ABCBA<span style="color:#f92672">&gt;</span>;
-    <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>ok largest<span style="color:#f92672">-</span>substring(@words), <span style="color:#e6db74">&#39;eq&#39;</span>, <span style="color:#e6db74">&#39;ABC&#39;</span>, <span style="color:#e6db74">&#34;Testing 3 strings&#34;</span>;
-    @words <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;abcde&#39;</span> xx <span style="color:#ae81ff">5</span>;
-    <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>ok largest<span style="color:#f92672">-</span>substring(@words), <span style="color:#e6db74">&#39;eq&#39;</span>, <span style="color:#e6db74">&#39;abcde&#39;</span>, <span style="color:#e6db74">&#34;Testing identical strings&#34;</span>;
-}
-</code></pre></div><p>Launching the program with no argument to run the tests produces this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">substrings</span> (Str $in) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> $in<span style="color:#f92672">.</span>comb;
+</span></span><span style="display:flex;"><span>    append @result,  map { <span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;&#39;</span>) }, $in<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>rotor: $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>$_ <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$in<span style="color:#f92672">.</span>chars;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> set @result;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">largest</span>-substring (@words) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> Set $intersection <span style="color:#f92672">=</span> substrings shift @words;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> shift @words) {
+</span></span><span style="display:flex;"><span>        $intersection <span style="color:#960050;background-color:#1e0010">∩</span><span style="color:#f92672">=</span> substrings $word;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $intersection<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>max({<span style="color:#f92672">.</span>chars});
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>multi MAIN (<span style="color:#f92672">*</span>@words where <span style="color:#f92672">*.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    say largest<span style="color:#f92672">-</span>substring @words;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>multi MAIN () {
+</span></span><span style="display:flex;"><span>    plan <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>ABABC BABCA ABCBA<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>ok largest<span style="color:#f92672">-</span>substring(@words), <span style="color:#e6db74">&#39;eq&#39;</span>, <span style="color:#e6db74">&#39;ABC&#39;</span>, <span style="color:#e6db74">&#34;Testing 3 strings&#34;</span>;
+</span></span><span style="display:flex;"><span>    @words <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;abcde&#39;</span> xx <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>ok largest<span style="color:#f92672">-</span>substring(@words), <span style="color:#e6db74">&#39;eq&#39;</span>, <span style="color:#e6db74">&#39;abcde&#39;</span>, <span style="color:#e6db74">&#34;Testing identical strings&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Launching the program with no argument to run the tests produces this:</p>
 <pre><code>$ perl6  substrings.p6
 1..2
 ok 1 - Testing 3 strings
@@ -262,52 +262,52 @@ ABCT
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> decided to generate all possible substrings from each input string and then to incrementally build the set of common substrings using the <code>∩</code> set intersection operator (and find the longest common substring at the end). So, something quite similar to what I did above, except that, to generate all the substrings, he manually implemented two nested loops on the letter sequences of a given string.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/mark-senn/perl6/ch-1.p6">Mark Senn</a> also used nested loops to find all the substrings of each of the input strings and stored them in an array <code>@set</code> of sets (well actually of <code>SetHash</code> objects). That&rsquo;s a nice idea, but the true beauty of Mark&rsquo;s solution lies in the way he uses the set intersection operator within the reduction metaoperator and sorts the result by substring length to find the LCS and print it, all in one single code line:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">([(<span style="color:#f92672">&amp;</span>)] @set)<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort({<span style="color:#f92672">.</span>chars})<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>say;
-</code></pre></div><p>I am really impressed. Congratulations, Mark, very good job! One possible minor improvement, though:  you didn&rsquo;t really need to sort the substrings and could have used the <a href="https://docs.perl6.org/routine/max">max</a> function, for example <code>.max({.chars})</code>, which should presumably be more efficient.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>([(<span style="color:#f92672">&amp;</span>)] @set)<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort({<span style="color:#f92672">.</span>chars})<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>say;
+</span></span></code></pre></div><p>I am really impressed. Congratulations, Mark, very good job! One possible minor improvement, though:  you didn&rsquo;t really need to sort the substrings and could have used the <a href="https://docs.perl6.org/routine/max">max</a> function, for example <code>.max({.chars})</code>, which should presumably be more efficient.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also wrote a subroutine to generate all substrings of a given string. And he also cleverly thought about using the set intersection operator within the reduction metaoperator to find all the common substrings. Simon&rsquo;s final step is a bit more complex than Mark&rsquo;s, because his program finds all the longest common substrings when there is more than one:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    <span style="color:#66d9ef">my</span> @word<span style="color:#f92672">-</span>subs <span style="color:#f92672">=</span> @words<span style="color:#f92672">.</span>map( <span style="color:#f92672">&amp;</span>all<span style="color:#f92672">-</span>substrings );
-    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> ([(<span style="color:#f92672">&amp;</span>)] @word<span style="color:#f92672">-</span>subs)<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort( { $<span style="color:#960050;background-color:#1e0010">^</span>b<span style="color:#f92672">.</span>codes <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>a<span style="color:#f92672">.</span>codes } )<span style="color:#f92672">.</span>grep( { state $len <span style="color:#f92672">=</span> $_<span style="color:#f92672">.</span>codes; $_<span style="color:#f92672">.</span>codes <span style="color:#f92672">==</span> $len });
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also used a subroutine to find all substrings of a given string, and she also used the magical <code>[∩]</code> combination of the set intersection operator and reduction metaoperator to find all common substrings. And she also made sure to display several longest substrings when there is more than 1. Clearly one of the best contributions on this challenge.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @word<span style="color:#f92672">-</span>subs <span style="color:#f92672">=</span> @words<span style="color:#f92672">.</span>map( <span style="color:#f92672">&amp;</span>all<span style="color:#f92672">-</span>substrings );
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> ([(<span style="color:#f92672">&amp;</span>)] @word<span style="color:#f92672">-</span>subs)<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort( { $<span style="color:#960050;background-color:#1e0010">^</span>b<span style="color:#f92672">.</span>codes <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>a<span style="color:#f92672">.</span>codes } )<span style="color:#f92672">.</span>grep( { state $len <span style="color:#f92672">=</span> $_<span style="color:#f92672">.</span>codes; $_<span style="color:#f92672">.</span>codes <span style="color:#f92672">==</span> $len });
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also used a subroutine to find all substrings of a given string, and she also used the magical <code>[∩]</code> combination of the set intersection operator and reduction metaoperator to find all common substrings. And she also made sure to display several longest substrings when there is more than 1. Clearly one of the best contributions on this challenge.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/athanasius/perl6/ch-1.p6">Athanasius</a> also wrote a subroutine to generate all substrings of a given string, using two nested loops. He also populated an array of sets, but he performed the intersection in a <code>for</code> loop.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/veesh-goldman/perl6/ch-1.p6">Veesh Goldman</a> also reduced the intersection operator, but with a different syntax. He is the only one who used a regex with the <code>:ex</code> or <code>:exhaustive</code> adverb. Veesh is clearly the winner in terms of the most concise syntax:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> ( *@strings where .elems &gt; 1 ) {
-  @strings<span style="color:#f92672">.</span>map( { m:ex<span style="color:#e6db74">/.+/</span><span style="color:#f92672">&gt;&gt;.</span>Str } )<span style="color:#f92672">.</span>reduce( { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#960050;background-color:#1e0010">∩</span> $<span style="color:#960050;background-color:#1e0010">^</span>b } )<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>max(<span style="color:#f92672">*.</span>chars)<span style="color:#f92672">.</span>say
-}
-</code></pre></div><p>And also certainly one of the best and most perl-sixish solutions, IMHO. I wish Veesh took part more often to the Perl 6 part of the challenge.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> ( *@strings where .elems &gt; 1 ) {
+</span></span><span style="display:flex;"><span>  @strings<span style="color:#f92672">.</span>map( { m:ex<span style="color:#e6db74">/.+/</span><span style="color:#f92672">&gt;&gt;.</span>Str } )<span style="color:#f92672">.</span>reduce( { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#960050;background-color:#1e0010">∩</span> $<span style="color:#960050;background-color:#1e0010">^</span>b } )<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>max(<span style="color:#f92672">*.</span>chars)<span style="color:#f92672">.</span>say
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And also certainly one of the best and most perl-sixish solutions, IMHO. I wish Veesh took part more often to the Perl 6 part of the challenge.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/fjwhittle/perl6/ch-1.p6">Francis Whittle</a> also wrote a subroutine to generate all substrings of a given string, but he used the <code>hyper</code> method to accelerate his nested loops:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">all</span>-substrings(Str $in) {
-  gather <span style="color:#66d9ef">for</span> (<span style="color:#f92672">^</span>($in<span style="color:#f92672">.</span>chars <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))<span style="color:#f92672">.</span>hyper <span style="color:#f92672">-&gt;</span> $i {
-    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..^</span>$in<span style="color:#f92672">.</span>chars)<span style="color:#f92672">.</span>hyper <span style="color:#f92672">-&gt;</span> $j {
-      take $in<span style="color:#f92672">.</span>substr($i<span style="color:#f92672">..</span>$j) <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&lt;=</span> $j;
-    }
-  }
-}
-</code></pre></div><p>This is quite clever, and I must admit that don&rsquo;t think about this easy possible performance enhancement most of the time. His <code>MAIN</code> code is also original, interesting and worth looking at.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">all</span>-substrings(Str $in) {
+</span></span><span style="display:flex;"><span>  gather <span style="color:#66d9ef">for</span> (<span style="color:#f92672">^</span>($in<span style="color:#f92672">.</span>chars <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))<span style="color:#f92672">.</span>hyper <span style="color:#f92672">-&gt;</span> $i {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..^</span>$in<span style="color:#f92672">.</span>chars)<span style="color:#f92672">.</span>hyper <span style="color:#f92672">-&gt;</span> $j {
+</span></span><span style="display:flex;"><span>      take $in<span style="color:#f92672">.</span>substr($i<span style="color:#f92672">..</span>$j) <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&lt;=</span> $j;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This is quite clever, and I must admit that don&rsquo;t think about this easy possible performance enhancement most of the time. His <code>MAIN</code> code is also original, interesting and worth looking at.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/noud/perl6/ch-1.p6">Noud</a> used two nested loops to find the longest substring or substrings between two strings. Noud&rsquo;s solution also covers the case where there are several longest substrings. The only problem is that the challenge said &ldquo;2 or more strings&rdquo; and Noud&rsquo;s solution can process only two input strings. And, as we&rsquo;ll see below, an LCS subroutine between two strings cannot properly find a LCS between 3 input strings.</p>
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a>&lsquo;s solution suffers of the same syndrome: it can process only two input strings.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a>&rsquo;s solution suffers of the same syndrome: it can process only two input strings.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/ozzy/perl6/ch-2.p6">Ozzy</a> orighinally implemented two nested loops to find the LCS between two strings. But this solution also can process only two input strings. However, he implemented <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/ozzy/perl6/ch-2a.p6">another solution</a> which uses three nested <code>for</code>loops to find all the substrings of the input words (two or more) and then uses the intersection operator to find trhe common substrings. This second solution displays all the longest common substrings when there is more than one.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/feng-chang/perl6/ch-1.p6">Fench Chang</a> interestingly created an infix <code>LCS</code> operator. The good thing about creating such an operator is that you can then use it within the reduction operator <code>[]</code> to process more than two input strings. I&rsquo;m afraid, though, that this approach will fail on some input strings. Suppose for example that you want to compare 3 strings, <em>ABCDEFUVWXY</em>,  <em>ABCDEFGHUVWX</em> and <em>ABUVWXY</em>. If I understand correctly, Feng&rsquo;s program first looks for the LCS between the first two strings, and finds <em>ABCDEF</em>; then, the script looks for the LCS between <em>ABCDEF</em> and <em>ABUVWXY</em>, and finds <em>AB</em>. But, in reality, <em>UVWX</em> was a longer substring common to the three input strings. Well, after having written the preceding sentences, I decided that I should better test to check. So, I copied Feng&rsquo;s <code>LCS</code> infix operator definition and tested it with the input strings of my example just above:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">say [LCS] <span style="color:#f92672">&lt;</span>ABCDEFUVWXY ABCDEFGHUVWX ABUVWXY<span style="color:#f92672">&gt;.</span>flat;
-</code></pre></div><p>and the program displayed &ldquo;AB&rdquo;. So it seems that my analysis is correct.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>say [LCS] <span style="color:#f92672">&lt;</span>ABCDEFUVWXY ABCDEFGHUVWX ABUVWXY<span style="color:#f92672">&gt;.</span>flat;
+</span></span></code></pre></div><p>and the program displayed &ldquo;AB&rdquo;. So it seems that my analysis is correct.</p>
 <h2 id="enter-damian-conway">Enter Damian Conway</h2>
 <p>Damian Conway did not take part to the challenge, but wrote <a href="http://blogs.perl.org/users/damian_conway/2019/07/chopping-substrings.html">Chopping substrings</a>, a blog post, that says everything you&rsquo;ve ever wanted to know about the subject, and probably even more than that.</p>
 <p>I will not try to summarize Damian&rsquo;s master piece, you should really follow the link and read it, but I will only highlight a few points.</p>
 <p>First, Damian says that the &ldquo;best practice&rdquo; solution for LCS is a relatively complex technique known as <a href="https://en.wikipedia.org/wiki/Generalized_suffix_tree">suffix tree</a>, but we can get very reasonable performance for strings up to hundreds of thousands of characters long using a much simpler approach.</p>
 <p>The idea is to get sets of all substrings of each input word and then find the intersection of those sets. Damian further notes that there can be several longest substrings and insists on finding them all.</p>
 <p>His first solution uses a regex with the <code>:ex</code> (exhaustive) adverb to find all the substrings and the <code>∩</code> set intersection operator, together with the reduction metaoperator, to find all the common substrings:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">keys [<span style="color:#960050;background-color:#1e0010">∩</span>] @strings<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>match(<span style="color:#e6db74">/.+/</span>, :ex)<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>Str
-</code></pre></div><p>We could then use the builtin <code>max</code> function (as I did in my solution), but that returns only one longest substring, whereas Damian wants to find them all (when there is more than one LCS). So he decided to augment the <code>max</code> function so that it takes a new adverb, <code>:all</code> to indicate that we want all the maxima, not just one:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e"># &#34;Exhaustive&#34; maximal...</span>
-multi max (:<span style="color:#f92672">&amp;</span>by <span style="color:#f92672">=</span> {$_}, :$all<span style="color:#f92672">!</span>, <span style="color:#f92672">*</span>@list) {
-    <span style="color:#75715e"># Find the maximal value...</span>
-    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max <span style="color:#66d9ef">my</span> @values <span style="color:#f92672">=</span> @list<span style="color:#f92672">.</span>map: <span style="color:#f92672">&amp;</span>by;
-
-    <span style="color:#75715e"># Extract and return all values matching the maximal...</span>
-    @list[ @values<span style="color:#f92672">.</span>kv<span style="color:#f92672">.</span>map: {$<span style="color:#960050;background-color:#1e0010">^</span>index <span style="color:#66d9ef">unless</span> $<span style="color:#960050;background-color:#1e0010">^</span>value <span style="color:#f92672">cmp</span> $max} ];
-}
-</code></pre></div><p>So, with this revised version of <code>max</code>, finding the longest common substring<em>s</em> now looks like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">max :all, :by{<span style="color:#f92672">.</span>chars}, keys [<span style="color:#960050;background-color:#1e0010">∩</span>] @strings<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>match(<span style="color:#e6db74">/.+/</span>, :ex)<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>Str
-</code></pre></div><p>So, problem nicely solved! Except that this won&rsquo;t work when some bioinformaticist will try to compare DNA strands with 10,000 bases (or more). Finding all the substrings of a 10,000-letter string becomes highly unpractical. Damian goes on saying that it would be much easier if we knew what the length of the longest substring(s) was, because the number of possible substring would be much smaller. Of course, we don&rsquo;t know this length, but it can be found with a binary search algorithm. And this new algorithm scales incredibly better. I&rsquo;ll not describe further Damian&rsquo;s findings (and his additional optimization), as it would be much better for you to read directly what Damian wrote. So, please, follow <a href="http://blogs.perl.org/users/damian_conway/2019/07/chopping-substrings.html">the link</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>keys [<span style="color:#960050;background-color:#1e0010">∩</span>] @strings<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>match(<span style="color:#e6db74">/.+/</span>, :ex)<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>Str
+</span></span></code></pre></div><p>We could then use the builtin <code>max</code> function (as I did in my solution), but that returns only one longest substring, whereas Damian wants to find them all (when there is more than one LCS). So he decided to augment the <code>max</code> function so that it takes a new adverb, <code>:all</code> to indicate that we want all the maxima, not just one:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e"># &#34;Exhaustive&#34; maximal...</span>
+</span></span><span style="display:flex;"><span>multi max (:<span style="color:#f92672">&amp;</span>by <span style="color:#f92672">=</span> {$_}, :$all<span style="color:#f92672">!</span>, <span style="color:#f92672">*</span>@list) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Find the maximal value...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max <span style="color:#66d9ef">my</span> @values <span style="color:#f92672">=</span> @list<span style="color:#f92672">.</span>map: <span style="color:#f92672">&amp;</span>by;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Extract and return all values matching the maximal...</span>
+</span></span><span style="display:flex;"><span>    @list[ @values<span style="color:#f92672">.</span>kv<span style="color:#f92672">.</span>map: {$<span style="color:#960050;background-color:#1e0010">^</span>index <span style="color:#66d9ef">unless</span> $<span style="color:#960050;background-color:#1e0010">^</span>value <span style="color:#f92672">cmp</span> $max} ];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So, with this revised version of <code>max</code>, finding the longest common substring<em>s</em> now looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>max :all, :by{<span style="color:#f92672">.</span>chars}, keys [<span style="color:#960050;background-color:#1e0010">∩</span>] @strings<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>match(<span style="color:#e6db74">/.+/</span>, :ex)<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>Str
+</span></span></code></pre></div><p>So, problem nicely solved! Except that this won&rsquo;t work when some bioinformaticist will try to compare DNA strands with 10,000 bases (or more). Finding all the substrings of a 10,000-letter string becomes highly unpractical. Damian goes on saying that it would be much easier if we knew what the length of the longest substring(s) was, because the number of possible substring would be much smaller. Of course, we don&rsquo;t know this length, but it can be found with a binary search algorithm. And this new algorithm scales incredibly better. I&rsquo;ll not describe further Damian&rsquo;s findings (and his additional optimization), as it would be much better for you to read directly what Damian wrote. So, please, follow <a href="http://blogs.perl.org/users/damian_conway/2019/07/chopping-substrings.html">the link</a>.</p>
 <h2 id="task-2-priority-queues-and-binary-heaps">Task #2: Priority Queues and Binary Heaps</h2>
 <p>This is derived from my <a href="http://blogs.perl.org/users/laurent_r/2019/07/perl-weekly-challenge-18-priority-queues-and-binary-heaps-in-perl-6.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-018/">Week 18 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
 <p>The challenge reads as follows:</p>
@@ -326,44 +326,44 @@ multi max (:<span style="color:#f92672">&amp;</span>by <span style="color:#f9267
 <h2 id="my-solutions">My solutions</h2>
 <p>There are numerous ways to design simple priority queues (at least when performance is not an issue, for instance if the data set isn&rsquo;t very large). For example, it might be sufficient to maintain an array of arrays (AoA), where each of the arrays is a pair containing the item and associated priority. Or an array of hashes (AoH) based on the same idea. This means that each time we want to pull the highest priority element, we need to traverse the whole data structure to find the item with the highest priority. This may be quite slow when there are many items, but this may not matter if our data structure only has a few dozen items.</p>
 <p>Another way is to build a hash of arrays (HoA), where the hash keys are the priorities and the hash values are references to arrays. When the number of priorities is relatively small (compared to the number of items in the queues), this tends to be more efficient, but note that we still need to traverse the keys of the hash until we find the highest priority. An AoA with the index being the priority and the sub-hashes the item might be more efficient (because the priorities remain sorted), but this requires the priorities to be relatively small positive integers. We still have to traverse the top data structure until we find the first non-empty sub-array. This could be done as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>-queue {
-    <span style="color:#66d9ef">my</span> @queue;  <span style="color:#75715e"># an AoA</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_empty</span> {
-        <span style="color:#66d9ef">for</span> @queue <span style="color:#f92672">-&gt;</span> $item {
-            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> defined $item;
-            <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $item<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
-        }
-        True;
-    }
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_with_prio</span> ($item, Int $prio) {
-        push @queue[$prio], $item;
-    }
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pull_highest_prio</span> {
-        <span style="color:#66d9ef">for</span> reverse @queue <span style="color:#f92672">-&gt;</span> $item {
-            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> defined $item;
-            <span style="color:#66d9ef">return</span> shift $item <span style="color:#66d9ef">if</span> $item<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
-        }
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>is_empty, <span style="color:#f92672">&amp;</span>insert_with_prio, <span style="color:#f92672">&amp;</span>pull_highest_prio;
-}
-
-<span style="color:#66d9ef">my</span> (<span style="color:#f92672">&amp;</span>is<span style="color:#f92672">-</span>empty, <span style="color:#f92672">&amp;</span>insert, <span style="color:#f92672">&amp;</span>pull<span style="color:#f92672">-</span>prio) <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span><span style="color:#f92672">-</span>queue;
-<span style="color:#75715e"># Testing the above code</span>
-<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span> <span style="color:#f92672">-&gt;</span> $num {
-    insert($num,
-        $num %% 10 ?? <span style="color:#ae81ff">10</span> <span style="color:#f92672">!!</span>
-        $num %% 5  ?? <span style="color:#ae81ff">5</span>  <span style="color:#f92672">!!</span>
-        $num %% 3  ?? <span style="color:#ae81ff">3</span>  <span style="color:#f92672">!!</span>
-        $num %% 2  ?? <span style="color:#ae81ff">2</span>  <span style="color:#f92672">!!</span>
-        <span style="color:#ae81ff">1</span>);
-}
-<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span> <span style="color:#f92672">-&gt;</span> $num {
-    say pull<span style="color:#f92672">-</span>prio;
-}
-say <span style="color:#e6db74">&#34;Empty queue&#34;</span> <span style="color:#66d9ef">if</span> is<span style="color:#f92672">-</span>empty();
-</code></pre></div><p>We&rsquo;re using functional programming to implement a pseudo-object system, in which the <code>new-queue</code> subroutine is acting as an object constructor, although it is implemented as a function factory. The <code>@queue</code> object is limited to the scope of the <code>new-queue</code> constructor, but the three methods returned to the caller are closures that can access to the content of their shared object, <code>@queue</code>. The tests insert 20 numerical items (numbers between 1 and 20) with a priority of 10 (highest) for numbers evenly divided by 10, of 5 for numbers evenly divided by 5 (but not by 10), of 3 for numbers evenly divided by 3 (but not by 5), etc.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>-queue {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @queue;  <span style="color:#75715e"># an AoA</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_empty</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> @queue <span style="color:#f92672">-&gt;</span> $item {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> defined $item;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $item<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        True;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_with_prio</span> ($item, Int $prio) {
+</span></span><span style="display:flex;"><span>        push @queue[$prio], $item;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pull_highest_prio</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> reverse @queue <span style="color:#f92672">-&gt;</span> $item {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> defined $item;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> shift $item <span style="color:#66d9ef">if</span> $item<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>is_empty, <span style="color:#f92672">&amp;</span>insert_with_prio, <span style="color:#f92672">&amp;</span>pull_highest_prio;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> (<span style="color:#f92672">&amp;</span>is<span style="color:#f92672">-</span>empty, <span style="color:#f92672">&amp;</span>insert, <span style="color:#f92672">&amp;</span>pull<span style="color:#f92672">-</span>prio) <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span><span style="color:#f92672">-</span>queue;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Testing the above code</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span> <span style="color:#f92672">-&gt;</span> $num {
+</span></span><span style="display:flex;"><span>    insert($num,
+</span></span><span style="display:flex;"><span>        $num %% 10 ?? <span style="color:#ae81ff">10</span> <span style="color:#f92672">!!</span>
+</span></span><span style="display:flex;"><span>        $num %% 5  ?? <span style="color:#ae81ff">5</span>  <span style="color:#f92672">!!</span>
+</span></span><span style="display:flex;"><span>        $num %% 3  ?? <span style="color:#ae81ff">3</span>  <span style="color:#f92672">!!</span>
+</span></span><span style="display:flex;"><span>        $num %% 2  ?? <span style="color:#ae81ff">2</span>  <span style="color:#f92672">!!</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span> <span style="color:#f92672">-&gt;</span> $num {
+</span></span><span style="display:flex;"><span>    say pull<span style="color:#f92672">-</span>prio;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">&#34;Empty queue&#34;</span> <span style="color:#66d9ef">if</span> is<span style="color:#f92672">-</span>empty();
+</span></span></code></pre></div><p>We&rsquo;re using functional programming to implement a pseudo-object system, in which the <code>new-queue</code> subroutine is acting as an object constructor, although it is implemented as a function factory. The <code>@queue</code> object is limited to the scope of the <code>new-queue</code> constructor, but the three methods returned to the caller are closures that can access to the content of their shared object, <code>@queue</code>. The tests insert 20 numerical items (numbers between 1 and 20) with a priority of 10 (highest) for numbers evenly divided by 10, of 5 for numbers evenly divided by 5 (but not by 10), of 3 for numbers evenly divided by 3 (but not by 5), etc.</p>
 <p>This script displays the following output:</p>
 <pre><code>$ perl6  queues.p6
 10
@@ -433,21 +433,21 @@ starts at index 0, the exact formulas for a node with index
 The children of <code>b</code> are <code>d</code> and <code>c</code> and are larger than their parent <code>b</code>. Similarly, the children of <code>g</code> are <code>k</code> and <code>j</code> and are larger than
 their parent. And so on. But it is rather inconvenient to manually check that we have a valid heap. So, we may want to write a helper subroutine
 to display the heap in a slightly more graphical way:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">print</span>-heap (@heap) {
-        <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">my</span> $end <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">my</span> $last <span style="color:#f92672">=</span> @heap<span style="color:#f92672">.</span>end;
-        <span style="color:#66d9ef">my</span> $step <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        loop {
-            say @heap[$start<span style="color:#f92672">..</span>$end];
-            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $end <span style="color:#f92672">==</span> $last;
-            $start <span style="color:#f92672">+=</span> $step;
-            $step <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
-            $end <span style="color:#f92672">+=</span> $step;
-            $end <span style="color:#f92672">=</span> $last <span style="color:#66d9ef">if</span> $end <span style="color:#f92672">&gt;</span> $last;
-        }
-    }
-</code></pre></div><p>This subroutine will not be used in the final code, but it proved to be very useful for debugging purposes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">print</span>-heap (@heap) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $end <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $last <span style="color:#f92672">=</span> @heap<span style="color:#f92672">.</span>end;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $step <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        loop {
+</span></span><span style="display:flex;"><span>            say @heap[$start<span style="color:#f92672">..</span>$end];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $end <span style="color:#f92672">==</span> $last;
+</span></span><span style="display:flex;"><span>            $start <span style="color:#f92672">+=</span> $step;
+</span></span><span style="display:flex;"><span>            $step <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>            $end <span style="color:#f92672">+=</span> $step;
+</span></span><span style="display:flex;"><span>            $end <span style="color:#f92672">=</span> $last <span style="color:#66d9ef">if</span> $end <span style="color:#f92672">&gt;</span> $last;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>This subroutine will not be used in the final code, but it proved to be very useful for debugging purposes.</p>
 <p>If we pass the letter heap as an argument to this subroutine, it will be displayed in the following format:</p>
 <pre><code>(a)
 (b g)
@@ -478,18 +478,18 @@ to display the heap in a slightly more graphical way:</p>
 </code></pre>
 <p>We can see it&rsquo;s a valid heap (the children are always smaller than their parent).</p>
 <p>Let&rsquo;s now add a new item, say 45, at the end of this array (for example with the <code>push</code> function). Of course, this item is not at its right place and the array is no longer a valid heap, but we can now use the following subroutine to move items around in order to obtain again a valid heap:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span>-in-heap ($index is rw) {
-    <span style="color:#66d9ef">my</span> $index<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> @heap[$index];
-    <span style="color:#66d9ef">while</span> ($index) {
-        <span style="color:#66d9ef">my</span> $parent<span style="color:#f92672">-</span>idx <span style="color:#f92672">=</span> Int( ($index <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
-        <span style="color:#66d9ef">my</span> $parent<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> @heap[$parent<span style="color:#f92672">-</span>idx];
-        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $parent<span style="color:#f92672">-</span>val <span style="color:#f92672">&gt;</span>    $index<span style="color:#f92672">-</span>val;
-        @heap[$index] <span style="color:#f92672">=</span> $parent<span style="color:#f92672">-</span>val;
-        $index <span style="color:#f92672">=</span> $parent<span style="color:#f92672">-</span>idx;
-    }
-    @heap[$index] <span style="color:#f92672">=</span> $index<span style="color:#f92672">-</span>val;
-}
-</code></pre></div><p>The parameter passed is the index of the item that has just been added at the end of the array (11 in this example). This subroutine looks at the value of the parent of this new item. If the parent is larger than the new item, then we&rsquo;re done: the new array happens to be a valid heap (which is not the case in our example). If not, then we move the parent value to the position where we&rsquo;ve just added the new element. Then we change the index of interest to the parent and iterate this way until either the elements are in the right place (the parent value is larger than the current index value) or the index become 0 (we&rsquo;ve reached the root node). At this point, the loop ends and we can put the value we&rsquo;ve added in the right place. If you think about it in terms of the binary tree shown above, we&rsquo;re really exploring the single path from the added element to the root (although we may not have to go all the way up to the root), the rest of the heap remains untouched.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span>-in-heap ($index is rw) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $index<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> @heap[$index];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($index) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $parent<span style="color:#f92672">-</span>idx <span style="color:#f92672">=</span> Int( ($index <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $parent<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> @heap[$parent<span style="color:#f92672">-</span>idx];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $parent<span style="color:#f92672">-</span>val <span style="color:#f92672">&gt;</span>    $index<span style="color:#f92672">-</span>val;
+</span></span><span style="display:flex;"><span>        @heap[$index] <span style="color:#f92672">=</span> $parent<span style="color:#f92672">-</span>val;
+</span></span><span style="display:flex;"><span>        $index <span style="color:#f92672">=</span> $parent<span style="color:#f92672">-</span>idx;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    @heap[$index] <span style="color:#f92672">=</span> $index<span style="color:#f92672">-</span>val;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The parameter passed is the index of the item that has just been added at the end of the array (11 in this example). This subroutine looks at the value of the parent of this new item. If the parent is larger than the new item, then we&rsquo;re done: the new array happens to be a valid heap (which is not the case in our example). If not, then we move the parent value to the position where we&rsquo;ve just added the new element. Then we change the index of interest to the parent and iterate this way until either the elements are in the right place (the parent value is larger than the current index value) or the index become 0 (we&rsquo;ve reached the root node). At this point, the loop ends and we can put the value we&rsquo;ve added in the right place. If you think about it in terms of the binary tree shown above, we&rsquo;re really exploring the single path from the added element to the root (although we may not have to go all the way up to the root), the rest of the heap remains untouched.</p>
 <p>Note that this subroutine is not designed to do anything special when fed with duplicate values. Here, duplicates will he handled gracefully and returned in the correct order. So, that&rsquo;s OK, it works fine, but we&rsquo;ll have to do something special about it when we will implement priority queues (if we had two priorities with the same value in the heap, we would be unable to predict the order in which items having the same priority will be pulled).</p>
 <p>This subroutine will move around items from parent to child from the end to the beginning of the array (or at least until the new added value finds its right place), so that we get a new valid heap:</p>
 <pre><code>[100 19 45 17 12 36 5 9 15 6 11 25]
@@ -530,34 +530,34 @@ to display the heap in a slightly more graphical way:</p>
 (12 6 11 19)
 </code></pre>
 <p>OK, this works, but reconstructing the full heap each time we remove an item is somewhat inefficient, which goes against the very purpose of heaps. What should a proper <code>take-from-heap</code> subroutine do?  Take a look again at the binary tree displayed above. If we take off the root node value (<code>a</code>), we should replace it by <code>b</code> which is larger than <code>g</code>. It should be clear that we won&rsquo;t need to change anything in the <code>g</code> sub-tree. And we can recursively replace <code>b</code> by <code>c</code>, and then <code>c</code> by <code>e</code> and finally <code>e</code> by <code>v</code>. Nothing else needs to be changed. So basically we have to move up one step each of the nodes on the path of the smallest nodes in the <code>b</code> sub-tree. And, by the way, it is thanks to the fact that, whether we add a new item or remove an item from the heap, we only need to traverse one single path through the heap that insertion and deletion operations have a <em>0(log n)</em> complexity and are therefore fairly fast. Implementing the ideas just described is not too difficult, but, for each visited node, we need to take into account three possible cases: this node may have 0, 1 or 2 children.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">take</span>-from-heap {
-    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> @heap[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    loop {
-        <span style="color:#66d9ef">my</span> $left<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-            <span style="color:#75715e"># right-index is $left-index + 1</span>
-        <span style="color:#66d9ef">unless</span> (defined @heap[$left<span style="color:#f92672">-</span>index] <span style="color:#f92672">or</span>
-            defined @heap[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) {
-                @heap<span style="color:#f92672">.</span>splice($index, <span style="color:#ae81ff">1</span>);
-                <span style="color:#66d9ef">last</span>;
-        }
-        <span style="color:#66d9ef">unless</span> defined @heap[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] {
-            @heap[$index] <span style="color:#f92672">=</span> @heap[$left<span style="color:#f92672">-</span>index]:delete;
-            <span style="color:#66d9ef">last</span>;
-        }
-        <span style="color:#66d9ef">unless</span> defined @heap[$left<span style="color:#f92672">-</span>index] { <span style="color:#75715e"># probably not happening</span>
-            @heap[$index] <span style="color:#f92672">=</span> @heap[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]:delete;
-            <span style="color:#66d9ef">last</span>;
-        }
-        <span style="color:#75715e"># both children are defined if we get here</span>
-        <span style="color:#66d9ef">my</span> $next<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> ($left<span style="color:#f92672">-</span>index,
-            $left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>max({@heap[$_]});
-        @heap[$index] <span style="color:#f92672">=</span> @heap[$next<span style="color:#f92672">-</span>index];
-        $index <span style="color:#f92672">=</span> $next<span style="color:#f92672">-</span>index;
-    }
-    <span style="color:#66d9ef">return</span> $result;
-}
-</code></pre></div><p>If we run this new subroutine on our previous heap, we obtain this new heap:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">take</span>-from-heap {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> @heap[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    loop {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $left<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># right-index is $left-index + 1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> (defined @heap[$left<span style="color:#f92672">-</span>index] <span style="color:#f92672">or</span>
+</span></span><span style="display:flex;"><span>            defined @heap[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) {
+</span></span><span style="display:flex;"><span>                @heap<span style="color:#f92672">.</span>splice($index, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined @heap[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] {
+</span></span><span style="display:flex;"><span>            @heap[$index] <span style="color:#f92672">=</span> @heap[$left<span style="color:#f92672">-</span>index]:delete;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined @heap[$left<span style="color:#f92672">-</span>index] { <span style="color:#75715e"># probably not happening</span>
+</span></span><span style="display:flex;"><span>            @heap[$index] <span style="color:#f92672">=</span> @heap[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]:delete;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># both children are defined if we get here</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $next<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> ($left<span style="color:#f92672">-</span>index,
+</span></span><span style="display:flex;"><span>            $left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>max({@heap[$_]});
+</span></span><span style="display:flex;"><span>        @heap[$index] <span style="color:#f92672">=</span> @heap[$next<span style="color:#f92672">-</span>index];
+</span></span><span style="display:flex;"><span>        $index <span style="color:#f92672">=</span> $next<span style="color:#f92672">-</span>index;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $result;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If we run this new subroutine on our previous heap, we obtain this new heap:</p>
 <pre><code>[45 19 36 17 12 25 5 9 15 6 11]
 (45)
 (19 36)
@@ -565,8 +565,8 @@ to display the heap in a slightly more graphical way:</p>
 (9 15 6 11)
 </code></pre>
 <p>Note that this is not the same heap as the one obtained before (same data but not in the same order), but this is another valid heap for such data. Using this subroutine repeatedly, we&rsquo;ll get the nodes in the same order: 45, 36, 25, 19, 17 etc.  For example, let&rsquo;s run the new <code>take-from-heap</code> 10 times on our original heap and print out each time the removed first item and the resulting heap:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">say <span style="color:#e6db74">&#34;First item = &#34;</span>, take<span style="color:#f92672">-</span>from<span style="color:#f92672">-</span>heap, <span style="color:#e6db74">&#34;; Heap: &#34;</span>, @heap <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>;
-</code></pre></div><p>We can see that we have a valid heap at each iteration and pull the values in the right order:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>say <span style="color:#e6db74">&#34;First item = &#34;</span>, take<span style="color:#f92672">-</span>from<span style="color:#f92672">-</span>heap, <span style="color:#e6db74">&#34;; Heap: &#34;</span>, @heap <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>;
+</span></span></code></pre></div><p>We can see that we have a valid heap at each iteration and pull the values in the right order:</p>
 <pre><code>First item = 100; Heap: [45 19 36 17 12 25 5 9 15 6 11]
 First item = 45; Heap: [36 19 25 17 12 5 9 15 6 11]
 First item = 36; Heap: [25 19 9 17 12 5 15 6 11]
@@ -585,83 +585,83 @@ First item = 9; Heap: [6 5]
 </code></pre>
 <p>The first item in the queue displayed above, <code>[10 [10 20]]</code>, is the data structure for priority 10, which contains two elements, 10 and 20. The next one (<code>[5 [5 15]]</code>)  is for priority 5. And so on.</p>
 <p>When we are inserting elements (item and priority), we first call <code>insert_with_prio</code> to check whether there is already an array for the given priority. If it already exists, we just add the item to the array of elements associated with this priority. If there no array with such priority, then we call <code>add-to-queue</code> to add a priority data structure into the heap (and reorganize the heap as we&rsquo;ve done before). Similarly, when we call <code>pull_highest_prio</code>, we just pick up and return the first element from the data array of the first priority item. In the event that the data array of a given priority becomes empty, then we call <code>take-from-heap</code> to remove the priority data structure from the heap (and reorganize the heap as we&rsquo;ve done before).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6;
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>-queue {
-    <span style="color:#66d9ef">my</span> @queue;  <span style="color:#75715e"># an AoA</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_empty</span> {
-        @queue<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-    }
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_with_prio</span> ($item, Int $prio) {
-        <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> first {@queue[$_][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $prio}, @queue<span style="color:#f92672">.</span>keys;
-        <span style="color:#66d9ef">if</span> (defined $index) {
-            push @queue[$index][<span style="color:#ae81ff">1</span>], $item;
-        } <span style="color:#66d9ef">else</span> {
-            push @queue, [$prio, [$item]];
-            <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> @queue<span style="color:#f92672">.</span>end;
-            add<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>queue($idx);
-        }
-    }
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pull_highest_prio</span> {
-        <span style="color:#66d9ef">return</span> Nil <span style="color:#66d9ef">if</span> is<span style="color:#f92672">-</span>empty;
-        <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> shift @queue[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>];
-        take<span style="color:#f92672">-</span>from<span style="color:#f92672">-</span>heap <span style="color:#66d9ef">if</span> @queue[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">return</span> $result;
-    }
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span>-to-queue ($index is rw) {
-        <span style="color:#66d9ef">my</span> $index<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> @queue[$index];
-        <span style="color:#66d9ef">while</span> ($index) {
-            <span style="color:#66d9ef">my</span> $parent<span style="color:#f92672">-</span>idx <span style="color:#f92672">=</span> Int( ($index <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
-            <span style="color:#66d9ef">my</span> $parent<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> @queue[$parent<span style="color:#f92672">-</span>idx];
-            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $parent<span style="color:#f92672">-</span>val[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $index<span style="color:#f92672">-</span>val[<span style="color:#ae81ff">0</span>];
-            @queue[$index] <span style="color:#f92672">=</span> $parent<span style="color:#f92672">-</span>val;
-            $index <span style="color:#f92672">=</span> $parent<span style="color:#f92672">-</span>idx;
-        }
-        @queue[$index] <span style="color:#f92672">=</span> $index<span style="color:#f92672">-</span>val;
-    }
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">take</span>-from-heap {
-        <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        loop {
-            <span style="color:#66d9ef">my</span> $left<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-                <span style="color:#75715e"># right-index is $left-index + 1</span>
-            <span style="color:#66d9ef">unless</span> (defined @queue[$left<span style="color:#f92672">-</span>index] <span style="color:#f92672">or</span>
-                defined @queue[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) {
-                    @queue<span style="color:#f92672">.</span>splice($index, <span style="color:#ae81ff">1</span>);
-                    <span style="color:#66d9ef">last</span>;
-            }
-            <span style="color:#66d9ef">unless</span> defined @queue[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] {
-                @queue[$index] <span style="color:#f92672">=</span> @queue[$left<span style="color:#f92672">-</span>index]:delete;
-                <span style="color:#66d9ef">last</span>;
-            }
-            <span style="color:#66d9ef">unless</span> defined @queue[$left<span style="color:#f92672">-</span>index] {
-                @queue[$index] <span style="color:#f92672">=</span> @queue[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]:delete;
-                <span style="color:#66d9ef">last</span>;
-            }
-            <span style="color:#75715e"># both children are defined if we get here</span>
-            <span style="color:#66d9ef">my</span> $next<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> ($left<span style="color:#f92672">-</span>index,
-                $left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>max({@queue[$_][<span style="color:#ae81ff">0</span>]});
-            @queue[$index] <span style="color:#f92672">=</span> @queue[$next<span style="color:#f92672">-</span>index];
-            $index <span style="color:#f92672">=</span> $next<span style="color:#f92672">-</span>index;
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>is_empty, <span style="color:#f92672">&amp;</span>insert_with_prio, <span style="color:#f92672">&amp;</span>pull_highest_prio;
-}
-<span style="color:#66d9ef">my</span> (<span style="color:#f92672">&amp;</span>is<span style="color:#f92672">-</span>empty, <span style="color:#f92672">&amp;</span>insert, <span style="color:#f92672">&amp;</span>pull<span style="color:#f92672">-</span>prio) <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span><span style="color:#f92672">-</span>queue;
-<span style="color:#75715e"># Testing the above code: 20 insertions and then trying 30 deletions</span>
-<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span> <span style="color:#f92672">-&gt;</span> $num {
-    insert($num,
-        $num %% 10 ?? <span style="color:#ae81ff">10</span> <span style="color:#f92672">!!</span>
-        $num %% 5  ?? <span style="color:#ae81ff">5</span>  <span style="color:#f92672">!!</span>
-        $num %% 3  ?? <span style="color:#ae81ff">3</span>  <span style="color:#f92672">!!</span>
-        $num %% 2  ?? <span style="color:#ae81ff">2</span>  <span style="color:#f92672">!!</span>
-        <span style="color:#ae81ff">1</span>);
-}
-<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span> <span style="color:#f92672">-&gt;</span> $num {
-    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> is<span style="color:#f92672">-</span>empty;
-    say pull<span style="color:#f92672">-</span>prio;
-}
-say <span style="color:#e6db74">&#34;Empty queue&#34;</span> <span style="color:#66d9ef">if</span> is<span style="color:#f92672">-</span>empty();
-</code></pre></div><p>This program displays more or less the same as our previous implementation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>-queue {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @queue;  <span style="color:#75715e"># an AoA</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_empty</span> {
+</span></span><span style="display:flex;"><span>        @queue<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_with_prio</span> ($item, Int $prio) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> first {@queue[$_][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $prio}, @queue<span style="color:#f92672">.</span>keys;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (defined $index) {
+</span></span><span style="display:flex;"><span>            push @queue[$index][<span style="color:#ae81ff">1</span>], $item;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            push @queue, [$prio, [$item]];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> @queue<span style="color:#f92672">.</span>end;
+</span></span><span style="display:flex;"><span>            add<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>queue($idx);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pull_highest_prio</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Nil <span style="color:#66d9ef">if</span> is<span style="color:#f92672">-</span>empty;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> shift @queue[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>        take<span style="color:#f92672">-</span>from<span style="color:#f92672">-</span>heap <span style="color:#66d9ef">if</span> @queue[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $result;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span>-to-queue ($index is rw) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $index<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> @queue[$index];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ($index) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $parent<span style="color:#f92672">-</span>idx <span style="color:#f92672">=</span> Int( ($index <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $parent<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> @queue[$parent<span style="color:#f92672">-</span>idx];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $parent<span style="color:#f92672">-</span>val[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $index<span style="color:#f92672">-</span>val[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>            @queue[$index] <span style="color:#f92672">=</span> $parent<span style="color:#f92672">-</span>val;
+</span></span><span style="display:flex;"><span>            $index <span style="color:#f92672">=</span> $parent<span style="color:#f92672">-</span>idx;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        @queue[$index] <span style="color:#f92672">=</span> $index<span style="color:#f92672">-</span>val;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">take</span>-from-heap {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        loop {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $left<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># right-index is $left-index + 1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">unless</span> (defined @queue[$left<span style="color:#f92672">-</span>index] <span style="color:#f92672">or</span>
+</span></span><span style="display:flex;"><span>                defined @queue[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) {
+</span></span><span style="display:flex;"><span>                    @queue<span style="color:#f92672">.</span>splice($index, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">unless</span> defined @queue[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] {
+</span></span><span style="display:flex;"><span>                @queue[$index] <span style="color:#f92672">=</span> @queue[$left<span style="color:#f92672">-</span>index]:delete;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">unless</span> defined @queue[$left<span style="color:#f92672">-</span>index] {
+</span></span><span style="display:flex;"><span>                @queue[$index] <span style="color:#f92672">=</span> @queue[$left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]:delete;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># both children are defined if we get here</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $next<span style="color:#f92672">-</span>index <span style="color:#f92672">=</span> ($left<span style="color:#f92672">-</span>index,
+</span></span><span style="display:flex;"><span>                $left<span style="color:#f92672">-</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>max({@queue[$_][<span style="color:#ae81ff">0</span>]});
+</span></span><span style="display:flex;"><span>            @queue[$index] <span style="color:#f92672">=</span> @queue[$next<span style="color:#f92672">-</span>index];
+</span></span><span style="display:flex;"><span>            $index <span style="color:#f92672">=</span> $next<span style="color:#f92672">-</span>index;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>is_empty, <span style="color:#f92672">&amp;</span>insert_with_prio, <span style="color:#f92672">&amp;</span>pull_highest_prio;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> (<span style="color:#f92672">&amp;</span>is<span style="color:#f92672">-</span>empty, <span style="color:#f92672">&amp;</span>insert, <span style="color:#f92672">&amp;</span>pull<span style="color:#f92672">-</span>prio) <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span><span style="color:#f92672">-</span>queue;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Testing the above code: 20 insertions and then trying 30 deletions</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span> <span style="color:#f92672">-&gt;</span> $num {
+</span></span><span style="display:flex;"><span>    insert($num,
+</span></span><span style="display:flex;"><span>        $num %% 10 ?? <span style="color:#ae81ff">10</span> <span style="color:#f92672">!!</span>
+</span></span><span style="display:flex;"><span>        $num %% 5  ?? <span style="color:#ae81ff">5</span>  <span style="color:#f92672">!!</span>
+</span></span><span style="display:flex;"><span>        $num %% 3  ?? <span style="color:#ae81ff">3</span>  <span style="color:#f92672">!!</span>
+</span></span><span style="display:flex;"><span>        $num %% 2  ?? <span style="color:#ae81ff">2</span>  <span style="color:#f92672">!!</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span> <span style="color:#f92672">-&gt;</span> $num {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> is<span style="color:#f92672">-</span>empty;
+</span></span><span style="display:flex;"><span>    say pull<span style="color:#f92672">-</span>prio;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">&#34;Empty queue&#34;</span> <span style="color:#66d9ef">if</span> is<span style="color:#f92672">-</span>empty();
+</span></span></code></pre></div><p>This program displays more or less the same as our previous implementation:</p>
 <pre><code>$ perl6  heap_queue.p6
 10
 20
@@ -711,11 +711,11 @@ Empty queue
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> used a <code>PriorityQueue</code> Perl 6 module, which he wrote for the purpose of the challenge. This module is a nice and concise OOP package that maintains a <code>%!queue</code> attribute, which is implemented as a hash of arrays: the hash as one item per priority and each such item if an array of tasks to be run. When pulling the highest priority element, the hash entry for that priority is deleted if the corresponding array becomes empty, so that each existing hash priority entry always have at least one task lined up (there is never an empty array). One possible improvement might be to maintain an additional scalar attribute recording the maximal priority within the queue, as Joelle Maslak&rsquo;s solution does (see below), so that the <code>pull_highest_priority_element</code> method does not have to scan the keys of <code>%!queue</code> to find the highest priority (which would be useful only if the number of priorities can become large). For some reason, Arne&rsquo;s module did not make it into the Github repository, please check <a href="https://perl6.eu/substring-queues.html">his blog</a> to see the details.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/feng-chang/perl6/ch-2.p6">Feng Chang</a> took an OOP approach and created two classes, <code>task</code> and  <code>PriorityQueue</code>. The former is very simple and implements objects with two attributes, a priority and a task ID (and no method). The latter is using two data structures, an array of priorities and a hash of arrays for the tasks, and does all the work. It can be noted that the <code>add-new-task</code> method implements a binary search algorithm on the priority array, to speed up the search.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/martin-barth/perl6/ch-2.p6">Martin Barth</a> also wrote a <code>PriorityQueue</code> class, with a nested <code>Item</code> class. Martin uses an array of items which he keeps sorted by priority (by inserting new items in the right place). His <code>!find-pos</code> private method also implements a binary search algorithm (with a recursive approach).</p>
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/noud/perl6/ch-2.p6">Noud</a>&lsquo;s <code>PriorityQueue</code> class uses an ordered array of arrays.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/noud/perl6/ch-2.p6">Noud</a>&rsquo;s <code>PriorityQueue</code> class uses an ordered array of arrays.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/fjwhittle/perl6/ch-2.p6">Francis J. Whittle</a> also took an OOP approach and created a <code>Priority-Queue</code> class, with a hash of arrays attribute. Francis&rsquo;s code is really concise: only 13 code lines for the <code>Priority-Queue</code> class definition.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also took an OOP approach and created a <code>PriorityQueue</code> class, with an <code>$!lol</code> array of arrays data structure. Kevin&rsquo;s class also has a <code>$.items</code> counter of tasks.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/randy-lauen/perl6/ch-2.p6">Randy Lauen</a> wrote a <code>ÜberNaïvePriorityQueue</code> class implementing an array of hashes. Any new item is just simply pushed at the end of the <code>@!elements</code>. His <code>pull-highest-priority-element</code> uses the <code>maxpair</code> and <code>first</code> built-in routines to find the highest priority item. Perhaps a &ldquo;naive&rdquo; solution, but a very concise one: his class definition has 15 code lines (excluding empty lines and comments).</p>
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/simon-proctor/perl6/ch-2.p6">Simon Proctor</a>&lsquo;s solution defines two roles, a <code>SingleQueue</code> role implementing an array or items, and a <code>OrderedQueue</code> role implementing a hash of <code>SingleQueue</code> objects. Quite an interesting solution, although I wonder why Simon chose to use roles rather than classes. It seems to me that his roles are really classes (in spirit) and that you could just replace the two occurrences of the word <code>role</code> by the word <code>class</code> and get exactly the same functionality.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/simon-proctor/perl6/ch-2.p6">Simon Proctor</a>&rsquo;s solution defines two roles, a <code>SingleQueue</code> role implementing an array or items, and a <code>OrderedQueue</code> role implementing a hash of <code>SingleQueue</code> objects. Quite an interesting solution, although I wonder why Simon chose to use roles rather than classes. It seems to me that his roles are really classes (in spirit) and that you could just replace the two occurrences of the word <code>role</code> by the word <code>class</code> and get exactly the same functionality.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/athanasius/perl6/ch-2.p6">Athanasius</a> defines a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/athanasius/perl6/MyPriorityQueue.pm6">MyPriorityQueue</a> class in a separate module. This module in turn uses the Perl 6 <a href="https://github.com/FCO/Heap">Heap module</a>, which provides <code>push</code> and <code>pop</code> operations.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> created a <code>Data::PriorityQueue</code> with a nested <code>Element</code> class. Jaldhar&rsquo;s queue is an array of <code>Element</code> objects ordered by priority and creation order. The hard work is done in the <code>insert_with_priority</code> method, which has to find the right place where to insert any new element.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> defined a <code>Priority-Queue</code> class with a hash of arrays attribute. Her class also has a <code>$!max</code> scalar attribute, which keeps track of the highest priority in the data structure and makes it possible to pull the highest priority element without having to traverse the keys of the hash. Quite clever!</p>

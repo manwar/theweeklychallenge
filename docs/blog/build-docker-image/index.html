@@ -211,9 +211,9 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h2 id="build-docker-image">Build Docker Image</h2>
 <hr>
-<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
-<h3 id="2-journeyjourney"><a href="#journey">2. Journey</a></h3>
-<h3 id="3-setupsetup"><a href="#setup">3. Setup</a></h3>
+<h3 id="1-introduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-journey"><a href="#journey">2. Journey</a></h3>
+<h3 id="3-setup"><a href="#setup">3. Setup</a></h3>
 <br>
 <h2 id="introduction">Introduction</h2>
 <hr>
@@ -237,14 +237,14 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>After a sudden change of heart, I started exploring <code>Docker</code> and found myself enjoying it.</p>
 <p>Here&rsquo;s the <code>Dockerfile</code>, I came up with initially:</p>
 <br>
-<pre><code>FROM perl:5.38.0
-
-EXPOSE 1414
-CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;, &quot;-D&quot;]
-
-COPY . /theweeklychallenge
-WORKDIR /theweeklychallenge
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>FROM perl:5<span style="color:#ae81ff">.38.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">1414</span>
+</span></span><span style="display:flex;"><span>CMD [<span style="color:#e6db74">&#34;bin/hugo&#34;</span>, <span style="color:#e6db74">&#34;server&#34;</span>, <span style="color:#e6db74">&#34;-p&#34;</span>, <span style="color:#e6db74">&#34;1414&#34;</span>, <span style="color:#e6db74">&#34;-D&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>COPY <span style="color:#f92672">.</span> <span style="color:#f92672">/</span>theweeklychallenge
+</span></span><span style="display:flex;"><span>WORKDIR <span style="color:#f92672">/</span>theweeklychallenge
+</span></span></code></pre></div><br>
 <p>With this, I was able to build the image and start the container.</p>
 <p>But, I had trouble accessing the site.</p>
 <p>I knew that <code>Dave Cross</code>, had extensive experience with <code>Docker</code> as he had written a <a href="https://dev.to/davorg/docker-and-dancer-4m82"><strong>four-part series</strong></a> on it.</p>
@@ -252,14 +252,14 @@ WORKDIR /theweeklychallenge
 <p>He replied instantly but unfortunately, he was facing a similar issue.</p>
 <p>In the meantime, I decided to switch the base image to <code>alpine</code> as <code>Dave</code> had suggested.</p>
 <br>
-<pre><code>FROM alpine:latest
-
-EXPOSE 1414
-CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;, &quot;-D&quot;]
-
-COPY . /theweeklychallenge
-WORKDIR /theweeklychallenge
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>FROM alpine:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">1414</span>
+</span></span><span style="display:flex;"><span>CMD [<span style="color:#e6db74">&#34;bin/hugo&#34;</span>, <span style="color:#e6db74">&#34;server&#34;</span>, <span style="color:#e6db74">&#34;-p&#34;</span>, <span style="color:#e6db74">&#34;1414&#34;</span>, <span style="color:#e6db74">&#34;-D&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>COPY <span style="color:#f92672">.</span> <span style="color:#f92672">/</span>theweeklychallenge
+</span></span><span style="display:flex;"><span>WORKDIR <span style="color:#f92672">/</span>theweeklychallenge
+</span></span></code></pre></div><br>
 <p>However, changing the base image made things worse, as now I couldn&rsquo;t even start the container.</p>
 <p>Earlier, starting the container worked fine, but accessing it was the issue.</p>
 <p>After few days, I contacted him again for help.</p>
@@ -277,16 +277,16 @@ RUN apk add --no-cache libc6-compat
 <br>
 <p>So as per his suggestion, my <code>Dockerfile</code> now looks like below:</p>
 <br>
-<pre><code>FROM alpine:latest
-
-RUN apk add --no-cache libc6-compat
-
-EXPOSE 1414
-CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;, &quot;-D&quot;]
-
-COPY . /theweeklychallenge
-WORKDIR /theweeklychallenge
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>FROM alpine:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RUN apk add <span style="color:#f92672">--</span><span style="color:#66d9ef">no</span><span style="color:#f92672">-</span>cache libc6<span style="color:#f92672">-</span>compat
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">1414</span>
+</span></span><span style="display:flex;"><span>CMD [<span style="color:#e6db74">&#34;bin/hugo&#34;</span>, <span style="color:#e6db74">&#34;server&#34;</span>, <span style="color:#e6db74">&#34;-p&#34;</span>, <span style="color:#e6db74">&#34;1414&#34;</span>, <span style="color:#e6db74">&#34;-D&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>COPY <span style="color:#f92672">.</span> <span style="color:#f92672">/</span>theweeklychallenge
+</span></span><span style="display:flex;"><span>WORKDIR <span style="color:#f92672">/</span>theweeklychallenge
+</span></span></code></pre></div><br>
 <p>This indeed solved the issue of not being able to run the container.</p>
 <p>It was a huge relief, thank you <code>Dave Cross</code> for your help.</p>
 <p>However, I was still having trouble accessing the site.</p>
@@ -299,16 +299,16 @@ WORKDIR /theweeklychallenge
 <br>
 <p>So now my <code>Dockerfile</code> looks like below:</p>
 <br>
-<pre><code>FROM alpine:latest
-
-RUN apk add --no-cache libc6-compat
-
-WORKDIR /theweeklychallenge
-COPY . /theweeklychallenge
-
-EXPOSE 1414
-CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;, &quot;-D&quot;, &quot;--bind&quot;, &quot;0.0.0.0&quot;]
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>FROM alpine:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RUN apk add <span style="color:#f92672">--</span><span style="color:#66d9ef">no</span><span style="color:#f92672">-</span>cache libc6<span style="color:#f92672">-</span>compat
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>WORKDIR <span style="color:#f92672">/</span>theweeklychallenge
+</span></span><span style="display:flex;"><span>COPY <span style="color:#f92672">.</span> <span style="color:#f92672">/</span>theweeklychallenge
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">1414</span>
+</span></span><span style="display:flex;"><span>CMD [<span style="color:#e6db74">&#34;bin/hugo&#34;</span>, <span style="color:#e6db74">&#34;server&#34;</span>, <span style="color:#e6db74">&#34;-p&#34;</span>, <span style="color:#e6db74">&#34;1414&#34;</span>, <span style="color:#e6db74">&#34;-D&#34;</span>, <span style="color:#e6db74">&#34;--bind&#34;</span>, <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>]
+</span></span></code></pre></div><br>
 <p>Finally I can now access the site: <code>http://localhost:1414</code></p>
 <p>I can&rsquo;t thank <code>Dave</code> enough for his help and support.</p>
 <p>May be next time when I meet him, I will present him a box of chocolate.</p>
@@ -318,31 +318,31 @@ CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;,
 <br>
 <p>I added the following <code>Dockerfile</code> to the <a href="https://github.com/manwar/theweeklychallenge/blob/master/Dockerfile"><strong>main repository</strong></a></p>
 <br>
-<pre><code>FROM alpine:latest
-LABEL maintainer=&quot;mohammad.anwar@yahoo.com&quot;
-
-RUN apk add --no-cache libc6-compat
-
-WORKDIR /theweeklychallenge
-COPY . /theweeklychallenge
-
-EXPOSE 1414
-CMD [&quot;bin/hugo&quot;, &quot;server&quot;, &quot;-p&quot;, &quot;1414&quot;, &quot;-D&quot;, &quot;--bind&quot;, &quot;0.0.0.0&quot;]
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>FROM alpine:latest
+</span></span><span style="display:flex;"><span>LABEL maintainer<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mohammad.anwar@yahoo.com&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RUN apk add <span style="color:#f92672">--</span><span style="color:#66d9ef">no</span><span style="color:#f92672">-</span>cache libc6<span style="color:#f92672">-</span>compat
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>WORKDIR <span style="color:#f92672">/</span>theweeklychallenge
+</span></span><span style="display:flex;"><span>COPY <span style="color:#f92672">.</span> <span style="color:#f92672">/</span>theweeklychallenge
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">1414</span>
+</span></span><span style="display:flex;"><span>CMD [<span style="color:#e6db74">&#34;bin/hugo&#34;</span>, <span style="color:#e6db74">&#34;server&#34;</span>, <span style="color:#e6db74">&#34;-p&#34;</span>, <span style="color:#e6db74">&#34;1414&#34;</span>, <span style="color:#e6db74">&#34;-D&#34;</span>, <span style="color:#e6db74">&#34;--bind&#34;</span>, <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>]
+</span></span></code></pre></div><br>
 <p>Also added the configuration file, <a href="https://github.com/manwar/theweeklychallenge/blob/master/docker-compose.yml"><strong>docker-compose.yml</strong></a>, as below:</p>
 <br>
-<pre><code>version: '3.8'
-services:
-  theweeklychallenge:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: manwardock/theweeklychallenge:${IMAGE_TAG:-latest}
-    container_name: theweeklychallenge
-    restart: unless-stopped
-    ports:
-      - &quot;1414:1414&quot;
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  theweeklychallenge:
+</span></span><span style="display:flex;"><span>    build:
+</span></span><span style="display:flex;"><span>      context: <span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>      dockerfile: Dockerfile
+</span></span><span style="display:flex;"><span>    image: manwardock<span style="color:#f92672">/</span>theweeklychallenge:${IMAGE_TAG:<span style="color:#f92672">-</span>latest}
+</span></span><span style="display:flex;"><span>    container_name: theweeklychallenge
+</span></span><span style="display:flex;"><span>    restart: <span style="color:#66d9ef">unless</span><span style="color:#f92672">-</span>stopped
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#e6db74">&#34;1414:1414&#34;</span>
+</span></span></code></pre></div><br>
 <p>So now, I wanted to build the image and push it to <code>Docker Hub</code> to make it available to general public.</p>
 <p>I already had an account <a href="https://hub.docker.com/repositories/manwardock"><strong>manwardock</strong></a> on <code>Docker Hub</code>.</p>
 <p>I created a new public repository <a href="https://hub.docker.com/repository/docker/manwardock/theweeklychallenge/general"><strong>theweeklychallenge</strong></a> on <code>Docker Hub</code>.</p>
@@ -359,37 +359,37 @@ services:
 <p>I created <code>GitHub</code> repository just to try things: <code>https://github.com/manwar/Test-Workflow</code></p>
 <p>I have a simple <code>Dockerfile</code> in the repository.</p>
 <br>
-<pre><code>FROM alpine:latest
-CMD echo &quot;Hello, World!&quot;
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>FROM alpine:latest
+</span></span><span style="display:flex;"><span>CMD echo <span style="color:#e6db74">&#34;Hello, World!&#34;</span>
+</span></span></code></pre></div><br>
 <p>And then I created workflow configuration file: <code>.github/workflow/dockerhub.yml</code></p>
 <br>
-<pre><code>name: Docker Build and Push
-
-on:
-  push:
-    tags:
-      - 'dhub*'
-
-jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-
-      - name: Build and Push
-        run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:${{ github.ref_name }} .
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:${{ github.ref_name }}
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>name: Docker Build <span style="color:#f92672">and</span> Push
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>on:
+</span></span><span style="display:flex;"><span>  push:
+</span></span><span style="display:flex;"><span>    tags:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;dhub*&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>jobs:
+</span></span><span style="display:flex;"><span>  build<span style="color:#f92672">-</span><span style="color:#f92672">and</span><span style="color:#f92672">-</span>push:
+</span></span><span style="display:flex;"><span>    runs<span style="color:#f92672">-</span>on: ubuntu<span style="color:#f92672">-</span>latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    steps:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: Checkout code
+</span></span><span style="display:flex;"><span>        uses: actions<span style="color:#f92672">/</span>checkout@v3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: Log in to Docker Hub
+</span></span><span style="display:flex;"><span>        uses: docker<span style="color:#f92672">/</span>login<span style="color:#f92672">-</span>action@v2
+</span></span><span style="display:flex;"><span>        with:
+</span></span><span style="display:flex;"><span>          username: ${{ secrets<span style="color:#f92672">.</span>DOCKER_HUB_USERNAME }}
+</span></span><span style="display:flex;"><span>          password: ${{ secrets<span style="color:#f92672">.</span>DOCKER_HUB_TOKEN }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: Build <span style="color:#f92672">and</span> Push
+</span></span><span style="display:flex;"><span>        run: <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>          docker build <span style="color:#f92672">-</span>t ${{ secrets<span style="color:#f92672">.</span>DOCKER_HUB_USERNAME }}<span style="color:#f92672">/</span><span style="color:#66d9ef">my</span><span style="color:#f92672">-</span>app:${{ github<span style="color:#f92672">.</span>ref_name }} <span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>          docker push ${{ secrets<span style="color:#f92672">.</span>DOCKER_HUB_USERNAME }}<span style="color:#f92672">/</span><span style="color:#66d9ef">my</span><span style="color:#f92672">-</span>app:${{ github<span style="color:#f92672">.</span>ref_name }}
+</span></span></code></pre></div><br>
 <h2 id="2025-03-23-update-1">[2025-03-23] UPDATE</h2>
 <hr>
 <p>Another quick suggestions from <code>Dave Cross</code> with <a href="https://docs.docker.com/reference/cli/docker/image/push"><strong>reference</strong></a>.</p>

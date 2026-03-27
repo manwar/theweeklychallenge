@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-15blogadvent-calendar-2024-12-15-nbsp--nbsp-day-16-nbsp--nbsp-day-17blogadvent-calendar-2024-12-17-nbsp-">|   <a href="/blog/advent-calendar-2024-12-15"><strong>Day 15</strong></a>   |   <strong>Day 16</strong>   |   <a href="/blog/advent-calendar-2024-12-17"><strong>Day 17</strong></a>   |</h3>
+        <h2 id="advent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
+<h3 id="--day-15----day-16----day-17--">|   <a href="/blog/advent-calendar-2024-12-15"><strong>Day 15</strong></a>   |   <strong>Day 16</strong>   |   <a href="/blog/advent-calendar-2024-12-17"><strong>Day 17</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Ryan Thompson</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-276"><strong>The Weekly Challenge - 276</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://ry.ca/2024/07/pwc-276-complete-day-and-maximum-frequency/"><strong>post</strong></a>.</p>
 <hr>
@@ -199,35 +199,35 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <p>My first version was done in a compact functional style, which may be more challenging for <code>Perl</code> novices:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">complete_day</span> {
-    sum0 map { <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> shift @$_; map { ($m <span style="color:#f92672">+</span> $_) % 24 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> } @$_ }
-         map { [ @_[$_ <span style="color:#f92672">..</span> $#_] ] } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#_
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">complete_day</span> {
+</span></span><span style="display:flex;"><span>    sum0 map { <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> shift @$_; map { ($m <span style="color:#f92672">+</span> $_) % 24 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> } @$_ }
+</span></span><span style="display:flex;"><span>         map { [ @_[$_ <span style="color:#f92672">..</span> $#_] ] } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#_
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Reading from bottom up as usual, we iterate through the indices of <code>@_</code> (our <code>hours</code> array) and <code>map { ... }</code> each <code>index</code> to a <code>list of array refs</code> from <code>index</code> to <code>end of list</code>. So, given <code>(1, 2, 3, 4, 5)</code>, we would expect to get the following list for this intermediate step:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">(
-    [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> ],
-    [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> ],
-    [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> ],
-    [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> ],
-    [ <span style="color:#ae81ff">5</span> ],
-)
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>    [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> ],
+</span></span><span style="display:flex;"><span>    [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> ],
+</span></span><span style="display:flex;"><span>    [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> ],
+</span></span><span style="display:flex;"><span>    [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> ],
+</span></span><span style="display:flex;"><span>    [ <span style="color:#ae81ff">5</span> ],
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><br>
 <p>The first <code>map { ... }</code> then <code>splits</code> this into $m, with the rest of the values in <code>@$_</code> (note the <code>shift</code>). <code>$m</code> and <code>@$_</code> are effectively <code>car</code> and <code>cdr</code> if you recall your <code>lisp</code> (although not many of us still do, I suppose).</p>
 <p>There is an inner <code>map { ... }</code> that then adds <code>$m</code> to every value in <code>@$_</code>, and maps to 1 if it is a multiple of <code>24</code> and <code>0</code> if it is not. <code>sum0</code> from the core module <code>List::Util</code> simply adds them all up to get a count.</p>
 <p>More readable example</p>
 <p>A more readable version is as follows:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">complete_day</span> {
-    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> shift) {
-        $count <span style="color:#f92672">+=</span> sum0 map { ($m <span style="color:#f92672">+</span> $_) % 24 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> } @_
-    }
-
-    $count
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">complete_day</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> shift) {
+</span></span><span style="display:flex;"><span>        $count <span style="color:#f92672">+=</span> sum0 map { ($m <span style="color:#f92672">+</span> $_) % 24 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> } @_
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $count
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>This one simply maintains a <code>$count</code> as it goes, peeling off a new <code>$m</code> each time through the <code>while() { ... }</code> loop, with a similar inner <code>map { ... }</code> as before.</p>
 <p>For <code>Perl Weekly Challenge</code> code, I like to show off some different programming styles. Which one I would actually use in production is another question entirely.</p>
 <br>
@@ -236,14 +236,14 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <p>I didn’t think too hard about this one:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">def complete_day(hours):
-    count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-    <span style="color:#66d9ef">for</span> i, m in enumerate(hours):
-        <span style="color:#66d9ef">for</span> n in filter(lambda n: ((m <span style="color:#f92672">+</span> n) % 24 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>), hours[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>:]):
-            count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-
-    <span style="color:#66d9ef">return</span>(count)
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>def complete_day(hours):
+</span></span><span style="display:flex;"><span>    count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, m in enumerate(hours):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> n in filter(lambda n: ((m <span style="color:#f92672">+</span> n) % 24 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>), hours[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>:]):
+</span></span><span style="display:flex;"><span>            count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>(count)
+</span></span></code></pre></div><br>
 <p>This works similarly to the second <code>Perl</code> example.</p>
 <br>
 <h3 id="task-2--maximum-frequency">Task 2 – Maximum Frequency</h3>
@@ -255,34 +255,34 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <h3 id="perl-1">Perl</h3>
 <hr>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">max_freq</span> {
-    <span style="color:#66d9ef">my</span> %freq; <span style="color:#75715e"># Frequency table</span>
-    $freq{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @_;
-
-    <span style="color:#66d9ef">my</span> $max_freq <span style="color:#f92672">=</span> max values %freq; <span style="color:#75715e"># Maximal frequency</span>
-
-    $max_freq <span style="color:#f92672">*</span> grep { $_ <span style="color:#f92672">==</span> $max_freq } values %freq;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">max_freq</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %freq; <span style="color:#75715e"># Frequency table</span>
+</span></span><span style="display:flex;"><span>    $freq{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max_freq <span style="color:#f92672">=</span> max values %freq; <span style="color:#75715e"># Maximal frequency</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $max_freq <span style="color:#f92672">*</span> grep { $_ <span style="color:#f92672">==</span> $max_freq } values %freq;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>There are <code>three</code> essential steps here. First, we build a <code>%frequency</code> table, mapping values to the number of times they appear. Then we find the <code>$max_freq</code> with a quick pass through the values of that hash.</p>
 <p>The final answer is generated by multiplying <code>$max_freq</code> by the count of values where the frequency is equal to <code>$max_freq</code>. Easy!</p>
 <br>
 <h3 id="python-1">Python</h3>
 <hr>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">def max_freq(ints):
-    <span style="color:#75715e"># Annoying special case for empty list</span>
-    <span style="color:#66d9ef">if</span> len(ints) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
-        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>)
-
-    <span style="color:#75715e"># Build the frequency table (freq[n] = # of times n is in ints)</span>
-    freq <span style="color:#f92672">=</span> {}
-    <span style="color:#66d9ef">for</span> n in ints: freq[n] <span style="color:#f92672">=</span> freq<span style="color:#f92672">.</span>setdefault(n,<span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-
-    max_freq <span style="color:#f92672">=</span> max(freq<span style="color:#f92672">.</span>values()) <span style="color:#75715e"># Maximal frequency</span>
-
-    <span style="color:#66d9ef">return</span>(sum(filter(lambda x: x <span style="color:#f92672">==</span> max_freq, freq<span style="color:#f92672">.</span>values())))
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>def max_freq(ints):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Annoying special case for empty list</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> len(ints) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Build the frequency table (freq[n] = # of times n is in ints)</span>
+</span></span><span style="display:flex;"><span>    freq <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> n in ints: freq[n] <span style="color:#f92672">=</span> freq<span style="color:#f92672">.</span>setdefault(n,<span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    max_freq <span style="color:#f92672">=</span> max(freq<span style="color:#f92672">.</span>values()) <span style="color:#75715e"># Maximal frequency</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>(sum(filter(lambda x: x <span style="color:#f92672">==</span> max_freq, freq<span style="color:#f92672">.</span>values())))
+</span></span></code></pre></div><br>
 <p>This roughly follows the <code>Perl</code> code, although we need a special case for empty lists (otherwise we get an error).</p>
 <br>
 <hr>
@@ -320,25 +320,24 @@ if (localStorage.getItem('twc-theme') === 'light') {
             </span>
             <span class="related-post-date">17 Dec 2025</span>
         </a>
-        <a class="related-post-card" href="/blog/plan-2020/">
+        <a class="related-post-card" href="/blog/advent-calendar-2025-12-15/">
             <span class="related-post-section">blog</span>
-            <span class="related-post-title">[ Perl | Raku | The ] Weekly Challenge - 2020</span>
+            <span class="related-post-title">Advent Calendar - December 15, 2025</span>
             <span class="related-post-tags">
                 <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Python</span>
                 <span class="related-post-tag">Raku</span>
-                <span class="related-post-tag">C&#43;&#43;</span>
             </span>
-            <span class="related-post-date">19 Nov 2019</span>
+            <span class="related-post-date">15 Dec 2025</span>
         </a>
-        <a class="related-post-card" href="/blog/meet-the-champion-2021-03/">
+        <a class="related-post-card" href="/blog/advent-calendar-2025-12-13/">
             <span class="related-post-section">blog</span>
-            <span class="related-post-title">Meet The Champion: March 2021</span>
+            <span class="related-post-title">Advent Calendar - December 13, 2025</span>
             <span class="related-post-tags">
-                <span class="related-post-tag">Clojure</span>
-                <span class="related-post-tag">Lua</span>
+                <span class="related-post-tag">Perl</span>
                 <span class="related-post-tag">Python</span>
             </span>
-            <span class="related-post-date">30 May 2021</span>
+            <span class="related-post-date">13 Dec 2025</span>
         </a>
     </div>
 </div>

@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>Colin Crain › Perl Weekly Review #176</span>
         </nav>
-        <span class="reading-time" title="7700 words">
+        <span class="reading-time" title="7701 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -205,19 +205,18 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h3 id="enough-fine-so-without-even-further-ado">Enough? Fine. So without even further ado..</h3>
 <hr>
-<h2 id="---nbsp--nbsp--nbsp---task-1pwc176task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc176task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc176blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC176TASK1">Task 1</a>                 •             <a href="#PWC176TASK2">Task 2</a>                 •             <a href="#PWC176BLOGS">BLOGS</a>                  •</h2>
+<h2 id="----------task-1------------------------task-2------------------------blogs---------------">•             <a href="#PWC176TASK1">Task 1</a>                 •             <a href="#PWC176TASK2">Task 2</a>                 •             <a href="#PWC176BLOGS">BLOGS</a>                  •</h2>
 <hr>
 <h1 id="PWC176TASK1">TASK 1</h1>
 <h1 id="permuted-multiples">Permuted Multiples</h1>
 <p><em>Submitted by: Mohammad S Anwar</em>
 Write a script to find the smallest integer x such that x, 2x, 3x, 4x, 5x and 6x are permuted multiples of each other.</p>
 <p>For example, the integers 125874 and 251748 are permutated multiples of each other as</p>
-<pre><code>    251784 = 2 x 125874
-</code></pre><p>and also both have the same digits but in different order.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#ae81ff">251784</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> x <span style="color:#ae81ff">125874</span>
+</span></span></code></pre></div><p>and also both have the same digits but in different order.</p>
 <p><strong>Output</strong></p>
-<pre><code>    142857
-
-</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#ae81ff">142857</span>
+</span></span></code></pre></div><h2 id="about-the-solutions">about the solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
@@ -271,34 +270,34 @@ Write a script to find the smallest integer x such that x, 2x, 3x, 4x, 5x and 6x
 <p>This is Gurunandan&rsquo;s basic premise. Given two numbers, his <code>is_permutation()</code> routine constructs two hashes from the individual digits, used as keys. From there all he need to do is iterate the keys in one and makes sure the same key and value pairs exist in the the other. By deleting keys in both hashes as they are matched out, after one set of keys have been processed both hashes should then be empty.</p>
 <p>If anything doesn&rsquo;t fly right along the way the routine returns early with a false result.</p>
 <p>Thus the <code>is_permutation()</code> routine performs the check, and a loop in the main body constructs the 5 multiple values, pairing each with the original for validation. Then if all of <em>that</em> works, we&rsquo;ve found our matching number that permutes for all multiples from 2 to 6.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_permutation</span> ($this, $that) {
-
-        <span style="color:#75715e"># Checks if $this and $that are permutations of one another</span>
-
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> length ($this) <span style="color:#f92672">!=</span> length ($that);
-
-        <span style="color:#66d9ef">my</span> (%this, %that);
-        %this <span style="color:#f92672">=</span> map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">++</span>$this {$_}} split <span style="color:#e6db74">//</span>, $this;
-        %that <span style="color:#f92672">=</span> map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">++</span>$that {$_}} split <span style="color:#e6db74">//</span>, $that;
-
-        <span style="color:#75715e"># Compare the two hashes with</span>
-        <span style="color:#75715e"># no fear of autovivification!</span>
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $key (keys %this) {
-
-            <span style="color:#75715e"># We have a digit in &#34;this&#34; that</span>
-            <span style="color:#75715e"># is not in &#34;theat&#34;. Stop checking</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $that {$key};
-
-            <span style="color:#66d9ef">if</span> ($this {$key} <span style="color:#f92672">==</span> $that {$key}) {
-
-                delete $this {$key};
-                delete $that {$key};
-            }
-        }
-
-        <span style="color:#66d9ef">return</span> %this <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> %that <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_permutation</span> ($this, $that) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Checks if $this and $that are permutations of one another</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> length ($this) <span style="color:#f92672">!=</span> length ($that);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> (%this, %that);
+</span></span><span style="display:flex;"><span>        %this <span style="color:#f92672">=</span> map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">++</span>$this {$_}} split <span style="color:#e6db74">//</span>, $this;
+</span></span><span style="display:flex;"><span>        %that <span style="color:#f92672">=</span> map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">++</span>$that {$_}} split <span style="color:#e6db74">//</span>, $that;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Compare the two hashes with</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># no fear of autovivification!</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $key (keys %this) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># We have a digit in &#34;this&#34; that</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># is not in &#34;theat&#34;. Stop checking</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $that {$key};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($this {$key} <span style="color:#f92672">==</span> $that {$key}) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                delete $this {$key};
+</span></span><span style="display:flex;"><span>                delete $that {$key};
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> %this <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> %that <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/polettix/raku/ch-1.raku">Raku</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -307,26 +306,26 @@ Write a script to find the smallest integer x such that x, 2x, 3x, 4x, 5x and 6x
 <p>Ok. I&rsquo;m not 100% sure of the reasoning he used to get there — whether his argument is  mathematical or procedural — but I trust him. I&rsquo;m going to go out on a limb and say he interprets the rules as that all digits should be unique.</p>
 <p>On the basis of these givens, he concludes the smallest value permissible is 123456, and the largest with 6 digits would be 166666, as the next value multiplied by 6 would carry over into a 7-digit result. This is a quite limited range.</p>
 <p>Within that span, then, he proceeds along the hash comparison route: making a frequency mapping to a hash, then, all in one set of nested loops compare multiples to the original. However there is one difference in this particular step that can be made, in that if the digits are taken to be unique than we don&rsquo;t need to count them at all, or even hash them. If we split the multiple into an array of digits, we can just compare these elements one-by-one and make sure they exist as keys in the original number hash.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> <span style="color:#ae81ff">123456</span>;
-    $candidate <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">142857</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;necessary&#39;</span>) {
-       <span style="color:#66d9ef">if</span> (check_permuted_multiples_upto6($candidate)) {
-          say $candidate;
-          <span style="color:#66d9ef">last</span>;
-       }
-       <span style="color:#f92672">++</span>$candidate;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_permuted_multiples_upto6</span> ($n) {
-       <span style="color:#66d9ef">my</span> %baseline <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } split <span style="color:#e6db74">m{}mxs</span>, $n;
-       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $factor (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">6</span>) {
-          <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digit (split <span style="color:#e6db74">m{}mxs</span>, $n <span style="color:#f92672">*</span> $factor) {
-             <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> exists $baseline{$digit};
-          }
-       }
-       <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> <span style="color:#ae81ff">123456</span>;
+</span></span><span style="display:flex;"><span>    $candidate <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">142857</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;necessary&#39;</span>) {
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">if</span> (check_permuted_multiples_upto6($candidate)) {
+</span></span><span style="display:flex;"><span>          say $candidate;
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>       }
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">++</span>$candidate;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_permuted_multiples_upto6</span> ($n) {
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">my</span> %baseline <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } split <span style="color:#e6db74">m{}mxs</span>, $n;
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $factor (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">6</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digit (split <span style="color:#e6db74">m{}mxs</span>, $n <span style="color:#f92672">*</span> $factor) {
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> exists $baseline{$digit};
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>       }
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/d/ch-1.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -336,129 +335,129 @@ Write a script to find the smallest integer x such that x, 2x, 3x, 4x, 5x and 6x
 <p>First counting and then reexamining each digit, first in the original number and then again for each of the multiples, is both repetitive and tedious. Modern computers of course excel in this environment, but we can still sidestep some of the issues by reexamining what it is we need to do: we need to know the digits are the same. We do not care what the digits are nor how many are there. So can we avoid even gathering this information?</p>
 <p>If we split the number into an array, then sort the array and reconstruct a new number with the sorted data, we have constructed an common state that is shared by any permutation of the original. The sorting equalizes the ordering by removing it and substituting its own.</p>
 <p>If the numbers created from the original and the multiple are equal, then we can conclude that the two are permutations of the same digits.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_multiples</span> {
-        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> shift;
-        <span style="color:#66d9ef">my</span> $ordered <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, sort split <span style="color:#e6db74">//</span>, $j;
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>) {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $ordered <span style="color:#f92672">ne</span> join <span style="color:#e6db74">&#39;&#39;</span>, sort {$a <span style="color:#f92672">cmp</span> $b}  split <span style="color:#e6db74">//</span>, ($k <span style="color:#f92672">*</span> $j);
-        }
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-
-    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">if</span> (check_multiples $i) {
-            say $i;
-            <span style="color:#66d9ef">last</span>;
-        }
-        $i<span style="color:#f92672">++</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_multiples</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $ordered <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, sort split <span style="color:#e6db74">//</span>, $j;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $ordered <span style="color:#f92672">ne</span> join <span style="color:#e6db74">&#39;&#39;</span>, sort {$a <span style="color:#f92672">cmp</span> $b}  split <span style="color:#e6db74">//</span>, ($k <span style="color:#f92672">*</span> $j);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (check_multiples $i) {
+</span></span><span style="display:flex;"><span>            say $i;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/athanasius/raku/ch-1.raku">Raku</a></p>
 <p>The monk adds an additional twist to this form of comparison, optimizing the failure mode by trying the largest multiples first. Splitting and sorting the array makes for a compact solution. Here the monk doesn&rsquo;t bother to apply a <code>join</code> to the reordered form, instead comparing the arrays element-by-element. It&rsquo;s not clear which method is more efficient and I suspect thay are about the same.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_pm6</span>
-    {
-        <span style="color:#66d9ef">my</span> ($x) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (reverse <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">6</span>)
-        {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> are_permutations( $x, $i <span style="color:#f92672">*</span> $x );
-        }
-
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">are_permutations</span>
-    {
-        <span style="color:#66d9ef">my</span> ($x, $y) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> length $x <span style="color:#f92672">==</span> length $y;
-
-        <span style="color:#66d9ef">my</span> @digits_x <span style="color:#f92672">=</span> sort split <span style="color:#e6db74">//</span>, $x;
-        <span style="color:#66d9ef">my</span> @digits_y <span style="color:#f92672">=</span> sort split <span style="color:#e6db74">//</span>, $y;
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#digits_x)
-        {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $digits_x[ $i ] <span style="color:#f92672">eq</span> $digits_y[ $i ];
-        }
-
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_pm6</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($x) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (reverse <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">6</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> are_permutations( $x, $i <span style="color:#f92672">*</span> $x );
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">are_permutations</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($x, $y) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> length $x <span style="color:#f92672">==</span> length $y;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @digits_x <span style="color:#f92672">=</span> sort split <span style="color:#e6db74">//</span>, $x;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @digits_y <span style="color:#f92672">=</span> sort split <span style="color:#e6db74">//</span>, $y;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#digits_x)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $digits_x[ $i ] <span style="color:#f92672">eq</span> $digits_y[ $i ];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
 <p>Splitting and then sorting proved to be the most common approach, with about half the submissions working on the principle.</p>
 <p>For Walt&rsquo;s scheme he does decide to join the reordered digit arrays back into single numbers that can be compared as a simple equality.</p>
 <p>He performs the operation on the original and each multiple, and then after successfully navigating the sixth and locating his target value he runs a secondary final loop to present all multiples once again for demonstration.</p>
 <p>Which is a nice touch, showing your work.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sorted_digits</span>($x) {
-        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>, sort split <span style="color:#e6db74">//</span>, $x;
-    }
-
-    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">my</span> $done <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>$done) {
-        <span style="color:#66d9ef">my</span> $sorted <span style="color:#f92672">=</span> sorted_digits($i);
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>) {
-            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> sorted_digits($i <span style="color:#f92672">*</span> $j) <span style="color:#f92672">==</span> $sorted;
-            <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>) {
-                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>) {
-                    printf <span style="color:#e6db74">&#34;%d &#34;</span>, $i <span style="color:#f92672">*</span> $k;
-                }
-                say <span style="color:#e6db74">&#34;&#34;</span>;
-                $done <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-            }
-        }
-        $i<span style="color:#f92672">++</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sorted_digits</span>($x) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>, sort split <span style="color:#e6db74">//</span>, $x;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $done <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>$done) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $sorted <span style="color:#f92672">=</span> sorted_digits($i);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> sorted_digits($i <span style="color:#f92672">*</span> $j) <span style="color:#f92672">==</span> $sorted;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>) {
+</span></span><span style="display:flex;"><span>                    printf <span style="color:#e6db74">&#34;%d &#34;</span>, $i <span style="color:#f92672">*</span> $k;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                say <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>                $done <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/mohammad-anwar/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/mohammad-anwar/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/mohammad-anwar/swift/ch-1.swift">Swift</a></p>
 <p>Mohammad performs his abstraction a little broader, portioning out a generalized <code>has_same_digits()</code> function, providing an up/down response to the question. This seems a very practical way do structure the decision space.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">has_same_digits</span>($m, $n) {
-        <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $m;
-        <span style="color:#66d9ef">my</span> @y <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $n;
-        <span style="color:#66d9ef">return</span> join(<span style="color:#e6db74">q{}</span>, sort @x) <span style="color:#f92672">==</span> join(<span style="color:#e6db74">q{}</span>, sort @y);
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">smallest_permuted_multiples</span> {
-        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
-        <span style="color:#66d9ef">while</span> (true) {
-            <span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> true;
-            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>) {
-                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>has_same_digits($i, $i <span style="color:#f92672">*</span> $j)) {
-                    $found <span style="color:#f92672">=</span> false;
-                    <span style="color:#66d9ef">last</span>;
-                }
-            }
-
-            <span style="color:#66d9ef">return</span> $i <span style="color:#66d9ef">if</span> $found;
-            $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-        }
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">has_same_digits</span>($m, $n) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $m;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @y <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $n;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> join(<span style="color:#e6db74">q{}</span>, sort @x) <span style="color:#f92672">==</span> join(<span style="color:#e6db74">q{}</span>, sort @y);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">smallest_permuted_multiples</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (true) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>has_same_digits($i, $i <span style="color:#f92672">*</span> $j)) {
+</span></span><span style="display:flex;"><span>                    $found <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> $i <span style="color:#66d9ef">if</span> $found;
+</span></span><span style="display:flex;"><span>            $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a></p>
 <p>I mentioned the <code>split</code> and <code>sort</code> technique yields compact solutions; here Kjetil condenses the action into a single line of logic.</p>
 <p>Using the <code>1 while (...)</code> construction, a no-op is performed in the block — the useful logic is  transferred to the conditional. In this structure, we have three actions joined by logical <code>and</code> conditionals, which are all required to be evaluate as true for the loop to continue around again.</p>
 <p>The first increments the target value and this will always return positive, and hence true.</p>
 <p>The second assigns a hash made from the joined, sorted, split digit arrays from the products of the  candidate and a multiplier value, mapped from 1 to 6 and then split, sorted, and joined. These are the sorted internal values we have seen and should all be the same if the numbers are permuted multiples. Clever!</p>
 <p>The third logical conditional to allow the loop to cycle is that there should be more than one key in this composite hash, which will happen if there are two or more different numbers produced in the <code>map</code> operation, which means some multiples are not permutations. If this is true we loop and try for better luck with the next candidate.</p>
 <p>If it is <em>false</em>, however, we have found our permutation multiple! So the conditional fails, we exit the loop and print the result. Success!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">while</span> <span style="color:#f92672">++</span>$i <span style="color:#f92672">and</span> %h<span style="color:#f92672">=</span>map<span style="color:#f92672">+</span>( join(<span style="color:#e6db74">&#39;&#39;</span>,sort split<span style="color:#e6db74">//</span>,$i<span style="color:#f92672">*</span>$_) <span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span> ),<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span> <span style="color:#f92672">and</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;</span>keys%h;
-    <span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;$i\n&#34;</span>;
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">while</span> <span style="color:#f92672">++</span>$i <span style="color:#f92672">and</span> %h<span style="color:#f92672">=</span>map<span style="color:#f92672">+</span>( join(<span style="color:#e6db74">&#39;&#39;</span>,sort split<span style="color:#e6db74">//</span>,$i<span style="color:#f92672">*</span>$_) <span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span> ),<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span> <span style="color:#f92672">and</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;</span>keys%h;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;$i\n&#34;</span>;
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/duncan-c-white/C/ch-1.c">C</a></p>
 <p>To round out coverage of this particular method we have Duncan, who also provides the word for this intermediate number that&rsquo;s been on the tip on my tongue this whole time — a <em>signature</em>. This would be a particular identifier that maps directly to a set of properties in an object. The signature may uniquely identify an object, or may just tie a particular object to a certain class of similar objects.</p>
 <p>Whew! Good to have that settled. That was bothering me far more than it should have.</p>
 <p>The class identified by the numeric signature we generate here is that of all numbers composed of a certain multiset of digits, with no restrictions on ordering or placement other than all elements must be used.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">permuted_perm_6</span>
-    {
-        <span style="color:#66d9ef">my</span>( $x ) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span> $xsig <span style="color:#f92672">=</span> join( <span style="color:#e6db74">&#39;&#39;</span>, sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } split(<span style="color:#e6db74">//</span>,$x) );
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $mult (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>)
-        {
-            <span style="color:#66d9ef">my</span> $xmsig <span style="color:#f92672">=</span> join( <span style="color:#e6db74">&#39;&#39;</span>, sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } split(<span style="color:#e6db74">//</span>,$x<span style="color:#f92672">*</span>$mult) );
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $xsig <span style="color:#f92672">eq</span> $xmsig;
-        }
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">permuted_perm_6</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>( $x ) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $xsig <span style="color:#f92672">=</span> join( <span style="color:#e6db74">&#39;&#39;</span>, sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } split(<span style="color:#e6db74">//</span>,$x) );
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $mult (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $xmsig <span style="color:#f92672">=</span> join( <span style="color:#e6db74">&#39;&#39;</span>, sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } split(<span style="color:#e6db74">//</span>,$x<span style="color:#f92672">*</span>$mult) );
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $xsig <span style="color:#f92672">eq</span> $xmsig;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/adam-russell/cxx/ch-1.cxx">Cxx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/adam-russell/fortran/ch-1.f">Fortran</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/adam-russell/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/adam-russell/prolog/ch-1.p">Prolog</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -470,28 +469,28 @@ Write a script to find the smallest integer x such that x, 2x, 3x, 4x, 5x and 6x
 <p>He does this using a really neat trick, where the <em>indexes</em> of an array function as a stand-in for the <em>values</em> represented by those indexes. So after a number is split into digits, the digits are iterated across and the index at each digits&rsquo; value is incremented, leaving us with a 10-element array of incidence values. After constructing arrays of each of the numbers to be examined, a <code>grep</code> operation on the index values from the arrays is used to collect those indices with equal values in both arrays. If the count of elements in this matching array is the same as those in one of the two originals, we have a winner.</p>
 <p>I also find quite interesting the logic behind his cascading check on multiples from 2 to 6: if the original and 2-multiple are found to be permuted, then the 2-multiple can now be the new standard. So the 2-multiple and 3-multiple are then checked, and if found to be permuted then we move to use the 3-multiple in the next comparison.  Likewise 3 and 4, 4 and 5, and finally 5 and 6.</p>
 <p>I wonder if this type of thinking is particular to a logician. It&rsquo;s a certainly rigorous but curious methodology.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_permuted</span>{
-        <span style="color:#66d9ef">my</span>($x, $y) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span>(@x, @y);
-        map {$x[$_]<span style="color:#f92672">++</span>} split(<span style="color:#e6db74">//</span>, $x);
-        map {$y[$_]<span style="color:#f92672">++</span>} split(<span style="color:#e6db74">//</span>, $y);
-        <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span> $#x <span style="color:#f92672">!=</span> $#y;
-        <span style="color:#66d9ef">my</span> @matched <span style="color:#f92672">=</span> grep {(<span style="color:#f92672">!</span>$x[$_] <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>$y[$_]) <span style="color:#f92672">||</span> ($x[$_] <span style="color:#f92672">&amp;&amp;</span> $y[$_] <span style="color:#f92672">&amp;&amp;</span> $x[$_] <span style="color:#f92672">==</span> $y[$_])} <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">return</span> true <span style="color:#66d9ef">if</span> @matched <span style="color:#f92672">==</span> @x;
-        <span style="color:#66d9ef">return</span> false;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">smallest_permuted</span>{
-        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        {
-            $x<span style="color:#f92672">++</span>;
-            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">unless</span> is_permuted($x, <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $x)     <span style="color:#f92672">&amp;&amp;</span> is_permuted(<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $x, <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $x) <span style="color:#f92672">&amp;&amp;</span>
-                        is_permuted(<span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $x, <span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> $x) <span style="color:#f92672">&amp;&amp;</span> is_permuted(<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> $x, <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> $x) <span style="color:#f92672">&amp;&amp;</span>
-                        is_permuted(<span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> $x, <span style="color:#ae81ff">6</span> <span style="color:#f92672">*</span> $x);
-        }
-        <span style="color:#66d9ef">return</span> $x;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_permuted</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>($x, $y) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>(@x, @y);
+</span></span><span style="display:flex;"><span>        map {$x[$_]<span style="color:#f92672">++</span>} split(<span style="color:#e6db74">//</span>, $x);
+</span></span><span style="display:flex;"><span>        map {$y[$_]<span style="color:#f92672">++</span>} split(<span style="color:#e6db74">//</span>, $y);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span> $#x <span style="color:#f92672">!=</span> $#y;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @matched <span style="color:#f92672">=</span> grep {(<span style="color:#f92672">!</span>$x[$_] <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>$y[$_]) <span style="color:#f92672">||</span> ($x[$_] <span style="color:#f92672">&amp;&amp;</span> $y[$_] <span style="color:#f92672">&amp;&amp;</span> $x[$_] <span style="color:#f92672">==</span> $y[$_])} <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> true <span style="color:#66d9ef">if</span> @matched <span style="color:#f92672">==</span> @x;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">smallest_permuted</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            $x<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">unless</span> is_permuted($x, <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $x)     <span style="color:#f92672">&amp;&amp;</span> is_permuted(<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $x, <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $x) <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>                        is_permuted(<span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $x, <span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> $x) <span style="color:#f92672">&amp;&amp;</span> is_permuted(<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> $x, <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> $x) <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>                        is_permuted(<span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> $x, <span style="color:#ae81ff">6</span> <span style="color:#f92672">*</span> $x);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $x;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/pokgopun/dart/ch-1.dart">Dart</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/pokgopun/go/ch-1.go">Go</a></p>
 <p>PokGoPun approaches the problem combinatorially, creating combinations of the 10 available digits in increasing sizes and then permuting the sets. For this, he brings his own <code>combo</code> and <code>permute</code> routines.</p>
@@ -499,74 +498,74 @@ Write a script to find the smallest integer x such that x, 2x, 3x, 4x, 5x and 6x
 <p>Fair enough.</p>
 <p>As we are selecting only the subset of numbers with unique digits out of all numbers the search space is in the end considerably limited.</p>
 <p>The set of all permutations of a given combination are delivered as one long string with space delimiters between individual permutations rejoined into numbers, allowing us to use <code>index</code> to search the string. In fact both of the helper functions work on their digit-sets as strings.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">3</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>){
-
-        <span style="color:#66d9ef">my</span> $combo; <span style="color:#75715e">### string to store all combiations of $i elements, each value is separated by a space</span>
-
-        <span style="color:#75715e">### generate list of $i element combinations from set(0,1,2,3,4,5,6,7,8,9) and iterate through it</span>
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $cmb (split <span style="color:#e6db74">/\s/</span>, combo($i, <span style="color:#e6db74">&#34;0123456789&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#f92672">\</span>$combo)){
-
-            <span style="color:#75715e">### skip if the combination&#39;s permuation cannot produce 1x-6x (i.e. max value less than 6 times of min value)</span>
-            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> join(<span style="color:#e6db74">&#34;&#34;</span>, reverse split <span style="color:#e6db74">//</span>, $cmb)<span style="color:#f92672">/</span>$cmb <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">6</span>;
-
-            <span style="color:#75715e">#print &#34;$cmb\n&#34;;</span>
-
-            <span style="color:#66d9ef">my</span> $permute; <span style="color:#75715e">### string to store all permutations of the combination, each value is separated by a space</span>
-
-            <span style="color:#75715e">### generate list of the combination&#39;s permutations and iterate through it</span>
-            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pmt (split <span style="color:#e6db74">/\s/</span>, permute($cmb, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#f92672">\</span>$permute)){
-                <span style="color:#75715e">### take each x from the permutations, and check if 6x-2x does exist in the permuations</span>
-                <span style="color:#75715e">### if so, print x and exit; otherwise skipping to then next combo&#39;s permutations</span>
-                <span style="color:#66d9ef">my</span> $j;
-                <span style="color:#66d9ef">for</span> ($j<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>; $j<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>; $j<span style="color:#f92672">--</span>){
-                    <span style="color:#66d9ef">if</span> (index($permute, $pmt <span style="color:#f92672">*</span> $j)<span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>){
-                    	<span style="color:#75715e">#if (index($permute, sprintf(&#34;%0*d&#34;, $i, $pmt * $j))== -1){</span>
-                    	<span style="color:#66d9ef">last</span>;
-                    }
-                }
-                <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
-                    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$pmt\n&#34;</span>;
-                    $count<span style="color:#f92672">--</span>;
-                    <span style="color:#66d9ef">last</span>;
-                }
-            }
-            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $count<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
-        }
-        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $count<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">permute</span>{
-        <span style="color:#66d9ef">my</span>($s, $t, $res) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> length $s;
-        <span style="color:#66d9ef">if</span> ($l <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>){
-                <span style="color:#66d9ef">my</span>($si, $ti) <span style="color:#f92672">=</span> ($s, $t);
-                $ti <span style="color:#f92672">.=</span> substr $si, $i, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;&#34;</span>;
-                <span style="color:#75715e">#print &#34;$si, $ti\n&#34;;</span>
-                permute($si, $ti, $res);
-            }
-        } <span style="color:#66d9ef">else</span> {
-            ${$res} <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34; $t&#34;</span>;
-            <span style="color:#66d9ef">return</span>;
-        }
-        <span style="color:#66d9ef">return</span> substr(${$res},<span style="color:#ae81ff">1</span>)
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">combo</span>{
-        <span style="color:#66d9ef">my</span>($r, $e, $c, $res) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span>($lc, $le) <span style="color:#f92672">=</span> (length $c, length $e);
-        <span style="color:#66d9ef">if</span> ($lc <span style="color:#f92672">==</span> $r <span style="color:#f92672">||</span> $lc <span style="color:#f92672">+</span> $le <span style="color:#f92672">==</span> $r){
-            ${$res} <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>substr $c<span style="color:#f92672">.</span>$e, <span style="color:#ae81ff">0</span>, $r;
-            <span style="color:#66d9ef">return</span>;
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $lc <span style="color:#f92672">+</span> $le <span style="color:#f92672">-</span> $r){
-                combo($r, substr($e, $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), $c<span style="color:#f92672">.</span>substr($e, $i, <span style="color:#ae81ff">1</span>), $res);
-            }
-        }
-    say substr(${$res},<span style="color:#ae81ff">1</span>);
-        <span style="color:#66d9ef">return</span> substr(${$res},<span style="color:#ae81ff">1</span>)
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">3</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $combo; <span style="color:#75715e">### string to store all combiations of $i elements, each value is separated by a space</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">### generate list of $i element combinations from set(0,1,2,3,4,5,6,7,8,9) and iterate through it</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $cmb (split <span style="color:#e6db74">/\s/</span>, combo($i, <span style="color:#e6db74">&#34;0123456789&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#f92672">\</span>$combo)){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">### skip if the combination&#39;s permuation cannot produce 1x-6x (i.e. max value less than 6 times of min value)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> join(<span style="color:#e6db74">&#34;&#34;</span>, reverse split <span style="color:#e6db74">//</span>, $cmb)<span style="color:#f92672">/</span>$cmb <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">6</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">#print &#34;$cmb\n&#34;;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $permute; <span style="color:#75715e">### string to store all permutations of the combination, each value is separated by a space</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">### generate list of the combination&#39;s permutations and iterate through it</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pmt (split <span style="color:#e6db74">/\s/</span>, permute($cmb, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#f92672">\</span>$permute)){
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">### take each x from the permutations, and check if 6x-2x does exist in the permuations</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">### if so, print x and exit; otherwise skipping to then next combo&#39;s permutations</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span> $j;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> ($j<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>; $j<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>; $j<span style="color:#f92672">--</span>){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (index($permute, $pmt <span style="color:#f92672">*</span> $j)<span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>){
+</span></span><span style="display:flex;"><span>                    	<span style="color:#75715e">#if (index($permute, sprintf(&#34;%0*d&#34;, $i, $pmt * $j))== -1){</span>
+</span></span><span style="display:flex;"><span>                    	<span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$pmt\n&#34;</span>;
+</span></span><span style="display:flex;"><span>                    $count<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $count<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $count<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">permute</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>($s, $t, $res) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> length $s;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($l <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span>($si, $ti) <span style="color:#f92672">=</span> ($s, $t);
+</span></span><span style="display:flex;"><span>                $ti <span style="color:#f92672">.=</span> substr $si, $i, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">#print &#34;$si, $ti\n&#34;;</span>
+</span></span><span style="display:flex;"><span>                permute($si, $ti, $res);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            ${$res} <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34; $t&#34;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> substr(${$res},<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">combo</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>($r, $e, $c, $res) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>($lc, $le) <span style="color:#f92672">=</span> (length $c, length $e);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($lc <span style="color:#f92672">==</span> $r <span style="color:#f92672">||</span> $lc <span style="color:#f92672">+</span> $le <span style="color:#f92672">==</span> $r){
+</span></span><span style="display:flex;"><span>            ${$res} <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>substr $c<span style="color:#f92672">.</span>$e, <span style="color:#ae81ff">0</span>, $r;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $lc <span style="color:#f92672">+</span> $le <span style="color:#f92672">-</span> $r){
+</span></span><span style="display:flex;"><span>                combo($r, substr($e, $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), $c<span style="color:#f92672">.</span>substr($e, $i, <span style="color:#ae81ff">1</span>), $res);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    say substr(${$res},<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> substr(${$res},<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
 <p>Finally we&rsquo;ll end with Jorg. True to form, he has provided us with a general-purpose generator that will produce as many permuted multiples as requested in a given base. Assuming, of course, it can find that many.</p>
 <p>The main driver is a coderef containing a generator, which can be considered a more complex iterator closure that can be re-entered, yielding the next permuted multiple result when requested.</p>
 <p>He has provided a fascinating in-depth analysis of the properties of the procedure. He seems to have taken the same interpretation as Flavio and PokGoPun above, that the independant digits within a number must be unique.</p>
@@ -574,74 +573,74 @@ Write a script to find the smallest integer x such that x, 2x, 3x, 4x, 5x and 6x
 <p>The transitions back and forth between numbers and arrays of digits, along with base conversion, is done with functions from <code>Math::Prime::Util</code>, or <code>ntheory</code> as it is also known.</p>
 <p>Take the time to read through and follow Jorg&rsquo;s extensive comments. It&rsquo;s quite a
 good read.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Additional assumptions:</span>
-    <span style="color:#75715e"># - If the multiples shall consist of a permutation of the original</span>
-    <span style="color:#75715e">#   number&#39;s digits, these digits need to be distinct.  Otherwise the</span>
-    <span style="color:#75715e">#   concept of a permutation would not make sense.</span>
-    <span style="color:#75715e"># - A leading zero is not permitted.</span>
-    <span style="color:#75715e"># Furthermore, there is no need to restrict the task to base 10 or to</span>
-    <span style="color:#75715e"># find only the minimum number.</span>
-    <span style="color:#75715e">#</span>
-    <span style="color:#75715e"># All results for bases 8, 10, 12 and 13 can be found. There are no</span>
-    <span style="color:#75715e"># results for other bases below 13.  While base 12 can be handled in</span>
-    <span style="color:#75715e"># about 12 min here, base 13 takes about 5 h.</span>
-    <span style="color:#75715e">#</span>
-    <span style="color:#75715e"># There is an interesting results in base 8: 1234567</span>
-    <span style="color:#75715e">#</span>
-    <span style="color:#75715e"># For bases up to 12, the leading digit must always be 1.  See below for</span>
-    <span style="color:#75715e"># different results in bases 17, 19 and 24.</span>
-
-    <span style="color:#75715e"># Build a generator for &#34;permuted multiples&#34; in the given base.</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">gen_perm_mult</span> ($base) {
-        <span style="color:#66d9ef">my</span> $done;
-        generator {
-            <span style="color:#75715e"># Do not allow the generator to start over.</span>
-            yield(undef), <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $done<span style="color:#f92672">++</span>;
-            <span style="color:#75715e"># The minimum length of such a number cannot be less than six as</span>
-            <span style="color:#75715e"># the number itself and its multiples all have different leading</span>
-            <span style="color:#75715e"># digits if they are of the same length.  The maximum length is</span>
-            <span style="color:#75715e"># the base because all digits shall be distinct.  The</span>
-            <span style="color:#75715e"># $len variable is off by one here as we treat the leading digit</span>
-            <span style="color:#75715e"># separately.</span>
-            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $len (<span style="color:#ae81ff">5</span> <span style="color:#f92672">..</span> $base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-                <span style="color:#75715e"># There shall be no leading zero and the sixfold of it needs</span>
-                <span style="color:#75715e"># to be below the base.</span>
-                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $ld (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> int(($base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">6</span>)) {
-                    <span style="color:#75715e"># Create a hash with all possible digits as keys.</span>
-                    (<span style="color:#f92672">\</span><span style="color:#66d9ef">my</span> %digits)<span style="color:#f92672">-&gt;</span>@{<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>} <span style="color:#f92672">=</span> ();
-                    <span style="color:#75715e"># Remove the leading digit.</span>
-                    delete $digits{$ld};
-                    <span style="color:#75715e"># Loop over all variations (a.k.a. k-permutations of n)</span>
-                    <span style="color:#75715e"># of digits (except the leading digit) in the given base</span>
-                    <span style="color:#75715e"># and in the current length as candidate numbers.</span>
-                    <span style="color:#66d9ef">my</span> $v_it <span style="color:#f92672">=</span> variations([sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} keys %digits], $len);
-                    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $v <span style="color:#f92672">=</span> $v_it<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>()) {
-                        <span style="color:#75715e"># Prepend the leading digit.</span>
-                        <span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> ($ld, @$v);
-                        <span style="color:#75715e"># Get the candidate number from the digits in the</span>
-                        <span style="color:#75715e"># given base.</span>
-                        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> fromdigits <span style="color:#f92672">\</span>@p, $base;
-                        <span style="color:#75715e"># Check if the digits of all requested multiples of</span>
-                        <span style="color:#75715e"># the candidate number form a permutation of the</span>
-                        <span style="color:#75715e"># candidate number&#39;s digits.</span>
-                        yield $n
-                            <span style="color:#66d9ef">if</span> all {isperm(<span style="color:#f92672">\</span>@p, [todigits $n <span style="color:#f92672">*</span> $_, $base])} <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>;
-                    }
-                }
-            }
-        }
-    }
-
-    <span style="color:#75715e"># Check if the array @$q is a permutation of @$p.  This is the case if</span>
-    <span style="color:#75715e"># all elements of @$p occur in @$q and both arrays have the same length.</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isperm</span> ($p, $q) {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> @$p <span style="color:#f92672">==</span> @$q;
-        <span style="color:#75715e"># Create a hash %q having keys from @$q and values 1.</span>
-        (<span style="color:#f92672">\</span><span style="color:#66d9ef">my</span> %q)<span style="color:#f92672">-&gt;</span>@{@$q} <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>) x @$q;
-        <span style="color:#75715e"># Check if all elements of @$p occur in %q.</span>
-        @$p <span style="color:#f92672">==</span> grep $_, @q{@$p};
-    }
-</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#75715e"># Additional assumptions:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - If the multiples shall consist of a permutation of the original</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   number&#39;s digits, these digits need to be distinct.  Otherwise the</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   concept of a permutation would not make sense.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - A leading zero is not permitted.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Furthermore, there is no need to restrict the task to base 10 or to</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># find only the minimum number.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># All results for bases 8, 10, 12 and 13 can be found. There are no</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># results for other bases below 13.  While base 12 can be handled in</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># about 12 min here, base 13 takes about 5 h.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># There is an interesting results in base 8: 1234567</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># For bases up to 12, the leading digit must always be 1.  See below for</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># different results in bases 17, 19 and 24.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Build a generator for &#34;permuted multiples&#34; in the given base.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">gen_perm_mult</span> ($base) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $done;
+</span></span><span style="display:flex;"><span>        generator {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Do not allow the generator to start over.</span>
+</span></span><span style="display:flex;"><span>            yield(undef), <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $done<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># The minimum length of such a number cannot be less than six as</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># the number itself and its multiples all have different leading</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># digits if they are of the same length.  The maximum length is</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># the base because all digits shall be distinct.  The</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># $len variable is off by one here as we treat the leading digit</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># separately.</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $len (<span style="color:#ae81ff">5</span> <span style="color:#f92672">..</span> $base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># There shall be no leading zero and the sixfold of it needs</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># to be below the base.</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $ld (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> int(($base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">6</span>)) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># Create a hash with all possible digits as keys.</span>
+</span></span><span style="display:flex;"><span>                    (<span style="color:#f92672">\</span><span style="color:#66d9ef">my</span> %digits)<span style="color:#f92672">-&gt;</span>@{<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>} <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># Remove the leading digit.</span>
+</span></span><span style="display:flex;"><span>                    delete $digits{$ld};
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># Loop over all variations (a.k.a. k-permutations of n)</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># of digits (except the leading digit) in the given base</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># and in the current length as candidate numbers.</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">my</span> $v_it <span style="color:#f92672">=</span> variations([sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} keys %digits], $len);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $v <span style="color:#f92672">=</span> $v_it<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>()) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># Prepend the leading digit.</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> ($ld, @$v);
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># Get the candidate number from the digits in the</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># given base.</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> fromdigits <span style="color:#f92672">\</span>@p, $base;
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># Check if the digits of all requested multiples of</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># the candidate number form a permutation of the</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># candidate number&#39;s digits.</span>
+</span></span><span style="display:flex;"><span>                        yield $n
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">if</span> all {isperm(<span style="color:#f92672">\</span>@p, [todigits $n <span style="color:#f92672">*</span> $_, $base])} <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check if the array @$q is a permutation of @$p.  This is the case if</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># all elements of @$p occur in @$q and both arrays have the same length.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isperm</span> ($p, $q) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> @$p <span style="color:#f92672">==</span> @$q;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Create a hash %q having keys from @$q and values 1.</span>
+</span></span><span style="display:flex;"><span>        (<span style="color:#f92672">\</span><span style="color:#66d9ef">my</span> %q)<span style="color:#f92672">-&gt;</span>@{@$q} <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>) x @$q;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Check if all elements of @$p occur in %q.</span>
+</span></span><span style="display:flex;"><span>        @$p <span style="color:#f92672">==</span> grep $_, @q{@$p};
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/d/ch1.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/modula-3/ch1">Modula-3</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/pascal/ch1.pas">Pascal</a></p>
@@ -701,13 +700,13 @@ good read.</p>
 <p>Write a script to find out all Reversible Numbers below 100.</p>
 <p>A number is said to be a reversible if sum of the number and its reverse had only odd digits.</p>
 <p>For example,</p>
-<pre><code>    36 is reversible number as 36 + 63 = 99 i.e. all digits are odd.
-    17 is not reversible as 17 + 71 = 88, none of the digits are odd.
-</code></pre><p><strong>Output</strong></p>
-<pre><code>    10, 12, 14, 16, 18, 21, 23, 25, 27,
-    30, 32, 34, 36, 41, 43, 45, 50, 52,
-    54, 61, 63, 70, 72, 81, 90
-</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#ae81ff">36</span> is reversible number as <span style="color:#ae81ff">36</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">63</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">99</span> i<span style="color:#f92672">.</span>e<span style="color:#f92672">.</span> all digits are odd<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">17</span> is <span style="color:#f92672">not</span> reversible as <span style="color:#ae81ff">17</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">71</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">88</span>, none of the digits are odd<span style="color:#f92672">.</span>
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">27</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">52</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">54</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">72</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">90</span>
+</span></span></code></pre></div><h2 id="about-the-solutions-1">about the solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
@@ -762,161 +761,161 @@ good read.</p>
 <a href="https://dev.to/simongreennet/big-number-small-numbers-49h4">Big number, small numbers</a></p>
 <p>Simon will start us off with a straightforward demonstration of brute force. We are given a well-defined search space — under 100 — and so it makes perfect sense just to check all possible values. Manually checking will presumably finish quickly, so there&rsquo;s no pressing need for fancy optimal algorithms.</p>
 <p>Reversing and summing is a basic step, with the remaining requirement being to ensure all the digits are odd. This is done with a regular expression, which is an excellent way to look inside a string and test the contents. Anchored to the head and tail of the string, a character class is defined containing only odd digits, making these the only options to match the string characters.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
-        <span style="color:#66d9ef">my</span> @solutions <span style="color:#f92672">=</span> ();
-        <span style="color:#75715e"># Go from 1 to 99.</span>
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $num ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">99</span> ) {
-            <span style="color:#75715e"># If the sum of the number and the reversed number is all odd...</span>
-            <span style="color:#66d9ef">if</span> ( ( $num <span style="color:#f92672">+</span> reverse($num) ) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[13579]+$/</span> ) {
-                <span style="color:#75715e"># Add it to the array</span>
-                push @solutions, $num;
-            }
-        }
-
-        say join <span style="color:#e6db74">&#39;, &#39;</span>, @solutions;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @solutions <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Go from 1 to 99.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $num ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">99</span> ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># If the sum of the number and the reversed number is all odd...</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ( ( $num <span style="color:#f92672">+</span> reverse($num) ) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[13579]+$/</span> ) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Add it to the array</span>
+</span></span><span style="display:flex;"><span>                push @solutions, $num;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        say join <span style="color:#e6db74">&#39;, &#39;</span>, @solutions;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/wlmb/emacs-lisp/ch-2.el">Emacs-lisp</a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://wlmb.github.io/2022/08/01/PWC176/">Perl Weekly Challenge 176 – W. Luis Mochán</a></p>
 <p>As perhaps should be expected, the validation of the odd digits was the prime point of differentiation. Luis makes a much more explicit iteration across the digits in the the summed value, after spitting the number into an array of characters.</p>
 <p>The <code>list::Util</code> function <code>all</code> is employed to make sure every element in the list of digits evaluates to true within the qualifying block.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(all)</span>;
-    <span style="color:#66d9ef">my</span> @reversible;
-    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">10</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>){
-         push @reversible, $_ <span style="color:#66d9ef">if</span> is_reversible($_)
-    }
-    say join <span style="color:#e6db74">&#34;, &#34;</span>, @reversible;
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_reversible</span>($n){   <span style="color:#75715e"># read the comments from the bottom up</span>
-        <span style="color:#66d9ef">return</span> all {$_%2<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>} <span style="color:#75715e"># and check they are all odd</span>
-            split <span style="color:#e6db74">&#34;&#34;</span>,        <span style="color:#75715e"># split the digits of the result</span>
-                $n           <span style="color:#75715e"># the original number</span>
-                <span style="color:#f92672">+</span>            <span style="color:#75715e"># add it to</span>
-                reverse $n   <span style="color:#75715e"># reverse digits</span>
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(all)</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @reversible;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">10</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>){
+</span></span><span style="display:flex;"><span>         push @reversible, $_ <span style="color:#66d9ef">if</span> is_reversible($_)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    say join <span style="color:#e6db74">&#34;, &#34;</span>, @reversible;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_reversible</span>($n){   <span style="color:#75715e"># read the comments from the bottom up</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> all {$_%2<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>} <span style="color:#75715e"># and check they are all odd</span>
+</span></span><span style="display:flex;"><span>            split <span style="color:#e6db74">&#34;&#34;</span>,        <span style="color:#75715e"># split the digits of the result</span>
+</span></span><span style="display:flex;"><span>                $n           <span style="color:#75715e"># the original number</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">+</span>            <span style="color:#75715e"># add it to</span>
+</span></span><span style="display:flex;"><span>                reverse $n   <span style="color:#75715e"># reverse digits</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/d/ch2.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/modula-3/ch2">Modula-3</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/deadmarshal/pascal/ch2.pas">Pascal</a></p>
 <p>Condensed, we have a very similar solution from Ali. It&rsquo;s funny, but a quick scan revealed even another submision using <code>all</code>. I admit it makes for a very compact solution, but I did not expect the prevalence. I rarely think to using this quite useful logical operation myself, where I&rsquo;ll happily use other functions from the <code>List::Util</code> module without much thought.</p>
 <p>Perhaps I should reconsider.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(all)</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_reversible_number</span>{
-      <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
-      <span style="color:#66d9ef">return</span> all {$_ % 2 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>} (split <span style="color:#e6db74">//</span>, $n <span style="color:#f92672">+</span> reverse $n);
-    }
-
-    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span>){
-      <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$i &#34;</span> <span style="color:#66d9ef">if</span> is_reversible_number($i);
-      $i<span style="color:#f92672">++</span>;
-    }
-</code></pre></div><p>Member
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(all)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_reversible_number</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> all {$_ % 2 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>} (split <span style="color:#e6db74">//</span>, $n <span style="color:#f92672">+</span> reverse $n);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span>){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$i &#34;</span> <span style="color:#66d9ef">if</span> is_reversible_number($i);
+</span></span><span style="display:flex;"><span>      $i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Member
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>
 submitted a very similar third solution to this one.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/lubos-kolouch/python/ch-2.py">Python</a></p>
 <p>That said, the use of a handy module function is hardly required to use the same basic technique. Here Lubos uses an iterative loop over the digit array produced using <code>split</code>, checking each item in turn for the correct odd parity. As you can see the rest of the framing logic follows the same pattern.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_reversible_num</span> {
-        <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
-
-        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $what <span style="color:#f92672">+</span> join <span style="color:#e6db74">&#39;&#39;</span>, reverse split <span style="color:#e6db74">//</span>, $what;
-
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( split <span style="color:#e6db74">//</span>, $sum ) {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $i % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-        }
-
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_numbers</span> {
-        <span style="color:#66d9ef">my</span> $limit <span style="color:#f92672">=</span> shift;
-
-        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-
-        <span style="color:#66d9ef">my</span> @result;
-
-        <span style="color:#66d9ef">while</span> ( $i <span style="color:#f92672">&lt;</span> $limit ) {
-            $i<span style="color:#f92672">++</span>;
-
-            push @result, $i <span style="color:#66d9ef">if</span> is_reversible_num($i);
-        }
-
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@result;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/dave-cross/perl/ch-2.pl"><strong>Dave Cross</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_reversible_num</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $what <span style="color:#f92672">+</span> join <span style="color:#e6db74">&#39;&#39;</span>, reverse split <span style="color:#e6db74">//</span>, $what;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( split <span style="color:#e6db74">//</span>, $sum ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $i % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_numbers</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $limit <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @result;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ( $i <span style="color:#f92672">&lt;</span> $limit ) {
+</span></span><span style="display:flex;"><span>            $i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            push @result, $i <span style="color:#66d9ef">if</span> is_reversible_num($i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@result;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/dave-cross/perl/ch-2.pl"><strong>Dave Cross</strong></a></p>
 <p>Dave Cross doesn&rsquo;t need a module either, and makes his own version of an <code>is_even()</code> function to call on. Splitting the sum and processing seems to be sweeping the field today.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_reversible</span> {
-      <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> reverse $_[<span style="color:#ae81ff">0</span>];
-      <span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">//</span>, $sum) {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> is_even($_);
-      }
-
-      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_even</span> {
-      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> ($_[<span style="color:#ae81ff">0</span>] % 2);
-      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_reversible</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> reverse $_[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">//</span>, $sum) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> is_even($_);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_even</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> ($_[<span style="color:#ae81ff">0</span>] % 2);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/roger-bell-west/rust/ch-2.rs">Rust</a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://blog.firedrake.org/archive/2022/08/The_Weekly_Challenge_176__Reversible_Permutations.html">RogerBW&rsquo;s Blog: The Weekly Challenge 176: Reversible Permutations</a></p>
 <p>Roger avoids the fairly expensive <code>split</code> function by performing his parity checks purely mathematically. The candidate number is checked for divsibilty by 2 using modulo division, which tests the last digit for oddness. He then divides by 10 and discards the remainder and repeats the step, checking the next digit along. This is repeated until we run out of number.</p>
 <p>These sort of clean, mathematical solutions Roger excels at have a tendency to be extremely fast, and the explicit, versus implict, looping structures are easier to see and optimize should that become necessary.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reversible</span>($mx) {
-      <span style="color:#66d9ef">my</span> @o;
-      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$mx) {
-        <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> $n <span style="color:#f92672">+</span> reverse($n);
-        <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">while</span> ($t <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-          <span style="color:#66d9ef">if</span> ($t % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-            $q <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-            <span style="color:#66d9ef">last</span>;
-          }
-          $t <span style="color:#f92672">=</span> int($t<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>);
-        }
-        <span style="color:#66d9ef">if</span> ($q) {
-          push @o,$n;
-        }
-      }
-      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reversible</span>($mx) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @o;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$mx) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> $n <span style="color:#f92672">+</span> reverse($n);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ($t <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> ($t % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            $q <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>          $t <span style="color:#f92672">=</span> int($t<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($q) {
+</span></span><span style="display:flex;"><span>          push @o,$n;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-176/james-smith">Perl Weekly Challenge #176</a></p>
 <p>As it works out, we are immediately presented with a way to test the bold hypothesis I&rsquo;ve just made, as James is presenting to us two solutions for our review: one based on matching the digits of the sum with a regular expression, the other checking the digits individually as we divide it down by 10 until it vanishes. And he even adds benchmarking code! Lets watch:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reversible_regex</span> {
-      grep { ($_<span style="color:#f92672">+</span>reverse) <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{^[13579]{2}</span>$<span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">}</span> 10<span style="color:#f92672">..</span><span style="color:#ae81ff">99</span>;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reversible_maths</span> {
-      <span style="color:#66d9ef">my</span> $q;
-      grep { ($q <span style="color:#f92672">=</span> ($_<span style="color:#f92672">+</span>reverse) )%2 <span style="color:#f92672">&amp;&amp;</span> int($q<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>)%2 } <span style="color:#ae81ff">10</span><span style="color:#f92672">..</span><span style="color:#ae81ff">99</span>;
-    }
-
-    <span style="color:#f92672">...</span>
-
-    cmpthese( <span style="color:#ae81ff">20_000</span>,{
-      <span style="color:#e6db74">&#39;maths&#39;</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { reversible_maths },
-      <span style="color:#e6db74">&#39;regex&#39;</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { reversible_regex },
-    });
-</code></pre></div><p>I truncated the output section for clarity, but here are the results:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        Rate regex maths
-     <span style="color:#ae81ff">26316</span><span style="color:#f92672">/</span>s    <span style="color:#f92672">--</span>  <span style="color:#f92672">-</span><span style="color:#ae81ff">55</span>%
-     58824<span style="color:#f92672">/</span>s  <span style="color:#ae81ff">124</span>%    <span style="color:#960050;background-color:#1e0010">--</span>
-</code></pre></div><p>We can see the dividing down is in fact considerably faster.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reversible_regex</span> {
+</span></span><span style="display:flex;"><span>      grep { ($_<span style="color:#f92672">+</span>reverse) <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{^[13579]{2}</span>$<span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">}</span> 10<span style="color:#f92672">..</span><span style="color:#ae81ff">99</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reversible_maths</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $q;
+</span></span><span style="display:flex;"><span>      grep { ($q <span style="color:#f92672">=</span> ($_<span style="color:#f92672">+</span>reverse) )%2 <span style="color:#f92672">&amp;&amp;</span> int($q<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>)%2 } <span style="color:#ae81ff">10</span><span style="color:#f92672">..</span><span style="color:#ae81ff">99</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cmpthese( <span style="color:#ae81ff">20_000</span>,{
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#39;maths&#39;</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { reversible_maths },
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#39;regex&#39;</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { reversible_regex },
+</span></span><span style="display:flex;"><span>    });
+</span></span></code></pre></div><p>I truncated the output section for clarity, but here are the results:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>        Rate regex maths
+</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">26316</span><span style="color:#f92672">/</span>s    <span style="color:#f92672">--</span>  <span style="color:#f92672">-</span><span style="color:#ae81ff">55</span>%
+</span></span><span style="display:flex;"><span>     58824<span style="color:#f92672">/</span>s  <span style="color:#ae81ff">124</span>%    <span style="color:#960050;background-color:#1e0010">--</span>
+</span></span></code></pre></div><p>We can see the dividing down is in fact considerably faster.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://colincrain.com/2022/08/07/drive-it-in-reverse-then-done">Drive It In Reverse, Then. Done. - Programming Excursions in Perl and Raku</a></p>
 <p>When devising my own solution, it quickly became apparent the the correct course of action would be to check every decimal number between 1 and 100 for the requirements. This would be straightforward and managable and obviously the best way to go about things.</p>
 <p>On the other hand it wasn&rsquo;t very interesting.</p>
 <p>So I didn&rsquo;t do that.</p>
-<p>You see, the thing about these so-called reversible numbers was that I had no idea why they existed as a concept. Furthermore, no one was stepping up to discuss their properties, their <em>raison d'être</em>. So I ended up getting lured down a rabbit-hole to discover them myself, by <em>constructing</em> the numbers.</p>
+<p>You see, the thing about these so-called reversible numbers was that I had no idea why they existed as a concept. Furthermore, no one was stepping up to discuss their properties, their <em>raison d&rsquo;être</em>. So I ended up getting lured down a rabbit-hole to discover them myself, by <em>constructing</em> the numbers.</p>
 <p>From my notes, pared down for brevity:</p>
 <blockquote>
 <p>How do you make an odd number? You add an even number and an odd one.</p>
@@ -939,20 +938,20 @@ submitted a very similar third solution to this one.</p>
 <blockquote>
 <p>We need a list of two-digit numbers such that one digit is even and the other odd, where the two digits summed together do not exceed 9, and the first digit is not zero. Any number that satisfies these criteria should be so-called reversible.</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">## we&#39;ll construct TWO DIGIT numbers in the form $m$n</span>
-
-    <span style="color:#66d9ef">my</span> @twos;
-
-    FIRST: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $m ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> ) {
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n ( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> ) {
-            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> ($m <span style="color:#f92672">+</span> $n) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;    <span style="color:#75715e">## sum is odd</span>
-            <span style="color:#66d9ef">next</span> FIRST <span style="color:#66d9ef">if</span> $m <span style="color:#f92672">+</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span>;    <span style="color:#75715e">## but will not carry</span>
-            push @twos, <span style="color:#e6db74">&#34;$m$n&#34;</span>;
-        }
-    }
-
-    say <span style="color:#e6db74">&#34;@twos&#34;</span>;
-</code></pre></div><p>This constructs a list of the correct values.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#75715e">## we&#39;ll construct TWO DIGIT numbers in the form $m$n</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @twos;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    FIRST: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $m ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n ( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> ($m <span style="color:#f92672">+</span> $n) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;    <span style="color:#75715e">## sum is odd</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">next</span> FIRST <span style="color:#66d9ef">if</span> $m <span style="color:#f92672">+</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span>;    <span style="color:#75715e">## but will not carry</span>
+</span></span><span style="display:flex;"><span>            push @twos, <span style="color:#e6db74">&#34;$m$n&#34;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;@twos&#34;</span>;
+</span></span></code></pre></div><p>This constructs a list of the correct values.</p>
 <p>So the I considered, what about three digits? The reversal effects would change.</p>
 <blockquote>
 <p>For 3-digit numbers the rules are a little different. In these, the center digit will always reverse to itself, and hence sum to an even number. So the only way for a 3-digit number to be reversible is for the one&rsquo;s position to carry. The reverse-sum of these numbers then will always be of the for 1xxx, where x is some odd digit.</p>
@@ -961,55 +960,55 @@ submitted a very similar third solution to this one.</p>
 <p>In these number the first and third position must therefore sum to an odd number greater than 9, and the middle position can be any number that will not carry with 1 added, which is to say 0 through 4. It&rsquo;s easier to construct these out-of-order, modifying the loops of our 2-digit solution and adding a third interior loop to fit center digit</p>
 </blockquote>
 <p>Here&rsquo;s the result.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">## THREE DIGIT $m$p$n</span>
-
-    <span style="color:#66d9ef">my</span> @threes;
-
-    ONE: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $m ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> ) {
-        TWO: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n ( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> ) {
-            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> ($m <span style="color:#f92672">+</span> $n) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;          <span style="color:#75715e">## sum is odd</span>
-            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $m <span style="color:#f92672">+</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span>;            <span style="color:#75715e">## must carry</span>
-            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>) {
-                <span style="color:#66d9ef">next</span> TWO <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span> ;    <span style="color:#75715e">## must not carry</span>
-                push @threes, <span style="color:#e6db74">&#34;$m$p$n&#34;</span>;
-            }
-        }
-    }
-
-    @threes <span style="color:#f92672">=</span> sort { $a<span style="color:#e6db74">&lt;=&gt;</span>$b } @threes;
-
-    say <span style="color:#e6db74">&#34;@threes&#34;</span>;
-</code></pre></div><p>The little generating programs are nice and compact, really. I went on to analyse four and five digit versions as well, which are documented in the writeup (and on the original script in a slightly less-refined manner)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#75715e">## THREE DIGIT $m$p$n</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @threes;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ONE: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $m ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> ) {
+</span></span><span style="display:flex;"><span>        TWO: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n ( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> ($m <span style="color:#f92672">+</span> $n) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;          <span style="color:#75715e">## sum is odd</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $m <span style="color:#f92672">+</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span>;            <span style="color:#75715e">## must carry</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">next</span> TWO <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span> ;    <span style="color:#75715e">## must not carry</span>
+</span></span><span style="display:flex;"><span>                push @threes, <span style="color:#e6db74">&#34;$m$p$n&#34;</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @threes <span style="color:#f92672">=</span> sort { $a<span style="color:#e6db74">&lt;=&gt;</span>$b } @threes;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;@threes&#34;</span>;
+</span></span></code></pre></div><p>The little generating programs are nice and compact, really. I went on to analyse four and five digit versions as well, which are documented in the writeup (and on the original script in a slightly less-refined manner)</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/bruce-gray/raku/ch-2.raku">Raku</a></p>
 <p>Bruce delivered a fine, paractical solution based around splitting the sum into an array of digits and using a <code>grep</code> filter to only pass odd values from the array, checking ot see whether the filtered output matches the input.</p>
 <p>Not to put too fine point on it but we&rsquo;ve seen that one already. It&rsquo;s good.</p>
 <p>This is all very nicely done but not what we&rsquo;re interested in at the moment. Rather, he also submits to us three alternate methods that each reflect a novel analysis.</p>
-<p>Now we&rsquo;re talkin&rsquo;.</p>
+<p>Now we&rsquo;re talkin'.</p>
 <p>Bruse makes inferrence to a blog expalining these solutions that somehow does not seem to have materialized, so I&rsquo;ll do my best.</p>
 <p>First, as I noted above, in a two-digit solution the individual digit sums cannot carry. Bruse draws from this the conclusion that the first digit plus the second digit must sum to odd numbers less than 10. So we can just collect numbers in the range for which this is true:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt;sum&gt;</span>;
-    say join <span style="color:#e6db74">&#39;,&#39;</span>, grep { <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> sum split <span style="color:#e6db74">&#39;&#39;</span>; $s % 2 <span style="color:#f92672">and</span> $s <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span> } <span style="color:#ae81ff">10</span><span style="color:#f92672">..</span><span style="color:#ae81ff">99</span>;
-</code></pre></div><p>A good solution that only works with two-dgit numbers, because, for instance, three digits require a carry to retain their oddness.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt;sum&gt;</span>;
+</span></span><span style="display:flex;"><span>    say join <span style="color:#e6db74">&#39;,&#39;</span>, grep { <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> sum split <span style="color:#e6db74">&#39;&#39;</span>; $s % 2 <span style="color:#f92672">and</span> $s <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span> } <span style="color:#ae81ff">10</span><span style="color:#f92672">..</span><span style="color:#ae81ff">99</span>;
+</span></span></code></pre></div><p>A good solution that only works with two-dgit numbers, because, for instance, three digits require a carry to retain their oddness.</p>
 <p>That one was pretty straightforward. Next, though, we have a mathematical solution, &ldquo;via decomposition of the odd multiples of 11&rdquo;. Ok. Sure. Let&rsquo;s do that:</p>
 <p>This one uses the <code>List::Prime::Util</code> function <a href="https://metacpan.org/pod/Math::Prime::Util#forpart"><code>forpart</code></a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">qw&lt;forpart&gt;</span>;
-    <span style="color:#66d9ef">my</span> @r;
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">collect</span> { push @r, join(<span style="color:#e6db74">&#39;&#39;</span>, @_), join(<span style="color:#e6db74">&#39;&#39;</span>, reverse @_) }
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $odd ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span> ) {
-        push @r, $odd <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;0&#39;</span>;
-        forpart <span style="color:#f92672">\&amp;</span>collect, $odd, { n <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span> };
-    }
-    say join <span style="color:#e6db74">&#39;,&#39;</span>, sort @r;
-</code></pre></div><p>Offhand I&rsquo;m not entirely sure what&rsquo;s going on here.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">qw&lt;forpart&gt;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @r;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">collect</span> { push @r, join(<span style="color:#e6db74">&#39;&#39;</span>, @_), join(<span style="color:#e6db74">&#39;&#39;</span>, reverse @_) }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $odd ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span> ) {
+</span></span><span style="display:flex;"><span>        push @r, $odd <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>        forpart <span style="color:#f92672">\&amp;</span>collect, $odd, { n <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span> };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    say join <span style="color:#e6db74">&#39;,&#39;</span>, sort @r;
+</span></span></code></pre></div><p>Offhand I&rsquo;m not entirely sure what&rsquo;s going on here.</p>
 <p>Lastly, though we have the following cryptic entry for the intrepid. Good luck:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Correct for 2-digit, but no longer comprehensible:</span>
-    say join <span style="color:#e6db74">&#39;,&#39;</span>, sort map {
-        <span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> $_;
-        map { <span style="color:#ae81ff">9</span> <span style="color:#f92672">*</span> $_ <span style="color:#f92672">+</span> $N } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $N;
-    } <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>;
-</code></pre></div><p>Just a little sumptin&rsquo; to get you thinking.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#75715e"># Correct for 2-digit, but no longer comprehensible:</span>
+</span></span><span style="display:flex;"><span>    say join <span style="color:#e6db74">&#39;,&#39;</span>, sort map {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> $_;
+</span></span><span style="display:flex;"><span>        map { <span style="color:#ae81ff">9</span> <span style="color:#f92672">*</span> $_ <span style="color:#f92672">+</span> $N } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $N;
+</span></span><span style="display:flex;"><span>    } <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>;
+</span></span></code></pre></div><p>Just a little sumptin&rsquo; to get you thinking.</p>
 <h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
 <p>  <strong>additional languages:</strong>

@@ -67,7 +67,7 @@ sub zeckendorf {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-361/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub zeckendorf($n is copy) {
     my @f = (1, 2);
 

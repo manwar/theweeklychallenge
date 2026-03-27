@@ -299,7 +299,7 @@ First, we will create the configuration file: `docker-compose.yml`
 
 <br>
 
-```
+```perl
 version: '3.8'
 services:
   mongodb:

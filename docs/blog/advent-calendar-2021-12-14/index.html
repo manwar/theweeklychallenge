@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-13blogadvent-calendar-2021-12-13--day-14--day-15blogadvent-calendar-2021-12-15-">| <a href="/blog/advent-calendar-2021-12-13"><strong>Day 13</strong></a> | <strong>Day 14</strong> | <a href="/blog/advent-calendar-2021-12-15"><strong>Day 15</strong></a> |</h3>
+        <h2 id="advent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
+<h3 id="-day-13--day-14--day-15-">| <a href="/blog/advent-calendar-2021-12-13"><strong>Day 13</strong></a> | <strong>Day 14</strong> | <a href="/blog/advent-calendar-2021-12-15"><strong>Day 15</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-2020-04"><strong>Luca Ferrari</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-126"><strong>&ldquo;The Weekly Challenge - 126&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://fluca1978.github.io/2021/08/16/PerlWeeklyChallenge126.html"><strong>post</strong></a> by <code>Luca Ferrari</code>.</p>
 <hr>
@@ -212,65 +212,65 @@ First of all, let’s do a couple of utility functions:</p>
 <br>
 <h4 id="compute-mines-accepts-the-same-input-and-tries-to-move-on-near-positions-to-see-how-many-mines-there-are"><code>compute-mines</code> accepts the same input and tries to move on near positions to see how many mines there are.</h4>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-mine( @input, $row, $column ) {
-    <span style="color:#66d9ef">return</span> @input[ $row ][ $column ] <span style="color:#f92672">~~</span> <span style="color:#e6db74">&#39;x&#39;</span>;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compute</span>-mines( @input, $row, $column ) {
-    <span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-    <span style="color:#75715e"># see where we can move</span>
-    <span style="color:#66d9ef">my</span> ( $can<span style="color:#f92672">-</span>left, $can<span style="color:#f92672">-</span>right, $can<span style="color:#f92672">-</span>up, $can<span style="color:#f92672">-</span>down ) <span style="color:#f92672">=</span>
-         $column <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>, $column <span style="color:#f92672">&lt;</span> @input[ <span style="color:#ae81ff">0</span> ]<span style="color:#f92672">.</span>elems, $row <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>, $row <span style="color:#f92672">&lt;</span> @input<span style="color:#f92672">.</span>elems;
-
-    <span style="color:#75715e"># left, if possible</span>
-    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>left <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row, $column <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) );
-    <span style="color:#75715e"># up if possible</span>
-    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>up <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $column ) );
-    <span style="color:#75715e"># down if possible</span>
-    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>down <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> , $column ) );
-    <span style="color:#75715e"># right if possible</span>
-    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>right <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row, $column <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) );
-
-    <span style="color:#75715e"># left up</span>
-    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>left <span style="color:#f92672">&amp;&amp;</span> $can<span style="color:#f92672">-</span>up <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $column <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) );
-    <span style="color:#75715e"># right up</span>
-    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>up <span style="color:#f92672">&amp;&amp;</span>  $can<span style="color:#f92672">-</span>right <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $column <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) );
-    <span style="color:#75715e"># left down</span>
-    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>left <span style="color:#f92672">&amp;&amp;</span> $can<span style="color:#f92672">-</span>down <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $column <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) );
-    <span style="color:#75715e"># right down</span>
-    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>down <span style="color:#f92672">&amp;&amp;</span> $can<span style="color:#f92672">-</span>right <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $column <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) );
-
-    <span style="color:#75715e"># left up if possible</span>
-
-    <span style="color:#66d9ef">return</span> $counter;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-mine( @input, $row, $column ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @input[ $row ][ $column ] <span style="color:#f92672">~~</span> <span style="color:#e6db74">&#39;x&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compute</span>-mines( @input, $row, $column ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># see where we can move</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ( $can<span style="color:#f92672">-</span>left, $can<span style="color:#f92672">-</span>right, $can<span style="color:#f92672">-</span>up, $can<span style="color:#f92672">-</span>down ) <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>         $column <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>, $column <span style="color:#f92672">&lt;</span> @input[ <span style="color:#ae81ff">0</span> ]<span style="color:#f92672">.</span>elems, $row <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>, $row <span style="color:#f92672">&lt;</span> @input<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># left, if possible</span>
+</span></span><span style="display:flex;"><span>    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>left <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row, $column <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) );
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># up if possible</span>
+</span></span><span style="display:flex;"><span>    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>up <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $column ) );
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># down if possible</span>
+</span></span><span style="display:flex;"><span>    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>down <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> , $column ) );
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># right if possible</span>
+</span></span><span style="display:flex;"><span>    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>right <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row, $column <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># left up</span>
+</span></span><span style="display:flex;"><span>    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>left <span style="color:#f92672">&amp;&amp;</span> $can<span style="color:#f92672">-</span>up <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $column <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) );
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># right up</span>
+</span></span><span style="display:flex;"><span>    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>up <span style="color:#f92672">&amp;&amp;</span>  $can<span style="color:#f92672">-</span>right <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $column <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) );
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># left down</span>
+</span></span><span style="display:flex;"><span>    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>left <span style="color:#f92672">&amp;&amp;</span> $can<span style="color:#f92672">-</span>down <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $column <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) );
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># right down</span>
+</span></span><span style="display:flex;"><span>    $counter<span style="color:#f92672">++</span>  <span style="color:#66d9ef">if</span> ( $can<span style="color:#f92672">-</span>down <span style="color:#f92672">&amp;&amp;</span> $can<span style="color:#f92672">-</span>right <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mine( @input, $row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $column <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># left up if possible</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $counter;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>The most complex part is within the <code>compute-mines:</code> in short the function checks if it can move <code>up</code>, <code>down</code>, <code>left</code> and <code>right</code> and <code>diagonal</code> directions without going over the array boundaries. If the move can be done, and in that position there is a mine, the <code>$counter</code> variable is incremented.</p>
 <p>It is now turn to use the above functions in the main program:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
-    <span style="color:#66d9ef">my</span> @input <span style="color:#f92672">=</span>
-     <span style="color:#e6db74">qw/ x * * * x * x x x x /</span>,
-     <span style="color:#e6db74">qw/ * * * * * * * * * x /</span>,
-     <span style="color:#e6db74">qw/ * * * * x * x * x * /</span>,
-     <span style="color:#e6db74">qw/ * * * x x * * * * * /</span>,
-     <span style="color:#e6db74">qw/ x * * * x * * * * x /</span>;
-
-    <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> @input<span style="color:#f92672">.</span>elems;
-    <span style="color:#66d9ef">my</span> $columns <span style="color:#f92672">=</span> @input[ <span style="color:#ae81ff">0</span> ]<span style="color:#f92672">.</span>elems;
-
-    <span style="color:#66d9ef">my</span> ( $current<span style="color:#f92672">-</span>row, $current<span style="color:#f92672">-</span>column ) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> $rows <span style="color:#f92672">-&gt;</span> $current<span style="color:#f92672">-</span>row {
-        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> $columns <span style="color:#f92672">-&gt;</span> $current<span style="color:#f92672">-</span>column {
-            <span style="color:#66d9ef">print</span> is<span style="color:#f92672">-</span>mine( @input, $current<span style="color:#f92672">-</span>row, $current<span style="color:#f92672">-</span>column ) ?? <span style="color:#e6db74">&#39;x&#39;</span>
-                      <span style="color:#f92672">!!</span> compute<span style="color:#f92672">-</span>mines( @input, $current<span style="color:#f92672">-</span>row, $current<span style="color:#f92672">-</span>column );
-        }
-
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @input <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">qw/ x * * * x * x x x x /</span>,
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">qw/ * * * * * * * * * x /</span>,
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">qw/ * * * * x * x * x * /</span>,
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">qw/ * * * x x * * * * * /</span>,
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">qw/ x * * * x * * * * x /</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> @input<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $columns <span style="color:#f92672">=</span> @input[ <span style="color:#ae81ff">0</span> ]<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ( $current<span style="color:#f92672">-</span>row, $current<span style="color:#f92672">-</span>column ) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> $rows <span style="color:#f92672">-&gt;</span> $current<span style="color:#f92672">-</span>row {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> $columns <span style="color:#f92672">-&gt;</span> $current<span style="color:#f92672">-</span>column {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">print</span> is<span style="color:#f92672">-</span>mine( @input, $current<span style="color:#f92672">-</span>row, $current<span style="color:#f92672">-</span>column ) ?? <span style="color:#e6db74">&#39;x&#39;</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#f92672">!!</span> compute<span style="color:#f92672">-</span>mines( @input, $current<span style="color:#f92672">-</span>row, $current<span style="color:#f92672">-</span>column );
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>As you can see, the <code>@input</code> array contains the mine field, and the first step is to compute the number of rows and columns, than to do a nested loop to print either the mine or the number computed by <code>compute-mines</code>.</p>
 <p>The final result is something like the following:</p>
 <br>

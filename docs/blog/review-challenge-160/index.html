@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>Colin Crain › Perl Weekly Review #160</span>
         </nav>
-        <span class="reading-time" title="6869 words">
+        <span class="reading-time" title="6870 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -200,7 +200,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
 <div align= center><strong>...So finally, without further ado...</strong></div>
 <hr>
-<h2 id="---nbsp--nbsp--nbsp---task-1pwc160task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc160task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc160blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC160TASK1">Task 1</a>                 •             <a href="#PWC160TASK2">Task 2</a>             	•             <a href="#PWC160BLOGS">BLOGS</a>              	•</h2>
+<h2 id="----------task-1------------------------task-2--------------------blogs-----------">•             <a href="#PWC160TASK1">Task 1</a>                 •             <a href="#PWC160TASK2">Task 2</a>             	•             <a href="#PWC160BLOGS">BLOGS</a>              	•</h2>
 <hr>
 <h1 id="PWC160TASK1">TASK 1</h1>
 <h1 id="four-is-magic">Four Is Magic</h1>
@@ -208,15 +208,15 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>You are given a positive number, $n &lt; 10.</p>
 <p>Write a script to generate english text sequence starting with the English cardinal representation of the given number, the word ‘is’ and then the English cardinal representation of the count of characters that made up the first word, followed by a comma. Continue until you reach four.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>        Input: $n = 5
-        Output: Five is four, four is magic.
-</code></pre><p><strong>Example 2:</strong></p>
-<pre><code>        Input: $n = 7
-        Output: Seven is five, five is four, four is magic.
-</code></pre><p><strong>Example 3:</strong></p>
-<pre><code>        Input: $n = 6
-        Output: Six is three, three is five, five is four, four is magic.
-</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>        Input: $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>        Output: Five is four, four is magic<span style="color:#f92672">.</span>
+</span></span></code></pre></div><p><strong>Example 2:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>        Input: $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>        Output: Seven is five, five is four, four is magic<span style="color:#f92672">.</span>
+</span></span></code></pre></div><p><strong>Example 3:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>        Input: $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>        Output: Six is three, three is five, five is four, four is magic<span style="color:#f92672">.</span>
+</span></span></code></pre></div><h2 id="about-the-solutions">about the solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a>,
@@ -266,103 +266,103 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
 <p>We will start the survey with a mathematician. CY solves the lookup problem gracefully, by constructing an array of words corresponding to the written-out names of the index positions. By maintaining the count as a digital number she can then use it as an index in the array to get the associated word quickly and easily. This array does include the dummy value &ldquo;zero&rdquo; to keep the alignment synchronized, although for the task as given this will never be used.</p>
 <p>On the other hand, we&rsquo;ll note that &ldquo;Zero is four, four is magic&rdquo;, works just fine. Also note that to construct the proper phrase in the style of the examples we should capitalize the first letter and end with a period.</p>
-<p>The control flow is built around phrase-elements &ldquo;<em>«written number»</em> is <em>«number of characters»</em>&quot;, repeated until we arrive at the number 4, which triggers what CY refers to as the &ldquo;spell&rdquo; portion of the sentence, &ldquo;four is magic.&rdquo; The first numeric instance is uppercased, and then the phrase generation is handed off to a loop until the sequence resolves.</p>
+<p>The control flow is built around phrase-elements &ldquo;<em>«written number»</em> is <em>«number of characters»</em>&rdquo;, repeated until we arrive at the number 4, which triggers what CY refers to as the &ldquo;spell&rdquo; portion of the sentence, &ldquo;four is magic.&rdquo; The first numeric instance is uppercased, and then the phrase generation is handed off to a loop until the sequence resolves.</p>
 <p>Proper punctuation is included at the time of construction.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fim</span> {
-        <span style="color:#66d9ef">my</span> @num <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;zero&#34;</span>, <span style="color:#e6db74">&#34;one&#34;</span>, <span style="color:#e6db74">&#34;two&#34;</span>, <span style="color:#e6db74">&#34;three&#34;</span>, <span style="color:#e6db74">&#34;four&#34;</span>, <span style="color:#e6db74">&#34;five&#34;</span>,
-                   <span style="color:#e6db74">&#34;six&#34;</span>, <span style="color:#e6db74">&#34;seven&#34;</span>, <span style="color:#e6db74">&#34;eight&#34;</span>, <span style="color:#e6db74">&#34;nine&#34;</span>);
-        <span style="color:#66d9ef">my</span> $spell <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;four is magic.&#34;</span>;
-        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
-        <span style="color:#66d9ef">if</span> ($c <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
-            <span style="color:#66d9ef">print</span> ucfirst($spell), <span style="color:#e6db74">&#34;\n&#34;</span>;
-            <span style="color:#66d9ef">return</span>;
-        }
-        $num[$c] <span style="color:#f92672">=</span> ucfirst($num[$c]);
-        <span style="color:#66d9ef">while</span> ($c <span style="color:#f92672">!=</span> <span style="color:#ae81ff">4</span>) {
-            <span style="color:#66d9ef">print</span> $num[$c];
-            $c <span style="color:#f92672">=</span> length $num[$c];
-            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; is $num[$c], &#34;</span>;
-        }
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$spell\n&#34;</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fim</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @num <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;zero&#34;</span>, <span style="color:#e6db74">&#34;one&#34;</span>, <span style="color:#e6db74">&#34;two&#34;</span>, <span style="color:#e6db74">&#34;three&#34;</span>, <span style="color:#e6db74">&#34;four&#34;</span>, <span style="color:#e6db74">&#34;five&#34;</span>,
+</span></span><span style="display:flex;"><span>                   <span style="color:#e6db74">&#34;six&#34;</span>, <span style="color:#e6db74">&#34;seven&#34;</span>, <span style="color:#e6db74">&#34;eight&#34;</span>, <span style="color:#e6db74">&#34;nine&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $spell <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;four is magic.&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($c <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">print</span> ucfirst($spell), <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $num[$c] <span style="color:#f92672">=</span> ucfirst($num[$c]);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ($c <span style="color:#f92672">!=</span> <span style="color:#ae81ff">4</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">print</span> $num[$c];
+</span></span><span style="display:flex;"><span>            $c <span style="color:#f92672">=</span> length $num[$c];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; is $num[$c], &#34;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$spell\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/roger-bell-west/rust/ch-1.rs">Rust</a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://blog.firedrake.org/archive/2022/04/The_Weekly_Challenge_160__Balancing_Four_is_Magic.html">RogerBW&rsquo;s Blog: The Weekly Challenge 160: Balancing Four is Magic</a></p>
 <p>Roger also gives us a tight loop, built around a central lookup array for his text equivalents. Here he&rsquo;s changed the action slightly to focus around the phrase-element generation, moving the sentence construction of capitalization and punctuation into the last, output line. The whole logic structure is now built on assembling the digit-word subcomponents inside the loop.</p>
 <p>On the other hand CY&rsquo;s definitely got him beat on using that <code>$spell</code> variable name, which made me smile. I suppose you could consider <code>$s</code> to stand for that, but I do think &ldquo;string&rdquo; is more likely, as that&rsquo;s what we&rsquo;re assembling. I quite enjoy CY&rsquo;s Chinese-language takes on English variable and subroutine naming.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fim</span> {
-      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;
-      <span style="color:#66d9ef">my</span> @words<span style="color:#f92672">=</span><span style="color:#e6db74">qw(zero one two three four five six seven eight nine)</span>;
-      <span style="color:#66d9ef">my</span> @p;
-      <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span>$words[$n] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; is &#39;</span>;
-        <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
-          $s <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;magic.&#39;</span>;
-          push @p,$s;
-          <span style="color:#66d9ef">last</span>;
-        } <span style="color:#66d9ef">else</span> {
-          $n<span style="color:#f92672">=</span>length($words[$n]);
-          $s <span style="color:#f92672">.=</span> $words[$n];
-          push @p,$s;
-        }
-      }
-      <span style="color:#66d9ef">return</span> ucfirst(join(<span style="color:#e6db74">&#39;, &#39;</span>,@p));
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fim</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @words<span style="color:#f92672">=</span><span style="color:#e6db74">qw(zero one two three four five six seven eight nine)</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @p;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span>$words[$n] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; is &#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
+</span></span><span style="display:flex;"><span>          $s <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;magic.&#39;</span>;
+</span></span><span style="display:flex;"><span>          push @p,$s;
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>          $n<span style="color:#f92672">=</span>length($words[$n]);
+</span></span><span style="display:flex;"><span>          $s <span style="color:#f92672">.=</span> $words[$n];
+</span></span><span style="display:flex;"><span>          push @p,$s;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> ucfirst(join(<span style="color:#e6db74">&#39;, &#39;</span>,@p));
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
 <p>Choroba strips the fat even further, into a short recursive routine with a wrapper function to provide initial capitalization and punctuation.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @cardinals <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( one two three four five six seven eight nine )</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">four_is_magic</span> ($n) {
-        ucfirst _four_is_magic($n) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.&#39;</span>
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_four_is_magic</span> ($n) {
-        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;four is magic&#39;</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> $n;
-
-        <span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> $cardinals[ $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
-        <span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> length $word;
-        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$word is $cardinals[ $length - 1 ], &#34;</span> <span style="color:#f92672">.</span> _four_is_magic($length)
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @cardinals <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( one two three four five six seven eight nine )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">four_is_magic</span> ($n) {
+</span></span><span style="display:flex;"><span>        ucfirst _four_is_magic($n) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.&#39;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_four_is_magic</span> ($n) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;four is magic&#39;</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> $n;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> $cardinals[ $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> length $word;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$word is $cardinals[ $length - 1 ], &#34;</span> <span style="color:#f92672">.</span> _four_is_magic($length)
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-160/james-smith">Perl Weekly Challenge #160</a></p>
 <p>Although in the limited range of the task the numbers 1 through 9 are easily written out using a lookup of some sort, array or hash, in general natural language programming is more complex, with a wide variety of linguistic quirks to accommodate. As such specialized tools have been developed by enthusiasts willing to take up the challenge. One such enthusiast is PWC member Neil Bowers, who has among his many, many achievements brought <code>Lingua::EN:Numbers</code> into our world.</p>
 <p>This module has two functions, one to translate a number into written English text, and a second to convert a number into an ordinal string, such as &ldquo;fifty-third&rdquo;.</p>
 <p>Using this module removes the numeric complexity from the algorithm, allowing input from any range. This was the second basic method used to solve the problem.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Lingua::EN::Numbers <span style="color:#e6db74">qw(num2en)</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">magic</span> {
-      <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> ucfirst num2en( <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift )<span style="color:#f92672">.</span><span style="color:#e6db74">&#39; is &#39;</span>;
-      $r <span style="color:#f92672">.=</span> join num2en( $n <span style="color:#f92672">=</span> length num2en($n)<span style="color:#f92672">=~</span><span style="color:#e6db74">s/\W//</span>rg ), <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#39;, &#39;</span>, <span style="color:#e6db74">&#39; is &#39;</span> <span style="color:#66d9ef">until</span> $n<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>;
-      $r<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;magic.&#39;</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Lingua::EN::Numbers <span style="color:#e6db74">qw(num2en)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">magic</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> ucfirst num2en( <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift )<span style="color:#f92672">.</span><span style="color:#e6db74">&#39; is &#39;</span>;
+</span></span><span style="display:flex;"><span>      $r <span style="color:#f92672">.=</span> join num2en( $n <span style="color:#f92672">=</span> length num2en($n)<span style="color:#f92672">=~</span><span style="color:#e6db74">s/\W//</span>rg ), <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#39;, &#39;</span>, <span style="color:#e6db74">&#39; is &#39;</span> <span style="color:#66d9ef">until</span> $n<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>      $r<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;magic.&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a></p>
 <p>Here&rsquo;s another example from Paulo. Note we no longer need to check the range of the input, as any number will work, say -1.45e24:</p>
-<pre><code>    Negative one point four five times ten to the twenty-fourth is fifty-nine, fifty-nine is ten, ten is three, three is five, five is four, four is magic.
-</code></pre><p>The exact method used to decide which characters to include or not include when counting, as we said, is basically inconsequential. Either the long way or the short way, we&rsquo;ll get there in the end.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Lingua::EN::Numbers <span style="color:#e6db74">qw(num2en)</span>;
-
-    say sequence(shift<span style="color:#f92672">||</span><span style="color:#ae81ff">1</span>);
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sequence</span> {
-        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span> @out;
-        <span style="color:#66d9ef">while</span> ($n <span style="color:#f92672">!=</span> <span style="color:#ae81ff">4</span>) {
-            <span style="color:#66d9ef">my</span> $num_en <span style="color:#f92672">=</span> num2en($n);
-            <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> length($num_en);
-            <span style="color:#66d9ef">my</span> $len_en <span style="color:#f92672">=</span> num2en($len);
-
-            push @out, <span style="color:#e6db74">&#34;$num_en is $len_en&#34;</span>;
-            $n <span style="color:#f92672">=</span> $len;
-        }
-
-        push @out, <span style="color:#e6db74">&#34;four is magic.&#34;</span>;
-        $out[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/(\w)/\U$1/</span>;
-        <span style="color:#66d9ef">return</span> join(<span style="color:#e6db74">&#34;, &#34;</span>, @out);
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    Negative one point four five times ten to the twenty<span style="color:#f92672">-</span>fourth is fifty<span style="color:#f92672">-</span>nine, fifty<span style="color:#f92672">-</span>nine is ten, ten is three, three is five, five is four, four is magic<span style="color:#f92672">.</span>
+</span></span></code></pre></div><p>The exact method used to decide which characters to include or not include when counting, as we said, is basically inconsequential. Either the long way or the short way, we&rsquo;ll get there in the end.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Lingua::EN::Numbers <span style="color:#e6db74">qw(num2en)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say sequence(shift<span style="color:#f92672">||</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sequence</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @out;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ($n <span style="color:#f92672">!=</span> <span style="color:#ae81ff">4</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $num_en <span style="color:#f92672">=</span> num2en($n);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> length($num_en);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $len_en <span style="color:#f92672">=</span> num2en($len);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            push @out, <span style="color:#e6db74">&#34;$num_en is $len_en&#34;</span>;
+</span></span><span style="display:flex;"><span>            $n <span style="color:#f92672">=</span> $len;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        push @out, <span style="color:#e6db74">&#34;four is magic.&#34;</span>;
+</span></span><span style="display:flex;"><span>        $out[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/(\w)/\U$1/</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> join(<span style="color:#e6db74">&#34;, &#34;</span>, @out);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/colin-crain/raku/ch-1.raku">Raku</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -373,62 +373,62 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>In my own solution, I&rsquo;ve been having a small problem lately with the familiar <code>while (1) { ... }</code> construct for an infinite loop. I know it&rsquo;s a little late to complain, and have in fact been using it without incident for — what? — decades now, but lately using a conditional with something that will never fail is just looking&hellip; kludgy to me. I don&rsquo;t know. I can&rsquo;t quite put my finger on it. Perhaps it will pass.</p>
 <p>In any case I&rsquo;ve started experimenting with <code>redo</code> inside a block. Unfortunately this puts the action verb after the object, which is less-than-perfect, but seems to scan well. At least it does what it says it should: <code>while (1)</code> is just sort of sarcastic.</p>
 <p>&ldquo;Let&rsquo;s try and communicate by saying the opposite of what we really mean&rdquo;. Yea, that&rsquo;s gonna work. See? Now they&rsquo;ve even got me doing it. I really am trying to avoid sarcasm lately. Life is difficult and confusing enough, thank you very much.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">magic</span> ($num, $out = &#39;&#39;) {
-        {
-            <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span>  num2en($num);
-            $out  <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;$name is &#34;</span>;
-            $name <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/[^a-z]//g</span>;
-            $num <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>
-                ? <span style="color:#66d9ef">return</span> ($out <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;magic&#34;</span>)
-                : ($out <span style="color:#f92672">.=</span> num2en(  length $name  ) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;, &#39;</span>);
-            $num <span style="color:#f92672">=</span> length $name ;
-            <span style="color:#66d9ef">redo</span>;
-        }
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">magic</span> ($num, $out = &#39;&#39;) {
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span>  num2en($num);
+</span></span><span style="display:flex;"><span>            $out  <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;$name is &#34;</span>;
+</span></span><span style="display:flex;"><span>            $name <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/[^a-z]//g</span>;
+</span></span><span style="display:flex;"><span>            $num <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>                ? <span style="color:#66d9ef">return</span> ($out <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;magic&#34;</span>)
+</span></span><span style="display:flex;"><span>                : ($out <span style="color:#f92672">.=</span> num2en(  length $name  ) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;, &#39;</span>);
+</span></span><span style="display:flex;"><span>            $num <span style="color:#f92672">=</span> length $name ;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">redo</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://jacoby.github.io/2022/04/12/does-that-make-friendship-equal-four-weekly-challenge-160.html">Does That Make Friendship Equal Four?: Weekly Challenge #160 | Committed to Memory</a></p>
 <p>One more in this style from Dave. Note the use of a regular expression to match out word characters instead of using <code>length</code>, which only counts the letters, and not hyphens. It doesn&rsquo;t matter in the end, only slightly changing the path to the inevitable outcome, but it is kind of cool as a technique, to isolate out only a select subset of characters. As I said the algorithm will finish no matter whether you include hyphens or not, or even, for that matter, if you were to spell out the word &ldquo;hyphen&rdquo;. But as a magic trick I think it works better if you don&rsquo;t mention them.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">magic</span> ( $i ) {
-        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;four is magic.&#39;</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>;
-        <span style="color:#66d9ef">my</span> $w   <span style="color:#f92672">=</span> num2en($i);
-        <span style="color:#66d9ef">my</span> $c   <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> $w <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(\w)/gmix</span>;
-        <span style="color:#66d9ef">my</span> $d   <span style="color:#f92672">=</span> num2en($c);
-        <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">qq{$w is $d, }</span>;
-        $out <span style="color:#f92672">.=</span> magic($c);
-        <span style="color:#66d9ef">return</span> ucfirst lc $out;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">magic</span> ( $i ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;four is magic.&#39;</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $w   <span style="color:#f92672">=</span> num2en($i);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c   <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> $w <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(\w)/gmix</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $d   <span style="color:#f92672">=</span> num2en($c);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">qq{$w is $d, }</span>;
+</span></span><span style="display:flex;"><span>        $out <span style="color:#f92672">.=</span> magic($c);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ucfirst lc $out;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/mohammad-anwar/raku/ch-1.raku">Raku</a></p>
 <p>Mohammad is back this week, with a submission based of a hash lookup for his cardinal number names. I believe there is a natural thought process to see an associative array as a more complex data structure and hence more computationally expensive, but the truth of matter is that hashes in Perl are basic, simple and useful, and hence over the years have become extremely-well tuned for speed. Hash lookups occur in constant time completely independant of scaling and are impressively fast.</p>
 <p>I was kind of waiting for someone to use a Perl hash for this translation table, and here we are.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">four_magic</span> {
-        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
-
-        die <span style="color:#e6db74">&#34;ERROR: Missing number.\n&#34;</span>      <span style="color:#66d9ef">unless</span> defined $n;
-        die <span style="color:#e6db74">&#34;ERROR: Invalid number [$n].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($n <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>);
-
-        <span style="color:#66d9ef">my</span> %name_of <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;zero&#39;</span>,  <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;one&#39;</span>,
-                       <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;two&#39;</span>,   <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;three&#39;</span>,
-                       <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;four&#39;</span>,  <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;five&#39;</span>,
-                       <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#39;six&#39;</span>,   <span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#39;seven&#39;</span>,
-                       <span style="color:#ae81ff">8</span>, <span style="color:#e6db74">&#39;eight&#39;</span>, <span style="color:#ae81ff">9</span>, <span style="color:#e6db74">&#39;nine&#39;</span>);
-
-        <span style="color:#66d9ef">my</span> @str <span style="color:#f92672">=</span> ();
-        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-            <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> $name_of{$n};
-            <span style="color:#66d9ef">my</span> $len  <span style="color:#f92672">=</span> length($name);
-            push @str, <span style="color:#e6db74">&#34;$name is $name_of{$len}&#34;</span>;
-            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> ($len <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>);
-            $n <span style="color:#f92672">=</span> length($name);
-        }
-
-        push @str, <span style="color:#e6db74">&#39;four is magic.&#39;</span>;
-
-        <span style="color:#66d9ef">return</span> ucfirst(join(<span style="color:#e6db74">&#39;, &#39;</span>, @str));
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">four_magic</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        die <span style="color:#e6db74">&#34;ERROR: Missing number.\n&#34;</span>      <span style="color:#66d9ef">unless</span> defined $n;
+</span></span><span style="display:flex;"><span>        die <span style="color:#e6db74">&#34;ERROR: Invalid number [$n].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($n <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> %name_of <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;zero&#39;</span>,  <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;one&#39;</span>,
+</span></span><span style="display:flex;"><span>                       <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;two&#39;</span>,   <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;three&#39;</span>,
+</span></span><span style="display:flex;"><span>                       <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;four&#39;</span>,  <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;five&#39;</span>,
+</span></span><span style="display:flex;"><span>                       <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#39;six&#39;</span>,   <span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#39;seven&#39;</span>,
+</span></span><span style="display:flex;"><span>                       <span style="color:#ae81ff">8</span>, <span style="color:#e6db74">&#39;eight&#39;</span>, <span style="color:#ae81ff">9</span>, <span style="color:#e6db74">&#39;nine&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @str <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> $name_of{$n};
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $len  <span style="color:#f92672">=</span> length($name);
+</span></span><span style="display:flex;"><span>            push @str, <span style="color:#e6db74">&#34;$name is $name_of{$len}&#34;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> ($len <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span>            $n <span style="color:#f92672">=</span> length($name);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        push @str, <span style="color:#e6db74">&#39;four is magic.&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ucfirst(join(<span style="color:#e6db74">&#39;, &#39;</span>, @str));
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/adam-russell/prolog/ch-1.p">Prolog</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -436,33 +436,32 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>  <strong>blog writeup:</strong>
 <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/04/17">Four is Equilibrium — Prolog — RabbitFarm</a></p>
 <p>After a brief summary of what he plans to do, Adam also chooses a hash for his lookup. Good choice. As language features go, Perl hashes stand out as a basic building block at the most primitive level. When you only provide three data structures (ok more, but lets not nit-pick) then they should be good.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># You are given a positive number, $n &lt; 10.</span>
-    <span style="color:#75715e"># Write a script to generate english text sequence starting with the English cardinal</span>
-    <span style="color:#75715e"># representation of the given number, the word ‘is’ and then the English cardinal</span>
-    <span style="color:#75715e"># representation of the count of characters that made up the first word, followed by a</span>
-    <span style="color:#75715e"># comma. Continue until you reach four.</span>
-
-    <span style="color:#66d9ef">my</span> %cardinals <span style="color:#f92672">=</span> (
-        <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;one&#34;</span>,
-        <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;two&#34;</span>,
-        <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;three&#34;</span>,
-        <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;four&#34;</span>,
-        <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;five&#34;</span>,
-        <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;six&#34;</span>,
-        <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;seven&#34;</span>,
-        <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;eight&#34;</span>,
-        <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;nine&#34;</span>
-    );
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">four_is_magic</span> {
-        <span style="color:#66d9ef">my</span>($n, $s) <span style="color:#f92672">=</span> @_;
-        $s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>$s;
-        <span style="color:#66d9ef">return</span> $s <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;four is magic&#34;</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>;
-        $s <span style="color:#f92672">.=</span> $cardinals{$n} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; is &#34;</span> <span style="color:#f92672">.</span> $cardinals{length($cardinals{$n})} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;, &#34;</span>;
-        four_is_magic(length($cardinals{$n}), $s);
-    }
-
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/maxim-kolodyazhny/perl/ch-1.pl"><strong>Maxim  Kolodyazhny</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#75715e"># You are given a positive number, $n &lt; 10.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Write a script to generate english text sequence starting with the English cardinal</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># representation of the given number, the word ‘is’ and then the English cardinal</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># representation of the count of characters that made up the first word, followed by a</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># comma. Continue until you reach four.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %cardinals <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;one&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;two&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;three&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;four&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;five&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;six&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;seven&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;eight&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;nine&#34;</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">four_is_magic</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>($n, $s) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        $s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>$s;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $s <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;four is magic&#34;</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>        $s <span style="color:#f92672">.=</span> $cardinals{$n} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; is &#34;</span> <span style="color:#f92672">.</span> $cardinals{length($cardinals{$n})} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;, &#34;</span>;
+</span></span><span style="display:flex;"><span>        four_is_magic(length($cardinals{$n}), $s);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/maxim-kolodyazhny/perl/ch-1.pl"><strong>Maxim  Kolodyazhny</strong></a></p>
 <p>We&rsquo;ll close out with this submission from avid golfing enthusiast Maxim. Golf, you say? Well there are a few dead giveaways, that taken together lead me to the conclusion:</p>
 <ul>
 <li>the use of <code>pop</code> to get the base number from the implicit @ARGV, saving two characters over <code>shift</code>, and then assigning to the predeclared topic variable.</li>
@@ -472,18 +471,18 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </ul>
 <p>That said, using a substitution regex is a really inventive solution, and really off the beaten path so kudos, Maxim. In short, we replace any number except 4 with the appropriate phrase segment followed by the result of the length subroutine as a number. We now have another number to match so the substitution is run again, until the new number is 4. No longer allowed to  match, the loop stops as well. The final 4 is substituted out in the output, which uses the <code>/r</code> switch to return the result of the substitution as a string. Handy that, as you see.</p>
 <p>Note that in <code>1while</code> it&rsquo;s not the conditional that&rsquo;s true, but the block, like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">*</span>conditional<span style="color:#f92672">*</span>) {
-        <span style="color:#ae81ff">1</span>;  <span style="color:#75715e">## do nothing</span>
-    }
-</code></pre></div><p>Here&rsquo;s the tightly-wrapped beast in its glory:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $_ <span style="color:#f92672">=</span> pop;
-
-    <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( 0 one two three four five six seven eight nine )</span>;
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">l</span> { length @n[@_] }
-
-    <span style="color:#ae81ff">1</span><span style="color:#66d9ef">while</span> <span style="color:#e6db74">s/[^4]$/$n[$&amp;] is $n[l $&amp;], ${\l $&amp;}/</span>;
-    say ucfirst <span style="color:#e6db74">s/4/four is magic./</span>r
-</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">*</span>conditional<span style="color:#f92672">*</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">1</span>;  <span style="color:#75715e">## do nothing</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Here&rsquo;s the tightly-wrapped beast in its glory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    $_ <span style="color:#f92672">=</span> pop;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( 0 one two three four five six seven eight nine )</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">l</span> { length @n[@_] }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span><span style="color:#66d9ef">while</span> <span style="color:#e6db74">s/[^4]$/$n[$&amp;] is $n[l $&amp;], ${\l $&amp;}/</span>;
+</span></span><span style="display:flex;"><span>    say ucfirst <span style="color:#e6db74">s/4/four is magic./</span>r
+</span></span></code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/alexander-pankoff/haskell/ch-1.hs">Haskell</a></p>
@@ -556,15 +555,15 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Write a script to find out the Equilibrium Index of the given array, if found.</p>
 <p>For an array A consisting n elements, index i is an equilibrium index if the sum of elements of subarray A[0…i-1] is equal to the sum of elements of subarray A[i+1…n-1].</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>        Input: @n = (1, 3, 5, 7, 9)
-        Output: 3
-</code></pre><p><strong>Example 2:</strong></p>
-<pre><code>        Input: @n = (1, 2, 3, 4, 5)
-        Output: -1 as no Equilibrium Index found.
-</code></pre><p><strong>Example 3:</strong></p>
-<pre><code>        Input: @n = (2, 4, 2)
-        Output: 1
-</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>        Input: @n <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>)
+</span></span><span style="display:flex;"><span>        Output: <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><p><strong>Example 2:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>        Input: @n <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>        Output: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> as <span style="color:#66d9ef">no</span> Equilibrium Index found<span style="color:#f92672">.</span>
+</span></span></code></pre></div><p><strong>Example 3:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>        Input: @n <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        Output: <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><h2 id="about-the-solutions-1">about the solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
@@ -615,20 +614,20 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <a href="http://blogs.perl.org/users/laurent_r/2022/04/perl-weekly-challenge-160-four-is-magic-and-equilibrium-index.html">Perl Weekly Challenge 160: Four is Magic and Equilibrium Index</a></p>
 <p>Laurent will start us of today with a very direct approach: examining each element in turn and summing the sublists preceding and following it. With small lists resembling the ones in the examples, he notes, this approach will computationally be no problem.</p>
 <p>The list is iterated over by index, which allows us to use two array slices to examine the left- and right-hand sides. A homemade <code>sum</code> function is then applied to return a compounded total.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">equilibrium</span> {
-        <span style="color:#66d9ef">my</span> @ary <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#ary<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
-            <span style="color:#66d9ef">return</span> $i <span style="color:#66d9ef">if</span> sum (@ary[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">==</span> sum (@ary[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#ary]);
-        }
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span> {
-        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @_;
-        <span style="color:#66d9ef">return</span> $sum;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">equilibrium</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @ary <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#ary<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> $i <span style="color:#66d9ef">if</span> sum (@ary[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">==</span> sum (@ary[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#ary]);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $sum;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/alexander-pankoff/haskell/ch-2.hs">Haskell</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -636,193 +635,193 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>  <strong>blog writeup:</strong>
 <a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-160-task-2.html">Challenge 160 Task #2 - Steps to recovering the Equilibrium in your lists</a></p>
 <p>This was not an uncommon approach. Here Alexander uses two variables to hold the sublists left and right, perhaps making the action a little clearer, but with net result being the same.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(all sum0)</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run</span>() {
-        <span style="color:#66d9ef">my</span> @xs <span style="color:#f92672">=</span> @ARGV;
-        die <span style="color:#e6db74">&#34;Expect a list of integers!\n&#34;</span> <span style="color:#66d9ef">unless</span> all { <span style="color:#e6db74">m/^-?\d+$/</span> } @xs;
-
-        say equilibrium_index(@xs);
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">equilibrium_index</span>(@xs) {
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#xs  ) {
-            <span style="color:#66d9ef">my</span> $lower <span style="color:#f92672">=</span> sum0( @xs[ <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] );
-            <span style="color:#66d9ef">my</span> $upper <span style="color:#f92672">=</span> sum0( @xs[ $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#xs ] );
-            <span style="color:#66d9ef">return</span> $i <span style="color:#66d9ef">if</span> $lower <span style="color:#f92672">==</span> $upper;
-        }
-
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(all sum0)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @xs <span style="color:#f92672">=</span> @ARGV;
+</span></span><span style="display:flex;"><span>        die <span style="color:#e6db74">&#34;Expect a list of integers!\n&#34;</span> <span style="color:#66d9ef">unless</span> all { <span style="color:#e6db74">m/^-?\d+$/</span> } @xs;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        say equilibrium_index(@xs);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">equilibrium_index</span>(@xs) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#xs  ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $lower <span style="color:#f92672">=</span> sum0( @xs[ <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] );
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $upper <span style="color:#f92672">=</span> sum0( @xs[ $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#xs ] );
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> $i <span style="color:#66d9ef">if</span> $lower <span style="color:#f92672">==</span> $upper;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/sgreen/python/ch-2.py">Python</a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://dev.to/simongreennet/weekly-challenge-160-3206">Weekly Challenge 160</a></p>
 <p>Using array slices and the <code>sum</code> function from <code>List::Util</code> produces a very compact solution, as you can see. This ended up being the most common method used by far. It&rsquo;s elegant and effective. I personally really like using slices, and list-wise processing in general.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
-        <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> @_;
-
-        <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
-            <span style="color:#75715e"># If the sum of digits to the left match the sum of digits to the</span>
-            <span style="color:#75715e">#  right, we have found a solution.</span>
-            <span style="color:#66d9ef">if</span> ( sum( @n[ <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] ) <span style="color:#f92672">==</span> sum( @n[ $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#n ] ) ) {
-                $idx <span style="color:#f92672">=</span> $i;
-                <span style="color:#66d9ef">last</span>;
-            }
-        }
-
-        say $idx;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># If the sum of digits to the left match the sum of digits to the</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">#  right, we have found a solution.</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ( sum( @n[ <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] ) <span style="color:#f92672">==</span> sum( @n[ $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#n ] ) ) {
+</span></span><span style="display:flex;"><span>                $idx <span style="color:#f92672">=</span> $i;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        say $idx;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/robert-dicicco/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/robert-dicicco/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/robert-dicicco/ruby/ch-2.rb">Ruby</a></p>
 <p>In sort of the opposite approach we have this submission by Robert, broken down into subroutine components, with handmade summing, and considerable commentary.</p>
 <p>In the end the code doesn&rsquo;t care much about how many lines it is in most cases. In intensive number crunching I can see the rationale behind directly accessing the stack in <code>@ARGV</code> and subroutines, for example, eliminating an assignment here, tightening a loop there. But ultimately the trade-off is usually between minor tuning in efficiency vs. ease in mainetenance and comprenhension, and our task to find the sweet spot betweeen the two.</p>
 <p>The cost of disk space, for instance, used to be a serious issue. Now it&rsquo;s not. There is a case for clarity now. YMMV.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leftsum</span> {                           <span style="color:#75715e"># get sum of the array to left of the inflection point,</span>
-      <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> shift;                        <span style="color:#75715e"># this includes the inflection point</span>
-      <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> shift;
-
-      <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-      <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> ){
-        $sum <span style="color:#f92672">+=</span> @$a[$i];
-        $i<span style="color:#f92672">--</span>;
-      }
-
-      <span style="color:#66d9ef">return</span> $sum;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rightsum</span> {                          <span style="color:#75715e"># get sum of the array to right of the inflection point,</span>
-      <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> shift;                        <span style="color:#75715e"># this includes the inflection point</span>
-      <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> shift;
-
-      <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-      <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&lt;</span> scalar(@$a) ){
-        $sum <span style="color:#f92672">+=</span> @$a[$i];
-        $i<span style="color:#f92672">++</span>;
-      }
-
-      <span style="color:#66d9ef">return</span> $sum;
-    }
-
-     <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balance</span> {
-       <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> shift;                       <span style="color:#75715e"># the input array</span>
-
-       <span style="color:#66d9ef">my</span> $flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;                        <span style="color:#75715e"># &#39;found&#39; flag</span>
-       <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> scalar(@$a);
-       <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$len<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>){           <span style="color:#75715e"># step thru possible inflection points</span>
-          <span style="color:#66d9ef">my</span> $leftval <span style="color:#f92672">=</span> leftsum($a, $i);    <span style="color:#75715e"># get the sum of left side of inflection point</span>
-          <span style="color:#66d9ef">my</span> $rightval <span style="color:#f92672">=</span> rightsum($a,$i);   <span style="color:#75715e"># get sum of right side of inflection point</span>
-          <span style="color:#66d9ef">if</span> ($leftval <span style="color:#f92672">==</span> $rightval){       <span style="color:#75715e"># compare sums</span>
-            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Output: $i\n\n&#34;</span>;
-            $flag<span style="color:#f92672">++</span>;                        <span style="color:#75715e"># increment flag if equal</span>
-            <span style="color:#66d9ef">last</span>;
-          }
-       }
-
-       <span style="color:#66d9ef">unless</span> ( $flag <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Output: -1 as no Equilibrium Index found.\n\n&#34;</span>} ;
-     }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leftsum</span> {                           <span style="color:#75715e"># get sum of the array to left of the inflection point,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> shift;                        <span style="color:#75715e"># this includes the inflection point</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> ){
+</span></span><span style="display:flex;"><span>        $sum <span style="color:#f92672">+=</span> @$a[$i];
+</span></span><span style="display:flex;"><span>        $i<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> $sum;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rightsum</span> {                          <span style="color:#75715e"># get sum of the array to right of the inflection point,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> shift;                        <span style="color:#75715e"># this includes the inflection point</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&lt;</span> scalar(@$a) ){
+</span></span><span style="display:flex;"><span>        $sum <span style="color:#f92672">+=</span> @$a[$i];
+</span></span><span style="display:flex;"><span>        $i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> $sum;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balance</span> {
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> shift;                       <span style="color:#75715e"># the input array</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">my</span> $flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;                        <span style="color:#75715e"># &#39;found&#39; flag</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> scalar(@$a);
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$len<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>){           <span style="color:#75715e"># step thru possible inflection points</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">my</span> $leftval <span style="color:#f92672">=</span> leftsum($a, $i);    <span style="color:#75715e"># get the sum of left side of inflection point</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">my</span> $rightval <span style="color:#f92672">=</span> rightsum($a,$i);   <span style="color:#75715e"># get sum of right side of inflection point</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> ($leftval <span style="color:#f92672">==</span> $rightval){       <span style="color:#75715e"># compare sums</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Output: $i\n\n&#34;</span>;
+</span></span><span style="display:flex;"><span>            $flag<span style="color:#f92672">++</span>;                        <span style="color:#75715e"># increment flag if equal</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>       }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">unless</span> ( $flag <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Output: -1 as no Equilibrium Index found.\n\n&#34;</span>} ;
+</span></span><span style="display:flex;"><span>     }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
 <p>Jorg gives us a unique manner of progressing his index; inside an exit conditional loop the first operation acts on the index <code>$i</code> and increments it post-evaluation, so when the second operation occurs we have already moved it forward. So we end up adding the old value if <code>$i</code> to the left list and subtract the new updated value from the right.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">equilibrium_index</span> {
-        <span style="color:#66d9ef">my</span> ($i, $left, $right) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, sum0 @_[<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#_]);
-        <span style="color:#75715e"># Starting with an empty left subarray, shift the index until an</span>
-        <span style="color:#75715e"># equilibrium is found or the right subarray becomes empty.</span>
-        <span style="color:#66d9ef">while</span> ($left <span style="color:#f92672">!=</span> $right <span style="color:#f92672">&amp;&amp;</span> $i <span style="color:#f92672">&lt;</span> $#_) {
-            $left <span style="color:#f92672">+=</span> $_[$i<span style="color:#f92672">++</span>];
-            $right <span style="color:#f92672">-=</span> $_[$i];
-        }
-
-        $left <span style="color:#f92672">==</span> $right ? $i : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">equilibrium_index</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($i, $left, $right) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, sum0 @_[<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#_]);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Starting with an empty left subarray, shift the index until an</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># equilibrium is found or the right subarray becomes empty.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ($left <span style="color:#f92672">!=</span> $right <span style="color:#f92672">&amp;&amp;</span> $i <span style="color:#f92672">&lt;</span> $#_) {
+</span></span><span style="display:flex;"><span>            $left <span style="color:#f92672">+=</span> $_[$i<span style="color:#f92672">++</span>];
+</span></span><span style="display:flex;"><span>            $right <span style="color:#f92672">-=</span> $_[$i];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $left <span style="color:#f92672">==</span> $right ? $i : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://wlmb.github.io/2022/04/11/PWC160/">Perl Weekly Challenge 160 – W. Luis Mochán</a></p>
 <p>The basic data structure of the <a href="https://pdl.perl.org">Perl Data Language</a> extensions is a multi-dimensional array. As that multiple dimension can quite reasonably also be 1, that means that any array or list function processing algorithm is well suited to adaptation using the PDL.</p>
 <p>Here Luis demonstrates. Slicing arrays is second nature when using the PDL, to the point it is normal to refer to a data subset as a range, denotated using a colon: <code>(idx_from:idx_to)</code>. We get this handy notation by using <code>NiceSlice</code>. We also get the <code>sumover</code> function on a slice out of the box, to sum over the slice elements (as you would hopefully expect).</p>
 <p>In the end we get a familiar algorithm in a new form.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> PDL;
-    <span style="color:#66d9ef">use</span> PDL::NiceSlice;
-    die <span style="color:#e6db74">&#34;Usage: ./ch-2.pl N1 [N2...] to find equilibrium index of an array of numbers&#34;</span>
-        <span style="color:#66d9ef">unless</span> @ARGV;
-    <span style="color:#66d9ef">my</span> $input<span style="color:#f92672">=</span>pdl(@ARGV);
-    <span style="color:#66d9ef">my</span> $result<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-1 as no equilibrium index was found&#34;</span>; <span style="color:#75715e"># default output</span>
-    say <span style="color:#e6db74">&#34;Input: &#34;</span>, $input;
-    <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$input<span style="color:#f92672">-&gt;</span>nelem<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>){ <span style="color:#75715e">#for all internal indices</span>
-       $result<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;$_ as sum(&#34;</span><span style="color:#f92672">.</span>$input(<span style="color:#ae81ff">0</span>:$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;)==sum(&#34;</span><span style="color:#f92672">.</span>$input($_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;)&#34;</span>, <span style="color:#66d9ef">last</span>
-       <span style="color:#66d9ef">if</span> $input(<span style="color:#ae81ff">0</span>:$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>sumover<span style="color:#f92672">==</span>$input($_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>sumover; <span style="color:#75715e"># Found equilibrium</span>
-    }
-    say <span style="color:#e6db74">&#34;Output: $result&#34;</span>;
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> PDL;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> PDL::NiceSlice;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;Usage: ./ch-2.pl N1 [N2...] to find equilibrium index of an array of numbers&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> @ARGV;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $input<span style="color:#f92672">=</span>pdl(@ARGV);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $result<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-1 as no equilibrium index was found&#34;</span>; <span style="color:#75715e"># default output</span>
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;Input: &#34;</span>, $input;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$input<span style="color:#f92672">-&gt;</span>nelem<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>){ <span style="color:#75715e">#for all internal indices</span>
+</span></span><span style="display:flex;"><span>       $result<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;$_ as sum(&#34;</span><span style="color:#f92672">.</span>$input(<span style="color:#ae81ff">0</span>:$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;)==sum(&#34;</span><span style="color:#f92672">.</span>$input($_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;)&#34;</span>, <span style="color:#66d9ef">last</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">if</span> $input(<span style="color:#ae81ff">0</span>:$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>sumover<span style="color:#f92672">==</span>$input($_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>sumover; <span style="color:#75715e"># Found equilibrium</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;Output: $result&#34;</span>;
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/athanasius/raku/ch-2.raku">Raku</a></p>
 <p>The monk shares a really interesting take on the problem, computing the two side-list sums at the beginning of the search and then updating the values at each step as we walk the list from left-to-right.</p>
 <p>The bookkeeping is straightforward: as the index is advanced we are focused on the three values: at the index, immediately preceeding the index, and immediately following. At each shift the values of the summed side-lists change acording to a strict pattern: the previosly examined index value is added to the left-side sum and the value of the new index element is subtracted from the right-hand sum. Practically the value added to the left list is accessed by looking at the value of the currect index minus one, obviating the need for a separate temporary holding variable.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    MAIN:
-    {
-        <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> parse_command_line();
-
-        printf <span style="color:#e6db74">&#34;Input:  \@n = (%s)\n&#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, @n;
-
-        <span style="color:#66d9ef">my</span> $index      <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">my</span> $left_sum   <span style="color:#f92672">=</span>  <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">my</span> $right_sum  <span style="color:#f92672">=</span>  <span style="color:#ae81ff">0</span>;
-           $right_sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @n[ <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#n ];
-
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#n)
-        {
-            <span style="color:#66d9ef">if</span> ($left_sum <span style="color:#f92672">==</span> $right_sum)
-            {
-                $index <span style="color:#f92672">=</span> $i;
-                <span style="color:#66d9ef">last</span>;
-            }
-
-            $left_sum  <span style="color:#f92672">+=</span> $n[ $i     ];
-            $right_sum <span style="color:#f92672">-=</span> $n[ $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ] <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&lt;</span> $#n;
-        }
-
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Output: $index\n&#34;</span>;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    MAIN:
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> parse_command_line();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        printf <span style="color:#e6db74">&#34;Input:  \@n = (%s)\n&#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, @n;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $index      <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $left_sum   <span style="color:#f92672">=</span>  <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $right_sum  <span style="color:#f92672">=</span>  <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>           $right_sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @n[ <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#n ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#n)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($left_sum <span style="color:#f92672">==</span> $right_sum)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                $index <span style="color:#f92672">=</span> $i;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            $left_sum  <span style="color:#f92672">+=</span> $n[ $i     ];
+</span></span><span style="display:flex;"><span>            $right_sum <span style="color:#f92672">-=</span> $n[ $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ] <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&lt;</span> $#n;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Output: $index\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
 <p>Here Matthew gives a variation on the technique. Two sums are maintained as we work across the list by index, values are added to the let-hand total and subtracted from the right.</p>
 <p>Of note the list ahead of us, of indices higher than the current position, is known as the &ldquo;fore&rdquo; list, and those behind our intrepid traversing iterator, in the wake of the transformation, the &ldquo;aft&rdquo;. I like that terminology.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate_equilibrium_index</span>{
-
-        <span style="color:#75715e"># Can&#39;t have an equilibrium index if there</span>
-        <span style="color:#75715e"># aren&#39;t at least three elements</span>
-        <span style="color:#66d9ef">return</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
-            <span style="color:#66d9ef">if</span>(scalar(@ARG) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>);
-
-        <span style="color:#66d9ef">my</span> $fore <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">my</span> $aft <span style="color:#f92672">=</span> $ARG[<span style="color:#ae81ff">0</span>];
-        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-
-        <span style="color:#75715e"># Compute the fore total</span>
-        <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $#ARG){
-            $fore <span style="color:#f92672">+=</span> $ARG[$_];
-        }
-
-        <span style="color:#75715e"># Loop from 1 to ($#ARG - 1)</span>
-        <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&lt;</span> $#ARG){
-            <span style="color:#66d9ef">if</span>($aft <span style="color:#f92672">==</span> $fore){
-                <span style="color:#75715e"># Found an equilibrium index- return it</span>
-                <span style="color:#66d9ef">return</span>($i);
-            }
-
-            <span style="color:#75715e"># Advance the index, adjusting the fore and</span>
-            <span style="color:#75715e"># aft totals</span>
-            $aft <span style="color:#f92672">+=</span> $ARG[$i];
-            $fore <span style="color:#f92672">-=</span> $ARG[<span style="color:#f92672">++</span>$i];
-        }
-
-        <span style="color:#75715e"># No equilibrium index found</span>
-        <span style="color:#66d9ef">return</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
-
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate_equilibrium_index</span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Can&#39;t have an equilibrium index if there</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># aren&#39;t at least three elements</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(scalar(@ARG) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $fore <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $aft <span style="color:#f92672">=</span> $ARG[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Compute the fore total</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $#ARG){
+</span></span><span style="display:flex;"><span>            $fore <span style="color:#f92672">+=</span> $ARG[$_];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Loop from 1 to ($#ARG - 1)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&lt;</span> $#ARG){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>($aft <span style="color:#f92672">==</span> $fore){
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Found an equilibrium index- return it</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>($i);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Advance the index, adjusting the fore and</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># aft totals</span>
+</span></span><span style="display:flex;"><span>            $aft <span style="color:#f92672">+=</span> $ARG[$i];
+</span></span><span style="display:flex;"><span>            $fore <span style="color:#f92672">-=</span> $ARG[<span style="color:#f92672">++</span>$i];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># No equilibrium index found</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/colin-crain/raku/ch-2.raku">Raku</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -837,25 +836,25 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>This new value is then used as a hash key, associated to the index position that got us that result. When we have finished making a single complete traversal we have enough information to get the actual sum for the entire list, which we can then look up in our hash to find the hypothetical sum that matches up. If the lookup is successful we have an answer, and if it fails we know there is no equilibrium.</p>
 <p>Not addressed is the idea that we can possibly have multiple equilibria, which can arise if we allow 0 and negative values, which as written are not excluded. Both solutions can be adapted for this possibility: the first by removing the short circuit and examining every position for a balance, recording all positive results, and the second by having the hash point to an array of results instead of a single scaler index.</p>
 <p>Is removing the second traversal really worth the extra effort? Meh, I don&rsquo;t know. Working a list of 6.7 million elements it might add up. But it was a fun exercise, capitalizing on the idea that hash lookups are a small constant time operation insensitive to scaling.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw( first sum )</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eq_direct</span> {
-    <span style="color:#75715e">## exhaustive traversal, re-summing side-lists</span>
-        <span style="color:#66d9ef">return</span> (first { sum(@_[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">==</span> sum(@_[$_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#_]) } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)) <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    } ;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eq_linear</span> (@list) {
-    <span style="color:#75715e">## single-pass continuous summing with lookup</span>
-        <span style="color:#66d9ef">my</span> %sums;
-        <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> $list[<span style="color:#ae81ff">0</span>];
-        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#list<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
-            $sums{ <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $total <span style="color:#f92672">+</span> $list[$_] } <span style="color:#f92672">=</span> $_;
-            $total <span style="color:#f92672">+=</span> $list[$_];
-        }
-        $total <span style="color:#f92672">+=</span> $list[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
-        <span style="color:#66d9ef">return</span> $sums{$total} <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw( first sum )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eq_direct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">## exhaustive traversal, re-summing side-lists</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (first { sum(@_[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">==</span> sum(@_[$_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#_]) } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)) <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    } ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eq_linear</span> (@list) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">## single-pass continuous summing with lookup</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> %sums;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> $list[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#list<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>            $sums{ <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $total <span style="color:#f92672">+</span> $list[$_] } <span style="color:#f92672">=</span> $_;
+</span></span><span style="display:flex;"><span>            $total <span style="color:#f92672">+=</span> $list[$_];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $total <span style="color:#f92672">+=</span> $list[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $sums{$total} <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/bruce-gray/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/bruce-gray/yabasic/ch-2.yab">Yabasic</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -878,28 +877,28 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>and as you can see at index <code>[3]</code> we have the value 16 in both, which is the equilibrium point as</p>
 <p>1 + 3 + 5 = 9</p>
 <p>Bruce&rsquo;s function, <code>eq_index()</code>, returns a list of all indices at valid equilibrium points.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util   <span style="color:#e6db74">qw&lt;sum0 reductions&gt;</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eq_index</span> (@list) {
-        <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span>         reductions { $a <span style="color:#f92672">+</span> $b }         @list;
-        <span style="color:#66d9ef">my</span> @y <span style="color:#f92672">=</span> reverse reductions { $a <span style="color:#f92672">+</span> $b } reverse @list;
-        <span style="color:#66d9ef">return</span> grep { $x[$_] <span style="color:#f92672">==</span> $y[$_] } keys @x;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/olivier-delouya/perl/ch-2.pl"><strong>Olivier Delouya</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util   <span style="color:#e6db74">qw&lt;sum0 reductions&gt;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eq_index</span> (@list) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span>         reductions { $a <span style="color:#f92672">+</span> $b }         @list;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @y <span style="color:#f92672">=</span> reverse reductions { $a <span style="color:#f92672">+</span> $b } reverse @list;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> grep { $x[$_] <span style="color:#f92672">==</span> $y[$_] } keys @x;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/olivier-delouya/perl/ch-2.pl"><strong>Olivier Delouya</strong></a></p>
 <p>Finally,  Olivier gives us a unusual mix of a program, blurring the boundaries of Perl and the shell. Invoked in the shell a function is defined in that language in Perl. Then the Perl interpreter is called to run instances of the function as one-liners.</p>
 <p>What a profoundly weird way to go about this. But he must know that.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#75715e">#!/bin/bash</span>
-
-    equilibrium<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;@A=eval($a); $N=scalar(@A); die &#34;Not enough element&#34; if($N &lt; 3); foreach my $i (1..$N-1) { $left=$right=0; map {$left += $_} @A[0..$i-1]; map {$right += $_} @A[$i+1..$N]; die &#34;equilibrium index is $i&#34; if($left == $right); }; print &#34;no equilibrium index&#34;; &#39;</span>
-
-    perl -se <span style="color:#e6db74">&#34;</span>$equilibrium<span style="color:#e6db74">&#34;</span> -- -a<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(1,2,3,2,1)&#34;</span>
-
-    perl -se <span style="color:#e6db74">&#34;</span>$equilibrium<span style="color:#e6db74">&#34;</span> -- -a<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(1,2,3,2,10)&#34;</span>
-
-    perl -se <span style="color:#e6db74">&#34;</span>$equilibrium<span style="color:#e6db74">&#34;</span> -- -a<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(1,2,7,9,10)&#34;</span>
-
-    perl -se <span style="color:#e6db74">&#34;</span>$equilibrium<span style="color:#e6db74">&#34;</span> -- -a<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(1,2)&#34;</span>
-</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#75715e">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    equilibrium<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;@A=eval($a); $N=scalar(@A); die &#34;Not enough element&#34; if($N &lt; 3); foreach my $i (1..$N-1) { $left=$right=0; map {$left += $_} @A[0..$i-1]; map {$right += $_} @A[$i+1..$N]; die &#34;equilibrium index is $i&#34; if($left == $right); }; print &#34;no equilibrium index&#34;; &#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    perl -se <span style="color:#e6db74">&#34;</span>$equilibrium<span style="color:#e6db74">&#34;</span> -- -a<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(1,2,3,2,1)&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    perl -se <span style="color:#e6db74">&#34;</span>$equilibrium<span style="color:#e6db74">&#34;</span> -- -a<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(1,2,3,2,10)&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    perl -se <span style="color:#e6db74">&#34;</span>$equilibrium<span style="color:#e6db74">&#34;</span> -- -a<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(1,2,7,9,10)&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    perl -se <span style="color:#e6db74">&#34;</span>$equilibrium<span style="color:#e6db74">&#34;</span> -- -a<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(1,2)&#34;</span>
+</span></span></code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/adam-russell/prolog/ch-2.p">Prolog</a></p>

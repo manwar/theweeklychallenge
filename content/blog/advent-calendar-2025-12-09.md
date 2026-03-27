@@ -48,7 +48,7 @@ but instead I can take advantage of `ASCII`'s encoding, such that flipping bit `
 
 `Raku`:
 
-```raku
+```perl
 sub upperlower($a) {
     my $out = '';
     for $a.comb -> $c {

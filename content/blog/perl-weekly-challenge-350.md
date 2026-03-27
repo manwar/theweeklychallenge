@@ -102,7 +102,7 @@ sub power_string {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-349/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub power_string(Str $s) {
     return 0 if $s.chars == 0;
 

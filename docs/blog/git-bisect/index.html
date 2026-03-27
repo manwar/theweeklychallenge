@@ -261,32 +261,32 @@ $ mkdir t
 <p>Now I need code with unit test. I am a very well behave programmer, trust me.</p>
 <p>Here is the main code: <code>lib/Calc.pm</code></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
-
-class Calc {
-    field $x :param;
-    field $y :param;
-
-    method plus {
-        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Calc {
+</span></span><span style="display:flex;"><span>    field $x :param;
+</span></span><span style="display:flex;"><span>    field $y :param;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    method plus {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>And unit test: <code>t/calc.t</code></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> Calc;
-
-<span style="color:#66d9ef">my</span> $calc <span style="color:#f92672">=</span> Calc<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>);
-
-is ($calc<span style="color:#f92672">-&gt;</span>plus(), <span style="color:#ae81ff">5</span>);
-
-done_testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Calc;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $calc <span style="color:#f92672">=</span> Calc<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is ($calc<span style="color:#f92672">-&gt;</span>plus(), <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><br>
 <p>Time to test the code:</p>
 <br>
 <pre><code>$ prove -Ilib/ t/
@@ -321,36 +321,36 @@ Date:   Sun Mar 16 11:42:25 2025 +0000
 <p>Seems fine, right?</p>
 <p>Let&rsquo;s add another method to the class <code>Calc</code> in <code>lib/Calc.pm</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
-
-class Calc {
-    field $x :param;
-    field $y :param;
-
-    method plus {
-        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
-    }
-
-    method minus {
-        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">-</span> $y;
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Calc {
+</span></span><span style="display:flex;"><span>    field $x :param;
+</span></span><span style="display:flex;"><span>    field $y :param;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    method plus {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    method minus {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">-</span> $y;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Then update the unit test <code>t/calc.t</code> too.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> Calc;
-
-<span style="color:#66d9ef">my</span> $calc <span style="color:#f92672">=</span> Calc<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>);
-is ($calc<span style="color:#f92672">-&gt;</span>plus(),  <span style="color:#ae81ff">5</span>);
-is ($calc<span style="color:#f92672">-&gt;</span>minus(), <span style="color:#ae81ff">1</span>);
-
-done_testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Calc;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $calc <span style="color:#f92672">=</span> Calc<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>is ($calc<span style="color:#f92672">-&gt;</span>plus(),  <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>is ($calc<span style="color:#f92672">-&gt;</span>minus(), <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><br>
 <p>Time to test the change:</p>
 <br>
 <pre><code>$ prove -Ilib/ t/
@@ -387,22 +387,22 @@ Date:   Sun Mar 16 11:42:25 2025 +0000
 <br>
 <p>Now the fun begins, we will introduce <code>a bug</code> in the code: <code>lib/Calc.pm</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
-
-class Calc {
-    field $x :param;
-    field $y :param;
-
-    method plus {
-        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
-    }
-
-    method minus {
-        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">-</span> $y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Calc {
+</span></span><span style="display:flex;"><span>    field $x :param;
+</span></span><span style="display:flex;"><span>    field $y :param;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    method plus {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    method minus {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">-</span> $y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>As you noticed, the <code>method minus()</code> now returns one less than the actual result.</p>
 <p>I purposely commit the change without testing the updated code.</p>
 <br>
@@ -437,41 +437,41 @@ Date:   Sun Mar 16 11:42:25 2025 +0000
 <p>We will make one more change before the showdown of <code>git bisect</code>.</p>
 <p>As you can see, we now have a new <code>method multiply()</code>:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
-
-class Calc {
-    field $x :param;
-    field $y :param;
-
-    method plus {
-        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
-    }
-
-    method minus {
-        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">-</span> $y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-    }
-
-    method multiply {
-        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">*</span> $y;
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Calc {
+</span></span><span style="display:flex;"><span>    field $x :param;
+</span></span><span style="display:flex;"><span>    field $y :param;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    method plus {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">+</span> $y;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    method minus {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">-</span> $y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    method multiply {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">*</span> $y;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>We would now update the unit test as well:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> Calc;
-
-<span style="color:#66d9ef">my</span> $calc <span style="color:#f92672">=</span> Calc<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>);
-is ($calc<span style="color:#f92672">-&gt;</span>plus(),     <span style="color:#ae81ff">5</span>);
-is ($calc<span style="color:#f92672">-&gt;</span>minus(),    <span style="color:#ae81ff">1</span>);
-is ($calc<span style="color:#f92672">-&gt;</span>multiply(), <span style="color:#ae81ff">6</span>);
-
-done_testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Calc;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $calc <span style="color:#f92672">=</span> Calc<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>is ($calc<span style="color:#f92672">-&gt;</span>plus(),     <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>is ($calc<span style="color:#f92672">-&gt;</span>minus(),    <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>is ($calc<span style="color:#f92672">-&gt;</span>multiply(), <span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><br>
 <p>We will now commit the changes without running the test.</p>
 <br>
 <pre><code>$ git add lib/Calc.pm

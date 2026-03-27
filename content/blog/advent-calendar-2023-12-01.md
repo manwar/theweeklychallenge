@@ -55,7 +55,7 @@ The `third-largest` subroutine first sorts the input in descending order and the
 
 <br>
 
-```raku
+```perl
 sub third-largest (@in) {
     my @s = @in.sort.reverse;
     return @s.elems >= 3 ?? @s[2] !! @s[0];
@@ -71,7 +71,7 @@ With large lists, using the sort routine may not be the most efficient solution 
 
 <br>
 
-```raku
+```perl
 return @in.elems >= 3 ?? @in.sort[*-3] !! @in.sort[*-1];
 ```
 
@@ -83,7 +83,7 @@ This program displays the following output:
 
 <br>
 
-```raku
+```perl
 $ raku ./third-largest.raku
 5 3 4        => 3
 5 6          => 6
@@ -175,7 +175,7 @@ The `largest-xor` subroutine uses the built-in combinations routine to test all 
 
 <br>
 
-```raku
+```perl
 sub largest-xor (@in) {
     my $max = 0;
     my $max-i;
@@ -197,7 +197,7 @@ This program dispàlays the following output:
 
 <br>
 
-```raku
+```perl
 $ raku ./max-xor.raku
 1 2 3 4 5 6 7   => 1 6 -- 7
 2 4 1 3         => 4 3 -- 7

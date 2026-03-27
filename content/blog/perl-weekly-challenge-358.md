@@ -65,7 +65,7 @@ sub kaprekar_constant {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-357/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub kaprekar-constant ($int is copy) {
 
     my %seen;

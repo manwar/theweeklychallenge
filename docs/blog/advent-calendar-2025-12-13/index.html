@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2025blogadvent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
-<h3 id="-nbsp-day-12blogadvent-calendar-2025-12-12-nbsp--nbsp-day-13-nbsp--nbsp-day-14blogadvent-calendar-2025-12-14-nbsp-">|   <a href="/blog/advent-calendar-2025-12-12"><strong>Day 12</strong></a>   |   <strong>Day 13</strong>   |   <a href="/blog/advent-calendar-2025-12-14"><strong>Day 14</strong></a>   |</h3>
+        <h2 id="advent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
+<h3 id="--day-12----day-13----day-14--">|   <a href="/blog/advent-calendar-2025-12-12"><strong>Day 12</strong></a>   |   <strong>Day 13</strong>   |   <a href="/blog/advent-calendar-2025-12-14"><strong>Day 14</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Simon Green</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-316"><strong>The Weekly Challenge - 316</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://dev.to/simongreennet/weekly-challenge-sub-circular-hno"><strong>post</strong></a>.</p>
 <hr>
@@ -194,37 +194,37 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>For each value, I check if the first letter of this word is the same as the last letter of the previous word. If it isn&rsquo;t, I return <code>False</code>. If the loop is exhausted, I return <code>True</code>.</p>
 <p>There is no need to check if the last letter of the last word is the same as the first letter of the first word.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">circular</span>(words: list) <span style="color:#f92672">-&gt;</span> bool:
-    <span style="color:#66d9ef">for</span> idx <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, len(words)):
-        <span style="color:#66d9ef">if</span> words[idx][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> words[idx<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]:
-            <span style="color:#66d9ef">return</span> False
-
-    <span style="color:#66d9ef">return</span> True
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">circular</span>(words: list) <span style="color:#f92672">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> idx <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, len(words)):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> words[idx][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> words[idx<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+</span></span></code></pre></div><br>
 <p>The <code>Perl</code> solution also follows this logic, although is longer to get the first/last character of each word.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> (@words) {
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $idx (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#words) {
-        <span style="color:#66d9ef">if</span> (substr($words[$idx], <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">ne</span> substr($words[$idx<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)) {
-            say <span style="color:#e6db74">&#39;false&#39;</span>;
-            <span style="color:#66d9ef">return</span>;
-        }
-    }
-
-    say <span style="color:#e6db74">&#39;true&#39;</span>;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> (@words) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $idx (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#words) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (substr($words[$idx], <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">ne</span> substr($words[$idx<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)) {
+</span></span><span style="display:flex;"><span>            say <span style="color:#e6db74">&#39;false&#39;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#39;true&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h2 id="examples">Examples</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ./ch-1.py perl loves scala
-True
-
-$ ./ch-1.py love the programming
-False
-
-$ ./ch-1.py java awk kotlin node.js
-True
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./ch-1.py perl loves scala
+</span></span><span style="display:flex;"><span>True
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ ./ch-1.py love the programming
+</span></span><span style="display:flex;"><span>False
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ ./ch-1.py java awk kotlin node.js
+</span></span><span style="display:flex;"><span>True
+</span></span></code></pre></div><br>
 <h2 id="task-2-subsequence">Task 2: Subsequence</h2>
 <p>You are given two string. Write a script to find out if one string is a subsequence of another.</p>
 <p>A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters.</p>
@@ -232,21 +232,21 @@ True
 <p>Some times is just easier to whip up a quick regular expression to solve a challenge and this is one of those tasks. For this task, I escape all the characters in the first string. In <code>Python</code> this is done with <code>map(re.escape, (l for l in str1))</code>, while <code>Perl</code> uses <code>map { quotemeta } split //, $str1</code>.</p>
 <p>I then join these with the regular expression <code>.*</code>, which means zero or more of any character. I then use re.search to see if the first string is a subsequence of the second one.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">subsequence</span>(str1: str, str2: str) <span style="color:#f92672">-&gt;</span> bool:
-    r <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;.*&#39;</span><span style="color:#f92672">.</span>join(map(re<span style="color:#f92672">.</span>escape, (l <span style="color:#66d9ef">for</span> l <span style="color:#f92672">in</span> str1)))
-    <span style="color:#66d9ef">return</span> bool(re<span style="color:#f92672">.</span>search(r, str2))
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">subsequence</span>(str1: str, str2: str) <span style="color:#f92672">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>    r <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;.*&#39;</span><span style="color:#f92672">.</span>join(map(re<span style="color:#f92672">.</span>escape, (l <span style="color:#66d9ef">for</span> l <span style="color:#f92672">in</span> str1)))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> bool(re<span style="color:#f92672">.</span>search(r, str2))
+</span></span></code></pre></div><br>
 <h2 id="examples-1">Examples</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ./ch-2.py uvw bcudvew
-True
-
-$ ./ch-2.py aec abcde
-False
-
-$ ./ch-2.py sip javascript
-True
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./ch-2.py uvw bcudvew
+</span></span><span style="display:flex;"><span>True
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ ./ch-2.py aec abcde
+</span></span><span style="display:flex;"><span>False
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ ./ch-2.py sip javascript
+</span></span><span style="display:flex;"><span>True
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
 <p>|   <a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a>   |</p>
@@ -282,25 +282,25 @@ True
             </span>
             <span class="related-post-date">17 Dec 2025</span>
         </a>
-        <a class="related-post-card" href="/blog/plan-2020/">
+        <a class="related-post-card" href="/blog/advent-calendar-2025-12-15/">
             <span class="related-post-section">blog</span>
-            <span class="related-post-title">[ Perl | Raku | The ] Weekly Challenge - 2020</span>
+            <span class="related-post-title">Advent Calendar - December 15, 2025</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Python</span>
+                <span class="related-post-tag">Raku</span>
+            </span>
+            <span class="related-post-date">15 Dec 2025</span>
+        </a>
+        <a class="related-post-card" href="/blog/advent-calendar-2024-12-22/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Advent Calendar - December 22, 2024</span>
             <span class="related-post-tags">
                 <span class="related-post-tag">Perl</span>
                 <span class="related-post-tag">Raku</span>
-                <span class="related-post-tag">C&#43;&#43;</span>
-            </span>
-            <span class="related-post-date">19 Nov 2019</span>
-        </a>
-        <a class="related-post-card" href="/blog/meet-the-champion-2021-03/">
-            <span class="related-post-section">blog</span>
-            <span class="related-post-title">Meet The Champion: March 2021</span>
-            <span class="related-post-tags">
-                <span class="related-post-tag">Clojure</span>
-                <span class="related-post-tag">Lua</span>
                 <span class="related-post-tag">Python</span>
             </span>
-            <span class="related-post-date">30 May 2021</span>
+            <span class="related-post-date">22 Dec 2024</span>
         </a>
     </div>
 </div>

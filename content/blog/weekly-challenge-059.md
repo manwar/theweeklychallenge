@@ -54,7 +54,7 @@ Please excuse me if my explanation is not quite there. I am happy to correct mys
 I used `|$L` to expand the list of numbers so that I can easily loop through. I know there are other ways of doing this but I like `|$L` as it looks different. Also I used new style of push elements to an array. Before I used to do `$array.push($element)` but now I do `$array.push: $element`. Doesn't it look nicer?
 
 
-```perl6
+```perl
 sub split-list($L, $K) {
 
     my $before = [];
@@ -85,7 +85,7 @@ print sprintf("Output: [ %s ]\n", join (" -> ", @$O));
 
 For **Raku**, I always put everything inside the **sub MAIN()**. To display the result, I just used the method `join()` on the list. I just love it. Did you notice, I didn't have to end the result with newline character? `say` does it automatically for me. I love you **Raku**.
 
-```perl6
+```perl
 sub MAIN($L = [ 1, 4, 3, 2, 5, 2 ], $K = 3) {
 
     my $O = split-list($L, $K);
@@ -108,7 +108,7 @@ If you thought, **Perl** unit test was light weight solution then what would you
 
 I didn't have to import any external library other than the standard `Test`. I could have avoided the `done-testing` by adding line `plan 1;` just after `use Test;`. But I liked `done-testing` way of closing the test as I can add more and more test cases in future without having to edit the plan.
 
-```perl6
+```perl
 use Test;
 
 is-deeply split-list([ 1, 4, 3, 2, 5, 2 ], 3), [ 1, 2, 2, 4, 3, 5 ];
@@ -170,7 +170,7 @@ sub f {
 
 For **Raku**, no need for external library, we already have builtin method `combinations()`. I must tell you this is not the only way you can do it. If you are keen to know other ways of dealing with it, then please follow fellow **Team PWC** members **[solutions](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-059)**.
 
-```perl6
+```perl
 sub s($A) {
 
     my $sum = 0;
@@ -184,7 +184,7 @@ sub s($A) {
 
 In the **sub f()**, I have used `base()` for the first time. It is cleaner and readable. I also used `max()` to find the longer binary string. I loved it. Then another magic `comb()` to spit out individual bits from the binary string. Rest is just a plain smooth ride.
 
-```perl6
+```perl
 sub f(Int $a, Int $b) {
     my Str $a_binary = $a.base(2);
     my Str $b_binary = $b.base(2);
@@ -217,7 +217,7 @@ print &s([2, 3, 4]);
 
 Even **Raku** is not far behind either.
 
-```perl6
+```perl
 sub MAIN($A = [2, 3, 4]) {
     say s($A);
 }
@@ -244,7 +244,7 @@ done_testing;
 
 Here is **Raku** equivalent.
 
-```perl6
+```perl
 use Test;
 
 my $unit_tests = [

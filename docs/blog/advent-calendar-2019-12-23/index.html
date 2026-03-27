@@ -177,11 +177,11 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2019blogadvent-calendar-2019"><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></h2>
-<h3 id="-day-22blogadvent-calendar-2019-12-22--day-23--day-24blogadvent-calendar-2019-12-24-">| <a href="/blog/advent-calendar-2019-12-22"><strong>Day 22</strong></a> | <strong>Day 23</strong> | <a href="/blog/advent-calendar-2019-12-24"><strong>Day 24</strong></a> |</h3>
+        <h2 id="advent-calendar-2019"><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></h2>
+<h3 id="-day-22--day-23--day-24-">| <a href="/blog/advent-calendar-2019-12-22"><strong>Day 22</strong></a> | <strong>Day 23</strong> | <a href="/blog/advent-calendar-2019-12-24"><strong>Day 24</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <strong>Francis J Whittle</strong>. Today he is talking about his solutions to <strong>Task #1: Perfect Numbers</strong> of <strong><a href="/blog/perl-weekly-challenge-008">&ldquo;The Weekly Challenge - 008&rdquo;</a></strong>.</p>
-<h4 id="write-a-script-that-computes-the-first-five-perfect-numbers-a-perfect-number-is-an-integer-that-is-the-sum-of-its-positive-proper-divisors-all-divisors-except-itself-please-check-wikihttpsenwikipediaorgwikiperfect_number-for-more-information-this-challenge-was-proposed-by-laurent-rosenfeld">Write a script that computes the first five perfect numbers. A perfect number is an integer that is the sum of its positive proper divisors (all divisors except itself). Please check <a href="https://en.wikipedia.org/wiki/Perfect_number">Wiki</a> for more information. This challenge was proposed by Laurent Rosenfeld.</h4>
+<h4 id="write-a-script-that-computes-the-first-five-perfect-numbers-a-perfect-number-is-an-integer-that-is-the-sum-of-its-positive-proper-divisors-all-divisors-except-itself-please-check-wiki-for-more-information-this-challenge-was-proposed-by-laurent-rosenfeld">Write a script that computes the first five perfect numbers. A perfect number is an integer that is the sum of its positive proper divisors (all divisors except itself). Please check <a href="https://en.wikipedia.org/wiki/Perfect_number">Wiki</a> for more information. This challenge was proposed by Laurent Rosenfeld.</h4>
 <hr>
 <h2 id="perfect-numbers">Perfect Numbers</h2>
 <p>I’m a little late to the blog this week, so I’ve had a look at what other people did before writing this up (I did my solution before checking out others’), and it looks like a number of people tried to filter the list of positive integers directly. As they discovered, this is mostly fine for the first four perfect numbers, but the fifth… takes a while to discover this way. I didn’t run into this timing issue, because I like to generate.</p>
@@ -198,22 +198,22 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>A <strong>Mersenne Prime</strong> is of the form 2p - 1 where p is a prime number. So we lazily gather a list of all prime numbers up to ∞, check if they’re prime, apply the formula, and then check if the result is prime as well, because the sequence can produce composite numbers, but Mersenne numbers / primes are always prime.</p>
 <p>I bound this to the term M:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>M :<span style="color:#f92672">=</span> (<span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">∞</span>)
-         <span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime)
-         <span style="color:#f92672">.</span>map(<span style="color:#f92672">-&gt;</span> $n { <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>})
-         <span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>M :<span style="color:#f92672">=</span> (<span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">∞</span>)
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime)
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">.</span>map(<span style="color:#f92672">-&gt;</span> $n { <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>})
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime);
+</span></span></code></pre></div><br>
 <h2 id="perfect-map">Perfect Map</h2>
 <p>The next step is to bind a mapping of the Mersenne primes to the corresponding perfect number:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>P :<span style="color:#f92672">=</span> M<span style="color:#f92672">.</span>map: <span style="color:#f92672">-&gt;</span> $q { $q <span style="color:#f92672">*</span> ($q <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) div <span style="color:#ae81ff">2</span> };
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>P :<span style="color:#f92672">=</span> M<span style="color:#f92672">.</span>map: <span style="color:#f92672">-&gt;</span> $q { $q <span style="color:#f92672">*</span> ($q <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) div <span style="color:#ae81ff">2</span> };
+</span></span></code></pre></div><br>
 <p>I used div so the result is Int not Rat.</p>
 <h2 id="finally-get-the-results">Finally, get the results</h2>
 <p>P is now a lazily generated array that will find the nth Perfect number as P[n]. ^5 gives a list of the first 5, so</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">P[<span style="color:#f92672">^</span><span style="color:#ae81ff">5</span>]<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>put
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>P[<span style="color:#f92672">^</span><span style="color:#ae81ff">5</span>]<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>put
+</span></span></code></pre></div><br>
 <p>Gets the first 5 perfect numbers, then prints each one on its own line.</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>

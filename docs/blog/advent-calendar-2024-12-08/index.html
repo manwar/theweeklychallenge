@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-7blogadvent-calendar-2024-12-07-nbsp--nbsp-day-8-nbsp--nbsp-day-9blogadvent-calendar-2024-12-09-nbsp-">|   <a href="/blog/advent-calendar-2024-12-07"><strong>Day 7</strong></a>   |   <strong>Day 8</strong>   |   <a href="/blog/advent-calendar-2024-12-09"><strong>Day 9</strong></a>   |</h3>
+        <h2 id="advent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
+<h3 id="--day-7----day-8----day-9--">|   <a href="/blog/advent-calendar-2024-12-07"><strong>Day 7</strong></a>   |   <strong>Day 8</strong>   |   <a href="/blog/advent-calendar-2024-12-09"><strong>Day 9</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Adam Russell</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-258"><strong>The Weekly Challenge - 258</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2024/03/03"><strong>post</strong></a>.</p>
 <hr>
@@ -196,31 +196,31 @@ Write a script to find out how many integers have even number of digits.
 <br>
 <p>The majory of the work can be done in a single line. Conveniently the <code>tr</code> function returns the number of characters effected by the command. For our purposes that means telling tr to delete all numerals. We then check if the number of numerals removed is even inside of a <code>grep</code> block. The number of matches is then returned. Note the one catch, in order to use <code>tr</code> we need to assign <code>$_</code> to a temporary value, <code>$x</code>. Otherwise we would get an <code>error</code> Modification of a read-only value.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_even_digits</span>{
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span>
-        grep {
-          <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $_; $x <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/[0-9]/</span><span style="color:#f92672">/</span>d % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
-        } @_;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_even_digits</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>        grep {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $_; $x <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/[0-9]/</span><span style="color:#f92672">/</span>d % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        } @_;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>The rest of the code just tests this function.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-
-
-MAIN:{
-    say count_even_digits <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">1000</span>;
-    say count_even_digits <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">11111</span>;
-    say count_even_digits <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1024</span>, <span style="color:#ae81ff">256</span>;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>MAIN:{
+</span></span><span style="display:flex;"><span>    say count_even_digits <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">1000</span>;
+</span></span><span style="display:flex;"><span>    say count_even_digits <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">11111</span>;
+</span></span><span style="display:flex;"><span>    say count_even_digits <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1024</span>, <span style="color:#ae81ff">256</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Sample Run</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl perl<span style="color:#f92672">/</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl
-<span style="color:#ae81ff">3</span>
-<span style="color:#ae81ff">0</span>
-<span style="color:#ae81ff">1</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl perl<span style="color:#f92672">/</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><br>
 <h3 id="part-2-sum-of-values">Part 2: Sum of Values</h3>
 <hr>
 <br>
@@ -231,44 +231,44 @@ Write a script to find the sum of values whose index binary representation has e
 <br>
 <p>First, let’s concern ourselves with counting <code>set bits</code>. Here we can re-use some code that we’ve used before. This is a pretty standard way to count bits. This procedure is to do a <code>bitwise AND</code> operation for the <code>least significant bit</code> and check if it is <code>set</code>. We then <code>right shift</code> and <code>repeat until no bits remain</code>. This code is actually a modification of code used in <code>TWC 079</code>!</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_bits</span>{
-    <span style="color:#66d9ef">my</span>($x) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $total_count_set_bit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span>($x){
-      <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> $x <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;
-      $total_count_set_bit<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $b;
-      $x <span style="color:#f92672">=</span> $x <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
-    }
-    <span style="color:#66d9ef">return</span> $total_count_set_bit;
-  }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>  <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_bits</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span>($x) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $total_count_set_bit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>($x){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> $x <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      $total_count_set_bit<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $b;
+</span></span><span style="display:flex;"><span>      $x <span style="color:#f92672">=</span> $x <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $total_count_set_bit;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><br>
 <p>With that necessary work taken care of we need to <code>loop</code> over the given <code>array of integers</code> and (1) check to see if the <code>index</code> contains the correct number of <code>set bits</code> and, if that is the case, <code>add</code> to the <code>rolling sum</code>. Finally, <code>return the sum</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_of_values</span>{
-      <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> shift;
-      <span style="color:#66d9ef">my</span>(@n) <span style="color:#f92672">=</span> @_;
-      <span style="color:#66d9ef">my</span> $sum;
-      <span style="color:#66d9ef">do</span>{
-          $sum <span style="color:#f92672">+=</span> $_[$_] <span style="color:#66d9ef">if</span> count_bits($_) <span style="color:#f92672">==</span> $k;
-      } <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-      <span style="color:#66d9ef">return</span> $sum;
-  }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>  <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_of_values</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span>(@n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $sum;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">do</span>{
+</span></span><span style="display:flex;"><span>          $sum <span style="color:#f92672">+=</span> $_[$_] <span style="color:#66d9ef">if</span> count_bits($_) <span style="color:#f92672">==</span> $k;
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> $sum;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><br>
 <p>The rest of the code drives some tests.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  MAIN:{
-    say sum_of_values <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">3</span>;
-    say sum_of_values <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">3</span>;
-    say sum_of_values <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">3</span>;
-  }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>  MAIN:{
+</span></span><span style="display:flex;"><span>    say sum_of_values <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>    say sum_of_values <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>    say sum_of_values <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><br>
 <p>Sample Run</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl perl<span style="color:#f92672">/</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>pl
-<span style="color:#ae81ff">17</span>
-<span style="color:#ae81ff">11</span>
-<span style="color:#ae81ff">2</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl perl<span style="color:#f92672">/</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">17</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">11</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
 <p>|   <a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a>   |</p>

@@ -63,7 +63,7 @@ Write a script to find out if the given strings can be chained to form a circle.
 A string $S can be put before another string $T in circle if the last character of $S is same as first character of $T.
 
 **Examples:**
-```
+```perl
     Input: @S = ("abc", "dea", "cd")
     Output: 1 as we can form circle e.g. "abc", "cd", "dea".
 
@@ -726,7 +726,7 @@ You are given a list of positive integers (0-9), single digit.
 Write a script to find the largest multiple of 2 that can be formed from the list.
 
 **Examples**
-```
+```perl
     Input: @N = (1, 0, 2, 6)
     Output: 6210
 

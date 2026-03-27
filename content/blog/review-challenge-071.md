@@ -47,13 +47,13 @@ In the end it should print peak elements in the arr, if found.
 An arr element is called peak if it is bigger than it’s neighbour.
 
 Example 1
-```
+```perl
     Array: [ 18, 45, 38, 25, 10, 7, 21, 6, 28, 48 ]
     Peak:  [ 48, 45, 21 ]
 ```
 Example 2
 
-```
+```perl
     Array: [ 47, 11, 32, 8, 1, 9, 39, 14, 36, 23 ]
     Peak:  [ 47, 32, 39, 36 ]
 ```

@@ -38,7 +38,7 @@ The Collatz conjecture related to a sequence of numbers defined as follows: star
 
 For the purpose of the basic task, this is fairly straight forward. Here, we write a `collatz-seq` subroutine that, given an integer computes the next term in the Collatz sequence. And we call that subroutine in a loop until we reach 1:
 
-``` Perl6
+```perl
 use v6;
 
 sub collatz-seq (UInt $in) {
@@ -81,7 +81,7 @@ There is another problem though, which is much more delicate. Since the requirem
 
 Since I knew from earlier tests that the 20 longest sequences would all have more than 400 items, I also hard-coded a lower limit of 400 items for the sequences whose length had to be recorded. Another possibly better solution might have been to maintain a sliding array of the top 20 sequences, but I feared that maintaining this array many times over the execution of the program would end up impacting performance negatively. Note that a better way would be to use an array of arrays in which the top level array indices are the sequence lengths and the nested arrays contain the numbers for which the Collatz sequence has this count. The final work is then simply to iterate over the reversed top array and pick up sequences until we have 20. Pretty easy. But I thought about that solution only after I made most of the tests below, so the code examples presented here will use the had-coded lower limit explained above.
 
-``` Perl6
+```perl
 use v6;
 
 my %cache = 2 => [2, 1];
@@ -146,7 +146,7 @@ This program ran in more than 9 minutes. The equivalent Perl program ran in abou
 
 A couple of days after I submitted my challenge solution and published my original [blog post](http://blogs.perl.org/users/laurent_r/2020/04/perl-weekly-challenge-54-k-th-permutation-sequence-and-the-collatz-conjecture.html), it occurred to me that my program was doing far too much work: we're only requested to display the 20 numbers having the largest Collatz sequence. We could just memoize the length of each sequence, but we do not need to store the sequence itself. By doing that, we spare a lot of memory and can cache the result for many more numbers without exhausting the memory, and we also reduce significantly the overall overhead. In the program below we store the sequence lengths for numbers up to 2,000,000 (instead of 200,000 in the program above).
 
-``` Perl6
+```perl
 use v6;
 
 my %cache = 2 => 2;
@@ -200,7 +200,7 @@ In our program above, the cache ends up with essentially one entry per input num
 
 This is the code for this new implementation:
 
-``` Perl6
+```perl
 use v6;
 
 my @cache = 0, 1, 2;
@@ -250,7 +250,7 @@ This new program runs about twice faster than the previous one (and 12 times fas
 
 It turns out that unsigned integers (`UInt`) are slower than regular integers (`Int`). Changing the `collatz-seq` signature to:
 
-``` Perl6
+```perl
 sub collatz-seq (Int $in) {
 ```
 
@@ -270,13 +270,13 @@ On April 5, 2020 (one day after my original blog post), [1nick](https://www.perl
 
 *1. Replaced division by 2.*
 
-``` Perl
+```perl
     $n >> 1;
 ```
 
 *2. Removed one level of branching.*
 
-``` Perl
+```perl
     while ($n != 1) {
         $result += $cache[$n], last
             if defined $cache[$n];
@@ -292,7 +292,7 @@ On April 5, 2020 (one day after my original blog post), [1nick](https://www.perl
 
 *3. Lastly, reduced the number of loop iterations.*
 
-``` Perl
+```perl
     while ($n != 1) {
         $result += $cache[$n], last
             if defined $cache[$n];
@@ -310,7 +310,7 @@ Let's try to port these optimizations to our Raku program one by one.
 
 Using the bit shift operator:
 
-``` Perl 6
+```perl
 my $new_n = $n % 2 ?? 3 * $n + 1 !! $n +> 1;
 ```
 
@@ -324,7 +324,7 @@ This really surprised me. I had stopped doing this type of low-level optimizatio
 
 The next optimization in Mario's list is to remove one level of branching:
 
-``` Perl 6
+```perl
     while $n != 1 {
         $length += @cache[$n], last if defined @cache[$n];
         my $new_n = $n % 2 ?? 3 * $n + 1 !! $n +> 1;
@@ -339,7 +339,7 @@ but that did not bring any performance improvement in my tests with Raku. So, le
 
 Another performance optimization is that caching `$n` within the `while` loop actually hampers performance. This originally surprised both Mario and myself.  I guess that this is presumably because the cache hit/miss ratio in this part of the code is probably quite low. Let's comment out that statement. So, with this new `while` loop:
 
-``` Perl6
+```perl
     while $n != 1 {
         if defined @cache[$n] {
             $length += @cache[$n];
@@ -364,7 +364,7 @@ we shave off five additional seconds (20%):
 
  The next optimization in Mario's list is to reduce the number of loop iterations: when a number is odd, we apply the formula `(3 * $n + 1)` (leading necessarily to an even number) and perform the division by 2 immediately (and add 2 to `$length`). We also remove the conversion of $new_n to an integer, as this was useful in some early version of the program (only to prevent a type mismatch), but is no longer needed. The full program now looks as follows:
 
-``` Perl6
+```perl
 use v6;
 
 my @cache = 0, 1, 2;
@@ -416,7 +416,7 @@ Taken together, these "micro-optimizations" reduce the execution duration from 4
 
 Since the use of the bit shift operator for the division by 2 offered some significant improvement, I tried to introduce it for the divisibility by 2 test:
 
-``` Perl 6
+```perl
             if $n +& 1 {
                 $n = (3 * $n + 1) +> 1;
                 $length += 2;
@@ -432,7 +432,7 @@ I doubt it is worth the effort, as it makes the code less easy to understand to 
 
 Since, we know that the smallest of our top-ten sequence lengths is 445, we can store in `@long-seqs` only the sequence lengths larger than 400 (instead of 200 in our code above):
 
-``` Perl 6
+```perl
     push @long-seqs, [ $num, $seq-length] if $seq-length > 400;
 ```
 
@@ -452,7 +452,7 @@ Anyway, it is clear to me that, in this case, a good caching strategy brings a b
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/arne-sommer/raku/ch-2.p6) used the `gather...take` construct to solve the basic task.
 
-``` Perl 6
+```perl
 unit sub MAIN (Int $start where $start >= 1);
 
 my $sequence := gather
@@ -474,7 +474,7 @@ say $sequence.join(", ");
 
 Arne also provided a solution for the "extra credit" case:
 
-``` Perl 6
+```perl
 unit sub MAIN (Int $limit = 1_000_000, :$verbose, :$chop = 20);
 
 my %length;
@@ -517,13 +517,13 @@ So, Arne did not try any caching and just implemented the `1..1e6` range by inse
 
 [Ben Davies](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/ben-davies/raku/ch-2.p6) implemented a simple `collatz` subroutine to compute the next item in a Collatz sequence:
 
-``` Perl6
+```perl
 sub collatz(Int:D $n --> Int:D) { $n %% 2 ?? $n div 2 !! 3 * $n + 1 }
 ```
 
 His extra credit implementation uses `react` and `emit`with supplies to use some of the parallel processing capabilities of Raku:
 
-``` Perl 6
+```perl
 unit proto sub MAIN(|) {*}
 multi sub MAIN(Int:D $n where * >= 1) {
     .say for ($n,&collatz...1);
@@ -547,7 +547,7 @@ I don’t know how well it performs.
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/kevin-colyer/raku/ch-2.p6) wrote a `collatzSeqChain` subroutine to find Collatz sequence for a given number:
 
-```Perl 6
+```perl
 sub collatzSeqChain(Int $n is copy) {
     my Str $seq = "$n";
     while $n > 1 {
@@ -566,7 +566,7 @@ Note that Kevin is using the `+>` *bit shift* and `+&` *bitwise and* operators t
 
 For the extra credit part, Kevin is caching the length of the sequences:
 
-``` Perl6
+```perl
 sub collatzSeqLen(Int $number) returns Int {
     state Int @length;
     my Int $n=$number;
@@ -624,7 +624,7 @@ On his machine, the code ran in a bit more than 17 seconds. That's pretty good p
 
 [Luca Ferrari](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/luca-ferrari/raku/ch-2.p6) wrote a `collatz` subroutine returning the Collatz sequence for the input number:
 
-``` Perl 6
+```perl
 sub collatz( Int:D $m ) {
     my @sequence;
     my $n = $m;
@@ -645,7 +645,7 @@ sub collatz( Int:D $m ) {
 
 Luca also has code for the extra credit:
 
-``` Perl6
+```perl
 # extra credit
 my %extra;
 for 1 .. 100000 {
@@ -663,7 +663,7 @@ One very small error is that the program actually prints 21 sequence lengths. Th
 
 [Mark Anderson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/mark-anderson/raku/ch-2.p6) used two multi `MAIN` subroutines, one taking one numeric argument for computing the sequence for a single input number, and the other with no argument for the extra credit. The extra credit version uses a hash to cache the sequence lengths:
 
-``` Perl6
+```perl
 multi sub MAIN {
     my $t = now;
 
@@ -703,7 +703,7 @@ Mark reports an execution time of 95 seconds on his computer (800 seconds withou
 
 [Noud Aldenhoven](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/noud/raku/ch-2.p6) used a recursive `collatz-seq` subroutine to compute the Collatz sequence for one input number:
 
-``` Perl6
+```perl
 sub collatz-seq($n) {
     if ($n == 1) {
         [1];
@@ -717,7 +717,7 @@ sub collatz-seq($n) {
 
 For the extra credit, Noud used the `is cached` experimental trait, along with multi-threading (using channels):
 
-``` Perl6
+```perl
 use experimental :cached;  # My favourite Raku feature!
 
 sub collatz-length($n) is cached {
@@ -749,7 +749,7 @@ Note that Noud apparently has the same interpretation as Luca Ferrari: his seque
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/simon-proctor/raku/ch-2.p6) implemented the formulas for the Collatz sequence using two multi subroutines:
 
-``` Perl6
+```perl
 multi sub collatz( UInt \n where { n %% 2 } ) { n div 2; }
 
 multi sub collatz( UInt \n where { n !%% 2 } ) { (3 * n) + 1; }
@@ -757,7 +757,7 @@ multi sub collatz( UInt \n where { n !%% 2 } ) { (3 * n) + 1; }
 
 Simon used parallel processing (with promises) for the extra credit:
 
-``` Perl6
+```perl
 multi sub MAIN( Bool :v(:$verbose)=False){
     constant MAX-VALUE = 1000000;
 
@@ -810,7 +810,7 @@ sub chain-batch( UInt $start is copy, UInt $end is copy, Bool \verbose ) {
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/athanasius/raku/ch-2.p6) used multi `MAIN` subroutines to separate the basic case and the extra credit case. His basic case is as follows:
 
-``` Perl6
+```perl
 multi sub MAIN
 (
     UInt:D $N where $_ > 0   #= Find the Collatz sequence for positive integer N
@@ -833,7 +833,7 @@ multi sub MAIN
 
 When called for the extra credit, the `MAIN` subroutine calls the `find-longest-seqs` subroutine, which itself calls the recursive `count-terms` subroutine. This latter subroutine is caching the results into the `%chains` hash:
 
-``` Perl6
+```perl
 sub find-longest-seqs( --> Array:D )
 {
     my $longest-seqs = List::Priority.new(capacity => MAX-TERMS);
@@ -876,7 +876,7 @@ In a comment to his program, Athanasius reports that his program takes 20 minute
 
 [Colin Crain](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/colin-crain/raku/ch-2.p6) used a `next-collatz` subroutine to compute the next term in a given sequence, and used this in the `make_collatz_sequence` subroutine to compute a full sequence:
 
-``` Perl6
+```perl
 sub make_collatz_sequence ( $start ) {
     my $current = $start;
     my @seq = ($current);
@@ -899,7 +899,7 @@ sub next_collatz (Int:D  $n ) {
 
 The extra credit task is performed in the following `get_collatz_metadata` subroutine:
 
-``` Perl6
+```perl
 sub get_collatz_metadata ( %data, %sequences ) {
 ## run metaanalysis on the first 1,000,000 Collatz sequences
     my $then = now;
@@ -928,7 +928,7 @@ Colin's program starts with a lengthy and very useful comment explaining some of
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/jaldhar-h-vyas/raku/ch-2.p6) made a very concise and creative `collatzSequence` to compute the Collatz sequence of any number, using the `...` sequence operator:
 
-```Perl6
+```perl
 sub collatzSequence(Int $n) {
     return ($n, { ($_ % 2) ?? (3 * $_ + 1) !! ($_ / 2) } ... 1);
 }
@@ -938,7 +938,7 @@ This is quite clever, I love the idea.
 
 This is his submission for the extra credit:
 
-``` Perl6
+```perl
 multi sub MAIN() {
     my $maxlength = 0;
     my @longest = ();
@@ -966,7 +966,7 @@ It looks fine, but, since there no attempt at either parallelizing or caching, i
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/javier-luque/raku/ch-2.p6) wrote a `collatz` subroutine to compute the length of the Collatz sequence for any integer:
 
-``` Perl6
+```perl
 sub collatz($n is copy) {
     my $length = 0;
 
@@ -986,7 +986,7 @@ To me, Javier's computation of the sequence length is off by one, just as some o
 
 He then used a brute force approach to solve the extra credit task:
 
-``` Perl6    my %lengths;
+```raku    my %lengths;
     for (1 .. 1_000_000) -> $i {
         my $length = collatz($i);
         %lengths{$i} = $length
@@ -1008,7 +1008,7 @@ By Javier's own admission in his blog post: "Warning: Raku solution is slow. ...
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/markus-holzer/raku/ch-2.p6) used the sequence operator (just as Jaldhar) to build the Collatz sequence of an input number:
 
-``` Perl6
+```perl
 sub collatz( Int $n ) is pure
 {
     $n, { $^n %% 2 ?? $^n div 2 !! $^n * 3 + 1 } ... { $^n == 1 }
@@ -1019,7 +1019,7 @@ As I already said about Jaldhar's solution, I really like this idea.
 
 For the extra credit, Markus uses a `$cache`
 
-``` Perl6
+```perl
     for 1..$N -> $n
     {
         my Int $count = 0;
@@ -1048,7 +1048,7 @@ But if I understand correctly, I'm afraid his caching approach doesn't bring a r
 
 [Mohammad Anwar](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/mohammad-anwar/raku/ch-2.p6) cleverly used a multi subroutine to handle the two cases when computing the next term in the Collatz sequence:
 
-``` Perl6
+```perl
 sub MAIN(Int $n is copy where $n > 0) {
     my @collatz = ($n);
     while $n != 1 {
@@ -1066,7 +1066,7 @@ Mohammad did not try to implement the extra credit.
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/roger-bell-west/raku/ch-2.p6) implemented a `while` loop to process any list of numbers and provide the Collatz sequence for each:
 
-``` Perl6
+```perl
 while (my $n=shift @*ARGS) {
   my @k=($n);
   while ($n != 1) {
@@ -1086,7 +1086,7 @@ Roger did not implement the extra credit task.
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/ruben-westerberg/raku/ch-2.p6) used the `hyper` operator to parallelize the processing:
 
-``` Perl6
+```perl
 my $max=@*ARGS[0]//23;         #sane default without cmd line args
 my @seqs=( [] xx 20);        #Initalise the largest 20 sequences found
 my $l=Lock.new;            #Create a lock to allow sequential access to top 20
@@ -1130,7 +1130,7 @@ With a range reduced to `1..1e5`, the program ran in 41 seconds on my machine. P
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/ryan-thompson/raku/ch-2.p6) provided a very complete solution, including the maintenance of a sliding array of 20 results which I was too lazy too implement. Ryan's program uses a `@memo` array to cache (well, to memoize) the results. Although the program is a bit long, I think it is well worth to be quoted in its entirety:
 
-``` Perl6
+```perl
 my $top-n   = 20;   # Number of top sequences to list
 my $limit   = 1e6;  # Highest starting number
 my $mintop  = 0;    # Minimum value in @top (efficiency/convenience)
@@ -1196,7 +1196,7 @@ My last solutions were a bit faster, but considering that his solution is more c
 
 Shahed also suggested a solution for the extra credit task:
 
-``` Perl6
+```perl
 my %hail = 1 => 1;
 
 for 1..^1e5 {
@@ -1213,7 +1213,7 @@ for 1..^1e5 {
 
 Here, Shahed used the `%hail` hash to serve both as a cache and as a list of results. Running this program with a range reduced to `1..1e5` took about 10 seconds on my computer. The slight problem though is that finding the sequences is done quite efficiently, but sorting the hash at the end takes almost much time as finding the sequences. Just to illustrate this, changing the last line to this:
 
-```Perl6
+```perl
 .put for %hail.grep({$_.value > 300}).sort(−*.value)[^20];
 ```
 
@@ -1221,7 +1221,7 @@ considerably reduces the time to sort the data and makes the overall execution a
 
 [Ulrich Rielke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/ulrich-rieke/raku/ch-2.p6) first wrote a `findSequence` subroutine to compute the Collatz sequence of any input integer:
 
-``` Perl6
+```perl
 sub findSequence( Int $n is copy ) {
   my @sequence ;
   while ( $n != 1 ) {
@@ -1240,7 +1240,7 @@ sub findSequence( Int $n is copy ) {
 
 For the extra credit, the main program then iterates over the `1..1000000` range and, for each value calls `findSequence`.
 
-```
+```perl
 sub MAIN( Int $n ) {
   .say for findSequence( $n ) ;
   my @sequences ;

@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>Advent Calendar - December 17, 2024</span>
         </nav>
-        <span class="reading-time" title="1339 words">
+        <span class="reading-time" title="1344 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-16blogadvent-calendar-2024-12-16-nbsp--nbsp-day-17-nbsp--nbsp-day-18blogadvent-calendar-2024-12-18-nbsp-">|   <a href="/blog/advent-calendar-2024-12-16"><strong>Day 16</strong></a>   |   <strong>Day 17</strong>   |   <a href="/blog/advent-calendar-2024-12-18"><strong>Day 18</strong></a>   |</h3>
+        <h2 id="advent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
+<h3 id="--day-16----day-17----day-18--">|   <a href="/blog/advent-calendar-2024-12-16"><strong>Day 16</strong></a>   |   <strong>Day 17</strong>   |   <a href="/blog/advent-calendar-2024-12-18"><strong>Day 18</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>E. Choroba</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-287"><strong>The Weekly Challenge - 287</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://blogs.perl.org/users/e_choroba/2024/09/strong-password.html"><strong>post</strong></a>.</p>
 <hr>
@@ -221,67 +221,67 @@ Write a program to return the minimum number of steps required to make the given
 <p>If the string contains <code>3 repeating characters</code> in a row, we need to replace the character in the middle of the sequence by a different one. Instead of analysing the string to find out which character to replace by what, we can use the same method as described above: just try replacing all the characters by all possible characters. Again, when replacing the middle character in <code>aaa</code>, we’re skipping <code>aba</code> etc. and only trying <code>aAa</code> and <code>a0a</code>—they not only break the sequence, but also potentially introduce a missing class.</p>
 <p>This is the resulting code:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw( signatures )</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">strong_password</span>($str) {
-    <span style="color:#66d9ef">my</span> %agenda <span style="color:#f92672">=</span> ($str <span style="color:#f92672">=&gt;</span> undef);
-
-    <span style="color:#66d9ef">my</span> $steps <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">my</span> %next;
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $s (keys %agenda) {
-
-            <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">6</span> <span style="color:#f92672">&gt;</span> length $s) {
-                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char ($s <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[aA0]$/</span> ? <span style="color:#e6db74">qw( b B 1 )</span> : <span style="color:#e6db74">qw( a A 0 )</span>) {
-                    undef $next{ $s <span style="color:#f92672">.</span> $char };
-                }
-            } <span style="color:#66d9ef">elsif</span> ($s <span style="color:#f92672">!~</span> <span style="color:#e6db74">/[[:lower:]]/</span>
-                     <span style="color:#f92672">||</span> $s <span style="color:#f92672">!~</span> <span style="color:#e6db74">/[[:upper:]]/</span>
-                     <span style="color:#f92672">||</span> $s <span style="color:#f92672">!~</span> <span style="color:#e6db74">/[0-9]/</span>
-                     <span style="color:#f92672">||</span> $s <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(.)\1\1/</span>
-            ) {
-                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $l (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length($s) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-
-                    <span style="color:#66d9ef">my</span> $this      <span style="color:#f92672">=</span> substr $s, $l, <span style="color:#ae81ff">1</span>;
-                    <span style="color:#66d9ef">my</span> $previous  <span style="color:#f92672">=</span> $l <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ? substr $s, $l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> : <span style="color:#e6db74">&#39;a&#39;</span>;
-                    <span style="color:#66d9ef">my</span> $following <span style="color:#f92672">=</span> $l <span style="color:#f92672">==</span> length($s) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
-                                    ? <span style="color:#e6db74">&#39;a&#39;</span>
-                                    : substr $s, $l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;
-
-                    <span style="color:#66d9ef">my</span> $match;
-                    $match <span style="color:#f92672">.=</span> <span style="color:#e6db74">/[a-z]/</span> ? <span style="color:#e6db74">&#39;a-z&#39;</span>
-                            : <span style="color:#e6db74">/[A-Z]/</span> ? <span style="color:#e6db74">&#39;A-Z&#39;</span>
-                            :           <span style="color:#e6db74">&#39;0-9&#39;</span> <span style="color:#66d9ef">for</span> $previous, $this, $following;
-
-                    undef $next{ substr($s, <span style="color:#ae81ff">0</span>, $l) <span style="color:#f92672">.</span> $_ <span style="color:#f92672">.</span> substr($s, $l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) }
-                        <span style="color:#66d9ef">for</span> grep <span style="color:#e6db74">/[^$match]/</span>, <span style="color:#e6db74">qw( 0 a A )</span>;
-                }
-            } <span style="color:#66d9ef">else</span> {
-                <span style="color:#66d9ef">return</span> $steps
-            }
-        }
-        %agenda <span style="color:#f92672">=</span> %next;
-        <span style="color:#f92672">++</span>$steps;
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw( signatures )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">strong_password</span>($str) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %agenda <span style="color:#f92672">=</span> ($str <span style="color:#f92672">=&gt;</span> undef);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $steps <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> %next;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $s (keys %agenda) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">6</span> <span style="color:#f92672">&gt;</span> length $s) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char ($s <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[aA0]$/</span> ? <span style="color:#e6db74">qw( b B 1 )</span> : <span style="color:#e6db74">qw( a A 0 )</span>) {
+</span></span><span style="display:flex;"><span>                    undef $next{ $s <span style="color:#f92672">.</span> $char };
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">elsif</span> ($s <span style="color:#f92672">!~</span> <span style="color:#e6db74">/[[:lower:]]/</span>
+</span></span><span style="display:flex;"><span>                     <span style="color:#f92672">||</span> $s <span style="color:#f92672">!~</span> <span style="color:#e6db74">/[[:upper:]]/</span>
+</span></span><span style="display:flex;"><span>                     <span style="color:#f92672">||</span> $s <span style="color:#f92672">!~</span> <span style="color:#e6db74">/[0-9]/</span>
+</span></span><span style="display:flex;"><span>                     <span style="color:#f92672">||</span> $s <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(.)\1\1/</span>
+</span></span><span style="display:flex;"><span>            ) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $l (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length($s) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">my</span> $this      <span style="color:#f92672">=</span> substr $s, $l, <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">my</span> $previous  <span style="color:#f92672">=</span> $l <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ? substr $s, $l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> : <span style="color:#e6db74">&#39;a&#39;</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">my</span> $following <span style="color:#f92672">=</span> $l <span style="color:#f92672">==</span> length($s) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                                    ? <span style="color:#e6db74">&#39;a&#39;</span>
+</span></span><span style="display:flex;"><span>                                    : substr $s, $l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">my</span> $match;
+</span></span><span style="display:flex;"><span>                    $match <span style="color:#f92672">.=</span> <span style="color:#e6db74">/[a-z]/</span> ? <span style="color:#e6db74">&#39;a-z&#39;</span>
+</span></span><span style="display:flex;"><span>                            : <span style="color:#e6db74">/[A-Z]/</span> ? <span style="color:#e6db74">&#39;A-Z&#39;</span>
+</span></span><span style="display:flex;"><span>                            :           <span style="color:#e6db74">&#39;0-9&#39;</span> <span style="color:#66d9ef">for</span> $previous, $this, $following;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    undef $next{ substr($s, <span style="color:#ae81ff">0</span>, $l) <span style="color:#f92672">.</span> $_ <span style="color:#f92672">.</span> substr($s, $l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) }
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">for</span> grep <span style="color:#e6db74">/[^$match]/</span>, <span style="color:#e6db74">qw( 0 a A )</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> $steps
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        %agenda <span style="color:#f92672">=</span> %next;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">++</span>$steps;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Here are some tests. Note that <code>Example 5</code> had a wrong answer (<code>3</code> instead of <code>2</code>) initially.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test::More tests <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>;
-
-is strong_password(<span style="color:#e6db74">&#39;a&#39;</span>), <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;Example 1&#39;</span>;
-is strong_password(<span style="color:#e6db74">&#39;aB2&#39;</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Example 2&#39;</span>;
-is strong_password(<span style="color:#e6db74">&#39;PaaSW0rd&#39;</span>), <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;Example 3&#39;</span>;
-is strong_password(<span style="color:#e6db74">&#39;Paaasw0rd&#39;</span>), <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;Example 4&#39;</span>;
-is strong_password(<span style="color:#e6db74">&#39;aaaaa&#39;</span>), <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;Example 5&#39;</span>;
-
-is strong_password(<span style="color:#e6db74">&#39;aaaZZZ999&#39;</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Repeated triplets&#39;</span>;
-is strong_password(<span style="color:#e6db74">&#39;0Zaaab&#39;</span>), <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;Creating a triple&#39;</span>;
-is strong_password(<span style="color:#e6db74">&#39;000aaa000&#39;</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Combined actions&#39;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More tests <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is strong_password(<span style="color:#e6db74">&#39;a&#39;</span>), <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;Example 1&#39;</span>;
+</span></span><span style="display:flex;"><span>is strong_password(<span style="color:#e6db74">&#39;aB2&#39;</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Example 2&#39;</span>;
+</span></span><span style="display:flex;"><span>is strong_password(<span style="color:#e6db74">&#39;PaaSW0rd&#39;</span>), <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;Example 3&#39;</span>;
+</span></span><span style="display:flex;"><span>is strong_password(<span style="color:#e6db74">&#39;Paaasw0rd&#39;</span>), <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;Example 4&#39;</span>;
+</span></span><span style="display:flex;"><span>is strong_password(<span style="color:#e6db74">&#39;aaaaa&#39;</span>), <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;Example 5&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is strong_password(<span style="color:#e6db74">&#39;aaaZZZ999&#39;</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Repeated triplets&#39;</span>;
+</span></span><span style="display:flex;"><span>is strong_password(<span style="color:#e6db74">&#39;0Zaaab&#39;</span>), <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;Creating a triple&#39;</span>;
+</span></span><span style="display:flex;"><span>is strong_password(<span style="color:#e6db74">&#39;000aaa000&#39;</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Combined actions&#39;</span>;
+</span></span></code></pre></div><br>
 <h3 id="further-optimisation">Further Optimisation</h3>
 <hr>
 <br>
@@ -290,76 +290,76 @@ is strong_password(<span style="color:#e6db74">&#39;000aaa000&#39;</span>), <spa
 <p>For the missing classes, we can count how many instances of each class there are in the string. We can then find the first instance of a class that appears more than once and replace it with an instance of the missing one. If two classes are missing, the second missing class will be handled in the next step. Wait, you might ask, what if there’s no class with more than one instance? Well, we still handle the length first, so we’re dealing with strings of length at least <code>6</code>, so there must be at least <code>one class</code> with at least <code>2</code> instances.</p>
 <p>This is the final code:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">strong_password</span>($str) {
-    <span style="color:#66d9ef">my</span> %agenda <span style="color:#f92672">=</span> ($str <span style="color:#f92672">=&gt;</span> undef);
-
-    <span style="color:#66d9ef">my</span> $steps <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">my</span> %next;
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $s (keys %agenda) {
-
-            <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">6</span> <span style="color:#f92672">&gt;</span> length $s) {
-                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char ($s <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[aA0]$/</span> ? <span style="color:#e6db74">qw( b B 1 )</span> : <span style="color:#e6db74">qw( a A 0 )</span>) {
-                    undef $next{ $s <span style="color:#f92672">.</span> $char };
-                }
-
-            } <span style="color:#66d9ef">elsif</span> ($s <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(.)\1\1/</span>) {
-                <span style="color:#66d9ef">while</span> ($s <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(.)(?=\1\1)/g</span>) {
-                    <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $-[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-                    <span style="color:#66d9ef">my</span> $this <span style="color:#f92672">=</span> $1;
-                    <span style="color:#66d9ef">my</span> $re <span style="color:#f92672">=</span> $this <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/[a-z]/</span><span style="color:#f92672">/</span> ? <span style="color:#e6db74">&#39;a-z&#39;</span>
-                           : $this <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/[A-Z]/</span><span style="color:#f92672">/</span> ? <span style="color:#e6db74">&#39;A-Z&#39;</span>
-                           :                       <span style="color:#e6db74">&#39;0-9&#39;</span>;
-
-                    undef $next{ substr($s, <span style="color:#ae81ff">0</span>, $l) <span style="color:#f92672">.</span> $_ <span style="color:#f92672">.</span> substr($s, $l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) }
-                        <span style="color:#66d9ef">for</span> grep <span style="color:#e6db74">/[^$re]/</span>, <span style="color:#e6db74">qw( 0 a A )</span>;
-                }
-
-            } <span style="color:#66d9ef">else</span> {
-                <span style="color:#66d9ef">my</span> %count;
-                $count{<span style="color:#e6db74">&#39;a-z&#39;</span>} <span style="color:#f92672">=</span> $s <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/a-z/</span><span style="color:#f92672">/</span>;
-                $count{<span style="color:#e6db74">&#39;A-Z&#39;</span>} <span style="color:#f92672">=</span> $s <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/A-Z/</span><span style="color:#f92672">/</span>;
-                $count{<span style="color:#e6db74">&#39;0-9&#39;</span>} <span style="color:#f92672">=</span> $s <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/0-9/</span><span style="color:#f92672">/</span>;
-
-                <span style="color:#66d9ef">return</span> $steps
-                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span> grep <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $_, values %count;
-
-                <span style="color:#66d9ef">my</span> ($repeated, $replacement);
-                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $class (<span style="color:#e6db74">qw( a-z A-Z 0-9 )</span>) {
-                    $repeated <span style="color:#f92672">=</span> $class <span style="color:#66d9ef">if</span> $count{$class} <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
-                    $replacement <span style="color:#f92672">=</span> substr $class, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $count{$class};
-                }
-                undef $next{ $s <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/[$repeated]/$replacement/</span>r };
-            }
-        }
-        %agenda <span style="color:#f92672">=</span> %next;
-        <span style="color:#f92672">++</span>$steps;
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">strong_password</span>($str) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %agenda <span style="color:#f92672">=</span> ($str <span style="color:#f92672">=&gt;</span> undef);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $steps <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> %next;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $s (keys %agenda) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">6</span> <span style="color:#f92672">&gt;</span> length $s) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char ($s <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[aA0]$/</span> ? <span style="color:#e6db74">qw( b B 1 )</span> : <span style="color:#e6db74">qw( a A 0 )</span>) {
+</span></span><span style="display:flex;"><span>                    undef $next{ $s <span style="color:#f92672">.</span> $char };
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">elsif</span> ($s <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(.)\1\1/</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">while</span> ($s <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(.)(?=\1\1)/g</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $-[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">my</span> $this <span style="color:#f92672">=</span> $1;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">my</span> $re <span style="color:#f92672">=</span> $this <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/[a-z]/</span><span style="color:#f92672">/</span> ? <span style="color:#e6db74">&#39;a-z&#39;</span>
+</span></span><span style="display:flex;"><span>                           : $this <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/[A-Z]/</span><span style="color:#f92672">/</span> ? <span style="color:#e6db74">&#39;A-Z&#39;</span>
+</span></span><span style="display:flex;"><span>                           :                       <span style="color:#e6db74">&#39;0-9&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    undef $next{ substr($s, <span style="color:#ae81ff">0</span>, $l) <span style="color:#f92672">.</span> $_ <span style="color:#f92672">.</span> substr($s, $l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) }
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">for</span> grep <span style="color:#e6db74">/[^$re]/</span>, <span style="color:#e6db74">qw( 0 a A )</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span> %count;
+</span></span><span style="display:flex;"><span>                $count{<span style="color:#e6db74">&#39;a-z&#39;</span>} <span style="color:#f92672">=</span> $s <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/a-z/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>                $count{<span style="color:#e6db74">&#39;A-Z&#39;</span>} <span style="color:#f92672">=</span> $s <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/A-Z/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>                $count{<span style="color:#e6db74">&#39;0-9&#39;</span>} <span style="color:#f92672">=</span> $s <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/0-9/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> $steps
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span> grep <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $_, values %count;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span> ($repeated, $replacement);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $class (<span style="color:#e6db74">qw( a-z A-Z 0-9 )</span>) {
+</span></span><span style="display:flex;"><span>                    $repeated <span style="color:#f92672">=</span> $class <span style="color:#66d9ef">if</span> $count{$class} <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                    $replacement <span style="color:#f92672">=</span> substr $class, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $count{$class};
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                undef $next{ $s <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/[$repeated]/$replacement/</span>r };
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        %agenda <span style="color:#f92672">=</span> %next;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">++</span>$steps;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>I used the following benchmark, generating <code>1000 random passwords</code>:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @inputs;
-<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span>) {
-    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;&#34;</span>, map <span style="color:#f92672">+</span>(<span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;z&#39;</span>, <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;Z&#39;</span>, <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>)[rand <span style="color:#ae81ff">62</span>],
-                     <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> rand <span style="color:#ae81ff">15</span>;
-    strong_password_optimised($s) <span style="color:#f92672">==</span> strong_password_original($s)
-        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Diff $s.\n&#34;</span>;
-    push @inputs, $s;
-}
-
-<span style="color:#66d9ef">use</span> Benchmark <span style="color:#e6db74">qw{ cmpthese }</span>;
-cmpthese(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, {
-    original  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { strong_password_original($_)  <span style="color:#66d9ef">for</span> @inputs },
-    optimised <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { strong_password_optimised($_) <span style="color:#66d9ef">for</span> @inputs }
-});
-
-<span style="color:#75715e">__END__
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">            Rate  original optimised
-</span><span style="color:#75715e">original  10.8/s        --      -24%
-</span><span style="color:#75715e">optimised 14.2/s       31%        --
-</span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @inputs;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;&#34;</span>, map <span style="color:#f92672">+</span>(<span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;z&#39;</span>, <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;Z&#39;</span>, <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>)[rand <span style="color:#ae81ff">62</span>],
+</span></span><span style="display:flex;"><span>                     <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> rand <span style="color:#ae81ff">15</span>;
+</span></span><span style="display:flex;"><span>    strong_password_optimised($s) <span style="color:#f92672">==</span> strong_password_original($s)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Diff $s.\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    push @inputs, $s;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Benchmark <span style="color:#e6db74">qw{ cmpthese }</span>;
+</span></span><span style="display:flex;"><span>cmpthese(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, {
+</span></span><span style="display:flex;"><span>    original  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { strong_password_original($_)  <span style="color:#66d9ef">for</span> @inputs },
+</span></span><span style="display:flex;"><span>    optimised <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { strong_password_optimised($_) <span style="color:#66d9ef">for</span> @inputs }
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">__END__
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            Rate  original optimised
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">original  10.8/s        --      -24%
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">optimised 14.2/s       31%        --
+</span></span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
 <p>|   <a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a>   |</p>

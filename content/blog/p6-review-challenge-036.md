@@ -27,7 +27,7 @@ We write a simple `validate` subroutine that returns a true value if the passed 
 
 In addition, we write a test suite in the Raku [Test](https://docs.raku.org/language/testing) framework containing 16 test cases. The `ok` function is fine for checking if a Boolean value is true; contrary to the Perl 5 `Test::More` testing framework, the Raku `Test` framework also has a `nok` function that makes it possible to test directly a false Boolean value.
 
-``` Perl6
+```perl
 use v6;
 use Test;
 
@@ -80,7 +80,7 @@ Running the program shows that all test pass:
 
 In North America, the ninth position in a VIN is a check digit i.e. a number calculated from all other characters. Although this is not explicitly requested in the task, we'll make a second version of our program also verifying the check digit, as a bonus. The `check-digit` subroutine splits the input string, translates the characters into numbers, multiplies each number by the weight assigned to its rank, sums up all the results, computes the remainder of its division by 11, and replaces the remainder by "X" if it is found to be 10.
 
-``` Perl6
+```perl
 use v6;
 
 sub validate (Str $vin) {
@@ -125,19 +125,19 @@ Running the program displays the following output:
 
 Note that his `VINCHAR` regex:
 
-``` Perl6
+```perl
 my regex VINCHAR { A | B | C | D | E | F | G | H | J | K | L | M | N | P | R | S | T | U | V | W | X | Y | Z | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 };
 ```
 
 might be expressed more conveniently (or, at least, more concisely), with a character class as something like this:
 
-``` Perl6
+```perl
 my regex VINCHAR { < [A..Z0..9] - [IOQ] > };
 ```
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/javier-luque/perl6/ch-1.p6) also implemented a lot of rules which I did not know about. This is his main VIN-checking subroutine:
 
-``` Perl6
+```perl
 sub _check-vin(Str $vin) {
     my $vin_re = /<[A..HJ..NPR..Z0..9]>/;
 
@@ -184,7 +184,7 @@ sub _check-vin(Str $vin) {
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/daniel-mita/perl6/ch-1.p6) wrote a small grammar to perform VIN validation:
 
-``` Perl6
+```perl
 grammar VIN {
   token TOP  { <WMI> <VDS> <VIS> }
   token WMI  { <.char> ** 3 }
@@ -196,7 +196,7 @@ grammar VIN {
 
 That's quite nice, but, to tell the truth, since three of the tokens are just a number of `char` tokens, it seems to me that the grammar may slightly over-engineered, as this grammar:
 
-``` Perl6
+```perl
 grammar VIN {
   token TOP  { <.char> ** 17 }
   token char { <[A..H J..N P R..Z 0..9]> }
@@ -207,7 +207,7 @@ should presumably yield the same result (unless you intend to do further things 
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/kevin-colyer/perl6/ch-1.p6), like me, checks the length of the VIN, also checks that it does not contains invalid letters (I, O, and Q), and it verifies the check digit:
 
-``` Perl6
+```perl
 sub validateVIN($vin is copy) {
     my @v= $vin.uc.comb;
     return "invalid vin character: I,O or Q"     if $vin ~~ m:i/ <[ I O Q ]>+ /;
@@ -228,7 +228,7 @@ sub validateVIN($vin is copy) {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/simon-proctor/perl6/ch-1.p6) basically checks the same things as Kevin:
 
-``` Perl6
+```perl
 subset ValidVinStr of Str
     where m/^ <[A..Z 0..9] - [IOQ]> ** 9 <[A..Z 0..9] - [IOQUZ0]> <[A..Z 0..9] - [IOQ]> ** 7 $/;
 
@@ -248,7 +248,7 @@ sub MAIN (
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ulrich-rieke/perl6/ch-1.p6) essentially checked the same things:
 
-``` Perl6
+```perl
 sub validate_VIN_number( Str $vincode ) returns Bool {
   if ( $vincode ~~ / 'I' | 'Q' | 'O' / ) {
       return False ;
@@ -270,7 +270,7 @@ However, his 37-line `test_check_digit` subroutine seems a bit too complicated t
 
 [Jaldar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/jaldhar-h-vyas/perl6/ch-1.p6), on the other hand, made something a little bit too simple in my view, as it doesn't do any check on the forbidden `IOQ` letters (yet, adding that check would be very simple).
 
-``` Perl6
+```perl
 sub validateVIN(Str $vin) {
 
     if ($vin.chars != 17) {
@@ -291,7 +291,7 @@ sub validateVIN(Str $vin) {
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/roger-bell-west/perl6/ch-1.p6) made some reasonable sense with the somewhat weird-looking translation table for the check-digit calculation:
 
-``` Perl6
+```perl
 my %cvalue;
 map {%cvalue{$_}=$_}, (0..9);
 my $base=ord('A');
@@ -305,7 +305,7 @@ my $valid='^<[' ~ join('',keys %cvalue) ~ ']>*$';
 ```
 Also notice, on the last line above, how his program cleverly uses the keys of the `%cvalue` hash to build a `$valid` regex character class pattern for later use:
 
-``` Perl6
+```perl
 unless ($vin ~~ /<$valid>/) {
     print "$vin contains invalid characters\n";
     next;
@@ -313,7 +313,7 @@ unless ($vin ~~ /<$valid>/) {
 ```
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ruben-westerberg/perl6/ch-1.p6) made one of the most concise implementations:
 
-``` Perl6
+```perl
 my @vins:=@*ARGS;
 my %keys=((0..9 Z 0..9),("A".."H" Z 1..8), ("J".."N" Z 1..5), "P",7, "R",9,("S".."Z" Z 2..9)).flat;
 my @weights=((2..8).reverse,10,0,(2..9).reverse).flat;
@@ -364,7 +364,7 @@ However, with a set of only five boxes, we can run a so-called brute-force algor
 
 To start with, we'll populate a `%boxes` hash of hashes with the box colors as keys, and their respective weights and values:
 
-``` Perl6
+```perl
 constant %boxes = (
     "R" => { "w" => 1,  val => 1  },
     "B" => { "w" => 1,  val => 2  },
@@ -393,7 +393,7 @@ For the first call of `try-one` recursive subroutine, we have the following para
 
 The recursion base case (where recursion should stop) is reached when the current weight exceed 15 or when the number of available boxes left reaches 0.
 
-``` Perl6
+```perl
 use v6;
 
 constant %boxes = (
@@ -497,7 +497,7 @@ The actual code is about twice shorter with the `combinations` routine.
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/arne-sommer/perl6/ch-2.p6) also used the `combinations` built-in routine, but with a slightly different, more procedural, approach:
 
-``` Perl6
+```perl
 for @boxes.combinations.grep(0 < *.elems <= $boxcount) -> @list
 {
   my $key    = @list.join;
@@ -524,7 +524,7 @@ my $max = %v.values.max;
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/daniel-mita/perl6/ch-2.p6) also used the `combinations` built-in routine and made a very concise program using a data pipeline to solve the problem. Note that I originally tried to use a single data pipeline with `grep`, `map`, `sum` and `max`, but I did not succeed to get it to work properly (it tends to be more difficult that in Perl 5, because type mismatches get in the way), so I decided to change it to a `gather ... take` construct. So, I wish to congratulate Daniel for having succeeded to do it. Anyway, here it is:
 
-``` Perl6
+```perl
 my @boxes = <R B G Y P>.map({ $_ => %( :weight((1..10).roll), :amount((1..100).roll) ) });
 
 .say for |@boxes, '';
@@ -540,7 +540,7 @@ my @boxes = <R B G Y P>.map({ $_ => %( :weight((1..10).roll), :amount((1..100).r
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/simon-proctor/perl6/ch-2.p6) created a very simple `box` class:
 
-``` Perl6
+```perl
 class Box {
     has Int $.weight;
     has Int $.worth;
@@ -553,13 +553,13 @@ Note the definition of a `gist` method to pretty print `Box` objects: this works
 
 Otherwise, I extend my congratulations to Simon, who also wrote a single data pipeline to do the bulk of the work:
 
-``` Perl6
+```perl
 my @options = @boxes.combinations().grep( *.elems <= $max-boxes ).grep( { ([+] $_.map( *.weight )) <= $max-weight } ).sort( { ( [+] $^b.map( *.worth ) ) cmp ( [+] $^a.map( *.worth ) ) } );
 ```
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/kevin-colyer/perl6/ch-2.p6) also created a very simple `box` class to manage the colors, weights and values:
 
-``` Perl6
+```perl
 class box {
     has Str $.colour;
     has Int $.weight;
@@ -569,7 +569,7 @@ class box {
 
 He then used the `combinations` built-in routine to create all possible box combinations, filtered out combinations with too many boxes or overweight combinations and finally sorted the combinations to retain the largest value:
 
-``` Perl6
+```perl
 sub knapsack(@combinations,@boxes,$max_weight,$max_boxes) {
     my @cands= gather for @combinations -> @c {
 
@@ -594,7 +594,7 @@ sub knapsack(@combinations,@boxes,$max_weight,$max_boxes) {
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ulrich-rieke/perl6/ch-2.p6) also used the `combinations` built-in routine several times:
 
-``` Perl6
+```perl
 my @combis1 = "RBGYP".comb.combinations( 4 ).Array ;
 my @combis2 = "RBGYP".comb.combinations( 3 ).Array ;
 my @combis3 = "RBGYP".comb.combinations( 2 ).Array ;
@@ -620,7 +620,7 @@ I believe this could have made his code shorter and simpler.
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/javier-luque/perl6/ch-2.p6) did not use the `combinations` built-in routine and, as a result, his `knapsack` subroutine is (like my initial recursive solution) significantly longer and more complex than many other solutions:
 
-``` perl6
+```perl
 sub knapsack (%boxes, Int $max_weight, Num() $max_boxes) {
     my $total_weight = 0;
     my $total_boxes  = 0;
@@ -675,7 +675,7 @@ And, by the way, I'm not entirely convinced it is really useful to sort the boxe
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/roger-bell-west/perl6/ch-2.p6) also did not use the `combinations` built-in routine and his solution is also quite long. This is the part of his code doing the bulk of the work:
 
-``` Perl6
+```perl
 for (1..2**(@k.elems)-1) -> $map {
   my $b=0;
   my $v=0;
@@ -709,14 +709,14 @@ for (0..@k.end) -> $ci {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ruben-westerberg/perl6/ch-2.p6) also did not use the `combinations` routine, but he nonetheless succeeded to keep his code relatively small. I can see several interesting ideas in his code. First, he uses hash slices to populate his data structure:
 
-``` Perl6
+```perl
 my %boxes;
 %boxes{<R B G Y P>}=({c=>1,w=>1,},{c=>2, w=>1},{c=>2,w=>2},{c=>4,w=>12},{c=>10,w=>4});
 ```
 
 Then, his program sorts the data by the value/weight ratio:
 
-``` Perl6
+```perl
 .value<r>=.value<c>/.value<w> for %boxes;
 my @b= %boxes.keys.sort( ->$a,$b { %boxes{$b}<r> <=> %boxes{$a}<r>});
 ```
@@ -725,7 +725,7 @@ It's a clever idea in terms of possible optimization, but, again, I'm not entire
 
 Otherwise, his loop to find the best knapsack is quite concise:
 
-``` Perl6
+```perl
 while (@b) {
     state $rem=$limit;
     my $tmp=$rem - %boxes{@b[0]}<w>;

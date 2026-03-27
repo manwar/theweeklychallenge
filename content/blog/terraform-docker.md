@@ -188,7 +188,7 @@ I am going to create my `Terraform` configuration file: `main.tf` in the [**GItH
 
 Here is my basic configuration file:
 
-```
+```perl
 # Configure the Docker provider
 terraform {
   required_providers {
@@ -233,7 +233,7 @@ So I updated the `Dockerfile` and now it looks like below:
 
 <br>
 
-```
+```perl
 FROM alpine:latest
 LABEL maintainer="mohammad.anwar@yahoo.com"
 

@@ -66,7 +66,7 @@ Write a script to calculate the integer square root of the given number.
 Please avoid using built-in function. Find out more about it [here](https://en.wikipedia.org/wiki/Integer_square_root).
 
 **Examples**
-```
+```perl
     Input: $N = 10
     Output: 3
 
@@ -172,7 +172,7 @@ Laurent gives us a solution based on a binary search pattern, with successive es
 
 He then goes on to improve that basic strategy further by, instead of using half the number for the initial estimate, substituting the smallest power of 2 larger than the square root of the target, which he derives using the formula
 
-```
+```perl
     2 ** (int((log($c)/log(2))/2) + 1
 ```
 
@@ -258,7 +258,7 @@ As demonstrated, all this happens within the `while` loop. Because we're using i
 &nbsp;&nbsp;**blog writeup:**
 [Perl Weekly Challenge 133 – W. Luis Mochán](https://wlmb.github.io/2021/10/06/PWC133/)
 
-```
+```perl
     √-1=Come on, let's get real
     √0=0
     √1=1

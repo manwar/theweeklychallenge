@@ -43,7 +43,7 @@ The definition of a hash-counting string is as follows:
 
 <br>
 
-```perl6
+```perl
 ub challenge(Int $N) returns Str {
     my @output;
     my $index = $N - 1;
@@ -69,7 +69,7 @@ sub MAIN(Int $N) {
 
 <br>
 
-```perl6
+```perl
 $ raku ch-2.raku 14
 2#4#6#8#11#14#
 ```

@@ -76,7 +76,7 @@ Write a script to list Last Sunday of every month in the given year.
 
 For example, for year 2022, we should get the following:
 
-```
+```perl
     2022-01-30
     2022-02-27
     2022-03-27
@@ -635,7 +635,7 @@ Write a script to generate first 20 Perfect Totient Numbers. Please checkout [wi
 
 **Output**
 
-```
+```perl
         3,    9,    15,   27,  39,   81,   111,  183,  243,  255,
         327,  363,  471,  729, 2187, 2199, 3063, 4359, 4375, 5571
 ```

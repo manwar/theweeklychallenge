@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>BLOG: The Weekly Challenge #067</span>
         </nav>
-        <span class="reading-time" title="1313 words">
+        <span class="reading-time" title="1314 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -179,256 +179,256 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <h1 id="headline">HEADLINE</h1>
 <p>This week both tasks had one thing in common i.e. pairing two or more list. In the past, I have taken the help from <strong>CPAN</strong> module <a href="https://metacpan.org/pod/Algorithm::Combinatorics"><strong>Algorithm::Combinatorics</strong></a> for such tasks. However this time, I wanted to get my hand dirty and came up with the following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># generate all possible combinations</span>
-<span style="color:#66d9ef">my</span> @combinations <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;&#39;</span>);
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $members (@data) {
-   @combinations <span style="color:#f92672">=</span> map {
-       <span style="color:#66d9ef">my</span>  $member <span style="color:#f92672">=</span> $_;
-       map $member<span style="color:#f92672">.</span>$_, @$members
-   } @combinations;
-}
-</code></pre></div><p>I used the same piece of work in both tasks.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e"># generate all possible combinations</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @combinations <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $members (@data) {
+</span></span><span style="display:flex;"><span>   @combinations <span style="color:#f92672">=</span> map {
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">my</span>  $member <span style="color:#f92672">=</span> $_;
+</span></span><span style="display:flex;"><span>       map $member<span style="color:#f92672">.</span>$_, @$members
+</span></span><span style="display:flex;"><span>   } @combinations;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I used the same piece of work in both tasks.</p>
 <p>Let me share my solutions to the <strong><a href="/perl-weekly-challenge-067">Perl Weekly Challenge - 067</a></strong>.</p>
 <hr>
 <h2 id="task-1--number-combinations">TASK #1 › Number Combinations</h2>
-<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<h4 id="submitted-by-mohammad-s-anwar">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
 <hr>
 <p>You are given two integers <code>$m</code> and <code>$n</code>. Write a script print all possible combinations of <code>$n</code> numbers from the list 1 2 3 &hellip; $m.</p>
 <p>Every combination should be sorted i.e. [2,3] is valid combination but [3,2] is not.</p>
 <hr>
 <br>
 <p>After getting all possible combinations, using the above code, it was time to filter the list as per the requirements. The following code does the job for me. Here I had to get help from <strong>CPAN</strong> module <code>List::Util</code> supplied <code>uniq()</code> to filer unique entries.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># filter combinations</span>
-<span style="color:#66d9ef">my</span> %filter;
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $member (@combinations) {
-    <span style="color:#66d9ef">my</span> @uniq <span style="color:#f92672">=</span> uniq split <span style="color:#e6db74">//</span>, $member;
-    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> (@uniq <span style="color:#f92672">==</span> $n);
-    $filter{ sprintf(<span style="color:#e6db74">&#34;[%s]&#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, sort @uniq) } <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-}
-</code></pre></div><p>Please find below the complete <code>sub comb()</code> which handles the core of the task <strong>Number Combinations</strong>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">comb</span> {
-    <span style="color:#66d9ef">my</span> ($m, $n) <span style="color:#f92672">=</span> @_;
-
-    die <span style="color:#e6db74">&#34;ERROR: Missing &#39;m&#39;.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> defined $m;
-    die <span style="color:#e6db74">&#34;ERROR: Missing &#39;n&#39;.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> defined $n;
-    die <span style="color:#e6db74">&#34;ERROR: Invalid m=$m (m&gt;0).\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> ($m <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
-    die <span style="color:#e6db74">&#34;ERROR: Invalid n=$n (n&gt;0).\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> ($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
-    die <span style="color:#e6db74">&#34;ERROR: Invalid n=$n (n&lt;=m).\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> ($n <span style="color:#f92672">&lt;=</span> $m);
-
-    <span style="color:#75715e"># prepare data set</span>
-    <span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> ();
-    push @data, [<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$m] <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n);
-
-    <span style="color:#75715e"># generate all possible combinations</span>
-    <span style="color:#66d9ef">my</span> @combinations <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;&#39;</span>);
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $members (@data) {
-        @combinations <span style="color:#f92672">=</span> map {
-            <span style="color:#66d9ef">my</span>  $member <span style="color:#f92672">=</span> $_;
-            map $member<span style="color:#f92672">.</span>$_, @$members
-        } @combinations;
-    }
-
-    <span style="color:#75715e"># filter combinations</span>
-    <span style="color:#66d9ef">my</span> %filter;
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $member (@combinations) {
-        <span style="color:#66d9ef">my</span> @uniq <span style="color:#f92672">=</span> uniq split <span style="color:#e6db74">//</span>, $member;
-        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> (@uniq <span style="color:#f92672">==</span> $n);
-        $filter{ sprintf(<span style="color:#e6db74">&#34;[%s]&#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, sort @uniq) } <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    }
-
-    <span style="color:#75715e"># return sorted result</span>
-    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, (sort keys %filter));
-}
-</code></pre></div><p>Getting the above <strong>Perl</strong> <code>sub comb()</code> translated into <strong>Raku</strong> was the most fun part.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e"># filter combinations</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %filter;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $member (@combinations) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @uniq <span style="color:#f92672">=</span> uniq split <span style="color:#e6db74">//</span>, $member;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> (@uniq <span style="color:#f92672">==</span> $n);
+</span></span><span style="display:flex;"><span>    $filter{ sprintf(<span style="color:#e6db74">&#34;[%s]&#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, sort @uniq) } <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Please find below the complete <code>sub comb()</code> which handles the core of the task <strong>Number Combinations</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">comb</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($m, $n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing &#39;m&#39;.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined $m;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing &#39;n&#39;.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined $n;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid m=$m (m&gt;0).\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($m <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid n=$n (n&gt;0).\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid n=$n (n&lt;=m).\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($n <span style="color:#f92672">&lt;=</span> $m);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># prepare data set</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    push @data, [<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$m] <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># generate all possible combinations</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @combinations <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $members (@data) {
+</span></span><span style="display:flex;"><span>        @combinations <span style="color:#f92672">=</span> map {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span>  $member <span style="color:#f92672">=</span> $_;
+</span></span><span style="display:flex;"><span>            map $member<span style="color:#f92672">.</span>$_, @$members
+</span></span><span style="display:flex;"><span>        } @combinations;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># filter combinations</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %filter;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $member (@combinations) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @uniq <span style="color:#f92672">=</span> uniq split <span style="color:#e6db74">//</span>, $member;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> (@uniq <span style="color:#f92672">==</span> $n);
+</span></span><span style="display:flex;"><span>        $filter{ sprintf(<span style="color:#e6db74">&#34;[%s]&#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, sort @uniq) } <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># return sorted result</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, (sort keys %filter));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Getting the above <strong>Perl</strong> <code>sub comb()</code> translated into <strong>Raku</strong> was the most fun part.</p>
 <p>As I am a big fan of <code>method-chaining</code> of <strong>Raku</strong>, I never miss any opportunities. For generating combinations in <strong>Raku</strong>, I don&rsquo;t need external module, as <strong>Raku</strong> has everything built-in I need it.</p>
 <p><strong>Raku Rocks !!!</strong>.</p>
 <p>If you noticed, I didn&rsquo;t have to filter the result of combinations. Less work for me as compared to my <strong>Perl</strong> solution. Chaining with <code>map()</code> and <code>join()</code> made it look like kids job.</p>
 <p>It turned out to be a one-liner in <strong>Raku</strong> without being difficult to understand.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">number</span>-combinations(Int $m where { $m <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> },
-                        Int $n where { $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> }) {
-    $n <span style="color:#f92672">&gt;</span> $m <span style="color:#f92672">and</span> say <span style="color:#e6db74">&#34;ERROR: Invalid n=$n (n &lt;= m)&#34;</span> <span style="color:#f92672">and</span> exit;
-
-    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>,
-           (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$m)
-           <span style="color:#f92672">.</span>combinations($n)
-           <span style="color:#f92672">.</span>map({ <span style="color:#e6db74">&#39;[&#39;</span><span style="color:#f92672">~</span>$_<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;,&#39;</span>)<span style="color:#f92672">~</span><span style="color:#e6db74">&#39;]&#39;</span> })
-           <span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;, &#39;</span>));
-}
-</code></pre></div><p>Using the above <code>sub comb()</code>, the end result becomes one-liner.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(uniq)</span>;
-
-<span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
-<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>];
-
-<span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#34;\n&#34;</span>, comb($m, $n), <span style="color:#e6db74">&#39;&#39;</span>;
-</code></pre></div><p>Even <strong>Raku</strong> is not behind either. I must admit, it looks more attractive.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int :$m where { $m <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> } <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, Int :$n where { $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> } <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) {
-    number<span style="color:#f92672">-</span>combinations($m, $n)<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><p>Below is the standard unit test dealing with usual test case.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(uniq)</span>;
-
-is( comb(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>),
-    <span style="color:#e6db74">&#39;[ [1, 2], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5], [3, 4], [3, 5], [4, 5] ]&#39;</span>,
-    <span style="color:#e6db74">&#39;testing m=5; n=2&#39;</span> );
-is( comb(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>),
-    <span style="color:#e6db74">&#39;[ [1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 3, 4], [1, 3, 5], [1, 4, 5], [2, 3, 4], [2, 3, 5], [2, 4, 5], [3, 4, 5] ]&#39;</span>,
-    <span style="color:#e6db74">&#39;testing m=5; n=3&#39;</span> );
-is( comb(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>),
-    <span style="color:#e6db74">&#39;[ [1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5] ]&#39;</span>,
-    <span style="color:#e6db74">&#39;testing m=5; n=4&#39;</span> );
-is( comb(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>),
-    <span style="color:#e6db74">&#39;[ [1, 2, 3, 4, 5] ]&#39;</span>,
-    <span style="color:#e6db74">&#39;testing m=5; n=5&#39;</span> );
-
-done_testing;
-</code></pre></div><p>Similarly, <strong>Raku</strong> unit test followed the same path.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-is number<span style="color:#f92672">-</span>combinations(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>),
-   <span style="color:#e6db74">&#39;[ [1, 2], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5], [3, 4], [3, 5], [4, 5] ]&#39;</span>,
-   <span style="color:#e6db74">&#39;testing m=5, n=2&#39;</span>;
-is number<span style="color:#f92672">-</span>combinations(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>),
-   <span style="color:#e6db74">&#39;[ [1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 3, 4], [1, 3, 5], [1, 4, 5], [2, 3, 4], [2, 3, 5], [2, 4, 5], [3, 4, 5] ]&#39;</span>,
-   <span style="color:#e6db74">&#39;testing m=5, n=3&#39;</span>;
-is number<span style="color:#f92672">-</span>combinations(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>),
-   <span style="color:#e6db74">&#39;[ [1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5] ]&#39;</span>,
-   <span style="color:#e6db74">&#39;testing m=5, n=4&#39;</span>;
-is number<span style="color:#f92672">-</span>combinations(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>),
-   <span style="color:#e6db74">&#39;[ [1, 2, 3, 4, 5] ]&#39;</span>,
-   <span style="color:#e6db74">&#39;testing m=5, n=5&#39;</span>;
-
-done<span style="color:#f92672">-</span>testing;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">number</span>-combinations(Int $m where { $m <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> },
+</span></span><span style="display:flex;"><span>                        Int $n where { $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> }) {
+</span></span><span style="display:flex;"><span>    $n <span style="color:#f92672">&gt;</span> $m <span style="color:#f92672">and</span> say <span style="color:#e6db74">&#34;ERROR: Invalid n=$n (n &lt;= m)&#34;</span> <span style="color:#f92672">and</span> exit;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>,
+</span></span><span style="display:flex;"><span>           (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$m)
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">.</span>combinations($n)
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">.</span>map({ <span style="color:#e6db74">&#39;[&#39;</span><span style="color:#f92672">~</span>$_<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;,&#39;</span>)<span style="color:#f92672">~</span><span style="color:#e6db74">&#39;]&#39;</span> })
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;, &#39;</span>));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Using the above <code>sub comb()</code>, the end result becomes one-liner.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(uniq)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#34;\n&#34;</span>, comb($m, $n), <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span></code></pre></div><p>Even <strong>Raku</strong> is not behind either. I must admit, it looks more attractive.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int :$m where { $m <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> } <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, Int :$n where { $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> } <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>    number<span style="color:#f92672">-</span>combinations($m, $n)<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Below is the standard unit test dealing with usual test case.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(uniq)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is( comb(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;[ [1, 2], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5], [3, 4], [3, 5], [4, 5] ]&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;testing m=5; n=2&#39;</span> );
+</span></span><span style="display:flex;"><span>is( comb(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;[ [1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 3, 4], [1, 3, 5], [1, 4, 5], [2, 3, 4], [2, 3, 5], [2, 4, 5], [3, 4, 5] ]&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;testing m=5; n=3&#39;</span> );
+</span></span><span style="display:flex;"><span>is( comb(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;[ [1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5] ]&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;testing m=5; n=4&#39;</span> );
+</span></span><span style="display:flex;"><span>is( comb(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;[ [1, 2, 3, 4, 5] ]&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;testing m=5; n=5&#39;</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><p>Similarly, <strong>Raku</strong> unit test followed the same path.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is number<span style="color:#f92672">-</span>combinations(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;[ [1, 2], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5], [3, 4], [3, 5], [4, 5] ]&#39;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;testing m=5, n=2&#39;</span>;
+</span></span><span style="display:flex;"><span>is number<span style="color:#f92672">-</span>combinations(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;[ [1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 3, 4], [1, 3, 5], [1, 4, 5], [2, 3, 4], [2, 3, 5], [2, 4, 5], [3, 4, 5] ]&#39;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;testing m=5, n=3&#39;</span>;
+</span></span><span style="display:flex;"><span>is number<span style="color:#f92672">-</span>combinations(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;[ [1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5] ]&#39;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;testing m=5, n=4&#39;</span>;
+</span></span><span style="display:flex;"><span>is number<span style="color:#f92672">-</span>combinations(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;[ [1, 2, 3, 4, 5] ]&#39;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;testing m=5, n=5&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span></code></pre></div><hr>
 <h2 id="task-2--letter-phone">TASK #2 › Letter Phone</h2>
-<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<h4 id="submitted-by-mohammad-s-anwar-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
 <hr>
 <p>You are given a digit string <code>$S</code>. Write a script to print all possible letter combinations that the given digit string could represent.</p>
 <p><img src="/images/blog/keypad.png" alt="Letter Phone"></p>
 <hr>
 <br>
 <p>As mentioned above, I borrowed the code to find the combinations as before. Luckily, I didn&rsquo;t have to do anything else to the list.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">phone_letters</span> {
-    <span style="color:#66d9ef">my</span> ($digits) <span style="color:#f92672">=</span> @_;
-
-    die <span style="color:#e6db74">&#34;ERROR: Missing digits.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> defined $digits;
-    die <span style="color:#e6db74">&#34;ERROR: Invalid digits [$digits].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> ($digits <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[0-9\*\#]+$/</span>);
-
-    <span style="color:#75715e"># letter phone</span>
-    <span style="color:#66d9ef">my</span> %letter_of <span style="color:#f92672">=</span> (
-        <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;_,@&#39;</span>,
-        <span style="color:#e6db74">&#39;2&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;abc&#39;</span>,
-        <span style="color:#e6db74">&#39;3&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;def&#39;</span>,
-        <span style="color:#e6db74">&#39;4&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ghi&#39;</span>,
-        <span style="color:#e6db74">&#39;5&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;jlk&#39;</span>,
-        <span style="color:#e6db74">&#39;6&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;mno&#39;</span>,
-        <span style="color:#e6db74">&#39;7&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;pqrs&#39;</span>,
-        <span style="color:#e6db74">&#39;8&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;tuv&#39;</span>,
-        <span style="color:#e6db74">&#39;9&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;wxyz&#39;</span>,
-        <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;0&#39;</span>,
-        <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;#&#39;</span>,
-        <span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#f92672">=&gt;</span> chr(<span style="color:#ae81ff">9251</span>),
-    );
-
-    <span style="color:#75715e"># prepare data set</span>
-    <span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $digit (split <span style="color:#e6db74">//</span>,$digits) {
-        push @data, [ split <span style="color:#e6db74">//</span>, $letter_of{$digit} ];
-    }
-
-    <span style="color:#75715e"># generate all possible combinations</span>
-    <span style="color:#66d9ef">my</span> @combinations <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;&#39;</span>);
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $members (@data) {
-        @combinations <span style="color:#f92672">=</span> map {
-            <span style="color:#66d9ef">my</span>  $member <span style="color:#f92672">=</span> $_;
-            map $member<span style="color:#f92672">.</span>$_, @$members
-        } @combinations;
-    }
-
-    <span style="color:#66d9ef">return</span> @combinations;
-}
-</code></pre></div><p>With the power of <strong>Raku</strong>, I used the <code>map()</code> and reduction meta-operator <code>[]</code>, to get the job done.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">phone</span>-letters(Str $digits where { $digits <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^ &lt;[0..9\*\#]&gt;+ $/</span> }) {
-
-    <span style="color:#75715e"># letter phone</span>
-    <span style="color:#66d9ef">my</span> %letter<span style="color:#f92672">-</span>of <span style="color:#f92672">=</span> (
-        <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;_,@&#39;</span>,
-        <span style="color:#e6db74">&#39;2&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;abc&#39;</span>,
-        <span style="color:#e6db74">&#39;3&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;def&#39;</span>,
-        <span style="color:#e6db74">&#39;4&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ghi&#39;</span>,
-        <span style="color:#e6db74">&#39;5&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;jlk&#39;</span>,
-        <span style="color:#e6db74">&#39;6&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;mno&#39;</span>,
-        <span style="color:#e6db74">&#39;7&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;pqrs&#39;</span>,
-        <span style="color:#e6db74">&#39;8&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;tuv&#39;</span>,
-        <span style="color:#e6db74">&#39;9&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;wxyz&#39;</span>,
-        <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;0&#39;</span>,
-        <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;#&#39;</span>,
-        <span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#f92672">=&gt;</span> chr(<span style="color:#ae81ff">9251</span>),
-    );
-
-    <span style="color:#75715e"># prepare data set</span>
-    <span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> $digits<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map({ [ %letter<span style="color:#f92672">-</span>of{$_}<span style="color:#f92672">.</span>comb ] });
-
-    <span style="color:#75715e"># generate all possible combinations</span>
-    <span style="color:#66d9ef">return</span> map {<span style="color:#e6db74">qq{&#39;$_&#39;}</span>}, ([X<span style="color:#f92672">~</span>] @data);
-}
-</code></pre></div><p>To handle the unicode character, I had to rely on the following line to help printing the utf8 encoding character.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">binmode STDOUT, <span style="color:#e6db74">&#39;encoding(UTF-8)&#39;</span>;
-</code></pre></div><p>After that it just becomes one liner as below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-binmode STDOUT, <span style="color:#e6db74">&#39;encoding(UTF-8)&#39;</span>;
-<span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#34;\n&#34;</span>, phone_letters($ARGV[<span style="color:#ae81ff">0</span>]), <span style="color:#e6db74">&#39;&#39;</span>;
-</code></pre></div><p>With <strong>Raku</strong>, no need to deal with unicode character separately.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">phone_letters</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($digits) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing digits.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined $digits;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid digits [$digits].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($digits <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[0-9\*\#]+$/</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># letter phone</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %letter_of <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;_,@&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;2&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;abc&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;3&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;def&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;4&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ghi&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;5&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;jlk&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;6&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;mno&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;7&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;pqrs&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;8&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;tuv&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;9&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;wxyz&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;0&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;#&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#f92672">=&gt;</span> chr(<span style="color:#ae81ff">9251</span>),
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># prepare data set</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $digit (split <span style="color:#e6db74">//</span>,$digits) {
+</span></span><span style="display:flex;"><span>        push @data, [ split <span style="color:#e6db74">//</span>, $letter_of{$digit} ];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># generate all possible combinations</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @combinations <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $members (@data) {
+</span></span><span style="display:flex;"><span>        @combinations <span style="color:#f92672">=</span> map {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span>  $member <span style="color:#f92672">=</span> $_;
+</span></span><span style="display:flex;"><span>            map $member<span style="color:#f92672">.</span>$_, @$members
+</span></span><span style="display:flex;"><span>        } @combinations;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @combinations;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With the power of <strong>Raku</strong>, I used the <code>map()</code> and reduction meta-operator <code>[]</code>, to get the job done.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">phone</span>-letters(Str $digits where { $digits <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^ &lt;[0..9\*\#]&gt;+ $/</span> }) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># letter phone</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %letter<span style="color:#f92672">-</span>of <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;_,@&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;2&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;abc&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;3&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;def&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;4&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ghi&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;5&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;jlk&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;6&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;mno&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;7&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;pqrs&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;8&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;tuv&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;9&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;wxyz&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;0&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;#&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#f92672">=&gt;</span> chr(<span style="color:#ae81ff">9251</span>),
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># prepare data set</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> $digits<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map({ [ %letter<span style="color:#f92672">-</span>of{$_}<span style="color:#f92672">.</span>comb ] });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># generate all possible combinations</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> map {<span style="color:#e6db74">qq{&#39;$_&#39;}</span>}, ([X<span style="color:#f92672">~</span>] @data);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To handle the unicode character, I had to rely on the following line to help printing the utf8 encoding character.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>binmode STDOUT, <span style="color:#e6db74">&#39;encoding(UTF-8)&#39;</span>;
+</span></span></code></pre></div><p>After that it just becomes one liner as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>binmode STDOUT, <span style="color:#e6db74">&#39;encoding(UTF-8)&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#34;\n&#34;</span>, phone_letters($ARGV[<span style="color:#ae81ff">0</span>]), <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span></code></pre></div><p>With <strong>Raku</strong>, no need to deal with unicode character separately.</p>
 <p><strong>Raku Rocks once again !!!</strong>*</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$digits where { $digits <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^ &lt;[0..9\*\#]&gt;+ $/</span> } <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;35&#39;</span>) {
-    say sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, phone<span style="color:#f92672">-</span>letters($digits)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>));
-}
-</code></pre></div><p>Finally unit test to make it complete solution.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> Test::Deep;
-
-is_deeply( [ phone_letters(<span style="color:#e6db74">&#39;35&#39;</span>) ],
-           [ <span style="color:#e6db74">&#39;dj&#39;</span>, <span style="color:#e6db74">&#39;dl&#39;</span>, <span style="color:#e6db74">&#39;dk&#39;</span>, <span style="color:#e6db74">&#39;ej&#39;</span>, <span style="color:#e6db74">&#39;el&#39;</span>, <span style="color:#e6db74">&#39;ek&#39;</span>, <span style="color:#e6db74">&#39;fj&#39;</span>, <span style="color:#e6db74">&#39;fl&#39;</span>, <span style="color:#e6db74">&#39;fk&#39;</span> ],
-           <span style="color:#e6db74">&#39;testing digits 35&#39;</span> );
-is_deeply( [ phone_letters(<span style="color:#e6db74">&#39;10&#39;</span>) ],
-           [ <span style="color:#e6db74">&#39;_0&#39;</span>, <span style="color:#e6db74">&#39;,0&#39;</span>, <span style="color:#e6db74">&#39;@0&#39;</span> ],
-           <span style="color:#e6db74">&#39;testing digits 10&#39;</span> );
-is_deeply( [ phone_letters(<span style="color:#e6db74">&#39;2#&#39;</span>) ],
-           [ <span style="color:#e6db74">&#39;a#&#39;</span>, <span style="color:#e6db74">&#39;b#&#39;</span>, <span style="color:#e6db74">&#39;c#&#39;</span> ],
-           <span style="color:#e6db74">&#39;testing digits 2#&#39;</span> );
-
-done_testing;
-</code></pre></div><p>And <strong>Raku</strong> unit test goes alone the line.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-is sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, phone<span style="color:#f92672">-</span>letters(<span style="color:#e6db74">&#39;35&#39;</span>)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>)),
-   <span style="color:#e6db74">&#34;[ &#39;dj&#39;, &#39;dl&#39;, &#39;dk&#39;, &#39;ej&#39;, &#39;el&#39;, &#39;ek&#39;, &#39;fj&#39;, &#39;fl&#39;, &#39;fk&#39; ]&#34;</span>,
-   <span style="color:#e6db74">&#39;testing &#34;35&#34;&#39;</span>;
-is sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, phone<span style="color:#f92672">-</span>letters(<span style="color:#e6db74">&#39;10&#39;</span>)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>)),
-   <span style="color:#e6db74">&#34;[ &#39;_0&#39;, &#39;,0&#39;, &#39;@0&#39; ]&#34;</span>,
-   <span style="color:#e6db74">&#39;testing &#34;10&#34;&#39;</span>;
-is sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, phone<span style="color:#f92672">-</span>letters(<span style="color:#e6db74">&#39;2#&#39;</span>)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>)),
-   <span style="color:#e6db74">&#34;[ &#39;a#&#39;, &#39;b#&#39;, &#39;c#&#39; ]&#34;</span>,
-   <span style="color:#e6db74">&#39;testing &#34;2#&#34;&#39;</span>;
-
-done<span style="color:#f92672">-</span>testing;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$digits where { $digits <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^ &lt;[0..9\*\#]&gt;+ $/</span> } <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;35&#39;</span>) {
+</span></span><span style="display:flex;"><span>    say sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, phone<span style="color:#f92672">-</span>letters($digits)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Finally unit test to make it complete solution.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::Deep;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is_deeply( [ phone_letters(<span style="color:#e6db74">&#39;35&#39;</span>) ],
+</span></span><span style="display:flex;"><span>           [ <span style="color:#e6db74">&#39;dj&#39;</span>, <span style="color:#e6db74">&#39;dl&#39;</span>, <span style="color:#e6db74">&#39;dk&#39;</span>, <span style="color:#e6db74">&#39;ej&#39;</span>, <span style="color:#e6db74">&#39;el&#39;</span>, <span style="color:#e6db74">&#39;ek&#39;</span>, <span style="color:#e6db74">&#39;fj&#39;</span>, <span style="color:#e6db74">&#39;fl&#39;</span>, <span style="color:#e6db74">&#39;fk&#39;</span> ],
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#39;testing digits 35&#39;</span> );
+</span></span><span style="display:flex;"><span>is_deeply( [ phone_letters(<span style="color:#e6db74">&#39;10&#39;</span>) ],
+</span></span><span style="display:flex;"><span>           [ <span style="color:#e6db74">&#39;_0&#39;</span>, <span style="color:#e6db74">&#39;,0&#39;</span>, <span style="color:#e6db74">&#39;@0&#39;</span> ],
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#39;testing digits 10&#39;</span> );
+</span></span><span style="display:flex;"><span>is_deeply( [ phone_letters(<span style="color:#e6db74">&#39;2#&#39;</span>) ],
+</span></span><span style="display:flex;"><span>           [ <span style="color:#e6db74">&#39;a#&#39;</span>, <span style="color:#e6db74">&#39;b#&#39;</span>, <span style="color:#e6db74">&#39;c#&#39;</span> ],
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#39;testing digits 2#&#39;</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><p>And <strong>Raku</strong> unit test goes alone the line.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, phone<span style="color:#f92672">-</span>letters(<span style="color:#e6db74">&#39;35&#39;</span>)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>)),
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;[ &#39;dj&#39;, &#39;dl&#39;, &#39;dk&#39;, &#39;ej&#39;, &#39;el&#39;, &#39;ek&#39;, &#39;fj&#39;, &#39;fl&#39;, &#39;fk&#39; ]&#34;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;testing &#34;35&#34;&#39;</span>;
+</span></span><span style="display:flex;"><span>is sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, phone<span style="color:#f92672">-</span>letters(<span style="color:#e6db74">&#39;10&#39;</span>)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>)),
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;[ &#39;_0&#39;, &#39;,0&#39;, &#39;@0&#39; ]&#34;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;testing &#34;10&#34;&#39;</span>;
+</span></span><span style="display:flex;"><span>is sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, phone<span style="color:#f92672">-</span>letters(<span style="color:#e6db74">&#39;2#&#39;</span>)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>)),
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;[ &#39;a#&#39;, &#39;b#&#39;, &#39;c#&#39; ]&#34;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;testing &#34;2#&#34;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span></code></pre></div><hr>
 <p>That&rsquo;s it for this week. Speak to you soon.</p>
 
     </article>

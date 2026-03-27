@@ -116,7 +116,7 @@ Do you see your favourite language in the `Top 10`? If not then why not contribu
 #### **Raku Benchmark Scabality**
 <br>
 
-```
+```perl
 nice raku --optimize=3 -I challenge-nr239 -- test/benchmark-scalability.raku \
           --out-folder=/tmp --v=True --max-problem=20 --max-run-times=1 nr239
 ```
@@ -124,7 +124,7 @@ nice raku --optimize=3 -I challenge-nr239 -- test/benchmark-scalability.raku \
 <br>
 
 #### **Task 1**
-```
+```perl
 +-----------------+---------+---------+-------------+-------------+
 | user            | runtime | n       | latency     | total       |
 +-----------------+---------+---------+-------------+-------------+
@@ -150,7 +150,7 @@ nice raku --optimize=3 -I challenge-nr239 -- test/benchmark-scalability.raku \
 <br>
 
 #### **Task 2**
-```
+```perl
 +-----------------+---------+---------+-------------+-------------+
 | user            | runtime | n       | latency     | total       |
 +-----------------+---------+---------+-------------+-------------+
@@ -176,7 +176,7 @@ nice raku --optimize=3 -I challenge-nr239 -- test/benchmark-scalability.raku \
 
 #### **Breakdown by Languages**
 
-```
+```perl
 tokei -f --sort code --columns=130
 
 ==================================================================================================================================

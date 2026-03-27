@@ -198,7 +198,7 @@ The following workflow named, `CI/CD Pipeline`, triggers on a `push` to the `mai
 
 <br>
 
-```
+```perl
 name: CI/CD Pipeline
 
 on:
@@ -284,7 +284,7 @@ Now, I am going to create a basic workflow file in the repository to automatical
 
 ###  **Source:** [[&nbsp; .github/workflows/release.yml &nbsp;]](https://github.com/manwar/Map-Tube/blob/master/.github/workflows/release.yml)
 ***
-```
+```perl
 name: Release on Tag
 
 on:
@@ -331,7 +331,7 @@ It expires after the workflow run completes. In order to be able to create relea
 
 So the configuration would look like below using `GITHUB_TOKEN`:
 
-```
+```perl
 name: Release on Tag
 
 on:

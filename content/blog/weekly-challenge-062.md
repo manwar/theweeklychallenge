@@ -99,7 +99,7 @@ open (my $F, "<:encoding(utf8)", $file)
 
 becomes this in **Raku**.
 
-```perl6
+```perl
 my $io := $file.IO;
 ```
 
@@ -111,13 +111,13 @@ while (my $row = <$F>) {
 
 became this in **Raku**.
 
-```perl6
+```perl
 for $io.lines -> Str $line {
 ```
 
 Rest is just the straight translation of **Perl** into **Raku**.
 
-```perl6
+```perl
 sub sort-data(Str $file, Bool $unique?) {
 
     my $io := $file.IO;
@@ -170,7 +170,7 @@ Well, I am sure, you must have guessed it already. It gives us `--unique`, an op
 
 Rest is just the wrapper around **sub sort-data()**.
 
-```perl6
+```perl
 sub MAIN(Str :$file, Bool :$unique?) {
 
     my $sorted = sort-data($file, $unique);
@@ -206,7 +206,7 @@ done_testing;
 
 Same as **Perl**, nothing new to talk about.
 
-```perl6
+```perl
 use Test;
 
 is-deeply sort-data('../data.txt'),

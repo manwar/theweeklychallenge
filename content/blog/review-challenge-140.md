@@ -66,17 +66,17 @@ Write a script to simulate the addition of the given binary numbers.
 The script should simulate something like $a + $b. (operator overloading)
 
 **Example 1**
-```
+```perl
     Input: $a = 11; $b = 1;
     Output: 100
 ```
 **Example 2**
-```
+```perl
     Input: $a = 101; $b = 1;
     Output: 110
 ```
 **Example 3**
-```
+```perl
     Input: $a = 100; $b = 11;
     Output: 111
 ```
@@ -779,34 +779,34 @@ You are given 3 positive integers, $i, $j and $k.
 Write a script to print the $kth element in the sorted multiplication table of $i and $j.
 
 **Example 1**
-```
+```perl
     Input: $i = 2; $j = 3; $k = 4
     Output: 3
 ```
 Since the multiplication of 2 x 3 is as below:
-```
+```perl
     1 2 3
     2 4 6
 ```
 The sorted multiplication table:
-```
+```perl
     1 2 2 3 4 6
 ```
 Now the 4th element in the table is "3".
 
 **Example 2**
-```
+```perl
     Input: $i = 3; $j = 3; $k = 6
     Output: 4
 ```
 Since the multiplication of 3 x 3 is as below:
-```
+```perl
     1 2 3
     2 4 6
     3 6 9
 ```
 The sorted multiplication table:
-```
+```perl
     1 2 2 3 3 4 6 6 9
 ```
 Now the 6th element in the table is "4".
@@ -1214,7 +1214,7 @@ This can even be reduced to a single, daunting one-liner:
 
 I enjoy dissecting these PDL solutions and appreciate Luis' commentary. You will notice this solution even presents the verbose output from the examples:
 
-```
+```perl
     Input: i=2, j=3, k=5,
     Output=4
     since the 2X3 multiplication table is
@@ -1254,7 +1254,7 @@ So to produce the multiplication table we compute a matrix of **outer** products
 
 I really must play with the PDL more often — for this I found workshopping in the built-in runtime environment tremendously enlightening. Interested parties should just go for it and give it a try; to get you started `p` prints a value:
 
-```
+```perl
     pdl> p outer( sequence(long, 5) + 1, sequence(long, 5) + 1 ) -> flat -> qsort -> at(5)
     4
 ```

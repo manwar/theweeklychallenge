@@ -129,7 +129,7 @@ First thing first, I created `sub get-matrix()` to create a matrix given rows an
 
 Honestly speaking, it looks elegant and clean.
 
-```perl6
+```perl
 sub get-matrix(Int $rows where { $rows >= 1 },
                Int $cols where { $cols >= 1 }) {
 
@@ -152,7 +152,7 @@ sub get-matrix(Int $rows where { $rows >= 1 },
 Even the `sub display-matrix()` looks smart, with `$matrix.[$r].join(', ')`.
 
 
-```perl6
+```perl
 sub display-matrix($label, $matrix) {
 
     say $label;
@@ -164,7 +164,7 @@ sub display-matrix($label, $matrix) {
 
 The following `sub make-zero-matrix()` deals with main task i.e. making zero matrix.
 
-```perl6
+```perl
 sub make-zero-matrix($matrix) {
 
     my $rows = $matrix.elems - 1;
@@ -226,7 +226,7 @@ display_matrix('Zero Matrix:', $zero_matrix);
 
 Although, the **Raku** app is not exactly the same as **Perl** but you would agree with me, it has upper hand as far as the presentation is concerned.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Int :$R? is copy where { $R >= 2 } = 3,
@@ -258,7 +258,7 @@ done_testing;
 
 **Raku** once gain wins the race without the need of external library.
 
-```perl6
+```perl
 use Test;
 
 is-deeply make-zero-matrix([[1, 0, 1], [1, 1, 1], [1, 1, 1]]),
@@ -362,7 +362,7 @@ I must confess, what you see down below is not what I wrote in the first place. 
 
 When I made my code public, I received another cool suggestion by **Moritz Lenz** to replace my existing subroutine to show link.
 
-```perl6
+```perl
 class Node {
     has Int  $.v is rw;
     has Node $.c is rw;
@@ -393,7 +393,7 @@ With the introduction of `is rw`, I thought I can now make call like `$n1->c($n2
 
 For me this is my best work in **Raku** so far.
 
-```perl6
+```perl
 sub reorder-list(Str $linked-list is copy) {
 
     $linked-list ~~ s:g/\s//;
@@ -443,7 +443,7 @@ print reorder_list($list)->show_link, "\n";
 
 Literal translation of **Perl** solution.
 
-```perl6
+```perl
 sub MAIN(Str :$linked-list = '1 -> 2 -> 3 -> 4 -> 5') {
     reorder-list($linked-list).show-link.say;
 }
@@ -471,7 +471,7 @@ done_testing;
 
 and **Raku**, just so I don't forget it.
 
-```perl6
+```perl
 use Test;
 
 is reorder-list('1 -> 2 -> 3 -> 4').show-link,

@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2020blogadvent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
-<h3 id="-day-10blogadvent-calendar-2020-12-10--day-11--day-12blogadvent-calendar-2020-12-12-">| <a href="/blog/advent-calendar-2020-12-10"><strong>Day 10</strong></a> | <strong>Day 11</strong> | <a href="/blog/advent-calendar-2020-12-12"><strong>Day 12</strong></a> |</h3>
+        <h2 id="advent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
+<h3 id="-day-10--day-11--day-12-">| <a href="/blog/advent-calendar-2020-12-10"><strong>Day 10</strong></a> | <strong>Day 11</strong> | <a href="/blog/advent-calendar-2020-12-12"><strong>Day 12</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-016"><strong>Adam Russell</strong></a>. Today he is talking about his solution to the task <code>Lines Range</code> of <strong><a href="/blog/perl-weekly-challenge-072">&ldquo;The Weekly Challenge - 072&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="https://adamcrussell.livejournal.com/16759.html"><strong>post</strong></a> by <strong>Adam Russell</strong>.</p>
 <hr>
@@ -186,46 +186,46 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Write a script to display lines range <code>$A</code> and <code>$B</code> in the given file.</p>
 <h2 id="example">Example</h2>
 <h4 id="input">Input:</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $ cat input<span style="color:#f92672">.</span>txt
-    L1
-    L2
-    L3
-    L4
-    <span style="color:#f92672">...</span>
-    <span style="color:#f92672">...</span>
-    <span style="color:#f92672">...</span>
-    <span style="color:#f92672">...</span>
-    L100
-</code></pre></div><pre><code>$A = 4 and $B = 12
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    $ cat input<span style="color:#f92672">.</span>txt
+</span></span><span style="display:flex;"><span>    L1
+</span></span><span style="display:flex;"><span>    L2
+</span></span><span style="display:flex;"><span>    L3
+</span></span><span style="display:flex;"><span>    L4
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    L100
+</span></span></code></pre></div><pre><code>$A = 4 and $B = 12
 </code></pre>
 <h4 id="output">Output:</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    L4
-    L5
-    L6
-    L7
-    L8
-    L9
-    L10
-    L11
-    L12
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    L4
+</span></span><span style="display:flex;"><span>    L5
+</span></span><span style="display:flex;"><span>    L6
+</span></span><span style="display:flex;"><span>    L7
+</span></span><span style="display:flex;"><span>    L8
+</span></span><span style="display:flex;"><span>    L9
+</span></span><span style="display:flex;"><span>    L10
+</span></span><span style="display:flex;"><span>    L11
+</span></span><span style="display:flex;"><span>    L12
+</span></span></code></pre></div><hr>
 <p>I was a bit surprised to realize how this could be done with a one liner. In the example below input.txt is a plain text file which has 100 lines that all look like LX for 1 &lt;= X &lt;= 100.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl <span style="color:#f92672">-</span>s <span style="color:#f92672">-</span>n <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;print if $. &gt;= $A &amp;&amp; $. &lt;= $B&#39;</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#f92672">-</span>A<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">-</span>B<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span> <span style="color:#f92672">&lt;</span> input<span style="color:#f92672">.</span>txt
-
-L4
-L5
-L6
-L7
-L8
-L9
-L10
-L11
-L12
-</code></pre></div><p>The use of the special variable $. to track input line numbers is a common Perl idiom. What was surprising to me was that I was unfamiliar with the -s command line option. This option allows you to set variables on the command line. Anything after the — is interpreted to be a variable initialized to the given value. You can see that in the example above where -A=4 and -B=12 creates variables $A and $B initialized to 4 and 12 respectively.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl <span style="color:#f92672">-</span>s <span style="color:#f92672">-</span>n <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;print if $. &gt;= $A &amp;&amp; $. &lt;= $B&#39;</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#f92672">-</span>A<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">-</span>B<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span> <span style="color:#f92672">&lt;</span> input<span style="color:#f92672">.</span>txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>L4
+</span></span><span style="display:flex;"><span>L5
+</span></span><span style="display:flex;"><span>L6
+</span></span><span style="display:flex;"><span>L7
+</span></span><span style="display:flex;"><span>L8
+</span></span><span style="display:flex;"><span>L9
+</span></span><span style="display:flex;"><span>L10
+</span></span><span style="display:flex;"><span>L11
+</span></span><span style="display:flex;"><span>L12
+</span></span></code></pre></div><p>The use of the special variable $. to track input line numbers is a common Perl idiom. What was surprising to me was that I was unfamiliar with the -s command line option. This option allows you to set variables on the command line. Anything after the — is interpreted to be a variable initialized to the given value. You can see that in the example above where -A=4 and -B=12 creates variables $A and $B initialized to 4 and 12 respectively.</p>
 <p>If you do not set the variable to something then it is just initialized as true. For example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl <span style="color:#f92672">-</span>s <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;print &#34;$x\n&#34;;&#39;</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#f92672">-</span>x
-<span style="color:#ae81ff">1</span>
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl <span style="color:#f92672">-</span>s <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;print &#34;$x\n&#34;;&#39;</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#f92672">-</span>x
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></p>
 

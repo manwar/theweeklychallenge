@@ -66,7 +66,7 @@ sub min_abs_diff {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-354/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub min-abs-diff(@ints) {
     my @a = @ints.sort: { $^a <=> $^b };
     my $m = 9**9;

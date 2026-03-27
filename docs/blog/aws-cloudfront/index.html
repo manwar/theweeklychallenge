@@ -179,15 +179,15 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <h4 id="disclaimer-image-is-generated-using-leonardo-ai"><strong>DISCLAIMER:</strong> Image is generated using <code>Leonardo AI</code>.</h4>
 <br>
-<h3 id="1-introductionintroduction"><a href="#introduction">1. Introduction</a></h3>
-<h3 id="2-whats-aws-cloudfrontwhats-aws-cloudfront"><a href="#whats-aws-cloudfront">2. What&rsquo;s AWS CloudFront?</a></h3>
-<h3 id="3-setup-originsetup-origin"><a href="#setup-origin">3. Setup Origin</a></h3>
-<h3 id="4-create-contentcreate-content"><a href="#create-content">4. Create Content</a></h3>
-<h3 id="5-setup-configurationsetup-configuration"><a href="#setup-configuration">5. Setup Configuration</a></h3>
-<h3 id="6-create-distributioncreate-distribution"><a href="#create-distribution">6. Create Distribution</a></h3>
-<h3 id="7-mock-cloudfrontmock-cloudfront"><a href="#mock-cloudfront">7. Mock CloudFront</a></h3>
-<h3 id="8-testing-timetesting-time"><a href="#testing-time">8. Testing Time</a></h3>
-<h3 id="9-cleanupcleanup"><a href="#cleanup">9. Cleanup</a></h3>
+<h3 id="1-introduction"><a href="#introduction">1. Introduction</a></h3>
+<h3 id="2-what"><a href="#whats-aws-cloudfront">2. What&rsquo;s AWS CloudFront?</a></h3>
+<h3 id="3-setup-origin"><a href="#setup-origin">3. Setup Origin</a></h3>
+<h3 id="4-create-content"><a href="#create-content">4. Create Content</a></h3>
+<h3 id="5-setup-configuration"><a href="#setup-configuration">5. Setup Configuration</a></h3>
+<h3 id="6-create-distribution"><a href="#create-distribution">6. Create Distribution</a></h3>
+<h3 id="7-mock-cloudfront"><a href="#mock-cloudfront">7. Mock CloudFront</a></h3>
+<h3 id="8-testing-time"><a href="#testing-time">8. Testing Time</a></h3>
+<h3 id="9-cleanup"><a href="#cleanup">9. Cleanup</a></h3>
 <br>
 <h2 id="introduction">Introduction</h2>
 <hr>
@@ -243,75 +243,75 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>So, for <code>CloudFront</code> also, I am using <code>LocalStack (FREE version)</code>.</p>
 <p>I am running <code>LocalStack</code> in a docker container. This is current state of the container.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Container ID: c5414ee41318
-Image: localstack/localstack
-Command: <span style="color:#e6db74">&#34;docker-entrypoint.sh&#34;</span>
-Created: 2025-06-15 02:39:36 +0100 BST
-Status: Up <span style="color:#ae81ff">17</span> hours <span style="color:#f92672">(</span>healthy<span style="color:#f92672">)</span>
-Ports: 0.0.0.0:4510-4559-&gt;4510-4559/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:4510-4559-&gt;4510-4559/tcp, 0.0.0.0:4566-&gt;4566/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:4566-&gt;4566/tcp, 5678/tcp
-Names: localstack
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Container ID: c5414ee41318
+</span></span><span style="display:flex;"><span>Image: localstack/localstack
+</span></span><span style="display:flex;"><span>Command: <span style="color:#e6db74">&#34;docker-entrypoint.sh&#34;</span>
+</span></span><span style="display:flex;"><span>Created: 2025-06-15 02:39:36 +0100 BST
+</span></span><span style="display:flex;"><span>Status: Up <span style="color:#ae81ff">17</span> hours <span style="color:#f92672">(</span>healthy<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Ports: 0.0.0.0:4510-4559-&gt;4510-4559/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:4510-4559-&gt;4510-4559/tcp, 0.0.0.0:4566-&gt;4566/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:4566-&gt;4566/tcp, 5678/tcp
+</span></span><span style="display:flex;"><span>Names: localstack
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s create <code>origin</code> for <code>CloudFront</code> first.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 mb s3://my-cloudfront-bucket
-make_bucket: my-cloudfront-bucket
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ aws s3 mb s3://my-cloudfront-bucket
+</span></span><span style="display:flex;"><span>make_bucket: my-cloudfront-bucket
+</span></span></code></pre></div><br>
 <h2 id="create-content">Create Content</h2>
 <hr>
 <br>
 <p>Now I&rsquo;ll create a static <code>HTML</code> page and upload to <code>S3</code> bucket <code>my-cloudfront-bucket</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ echo <span style="color:#e6db74">&#34;Hello, CloudFront!&#34;</span> &gt; index.html
-$ aws s3 cp index.html s3://my-cloudfront-bucket
-upload: ./index.html to s3://my-cloudfront-bucket/index.html
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#34;Hello, CloudFront!&#34;</span> &gt; index.html
+</span></span><span style="display:flex;"><span>$ aws s3 cp index.html s3://my-cloudfront-bucket
+</span></span><span style="display:flex;"><span>upload: ./index.html to s3://my-cloudfront-bucket/index.html
+</span></span></code></pre></div><br>
 <h2 id="setup-configuration">Setup Configuration</h2>
 <hr>
 <br>
 <p>Time to create <code>CloudFront</code> configuration file: <code>cloudfront-config.json</code></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{</span>
-  <span style="color:#e6db74">&#34;CallerReference&#34;</span>: <span style="color:#e6db74">&#34;my-distribution&#34;</span>,
-  <span style="color:#e6db74">&#34;Comment&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
-  <span style="color:#e6db74">&#34;Origins&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;Quantity&#34;</span>: 1,
-    <span style="color:#e6db74">&#34;Items&#34;</span>: <span style="color:#f92672">[</span>
-      <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;Id&#34;</span>: <span style="color:#e6db74">&#34;my-s3-origin&#34;</span>,
-        <span style="color:#e6db74">&#34;DomainName&#34;</span>: <span style="color:#e6db74">&#34;my-cloudfront-bucket.s3.localhost.localstack.cloud&#34;</span>,
-        <span style="color:#e6db74">&#34;S3OriginConfig&#34;</span>: <span style="color:#f92672">{</span>
-          <span style="color:#e6db74">&#34;OriginAccessIdentity&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
-        <span style="color:#f92672">}</span>
-      <span style="color:#f92672">}</span>
-    <span style="color:#f92672">]</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;DefaultCacheBehavior&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;TargetOriginId&#34;</span>: <span style="color:#e6db74">&#34;my-s3-origin&#34;</span>,
-    <span style="color:#e6db74">&#34;ForwardedValues&#34;</span>: <span style="color:#f92672">{</span>
-      <span style="color:#e6db74">&#34;QueryString&#34;</span>: false,
-      <span style="color:#e6db74">&#34;Cookies&#34;</span>: <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;Forward&#34;</span>: <span style="color:#e6db74">&#34;none&#34;</span>
-      <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>,
-    <span style="color:#e6db74">&#34;ViewerProtocolPolicy&#34;</span>: <span style="color:#e6db74">&#34;allow-all&#34;</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;Enabled&#34;</span>: true
-<span style="color:#f92672">}</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;CallerReference&#34;</span>: <span style="color:#e6db74">&#34;my-distribution&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Comment&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Origins&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Quantity&#34;</span>: 1,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Items&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Id&#34;</span>: <span style="color:#e6db74">&#34;my-s3-origin&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;DomainName&#34;</span>: <span style="color:#e6db74">&#34;my-cloudfront-bucket.s3.localhost.localstack.cloud&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;S3OriginConfig&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;OriginAccessIdentity&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;DefaultCacheBehavior&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;TargetOriginId&#34;</span>: <span style="color:#e6db74">&#34;my-s3-origin&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ForwardedValues&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;QueryString&#34;</span>: false,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;Cookies&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Forward&#34;</span>: <span style="color:#e6db74">&#34;none&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ViewerProtocolPolicy&#34;</span>: <span style="color:#e6db74">&#34;allow-all&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Enabled&#34;</span>: true
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><br>
 <h2 id="create-distribution">Create Distribution</h2>
 <hr>
 <br>
 <p>Next step is to create the distribution.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws cloudfront create-distribution --distribution-config file://cloudfront-config.json
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ aws cloudfront create-distribution --distribution-config file://cloudfront-config.json
+</span></span></code></pre></div><br>
 <p>It seems my luck is running out today.</p>
 <p>I got the following error when I tried to create distribution above.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    An error occurred <span style="color:#f92672">(</span>InternalFailure<span style="color:#f92672">)</span> when calling the CreateDistribution operation:
-    API <span style="color:#66d9ef">for</span> service <span style="color:#e6db74">&#39;cloudfront&#39;</span> not yet implemented or pro feature -
-    please check https://docs.localstack.cloud/references/coverage/ <span style="color:#66d9ef">for</span> further information
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    An error occurred <span style="color:#f92672">(</span>InternalFailure<span style="color:#f92672">)</span> when calling the CreateDistribution operation:
+</span></span><span style="display:flex;"><span>    API <span style="color:#66d9ef">for</span> service <span style="color:#e6db74">&#39;cloudfront&#39;</span> not yet implemented or pro feature -
+</span></span><span style="display:flex;"><span>    please check https://docs.localstack.cloud/references/coverage/ <span style="color:#66d9ef">for</span> further information
+</span></span></code></pre></div><br>
 <p>Apparently, the <code>LocalStack (FREE version)</code> do not support <code>CloudFront</code> service unfortunately.</p>
 <p>I&rsquo;ll have to purchase the <code>Pro version</code> to be able to use <code>CloudFront</code> service.</p>
 <p>It is a blocker for me.</p>
@@ -323,72 +323,72 @@ upload: ./index.html to s3://my-cloudfront-bucket/index.html
 <p>For basic simulation of <code>Caching/CDN-like</code> behaviour, we can use a local reverse proxy e.g. <code>nginx</code> in front of <code>S3</code> in <code>LocalStack</code>.</p>
 <p>Let&rsquo;s create <code>nginx</code> configuration file: <code>nginx/nginx.conf</code></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">events <span style="color:#f92672">{}</span>
-
-http <span style="color:#f92672">{</span>
-    proxy_cache_path /var/cache/nginx
-                     levels<span style="color:#f92672">=</span>1:2
-                     keys_zone<span style="color:#f92672">=</span>cloudfront_cache:10m
-                     max_size<span style="color:#f92672">=</span>100m
-                     inactive<span style="color:#f92672">=</span>60m
-                     use_temp_path<span style="color:#f92672">=</span>off;
-
-    server <span style="color:#f92672">{</span>
-        listen 80;
-
-        location / <span style="color:#f92672">{</span>
-            proxy_pass http://172.17.0.1:4566;
-            proxy_set_header Host $host;
-
-            proxy_cache cloudfront_cache;
-            proxy_cache_valid <span style="color:#ae81ff">200</span> <span style="color:#ae81ff">302</span> 10m;
-            proxy_cache_use_stale error timeout updating;
-
-            add_header X-Mock-CloudFront true;
-            add_header Cache-Control <span style="color:#e6db74">&#34;public, max-age=600&#34;</span>;
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>events <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>http <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    proxy_cache_path /var/cache/nginx
+</span></span><span style="display:flex;"><span>                     levels<span style="color:#f92672">=</span>1:2
+</span></span><span style="display:flex;"><span>                     keys_zone<span style="color:#f92672">=</span>cloudfront_cache:10m
+</span></span><span style="display:flex;"><span>                     max_size<span style="color:#f92672">=</span>100m
+</span></span><span style="display:flex;"><span>                     inactive<span style="color:#f92672">=</span>60m
+</span></span><span style="display:flex;"><span>                     use_temp_path<span style="color:#f92672">=</span>off;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    server <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        listen 80;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        location / <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            proxy_pass http://172.17.0.1:4566;
+</span></span><span style="display:flex;"><span>            proxy_set_header Host $host;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            proxy_cache cloudfront_cache;
+</span></span><span style="display:flex;"><span>            proxy_cache_valid <span style="color:#ae81ff">200</span> <span style="color:#ae81ff">302</span> 10m;
+</span></span><span style="display:flex;"><span>            proxy_cache_use_stale error timeout updating;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            add_header X-Mock-CloudFront true;
+</span></span><span style="display:flex;"><span>            add_header Cache-Control <span style="color:#e6db74">&#34;public, max-age=600&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><br>
 <p>The above <code>nginx</code> server emulates the following <code>CloudFront</code> behaviour:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">1<span style="color:#f92672">)</span> Sets up a cache zone <span style="color:#f92672">(</span>cloudfront_cache<span style="color:#f92672">)</span> with 10MB memory and 100MB disk space
-2<span style="color:#f92672">)</span> Caches successful responses <span style="color:#f92672">(</span>200, 302<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">10</span> minutes
-3<span style="color:#f92672">)</span> Uses stale cache when there are errors or timeouts
-4<span style="color:#f92672">)</span> Adds X-Mock-CloudFront header to identify this as a mock CloudFront
-5<span style="color:#f92672">)</span> Sets Cache-Control header to public, max-age<span style="color:#f92672">=</span><span style="color:#ae81ff">600</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">10</span> minutes<span style="color:#f92672">)</span>
-6<span style="color:#f92672">)</span> Forwards requests to LocalStack instance <span style="color:#f92672">(</span>172.17.0.1:4566<span style="color:#f92672">)</span>
-7<span style="color:#f92672">)</span> Preserves the original Host header
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>1<span style="color:#f92672">)</span> Sets up a cache zone <span style="color:#f92672">(</span>cloudfront_cache<span style="color:#f92672">)</span> with 10MB memory and 100MB disk space
+</span></span><span style="display:flex;"><span>2<span style="color:#f92672">)</span> Caches successful responses <span style="color:#f92672">(</span>200, 302<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">10</span> minutes
+</span></span><span style="display:flex;"><span>3<span style="color:#f92672">)</span> Uses stale cache when there are errors or timeouts
+</span></span><span style="display:flex;"><span>4<span style="color:#f92672">)</span> Adds X-Mock-CloudFront header to identify this as a mock CloudFront
+</span></span><span style="display:flex;"><span>5<span style="color:#f92672">)</span> Sets Cache-Control header to public, max-age<span style="color:#f92672">=</span><span style="color:#ae81ff">600</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">10</span> minutes<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>6<span style="color:#f92672">)</span> Forwards requests to LocalStack instance <span style="color:#f92672">(</span>172.17.0.1:4566<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>7<span style="color:#f92672">)</span> Preserves the original Host header
+</span></span></code></pre></div><br>
 <p>As a fan of <code>Docker</code>, I will run the <code>nginx</code> server in a docker container.</p>
 <p>So here is the docker compose configuration file: <code>docker-compose.yml</code></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">version: <span style="color:#e6db74">&#39;3.8&#39;</span>
-
-services:
-  mock-cloudfront:
-    image: nginx:alpine
-    ports:
-      - <span style="color:#e6db74">&#34;8080:80&#34;</span>
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  mock-cloudfront:
+</span></span><span style="display:flex;"><span>    image: nginx:alpine
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;8080:80&#34;</span>
+</span></span><span style="display:flex;"><span>    volumes:
+</span></span><span style="display:flex;"><span>      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+</span></span></code></pre></div><br>
 <p>Time to start the <code>nginx</code> server.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up -d
-Creating network <span style="color:#e6db74">&#34;cloudfront_default&#34;</span> with the default driver
-Creating cloudfront_mock-cloudfront_1 ... <span style="color:#66d9ef">done</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker-compose up -d
+</span></span><span style="display:flex;"><span>Creating network <span style="color:#e6db74">&#34;cloudfront_default&#34;</span> with the default driver
+</span></span><span style="display:flex;"><span>Creating cloudfront_mock-cloudfront_1 ... <span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><br>
 <p>The docker container status looks like below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Container ID: 959bdf82721e
-Image: nginx:alpine
-Command: <span style="color:#e6db74">&#34;/docker-entrypoint.…&#34;</span>
-Created: 2025-06-15 19:51:01 +0100 BST
-Status: Up <span style="color:#ae81ff">23</span> seconds
-Ports: 0.0.0.0:8080-&gt;80/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:8080-&gt;80/tcp
-Names: cloudfront_mock-cloudfront_1
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Container ID: 959bdf82721e
+</span></span><span style="display:flex;"><span>Image: nginx:alpine
+</span></span><span style="display:flex;"><span>Command: <span style="color:#e6db74">&#34;/docker-entrypoint.…&#34;</span>
+</span></span><span style="display:flex;"><span>Created: 2025-06-15 19:51:01 +0100 BST
+</span></span><span style="display:flex;"><span>Status: Up <span style="color:#ae81ff">23</span> seconds
+</span></span><span style="display:flex;"><span>Ports: 0.0.0.0:8080-&gt;80/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:8080-&gt;80/tcp
+</span></span><span style="display:flex;"><span>Names: cloudfront_mock-cloudfront_1
+</span></span></code></pre></div><br>
 <p>We are good to go now.</p>
 <br>
 <h2 id="testing-time">Testing Time</h2>
@@ -396,24 +396,24 @@ Names: cloudfront_mock-cloudfront_1
 <br>
 <p>Let&rsquo;s try to access the <code>HTML</code> page we created and uploaded to <code>S3</code> bucket above.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -i http://localhost:8080/my-cloudfront-bucket/index.html
-HTTP/1.1 <span style="color:#ae81ff">200</span> OK
-Server: nginx/1.27.5
-Date: Sun, <span style="color:#ae81ff">15</span> Jun <span style="color:#ae81ff">2025</span> 18:54:48 GMT
-Content-Type: text/html
-Content-Length: <span style="color:#ae81ff">19</span>
-Connection: keep-alive
-Last-Modified: Sun, <span style="color:#ae81ff">15</span> Jun <span style="color:#ae81ff">2025</span> 18:54:38 GMT
-ETag: <span style="color:#e6db74">&#34;ae6f164c882446d8d3eaca05c82149b3&#34;</span>
-x-amz-server-side-encryption: AES256
-x-amz-request-id: 904b2a41-ebc4-4d86-980d-237554ed341f
-x-amz-id-2: s9lzHYrFp76ZVxRcpX9+5cjAnEH2ROuNkd2BHfIa6UkFVdtjf5mKR3/eTPFvsiP/XV/VLi31234<span style="color:#f92672">=</span>
-X-Mock-CloudFront: true
-Cache-Control: public, max-age<span style="color:#f92672">=</span><span style="color:#ae81ff">600</span>
-Accept-Ranges: bytes
-
-Hello, CloudFront!
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -i http://localhost:8080/my-cloudfront-bucket/index.html
+</span></span><span style="display:flex;"><span>HTTP/1.1 <span style="color:#ae81ff">200</span> OK
+</span></span><span style="display:flex;"><span>Server: nginx/1.27.5
+</span></span><span style="display:flex;"><span>Date: Sun, <span style="color:#ae81ff">15</span> Jun <span style="color:#ae81ff">2025</span> 18:54:48 GMT
+</span></span><span style="display:flex;"><span>Content-Type: text/html
+</span></span><span style="display:flex;"><span>Content-Length: <span style="color:#ae81ff">19</span>
+</span></span><span style="display:flex;"><span>Connection: keep-alive
+</span></span><span style="display:flex;"><span>Last-Modified: Sun, <span style="color:#ae81ff">15</span> Jun <span style="color:#ae81ff">2025</span> 18:54:38 GMT
+</span></span><span style="display:flex;"><span>ETag: <span style="color:#e6db74">&#34;ae6f164c882446d8d3eaca05c82149b3&#34;</span>
+</span></span><span style="display:flex;"><span>x-amz-server-side-encryption: AES256
+</span></span><span style="display:flex;"><span>x-amz-request-id: 904b2a41-ebc4-4d86-980d-237554ed341f
+</span></span><span style="display:flex;"><span>x-amz-id-2: s9lzHYrFp76ZVxRcpX9+5cjAnEH2ROuNkd2BHfIa6UkFVdtjf5mKR3/eTPFvsiP/XV/VLi31234<span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>X-Mock-CloudFront: true
+</span></span><span style="display:flex;"><span>Cache-Control: public, max-age<span style="color:#f92672">=</span><span style="color:#ae81ff">600</span>
+</span></span><span style="display:flex;"><span>Accept-Ranges: bytes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Hello, CloudFront!
+</span></span></code></pre></div><br>
 <p>So far, so good.</p>
 <br>
 <h2 id="cleanup">Cleanup</h2>
@@ -421,18 +421,18 @@ Hello, CloudFront!
 <br>
 <p>Let&rsquo;s stop the container.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose down
-Stopping cloudfront_mock-cloudfront_1 ... <span style="color:#66d9ef">done</span>
-Removing cloudfront_mock-cloudfront_1 ... <span style="color:#66d9ef">done</span>
-Removing network cloudfront_default
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker-compose down
+</span></span><span style="display:flex;"><span>Stopping cloudfront_mock-cloudfront_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Removing cloudfront_mock-cloudfront_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Removing network cloudfront_default
+</span></span></code></pre></div><br>
 <p>Time to cleanup <code>S3</code> bucket finally.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3 rm s3://my-cloudfront-bucket --recursive
-delete: s3://my-cloudfront-bucket/index.html
-$ aws s3 rb s3://my-cloudfront-bucket
-remove_bucket: my-cloudfront-bucket
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ aws s3 rm s3://my-cloudfront-bucket --recursive
+</span></span><span style="display:flex;"><span>delete: s3://my-cloudfront-bucket/index.html
+</span></span><span style="display:flex;"><span>$ aws s3 rb s3://my-cloudfront-bucket
+</span></span><span style="display:flex;"><span>remove_bucket: my-cloudfront-bucket
+</span></span></code></pre></div><hr>
 <br>
 <p><code>Happy Hacking !!!</code></p>
 

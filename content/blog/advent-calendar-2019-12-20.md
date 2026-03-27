@@ -205,7 +205,7 @@ Finally, output the list of tiles and the highest scoring words.
 
 **Raku** is a bit different, because there are useful built-in language features:
 
-```perl6
+```perl
     my $tilecount=(
         'A' => 8,
         'G' => 3,
@@ -268,7 +268,7 @@ Finally, output the list of tiles and the highest scoring words.
 
 The **grab** method on a **BagHash** gives me a series of weighted random picks, without replacement. This is a really handy thing to have; lots of code I write does things a bit like this.
 
-```perl6
+```perl
     my @bag=$tilecount.grab($l);
 
     my %w;
@@ -283,7 +283,7 @@ The **grab** method on a **BagHash** gives me a series of weighted random picks,
 
 Similarly, all that permuting algorithm can be replaced with another core feature:
 
-```perl6
+```perl
 
     my $maxscore=0;
     my @maxcandidate;

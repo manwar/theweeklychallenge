@@ -48,17 +48,17 @@ You are given unsorted list of integers @N.
 Write a script to find out the smallest positive number missing.
 
 Example 1:
-```
+```perl
     Input: @N = (5, 2, -2, 0)
     Output: 1
 ```
 Example 2:
-```
+```perl
     Input: @N = (1, 8, -1)
     Output: 2
 ```
 Example 3:
-```
+```perl
     Input: @N = (2, 0, -1)
     Output: 1
 ```
@@ -396,7 +396,7 @@ a) You must given at least one candy to each candidate.
 b) Candidate with higher ranking get more candies than their immediate neighbors on either side.
 
 Example 1:
-```
+```perl
 Input: $N = (1, 2, 2)
 Explanation:
 Applying rule #a, each candidate will get one candy. So total candies
@@ -411,7 +411,7 @@ Output: 4
 ```
 
 Example 2:
-```
+```perl
 Input: $N = (1, 4, 3, 2)
 Explanation:
 Applying rule #a, each candidate will get one candy. So total candies
@@ -441,7 +441,7 @@ In this case I used the input array
 
 As you can see, this is more complicated that the examples, containing a bevy of interesting elements: an ascending sequence, a descending sequence, a quick reversal and a hard shelf. For my own solution, I get the result:
 
-```
+```perl
 input:  1 9 5 2 6 8 9 10 2 5 1
 output: 1 3 2 1 2 3 4  5 1 2 1
 total:  25
@@ -453,7 +453,7 @@ So I started administering this data to the pile of scripts in front of me. Pick
 
 After tabulating the results as hash data, I applied the frequency counter I'd just written for my "Bag of Words" solution for 081 and this is what I found:
 
-```
+```perl
 total | submissions
 ------+------------
   1   |   1
@@ -478,7 +478,7 @@ It seems applying this philosophy leads to the answer **21** in the sample data.
 
 Let's construct the allotments according to this reasoning in an array alongside the initial data and have a look.
 
-```
+```perl
 in    1 9 5 2 6 8 9 10 2 5 1
 out    1 3 2 1 2 2 2  3 1 3 1  =  21
 ```
@@ -487,7 +487,7 @@ A quick look at this list shows directive (b) is obviously violated right in the
 
 To review:
 
-```
+```perl
 a) You must given at least one candy to each candidate.
 b) Candidate with higher ranking get more candies than their immediate neighbors on either side.
 ```

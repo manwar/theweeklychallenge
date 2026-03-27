@@ -205,28 +205,28 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <p>Ensure you have the following dependencies:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cpanm -vS Dancer2
-$ cpanm -vS DBIx::Class::Async
-$ cpanm -vS Dancer2::Plugin::DBIC::Async
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cpanm -vS Dancer2
+</span></span><span style="display:flex;"><span>$ cpanm -vS DBIx::Class::Async
+</span></span><span style="display:flex;"><span>$ cpanm -vS Dancer2::Plugin::DBIC::Async
+</span></span></code></pre></div><br>
 <h3 id="project-structure">Project Structure</h3>
 <hr>
 <p>The project looks like this:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    ├── app.pl
-    ├── bin
-    │   └── deploy.pl
-    ├── config.yml
-    ├── contacts.db
-    ├── lib
-    │   └── MyApp
-    │       ├── Schema
-    │       │   └── Result
-    │       │       └── Contact.pm
-    │       └── Schema.pm
-    └── views
-        └── index.tt
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    ├── app.pl
+</span></span><span style="display:flex;"><span>    ├── bin
+</span></span><span style="display:flex;"><span>    │   └── deploy.pl
+</span></span><span style="display:flex;"><span>    ├── config.yml
+</span></span><span style="display:flex;"><span>    ├── contacts.db
+</span></span><span style="display:flex;"><span>    ├── lib
+</span></span><span style="display:flex;"><span>    │   └── MyApp
+</span></span><span style="display:flex;"><span>    │       ├── Schema
+</span></span><span style="display:flex;"><span>    │       │   └── Result
+</span></span><span style="display:flex;"><span>    │       │       └── Contact.pm
+</span></span><span style="display:flex;"><span>    │       └── Schema.pm
+</span></span><span style="display:flex;"><span>    └── views
+</span></span><span style="display:flex;"><span>        └── index.tt
+</span></span></code></pre></div><br>
 <pre><code>config.yml: Application configuration file.
 app.pl: The Dancer2 application logic and routes.
 bin/deploy.pl: Deployment script to create SQLite database.
@@ -242,8 +242,8 @@ contacts.db: SQLite database.
 <br>
 <p>Create your SQLite database and deploy the schema:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl bin/deploy.pl
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl bin/deploy.pl
+</span></span></code></pre></div><br>
 <h4 id="2-configuration"><strong>2. Configuration</strong></h4>
 <br>
 <p>Ensure your config.yml points to the correct schema:</p>
@@ -266,112 +266,112 @@ plugins:
 <br>
 <h4 id="3-template"><strong>3. Template</strong></h4>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#f92672">html</span>&gt;
-&lt;<span style="color:#f92672">head</span>&gt;
-    &lt;<span style="color:#f92672">title</span>&gt;Async Contact Manager&lt;/<span style="color:#f92672">title</span>&gt;
-    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://unpkg.com/htmx.org@1.9.10&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
-&lt;/<span style="color:#f92672">head</span>&gt;
-&lt;<span style="color:#f92672">body</span>&gt;
-    &lt;<span style="color:#f92672">h1</span>&gt;Contact Manager&lt;/<span style="color:#f92672">h1</span>&gt;
-
-    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">hx-post</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span>
-      <span style="color:#a6e22e">hx-target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#contact-list&#34;</span>
-      <span style="color:#a6e22e">hx-swap</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;innerHTML&#34;</span>
-      <span style="color:#a6e22e">onaddcontact</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;this.reset()&#34;</span>&gt;
-        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name&#34;</span> <span style="color:#a6e22e">required</span>&gt;
-        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span> <span style="color:#a6e22e">required</span>&gt;
-        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;Add Contact&lt;/<span style="color:#f92672">button</span>&gt;
-    &lt;/<span style="color:#f92672">form</span>&gt;
-
-    &lt;<span style="color:#f92672">hr</span>&gt;
-
-    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;search-box&#34;</span>&gt;
-        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>
-            <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;q&#34;</span>
-            <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Search contacts...&#34;</span>
-            <span style="color:#a6e22e">hx-get</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span>
-            <span style="color:#a6e22e">hx-target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#contact-list&#34;</span>
-            <span style="color:#a6e22e">hx-trigger</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;keyup changed delay:500ms&#34;</span>
-            <span style="color:#a6e22e">hx-indicator</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.loader&#34;</span>&gt;
-        &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;loader htmx-indicator&#34;</span>&gt;Searching...&lt;/<span style="color:#f92672">span</span>&gt;
-    &lt;/<span style="color:#f92672">div</span>&gt;
-
-    &lt;<span style="color:#f92672">h2</span>&gt;Active Contacts (&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;total-count&#34;</span>&gt;0&lt;/<span style="color:#f92672">span</span>&gt;)&lt;/<span style="color:#f92672">h2</span>&gt;
-    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;contact-list&#34;</span> <span style="color:#a6e22e">hx-get</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span> <span style="color:#a6e22e">hx-trigger</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;load&#34;</span>&gt;
-        Loading contacts...
-    &lt;/<span style="color:#f92672">div</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;Async Contact Manager&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://unpkg.com/htmx.org@1.9.10&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h1</span>&gt;Contact Manager&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">hx-post</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">hx-target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#contact-list&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">hx-swap</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;innerHTML&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">onaddcontact</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;this.reset()&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name&#34;</span> <span style="color:#a6e22e">required</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span> <span style="color:#a6e22e">required</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;Add Contact&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">hr</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;search-box&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;q&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Search contacts...&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">hx-get</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">hx-target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#contact-list&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">hx-trigger</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;keyup changed delay:500ms&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">hx-indicator</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.loader&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;loader htmx-indicator&#34;</span>&gt;Searching...&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h2</span>&gt;Active Contacts (&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;total-count&#34;</span>&gt;0&lt;/<span style="color:#f92672">span</span>&gt;)&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;contact-list&#34;</span> <span style="color:#a6e22e">hx-get</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span> <span style="color:#a6e22e">hx-trigger</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;load&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        Loading contacts...
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><br>
 <h4 id="4-application"><strong>4. Application</strong></h4>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;lib&#39;</span>;
-
-<span style="color:#66d9ef">use</span> Dancer2;
-<span style="color:#66d9ef">use</span> Dancer2::Plugin::DBIC::Async;
-
-get <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-    template <span style="color:#e6db74">&#39;index&#39;</span>;
-};
-
-post <span style="color:#e6db74">&#39;/contacts&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-    <span style="color:#66d9ef">my</span> $name  <span style="color:#f92672">=</span> body_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;name&#39;</span>);
-    <span style="color:#66d9ef">my</span> $email <span style="color:#f92672">=</span> body_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;email&#39;</span>);
-
-    async_create(<span style="color:#e6db74">&#39;Contact&#39;</span>, { name <span style="color:#f92672">=&gt;</span> $name, email <span style="color:#f92672">=&gt;</span> $email }, <span style="color:#e6db74">&#39;default&#39;</span>)<span style="color:#f92672">-&gt;</span>get;
-
-    redirect <span style="color:#e6db74">&#39;/contacts&#39;</span>;
-};
-
-get <span style="color:#e6db74">&#39;/contacts&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-    <span style="color:#66d9ef">my</span> $query <span style="color:#f92672">=</span> query_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;q&#39;</span>);
-    <span style="color:#66d9ef">my</span> $cond  <span style="color:#f92672">=</span> $query ? { name <span style="color:#f92672">=&gt;</span> { <span style="color:#f92672">-</span>like <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;%$query%&#34;</span> } } : {};
-
-    <span style="color:#66d9ef">my</span> $search_f <span style="color:#f92672">=</span> async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>);
-    <span style="color:#66d9ef">my</span> $count_f  <span style="color:#f92672">=</span> async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>);
-
-    Future<span style="color:#f92672">-&gt;</span>wait_all($search_f, $count_f)<span style="color:#f92672">-&gt;</span>get;
-
-    <span style="color:#66d9ef">my</span> $contacts <span style="color:#f92672">=</span> $search_f<span style="color:#f92672">-&gt;</span>get;
-    <span style="color:#66d9ef">my</span> $total    <span style="color:#f92672">=</span> $count_f<span style="color:#f92672">-&gt;</span>get;
-
-    <span style="color:#66d9ef">my</span> $html <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;ul class=&#34;list-group shadow-sm&#34;&gt;&#39;</span>;
-    <span style="color:#66d9ef">if</span> (@$contacts) {
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (@$contacts) {
-            $html <span style="color:#f92672">.=</span> sprintf(
-                <span style="color:#e6db74">&#39;&lt;li class=&#34;list-group-item d-flex justify-content-between align-items-center&#34;&gt;
-</span><span style="color:#e6db74">                    &lt;div&gt;
-</span><span style="color:#e6db74">                        &lt;h6 class=&#34;my-0&#34;&gt;%s&lt;/h6&gt;
-</span><span style="color:#e6db74">                        &lt;small class=&#34;text-muted&#34;&gt;%s&lt;/small&gt;
-</span><span style="color:#e6db74">                    &lt;/div&gt;
-</span><span style="color:#e6db74">                &lt;/li&gt;&#39;</span>,
-                $c<span style="color:#f92672">-&gt;</span>{name},
-                $c<span style="color:#f92672">-&gt;</span>{email}
-            );
-        }
-    } <span style="color:#66d9ef">else</span> {
-        $html <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;&lt;li class=&#34;list-group-item text-muted text-center py-4&#34;&gt;No contacts found&lt;/li&gt;&#39;</span>;
-    }
-    $html <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;&lt;/ul&gt;&#39;</span>;
-
-    $html <span style="color:#f92672">.=</span> <span style="color:#e6db74">qq|&lt;span id=&#34;total-count&#34; hx-swap-oob=&#34;innerHTML&#34;&gt;$total&lt;/span&gt;|</span>;
-
-    content_type <span style="color:#e6db74">&#39;text/html&#39;</span>;
-    <span style="color:#66d9ef">return</span> $html;
-};
-
-dance;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;lib&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Dancer2;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Dancer2::Plugin::DBIC::Async;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    template <span style="color:#e6db74">&#39;index&#39;</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>post <span style="color:#e6db74">&#39;/contacts&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $name  <span style="color:#f92672">=</span> body_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;name&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $email <span style="color:#f92672">=</span> body_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;email&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    async_create(<span style="color:#e6db74">&#39;Contact&#39;</span>, { name <span style="color:#f92672">=&gt;</span> $name, email <span style="color:#f92672">=&gt;</span> $email }, <span style="color:#e6db74">&#39;default&#39;</span>)<span style="color:#f92672">-&gt;</span>get;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    redirect <span style="color:#e6db74">&#39;/contacts&#39;</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/contacts&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $query <span style="color:#f92672">=</span> query_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;q&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $cond  <span style="color:#f92672">=</span> $query ? { name <span style="color:#f92672">=&gt;</span> { <span style="color:#f92672">-</span>like <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;%$query%&#34;</span> } } : {};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $search_f <span style="color:#f92672">=</span> async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $count_f  <span style="color:#f92672">=</span> async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Future<span style="color:#f92672">-&gt;</span>wait_all($search_f, $count_f)<span style="color:#f92672">-&gt;</span>get;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $contacts <span style="color:#f92672">=</span> $search_f<span style="color:#f92672">-&gt;</span>get;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $total    <span style="color:#f92672">=</span> $count_f<span style="color:#f92672">-&gt;</span>get;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $html <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;ul class=&#34;list-group shadow-sm&#34;&gt;&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (@$contacts) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (@$contacts) {
+</span></span><span style="display:flex;"><span>            $html <span style="color:#f92672">.=</span> sprintf(
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;&lt;li class=&#34;list-group-item d-flex justify-content-between align-items-center&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &lt;h6 class=&#34;my-0&#34;&gt;%s&lt;/h6&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &lt;small class=&#34;text-muted&#34;&gt;%s&lt;/small&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;/li&gt;&#39;</span>,
+</span></span><span style="display:flex;"><span>                $c<span style="color:#f92672">-&gt;</span>{name},
+</span></span><span style="display:flex;"><span>                $c<span style="color:#f92672">-&gt;</span>{email}
+</span></span><span style="display:flex;"><span>            );
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        $html <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;&lt;li class=&#34;list-group-item text-muted text-center py-4&#34;&gt;No contacts found&lt;/li&gt;&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    $html <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;&lt;/ul&gt;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $html <span style="color:#f92672">.=</span> <span style="color:#e6db74">qq|&lt;span id=&#34;total-count&#34; hx-swap-oob=&#34;innerHTML&#34;&gt;$total&lt;/span&gt;|</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    content_type <span style="color:#e6db74">&#39;text/html&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $html;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dance;
+</span></span></code></pre></div><br>
 <h4 id="5-launch-the-app"><strong>5. Launch the App</strong></h4>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl app.pl
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>perl app.pl
+</span></span></code></pre></div><br>
 <p>Visit <a href="http://localhost:3000"><strong>http://localhost:3000</strong></a> in your browser.</p>
 <br>
 <h3 id="how-it-works">How it Works</h3>
@@ -381,51 +381,51 @@ dance;
 <br>
 <p>The search bar uses <strong>hx-get</strong> to trigger a request to the server as you type. It waits <strong>500ms</strong> after your last keystroke to avoid overloading the DB.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;q&#34;</span>
-       <span style="color:#a6e22e">hx-get</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span>
-       <span style="color:#a6e22e">hx-trigger</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;keyup changed delay:500ms&#34;</span>
-       <span style="color:#a6e22e">hx-target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#contact-list&#34;</span>
-       <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Search contacts...&#34;</span>&gt;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;q&#34;</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">hx-get</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/contacts&#34;</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">hx-trigger</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;keyup changed delay:500ms&#34;</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">hx-target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#contact-list&#34;</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Search contacts...&#34;</span>&gt;
+</span></span></code></pre></div><br>
 <h4 id="the-backend-asynchronous-perl"><strong>The Backend (Asynchronous Perl)</strong></h4>
 <br>
 <p>When the request hits <strong>/contacts</strong>, the server fires <strong>two</strong> database queries in <strong>parallel</strong>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">get <span style="color:#e6db74">&#39;/contacts&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-    <span style="color:#66d9ef">my</span> $query <span style="color:#f92672">=</span> query_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;q&#39;</span>);
-    <span style="color:#66d9ef">my</span> $cond  <span style="color:#f92672">=</span> $query ? { name <span style="color:#f92672">=&gt;</span> { <span style="color:#f92672">-</span>like <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;%$query%&#34;</span> } } : {};
-
-    <span style="color:#66d9ef">my</span> $search_f <span style="color:#f92672">=</span> async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>);
-    <span style="color:#66d9ef">my</span> $count_f  <span style="color:#f92672">=</span> async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>);
-
-    Future<span style="color:#f92672">-&gt;</span>wait_all($search_f, $count_f)<span style="color:#f92672">-&gt;</span>get;
-
-    <span style="color:#66d9ef">my</span> $contacts <span style="color:#f92672">=</span> $search_f<span style="color:#f92672">-&gt;</span>get;
-    <span style="color:#66d9ef">my</span> $total    <span style="color:#f92672">=</span> $count_f<span style="color:#f92672">-&gt;</span>get;
-
-    <span style="color:#75715e">#</span>
-    <span style="color:#75715e"># prepare the html contents</span>
-    <span style="color:#75715e">#</span>
-
-    content_type <span style="color:#e6db74">&#39;text/html&#39;</span>;
-    <span style="color:#66d9ef">return</span> $html;
-};
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/contacts&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $query <span style="color:#f92672">=</span> query_parameters<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;q&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $cond  <span style="color:#f92672">=</span> $query ? { name <span style="color:#f92672">=&gt;</span> { <span style="color:#f92672">-</span>like <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;%$query%&#34;</span> } } : {};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $search_f <span style="color:#f92672">=</span> async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $count_f  <span style="color:#f92672">=</span> async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Future<span style="color:#f92672">-&gt;</span>wait_all($search_f, $count_f)<span style="color:#f92672">-&gt;</span>get;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $contacts <span style="color:#f92672">=</span> $search_f<span style="color:#f92672">-&gt;</span>get;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $total    <span style="color:#f92672">=</span> $count_f<span style="color:#f92672">-&gt;</span>get;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># prepare the html contents</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    content_type <span style="color:#e6db74">&#39;text/html&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $html;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><br>
 <h4 id="update-with-the-release-of-dbixclassasync-v055-we-can-now-do-this">[UPDATE] With the release of <strong>DBIx::Class::Async v0.55</strong>, we can now do this:</h4>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $schema  <span style="color:#f92672">=</span> async_db(<span style="color:#e6db74">&#39;default&#39;</span>);
-    <span style="color:#66d9ef">my</span> $futures <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>run_parallel(
-       <span style="color:#66d9ef">sub</span> { async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>) },
-       <span style="color:#66d9ef">sub</span> { async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>) },
-    );
-    <span style="color:#66d9ef">my</span> ($contacts, $total) <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>await_all($futures);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $schema  <span style="color:#f92672">=</span> async_db(<span style="color:#e6db74">&#39;default&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $futures <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>run_parallel(
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">sub</span> { async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>) },
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">sub</span> { async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>) },
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($contacts, $total) <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>await_all($futures);
+</span></span></code></pre></div><br>
 <p>as well as this:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $search_f <span style="color:#f92672">=</span> async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>);
-    <span style="color:#66d9ef">my</span> $count_f  <span style="color:#f92672">=</span> async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>);
-    <span style="color:#66d9ef">my</span> ($contacts, $total) <span style="color:#f92672">=</span> async_db(<span style="color:#e6db74">&#39;default&#39;</span>)<span style="color:#f92672">-&gt;</span>await_all($search_f, $count_f);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $search_f <span style="color:#f92672">=</span> async_search(<span style="color:#e6db74">&#39;Contact&#39;</span>, $cond, <span style="color:#e6db74">&#39;default&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $count_f  <span style="color:#f92672">=</span> async_count(<span style="color:#e6db74">&#39;Contact&#39;</span>, <span style="color:#e6db74">&#39;default&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($contacts, $total) <span style="color:#f92672">=</span> async_db(<span style="color:#e6db74">&#39;default&#39;</span>)<span style="color:#f92672">-&gt;</span>await_all($search_f, $count_f);
+</span></span></code></pre></div><br>
 <p>The complete source code is available here: <a href="https://github.com/manwar/Dancer2-DBIC-Async-HTMX"><strong>https://github.com/manwar/Dancer2-DBIC-Async-HTMX</strong></a></p>
 <p>So what are you waiting for, go and play.</p>
 <hr>

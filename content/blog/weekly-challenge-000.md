@@ -54,13 +54,13 @@ tags: ["Perl", "Raku"]
 
 ***
 
-```perl6
+```perl
 ```
 
-```perl6
+```perl
 ```
 
-```perl6
+```perl
 ```
 
 ***
@@ -69,13 +69,13 @@ tags: ["Perl", "Raku"]
 
 ***
 
-```perl6
+```perl
 ```
 
-```perl6
+```perl
 ```
 
-```perl6
+```perl
 ```
 
 That's it for this week. Speak to you soon.

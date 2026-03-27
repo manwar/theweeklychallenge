@@ -58,7 +58,7 @@ In the end, if the string is successfully parsed, the result is stored into the 
 
 Now the full code of the program:
 
-``` Perl6
+```perl
 use v6;
 # use Grammar::Tracer;
 
@@ -155,7 +155,7 @@ Since most solutions used regexes or grammars to perform the bulk of the work, i
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/arne-sommer/perl6/ch-2.p6) used a regex to parse URLs:
 
-``` Perl6
+```perl
 if $url ~~
   /^
     (<[a..z]><[a..z 0..9 + . : \-]>*)\: # $0 scheme
@@ -176,7 +176,7 @@ Note that I almost missed that Arne also wrote a [grammar-based solution](https:
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/noud/perl6/ch-2.p6) also used a regex to parse the input. I can't resist showing his very compact `parse` subroutine:
 
-``` Perl6
+```perl
 sub parse($url) {
     my @keys = <scheme userinfo host port path query fragment>;
     my $reg = / (\w+\:\w+)\:\/\/(\w+\:.+)\@(\w+)\:(\d+)(\/\w+)\?(.+)\#(\w+)$ /;
@@ -187,7 +187,7 @@ sub parse($url) {
 
 [Francis J. Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/fjwhittle/perl6/ch-2.p6) created a full-fledged OOP program with three classes: `URL`, `URL::UserInfo`, and `A::URLish`.  Parsing itself is done with the `G::URLish` grammar:
 
-``` Perl6
+```perl
 grammar G::URLish {
   regex TOP {
     ^ <scheme> < : :// >
@@ -227,7 +227,7 @@ grammar G::URLish {
 
 [Ozzy](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/ozzy/perl6/ch-2.p6) used a quite concise grammar:
 
-``` Perl6
+```perl
 grammar G {
     regex TOP { ^ <scheme> ':' ['//' <authority>]? <path> ['?' <query>]? ['#' <fragment>]? $ }
     token scheme    { <+alpha-[_]> <[\w \+ \. \-]>+          }
@@ -246,7 +246,7 @@ grammar G {
 [Feng Chang](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/feng-chang/perl6/ch-2.p6) also created a `URL` grammar:
 
 
-``` perl6
+```perl
 grammar URL {
     token TOP { ^
         <scheme> ':'
@@ -278,7 +278,7 @@ grammar URL {
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl6/ch-2.p6) also created a `URL` grammar:
 
-``` Perl6
+```perl
 grammar URL {
     token TOP {
         <Scheme> ':'
@@ -315,7 +315,7 @@ Jaldhar used an actions class with one method to display each of the URL compone
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl6/ch-2.p6) also defined a `URL` grammar. I like the way she used character class "subtractions" to define several of her tokens (for example `username`, `password`, etc.), leading to a fairly concise grammar:
 
-``` Perl6
+```perl
 grammar URL {
     token TOP      {
         ^ <scheme> ':'
@@ -341,7 +341,7 @@ grammar URL {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/ruben-westerberg/perl6/ch-2.p6) defined a relatively compact `URI` grammar:
 
-``` Perl6
+```perl
 grammar URI {
     token TOP {<scheme>\:<authority>?<path>[\?<query>]?[\#<fragment>]?};##|<authority>};
     token scheme { :i(<alpha>[<[\-\.\+] + alnum>]*)};

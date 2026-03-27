@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2020blogadvent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
-<h3 id="-day-15blogadvent-calendar-2020-12-15--day-16--day-17blogadvent-calendar-2020-12-17-">| <a href="/blog/advent-calendar-2020-12-15"><strong>Day 15</strong></a> | <strong>Day 16</strong> | <a href="/blog/advent-calendar-2020-12-17"><strong>Day 17</strong></a> |</h3>
+        <h2 id="advent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
+<h3 id="-day-15--day-16--day-17-">| <a href="/blog/advent-calendar-2020-12-15"><strong>Day 15</strong></a> | <strong>Day 16</strong> | <a href="/blog/advent-calendar-2020-12-17"><strong>Day 17</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-025"><strong>Yet Ebreo</strong></a>. Today he is talking about his solution to the task <code>Calling C function</code> of <strong><a href="/blog/perl-weekly-challenge-029">&ldquo;The Weekly Challenge - 029&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="https://doomtrain14.github.io/pwc/2019/10/13/pwc_calling_c.html"><strong>post</strong></a> by <strong>Yet Ebreo</strong>.</p>
 <hr>
@@ -190,8 +190,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <h2 id="solution">Solution:</h2>
 <p>So for this task, I created a fibonacci function (both in <strong>C</strong> and <strong>Perl</strong>) that would take a number <code>$n</code> as input and would return the <code>n-th</code> number in the fibonacci series.</p>
 <p>I used the <code>Inline</code> module and wrote the C function after the special literals <code>__END__</code> and <code>__C__</code>.</p>
-<h3 id="a-__end__-indicates-the-logical-end-of-the-script-before-the-actual-end-of-file-any-following-text-is-ignored">a) <strong>END</strong> indicates the logical end of the script before the actual end of file. Any following text is ignored.</h3>
-<h3 id="b-__c__-indicates-the-start-of-the-c-code">b) <strong>C</strong> indicates the start of the C code</h3>
+<h3 id="a-end-indicates-the-logical-end-of-the-script-before-the-actual-end-of-file-any-following-text-is-ignored">a) <strong>END</strong> indicates the logical end of the script before the actual end of file. Any following text is ignored.</h3>
+<h3 id="b-c-indicates-the-start-of-the-c-code">b) <strong>C</strong> indicates the start of the C code</h3>
 <br>
 <p>The <code>perl_fib</code> function is the pure perl version of the fibonacci function and fib is the C version.</p>
 <p>I knew the <strong>Perl</strong> implementation would take longer to finish (vs <strong>C</strong>) on bigger input range; so I took the oppurtunity to use the <code>Memoize</code> module to compare the performances of:</p>
@@ -200,66 +200,66 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <h3 id="c-fib---function-written-in-c">c) fib - function written in C</h3>
 <br>
 <h2 id="code">Code:</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-<span style="color:#75715e"># Write a script to demonstrate calling a C function.</span>
-<span style="color:#75715e"># It could be any user defined or standard C function.</span>
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
-<span style="color:#66d9ef">use</span> Memoize;
-
-<span style="color:#66d9ef">use</span> Inline <span style="color:#e6db74">&#39;C&#39;</span>;
-
-<span style="color:#66d9ef">my</span> $start_run;
-<span style="color:#66d9ef">my</span> $run_time;
-
-
-$start_run <span style="color:#f92672">=</span> time();
-<span style="color:#66d9ef">print</span> (perl_fib($_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">36</span>;
-$run_time  <span style="color:#f92672">=</span> time() <span style="color:#f92672">-</span> $start_run;
-say <span style="color:#e6db74">&#34;\nRun Time (Perl): $run_time sec\n&#34;</span>;
-
-memoize(<span style="color:#e6db74">&#39;perl_fib&#39;</span>);
-$start_run <span style="color:#f92672">=</span> time();
-<span style="color:#66d9ef">print</span> (perl_fib($_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">36</span>;
-$run_time  <span style="color:#f92672">=</span> time() <span style="color:#f92672">-</span> $start_run;
-say <span style="color:#e6db74">&#34;\nRun Time (Perl-Memoized): $run_time sec\n&#34;</span>;
-
-$start_run <span style="color:#f92672">=</span> time();
-<span style="color:#66d9ef">print</span> (fib($_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">36</span>;
-$run_time  <span style="color:#f92672">=</span> time() <span style="color:#f92672">-</span> $start_run;
-say <span style="color:#e6db74">&#34;\nRun Time (Inline-C): $run_time sec\n&#34;</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perl_fib</span> { (
-    $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ?
-        <span style="color:#ae81ff">0</span>: ($_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)?
-            <span style="color:#ae81ff">1</span>:perl_fib($_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span>perl_fib($_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)
-}
-
-<span style="color:#75715e">__END__
-</span><span style="color:#75715e">__C__
-</span><span style="color:#75715e">unsigned long fib(int n) {
-</span><span style="color:#75715e">    if ( n == 0 )
-</span><span style="color:#75715e">        return 0;
-</span><span style="color:#75715e">    else if ( n == 1 )
-</span><span style="color:#75715e">        return 1;
-</span><span style="color:#75715e">    else
-</span><span style="color:#75715e">        return ( fib(n-1) + fib(n-2) );
-</span><span style="color:#75715e">}
-</span></code></pre></div><h2 id="output">Output:</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>pl
-<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">55</span> <span style="color:#ae81ff">89</span> <span style="color:#ae81ff">144</span> <span style="color:#ae81ff">233</span> <span style="color:#ae81ff">377</span> <span style="color:#ae81ff">610</span> <span style="color:#ae81ff">987</span> <span style="color:#ae81ff">1597</span> <span style="color:#ae81ff">2584</span> <span style="color:#ae81ff">4181</span> <span style="color:#ae81ff">6765</span> <span style="color:#ae81ff">10946</span> <span style="color:#ae81ff">17711</span> <span style="color:#ae81ff">28657</span> <span style="color:#ae81ff">46368</span> <span style="color:#ae81ff">75025</span>
-<span style="color:#ae81ff">121393</span> <span style="color:#ae81ff">196418</span> <span style="color:#ae81ff">317811</span> <span style="color:#ae81ff">514229</span> <span style="color:#ae81ff">832040</span> <span style="color:#ae81ff">1346269</span> <span style="color:#ae81ff">2178309</span> <span style="color:#ae81ff">3524578</span> <span style="color:#ae81ff">5702887</span> <span style="color:#ae81ff">9227465</span> <span style="color:#ae81ff">14930352</span>
-Run Time (Perl): <span style="color:#ae81ff">49</span> sec
-
-<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">55</span> <span style="color:#ae81ff">89</span> <span style="color:#ae81ff">144</span> <span style="color:#ae81ff">233</span> <span style="color:#ae81ff">377</span> <span style="color:#ae81ff">610</span> <span style="color:#ae81ff">987</span> <span style="color:#ae81ff">1597</span> <span style="color:#ae81ff">2584</span> <span style="color:#ae81ff">4181</span> <span style="color:#ae81ff">6765</span> <span style="color:#ae81ff">10946</span> <span style="color:#ae81ff">17711</span> <span style="color:#ae81ff">28657</span> <span style="color:#ae81ff">46368</span> <span style="color:#ae81ff">75025</span>
-<span style="color:#ae81ff">121393</span> <span style="color:#ae81ff">196418</span> <span style="color:#ae81ff">317811</span> <span style="color:#ae81ff">514229</span> <span style="color:#ae81ff">832040</span> <span style="color:#ae81ff">1346269</span> <span style="color:#ae81ff">2178309</span> <span style="color:#ae81ff">3524578</span> <span style="color:#ae81ff">5702887</span> <span style="color:#ae81ff">9227465</span> <span style="color:#ae81ff">14930352</span>
-Run Time (Perl<span style="color:#f92672">-</span>Memoized): <span style="color:#ae81ff">0</span> sec
-
-<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">55</span> <span style="color:#ae81ff">89</span> <span style="color:#ae81ff">144</span> <span style="color:#ae81ff">233</span> <span style="color:#ae81ff">377</span> <span style="color:#ae81ff">610</span> <span style="color:#ae81ff">987</span> <span style="color:#ae81ff">1597</span> <span style="color:#ae81ff">2584</span> <span style="color:#ae81ff">4181</span> <span style="color:#ae81ff">6765</span> <span style="color:#ae81ff">10946</span> <span style="color:#ae81ff">17711</span> <span style="color:#ae81ff">28657</span> <span style="color:#ae81ff">46368</span> <span style="color:#ae81ff">75025</span>
-<span style="color:#ae81ff">121393</span> <span style="color:#ae81ff">196418</span> <span style="color:#ae81ff">317811</span> <span style="color:#ae81ff">514229</span> <span style="color:#ae81ff">832040</span> <span style="color:#ae81ff">1346269</span> <span style="color:#ae81ff">2178309</span> <span style="color:#ae81ff">3524578</span> <span style="color:#ae81ff">5702887</span> <span style="color:#ae81ff">9227465</span> <span style="color:#ae81ff">14930352</span>
-Run Time (Inline<span style="color:#f92672">-</span>C): <span style="color:#ae81ff">1</span> sec
-</code></pre></div><p>As expected, the <strong>Perl</strong> implementation took the longer compared to the <strong>C</strong> version. But it is surprising how <code>Memoize</code> cut down the execution time to just a fraction of a second.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Write a script to demonstrate calling a C function.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># It could be any user defined or standard C function.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Memoize;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Inline <span style="color:#e6db74">&#39;C&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $start_run;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $run_time;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$start_run <span style="color:#f92672">=</span> time();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> (perl_fib($_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">36</span>;
+</span></span><span style="display:flex;"><span>$run_time  <span style="color:#f92672">=</span> time() <span style="color:#f92672">-</span> $start_run;
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">&#34;\nRun Time (Perl): $run_time sec\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>memoize(<span style="color:#e6db74">&#39;perl_fib&#39;</span>);
+</span></span><span style="display:flex;"><span>$start_run <span style="color:#f92672">=</span> time();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> (perl_fib($_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">36</span>;
+</span></span><span style="display:flex;"><span>$run_time  <span style="color:#f92672">=</span> time() <span style="color:#f92672">-</span> $start_run;
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">&#34;\nRun Time (Perl-Memoized): $run_time sec\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$start_run <span style="color:#f92672">=</span> time();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> (fib($_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">36</span>;
+</span></span><span style="display:flex;"><span>$run_time  <span style="color:#f92672">=</span> time() <span style="color:#f92672">-</span> $start_run;
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">&#34;\nRun Time (Inline-C): $run_time sec\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perl_fib</span> { (
+</span></span><span style="display:flex;"><span>    $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ?
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">0</span>: ($_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)?
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">1</span>:perl_fib($_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span>perl_fib($_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">__END__
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">__C__
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">unsigned long fib(int n) {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    if ( n == 0 )
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        return 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    else if ( n == 1 )
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        return 1;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    else
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        return ( fib(n-1) + fib(n-2) );
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">}
+</span></span></span></code></pre></div><h2 id="output">Output:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">55</span> <span style="color:#ae81ff">89</span> <span style="color:#ae81ff">144</span> <span style="color:#ae81ff">233</span> <span style="color:#ae81ff">377</span> <span style="color:#ae81ff">610</span> <span style="color:#ae81ff">987</span> <span style="color:#ae81ff">1597</span> <span style="color:#ae81ff">2584</span> <span style="color:#ae81ff">4181</span> <span style="color:#ae81ff">6765</span> <span style="color:#ae81ff">10946</span> <span style="color:#ae81ff">17711</span> <span style="color:#ae81ff">28657</span> <span style="color:#ae81ff">46368</span> <span style="color:#ae81ff">75025</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">121393</span> <span style="color:#ae81ff">196418</span> <span style="color:#ae81ff">317811</span> <span style="color:#ae81ff">514229</span> <span style="color:#ae81ff">832040</span> <span style="color:#ae81ff">1346269</span> <span style="color:#ae81ff">2178309</span> <span style="color:#ae81ff">3524578</span> <span style="color:#ae81ff">5702887</span> <span style="color:#ae81ff">9227465</span> <span style="color:#ae81ff">14930352</span>
+</span></span><span style="display:flex;"><span>Run Time (Perl): <span style="color:#ae81ff">49</span> sec
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">55</span> <span style="color:#ae81ff">89</span> <span style="color:#ae81ff">144</span> <span style="color:#ae81ff">233</span> <span style="color:#ae81ff">377</span> <span style="color:#ae81ff">610</span> <span style="color:#ae81ff">987</span> <span style="color:#ae81ff">1597</span> <span style="color:#ae81ff">2584</span> <span style="color:#ae81ff">4181</span> <span style="color:#ae81ff">6765</span> <span style="color:#ae81ff">10946</span> <span style="color:#ae81ff">17711</span> <span style="color:#ae81ff">28657</span> <span style="color:#ae81ff">46368</span> <span style="color:#ae81ff">75025</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">121393</span> <span style="color:#ae81ff">196418</span> <span style="color:#ae81ff">317811</span> <span style="color:#ae81ff">514229</span> <span style="color:#ae81ff">832040</span> <span style="color:#ae81ff">1346269</span> <span style="color:#ae81ff">2178309</span> <span style="color:#ae81ff">3524578</span> <span style="color:#ae81ff">5702887</span> <span style="color:#ae81ff">9227465</span> <span style="color:#ae81ff">14930352</span>
+</span></span><span style="display:flex;"><span>Run Time (Perl<span style="color:#f92672">-</span>Memoized): <span style="color:#ae81ff">0</span> sec
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">55</span> <span style="color:#ae81ff">89</span> <span style="color:#ae81ff">144</span> <span style="color:#ae81ff">233</span> <span style="color:#ae81ff">377</span> <span style="color:#ae81ff">610</span> <span style="color:#ae81ff">987</span> <span style="color:#ae81ff">1597</span> <span style="color:#ae81ff">2584</span> <span style="color:#ae81ff">4181</span> <span style="color:#ae81ff">6765</span> <span style="color:#ae81ff">10946</span> <span style="color:#ae81ff">17711</span> <span style="color:#ae81ff">28657</span> <span style="color:#ae81ff">46368</span> <span style="color:#ae81ff">75025</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">121393</span> <span style="color:#ae81ff">196418</span> <span style="color:#ae81ff">317811</span> <span style="color:#ae81ff">514229</span> <span style="color:#ae81ff">832040</span> <span style="color:#ae81ff">1346269</span> <span style="color:#ae81ff">2178309</span> <span style="color:#ae81ff">3524578</span> <span style="color:#ae81ff">5702887</span> <span style="color:#ae81ff">9227465</span> <span style="color:#ae81ff">14930352</span>
+</span></span><span style="display:flex;"><span>Run Time (Inline<span style="color:#f92672">-</span>C): <span style="color:#ae81ff">1</span> sec
+</span></span></code></pre></div><p>As expected, the <strong>Perl</strong> implementation took the longer compared to the <strong>C</strong> version. But it is surprising how <code>Memoize</code> cut down the execution time to just a fraction of a second.</p>
 <p>And that’s it for this week’s challenge. If you’d like to join the fun and contribute, please visit the <a href="https://theweeklychallenge.org/">site</a> managed by <a href="http://www.manwar.org/">Mohammad S Anwar</a>.</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>

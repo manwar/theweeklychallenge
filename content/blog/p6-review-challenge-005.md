@@ -31,7 +31,7 @@ For the purpose of testing the programs below, the `words.txt` file is located i
 
 We can start by creating an `is-anagram` subroutine that takes two words as parameters and return a true value if the words are anagrams of each other and false otherwise.
 
-``` Perl6
+```perl
 sub is-anagram (Str $word1, Str $word2) {
     return False if $word1.chars != $word2.chars;
     return $word1.comb.sort eq $word2.comb.sort;
@@ -85,7 +85,7 @@ One interesting thing about these collections is that they can use many set oper
 
 We can now try the following alternate `is-anagram` subroutine using bags:
 
-``` Perl6
+```perl
 sub is-anagram (Str $word1, Str $word2) {
     return $word1.comb.Bag === $word2.comb.Bag;
 }
@@ -127,7 +127,7 @@ I might undertake a serious benchmark one day, but it really seems that the perc
 
 The other possible understanding of the challenge is that we are given a word and a word list, and should output the words of the list that are anagrams of the input word. We can use the same `is-anagram` subroutine as follows and use directly the `words.txt` file mentioned earlier:
 
-``` Perl6
+```perl
 my $post-bag = "post".comb.Bag;
 sub is-anagram (Str $word) {
     return $word.comb.Bag === $post-bag;
@@ -151,7 +151,7 @@ This program displays the words of the word list that are anagrams of the word "
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/arne-sommer/perl6/ch-1.p6) understood the challenge to mean that we were supposed to look up anagrams of a given word in a list or dictionary (what I did in the last section of my solutions). His approach is to read all the words of the dictionary and store them in a `Set` (done in the `get-dictionary` subroutine). Then, the program uses the [permutations](https://docs.perl6.org/routine/permutations) built-in function to find all the letter permutations of the input word:
 
-``` Perl6
+```perl
 unit sub MAIN (Str $word is copy where $word !~~ /\W/,
   :$dictionary where $dictionary.IO.r = "/usr/share/dict/british-english");
 
@@ -176,7 +176,7 @@ sub get-dictionary ($file where $file.IO.r) is export
 
 [Doug Schrag](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/doug-schrag/perl6/ch-1.p6) understood the challenge the same way, also used a set to store the words of the dictionary, and also used the `permutations` built-in function:
 
-``` Perl6
+```perl
 subset Filename of Str;
 sub MAIN(Str $word, Filename :$word-file) {
     my $file = .IO with $word-file;
@@ -203,7 +203,7 @@ sub anagrams ($word, &is-word = -> $w { True }) {
 
 [Francis J. Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/fjwhittle/perl6/ch-1.p6) also understood that the task was to find anagrams of a word in given file. He used `Bag`s of letters to check whether words are anagrams of each other.
 
-``` Perl6
+```perl
 unit sub MAIN(
   Str $file #= file containing list of words
           where { given .IO { .r && ( .l || .f) or die "Cannot read from $_" } },
@@ -220,7 +220,7 @@ my @words = $file.IO.lines.unique.hyper.grep(*.chars > 2)
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/jaldhar-h-vyas/perl6/ch-1.p6) normalized the target word and the words of the dictionary by rearranging their letters in alphabetical order much in the same way as in my original `is-anagram` subroutine. His normalized word dictionary is stored in a hash.
 
-``` Perl6
+```perl
 my $search = $word.comb.sort.join;
 my %dictionary = $list.IO.lines.map({ $_ => $_.comb.sort.join });
 
@@ -236,7 +236,7 @@ if (%anagrams{$search}:exists) {
 
 [Jo-Christian Oterhals](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/jo-christian-oterhals/perl6/ch-1.p6) stored the words of the `/usr/share/dict/words` standard Unix dictionary into a `Set` and used the `permutations` of the input words to check for anagrams:
 
-``` Perl6
+```perl
 my $dict = "/usr/share/dict/words".IO.lines()>>.lc.Set;
 for @*ARGS ?? @*ARGS !! ! $*IN.t ?? lines() !! '' -> $w {
     $w.lc.comb.permutations>>.join.grep({ $dict{$_} and $_ ne $w }).map({ "$w\t$_\n" }).unique.join.say;
@@ -245,7 +245,7 @@ for @*ARGS ?? @*ARGS !! ! $*IN.t ?? lines() !! '' -> $w {
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/joelle-maslak/perl6/ch-1.p6) used `Bag`s to store the letters of the input word and analyze the dictionary words.
 
-``` Perl6
+```perl
 sub MAIN(Str:D $letters, Str:D $filename = '/usr/share/dict/words') {
     my $matchbag = Bag.new($letters.comb);
     my SetHash $dedupe = SetHash.new;  # To store matches we gave back
@@ -266,7 +266,7 @@ sub MAIN(Str:D $letters, Str:D $filename = '/usr/share/dict/words') {
 
 [Mark Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/mark-senn/perl6/ch-1.p6) normalized words of the word list much in the same way as my original is-anagram solution (i.e. sorting the letters) and stored the result in a hash. He then used a hash
 
-``` Perl6
+```perl
 my Array %hash;
 
 # Construct the array.
@@ -291,7 +291,7 @@ print "\n";
 
 [Rob4t](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/rob4t/perl6/ch-1.p6) used `Bag`s to check for anagrams:
 
-``` Perl6
+```perl
 sub MAIN(Str $word, Str $file where *.IO.r = '/usr/share/dict/words') {
     my $word_bag = $word.lc.comb.Bag;
 
@@ -309,7 +309,7 @@ sub MAIN(Str $word, Str $file where *.IO.r = '/usr/share/dict/words') {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/ruben-westerberg/perl6/ch-1.p6) wrote an [anagram module](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/ruben-westerberg/perl6/anagram.pm6) implementing a `findAnangrams` (sic) subroutine:
 
-``` Perl6
+```perl
 unit module anagram;
 sub findAnangrams(@letters, @words) is export {
     my @a=sort @letters;
@@ -346,7 +346,7 @@ sub findAnangrams(@letters, @words) is export {
 ```
 His program using this module then looks like this:
 
-``` Perl6
+```perl
 use lib $?FILE.IO.dirname;
 use anagram;
 my $wordsFile=  $?FILE.IO.dirname ~ "/../words_alpha.txt";
@@ -361,7 +361,7 @@ This probably works well, but, although the idea of creating a module for anagra
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/simon-proctor/perl6/ch-1.p6) also wrote an [Anagrams module](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/simon-proctor/perl6/lib/Anagrams.pm6):
 
-``` Perl6
+```perl
 unit package Anagrams;
 
 sub normal ( Str \word ) is pure {
@@ -379,7 +379,7 @@ multi sub is-anagram-of( Str \target, Str \word ) is export is pure {
 
 His program using this module then looks like this:
 
-``` Perl6
+```perl
 use v6;
 use lib 'lib';
 use Anagrams;

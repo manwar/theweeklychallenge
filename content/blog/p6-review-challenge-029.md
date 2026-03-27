@@ -30,7 +30,7 @@ The specification is not very detailed, and we will not attempt to provide a ful
 
 We will supply a command line argument in the form of a string between quote marks, and provide for a default value for the purpose of testing. The program also attempts to normalize spaces in the output, since it is difficult to predict the exact format (number of spaces) supplied by the user.
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN (Str $input = 'Perl {Daily,Weekly,Monthly,Yearly} Challenge') {
@@ -61,7 +61,7 @@ It appears that I was a bit lazy with my bare-bone solution: many challengers co
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/arne-sommer/perl6/ch-1.p6) contributed a fairly concise and clever program. Consider his multi `MAIN` subroutine doing the first pattern matching within the signature and the loop to split the pattern within braces in the body of the function, *and* calling itself recursively in the event there are more brace patterns to be processed:
 
-``` Perl6
+```perl
 multi MAIN ($string where $string ~~ /^(.*?) \{ (.*?) \} (.*)/)
 {
   MAIN("$0$_$2") for $1.Str.split(",");
@@ -75,7 +75,7 @@ The second multi `Main` subroutine is called only when there are no more brace s
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/noud/perl6/ch-1.p6)'s solution is also quite concise:
 
-``` Perl6
+```perl
 sub brace_expansion(Str $s) {
     if ($s ~~ /(.*)\{(.*)\}(.*)/) {
         ["$_[0]$_[1]$2" for brace_expansion(Str($0)) X $1.split(',')];
@@ -85,7 +85,7 @@ sub brace_expansion(Str $s) {
 }
 ```
 I'm impressed by Noud's main code line:
-``` Perl6
+```perl
         ["$_[0]$_[1]$2" for brace_expansion(Str($0)) X $1.split(',')];
 ```
 which does quite a lot in a single statement (I like especially the use of the `X` cross product operator in this context). Yes, Perl 6 can be very expressive when used by such talented people as Arne and Noud.
@@ -93,7 +93,7 @@ which does quite a lot in a single statement (I like especially the use of the `
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/daniel-mita/perl6/ch-1.p6) used quite clever nested `given` statements to process several input phrases:
 
-``` Perl6
+```perl
 sub MAIN (
   *@phrase where * > 0,
   --> Nil
@@ -113,7 +113,7 @@ sub MAIN (
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/kevin-colyer/perl6/ch-1.p6) also wrote a program able to handle several brace expansions. This is his `expand` subroutine doing the bulk of the work:
 
-``` Perl6
+```perl
 sub expand(*@texts) {
     my @expanded;
     for @texts -> $t {
@@ -130,7 +130,7 @@ sub expand(*@texts) {
 
 [Mark Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/mark-senn/perl6/ch-1.p6)'s program is accompanied with interesting and lengthy comments that I would urge you to read from the linked page (and possibly provide some answers to his questions), but will omit these comments from this review.
 
-``` Perl6
+```perl
 sub MAIN(*@arg);
 {
     (@arg.elems)
@@ -152,7 +152,7 @@ sub MAIN(*@arg);
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/markus-holzer/perl6/ch-1.p6) wrote a very complete program, including a full-fledged grammar for brace expansion and a detailed test plan. Markus's program is too long to quote here (but I would really advise you to follow the link and look in detail to his solution). Anyway, I arbitrarily decided to quote only his grammar (since we haven't discussed so many grammars in our reviews so far):
 
-``` Perl6
+```perl
 grammar BraceExpansion
 {
     regex TOP           { <start-txt> [ <list> | <range> ] <end-txt> }
@@ -171,7 +171,7 @@ grammar BraceExpansion
 
 [Ozzy](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ozzy/perl6/ch-1.p6) also wrote a grammar to parse the input string. Ozzy also used quite cleverly the `X~` cross product operator and concatenation operator:
 
-``` Perl6
+```perl
 sub MAIN ( Str $string = 'Perl {Daily,Weekly,Monthly,Yearly} Challenge' ) {
 
     grammar G {
@@ -193,7 +193,7 @@ sub MAIN ( Str $string = 'Perl {Daily,Weekly,Monthly,Yearly} Challenge' ) {
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/joelle-maslak/perl6/ch-1.p6) wrote an awesome program handling both juxtaposed and nested curly braces. Of course, she used a grammar for this, then recursively exploring the parse tree. Joelle's Grammar is as follows:
 
-``` Perl6
+```perl
 grammar Expansion {
     rule TOP      {
         ^
@@ -211,7 +211,7 @@ grammar Expansion {
 
 But, while the grammar is in a sense the most powerful feature used by Joelle, the real work of her program is done in this subroutine:
 
-``` Perl6
+```perl
 sub expansion(@arr is copy, $tree) {
     if $tree<element>:exists {
         # Handle each element.
@@ -243,7 +243,7 @@ sub expansion(@arr is copy, $tree) {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ruben-westerberg/perl6/ch-1.p6) has an `expand` subroutine making most of the work:
 
-``` Perl6
+```perl
 $_= @*ARGS.join(" ");
 my $matches=m:g/\{.*?\}/;
 my @entries;
@@ -276,7 +276,7 @@ sub expand($line,@stack,@entries, @positions) {
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ulrich-rieke/perl6/ch-1.p6) provided a fairly concise script:
 
-``` Perl6
+```perl
 #works only if there are no spaces in the expansion bracket!
 sub MAIN( **@ARGS ) {
   my $howoften = @ARGS.elems - 2 ;
@@ -288,7 +288,7 @@ sub MAIN( **@ARGS ) {
 
 [Yet Ebreo](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/yet-ebreo/perl6/ch-1.p6)'s solution is using a recursive `expand` subroutine and is also quite concise once you remove lengthy comments as I did here (but follow the link if you want to read the comments):
 
-``` Perl6
+```perl
 sub expand ($string) {
     my $mstring = $string;
     if ($mstring ~~ /\{(<-[{}]>*)\}/) {
@@ -306,7 +306,7 @@ To me, the code tends to be clearer without these comments, but that may just be
 [Jaldhar H. Vyas](https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_29.html) was away in a location with poor Internet access and therefore unable to complete the challenge in time. He nonetheless completed the challenge afterwards. He wrote an `expand` subroutine that first captures the data between braces, then splits ths captured string and use a `map` to build the various output strings:
 
 
-``` Perl6
+```perl
 sub expand(Str $string) {
     $string ~~ / \{(.+)\} /;
 
@@ -338,7 +338,7 @@ Calling a function from a compiled C library is actually quite simple, using the
 
 The documentation linked above says that the simplest imaginable use of `NativeCall` would look something like this:
 
-``` Perl6
+```perl
 use NativeCall;
 sub some_argless_function() is native('something') { * }
 some_argless_function();
@@ -357,7 +357,7 @@ The only real difficulty for me was to build a C library for the purpose of this
 
 I started with a very simple C `calc.c` program providing an single `add` function:
 
-``` C
+```c
 #include <stdio.h>
 int add (int a, int b) {
     return a + b;
@@ -366,7 +366,7 @@ int add (int a, int b) {
 
 and a simple Perl 6 script calling it:
 
-``` Perl6
+```perl
 use NativeCall;
 
 sub add(int32, int32)
@@ -402,7 +402,7 @@ Now that we know how to run a basic function from a C library, we can try someth
 
 The following `fibonacci.c` program provides a recursive `fib` function:
 
-``` C
+```c
 #include <stdio.h>
 int fib (int a) {
     if (a == 0 || a == 1) {
@@ -415,7 +415,7 @@ int fib (int a) {
 
 The `fibo.p6` program below uses both the native `fib` function and a pure Perl 6 `fib-p6` subroutine and record their execution times:
 
-``` Perl6
+```perl
 use v6;
 use NativeCall;
 
@@ -453,7 +453,7 @@ The result is really impressive: 0.13 seconds for the C `fib` function and 37 se
 
 This being said, using the proper algorithm is often much better than using a faster programming language (when possible). Let's try to memoize manually the `fib-p6` pure Perl 6 subroutine by storing the Fibonacci numbers in a `@fibo` array for fast lookup:
 
-``` Perl6
+```perl
 sub fib-p6 (Int $num) {
     state @fibo = 1, 1;    # initialization that removes the need for a base case
     @fibo[$num] = fib-p6($num - 1) + fib-p6($num - 2) unless defined @fibo[$num];
@@ -477,7 +477,7 @@ I have to deeply thank Mohammad Anwar for having forced me with this challenge t
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/arne-sommer/perl6/ch-2.p6) used the `toupper` function of the standard C library (probably `libc` or `glibc`):
 
-``` Perl6
+```perl
 use NativeCall;
 
 sub toupper(uint8) returns uint8 is native('c', v6) { * }
@@ -490,7 +490,7 @@ sub to-upper ($string)
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/daniel-mita/perl6/ch-2.p6) also used a standard C library function, `getrandom`. In the event of an error, his program also uses the `strerror` function to retrieve the string describing the error.
 
-``` Perl6
+```perl
 sub MAIN (
   UInt  $bytes = 8, #= Number of random bytes (defaults to 8)
   UInt :$flags = 0,
@@ -513,7 +513,7 @@ sub getrandom ( Buf, size_t, uint32 --> ssize_t ) is native {*}
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/kevin-colyer/perl6/ch-2.p6) used functions from the `libqrencode` library to process QR codes:
 
-``` Perl6
+```perl
 use NativeCall;
 
 constant LIBQRENCODE = '/usr/lib/x86_64-linux-gnu/libqrencode.so.3';
@@ -534,7 +534,7 @@ sub QRcode_free             ( QRcode )                                          
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/markus-holzer/perl6/ch-2.p6) used the `MessageBoxW` function of a C Microsoft library, which pops up a message box.
 
-``` Perl6
+```perl
 use NativeCall;
 
 constant WCHAR              = uint16;
@@ -559,7 +559,7 @@ sub to-c-str( Str $str ) returns CArray[WCHAR]
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/noud/perl6/ch-2.p6) wrote a `rot13` C function performing ROT13 encryption (where all letters are shifted in the alphabet by 13 positions so that the same program can be used for both encrypting and decrypting):
 
-``` C
+```c
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
@@ -588,13 +588,13 @@ char *rot13(char *s) {
 
 The shared C library can be build with the following `make.sh` shell script:
 
-``` sh
+```sh
 gcc -shared -o rot13.so rot13.c
 ```
 
 And this is the Perl 6 program:
 
-``` Perl6
+```perl
 use NativeCall;
 
 sub rot13(Str) returns Str is native('./rot13.so') {*};
@@ -608,7 +608,7 @@ say "ROT13 decryption: $dec";
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/joelle-maslak/perl6/ch-2.p6) used a native `sleep` C function (presumably from one of the Unix/Posix libraries, such as `unistd`)
 
-``` Perl6
+```perl
 use v6;
 
 use NativeCall;
@@ -623,7 +623,7 @@ my sub native-sleep(uint64 -->uint64) is native is symbol('sleep') { * }
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/roger-bell-west/perl6/ch-2.p6) used the standard C `printf` function:
 
-``` Perl6
+```perl
 use NativeCall;
 
 our sub cpf(Str, Str --> int32) is native(sub{'libc.so.6'}) is symbol('printf') { * }
@@ -633,7 +633,7 @@ cpf("%s\n",'a string passed from perl6');
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ruben-westerberg/perl6/ch-2.p6) used the `getuid` C function (presumably from one of the Unix/Posix libraries, such as `inistd`):
 
-``` Perl6
+```perl
 use NativeCall;
 sub getuid() returns uint32   is native { * };
 put "User ID: "~getuid;
@@ -641,7 +641,7 @@ put "User ID: "~getuid;
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ulrich-rieke/perl6/ch-2.p6) used the `strcmp` function of the standard C library:
 
-``` Perl6
+```perl
 use NativeCall ;
 constant LIBC = '/lib/x86_64-linux-gnu/libc.so.6' ;
 sub strcmp( CArray[uint8], CArray[uint8]) returns int32 is native(LIBC) { * } ;
@@ -649,7 +649,7 @@ sub strcmp( CArray[uint8], CArray[uint8]) returns int32 is native(LIBC) { * } ;
 
 [Yet Ebreo](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/yet-ebreo/perl6/ch-2.p6)'s solution looks very much like my second solution: he implemented a C function to compute a Fibonacci number, probably something like this (at least, that what he used in his Perl 5 implementation):
 
-``` C
+```c
 unsigned long fib(int n) {
     if ( n == 0 )
         return 0;
@@ -662,7 +662,7 @@ unsigned long fib(int n) {
 
 He then proceeded to compare the C function with a naïve pure Perl 6 implementation and with a memoized (`is cached`) Perl 6 implementation:
 
-``` Perl6
+```perl
 use NativeCall;
 use experimental :cached;
 sub fib(int32) returns int32 is native('fib.so') {*}
@@ -705,7 +705,7 @@ We can see here again that the C function is much faster than the naïve pure Pe
 
 [Jaldhar H. Vyas](https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_29.html) was away in a location with poor Internet access and therefore unable to complete the challenge in time. He nonetheless completed the challenge afterwards. He first wrote a C program containing a simple `hello` function displaying "Hello world!" on the screen. This is the C function:
 
-``` C
+```c
 void hello() {
     puts("Hello world!");
 }
@@ -713,7 +713,7 @@ void hello() {
 
 This is the `Hello` Perl 6 module using using the C `hello` function:
 
-``` Perl6
+```perl
 use v6;
 unit module Hello;
 
@@ -728,7 +728,7 @@ sub hello() is native(&libhello) is export {*};
 
 And, this is an example of Perl 6 code calling the aforesaid module.
 
-``` Perl6
+```perl
 use lib '.';
 use Hello;
 

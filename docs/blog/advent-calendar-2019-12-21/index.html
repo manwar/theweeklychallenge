@@ -177,84 +177,84 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2019blogadvent-calendar-2019"><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></h2>
-<h3 id="-day-20blogadvent-calendar-2019-12-20--day-21--day-22blogadvent-calendar-2019-12-22-">| <a href="/blog/advent-calendar-2019-12-20"><strong>Day 20</strong></a> | <strong>Day 21</strong> | <a href="/blog/advent-calendar-2019-12-22"><strong>Day 22</strong></a> |</h3>
+        <h2 id="advent-calendar-2019"><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></h2>
+<h3 id="-day-20--day-21--day-22-">| <a href="/blog/advent-calendar-2019-12-20"><strong>Day 20</strong></a> | <strong>Day 21</strong> | <a href="/blog/advent-calendar-2019-12-22"><strong>Day 22</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <strong>Gustavo Chaves</strong>. Today he is talking about his solutions to <strong>Task #1: Base35 Representation</strong> of <strong><a href="/blog/perl-weekly-challenge-002">&ldquo;The Weekly Challenge - 002&rdquo;</a></strong>.</p>
 <h4 id="write-a-script-that-can-convert-numbers-to-and-from-a-base35-representation-using-the-characters-0-9-and-a-y">Write a script that can convert numbers to and from a base35 representation, using the characters 0-9 and A-Y.</h4>
 <hr>
 <p>I cannot do it as a <strong>one-liner</strong> this time, but it was still fun. While trying to solve it I realized that it wouldn&rsquo;t be much harder to implement a general solution to convert from any base to any base between <strong>2</strong> and <strong>36</strong>.</p>
 <p>This is my solution:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.026</span>;
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> integer;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">my</span> $usage <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Usage: $0 FROM_BASE TO_BASE NUMBER\n\nError&#34;</span>;
-
-die <span style="color:#e6db74">&#34;$usage: invalid number of arguments\n&#34;</span>
-    <span style="color:#66d9ef">unless</span> @ARGV <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>;
-
-<span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;Z&#39;</span>);
-<span style="color:#66d9ef">my</span> %digits <span style="color:#f92672">=</span> map {$digits[$_] <span style="color:#f92672">=&gt;</span> $_} <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @digits<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-
-<span style="color:#66d9ef">my</span> ($from_base, $to_base, $number) <span style="color:#f92672">=</span> @ARGV;
-
-die <span style="color:#e6db74">&#34;$usage: FROM_BASE must be between 2 and @digits\n&#34;</span>
-    <span style="color:#66d9ef">if</span> $from_base <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $from_base <span style="color:#f92672">&gt;</span> @digits;
-
-die <span style="color:#e6db74">&#34;$usage: TO_BASE must be between 2 and @digits\n&#34;</span>
-    <span style="color:#66d9ef">if</span> $to_base <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $to_base <span style="color:#f92672">&gt;</span> @digits;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">from_base</span> {
-    <span style="color:#66d9ef">my</span> ($base, $string) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    $string <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^0+//</span>;
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $char (reverse split <span style="color:#e6db74">//</span>, $string) {
-        die <span style="color:#e6db74">&#34;$usage: Invalid char in NUMBER: &#39;$char&#39;\n&#34;</span>
-            <span style="color:#66d9ef">if</span> $digits{$char} <span style="color:#f92672">&gt;=</span> $base;
-        $n <span style="color:#f92672">*=</span> $base;
-        $n <span style="color:#f92672">+=</span> $digits{$char};
-    }
-    <span style="color:#66d9ef">return</span> $n;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to_base</span> {
-    <span style="color:#66d9ef">my</span> ($base, $n) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $n; $i; $i <span style="color:#f92672">/=</span> $base) {
-        $string <span style="color:#f92672">.=</span> $digits[$i % <span style="color:#960050;background-color:#1e0010">$</span>base];
-    }
-    <span style="color:#66d9ef">return</span> length $string ? reverse $string : <span style="color:#e6db74">&#39;0&#39;</span>;
-}
-
-say to_base($to_base, from_base($from_base, $number));
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.026</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> integer;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $usage <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Usage: $0 FROM_BASE TO_BASE NUMBER\n\nError&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>die <span style="color:#e6db74">&#34;$usage: invalid number of arguments\n&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">unless</span> @ARGV <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;Z&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %digits <span style="color:#f92672">=</span> map {$digits[$_] <span style="color:#f92672">=&gt;</span> $_} <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @digits<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> ($from_base, $to_base, $number) <span style="color:#f92672">=</span> @ARGV;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>die <span style="color:#e6db74">&#34;$usage: FROM_BASE must be between 2 and @digits\n&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> $from_base <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $from_base <span style="color:#f92672">&gt;</span> @digits;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>die <span style="color:#e6db74">&#34;$usage: TO_BASE must be between 2 and @digits\n&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> $to_base <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $to_base <span style="color:#f92672">&gt;</span> @digits;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">from_base</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($base, $string) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    $string <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^0+//</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $char (reverse split <span style="color:#e6db74">//</span>, $string) {
+</span></span><span style="display:flex;"><span>        die <span style="color:#e6db74">&#34;$usage: Invalid char in NUMBER: &#39;$char&#39;\n&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> $digits{$char} <span style="color:#f92672">&gt;=</span> $base;
+</span></span><span style="display:flex;"><span>        $n <span style="color:#f92672">*=</span> $base;
+</span></span><span style="display:flex;"><span>        $n <span style="color:#f92672">+=</span> $digits{$char};
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $n;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to_base</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($base, $n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $n; $i; $i <span style="color:#f92672">/=</span> $base) {
+</span></span><span style="display:flex;"><span>        $string <span style="color:#f92672">.=</span> $digits[$i % <span style="color:#960050;background-color:#1e0010">$</span>base];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> length $string ? reverse $string : <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say to_base($to_base, from_base($from_base, $number));
+</span></span></code></pre></div><br>
 <p>And this is how it works:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">10</span> GUSTAVO
-<span style="color:#ae81ff">61183826754</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">61183826754</span>
-GUSTAVO
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">18</span> GUSTAVO
-G674BB7G4
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">9</span> G674BB7G4
-<span style="color:#ae81ff">742882356461</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">742882356461</span>
-<span style="color:#ae81ff">12112022222001210211021</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">12112022222001210211021</span>
-<span style="color:#ae81ff">000100101011101100011101010110010011</span>
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">000100101011101100011101010110010011</span>
-GUSTAVO
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">10</span> GUSTAVO
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">61183826754</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">61183826754</span>
+</span></span><span style="display:flex;"><span>GUSTAVO
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">18</span> GUSTAVO
+</span></span><span style="display:flex;"><span>G674BB7G4
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">9</span> G674BB7G4
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">742882356461</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">742882356461</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">12112022222001210211021</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">12112022222001210211021</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">000100101011101100011101010110010011</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">000100101011101100011101010110010011</span>
+</span></span><span style="display:flex;"><span>GUSTAVO
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>

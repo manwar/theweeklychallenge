@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2023blogadvent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
-<h3 id="-nbsp-day-13blogadvent-calendar-2023-12-13-nbsp--nbsp-day-14-nbsp--nbsp-day-15blogadvent-calendar-2023-12-15--nbsp-">|   <a href="/blog/advent-calendar-2023-12-13"><strong>Day 13</strong></a>   |   <strong>Day 14</strong>   |   <a href="/blog/advent-calendar-2023-12-15"><strong>Day 15</strong></a>    |</h3>
+        <h2 id="advent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
+<h3 id="--day-13----day-14----day-15---">|   <a href="/blog/advent-calendar-2023-12-13"><strong>Day 13</strong></a>   |   <strong>Day 14</strong>   |   <a href="/blog/advent-calendar-2023-12-15"><strong>Day 15</strong></a>    |</h3>
 <hr>
 <p>The gift is presented by <code>Roger Bell_West</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-223"><strong>The Weekly Challenge - 223</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://blog.firedrake.org/archive/2023/07/The_Weekly_Challenge_223__Counting_Boxes.html"><strong>post</strong></a>.</p>
 <hr>
@@ -194,12 +194,12 @@ Write a script to find the total count of primes less than or equal to the given
 <p>(Yes, including Raku - which has is-prime, but running that on every number is a lot slower.)</p>
 <h3 id="perl">Perl:</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(primes)</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">countprimes</span>($l) {
-  <span style="color:#66d9ef">return</span> scalar @{primes($l)};
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(primes)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">countprimes</span>($l) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> scalar @{primes($l)};
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="task-2-box-coins">Task 2: Box Coins</h3>
 <pre><code>You are given an array representing box coins, @box.
 
@@ -213,50 +213,50 @@ If $box[i+1] or $box[i-1] is out of bound then treat it as 1 coin.
 <p>I&rsquo;m a bit sloppy about defining extra variables here. Also some languages get <code>Pair</code> and similar types rather than an array with disparate elements.</p>
 <h3 id="javascript">JavaScript:</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">function boxcoins(ints) {
-    let mx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    let stack <span style="color:#f92672">=</span> [ [ ints, <span style="color:#ae81ff">0</span> ] ];
-    <span style="color:#66d9ef">while</span> (stack<span style="color:#f92672">.</span>length <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-        const x <span style="color:#f92672">=</span> stack<span style="color:#f92672">.</span>pop();
-        const t <span style="color:#f92672">=</span> x[<span style="color:#ae81ff">0</span>];
-        const tot <span style="color:#f92672">=</span> x[<span style="color:#ae81ff">1</span>];
-        <span style="color:#66d9ef">if</span> (tot <span style="color:#f92672">&gt;</span> mx) {
-            mx <span style="color:#f92672">=</span> tot;
-        }
-        <span style="color:#66d9ef">for</span> (let i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> t<span style="color:#f92672">.</span>length; i<span style="color:#f92672">++</span>) {
-            let p <span style="color:#f92672">=</span> t[i];
-            <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-                p <span style="color:#f92672">*=</span> t[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
-            }
-            <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&lt;</span> t<span style="color:#f92672">.</span>length <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-                p <span style="color:#f92672">*=</span> t[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
-            }
-            const stot <span style="color:#f92672">=</span> tot <span style="color:#f92672">+</span> p;
-            let tt <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-            <span style="color:#66d9ef">for</span> (let ix <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; ix <span style="color:#f92672">&lt;</span> t<span style="color:#f92672">.</span>length; ix<span style="color:#f92672">++</span>) {
-                <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">!=</span> ix) {
-                    tt<span style="color:#f92672">.</span>push(t[ix]);
-                }
-            }
-            stack<span style="color:#f92672">.</span>push([tt, stot]);
-        }
-    }
-    <span style="color:#66d9ef">return</span> mx;
-}
-
-<span style="color:#66d9ef">if</span> (boxcoins([<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>]) <span style="color:#f92672">==</span> <span style="color:#ae81ff">167</span>) {
-  process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;Pass&#34;</span>);
-} <span style="color:#66d9ef">else</span> {
-  process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;FAIL&#34;</span>);
-}
-process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34; &#34;</span>);
-<span style="color:#66d9ef">if</span> (boxcoins([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>]) <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span>) {
-  process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;Pass&#34;</span>);
-} <span style="color:#66d9ef">else</span> {
-  process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;FAIL&#34;</span>);
-}
-process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;\n&#34;</span>);
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>function boxcoins(ints) {
+</span></span><span style="display:flex;"><span>    let mx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    let stack <span style="color:#f92672">=</span> [ [ ints, <span style="color:#ae81ff">0</span> ] ];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (stack<span style="color:#f92672">.</span>length <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        const x <span style="color:#f92672">=</span> stack<span style="color:#f92672">.</span>pop();
+</span></span><span style="display:flex;"><span>        const t <span style="color:#f92672">=</span> x[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>        const tot <span style="color:#f92672">=</span> x[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (tot <span style="color:#f92672">&gt;</span> mx) {
+</span></span><span style="display:flex;"><span>            mx <span style="color:#f92672">=</span> tot;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (let i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> t<span style="color:#f92672">.</span>length; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            let p <span style="color:#f92672">=</span> t[i];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>                p <span style="color:#f92672">*=</span> t[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&lt;</span> t<span style="color:#f92672">.</span>length <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>                p <span style="color:#f92672">*=</span> t[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            const stot <span style="color:#f92672">=</span> tot <span style="color:#f92672">+</span> p;
+</span></span><span style="display:flex;"><span>            let tt <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (let ix <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; ix <span style="color:#f92672">&lt;</span> t<span style="color:#f92672">.</span>length; ix<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">!=</span> ix) {
+</span></span><span style="display:flex;"><span>                    tt<span style="color:#f92672">.</span>push(t[ix]);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            stack<span style="color:#f92672">.</span>push([tt, stot]);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> mx;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (boxcoins([<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>]) <span style="color:#f92672">==</span> <span style="color:#ae81ff">167</span>) {
+</span></span><span style="display:flex;"><span>  process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;Pass&#34;</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>  process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;FAIL&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34; &#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (boxcoins([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>]) <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span>) {
+</span></span><span style="display:flex;"><span>  process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;Pass&#34;</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>  process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;FAIL&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;\n&#34;</span>);
+</span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p>|   <a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a>   |</p>
 

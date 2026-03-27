@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-1blogadvent-calendar-2024-12-01-nbsp--nbsp-day-2-nbsp--nbsp-day-3blogadvent-calendar-2024-12-03-nbsp-">|   <a href="/blog/advent-calendar-2024-12-01"><strong>Day 1</strong></a>   |   <strong>Day 2</strong>   |   <a href="/blog/advent-calendar-2024-12-03"><strong>Day 3</strong></a>   |</h3>
+        <h2 id="advent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
+<h3 id="--day-1----day-2----day-3--">|   <a href="/blog/advent-calendar-2024-12-01"><strong>Day 1</strong></a>   |   <strong>Day 2</strong>   |   <a href="/blog/advent-calendar-2024-12-03"><strong>Day 3</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Jorg Sommrey</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-252"><strong>The Weekly Challenge - 252</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://github.sommrey.de/the-bears-den/2024/01/16/ch-252.html"><strong>post</strong></a>.</p>
 <hr>
@@ -202,14 +202,14 @@ Also the array is 1-indexed for the task.
 <p>We need to sum over the squared values of all elements having an <code>1-based</code> index that divides the size of <code>@ints</code>. There is <a href="https://metacpan.org/pod/Math::Prime::Util#divisors"><strong>divisors</strong></a> in <a href="https://metacpan.org/pod/Math::Prime::Util"><strong>Math::Prime::Util</strong></a> that provides all divisors of a given number and there is <a href="https://metacpan.org/pod/PDL"><strong>PDL</strong></a> that can pick <a href="https://metacpan.org/pod/PDL::NiceSlice#Argument-formats"><strong>slices</strong></a> off, calculate the element-wise <a href="https://metacpan.org/pod/PDL::Math#pow"><strong>power</strong></a> of and the <a href="https://metacpan.org/pod/PDL::Ufunc#sum"><strong>sum</strong></a> over an <code>ndarray</code>.</p>
 <p>Putting these together in a single statement:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> PDL;
-<span style="color:#66d9ef">use</span> PDL::NiceSlice;
-<span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">&#39;divisors&#39;</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">snss</span> {
-    sum pdl(@_)<span style="color:#f92672">-&gt;</span>(indx(divisors @_) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> PDL;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> PDL::NiceSlice;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">&#39;divisors&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">snss</span> {
+</span></span><span style="display:flex;"><span>    sum pdl(@_)<span style="color:#f92672">-&gt;</span>(indx(divisors @_) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>See the <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/jo-37/perl/ch-1.pl"><strong>full solution</strong></a></p>
 <br>
 <h4 id="task-2-unique-sum-zero">Task 2: Unique Sum Zero</h4>
@@ -228,12 +228,12 @@ Write a script to find an array containing $n unique integers such that they add
 <br>
 <p>This results in:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;signatures&#39;</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">uniq_sum_zero</span> ($n) {
-    (<span style="color:#f92672">-</span>$n <span style="color:#e6db74">/ 2 .. -1, (0) x ($n % 2), 1 .. $n /</span> <span style="color:#ae81ff">2</span>);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;signatures&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">uniq_sum_zero</span> ($n) {
+</span></span><span style="display:flex;"><span>    (<span style="color:#f92672">-</span>$n <span style="color:#e6db74">/ 2 .. -1, (0) x ($n % 2), 1 .. $n /</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>See the <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-252/jo-37/perl/ch-2.pl"><strong>full solution</strong></a></p>
 <br>
 <hr>

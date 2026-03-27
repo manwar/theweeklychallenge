@@ -177,36 +177,36 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2023blogadvent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
-<h3 id="-nbsp-day-9blogadvent-calendar-2023-12-09-nbsp--nbsp-day-10-nbsp--nbsp-day-11blogadvent-calendar-2023-12-11-nbsp-">|   <a href="/blog/advent-calendar-2023-12-09"><strong>Day 9</strong></a>   |   <strong>Day 10</strong>   |   <a href="/blog/advent-calendar-2023-12-11"><strong>Day 11</strong></a>   |</h3>
+        <h2 id="advent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
+<h3 id="--day-9----day-10----day-11--">|   <a href="/blog/advent-calendar-2023-12-09"><strong>Day 9</strong></a>   |   <strong>Day 10</strong>   |   <a href="/blog/advent-calendar-2023-12-11"><strong>Day 11</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Stephen G Lynn</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-217"><strong>The Weekly Challenge - 217</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://thiujiac.blogspot.com/2023/05/pwc-217.html"><strong>post</strong></a>.</p>
 <hr>
 <br>
-<h2 id="challenge-1-sorted-matrixhttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-217steve-g-lynnperlch-1pdl"><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-217/steve-g-lynn/perl/ch-1.pdl"><strong>Challenge 1 (Sorted Matrix)</strong></a></h2>
+<h2 id="challenge-1-sorted-matrix"><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-217/steve-g-lynn/perl/ch-1.pdl"><strong>Challenge 1 (Sorted Matrix)</strong></a></h2>
 <hr>
 <p>We are given a <code>n by n</code> matrix of numbers, and asked to report the third-smallest number in the matrix.</p>
 <p>The specification seems to allow arbitrary non-numeric elements too, but since all the test examples are numeric, I will restrict to numeric matrices. <code>PDL</code> is of course the go-to tool for this.</p>
 <p>The core subroutine:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sorted_matrix</span> {<span style="color:#66d9ef">my</span> ($pdl)<span style="color:#f92672">=</span>@_; $pdl<span style="color:#f92672">=</span>$pdl<span style="color:#f92672">-&gt;</span>flat<span style="color:#f92672">-&gt;</span>qsort; $pdl(<span style="color:#ae81ff">2</span>);}
-</code></pre></div><p>The flat method flattens the matrix piddle to a vector piddle, qsort sorts the vector in ascending order, then we just return the third element.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sorted_matrix</span> {<span style="color:#66d9ef">my</span> ($pdl)<span style="color:#f92672">=</span>@_; $pdl<span style="color:#f92672">=</span>$pdl<span style="color:#f92672">-&gt;</span>flat<span style="color:#f92672">-&gt;</span>qsort; $pdl(<span style="color:#ae81ff">2</span>);}
+</span></span></code></pre></div><p>The flat method flattens the matrix piddle to a vector piddle, qsort sorts the vector in ascending order, then we just return the third element.</p>
 <br>
-<h2 id="challenge-2-max-numberhttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-217steve-g-lynnperlch-2pdl"><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-217/steve-g-lynn/perl/ch-2.pdl"><strong>Challenge 2 (Max Number)</strong></a></h2>
+<h2 id="challenge-2-max-number"><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-217/steve-g-lynn/perl/ch-2.pdl"><strong>Challenge 2 (Max Number)</strong></a></h2>
 <hr>
 <p>We are given a list of positive integers of arbitrary lengths, and asked to concatenate them so as to produce the largest possible concatenated number. Thus, given <code>1</code> and <code>23</code>, we would produce <code>231</code>, not <code>123</code>.</p>
 <p>To solve this, we exploit the fact that <code>Perl</code> can treat the elements interchangeably as numbers or as strings. We first sort the numbers using a routine that puts <code>$b</code> before <code>$a</code> if <code>$b.$a</code> is greater than <code>$a.$b</code>. Thus, we would sort <code>(1,23)</code> as <code>(23,1)</code> because <code>231 &gt; 123</code>.</p>
 <p>The core snippet:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">join <span style="color:#e6db74">&#39;&#39;</span>, sort { $b<span style="color:#f92672">.</span>$a <span style="color:#e6db74">&lt;=&gt;</span> $a<span style="color:#f92672">.</span>$b } @list;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>join <span style="color:#e6db74">&#39;&#39;</span>, sort { $b<span style="color:#f92672">.</span>$a <span style="color:#e6db74">&lt;=&gt;</span> $a<span style="color:#f92672">.</span>$b } @list;
+</span></span></code></pre></div><br>
 <p>A simpler approach suggests itself as just the straight descending lexical <code>sort {$b cmp $a}</code>. But this fails for example with <code>(1,10)</code>, which would be sorted as <code>10,1</code> not the desired <code>1,10</code>.</p>
 <h3 id="the-comparison-function-in-sort">The comparison function in sort</h3>
 <p>Let me briefly explain my own understanding of how comparison functions work in sort. The documentation can be a bit cryptic.</p>
 <p>The general syntax of sort is:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">sort f($a,$b) @list;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>sort f($a,$b) @list;
+</span></span></code></pre></div><br>
 <p>Here <code>f($a,$b)</code> is the comparison function. A comparison function can return <code>-1</code>, <code>0</code>, or <code>1</code>. Here <code>$a</code> and <code>$b</code> are standard package variables (global variables) that temporarily store two list elements being compared during the sort process.</p>
 <p>If <code>f($a,$b)</code> returns <code>-1</code>, <code>$a</code> is placed before <code>$b</code> in the sorted list.</p>
 <p>If <code>f($a,$b)</code> returns <code>1</code>, <code>$a</code> is placed after <code>$b</code> in the sorted list.</p>
@@ -216,9 +216,9 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>With the string comparison operator <code>cmp</code>: <code>$x cmp $y</code> returns <code>-1</code> if <code>$x</code> is before <code>$y</code> in the dictionary <code>($x lt $y)</code>, <code>1</code> if  <code>$x</code> is after <code>$y</code> in the dictionary <code>($x gt $y)</code>, and <code>0</code> if the value of <code>$x</code> is the same string as the value of <code>$y</code> ($x eq $y).</p>
 <p>We could rewrite the core snippet above as follows to make the logic more clear:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">f</span> {<span style="color:#66d9ef">my</span> ($x,$y)<span style="color:#f92672">=</span>@_; $y<span style="color:#f92672">.</span>$x <span style="color:#e6db74">&lt;=&gt;</span> $x<span style="color:#f92672">.</span>$y}
-join <span style="color:#e6db74">&#39;&#39;</span>, sort <span style="color:#f92672">&amp;</span>f($a,$b) @list;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">f</span> {<span style="color:#66d9ef">my</span> ($x,$y)<span style="color:#f92672">=</span>@_; $y<span style="color:#f92672">.</span>$x <span style="color:#e6db74">&lt;=&gt;</span> $x<span style="color:#f92672">.</span>$y}
+</span></span><span style="display:flex;"><span>join <span style="color:#e6db74">&#39;&#39;</span>, sort <span style="color:#f92672">&amp;</span>f($a,$b) @list;
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p>|   <a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a>   |</p>

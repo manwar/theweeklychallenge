@@ -784,7 +784,7 @@ Instead of building a letter list he choses a subtractive approach, where a hash
 
 This technique produces spectacular results when fed from `/usr/share/dict/words`:
 
-```
+```perl
     blepharoconjunctivitis semioxygenized afterknowledge absquatulate
 ```
 
@@ -883,7 +883,7 @@ Duncan is using `Function::Parameters` which gives him `fun` statements with sig
 
 Ulrich brings us a less-random, system approach to filling out the alphabet: work from letter-to-letter and choose the shortest word available. Using words from 1 to 2 letters in length, he completes a pangram in 55 characters:
 
-```
+```perl
     If each word solves one letter and contains every letter only once ,
      a possible short solution is:
     a,be,cs,do,eh,fad,go,ha,id,jab,keg,lab,m,no,of,pa,qt,re,so,to,up,vi,we,x,yak,zip
@@ -942,7 +942,7 @@ The monk, deft at the wheel, pressed on.
 
 One so-far overlooked quality in these algorithms is letter frequency, where words with xs and zs are much less common, so any word sought out to utilize them will likely contain duplicate letters to those already seen. To mitigate this inefficiency, they create a scheme to draw on Scrabble game tile values, assigning increasing values to infrequent letters. This allows the computation of a weighted comparative total. When this value is used first in word selection, the phrase length decreases dramatically.
 
-```
+```perl
     Challenge 161, Task #2: Pangrams (Perl)
 
     (1) sympathized: a d e h i m p s t y z
@@ -1061,7 +1061,7 @@ Ok, *less* random is more accurate, as the Markov chain generator is a probabili
 
 It makes for a delicious and opaque wordly mess.
 
-```
+```perl
     the steady torrent and that way there softly and while he first feel as
     a little place but the feeble old wall paper yes it to go no
     restrictions whatsoever you roar wishing to fidget very bad as they
@@ -1172,7 +1172,7 @@ Constructing actual grammatical sentences is complex. It involves matching quant
 
 Natural Language Programming code becomes basically as complex as you can make it, chasing down these endless hairy edges, but the results can be impresive. Adam has constructed a pangram sentence machine built around these principles, using the aforementioned module for tagging. Here is one such result, only editorially modified by the addition of a single "s", a capital letter and a period.
 
-```
+```perl
     Some unjust narrowness modernizes every audible expenditure or half conflicting quirk.
 ```
 
@@ -1328,7 +1328,7 @@ It uses a deep-learning translation module, first finding English pangrams and t
 
 And here's an example of the result:
 
-```
+```perl
     English: emission sedans proclaimed duskier choppering phobia
     familiarity newborn convulsion sympathize jetted quells appendixes
 

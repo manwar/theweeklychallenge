@@ -54,7 +54,7 @@ sub match_string {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-352/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub match-string(*@words) {
     my %seen;
 

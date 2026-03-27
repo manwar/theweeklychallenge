@@ -79,7 +79,7 @@ A disarium number is an integer where the sum of each digit raised to the power 
 
 
 **For example,**
-```
+```perl
     518 is a disarium number
     as (5 ** 1) + (1 ** 2) + (8 ** 3) => 5 + 1 + 512 => 518
 ```

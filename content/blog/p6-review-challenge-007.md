@@ -58,7 +58,7 @@ As it turns out, I'm afraid I was a bit sloppy here (because I simply translated
 
 And it you prefer a real script, this is one way it could be done, using a `gather/take` block:
 
-``` Perl6
+```perl
 use v6;
 .say for gather {
     for 1..50 -> $num {
@@ -72,13 +72,13 @@ use v6;
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/arne-sommer/perl6/ch-1.p6) provided a script that could have been a Perl 6 one-liner and is significantly more concise than my own one-liner:
 
-``` Perl6
+```perl
 .say if $_ %% $_.comb.sum for 0 .. 50;
 ```
 
 Arne also provided a solution creating a lazy infinite list of Niven numbers and printing out those up to 50:
 
-``` Perl6
+```perl
 unit sub MAIN (Int $limit where $limit > 0 = 50);
 my $niven := gather
 {
@@ -94,31 +94,31 @@ This program is sort of slightly wrong, though, as it does not print the Niven n
 
 [Finley](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/finley/perl6/ch-1.p6) provided a script, but the real code to compute Niven's number holds in one single line, even slightly shorter than Arne's solution:
 
-``` Perl6
+```perl
 .say if ($_ %% [+] .comb) for 0..50;
 ```
 
 [Francis J. Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/fjwhittle/perl6/ch-1.p6) also provided a script that could be a simple Perl 6 one-liner:
 
-``` Perl6
+```perl
 .put for (0..50).grep: { $_ %% [+] .comb };
 ```
 
 [Jo-Christian Oterhals](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/jo-christian-oterhals/perl6/ch-1.p6)'s script is the most concise so far and could also become a simple one-liner:
 
-``` Perl6
+```perl
 .say if $_ %% [+] .comb for 0..50;
 ```
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/ruben-westerberg/perl6/ch-1.p6) also provided a script that could boil down to a one-liner:
 
-``` Perl6
+```perl
 say join "\n", (0..50) .grep({($_ > 0) && $_ %% (.Str.comb>>.Int .sum)});
 ```
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/jaldhar-h-vyas/perl6/ch-1.p6) dedicated his script to the memory of his father,  Dr. Harshad V. Vyas (remember that the Niven numbers are commonly called the Harshad Numbers). His script is significantly longer than all those seen so far (but still fairly short):
 
-``` Perl6
+```perl
 for 1 .. 50 -> $number {
     if $number % $number.comb.sum == 0 {
         say $number;
@@ -128,7 +128,7 @@ for 1 .. 50 -> $number {
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/joelle-maslak/perl6/ch-1.p6) also wrote a fairly short full-fledged script:
 
-``` Perl6
+```perl
 sub MAIN(UInt:D $max = 50) {
     for 0..$max -> $i {
         say $i if $i %% [+] $i.comb;
@@ -138,7 +138,7 @@ sub MAIN(UInt:D $max = 50) {
 
 [Ozzy](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/ozzy/perl6/ch-1.p6) made the most complicated solution so far:
 
-``` Perl6
+```perl
 sub SumDigits ( Int $x is copy ) {
     my $sum=0;
     while $x != 0 {
@@ -156,7 +156,7 @@ sub MAIN {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/simon-proctor/perl6/ch-1.p6) also somewhat over-engineered it (in my humble view) with multi subroutines :
 
-``` Perl6
+```perl
 multi sub is-niven( 0 ) { False }
 
 multi sub is-niven( Int $num where * > 0 ) {

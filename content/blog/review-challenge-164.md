@@ -956,7 +956,7 @@ repeat that process until the number equals 1 (n is happy), or it reaches a
 cycle that does not equal 1 (n is unhappy). The example provided is perhaps
 more instructive:
 
-```
+```perl
 19 => 1^2 + 9^2
    => 1   + 81
    => 82 => 8^2 + 2^2
@@ -1999,7 +1999,7 @@ TEST: for $test (1 .. 1000) {
 Peter's code is also formatting the results exactly in the way Mohammad's task
 description did, so we'll see, for example:
 
-```
+```perl
 28 => 2^2 + 8^2
    => 4 + 64
    => 68 => 6^2 + 8^2

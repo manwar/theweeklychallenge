@@ -46,7 +46,7 @@ Write a script to return the count of common strings in both arrays.
 
 File: count-common
 
-```raku
+```perl
 #! /usr/bin/env raku
 
 unit sub MAIN ($str1, $str2, :v(:$verbose));  # [1]
@@ -140,7 +140,7 @@ Write a script to find the original array that produced the given encoded array.
 
 File: decode-xor
 
-```raku
+```perl
 #! /usr/bin/env raku
                                          # [1]
 unit sub MAIN (*@encoded where @encoded.elems > 0 && all(@encoded) ~~ Int,

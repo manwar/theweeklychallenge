@@ -24,7 +24,7 @@ Following is my ch-1.raku script:
 
 <br>
 
-```raku
+```perl
 #!/bin/env raku
 
 unit sub MAIN(Str:D $s);
@@ -40,7 +40,7 @@ printf '%d-%02d-%02d', $yr, %months{$mon}, $day.substr(0,*-2);
 
 <br>
 
-```raku
+```perl
 my %letters = 'a'..'z' Z=> 1..26;
 put %letters.raku;
 ```
@@ -67,7 +67,7 @@ put `.words` is convienent in translate sentences into a list of words `.words.r
 
 <br>
 
-```raku
+```perl
 put 'abcdefgYZ'.substr(0,*-2);
 ```
 

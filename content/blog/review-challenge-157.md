@@ -75,14 +75,14 @@ of the given set of integers.
 Please refer to wikipedia page for more informations.
 
 **Example 1:**
-```
+```perl
     Input: @n = (1,3,5,6,9)
     Output: AM = 4.8, GM = 3.8, HM = 2.8
 ```
 
 
 **Example 2:**
-```
+```perl
     Input: @n = (2,4,6,8,10)
     Output: AM = 6.0, GM = 5.2, HM = 4.4
 ```
@@ -90,7 +90,7 @@ Please refer to wikipedia page for more informations.
 
 **Example 3:**
 
-```
+```perl
 
     Input: @n = (1,2,3,4,5)
     Output: AM = 3.0, GM = 2.6, HM = 2.2
@@ -529,7 +529,7 @@ A positive integer number N has at least one natural number B where 1 < B < N-1 
 
 
 **Example 1:**
-```
+```perl
     Input: $n = 7
     Output: 1
 
@@ -538,7 +538,7 @@ A positive integer number N has at least one natural number B where 1 < B < N-1 
 
 
 **Example 2:**
-```
+```perl
     Input: $n = 6
     Output: 0
 

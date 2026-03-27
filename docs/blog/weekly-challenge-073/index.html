@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>BLOG: The Weekly Challenge #073</span>
         </nav>
-        <span class="reading-time" title="1705 words">
+        <span class="reading-time" title="1709 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -193,14 +193,14 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>I have been coding in <strong>Perl</strong> for over <strong>20 years</strong> now but I noticed there is a clarity in my coding style, thanks to <strong>&ldquo;The Weekly Challenge&rdquo;</strong>. I have never liked my own code so much before. But now every time, I read my past solutions to the weekly challenge, I fall in love again. Doing <strong>unit test</strong> every week with the regulary solution also made a big difference how I design my solution. Because I do unit test in <strong>Raku</strong>, I get so much ideas by doing weekly tasks in <strong>Raku</strong>.</p>
 <p>If you are interested then please checkout my <strong>Swift</strong> solutions to this week tasks.</p>
 <br>
-<h4 id="1-min-sliding-windowshttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-073mohammad-anwarswiftch-1swift">1) <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/mohammad-anwar/swift/ch-1.swift">Min Sliding Windows</a></h4>
-<h4 id="2-smallest-neighbourhttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-073mohammad-anwarswiftch-2swift">2) <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/mohammad-anwar/swift/ch-2.swift">Smallest Neighbour</a></h4>
+<h4 id="1-min-sliding-windows">1) <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/mohammad-anwar/swift/ch-1.swift">Min Sliding Windows</a></h4>
+<h4 id="2-smallest-neighbour">2) <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/mohammad-anwar/swift/ch-2.swift">Smallest Neighbour</a></h4>
 <br>
 <p>Last but not the least, I would love hear your <strong>view/opinion</strong> with regard to anything I do. Please get in touch with me by email: <a href="mailto:mohammad.anwar@yahoo.com">mohammad.anwar@yahoo.com</a>.</p>
 <p>Let me share my solutions to the <strong><a href="/perl-weekly-challenge-073">The Weekly Challenge - 073</a></strong>.</p>
 <hr>
 <h2 id="task-1--min-sliding-window">TASK #1 › Min Sliding Window</h2>
-<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<h4 id="submitted-by-mohammad-s-anwar">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
 <hr>
 <p>You are given an array of integers <code>@A</code> and sliding window size <code>$S</code>.</p>
 <p>Write a script to create an array of min from each sliding window.</p>
@@ -208,181 +208,181 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <p>The best part of this task was to create a <strong>sliding window</strong>. I had lots of fun playing with it. Rest of the job was done by the <code>min()</code> of the cool <strong>CPAN</strong> module <code>List::Util</code>. I have never used <code>min()</code> with <code>map {}</code> before. Doing weekly challenges, gave me complete freedom to express myself. I fear no one, literally.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">min_sliding_window</span> {
-    <span style="color:#66d9ef">my</span> ($list, $size) <span style="color:#f92672">=</span> @_;
-
-    die <span style="color:#e6db74">&#34;ERROR: Missing list.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> defined $list;
-    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> ($list <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[\-?\d\,?\s?]+$/</span>);
-
-    $list <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
-    $list <span style="color:#f92672">=</span> [ split <span style="color:#e6db74">/\,/</span>, $list ];
-
-    die <span style="color:#e6db74">&#34;ERROR: Missing size.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> defined $size;
-    die <span style="color:#e6db74">&#34;ERROR: Invalid size [$size].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> (($size <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;&amp;</span> ($size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $#$list));
-
-    <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">my</span> @min_sliding_window <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">while</span> ($index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $#$list) {
-        push @min_sliding_window,
-        min ( map { $list<span style="color:#f92672">-&gt;</span>[$_] } $index <span style="color:#f92672">..</span> $index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
-        $index<span style="color:#f92672">++</span>;
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@min_sliding_window;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">min_sliding_window</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($list, $size) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing list.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined $list;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($list <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[\-?\d\,?\s?]+$/</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">=</span> [ split <span style="color:#e6db74">/\,/</span>, $list ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing size.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined $size;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid size [$size].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> (($size <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;&amp;</span> ($size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $#$list));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @min_sliding_window <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $#$list) {
+</span></span><span style="display:flex;"><span>        push @min_sliding_window,
+</span></span><span style="display:flex;"><span>        min ( map { $list<span style="color:#f92672">-&gt;</span>[$_] } $index <span style="color:#f92672">..</span> $index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
+</span></span><span style="display:flex;"><span>        $index<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@min_sliding_window;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Doing the same in <strong>Raku</strong> was not any less fun either.</p>
 <p>Doing the one-liner like below gave me immense pleasure.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">my</span> $window <span style="color:#f92672">=</span> $l<span style="color:#f92672">.</span>[$index <span style="color:#f92672">..</span> $index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>Int };
-</code></pre></div><p>I can&rsquo;t even imagine writing the above line few months ago.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $window <span style="color:#f92672">=</span> $l<span style="color:#f92672">.</span>[$index <span style="color:#f92672">..</span> $index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>Int };
+</span></span></code></pre></div><p>I can&rsquo;t even imagine writing the above line few months ago.</p>
 <p>I want to stay foccussed and keep learning.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">min</span>-sliding-window(Str $list is copy, Int $size) {
-
-    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> $list <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^[\-?\d\,?\s?]+$/</span>;
-
-    say $list;
-    $list <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s/</span><span style="color:#f92672">/</span>;
-    <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> [ $list<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>) ];
-
-    die <span style="color:#e6db74">&#34;ERROR: Invalid size [$size].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> $size <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $l<span style="color:#f92672">.</span>elems;
-
-    <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">my</span> @min<span style="color:#f92672">-</span>sliding<span style="color:#f92672">-</span>window <span style="color:#f92672">=</span> Empty;
-
-    <span style="color:#66d9ef">while</span> $index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> $l<span style="color:#f92672">.</span>elems {
-        <span style="color:#66d9ef">my</span> $window <span style="color:#f92672">=</span> $l<span style="color:#f92672">.</span>[$index <span style="color:#f92672">..</span> $index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>Int };
-        @min<span style="color:#f92672">-</span>sliding<span style="color:#f92672">-</span>window<span style="color:#f92672">.</span>push: min($window);
-        $index<span style="color:#f92672">++</span>;
-    }
-
-    <span style="color:#66d9ef">return</span> @min<span style="color:#f92672">-</span>sliding<span style="color:#f92672">-</span>window;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">min</span>-sliding-window(Str $list is copy, Int $size) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> $list <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^[\-?\d\,?\s?]+$/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say $list;
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> [ $list<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>) ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid size [$size].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> $size <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $l<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @min<span style="color:#f92672">-</span>sliding<span style="color:#f92672">-</span>window <span style="color:#f92672">=</span> Empty;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> $index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> $l<span style="color:#f92672">.</span>elems {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $window <span style="color:#f92672">=</span> $l<span style="color:#f92672">.</span>[$index <span style="color:#f92672">..</span> $index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>Int };
+</span></span><span style="display:flex;"><span>        @min<span style="color:#f92672">-</span>sliding<span style="color:#f92672">-</span>window<span style="color:#f92672">.</span>push: min($window);
+</span></span><span style="display:flex;"><span>        $index<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @min<span style="color:#f92672">-</span>sliding<span style="color:#f92672">-</span>window;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Having done all the hard work above, time to stich together to solve the task.</p>
 <p>I loved the line below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">print</span> join (<span style="color:#e6db74">&#34;\n&#34;</span>, (join <span style="color:#e6db74">&#39;, &#39;</span>, @{min_sliding_window($A, $S)}), <span style="color:#e6db74">&#34;&#34;</span>);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">print</span> join (<span style="color:#e6db74">&#34;\n&#34;</span>, (join <span style="color:#e6db74">&#39;, &#39;</span>, @{min_sliding_window($A, $S)}), <span style="color:#e6db74">&#34;&#34;</span>);
+</span></span></code></pre></div><br>
 <p>before I would have done something like this:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#39;, &#39;</span>, @{min_sliding_window($A, $S)}), <span style="color:#e6db74">&#34;\n&#34;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#39;, &#39;</span>, @{min_sliding_window($A, $S)}), <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span></code></pre></div><br>
 <p>I hate putting <code>\n</code> at the end of print statement. I miss <strong>Raku</strong> lovely <code>say()</code> :-(</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min)</span>;
-
-<span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;1, 5, 0, 2, 9, 3, 7, 6, 4, 8&#34;</span>;
-<span style="color:#66d9ef">my</span> $S <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> <span style="color:#ae81ff">3</span>;
-
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$A\n&#34;</span>;
-<span style="color:#66d9ef">print</span> join (<span style="color:#e6db74">&#34;\n&#34;</span>, (join <span style="color:#e6db74">&#39;, &#39;</span>, @{min_sliding_window($A, $S)}), <span style="color:#e6db74">&#34;&#34;</span>);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;1, 5, 0, 2, 9, 3, 7, 6, 4, 8&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $S <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$A\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> join (<span style="color:#e6db74">&#34;\n&#34;</span>, (join <span style="color:#e6db74">&#39;, &#39;</span>, @{min_sliding_window($A, $S)}), <span style="color:#e6db74">&#34;&#34;</span>);
+</span></span></code></pre></div><br>
 <p><strong>Raku</strong> simply showing off now in the following solution.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$A = &#34;1, 5, 0, 2, 9, 3, 7, 6, 4, 8&#34;,
-         Int :$S = 3) {
-    min<span style="color:#f92672">-</span>sliding<span style="color:#f92672">-</span>window($A, $S)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>)<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$A = &#34;1, 5, 0, 2, 9, 3, 7, 6, 4, 8&#34;,
+</span></span><span style="display:flex;"><span>         Int :$S = 3) {
+</span></span><span style="display:flex;"><span>    min<span style="color:#f92672">-</span>sliding<span style="color:#f92672">-</span>window($A, $S)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>)<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Once again, I am relying on <code>Test2::V0</code> for my unit test solution. I created <code>package MinSlidingWindow</code> to keep it compact.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> MinSlidingWindow;
-
-<span style="color:#66d9ef">use</span> Moo;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min)</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate</span> {
-    <span style="color:#66d9ef">my</span> ($self, $list, $size) <span style="color:#f92672">=</span> @_;
-
-    die <span style="color:#e6db74">&#34;ERROR: Missing list.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> defined $list;
-    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> ($list <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[\-?\d\,?\s?]+$/</span>);
-
-    $list <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
-    $list <span style="color:#f92672">=</span> [ split <span style="color:#e6db74">/\,/</span>, $list ];
-
-    die <span style="color:#e6db74">&#34;ERROR: Missing size.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> defined $size;
-    die <span style="color:#e6db74">&#34;ERROR: Invalid size [$size].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> (($size <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;&amp;</span> ($size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $#$list));
-
-    <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">my</span> @min_sliding_window <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">while</span> ($index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $#$list) {
-        push @min_sliding_window,
-        min ( map { $list<span style="color:#f92672">-&gt;</span>[$_] } $index <span style="color:#f92672">..</span> $index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
-        $index<span style="color:#f92672">++</span>;
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@min_sliding_window;
-}
-
-<span style="color:#66d9ef">package</span> main;
-
-<span style="color:#66d9ef">use</span> Test2::V0 <span style="color:#f92672">-</span>target <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;MinSlidingWindow&#39;</span>;
-
-<span style="color:#66d9ef">my</span> $list <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1, 5, 0, 2, 9, 3, 7, 6, 4, 8&#34;</span>;
-<span style="color:#66d9ef">my</span> %test_cases <span style="color:#f92672">=</span> (
-    <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;1, 0, 0, 2, 3, 3, 6, 4, 4&#34;</span>,
-    <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3, 4, 4&#34;</span>,
-    <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3, 4&#34;</span>,
-    <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3&#34;</span>,
-    <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3&#34;</span>,
-    <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2&#34;</span>,
-    <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0&#34;</span>,
-    <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0&#34;</span>,
-   <span style="color:#ae81ff">10</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0&#34;</span>,
-);
-
-warn <span style="color:#e6db74">&#34;List = $list\n&#34;</span>;
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $size (sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %test_cases) {
-    <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;, &#34;</span>, @{$CLASS<span style="color:#f92672">-&gt;</span>generate($list, $size)};
-    is $min, $test_cases{$size}, <span style="color:#e6db74">&#34;testing window size $size&#34;</span>;
-}
-
-done_testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MinSlidingWindow;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $list, $size) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing list.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined $list;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($list <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[\-?\d\,?\s?]+$/</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">=</span> [ split <span style="color:#e6db74">/\,/</span>, $list ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing size.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined $size;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid size [$size].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> (($size <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;&amp;</span> ($size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $#$list));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @min_sliding_window <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $#$list) {
+</span></span><span style="display:flex;"><span>        push @min_sliding_window,
+</span></span><span style="display:flex;"><span>        min ( map { $list<span style="color:#f92672">-&gt;</span>[$_] } $index <span style="color:#f92672">..</span> $index <span style="color:#f92672">+</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
+</span></span><span style="display:flex;"><span>        $index<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@min_sliding_window;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> main;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test2::V0 <span style="color:#f92672">-</span>target <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;MinSlidingWindow&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $list <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1, 5, 0, 2, 9, 3, 7, 6, 4, 8&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %test_cases <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;1, 0, 0, 2, 3, 3, 6, 4, 4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3, 4, 4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3, 4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0&#34;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">10</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>warn <span style="color:#e6db74">&#34;List = $list\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $size (sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %test_cases) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;, &#34;</span>, @{$CLASS<span style="color:#f92672">-&gt;</span>generate($list, $size)};
+</span></span><span style="display:flex;"><span>    is $min, $test_cases{$size}, <span style="color:#e6db74">&#34;testing window size $size&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><br>
 <p>Here <strong>Raku</strong> is simply behaving like a good boy and getting the work done.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-<span style="color:#66d9ef">my</span> $list <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1, 5, 0, 2, 9, 3, 7, 6, 4, 8&#34;</span>;
-<span style="color:#66d9ef">my</span> %test<span style="color:#f92672">-</span>cases <span style="color:#f92672">=</span> (
-    <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;1, 0, 0, 2, 3, 3, 6, 4, 4&#34;</span>,
-    <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3, 4, 4&#34;</span>,
-    <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3, 4&#34;</span>,
-    <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3&#34;</span>,
-    <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3&#34;</span>,
-    <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2&#34;</span>,
-    <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0&#34;</span>,
-    <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0&#34;</span>,
-   <span style="color:#ae81ff">10</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0&#34;</span>,
-);
-
-<span style="color:#66d9ef">for</span> %test<span style="color:#f92672">-</span>cases<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort({ $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b }) <span style="color:#f92672">-&gt;</span> $size {
-    is min<span style="color:#f92672">-</span>sliding<span style="color:#f92672">-</span>window($list, $size<span style="color:#f92672">.</span>Int)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>),
-       %test<span style="color:#f92672">-</span>cases{$size},
-       <span style="color:#e6db74">&#34;testing size $size&#34;</span>;
-}
-
-done<span style="color:#f92672">-</span>testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $list <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1, 5, 0, 2, 9, 3, 7, 6, 4, 8&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %test<span style="color:#f92672">-</span>cases <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;1, 0, 0, 2, 3, 3, 6, 4, 4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3, 4, 4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3, 4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3, 3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2, 3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0&#34;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">10</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> %test<span style="color:#f92672">-</span>cases<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort({ $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b }) <span style="color:#f92672">-&gt;</span> $size {
+</span></span><span style="display:flex;"><span>    is min<span style="color:#f92672">-</span>sliding<span style="color:#f92672">-</span>window($list, $size<span style="color:#f92672">.</span>Int)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>),
+</span></span><span style="display:flex;"><span>       %test<span style="color:#f92672">-</span>cases{$size},
+</span></span><span style="display:flex;"><span>       <span style="color:#e6db74">&#34;testing size $size&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span></code></pre></div><br>
 <hr>
 <h2 id="task-2--smallest-neighbour">TASK #2 › Smallest Neighbour</h2>
-<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<h4 id="submitted-by-mohammad-s-anwar-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
 <hr>
 <p>You are given an array of integers <code>@A</code>.</p>
 <p>Write a script to create an array that represents the smallest element to the left of each corresponding index. If none found then use 0.</p>
@@ -390,131 +390,131 @@ done<span style="color:#f92672">-</span>testing;
 <br>
 <p>This task got few <strong>Team PWC</strong> members confused. I blame myself for the confusion, the explanation was not <strong>good enough</strong>. I had to make few changes to get the message clearly. I am glad it ended up on happy note. In this task also I am mixing the power of <code>min()</code> and <code>map{}</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">smallest_neighbour</span> {
-    <span style="color:#66d9ef">my</span> ($list) <span style="color:#f92672">=</span> @_;
-
-    die <span style="color:#e6db74">&#34;ERROR: Missing list.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> defined $list;
-    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> ($list <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[\s?\-?\d\,?\s?]+$/</span>);
-
-    $list <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
-    $list <span style="color:#f92672">=</span> [ split <span style="color:#e6db74">/\,/</span>, $list ];
-
-    <span style="color:#66d9ef">my</span> @smallest_neighbour <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>);
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#$list) {
-        <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> min( map { $list<span style="color:#f92672">-&gt;</span>[$_] } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> );
-        push @smallest_neighbour, ($min <span style="color:#f92672">&lt;</span> $list<span style="color:#f92672">-&gt;</span>[$i])?($min):(<span style="color:#ae81ff">0</span>);
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@smallest_neighbour;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">smallest_neighbour</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($list) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing list.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined $list;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($list <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[\s?\-?\d\,?\s?]+$/</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">=</span> [ split <span style="color:#e6db74">/\,/</span>, $list ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @smallest_neighbour <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#$list) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> min( map { $list<span style="color:#f92672">-&gt;</span>[$_] } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> );
+</span></span><span style="display:flex;"><span>        push @smallest_neighbour, ($min <span style="color:#f92672">&lt;</span> $list<span style="color:#f92672">-&gt;</span>[$i])?($min):(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@smallest_neighbour;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>The best line in the <strong>Raku</strong> solution is below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> min( $l<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>Int } );
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> min( $l<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>Int } );
+</span></span></code></pre></div><br>
 <p>Other than that, rest is plain <strong>Raku</strong> magic.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">smallest</span>-neighbour(Str $list is copy) {
-
-    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> $list <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^[\s?\-?\d\,?\s?]+$/</span>;
-
-    $list <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s/</span><span style="color:#f92672">/</span>;
-    <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> [ $list<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>) ];
-
-    <span style="color:#66d9ef">my</span> @smallest_neighbour <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $l<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $i {
-        <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> min( $l<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>Int } );
-        @smallest_neighbour<span style="color:#f92672">.</span>push: ($min <span style="color:#f92672">&lt;</span> $l<span style="color:#f92672">.</span>[$i]) ?? ($min) <span style="color:#f92672">!!</span> (<span style="color:#ae81ff">0</span>);
-    }
-
-    <span style="color:#66d9ef">return</span> @smallest_neighbour;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">smallest</span>-neighbour(Str $list is copy) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> $list <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^[\s?\-?\d\,?\s?]+$/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> [ $list<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>) ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @smallest_neighbour <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $l<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $i {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> min( $l<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>Int } );
+</span></span><span style="display:flex;"><span>        @smallest_neighbour<span style="color:#f92672">.</span>push: ($min <span style="color:#f92672">&lt;</span> $l<span style="color:#f92672">.</span>[$i]) ?? ($min) <span style="color:#f92672">!!</span> (<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @smallest_neighbour;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>It is time for <strong>Perl</strong> to show off.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min)</span>;
-
-<span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;7, 8, 3, 12, 10&#34;</span>;
-
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$A\n&#34;</span>;
-<span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;\n&#34;</span>, (join <span style="color:#e6db74">&#39;, &#39;</span>, @{smallest_neighbour($A)}), <span style="color:#e6db74">&#34;&#34;</span>);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;7, 8, 3, 12, 10&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$A\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;\n&#34;</span>, (join <span style="color:#e6db74">&#39;, &#39;</span>, @{smallest_neighbour($A)}), <span style="color:#e6db74">&#34;&#34;</span>);
+</span></span></code></pre></div><br>
 <p><strong>Raku</strong> is not far off either.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str $list = &#34;7, 8, 3, 12, 10&#34;) {
-    say $list;
-    smallest<span style="color:#f92672">-</span>neighbour($list)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;, &#39;</span>)<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str $list = &#34;7, 8, 3, 12, 10&#34;) {
+</span></span><span style="display:flex;"><span>    say $list;
+</span></span><span style="display:flex;"><span>    smallest<span style="color:#f92672">-</span>neighbour($list)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;, &#39;</span>)<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p><strong>Perl</strong> unit test solution with the power of <code>Test2::V0</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> SmallestNeighbour;
-
-<span style="color:#66d9ef">use</span> Moo;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min)</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch</span> {
-    <span style="color:#66d9ef">my</span> ($self, $list) <span style="color:#f92672">=</span> @_;
-
-    die <span style="color:#e6db74">&#34;ERROR: Missing list.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> defined $list;
-    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> ($list <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[\s?\-?\d\,?\s?]+$/</span>);
-
-    $list <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
-    $list <span style="color:#f92672">=</span> [ split <span style="color:#e6db74">/\,/</span>, $list ];
-
-    <span style="color:#66d9ef">my</span> @smallest_neighbour <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>);
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#$list) {
-        <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> min( map { $list<span style="color:#f92672">-&gt;</span>[$_] } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> );
-        push @smallest_neighbour, ($min <span style="color:#f92672">&lt;</span> $list<span style="color:#f92672">-&gt;</span>[$i])?($min):(<span style="color:#ae81ff">0</span>);
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@smallest_neighbour;
-}
-
-<span style="color:#66d9ef">package</span> main;
-
-<span style="color:#66d9ef">use</span> Test2::V0 <span style="color:#f92672">-</span>target <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;SmallestNeighbour&#39;</span>;
-
-<span style="color:#66d9ef">my</span> %test_cases <span style="color:#f92672">=</span> (
-    <span style="color:#e6db74">&#34;7,  8, 3, 12, 10&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 7, 0, 3, 3&#34;</span>,
-    <span style="color:#e6db74">&#34;0,  1, 5,  2,  3&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 0, 0&#34;</span>,
-    <span style="color:#e6db74">&#34;1, -2, 7,  5, -4&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, -2, -2, 0&#34;</span>,
-);
-
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $list (sort keys %test_cases) {
-    <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;, &#34;</span>, @{$CLASS<span style="color:#f92672">-&gt;</span>fetch($list)};
-    is $min, $test_cases{$list}, <span style="color:#e6db74">&#34;testing list $list&#34;</span>;
-}
-
-done_testing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> SmallestNeighbour;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $list) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Missing list.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> defined $list;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($list <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[\s?\-?\d\,?\s?]+$/</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">=</span> [ split <span style="color:#e6db74">/\,/</span>, $list ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @smallest_neighbour <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#$list) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> min( map { $list<span style="color:#f92672">-&gt;</span>[$_] } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> );
+</span></span><span style="display:flex;"><span>        push @smallest_neighbour, ($min <span style="color:#f92672">&lt;</span> $list<span style="color:#f92672">-&gt;</span>[$i])?($min):(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@smallest_neighbour;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> main;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test2::V0 <span style="color:#f92672">-</span>target <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;SmallestNeighbour&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %test_cases <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;7,  8, 3, 12, 10&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 7, 0, 3, 3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;0,  1, 5,  2,  3&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 0, 0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;1, -2, 7,  5, -4&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, -2, -2, 0&#34;</span>,
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $list (sort keys %test_cases) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;, &#34;</span>, @{$CLASS<span style="color:#f92672">-&gt;</span>fetch($list)};
+</span></span><span style="display:flex;"><span>    is $min, $test_cases{$list}, <span style="color:#e6db74">&#34;testing list $list&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><br>
 <p><strong>Raku</strong> is keeping it simple and clean.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-<span style="color:#66d9ef">my</span> %test<span style="color:#f92672">-</span>cases <span style="color:#f92672">=</span> (
-    <span style="color:#e6db74">&#34;7,  8, 3, 12, 10&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 7, 0, 3, 3&#34;</span>,
-    <span style="color:#e6db74">&#34;0,  1, 5,  2,  3&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 0, 0&#34;</span>,
-    <span style="color:#e6db74">&#34;1, -2, 7,  5, -4&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, -2, -2, 0&#34;</span>,
-);
-
-<span style="color:#66d9ef">for</span> %test<span style="color:#f92672">-</span>cases<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort <span style="color:#f92672">-&gt;</span> $list {
-    is smallest<span style="color:#f92672">-</span>neighbour($list)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;, &#39;</span>),
-       %test<span style="color:#f92672">-</span>cases{$list},
-       <span style="color:#e6db74">&#34;testing list $list&#34;</span>;
-}
-
-done<span style="color:#f92672">-</span>testing;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %test<span style="color:#f92672">-</span>cases <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;7,  8, 3, 12, 10&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 7, 0, 3, 3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;0,  1, 5,  2,  3&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, 0, 0, 0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;1, -2, 7,  5, -4&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;0, 0, -2, -2, 0&#34;</span>,
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> %test<span style="color:#f92672">-</span>cases<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort <span style="color:#f92672">-&gt;</span> $list {
+</span></span><span style="display:flex;"><span>    is smallest<span style="color:#f92672">-</span>neighbour($list)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;, &#39;</span>),
+</span></span><span style="display:flex;"><span>       %test<span style="color:#f92672">-</span>cases{$list},
+</span></span><span style="display:flex;"><span>       <span style="color:#e6db74">&#34;testing list $list&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span></code></pre></div><hr>
 <br>
 <p>That&rsquo;s it for this week. Speak to you soon.</p>
 
@@ -552,16 +552,6 @@ done<span style="color:#f92672">-</span>testing;
             </span>
             <span class="related-post-date">30 Aug 2020</span>
         </a>
-        <a class="related-post-card" href="/blog/weekly-challenge-072/">
-            <span class="related-post-section">blog</span>
-            <span class="related-post-title">BLOG: The Weekly Challenge #072</span>
-            <span class="related-post-tags">
-                <span class="related-post-tag">Perl</span>
-                <span class="related-post-tag">Raku</span>
-                <span class="related-post-tag">Swift</span>
-            </span>
-            <span class="related-post-date">5 Aug 2020</span>
-        </a>
         <a class="related-post-card" href="/blog/weekly-challenge-074/">
             <span class="related-post-section">blog</span>
             <span class="related-post-title">BLOG: The Weekly Challenge #074</span>
@@ -571,6 +561,16 @@ done<span style="color:#f92672">-</span>testing;
                 <span class="related-post-tag">Swift</span>
             </span>
             <span class="related-post-date">23 Aug 2020</span>
+        </a>
+        <a class="related-post-card" href="/blog/weekly-challenge-072/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">BLOG: The Weekly Challenge #072</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+                <span class="related-post-tag">Swift</span>
+            </span>
+            <span class="related-post-date">5 Aug 2020</span>
         </a>
     </div>
 </div>

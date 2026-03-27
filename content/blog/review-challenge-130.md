@@ -63,12 +63,12 @@ You are given an array of positive integers, such that all the numbers appear ev
 Write a script to find that integer.
 
 **Example 1**
-```
+```perl
     Input: @N = (2, 5, 4, 4, 5, 5, 2)
     Output: 5 as it appears 3 times in the array where as all other numbers 2 and 4 appears exactly twice.
 ```
 **Example 2**
-```
+```perl
     Input: @N = (1, 2, 3, 4, 3, 2, 1, 4, 4)
     Output: 4
 ```
@@ -483,7 +483,7 @@ According to wikipedia, the definition of BST:
 >A binary search tree is a rooted binary tree, whose internal nodes each store a key (and optionally, an associated value), and each has two distinguished sub-trees, commonly denoted left and right. The tree additionally satisfies the binary search property: the key in each node is greater than or equal to any key stored in the left sub-tree, and less than or equal to any key stored in the right sub-tree. The leaves (final nodes) of the tree contain no key and have no structure to distinguish them from one another.
 
 **Example 1**
-```
+```perl
     Input:
             8
            / \
@@ -495,7 +495,7 @@ According to wikipedia, the definition of BST:
 ```
 
 **Example 2**
-```
+```perl
     Input:
             5
            / \
@@ -554,7 +554,7 @@ Implementing the trees themselves was, as always, a sub-problem in its own right
 
 Luis will start us off today with a novel input method, YAML, for his tree, using the `YAML::Tiny` module as a framework. This appears to work quite well for both human readability and data access:
 
-```
+```perl
         8
        / \
       5   9
@@ -564,7 +564,7 @@ Luis will start us off today with a novel input method, YAML, for his tree, usin
 
 becomes
 
-```
+```perl
     v: 8
     l:
       v: 5

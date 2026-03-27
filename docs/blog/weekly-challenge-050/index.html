@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>BLOG: The Weekly Challenge #050</span>
         </nav>
-        <span class="reading-time" title="1106 words">
+        <span class="reading-time" title="1108 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -207,249 +207,249 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>By this time it was getting late but then I decided I have to fix it now.</p>
 <p>The following day, <strong>E. Choroba</strong> shared his code with many more test data. I decided to test my code against his set of test data. I was happy that my code didn&rsquo;t complain. Check out the end result below:</p>
 <h2 id="challenge-050-task-1">Challenge #050 (Task #1)</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> Test::Deep;
-
-cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">12</span>], [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>], [<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">14</span>], [<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">19</span>] ] ),
-            [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">14</span>], [<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">19</span>] ] );
-cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>], [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">12</span>], [<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">19</span>], [<span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">22</span>] ] ),
-            [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">9</span>], [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">12</span>], [<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">22</span>] ] );
-cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>] ] ),
-            [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>] ] );
-cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>] ] ),
-            [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>] ] );
-cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>] ] ),
-            [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>] ] );
-cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>], [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>] ] ),
-            [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>] ] );
-cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>] ] ),
-            [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>] ] );
-cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>] ] ),
-            [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>] ] );
-
-<span style="color:#75715e">#</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># Test case borrowed from E. Choroba contributions.</span>
-<span style="color:#75715e"># https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-050/e-choroba/perl/ch-1.pl</span>
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">8</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">6</span>],[<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>],[<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">19</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">8</span>],[<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">19</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">14</span>],[<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">19</span>],[<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">12</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">14</span>],[<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">19</span>]]);
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">17</span>],[<span style="color:#ae81ff">18</span>,<span style="color:#ae81ff">18</span>],[<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">9</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">17</span>]]), [[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">17</span>],[<span style="color:#ae81ff">18</span>,<span style="color:#ae81ff">18</span>]]);
-
-cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">9</span>],[<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">12</span>],[<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">19</span>],[<span style="color:#ae81ff">18</span>,<span style="color:#ae81ff">22</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">9</span>],[<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">12</span>],[<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">22</span>]]);
-
-done_testing();
-
-<span style="color:#75715e">#</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># METHODS</span>
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">merge_intervals</span> {
-    <span style="color:#66d9ef">my</span> ($intervals) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> $k;
-    <span style="color:#66d9ef">my</span> $l;
-    <span style="color:#66d9ef">my</span> $m;
-
-    $intervals <span style="color:#f92672">=</span> _order_intervals($intervals);
-
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $interval (@$intervals) {
-        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
-
-        <span style="color:#66d9ef">if</span> (defined $l <span style="color:#f92672">&amp;&amp;</span> defined $k) {
-            <span style="color:#66d9ef">if</span> (($i <span style="color:#f92672">&lt;=</span> $l) <span style="color:#f92672">||</span> ($k <span style="color:#f92672">==</span> $i)) {
-                $k <span style="color:#f92672">=</span> $interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
-                <span style="color:#66d9ef">if</span> ($m<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $k) {
-                    $m<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $k;
-                }
-                <span style="color:#66d9ef">next</span>;
-            }
-        }
-
-        <span style="color:#66d9ef">my</span> ($j, $_k) <span style="color:#f92672">=</span> _merge_intervals($interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>], $intervals);
-
-        <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">&lt;</span> $interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]) {
-            $j <span style="color:#f92672">=</span> $interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
-        }
-
-        push @$m, [$i, $j];
-
-        $k <span style="color:#f92672">=</span> $_k;
-        $l <span style="color:#f92672">=</span> $j;
-    }
-
-    <span style="color:#66d9ef">return</span> $m;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_order_intervals</span> {
-    <span style="color:#66d9ef">my</span> ($intervals) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> @intervals <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (@$intervals) {
-        push @intervals, sprintf(<span style="color:#e6db74">&#34;%d-%d&#34;</span>, $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
-    }
-
-    <span style="color:#75715e"># Borrowed with input from E. Choroba</span>
-    <span style="color:#75715e"># https://stackoverflow.com/questions/27089498/sorting-arrays-of-intervals-in-perl</span>
-    <span style="color:#66d9ef">my</span> @_sorted <span style="color:#f92672">=</span> sort {
-        <span style="color:#66d9ef">my</span> ($a1, $a2) <span style="color:#f92672">=</span> $a <span style="color:#f92672">=~</span><span style="color:#e6db74"> /-?\d+/g</span>;
-        <span style="color:#66d9ef">my</span> ($b1, $b2) <span style="color:#f92672">=</span> $b <span style="color:#f92672">=~</span><span style="color:#e6db74"> /-?\d+/g</span>;
-        $a1 <span style="color:#e6db74">&lt;=&gt;</span> $b1 <span style="color:#f92672">||</span> $a2 <span style="color:#e6db74">&lt;=&gt;</span> $b2;
-    } @intervals;
-
-    <span style="color:#66d9ef">my</span> $sorted <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-    <span style="color:#66d9ef">foreach</span> (@_sorted) {
-        <span style="color:#66d9ef">my</span> ($a, $b) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/(?&lt;=\d)-(?=\d)/</span>, $_, <span style="color:#ae81ff">2</span>;
-        push @$sorted, [ $a<span style="color:#f92672">+</span><span style="color:#ae81ff">0</span>, $b<span style="color:#f92672">+</span><span style="color:#ae81ff">0</span> ];
-    }
-
-    <span style="color:#66d9ef">return</span> $sorted;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_merge_intervals</span> {
-    <span style="color:#66d9ef">my</span> ($j, $intervals) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> $_j <span style="color:#f92672">=</span> $j;
-    <span style="color:#66d9ef">my</span> $_i;
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (@$intervals) {
-        <span style="color:#66d9ef">if</span> ($i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $j) {
-            $_j <span style="color:#f92672">=</span> $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
-            $_i <span style="color:#f92672">=</span> $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> ($_j, $_i);
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::Deep;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">12</span>], [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>], [<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">14</span>], [<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">19</span>] ] ),
+</span></span><span style="display:flex;"><span>            [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">14</span>], [<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">19</span>] ] );
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>], [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">12</span>], [<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">19</span>], [<span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">22</span>] ] ),
+</span></span><span style="display:flex;"><span>            [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">9</span>], [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">12</span>], [<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">22</span>] ] );
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>] ] ),
+</span></span><span style="display:flex;"><span>            [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>] ] );
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>] ] ),
+</span></span><span style="display:flex;"><span>            [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>] ] );
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>] ] ),
+</span></span><span style="display:flex;"><span>            [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>] ] );
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>], [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>] ] ),
+</span></span><span style="display:flex;"><span>            [ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>] ] );
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>] ] ),
+</span></span><span style="display:flex;"><span>            [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>] ] );
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals( [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>] ] ),
+</span></span><span style="display:flex;"><span>            [ [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>] ] );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test case borrowed from E. Choroba contributions.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-050/e-choroba/perl/ch-1.pl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">6</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">7</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">8</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">6</span>],[<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>],[<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">19</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">8</span>]]), [[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">8</span>],[<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">19</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">14</span>],[<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">19</span>],[<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">12</span>]]), [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">14</span>],[<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">19</span>]]);
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">17</span>],[<span style="color:#ae81ff">18</span>,<span style="color:#ae81ff">18</span>],[<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">9</span>],[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">17</span>]]), [[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">17</span>],[<span style="color:#ae81ff">18</span>,<span style="color:#ae81ff">18</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmp_deeply( merge_intervals([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">7</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">9</span>],[<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">12</span>],[<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">19</span>],[<span style="color:#ae81ff">18</span>,<span style="color:#ae81ff">22</span>]]), [[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">9</span>],[<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">12</span>],[<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">22</span>]]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># METHODS</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">merge_intervals</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($intervals) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $k;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $l;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $m;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $intervals <span style="color:#f92672">=</span> _order_intervals($intervals);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $interval (@$intervals) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (defined $l <span style="color:#f92672">&amp;&amp;</span> defined $k) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (($i <span style="color:#f92672">&lt;=</span> $l) <span style="color:#f92672">||</span> ($k <span style="color:#f92672">==</span> $i)) {
+</span></span><span style="display:flex;"><span>                $k <span style="color:#f92672">=</span> $interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> ($m<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $k) {
+</span></span><span style="display:flex;"><span>                    $m<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $k;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">next</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($j, $_k) <span style="color:#f92672">=</span> _merge_intervals($interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>], $intervals);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">&lt;</span> $interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]) {
+</span></span><span style="display:flex;"><span>            $j <span style="color:#f92672">=</span> $interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        push @$m, [$i, $j];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $k <span style="color:#f92672">=</span> $_k;
+</span></span><span style="display:flex;"><span>        $l <span style="color:#f92672">=</span> $j;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $m;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_order_intervals</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($intervals) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @intervals <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (@$intervals) {
+</span></span><span style="display:flex;"><span>        push @intervals, sprintf(<span style="color:#e6db74">&#34;%d-%d&#34;</span>, $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Borrowed with input from E. Choroba</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># https://stackoverflow.com/questions/27089498/sorting-arrays-of-intervals-in-perl</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @_sorted <span style="color:#f92672">=</span> sort {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($a1, $a2) <span style="color:#f92672">=</span> $a <span style="color:#f92672">=~</span><span style="color:#e6db74"> /-?\d+/g</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($b1, $b2) <span style="color:#f92672">=</span> $b <span style="color:#f92672">=~</span><span style="color:#e6db74"> /-?\d+/g</span>;
+</span></span><span style="display:flex;"><span>        $a1 <span style="color:#e6db74">&lt;=&gt;</span> $b1 <span style="color:#f92672">||</span> $a2 <span style="color:#e6db74">&lt;=&gt;</span> $b2;
+</span></span><span style="display:flex;"><span>    } @intervals;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $sorted <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> (@_sorted) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($a, $b) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/(?&lt;=\d)-(?=\d)/</span>, $_, <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        push @$sorted, [ $a<span style="color:#f92672">+</span><span style="color:#ae81ff">0</span>, $b<span style="color:#f92672">+</span><span style="color:#ae81ff">0</span> ];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $sorted;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_merge_intervals</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($j, $intervals) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $_j <span style="color:#f92672">=</span> $j;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $_i;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (@$intervals) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $j) {
+</span></span><span style="display:flex;"><span>            $_j <span style="color:#f92672">=</span> $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>            $_i <span style="color:#f92672">=</span> $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ($_j, $_i);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <h2 id="challenge-050-task-2">Challenge #050 (Task #2)</h2>
 <p>The <strong>Noble number</strong> task turned out to be straight forward. I still had fun working with it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#ae81ff">1.54</span> <span style="color:#e6db74">qw(sample)</span>;
-
-<span style="color:#66d9ef">my</span> $COUNT <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#ae81ff">3</span>;
-
-<span style="color:#66d9ef">my</span> @L <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } sample ($COUNT, (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>));
-<span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> find_noble_number(@L);
-
-(defined $N)
-?
-(<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Found Noble number $N.\n&#34;</span>)
-:
-(<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;None Noble number found.\n&#34;</span>);
-
-<span style="color:#75715e">#</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># METHOD</span>
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_noble_number</span> {
-    <span style="color:#66d9ef">my</span> (@L) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $N (@L) {
-        <span style="color:#66d9ef">return</span> $N <span style="color:#66d9ef">if</span> (scalar( grep { $_ <span style="color:#f92672">&gt;</span> $N } @L ) <span style="color:#f92672">==</span> $N);
-    }
-
-    <span style="color:#66d9ef">return</span>;
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#ae81ff">1.54</span> <span style="color:#e6db74">qw(sample)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $COUNT <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @L <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } sample ($COUNT, (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>));
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> find_noble_number(@L);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defined $N)
+</span></span><span style="display:flex;"><span>?
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Found Noble number $N.\n&#34;</span>)
+</span></span><span style="display:flex;"><span>:
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;None Noble number found.\n&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># METHOD</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_noble_number</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> (@L) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $N (@L) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $N <span style="color:#66d9ef">if</span> (scalar( grep { $_ <span style="color:#f92672">&gt;</span> $N } @L ) <span style="color:#f92672">==</span> $N);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <p>Now it is time to translate the <strong>Perl</strong> solutions into <strong>Raku</strong>. I decided to do the <strong>Noble number</strong> task first.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl6</span>
-
-<span style="color:#66d9ef">use</span> v6;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $count = 3) {
-    <span style="color:#66d9ef">my</span> @L <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>)<span style="color:#f92672">.</span>pick($count);
-    find<span style="color:#f92672">-</span>noble<span style="color:#f92672">-</span>number(@L);
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find</span>-noble-number(@L) {
-    <span style="color:#66d9ef">for</span> @L <span style="color:#f92672">-&gt;</span> $N {
-        say <span style="color:#e6db74">&#34;Found noble number [$N] in the list [&#34;</span> <span style="color:#f92672">~</span> @L<span style="color:#f92672">.</span>Str <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;].&#34;</span>
-            <span style="color:#66d9ef">if</span> ((grep { <span style="color:#f92672">.</span>Int <span style="color:#f92672">&gt;</span> $N }, @L)<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> $N);
-    }
-}
-</code></pre></div><p>I must confess every time I do <strong>Raku</strong> solution I feel proud of myself. I am gaining confidence dealing with <strong>Raku</strong> every week. With the power of <strong>Raku</strong>, I simply used <strong>pick</strong> with <strong>$count</strong> to fetch fixed number of random elements from the list.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $count = 3) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @L <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>)<span style="color:#f92672">.</span>pick($count);
+</span></span><span style="display:flex;"><span>    find<span style="color:#f92672">-</span>noble<span style="color:#f92672">-</span>number(@L);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find</span>-noble-number(@L) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> @L <span style="color:#f92672">-&gt;</span> $N {
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">&#34;Found noble number [$N] in the list [&#34;</span> <span style="color:#f92672">~</span> @L<span style="color:#f92672">.</span>Str <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;].&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ((grep { <span style="color:#f92672">.</span>Int <span style="color:#f92672">&gt;</span> $N }, @L)<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> $N);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I must confess every time I do <strong>Raku</strong> solution I feel proud of myself. I am gaining confidence dealing with <strong>Raku</strong> every week. With the power of <strong>Raku</strong>, I simply used <strong>pick</strong> with <strong>$count</strong> to fetch fixed number of random elements from the list.</p>
 <blockquote>
 <p>my @L = (1..50).pick($count);</p>
 </blockquote>

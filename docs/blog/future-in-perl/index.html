@@ -226,56 +226,56 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <p>Let&rsquo;s do this in <code>Perl</code> using the <code>CPAN</code> modules: <a href="https://metacpan.org/pod/Future"><strong>Future</strong></a> and <a href="https://metacpan.org/pod/IO::Async::Loop"><strong>IO::Async::Loop</strong></a>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> Future;
-<span style="color:#66d9ef">use</span> IO::Async::Loop;
-
-<span style="color:#66d9ef">my</span> $loop <span style="color:#f92672">=</span> IO::Async::Loop<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch</span> {
-    <span style="color:#66d9ef">my</span> $future <span style="color:#f92672">=</span> $loop<span style="color:#f92672">-&gt;</span>new_future;
-    $loop<span style="color:#f92672">-&gt;</span>delay_future(after <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>on_done(<span style="color:#66d9ef">sub</span> {
-        $future<span style="color:#f92672">-&gt;</span>done(<span style="color:#e6db74">&#34;Fetch: data&#34;</span>);
-    });
-    <span style="color:#66d9ef">return</span> $future;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">process</span>($data) {
-    <span style="color:#66d9ef">my</span> $future <span style="color:#f92672">=</span> $loop<span style="color:#f92672">-&gt;</span>new_future;
-    $loop<span style="color:#f92672">-&gt;</span>delay_future(after <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>on_done(<span style="color:#66d9ef">sub</span> {
-        $future<span style="color:#f92672">-&gt;</span>done(<span style="color:#e6db74">&#34;Process: $data&#34;</span>);
-    });
-    <span style="color:#66d9ef">return</span> $future;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">save</span>($data) {
-    <span style="color:#66d9ef">my</span> $future <span style="color:#f92672">=</span> $loop<span style="color:#f92672">-&gt;</span>new_future;
-    $loop<span style="color:#f92672">-&gt;</span>delay_future(after <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>on_done(<span style="color:#66d9ef">sub</span> {
-        $future<span style="color:#f92672">-&gt;</span>done(<span style="color:#e6db74">&#34;Save: $data&#34;</span>);
-    });
-    <span style="color:#66d9ef">return</span> $future;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display</span>($data) {
-    say <span style="color:#e6db74">&#34;Display: $data&#34;</span>;
-    <span style="color:#66d9ef">return</span> Future<span style="color:#f92672">-&gt;</span>done;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">error</span>($message) {
-    say <span style="color:#e6db74">&#34;Error: $message&#34;</span>;
-    <span style="color:#66d9ef">return</span> Future<span style="color:#f92672">-&gt;</span>done;
-}
-
-$loop<span style="color:#f92672">-&gt;</span>await(
-    fetch()
-    <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">then</span>( <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> process(@_); })
-    <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">then</span>( <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> save(@_);    })
-    <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">then</span>( <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> display(@_); })
-    <span style="color:#f92672">-&gt;</span>catch(<span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> error(@_);   })
-);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Future;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> IO::Async::Loop;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $loop <span style="color:#f92672">=</span> IO::Async::Loop<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $future <span style="color:#f92672">=</span> $loop<span style="color:#f92672">-&gt;</span>new_future;
+</span></span><span style="display:flex;"><span>    $loop<span style="color:#f92672">-&gt;</span>delay_future(after <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>on_done(<span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>        $future<span style="color:#f92672">-&gt;</span>done(<span style="color:#e6db74">&#34;Fetch: data&#34;</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $future;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">process</span>($data) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $future <span style="color:#f92672">=</span> $loop<span style="color:#f92672">-&gt;</span>new_future;
+</span></span><span style="display:flex;"><span>    $loop<span style="color:#f92672">-&gt;</span>delay_future(after <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>on_done(<span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>        $future<span style="color:#f92672">-&gt;</span>done(<span style="color:#e6db74">&#34;Process: $data&#34;</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $future;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">save</span>($data) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $future <span style="color:#f92672">=</span> $loop<span style="color:#f92672">-&gt;</span>new_future;
+</span></span><span style="display:flex;"><span>    $loop<span style="color:#f92672">-&gt;</span>delay_future(after <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>on_done(<span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>        $future<span style="color:#f92672">-&gt;</span>done(<span style="color:#e6db74">&#34;Save: $data&#34;</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $future;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display</span>($data) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;Display: $data&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Future<span style="color:#f92672">-&gt;</span>done;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">error</span>($message) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;Error: $message&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Future<span style="color:#f92672">-&gt;</span>done;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$loop<span style="color:#f92672">-&gt;</span>await(
+</span></span><span style="display:flex;"><span>    fetch()
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">then</span>( <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> process(@_); })
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">then</span>( <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> save(@_);    })
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">then</span>( <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> display(@_); })
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>catch(<span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> error(@_);   })
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><br>
 <h2 id="output">Output</h2>
 <hr>
 <br>

@@ -80,13 +80,13 @@ I love the method chaining.
 
 It is simply beautiful.
 
-```perl6
+```perl
 return |$subarray.sort(*.value).reverse.[0].keys;
 ```
 
 The complete subroutine definition is defined below:
 
-```perl6
+```perl
 sub max-product-subarray(@array where .all ~~ Int) {
 
     my $subarray = {};
@@ -118,7 +118,7 @@ print sprintf("[ %s ] => %s\n", join(", ", @$n), max_product_subarray($n));
 
 I have added the default values as an extra because it is so easy to do with **MAIN()**.
 
-```perl6
+```perl
 sub MAIN(:@n where .all ~~ Int = <2 5 -1 3>) {
     say sprintf("[ %s ] => %s", @n.join(", "), max-product-subarray(@n));
 }
@@ -136,7 +136,7 @@ done_testing;
 
 **Raku** unit testing code looks identical, literally.
 
-```perl6
+```perl
 use Test;
 
 is max-product-subarray(<2 5 -1 3>), "[ 2, 5 ]";
@@ -230,13 +230,13 @@ becomes this in **Raku** with the use of `Empty`.
 
 How can you not love the language?
 
-```perl6
+```perl
 my @valid = Empty;
 ```
 
 Everything else is just plain english.
 
-```perl6
+```perl
 sub ipv4-partition(Str $ipv4_string) {
 
     my @valid = Empty;
@@ -270,7 +270,7 @@ I get all these magical stuff out of the box.
 
 Great, isn't it?
 
-```perl6
+```perl
 sub is-valid(Str $ipv4) {
 
     return False if $ipv4.chars == 0;
@@ -297,7 +297,7 @@ print sprintf("%s = %s\n", $S, join (", ", @V));
 
 I did the same to get **Raku** app done.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str $S = "25525511135") {
@@ -321,7 +321,7 @@ done_testing;
 
 Same applied to **Raku** as well.
 
-```perl6
+```perl
 use Test;
 
 my Str @V = ipv4-partition("25525511135");

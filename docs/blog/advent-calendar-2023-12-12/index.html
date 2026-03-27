@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2023blogadvent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
-<h3 id="-nbsp-day-11blogadvent-calendar-2023-12-11-nbsp--nbsp-day-12-nbsp--nbsp-day-13blogadvent-calendar-2023-12-13-nbsp-">|   <a href="/blog/advent-calendar-2023-12-11"><strong>Day 11</strong></a>   |   <strong>Day 12</strong>   |   <a href="/blog/advent-calendar-2023-12-13"><strong>Day 13</strong></a>   |</h3>
+        <h2 id="advent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
+<h3 id="--day-11----day-12----day-13--">|   <a href="/blog/advent-calendar-2023-12-11"><strong>Day 11</strong></a>   |   <strong>Day 12</strong>   |   <a href="/blog/advent-calendar-2023-12-13"><strong>Day 13</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Simon Green</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-220"><strong>The Weekly Challenge - 220</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://dev.to/simongreennet/common-squares-31do"><strong>post</strong></a>.</p>
 <hr>
@@ -219,12 +219,12 @@ Write a script to return the list of common characters (sorted alphabetically) f
 <br>
 <h3 id="examples">Examples</h3>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>py Perl Raku Rust
-r
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>py love live leave
-e, l, v
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>py Perl Raku Rust
+</span></span><span style="display:flex;"><span>r
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>py love live leave
+</span></span><span style="display:flex;"><span>e, l, v
+</span></span></code></pre></div><br>
 <h3 id="task-2-squareful">Task 2: Squareful</h3>
 <hr>
 <pre><code>You are given an array of integers, @ints.
@@ -238,17 +238,17 @@ Write a script to find all the permutations of the given array that are squarefu
 <hr>
 <p>[   <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-220/sgreen/perl/ch-2.pl"><strong>Perl</strong></a>   |   <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-220/sgreen/python/ch-2.py"><strong>Python</strong></a>   ]</p>
 <br>
-<p>Rather than reinventing some perfectly good wheels, I use the permutation function from <code>Python</code>'s <a href="https://docs.python.org/3/library/itertools.html"><strong>itertools</strong></a> and <code>Perl</code>'s <a href="https://metacpan.org/pod/Algorithm::Combinatorics"><strong>Algorithm::Combinatorics</strong></a> to work through all possible permutations. If we already have a solution with these numbers (e.g. a duplicate number), we skip to the next permutation.</p>
+<p>Rather than reinventing some perfectly good wheels, I use the permutation function from <code>Python</code>&rsquo;s <a href="https://docs.python.org/3/library/itertools.html"><strong>itertools</strong></a> and <code>Perl</code>&rsquo;s <a href="https://metacpan.org/pod/Algorithm::Combinatorics"><strong>Algorithm::Combinatorics</strong></a> to work through all possible permutations. If we already have a solution with these numbers (e.g. a duplicate number), we skip to the next permutation.</p>
 <p>I then have an inner loop from 1 to one less than the number of integers we have. I check that the value at that position and the previous position makes up a perfect square. This is done by calculating the square root of the sum of the two numbers, and checking it is equals to an integer.</p>
 <br>
 <h3 id="examples-1">Examples</h3>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>py <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">8</span>
-(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">17</span>), (<span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>)
-
-$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>py <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>
-(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>py <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">17</span>), (<span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>py <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p>|   <a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a>   |</p>
 
@@ -283,25 +283,24 @@ $ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="c
             </span>
             <span class="related-post-date">17 Dec 2025</span>
         </a>
-        <a class="related-post-card" href="/blog/plan-2020/">
+        <a class="related-post-card" href="/blog/advent-calendar-2025-12-15/">
             <span class="related-post-section">blog</span>
-            <span class="related-post-title">[ Perl | Raku | The ] Weekly Challenge - 2020</span>
+            <span class="related-post-title">Advent Calendar - December 15, 2025</span>
             <span class="related-post-tags">
                 <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Python</span>
                 <span class="related-post-tag">Raku</span>
-                <span class="related-post-tag">C&#43;&#43;</span>
             </span>
-            <span class="related-post-date">19 Nov 2019</span>
+            <span class="related-post-date">15 Dec 2025</span>
         </a>
-        <a class="related-post-card" href="/blog/meet-the-champion-2021-03/">
+        <a class="related-post-card" href="/blog/advent-calendar-2025-12-13/">
             <span class="related-post-section">blog</span>
-            <span class="related-post-title">Meet The Champion: March 2021</span>
+            <span class="related-post-title">Advent Calendar - December 13, 2025</span>
             <span class="related-post-tags">
-                <span class="related-post-tag">Clojure</span>
-                <span class="related-post-tag">Lua</span>
+                <span class="related-post-tag">Perl</span>
                 <span class="related-post-tag">Python</span>
             </span>
-            <span class="related-post-date">30 May 2021</span>
+            <span class="related-post-date">13 Dec 2025</span>
         </a>
     </div>
 </div>

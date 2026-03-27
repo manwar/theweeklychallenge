@@ -117,7 +117,7 @@ I simply translated my **Perl** solution to be quick.
 
 <br>
 
-```perl6
+```perl
 sub common-base-strings(Str $string1, Str $string2 --> Str) {
 
     my $len_string1 = $string1.chars;
@@ -169,7 +169,7 @@ Same applies to **Raku** solution.
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$string1 = "abcdabcd",
@@ -276,7 +276,7 @@ Simply translated the **Perl** solution here.
 
 <br>
 
-```perl6
+```perl
 sub fetch-words(Str $file where *.IO.f) {
 
     my $words;
@@ -297,7 +297,7 @@ sub fetch-words(Str $file where *.IO.f) {
 }
 ```
 
-```perl6
+```perl
 sub frequency-count($words) {
 
     my %frequency = ();
@@ -330,7 +330,7 @@ Please find below the solution in **Raku**.
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$file where *.IO.f) {

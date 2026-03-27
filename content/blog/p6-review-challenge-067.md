@@ -39,7 +39,7 @@ In the keypad task, the majority of the solutions include a mapping data structu
 
 Lists in an array, where the digit is the index in the array:
 
-```perl6
+```perl
     my @keypad =
         ' ',
         < _ , @>,
@@ -55,7 +55,7 @@ Lists in an array, where the digit is the index in the array:
 
 The other approaches include hashes where the digits are indices. But it varies further. Here is an example, where the values are the strings you see on the keys.
 
-```perl6
+```perl
     my %h =
         2 => 'abc',
         3 => 'def',
@@ -69,7 +69,7 @@ The other approaches include hashes where the digits are indices. But it varies 
 
 Or, for example, the values are lists of separate characters within the fancy `<` ... `>` quoting.
 
-```perl6
+```perl
     my %phone =
         1 => <_ , @>,
         2 => <a b c>,
@@ -84,7 +84,7 @@ Or, for example, the values are lists of separate characters within the fancy `<
 
 Or a more traditional code with quotes and square brackets:
 
-```perl6
+```perl
     my %phone_keys = (
         '1' => ['_', ',', '@'],
         '2' => ['a', 'b', 'c'],
@@ -103,7 +103,7 @@ Or a more traditional code with quotes and square brackets:
 
 And you really want to see another approach, where the list is partially generated using the `rotor` method. It makes a series of three-letter lists from a range `'a'..'o'`:
 
-```perl6
+```perl
     [|('a'..'o').rotor(3), <p q r s>, <t u v>, <w x y z>]
 ```
 

@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2025blogadvent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
-<h3 id="-nbsp-day-22blogadvent-calendar-2025-12-22-nbsp--nbsp-day-23-nbsp--nbsp-day-24blogadvent-calendar-2025-12-24-nbsp-">|   <a href="/blog/advent-calendar-2025-12-22"><strong>Day 22</strong></a>   |   <strong>Day 23</strong>   |   <a href="/blog/advent-calendar-2025-12-24"><strong>Day 24</strong></a>   |</h3>
+        <h2 id="advent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
+<h3 id="--day-22----day-23----day-24--">|   <a href="/blog/advent-calendar-2025-12-22"><strong>Day 22</strong></a>   |   <strong>Day 23</strong>   |   <a href="/blog/advent-calendar-2025-12-24"><strong>Day 24</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Kaushik Tunuguntla</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-312"><strong>The Weekly Challenge - 312</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://notmondayagain.blogspot.com/2025/03/discs-and-spheres.html"><strong>post</strong></a>.</p>
 <hr>
@@ -205,68 +205,68 @@ OUT!!!
 <br>
 <p>Making use of this fact, you can calculate the reverse distance and always pick the smaller distance to solve this challenge. Just don&rsquo;t make the mistakes I made like forgetting to chomp after reading input from the terminal or forgetting that the starting point is always from letter &lsquo;a&rsquo;. But they&rsquo;re very easy to debug because perl is an interpreted language, you don&rsquo;t have to wait for long compile times between making your changes and testing the script.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">least_distance</span> {
-    <span style="color:#66d9ef">my</span> ($char1, $char2) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $distance <span style="color:#f92672">=</span> abs(ord($char1) <span style="color:#f92672">-</span> ord($char2));
-    <span style="color:#66d9ef">if</span> ($distance <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">13</span>) {
-        $distance <span style="color:#f92672">=</span> <span style="color:#ae81ff">26</span> <span style="color:#f92672">-</span> $distance;
-    }
-    <span style="color:#66d9ef">return</span> $distance;
-}
-
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Enter any string: &#39;</span>);
-<span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
-chomp($str);
-$str <span style="color:#f92672">=</span> lc $str;
-<span style="color:#66d9ef">my</span> @str_chars <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $str;
-<span style="color:#66d9ef">my</span> $total_distance <span style="color:#f92672">=</span> length($str);
-<span style="color:#66d9ef">if</span> (substr($str,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;a&#39;</span>) {
-    unshift(@str_chars, <span style="color:#e6db74">&#39;a&#39;</span>);
-}
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#str_chars <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-    <span style="color:#66d9ef">my</span> $step_distance <span style="color:#f92672">=</span> least_distance($str_chars[$i], $str_chars[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]);
-    $total_distance <span style="color:#f92672">+=</span> $step_distance;
-}
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Minimum distance: &#34;</span> <span style="color:#f92672">.</span> $total_distance <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">least_distance</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($char1, $char2) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $distance <span style="color:#f92672">=</span> abs(ord($char1) <span style="color:#f92672">-</span> ord($char2));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($distance <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">13</span>) {
+</span></span><span style="display:flex;"><span>        $distance <span style="color:#f92672">=</span> <span style="color:#ae81ff">26</span> <span style="color:#f92672">-</span> $distance;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $distance;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Enter any string: &#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
+</span></span><span style="display:flex;"><span>chomp($str);
+</span></span><span style="display:flex;"><span>$str <span style="color:#f92672">=</span> lc $str;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @str_chars <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $str;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $total_distance <span style="color:#f92672">=</span> length($str);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (substr($str,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;a&#39;</span>) {
+</span></span><span style="display:flex;"><span>    unshift(@str_chars, <span style="color:#e6db74">&#39;a&#39;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#str_chars <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $step_distance <span style="color:#f92672">=</span> least_distance($str_chars[$i], $str_chars[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>    $total_distance <span style="color:#f92672">+=</span> $step_distance;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Minimum distance: &#34;</span> <span style="color:#f92672">.</span> $total_distance <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>);
+</span></span></code></pre></div><br>
 <p>One personal observation is that the second string <code>&quot;bza&quot;</code> that <code>Anwar</code> randomly used in this example is the railway station code for the place <code>Vijayawada</code> where I grew up in <code>India</code>. It used to be called <code>Bezawada</code> in the past, so the code stuck as <code>bza</code>.</p>
 <p>In the second challenge, I&rsquo;m using our good old friend <code>&quot;the perl hash&quot;</code> which does the deduplication work for us here.</p>
 <p>I&rsquo;m iterating through all the ball and box positions to create a hash which has the box as the first level key and ball colour as the second level key. Emphasis on the &lsquo;key&rsquo; part for ball colur. I could have used an array as the second level datastructure and store the ball colours as elements of that array, but I would have to process the array by iterating through it again to check if all the colours are present in it or not. By using a hash, the duplicates are removed and I can check the count of unique keys (balls) per box directly.</p>
 <p>I trust Anwar that he did not mischievously add a random coloured ball just to mess around with people. If he did, I would have to check for the presence of all colours in each box instead of depending on the count of unique ball colours in each box. i.e instead of <code>&quot;scalar keys %{$count{$box}} == 3&quot;</code> I have to use <code>&quot;exists $count{$box}{R} and exists $count{$box}{G} and exists $count{$box}{B}&quot;</code> which is very cumbersome. Alternatively, I could use <code>&quot;all&quot;</code> from <code>List::Util</code> to shorten it to <code>&quot;all {exists $count{$box}{$_}} qw(R G B)&quot;</code>. But I&rsquo;ll stick to the first option here.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(all)</span>;
-
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Enter the balls and boxes string: &#39;</span>);
-<span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
-chomp($str);
-
-<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">my</span> @balls_boxes <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $str);
-<span style="color:#66d9ef">my</span> %count;
-<span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&lt;=</span> $#balls_boxes) {
-    <span style="color:#66d9ef">my</span> $ball <span style="color:#f92672">=</span> $balls_boxes[$i];
-    <span style="color:#66d9ef">my</span> $box <span style="color:#f92672">=</span> $balls_boxes[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
-    $count{$box}{$ball} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
-}
-<span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $box (keys %count) {
-    <span style="color:#66d9ef">if</span> (scalar keys %{$count{$box}} <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>) {
-        $count<span style="color:#f92672">++</span>;
-    }
-}
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Number of boxes containing all three colours: $count\n&#34;</span>);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(all)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Enter the balls and boxes string: &#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
+</span></span><span style="display:flex;"><span>chomp($str);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @balls_boxes <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $str);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %count;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&lt;=</span> $#balls_boxes) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $ball <span style="color:#f92672">=</span> $balls_boxes[$i];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $box <span style="color:#f92672">=</span> $balls_boxes[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    $count{$box}{$ball} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $box (keys %count) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (scalar keys %{$count{$box}} <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>) {
+</span></span><span style="display:flex;"><span>        $count<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Number of boxes containing all three colours: $count\n&#34;</span>);
+</span></span></code></pre></div><br>
 <p><img src="/images/blog/2025-12-23-img-2.png" alt="Output"></p>
 <br>
 <hr>

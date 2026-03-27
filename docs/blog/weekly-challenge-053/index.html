@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>BLOG: The Weekly Challenge #053</span>
         </nav>
-        <span class="reading-time" title="1850 words">
+        <span class="reading-time" title="1851 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -186,106 +186,106 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <h2 id="task-1-rotate-matrix">Task #1: Rotate Matrix</h2>
 <p>Lets start with <strong>Perl</strong> solution for the task <strong>Rotate Matrix</strong>. For this, I used straight forward <em>for loop</em> to move around numbers.</p>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> Test::Deep;
-
-<span style="color:#66d9ef">my</span> $unit_tests <span style="color:#f92672">=</span> {
-    <span style="color:#ae81ff">90</span> <span style="color:#f92672">=&gt;</span> {
-            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
-            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span> ], [ <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span> ], [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span> ] ],
-          },
-   <span style="color:#ae81ff">180</span> <span style="color:#f92672">=&gt;</span> {
-            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
-            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span> ], [ <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span> ], [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span> ] ],
-          },
-   <span style="color:#ae81ff">270</span> <span style="color:#f92672">=&gt;</span> {
-            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
-            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">9</span> ], [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span> ], [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">7</span> ] ],
-          },
-};
-
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $degree (sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %$unit_tests) {
-    <span style="color:#66d9ef">my</span> $in  <span style="color:#f92672">=</span> $unit_tests<span style="color:#f92672">-&gt;</span>{$degree}<span style="color:#f92672">-&gt;</span>{in};
-    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> $unit_tests<span style="color:#f92672">-&gt;</span>{$degree}<span style="color:#f92672">-&gt;</span>{out};
-    cmp_deeply(rotate_matrix($in, $degree), $out, <span style="color:#e6db74">&#34;rotation by $degree.&#34;</span>);
-}
-
-done_testing;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate_matrix</span> {
-    <span style="color:#66d9ef">my</span> ($matrix, $degree) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> int($degree<span style="color:#f92672">/</span><span style="color:#ae81ff">90</span>) ) {
-        <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> @$matrix;
-        <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> @{$matrix<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]};
-
-        <span style="color:#66d9ef">my</span> $_matrix <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $rows<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) {
-            <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $cols<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) {
-                $_matrix<span style="color:#f92672">-&gt;</span>[$i][$j] <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">-&gt;</span>[$k][$i];
-                $k<span style="color:#f92672">--</span>;
-            }
-        }
-        $matrix <span style="color:#f92672">=</span> $_matrix;
-    }
-
-    <span style="color:#66d9ef">return</span> $matrix;
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::Deep;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $unit_tests <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">90</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
+</span></span><span style="display:flex;"><span>            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span> ], [ <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span> ], [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span> ] ],
+</span></span><span style="display:flex;"><span>          },
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">180</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
+</span></span><span style="display:flex;"><span>            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span> ], [ <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span> ], [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span> ] ],
+</span></span><span style="display:flex;"><span>          },
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">270</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
+</span></span><span style="display:flex;"><span>            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">9</span> ], [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span> ], [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">7</span> ] ],
+</span></span><span style="display:flex;"><span>          },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $degree (sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %$unit_tests) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $in  <span style="color:#f92672">=</span> $unit_tests<span style="color:#f92672">-&gt;</span>{$degree}<span style="color:#f92672">-&gt;</span>{in};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> $unit_tests<span style="color:#f92672">-&gt;</span>{$degree}<span style="color:#f92672">-&gt;</span>{out};
+</span></span><span style="display:flex;"><span>    cmp_deeply(rotate_matrix($in, $degree), $out, <span style="color:#e6db74">&#34;rotation by $degree.&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate_matrix</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($matrix, $degree) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> int($degree<span style="color:#f92672">/</span><span style="color:#ae81ff">90</span>) ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> @$matrix;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> @{$matrix<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $_matrix <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $rows<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $cols<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) {
+</span></span><span style="display:flex;"><span>                $_matrix<span style="color:#f92672">-&gt;</span>[$i][$j] <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">-&gt;</span>[$k][$i];
+</span></span><span style="display:flex;"><span>                $k<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $matrix <span style="color:#f92672">=</span> $_matrix;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $matrix;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <h2 id="task-2-vowel-string">Task #2: Vowel String</h2>
 <hr>
 <hr>
 <p>For this task, I just did standalone solution. The best part of the solution is the use of <strong>CPAN</strong> module <strong>Algorithm::Combinatorics</strong>. The module did most of the work for me. The only thing left for me to do is apply the rule and print the string that passes the test.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(variations_with_repetition)</span>;
-
-<span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">2</span>;
-die <span style="color:#e6db74">&#34;ERROR: Invalid count $count.\n&#34;</span>
-    <span style="color:#66d9ef">unless</span> (($count <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;&amp;</span> ($count <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span>));
-
-<span style="color:#66d9ef">my</span> $chars <span style="color:#f92672">=</span> [<span style="color:#e6db74">qw(a e i o u)</span>];
-
-<span style="color:#66d9ef">if</span> ($count <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
-    <span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#34;\n&#34;</span>, @$chars;
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
-    exit;
-}
-
-<span style="color:#66d9ef">my</span> $iter  <span style="color:#f92672">=</span> variations_with_repetition($chars, $count);
-
-<span style="color:#66d9ef">my</span> $char_sets <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-<span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $char <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
-    push @$char_sets, join <span style="color:#e6db74">&#34;&#34;</span>, @$char;
-}
-
-<span style="color:#66d9ef">my</span> $rules <span style="color:#f92672">=</span> [
-    <span style="color:#e6db74">qr/a(?=[ie])/</span>,
-    <span style="color:#e6db74">qr/e(?=[i])/</span>,
-    <span style="color:#e6db74">qr/i(?=[aeou])/</span>,
-    <span style="color:#e6db74">qr/o(?=[au])/</span>,
-    <span style="color:#e6db74">qr/u(?=[oe])/</span>
-];
-
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $char_set (@$char_sets) {
-    <span style="color:#66d9ef">my</span> $pass <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $rule (@$rules) {
-        <span style="color:#66d9ef">if</span> ($char_set <span style="color:#f92672">=~</span><span style="color:#e6db74"> /$rule/</span>) {
-            $pass <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        }
-    }
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$char_set\n&#34;</span> <span style="color:#66d9ef">if</span> ($pass);
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(variations_with_repetition)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>die <span style="color:#e6db74">&#34;ERROR: Invalid count $count.\n&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">unless</span> (($count <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;&amp;</span> ($count <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $chars <span style="color:#f92672">=</span> [<span style="color:#e6db74">qw(a e i o u)</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($count <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#34;\n&#34;</span>, @$chars;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    exit;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $iter  <span style="color:#f92672">=</span> variations_with_repetition($chars, $count);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $char_sets <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $char <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
+</span></span><span style="display:flex;"><span>    push @$char_sets, join <span style="color:#e6db74">&#34;&#34;</span>, @$char;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $rules <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">qr/a(?=[ie])/</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">qr/e(?=[i])/</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">qr/i(?=[aeou])/</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">qr/o(?=[au])/</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">qr/u(?=[oe])/</span>
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $char_set (@$char_sets) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pass <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $rule (@$rules) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($char_set <span style="color:#f92672">=~</span><span style="color:#e6db74"> /$rule/</span>) {
+</span></span><span style="display:flex;"><span>            $pass <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$char_set\n&#34;</span> <span style="color:#66d9ef">if</span> ($pass);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <h1 id="raku">RAKU</h1>
 <hr>
 <hr>
@@ -293,112 +293,112 @@ die <span style="color:#e6db74">&#34;ERROR: Invalid count $count.\n&#34;</span>
 <hr>
 <p>When it comes to talk about <strong>Raku</strong> solutions, I have plenty to share. Just to make this clear, I have only recently started doing <strong>Raku</strong> after waiting for a long time. At first, I would simply give a touch of <strong>Raku</strong> flavour to my <strong>Perl</strong> solutions. Having done this for few weeks now, I try to get as much magical bits as possible to the best of my knowledge. The end result may not be the best in the market but it still gives me sense of achievements. I don&rsquo;t want to take all the credits as I always find lots of <strong>Raku</strong> experts readily available on <strong><a href="https://twitter.com/PerlWChallenge">Twitter</a></strong> to answer my stupid questions.</p>
 <p>Let me share the <strong>Raku</strong> magic I learnt this week. I was looking for new way to checking the parameter and found this magic.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    die <span style="color:#e6db74">&#34;ERROR: Invalid rotation degree $rotate-by.&#34;</span>
-        <span style="color:#66d9ef">unless</span> $rotate<span style="color:#f92672">-</span>by <span style="color:#f92672">~~</span> any (<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">270</span>);
-</code></pre></div><p>For <strong>Non-Raku</strong> reader, what it says the parameter <em>$rotate-by</em> must be any one in the given list. It may be overkill but I don&rsquo;t care at this point in time. I am sure there must plenty of ways to deal with it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid rotation degree $rotate-by.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> $rotate<span style="color:#f92672">-</span>by <span style="color:#f92672">~~</span> any (<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">270</span>);
+</span></span></code></pre></div><p>For <strong>Non-Raku</strong> reader, what it says the parameter <em>$rotate-by</em> must be any one in the given list. It may be overkill but I don&rsquo;t care at this point in time. I am sure there must plenty of ways to deal with it.</p>
 <p>I noticed big change from <strong>Perl</strong> when I came across this line:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $rotate<span style="color:#f92672">-</span>by<span style="color:#f92672">/</span><span style="color:#ae81ff">90</span> {
-</code></pre></div><p>My <strong>Perl</strong> brain was telling me that I had to do <strong>int($rotate-by/90)</strong> but surprising <strong>Raku</strong> didn&rsquo;t need it. Why? I don&rsquo;t know at this point.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $rotate<span style="color:#f92672">-</span>by<span style="color:#f92672">/</span><span style="color:#ae81ff">90</span> {
+</span></span></code></pre></div><p>My <strong>Perl</strong> brain was telling me that I had to do <strong>int($rotate-by/90)</strong> but surprising <strong>Raku</strong> didn&rsquo;t need it. Why? I don&rsquo;t know at this point.</p>
 <p>Another bit that surprised me, how you get the size of <strong>$matrix</strong> like below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    <span style="color:#66d9ef">my</span> $matrix <span style="color:#f92672">=</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ];
-
-    <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>elems;
-    <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems;
-</code></pre></div><p><strong>$matrix.elems</strong> wasn&rsquo;t much of a surprise but this one <strong>$matrix.[0].elems</strong> was an eye opener for me. For <strong>non-Raku</strong> brain, what it means, pick the first element of <strong>$matrix</strong> and return the size.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $matrix <span style="color:#f92672">=</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems;
+</span></span></code></pre></div><p><strong>$matrix.elems</strong> wasn&rsquo;t much of a surprise but this one <strong>$matrix.[0].elems</strong> was an eye opener for me. For <strong>non-Raku</strong> brain, what it means, pick the first element of <strong>$matrix</strong> and return the size.</p>
 <p>Everything else is just simply <strong>Raku</strong> and nothing new to me anymore except the <strong>dd</strong>. It is like <strong>Data::Dumper</strong> for <strong>Raku</strong>. The best part is you don&rsquo;t have to import anything just use it. <strong>Raku</strong> rocks.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
-
-<span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>c;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $rotate-by = 90) {
-    die <span style="color:#e6db74">&#34;ERROR: Invalid rotation degree $rotate-by.&#34;</span>
-        <span style="color:#66d9ef">unless</span> $rotate<span style="color:#f92672">-</span>by <span style="color:#f92672">~~</span> any (<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">270</span>);
-
-    <span style="color:#66d9ef">my</span> $matrix <span style="color:#f92672">=</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ];
-
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $rotate<span style="color:#f92672">-</span>by<span style="color:#f92672">/</span><span style="color:#ae81ff">90</span> {
-        <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>elems;
-        <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems;
-
-        <span style="color:#66d9ef">my</span> $_matrix;
-        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $rows<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $i {
-            <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-            <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $cols<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $j {
-                $_matrix<span style="color:#f92672">.</span>[$i][$j] <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[$k][$i];
-                $k<span style="color:#f92672">--</span>;
-            }
-        }
-        $matrix <span style="color:#f92672">=</span> $_matrix;
-    }
-
-    dd $matrix;
-}
-</code></pre></div><p>Having just completed the standalone app, I wanted to do unit test in <strong>Raku</strong> so that I can learn new stuff. You would be pleasantly suprise how cool is unit testing in <strong>Raku</strong>. Just import <strong>Test</strong> class and end with <strong>done-testing</strong>. Does it ring the bell? It did for me, being native <strong>Perl</strong> developer. Even better when it comes to comparing data structure, you already have <strong>is-deeply</strong> without any additional import. One more time, <strong>Raku</strong> rocks.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>c;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $rotate-by = 90) {
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid rotation degree $rotate-by.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> $rotate<span style="color:#f92672">-</span>by <span style="color:#f92672">~~</span> any (<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">270</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $matrix <span style="color:#f92672">=</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $rotate<span style="color:#f92672">-</span>by<span style="color:#f92672">/</span><span style="color:#ae81ff">90</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $_matrix;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $rows<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $i {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $cols<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $j {
+</span></span><span style="display:flex;"><span>                $_matrix<span style="color:#f92672">.</span>[$i][$j] <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[$k][$i];
+</span></span><span style="display:flex;"><span>                $k<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $matrix <span style="color:#f92672">=</span> $_matrix;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    dd $matrix;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Having just completed the standalone app, I wanted to do unit test in <strong>Raku</strong> so that I can learn new stuff. You would be pleasantly suprise how cool is unit testing in <strong>Raku</strong>. Just import <strong>Test</strong> class and end with <strong>done-testing</strong>. Does it ring the bell? It did for me, being native <strong>Perl</strong> developer. Even better when it comes to comparing data structure, you already have <strong>is-deeply</strong> without any additional import. One more time, <strong>Raku</strong> rocks.</p>
 <p>Please check out <strong><a href="https://docs.raku.org/language/testing">documentation</a></strong> for more informations.</p>
 <p>I would like to point a very important bit, do you see anything unusual in the line below?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">my</span> $unit<span style="color:#f92672">-</span>tests <span style="color:#f92672">=</span> :{
-</code></pre></div><p>There is <strong>&quot;:&quot;</strong> before the <strong>&quot;{&quot;</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $unit<span style="color:#f92672">-</span>tests <span style="color:#f92672">=</span> :{
+</span></span></code></pre></div><p>There is <strong>&quot;:&quot;</strong> before the <strong>&quot;{&quot;</strong>.</p>
 <p>So what is the use?</p>
 <p>I found out by default, hash key in <strong>Raku</strong> are always treated as <strong>String</strong>.</p>
 <p>So if you have anything <strong>non-String</strong>, then add <strong>&quot;:&quot;</strong> before the start curly brace <strong>&quot;{&quot;</strong>.</p>
 <p>I hope I remember this nex time.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
-
-<span style="color:#66d9ef">use</span> Test;
-
-<span style="color:#66d9ef">my</span> $unit<span style="color:#f92672">-</span>tests <span style="color:#f92672">=</span> :{
-    <span style="color:#ae81ff">90</span> <span style="color:#f92672">=&gt;</span> {
-            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
-            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span> ], [ <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span> ], [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span> ] ],
-          },
-   <span style="color:#ae81ff">180</span> <span style="color:#f92672">=&gt;</span> {
-            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
-            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span> ], [ <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span> ], [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span> ] ],
-          },
-   <span style="color:#ae81ff">270</span> <span style="color:#f92672">=&gt;</span> {
-            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
-            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">9</span> ], [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span> ], [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">7</span> ] ],
-          },
-};
-
-<span style="color:#66d9ef">for</span> $unit<span style="color:#f92672">-</span>tests<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort <span style="color:#f92672">-&gt;</span> $degree {
-    <span style="color:#66d9ef">my</span> $in  <span style="color:#f92672">=</span> $unit<span style="color:#f92672">-</span>tests{$degree}<span style="color:#e6db74">&lt;in&gt;</span>;
-    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> $unit<span style="color:#f92672">-</span>tests{$degree}<span style="color:#e6db74">&lt;out&gt;</span>;
-    is<span style="color:#f92672">-</span>deeply(rotate<span style="color:#f92672">-</span>matrix($in, $degree), $out, <span style="color:#e6db74">&#34;rotation by $degree.&#34;</span>);
-}
-
-done<span style="color:#f92672">-</span>testing;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate</span>-matrix(Array $matrix is copy, Int $rotate-by = 90) {
-    die <span style="color:#e6db74">&#34;ERROR: Invalid rotation degree $rotate-by.&#34;</span>
-        <span style="color:#66d9ef">unless</span> $rotate<span style="color:#f92672">-</span>by <span style="color:#f92672">~~</span> any (<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">270</span>);
-
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $rotate<span style="color:#f92672">-</span>by<span style="color:#f92672">/</span><span style="color:#ae81ff">90</span> {
-        <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>elems;
-        <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems;
-
-        <span style="color:#66d9ef">my</span> $_matrix;
-        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $rows<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $i {
-            <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-            <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $cols<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $j {
-                $_matrix<span style="color:#f92672">.</span>[$i][$j] <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[$k][$i];
-                $k<span style="color:#f92672">--</span>;
-            }
-        }
-        $matrix <span style="color:#f92672">=</span> $_matrix;
-    }
-
-    <span style="color:#66d9ef">return</span> $matrix;
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $unit<span style="color:#f92672">-</span>tests <span style="color:#f92672">=</span> :{
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">90</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
+</span></span><span style="display:flex;"><span>            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span> ], [ <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span> ], [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span> ] ],
+</span></span><span style="display:flex;"><span>          },
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">180</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
+</span></span><span style="display:flex;"><span>            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span> ], [ <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span> ], [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span> ] ],
+</span></span><span style="display:flex;"><span>          },
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">270</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            in  <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ], [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> ], [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ] ],
+</span></span><span style="display:flex;"><span>            out <span style="color:#f92672">=&gt;</span> [ [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">9</span> ], [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span> ], [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">7</span> ] ],
+</span></span><span style="display:flex;"><span>          },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> $unit<span style="color:#f92672">-</span>tests<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort <span style="color:#f92672">-&gt;</span> $degree {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $in  <span style="color:#f92672">=</span> $unit<span style="color:#f92672">-</span>tests{$degree}<span style="color:#e6db74">&lt;in&gt;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> $unit<span style="color:#f92672">-</span>tests{$degree}<span style="color:#e6db74">&lt;out&gt;</span>;
+</span></span><span style="display:flex;"><span>    is<span style="color:#f92672">-</span>deeply(rotate<span style="color:#f92672">-</span>matrix($in, $degree), $out, <span style="color:#e6db74">&#34;rotation by $degree.&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate</span>-matrix(Array $matrix is copy, Int $rotate-by = 90) {
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid rotation degree $rotate-by.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> $rotate<span style="color:#f92672">-</span>by <span style="color:#f92672">~~</span> any (<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">270</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $rotate<span style="color:#f92672">-</span>by<span style="color:#f92672">/</span><span style="color:#ae81ff">90</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $_matrix;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $rows<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $i {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $cols<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $j {
+</span></span><span style="display:flex;"><span>                $_matrix<span style="color:#f92672">.</span>[$i][$j] <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[$k][$i];
+</span></span><span style="display:flex;"><span>                $k<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $matrix <span style="color:#f92672">=</span> $_matrix;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $matrix;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <h2 id="task-2-vowel-string-1">Task #2: Vowel String</h2>
 <hr>
 <p>It is time move on to another task of the week i.e. <strong>Vowel String</strong>. If you remember, I used <strong>CPAN</strong> module <strong>Algorithm::Combinatorics</strong> to give the all possible combinations. Since we are talking <strong>Raku</strong>, it has to beat that and it did. How?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    <span style="color:#66d9ef">my</span> @char<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @chars<span style="color:#f92672">.</span>combinations: $count;
-</code></pre></div><p>Did you notice, you don&rsquo;t need external module, it is all there.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @char<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @chars<span style="color:#f92672">.</span>combinations: $count;
+</span></span></code></pre></div><p>Did you notice, you don&rsquo;t need external module, it is all there.</p>
 <p>The best part of the solution is the line below, I struggled a lot to get there. The end result is simply beautiful.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    <span style="color:#66d9ef">my</span> @comb<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @char<span style="color:#f92672">-</span>sets<span style="color:#f92672">.</span>map({ <span style="color:#f92672">.</span>join });
-</code></pre></div><p>So what does it do? To keep it short and simple:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @comb<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @char<span style="color:#f92672">-</span>sets<span style="color:#f92672">.</span>map({ <span style="color:#f92672">.</span>join });
+</span></span></code></pre></div><p>So what does it do? To keep it short and simple:</p>
 <p>It takes this:</p>
 <pre><code>[ [ &quot;a&quot;, &quot;b&quot; ], [&quot;c&quot;, &quot;d&quot;] ]
 </code></pre>
@@ -408,103 +408,103 @@ done<span style="color:#f92672">-</span>testing;
 <p>Isn&rsquo;t it cool?</p>
 <p>For more information, please check out the <strong><a href="https://docs.raku.org/type/Array#(List)_routine_map">documentation</a></strong>.</p>
 <p>Another suprise for me this time, it was <strong>Raku</strong> regex. I had something like <strong>qr/a[ie]/</strong> which <strong>Raku</strong> didn&rsquo;t like it. But the kind error told me what to use instead. Isn&rsquo;t great? So you use <strong>rx</strong> instead. I must make this crystal clear when dealing with <strong>[]</strong> in regex, always use it like <strong>&lt;[]&gt;</strong> like below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    <span style="color:#66d9ef">my</span> @rules <span style="color:#f92672">=</span> (
-        rx<span style="color:#e6db74">/ a&lt;[ie]&gt;   /</span>,
-        rx<span style="color:#e6db74">/ e&lt;[i]&gt;    /</span>,
-        rx<span style="color:#e6db74">/ i&lt;[aeou]&gt; /</span>,
-        rx<span style="color:#e6db74">/ o&lt;[au]&gt;   /</span>,
-        rx<span style="color:#e6db74">/ u&lt;[oe]&gt;   /</span>,
-    );
-</code></pre></div><p>If you want to learn more about regex, please check out <strong><a href="https://docs.raku.org/language/regexes">documentation</a></strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @rules <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ a&lt;[ie]&gt;   /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ e&lt;[i]&gt;    /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ i&lt;[aeou]&gt; /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ o&lt;[au]&gt;   /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ u&lt;[oe]&gt;   /</span>,
+</span></span><span style="display:flex;"><span>    );
+</span></span></code></pre></div><p>If you want to learn more about regex, please check out <strong><a href="https://docs.raku.org/language/regexes">documentation</a></strong>.</p>
 <p>Last but not the least, for the first time, I used <strong>True</strong> and <strong>False</strong> instead of number <strong>0</strong> and <strong>1</strong>. Long live <strong>Raku</strong>.</p>
 <p>Rest of the code are just the usual <strong>Raku</strong> statements.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
-
-<span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>c;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $count = 2) {
-    die <span style="color:#e6db74">&#34;ERROR: Invalid count $count.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> $count <span style="color:#f92672">~~</span> any (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
-
-    <span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>a e i o u<span style="color:#f92672">&gt;</span>;
-
-    <span style="color:#66d9ef">if</span> $count <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> {
-        say @chars<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>);
-        exit;
-    }
-
-    <span style="color:#66d9ef">my</span> @char<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @chars<span style="color:#f92672">.</span>combinations: $count;
-    <span style="color:#66d9ef">my</span> @comb<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @char<span style="color:#f92672">-</span>sets<span style="color:#f92672">.</span>map({ <span style="color:#f92672">.</span>join });
-
-    <span style="color:#66d9ef">my</span> @rules <span style="color:#f92672">=</span> (
-        rx<span style="color:#e6db74">/ a&lt;[ie]&gt;   /</span>,
-        rx<span style="color:#e6db74">/ e&lt;[i]&gt;    /</span>,
-        rx<span style="color:#e6db74">/ i&lt;[aeou]&gt; /</span>,
-        rx<span style="color:#e6db74">/ o&lt;[au]&gt;   /</span>,
-        rx<span style="color:#e6db74">/ u&lt;[oe]&gt;   /</span>,
-    );
-
-    <span style="color:#66d9ef">for</span> @comb<span style="color:#f92672">-</span>sets <span style="color:#f92672">-&gt;</span> $str {
-        <span style="color:#66d9ef">my</span> $pass <span style="color:#f92672">=</span> False;
-        <span style="color:#66d9ef">for</span> @rules <span style="color:#f92672">-&gt;</span> $rule {
-            <span style="color:#66d9ef">if</span> $str <span style="color:#f92672">~~</span> <span style="color:#e6db74">/$rule/</span> {
-                $pass <span style="color:#f92672">=</span> True;
-            }
-        }
-        say $str <span style="color:#66d9ef">if</span> $pass;
-    }
-}
-</code></pre></div><p>It is time to convert the above standalone solution to unit test. With the knowledge I just gained it was piece of cake for me.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
-
-<span style="color:#66d9ef">use</span> Test;
-
-<span style="color:#66d9ef">my</span> $unit<span style="color:#f92672">-</span>tests <span style="color:#f92672">=</span> :{
-    <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;e&#34;</span>, <span style="color:#e6db74">&#34;i&#34;</span>, <span style="color:#e6db74">&#34;o&#34;</span>, <span style="color:#e6db74">&#34;u&#34;</span>],
-    <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#34;ae&#34;</span>, <span style="color:#e6db74">&#34;ai&#34;</span>, <span style="color:#e6db74">&#34;ei&#34;</span>, <span style="color:#e6db74">&#34;io&#34;</span>, <span style="color:#e6db74">&#34;iu&#34;</span>, <span style="color:#e6db74">&#34;ou&#34;</span>],
-    <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#34;aei&#34;</span>, <span style="color:#e6db74">&#34;aeo&#34;</span>, <span style="color:#e6db74">&#34;aeu&#34;</span>, <span style="color:#e6db74">&#34;aio&#34;</span>, <span style="color:#e6db74">&#34;aiu&#34;</span>, <span style="color:#e6db74">&#34;aou&#34;</span>, <span style="color:#e6db74">&#34;eio&#34;</span>, <span style="color:#e6db74">&#34;eiu&#34;</span>, <span style="color:#e6db74">&#34;eou&#34;</span>, <span style="color:#e6db74">&#34;iou&#34;</span>],
-    <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#34;aeio&#34;</span>, <span style="color:#e6db74">&#34;aeiu&#34;</span>, <span style="color:#e6db74">&#34;aeou&#34;</span>, <span style="color:#e6db74">&#34;aiou&#34;</span>, <span style="color:#e6db74">&#34;eiou&#34;</span>],
-    <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#34;aeiou&#34;</span>]
-};
-
-<span style="color:#66d9ef">for</span> $unit<span style="color:#f92672">-</span>tests<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort <span style="color:#f92672">-&gt;</span> $size {
-    is<span style="color:#f92672">-</span>deeply(vowel<span style="color:#f92672">-</span>strings($size), $unit<span style="color:#f92672">-</span>tests{$size}, <span style="color:#e6db74">&#34;vowel strings size $size.&#34;</span>);
-}
-
-done<span style="color:#f92672">-</span>testing;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">vowel</span>-strings(Int $size = 2) {
-    die <span style="color:#e6db74">&#34;ERROR: Invalid size $size.\n&#34;</span>
-        <span style="color:#66d9ef">unless</span> $size <span style="color:#f92672">~~</span> any (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
-
-    <span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>a e i o u<span style="color:#f92672">&gt;</span>;
-    <span style="color:#66d9ef">return</span> @chars <span style="color:#66d9ef">if</span> $size <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
-
-    <span style="color:#66d9ef">my</span> @char<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @chars<span style="color:#f92672">.</span>combinations: $size;
-    <span style="color:#66d9ef">my</span> @comb<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @char<span style="color:#f92672">-</span>sets<span style="color:#f92672">.</span>map({ <span style="color:#f92672">.</span>join });
-
-    <span style="color:#66d9ef">my</span> @rules <span style="color:#f92672">=</span> (
-        rx<span style="color:#e6db74">/ a&lt;[ie]&gt;   /</span>,
-        rx<span style="color:#e6db74">/ e&lt;[i]&gt;    /</span>,
-        rx<span style="color:#e6db74">/ i&lt;[aeou]&gt; /</span>,
-        rx<span style="color:#e6db74">/ o&lt;[au]&gt;   /</span>,
-        rx<span style="color:#e6db74">/ u&lt;[oe]&gt;   /</span>,
-    );
-
-    <span style="color:#66d9ef">my</span> @vowel<span style="color:#f92672">-</span>strings <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">for</span> @comb<span style="color:#f92672">-</span>sets <span style="color:#f92672">-&gt;</span> $str {
-        <span style="color:#66d9ef">my</span> $pass <span style="color:#f92672">=</span> False;
-        <span style="color:#66d9ef">for</span> @rules <span style="color:#f92672">-&gt;</span> $rule {
-            <span style="color:#66d9ef">if</span> $str <span style="color:#f92672">~~</span> <span style="color:#e6db74">/$rule/</span> {
-                $pass <span style="color:#f92672">=</span> True;
-            }
-        }
-        @vowel<span style="color:#f92672">-</span>strings<span style="color:#f92672">.</span>push($str) <span style="color:#66d9ef">if</span> $pass;
-    }
-
-    <span style="color:#66d9ef">return</span> @vowel<span style="color:#f92672">-</span>strings;
-}
-</code></pre></div><p>That&rsquo;s it for this week. Speak to you soon.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>c;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $count = 2) {
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid count $count.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> $count <span style="color:#f92672">~~</span> any (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>a e i o u<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> $count <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> {
+</span></span><span style="display:flex;"><span>        say @chars<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>);
+</span></span><span style="display:flex;"><span>        exit;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @char<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @chars<span style="color:#f92672">.</span>combinations: $count;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @comb<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @char<span style="color:#f92672">-</span>sets<span style="color:#f92672">.</span>map({ <span style="color:#f92672">.</span>join });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @rules <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ a&lt;[ie]&gt;   /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ e&lt;[i]&gt;    /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ i&lt;[aeou]&gt; /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ o&lt;[au]&gt;   /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ u&lt;[oe]&gt;   /</span>,
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> @comb<span style="color:#f92672">-</span>sets <span style="color:#f92672">-&gt;</span> $str {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $pass <span style="color:#f92672">=</span> False;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> @rules <span style="color:#f92672">-&gt;</span> $rule {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> $str <span style="color:#f92672">~~</span> <span style="color:#e6db74">/$rule/</span> {
+</span></span><span style="display:flex;"><span>                $pass <span style="color:#f92672">=</span> True;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        say $str <span style="color:#66d9ef">if</span> $pass;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>It is time to convert the above standalone solution to unit test. With the knowledge I just gained it was piece of cake for me.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $unit<span style="color:#f92672">-</span>tests <span style="color:#f92672">=</span> :{
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;e&#34;</span>, <span style="color:#e6db74">&#34;i&#34;</span>, <span style="color:#e6db74">&#34;o&#34;</span>, <span style="color:#e6db74">&#34;u&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#34;ae&#34;</span>, <span style="color:#e6db74">&#34;ai&#34;</span>, <span style="color:#e6db74">&#34;ei&#34;</span>, <span style="color:#e6db74">&#34;io&#34;</span>, <span style="color:#e6db74">&#34;iu&#34;</span>, <span style="color:#e6db74">&#34;ou&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#34;aei&#34;</span>, <span style="color:#e6db74">&#34;aeo&#34;</span>, <span style="color:#e6db74">&#34;aeu&#34;</span>, <span style="color:#e6db74">&#34;aio&#34;</span>, <span style="color:#e6db74">&#34;aiu&#34;</span>, <span style="color:#e6db74">&#34;aou&#34;</span>, <span style="color:#e6db74">&#34;eio&#34;</span>, <span style="color:#e6db74">&#34;eiu&#34;</span>, <span style="color:#e6db74">&#34;eou&#34;</span>, <span style="color:#e6db74">&#34;iou&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#34;aeio&#34;</span>, <span style="color:#e6db74">&#34;aeiu&#34;</span>, <span style="color:#e6db74">&#34;aeou&#34;</span>, <span style="color:#e6db74">&#34;aiou&#34;</span>, <span style="color:#e6db74">&#34;eiou&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#34;aeiou&#34;</span>]
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> $unit<span style="color:#f92672">-</span>tests<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort <span style="color:#f92672">-&gt;</span> $size {
+</span></span><span style="display:flex;"><span>    is<span style="color:#f92672">-</span>deeply(vowel<span style="color:#f92672">-</span>strings($size), $unit<span style="color:#f92672">-</span>tests{$size}, <span style="color:#e6db74">&#34;vowel strings size $size.&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">vowel</span>-strings(Int $size = 2) {
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid size $size.\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> $size <span style="color:#f92672">~~</span> any (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>a e i o u<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @chars <span style="color:#66d9ef">if</span> $size <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @char<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @chars<span style="color:#f92672">.</span>combinations: $size;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @comb<span style="color:#f92672">-</span>sets <span style="color:#f92672">=</span> @char<span style="color:#f92672">-</span>sets<span style="color:#f92672">.</span>map({ <span style="color:#f92672">.</span>join });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @rules <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ a&lt;[ie]&gt;   /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ e&lt;[i]&gt;    /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ i&lt;[aeou]&gt; /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ o&lt;[au]&gt;   /</span>,
+</span></span><span style="display:flex;"><span>        rx<span style="color:#e6db74">/ u&lt;[oe]&gt;   /</span>,
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @vowel<span style="color:#f92672">-</span>strings <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> @comb<span style="color:#f92672">-</span>sets <span style="color:#f92672">-&gt;</span> $str {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $pass <span style="color:#f92672">=</span> False;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> @rules <span style="color:#f92672">-&gt;</span> $rule {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> $str <span style="color:#f92672">~~</span> <span style="color:#e6db74">/$rule/</span> {
+</span></span><span style="display:flex;"><span>                $pass <span style="color:#f92672">=</span> True;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        @vowel<span style="color:#f92672">-</span>strings<span style="color:#f92672">.</span>push($str) <span style="color:#66d9ef">if</span> $pass;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @vowel<span style="color:#f92672">-</span>strings;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>That&rsquo;s it for this week. Speak to you soon.</p>
 
     </article>
     

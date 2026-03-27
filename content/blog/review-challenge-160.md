@@ -70,21 +70,21 @@ Write a script to generate english text sequence starting with the English cardi
 
 
 **Example 1:**
-```
+```perl
         Input: $n = 5
         Output: Five is four, four is magic.
 ```
 
 
 **Example 2:**
-```
+```perl
         Input: $n = 7
         Output: Seven is five, five is four, four is magic.
 ```
 
 
 **Example 3:**
-```
+```perl
         Input: $n = 6
         Output: Six is three, three is five, five is four, four is magic.
 ```
@@ -262,7 +262,7 @@ Using this module removes the numeric complexity from the algorithm, allowing in
 
 Here's another example from Paulo. Note we no longer need to check the range of the input, as any number will work, say -1.45e24:
 
-```
+```perl
     Negative one point four five times ten to the twenty-fourth is fifty-nine, fifty-nine is ten, ten is three, three is five, five is four, four is magic.
 ```
 
@@ -617,21 +617,21 @@ For an array A consisting n elements, index i is an equilibrium index if the sum
 
 
 **Example 1:**
-```
+```perl
         Input: @n = (1, 3, 5, 7, 9)
         Output: 3
 ```
 
 
 **Example 2:**
-```
+```perl
         Input: @n = (1, 2, 3, 4, 5)
         Output: -1 as no Equilibrium Index found.
 ```
 
 
 **Example 3:**
-```
+```perl
         Input: @n = (2, 4, 2)
         Output: 1
 ```

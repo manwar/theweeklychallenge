@@ -45,7 +45,7 @@ Note that there is a slight ambiguity in the task description. If one guest arri
 
 There is no `DATA` section in Raku programming language as in Perl 5. Raku should have much more feature-rich capabilities using `pod` (plain old documentation) sections, but these are not implemented yet. We could use the [heredocs](https://docs.raku.org/syntax/heredocs%20:to) feature, but since TIMTOWTDI, we will simply use a multi-line string variable within standard double quote marks.
 
-```Perl6
+```perl
 use v6;
 
 my $input =
@@ -98,7 +98,7 @@ With the original input data set, the result was 111 seconds. With my modified d
 
 [Fernando Correa de Olievera](https://perlweeklychallenge.org/blog/recap-challenge-039/) provided the following solution using massively `multi` functions::
 
-``` Perl 6
+```perl
 sub to-min(Str $str) {
     do given $str.comb(/\d+/) {
        60*.[0] + .[1]
@@ -121,7 +121,7 @@ say calc 0, 0, @in.sort, @out.sort
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/kevin-colyer/perl6/ch-1.p6) also used a [SetHash](https://docs.raku.org/type/SetHash) to keep track of guests' presence for every minute in the interval between the arrival of the first guest and the departure of the last one. The number of items in the SetHash then represents the total number of minutes the light is on. Kevin's code is quite short:
 
-``` Perl 6
+```perl
 my %minutes is SetHash;
 for $housemates.lines -> $l {
         # parse list to get times
@@ -136,7 +136,7 @@ say %minutes.elems ~ " minutes the lights were on";
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/noud/perl6/ch-1.p6) used, just like me, a 24-hour clock. Instead of counting the number of minutes the light were on, he counted the minutes where the light are off (which is, I believe, equivalent):
 
-``` Perl 6
+```perl
 for 'guestbook.txt'.IO.lines -> $line {
     my $rs = $line ~~ /(\d+)\:(\d+)\D+(\d+)\:(\d+)/;
     my $start = 60 * Int($rs[0]) + Int($rs[1]);
@@ -158,7 +158,7 @@ say "The light was on for $time_on minutes";
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ulrich-rieke/perl6/ch-1.p6) explains his program with the following comment: “The basic idea is to read in the file, to convert the access( IN ) and the departure times to minutes and to add a tag whether we move in( "i" ) or out ("o"). If we then order the times by minutes we can keep a count of people inside and determine the number of minutes that elapsed between first person arriving and last person leaving.“ This is the main part of Ulrich's program:
 
-``` Perl 6
+```perl
 my @times = readFile( $filename ) ;
 my @orderedTimes = orderByTime( @times ) ;
 my $starttime = @orderedTimes[0] ;
@@ -182,7 +182,7 @@ say ("Longest time lights on is " ~ $minutes_On.Str ~ " minutes!") ;
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/javier-luque/perl6/ch-1.p6) used a `%time-on` hash to record each minute during which there is at least one guest (pretty much the same basic algorithm as the one I used, but with some implementation differences here and there):
 
-``` Perl6
+```perl
 # Calculate the minutes lights were on
 sub calculate-lights-on {
     my %time_on; # Sample in minutes
@@ -205,7 +205,7 @@ sub calculate-lights-on {
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/roger-bell-west/perl6/ch-1.p6) used an `%ev` hash to record the arrival and departure times. His program then reads again the hash (sorted by keys) and keeps track of periods where the light is on, using the `$laston` variable to know where the light was last switched on and the `ontime` variable to accumulate the duration light is on.
 
-``` Perl 6
+```perl
 for $fh.lines {
   my @e=($_ ~~ m:g/(IN|OUT) ':' \s* (\d+) ':' (\d+)/);
   while (@e) {
@@ -232,7 +232,7 @@ for (%ev.keys.sort({$^a <=> $^b})) -> $t {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ruben-westerberg/perl6/ch-1.p6) made the most concise program:
 
-``` Perl 6
+```perl
 my @times=DATA().map({ |(for (m:g/(\d**2)\:(\d**2)/) {$_[0]*60+$_[1]*1 });});
 put sprintf "Lights on for %d minutes", @times.max-@times.min;
 ```
@@ -241,7 +241,7 @@ But Ruben's program works only because there is no period with no guest between 
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ryan-thompson/perl6/ch-1.p6) created a grammar to parse each input line:
 
-``` Perl 6
+```perl
 grammar TimeData {
     rule  TOP   { <num> ")" <who> "IN:" <time> "OUT:" <time> }
     token num   { \d+   }
@@ -254,7 +254,7 @@ grammar TimeData {
 
 Ryan's main code then parses the input line and populates an `%on` [SetHash](https://docs.raku.org/type/SetHash) with each minute a guest is present. At the end, the number of minutes the light was on is simply the number of items in the SetHash:
 
-``` Perl 6
+```perl
 
 my %on is SetHash; # Minutes when the light was on
 for (DATA().lines) {
@@ -290,7 +290,7 @@ The essential idea for processing RPN notation is a stack (a last-in first-out d
 
 The code for the operations is stored in a dispatch table, i.e. a hash where the keys are the operators and the values are code references to short subroutines performing the arithmetic operations. Note that I encountered unexpected difficulties because some of the RPN expressions that I copied from the Wikipedia page contain special Unicode characters for subtraction, multiplication and division. This was especially tricky for the subtraction operator, since the common ASCII dash or hyphen and the Unicode minus sign really look similar on the screen of my text editor, but they are different. To fix this, I only needed to add entries with those special characters in the dispatch table.
 
-``` Perl 6
+```perl
 use v6;
 use Test;
 
@@ -341,7 +341,7 @@ Running this program produces the following output:
 
 Using the `when` "switch" statement provided by Raku, we can get rid of the dispatch table (or, rather, implement a different type of dispatch table, in the form of a switch statement) and make our code slightly more concise as follows:
 
-``` perl6
+```perl
 use v6;
 use Test;
 
@@ -376,7 +376,7 @@ This passes all the tests correctly as before.
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/arne-sommer/perl6/ch-2.p6) created a 90+ code-line program that I will quote here only in part:
 
-``` Perl 6
+```perl
 sub calculate ($operator, $verbose)
 {
   if @stack.elems < 2
@@ -404,7 +404,7 @@ sub calculate ($operator, $verbose)
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/kevin-colyer/perl6/ch-2.p6) also provided a rather lengthy solution. I'm quoting here his most important subroutine:
 
-``` Perl 6
+```perl
 sub evaluateRPN($input) {
     say "Postfix expression to evaluate: [$input]";
     my @stack;
@@ -452,7 +452,7 @@ sub evaluateRPN($input) {
 
 Note that the `given` block isn't necessary before the series of `when` clauses, since `for` can topicalize its argument, so that:
 
-``` Perl6
+```perl
     for @in -> $token {
     #         for each token in the postfix expression:
         given $token {
@@ -468,7 +468,7 @@ could be rewritten simply as:
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/noud/perl6/ch-2.p6) used a dispatch table and predictably found a much more concise solution:
 
-```Perl 6
+```perl
 my %operator = (
     '+' => {$^a + $^b;},
     '-' => {$^a - $^b;},
@@ -503,7 +503,7 @@ sub rpn($s) {
 
 [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ulrich-rieke/perl6/ch-2.p6) made a very detailed program taking into account the arity and precedence of operators:
 
-``` Perl 6
+```perl
 sub toRPN( Str $expression --> Str ) {
   my Str $rpn ;
   my @first_order_oper = <* /> ;
@@ -548,7 +548,7 @@ sub toRPN( Str $expression --> Str ) {
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/javier-luque/perl6/ch-2.p6) used a dispatch table and made a fairly concise program despite using various Unicode encoding of the operators:
 
-``` Perl6
+```perl
 sub evaluate-stack(@tokens) {
     my @stack;
 
@@ -585,7 +585,7 @@ sub divide(@s)   { return (1 / @s.pop) * @s.pop }
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/roger-bell-west/perl6/ch-2.p6) also created a `%op`  dispatch table and created for the operators a series of small subroutines, of which we give only two examples, `add` and `sub`. The main `for` loop scans the individual arguments passed to the program, pushes numerical arguments onto the stack, and applies the subroutines defined in the `%op` hash for the operators.
 
-``` Perl 6
+```perl
 my @stack=();
 
 my %op=(
@@ -621,7 +621,7 @@ sub add {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ruben-westerberg/perl6/ch-2.p6) implemented a dispatch table under the form of a switch statement with a series of `when` clauses:
 
-``` Perl 6
+```perl
 my $expression=@*ARGS[0]//"15 7 1 1 + - / 3 * 2 1 1 + + -";
 my @stack;
 $expression ~~ s:g/\s+/ /;
@@ -649,7 +649,7 @@ put "Result: @stack[]";
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ryan-thompson/perl6/ch-2.p6) created a dispatch table (or rather a subroutine returning a dispatch table, more on this below) and his `MAIN` loop doing the bulk of the work is very simple:
 
-``` Perl 6
+```perl
 sub MAIN( Str $rpn-expr ) {
     for $rpn-expr.words -> $tok {
         if $tok.Numeric { @stack.push( $tok ) }
@@ -664,7 +664,7 @@ sub MAIN( Str $rpn-expr ) {
 
 His `gen-op-dispatch` that returns the dispatch table is quite interesting:
 
-``` Perl6
+```perl
 sub gen-op-dispatch( --> Hash ) {
     my Code %op = (
        '+'  => op-gen( { $^a + $^b } ); # Binary
@@ -698,7 +698,7 @@ sub gen-op-dispatch( --> Hash ) {
 
 It first defines a few basic operators as a simple `%op` hash. Then it adds the Unicode aliases of these operators. One very interesting thing is the way the program uses junctions as hash keys to define operators' aliases in just one statement. These hash assignments use the following `op-gen` subroutine:
 
-``` Perl6
+```perl
 #| Generate an operator and return a Code object that can be added to %op
 #  We introspect &code.arity to know how many @operands to pop off the @stack
 sub op-gen( &code --> Code ) {

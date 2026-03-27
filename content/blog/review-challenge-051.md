@@ -770,7 +770,7 @@ The key to the speedup is this line:
 
 If the list contains duplicates, skipping them early can result in an improvement. But then I wondered whether this was better, worse, or the same as filtering out `uniq` elements at the top of the function call instead. Here are the results:
 
-```
+```perl
 ╭───────────────┬────────────┬──────────╮
 │ Test          │ Iterations │ Time(ms) │
 ├───────────────┼────────────┼──────────┤

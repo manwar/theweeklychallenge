@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2023blogadvent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
-<h3 id="-nbsp-day-23blogadvent-calendar-2023-12-23-nbsp--nbsp-day-24-nbsp--nbsp-day-25blogadvent-calendar-2023-12-25-nbsp-">|   <a href="/blog/advent-calendar-2023-12-23"><strong>Day 23</strong></a>   |   <strong>Day 24</strong>   |   <a href="/blog/advent-calendar-2023-12-25"><strong>Day 25</strong></a>   |</h3>
+        <h2 id="advent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
+<h3 id="--day-23----day-24----day-25--">|   <a href="/blog/advent-calendar-2023-12-23"><strong>Day 23</strong></a>   |   <strong>Day 24</strong>   |   <a href="/blog/advent-calendar-2023-12-25"><strong>Day 25</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Jorg Sommrey</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-243"><strong>The Weekly Challenge - 243</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-243/jo-37/blog/Blog.md"><strong>post</strong></a>.</p>
 <hr>
@@ -215,7 +215,7 @@ Example 2:
 <pre><code>$nums = long 1, 3, 2, 3, 1;
 </code></pre>
 <br>
-<p>Then we create a sequence in the same shape as <code>$nums</code>, i.e. a <code>1-d ndarray</code> holding the column indices of <code>$nums</code> and a second sequence as a single column holding the row indices. When combining these index <code>ndarrays</code>, according to <code>PDL</code>'s broadcasting rules both will be extended by replicating along a dimension to fit each other. For visualization, these replications may be performed explicitly:</p>
+<p>Then we create a sequence in the same shape as <code>$nums</code>, i.e. a <code>1-d ndarray</code> holding the column indices of <code>$nums</code> and a second sequence as a single column holding the row indices. When combining these index <code>ndarrays</code>, according to <code>PDL</code>&rsquo;s broadcasting rules both will be extended by replicating along a dimension to fit each other. For visualization, these replications may be performed explicitly:</p>
 <br>
 <h3 id="a-add-a-dummy-dimension-1-to-the-row-and-replicate-it-five-times">A) Add a dummy dimension 1 to the row and replicate it five times.</h3>
 <br>
@@ -271,67 +271,67 @@ Example 2:
 &amp; ($nums-&gt;dummy(0) &gt; 2 * $nums))-&gt;sum;
 </code></pre>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl -s</span>
-
-<span style="color:#66d9ef">use</span> Test2::V0 <span style="color:#e6db74">&#39;!float&#39;</span>;
-<span style="color:#66d9ef">use</span> PDL;
-
-<span style="color:#66d9ef">our</span> ($tests, $examples);
-
-run_tests() <span style="color:#66d9ef">if</span> $tests <span style="color:#f92672">||</span> $examples;    <span style="color:#75715e"># does not return</span>
-
-die <span style="color:#f92672">&lt;&lt;</span>EOS <span style="color:#66d9ef">unless</span> @ARGV;
-usage: $0 [<span style="color:#f92672">-</span>examples] [<span style="color:#f92672">-</span>tests] [<span style="color:#f92672">--</span>] [N<span style="color:#f92672">...</span>]
-
-<span style="color:#f92672">-</span>examples
-    run the examples from the challenge
-
-<span style="color:#f92672">-</span>tests
-    run some tests
-
-N<span style="color:#f92672">...</span>
-    list of integers
-
-EOS
-
-
-<span style="color:#75715e">### Input and Output</span>
-
-say count_reverse_pairs(@ARGV);
-
-
-<span style="color:#75715e">### Implementation</span>
-
-<span style="color:#75715e"># Count element pairs where $j &gt; $i and $nums[$i] &gt; 2 * $nums[$j].</span>
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_reverse_pairs</span> {
-    <span style="color:#66d9ef">my</span> $nums <span style="color:#f92672">=</span> long @_;
-
-    ((sequence($nums) <span style="color:#f92672">&gt;</span> sequence(<span style="color:#ae81ff">1</span>, $nums<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">0</span>)))
-        <span style="color:#f92672">&amp;</span> ($nums<span style="color:#f92672">-&gt;</span>dummy(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $nums))<span style="color:#f92672">-&gt;</span>sum;
-}
-
-
-<span style="color:#75715e">### Examples and tests</span>
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run_tests</span> {
-    SKIP: {
-        skip <span style="color:#e6db74">&#34;examples&#34;</span> <span style="color:#66d9ef">unless</span> $examples;
-
-        is count_reverse_pairs(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;example 1&#39;</span>;
-        is count_reverse_pairs(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;example 2&#39;</span>;
-    }
-
-    SKIP: {
-        skip <span style="color:#e6db74">&#34;tests&#34;</span> <span style="color:#66d9ef">unless</span> $tests;
-
-        is count_reverse_pairs(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;zero and negative&#39;</span>;
-    }
-
-    done_testing;
-    exit;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl -s</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test2::V0 <span style="color:#e6db74">&#39;!float&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> PDL;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">our</span> ($tests, $examples);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>run_tests() <span style="color:#66d9ef">if</span> $tests <span style="color:#f92672">||</span> $examples;    <span style="color:#75715e"># does not return</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>die <span style="color:#f92672">&lt;&lt;</span>EOS <span style="color:#66d9ef">unless</span> @ARGV;
+</span></span><span style="display:flex;"><span>usage: $0 [<span style="color:#f92672">-</span>examples] [<span style="color:#f92672">-</span>tests] [<span style="color:#f92672">--</span>] [N<span style="color:#f92672">...</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span>examples
+</span></span><span style="display:flex;"><span>    run the examples from the challenge
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span>tests
+</span></span><span style="display:flex;"><span>    run some tests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>N<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    list of integers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>EOS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Input and Output</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say count_reverse_pairs(@ARGV);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Implementation</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Count element pairs where $j &gt; $i and $nums[$i] &gt; 2 * $nums[$j].</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_reverse_pairs</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $nums <span style="color:#f92672">=</span> long @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ((sequence($nums) <span style="color:#f92672">&gt;</span> sequence(<span style="color:#ae81ff">1</span>, $nums<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">0</span>)))
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&amp;</span> ($nums<span style="color:#f92672">-&gt;</span>dummy(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $nums))<span style="color:#f92672">-&gt;</span>sum;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Examples and tests</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run_tests</span> {
+</span></span><span style="display:flex;"><span>    SKIP: {
+</span></span><span style="display:flex;"><span>        skip <span style="color:#e6db74">&#34;examples&#34;</span> <span style="color:#66d9ef">unless</span> $examples;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        is count_reverse_pairs(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;example 1&#39;</span>;
+</span></span><span style="display:flex;"><span>        is count_reverse_pairs(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;example 2&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    SKIP: {
+</span></span><span style="display:flex;"><span>        skip <span style="color:#e6db74">&#34;tests&#34;</span> <span style="color:#66d9ef">unless</span> $tests;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        is count_reverse_pairs(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;zero and negative&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    done_testing;
+</span></span><span style="display:flex;"><span>    exit;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="task-2-floor-sum">Task 2: Floor Sum</h3>
 <pre><code>You are given an array of positive integers (&gt;=1).
 
@@ -383,68 +383,68 @@ Example 2
 <br>
 <p>This works not only for positive integers but for all non-zero integers.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl -s</span>
-
-<span style="color:#66d9ef">use</span> Test2::V0 <span style="color:#e6db74">&#39;!float&#39;</span>;
-<span style="color:#66d9ef">use</span> PDL;
-
-<span style="color:#66d9ef">our</span> ($tests, $examples);
-
-run_tests() <span style="color:#66d9ef">if</span> $tests <span style="color:#f92672">||</span> $examples;    <span style="color:#75715e"># does not return</span>
-
-die <span style="color:#f92672">&lt;&lt;</span>EOS <span style="color:#66d9ef">unless</span> @ARGV;
-usage: $0 [<span style="color:#f92672">-</span>examples] [<span style="color:#f92672">-</span>tests] [N<span style="color:#f92672">...</span>]
-
-<span style="color:#f92672">-</span>examples
-    run the examples from the challenge
-
-<span style="color:#f92672">-</span>tests
-    run some tests
-
-N<span style="color:#f92672">...</span>
-    list of positive integers
-
-EOS
-
-
-<span style="color:#75715e">### Input and Output</span>
-
-say floor_sum(@ARGV);
-
-
-<span style="color:#75715e">### Implementation</span>
-
-<span style="color:#75715e"># Sum over floor($nums[$i] / $nums[$j]).</span>
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">floor_sum</span> {
-    <span style="color:#66d9ef">my</span> $nums <span style="color:#f92672">=</span> pdl @_;
-
-    floor($nums <span style="color:#f92672">/</span> $nums<span style="color:#f92672">-&gt;</span>dummy(<span style="color:#ae81ff">0</span>))<span style="color:#f92672">-&gt;</span>sum;
-}
-
-
-<span style="color:#75715e">### Examples and tests</span>
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run_tests</span> {
-    SKIP: {
-        skip <span style="color:#e6db74">&#34;examples&#34;</span> <span style="color:#66d9ef">unless</span> $examples;
-
-        is floor_sum(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>), <span style="color:#ae81ff">10</span>, <span style="color:#e6db74">&#39;example 1&#39;</span>;
-        is floor_sum(<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>), <span style="color:#ae81ff">49</span>, <span style="color:#e6db74">&#39;example 2&#39;</span>;
-    }
-
-    SKIP: {
-        skip <span style="color:#e6db74">&#34;tests&#34;</span> <span style="color:#66d9ef">unless</span> $tests;
-
-        <span style="color:#75715e"># floor(3 / (-2)) = -2</span>
-        <span style="color:#75715e"># floor((-2) / 3) = -1</span>
-        is floor_sum(<span style="color:#ae81ff">3</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;negative elements&#39;</span>;
-    }
-
-    done_testing;
-    exit;
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl -s</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test2::V0 <span style="color:#e6db74">&#39;!float&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> PDL;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">our</span> ($tests, $examples);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>run_tests() <span style="color:#66d9ef">if</span> $tests <span style="color:#f92672">||</span> $examples;    <span style="color:#75715e"># does not return</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>die <span style="color:#f92672">&lt;&lt;</span>EOS <span style="color:#66d9ef">unless</span> @ARGV;
+</span></span><span style="display:flex;"><span>usage: $0 [<span style="color:#f92672">-</span>examples] [<span style="color:#f92672">-</span>tests] [N<span style="color:#f92672">...</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span>examples
+</span></span><span style="display:flex;"><span>    run the examples from the challenge
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span>tests
+</span></span><span style="display:flex;"><span>    run some tests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>N<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    list of positive integers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>EOS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Input and Output</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say floor_sum(@ARGV);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Implementation</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sum over floor($nums[$i] / $nums[$j]).</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">floor_sum</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $nums <span style="color:#f92672">=</span> pdl @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    floor($nums <span style="color:#f92672">/</span> $nums<span style="color:#f92672">-&gt;</span>dummy(<span style="color:#ae81ff">0</span>))<span style="color:#f92672">-&gt;</span>sum;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Examples and tests</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run_tests</span> {
+</span></span><span style="display:flex;"><span>    SKIP: {
+</span></span><span style="display:flex;"><span>        skip <span style="color:#e6db74">&#34;examples&#34;</span> <span style="color:#66d9ef">unless</span> $examples;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        is floor_sum(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">9</span>), <span style="color:#ae81ff">10</span>, <span style="color:#e6db74">&#39;example 1&#39;</span>;
+</span></span><span style="display:flex;"><span>        is floor_sum(<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>), <span style="color:#ae81ff">49</span>, <span style="color:#e6db74">&#39;example 2&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    SKIP: {
+</span></span><span style="display:flex;"><span>        skip <span style="color:#e6db74">&#34;tests&#34;</span> <span style="color:#66d9ef">unless</span> $tests;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># floor(3 / (-2)) = -2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># floor((-2) / 3) = -1</span>
+</span></span><span style="display:flex;"><span>        is floor_sum(<span style="color:#ae81ff">3</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;negative elements&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    done_testing;
+</span></span><span style="display:flex;"><span>    exit;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p>|   <a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a>   |</p>
 

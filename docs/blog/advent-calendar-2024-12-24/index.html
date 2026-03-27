@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-23blogadvent-calendar-2024-12-23-nbsp--nbsp-day-24-nbsp--nbsp-day-25blogadvent-calendar-2024-12-25-nbsp-">|   <a href="/blog/advent-calendar-2024-12-23"><strong>Day 23</strong></a>   |   <strong>Day 24</strong>   |   <a href="/blog/advent-calendar-2024-12-25"><strong>Day 25</strong></a>   |</h3>
+        <h2 id="advent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
+<h3 id="--day-23----day-24----day-25--">|   <a href="/blog/advent-calendar-2024-12-23"><strong>Day 23</strong></a>   |   <strong>Day 24</strong>   |   <a href="/blog/advent-calendar-2024-12-25"><strong>Day 25</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Jaldhar H. Vyas</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-299"><strong>The Weekly Challenge - 299</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://www.braincells.com/perl/2024/12/perl_weekly_challenge_week_299.html"><strong>post</strong></a>.</p>
 <hr>
@@ -194,25 +194,25 @@ Write a script to replace all words in the given sentence that start with any of
 <p><code>Perl</code> first for a change and it&rsquo;s the easiest challenge we&rsquo;ve had for a long time.</p>
 <p>All we have to do is for each word in <code>@words</code>&hellip;</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (@words) {
-</code></pre></div><p>Replace any instance of that word in <code>$sentence</code> followed by one or more instances of any <code>&quot;word&quot;</code> character (i.e. alphanumeric or punctuation) with the word by itself.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $sentence <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/$word\w+/$word/g</span>;
-}
-</code></pre></div><p>And print out the result.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say $sentence;
-</code></pre></div><p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-299/jaldhar-h-vyas/perl/ch-1.pl"><strong>(Full code on Github.)</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (@words) {
+</span></span></code></pre></div><p>Replace any instance of that word in <code>$sentence</code> followed by one or more instances of any <code>&quot;word&quot;</code> character (i.e. alphanumeric or punctuation) with the word by itself.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    $sentence <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/$word\w+/$word/g</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And print out the result.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>say $sentence;
+</span></span></code></pre></div><p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-299/jaldhar-h-vyas/perl/ch-1.pl"><strong>(Full code on Github.)</strong></a></p>
 <p>The only real change we need to make for <code>Raku</code> is that function arguments are immutable so we have to give $sentence the is copy role.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
-    $sentence is copy,
-    *@words
-) {
-    <span style="color:#66d9ef">for</span> @words <span style="color:#f92672">-&gt;</span> $word {
-        $sentence <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/$word\w+/</span>$word<span style="color:#f92672">/</span>;
-    }
-
-    say $sentence;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
+</span></span><span style="display:flex;"><span>    $sentence is copy,
+</span></span><span style="display:flex;"><span>    *@words
+</span></span><span style="display:flex;"><span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> @words <span style="color:#f92672">-&gt;</span> $word {
+</span></span><span style="display:flex;"><span>        $sentence <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/$word\w+/</span>$word<span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say $sentence;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-299/jaldhar-h-vyas/raku/ch-1.raku"><strong>(Full code on Github.)</strong></a></p>
 <br>
 <h3 id="challenge-2-word-search">Challenge #2: Word Search</h3>
@@ -223,127 +223,127 @@ Write a script to determine whether the given string can be found in the given g
 <br>
 <p>This one is a little more complicated.</p>
 <p>First we break up <code>$str</code> into a List of individual characters.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @string <span style="color:#f92672">=</span> $str<span style="color:#f92672">.</span>comb;
-</code></pre></div><p>Each element of <code>@chars</code> is also turned into a List of characters. and added to <code>@grid</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @grid;
-
-<span style="color:#66d9ef">for</span> @chars <span style="color:#f92672">-&gt;</span> $row {
-    @grid<span style="color:#f92672">.</span>push($row<span style="color:#f92672">.</span>comb);
-}
-</code></pre></div><p>We need a place to store the result. Initially it is assumed to be <code>False</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> False;
-</code></pre></div><p><code>$current</code> represents the first character in <code>$str</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> @string<span style="color:#f92672">.</span>shift;
-</code></pre></div><p>Now we visit every cell in the <code>@grid</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @grid<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> $row {
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @grid[$row]<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> $col {
-</code></pre></div><p>If the cell contains the <code>$current</code> letter (i.e. the first letter in <code>$str</code>,) we can proceed with searching for the rest. If it doesn&rsquo;t, we move on to the next cell.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        <span style="color:#66d9ef">if</span> @grid[$row;$col] <span style="color:#f92672">eq</span> $current {
-</code></pre></div><p>Assuming this was the correct cell, we set up a SetHash to hold the positions of any cells we have already seen in this search. This fulfills the specs&rsquo; requirement &lsquo;&hellip;may not reuse a grid cell&rsquo;.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">            <span style="color:#66d9ef">my</span> %visited is SetHash[Str];
-</code></pre></div><p>We call the <code>traverse()</code> function recursively (explained below) and if it return True, we set <code>$found</code> to <code>True</code> and stop processing.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">            <span style="color:#66d9ef">if</span> traverse(@grid, @string, %visited, $row, $col) {
-                $found <span style="color:#f92672">=</span> True;
-                <span style="color:#66d9ef">last</span>;
-            }
-        }
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @string <span style="color:#f92672">=</span> $str<span style="color:#f92672">.</span>comb;
+</span></span></code></pre></div><p>Each element of <code>@chars</code> is also turned into a List of characters. and added to <code>@grid</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @grid;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> @chars <span style="color:#f92672">-&gt;</span> $row {
+</span></span><span style="display:flex;"><span>    @grid<span style="color:#f92672">.</span>push($row<span style="color:#f92672">.</span>comb);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We need a place to store the result. Initially it is assumed to be <code>False</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> False;
+</span></span></code></pre></div><p><code>$current</code> represents the first character in <code>$str</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> @string<span style="color:#f92672">.</span>shift;
+</span></span></code></pre></div><p>Now we visit every cell in the <code>@grid</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @grid<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> $row {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @grid[$row]<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> $col {
+</span></span></code></pre></div><p>If the cell contains the <code>$current</code> letter (i.e. the first letter in <code>$str</code>,) we can proceed with searching for the rest. If it doesn&rsquo;t, we move on to the next cell.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> @grid[$row;$col] <span style="color:#f92672">eq</span> $current {
+</span></span></code></pre></div><p>Assuming this was the correct cell, we set up a SetHash to hold the positions of any cells we have already seen in this search. This fulfills the specs&rsquo; requirement &lsquo;&hellip;may not reuse a grid cell&rsquo;.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> %visited is SetHash[Str];
+</span></span></code></pre></div><p>We call the <code>traverse()</code> function recursively (explained below) and if it return True, we set <code>$found</code> to <code>True</code> and stop processing.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> traverse(@grid, @string, %visited, $row, $col) {
+</span></span><span style="display:flex;"><span>                $found <span style="color:#f92672">=</span> True;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Finally we print the value of $found.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say $found;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>say $found;
+</span></span></code></pre></div><br>
 <p><code>traverse()</code> is a function that takes the <code>@grid</code>, the list of characters originally in $str, the set of visited cells, and the row and column of the current cell as parameters.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">traverse</span>(@grid, @string, %visited, $row, $col) {
-</code></pre></div><p>We are going to need to know the horizontal and vertical neighboring cells of the one we are in. It is a state (what C++ would call static) variable so we don&rsquo;t have to recreate it every time the function is called.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">state @directions <span style="color:#f92672">=</span> ([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
-</code></pre></div><p>If <code>@string</code> is empty, it means we have successfully found the target string within @grid so we can return True and leave the function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">unless</span> @string<span style="color:#f92672">.</span>elems {
-    <span style="color:#66d9ef">return</span> True;
-}
-</code></pre></div><p>If not, first we mark this cell as visited.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">%visited<span style="color:#f92672">.</span>set(<span style="color:#e6db74">&#34;$row;$col&#34;</span>);
-</code></pre></div><p>Because parameters are immutable, we cant make direct changes to <code>@stringso</code> we first copy it to a new variable imaginativly named <code>@newstring</code>. The first character from it is removed and made the current letter we are searching for.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @newstring <span style="color:#f92672">=</span> @string;
-<span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> @newstring<span style="color:#f92672">.</span>shift;
-</code></pre></div><p>For each direction in our <code>@directions</code> list&hellip;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> @directions <span style="color:#f92672">-&gt;</span> $dir {
-</code></pre></div><p>&hellip;we use it to create the co-ordinates of a neighbor of the current cell.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> ($newRow, $newCol) <span style="color:#f92672">=</span> ($row, $col) Z<span style="color:#f92672">+</span> @$dir;
-</code></pre></div><p>If this neighbor is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">traverse</span>(@grid, @string, %visited, $row, $col) {
+</span></span></code></pre></div><p>We are going to need to know the horizontal and vertical neighboring cells of the one we are in. It is a state (what C++ would call static) variable so we don&rsquo;t have to recreate it every time the function is called.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>state @directions <span style="color:#f92672">=</span> ([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+</span></span></code></pre></div><p>If <code>@string</code> is empty, it means we have successfully found the target string within @grid so we can return True and leave the function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">unless</span> @string<span style="color:#f92672">.</span>elems {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> True;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If not, first we mark this cell as visited.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>%visited<span style="color:#f92672">.</span>set(<span style="color:#e6db74">&#34;$row;$col&#34;</span>);
+</span></span></code></pre></div><p>Because parameters are immutable, we cant make direct changes to <code>@stringso</code> we first copy it to a new variable imaginativly named <code>@newstring</code>. The first character from it is removed and made the current letter we are searching for.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @newstring <span style="color:#f92672">=</span> @string;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> @newstring<span style="color:#f92672">.</span>shift;
+</span></span></code></pre></div><p>For each direction in our <code>@directions</code> list&hellip;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> @directions <span style="color:#f92672">-&gt;</span> $dir {
+</span></span></code></pre></div><p>&hellip;we use it to create the co-ordinates of a neighbor of the current cell.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($newRow, $newCol) <span style="color:#f92672">=</span> ($row, $col) Z<span style="color:#f92672">+</span> @$dir;
+</span></span></code></pre></div><p>If this neighbor is:</p>
 <p>within the bounds of <code>@grid</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">if</span> $newRow <span style="color:#f92672">~~</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @grid<span style="color:#f92672">.</span>elems <span style="color:#f92672">&amp;&amp;</span> $newCol <span style="color:#f92672">~~</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @grid[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems <span style="color:#f92672">&amp;&amp;</span>
-</code></pre></div><p>not yet visited.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#e6db74">&#34;$newRow;$newCol&#34;</span> <span style="color:#960050;background-color:#1e0010">∉</span> %visited <span style="color:#f92672">&amp;&amp;</span>
-</code></pre></div><p>contains the <code>$current</code> letter we are searching for.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">@grid[$newRow;$newCol] <span style="color:#f92672">eq</span> $current {
-</code></pre></div><p>We recursively call <code>traverse()</code> again.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        <span style="color:#66d9ef">return</span> traverse(@grid, @newstring, %visited, $newRow, $newCol);
-    }
-}
-</code></pre></div><p>If none of the neighbors contained the character we are searching for, we return <code>False</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">return</span> False;
-}
-</code></pre></div><p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-299/jaldhar-h-vyas/raku/ch-2.raku"><strong>(Full code on Github.)</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> $newRow <span style="color:#f92672">~~</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @grid<span style="color:#f92672">.</span>elems <span style="color:#f92672">&amp;&amp;</span> $newCol <span style="color:#f92672">~~</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @grid[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems <span style="color:#f92672">&amp;&amp;</span>
+</span></span></code></pre></div><p>not yet visited.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#e6db74">&#34;$newRow;$newCol&#34;</span> <span style="color:#960050;background-color:#1e0010">∉</span> %visited <span style="color:#f92672">&amp;&amp;</span>
+</span></span></code></pre></div><p>contains the <code>$current</code> letter we are searching for.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>@grid[$newRow;$newCol] <span style="color:#f92672">eq</span> $current {
+</span></span></code></pre></div><p>We recursively call <code>traverse()</code> again.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> traverse(@grid, @newstring, %visited, $newRow, $newCol);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If none of the neighbors contained the character we are searching for, we return <code>False</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">return</span> False;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-299/jaldhar-h-vyas/raku/ch-2.raku"><strong>(Full code on Github.)</strong></a></p>
 <p>The <code>Perl</code> version uses the same algorithm. We are using the new experimental true and false constants in the newest <code>Perl</code> versions so we have to include these two lines at the top of the script:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> builtin <span style="color:#e6db74">qw/ true false /</span>;
-<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">&#39;experimental::builtin&#39;</span>;
-
-<span style="color:#66d9ef">my</span> @string <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $str;
-<span style="color:#66d9ef">my</span> @grid;
-
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (@chars) {
-    push @grid, [split <span style="color:#e6db74">//</span>, $row];
-}
-
-<span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> false;
-<span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> shift @string;
-
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @grid <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @{$grid[$row]} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">if</span> ($grid[$row]<span style="color:#f92672">-&gt;</span>[$col] <span style="color:#f92672">eq</span> $current) {
-</code></pre></div><p>Because we don&rsquo;t have <code>Sets</code> in <code>Perl</code>, <code>%visited</code> is a plain old hash.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">            <span style="color:#66d9ef">my</span> %visited;
-            <span style="color:#66d9ef">if</span> (traverse(<span style="color:#f92672">\</span>@grid, <span style="color:#f92672">\</span>@string, <span style="color:#f92672">\</span>%visited, $row, $col)) {
-                $found <span style="color:#f92672">=</span> true;
-                <span style="color:#66d9ef">last</span>;
-            }
-        }
-    }
-}
-
-say $found ? <span style="color:#e6db74">&#39;true&#39;</span> : <span style="color:#e6db74">&#39;false&#39;</span>;
-</code></pre></div><p><code>traverse()</code> also works almost the same as in <code>Raku</code>. Every hash or array has to be passed and accessed as a reference which is a bit annoying.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">traverse</span>($grid, $string, $visited, $row, $col) {
-    state @directions <span style="color:#f92672">=</span> ([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
-
-    <span style="color:#66d9ef">unless</span> (scalar @{$string}) {
-        <span style="color:#66d9ef">return</span> true;
-    }
-
-    $visited<span style="color:#f92672">-&gt;</span>{<span style="color:#e6db74">&#34;$row;$col&#34;</span>} <span style="color:#f92672">=</span> true;
-    <span style="color:#66d9ef">my</span> @newstring <span style="color:#f92672">=</span> @{$string};
-    <span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> shift @newstring;
-
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $dir (@directions) {
-        <span style="color:#66d9ef">my</span> $newRow <span style="color:#f92672">=</span> $row <span style="color:#f92672">+</span> $dir<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
-        <span style="color:#66d9ef">my</span> $newCol <span style="color:#f92672">=</span> $col <span style="color:#f92672">+</span> $dir<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
-
-        <span style="color:#66d9ef">if</span> ($newRow <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $newRow <span style="color:#f92672">&lt;</span> scalar @{$grid} <span style="color:#f92672">&amp;&amp;</span>
-            $newCol <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $newCol <span style="color:#f92672">&lt;</span>  scalar $grid<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;&amp;</span>
-            <span style="color:#f92672">!</span>$visited<span style="color:#f92672">-&gt;</span>{<span style="color:#e6db74">&#34;$newRow;$newCol&#34;</span>} <span style="color:#f92672">&amp;&amp;</span>
-</code></pre></div><p>One little thing which tripped me up is that in <code>Perl</code>, I also have to check if a cell exists before attempting to access it otherwise an unsightly warning is emitted.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">            defined $grid<span style="color:#f92672">-&gt;</span>[$newRow]<span style="color:#f92672">-&gt;</span>[$newCol] <span style="color:#f92672">&amp;&amp;</span>
-            $grid<span style="color:#f92672">-&gt;</span>[$newRow]<span style="color:#f92672">-&gt;</span>[$newCol] <span style="color:#f92672">eq</span> $current
-        ) {
-            <span style="color:#66d9ef">return</span> traverse($grid, <span style="color:#f92672">\</span>@newstring, $visited, $newRow, $newCol);
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> false;
-}
-</code></pre></div><p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-299/jaldhar-h-vyas/perl/ch-2.pl"><strong>(Full code on Github.)</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> builtin <span style="color:#e6db74">qw/ true false /</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">&#39;experimental::builtin&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @string <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $str;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @grid;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (@chars) {
+</span></span><span style="display:flex;"><span>    push @grid, [split <span style="color:#e6db74">//</span>, $row];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> shift @string;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @grid <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @{$grid[$row]} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($grid[$row]<span style="color:#f92672">-&gt;</span>[$col] <span style="color:#f92672">eq</span> $current) {
+</span></span></code></pre></div><p>Because we don&rsquo;t have <code>Sets</code> in <code>Perl</code>, <code>%visited</code> is a plain old hash.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> %visited;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (traverse(<span style="color:#f92672">\</span>@grid, <span style="color:#f92672">\</span>@string, <span style="color:#f92672">\</span>%visited, $row, $col)) {
+</span></span><span style="display:flex;"><span>                $found <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say $found ? <span style="color:#e6db74">&#39;true&#39;</span> : <span style="color:#e6db74">&#39;false&#39;</span>;
+</span></span></code></pre></div><p><code>traverse()</code> also works almost the same as in <code>Raku</code>. Every hash or array has to be passed and accessed as a reference which is a bit annoying.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">traverse</span>($grid, $string, $visited, $row, $col) {
+</span></span><span style="display:flex;"><span>    state @directions <span style="color:#f92672">=</span> ([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">unless</span> (scalar @{$string}) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $visited<span style="color:#f92672">-&gt;</span>{<span style="color:#e6db74">&#34;$row;$col&#34;</span>} <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @newstring <span style="color:#f92672">=</span> @{$string};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> shift @newstring;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $dir (@directions) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $newRow <span style="color:#f92672">=</span> $row <span style="color:#f92672">+</span> $dir<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $newCol <span style="color:#f92672">=</span> $col <span style="color:#f92672">+</span> $dir<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($newRow <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $newRow <span style="color:#f92672">&lt;</span> scalar @{$grid} <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>            $newCol <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $newCol <span style="color:#f92672">&lt;</span>  scalar $grid<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">!</span>$visited<span style="color:#f92672">-&gt;</span>{<span style="color:#e6db74">&#34;$newRow;$newCol&#34;</span>} <span style="color:#f92672">&amp;&amp;</span>
+</span></span></code></pre></div><p>One little thing which tripped me up is that in <code>Perl</code>, I also have to check if a cell exists before attempting to access it otherwise an unsightly warning is emitted.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>            defined $grid<span style="color:#f92672">-&gt;</span>[$newRow]<span style="color:#f92672">-&gt;</span>[$newCol] <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>            $grid<span style="color:#f92672">-&gt;</span>[$newRow]<span style="color:#f92672">-&gt;</span>[$newCol] <span style="color:#f92672">eq</span> $current
+</span></span><span style="display:flex;"><span>        ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> traverse($grid, <span style="color:#f92672">\</span>@newstring, $visited, $newRow, $newCol);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-299/jaldhar-h-vyas/perl/ch-2.pl"><strong>(Full code on Github.)</strong></a></p>
 <br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>

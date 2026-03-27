@@ -69,7 +69,7 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 As an old systems programmer, whenever I needed to come up with a 32-bit number, I would reach for the tired old examples like `0xDeadBeef` and `0xC0dedBad`. I want more!
 
 Write a program that will read from a dictionary and find 2- to 8-letter words that can be “spelled” in hexadecimal, with the addition of the following letter substitutions:
-```
+```perl
     o ⟶ 0 (e.g., 0xf00d = “food”)
     l ⟶ 1
     i ⟶ 1
@@ -349,7 +349,7 @@ Much like ants at a picnic, rules arrive and start making 4 lines into 63. And t
 
 Ultimately, though, the effort accommodating these concerns pays off. After installing a variety or configuration variables for phrase-length, minimum word length and maximum number of number substitutions (as a fraction of the total), Ryan generates a list of a list of 380,000 or so combinations: 8 letters length; minimum 3 letters; 1 number maximum. Here's a short sampling:
 
-```
+```perl
     Blade Fed => b1adefed
     Blade Fee => b1adefee
     Bleed Cab => b1eedcab
@@ -628,7 +628,7 @@ Since the task is non-recursive, if you encounter a subdirectory, append a /, bu
 **Example**
 
 Given the following directory structure:
-```
+```perl
 dir_a:
     Arial.ttf  Comic_Sans.ttf  Georgia.ttf  Helvetica.ttf
     Impact.otf  Verdana.ttf  Old_Fonts/
@@ -644,7 +644,7 @@ dir_c:
 **expected output:**
 
 The output should look similar to the following:
-```
+```perl
     dir_a          | dir_b           | dir_c
     -------------- | --------------- | ---------------
     Comic_Sans.ttf | Comic_Sans.ttf  |

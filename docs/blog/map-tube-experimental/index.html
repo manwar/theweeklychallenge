@@ -189,74 +189,73 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>I was looking for a minimalist solution.</p>
 <p>For those who are new to <code>Map::Tube</code>, here&rsquo;s a sample map, from the <a href="https://metacpan.org/pod/Map::Tube::Cookbook"><strong>cookbook</strong></a>:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    A &lt;-&gt; B &lt;-&gt; F &lt;-&gt; G &lt;-&gt; H
-    A &lt;-&gt; C &lt;-&gt; F
-    A &lt;-&gt; C &lt;-&gt; D &lt;-&gt; E &lt;-&gt; F
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    A &lt;-&gt; B &lt;-&gt; F &lt;-&gt; G &lt;-&gt; H
+</span></span><span style="display:flex;"><span>    A &lt;-&gt; C &lt;-&gt; F
+</span></span><span style="display:flex;"><span>    A &lt;-&gt; C &lt;-&gt; D &lt;-&gt; E &lt;-&gt; F
+</span></span></code></pre></div><br>
 <p>The same represented in a diagram as below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
-             A<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>  -----  B<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
-             /               <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>          C<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>   --------  F<span style="color:#f92672">(</span>6<span style="color:#f92672">)</span> --- G<span style="color:#f92672">(</span>7<span style="color:#f92672">)</span> ---- H<span style="color:#f92672">(</span>8<span style="color:#f92672">)</span>
-             <span style="color:#ae81ff">\ </span>              /
-             D<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>  -----  E<span style="color:#f92672">(</span>5<span style="color:#f92672">)</span>
-
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>             A<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>  -----  B<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>             /               <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>          C<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>   --------  F<span style="color:#f92672">(</span>6<span style="color:#f92672">)</span> --- G<span style="color:#f92672">(</span>7<span style="color:#f92672">)</span> ---- H<span style="color:#f92672">(</span>8<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#ae81ff">\ </span>              /
+</span></span><span style="display:flex;"><span>             D<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>  -----  E<span style="color:#f92672">(</span>5<span style="color:#f92672">)</span>
+</span></span></code></pre></div><br>
 <p>To keep it simple, we have used single line connecting all the stations.</p>
 <p>The data file for the above map in <code>XML</code> format looks like below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&lt;?xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>?&gt;
-&lt;tube name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Sample&#34;</span>&gt;
-    &lt;lines&gt;
-       &lt;line id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1&#34;</span> /&gt;
-    &lt;/lines&gt;
-    &lt;stations&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L01&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:1&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L02,L03&#34;</span>         /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L02&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;B&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:2&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L01,L06&#34;</span>         /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L03&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;C&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:3&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L01,L04,L06&#34;</span>     /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L04&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;D&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:4&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L03,L05&#34;</span>         /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L05&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;E&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:5&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L04,L06&#34;</span>         /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L06&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;F&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:6&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L02,L03,L05,L07&#34;</span> /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L07&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;G&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:7&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L06,L08&#34;</span>         /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L08&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;H&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:8&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L07&#34;</span>             /&gt;
-    &lt;/stations&gt;
-&lt;/tube&gt;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>&lt;?xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>?&gt;
+</span></span><span style="display:flex;"><span>&lt;tube name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Sample&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;lines&gt;
+</span></span><span style="display:flex;"><span>       &lt;line id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;/lines&gt;
+</span></span><span style="display:flex;"><span>    &lt;stations&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L01&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:1&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L02,L03&#34;</span>         /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L02&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;B&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:2&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L01,L06&#34;</span>         /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L03&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;C&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:3&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L01,L04,L06&#34;</span>     /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L04&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;D&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:4&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L03,L05&#34;</span>         /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L05&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;E&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:5&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L04,L06&#34;</span>         /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L06&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;F&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:6&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L02,L03,L05,L07&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L07&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;G&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:7&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L06,L08&#34;</span>         /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L08&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;H&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:8&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L07&#34;</span>             /&gt;
+</span></span><span style="display:flex;"><span>    &lt;/stations&gt;
+</span></span><span style="display:flex;"><span>&lt;/tube&gt;
+</span></span></code></pre></div><br>
 <p>And the same in <code>JSON</code> format looks like below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;name&#34;</span>     : <span style="color:#e6db74">&#34;Sample&#34;</span>,
-    <span style="color:#e6db74">&#34;lines&#34;</span>    : <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;line&#34;</span>    : <span style="color:#f92672">[</span> <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L1&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;L1&#34;</span> <span style="color:#f92672">}</span> <span style="color:#f92672">]</span> <span style="color:#f92672">}</span>,
-    <span style="color:#e6db74">&#34;stations&#34;</span> : <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;station&#34;</span> : <span style="color:#f92672">[</span> <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L01&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:1&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02,L03&#34;</span>         <span style="color:#f92672">}</span>,
-                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L02&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;B&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:2&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L01,L06&#34;</span>         <span style="color:#f92672">}</span>,
-                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L03&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;C&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:3&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L01,L04,L06&#34;</span>     <span style="color:#f92672">}</span>,
-                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L04&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:4&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L03,L05&#34;</span>         <span style="color:#f92672">}</span>,
-                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L05&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;E&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:5&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L04,L06&#34;</span>         <span style="color:#f92672">}</span>,
-                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L06&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;F&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:6&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02,L03,L05,L07&#34;</span> <span style="color:#f92672">}</span>,
-                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L07&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;G&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:7&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L06,L08&#34;</span>         <span style="color:#f92672">}</span>,
-                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L08&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;H&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:8&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L07&#34;</span>             <span style="color:#f92672">}</span>
-                               <span style="color:#f92672">]</span>
-                 <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>     : <span style="color:#e6db74">&#34;Sample&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;lines&#34;</span>    : <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;line&#34;</span>    : <span style="color:#f92672">[</span> <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L1&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;L1&#34;</span> <span style="color:#f92672">}</span> <span style="color:#f92672">]</span> <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;stations&#34;</span> : <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;station&#34;</span> : <span style="color:#f92672">[</span> <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L01&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:1&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02,L03&#34;</span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L02&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;B&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:2&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L01,L06&#34;</span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L03&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;C&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:3&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L01,L04,L06&#34;</span>     <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L04&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:4&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L03,L05&#34;</span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L05&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;E&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:5&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L04,L06&#34;</span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L06&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;F&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:6&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02,L03,L05,L07&#34;</span> <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L07&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;G&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:7&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L06,L08&#34;</span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L08&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;H&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:8&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L07&#34;</span>             <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>                               <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><br>
 <p>Going back to the original question, how do I allow station metadata in the map file?</p>
 <p>My first instinct was to include it in the <code>&quot;link&quot;</code> attribute of <code>&quot;station&quot;</code> element.</p>
 <p>Since a station can be linked to one or more other stations, we could easily attach metadata related to each linked station.</p>
 <p>The next question then becomes how do we add metadata for the <code>distance</code> and <code>duration</code> of each linked station?</p>
 <p>For example, consider a station <code>L01</code> that is linked to two stations <code>L02</code> and <code>L03</code>:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L01&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:1&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02,L03&#34;</span> <span style="color:#f92672">}</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L01&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:1&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02,L03&#34;</span> <span style="color:#f92672">}</span>
+</span></span></code></pre></div><br>
 <p>The linked stations of <code>L01</code> now looks like below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    Before: <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02,L03&#34;</span>
-    After : <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02|D-1.5|T-30,L03|D-1.2|T-25&#34;</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    Before: <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02,L03&#34;</span>
+</span></span><span style="display:flex;"><span>    After : <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02|D-1.5|T-30,L03|D-1.2|T-25&#34;</span>
+</span></span></code></pre></div><br>
 <p>The whole definition would now look like below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L01&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:1&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02|D-1.5|T-30,L03|D-1.2|T-25&#34;</span> <span style="color:#f92672">}</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L01&#34;</span>, <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;L1:1&#34;</span>, <span style="color:#e6db74">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;L02|D-1.5|T-30,L03|D-1.2|T-25&#34;</span> <span style="color:#f92672">}</span>
+</span></span></code></pre></div><br>
 <p>What does this mean?</p>
 <p>It means the distance from station <code>L01</code> to <code>L02</code> is <code>1.5 km</code> and the estimated time to reach it is <code>30 minutes</code>.</p>
 <p>I&rsquo;m not too concerned about the unit for now.</p>
@@ -266,131 +265,131 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>To avoid issues, I should make this change optional as not every map will include this kind of metadata.</p>
 <p>So, I decided to take the sample map above as a base and convert it into this new structure shown below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&lt;?xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>?&gt;
-&lt;tube name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Sample&#34;</span>&gt;
-    &lt;lines&gt;
-       &lt;line id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1&#34;</span> /&gt;
-       &lt;line id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L2&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L2&#34;</span> /&gt;
-    &lt;/lines&gt;
-
-    &lt;attributes distance<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;km&#34;</span> duration<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;min&#34;</span> /&gt;
-
-    &lt;stations&gt;
-       &lt;!-- Junctions --&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J01&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;C&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:3,L2:1&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S01|D-1.7|T-15,S04|D-1.1|T-13,J02|D-2.5|T-30&#34;</span> /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J02&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;F&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:6,L2:2&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S02|D-2.2|T-25,S05|D-2.1|T-23,S07|D-2.5|T-18,J01|D-1.5|T-30&#34;</span> /&gt;
-
-       &lt;!-- Line <span style="color:#ae81ff">1</span> --&gt;
-       &lt;!-- Route 1: A &lt;-&gt; C &lt;-&gt; D &lt;-&gt; E &lt;-&gt; F &lt;-&gt; G &lt;-&gt; H --&gt;
-       &lt;!-- Route 2: A &lt;-&gt; B &lt;-&gt; E &lt;-&gt; F &lt;-&gt; G &lt;-&gt; H --&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S01&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:1&#34;</span>      link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S02|D-1.5|T-10,J01|D-1.7|T-15&#34;</span> /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S02&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;B&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:2&#34;</span>      link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S01|D-1.5|T-10,J02|D-2.2|T-25&#34;</span> /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S04&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;D&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:4&#34;</span>      link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J01|D-1.1|T-8,S05|D-1.4|T-13&#34;</span>  /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S05&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;E&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:5&#34;</span>      link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S04|D-1.4|T-13,J02|D-2.1|T-23&#34;</span> /&gt;
-
-       &lt;!-- Line <span style="color:#ae81ff">2</span> --&gt;
-       &lt;!-- Route 3: C &lt;-&gt; F &lt;-&gt; G &lt;-&gt; H --&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S07&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;G&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:7,L2:3&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J02|D-2.5|T-28,S08|D-1.2|T-10&#34;</span> /&gt;
-       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S08&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;H&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:8,L2:4&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S07|D-1.2|T-10&#34;</span> /&gt;
-    &lt;/stations&gt;
-&lt;/tube&gt;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>&lt;?xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>?&gt;
+</span></span><span style="display:flex;"><span>&lt;tube name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Sample&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;lines&gt;
+</span></span><span style="display:flex;"><span>       &lt;line id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>       &lt;line id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L2&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L2&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;/lines&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;attributes distance<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;km&#34;</span> duration<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;min&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;stations&gt;
+</span></span><span style="display:flex;"><span>       &lt;!-- Junctions --&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J01&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;C&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:3,L2:1&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S01|D-1.7|T-15,S04|D-1.1|T-13,J02|D-2.5|T-30&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J02&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;F&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:6,L2:2&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S02|D-2.2|T-25,S05|D-2.1|T-23,S07|D-2.5|T-18,J01|D-1.5|T-30&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       &lt;!-- Line <span style="color:#ae81ff">1</span> --&gt;
+</span></span><span style="display:flex;"><span>       &lt;!-- Route 1: A &lt;-&gt; C &lt;-&gt; D &lt;-&gt; E &lt;-&gt; F &lt;-&gt; G &lt;-&gt; H --&gt;
+</span></span><span style="display:flex;"><span>       &lt;!-- Route 2: A &lt;-&gt; B &lt;-&gt; E &lt;-&gt; F &lt;-&gt; G &lt;-&gt; H --&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S01&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:1&#34;</span>      link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S02|D-1.5|T-10,J01|D-1.7|T-15&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S02&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;B&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:2&#34;</span>      link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S01|D-1.5|T-10,J02|D-2.2|T-25&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S04&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;D&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:4&#34;</span>      link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J01|D-1.1|T-8,S05|D-1.4|T-13&#34;</span>  /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S05&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;E&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:5&#34;</span>      link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S04|D-1.4|T-13,J02|D-2.1|T-23&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       &lt;!-- Line <span style="color:#ae81ff">2</span> --&gt;
+</span></span><span style="display:flex;"><span>       &lt;!-- Route 3: C &lt;-&gt; F &lt;-&gt; G &lt;-&gt; H --&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S07&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;G&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:7,L2:3&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;J02|D-2.5|T-28,S08|D-1.2|T-10&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>       &lt;station id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S08&#34;</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;H&#34;</span> line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L1:8,L2:4&#34;</span> link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S07|D-1.2|T-10&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;/stations&gt;
+</span></span><span style="display:flex;"><span>&lt;/tube&gt;
+</span></span></code></pre></div><br>
 <p>If you noticed, I have two lines, <code>L1</code> and <code>L2</code>, in the above sample map.</p>
 <p>Also we have added units in the map file like below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    &lt;attributes distance<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;km&#34;</span> duration<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;min&#34;</span> /&gt;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    &lt;attributes distance<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;km&#34;</span> duration<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;min&#34;</span> /&gt;
+</span></span></code></pre></div><br>
 <p>To make it easy to read, I have grouped the stations.</p>
 <p>In my experiment today, I am going to use the <code>XML</code> formatted data but in case you are looking for <code>JSON</code> formatted data for the sample map, I used this one-liner to convert the <code>XML</code> data into <code>JSON</code> format.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> XML::Twig;
-<span style="color:#66d9ef">use</span> JSON::MaybeXS;
-
-say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>
-                 <span style="color:#f92672">-&gt;</span>canonical(<span style="color:#ae81ff">1</span>)
-                 <span style="color:#f92672">-&gt;</span>utf8
-                 <span style="color:#f92672">-&gt;</span>pretty
-                 <span style="color:#f92672">-&gt;</span>encode(XML::Twig<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>
-                                   <span style="color:#f92672">-&gt;</span>parsefile($ARGV[<span style="color:#ae81ff">0</span>])
-                                   <span style="color:#f92672">-&gt;</span>simplify(keyattr <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;stations&#39;</span>, forcearray <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>));
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> XML::Twig;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> JSON::MaybeXS;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#f92672">-&gt;</span>canonical(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>                 <span style="color:#f92672">-&gt;</span>utf8
+</span></span><span style="display:flex;"><span>                 <span style="color:#f92672">-&gt;</span>pretty
+</span></span><span style="display:flex;"><span>                 <span style="color:#f92672">-&gt;</span>encode(XML::Twig<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>
+</span></span><span style="display:flex;"><span>                                   <span style="color:#f92672">-&gt;</span>parsefile($ARGV[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>                                   <span style="color:#f92672">-&gt;</span>simplify(keyattr <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;stations&#39;</span>, forcearray <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>));
+</span></span></code></pre></div><br>
 <p>This is the result, you end up with in the end:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{</span>
-   <span style="color:#e6db74">&#34;attributes&#34;</span> : <span style="color:#f92672">{</span>
-      <span style="color:#e6db74">&#34;distance&#34;</span> : <span style="color:#e6db74">&#34;km&#34;</span>,
-      <span style="color:#e6db74">&#34;duration&#34;</span> : <span style="color:#e6db74">&#34;min&#34;</span>
-   <span style="color:#f92672">}</span>,
-   <span style="color:#e6db74">&#34;lines&#34;</span> : <span style="color:#f92672">{</span>
-      <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#f92672">[</span>
-         <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L1&#34;</span>,
-            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;L1&#34;</span>
-         <span style="color:#f92672">}</span>,
-         <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L2&#34;</span>,
-            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;L2&#34;</span>
-         <span style="color:#f92672">}</span>
-      <span style="color:#f92672">]</span>
-   <span style="color:#f92672">}</span>,
-   <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;Sample&#34;</span>,
-   <span style="color:#e6db74">&#34;stations&#34;</span> : <span style="color:#f92672">{</span>
-      <span style="color:#e6db74">&#34;station&#34;</span> : <span style="color:#f92672">[</span>
-         <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;J01&#34;</span>,
-            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:3,L2:1&#34;</span>,
-            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S01|D-1.7|T-15,S04|D-1.1|T-13,J02|D-2.5|T-30&#34;</span>,
-            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;C&#34;</span>
-         <span style="color:#f92672">}</span>,
-         <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;J02&#34;</span>,
-            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:6,L2:2&#34;</span>,
-            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S02|D-2.2|T-25,S05|D-2.1|T-23,S07|D-2.5|T-18,J01|D-1.5|T-30&#34;</span>,
-            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;F&#34;</span>
-         <span style="color:#f92672">}</span>,
-         <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S01&#34;</span>,
-            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:1&#34;</span>,
-            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S02|D-1.5|T-10,J01|D-1.7|T-15&#34;</span>,
-            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;A&#34;</span>
-         <span style="color:#f92672">}</span>,
-         <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S02&#34;</span>,
-            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:2&#34;</span>,
-            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S01|D-1.5|T-10,J02|D-2.2|T-25&#34;</span>,
-            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;B&#34;</span>
-         <span style="color:#f92672">}</span>,
-         <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S04&#34;</span>,
-            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:4&#34;</span>,
-            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;J01|D-1.1|T-8,S05|D-1.4|T-13&#34;</span>,
-            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;D&#34;</span>
-         <span style="color:#f92672">}</span>,
-         <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S05&#34;</span>,
-            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:5&#34;</span>,
-            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S04|D-1.4|T-13,J02|D-2.1|T-23&#34;</span>,
-            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;E&#34;</span>
-         <span style="color:#f92672">}</span>,
-         <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S07&#34;</span>,
-            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:7,L2:3&#34;</span>,
-            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;J02|D-2.5|T-28,S08|D-1.2|T-10&#34;</span>,
-            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;G&#34;</span>
-         <span style="color:#f92672">}</span>,
-         <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S08&#34;</span>,
-            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:8,L2:4&#34;</span>,
-            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S07|D-1.2|T-10&#34;</span>,
-            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;H&#34;</span>
-         <span style="color:#f92672">}</span>
-      <span style="color:#f92672">]</span>
-   <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;attributes&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;distance&#34;</span> : <span style="color:#e6db74">&#34;km&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;duration&#34;</span> : <span style="color:#e6db74">&#34;min&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;lines&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L1&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;L1&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;L2&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;L2&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;Sample&#34;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;stations&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;station&#34;</span> : <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;J01&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:3,L2:1&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S01|D-1.7|T-15,S04|D-1.1|T-13,J02|D-2.5|T-30&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;C&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;J02&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:6,L2:2&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S02|D-2.2|T-25,S05|D-2.1|T-23,S07|D-2.5|T-18,J01|D-1.5|T-30&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;F&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S01&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:1&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S02|D-1.5|T-10,J01|D-1.7|T-15&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;A&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S02&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:2&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S01|D-1.5|T-10,J02|D-2.2|T-25&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;B&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S04&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:4&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;J01|D-1.1|T-8,S05|D-1.4|T-13&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;D&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S05&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:5&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S04|D-1.4|T-13,J02|D-2.1|T-23&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;E&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S07&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:7,L2:3&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;J02|D-2.5|T-28,S08|D-1.2|T-10&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;G&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;id&#34;</span> : <span style="color:#e6db74">&#34;S08&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;line&#34;</span> : <span style="color:#e6db74">&#34;L1:8,L2:4&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;link&#34;</span> : <span style="color:#e6db74">&#34;S07|D-1.2|T-10&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;H&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><br>
 <p>Since this is an experimental feature, I didn&rsquo;t want to touch the <a href="https://github.com/manwar/Map-Tube"><strong>master copy</strong></a>.</p>
 <p>I could have created a branch and made the changes there but I decided against it.</p>
 <p>Why? Because as of today, I&rsquo;m not sure what the future holds for this experiment.</p>
@@ -406,8 +405,8 @@ say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d
 <p><br><br></p>
 <p>This attribute would capture the units for the <code>distance</code> and the <code>duration</code>, something like below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    { distance <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;km&#39;</span>, duration <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;min&#39;</span> }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    { distance <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;km&#39;</span>, duration <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;min&#39;</span> }
+</span></span></code></pre></div><br>
 <p>Next, we have added an optional attribute <code>attrs</code> to the <code>Map::Tube::Node</code> package.</p>
 <div class="container mt-4">
     <div class="row g-4 justify-content-center">
@@ -417,15 +416,15 @@ say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d
 <br>
 <p>This new attribute would capture the following information for each station:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">       link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S02|D-1.5|T-10,J01|D-1.7|T-15&#34;</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>       link<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;S02|D-1.5|T-10,J01|D-1.7|T-15&#34;</span>
+</span></span></code></pre></div><br>
 <p>into something like below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">       <span style="color:#f92672">{</span>
-            distance <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span> <span style="color:#e6db74">&#39;S02&#39;</span> <span style="color:#f92672">=</span>&gt; 1.5, <span style="color:#e6db74">&#39;J01&#39;</span> <span style="color:#f92672">=</span>&gt; 1.7 <span style="color:#f92672">}</span>,
-            duration <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span> <span style="color:#e6db74">&#39;S02&#39;</span> <span style="color:#f92672">=</span>&gt; 10,  <span style="color:#e6db74">&#39;J01&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">15</span>  <span style="color:#f92672">}</span>,
-       <span style="color:#f92672">}</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>       <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            distance <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span> <span style="color:#e6db74">&#39;S02&#39;</span> <span style="color:#f92672">=</span>&gt; 1.5, <span style="color:#e6db74">&#39;J01&#39;</span> <span style="color:#f92672">=</span>&gt; 1.7 <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>            duration <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span> <span style="color:#e6db74">&#39;S02&#39;</span> <span style="color:#f92672">=</span>&gt; 10,  <span style="color:#e6db74">&#39;J01&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">15</span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">}</span>
+</span></span></code></pre></div><br>
 <p>Now I have created a new subroutine <code>_convert_station_to_node()</code> as below, which would populate the new attribute <code>attrs</code> of <code>Map::Tube::Node</code> package.</p>
 <br>
 <div class="container mt-4">
@@ -482,38 +481,38 @@ say JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d
 <p>The core framework is ready to serve the new map data we have defined above.</p>
 <p>Let&rsquo;s create simple script to test the workflow: <code>find-route.pl</code></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Sample;
-
-<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> Moo;
-<span style="color:#66d9ef">use</span> File::Spec;
-
-has xml <span style="color:#f92672">=&gt;</span> (
-    is      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>,
-    default <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> File::Spec<span style="color:#f92672">-&gt;</span>catfile(<span style="color:#e6db74">&#39;sample.xml&#39;</span>) });
-
-with <span style="color:#e6db74">&#39;Map::Tube&#39;</span>;
-
-<span style="color:#66d9ef">package</span> main;
-
-<span style="color:#66d9ef">my</span> $route <span style="color:#f92672">=</span> Sample<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>get_shortest_route($ARGV[<span style="color:#ae81ff">0</span>], $ARGV[<span style="color:#ae81ff">1</span>]);
-
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Route: $route\n&#34;</span>;
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Distance: &#34;</span>, $route<span style="color:#f92672">-&gt;</span>distance, <span style="color:#e6db74">&#34;\n&#34;</span>;
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Duration: &#34;</span>, $route<span style="color:#f92672">-&gt;</span>duration, <span style="color:#e6db74">&#34;\n&#34;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Sample;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> File::Spec;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>has xml <span style="color:#f92672">=&gt;</span> (
+</span></span><span style="display:flex;"><span>    is      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>,
+</span></span><span style="display:flex;"><span>    default <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> File::Spec<span style="color:#f92672">-&gt;</span>catfile(<span style="color:#e6db74">&#39;sample.xml&#39;</span>) });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>with <span style="color:#e6db74">&#39;Map::Tube&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> main;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $route <span style="color:#f92672">=</span> Sample<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>get_shortest_route($ARGV[<span style="color:#ae81ff">0</span>], $ARGV[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Route: $route\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Distance: &#34;</span>, $route<span style="color:#f92672">-&gt;</span>distance, <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Duration: &#34;</span>, $route<span style="color:#f92672">-&gt;</span>duration, <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span></code></pre></div><br>
 <p>Testing time:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl find-route.pl <span style="color:#e6db74">&#39;C&#39;</span> <span style="color:#e6db74">&#39;G&#39;</span>
-Route: C <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>, F <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>, G <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>
-Distance: 5.00 km
-Duration: <span style="color:#ae81ff">48</span> min
-</code></pre></div><br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl find-route.pl <span style="color:#e6db74">&#39;E&#39;</span> <span style="color:#e6db74">&#39;H&#39;</span>
-Route: E <span style="color:#f92672">(</span>L1<span style="color:#f92672">)</span>, F <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>, G <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>, H <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>
-Distance: 5.80 km
-Duration: <span style="color:#ae81ff">51</span> min
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl find-route.pl <span style="color:#e6db74">&#39;C&#39;</span> <span style="color:#e6db74">&#39;G&#39;</span>
+</span></span><span style="display:flex;"><span>Route: C <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>, F <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>, G <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Distance: 5.00 km
+</span></span><span style="display:flex;"><span>Duration: <span style="color:#ae81ff">48</span> min
+</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl find-route.pl <span style="color:#e6db74">&#39;E&#39;</span> <span style="color:#e6db74">&#39;H&#39;</span>
+</span></span><span style="display:flex;"><span>Route: E <span style="color:#f92672">(</span>L1<span style="color:#f92672">)</span>, F <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>, G <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>, H <span style="color:#f92672">(</span>L1, L2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Distance: 5.80 km
+</span></span><span style="display:flex;"><span>Duration: <span style="color:#ae81ff">51</span> min
+</span></span></code></pre></div><br>
 <p>As I mentioned above this change in the framework is currently saved in a separate repository, feel free to play with it.</p>
 <p>In the meantime, I will continue to explore this further.</p>
 <p>If you have any suggestion please feel free to share with me: <code>mohammad.anwar@yahoo.com</code></p>

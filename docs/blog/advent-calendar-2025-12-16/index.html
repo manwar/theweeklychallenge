@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2025blogadvent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
-<h3 id="-nbsp-day-15blogadvent-calendar-2025-12-15-nbsp--nbsp-day-16-nbsp--nbsp-day-17blogadvent-calendar-2025-12-17-nbsp-">|   <a href="/blog/advent-calendar-2025-12-15"><strong>Day 15</strong></a>   |   <strong>Day 16</strong>   |   <a href="/blog/advent-calendar-2025-12-17"><strong>Day 17</strong></a>   |</h3>
+        <h2 id="advent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
+<h3 id="--day-15----day-16----day-17--">|   <a href="/blog/advent-calendar-2025-12-15"><strong>Day 15</strong></a>   |   <strong>Day 16</strong>   |   <a href="/blog/advent-calendar-2025-12-17"><strong>Day 17</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Yitzchak Scott-Thoennes</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-324"><strong>The Weekly Challenge - 324</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://blog.ysth.info/idiomatic-perl-solutions-to-the-weekly-challenge-324/"><strong>post</strong></a>.</p>
 <hr>
@@ -191,16 +191,16 @@ Write a script to create two dimension array having $r rows and $c columns using
 <br>
 <p>I&rsquo;m sure there are modules to facilitate this, but I&rsquo;m not sure any provides more readability than simply:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @out <span style="color:#f92672">=</span> map [splice @ints, <span style="color:#ae81ff">0</span>, $c], <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$r;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @out <span style="color:#f92672">=</span> map [splice @ints, <span style="color:#ae81ff">0</span>, $c], <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$r;
+</span></span></code></pre></div><br>
 <p><code>splice array, 0, N, ()</code> is an easy way to loop over an array in fixed size chunks. Often you will see it in this form:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> @chunk <span style="color:#f92672">=</span> splice @array, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1000</span>) {
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> @chunk <span style="color:#f92672">=</span> splice @array, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1000</span>) {
+</span></span></code></pre></div><br>
 <p>though it is important to remember it empties the original array; copy first if needed.</p>
 <p><a href="https://github.com/ysth/perlweeklychallenge-club/blob/challenge-324-ysth/challenge-324/ysth/perl/ch-1.pl"><strong>full script</strong></a></p>
 <br>
-<h2 id="task-2httpstheweeklychallengeorgblogperl-weekly-challenge-324refblogysthinfotask2"><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-324/?ref=blog.ysth.info#TASK2"><strong>Task 2:</strong></a></h2>
+<h2 id="task-2"><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-324/?ref=blog.ysth.info#TASK2"><strong>Task 2:</strong></a></h2>
 <pre><code>You are given an array of integers.
 
 Write a script to return the sum of total XOR for every subset of given array.
@@ -209,22 +209,22 @@ Write a script to return the sum of total XOR for every subset of given array.
 <p>This is essentially a combinations problem. Perl has many modules for combinations (and permutations); <a href="https://blogs.perl.org/users/dana_jacobsen/2015/02/short-survey-of-modules-for-combinations-and-permutations.html?ref=blog.ysth.info"><strong>here</strong></a> is a short survey of some of them. In production code, I would likely use <code>Algorithm::Combinatorics</code> for this.</p>
 <p>But for a quick and dirty solution, I&rsquo;d use Perl&rsquo;s builtin that does combinations: <code>glob</code>:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say List::Util::sum map eval, glob <span style="color:#ae81ff">0</span> <span style="color:#f92672">.</span> join <span style="color:#e6db74">&#39;&#39;</span>, map <span style="color:#e6db74">&#34;{^$_,}&#34;</span>, @array
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>say List::Util::sum map eval, glob <span style="color:#ae81ff">0</span> <span style="color:#f92672">.</span> join <span style="color:#e6db74">&#39;&#39;</span>, map <span style="color:#e6db74">&#34;{^$_,}&#34;</span>, @array
+</span></span></code></pre></div><br>
 <p>(Obviously when using eval, validating the data is as expected is important.)</p>
 <p>Here we take an array such as <code>5,1,6</code> and form a string to glob that provides all combinations, xor&rsquo;d: <code>&quot;0{^5,}{^1,}{^6,}&quot;</code>. These look like:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl -E<span style="color:#e6db74">&#39;say for glob &#34;0{^5,}{^1,}{^6,}&#34;&#39;</span>
-0^5^1^6
-0^5^1
-0^5^6
-0^5
-0^1^6
-0^1
-0^6
-<span style="color:#ae81ff">0</span>
-</code></pre></div><br>
-<p>Then simply eval and sum them. Yes, <code>eval</code>'s operand defaults to <code>$_</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl -E<span style="color:#e6db74">&#39;say for glob &#34;0{^5,}{^1,}{^6,}&#34;&#39;</span>
+</span></span><span style="display:flex;"><span>0^5^1^6
+</span></span><span style="display:flex;"><span>0^5^1
+</span></span><span style="display:flex;"><span>0^5^6
+</span></span><span style="display:flex;"><span>0^5
+</span></span><span style="display:flex;"><span>0^1^6
+</span></span><span style="display:flex;"><span>0^1
+</span></span><span style="display:flex;"><span>0^6
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><br>
+<p>Then simply eval and sum them. Yes, <code>eval</code>&rsquo;s operand defaults to <code>$_</code>.</p>
 <p>When using glob, be very careful in scalar context, where it will take an initial argument and iterate over the results of that argument for each call thereafter until the results are exhausted and it returns undef, with the later arguments not actually used.</p>
 <p><a href="https://github.com/ysth/perlweeklychallenge-club/blob/challenge-324-ysth/challenge-324/ysth/perl/ch-2.pl"><strong>full script</strong></a></p>
 <br>

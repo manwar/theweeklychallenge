@@ -34,7 +34,7 @@ Let us assume you want to submit solutions for **Challenge 002** and your Github
 
 #### 2) Go to your favourite terminal and **clone** your repository.
 
-```
+```perl
    $ git clone https://github.com/joe-blog/perlweeklychallenge-club
 ```
 
@@ -42,7 +42,7 @@ Let us assume you want to submit solutions for **Challenge 002** and your Github
 
 #### 3) Create a new branch for the solution.
 
-```
+```perl
    $ cd perlweeklychallenge-club
    $ git checkout -b new-branch
 ```
@@ -50,28 +50,28 @@ Let us assume you want to submit solutions for **Challenge 002** and your Github
 <br>
 
 #### 4) Go to the **Challenge 002** folder.
-```
+```perl
    $ cd challenge-002
 ```
 
 <br>
 
 #### 5) If you find a folder with your name in the current folder then skip to next step otherwise create a new folder.
-```
+```perl
    $ mkdir joe-blog
 ```
 
 <br>
 
 #### 6) Change into your named folder.
-```
+```perl
    $ cd joe-blog
 ```
 
 <br>
 
 #### 7) If you just created the folder then you should add a file **README** and add a line **Solution by Joe Blog** otherwise skip to next step.
-```
+```perl
    $ cat README
 
    Solution by Joe Blog.
@@ -84,14 +84,14 @@ Let us assume you want to submit solutions for **Challenge 002** and your Github
 <br>
 
 #### 9) Change into your relevant folder depending on your choice.
-```
+```perl
    $ cd perl
 ```
 
 or
 
 
-```
+```perl
    $ cd raku
 ```
 
@@ -102,21 +102,21 @@ or
 <br>
 
 #### 11) Once you are happy with your solutions, you should **add** it to the repository. First go back to **root** of the repository and then fire the command below:
-```
+```perl
    $ git add challenge-002/joe-blog
 ```
 
 <br>
 
 #### 12) Commit your changes now.
-```
+```perl
    $ git commit
 ```
 
 <br>
 
 #### 13) Push your changes.
-```
+```perl
    $ git push -u origin new-branch
 ```
 
@@ -138,21 +138,21 @@ Let us assume you already have the repository forked. If this is the first time 
 <br>
 
 #### 1) Checkout out the **master** branch first.
-```
+```perl
    $ git checkout master
 ```
 
 <br>
 
 #### 2) Check if you have setup **upstream**.
-```
+```perl
    $ git remote -v
 ```
 
 <br>
 
 You should see something similar:
-```
+```perl
    origin  https://github.com/joe-blog/perlweeklychallenge-club (fetch)
    origin  https://github.com/joe-blog/perlweeklychallenge-club (push)
    upstream        https://github.com/manwar/perlweeklychallenge-club (fetch)
@@ -165,7 +165,7 @@ If you don't see **upstream** as above then you need to setup your **upstream** 
 
 <br>
 
-```
+```perl
    $ git remote add upstream https://github.com/manwar/perlweeklychallenge-club
 ```
 
@@ -175,7 +175,7 @@ Check if you have everything setup correctly.
 
 <br>
 
-```
+```perl
    $ git remote -v
 ```
 
@@ -186,14 +186,14 @@ If you see similar output as above then you have setup **upstream** correctly. Y
 <br>
 
 #### 3) Now we need to **fetch** latest changes from the **upstream**.
-```
+```perl
    $ git fetch upstream
 ```
 
 <br>
 
 #### 4) We will now merge the changes into your local **master** branch.
-```
+```perl
    $ git checkout master
    $ git merge upstream/master --ff-only
 ```
@@ -201,21 +201,21 @@ If you see similar output as above then you have setup **upstream** correctly. Y
 <br>
 
 #### 5) Then push your **master** changes back to the repository.
-```
+```perl
    $ git push -u origin master
 ```
 
 <br>
 
 #### 6) Now it is time create new branch for new challenge
-```
+```perl
    $ git checkout -b branch-for-challenge-005
 ```
 
 <br>
 
 #### 7) Once you have a new **branch** ready, you can start adding your solutions or blog information.
-```
+```perl
    $ cd challenge-005/joe-blog
    $ echo "URL to the blog" > blog.txt
    $ mkdir perl
@@ -226,7 +226,7 @@ Add script like **ch-1.pl** or **ch-2.pl** or **ch-1.sh** or **ch-2.sh**
 
 Or if its **Raku** solutions then follow this:
 
-```
+```perl
    $ mkdir raku
    $ cd raku
 ```
@@ -240,7 +240,7 @@ Add script like **ch-1.raku** or **ch-2.raku** or **ch-1.sh** or **ch-2.sh**
 <br>
 
 #### 9) Commit your changes.
-```
+```perl
    $ git add challenge-005/joe-blog
    $ git commit
 ```
@@ -248,7 +248,7 @@ Add script like **ch-1.raku** or **ch-2.raku** or **ch-1.sh** or **ch-2.sh**
 <br>
 
 #### 10) Now push the newly created branch **branch-for-challenge-005**
-```
+```perl
    $ git push -u origin branch-for-challenge-005
 ```
 

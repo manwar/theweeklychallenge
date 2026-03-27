@@ -161,7 +161,7 @@ The method most often used is known as the [least squares method](https://www.ma
 
 Calculate the **line of best fit** for the following **48** points:
 
-```
+```perl
 333,129  39,189 140,156 292,134 393,52  160,166 362,122  13,193
 341,104 320,113 109,177 203,152 343,100 225,110  23,186 282,102
 284,98  205,133 297,114 292,126 339,112 327,79  253,136  61,169

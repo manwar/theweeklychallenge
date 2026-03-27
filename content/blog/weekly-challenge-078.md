@@ -117,19 +117,19 @@ For **Raku**, I didn't create any helper method. Everything needed for the task 
 
 My favourite line is below, which coverts the given string into an array of integers.
 
-```perl6
+```perl
 my @array = $list.split(',').map: { .Int };
 ```
 
 and one small magic is array slicing and max combined.
 
-```perl6
+```perl
 @array[$index+1 .. @array.elems-1].max;
 ```
 
 <br>
 
-```perl6
+```perl
 sub leader-elements(Str $list) {
 
     die "ERROR: Invalid list [$list].\n" unless $list ~~ /^[\-?\d\,?\s?]+$/;
@@ -172,7 +172,7 @@ Same goes to **Raku** as well. Here I present my one-liner solution in **Raku**.
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$L = "9, 10, 7, 5, 6, 1") {
@@ -210,7 +210,7 @@ done_testing;
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 is-deeply leader-elements("9, 10, 7, 5, 6, 1"),
@@ -297,7 +297,7 @@ Once again, **Raku**, self contained single `sub left-rotation()` does the job.
 
 <br>
 
-```perl6
+```perl
 sub left-rotation(Str $source, Str $index) {
 
     die "ERROR: Invalid source [$source].\n"
@@ -349,7 +349,7 @@ p(left_rotation(get_list($A), get_list($B)));
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$A = "10, 20, 30, 40, 50", Str :$B = "3, 4") {
@@ -386,7 +386,7 @@ done_testing;
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 is-deeply [left-rotation("10, 20, 30, 40, 50", "3, 4")],

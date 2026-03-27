@@ -23,7 +23,7 @@ We can start with the numbers (the size of the pieces), which is suitable job fo
 
 <br>
 
-```perl6
+```perl
 my $pythagoras-pie := gather  # [1]
 {
   my $remainder = 100;        # [2]
@@ -97,7 +97,7 @@ Finding the largest value is easy, as long as we chop off the sequence after the
 
 <br>
 
-```perl6
+```perl
 say $pythagoras-pie[^100].max; # -> 6.281565095552947
 ```
 
@@ -109,7 +109,7 @@ But this doesn't tell us the position (or index), and thus which guest.
 
 <br>
 
-```perl6
+```perl
 my $pythagoras-pie := gather
 {
   my $remainder = 100;
@@ -143,7 +143,7 @@ for (^100).grep({ $pythagoras-pie[$_] == $largest }) -> $guest    # [2]
 
 <br>
 
-```perl6
+```perl
 $ perl6 pythagoras-pie
 Guest #10 got the largest piece of cake (6.281565095552947%).
 ```

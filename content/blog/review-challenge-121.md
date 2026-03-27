@@ -61,7 +61,7 @@ You are given integers 0 <= $m <= 255 and 1 <= $n <= 8.
 Write a script to invert $n bit from the end of the binary representation of $m and print the decimal representation of the new binary number.
 
 **Example**
-```
+```perl
     Input: $m = 12, $n = 3
     Output: 8
 
@@ -491,7 +491,7 @@ Write a script to find a round trip of minimum length visiting all N cities exac
 
 **Example**
 
-```
+```perl
 
     Matrix: [0, 5, 2, 7]
             [5, 0, 5, 3]

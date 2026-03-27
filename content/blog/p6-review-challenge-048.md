@@ -75,7 +75,7 @@ As to why this works, the rotation is what essentially moves the cursor along. I
 
 Here is an example for five people:
 
-```
+```perl
 Start              Rotation     Killed
 1 2 3 4 5       -> 2 3 4 5 1 -> 3 4 5 1
     3 4 5 1     -> 4 5 1 3   -> 5 1 3
@@ -94,7 +94,7 @@ It's a little inefficient, especially in the later rounds when most everyone is 
 
 [Alicia Bielsa's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/alicia-bielsa/raku/ch-1.p6) continues her foray into Raku submissions this week with the following:
 
-```raku
+```perl
 my $numberPeople = 50;
 my $numberPeopleAlive = $numberPeople;
 my @aPeople;
@@ -118,7 +118,7 @@ Alicia has come up with a circular linked list implementation. The explicit vari
 
 [Arne Sommer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/arne-sommer/raku/ch-1.p6) uses `splice`:
 
-```raku
+```perl
 unit sub MAIN (:$verbose);
 my @people = 1 .. 50;
 my $next = 1;
@@ -142,7 +142,7 @@ Fortunately, the fix is simple: change `$next = 0` to `$next -= @people.elems`. 
 
 [Colin Crain's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/colin-crain/raku/ch-1.p6), as with his Perl version, has some hilariously colourful commentary on the problem in an extended comment at the top, which is well worth a read. The code itself uses `splice`, deftly dodging any indexing errors with the modulo operator:
 
-```raku
+```perl
 sub survivor (Int:D $size where {$size > 0}){
     my @circle = (0..$size-1);
     my $next = 0;
@@ -160,7 +160,7 @@ Colin explicitly documents his choice to use 0-based indexing, so his result of 
 
 [Jaldhar H. Vyas's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/jaldhar-h-vyas/raku/ch-1.p6) uses a brute force method to iterate over a fixed length array:
 
-```raku
+```perl
 multi sub MAIN() {
     my @people = (0 .. 49);
     my $remaining = @people.elems;
@@ -188,7 +188,7 @@ multi sub MAIN() {
 
 [Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/javier-luque/raku/ch-1.p6) uses `push`/`shift` and `shift` to rotate the array and then remove the first person:
 
-```raku
+```perl
 sub MAIN() {
     my @people = 1..50;
     kill-and-switch(@people) while (@people.elems > 1);
@@ -209,7 +209,7 @@ sub kill-and-switch(@people) {
 
 [Kevin Colyer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/kevin-colyer/raku/ch-1.p6) uses a fixed-length array in `@circle`, and then uses a brute force method to choose the next victim:
 
-```raku
+```perl
 # fill the circle with 50 alive people = 1's
 my @circle = 1 xx 50;
 # helper function to loop around the circle looking for the next living person
@@ -231,7 +231,7 @@ sub nextAlive($i) {
 
 To find the ultimate survivor, a simple `loop` does the trick:
 
-```raku
+```perl
 my $i=0;
 my $j=-1;
 say "1 has the sword...";
@@ -256,7 +256,7 @@ say "So the survivor is {$i+1}";
 
 [Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/laurent-rosenfeld/raku/ch-1.p6) uses the `push`/`shift`, `shift` technique:
 
-```raku
+```perl
 my $number = @*ARGS ?? @*ARGS[0] !! 50;
 my $number = 50;
 my @persons = 1 .. $number;
@@ -273,7 +273,7 @@ say "Person @persons[] is the survivor.\n";
 
 [Luca Ferrari's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/luca-ferrari/raku/ch-1.p6) also uses a fixed-length array, and has a `next-alive` sub to find the next victim:
 
-```raku
+```perl
 # Implements the list rotation.
 sub next-alive( @people, $current-person ) {
     my $next = $current-person;
@@ -287,7 +287,7 @@ sub next-alive( @people, $current-person ) {
 
 The semantics of `@people` are a bit different: `False` means the person is alive but does not have the sword. `True` means the person has the sword.  `Nil` means the person is dead. The main loop iterates through and kills each person in turn:
 
-```raku
+```perl
 sub MAIN( Int :$how_many_people = 50 ) {
     my @people = False xx $how_many_people;
     @people[ 0 ] = True;
@@ -312,7 +312,7 @@ sub MAIN( Int :$how_many_people = 50 ) {
 
 [Mark Anderson's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/mark-anderson/raku/ch-1.p6) has a unique solution:
 
-```raku
+```perl
 my @people = 1 .. 50;
 while @people > 1 {
     my $last = @people[*-1];
@@ -330,7 +330,7 @@ While algorithmically, this is a brute force solution, it is rather refined: Mar
 
 First, a concise solution using `splice`:
 
-```raku
+```perl
 given my @men = 1..50 { .push( .splice(0,2).first ) while .elems > 1 };
 say @men.first;
 ```
@@ -339,7 +339,7 @@ say @men.first;
 
 Next, Markus had a go with a circular linked list implemenetation, and also lit up some pathways in my brain that I haven't used since I took that Latin class in university a long time ago:
 
-```raku
+```perl
 role Concatenationem { has $.vicinus is rw; }
 class Moribunda is Int does Concatenationem { };
 sub bicimare-sine-fine( Int $homines where * > 1 ) {
@@ -364,7 +364,7 @@ say bicimare-sine-fine( 50 );
 
 Finally, Markus provided a solution that uses `rotor(2)` to split up the people into "killer/victim tuples" (obviously recognizing that every other person is killed, each time around the circle). It requires a special case for even/odd sized groups:
 
-```raku
+```perl
 sub rotor-kill( $n ) {
     my @men = 1..$n;
     while @men.elems > 1 {
@@ -390,7 +390,7 @@ say rotor-kill( 50 );
 
 [Mohammad S Anwar's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/mohammad-anwar/raku/ch-1.p6) uses the `shift`/`push` technique:
 
-```raku
+```perl
 sub MAIN() {
     my @people = 1..50;
     while @people.elems > 1 {
@@ -412,7 +412,7 @@ sub MAIN() {
 
 [Noud Aldenhoven's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/noud/raku/ch-1.p6) uses recursion, with the well-known recurrence relation `f(n, k) = (f(n - 1, k) + k - 1) mod n + 1.`
 
-```raku
+```perl
 multi sub f(1, $k) { 1; }
 multi sub f($n, $k) { (f($n - 1, $k) + $k - 1) % $n + 1; }
 say "Survivor: ", f(50, 2);
@@ -424,7 +424,7 @@ The code comments contain a paraphrasing of [Wikipedia](https://en.wikipedia.org
 
 [Roger Bell West's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/roger-bell-west/raku/ch-1.p6) uses `splice`:
 
-```raku
+```perl
 my @list=(1..50);
 my $n=0;
 while (@list.elems > 1) {
@@ -443,7 +443,7 @@ As with his similar solution in Perl, Roger's solution here arrives at the wrong
 
 [Ruben Westerberg's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/ruben-westerberg/raku/ch-1.p6) also uses splice, but uses modulo arithmetic to ensure the index wrap works correctly:
 
-```raku
+```perl
 my @sur=1..50;
 my $i=0;
 @sur.splice($i=($i+1)%@sur,1)  while @sur > 1;
@@ -454,7 +454,7 @@ put "Survivor: @sur[]";
 
 [My solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/ryan-thompson/raku/ch-1.p6) is a circular linked list implementation:
 
-```raku
+```perl
 my Int @ll = 0, |[1..$N].rotate;
 my Int $cur = 1;
 @ll[$cur] = @ll[ @ll[$cur] ] and $cur = @ll[$cur] until @ll[$cur] == $cur;
@@ -476,7 +476,7 @@ My blog also discusses an analytic O(1) solution to the problem, if you are inte
 
 [Simon Proctor's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/simon-proctor/raku/ch-1.p6) has two `MAIN` methods; one using `splice`:
 
-```raku
+```perl
 #| Calculate the survior of the swordsmen suicide pact
 multi sub MAIN(
     UInt $swords = 50, #= Number of swordsmen (default 50)
@@ -492,7 +492,7 @@ multi sub MAIN(
 
 And the other uses math:
 
-```raku
+```perl
 # Find p where p ** 2 < s (swordsmen)
 # The survior is the nth odd number where n = s - p
 #| Calculate mathematically
@@ -513,7 +513,7 @@ Simon's math solution still loops, to find the power of 2 less than `$swords`.  
 
 [Jonas Berlin's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/xkr47/raku/ch-1.p6) uses a custom class, extending `Array`, with a custom `Iterator`:
 
-```raku
+```perl
 #!/usr/bin/env perl6
 class Pwc048_1 is Array {
     method iterator {
@@ -541,7 +541,7 @@ say "Survivors, in order: ", $arr;
 
 Internally the `Iterator` uses `splice` to remove the victims. Iterating through the array results in the following sequence:
 
-```
+```perl
 [1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45 47 49 1 5 9 13 17 21 25 29 33 37 41 45 49 5 13 21 29 37 45 5 21 37 5 37]
 ```
 
@@ -573,7 +573,7 @@ Others realized that, in fact, the dates meeting the specification can be valida
 
 [Alicia Bielsa's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/alicia-bielsa/raku/ch-2.p6) uses the `Date` class to validate palindromic strings generated by flipping and splitting the year:
 
-```raku
+```perl
 for 2000..2999 {
     my $mmdd = $_.flip;
     my $date = Date.new($_,  $mmdd.substr(0,2), $mmdd.substr(2,2));
@@ -588,7 +588,7 @@ for 2000..2999 {
 
 [Arne Sommer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/arne-sommer/raku/ch-2.p6) uses nested loops to build up candidate strings that he then validates with his own code:
 
-```raku
+```perl
 for 0..2 -> $y2 {
   for 0..9 -> $y3 {
     for 0..1 -> $y4 {
@@ -615,7 +615,7 @@ Due to the careful setup of the nested loops, Arne only needs to do some very ba
 
 [Colin Crain's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/colin-crain/raku/ch-2.p6) generates candidates by looking at each year and its `flip`ped counterpart:
 
-```raku
+```perl
 sub MAIN () {
     ## make a list of valid candidates
     my @candidates = (2000..2999).map({$_.flip ~ $_}).grep({validate($_)});
@@ -626,7 +626,7 @@ sub MAIN () {
 
 The `validate` sub then rejects any invalid dates:
 
-```raku
+```perl
 sub validate ($candidate) {
 ## returns true is the given string represents a valid mmddyyyy date
 ## does not consider leap years, in this case they are logically irrelevant
@@ -643,7 +643,7 @@ sub validate ($candidate) {
 
 [Jaldhar H. Vyas's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/jaldhar-h-vyas/raku/ch-2.p6) uses a hard-coded list of (reversed) months and checks that against the two-digit year to get a list of valid `@years`:
 
-```raku
+```perl
 my @years = (2000 .. 2999).grep({
     / $<year> = (\d\d) $ /;
     (10, 20, 30, 40, 50, 60 , 70, 80, 90, 1, 11, 21).grep({ $_ == $/<year>})
@@ -653,7 +653,7 @@ my @years = (2000 .. 2999).grep({
 With that, he can now `flip` the year to get the `$<month>` and `$<day>` with
 a regex, and print out any dates where the day is less than 23:
 
-```raku
+```perl
 for @years -> $year {
     $year.flip ~~ / ^ $<month> = (\d\d) $<day> = (\d\d) $ /;
     if $/<day> < 23 {
@@ -666,7 +666,7 @@ for @years -> $year {
 
 [Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/javier-luque/raku/ch-2.p6) solution uses the `Date` class, and goes through every day between 2000-01-01 and 2999-12-31:
 
-```raku
+```perl
 sub MAIN () {
     my $current_date  = Date.new(2000, 1, 1);
     my $end_date = Date.new(2999, 12, 31);
@@ -697,20 +697,20 @@ This returns the correct results in about 7.5 seconds on my system.
 
 [Kevin Colyer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/kevin-colyer/raku/ch-2.p6) uses a code ref to format the date per the specification:
 
-```raku
+```perl
 my $pwcformat= sub ($self) { sprintf "%02d%02d%04d", .month, .day, .year given $self;};
 ```
 
 This formatter is one of the optional arguments when creating a new [`Date`](https://docs.perl6.org/type/Date#(Dateish)_method_formatter) object:
 
-```raku
+```perl
 my $date=Date.new(year => 2001,month=>10,day=>2, formatter => $pwcformat);
 my $end=Date.new(year => 3000,month=>1,day=>1);
 ```
 
 Finally, Kevin simply loops over every day, printing the ones that are palindromic:
 
-```raku
+```perl
 while $date < $end {
     my $d=$date.Str;
     say $date.yyyy-mm-dd ~ " is palindrome: $d" if $d eq $d.flip;
@@ -722,7 +722,7 @@ while $date < $end {
 
 [Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/laurent-rosenfeld/raku/ch-2.p6) loops over every year from 2000..2300 (see his blog, below, for the rationale for not needing to go all the way to 2999):
 
-```raku
+```perl
 for 2000 .. 2300 -> $year {
     my ($month, $day) = ($year.flip ~~ /(\d\d)(\d\d)/)[0, 1];
     next if $month > 12 or $month < 1 or $day > 31 or $day < 1;
@@ -738,7 +738,7 @@ Laurent `flip`s each `$year`, and then pulls out the `$month` and `$day` with a 
 
 [Luca Ferrari's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/luca-ferrari/raku/ch-2.p6) iterates over the year range, `flip`s the year, and skips any dates that fail a basic validity check:
 
-```raku
+```perl
 sub MAIN( Int :$year-start? = 2000,
           Int :$year-end?   = 2999 ) {
     for $year-start .. $year-end {
@@ -763,7 +763,7 @@ sub MAIN( Int :$year-start? = 2000,
 
 It also uses a custom formatter:
 
-```raku
+```perl
 my $mdy = sub ($self) {
               sprintf "%02d%02d%04d", .month, .day, .year given $self;
           }
@@ -791,7 +791,7 @@ This solution runs in about 4.5 minutes on my system.
 
 [Markus Holzer's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/markus-holzer/raku/ch-2.p6) also uses a formatter, but iterates over each year, rather than each day:
 
-```raku
+```perl
 my $formatter = sub { sprintf '%02d%02d%04d', .month, .day, .year given $^date };
 .say for (2000..2999)
     # filter out most of the impossible years
@@ -811,7 +811,7 @@ my $formatter = sub { sprintf '%02d%02d%04d', .month, .day, .year given $^date }
 
 [Mohammad S Anwar's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/mohammad-anwar/raku/ch-2.p6) uses `Date` with a custom formatter, checking the `flip`ped version for palindromes:
 
-```raku
+```perl
 sub MAIN() {
     my $fmt  = { sprintf "%02d%02d%04d", .month, .day, .year };
     my $date = Date.new(2000, 1, 1, formatter => $fmt);
@@ -833,7 +833,7 @@ This solution requires Rakudo Star RC-1 or newer.
 
 [Noud Aldenhoven's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/noud/raku/ch-2.p6) realizes that palindromic dates within this range can be found directly, without the need to validate them at all, provided the range is carefully chosen:
 
-```raku
+```perl
 for 1..12 X ^3 -> ($m, $d) {
     say ($m div 10), ($m % 10), $d, 2, 2, $d, ($m % 10), ($m div 10);
 }
@@ -845,7 +845,7 @@ A minor issue is that this solution prints the dates out of order.
 
 [Roger Bell West's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/roger-bell-west/raku/ch-2.p6) has a nested loop to check each year, month, and day:
 
-```raku
+```perl
 for 2000..2999 -> $y {
   for 1..12 -> $m {
     for 1..31 -> $d {
@@ -871,7 +871,7 @@ Each candidate date is then passed through a quick validator, before it is `flip
 
 [Ruben Westerberg's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/ruben-westerberg/raku/ch-2.p6) uses `Date` with a custom formatter:
 
-```raku
+```perl
 my $f={sprintf "%02d%02d%04d", .month,.day,.year};
 put (Date.new("2000-01-01",formatter=>$f)..Date.new("2999-01-01"))
     .grep({my $str= .Str;$str.flip eq $str})
@@ -884,7 +884,7 @@ This will not work in Rakudo Star versions prior to RC-1.
 
 [My solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/ryan-thompson/raku/ch-2.p6) relies on a little analysis (see blog, below) to loop over only the valid palindromic dates:
 
-```raku
+```perl
 for (<02 12 22> X (1..12)».fmt('%02d')».flip.sort).flat -> $dd, $yy {
     say "{$yy.flip}-$dd-{$dd.flip}$yy";
 }
@@ -898,7 +898,7 @@ The results are in sorted order. (Note the `.sort` you see only sorts the 12 mon
 
 [Simon Proctor's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/simon-proctor/raku/ch-2.p6) uses `Date` with a custom formatter to both validate and format the dates, before `.flip`ping them to check for palindromes:
 
-```raku
+```perl
 #| Find the palendromic numbers (writen mmddyyy) between 2000-01-01 and 2999-01-01
 sub MAIN() {
     my sub df( Date $d) {
@@ -930,7 +930,7 @@ sub MAIN() {
 
 [Ulrich Rieke's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/ulrich-rieke/raku/ch-2.p6) uses `Date` as well, iterating one day at a time with a capturing regexp to pull out the date parts for reordering into mm/dd/yyyy format. He then checks for a palindrome with `.flip`:
 
-```raku
+```perl
 my $currentDate = Date.new( 1999 , 12 , 31 ) ;
 my $reordered ;
 my @palindromedates ;
@@ -951,7 +951,7 @@ repeat {
 
 [Jonas Berlin's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/xkr47/raku/ch-2.p6) uses `Date` in a `try { ... }` block to validate dates he generates by `flip`ping and `match`ing each year and pulling out the `mm` and `dd` parts, to reduce the search space by a factor of 365:
 
-```raku
+```perl
 (2000...2999)
         .map({
             try {

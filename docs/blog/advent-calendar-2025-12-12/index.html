@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2025blogadvent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
-<h3 id="-nbsp-day-11blogadvent-calendar-2025-12-11-nbsp--nbsp-day-12-nbsp--nbsp-day-13blogadvent-calendar-2025-12-13-nbsp-">|   <a href="/blog/advent-calendar-2025-12-11"><strong>Day 11</strong></a>   |   <strong>Day 12</strong>   |   <a href="/blog/advent-calendar-2025-12-13"><strong>Day 13</strong></a>   |</h3>
+        <h2 id="advent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
+<h3 id="--day-11----day-12----day-13--">|   <a href="/blog/advent-calendar-2025-12-11"><strong>Day 11</strong></a>   |   <strong>Day 12</strong>   |   <a href="/blog/advent-calendar-2025-12-13"><strong>Day 13</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Robbie Hatley</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-314"><strong>The Weekly Challenge - 314</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://hatley-software.blogspot.com/2025/03/robbie-hatleys-solutions-in-perl-for_25.html"><strong>post</strong></a>.</p>
 <hr>
@@ -218,125 +218,125 @@ Output: 3
 2. del_unequ_chrs($pref) (Delete unequal characters.)
 </code></pre>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env -S perl -C63</span>
-
-<span style="color:#75715e">=pod
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
-</span><span style="color:#75715e">TITLE AND ATTRIBUTION:
-</span><span style="color:#75715e">Solutions in Perl for The Weekly Challenge 314-1,
-</span><span style="color:#75715e">written by Robbie Hatley on Mon Mar 24, 2025.
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
-</span><span style="color:#75715e">PROBLEM DESCRIPTION:
-</span><span style="color:#75715e">Task 314-1: Equal Strings
-</span><span style="color:#75715e">Submitted by: Mohammad Sajid Anwar
-</span><span style="color:#75715e">You are given three strings. You are allowed to remove the
-</span><span style="color:#75715e">rightmost character of a string to make all equals. Write a
-</span><span style="color:#75715e">script to return the number of operations to make it equal,
-</span><span style="color:#75715e">otherwise -1.
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">Example #1:
-</span><span style="color:#75715e">Input: $s1 = &#34;abc&#34;, $s2 = &#34;abb&#34;, $s3 = &#34;ab&#34;
-</span><span style="color:#75715e">Output: 2
-</span><span style="color:#75715e">Operation 1: Delete &#34;c&#34; from the string &#34;abc&#34;
-</span><span style="color:#75715e">Operation 2: Delete &#34;b&#34; from the string &#34;abb&#34;
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">Example #2:
-</span><span style="color:#75715e">Input: $s1 = &#34;ayz&#34;, $s2 = &#34;cyz&#34;, $s3 = &#34;xyz&#34;
-</span><span style="color:#75715e">Output: -1
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">Example #3:
-</span><span style="color:#75715e">Input: $s1 = &#34;yza&#34;, $s2 = &#34;yzb&#34;, $s3 = &#34;yzc&#34;
-</span><span style="color:#75715e">Output: 3
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
-</span><span style="color:#75715e">PROBLEM NOTES:
-</span><span style="color:#75715e">The first thing I note is that &#34;-1&#34; will be returned if-and-only-if the 3 input strings do NOT all start with
-</span><span style="color:#75715e">the same first character. (The examples rule-out the idea that 3 empty strings should be considered &#34;equal&#34;.)
-</span><span style="color:#75715e">With that in-mind, I see two main ways to attack this:
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">1. Nibble from the right, chopping-off substrings until the 3 strings are equal, and count operations.
-</span><span style="color:#75715e">2. Count triplets of equal characters from the left, and subtract number of equal characters from total.
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">Either will give the same answer. I&#39;ll go with option 2, because it gives an easy way to determine when -1
-</span><span style="color:#75715e">should be returned: precisely when the number of equal characters (counted in triplets from the left) is 0
-</span><span style="color:#75715e">(or if any of the three strings is empty). With that in-mind, I&#39;ll make these 2 subroutines:
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">1. col($pref,$n)          (Return a column.)
-</span><span style="color:#75715e">4. del_unequ_chrs($pref)  (Delete unequal characters.)
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
-</span><span style="color:#75715e">IO NOTES:
-</span><span style="color:#75715e">Input is via either built-in variables or via @ARGV. If using @ARGV, provide one argument which must be a
-</span><span style="color:#75715e">single-quoted array of arrays of double-quoted strings, in proper Perl syntax, like so:
-</span><span style="color:#75715e">./ch-1.pl &#39;([&#34;asparagus&#34;,&#34;aspartame&#34;,&#34;asparkle&#34;],[&#34;Robin&#34;,&#34;Robbie&#34;,&#34;Robert&#34;],[&#34;rat&#34;,&#34;bat&#34;,&#34;cat&#34;])&#39;
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">Output is to STDOUT and will be each input followed by the corresponding output.
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">=cut</span>
-
-<span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
-<span style="color:#75715e"># PRAGMAS, MODULES, AND SUBS:</span>
-
-   <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
-   <span style="color:#66d9ef">use</span> utf8;
-   <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw( min max sum0 all )</span>;
-
-   <span style="color:#75715e"># Return a column from a page:</span>
-   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">col</span> ($pref,$n) {
-      <span style="color:#66d9ef">return</span> map {substr $_, $n, <span style="color:#ae81ff">1</span>} @$pref;
-   }
-
-   <span style="color:#75715e"># If possible, make all lines of a page equal by deleting</span>
-   <span style="color:#75715e"># characters from the right and return number of characters</span>
-   <span style="color:#75715e"># deleted; otherwise, delete nothing and return -1:</span>
-   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">del_unequ_chrs</span> ($pref) {
-      <span style="color:#66d9ef">my</span> @lengths <span style="color:#f92672">=</span> map {length} @$pref;
-      <span style="color:#66d9ef">my</span> $min_len <span style="color:#f92672">=</span>  min(@lengths);
-      <span style="color:#66d9ef">my</span> $max_len <span style="color:#f92672">=</span>  max(@lengths);
-      <span style="color:#66d9ef">my</span> $sum_len <span style="color:#f92672">=</span> sum0(@lengths);
-      <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-      <span style="color:#66d9ef">for</span> ( ; $i <span style="color:#f92672">&lt;</span> $min_len ; <span style="color:#f92672">++</span>$i ) {
-         <span style="color:#66d9ef">my</span> @col <span style="color:#f92672">=</span> col($pref, $i);
-         <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> all {$col[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> $_} @col;
-      }
-      <span style="color:#75715e"># If at least the left-most column was equal, delete</span>
-      <span style="color:#75715e"># everything past last contiguous equal column and</span>
-      <span style="color:#75715e"># return number of characters deleted from page:</span>
-      <span style="color:#66d9ef">if</span> ( $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
-         map {$_ <span style="color:#f92672">=</span> substr($_, <span style="color:#ae81ff">0</span>, $i)} @$pref;
-         <span style="color:#66d9ef">return</span> ($sum_len <span style="color:#f92672">-</span> scalar(@$pref) <span style="color:#f92672">*</span> $i);
-      }
-      <span style="color:#75715e"># Otherwise, delete nothing and return -1:</span>
-      <span style="color:#66d9ef">else</span> {
-         <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-      }
-   }
-
-<span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
-<span style="color:#75715e"># INPUTS:</span>
-<span style="color:#66d9ef">my</span> @pages <span style="color:#f92672">=</span> @ARGV ? eval($ARGV[<span style="color:#ae81ff">0</span>]) : ([<span style="color:#e6db74">&#34;abc&#34;</span>, <span style="color:#e6db74">&#34;abb&#34;</span>, <span style="color:#e6db74">&#34;ab&#34;</span>], [<span style="color:#e6db74">&#34;ayz&#34;</span>, <span style="color:#e6db74">&#34;cyz&#34;</span>, <span style="color:#e6db74">&#34;xyz&#34;</span>], [<span style="color:#e6db74">&#34;yza&#34;</span>, <span style="color:#e6db74">&#34;yzb&#34;</span>, <span style="color:#e6db74">&#34;yzc&#34;</span>]);
-<span style="color:#75715e">#                 Expected outputs :            2                    -1                      3</span>
-
-<span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
-<span style="color:#75715e"># MAIN BODY OF PROGRAM:</span>
-$&#34;<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;, &#39;</span>;
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pref (@pages) {
-   say <span style="color:#e6db74">&#39;&#39;</span>;
-   say <span style="color:#e6db74">&#39;Page of text:&#39;</span>;
-   say <span style="color:#66d9ef">for</span> @$pref;
-   <span style="color:#66d9ef">my</span> $removed <span style="color:#f92672">=</span> del_unequ_chrs($pref);
-   <span style="color:#66d9ef">if</span> ( $removed <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) {
-      say <span style="color:#e6db74">&#39;Page with strings equalized:&#39;</span>;
-      say <span style="color:#66d9ef">for</span> @$pref;
-      say <span style="color:#e6db74">&#34;Number of unequal characters removed = $removed&#34;</span>;
-   }
-   <span style="color:#66d9ef">else</span> {
-      say <span style="color:#e6db74">&#39;These strings could not be equalized.&#39;</span>;
-   }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env -S perl -C63</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">=pod
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">TITLE AND ATTRIBUTION:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Solutions in Perl for The Weekly Challenge 314-1,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">written by Robbie Hatley on Mon Mar 24, 2025.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">PROBLEM DESCRIPTION:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Task 314-1: Equal Strings
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Submitted by: Mohammad Sajid Anwar
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">You are given three strings. You are allowed to remove the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">rightmost character of a string to make all equals. Write a
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">script to return the number of operations to make it equal,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">otherwise -1.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Example #1:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Input: $s1 = &#34;abc&#34;, $s2 = &#34;abb&#34;, $s3 = &#34;ab&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Output: 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Operation 1: Delete &#34;c&#34; from the string &#34;abc&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Operation 2: Delete &#34;b&#34; from the string &#34;abb&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Example #2:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Input: $s1 = &#34;ayz&#34;, $s2 = &#34;cyz&#34;, $s3 = &#34;xyz&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Output: -1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Example #3:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Input: $s1 = &#34;yza&#34;, $s2 = &#34;yzb&#34;, $s3 = &#34;yzc&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Output: 3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">PROBLEM NOTES:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">The first thing I note is that &#34;-1&#34; will be returned if-and-only-if the 3 input strings do NOT all start with
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">the same first character. (The examples rule-out the idea that 3 empty strings should be considered &#34;equal&#34;.)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">With that in-mind, I see two main ways to attack this:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">1. Nibble from the right, chopping-off substrings until the 3 strings are equal, and count operations.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">2. Count triplets of equal characters from the left, and subtract number of equal characters from total.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Either will give the same answer. I&#39;ll go with option 2, because it gives an easy way to determine when -1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">should be returned: precisely when the number of equal characters (counted in triplets from the left) is 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">(or if any of the three strings is empty). With that in-mind, I&#39;ll make these 2 subroutines:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">1. col($pref,$n)          (Return a column.)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">4. del_unequ_chrs($pref)  (Delete unequal characters.)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">IO NOTES:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Input is via either built-in variables or via @ARGV. If using @ARGV, provide one argument which must be a
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">single-quoted array of arrays of double-quoted strings, in proper Perl syntax, like so:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">./ch-1.pl &#39;([&#34;asparagus&#34;,&#34;aspartame&#34;,&#34;asparkle&#34;],[&#34;Robin&#34;,&#34;Robbie&#34;,&#34;Robert&#34;],[&#34;rat&#34;,&#34;bat&#34;,&#34;cat&#34;])&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Output is to STDOUT and will be each input followed by the corresponding output.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">=cut</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># PRAGMAS, MODULES, AND SUBS:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">use</span> utf8;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw( min max sum0 all )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># Return a column from a page:</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">col</span> ($pref,$n) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> map {substr $_, $n, <span style="color:#ae81ff">1</span>} @$pref;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># If possible, make all lines of a page equal by deleting</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># characters from the right and return number of characters</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># deleted; otherwise, delete nothing and return -1:</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">del_unequ_chrs</span> ($pref) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @lengths <span style="color:#f92672">=</span> map {length} @$pref;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $min_len <span style="color:#f92672">=</span>  min(@lengths);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $max_len <span style="color:#f92672">=</span>  max(@lengths);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $sum_len <span style="color:#f92672">=</span> sum0(@lengths);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> ( ; $i <span style="color:#f92672">&lt;</span> $min_len ; <span style="color:#f92672">++</span>$i ) {
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">my</span> @col <span style="color:#f92672">=</span> col($pref, $i);
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> all {$col[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> $_} @col;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># If at least the left-most column was equal, delete</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># everything past last contiguous equal column and</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># return number of characters deleted from page:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> ( $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+</span></span><span style="display:flex;"><span>         map {$_ <span style="color:#f92672">=</span> substr($_, <span style="color:#ae81ff">0</span>, $i)} @$pref;
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">return</span> ($sum_len <span style="color:#f92672">-</span> scalar(@$pref) <span style="color:#f92672">*</span> $i);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Otherwise, delete nothing and return -1:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># INPUTS:</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @pages <span style="color:#f92672">=</span> @ARGV ? eval($ARGV[<span style="color:#ae81ff">0</span>]) : ([<span style="color:#e6db74">&#34;abc&#34;</span>, <span style="color:#e6db74">&#34;abb&#34;</span>, <span style="color:#e6db74">&#34;ab&#34;</span>], [<span style="color:#e6db74">&#34;ayz&#34;</span>, <span style="color:#e6db74">&#34;cyz&#34;</span>, <span style="color:#e6db74">&#34;xyz&#34;</span>], [<span style="color:#e6db74">&#34;yza&#34;</span>, <span style="color:#e6db74">&#34;yzb&#34;</span>, <span style="color:#e6db74">&#34;yzc&#34;</span>]);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#                 Expected outputs :            2                    -1                      3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># MAIN BODY OF PROGRAM:</span>
+</span></span><span style="display:flex;"><span>$&#34;<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;, &#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pref (@pages) {
+</span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#39;Page of text:&#39;</span>;
+</span></span><span style="display:flex;"><span>   say <span style="color:#66d9ef">for</span> @$pref;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> $removed <span style="color:#f92672">=</span> del_unequ_chrs($pref);
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">if</span> ( $removed <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) {
+</span></span><span style="display:flex;"><span>      say <span style="color:#e6db74">&#39;Page with strings equalized:&#39;</span>;
+</span></span><span style="display:flex;"><span>      say <span style="color:#66d9ef">for</span> @$pref;
+</span></span><span style="display:flex;"><span>      say <span style="color:#e6db74">&#34;Number of unequal characters removed = $removed&#34;</span>;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      say <span style="color:#e6db74">&#39;These strings could not be equalized.&#39;</span>;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h2 id="task-314-2-sort-column">Task 314-2: Sort Column</h2>
 <p>You are given a list of strings of same length.</p>
 <p>Write a script to make each column sorted lexicographically by deleting any non-sorted columns. Return the total columns deleted.</p>
@@ -370,120 +370,120 @@ Output: 0
 4. del_unsrt_cols($pref) (Delete unsorted columns.)
 </code></pre>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env -S perl -C63</span>
-
-<span style="color:#75715e">=pod
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
-</span><span style="color:#75715e">TITLE AND ATTRIBUTION:
-</span><span style="color:#75715e">Solutions in Perl for The Weekly Challenge 314-2,
-</span><span style="color:#75715e">written by Robbie Hatley on Mon Mar 24, 2025.
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
-</span><span style="color:#75715e">PROBLEM DESCRIPTION:
-</span><span style="color:#75715e">Task 314-2: Sort Column
-</span><span style="color:#75715e">Submitted by: Mohammad Sajid Anwar
-</span><span style="color:#75715e">You are given a list of strings of same length. Write a script
-</span><span style="color:#75715e">to make each column sorted lexicographically by deleting any
-</span><span style="color:#75715e">non-sorted columns. Return the total columns deleted.
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">Example #1:
-</span><span style="color:#75715e">Input: @list = (&#34;swpc&#34;, &#34;tyad&#34;, &#34;azbe&#34;)
-</span><span style="color:#75715e">Output: 2
-</span><span style="color:#75715e">swpc
-</span><span style="color:#75715e">tyad
-</span><span style="color:#75715e">azbe
-</span><span style="color:#75715e">Column 1: &#34;s&#34;, &#34;t&#34;, &#34;a&#34; =&gt; non sorted
-</span><span style="color:#75715e">Column 2: &#34;w&#34;, &#34;y&#34;, &#34;z&#34; =&gt; sorted
-</span><span style="color:#75715e">Column 3: &#34;p&#34;, &#34;a&#34;, &#34;b&#34; =&gt; non sorted
-</span><span style="color:#75715e">Column 4: &#34;c&#34;, &#34;d&#34;, &#34;e&#34; =&gt; sorted
-</span><span style="color:#75715e">Total columns to delete to make it sorted lexicographically: 2
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">Example #2:
-</span><span style="color:#75715e">Input: @list = (&#34;cba&#34;, &#34;daf&#34;, &#34;ghi&#34;)
-</span><span style="color:#75715e">Output: 1
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">Example #3:
-</span><span style="color:#75715e">Input: @list = (&#34;a&#34;, &#34;b&#34;, &#34;c&#34;)
-</span><span style="color:#75715e">Output: 0
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
-</span><span style="color:#75715e">PROBLEM NOTES:
-</span><span style="color:#75715e">I could cheat and just return the number of columns necessary to be deleted, but that&#39;s NOT what the problem
-</span><span style="color:#75715e">description actually says; it says &#34;make each column sorted lexicographically by DELETING any non-sorted
-</span><span style="color:#75715e">columns&#34;. So I&#39;ll actually do that. I&#39;ll make these 4 subroutines:
-</span><span style="color:#75715e">1. col($pref,$n)          (Return a column.)
-</span><span style="color:#75715e">2. del_col($pref,$n)      (Delete a column.)
-</span><span style="color:#75715e">3. is_srt(@list)          (Is a list sorted?)
-</span><span style="color:#75715e">4. del_unsrt_cols($pref)  (Delete unsorted columns.)
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
-</span><span style="color:#75715e">IO NOTES:
-</span><span style="color:#75715e">Input is via either built-in variables or via @ARGV. If using @ARGV, provide one argument which must be a
-</span><span style="color:#75715e">single-quoted array of arrays of equal-length double-quoted strings, in proper Perl syntax, like so:
-</span><span style="color:#75715e">./ch-2.pl &#39;([&#34;SNMP&#34;, &#34;HTTP&#34;, &#34;SVGA&#34;],[&#34;132&#34;,&#34;546&#34;,&#34;879&#34;],[&#34;zxy&#34;,&#34;nqp&#34;,&#34;fdh&#34;])&#39;
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">Output is to STDOUT and will be each input followed by the corresponding output.
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">=cut</span>
-
-<span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
-<span style="color:#75715e"># PRAGMAS, MODULES, AND SUBS:</span>
-
-   <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
-   <span style="color:#66d9ef">use</span> utf8;
-   <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw( min )</span>;
-
-   <span style="color:#75715e"># Return a column from a page:</span>
-   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">col</span> ($pref,$n) {
-      <span style="color:#66d9ef">return</span> map {substr $_, $n, <span style="color:#ae81ff">1</span>} @$pref;
-   }
-
-   <span style="color:#75715e"># Delete a column from a page:</span>
-   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">del_col</span> ($pref,$n) {
-      map {substr $_, $n, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;&#39;</span>} @$pref;
-   }
-
-   <span style="color:#75715e"># Is a given list already-sorted?</span>
-   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_srt</span> (@list) {
-      <span style="color:#66d9ef">my</span> @srt <span style="color:#f92672">=</span> sort @list;
-      map {<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $srt[$_] <span style="color:#f92672">eq</span> $list[$_]} (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#list);
-      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-   }
-
-   <span style="color:#75715e"># Delete all unsorted columns from a page:</span>
-   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">del_unsrt_cols</span> ($pref) {
-      <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> min map {length($pref<span style="color:#f92672">-&gt;</span>[$_])} (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#$pref);
-      <span style="color:#66d9ef">my</span> $delcnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-      <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $col <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; $col <span style="color:#f92672">&lt;=</span> $cols ; <span style="color:#f92672">++</span>$col ) {
-         <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>is_srt(col($pref, $col)) ) {
-            del_col($pref, $col);
-            <span style="color:#f92672">++</span>$delcnt; <span style="color:#75715e"># Increment deletion counter,</span>
-            <span style="color:#f92672">--</span>$cols;   <span style="color:#75715e"># because we deleted a column,</span>
-            <span style="color:#f92672">--</span>$col;    <span style="color:#75715e"># and remaining columns shifted left.</span>
-         }
-      }
-      <span style="color:#66d9ef">return</span> $delcnt;  <span style="color:#75715e"># Return number of columns deleted.</span>
-   }
-
-<span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
-<span style="color:#75715e"># INPUTS:</span>
-<span style="color:#66d9ef">my</span> @pages <span style="color:#f92672">=</span> @ARGV ? eval($ARGV[<span style="color:#ae81ff">0</span>]) : ([<span style="color:#e6db74">&#34;swpc&#34;</span>,<span style="color:#e6db74">&#34;tyad&#34;</span>,<span style="color:#e6db74">&#34;azbe&#34;</span>],[<span style="color:#e6db74">&#34;cba&#34;</span>,<span style="color:#e6db74">&#34;daf&#34;</span>,<span style="color:#e6db74">&#34;ghi&#34;</span>],[<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>]);
-<span style="color:#75715e">#                 Expected outputs :             2                    1                 0</span>
-
-<span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
-<span style="color:#75715e"># MAIN BODY OF PROGRAM:</span>
-$&#34;<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;, &#39;</span>;
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pref (@pages) {
-   say <span style="color:#e6db74">&#39;&#39;</span>;
-   say <span style="color:#e6db74">&#39;Page of text:&#39;</span>;
-   say <span style="color:#66d9ef">for</span> @$pref;
-   <span style="color:#66d9ef">my</span> $removed <span style="color:#f92672">=</span> del_unsrt_cols($pref);
-   say <span style="color:#e6db74">&#39;Page with unsorted columns removed:&#39;</span>;
-   say <span style="color:#66d9ef">for</span> @$pref;
-   say <span style="color:#e6db74">&#34;Number of unsorted columns removed = $removed&#34;</span>;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env -S perl -C63</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">=pod
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">TITLE AND ATTRIBUTION:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Solutions in Perl for The Weekly Challenge 314-2,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">written by Robbie Hatley on Mon Mar 24, 2025.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">PROBLEM DESCRIPTION:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Task 314-2: Sort Column
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Submitted by: Mohammad Sajid Anwar
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">You are given a list of strings of same length. Write a script
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">to make each column sorted lexicographically by deleting any
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">non-sorted columns. Return the total columns deleted.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Example #1:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Input: @list = (&#34;swpc&#34;, &#34;tyad&#34;, &#34;azbe&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Output: 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">swpc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">tyad
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">azbe
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Column 1: &#34;s&#34;, &#34;t&#34;, &#34;a&#34; =&gt; non sorted
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Column 2: &#34;w&#34;, &#34;y&#34;, &#34;z&#34; =&gt; sorted
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Column 3: &#34;p&#34;, &#34;a&#34;, &#34;b&#34; =&gt; non sorted
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Column 4: &#34;c&#34;, &#34;d&#34;, &#34;e&#34; =&gt; sorted
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Total columns to delete to make it sorted lexicographically: 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Example #2:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Input: @list = (&#34;cba&#34;, &#34;daf&#34;, &#34;ghi&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Output: 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Example #3:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Input: @list = (&#34;a&#34;, &#34;b&#34;, &#34;c&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Output: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">PROBLEM NOTES:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">I could cheat and just return the number of columns necessary to be deleted, but that&#39;s NOT what the problem
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">description actually says; it says &#34;make each column sorted lexicographically by DELETING any non-sorted
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">columns&#34;. So I&#39;ll actually do that. I&#39;ll make these 4 subroutines:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">1. col($pref,$n)          (Return a column.)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">2. del_col($pref,$n)      (Delete a column.)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">3. is_srt(@list)          (Is a list sorted?)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">4. del_unsrt_cols($pref)  (Delete unsorted columns.)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--------------------------------------------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">IO NOTES:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Input is via either built-in variables or via @ARGV. If using @ARGV, provide one argument which must be a
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">single-quoted array of arrays of equal-length double-quoted strings, in proper Perl syntax, like so:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">./ch-2.pl &#39;([&#34;SNMP&#34;, &#34;HTTP&#34;, &#34;SVGA&#34;],[&#34;132&#34;,&#34;546&#34;,&#34;879&#34;],[&#34;zxy&#34;,&#34;nqp&#34;,&#34;fdh&#34;])&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Output is to STDOUT and will be each input followed by the corresponding output.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">=cut</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># PRAGMAS, MODULES, AND SUBS:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">use</span> utf8;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw( min )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># Return a column from a page:</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">col</span> ($pref,$n) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> map {substr $_, $n, <span style="color:#ae81ff">1</span>} @$pref;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># Delete a column from a page:</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">del_col</span> ($pref,$n) {
+</span></span><span style="display:flex;"><span>      map {substr $_, $n, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;&#39;</span>} @$pref;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># Is a given list already-sorted?</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_srt</span> (@list) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @srt <span style="color:#f92672">=</span> sort @list;
+</span></span><span style="display:flex;"><span>      map {<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $srt[$_] <span style="color:#f92672">eq</span> $list[$_]} (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#list);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># Delete all unsorted columns from a page:</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">del_unsrt_cols</span> ($pref) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> min map {length($pref<span style="color:#f92672">-&gt;</span>[$_])} (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#$pref);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $delcnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $col <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; $col <span style="color:#f92672">&lt;=</span> $cols ; <span style="color:#f92672">++</span>$col ) {
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>is_srt(col($pref, $col)) ) {
+</span></span><span style="display:flex;"><span>            del_col($pref, $col);
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">++</span>$delcnt; <span style="color:#75715e"># Increment deletion counter,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">--</span>$cols;   <span style="color:#75715e"># because we deleted a column,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">--</span>$col;    <span style="color:#75715e"># and remaining columns shifted left.</span>
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> $delcnt;  <span style="color:#75715e"># Return number of columns deleted.</span>
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># INPUTS:</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @pages <span style="color:#f92672">=</span> @ARGV ? eval($ARGV[<span style="color:#ae81ff">0</span>]) : ([<span style="color:#e6db74">&#34;swpc&#34;</span>,<span style="color:#e6db74">&#34;tyad&#34;</span>,<span style="color:#e6db74">&#34;azbe&#34;</span>],[<span style="color:#e6db74">&#34;cba&#34;</span>,<span style="color:#e6db74">&#34;daf&#34;</span>,<span style="color:#e6db74">&#34;ghi&#34;</span>],[<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>]);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#                 Expected outputs :             2                    1                 0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ------------------------------------------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># MAIN BODY OF PROGRAM:</span>
+</span></span><span style="display:flex;"><span>$&#34;<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;, &#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pref (@pages) {
+</span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#39;Page of text:&#39;</span>;
+</span></span><span style="display:flex;"><span>   say <span style="color:#66d9ef">for</span> @$pref;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> $removed <span style="color:#f92672">=</span> del_unsrt_cols($pref);
+</span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#39;Page with unsorted columns removed:&#39;</span>;
+</span></span><span style="display:flex;"><span>   say <span style="color:#66d9ef">for</span> @$pref;
+</span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#34;Number of unsorted columns removed = $removed&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>That&rsquo;s it for challenge <code>314</code>; see you on challenge <code>315!</code></p>
 <br>
 <hr>

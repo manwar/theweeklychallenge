@@ -24,7 +24,7 @@ The challenge reads as follows:
 
 Perl 6/Raku has very rich [error handling features](https://docs.perl6.org/language/exceptions), most notably the [Exception class](https://docs.perl6.org/type/Exception). Without going into all the lengthy details, let us say that it's possible to handle exceptional circumstances by supplying a `CATCH` block. To solve the challenge can be as simple as this:
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN (Numeric $numerator, Numeric $denominator) {
@@ -48,7 +48,7 @@ An exception object is usually contained in the `$!` special variable, but a `CA
 
 Although it is not really needed here, it may sometimes be useful to define the scope of the `CATCH` block by enclosing it in a `try` block, for example:
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN (Numeric $numerator, Numeric $denominator) {
@@ -64,7 +64,7 @@ sub MAIN (Numeric $numerator, Numeric $denominator) {
 
 Actually, defining a `try` block (it doesn't really have to be a block, a simple statement will also work) creates an implicit `CATCH` block, and this may be used to contain the exception:
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN (Numeric $numerator, Numeric $denominator) {
@@ -76,7 +76,7 @@ sub MAIN (Numeric $numerator, Numeric $denominator) {
 
 The above program does not die and doesn't print anything but exits normally (with the successful exit code, 0, on Unix-like systems) when you pass a zero value for the denominator. We're in effect silencing the exception. Even if you don't want to abort the program when encountering such an error, you might still prefer to tell the user that something went wrong with a message containing the description of the caught exception:
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN (Numeric $numerator, Numeric $denominator) {
@@ -98,7 +98,7 @@ which outputs the following:
 
 [Adam Russell](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-1.p6) has been participating to the challenge in Perl 5 since the very beginning, but is participating to the challenge in Perl 6 / Raku for the first time (if I'm not wrong). His solution uses a `try` block with an embedded `CATCH` block:
 
-```Perl6
+```perl
 try {
     my $x = 9;
     my $y = 0;
@@ -115,7 +115,7 @@ Note also that Adam Russell also suggested a solution in C++.
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/arne-sommer/perl6/ch-1.p6) used a `try` [statement prefix](https://docs.perl6.org/language/statement-prefixes#index-entry-try_(statement_prefix)-try) to catch any error in the division.
 
-``` Perl6
+```perl
 unit sub MAIN (Numeric $a = 10, Numeric $b = 0);
 my $c = $a / $b;
 try say "a/b = $c";
@@ -134,7 +134,7 @@ The fact that `$!` is populated doesn't necessarily mean that the problem was a 
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/kevin-colyer/perl6/ch-1.p6) use a `try` block, but apparently did not succeed to get an exception with a simple division by zero such as `my $c = 1/0;` computation and therefore had to use a trick such as `"{$a/$b}"`:
 
-``` Perl6
+```perl
 sub Is_DivByZero($a,$b){
     my Bool $result=False;
     my $misc;
@@ -151,7 +151,7 @@ Let me try to answer Kevin's interrogation. I have read in the past somewhere in
 
 [Mark Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/mark-senn/perl6/ch-1.p6) provided three possible solutions:
 
-``` Perl6
+```perl
 sub div1($a, $b) {
     my $c = $a / $b;
     return $c  //  Inf;
@@ -203,7 +203,7 @@ sub MAIN() {
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/ch-1.p6) suggested a two-line script:
 
-``` Perl6
+```perl
 say "Division by zero" without try ( 1/0 ).Str;
 say "Division is okay" with try ( 1/1 ).Str;
 ```
@@ -212,7 +212,7 @@ The first line outputs a "Division by zero" error and the second one doesn't, as
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/noud/perl6/ch-1.p6) suggested a [stereographic projection](https://en.wikipedia.org/wiki/Stereographic_projection) (on a complex sphere) where a division by zero is not an error (a division by zero produces the North Pole of the complex sphere). Please follow the link to understand Noud's idea.
 
-``` Perl6
+```perl
 sub infix:<%/>($x, $y) {
     my $z = Complex.new($x * $y / ($x**2 + $y**2), $x**2 / ($x**2 + $y**2));
     if ($z === i) {
@@ -228,7 +228,7 @@ sub infix:<%/>($x, $y) {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/simon-proctor/perl6/ch-1.p6) suggested a `safe-division` subroutine:
 
-``` Perl6
+```perl
 sub safe-division( Numeric $nu, Numeric $de ) {
     try {
         ($nu/$de).Str();
@@ -240,14 +240,14 @@ sub safe-division( Numeric $nu, Numeric $de ) {
 
 [Tyler Limkemann](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/tyler-limkemann/perl6/ch-1.p6), a new member of the team, suggested this very simple solution:
 
-``` Perl6
+```perl
 CATCH { default { "can't divide by 0!".say } }
 (1/0).say;
 ```
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/athanasius/perl6/ch-1.p6) provided, as usual, a somewhat verbose solution using a `try`block:
 
-``` Perl6
+```perl
 my Real constant $DEFAULT-DIVIDEND = 1;
 my Real constant $DEFAULT-DIVISOR  = 0;
 
@@ -282,7 +282,7 @@ sub MAIN
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/jaldhar-h-vyas/perl6/ch-1.p6) created a `isDividedByZero` subroutine to handle exception conditions with a `CATCH` block:
 
-``` Perl6
+```perl
 sub isDividedByZero($numerator, $denominator) {
         ($numerator / $denominator).grep({});
         CATCH {
@@ -295,7 +295,7 @@ sub isDividedByZero($numerator, $denominator) {
 ```
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/javier-luque/perl6/ch-1.p6), another new member of the team, used a `try` block with an embedded `CATCH` block:
 
-``` Perl6
+```perl
 sub divide-by-zero-check(Str $statement) {
     try {
         my $answer = Rat($statement);
@@ -309,7 +309,7 @@ sub divide-by-zero-check(Str $statement) {
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/joelle-maslak/perl6/ch-1.p6) used a `CATCH` block specifying the `X::Numeric::DivideByZero` exception, so that her program will pick only that error and no other:
 
-``` Perl6
+```perl
 sub MAIN($numerator, $denominator) {
     if test-for-div-by-zero($numerator, $denominator) {
         say "Denominator is zero";
@@ -330,7 +330,7 @@ sub test-for-div-by-zero($numerator, $denominator) {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/ruben-westerberg/perl6/ch-1.p6) used a `try` statement prefix and tested the value of the `$!` error variable populated by `try` when it catches an exception:
 
-``` Perl6
+```perl
 my $numerator=@*ARGS[0]//1;
 my $denominator=@*ARGS[1]//0;
 my $result;
@@ -343,7 +343,7 @@ put "Division failed: Divide by zero" if $!;
 
 [Yet Ebreo](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/yet-ebreo/perl6/ch-1.p6) created a `div_zero_check` subroutine using a `try` block and testing the `$!` error variable (pretty much like like Ruben):
 
-``` Perl6
+```perl
 sub div_zero_check ($n, $d) {
     my $r;
     try {
@@ -379,7 +379,7 @@ The solution to avoid symbolic references in Perl 5 is to use a hash. Please rea
 
 My first reaction is that I did not think that there is anything like symbolic references in Perl 6/Raku and that it was possible to create a variable dynamically. So, it seemed that it was not possible to literally "demonstrate creating dynamic variable name" in Perl 6/Raku. What we can do, however, is, like in P5, to use a hash:
 
-``` Perl6
+```perl
 use v6;
 
 sub MAIN (Str $name, Str $value) {
@@ -399,7 +399,7 @@ It turns out that I was wrong and that there are some ways to dynamically create
 
 [Adam Russell](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-2.p6) has been participating to the challenge in Perl 5 since the very beginning, but is participating to the challenge in Perl 6 / Raku for the first time (if I'm not wrong). His very imaginative solution creates a variable name by concatenating `"\$"` with the first argument passed to the script, then creates on the fly a `Temp.pm6` file containing a module printing out newly created variable, runs the module (with `require` to import the module at run time) and finally deletes the `Temp.pm6` file.
 
-``` Perl6
+```perl
 my $variable = "\$" ~ @*ARGS[0];
 my $value = @*ARGS[1];
 spurt "Temp.pm6", "unit module Temp; my $variable = $value; say \"The value of \\$variable is $variable.\"";
@@ -412,7 +412,7 @@ See also his quite clever C++ implementation using macros to create dynamically 
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/arne-sommer/perl6/ch-2.p6) also thought that it is not possible to create a variable dynamically in Raku, but argued that it is possible to access an already existing one with the `::()` operator:
 
-``` Perl6
+```perl
 unit sub MAIN ($name = '$a');
 
 my $a = 12;
@@ -428,7 +428,7 @@ So, after all, I was wrong: there appears to exist something like [symbolic refe
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/kevin-colyer/perl6/ch-2.p6) used essentially the same technique as Arne:
 
-``` Perl6
+```perl
 sub MAIN($name='test'){
     # From http://rosettacode.org/wiki/Dynamic_variable_names#Perl_6
     my $var=$name;
@@ -440,7 +440,7 @@ sub MAIN($name='test'){
 
 [Mark Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/mark-senn/perl6/ch-2.p6) tried various ways to implement indirect names or symbolic references, and finally used a hash:
 
-``` Perl6
+```perl
 sub MAIN($name, $value)
 {
     say "$name    $value";
@@ -468,7 +468,7 @@ sub MAIN($name, $value)
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/ch-2.p6) created a [VariableFactory](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/lib/VariableFactory.pm6) class:
 
-``` Perl6
+```perl
 class VariableFactory { * }
 sub EXPORT( $var-name )
 {
@@ -479,7 +479,7 @@ sub EXPORT( $var-name )
 ```
 and used it in his program:
 
-``` Perl6
+```perl
 INIT use VariableFactory ( @*ARGS[0] );
 sub MAIN( $var-name ) { say ::( '$*' ~ $var-name ) }
 ```
@@ -488,7 +488,7 @@ Markus's program creates the variable name through concatenation of the `'$*'` a
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/noud/perl6/ch-2.p6) made something similar, although quite simpler, but I also have some difficulty understanding how this could be useful:
 
-``` Perl6
+```perl
 sub MAIN($name, $value) {
     GLOBAL::{'$' ~ $name} = $value;
     say '$' ~ $name ~ " = " ~ GLOBAL::{'$' ~ $name};
@@ -497,7 +497,7 @@ sub MAIN($name, $value) {
 
 [Tyler Limkemann](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/tyler-limkemann/perl6/ch-2.p6) created a `Contextualizer` class using `nqp` (not quite Perl), a lower-level subset of the Perl 6 syntax.
 
-``` Perl6
+```perl
 use MONKEY;
 use nqp;
 
@@ -520,7 +520,7 @@ sub MAIN(Str $s) {
 
 [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/athanasius/perl6/ch-2.p6) used the `EVAL` built-in routine which makes it possible to execute a string containing valid Perl 6/ Raku code:
 
-``` Perl6
+```perl
 use MONKEY-SEE-NO-EVAL;
 my Real constant $VALUE = 42;
 
@@ -540,7 +540,7 @@ Note that `EVAL` is considered to be a dangerous function and therefore requires
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/joelle-maslak/perl6/ch-2.p6) also used the `EVAL` built-in routine:
 
-``` Perl6
+```perl
 use MONKEY-SEE-NO-EVAL;
 
 # Note all sorts of bad things can still be done with this code - like a
@@ -556,7 +556,7 @@ sub MAIN(Str:D $var-name, $value) {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/ruben-westerberg/perl6/ch-2.p6) also  the `EVAL` built-in routine:
 
-``` Perl6
+```perl
 use MONKEY-SEE-NO-EVAL;
 my $name=@*ARGS[0]//"var"~1000.rand.Int;
 my $value=@*ARGS[1]//1.rand;
@@ -582,7 +582,7 @@ put "";
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/jaldhar-h-vyas/perl6/ch-2.p6) suggested this quite simple solution:
 
-``` Perl6
+```perl
 sub MAIN( Str $var ) {
     my $newvar = $var;
     $($newvar) = 42;
@@ -593,7 +593,7 @@ sub MAIN( Str $var ) {
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/javier-luque/perl6/ch-2.p6) used the `GLOBAL` name space to perform the task:
 
-``` Perl6
+```perl
 sub MAIN (Str $variable) {
     # Randomly populate the random value
     my $random_value = (0..^9).roll(12).join;

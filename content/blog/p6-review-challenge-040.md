@@ -42,7 +42,7 @@ The task implicitly asks for matrix transposition.
 
 Let's start with the example provided with the task. We have three arrays, they all have 8 items and each item is just one character long. With such nice input data, we can obtain the desired out with just one line of real code:
 
-``` Perl6
+```perl
 use v6;
 
 my @a1 = < I L O V E Y O U >;
@@ -66,7 +66,7 @@ which duly displays the desired result:
 
 But that doesn't work properly if the length of the arrays’ items is not always the same. This can be solved (to a certain extent) using tabulations:
 
-``` Perl6
+```perl
 use v6;
 
 my @a1 = < I L OOO V E Y O U >;
@@ -91,7 +91,7 @@ But, what if the arrays don't have the same number of items? And, more important
 
 The Raku programming language has the [Z](https://docs.raku.org/routine/Z) Zip built-in operator, which, used together with the `[]` reduction metaoperator to act on several sub-arrays, gives us a very easy way to transpose lines and columns of a 2-D array:
 
-``` Perl6
+```perl
 use v6;
 
 my @a = < I L O V E Y O U >,
@@ -120,7 +120,7 @@ This displays the following output:
 
 Now, what if some of the array items have a length exceeding the tabulation size (7 or more character in our case)?  Using tabulations is no longer sufficient. We can construct dynamically a formatting string to be used by the `sprinf`, `printf`, or `fmt` built-in functions:
 
-``` Perl6
+```perl
 use v6;
 
 my @a = < I L O V E Y O U >,
@@ -158,7 +158,7 @@ This displays the following output:
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/arne-sommer/perl6/ch-1.p6) made good use of the `>>` hyper operator together with the `max`built-in to find the size of the largest array and the length of the largest string in each array. He then used two nested `for` loops to print out the array of arrays' items *column-wise*:
 
-``` Perl6
+```perl
 @strings = ('I L O V E Y O U', '2 4 0 3 2 0 1 9', '! ? £ $ % ^ & *') unless @strings.elems;
 
 my @arrays = @strings.map(*.words.List);
@@ -180,7 +180,7 @@ for ^$length -> $index
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/noud/perl6/ch-1.p6) wrote a quite clever and concise `print_intertwined` subroutine that takes a number of arrays as input and then uses the `[Z]` combined zip and reduction operators to transpose the matrix on the fly:
 
-``` Perl6
+```perl
 my @arr1 = <I L O V E Y O U>;
 my @arr2 = <2 4 0 3 2 0 1 9 5 6 7 8>;
 my @arr3 = <! ? £ $ % ^ & * ( )>;
@@ -199,7 +199,7 @@ Quite well done, Noud! Note also how Noud's program deals manually with array it
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/simon-proctor/perl6/ch-1.p6) suggested an even more concise solution that also uses the `[Z]` combined operator:
 
-``` Perl6
+```perl
 sub MAIN(
     *@inputs where { @_.all.codes ~~ @_[0].codes } #= Strings to display
 ) {
@@ -209,7 +209,7 @@ sub MAIN(
 
 [Burkhard Nickels](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/burkhard-nickels/perl6/ch-1.p6) participated to the Raku challenge for the first time. His program is very short, but it only covers the simple input provided with the task (as my first solution at the beginning of this post), but not cases where the input data is less regular:
 
-```Perl6
+```perl
 my @a1 = ('I','L','O','V','E','Y','O','U');
 my @a2 = ('2','4','0','3','2','0','1','9');
 my @a3 = ('!','?','£','$','%','^','&','*');
@@ -221,7 +221,7 @@ loop ( my $i = 0; $i <= @a1.end; $i++ ) {
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/javier-luque/perl6/ch-1.p6)'s solution covers more complicated input data than just three arrays of equal size, but it doesn't cover the case where the array items are larger than a single character:
 
-``` Perl6
+```perl
 sub MAIN() {
     my @arrays = (
         <I L O V E Y O U>,
@@ -244,7 +244,7 @@ Note that `for (0 .. $max - 1) -> $i` might be written more concisely: `for ^$ma
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/roger-bell-west/perl6/ch-1.p6) used two nested loops to go through the data and populate an intermediate one-line array (`@out`). His solution covers more complicated input data than just three arrays of equal size, but it doesn't cover the case where the array items are larger than a single character:
 
-``` Perl6
+```perl
 my @a=(
     (qw|I L O V E Y O U|),
     (qw|2 4 0 3 2 0 1 9|),
@@ -273,7 +273,7 @@ while ($r) {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/ruben-westerberg/perl6/ch-1.p6) provided a very concise solution that I initially didn't fully grasp:
 
-``` Perl6
+```perl
 my @aoa=( <I L O V E Y O U>, <2 4 0 3 2 0 1 9>, <! ? £ $ % ^ & * >);
 my @indexes=@*ARGS==0??(2,3)!!@*ARGS;
 put $_ for @indexes.map({@aoa[*;$_].join: " "});
@@ -283,7 +283,7 @@ and also appeared not to work properly when I first tested it... until I underst
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/ryan-thompson/perl6/ch-1.p6) provided two solutions, each holding in a single code line, using the `zip` built-in function of the infix `Z` operator. So, two very concise solutions, but no attempt to handle less regular input data.
 
-``` Perl 6
+```perl
 my @a1 = 'ILOVEYOU'.comb;
 my @a2 = '24032019'.comb;
 my @a3 = '!?X$%^&*'.comb;
@@ -322,7 +322,7 @@ Note that Raku's sort procedure is clever enough to discover that it should perf
 
 And we end up with a single line of code doing all the real work:
 
-``` Perl6
+```perl
 use v6;
 
 my @numbers = 10, 4, 1, 8, 12, 3;
@@ -341,13 +341,13 @@ This program displays the following output:
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/arne-sommer/perl6/ch-2.p6) made a solution even simpler than mine and avoided to repeat the name of the array variable. The bulk of the work holds in a short code line:
 
-``` Perl6
+```perl
 @array[@indices].=sort;
 ```
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/noud/perl6/ch-2.p6) offered a solution very similar to mine!
 
-``` Perl6
+```perl
 sub subsort(@arr, @ind) {
     @arr[@ind] = @arr[@ind].sort; @arr;
 }
@@ -356,20 +356,20 @@ say subsort([10, 4, 1, 8, 12, 3], [0, 2, 5]);
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/ryan-thompson/perl6/ch-2.p6) also made a program quite similar to mine:
 
-``` Perl6
+```perl
 @list[@idx] = @list[@idx].sort;
 @list.say;
 ```
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/simon-proctor/perl6/ch-2.p6) used essentially the same technique:
 
-``` Perl6
+```perl
 @list[@indices] = @list[@indices].sort;
 ```
 
 [Burkhard Nickels](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/burkhard-nickels/perl6/ch-2.p6) participated to the Raku challenge for the first time. His program is slightly more complicated than those seen so far, as it involves two steps, but it also relies on slices:
 
-``` Perl6
+```perl
 my @a = (10,4,1,8,12,3);
 my @i = (0,2,5);
 
@@ -381,7 +381,7 @@ print "After: ", join(" - ", @a), "\n";
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/javier-luque/perl6/ch-2.p6)'s program also also does the work in two steps:
 
-``` Perl6
+```perl
 my @list = (10, 4, 1, 8, 12, 3);
 my @indices = (0, 2, 5);
 
@@ -397,7 +397,7 @@ say @list;
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/roger-bell-west/perl6/ch-2.p6) also wrote a program doing the work in two steps:
 
-``` Perl6
+```perl
 my @list=(10, 4, 1, 8, 12, 3);
 my @indices=(0,2,5);
 
@@ -409,7 +409,7 @@ print join(', ',@list),"\n";
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/ruben-westerberg/perl6/ch-2.p6) clearly wins the conciseness prize on this task:
 
-``` Perl6
+```perl
 put @a[@i].sort;
 ```
 

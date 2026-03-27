@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-1blogadvent-calendar-2021-12-01--day-2--day-3blogadvent-calendar-2021-12-03-">| <a href="/blog/advent-calendar-2021-12-01"><strong>Day 1</strong></a> | <strong>Day 2</strong> | <a href="/blog/advent-calendar-2021-12-03"><strong>Day 3</strong></a> |</h3>
+        <h2 id="advent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
+<h3 id="-day-1--day-2--day-3-">| <a href="/blog/advent-calendar-2021-12-01"><strong>Day 1</strong></a> | <strong>Day 2</strong> | <a href="/blog/advent-calendar-2021-12-03"><strong>Day 3</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-029"><strong>Dave Jacoby</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-096"><strong>&ldquo;The Weekly Challenge - 096&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://jacoby.github.io/2021/01/19/going-the-distance-perl-weekly-challenge-96.html"><strong>post</strong></a> by <code>Dave Jacoby</code>.</p>
 <hr>
@@ -191,263 +191,263 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>But <strong>no</strong>, we can’t just leave it at that, because the examples show <strong>which</strong> changes are made! This forced me to <code>read and understand(!)</code> what’s going on with Levenshtein Distance. I mean, <code>really!?!?</code></p>
 <p>So, let’s take a much simpler example than those given in the challenge. <code>test</code> to <code>text</code>. We first create an empty 2-dimensional array, with the size of each axis equalling the length of each of the words, plus 1. We start here:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">     t e s t
-  [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]
-t [<span style="color:#ae81ff">1</span>, , , , ]
-e [<span style="color:#ae81ff">2</span>, , , , ]
-x [<span style="color:#ae81ff">3</span>, , , , ]
-t [<span style="color:#ae81ff">4</span>, , , , ]
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>     t e s t
+</span></span><span style="display:flex;"><span>  [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]
+</span></span><span style="display:flex;"><span>t [<span style="color:#ae81ff">1</span>, , , , ]
+</span></span><span style="display:flex;"><span>e [<span style="color:#ae81ff">2</span>, , , , ]
+</span></span><span style="display:flex;"><span>x [<span style="color:#ae81ff">3</span>, , , , ]
+</span></span><span style="display:flex;"><span>t [<span style="color:#ae81ff">4</span>, , , , ]
+</span></span></code></pre></div><br>
 <p>We start at <code>[1,1]</code>, where we check if the first letter of <code>test</code> is the same as the first letter of <code>text</code>, which it is, and so, the value in <code>[1,1]</code> is the same as in <code>[0,0]</code>, which is zero.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">     t e s t
-  [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]
-t [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>, , , ]
-e [<span style="color:#ae81ff">2</span>, , , , ]
-x [<span style="color:#ae81ff">3</span>, , , , ]
-t [<span style="color:#ae81ff">4</span>, , , , ]
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>     t e s t
+</span></span><span style="display:flex;"><span>  [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]
+</span></span><span style="display:flex;"><span>t [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>, , , ]
+</span></span><span style="display:flex;"><span>e [<span style="color:#ae81ff">2</span>, , , , ]
+</span></span><span style="display:flex;"><span>x [<span style="color:#ae81ff">3</span>, , , , ]
+</span></span><span style="display:flex;"><span>t [<span style="color:#ae81ff">4</span>, , , , ]
+</span></span></code></pre></div><br>
 <p>So we step on to <code>[1,2]</code>, where we see if <code>e</code> in <code>test</code> is the same as <code>t</code> in <code>text</code>. Clearly, no. So we get the values of <code>[0,1],[0,2]</code> and <code>[1,1]</code>, which are <code>0, 1, 2</code>. We take the lowest, <code>0</code>, add <code>1</code> and set <code>[1,2]</code> to <code>1</code>.</p>
 <p>We go again and again and we end up with.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">     t e s t
-  [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]
-t [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]
-e [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]
-x [<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]
-t [<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>]
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>     t e s t
+</span></span><span style="display:flex;"><span>  [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]
+</span></span><span style="display:flex;"><span>t [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>e [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>x [<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>t [<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>]
+</span></span></code></pre></div><br>
 <p>And the last one we do, the last column of the last row, is exactly how many changes are necessary.</p>
 <p>So, to find out what moves are the right ones, we move backwards, from the last to the first <code>0</code> we find.</p>
 <h2 id="the-code">The Code</h2>
 <br>
 <p>It’s a bit messy, and very first draft. I was just spitting out the operations as I see them, until I realized that they were coming out backwards. And again, <code>min</code> from <a href="https://metacpan.org/pod/List::Util"><strong>List::Util</strong></a> because it’s so useful.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say signatures state }</span>;
-<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw{ experimental }</span>;
-
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{min}</span>;
-
-<span style="color:#66d9ef">my</span> @input;
-push @input, [<span style="color:#e6db74">qw{ kitten sitting }</span>];
-push @input, [<span style="color:#e6db74">qw{ sunday monday }</span>];
-push @input, [<span style="color:#e6db74">qw{ slight lights }</span>];
-push @input, [<span style="color:#e6db74">qw{ fed feed }</span>];
-push @input, [<span style="color:#e6db74">qw{ test test }</span>];
-push @input, [<span style="color:#e6db74">qw{ test text }</span>];
-
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (@input) {
-    edit_distance( $x<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> );
-}
-
-<span style="color:#75715e"># I first found the Levenshtein distance when poking in the center of</span>
-<span style="color:#75715e"># perlbrew. This is how it knows, when you type `perlbrew xeec` to</span>
-<span style="color:#75715e"># suggest you try `perlbrew exec` instead. This gives us the first</span>
-<span style="color:#75715e"># part, the number of changes you&#39;d need to get from S1 to S2. I thought</span>
-<span style="color:#75715e"># about but never implemented it as a kind-of 404 page for endpoints:</span>
-<span style="color:#75715e"># you look like you&#39;re looking for &#34;index&#34; but typed &#34;idnex&#34;, for example.</span>
-
-<span style="color:#75715e"># What we don&#39;t get from editdist is WHICH changes those would be.</span>
-<span style="color:#75715e"># therefore, it&#39;s a half-solution for this problem.</span>
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">edit_distance</span> ( $s1, $s2 ) {
-    editdist( $s1, $s2 );
-}
-
-<span style="color:#75715e"># let&#39;s try to make this a whole solution</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">editdist</span> ( $s1, $s2 ) {
-    <span style="color:#66d9ef">my</span> @s1 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $s1;
-    <span style="color:#66d9ef">my</span> @s2 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $s2;
-    <span style="color:#66d9ef">my</span> @d;
-    $d[$_][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @s1 );
-    $d[<span style="color:#ae81ff">0</span>][$_] <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @s2 );
-
-    <span style="color:#75715e"># this creates a two-dimensional array that starts like this:</span>
-    <span style="color:#75715e">#   [0,1,2,3,4,5,6]</span>
-    <span style="color:#75715e">#   [1, , , , , , ]</span>
-    <span style="color:#75715e">#   [2, , , , , , ]</span>
-    <span style="color:#75715e">#   [3, , , , , , ]</span>
-    <span style="color:#75715e">#   [4, , , , , , ]</span>
-    <span style="color:#75715e">#   [5, , , , , , ]</span>
-    <span style="color:#75715e"># which gets filled in iteratively in the nested loops below</span>
-
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @s1 ) {
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @s2 ) {
-
-            <span style="color:#75715e"># Let&#39;s understand this. For a particular i and j position</span>
-            <span style="color:#75715e"># if the two agree, D[i][j] equals D[-i][-j]</span>
-
-            <span style="color:#75715e"># if they don&#39;t however, we find the value above</span>
-            <span style="color:#75715e"># the value before and the one above and before, find</span>
-            <span style="color:#75715e"># the lowest, and add one.</span>
-
-            <span style="color:#75715e"># this means that $d[-1][-1] would have the total</span>
-
-            $d[$i][$j] <span style="color:#f92672">=</span> (
-                  $s1[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">eq</span> $s2[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
-                ? $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
-                : <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> min(
-                    $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][$j],
-                    $d[$i][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ],
-                    $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
-                )
-
-            );
-        }
-    }
-
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&lt;&lt;&#34;</span><span style="color:#e6db74">END</span><span style="color:#e6db74">&#34;;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">    Input: S1: $s1
-</span><span style="color:#e6db74">           S2: $s2
-</span><span style="color:#e6db74">    Change Count:  $d[-1][-1]
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">END</span>
-
-    <span style="color:#66d9ef">my</span> @operations <span style="color:#f92672">=</span> find_changes( <span style="color:#f92672">\</span>@d, <span style="color:#f92672">\</span>@s1, <span style="color:#f92672">\</span>@s2 );
-
-    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $operation ( reverse @operations ) {
-        say <span style="color:#e6db74">qq{        Operation $c: $operation}</span>;
-        $c<span style="color:#f92672">++</span>;
-    }
-
-    <span style="color:#75715e"># returns the last column of the last row, which SHOULD</span>
-    <span style="color:#75715e"># be the min changes.</span>
-    <span style="color:#66d9ef">return</span> $d[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
-}
-
-<span style="color:#75715e"># d  = 2-dimensional array, result of LD</span>
-<span style="color:#75715e"># s1 = array of first input</span>
-<span style="color:#75715e"># s2 = array of second input</span>
-<span style="color:#75715e"># i  = current row</span>
-<span style="color:#75715e"># j  = current column</span>
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_changes</span> ( $d, $s1, $s2, $i = -1, $j = -1 ) {
-
-    <span style="color:#75715e"># -1 means implicit end of array, which gets turned</span>
-    <span style="color:#75715e"># into explicit end of array</span>
-    $i <span style="color:#f92672">=</span> $i <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ? <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $d<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>       : $i;
-    $j <span style="color:#f92672">=</span> $j <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ? <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $d<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> : $j;
-
-    <span style="color:#75715e"># zero means that there are no more changes</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $d<span style="color:#f92672">-&gt;</span>[$i][$j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-
-    <span style="color:#66d9ef">my</span> $v  <span style="color:#f92672">=</span> $d<span style="color:#f92672">-&gt;</span>[$i][$j];
-    <span style="color:#66d9ef">my</span> $v1 <span style="color:#f92672">=</span> $d<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
-    <span style="color:#66d9ef">my</span> $v2 <span style="color:#f92672">=</span> $d<span style="color:#f92672">-&gt;</span>[$i][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
-    <span style="color:#66d9ef">my</span> $v3 <span style="color:#f92672">=</span> $d<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][$j];
-
-    <span style="color:#66d9ef">my</span> @output;
-    <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">0</span>) {
-
-        <span style="color:#75715e"># The impossible situation we never planned for.</span>
-        <span style="color:#75715e"># I LIKE to put an if ( false ) statement first,</span>
-        <span style="color:#75715e"># so it&#39;s easy to just move the elsifs around</span>
-        <span style="color:#75715e"># should I decide or discern that I have the order</span>
-        <span style="color:#75715e"># wrong.</span>
-    }
-    <span style="color:#66d9ef">elsif</span> ( $v1 <span style="color:#f92672">==</span> $v <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
-        <span style="color:#66d9ef">my</span> $c1 <span style="color:#f92672">=</span> $s1<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
-        <span style="color:#66d9ef">my</span> $c2 <span style="color:#f92672">=</span> $s2<span style="color:#f92672">-&gt;</span>[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
-        push @output, <span style="color:#e6db74">qq{replace &#39;$c1&#39; with &#39;$c2&#39;}</span>;
-        push @output, find_changes( $d, $s1, $s2, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
-    }
-    <span style="color:#66d9ef">elsif</span> ( $v2 <span style="color:#f92672">==</span> $v <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
-        <span style="color:#66d9ef">my</span> $c1 <span style="color:#f92672">=</span> $s1<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
-        <span style="color:#66d9ef">my</span> $c2 <span style="color:#f92672">=</span> $s2<span style="color:#f92672">-&gt;</span>[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
-        <span style="color:#66d9ef">if</span> ( $j <span style="color:#f92672">==</span> scalar $s2<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
-            push @output, <span style="color:#e6db74">qq{insert &#39;$c2&#39; at the end}</span>;
-        }
-        <span style="color:#66d9ef">else</span> { push @output, <span style="color:#e6db74">qq{insert &#39;$c2&#39;}</span>; }
-        push @output, find_changes( $d, $s1, $s2, $i, $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
-    }
-    <span style="color:#66d9ef">elsif</span> ( $v3 <span style="color:#f92672">==</span> $v <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
-        <span style="color:#66d9ef">my</span> $c1 <span style="color:#f92672">=</span> $s1<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
-        <span style="color:#66d9ef">my</span> $c2 <span style="color:#f92672">=</span> $s2<span style="color:#f92672">-&gt;</span>[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
-        push @output, <span style="color:#e6db74">qq{remove &#39;$c1&#39; from beginning}</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
-        push @output, <span style="color:#e6db74">qq{remove &#39;$c1&#39;}</span>                <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>;
-        push @output, find_changes( $d, $s1, $s2, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $j );
-    }
-    <span style="color:#66d9ef">elsif</span> ( $v1 <span style="color:#f92672">==</span> $v ) {
-        push @output, find_changes( $d, $s1, $s2, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
-    }
-    <span style="color:#66d9ef">elsif</span> ( $v2 <span style="color:#f92672">==</span> $v ) {
-        push @output, find_changes( $d, $s1, $s2, $i, $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
-    }
-    <span style="color:#66d9ef">elsif</span> ( $v3 <span style="color:#f92672">==</span> $v ) {
-        push @output, find_changes( $d, $s1, $s2, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $j );
-    }
-    <span style="color:#66d9ef">return</span> @output;
-}
-
-<span style="color:#75715e"># -------------------------------------------------------------------</span>
-<span style="color:#75715e"># straight copy of Wikipedia&#39;s &#34;Levenshtein Distance&#34;</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">levenshtein_distance</span> {
-    <span style="color:#66d9ef">my</span> ( $f, $g ) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $f;
-    <span style="color:#66d9ef">my</span> @b <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $g;
-
-    <span style="color:#75715e"># There is an extra row and column in the matrix. This is the</span>
-    <span style="color:#75715e"># distance from the empty string to a substring of the target.</span>
-    <span style="color:#66d9ef">my</span> @d;
-    $d[$_][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @a );
-    $d[<span style="color:#ae81ff">0</span>][$_] <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @b );
-
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @a ) {
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @b ) {
-            $d[$i][$j] <span style="color:#f92672">=</span> (
-                  $a[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">eq</span> $b[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
-                ? $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
-                : <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> min(
-                    $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][$j],
-                    $d[$i][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ],
-                    $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
-                )
-            );
-        }
-    }
-    <span style="color:#66d9ef">return</span> $d[@a][@b];
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say signatures state }</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw{ experimental }</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{min}</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @input;
+</span></span><span style="display:flex;"><span>push @input, [<span style="color:#e6db74">qw{ kitten sitting }</span>];
+</span></span><span style="display:flex;"><span>push @input, [<span style="color:#e6db74">qw{ sunday monday }</span>];
+</span></span><span style="display:flex;"><span>push @input, [<span style="color:#e6db74">qw{ slight lights }</span>];
+</span></span><span style="display:flex;"><span>push @input, [<span style="color:#e6db74">qw{ fed feed }</span>];
+</span></span><span style="display:flex;"><span>push @input, [<span style="color:#e6db74">qw{ test test }</span>];
+</span></span><span style="display:flex;"><span>push @input, [<span style="color:#e6db74">qw{ test text }</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (@input) {
+</span></span><span style="display:flex;"><span>    edit_distance( $x<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># I first found the Levenshtein distance when poking in the center of</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># perlbrew. This is how it knows, when you type `perlbrew xeec` to</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># suggest you try `perlbrew exec` instead. This gives us the first</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># part, the number of changes you&#39;d need to get from S1 to S2. I thought</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># about but never implemented it as a kind-of 404 page for endpoints:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># you look like you&#39;re looking for &#34;index&#34; but typed &#34;idnex&#34;, for example.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># What we don&#39;t get from editdist is WHICH changes those would be.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># therefore, it&#39;s a half-solution for this problem.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">edit_distance</span> ( $s1, $s2 ) {
+</span></span><span style="display:flex;"><span>    editdist( $s1, $s2 );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># let&#39;s try to make this a whole solution</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">editdist</span> ( $s1, $s2 ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @s1 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $s1;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @s2 <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $s2;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @d;
+</span></span><span style="display:flex;"><span>    $d[$_][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @s1 );
+</span></span><span style="display:flex;"><span>    $d[<span style="color:#ae81ff">0</span>][$_] <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @s2 );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># this creates a two-dimensional array that starts like this:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   [0,1,2,3,4,5,6]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   [1, , , , , , ]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   [2, , , , , , ]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   [3, , , , , , ]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   [4, , , , , , ]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   [5, , , , , , ]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># which gets filled in iteratively in the nested loops below</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @s1 ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @s2 ) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Let&#39;s understand this. For a particular i and j position</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># if the two agree, D[i][j] equals D[-i][-j]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># if they don&#39;t however, we find the value above</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># the value before and the one above and before, find</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># the lowest, and add one.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># this means that $d[-1][-1] would have the total</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            $d[$i][$j] <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>                  $s1[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">eq</span> $s2[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
+</span></span><span style="display:flex;"><span>                ? $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
+</span></span><span style="display:flex;"><span>                : <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> min(
+</span></span><span style="display:flex;"><span>                    $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][$j],
+</span></span><span style="display:flex;"><span>                    $d[$i][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ],
+</span></span><span style="display:flex;"><span>                    $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            );
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&lt;&lt;&#34;</span><span style="color:#e6db74">END</span><span style="color:#e6db74">&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Input: S1: $s1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">           S2: $s2
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Change Count:  $d[-1][-1]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">END</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @operations <span style="color:#f92672">=</span> find_changes( <span style="color:#f92672">\</span>@d, <span style="color:#f92672">\</span>@s1, <span style="color:#f92672">\</span>@s2 );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $operation ( reverse @operations ) {
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">qq{        Operation $c: $operation}</span>;
+</span></span><span style="display:flex;"><span>        $c<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># returns the last column of the last row, which SHOULD</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># be the min changes.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $d[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># d  = 2-dimensional array, result of LD</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># s1 = array of first input</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># s2 = array of second input</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># i  = current row</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># j  = current column</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_changes</span> ( $d, $s1, $s2, $i = -1, $j = -1 ) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># -1 means implicit end of array, which gets turned</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># into explicit end of array</span>
+</span></span><span style="display:flex;"><span>    $i <span style="color:#f92672">=</span> $i <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ? <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $d<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>       : $i;
+</span></span><span style="display:flex;"><span>    $j <span style="color:#f92672">=</span> $j <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ? <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $d<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> : $j;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># zero means that there are no more changes</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $d<span style="color:#f92672">-&gt;</span>[$i][$j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $v  <span style="color:#f92672">=</span> $d<span style="color:#f92672">-&gt;</span>[$i][$j];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $v1 <span style="color:#f92672">=</span> $d<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $v2 <span style="color:#f92672">=</span> $d<span style="color:#f92672">-&gt;</span>[$i][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $v3 <span style="color:#f92672">=</span> $d<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][$j];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @output;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># The impossible situation we never planned for.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># I LIKE to put an if ( false ) statement first,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># so it&#39;s easy to just move the elsifs around</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># should I decide or discern that I have the order</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># wrong.</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> ( $v1 <span style="color:#f92672">==</span> $v <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c1 <span style="color:#f92672">=</span> $s1<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c2 <span style="color:#f92672">=</span> $s2<span style="color:#f92672">-&gt;</span>[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>        push @output, <span style="color:#e6db74">qq{replace &#39;$c1&#39; with &#39;$c2&#39;}</span>;
+</span></span><span style="display:flex;"><span>        push @output, find_changes( $d, $s1, $s2, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> ( $v2 <span style="color:#f92672">==</span> $v <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c1 <span style="color:#f92672">=</span> $s1<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c2 <span style="color:#f92672">=</span> $s2<span style="color:#f92672">-&gt;</span>[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( $j <span style="color:#f92672">==</span> scalar $s2<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+</span></span><span style="display:flex;"><span>            push @output, <span style="color:#e6db74">qq{insert &#39;$c2&#39; at the end}</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> { push @output, <span style="color:#e6db74">qq{insert &#39;$c2&#39;}</span>; }
+</span></span><span style="display:flex;"><span>        push @output, find_changes( $d, $s1, $s2, $i, $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> ( $v3 <span style="color:#f92672">==</span> $v <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c1 <span style="color:#f92672">=</span> $s1<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c2 <span style="color:#f92672">=</span> $s2<span style="color:#f92672">-&gt;</span>[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>        push @output, <span style="color:#e6db74">qq{remove &#39;$c1&#39; from beginning}</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        push @output, <span style="color:#e6db74">qq{remove &#39;$c1&#39;}</span>                <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        push @output, find_changes( $d, $s1, $s2, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $j );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> ( $v1 <span style="color:#f92672">==</span> $v ) {
+</span></span><span style="display:flex;"><span>        push @output, find_changes( $d, $s1, $s2, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> ( $v2 <span style="color:#f92672">==</span> $v ) {
+</span></span><span style="display:flex;"><span>        push @output, find_changes( $d, $s1, $s2, $i, $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> ( $v3 <span style="color:#f92672">==</span> $v ) {
+</span></span><span style="display:flex;"><span>        push @output, find_changes( $d, $s1, $s2, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $j );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @output;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># straight copy of Wikipedia&#39;s &#34;Levenshtein Distance&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">levenshtein_distance</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ( $f, $g ) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $f;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @b <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $g;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># There is an extra row and column in the matrix. This is the</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># distance from the empty string to a substring of the target.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @d;
+</span></span><span style="display:flex;"><span>    $d[$_][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @a );
+</span></span><span style="display:flex;"><span>    $d[<span style="color:#ae81ff">0</span>][$_] <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @b );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @a ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @b ) {
+</span></span><span style="display:flex;"><span>            $d[$i][$j] <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>                  $a[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">eq</span> $b[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
+</span></span><span style="display:flex;"><span>                ? $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
+</span></span><span style="display:flex;"><span>                : <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> min(
+</span></span><span style="display:flex;"><span>                    $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][$j],
+</span></span><span style="display:flex;"><span>                    $d[$i][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ],
+</span></span><span style="display:flex;"><span>                    $d[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ]
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>            );
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $d[@a][@b];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h2 id="output">Output</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    Input: S1: kitten
-           S2: sitting
-    Change Count:  <span style="color:#ae81ff">3</span>
-        Operation <span style="color:#ae81ff">1</span>: replace <span style="color:#e6db74">&#39;k&#39;</span> with <span style="color:#e6db74">&#39;s&#39;</span>
-        Operation <span style="color:#ae81ff">2</span>: replace <span style="color:#e6db74">&#39;e&#39;</span> with <span style="color:#e6db74">&#39;i&#39;</span>
-        Operation <span style="color:#ae81ff">3</span>: insert <span style="color:#e6db74">&#39;g&#39;</span> at the end
-
-    Input: S1: sunday
-           S2: monday
-    Change Count:  <span style="color:#ae81ff">2</span>
-        Operation <span style="color:#ae81ff">1</span>: replace <span style="color:#e6db74">&#39;s&#39;</span> with <span style="color:#e6db74">&#39;m&#39;</span>
-        Operation <span style="color:#ae81ff">2</span>: replace <span style="color:#e6db74">&#39;u&#39;</span> with <span style="color:#e6db74">&#39;o&#39;</span>
-
-    Input: S1: slight
-           S2: lights
-    Change Count:  <span style="color:#ae81ff">2</span>
-        Operation <span style="color:#ae81ff">1</span>: remove <span style="color:#e6db74">&#39;s&#39;</span> from beginning
-        Operation <span style="color:#ae81ff">2</span>: insert <span style="color:#e6db74">&#39;s&#39;</span> at the end
-
-    Input: S1: fed
-           S2: feed
-    Change Count:  <span style="color:#ae81ff">1</span>
-        Operation <span style="color:#ae81ff">1</span>: insert <span style="color:#e6db74">&#39;e&#39;</span>
-
-    Input: S1: test
-           S2: test
-    Change Count:  <span style="color:#ae81ff">0</span>
-
-    Input: S1: test
-           S2: text
-    Change Count:  <span style="color:#ae81ff">1</span>
-        Operation <span style="color:#ae81ff">1</span>: replace <span style="color:#e6db74">&#39;s&#39;</span> with <span style="color:#e6db74">&#39;x&#39;</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    Input: S1: kitten
+</span></span><span style="display:flex;"><span>           S2: sitting
+</span></span><span style="display:flex;"><span>    Change Count:  <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>        Operation <span style="color:#ae81ff">1</span>: replace <span style="color:#e6db74">&#39;k&#39;</span> with <span style="color:#e6db74">&#39;s&#39;</span>
+</span></span><span style="display:flex;"><span>        Operation <span style="color:#ae81ff">2</span>: replace <span style="color:#e6db74">&#39;e&#39;</span> with <span style="color:#e6db74">&#39;i&#39;</span>
+</span></span><span style="display:flex;"><span>        Operation <span style="color:#ae81ff">3</span>: insert <span style="color:#e6db74">&#39;g&#39;</span> at the end
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Input: S1: sunday
+</span></span><span style="display:flex;"><span>           S2: monday
+</span></span><span style="display:flex;"><span>    Change Count:  <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Operation <span style="color:#ae81ff">1</span>: replace <span style="color:#e6db74">&#39;s&#39;</span> with <span style="color:#e6db74">&#39;m&#39;</span>
+</span></span><span style="display:flex;"><span>        Operation <span style="color:#ae81ff">2</span>: replace <span style="color:#e6db74">&#39;u&#39;</span> with <span style="color:#e6db74">&#39;o&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Input: S1: slight
+</span></span><span style="display:flex;"><span>           S2: lights
+</span></span><span style="display:flex;"><span>    Change Count:  <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Operation <span style="color:#ae81ff">1</span>: remove <span style="color:#e6db74">&#39;s&#39;</span> from beginning
+</span></span><span style="display:flex;"><span>        Operation <span style="color:#ae81ff">2</span>: insert <span style="color:#e6db74">&#39;s&#39;</span> at the end
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Input: S1: fed
+</span></span><span style="display:flex;"><span>           S2: feed
+</span></span><span style="display:flex;"><span>    Change Count:  <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Operation <span style="color:#ae81ff">1</span>: insert <span style="color:#e6db74">&#39;e&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Input: S1: test
+</span></span><span style="display:flex;"><span>           S2: test
+</span></span><span style="display:flex;"><span>    Change Count:  <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Input: S1: test
+</span></span><span style="display:flex;"><span>           S2: text
+</span></span><span style="display:flex;"><span>    Change Count:  <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Operation <span style="color:#ae81ff">1</span>: replace <span style="color:#e6db74">&#39;s&#39;</span> with <span style="color:#e6db74">&#39;x&#39;</span>
+</span></span></code></pre></div><br>
 <p>I think I’m least happy with the inconsistent hackiness with how I specify beginning and end, but eh. Getting to the solution, backtracking from the end of the array, required me to write an in-depth explanation of the problem to my user-group mailing list.</p>
 <p>But I’m happy now, and I really loved this one.</p>
 <hr>

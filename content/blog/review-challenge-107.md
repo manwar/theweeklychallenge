@@ -63,7 +63,7 @@ In mathematics, a self-descriptive number is an integer m that in a given base b
 **For example:**
 
 1210 is a four-digit self-descriptive number:
-```
+```perl
     position 0 has value 1 i.e. there is only one 0 in the number
     position 1 has value 2 i.e. there are two 1 in the number
     position 2 has value 1 i.e. there is only one 2 in the number
@@ -71,7 +71,7 @@ In mathematics, a self-descriptive number is an integer m that in a given base b
 ```
 
 **Output**
-```
+```perl
     1210, 2020, 21200
 ```
 
@@ -788,7 +788,7 @@ There is a very thorough blow-by-blow explanation of his steps both in the sourc
 Write a script to list methods of a package/class.
 
 **Example**
-```
+```perl
     package Calc;
 
     use strict;
@@ -803,7 +803,7 @@ Write a script to list methods of a package/class.
 ```
 
 **Output**
-```
+```perl
     BEGIN
     mul
     div
@@ -888,7 +888,7 @@ Most submissions queried the symbol table, and there were several ways to approa
 
 As mentioned, calling `keys` on the symbol table for a package will deliver the names of all symbols attached to it. If we do this with the package specified in the example, we obtain the stated result:
 
-```
+```perl
     BEGIN
     mul
     div
@@ -1219,7 +1219,7 @@ One thing that has been nagging me since this whole project started was what was
 
 I finally know. The output lists 8 `BEGIN` blocks, the first six being within Concise itself. However blocks 7 and 8 originate in `Calc`:
 
-```
+```perl
     BEGIN 7:
     1u <1> leavesub[1 ref] K/REFC,1 ->(end)
     -     <@> lineseq KP ->1u

@@ -82,7 +82,7 @@ The root node is at index 0, and its children are at positions 1 and 2. The chil
 
 These rules may seem a bit complicated (and it is a bit tedious to compute these things manually), but they're in fact quite easy to implement:
 
-``` Perl 6
+```perl
 sub children ($i) {
     return 2*$i+1, 2*$i+2;
 }
@@ -108,7 +108,7 @@ Another very tempting possibility is to implement a class for binary trees provi
 
 We'll use a nested array of arrays to represent the binary tree. We implement a recursive `dfs` (for depth-first search) subroutine to walk through the various paths of the tree. At each call of the subroutine, we keep track of the current sum and of the current path. When we reach a leaf (no more child), we print the path if the current sum is equal to the target value.
 
-``` Perl 6
+```perl
 use v6;
 
 my @tree = [5, [4, [11, [7], [2]]], [8, [13], [9, [1]]]] ;
@@ -155,7 +155,7 @@ In Raku, it isn't possible to just leave an "empty slot" when defining an array 
 
 The code isn't much more complicated than before:
 
-``` Perl 6
+```perl
 use v6;
 
 my @tree = [5, 4, 8, 11, Int, 13, 9, 7, 2, Int, Int, Int, Int, 1];
@@ -201,7 +201,7 @@ Most of the challengers implemented a simple class to implement a tree node data
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/arne-sommer/raku/ch-2.p6) implemented a simple recursive `BinaryNode`class:
 
-``` Perl 6
+```perl
 class BinaryNode
 {
   has Int        $.value;
@@ -212,7 +212,7 @@ class BinaryNode
 
 The bulk of the work is done in the recursive `traverse` subroutine, which implements a depth-first walk through the tree and checks whether the path sum is equal to the target value:
 
-``` Perl 6
+```perl
 sub traverse ($current, $target-sum, @path is copy)
 {
   if ($current.left or $current.right)
@@ -234,7 +234,7 @@ sub traverse ($current, $target-sum, @path is copy)
 
 The rest of the code takes an input string representing a breadth-first representation of the tree and transforms it into a nested `BinaryNode` object:
 
-``` Perl 6
+```perl
 unit sub MAIN (Int :$sum = 22, Str :$tree = "5 | 4 8 | 11 * 13 9 | 7 2 * * * 1", :$verbose);
 
 my @btree = $tree.split("|")>>.words;
@@ -274,7 +274,7 @@ traverse($btree, $sum, ());
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/kevin-colyer/raku/ch-2.p6) also used an object-oriented implementation, and created a recursive `node` class quite similar to Arne's `BinaryNode` class:
 
-``` Perl 6
+```perl
 class node {
     has Int $.value;
     has node $.left;
@@ -284,7 +284,7 @@ class node {
 
 Kevin's binary tree is a nested hard-coded `node` object:
 
-``` Perl 6
+```perl
 my $root = node.new(value => 5,
     left => node.new(value => 4, left => node.new(value =>11, left=>node.new(value=>7),right => node.new(value => 2))),
     right => node.new(value=>8,left=>node.new(value=>13),right=> node.new(value=>9,right=> node.new(value=>1)))
@@ -293,7 +293,7 @@ my $root = node.new(value => 5,
 
 Otherwise, most of the work is done in the recursive `dfs` subroutine implementing a depth-first traversal:
 
-``` Perl 6
+```perl
 sub dfs($node,$target,$new=True) {
     state $found=False;
     state @values;
@@ -330,7 +330,7 @@ sub dfs($node,$target,$new=True) {
 
 The rest of his code consists in two multi `MAIN` subroutines:
 
-``` Perl6
+```perl
 multi MAIN('test') {
     dfs($root,$_).say for 15..30;
 }
@@ -346,7 +346,7 @@ multi MAIN(Int $target where * > 0) {
 
 [Luca Ferrari](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/luca-ferrari/raku/ch-2.p6) also used an object-oriented representation and implemented a recursive `Node` class:
 
-``` Perl 6
+```perl
 class Node {
     has Int:D  $.value = 0;
     has Node $.left is rw;
@@ -358,7 +358,7 @@ class Node {
 
 Populating the tree is done with hard coded object construction:
 
-``` Perl6
+```perl
  my $root                = Node.new( :value( 5 )  );
  $root.left              = Node.new( :value( 4 ), :parent( $root ) );
  $root.right             = Node.new( :value( 8 ), :parent( $root ) );
@@ -372,7 +372,7 @@ Populating the tree is done with hard coded object construction:
 
 Then, Luca stored all these objects into the `@nodes` array for the purpose of building an array of leaves, and implemented an *upward* (from the leaves to the root) tree traversal:
 
-``` Perl6
+```perl
 my @nodes = $root
     , $root.left
     , $root.right
@@ -398,7 +398,7 @@ for @leaves  {
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/markus-holzer/raku/ch-2.p6) used a hash of hashes to store the tree data structure:
 
-``` Perl 6
+```perl
 my %tree =
     5 => {
         4 => {
@@ -423,7 +423,7 @@ The structure is quite concise. Its possible shortcoming is that, since hashes d
 
 Markus's code for traversing the tree is fairly concise and uses the `find-path-sum` recursive multi subroutine:
 
-``` Perl 6
+```perl
 .join('→').say
     for find-path-sum( %tree, 22 );
 
@@ -442,7 +442,7 @@ multi sub find-path-sum( Hash:D $tree, Int $n )
 
 [Noud Aldenhoven](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/noud/raku/ch-2.p6) created a recursive `Node` class to store the tree data structure:
 
-``` Perl 6
+```perl
 class Node {
     has Node $.left;
     has Node $.right;
@@ -452,7 +452,7 @@ class Node {
 
 Noud wrote an recursive `path-sum` subroutine to traverse the tree and compute all possible path sums:
 
-``` Perl 6
+```perl
 sub path-sum($tree, $sum) {
     if ($tree.value == $sum) {
         if ($tree.left || $tree.right) {
@@ -480,7 +480,7 @@ sub path-sum($tree, $sum) {
 
 Finally, this is Noud's code for populating the nested tree object and calling `path-sum` subroutine:
 
-``` Perl 6
+```perl
 my Node $tree .= new(
     value => 5,
     left => Node.new(
@@ -507,7 +507,7 @@ for path-sum($tree, 22) -> @full-path {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/simon-proctor/raku/ch-2.p6) made a full-fledged object-oriented program, including three classes, one role and even a grammar. Simon's code is more than 200-line long, so I will quote only parts of it (please follow the link if you want to see it all). Let's start with his `BTree` role, which implements most of the methods used in the program:
 
-``` Perl 6
+```perl
 role BTree[::T] {
     has T $.value is required;
     has BTree @!nodes[2];
@@ -563,7 +563,7 @@ role BTree[::T] {
 
 The `BTree` role is then applied to the `UBTree` class like so:
 
-``` Perl 6
+```perl
 class UBTree does BTree[UInt] {
     submethod BUILD ( UInt() :$value, :@nodes ) {
         $!value = $value;
@@ -575,7 +575,7 @@ For those who don't know, the default `BUILD` submethod is automatically called 
 
 Note that the `from-Str` method of the `BTree` role uses a grammar, `BTreeGrammar`, to parse the input string representing the input binary tree:
 
-``` Perl 6
+```perl
 # Example tree 5(4(11(7)(2)))(8(13)(9(1)))
 grammar BTreeGrammar {
     token TOP { <tree> };
@@ -587,7 +587,7 @@ There are many other interesting things in Simon's program, but, as I said, it's
 
 [Shahed Nooshmand](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/shahed-nooshmand/raku/ch-2.p6)'s program is incredibly short and concise:
 
-``` Perl 6
+```perl
 multi paths(Pair $tree) {
     |paths($tree.value).map: {$tree.key, |$_}
 }
@@ -607,7 +607,7 @@ The multi recursive `paths` subroutine returns a list of all the complete paths 
 
 The main work is done in the recursive `sum_path` subroutine:
 
-``` Perl 6
+```perl
 sub sum_path (@tree, $target, $index, @prev_working, @paths) {
 ## walks the tree and computes complete the path sum
     my @working = @prev_working;
@@ -631,7 +631,7 @@ sub sum_path (@tree, $target, $index, @prev_working, @paths) {
 
 Colin's program also has a `generate_tree` subroutine to generate random binary trees:
 
-``` Perl 6
+```perl
 sub generate_tree ($depth){
 ## automatically generates a random binary tree of rank n, with node values 1..10
 ## odds of a node being a terminator increase as the rank of the node increases
@@ -660,7 +660,7 @@ sub get_rank ($n) {
 
 And this is the main code calling these subroutines:
 
-``` Perl 6
+```perl
 sub MAIN ($depth = 3) {
 
     my @tree = generate_tree($depth);
@@ -686,7 +686,7 @@ sub MAIN ($depth = 3) {
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/javier-luque/raku/ch-2.p6) wrote a recursive `BTree::Node` class to implement the basic data structure:
 
-``` Perl 6
+```perl
 class BTree::Node {
     has Int $.value is rw;
     has BTree::Node $.left is rw;
@@ -696,7 +696,7 @@ class BTree::Node {
 
 The hard work (tree traversal and computing the path sum) is done in the recursive `path-sum` subroutine:
 
-``` Perl 6
+```perl
 sub path-sum(BTree::Node $node, Int $k, Int $total is copy, Str $path_string is copy) {
     $total += $node.value;
     $path_string ~= $node.value;
@@ -726,7 +726,7 @@ sub path-sum(BTree::Node $node, Int $k, Int $total is copy, Str $path_string is 
 
 Otherwise, the construction of the binary tree is hard-coded in the main code:
 
-``` Perl 6
+```perl
 my $root =
     BTree::Node.new(
         value => 5,
@@ -762,7 +762,7 @@ path-sum($root, $k, 0, '');
 
 [Mark Anderson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/mark-anderson/raku/ch-2.p6) also used object-oriented programming for the tree data structure:
 
-``` Perl6
+```perl
 class node {
     has UInt  $.value;
     has Array $.parents  is rw;
@@ -773,7 +773,7 @@ class node {
 
 The bulk of the work is done in the `traverse` subroutine:
 
-``` Perl 6
+```perl
 sub traverse($node) {
     my @parents = [$node.value, |$node.parents];
     if $node.left {
@@ -792,7 +792,7 @@ sub traverse($node) {
 
 The tree construction is hard-coded:
 
-``` Perl 6
+```perl
 my $root = node.new(value => 5, parents => []);
 
 $root.left  = node.new(value => 4);
@@ -813,7 +813,7 @@ traverse($root);
 
 [Mohammad S. Anwar](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/mohammad-anwar/raku/ch-2.p6) used a nested hash of hashes of arrays to represent the binary tree:
 
-``` Perl 6
+```perl
 my Hash[] $TREE = :{
     5 => { 4 => { 11 => [7, 2] },
            8 => { 13 => [],
@@ -825,7 +825,7 @@ my Hash[] $TREE = :{
 
 and used nested `for` loops to walk through the path:
 
-``` Perl 6
+```perl
 sub find-matched-paths(Hash[] $TREE, Int $SUM) {
     my $paths = [];
     for $TREE.keys -> $k {
@@ -858,7 +858,7 @@ The only problem with this iterative approach is that the `find-matched-paths` s
 
 [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/ryan-thompson/raku/ch-2.p6) used an array of arrays to store the binary tree and obtained a remarkably concise program:
 
-``` Perl 6
+```perl
 my @tree = [6, [5, [2], [4, [15]]], [19, [4, [5]], [2, [12]]], [1, [16, [7]]]];
 
 path-sum(@tree,30).say;

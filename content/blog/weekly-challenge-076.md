@@ -128,7 +128,7 @@ With built-in `is-prime`, finding all primes up to the given number is like scho
 
 <br>
 
-```perl6
+```perl
 sub find-prime-upto(Int $sum) {
     return (2..$sum).grep: { .is-prime };
 }
@@ -136,7 +136,7 @@ sub find-prime-upto(Int $sum) {
 
 Once we have list of prime numbers, we again use `combinations` to generate possible combinations and then picked the one which gives the end result.
 
-```perl6
+```perl
 sub prime-sum(Int $sum) {
 
     my @prime = find-prime-upto($sum);
@@ -175,7 +175,7 @@ _print(prime_sum(find_prime_upto($SUM), $SUM));
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Int $SUM where $SUM > 0) {
@@ -215,7 +215,7 @@ And **Raku** unit test as well.
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 is-deeply prime-sum(6).<>,  [],                  "prime sum = 6";

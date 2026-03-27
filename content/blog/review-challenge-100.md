@@ -63,12 +63,12 @@ Write a script to convert the given time from 12 hour format to 24 hour format a
 Ideally we expect a one-liner.
 
 **Example 1:**
-```
+```perl
     Input: 05:15 pm or 05:15pm
     Output: 17:15
 ```
 **Example 2:**
-```
+```perl
     Input: 19:15
     Output: 07:15 pm or 07:15pm
 ```
@@ -126,7 +126,7 @@ In its purest form, the Perl one-liner was born as a powerful custom command lin
 
 
 [**Alexander Pankoff**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/alexander-pankoff/perl/ch-1.pl)
-```
+```perl
     perl -e 'join(" ",@ARGV)=~m/^\s*(\d\d?)\:(\d\d?)\s*([ap]m)?\s*$/&&printf("%02d\:%02d%s\n",$3?($3eq"pm"?$1==12?12:$1+12:$1==12?0:$1,$2,""):$1>=12?($1==12?12:$1-12,$2,"pm"):($1==0?12:$1,$2,"am"))' "17:15 pm"
 
 ```
@@ -173,7 +173,7 @@ Pankoff kindly provides us with a well-commented breakdown of his line noise. I'
 This pattern of cascading trees of ternary logic switches shows up repeatedly throughout the solution base. The algorithm can really be reduced to a decision tree, asking questions to the parsed input and adjusting the path accordingly.
 
 [**Colin Crain**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/colin-crain/perl/ch-1.pl)
-```
+```perl
     perl -E'@ARGV[0]=~/^(\d+)(:\d+)\s?(am|pm)*$/i;$c=$1>11?'pm':'am';$h=$1%12;if($3){$3eq"pm"and$h+=12;printf"%02d%s\n",$h,$2;}else{$h||=12;say"$h$2$c"}' "5:15pm"
 ```
 
@@ -202,7 +202,7 @@ Unpacked:
 For my own solution, I was able to factor out the modulo on the hours, as I was using it in both sides of the translation. In the 24-12 conversion the `||=` assigns the hours to 12 only if the value is 0, producing the correct cycle.
 
 [**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/e-choroba/perl/ch-1.pl)
-```
+```perl
     perl -e '($h,$m,$p)=shift=~/(\d+):(\d+)\s*([ap]m)?/i;printf"%02d:%02d"." %sm"x!$p.$/,$p?($h%12+12*(pm eq$p)):($h%12||12),$m,$h>=12?p:a' '12:01 am'
 
 ```
@@ -230,7 +230,7 @@ I love the condensation of bringing in the input, matching it and assigning it t
 On the downconversion side, we see the logical OR again, this time substituting in 12 if the result of the modulo becomes 0. I was so pleased with myself when I first saw this to use in my own code; I'm glad to see others found it too. It's a very cool trick and I like this version quite a lot.
 
 [**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/duncan-c-white/perl/ch-1.pl)
-```
+```perl
     perl -E '$_=join(" ",@ARGV); /^(\d+):(\d\d)\s*([ap]m)$/||die "bad $_"; ($h,$m,$s)=($1,$2,$3); if( $s ) {$h+=12 if $s eq "pm" && $h<12;$s=""}else{$s=$h>11?"pm":"am";$h-=12 if $h>12} say "$h:$m$s"' $*
 
 ```
@@ -940,38 +940,38 @@ Write a script to find the minimum path sum from top to bottom.
 When you are on index i on the current row then you may move to either index i or index i + 1 on the next row.
 
 **Example 1:**
-```
+```perl
     Input: Triangle = [ [1], [2,4], [6,4,9], [5,1,7,2] ]
     Output: 8
 ```
 Explanation: The given triangle
-```
+```perl
             1
            2 4
           6 4 9
          5 1 7 2
 ```
 The minimum path sum from top to bottom:  1 + 2 + 4 + 1 = 8
-```
+```perl
             [1]
            [2] 4
           6 [4] 9
          5 [1] 7 2
 ```
 **Example 2:**
-```
+```perl
     Input: Triangle = [ [3], [3,1], [5,2,3], [4,3,1,3] ]
     Output: 7
 ```
 Explanation: The given triangle
-```
+```perl
             3
            3 1
           5 2 3
          4 3 1 3
 ```
 The minimum path sum from top to bottom: 3 + 1 + 2 + 1 = 7
-```
+```perl
             [3]
            3 [1]
           5 [2] 3
@@ -1186,7 +1186,7 @@ Note the use of subroutine prototypes to easily pass array and hash references t
 
 Now his output, in all its glory:
 
-```
+```perl
     Input: Triangle =
 
             1
@@ -1565,7 +1565,7 @@ Choroba uses a clever map function to reduce the lists upwards, making his logic
 
 And as bonus output he provides us with a big random triangle with a bracketed path showing the minimal route:
 
-```
+```perl
                             [4]
                            [0] 4
                           5 [3] 6
@@ -1736,7 +1736,7 @@ So what did I do? When reading a solution, I often get a gut feeling that someth
 
 Consider the triangle, for instance:
 
-```
+```perl
                     1
                 10      1
             10      100     1

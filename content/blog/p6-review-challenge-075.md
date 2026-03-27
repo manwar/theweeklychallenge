@@ -72,7 +72,7 @@ Another group of solutions includes recursive gathering the coins for the change
 
 Let me demonstrate a part of the [solution by Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/javier-luque/raku/ch-1.p6) where you can clearly see the recursive nature of the algorithm:
 
-```perl6
+```perl
     sub coin-combinations(@C, $S, @bag is copy) {
         for (@C) -> $coin {
             @bag.push($coin);
@@ -84,7 +84,7 @@ Let me demonstrate a part of the [solution by Javier Luque](https://github.com/m
 
 Or, examine the snippet of [Athanasius’s solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/athanasius/raku/ch-1.raku), where the next iteration happens for the new target amount, which is smaller than the current amount by `$i * $coin`.
 
-```perl6
+```perl
     sub count-coin-combinations(. . .) {
         . . .
         my UInt $new-target = $target - ($i * $coin);
@@ -130,7 +130,7 @@ In the second task, you are given a histogram with integer heights of the cells,
 
 My personal winner in the category of the most Raku-ish solution is the [program by Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/markus-holzer/raku/ch-2.raku). Here is the complete solution:
 
-```perl6
+```perl
     my @A = (3, 2, 3, 5, 7, 5);
     say ( 1..@A ).map({ |@A.rotor($_ => 1 - $_) }).max({ .min * .elems });
 ```
@@ -139,7 +139,7 @@ We already saw a similar use of `rotor` in the previous weeks, and it still demo
 
 The straigtforward solution is to scan the rectangle of the possible widths at every possible position. For example, here is an example of such approach in the [solution by Noud Aldenhoven](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/noud/raku/ch-2.p6).
 
-```perl6
+```perl
     sub largest-rec-hist(@A) {
         my @largest-sub-rec = [];
         for 0..(@A.elems - 1) -> $i {
@@ -153,7 +153,7 @@ The straigtforward solution is to scan the rectangle of the possible widths at e
 
 [Shahed Nooshmand](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/shahed-nooshmand/raku/ch-2.raku) is using a very inventive way to generate the ranges of the rectangles to test:
 
-```perl6
+```perl
     my @indices = |(0..(@A − $length) Z.. ($length − 1)..^@A).max: { @A[|$_].min }
 ```
 

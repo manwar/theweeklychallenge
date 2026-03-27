@@ -148,7 +148,7 @@ When it comes to talk about **Raku** solutions, I have plenty to share. Just to 
 
 Let me share the **Raku** magic I learnt this week. I was looking for new way to checking the parameter and found this magic.
 
-```perl6
+```perl
     die "ERROR: Invalid rotation degree $rotate-by."
         unless $rotate-by ~~ any (90, 180, 270);
 ```
@@ -157,7 +157,7 @@ For **Non-Raku** reader, what it says the parameter *$rotate-by* must be any one
 
 I noticed big change from **Perl** when I came across this line:
 
-```perl6
+```perl
     for 1 .. $rotate-by/90 {
 ```
 
@@ -165,7 +165,7 @@ My **Perl** brain was telling me that I had to do **int($rotate-by/90)** but sur
 
 Another bit that surprised me, how you get the size of **$matrix** like below:
 
-```perl6
+```perl
     my $matrix = [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ];
 
     my $rows = $matrix.elems;
@@ -176,7 +176,7 @@ Another bit that surprised me, how you get the size of **$matrix** like below:
 
 Everything else is just simply **Raku** and nothing new to me anymore except the **dd**. It is like **Data::Dumper** for **Raku**. The best part is you don't have to import anything just use it. **Raku** rocks.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6.c;
@@ -212,7 +212,7 @@ Please check out **[documentation](https://docs.raku.org/language/testing)** for
 
 I would like to point a very important bit, do you see anything unusual in the line below?
 
-```perl6
+```perl
 my $unit-tests = :{
 ```
 
@@ -226,7 +226,7 @@ So if you have anything **non-String**, then add **":"** before the start curly 
 
 I hope I remember this nex time.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use Test;
@@ -285,7 +285,7 @@ sub rotate-matrix(Array $matrix is copy, Int $rotate-by = 90) {
 
 It is time move on to another task of the week i.e. **Vowel String**. If you remember, I used **CPAN** module **Algorithm::Combinatorics** to give the all possible combinations. Since we are talking **Raku**, it has to beat that and it did. How?
 
-```perl6
+```perl
     my @char-sets = @chars.combinations: $count;
 ```
 
@@ -293,7 +293,7 @@ Did you notice, you don't need external module, it is all there.
 
 The best part of the solution is the line below, I struggled a lot to get there. The end result is simply beautiful.
 
-```perl6
+```perl
     my @comb-sets = @char-sets.map({ .join });
 ```
 
@@ -313,7 +313,7 @@ For more information, please check out the **[documentation](https://docs.raku.o
 
 Another suprise for me this time, it was **Raku** regex. I had something like **qr/a[ie]/** which **Raku** didn't like it. But the kind error told me what to use instead. Isn't great? So you use **rx** instead. I must make this crystal clear when dealing with **[]** in regex, always use it like **<[]>** like below:
 
-```perl6
+```perl
     my @rules = (
         rx/ a<[ie]>   /,
         rx/ e<[i]>    /,
@@ -329,7 +329,7 @@ Last but not the least, for the first time, I used **True** and **False** instea
 
 Rest of the code are just the usual **Raku** statements.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6.c;
@@ -370,7 +370,7 @@ sub MAIN(Int $count = 2) {
 
 It is time to convert the above standalone solution to unit test. With the knowledge I just gained it was piece of cake for me.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use Test;

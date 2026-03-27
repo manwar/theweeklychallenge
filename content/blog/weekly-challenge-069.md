@@ -108,19 +108,19 @@ next if ($n < 10);
 
 Time to get some **Raku** magic. Thanks to the weekly challenge, I get to practice what I learn in **Raku**. So what did I learn new? Honestly speaking nothing new but got to practice what I knew already, which is fun as well. I always try my best to make my code not look like **Perl**.
 
-```perl6
+```perl
 if %digits{$i}:exists {
 ```
 
 For my fellow **Perl** hacker, the above line checks if `$i` exists in the hash `%digits`.
 
-```perl6
+```perl
 @match.push: %digits{$i};
 ```
 
 The line above pushed the mapped digit `%digits{$i}` to the list `@match`.
 
-```perl6
+```perl
 if $n == @match.join('').flip;
 ```
 
@@ -130,7 +130,7 @@ I am not sure if you noticed the boolean data `True` and `False` used with the v
 
 Please find below the complete definition of **sub strobogrammatic-numbers()**:
 
-```perl6
+```perl
 sub strobogrammatic-numbers($start, $stop) {
     die "ERROR: Invalid start number [$start].\n"
         unless $start < $stop;
@@ -174,7 +174,7 @@ print sprintf("[%s]\n", join ', ', strobogrammatic_numbers($A, $B));
 
 How about doing the same in **Raku**?  I love the power of **MAIN()**, you can do so much with it. I try to put in as much parameter validation as possible in there.
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Int :$A where { $A >= 1 } = 50,
@@ -196,7 +196,7 @@ is_deeply( [ strobogrammatic_numbers(50, 100) ],
 
 **Raku** unit test is fun as well.
 
-```perl6
+```perl
 use Test;
 
 is-deeply strobogrammatic-numbers(50, 100),
@@ -270,7 +270,7 @@ if ($string =~ /(\d+)/) {
 
 My **Raku** regex knowledge is limited, so I google it but couln't find any solution. At this point, I thought of asking the **Raku** experts on the `@PerlWChallenge` twitter handle. Then I found this in the end.
 
-```perl6
+```perl
 my $limit = .Int for $string ~~ m/(\d+)/;
 ```
 
@@ -278,7 +278,7 @@ I am not impressed with the solution, though.
 
 I am sure there must be a better solution out there.
 
-```perl6
+```perl
 sub string_0_1($string) {
 
     my $limit = .Int for $string ~~ m/(\d+)/;
@@ -309,7 +309,7 @@ print sprintf("%s\n%s\n", $string, string_0_1($string));
 
 and in **Raku** now. I love the parameter validation feature of **MAIN()**
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$string where { $string ~~ m:i/^s\d+$/ } = 'S5') {
@@ -331,7 +331,7 @@ done_testing;
 
 Similar unit test in **Raku**.
 
-```perl6
+```perl
 use Test;
 
 is string_0_1('S2'), '001',             'testing S2';

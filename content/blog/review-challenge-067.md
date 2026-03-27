@@ -85,7 +85,7 @@ outputs string combos, which brings up to digit question and summery existential
 
 ### [**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-067/duncan-c-white/perl/ch-1.pl)
 
-Duncan uses a ```for()``` loop inside a recursion to append from the computed proper range of numbers as elements are added. With each element added the value for n is decreased by one. which serves as a counter. When ```n == 1``` the edge case is reached and the completed list of lists is returned; the recursion backtracks to the next partial combination and the cycle continues.
+Duncan uses a `for()` loop inside a recursion to append from the computed proper range of numbers as elements are added. With each element added the value for n is decreased by one. which serves as a counter. When `n == 1` the edge case is reached and the completed list of lists is returned; the recursion backtracks to the next partial combination and the cycle continues.
 
 ```perl
 fun combinations( $lo, $hi, $n, @pre )    # @pre is a list of numbers
@@ -239,7 +239,7 @@ Interested parties can  [read a more in-depth] analysis(https://colincrain.wordp
 
 ### [**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-067/athanasius/perl/ch-1.pl)
 
-The monk Athanasius brings us an interesting module and imported routine to take care of the iterating part of his solution,  [```Algorithm::Loops qw(NestedLoops)```](https://metacpan.org/pod/Algorithm::Loops#NestedLoops1).
+The monk Athanasius brings us an interesting module and imported routine to take care of the iterating part of his solution,  [`Algorithm::Loops qw(NestedLoops)`](https://metacpan.org/pod/Algorithm::Loops#NestedLoops1).
 
 Calling this routine looks a bit unusual:
 
@@ -265,7 +265,7 @@ but the array describes the iteration range of the loops, and the subroutine is 
 
 CY brings us a singular approach, deriving her combinations from Pascal's Identity:
 
-```
+```perl
    ⎛n⎞ = ⎛n-1⎞ + ⎛n-1⎞
    ⎝k⎠   ⎝ k ⎠   ⎝k-1⎠
 ```
@@ -292,7 +292,7 @@ my @A =(    [] ,
             [ [[]], [[1],[2]], [[1,2]] ]   );
 ```
 
-and can see it as the base kernel from which she can construct arbitrary sets of combinations. The core of the routine is this ```while()``` loop:
+and can see it as the base kernel from which she can construct arbitrary sets of combinations. The core of the routine is this `while()` loop:
 
 ```perl
 while ($csize+1<=$i) {
@@ -323,19 +323,19 @@ This week it is Neils who comes to us with a nonstandard use of the glob() opera
 glob('{'.join('},{', (join(',', 1 .. $m)) x $n).'}')
 ```
 
-What exactly is glob acting on here? Let's just set ```$m = 4``` and ```$n = 3```, to find combinations of 3 items from 1 to 4 and have a look:
+What exactly is glob acting on here? Let's just set `$m = 4` and `$n = 3`, to find combinations of 3 items from 1 to 4 and have a look:
 
 ```perl
 {1,2,3,4},{1,2,3,4},{1,2,3,4}
 ```
 
-He has built ```$n``` alternation blocks, so ```glob``` ends up making all possible combinations, the cross product if you will.
+He has built `$n` alternation blocks, so `glob` ends up making all possible combinations, the cross product if you will.
 
 ```perl
 [1,1,1], [1,1,2], [1,1,3], [1,1,4], [1,2,1], [1,2,2], [1,2,3], ...
 ```
 
-he then uses ```grep {}``` to find only those lists where the ```uniq()``` ```sort()``` version is the same as the original, which are our sorted lists as requested.
+he then uses `grep {}` to find only those lists where the `uniq()` `sort()` version is the same as the original, which are our sorted lists as requested.
 
 ```perl
 my @list = grep {
@@ -396,7 +396,7 @@ You are given a digit string $S. Write a script to print all
 possible letter combinations that the given digit string could
 represent.
 
-```
+```perl
 ╭────────────────────────────────────╮
 ⎪ ╭────────╮  ╭────────╮  ╭────────╮ ⎪
 ⎪ ⎪ 1  _,@ ⎪  ⎪ 2  ABC ⎪  ⎪ 3  DEF ⎪ ⎪
@@ -417,7 +417,7 @@ represent.
 
 Example:
 
-```
+```perl
     Input: $S = '35'
 
     Output: ["dj", "dk", "dl", "ej", "ek", "el", "fj", "fk", "fl"].
@@ -491,7 +491,7 @@ He [writes](https://perlweeklychallenge.org/blog/weekly-challenge-067/) (and [ta
 
 ## unleash the POWER of GLOB
 
-No less than three solutions using the inherent combinatorial aspects of ```glob()``` came out this week:
+No less than three solutions using the inherent combinatorial aspects of `glob()` came out this week:
 
 ### [**Niels van Dijke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-067/perlboy1967/perl/ch-2.pl)
 
@@ -514,7 +514,7 @@ This is definitely an off-label use of powerful medicine, but there's no denying
 
 ### [**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-067/athanasius/perl/ch-2.pl)
 
-For his second decree, Athanasius again brings us a NestedLoop to study, from [```Algorithm::Loops```](https://metacpan.org/pod/Algorithm::Loops#NestedLoops1):
+For his second decree, Athanasius again brings us a NestedLoop to study, from [`Algorithm::Loops`](https://metacpan.org/pod/Algorithm::Loops#NestedLoops1):
 
 ```perl
 NestedLoops
@@ -546,7 +546,7 @@ say q{[}, (join q{, }, map { q{"} . (join q{}, @{$_}) . q{"} } @result), q{]};
 
 ### [**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-067/duncan-c-white/perl/ch-2.pl)
 
-Duncan brings us a brace of functions, cross() and cross_one(), which taken together perform a cross product between the various options treated as lists. Remember Duncan's chosen path to subroutine signatures and other good stuff is the Function::Parameters module, in case those ```fun()``` calls don't scan for you.
+Duncan brings us a brace of functions, cross() and cross_one(), which taken together perform a cross product between the various options treated as lists. Remember Duncan's chosen path to subroutine signatures and other good stuff is the Function::Parameters module, in case those `fun()` calls don't scan for you.
 
 ```perl
 fun cross( @str )
@@ -579,7 +579,7 @@ fun cross_one( $next, @x )
 
 ### [**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-067/jo-37/perl/ch-2.pl)
 
-Taking a functional approach, Jorg's ```prod()``` routine I believe expresses the cleanest invocation of using nested mappings to pair up values as in the **Cartesian product** that I have yet seen, which here he refers to as the **outer product**.[^1]
+Taking a functional approach, Jorg's `prod()` routine I believe expresses the cleanest invocation of using nested mappings to pair up values as in the **Cartesian product** that I have yet seen, which here he refers to as the **outer product**.[^1]
 
 ```perl
 sub prod {
@@ -590,7 +590,7 @@ sub prod {
 
 Previously we have seen this structure manipulating the return value array of a recursive function, but broken out like this, with the (left, right) labeling makes it so much easier to follow. I really like this one. Here he's concactinating to build strings, but we could alternately return a list of new, joined arrays.
 
-He finishes the job with a call to ```List::Util```'s ```reduce()```, dispatching the complexity in a few deft strokes.
+He finishes the job with a call to `List::Util`'s `reduce()`, dispatching the complexity in a few deft strokes.
 
 ```perl
 
@@ -615,7 +615,7 @@ while ( my $pair = glob $letters )
 }
 ```
 
-using ```Math::Cartesian::Product::cartesian()```:
+using `Math::Cartesian::Product::cartesian()`:
 
 ```perl
 my $iterator = Set::CrossProduct->new( [@phone{@buttons}] );
@@ -627,7 +627,7 @@ while ( my $tuple = $iterator->get )
      print ", " if $counter < $number_of_tuples;
 }
 ```
-and using ```Set::CrossProduct```:
+and using `Set::CrossProduct`:
 
 ```perl
 my $iterator = Set::CrossProduct->new( [@phone{@buttons}] );

@@ -58,7 +58,7 @@ Within this list, [`DateTime`](https://metacpan.org/release/DateTime) is the onl
 
 The general consensus that this was a straight forward question where you just need to apply the mathematical definition of formulae of [Hofstadter Female and Male sequences](https://en.wikipedia.org/wiki/Hofstadter_sequence#Hofstadter_Female_and_Male_sequences). E. Choroba gave a [good justification](http://blogs.perl.org/users/e_choroba/2019/06/perl-weekly-challenge-013-last-fridays-and-hofstadter-female-and-male-sequences.html) of using the [`Function::Parameters`](https://metacpan.org/pod/Function::Parameters) CPAN module to match the subroutine method signature to the definition of the mathematical formulae as shown below. The [mathematical formulae](https://en.wikipedia.org/wiki/Hofstadter_sequence#Hofstadter_Female_and_Male_sequences).
 
-```
+```perl
     F(0) = 1, M(0) = 0, and
     F(n) = n-M(F(n-1)), n > 0
     M(n) = n-F(M(n-1)), n > 0

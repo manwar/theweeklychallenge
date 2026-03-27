@@ -65,7 +65,7 @@ Write a script to find total count of divisors of $m having last digit $n.
 
 
 **Example 1:**
-```
+```perl
     Input: $m = 24, $n = 2
     Output: 2
 
@@ -73,7 +73,7 @@ Write a script to find total count of divisors of $m having last digit $n.
     There are only 2 divisors having last digit 2 are 2 and 12.
 ```
 **Example 2:**
-```
+```perl
     Input: $m = 30, $n = 5
     Output: 2
 
@@ -301,7 +301,7 @@ It has been noted several times now that we need not keep track of our final lis
 
 The monk is not so uncaring, which strikes me as a very monastical virtue. Instead of tossing out or worse, never compiling our result lists, they save all of this to produce a detailed report mimicking the examples:
 
-```
+```perl
     Challenge 142, Task #1: Divisor Last Digit (Perl)
 
     Input:  $m = 1794, $n = 3

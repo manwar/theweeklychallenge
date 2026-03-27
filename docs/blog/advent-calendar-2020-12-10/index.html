@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2020blogadvent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
-<h3 id="-day-9blogadvent-calendar-2020-12-09--day-10--day-11blogadvent-calendar-2020-12-11-">| <a href="/blog/advent-calendar-2020-12-09"><strong>Day 9</strong></a> | <strong>Day 10</strong> | <a href="/blog/advent-calendar-2020-12-11"><strong>Day 11</strong></a> |</h3>
+        <h2 id="advent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
+<h3 id="-day-9--day-10--day-11-">| <a href="/blog/advent-calendar-2020-12-09"><strong>Day 9</strong></a> | <strong>Day 10</strong> | <a href="/blog/advent-calendar-2020-12-11"><strong>Day 11</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-2020-07"><strong>Walt Mankowski</strong></a>. Today he is talking about his solution to the task <code>Trim Linked List</code> of <strong><a href="/blog/perl-weekly-challenge-071">&ldquo;The Weekly Challenge - 071&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="http://www.mawode.com/blog/blog/2020/07/31/perl-weekly-challenge-71/"><strong>post</strong></a> by <strong>Walt Mankowski</strong>.</p>
 <hr>
@@ -203,86 +203,86 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <p>In this task we needed to create a singly linked list, delete the Nth element from the end, and then print the list.</p>
 <p>There were also linked lists in Challenge 68 and I was able to reuse the linked list class without any modification.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Node;
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw(:5.32)</span>;
-<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(signatures)</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>($package, $val) {
-    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> {};
-    bless $self, $package;
-
-    $self<span style="color:#f92672">-&gt;</span>{val} <span style="color:#f92672">=</span> $val;
-    $self<span style="color:#f92672">-&gt;</span>{<span style="color:#66d9ef">next</span>} <span style="color:#f92672">=</span> undef;
-
-    <span style="color:#66d9ef">return</span> $self;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">set_next</span>($self, $node) {
-    $self<span style="color:#f92672">-&gt;</span>{<span style="color:#66d9ef">next</span>} <span style="color:#f92672">=</span> $node;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next</span>($self) {
-    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{<span style="color:#66d9ef">next</span>};
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">val</span>($self) {
-    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{val};
-}
-
-<span style="color:#ae81ff">1</span>;
-</code></pre></div><p>My top-level code was quite simple:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> shift @ARGV;
-<span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(undef);
-
-make_list($head, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>);
-print_list($head);
-remove_from_end($head, $N);
-print_list($head);
-</code></pre></div><p>Having an extra node at the beginning makes creating and printing the list easy:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_list</span>($head, @a) {
-    <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $head;
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@a) {
-        $node<span style="color:#f92672">-&gt;</span>set_next(Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($i));
-        $node <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
-    }
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">print_list</span>($head) {
-    <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $head<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
-    <span style="color:#66d9ef">while</span> (defined $node) {
-        <span style="color:#66d9ef">print</span> $node<span style="color:#f92672">-&gt;</span>val;
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; -&gt; &#34;</span> <span style="color:#66d9ef">if</span> defined $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
-        $node <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
-    }
-    say <span style="color:#e6db74">&#34;&#34;</span>;
-}
-</code></pre></div><p>Removing the Nth element from the end is trickier though; since we need to use a singly-linked list we can’t go backwards. I chose to solve it by making 2 passes through the list. First I make a full pass to count how many elements are in the list. Then I start back at head and go forward until I’m N+1 elements from the end. Finally I remove the Nth node by linking the N+1th node to the N-1th node.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_length</span>($head) {
-    <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $head;
-    <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span> (defined $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
-        $len<span style="color:#f92672">++</span>;
-        $node <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
-    }
-    <span style="color:#66d9ef">return</span> $len;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">remove_from_end</span>($head, $n) {
-    <span style="color:#75715e"># get to the position before the node to delete</span>
-    <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> list_length($head);
-    <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $head;
-    <span style="color:#66d9ef">while</span> ($pos <span style="color:#f92672">&gt;</span> $n) {
-        $node <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
-        $pos<span style="color:#f92672">--</span>;
-    }
-
-    <span style="color:#75715e"># remove it</span>
-    $node<span style="color:#f92672">-&gt;</span>set_next($node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>);
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Node;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw(:5.32)</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(signatures)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span>($package, $val) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>    bless $self, $package;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{val} <span style="color:#f92672">=</span> $val;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{<span style="color:#66d9ef">next</span>} <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">set_next</span>($self, $node) {
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{<span style="color:#66d9ef">next</span>} <span style="color:#f92672">=</span> $node;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next</span>($self) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{<span style="color:#66d9ef">next</span>};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">val</span>($self) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{val};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>My top-level code was quite simple:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> shift @ARGV;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(undef);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>make_list($head, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>print_list($head);
+</span></span><span style="display:flex;"><span>remove_from_end($head, $N);
+</span></span><span style="display:flex;"><span>print_list($head);
+</span></span></code></pre></div><p>Having an extra node at the beginning makes creating and printing the list easy:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_list</span>($head, @a) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $head;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@a) {
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>set_next(Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($i));
+</span></span><span style="display:flex;"><span>        $node <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">print_list</span>($head) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $head<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (defined $node) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> $node<span style="color:#f92672">-&gt;</span>val;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; -&gt; &#34;</span> <span style="color:#66d9ef">if</span> defined $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
+</span></span><span style="display:flex;"><span>        $node <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Removing the Nth element from the end is trickier though; since we need to use a singly-linked list we can’t go backwards. I chose to solve it by making 2 passes through the list. First I make a full pass to count how many elements are in the list. Then I start back at head and go forward until I’m N+1 elements from the end. Finally I remove the Nth node by linking the N+1th node to the N-1th node.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_length</span>($head) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $head;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (defined $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
+</span></span><span style="display:flex;"><span>        $len<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        $node <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $len;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">remove_from_end</span>($head, $n) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># get to the position before the node to delete</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> list_length($head);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $head;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($pos <span style="color:#f92672">&gt;</span> $n) {
+</span></span><span style="display:flex;"><span>        $node <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
+</span></span><span style="display:flex;"><span>        $pos<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># remove it</span>
+</span></span><span style="display:flex;"><span>    $node<span style="color:#f92672">-&gt;</span>set_next($node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></p>
 

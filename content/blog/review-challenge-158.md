@@ -71,7 +71,7 @@ Write a script to find out all Additive Primes <= 100.
 Additive primes are prime numbers for which the sum of their decimal digits are also primes.
 
 **Output**
-```
+```perl
         2, 3, 5, 7, 11, 23, 29, 41, 43, 47, 61, 67, 83, 89
 ```
 
@@ -642,7 +642,7 @@ And finally, here's something new: because we know the range required for the ca
 Write a script to compute first series Cuban Primes <= 1000. Please refer wikipedia page for more informations.
 
 **Output**
-```
+```perl
     7, 19, 37, 61, 127, 271, 331, 397, 547, 631, 919.
 
 ```
@@ -827,7 +827,7 @@ Lubos generalizes a function that applies the basic definition equation with *x*
 
 Ok, perhaps I was a bit biased in my assessment above, although I do stand by my reasoning — because that is exactly what I did. I started by making myself both a generalized equation routine and a prime validator, producing the requested values, but curious, I quickly got to work looking around at the other related series. It's notable that an intersting property of the defining equation is that it is cyclical mod 3, and as such  for an offset of 3 no values can ever be prime. A survey of the first ten series demonstrates this phenomenon:
 
-```
+```perl
     series | sequence
     -------+------------------------------------------
         1  | 7 19 37 61 127 271 331 397 547 631 919

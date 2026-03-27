@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2022blogadvent-calendar-2022"><a href="/blog/advent-calendar-2022"><strong>Advent Calendar 2022</strong></a></h2>
-<h3 id="-nbsp-day-3blogadvent-calendar-2022-12-03-nbsp--nbsp-day-4-nbsp--nbsp-day-5blogadvent-calendar-2022-12-05-nbsp-">|   <a href="/blog/advent-calendar-2022-12-03"><strong>Day 3</strong></a>   |   <strong>Day 4</strong>   |   <a href="/blog/advent-calendar-2022-12-05"><strong>Day 5</strong></a>   |</h3>
+        <h2 id="advent-calendar-2022"><a href="/blog/advent-calendar-2022"><strong>Advent Calendar 2022</strong></a></h2>
+<h3 id="--day-3----day-4----day-5--">|   <a href="/blog/advent-calendar-2022-12-03"><strong>Day 3</strong></a>   |   <strong>Day 4</strong>   |   <a href="/blog/advent-calendar-2022-12-05"><strong>Day 5</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Alexander Pankoff</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-160"><strong>&ldquo;The Weekly Challenge - 160&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2022</strong> from the original <a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-160-task-1.html"><strong>post</strong></a> by him.</p>
 <hr>
@@ -219,65 +219,65 @@ Output: Six is three, three is five, five is four, four is magic.
 <br>
 <h2 id="code">Code</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run</span>() {
-    <span style="color:#66d9ef">my</span> ($N) <span style="color:#f92672">=</span> @ARGV;
-    die <span style="color:#e6db74">&#34;Expect a single digit positive number!\n&#34;</span> <span style="color:#66d9ef">unless</span> $N <span style="color:#f92672">and</span> $N <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/^\d$/</span>;
-    say four_is_magic($N);
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">four_is_magic</span>($n) {
-    ucfirst _four_is_magic($n);
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_four_is_magic</span>($n) {
-    <span style="color:#66d9ef">my</span> %cardinal_representations <span style="color:#f92672">=</span> (
-        <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;one&#39;</span>,
-        <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;two&#39;</span>,
-        <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;three&#39;</span>,
-        <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;four&#39;</span>,
-        <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;five&#39;</span>,
-        <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;six&#39;</span>,
-        <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;seven&#39;</span>,
-        <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;eight&#39;</span>,
-        <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;nine&#39;</span>,
-    );
-
-    <span style="color:#66d9ef">if</span> ( $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> ) {
-        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;four is magic.&#39;</span>;
-    }
-
-    <span style="color:#66d9ef">my</span> $cardinal <span style="color:#f92672">=</span> $cardinal_representations{$n};
-    <span style="color:#66d9ef">my</span> $length   <span style="color:#f92672">=</span> length $cardinal;
-
-    <span style="color:#66d9ef">return</span> join( <span style="color:#e6db74">&#39;, &#39;</span>,
-        join( <span style="color:#e6db74">&#39; &#39;</span>, $cardinal, <span style="color:#e6db74">&#39;is&#39;</span>, $cardinal_representations{$length} ),
-        _four_is_magic($length) );
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($N) <span style="color:#f92672">=</span> @ARGV;
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;Expect a single digit positive number!\n&#34;</span> <span style="color:#66d9ef">unless</span> $N <span style="color:#f92672">and</span> $N <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/^\d$/</span>;
+</span></span><span style="display:flex;"><span>    say four_is_magic($N);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">four_is_magic</span>($n) {
+</span></span><span style="display:flex;"><span>    ucfirst _four_is_magic($n);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_four_is_magic</span>($n) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %cardinal_representations <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;one&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;two&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;three&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;four&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;five&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;six&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;seven&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;eight&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;nine&#39;</span>,
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;four is magic.&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $cardinal <span style="color:#f92672">=</span> $cardinal_representations{$n};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $length   <span style="color:#f92672">=</span> length $cardinal;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> join( <span style="color:#e6db74">&#39;, &#39;</span>,
+</span></span><span style="display:flex;"><span>        join( <span style="color:#e6db74">&#39; &#39;</span>, $cardinal, <span style="color:#e6db74">&#39;is&#39;</span>, $cardinal_representations{$length} ),
+</span></span><span style="display:flex;"><span>        _four_is_magic($length) );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h2 id="output">Output</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">One is three, three is five, five is four, four is magic<span style="color:#f92672">.</span>
-Two is three, three is five, five is four, four is magic<span style="color:#f92672">.</span>
-Three is five, five is four, four is magic<span style="color:#f92672">.</span>
-Four is magic<span style="color:#f92672">.</span>
-Five is four, four is magic<span style="color:#f92672">.</span>
-Six is three, three is five, five is four, four is magic<span style="color:#f92672">.</span>
-Seven is five, five is four, four is magic<span style="color:#f92672">.</span>
-Eight is five, five is four, four is magic<span style="color:#f92672">.</span>
-Nine is four, four is magic<span style="color:#f92672">.</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>One is three, three is five, five is four, four is magic<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Two is three, three is five, five is four, four is magic<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Three is five, five is four, four is magic<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Four is magic<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Five is four, four is magic<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Six is three, three is five, five is four, four is magic<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Seven is five, five is four, four is magic<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Eight is five, five is four, four is magic<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Nine is four, four is magic<span style="color:#f92672">.</span>
+</span></span></code></pre></div><br>
 <p>My native language being <code>German</code> I went ahead and gave it a try in <code>German</code> as well. It seems there’s really no way around the four. There is just a difference in the amount of steps required to reach 4. In German, we need an average of <code>1.375 steps</code> for any of the other <code>8 numbers</code> to reach <code>4</code> and <code>2.125</code> steps in English.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">Eins ist vier, vier ist magisch<span style="color:#f92672">.</span>
-Zwei ist vier, vier ist magisch<span style="color:#f92672">.</span>
-Drei ist vier, vier ist magisch<span style="color:#f92672">.</span>
-Vier ist magisch<span style="color:#f92672">.</span>
-Fünf ist vier, vier ist magisch<span style="color:#f92672">.</span>
-Sechs ist fünf, fünf ist vier, vier ist magisch<span style="color:#f92672">.</span>
-Sieben ist sechs, sechs ist fünf, fünf ist vier, vier ist magisch<span style="color:#f92672">.</span>
-Acht ist vier, vier ist magisch<span style="color:#f92672">.</span>
-Neun ist vier, vier ist magisch<span style="color:#f92672">.</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>Eins ist vier, vier ist magisch<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Zwei ist vier, vier ist magisch<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Drei ist vier, vier ist magisch<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Vier ist magisch<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Fünf ist vier, vier ist magisch<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Sechs ist fünf, fünf ist vier, vier ist magisch<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Sieben ist sechs, sechs ist fünf, fünf ist vier, vier ist magisch<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Acht ist vier, vier ist magisch<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Neun ist vier, vier ist magisch<span style="color:#f92672">.</span>
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p>|   <a href="/blog/advent-calendar-2022"><strong>Advent Calendar 2022</strong></a>   |</p>

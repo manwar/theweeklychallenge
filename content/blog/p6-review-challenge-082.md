@@ -42,7 +42,7 @@ In this kind of solutions, the range of numbers is first filtered to take the nu
 
 For example, [in my solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/ash/raku/ch-1.raku), we see:
 
-```perl6
+```perl
     say ((1 .. ($a max $b)).grep: $a %% *).grep: $b %% *;
 ```
 
@@ -52,7 +52,7 @@ Here, the first step is to find all the factors for each input number independen
 
 In the program by [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/arne-sommer/raku/ch-1.p6):
 
-```perl6
+```perl
     my @M-factors = $include-self ?? (1..$M).grep({ $M %% $_ }) !! (1..$M/2).grep({ $M %% $_ });
     my @N-factors = $include-self ?? (1..$N).grep({ $N %% $_ }) !! (1..$N/2).grep({ $N %% $_ });
 
@@ -61,7 +61,7 @@ In the program by [Arne Sommer](https://github.com/manwar/perlweeklychallenge-cl
 
 Or the same operator but spellt out as a Unicode symbol `∩` as [Jaldhar H. Vyas did it](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jaldhar-h-vyas/raku/ch-1.p6):
 
-```perl6
+```perl
     sub MAIN(Int $M, Int $N) {
         (factors($M) ∩ factors($N)).keys.sort.join(', ').say;
     }
@@ -69,7 +69,7 @@ Or the same operator but spellt out as a Unicode symbol `∩` as [Jaldhar H. Vya
 
 [Simon Proctor demonstrates](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/simon-proctor/raku/ch-1.raku) another example of this approach:
 
-```perl6
+```perl
     sub MAIN ( UInt $M, UInt $N ) {
         say "({(fac($M) (&) fac($N)).keys.sort.join(', ')})"
     }
@@ -83,7 +83,7 @@ Notice how the whole line of Raku code is interpolated in curly braces inside a 
 
 By the way, in a couple of solutions, finding the factors is optimised to take two factors at once if possible. Examine the `take` parts of [Colin Crain's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/colin-crain/raku/ch-1.raku#L70):
 
-```perl6
+```perl
     sub factor (Int $num) {
         gather {
             for (1..$num.sqrt.Int).grep({$num %% $_}) {
@@ -100,7 +100,7 @@ GCD, or greatest common divisor, is available as a [built-in routine](https://do
 
 Instead of finding the divisors for `$A` or `$B`, you can find them for their GCD only, as you can see in the [solution submitted by Jan Krňávek](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/wambash/raku/ch-1.raku):
 
-```perl6
+```perl
     sub common-factors( +@a ) {
         my $gcd = [gcd] @a;
         1, 2 ... $gcd
@@ -110,7 +110,7 @@ Instead of finding the divisors for `$A` or `$B`, you can find them for their GC
 
 Or in [Kang-min Liu’s program](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/gugod/raku/ch-1.raku):
 
-```perl6
+```perl
     sub common-factors (Int $a, Int $b) {
         my $x = $a gcd $b;
         return (1..$x).grep(-> $n { $x %% $n });
@@ -119,14 +119,14 @@ Or in [Kang-min Liu’s program](https://github.com/manwar/perlweeklychallenge-c
 
 [Mark Andreson expressed](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/mark-anderson/raku/ch-1.p6) the same idea using a `WhateverCode` block instead of a pointy block with an explicit signature:
 
-```perl6
+```perl
     my $gcd = $M gcd $N;
     say (1..$gcd).grep($gcd %% *).join(", ").List;
 ```
 
 [Philip Hood showed](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/pkmnx/raku/ch-1.raku) an unexpected way of making some computations directly in the signature of the `MAIN` function:
 
-```perl6
+```perl
     sub MAIN( Int $m = 18, Int $n = 12, $gc = $m gcd $n ) {
         die( "too many args!" ) if @*ARGS.end > 1;
         ( 1 .. $gc ).grep(-> $k { $gc %% $k } ).say;
@@ -137,7 +137,7 @@ This trick can probably be used in a Raku Golf contest.
 
 [Laurent Rosenfeld added](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/laurent-rosenfeld/raku/ch-1.raku) another improvement to check if the found value of GCD is a prime number:
 
-```perl6
+```perl
     sub common_factors (Int $a, Int $b) {
         my $gcd = $a gcd $b;
         return (1,) if $gcd == 1;
@@ -152,13 +152,13 @@ The next group includes solutions that use junctions.
 
 For example, look at [Feng Chang’s code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/feng-chang/raku/ch-1.raku) and the use of `&`:
 
-```perl6
+```perl
     (1..min($M,$N)).grep({ ($M & $N) %% $_ }).say;
 ```
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/markus-holzer/raku/ch-1.raku) reminds us that there’s an alternative form of creating junctions by using the built-in routine `all`:
 
-```perl6
+```perl
     say "({ join ', ', grep all( $N, $M ) %% *, 1 ..^ max $N, $M })"
 ```
 
@@ -166,7 +166,7 @@ For example, look at [Feng Chang’s code](https://github.com/manwar/perlweeklyc
 
 The solution that was [submitted by Julio de Castro](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/juliodcs/raku/ch-1.raku) requires special mentioning. A lot of `-o fun` things happen here:
 
-```perl6
+```perl
     sub prefix:<∕>(\num) {
         (1 ... num/2, +num).grep: num %% *
     }

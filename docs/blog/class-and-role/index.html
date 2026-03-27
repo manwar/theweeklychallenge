@@ -182,9 +182,9 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h4 id="tldr"><strong>TL;DR</strong></h4>
 <hr>
-<h5 id="a-added-classpmhttpsgithubcommanwarclass-miteblobmasterlibclasspm-for-lightweight-constructors--build-hook">a) Added <a href="https://github.com/manwar/Class-Mite/blob/master/lib/Class.pm"><strong>Class.pm</strong></a> for lightweight constructors + <code>BUILD</code> hook.</h5>
-<h5 id="b-rolepmhttpsgithubcommanwarclass-miteblobmasterlibrolepm-updated-with-stricter-conflict-handling-and-aliasing">b) <a href="https://github.com/manwar/Class-Mite/blob/master/lib/Role.pm"><strong>Role.pm</strong></a> updated with stricter conflict handling and aliasing.</h5>
-<h5 id="c-distribution-renamed-to-classmitehttpsgithubcommanwarclass-mite-small-but-mighty">c) Distribution renamed to <a href="https://github.com/manwar/Class-Mite"><strong>Class::Mite</strong></a>, small but mighty.</h5>
+<h5 id="a-added-classpm-for-lightweight-constructors--build-hook">a) Added <a href="https://github.com/manwar/Class-Mite/blob/master/lib/Class.pm"><strong>Class.pm</strong></a> for lightweight constructors + <code>BUILD</code> hook.</h5>
+<h5 id="b-rolepm-updated-with-stricter-conflict-handling-and-aliasing">b) <a href="https://github.com/manwar/Class-Mite/blob/master/lib/Role.pm"><strong>Role.pm</strong></a> updated with stricter conflict handling and aliasing.</h5>
+<h5 id="c-distribution-renamed-to-classmite-small-but-mighty">c) Distribution renamed to <a href="https://github.com/manwar/Class-Mite"><strong>Class::Mite</strong></a>, small but mighty.</h5>
 <br>
 <p>In my <a href="https://theweeklychallenge.org/blog/roles-in-perl"><strong>previous post</strong></a>, I introduced <a href="https://github.com/manwar/Role/blob/master/lib/Role.pm"><strong>Role.pm</strong></a>, a lightweight, dependency-free <code>Role</code> system for <code>Perl</code>. Since then, the project has grown with the addition of a companion module: <code>Class.pm</code>. Together, they form the foundation of the new distribution: <a href="https://github.com/manwar/Class-Mite"><strong>Class::Mite</strong></a>.</p>
 <br>
@@ -205,79 +205,79 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <p>First we create the role <code>Animal</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Animal;
-
-<span style="color:#66d9ef">use</span> Role;
-requires <span style="color:#e6db74">qw/speak/</span>;
-
-<span style="color:#ae81ff">1</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Animal;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Role;
+</span></span><span style="display:flex;"><span>requires <span style="color:#e6db74">qw/speak/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><br>
 <p>Then we create the class <code>Animal::Dog</code> taking the role <code>Animal</code> as below:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Animal::Dog;
-
-<span style="color:#66d9ef">use</span> Class;
-with <span style="color:#e6db74">qw/Animal/</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> { <span style="color:#e6db74">&#39;bark!!&#39;</span> }
-
-<span style="color:#ae81ff">1</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Animal::Dog;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Class;
+</span></span><span style="display:flex;"><span>with <span style="color:#e6db74">qw/Animal/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> { <span style="color:#e6db74">&#39;bark!!&#39;</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><br>
 <p>Action time finally.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Animal::Dog;
-
-<span style="color:#66d9ef">my</span> $dog <span style="color:#f92672">=</span> Animal::Dog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-
-<span style="color:#66d9ef">print</span> $dog<span style="color:#f92672">-&gt;</span>speak, <span style="color:#e6db74">&#34;\n&#34;</span>;   <span style="color:#75715e"># bark!!</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Animal::Dog;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $dog <span style="color:#f92672">=</span> Animal::Dog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> $dog<span style="color:#f92672">-&gt;</span>speak, <span style="color:#e6db74">&#34;\n&#34;</span>;   <span style="color:#75715e"># bark!!</span>
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s try the default constructor in the class <code>Animal::Dog</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Animal::Dog;
-
-<span style="color:#66d9ef">use</span> Class;
-with <span style="color:#e6db74">qw/Animal/</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{name} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; bark!!&#39;</span> }
-
-<span style="color:#ae81ff">1</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Animal::Dog;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Class;
+</span></span><span style="display:flex;"><span>with <span style="color:#e6db74">qw/Animal/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{name} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; bark!!&#39;</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><br>
 <p>Let&rsquo;s test the code now:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Animal::Dog;
-
-<span style="color:#66d9ef">my</span> $dog <span style="color:#f92672">=</span> Animal::Dog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Dummy&#39;</span>);
-
-<span style="color:#66d9ef">print</span> $dog<span style="color:#f92672">-&gt;</span>speak, <span style="color:#e6db74">&#34;\n&#34;</span>;   <span style="color:#75715e"># Dummy bark!!</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Animal::Dog;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $dog <span style="color:#f92672">=</span> Animal::Dog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Dummy&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> $dog<span style="color:#f92672">-&gt;</span>speak, <span style="color:#e6db74">&#34;\n&#34;</span>;   <span style="color:#75715e"># Dummy bark!!</span>
+</span></span></code></pre></div><br>
 <p>We&rsquo;ll update the class <code>Animal::Dog</code> to use the <code>BUILD</code> hook.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Animal::Dog;
-
-<span style="color:#66d9ef">use</span> Class;
-with <span style="color:#e6db74">qw/Animal/</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">BUILD</span> {
-    <span style="color:#66d9ef">my</span> ($self, $args) <span style="color:#f92672">=</span> @_;
-    $self<span style="color:#f92672">-&gt;</span>{greet} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Hello &#39;</span> <span style="color:#f92672">.</span> $self<span style="color:#f92672">-&gt;</span>{name};
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{name} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; bark!!&#39;</span> }
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">greet</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{greet}            }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Animal::Dog;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Class;
+</span></span><span style="display:flex;"><span>with <span style="color:#e6db74">qw/Animal/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">BUILD</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $args) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{greet} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Hello &#39;</span> <span style="color:#f92672">.</span> $self<span style="color:#f92672">-&gt;</span>{name};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">speak</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{name} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; bark!!&#39;</span> }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">greet</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{greet}            }
+</span></span></code></pre></div><br>
 <p>Finally test the hook:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Animal::Dog;
-
-<span style="color:#66d9ef">my</span> $dog <span style="color:#f92672">=</span> Animal::Dog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Dummy&#39;</span>);
-<span style="color:#66d9ef">print</span> $dog<span style="color:#f92672">-&gt;</span>greet, <span style="color:#e6db74">&#34;\n&#34;</span>;   <span style="color:#75715e"># Hello Dummy</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Animal::Dog;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $dog <span style="color:#f92672">=</span> Animal::Dog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Dummy&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> $dog<span style="color:#f92672">-&gt;</span>greet, <span style="color:#e6db74">&#34;\n&#34;</span>;   <span style="color:#75715e"># Hello Dummy</span>
+</span></span></code></pre></div><br>
 <p>Notice how clean this is:</p>
 <h5 id="a-new-automatically-blesses-a-hash">a) <code>new</code> automatically blesses a <code>hash</code>.</h5>
 <h5 id="b-build-runs-after-construction-for-custom-initialization">b) <code>BUILD</code> runs after construction for custom initialization.</h5>
 <h5 id="c-with-comes-directly-from-rolepm-with-zero-extra-boilerplate">c) <code>with</code> comes directly from <code>Role.pm</code> with zero extra boilerplate.</h5>
 <br>
-<h4 id="updates-to-rolepm"><strong>Updates to <code>Role.pm</code></strong></h4>
+<h4 id="updates-to"><strong>Updates to <code>Role.pm</code></strong></h4>
 <hr>
 <p>Alongside <code>Class.pm</code>, the <code>Role.pm</code> module has also evolved.</p>
 <p>Key updates since the last blog post:</p>
@@ -294,7 +294,7 @@ with <span style="color:#e6db74">qw/Animal/</span>;
 <p><strong>3. Method Aliasing</strong></p>
 <h5 id="a-roles-can-be-applied-with-renamed-methods-allowing-you-to-keep-both-implementations-without-conflict">a) Roles can be applied with renamed methods, allowing you to keep both implementations without conflict.</h5>
 <br>
-<h4 id="why-the-name-classmite"><strong>Why the name <code>Class::Mite</code>?</strong></h4>
+<h4 id="why-the-name"><strong>Why the name <code>Class::Mite</code>?</strong></h4>
 <hr>
 <p>The distribution is named <code>Class::Mite</code> to capture the spirit of being <code>small</code> but <code>mighty</code>.</p>
 <h5 id="a-small-tiny-codebase-zero-dependencies-and-pure-perl">a) Small: Tiny codebase, zero dependencies and pure <code>Perl</code>.</h5>

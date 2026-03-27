@@ -17,7 +17,7 @@ The first task was to find the magic number that, when added to every item of th
 
 Let’s take the first example:
 
-```
+```perl
 Input: @x = (3, 7, 5)
        @y = (9, 5, 7)
 Output: 2
@@ -32,7 +32,7 @@ The sorted arrays are `(3, 5, 7)` and `(5, 7, 9)`, and you can see now that `5 -
 
 This is the principle on which I based [**my own solution**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/ash/raku/ch-1.raku). The tricky part is whether you want to give the answer by only computing the difference between the first elements of the sorted arrays, or you want to double check and confirm that the other items keep the same distance.
 
-```raku
+```perl
 for @tests -> (@a is copy, @b is copy) {
     @a .= sort;
     @b .= sort;
@@ -55,14 +55,14 @@ I only compute the difference between the two first elements, and then test if t
 
 First, the sorted input arrays are merged to make pairs, for which you can find the differences:
 
-```raku
+```perl
 my @pairs = @x Z @y;
 my @diff = @pairs.map({ $_[0] - $_[1] });
 ```
 
 To confirm that all the differences are equal, a reduction metaoperator `[==]` is used:
 
-```raku
+```perl
 say ( [==] @diff ) ?? @diff[0].abs !! 'error';
 ```
 
@@ -70,7 +70,7 @@ The construct `[==] @diff` is True if all the elements in `@diff` are equal.
 
 Look at the soluton by [**Laurent Rosenfeld**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/laurent-rosenfeld/raku/ch-1.raku) where `[==]` is used too:
 
-```raku
+```perl
 sub magic-nr (@x, @y) {
     my @in1 = @x.sort;
     my @in2 = @y.sort;
@@ -82,7 +82,7 @@ sub magic-nr (@x, @y) {
 
 [**Bruce Gray**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/bruce-gray/raku/ch-1.raku) also used `Z`, but in combination with `-`, which allows to make both merging and computing differences at the same time: `@y.sort Z- @x.sort`.
 
-```raku
+```perl
 sub task1_Z_minus ( @x, @y --> Numeric ) {
     die if @x.elems != @y.elems;
 
@@ -96,7 +96,7 @@ Here, the input is additionally checked to make sure the arrays have the same le
 
 The [**squish**](https://docs.raku.org/routine/squish) trick in this solution is very handy to avoid comparing the differences element by element. Consider this example:
 
-```
+```perl
 my @x = (3, 7, 5);
 my @y = (9, 5, 7);
 
@@ -111,7 +111,7 @@ The first output tells us that the differences are `Array @y-x = [2, 2, 2]`. We 
 
 Now, update the intput values of `@y`:
 
-```raku
+```perl
 my @x = (3, 7, 5);
 my @y = (19, 5, 7); # 19 instead of 9 here
 ```
@@ -120,7 +120,7 @@ And this breaks the harmony: `Array @y-x = [2, 12]`. Differences are different, 
 
 [**Luca Ferrari**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/luca-ferrari/raku/ch-1.raku) is squishing the arrays explicitly to checkif there is only single value in the end:
 
-```raku
+```perl
 my @diffs;
 for 0 ..^ @sorted-left.elems -> $i {
     my $current = @sorted-left[ $i ] - @sorted-right[ $i ];
@@ -132,7 +132,7 @@ for 0 ..^ @sorted-left.elems -> $i {
 
 [**Mark Anderson**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/mark-anderson/raku/ch-1.raku) reminds us about another useful way to concurrently handle array elements in `Raku`, namely, using the `>>-<<` kind of operator:
 
-```raku
+```perl
 my @r = @y.sort >>-<< @x.sort;
 return .head if .elems == 1 given @r.squish;
 ```
@@ -141,7 +141,7 @@ We get the by-element differences in the `@r` variable, which then is `squish`ed
 
 Another way to ensure all the differences are equal is used in the solution by [**Robert Ransbottom**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/0rir/raku/ch-1.raku):
 
-```raku
+```perl
 my @candi = (@a.sort [Z-] @b.sort);
 return (@candi.all == @candi[0])
         ?? @candi[0].Int.abs
@@ -152,14 +152,14 @@ Here, `@candi.all == @candi[0]` gives the answer to the question.
 
 A similar approach is found in [**Jaldhar H. Vyas’s solution**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/jaldhar-h-vyas/raku/ch-1.raku):
 
-```raku
+```perl
 my @diff = $x.words.sort Z- $y.words.sort;
 say @diff.all ?? @diff[0].abs !! "no magic number";
 ```
 
 A more traditional way is used in the solution by [**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/athanasius/perl/ch-1.pl):
 
-```raku
+```perl
 my Int $magic = @y-sorted[ 0 ] - @x-sorted[ 0 ];
 
 for 1 .. $x.end -> UInt $i
@@ -170,7 +170,7 @@ for 1 .. $x.end -> UInt $i
 
 [**Packy Anderson**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/packy-anderson/raku/ch-1.raku) evaluates the difference between the smallest items of the two arrays and then tests it against the other elements, quitting the loop if the check fails:
 
-```raku
+```perl
 sub magicNumber(@x, @y) {
   my @xS = @x.sort;
   my @yS = @y.sort;
@@ -198,7 +198,7 @@ A few participants optimize the solution using the assumption that the input dat
 
 [**Asher Harvey-Smith**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/asherbhs/raku/ch-1.raku):
 
-```raku
+```perl
 sub magic-number(Int:D @x, Int:D @y --> Int:D) {
     @y.min - @x.min
 }
@@ -206,7 +206,7 @@ sub magic-number(Int:D @x, Int:D @y --> Int:D) {
 
 [**Jan Krnavek**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/wambash/raku/ch-1.raku):
 
-```raku
+```perl
 sub magic-number (@x, @y) {
     @y.min - @x.min
 }
@@ -214,7 +214,7 @@ sub magic-number (@x, @y) {
 
 [**BarrOff**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/barroff/raku/ch-1.p6):
 
-```raku
+```perl
 sub magic-number(@x, @y --> Int:D) {
     abs(min(@x) - min(@y))
 }
@@ -222,7 +222,7 @@ sub magic-number(@x, @y --> Int:D) {
 
 [**Roger Bell_West**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/roger-bell-west/raku/ch-1.p6):
 
-```raku
+```perl
 sub magicnumber(@a, @b) {
     return min(@b) - min(@a);
 }
@@ -232,7 +232,7 @@ By the way, notice that the [**TIMTOWTDI**](https://wiki.treasurers.org/wiki/TIM
 
 [**Bruce Gray**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/bruce-gray/raku/ch-1.raku) is also using `min` in another variant of the solution:
 
-```raku
+```perl
 sub task1_concise ( @x, @y --> Numeric ) {
     return adds_to_same(@x, $_, @y) ?? $_ !! Nil given @y.min - @x.min;
 }
@@ -240,7 +240,7 @@ sub task1_concise ( @x, @y --> Numeric ) {
 
 To make sure the difference is constant along the whole data, `eqv` is used to compare the baggified arrays:
 
-```raku
+```perl
 sub adds_to_same { (@^a X+ $^addend).Bag eqv @^b.Bag }
 ```
 
@@ -248,7 +248,7 @@ sub adds_to_same { (@^a X+ $^addend).Bag eqv @^b.Bag }
 
 Before wrapping up, let us look at the solution by [**Feng Chang**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-268/feng-chang/raku/ch-1.raku):
 
-```raku
+```perl
 unit sub MAIN(Str:D $x, Str:D $y);
 
 my @x = $x.comb(/\d+/);

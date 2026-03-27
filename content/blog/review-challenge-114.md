@@ -61,7 +61,7 @@ You are given a positive integer $n.
 Write a script to find out the next palindrome number higher than the given integer $n.
 
 **example**
-```
+```perl
     input: $n = 1234
     output: 1331
 
@@ -611,7 +611,7 @@ You are given a positive integer $N.
 Write a script to find the next higher integer having the same number of 1 bits in binary representation as $N.
 
 **Example**
-```
+```perl
     Input: $N = 3
     Output: 5
 

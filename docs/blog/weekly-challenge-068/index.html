@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>BLOG: The Weekly Challenge #068</span>
         </nav>
-        <span class="reading-time" title="2122 words">
+        <span class="reading-time" title="2124 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -179,214 +179,214 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <h1 id="headline">HEADLINE</h1>
 <p>The <strong>Week #068</strong> is my 23rd week in a row participating the weekly challenge. For the first time, I created a package to deal with the <strong>&ldquo;Reorder List&rdquo;</strong> task. It really helped me in thinking straight when dealing with linked list. With the help my favourite <strong>CPAN</strong> module <strong>Moo</strong>, creating class is like piece of cake as shown below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Node;
-
-<span style="color:#66d9ef">use</span> Moo;
-
-has v <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
-has c <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_link</span> {
-    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> $self;
-    <span style="color:#66d9ef">my</span> @v <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">while</span> ($head<span style="color:#f92672">-&gt;</span>c) {
-        push @v, $head<span style="color:#f92672">-&gt;</span>v;
-        $head <span style="color:#f92672">=</span> $head<span style="color:#f92672">-&gt;</span>c;
-    }
-    push @v, $head<span style="color:#f92672">-&gt;</span>v;
-
-    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#34;%s&#34;</span>, join <span style="color:#e6db74">&#39; -&gt; &#39;</span>, @v);
-}
-</code></pre></div><p>I will talk more in detail later down below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Node;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>has v <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
+</span></span><span style="display:flex;"><span>has c <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_link</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> $self;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @v <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($head<span style="color:#f92672">-&gt;</span>c) {
+</span></span><span style="display:flex;"><span>        push @v, $head<span style="color:#f92672">-&gt;</span>v;
+</span></span><span style="display:flex;"><span>        $head <span style="color:#f92672">=</span> $head<span style="color:#f92672">-&gt;</span>c;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    push @v, $head<span style="color:#f92672">-&gt;</span>v;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#34;%s&#34;</span>, join <span style="color:#e6db74">&#39; -&gt; &#39;</span>, @v);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I will talk more in detail later down below.</p>
 <p>As you all know by now, I always tend to translate my <strong>Perl</strong> solution literally to get the <strong>Raku</strong> version. So this gave me the opportunity to create class in <strong>Raku</strong> which I never done so far if you ask about weekly challenge. I enjoyed creating <strong>Raku</strong> class to say the least. It has more meat than the <strong>Perl</strong> counterpart. I will share more about it down below.</p>
 <p>Let me share my solutions to the <strong><a href="/perl-weekly-challenge-068">Perl Weekly Challenge - 068</a></strong>.</p>
 <hr>
 <h2 id="task-1--zero-matrix">TASK #1 › Zero Matrix</h2>
-<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<h4 id="submitted-by-mohammad-s-anwar">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
 <hr>
 <p>You are given a matrix of size M x N having only 0s and 1s.</p>
 <p>Write a script to set the entire row and column to 0 if an element is 0.</p>
 <hr>
 <p>For this task, I tried to be more organised than before and have a separate subroutine for each task. To begin with, first I came with <code>sub get_matrix()</code> to create a matrix given <code>$rows</code> and <code>$cols</code>.</p>
 <p>Nothing special about the subroutine except for the fact, I introduced little hack where I forced to it have more <code>1s</code> than <code>0s</code> in the matrix so that I see meaningful end result. For this I created fixed set of <code>1s</code> and <code>0s</code>, so that when I randomly pick one, the probability of getting <code>1</code> is highter than <code>0</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_matrix</span> {
-    <span style="color:#66d9ef">my</span> ($rows, $cols) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#75715e"># prabability of picking 1 is higher than 0 (80:20).</span>
-    <span style="color:#66d9ef">my</span> $min   <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;
-    <span style="color:#66d9ef">my</span> $array <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> ];
-
-    <span style="color:#66d9ef">my</span> $matrix  <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $r (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows) {
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols) {
-            $matrix<span style="color:#f92672">-&gt;</span>[$r][$c] <span style="color:#f92672">=</span> $array<span style="color:#f92672">-&gt;</span>[int($min <span style="color:#f92672">+</span> rand($max <span style="color:#f92672">-</span> $min))];
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> $matrix;
-}
-</code></pre></div><p>Next in line was to have <code>sub display_matrix()</code> to print nicely laid out the given matrix with label. No rocket science here.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display_matrix</span> {
-    <span style="color:#66d9ef">my</span> ($label, $matrix) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$label\n&#34;</span>;
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $r (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#$matrix) {
-        <span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;[ %s ]\n&#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, @{$matrix<span style="color:#f92672">-&gt;</span>[$r]});
-    }
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
-}
-</code></pre></div><p>Now it is time to introduce the real hero of the task <code>sub make_zero_matrix()</code>. The method receives the matrix generated using the given rows and cols from the command line. It creates new zero matrix based on the given matrix, so that it doesn&rsquo;t get mix up. It is commented out nicely for anyone to read it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_zero_matrix</span> {
-    <span style="color:#66d9ef">my</span> ($matrix) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $#$matrix;
-    <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> $#{$matrix<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]};
-
-    <span style="color:#66d9ef">my</span> $zero_matrix <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $r (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows) {
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols) {
-            <span style="color:#66d9ef">if</span> ($matrix<span style="color:#f92672">-&gt;</span>[$r][$c] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-                <span style="color:#75715e"># make zero row</span>
-                $zero_matrix<span style="color:#f92672">-&gt;</span>[$r][$_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols);
-                <span style="color:#75715e"># make zero col</span>
-                $zero_matrix<span style="color:#f92672">-&gt;</span>[$_][$c] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows);
-            }
-        }
-    }
-
-    <span style="color:#75715e"># fill empty cells, if any.</span>
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $r (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows) {
-        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols) {
-            $zero_matrix<span style="color:#f92672">-&gt;</span>[$r][$c] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">unless</span>
-                defined $zero_matrix<span style="color:#f92672">-&gt;</span>[$r][$c];
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> $zero_matrix;
-}
-</code></pre></div><p>Time to do some <strong>Raku</strong> magic.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_matrix</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($rows, $cols) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># prabability of picking 1 is higher than 0 (80:20).</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $min   <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $array <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $matrix  <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $r (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols) {
+</span></span><span style="display:flex;"><span>            $matrix<span style="color:#f92672">-&gt;</span>[$r][$c] <span style="color:#f92672">=</span> $array<span style="color:#f92672">-&gt;</span>[int($min <span style="color:#f92672">+</span> rand($max <span style="color:#f92672">-</span> $min))];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $matrix;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Next in line was to have <code>sub display_matrix()</code> to print nicely laid out the given matrix with label. No rocket science here.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display_matrix</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($label, $matrix) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$label\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $r (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#$matrix) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;[ %s ]\n&#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, @{$matrix<span style="color:#f92672">-&gt;</span>[$r]});
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now it is time to introduce the real hero of the task <code>sub make_zero_matrix()</code>. The method receives the matrix generated using the given rows and cols from the command line. It creates new zero matrix based on the given matrix, so that it doesn&rsquo;t get mix up. It is commented out nicely for anyone to read it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_zero_matrix</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($matrix) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $#$matrix;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> $#{$matrix<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $zero_matrix <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $r (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($matrix<span style="color:#f92672">-&gt;</span>[$r][$c] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># make zero row</span>
+</span></span><span style="display:flex;"><span>                $zero_matrix<span style="color:#f92672">-&gt;</span>[$r][$_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols);
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># make zero col</span>
+</span></span><span style="display:flex;"><span>                $zero_matrix<span style="color:#f92672">-&gt;</span>[$_][$c] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># fill empty cells, if any.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $r (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols) {
+</span></span><span style="display:flex;"><span>            $zero_matrix<span style="color:#f92672">-&gt;</span>[$r][$c] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">unless</span>
+</span></span><span style="display:flex;"><span>                defined $zero_matrix<span style="color:#f92672">-&gt;</span>[$r][$c];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $zero_matrix;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Time to do some <strong>Raku</strong> magic.</p>
 <p>First thing first, I created <code>sub get-matrix()</code> to create a matrix given rows and cols. The only bit that needs attention is the use of <code>pick()</code>. I have used this in the past. It is mainly responsible to pick a random member of the given list. Rest of the code is usual <strong>Raku</strong> magic.</p>
 <p>Honestly speaking, it looks elegant and clean.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span>-matrix(Int $rows where { $rows <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> },
-               Int $cols where { $cols <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> }) {
-
-    <span style="color:#75715e"># prabability of picking 1 is higher than 0 (80:20).</span>
-    <span style="color:#66d9ef">my</span> $min   <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;
-    <span style="color:#66d9ef">my</span> $array <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> ];
-
-    <span style="color:#66d9ef">my</span> $matrix  <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows <span style="color:#f92672">-&gt;</span> $r {
-        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols <span style="color:#f92672">-&gt;</span> $c {
-            $matrix<span style="color:#f92672">.</span>[$r][$c] <span style="color:#f92672">=</span> $array<span style="color:#f92672">.</span>pick;
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> $matrix;
-}
-</code></pre></div><p>Even the <code>sub display-matrix()</code> looks smart, with <code>$matrix.[$r].join(', ')</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display</span>-matrix($label, $matrix) {
-
-    say $label;
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$matrix<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $r {
-        say sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, $matrix<span style="color:#f92672">.</span>[$r]<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;, &#39;</span>));
-    }
-}
-</code></pre></div><p>The following <code>sub make-zero-matrix()</code> deals with main task i.e. making zero matrix.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make</span>-zero-matrix($matrix) {
-
-    <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-
-    <span style="color:#66d9ef">my</span> $zero_matrix <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows <span style="color:#f92672">-&gt;</span> $r {
-        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols <span style="color:#f92672">-&gt;</span> $c {
-            <span style="color:#66d9ef">if</span> $matrix<span style="color:#f92672">.</span>[$r][$c] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-                <span style="color:#75715e"># make zero row</span>
-                (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols)<span style="color:#f92672">.</span>map({ $zero_matrix<span style="color:#f92672">.</span>[$r][$_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> });
-                <span style="color:#75715e"># make zero col</span>
-                (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows)<span style="color:#f92672">.</span>map({ $zero_matrix<span style="color:#f92672">.</span>[$_][$c] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> });
-            }
-        }
-    }
-
-    <span style="color:#75715e"># fill empty cells, if any.</span>
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows <span style="color:#f92672">-&gt;</span> $r {
-        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols <span style="color:#f92672">-&gt;</span> $c {
-            $zero_matrix<span style="color:#f92672">.</span>[$r][$c] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">unless</span>
-                defined $zero_matrix<span style="color:#f92672">.</span>[$r][$c];
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> $zero_matrix;
-}
-</code></pre></div><p>With all the handy subroutines defined above, getting the final solution becomes school boy job.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">my</span> $R <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
-<span style="color:#66d9ef">my</span> $C <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>];
-
-<span style="color:#66d9ef">my</span> $matrix;
-<span style="color:#66d9ef">if</span> (defined $R <span style="color:#f92672">&amp;&amp;</span> defined $C) {
-    die <span style="color:#e6db74">&#34;ERROR: Invalid rows [$R].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($R <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span> <span style="color:#f92672">&amp;&amp;</span> $R <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">2</span> );
-    die <span style="color:#e6db74">&#34;ERROR: Invalid cols [$C].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($C <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span> <span style="color:#f92672">&amp;&amp;</span> $C <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">2</span> );
-
-    $matrix <span style="color:#f92672">=</span> get_matrix(<span style="color:#f92672">--</span>$R, <span style="color:#f92672">--</span>$C);
-}
-<span style="color:#66d9ef">else</span> {
-    $matrix <span style="color:#f92672">=</span> [
-        [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],
-        [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
-        [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],
-    ];
-}
-
-<span style="color:#66d9ef">my</span> $zero_matrix <span style="color:#f92672">=</span> make_zero_matrix($matrix);
-
-display_matrix(<span style="color:#e6db74">&#39;Matrix:&#39;</span>, $matrix);
-display_matrix(<span style="color:#e6db74">&#39;Zero Matrix:&#39;</span>, $zero_matrix);
-</code></pre></div><p>Although, the <strong>Raku</strong> app is not exactly the same as <strong>Perl</strong> but you would agree with me, it has upper hand as far as the presentation is concerned.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int :$R? is copy where { $R <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> } <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>,
-         Int :$C? is copy where { $C <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> } <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>) {
-
-    <span style="color:#66d9ef">my</span> $matrix      <span style="color:#f92672">=</span> get<span style="color:#f92672">-</span>matrix(<span style="color:#f92672">--</span>$R, <span style="color:#f92672">--</span>$C);
-    <span style="color:#66d9ef">my</span> $zero_matrix <span style="color:#f92672">=</span> make<span style="color:#f92672">-</span>zero<span style="color:#f92672">-</span>matrix($matrix);
-
-    display<span style="color:#f92672">-</span>matrix(<span style="color:#e6db74">&#39;Matrix:&#39;</span>, $matrix);
-    display<span style="color:#f92672">-</span>matrix(<span style="color:#e6db74">&#39;Zero Matrix:&#39;</span>, $zero_matrix);
-}
-</code></pre></div><p>Time to do some testing, first comes <strong>Perl</strong> using friend like <code>Test::More</code> and <code>Test::Deep</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> Test::Deep;
-
-is_deeply( make_zero_matrix([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>]]),
-           [[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]],
-           <span style="color:#e6db74">&#39;testing example 1&#39;</span> );
-is_deeply( make_zero_matrix([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]]),
-           [[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]],
-           <span style="color:#e6db74">&#39;testing example 2&#39;</span> );
-
-done_testing;
-</code></pre></div><p><strong>Raku</strong> once gain wins the race without the need of external library.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-is<span style="color:#f92672">-</span>deeply make<span style="color:#f92672">-</span>zero<span style="color:#f92672">-</span>matrix([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>]]),
-          [[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]],
-          <span style="color:#e6db74">&#39;testing example 1&#39;</span>;
-is<span style="color:#f92672">-</span>deeply make<span style="color:#f92672">-</span>zero<span style="color:#f92672">-</span>matrix([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]]),
-          [[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]],
-          <span style="color:#e6db74">&#39;testing example 2&#39;</span>;
-
-done<span style="color:#f92672">-</span>testing;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span>-matrix(Int $rows where { $rows <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> },
+</span></span><span style="display:flex;"><span>               Int $cols where { $cols <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> }) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># prabability of picking 1 is higher than 0 (80:20).</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $min   <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $array <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $matrix  <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows <span style="color:#f92672">-&gt;</span> $r {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols <span style="color:#f92672">-&gt;</span> $c {
+</span></span><span style="display:flex;"><span>            $matrix<span style="color:#f92672">.</span>[$r][$c] <span style="color:#f92672">=</span> $array<span style="color:#f92672">.</span>pick;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $matrix;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Even the <code>sub display-matrix()</code> looks smart, with <code>$matrix.[$r].join(', ')</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display</span>-matrix($label, $matrix) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say $label;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$matrix<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $r {
+</span></span><span style="display:flex;"><span>        say sprintf(<span style="color:#e6db74">&#34;[ %s ]&#34;</span>, $matrix<span style="color:#f92672">.</span>[$r]<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;, &#39;</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The following <code>sub make-zero-matrix()</code> deals with main task i.e. making zero matrix.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make</span>-zero-matrix($matrix) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $zero_matrix <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows <span style="color:#f92672">-&gt;</span> $r {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols <span style="color:#f92672">-&gt;</span> $c {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> $matrix<span style="color:#f92672">.</span>[$r][$c] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># make zero row</span>
+</span></span><span style="display:flex;"><span>                (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols)<span style="color:#f92672">.</span>map({ $zero_matrix<span style="color:#f92672">.</span>[$r][$_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> });
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># make zero col</span>
+</span></span><span style="display:flex;"><span>                (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows)<span style="color:#f92672">.</span>map({ $zero_matrix<span style="color:#f92672">.</span>[$_][$c] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> });
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># fill empty cells, if any.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$rows <span style="color:#f92672">-&gt;</span> $r {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cols <span style="color:#f92672">-&gt;</span> $c {
+</span></span><span style="display:flex;"><span>            $zero_matrix<span style="color:#f92672">.</span>[$r][$c] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">unless</span>
+</span></span><span style="display:flex;"><span>                defined $zero_matrix<span style="color:#f92672">.</span>[$r][$c];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $zero_matrix;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With all the handy subroutines defined above, getting the final solution becomes school boy job.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $R <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $C <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $matrix;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (defined $R <span style="color:#f92672">&amp;&amp;</span> defined $C) {
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid rows [$R].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($R <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span> <span style="color:#f92672">&amp;&amp;</span> $R <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">2</span> );
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;ERROR: Invalid cols [$C].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($C <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span> <span style="color:#f92672">&amp;&amp;</span> $C <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">2</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $matrix <span style="color:#f92672">=</span> get_matrix(<span style="color:#f92672">--</span>$R, <span style="color:#f92672">--</span>$C);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    $matrix <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>        [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],
+</span></span><span style="display:flex;"><span>        [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
+</span></span><span style="display:flex;"><span>        [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],
+</span></span><span style="display:flex;"><span>    ];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $zero_matrix <span style="color:#f92672">=</span> make_zero_matrix($matrix);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>display_matrix(<span style="color:#e6db74">&#39;Matrix:&#39;</span>, $matrix);
+</span></span><span style="display:flex;"><span>display_matrix(<span style="color:#e6db74">&#39;Zero Matrix:&#39;</span>, $zero_matrix);
+</span></span></code></pre></div><p>Although, the <strong>Raku</strong> app is not exactly the same as <strong>Perl</strong> but you would agree with me, it has upper hand as far as the presentation is concerned.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int :$R? is copy where { $R <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> } <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>         Int :$C? is copy where { $C <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> } <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $matrix      <span style="color:#f92672">=</span> get<span style="color:#f92672">-</span>matrix(<span style="color:#f92672">--</span>$R, <span style="color:#f92672">--</span>$C);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $zero_matrix <span style="color:#f92672">=</span> make<span style="color:#f92672">-</span>zero<span style="color:#f92672">-</span>matrix($matrix);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    display<span style="color:#f92672">-</span>matrix(<span style="color:#e6db74">&#39;Matrix:&#39;</span>, $matrix);
+</span></span><span style="display:flex;"><span>    display<span style="color:#f92672">-</span>matrix(<span style="color:#e6db74">&#39;Zero Matrix:&#39;</span>, $zero_matrix);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Time to do some testing, first comes <strong>Perl</strong> using friend like <code>Test::More</code> and <code>Test::Deep</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::Deep;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is_deeply( make_zero_matrix([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>]]),
+</span></span><span style="display:flex;"><span>           [[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]],
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#39;testing example 1&#39;</span> );
+</span></span><span style="display:flex;"><span>is_deeply( make_zero_matrix([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]]),
+</span></span><span style="display:flex;"><span>           [[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]],
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#39;testing example 2&#39;</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><p><strong>Raku</strong> once gain wins the race without the need of external library.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is<span style="color:#f92672">-</span>deeply make<span style="color:#f92672">-</span>zero<span style="color:#f92672">-</span>matrix([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>]]),
+</span></span><span style="display:flex;"><span>          [[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]],
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;testing example 1&#39;</span>;
+</span></span><span style="display:flex;"><span>is<span style="color:#f92672">-</span>deeply make<span style="color:#f92672">-</span>zero<span style="color:#f92672">-</span>matrix([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]]),
+</span></span><span style="display:flex;"><span>          [[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]],
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#39;testing example 2&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span></code></pre></div><hr>
 <h2 id="task-2--reorder-list">TASK #2 › Reorder List</h2>
-<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<h4 id="submitted-by-mohammad-s-anwar-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
 <hr>
 <p>You are given a singly linked list <code>$L</code> as below:</p>
 <pre><code>L0 →  L1 →  … →  Ln-1 →  Ln
@@ -398,167 +398,167 @@ done<span style="color:#f92672">-</span>testing;
 <hr>
 <br>
 <p>Personally I enjoy task related to <strong>Linked List</strong>. I could have done with without actually creating linked list but I didn&rsquo;t want to cheat. So I decided to create class <code>Node</code> with just two attributes <code>v</code> and <code>c</code> to hold value and child respectively. Using <code>Moo</code>, creating class is a child&rsquo;s play as you can see below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Node;
-
-<span style="color:#66d9ef">use</span> Moo;
-
-has v <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
-has c <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_link</span> {
-    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> $self;
-    <span style="color:#66d9ef">my</span> @v <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">while</span> ($head<span style="color:#f92672">-&gt;</span>c) {
-        push @v, $head<span style="color:#f92672">-&gt;</span>v;
-        $head <span style="color:#f92672">=</span> $head<span style="color:#f92672">-&gt;</span>c;
-    }
-    push @v, $head<span style="color:#f92672">-&gt;</span>v;
-
-    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#34;%s&#34;</span>, join <span style="color:#e6db74">&#39; -&gt; &#39;</span>, @v);
-}
-</code></pre></div><p>Once the class <code>Node</code> is ready, time to create <code>sub reorder_list()</code> to perform the task. In this method, I am doing two things distinctively i.e. prepare singly linked list and reorder in the end. It is nicely commented out for you to follow.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reorder_list</span> {
-    <span style="color:#66d9ef">my</span> ($list) <span style="color:#f92672">=</span> @_;
-
-    $list <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+//g</span>;
-    $list <span style="color:#f92672">=</span> [ split <span style="color:#e6db74">/\-\&gt;/</span>, $list ];
-    <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(v <span style="color:#f92672">=&gt;</span> shift @$list);
-    <span style="color:#66d9ef">my</span> $link <span style="color:#f92672">=</span> [ $head ];
-
-    <span style="color:#75715e"># prepare singly linked list</span>
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $v (@$list) {
-        <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(v <span style="color:#f92672">=&gt;</span> $v);
-        $link<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>c($node);
-        push @$link, $node;
-    }
-
-    <span style="color:#75715e"># reorder linked list</span>
-    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> int($#$list<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)) {
-        <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> pop @$link;
-        splice(@$link, $i, <span style="color:#ae81ff">0</span>, $node);
-
-        <span style="color:#75715e"># remove child from the last node</span>
-        $link<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>c(undef);
-
-        <span style="color:#75715e"># link new node to previous node</span>
-        $link<span style="color:#f92672">-&gt;</span>[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>c($node);
-
-        <span style="color:#75715e"># make the next node as child of new node</span>
-        $node<span style="color:#f92672">-&gt;</span>c($link<span style="color:#f92672">-&gt;</span>[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]);
-
-        $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
-    }
-
-    <span style="color:#66d9ef">return</span> $head;
-}
-</code></pre></div><p>For the first time, I am creating <strong>Raku</strong> class as far as the weekly challenge is concerned.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Node;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>has v <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
+</span></span><span style="display:flex;"><span>has c <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show_link</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> $self;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @v <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($head<span style="color:#f92672">-&gt;</span>c) {
+</span></span><span style="display:flex;"><span>        push @v, $head<span style="color:#f92672">-&gt;</span>v;
+</span></span><span style="display:flex;"><span>        $head <span style="color:#f92672">=</span> $head<span style="color:#f92672">-&gt;</span>c;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    push @v, $head<span style="color:#f92672">-&gt;</span>v;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#34;%s&#34;</span>, join <span style="color:#e6db74">&#39; -&gt; &#39;</span>, @v);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Once the class <code>Node</code> is ready, time to create <code>sub reorder_list()</code> to perform the task. In this method, I am doing two things distinctively i.e. prepare singly linked list and reorder in the end. It is nicely commented out for you to follow.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reorder_list</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($list) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+//g</span>;
+</span></span><span style="display:flex;"><span>    $list <span style="color:#f92672">=</span> [ split <span style="color:#e6db74">/\-\&gt;/</span>, $list ];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(v <span style="color:#f92672">=&gt;</span> shift @$list);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $link <span style="color:#f92672">=</span> [ $head ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># prepare singly linked list</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $v (@$list) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(v <span style="color:#f92672">=&gt;</span> $v);
+</span></span><span style="display:flex;"><span>        $link<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>c($node);
+</span></span><span style="display:flex;"><span>        push @$link, $node;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># reorder linked list</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> int($#$list<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> pop @$link;
+</span></span><span style="display:flex;"><span>        splice(@$link, $i, <span style="color:#ae81ff">0</span>, $node);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># remove child from the last node</span>
+</span></span><span style="display:flex;"><span>        $link<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>c(undef);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># link new node to previous node</span>
+</span></span><span style="display:flex;"><span>        $link<span style="color:#f92672">-&gt;</span>[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>c($node);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># make the next node as child of new node</span>
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>c($link<span style="color:#f92672">-&gt;</span>[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $head;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>For the first time, I am creating <strong>Raku</strong> class as far as the weekly challenge is concerned.</p>
 <p>I must confess, what you see down below is not what I wrote in the first place. It has gone through few changes, thanks to many experts. Let me share in details. At first I didn&rsquo;t have <code>is rw</code> assigned to the attribute, instead I had setter method. <strong>Jonathan Worthington</strong> suggested the change to make it cleaner.</p>
 <p><code>@khalidelboray</code> suggested instead of <code>my @v = ($!v)</code>, I could simply do something like <code>my @v = $!v</code>.</p>
 <p>When I made my code public, I received another cool suggestion by <strong>Moritz Lenz</strong> to replace my existing subroutine to show link.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">class Node {
-    has Int  $<span style="color:#960050;background-color:#1e0010">.</span>v is rw;
-    has Node $<span style="color:#960050;background-color:#1e0010">.</span>c is rw;
-
-    <span style="color:#75715e"># my implementation</span>
-    method _show<span style="color:#f92672">-</span>link() {
-        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">!</span>c;
-        <span style="color:#66d9ef">my</span> @v <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">!</span>v;
-
-        <span style="color:#66d9ef">while</span> defined $c {
-            @v<span style="color:#f92672">.</span>push: $c<span style="color:#f92672">.</span>v;
-            $c <span style="color:#f92672">=</span> $c<span style="color:#f92672">.</span>c;
-        }
-
-        <span style="color:#66d9ef">return</span> @v<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39; -&gt; &#39;</span>);
-    }
-
-    <span style="color:#75715e"># contributed by Moritz Lenz</span>
-    method show<span style="color:#f92672">-</span>link() {
-        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39; -&gt; &#39;</span>, (self, <span style="color:#f92672">*.</span>c <span style="color:#f92672">...^</span> <span style="color:#f92672">!*.</span>defined)<span style="color:#f92672">.</span>map: <span style="color:#f92672">*.</span>v;
-    }
-}
-</code></pre></div><p>I had another issue with my setter method earlier as I couldn&rsquo;t set Nil to the attribute <code>c</code>. I was trying to do <code>$n-&gt;c(Nil)</code> and keep getting error. I posted the error message and received the solution by <code>@scimon</code>. I was suggested to do <code>$n-&gt;c(Node)</code> instead.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>class Node {
+</span></span><span style="display:flex;"><span>    has Int  $<span style="color:#960050;background-color:#1e0010">.</span>v is rw;
+</span></span><span style="display:flex;"><span>    has Node $<span style="color:#960050;background-color:#1e0010">.</span>c is rw;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># my implementation</span>
+</span></span><span style="display:flex;"><span>    method _show<span style="color:#f92672">-</span>link() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">!</span>c;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @v <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">!</span>v;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> defined $c {
+</span></span><span style="display:flex;"><span>            @v<span style="color:#f92672">.</span>push: $c<span style="color:#f92672">.</span>v;
+</span></span><span style="display:flex;"><span>            $c <span style="color:#f92672">=</span> $c<span style="color:#f92672">.</span>c;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> @v<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39; -&gt; &#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># contributed by Moritz Lenz</span>
+</span></span><span style="display:flex;"><span>    method show<span style="color:#f92672">-</span>link() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39; -&gt; &#39;</span>, (self, <span style="color:#f92672">*.</span>c <span style="color:#f92672">...^</span> <span style="color:#f92672">!*.</span>defined)<span style="color:#f92672">.</span>map: <span style="color:#f92672">*.</span>v;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I had another issue with my setter method earlier as I couldn&rsquo;t set Nil to the attribute <code>c</code>. I was trying to do <code>$n-&gt;c(Nil)</code> and keep getting error. I posted the error message and received the solution by <code>@scimon</code>. I was suggested to do <code>$n-&gt;c(Node)</code> instead.</p>
 <p>With the introduction of <code>is rw</code>, I thought I can now make call like <code>$n1-&gt;c($n2)</code>. I was wrong and corrected by <code>@khalidelboray</code>. I was told the correct way to perform the same is <code>$n1.c = $n2</code>. Also with <code>is rw</code>, I can easily set Nil like <code>$n.c = Nil</code> as suggested by <strong>Jonathan Worthington</strong>.</p>
 <p>For me this is my best work in <strong>Raku</strong> so far.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reorder</span>-list(Str $linked-list is copy) {
-
-    $linked<span style="color:#f92672">-</span>list <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s/</span><span style="color:#f92672">/</span>;
-    <span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> $linked<span style="color:#f92672">-</span>list<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;-&gt;&#39;</span>);
-    <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> Node<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(v <span style="color:#f92672">=&gt;</span> @list<span style="color:#f92672">.</span>shift<span style="color:#f92672">.</span>Int);
-    <span style="color:#66d9ef">my</span> @link <span style="color:#f92672">=</span> $head;
-
-    <span style="color:#75715e"># prepare singly linked list</span>
-    <span style="color:#66d9ef">for</span> @list <span style="color:#f92672">-&gt;</span> $v {
-        <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> Node<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(v <span style="color:#f92672">=&gt;</span> $v<span style="color:#f92672">.</span>Int);
-        @link<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> $node;
-        @link<span style="color:#f92672">.</span>push: $node;
-    }
-
-    <span style="color:#75715e"># reorder linked list</span>
-    <span style="color:#66d9ef">my</span> Int $min <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">my</span> Int $max <span style="color:#f92672">=</span> (@list<span style="color:#f92672">.</span>elems<span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>Int;
-    <span style="color:#66d9ef">my</span> Int $i   <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span> $min <span style="color:#f92672">..</span> $max<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> {
-        <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> @link<span style="color:#f92672">.</span>pop;
-        @link<span style="color:#f92672">.</span>splice($i, <span style="color:#ae81ff">0</span>, $node);
-
-        <span style="color:#75715e"># remove child from the last node</span>
-        @link<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> Nil;
-
-        <span style="color:#75715e"># link new node to previous node</span>
-        @link[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> $node;
-
-        <span style="color:#75715e"># make the next node as child of new node</span>
-        $node<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> @link[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
-
-        $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
-    }
-
-    <span style="color:#66d9ef">return</span> $head;
-}
-</code></pre></div><p>Time to solve the task, it literaly becomes one-liner, do you see chaining?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> main;
-
-<span style="color:#66d9ef">my</span> $list <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">//</span><span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;</span>;
-<span style="color:#66d9ef">print</span> reorder_list($list)<span style="color:#f92672">-&gt;</span>show_link, <span style="color:#e6db74">&#34;\n&#34;</span>;
-</code></pre></div><p>Literal translation of <strong>Perl</strong> solution.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$linked-list = &#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;) {
-    reorder<span style="color:#f92672">-</span>list($linked<span style="color:#f92672">-</span>list)<span style="color:#f92672">.</span>show<span style="color:#f92672">-</span>link<span style="color:#f92672">.</span>say;
-}
-</code></pre></div><p>Unit test to make it complete.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> main;
-
-<span style="color:#66d9ef">use</span> Test::More;
-
-is( reorder_list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4&#39;</span>)<span style="color:#f92672">-&gt;</span>show_link,
-    <span style="color:#e6db74">&#39;1 -&gt; 4 -&gt; 2 -&gt; 3&#39;</span>,
-    <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4&#39;</span> );
-is( reorder_list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;</span>)<span style="color:#f92672">-&gt;</span>show_link,
-    <span style="color:#e6db74">&#39;1 -&gt; 5 -&gt; 2 -&gt; 4 -&gt; 3&#39;</span>,
-    <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;</span> );
-is( reorder_list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6&#39;</span>)<span style="color:#f92672">-&gt;</span>show_link,
-    <span style="color:#e6db74">&#39;1 -&gt; 6 -&gt; 2 -&gt; 5 -&gt; 3 -&gt; 4&#39;</span>,
-    <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6&#39;</span> );
-
-done_testing;
-</code></pre></div><p>and <strong>Raku</strong>, just so I don&rsquo;t forget it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-is reorder<span style="color:#f92672">-</span>list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4&#39;</span>)<span style="color:#f92672">.</span>show<span style="color:#f92672">-</span>link,
-   <span style="color:#e6db74">&#39;1 -&gt; 4 -&gt; 2 -&gt; 3&#39;</span>,
-   <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4&#39;</span>;
-is reorder<span style="color:#f92672">-</span>list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;</span>)<span style="color:#f92672">.</span>show<span style="color:#f92672">-</span>link,
-   <span style="color:#e6db74">&#39;1 -&gt; 5 -&gt; 2 -&gt; 4 -&gt; 3&#39;</span>,
-   <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;</span>;
-is reorder<span style="color:#f92672">-</span>list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6&#39;</span>)<span style="color:#f92672">.</span>show<span style="color:#f92672">-</span>link,
-   <span style="color:#e6db74">&#39;1 -&gt; 6 -&gt; 2 -&gt; 5 -&gt; 3 -&gt; 4&#39;</span>,
-   <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6&#39;</span>;
-
-done<span style="color:#f92672">-</span>testing;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reorder</span>-list(Str $linked-list is copy) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $linked<span style="color:#f92672">-</span>list <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s/</span><span style="color:#f92672">/</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> $linked<span style="color:#f92672">-</span>list<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;-&gt;&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> Node<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(v <span style="color:#f92672">=&gt;</span> @list<span style="color:#f92672">.</span>shift<span style="color:#f92672">.</span>Int);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @link <span style="color:#f92672">=</span> $head;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># prepare singly linked list</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> @list <span style="color:#f92672">-&gt;</span> $v {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> Node<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(v <span style="color:#f92672">=&gt;</span> $v<span style="color:#f92672">.</span>Int);
+</span></span><span style="display:flex;"><span>        @link<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> $node;
+</span></span><span style="display:flex;"><span>        @link<span style="color:#f92672">.</span>push: $node;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># reorder linked list</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> Int $min <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> Int $max <span style="color:#f92672">=</span> (@list<span style="color:#f92672">.</span>elems<span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>Int;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> Int $i   <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> $min <span style="color:#f92672">..</span> $max<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> @link<span style="color:#f92672">.</span>pop;
+</span></span><span style="display:flex;"><span>        @link<span style="color:#f92672">.</span>splice($i, <span style="color:#ae81ff">0</span>, $node);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># remove child from the last node</span>
+</span></span><span style="display:flex;"><span>        @link<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> Nil;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># link new node to previous node</span>
+</span></span><span style="display:flex;"><span>        @link[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> $node;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># make the next node as child of new node</span>
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> @link[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $head;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Time to solve the task, it literaly becomes one-liner, do you see chaining?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> main;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $list <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">//</span><span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> reorder_list($list)<span style="color:#f92672">-&gt;</span>show_link, <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span></code></pre></div><p>Literal translation of <strong>Perl</strong> solution.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$linked-list = &#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;) {
+</span></span><span style="display:flex;"><span>    reorder<span style="color:#f92672">-</span>list($linked<span style="color:#f92672">-</span>list)<span style="color:#f92672">.</span>show<span style="color:#f92672">-</span>link<span style="color:#f92672">.</span>say;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Unit test to make it complete.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> main;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is( reorder_list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4&#39;</span>)<span style="color:#f92672">-&gt;</span>show_link,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;1 -&gt; 4 -&gt; 2 -&gt; 3&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4&#39;</span> );
+</span></span><span style="display:flex;"><span>is( reorder_list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;</span>)<span style="color:#f92672">-&gt;</span>show_link,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;1 -&gt; 5 -&gt; 2 -&gt; 4 -&gt; 3&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;</span> );
+</span></span><span style="display:flex;"><span>is( reorder_list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6&#39;</span>)<span style="color:#f92672">-&gt;</span>show_link,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;1 -&gt; 6 -&gt; 2 -&gt; 5 -&gt; 3 -&gt; 4&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6&#39;</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><p>and <strong>Raku</strong>, just so I don&rsquo;t forget it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is reorder<span style="color:#f92672">-</span>list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4&#39;</span>)<span style="color:#f92672">.</span>show<span style="color:#f92672">-</span>link,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;1 -&gt; 4 -&gt; 2 -&gt; 3&#39;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4&#39;</span>;
+</span></span><span style="display:flex;"><span>is reorder<span style="color:#f92672">-</span>list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;</span>)<span style="color:#f92672">.</span>show<span style="color:#f92672">-</span>link,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;1 -&gt; 5 -&gt; 2 -&gt; 4 -&gt; 3&#39;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5&#39;</span>;
+</span></span><span style="display:flex;"><span>is reorder<span style="color:#f92672">-</span>list(<span style="color:#e6db74">&#39;1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6&#39;</span>)<span style="color:#f92672">.</span>show<span style="color:#f92672">-</span>link,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;1 -&gt; 6 -&gt; 2 -&gt; 5 -&gt; 3 -&gt; 4&#39;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;testing 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span></code></pre></div><hr>
 <p>That&rsquo;s it for this week. Speak to you soon.</p>
 
     </article>

@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>BLOG: The Weekly Challenge #058</span>
         </nav>
-        <span class="reading-time" title="1107 words">
+        <span class="reading-time" title="1109 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -185,263 +185,263 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <h2 id="task-1">Task #1:</h2>
 <p>Here comes the final draft of the core <strong>sub cmp_version()</strong>, which accepts the two versions string.</p>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cmp_version</span> {
-    <span style="color:#66d9ef">my</span> ($v1, $v2) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#75715e"># Short circuit, good idea?</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($v1 <span style="color:#f92672">eq</span> $v2);
-
-    <span style="color:#66d9ef">my</span> @v1 <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\./</span>, $v1;
-    <span style="color:#66d9ef">my</span> @v2 <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\./</span>, $v2;
-
-    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> (scalar(@v1) <span style="color:#f92672">&gt;</span> scalar(@v2))?(scalar(@v1)):(scalar(@v2));
-    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-    <span style="color:#66d9ef">my</span> $v1_alpha;
-    <span style="color:#66d9ef">my</span> $v2_alpha;
-
-    <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;</span> $max) {
-        $v1[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined $v1[$i];
-        $v2[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined $v2[$i];
-
-        <span style="color:#66d9ef">if</span> ($v1[$i] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\_/</span>) {
-            ($v1[$i], $v1_alpha) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\_/</span>, $v1[$i];
-        }
-        <span style="color:#66d9ef">if</span> ($v2[$i] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\_/</span>) {
-            ($v2[$i], $v2_alpha) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\_/</span>, $v2[$i];
-        }
-
-        <span style="color:#66d9ef">if</span> (defined $v1[$i] <span style="color:#f92672">&amp;&amp;</span> defined $v2[$i]) {
-            <span style="color:#66d9ef">if</span> ($v1[$i] <span style="color:#f92672">&gt;</span> $v2[$i]) {
-                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-            }
-            <span style="color:#66d9ef">elsif</span> ($v1[$i] <span style="color:#f92672">&lt;</span> $v2[$i]) {
-                <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-            }
-        }
-
-        $i<span style="color:#f92672">++</span>;
-    }
-
-    <span style="color:#66d9ef">if</span> (defined $v1_alpha <span style="color:#f92672">&amp;&amp;</span> defined $v2_alpha) {
-        <span style="color:#66d9ef">if</span> ($v1_alpha <span style="color:#f92672">&gt;</span> $v2_alpha) {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-        }
-        <span style="color:#66d9ef">elsif</span> ($v1_alpha <span style="color:#f92672">&lt;</span> $v2_alpha) {
-            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-        }
-    }
-    <span style="color:#66d9ef">else</span> {
-        <span style="color:#66d9ef">if</span> (defined $v1_alpha) {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-        }
-        <span style="color:#66d9ef">if</span> (defined $v2_alpha) {
-            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p>To go with the above sub, here is the wrapper to make it standalone app.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $v1 <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;0.1&#39;</span>;
-<span style="color:#66d9ef">my</span> $v2 <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;1.1&#39;</span>;
-<span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;%s cmp %s = %d\n&#34;</span>, $v1, $v2, cmp_version($v1, $v2));
-</code></pre></div><p>Similarly the unit test is slick one.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test::More;
-
-is (cmp_version(<span style="color:#e6db74">&#39;0.1&#39;</span>, <span style="color:#e6db74">&#39;1.1&#39;</span>),    <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;0.1   cmp 1.1&#39;</span>);
-is (cmp_version(<span style="color:#e6db74">&#39;2.0&#39;</span>, <span style="color:#e6db74">&#39;1.2&#39;</span>),     <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;2.0   cmp 1.2&#39;</span>);
-is (cmp_version(<span style="color:#e6db74">&#39;1.2&#39;</span>, <span style="color:#e6db74">&#39;1.2_5&#39;</span>),  <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;1.2   cmp 1.2_5&#39;</span>);
-is (cmp_version(<span style="color:#e6db74">&#39;1.2.2&#39;</span>, <span style="color:#e6db74">&#39;1.2_1&#39;</span>), <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;1.2.2 cmp 1.2_1&#39;</span>);
-is (cmp_version(<span style="color:#e6db74">&#39;1.2_1&#39;</span>, <span style="color:#e6db74">&#39;1.2_1&#39;</span>), <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;1.2_1 cmp 1.2_1&#39;</span>);
-is (cmp_version(<span style="color:#e6db74">&#39;1.2.1&#39;</span>, <span style="color:#e6db74">&#39;1.2.1&#39;</span>), <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;1.2.1 cmp 1.2.1&#39;</span>);
-
-done_testing;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cmp_version</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($v1, $v2) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Short circuit, good idea?</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($v1 <span style="color:#f92672">eq</span> $v2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @v1 <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\./</span>, $v1;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @v2 <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\./</span>, $v2;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> (scalar(@v1) <span style="color:#f92672">&gt;</span> scalar(@v2))?(scalar(@v1)):(scalar(@v2));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $v1_alpha;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $v2_alpha;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;</span> $max) {
+</span></span><span style="display:flex;"><span>        $v1[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined $v1[$i];
+</span></span><span style="display:flex;"><span>        $v2[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined $v2[$i];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($v1[$i] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\_/</span>) {
+</span></span><span style="display:flex;"><span>            ($v1[$i], $v1_alpha) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\_/</span>, $v1[$i];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($v2[$i] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\_/</span>) {
+</span></span><span style="display:flex;"><span>            ($v2[$i], $v2_alpha) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\_/</span>, $v2[$i];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (defined $v1[$i] <span style="color:#f92672">&amp;&amp;</span> defined $v2[$i]) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($v1[$i] <span style="color:#f92672">&gt;</span> $v2[$i]) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elsif</span> ($v1[$i] <span style="color:#f92672">&lt;</span> $v2[$i]) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (defined $v1_alpha <span style="color:#f92672">&amp;&amp;</span> defined $v2_alpha) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($v1_alpha <span style="color:#f92672">&gt;</span> $v2_alpha) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elsif</span> ($v1_alpha <span style="color:#f92672">&lt;</span> $v2_alpha) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (defined $v1_alpha) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (defined $v2_alpha) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To go with the above sub, here is the wrapper to make it standalone app.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $v1 <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;0.1&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $v2 <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;1.1&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;%s cmp %s = %d\n&#34;</span>, $v1, $v2, cmp_version($v1, $v2));
+</span></span></code></pre></div><p>Similarly the unit test is slick one.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is (cmp_version(<span style="color:#e6db74">&#39;0.1&#39;</span>, <span style="color:#e6db74">&#39;1.1&#39;</span>),    <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;0.1   cmp 1.1&#39;</span>);
+</span></span><span style="display:flex;"><span>is (cmp_version(<span style="color:#e6db74">&#39;2.0&#39;</span>, <span style="color:#e6db74">&#39;1.2&#39;</span>),     <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;2.0   cmp 1.2&#39;</span>);
+</span></span><span style="display:flex;"><span>is (cmp_version(<span style="color:#e6db74">&#39;1.2&#39;</span>, <span style="color:#e6db74">&#39;1.2_5&#39;</span>),  <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;1.2   cmp 1.2_5&#39;</span>);
+</span></span><span style="display:flex;"><span>is (cmp_version(<span style="color:#e6db74">&#39;1.2.2&#39;</span>, <span style="color:#e6db74">&#39;1.2_1&#39;</span>), <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;1.2.2 cmp 1.2_1&#39;</span>);
+</span></span><span style="display:flex;"><span>is (cmp_version(<span style="color:#e6db74">&#39;1.2_1&#39;</span>, <span style="color:#e6db74">&#39;1.2_1&#39;</span>), <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;1.2_1 cmp 1.2_1&#39;</span>);
+</span></span><span style="display:flex;"><span>is (cmp_version(<span style="color:#e6db74">&#39;1.2.1&#39;</span>, <span style="color:#e6db74">&#39;1.2.1&#39;</span>), <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;1.2.1 cmp 1.2.1&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><hr>
 <h2 id="task-2">Task #2:</h2>
 <p>As I always try to solve the task in <strong>Perl</strong> first, I really spent longer than usual to solve this task. It was the toughest nut to crack to be honest with you.</p>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">order_lineup</span> {
-    <span style="color:#66d9ef">my</span> ($args) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> @H <span style="color:#f92672">=</span> @{$args<span style="color:#f92672">-&gt;</span>{H}};
-    <span style="color:#66d9ef">my</span> @T <span style="color:#f92672">=</span> @{$args<span style="color:#f92672">-&gt;</span>{T}};
-    <span style="color:#66d9ef">my</span> $O <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-
-    <span style="color:#66d9ef">my</span> $H_T <span style="color:#f92672">=</span> { map { $H[$_] <span style="color:#f92672">=&gt;</span> $T[$_] } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar(@H)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> };
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $h (sort { $b <span style="color:#e6db74">&lt;=&gt;</span> $a } keys %$H_T) {
-
-        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-        <span style="color:#66d9ef">while</span> ($H_T<span style="color:#f92672">-&gt;</span>{$h} <span style="color:#f92672">&gt;</span> $j) {
-            $j<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($O<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">&gt;</span> $h);
-            $i<span style="color:#f92672">++</span>;
-        }
-
-        splice @$O, $i, <span style="color:#ae81ff">0</span>, $h;
-    }
-
-    <span style="color:#66d9ef">return</span> $O;
-}
-</code></pre></div><p>Here is the thin wrapper around the above <strong>sub order_lineup()</strong>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $H <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>];
-<span style="color:#66d9ef">my</span> $T <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>];
-<span style="color:#66d9ef">my</span> $O <span style="color:#f92672">=</span> order_lineup({ H <span style="color:#f92672">=&gt;</span> $H, T <span style="color:#f92672">=&gt;</span> $T });
-
-<span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;\@H = (%s)\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @$H));
-<span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;\@T = (%s)\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @$T));
-<span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;\@O = (%s)\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @$O));
-</code></pre></div><p>To complete the task, here goes the unit test as below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Test::More;
-<span style="color:#66d9ef">use</span> Test::Deep;
-
-<span style="color:#66d9ef">my</span> $unit_tests <span style="color:#f92672">=</span> [
-    { in  <span style="color:#f92672">=&gt;</span> { H <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>],
-               T <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>],
-             },
-      out <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>],
-    },
-];
-
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $unit_test (@$unit_tests) {
-    is_deeply(order_lineup($unit_test<span style="color:#f92672">-&gt;</span>{in}), $unit_test<span style="color:#f92672">-&gt;</span>{out});
-}
-
-done_testing;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">order_lineup</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($args) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @H <span style="color:#f92672">=</span> @{$args<span style="color:#f92672">-&gt;</span>{H}};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @T <span style="color:#f92672">=</span> @{$args<span style="color:#f92672">-&gt;</span>{T}};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $O <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $H_T <span style="color:#f92672">=</span> { map { $H[$_] <span style="color:#f92672">=&gt;</span> $T[$_] } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar(@H)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $h (sort { $b <span style="color:#e6db74">&lt;=&gt;</span> $a } keys %$H_T) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ($H_T<span style="color:#f92672">-&gt;</span>{$h} <span style="color:#f92672">&gt;</span> $j) {
+</span></span><span style="display:flex;"><span>            $j<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($O<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">&gt;</span> $h);
+</span></span><span style="display:flex;"><span>            $i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        splice @$O, $i, <span style="color:#ae81ff">0</span>, $h;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $O;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here is the thin wrapper around the above <strong>sub order_lineup()</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $H <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $T <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $O <span style="color:#f92672">=</span> order_lineup({ H <span style="color:#f92672">=&gt;</span> $H, T <span style="color:#f92672">=&gt;</span> $T });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;\@H = (%s)\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @$H));
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;\@T = (%s)\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @$T));
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;\@O = (%s)\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @$O));
+</span></span></code></pre></div><p>To complete the task, here goes the unit test as below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::Deep;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $unit_tests <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    { in  <span style="color:#f92672">=&gt;</span> { H <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>],
+</span></span><span style="display:flex;"><span>               T <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>],
+</span></span><span style="display:flex;"><span>             },
+</span></span><span style="display:flex;"><span>      out <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $unit_test (@$unit_tests) {
+</span></span><span style="display:flex;"><span>    is_deeply(order_lineup($unit_test<span style="color:#f92672">-&gt;</span>{in}), $unit_test<span style="color:#f92672">-&gt;</span>{out});
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><hr>
 <h1 id="raku">RAKU</h1>
 <hr>
 <h2 id="task-1-1">Task #1:</h2>
 <p>Usual translation of <strong>Perl</strong> solution into <strong>Raku</strong>. I am getting better with <strong>Raku</strong> with every passing week. There was hardly anything new I tried in the <strong>sub cmp-version()</strong>, just the usual stuff.</p>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cmp</span>-version(Str $v1, Str $v2) {
-
-    <span style="color:#75715e"># Short circuit, good idea?</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($v1 <span style="color:#f92672">eq</span> $v2);
-
-    <span style="color:#66d9ef">my</span> @v1 <span style="color:#f92672">=</span> $v1<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;.&#34;</span>);
-    <span style="color:#66d9ef">my</span> @v2 <span style="color:#f92672">=</span> $v2<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;.&#34;</span>);
-
-    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> @v1<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> @v2<span style="color:#f92672">.</span>elems ?? @v1<span style="color:#f92672">.</span>elems <span style="color:#f92672">!!</span> @v2<span style="color:#f92672">.</span>elems;
-    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-    <span style="color:#66d9ef">my</span> $v1_alpha;
-    <span style="color:#66d9ef">my</span> $v2_alpha;
-
-    <span style="color:#66d9ef">while</span> $i <span style="color:#f92672">&lt;</span> $max {
-        @v1[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined @v1[$i];
-        @v2[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined @v2[$i];
-
-        <span style="color:#66d9ef">if</span> @v1[$i] <span style="color:#f92672">~~</span> <span style="color:#e6db74">/ &lt;[_]&gt; /</span> {
-            (@v1[$i], $v1_alpha) <span style="color:#f92672">=</span> @v1[$i]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;_&#34;</span>);
-        }
-        <span style="color:#66d9ef">if</span> @v2[$i] <span style="color:#f92672">~~</span> <span style="color:#e6db74">/ &lt;[_]&gt; /</span> {
-            (@v2[$i], $v2_alpha) <span style="color:#f92672">=</span> @v2[$i]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;_&#34;</span>);
-        }
-
-        <span style="color:#66d9ef">if</span> defined @v1[$i] <span style="color:#f92672">&amp;&amp;</span> defined @v2[$i] {
-            <span style="color:#66d9ef">if</span> @v1[$i] <span style="color:#f92672">&gt;</span> @v2[$i] {
-                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-            }
-            <span style="color:#66d9ef">elsif</span> @v1[$i] <span style="color:#f92672">&lt;</span> @v2[$i] {
-                <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-            }
-        }
-
-        $i<span style="color:#f92672">++</span>;
-    }
-
-    <span style="color:#66d9ef">if</span> defined $v1_alpha <span style="color:#f92672">&amp;&amp;</span> defined $v2_alpha {
-        <span style="color:#66d9ef">if</span> $v1_alpha <span style="color:#f92672">&gt;</span> $v2_alpha {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-        }
-        <span style="color:#66d9ef">elsif</span> $v1_alpha <span style="color:#f92672">&lt;</span> $v2_alpha {
-            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-        }
-    }
-    <span style="color:#66d9ef">else</span> {
-        <span style="color:#66d9ef">if</span> defined $v1_alpha {
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-        }
-        <span style="color:#66d9ef">if</span> defined $v2_alpha {
-            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p>Here is standalone app to go with the above <strong>sub cmp-version()</strong>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$v1 = &#39;0.1&#39;, Str :$v2 = &#39;1.1&#39;) {
-    say sprintf(<span style="color:#e6db74">&#34;%s cmp %s = %s&#34;</span>, $v1, $v2, <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version($v1, $v2));
-}
-</code></pre></div><p>And unit test as well to make it complete.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;0.1&#39;</span>,   <span style="color:#e6db74">&#39;1.1&#39;</span>),   <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;0.1   cmp 1.1&#39;</span>;
-is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;2.0&#39;</span>,   <span style="color:#e6db74">&#39;1.2&#39;</span>),    <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;2.0   cmp 1.2&#39;</span>;
-is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;1.2&#39;</span>,   <span style="color:#e6db74">&#39;1.2_5&#39;</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;1.2   cmp 1.2_5&#39;</span>;
-is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;1.2.2&#39;</span>, <span style="color:#e6db74">&#39;1.2_1&#39;</span>),  <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;1.2.2 cmp 1.2_1&#39;</span>;
-is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;1.2_1&#39;</span>, <span style="color:#e6db74">&#39;1.2_1&#39;</span>),  <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;1.2_1 cmp 1.2_1&#39;</span>;
-is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;1.2.1&#39;</span>, <span style="color:#e6db74">&#39;1.2.1&#39;</span>),  <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;1.2.1 cmp 1.2.1&#39;</span>;
-
-done<span style="color:#f92672">-</span>testing;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cmp</span>-version(Str $v1, Str $v2) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Short circuit, good idea?</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($v1 <span style="color:#f92672">eq</span> $v2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @v1 <span style="color:#f92672">=</span> $v1<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;.&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @v2 <span style="color:#f92672">=</span> $v2<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;.&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> @v1<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> @v2<span style="color:#f92672">.</span>elems ?? @v1<span style="color:#f92672">.</span>elems <span style="color:#f92672">!!</span> @v2<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $v1_alpha;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $v2_alpha;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> $i <span style="color:#f92672">&lt;</span> $max {
+</span></span><span style="display:flex;"><span>        @v1[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined @v1[$i];
+</span></span><span style="display:flex;"><span>        @v2[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined @v2[$i];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> @v1[$i] <span style="color:#f92672">~~</span> <span style="color:#e6db74">/ &lt;[_]&gt; /</span> {
+</span></span><span style="display:flex;"><span>            (@v1[$i], $v1_alpha) <span style="color:#f92672">=</span> @v1[$i]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;_&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> @v2[$i] <span style="color:#f92672">~~</span> <span style="color:#e6db74">/ &lt;[_]&gt; /</span> {
+</span></span><span style="display:flex;"><span>            (@v2[$i], $v2_alpha) <span style="color:#f92672">=</span> @v2[$i]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;_&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> defined @v1[$i] <span style="color:#f92672">&amp;&amp;</span> defined @v2[$i] {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> @v1[$i] <span style="color:#f92672">&gt;</span> @v2[$i] {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elsif</span> @v1[$i] <span style="color:#f92672">&lt;</span> @v2[$i] {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> defined $v1_alpha <span style="color:#f92672">&amp;&amp;</span> defined $v2_alpha {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> $v1_alpha <span style="color:#f92672">&gt;</span> $v2_alpha {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elsif</span> $v1_alpha <span style="color:#f92672">&lt;</span> $v2_alpha {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> defined $v1_alpha {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> defined $v2_alpha {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here is standalone app to go with the above <strong>sub cmp-version()</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$v1 = &#39;0.1&#39;, Str :$v2 = &#39;1.1&#39;) {
+</span></span><span style="display:flex;"><span>    say sprintf(<span style="color:#e6db74">&#34;%s cmp %s = %s&#34;</span>, $v1, $v2, <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version($v1, $v2));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And unit test as well to make it complete.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;0.1&#39;</span>,   <span style="color:#e6db74">&#39;1.1&#39;</span>),   <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;0.1   cmp 1.1&#39;</span>;
+</span></span><span style="display:flex;"><span>is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;2.0&#39;</span>,   <span style="color:#e6db74">&#39;1.2&#39;</span>),    <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;2.0   cmp 1.2&#39;</span>;
+</span></span><span style="display:flex;"><span>is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;1.2&#39;</span>,   <span style="color:#e6db74">&#39;1.2_5&#39;</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;1.2   cmp 1.2_5&#39;</span>;
+</span></span><span style="display:flex;"><span>is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;1.2.2&#39;</span>, <span style="color:#e6db74">&#39;1.2_1&#39;</span>),  <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;1.2.2 cmp 1.2_1&#39;</span>;
+</span></span><span style="display:flex;"><span>is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;1.2_1&#39;</span>, <span style="color:#e6db74">&#39;1.2_1&#39;</span>),  <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;1.2_1 cmp 1.2_1&#39;</span>;
+</span></span><span style="display:flex;"><span>is <span style="color:#f92672">cmp</span><span style="color:#f92672">-</span>version(<span style="color:#e6db74">&#39;1.2.1&#39;</span>, <span style="color:#e6db74">&#39;1.2.1&#39;</span>),  <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;1.2.1 cmp 1.2.1&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span></code></pre></div><hr>
 <h2 id="task-2-1">Task #2:</h2>
 <p>For this task, I had to try few things for the first time. For example, sorting hash by key in reverse order. Also used <strong>splice</strong> for the first time. Last but not the least, I learnt how to fetch data from <strong>Pair</strong>.</p>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">order</span>-lineup($args) {
-
-    <span style="color:#66d9ef">my</span> @H <span style="color:#f92672">=</span> $args<span style="color:#f92672">.</span>{<span style="color:#e6db74">&#39;H&#39;</span>}<span style="color:#f92672">.&lt;&gt;</span>;
-    <span style="color:#66d9ef">my</span> @T <span style="color:#f92672">=</span> $args<span style="color:#f92672">.</span>{<span style="color:#e6db74">&#39;T&#39;</span>}<span style="color:#f92672">.&lt;&gt;</span>;
-
-    <span style="color:#66d9ef">my</span> %H<span style="color:#f92672">-</span>T <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @H<span style="color:#f92672">.</span>elems<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $i {
-        %H<span style="color:#f92672">-</span>T{@H[$i]} <span style="color:#f92672">=</span> @T[$i];
-    }
-
-    <span style="color:#66d9ef">my</span> $O <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-    <span style="color:#66d9ef">for</span> %H<span style="color:#f92672">-</span>T<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>keys)<span style="color:#f92672">.</span>reverse <span style="color:#f92672">-&gt;</span> $r {
-        <span style="color:#66d9ef">my</span> $h <span style="color:#f92672">=</span> $r<span style="color:#f92672">.</span>kv[<span style="color:#ae81ff">0</span>];
-        <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> $r<span style="color:#f92672">.</span>kv[<span style="color:#ae81ff">1</span>];
-
-        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">while</span> $t <span style="color:#f92672">&gt;</span> $j {
-            $j<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $O<span style="color:#f92672">.</span>[$i] <span style="color:#f92672">&gt;</span> $h;
-            $i<span style="color:#f92672">++</span>;
-        }
-
-        $O<span style="color:#f92672">.</span>splice: $i, <span style="color:#ae81ff">0</span>, $h<span style="color:#f92672">.</span>Int;
-    }
-
-    <span style="color:#66d9ef">return</span> $O;
-}
-</code></pre></div><p>Here is <strong>Raku</strong> app using the above <strong>sub order-lineup()</strong>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
-    <span style="color:#66d9ef">my</span> $H <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>];
-    <span style="color:#66d9ef">my</span> $T <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>];
-    <span style="color:#66d9ef">my</span> $O <span style="color:#f92672">=</span> order<span style="color:#f92672">-</span>lineup({ H <span style="color:#f92672">=&gt;</span> $H, T <span style="color:#f92672">=&gt;</span> $T });
-
-    say sprintf(<span style="color:#e6db74">&#34;\@H = (%s)&#34;</span>, $H<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>));
-    say sprintf(<span style="color:#e6db74">&#34;\@T = (%s)&#34;</span>, $T<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>));
-    say sprintf(<span style="color:#e6db74">&#34;\@O = (%s)&#34;</span>, $O<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>));
-}
-</code></pre></div><p>And light weight unit test wrapper.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-<span style="color:#66d9ef">my</span> $H <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>];
-<span style="color:#66d9ef">my</span> $T <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>];
-<span style="color:#66d9ef">my</span> $E <span style="color:#f92672">=</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>];
-
-is order<span style="color:#f92672">-</span>lineup({ H <span style="color:#f92672">=&gt;</span> $H, T <span style="color:#f92672">=&gt;</span> $T }), $E;
-
-done<span style="color:#f92672">-</span>testing;
-</code></pre></div><p>That&rsquo;s it for this week. Speak to you soon.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">order</span>-lineup($args) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @H <span style="color:#f92672">=</span> $args<span style="color:#f92672">.</span>{<span style="color:#e6db74">&#39;H&#39;</span>}<span style="color:#f92672">.&lt;&gt;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @T <span style="color:#f92672">=</span> $args<span style="color:#f92672">.</span>{<span style="color:#e6db74">&#39;T&#39;</span>}<span style="color:#f92672">.&lt;&gt;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %H<span style="color:#f92672">-</span>T <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @H<span style="color:#f92672">.</span>elems<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $i {
+</span></span><span style="display:flex;"><span>        %H<span style="color:#f92672">-</span>T{@H[$i]} <span style="color:#f92672">=</span> @T[$i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $O <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> %H<span style="color:#f92672">-</span>T<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>keys)<span style="color:#f92672">.</span>reverse <span style="color:#f92672">-&gt;</span> $r {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $h <span style="color:#f92672">=</span> $r<span style="color:#f92672">.</span>kv[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> $r<span style="color:#f92672">.</span>kv[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> $t <span style="color:#f92672">&gt;</span> $j {
+</span></span><span style="display:flex;"><span>            $j<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $O<span style="color:#f92672">.</span>[$i] <span style="color:#f92672">&gt;</span> $h;
+</span></span><span style="display:flex;"><span>            $i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $O<span style="color:#f92672">.</span>splice: $i, <span style="color:#ae81ff">0</span>, $h<span style="color:#f92672">.</span>Int;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $O;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here is <strong>Raku</strong> app using the above <strong>sub order-lineup()</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $H <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $T <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $O <span style="color:#f92672">=</span> order<span style="color:#f92672">-</span>lineup({ H <span style="color:#f92672">=&gt;</span> $H, T <span style="color:#f92672">=&gt;</span> $T });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say sprintf(<span style="color:#e6db74">&#34;\@H = (%s)&#34;</span>, $H<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>));
+</span></span><span style="display:flex;"><span>    say sprintf(<span style="color:#e6db74">&#34;\@T = (%s)&#34;</span>, $T<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>));
+</span></span><span style="display:flex;"><span>    say sprintf(<span style="color:#e6db74">&#34;\@O = (%s)&#34;</span>, $O<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And light weight unit test wrapper.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $H <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $T <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $E <span style="color:#f92672">=</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is order<span style="color:#f92672">-</span>lineup({ H <span style="color:#f92672">=&gt;</span> $H, T <span style="color:#f92672">=&gt;</span> $T }), $E;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done<span style="color:#f92672">-</span>testing;
+</span></span></code></pre></div><p>That&rsquo;s it for this week. Speak to you soon.</p>
 
     </article>
     

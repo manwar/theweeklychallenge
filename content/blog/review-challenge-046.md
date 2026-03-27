@@ -42,7 +42,7 @@ We'd greatly appreciate any feedback you'd like to give.
 
 This task had us resolving "unreliable transmissions" that were sent repeatedly, each time with errors in different locations in the string, such as this one:
 
-```
+```perl
 P + 2 l ! a t o
 1 e 8 0 R $ 4 u
 5 - r ] + a > /
@@ -113,7 +113,7 @@ for my $i (1 .. @{$msg}-1) {
 
 The way in which the answer is built up and printed at each stage as more columns are "solved" is interesting, reminding me vaguely of [Matrix code](https://en.wikipedia.org/wiki/Matrix_digital_rain):
 
-```
+```perl
 ????????
 ?????a??
 P??l?a??

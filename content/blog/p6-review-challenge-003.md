@@ -59,7 +59,7 @@ Here, `$primes` is an infinite list or prime numbers. Quite obviously, the compu
 
 Now, it is easy to go through all the integers between 1 and 100 and find out if they can be divided evenly by any of the primes larger than 5:
 
-``` Perl6
+```perl
 my @prime_numbers = grep {.is-prime}, 5^..Inf;    # we need only primes strictly larger than 5
 my @regulars;
 for (1 .. 100) -> $num {
@@ -96,7 +96,7 @@ Used as a metaoperator, `X` will apply the associated operator to all the genera
 
 We can use the cross metaoperator together with the multiplication operator (`X*`) to generate the products of the various powers of 2, 3 and 5:
 
-``` Perl6
+```perl
 my %powers;
 for 2, 3, 5 -> $n {%powers{$n} = (1, $n, $n**2 ... *);}
 my @hamming_sequence = sort grep { $_ <= 100},
@@ -111,7 +111,7 @@ We obtain the same Hamming sequence as before.
 
 [Arne Sommmer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/arne-sommer/perl6/ch-1.p6) used three nested `for` loops going from zero to infinity to produce 5-smooth numbers and leaving each loop when reaching the `$limit` passed as a parameter to the program:
 
-``` Perl6
+```perl
 sub MAIN (Int $limit where $limit > 0)
 {
   my SetHash $solution = SetHash;
@@ -138,7 +138,7 @@ sub MAIN (Int $limit where $limit > 0)
 
 [Mark Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/mark-senn/perl6/ch-1.p6) similarly used nested `for` loops:
 
-```
+```perl
 my $m = 2;
 
 # Construct the result.
@@ -158,7 +158,7 @@ for (1..$m) -> $i  {
 
 [Doug Schrag](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/doug-schrag/perl6/ch-1.p6) used the `Z` infix zip operator and the `XZ+` metaoperator to produce the following solution:
 
-``` Perl6
+```perl
 sub MAIN(Int :$limit = 9) {
     # Use Slip() to flatten the list just one level
     my @exponents-list = (^$limit).produce(&grow)
@@ -183,7 +183,7 @@ multi sub grow (List $a, Int $b --> List()) {
 
 [Francis J. Whittle](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/fjwhittle/perl6/ch-1.p6) used a `gather/take` block to build some iterators generating lists, and promises to allow for concurrent programming. A quite interesting implementation, which may look a bit complicated, but runs very fast even for finding large Hamming numbers:
 
-``` Perl6
+```perl
 subset Count of Int where * >= 0;
 
 #| Script to generate 5-smooth numbers
@@ -233,7 +233,7 @@ for @print.grep(* ~~ Int).sort -> $n {
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/jaldhar-h-vyas/perl6/ch-1.p6) used in input list of consecutive integers  and looked for numbers divisible by numbers other than 2, 3 and 5:
 
-``` Perl6
+```perl
 sub isSmooth(Int $num) {
     # get the divisors that _aren't_ multiples of 2, 3, or 5
     my @divisors = (1 .. $num)
@@ -253,7 +253,7 @@ multi sub MAIN(
 
 [James Smith](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/james-smith/perl6/ch-1.p6) used a `lazy gather/take` block:
 
-``` Perl6
+```perl
 my @hammings = lazy gather {
   take 1;
   my $last = 0;
@@ -278,7 +278,7 @@ sub MAIN($n) {
 ```
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/joelle-maslak/perl6/ch-1.p6) used a `divisors` subroutine to find the divisors of an integer:
 
-``` Perl6
+```perl
 sub divisors(Int:D $i -->Array[Int:D]) {
     if ($i == 0) { return 0; }
 
@@ -293,7 +293,7 @@ sub divisors(Int:D $i -->Array[Int:D]) {
 
 and then used it to filter the `@hamming` array of numbers:
 
-```
+```perl
 sub MAIN(Int:D $count where * ≥ 0) {
     my @hamming = (1..∞).grep: { divisors($^num).grep( *.is-prime ).Set ⊆ (2,3,5).Set };
     say "Hamming numbers [0..{$count-1}]: " ~ @hamming[^$count].join(", ");
@@ -302,7 +302,7 @@ sub MAIN(Int:D $count where * ≥ 0) {
 
 [Nick Logan](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/nick-logan/perl6/ch-1.p6) wrote a "polyglot" solution, i.e. voluntarily departed from usual best practices in order to provide a solution that would run on both Perl 5 and Perl 6:
 
-``` Perl6
+```perl
 my @ARGV = do { sub eval { &EVAL(@_) }; eval( ("0" and q|@*ARGS| or q|@ARGV|) ) };
 
 my $numbers_tried = 0;
@@ -336,7 +336,7 @@ Really not an idiomatic Perl 6 solution, but a quite interesting exercise that s
 
 [Ohmy Cloud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/ohmycloud/perl6/ch-2.p6) wrote a solution with three `while` loops:
 
-``` Perl6
+```perl
 sub ugly-number(Int $index) {
     return 0 if $index == 0;
     my @baselist = [1];
@@ -364,7 +364,7 @@ sub MAIN(Int $count) {
 
 [rob4t](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/rob4t/perl6/ch-1.p6) wrote a `get-hamming-sequence` and a `is-hamming-number` subroutines to find Hamming numbers. His filtering subroutine looks like this:
 
-```Perl 6
+```perl
 sub is-hamming-number(PositiveInt $number is copy --> Bool) {
     return True if $number == 1;
 
@@ -377,7 +377,7 @@ sub is-hamming-number(PositiveInt $number is copy --> Bool) {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/ruben-westerberg/perl6/ch-1.p6) suggested this solution based on the powers of 60:
 
-``` Perl6
+```perl
 my $powers=(1 ... *) ;
 my $primes=(2,3,5);
 for $powers<> {
@@ -401,7 +401,7 @@ for $powers<> {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/simon-proctor/perl6/ch-1.p6) used a `lazy gather/take` block and `push` statements to build the resulting list. His program finally sorts the output values and removes duplicates:
 
-``` Perl6
+```perl
 sub MAIN(Int() $count) {
     my @h = lazy gather {
         my @items = (1);

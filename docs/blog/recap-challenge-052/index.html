@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>RECAP - Perl Weekly Challenge - 052</span>
         </nav>
-        <span class="reading-time" title="737 words">
+        <span class="reading-time" title="739 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -184,31 +184,31 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <p>Last week, we had guest contributor, <strong>Richard Park</strong>, who contributed <strong><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-052/richard-park/apl">APL solutions</a></strong>. <strong>Roger Bell_West</strong> shared blogs for <strong><a href="https://blog.firedrake.org/archive/2020/03/Perl_Weekly_Challenge_48__survivor_and_palindromic_dates.html">Week 048</a></strong> and <strong><a href="https://blog.firedrake.org/archive/2020/03/Perl_Weekly_Challenge_49__multiples_and_LRU_cache.html">Week 049</a></strong>. <strong>Athansius</strong> shared solutions to the last week challenge after a short break. Welcome back <strong>Athanasius</strong>.</p>
 <p>I would like to share an interesting bit from <strong><a href="/blog/review-challenge-050/">Perl Reviews 050</a></strong> by <strong>Ryan Thompson</strong>. In his review, <strong>Ryan</strong> improved my definition of the subroutine <strong>_order_intervals()</strong> as defined below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_order_intervals</span> {
-    <span style="color:#66d9ef">my</span> ($intervals) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> @intervals <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (@$intervals) {
-        push @intervals, sprintf(<span style="color:#e6db74">&#34;%d-%d&#34;</span>, $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
-    }
-    <span style="color:#75715e"># Borrowed with input from E. Choroba</span>
-    <span style="color:#75715e"># https://stackoverflow.com/questions/27089498/sorting-arrays-of-intervals-in-perl</span>
-    <span style="color:#66d9ef">my</span> @_sorted <span style="color:#f92672">=</span> sort {
-        <span style="color:#66d9ef">my</span> ($a1, $a2) <span style="color:#f92672">=</span> $a <span style="color:#f92672">=~</span><span style="color:#e6db74"> /-?\d+/g</span>;
-        <span style="color:#66d9ef">my</span> ($b1, $b2) <span style="color:#f92672">=</span> $b <span style="color:#f92672">=~</span><span style="color:#e6db74"> /-?\d+/g</span>;
-        $a1 <span style="color:#e6db74">&lt;=&gt;</span> $b1 <span style="color:#f92672">||</span> $a2 <span style="color:#e6db74">&lt;=&gt;</span> $b2;
-    } @intervals;
-    <span style="color:#66d9ef">my</span> $sorted <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-    <span style="color:#66d9ef">foreach</span> (@_sorted) {
-        <span style="color:#66d9ef">my</span> ($a, $b) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/(?&lt;=\d)-(?=\d)/</span>, $_, <span style="color:#ae81ff">2</span>;
-        push @$sorted, [ $a<span style="color:#f92672">+</span><span style="color:#ae81ff">0</span>, $b<span style="color:#f92672">+</span><span style="color:#ae81ff">0</span> ];
-    }
-    <span style="color:#66d9ef">return</span> $sorted;
-}
-</code></pre></div><p>to something like this. I feel like dumb now.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_order_intervals</span> {
-    [ sort { $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @{$_[<span style="color:#ae81ff">0</span>]} ]
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_order_intervals</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($intervals) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @intervals <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (@$intervals) {
+</span></span><span style="display:flex;"><span>        push @intervals, sprintf(<span style="color:#e6db74">&#34;%d-%d&#34;</span>, $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $i<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Borrowed with input from E. Choroba</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># https://stackoverflow.com/questions/27089498/sorting-arrays-of-intervals-in-perl</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @_sorted <span style="color:#f92672">=</span> sort {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($a1, $a2) <span style="color:#f92672">=</span> $a <span style="color:#f92672">=~</span><span style="color:#e6db74"> /-?\d+/g</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($b1, $b2) <span style="color:#f92672">=</span> $b <span style="color:#f92672">=~</span><span style="color:#e6db74"> /-?\d+/g</span>;
+</span></span><span style="display:flex;"><span>        $a1 <span style="color:#e6db74">&lt;=&gt;</span> $b1 <span style="color:#f92672">||</span> $a2 <span style="color:#e6db74">&lt;=&gt;</span> $b2;
+</span></span><span style="display:flex;"><span>    } @intervals;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $sorted <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> (@_sorted) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($a, $b) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/(?&lt;=\d)-(?=\d)/</span>, $_, <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        push @$sorted, [ $a<span style="color:#f92672">+</span><span style="color:#ae81ff">0</span>, $b<span style="color:#f92672">+</span><span style="color:#ae81ff">0</span> ];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $sorted;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>to something like this. I feel like dumb now.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_order_intervals</span> {
+</span></span><span style="display:flex;"><span>    [ sort { $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @{$_[<span style="color:#ae81ff">0</span>]} ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <hr>
 <h1 id="guests-report-card">GUESTS REPORT CARD</h1>
 <hr>
@@ -253,7 +253,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <p>Changes to the ranking in the <strong>Centurion Club</strong> last week listed below</p>
 <p>With last week contributions, I have now moved up to the <strong>rank #042</strong>. <strong>Lubos Kolouch</strong> joined the club last week. Many congratulations from the <strong>Team PWC</strong>.</p>
-<h4 id="roger-bell_west-moved-up-to-the-rank-06"><strong>Roger Bell_West</strong> moved up to the <strong>rank #06</strong>.</h4>
+<h4 id="roger-bell_-moved-up-to-the-rank-06"><strong>Roger Bell_West</strong> moved up to the <strong>rank #06</strong>.</h4>
 <h4 id="lubos-kolouch-moved-up-to-the-rank-025"><strong>Lubos Kolouch</strong> moved up to the <strong>rank #025</strong>.</h4>
 <hr>
 <h4 id="1-laurent-rosenfeld-620">1) Laurent Rosenfeld (<strong>620</strong>)</h4>

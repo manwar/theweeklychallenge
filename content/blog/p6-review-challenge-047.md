@@ -48,7 +48,7 @@ We'd greatly appreciate any feedback you'd like to give.
 
 The first task is to write a script that accepts two Roman numbers and an arithmetic operator. It should then calculate the result and return it as another Roman number. For example:
 
-```
+```perl
 perl ch-1.pl V + VI
 XI
 ```
@@ -68,7 +68,7 @@ A few people used modules, several re-used their solutions from [Week 010](/blog
 
 The library itself uses `MONKEY-TYPING` pragma, which allows one to [`augment`](https://docs.raku.org/syntax/augment) existing classes. This can be dangerous, so the Raku docs recommend against it. I'm confident Arne knows this. Still, it allows Arne to build a convenient class whereby any `Int` can be converted `from-roman`, and any `Str` can be converted `to-roman`, with `base` support as well:
 
-```raku
+```perl
 use MONKEY-TYPING;
 augment class Int {
     method roman {
@@ -97,7 +97,7 @@ Arne has also included a full OO implementation that has `add`, `sub`, `mul` and
 
 Back to the ch-1 solution, here is the main logic:
 
-```raku
+```perl
 use Number::Roman :to, :from;
 unit sub MAIN (Str $first, Str $operator, Str $second);
 my $f = from-roman($first);
@@ -114,7 +114,7 @@ given $operator
 
 `given ... when` is a good choice here. Arne also provides some other solutions, such as one using `multi MAIN` subs instead, which I'll just show the signatures of:
 
-```raku
+```perl
 multi MAIN (Str $first, "+", Str $second);
 multi MAIN (Str $first, "-", Str $second);
 multi MAIN (Str $first, '*', Str $second);
@@ -130,7 +130,7 @@ Arne's blog does have a code listing for `Number::Roman`, which I would highly s
 
 [Jaldhar H. Vyas's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/jaldhar-h-vyas/raku/ch-1.p6) seems to mirror his Perl solution, whereby numbers go through a multi-step process of `unprefix`, `reorder` and `normalize` steps:
 
-```raku
+```perl
 sub unprefix(Str $num) {
     my $unprefixed = $num;
     my @from = qw/ CM    CD   XC    XL   IX    IV   /;
@@ -159,7 +159,7 @@ sub normalize(Str $num) {
 
 The `MAIN` sub accepts the two numbers and an `$op`, `+` or `-`. Pay close attention to how Jaldhar implements the operations:
 
-```raku
+```perl
 multi sub MAIN(
     Str $num1, #= Number in Roman numerals
     Str $op where { /\+/ || /\-/ }, #= Arithmetic operation (+ or -)
@@ -188,7 +188,7 @@ Similarly, the subtraction operator works by expanding the numbers and removing 
 
 [Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/javier-luque/raku/ch-1.p6) uses a dispatch table to implement the operations:
 
-```raku
+```perl
 sub MAIN($equation) {
     my %operators = (
         '+' => -> $a , $b { rtoa($a) + rtoa($b) },
@@ -206,7 +206,7 @@ sub MAIN($equation) {
 
 Then, citing inspiration from the [Perl 6 Examples](https://examples.p6c.dev/index.html) site, Javier uses a `multi` sub, `rtoa`, to convert from Roman to Arabic, shown here, in part:
 
-```raku
+```perl
 # Inspired by:
 # https://examples.p6c.dev/categories/euler/prob089-andreoss.html
 multi rtoa() { 0 }
@@ -223,7 +223,7 @@ multi rtoa('M',      |a) { 1000 + rtoa(|a) }
 
 The corresponding `ator` sub uses `given ... when`:
 
-```raku
+```perl
 sub ator(Int $n) returns Str {
     given $n {
         when $n >= 1000 { 'M'  ~ ator($n- 1000) }
@@ -242,7 +242,7 @@ sub ator(Int $n) returns Str {
 
 [Kevin Colyer's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/kevin-colyer/raku/ch-1.p6) has `toRoman` and `fromRoman` subs that use arrays, and iterate over them pairwise. Here is the `toRoman` sub::
 
-```raku
+```perl
 sub toRoman($i is copy) {
 
     my @t=[1000 , "M", 900 , "CM", 500 , "D", 400 , "CD", 100 , "C", 90 ,
@@ -266,7 +266,7 @@ Here, Kevin opportunistically subtracts the maximum value possible each time thr
 
 Kevin's main logic uses a `given ... when` block to handle the four basic arithmetic operators:
 
-```raku
+```perl
 #| Roman Numberal Calculator - Numeral1 +-/* Numeral2 (/ and * require quoting)
 sub MAIN(Str $numeral1, Str $operation, Str $numeral2) {
     my $n1=fromRoman($numeral1);
@@ -285,7 +285,7 @@ sub MAIN(Str $numeral1, Str $operation, Str $numeral2) {
 
 [Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/laurent-rosenfeld/raku/ch-1.p6) reuses the `from-roman` and `to-roman` code from his Week 10 solution. It wasn't reviewed at that time, though, so I'll highlight the `from-roman` sub here:
 
-```raku
+```perl
 subset Roman-str of Str where $_ ~~ /^<[IVXLCDMivxlcdm]>+$/;
 my %rom-tab = < I 1   V 5   X 10   L 50   C 100  D 500  M 1000
                IV 4  IX 9   XL 40  XC 90  CD 400   CM 900 >;
@@ -308,7 +308,7 @@ I really like the use of the `Roman-str` subset here, serving as argument valida
 
 Laurent's main logic uses string `EVAL`, after validating the input, and supports any expression with at least two terms:
 
-```raku
+```perl
 my @input;
 for @*ARGS {
     push @input, $_ if /<[-+*\/]>/;
@@ -325,7 +325,7 @@ say "@*ARGS[] = ", to-roman $result;
 
 [Luca Ferrari's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/luca-ferrari/raku/ch-1.p6) has an interesting approach in his `convert-roman-to-arabic` sub:
 
-```raku
+```perl
 my %roman-to-arabic = :I(1), :V(5), :X(10), :L(50), :C(100), :D(500), :M(1000);
 # Function to convert a roman number into an arabic one.
 sub convert-roman-to-arabic( Str:D $roman  ) {
@@ -344,7 +344,7 @@ Luca first reverses the string's character array, then finds the value of each l
 
 The main logic uses a `do given ... when` block to feed the `$result`, which is then converted back to a Roman number with `convert-arabic-to-roman`.
 
-```raku
+```perl
 die "Usage: $*PROGRAM <operand> <operator> <operand>" if @*ARGS.elems != 3;
 my $operand-a = convert-roman-to-arabic( @*ARGS[0] );
 my $operand-b = convert-roman-to-arabic( @*ARGS[2] );
@@ -363,7 +363,7 @@ say convert-arabic-to-roman( $result );
 
 [Mark Anderson's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/mark-anderson/raku/ch-1.p6) provides two classes, that use grammars to assist with conversion. I'll show one of the classes here, but the other works similarly:
 
-```raku
+```perl
 grammar Roman2Arabic {
     token TOP {
         :my $*Arabic;
@@ -408,7 +408,7 @@ class Roman2ArabicActions {
 
 There is also a calculator class that does all of the work of parsing and processing the operations:
 
-```raku
+```perl
 grammar Calculator {
     rule  TOP      {
         :my @*Arabics;
@@ -445,7 +445,7 @@ class CalculatorActions {
 
 After all that, the main logic is one statement:
 
-```raku
+```perl
 sub MAIN(*@args) {
     Calculator.parse(@args.Str, :actions(CalculatorActions)).made.say;
 }
@@ -455,7 +455,7 @@ sub MAIN(*@args) {
 
 [Markus Holzer's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/markus-holzer/raku/ch-1.p6) implements additive Roman numbers only, meaning 9 = `VIIII`. The short length of Markus' solution really underscores how much more code is required to support the subtractive numbers:
 
-```raku
+```perl
 subset Roman of Str where * ~~ / ^ M* D* C * L* X* V* I* $ /;
 my @r = :M(1000), :D(500), :C(100), :L(50), :X(10), :V(5), :I(1);
 my %r = @r.Hash;
@@ -474,7 +474,7 @@ sub d2r( $d is copy ) {
 
 Markus also uses a `multi` main sub to parse the arithmetic operators.
 
-```raku
+```perl
 multi sub MAIN(Roman $n, '+', Roman $m) { say d2r( $n.&r2d + $m.&r2d ) }
 multi sub MAIN(Roman $n, '-', Roman $m) { say d2r( $n.&r2d - $m.&r2d ) }
 multi sub MAIN(Roman $n, "×", Roman $m) { say d2r( $n.&r2d × $m.&r2d ) }
@@ -485,7 +485,7 @@ multi sub MAIN(Roman $n, '÷', Roman $m) { say d2r( ($n.&r2d ÷ $m.&r2d).Int ) }
 
 [Noud Aldenhoven's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/noud/raku/ch-1.p6) defines a `@roman-symbols` array that can then be iterated over pairwise:
 
-```raku
+```perl
 my @roman-symbols = [
     1_000, "M",
     900, "CM",
@@ -506,7 +506,7 @@ sub to-roman($i) {
 
 The `%operators` are a dispatch table:
 
-```raku
+```perl
 my %operators =
     '+' => { $_[0] + $_[1] },
     '*' => { $_[0] * $_[1] },
@@ -518,7 +518,7 @@ my %operators =
 
 And the `MAIN` sub is then just a single statement:
 
-```raku
+```perl
 sub MAIN($a, $op, $b) {
     say to-roman(%operators{$op}((from-roman($a), from-roman($b))));
 }
@@ -528,7 +528,7 @@ sub MAIN($a, $op, $b) {
 
 [Ruben Westerberg's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ruben-westerberg/raku/ch-1.p6) is an interesting one. The `romanToDecimal` sub is relatively standard, but `decimalToRoman` is interesting:
 
-```raku
+```perl
 sub decimalToRoman ($input) {
     my @digits=$input.comb;
     my @p=<I X C M>;
@@ -568,7 +568,7 @@ Ruben is using `.kv` to split the decimal number into key/value pairs, so `@digi
 
 Ruben's main logic uses `given ... when` for the operators, and also accepts either Roman or Arabic numbers in the input, which is one of those "why not" features, given it is so easy to implement:
 
-```raku
+```perl
 sub MAIN(Str $operand1,Str $operator,Str $operand2){
     #convert to decimal
     my ($o1,$o2)=($operand1,$operand2).map({
@@ -595,7 +595,7 @@ sub MAIN(Str $operand1,Str $operator,Str $operand2){
 [Simon Proctor's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/simon-proctor/raku/ch-1.p6) appears to be partially influenced by his Week 10 solution, but the `from-roman` sub has been significantly modified:
 
 
-```raku
+```perl
 subset RomanStr of Str where * ~~ /^ <[M C D X L V I]>+ $/;
 
 sub from-roman( RomanStr $roman is copy ) {
@@ -616,7 +616,7 @@ Simon's used the method of defining all possible Roman numerals *and their valid
 
 What is perhaps most insightful about Simon's solution is his handling of `MAIN`. Often with programs like this that accept commandline input, you won't know if you'll be given a single string, like `"VII + X"`, or whether each argument will be separated, like `"VII", "+", "X"`, so handling both is [permissive](https://en.wikipedia.org/wiki/Robustness_principle) and often the most sensible thing to do. Here's Simon's approach:
 
-```
+```perl
 subset RomanStr of Str where * ~~ /^ <[M C D X L V I]>+ $/;
 subset RomanInt of Int where 0 < * < 3001;
 subset Operator of Str where * ~~ /^ ( "*" | "+" | "-" | "/" ) $ /;
@@ -640,7 +640,7 @@ I admit to not taking advantage of Raku's more advanced signature features enoug
 
 The `MAIN` logic uses `given ... when` to perform the arithmetic operations:
 
-```raku
+```perl
 sub MAIN( Str $entry ) {
     if  $entry ~~ /^^(<[IVXLCM]>+) \s+ (<[\+\-\/\*]>) \s+  (<[IVXLCM]>+)$$/ {
         my $first_operand = romanToArab( ~$0 ) ;
@@ -684,7 +684,7 @@ Alicia Bielsa has been a Perl contributor to the Challenge since Week 4. [Her so
 
 The solution uses a slice of `$currentNumber.comb` to get the first (`0`) and last (`*-1`) digits. Those are concatenated together and then the modulo (`%`) operator checks for divisibility.
 
-```raku
+```perl
 sub MAIN () {
     my $totalGapfulNumbers = 20;
     my $totalGapfulNumbersFound = 0;
@@ -707,7 +707,7 @@ Congratulations on your first Raku submission, Alicia. I very much hope we'll se
 
 [Arne Sommer's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/arne-sommer/raku/ch-2.p6) first defines a lazy `$gapful` list, using `substr` and the `%%` divisibility operator to `grep` for gapful numbers. The following line simply takes the first 20 terms and prints them.
 
-```raku
+```perl
 my $gapful := (100 .. *).grep( { $_ %% ( .substr(0,1) ~ .substr(*-1,1) ) });
 say "First 20 Gapful numbers: { $gapful[^20].join(',') }.";
 ```
@@ -718,7 +718,7 @@ say "First 20 Gapful numbers: { $gapful[^20].join(',') }.";
 
 [Athanasius's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/athanasius/raku/ch-2.p6) loops and uses a combination of `split` and modulo to get the first and last digits. Athanasius also uses the modulo operator to check for divisibility:
 
-```raku
+```perl
 while $count < TARGET {
     my UInt $div = ($num.split('', :skip-empty))[0] * 10 + $num % 10;
     if $num++ % $div == 0 {
@@ -732,7 +732,7 @@ while $count < TARGET {
 
 [Colin Crain's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/colin-crain/raku/ch-2.p6) also defines a lazy list, but uses `.comb.head` and `.comb.tail` to get the first and last digits:
 
-```raku
+```perl
 my @o2 = (100..*).grep({ $_ %% (.comb.head ~ .comb.tail) });
 say @o2[$_] for (0..19);
 ```
@@ -741,7 +741,7 @@ say @o2[$_] for (0..19);
 
 [Jaldhar H. Vyas's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/jaldhar-h-vyas/raku/ch-2.p6) uses an intermediate `@digits` array, and then passes the first and last elements of that to `.join` before checking for divisibility with `%%`. Interestingly, the whole thing works within one `gather ... take` block:
 
-```raku
+```perl
 
 #!/usr/bin/perl6
 (gather {
@@ -758,7 +758,7 @@ say @o2[$_] for (0..19);
 
 [Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/javier-luque/raku/ch-2.p6) uses a regex to pull out the first and last digits, and `%%` to check for divisibility:
 
-```raku
+```perl
 
 # Test: perl6 ch-2.p6
 my $n = 100;
@@ -781,7 +781,7 @@ while ($p < 20) {
 
 [Kevin Colyer's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/kevin-colyer/raku/ch-2.p6) makes a lazy list using `substr` and `%%`:
 
-```raku
+```perl
 my @gapful = (100...Inf)
     .grep: {
         $_ %% ( $_.substr( 0, 1 ) * 10 + $_.substr( *-1, 1 ) )
@@ -790,7 +790,7 @@ my @gapful = (100...Inf)
 
 As with Arne's solution, printing the first 20 elements is now easy:
 
-```raku
+```perl
 @gapful[^20]>>.say;
 ```
 
@@ -810,7 +810,7 @@ This is a compact example of the lazy sequence we've seen before, with both the 
 
 [Luca Ferrari's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/luca-ferrari/raku/ch-2.p6) uses a regex with named captures:
 
-```raku
+```perl
 my @found;
 for 100 .. Inf {
     $_ ~~ / ^ $<first>=\d \d+ $<last>=\d $ /;
@@ -828,7 +828,7 @@ for 100 .. Inf {
 
 [Mark Anderson's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/mark-anderson/raku/ch-2.p6) uses a regex with numbered captures:
 
-```raku
+```perl
 for (100 .. Inf) -> $dividend {
     state $count;
     $dividend ~~ /^ (\d) \d+ (\d) $/;
@@ -845,7 +845,7 @@ for (100 .. Inf) -> $dividend {
 
 [Markus Holzer's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/markus-holzer/raku/ch-2.p6) is the most concise yet, `.say`ing the first 20 elements of a lazy sequence that uses a slice of `comb` to get the digits:
 
-```raku
+```perl
 .say for (100..*).grep({ $_ %% $_.comb[0,*-1].join })[^20]
 ```
 
@@ -853,7 +853,7 @@ for (100 .. Inf) -> $dividend {
 
 [Noud Aldenhoven's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/noud/raku/ch-2.p6) uses a lazy sequence as well, with more explicit coercion:
 
-```raku
+```perl
 my @gapful = (100..Inf).grep({
     $_ % Int(Str($_).comb[0] ~ Str($_).comb[*-1]) == 0
 });
@@ -864,7 +864,7 @@ my @gapful = (100..Inf).grep({
 
 [Ruben Westerberg's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ruben-westerberg/raku/ch-2.p6) also uses a lazy list, but with a `comb` slice:
 
-```raku
+```perl
 my $gapful=(100..Inf).grep({$_%% .comb[0,*-1].join.Int});
 put $gapful[0..19];
 ```
@@ -873,7 +873,7 @@ put $gapful[0..19];
 
 [My solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ryan-thompson/raku/ch-2.p6) uses a lazy sequence, too, but I decided to split `is-gapful` into its own sub, for maximum utility and perhaps slightly better readability:
 
-```raku
+```perl
 my @gapful = (100..∞).grep: &is-gapful;
 say @gapful[^20];
 sub is-gapful( Int \n ) { n ≥ 100 and n %% n.comb[0,*-1].join }
@@ -885,7 +885,7 @@ sub is-gapful( Int \n ) { n ≥ 100 and n %% n.comb[0,*-1].join }
 
 [Simon Proctor's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/simon-proctor/raku/ch-2.p6) finds the first `$count` gapful numbers in the following single statement:
 
-```raku
+```perl
 .say for (100..*).grep( { $^a %% $^a.comb[0,*-1].join.Int } )[^$count]
 ```
 
@@ -893,7 +893,7 @@ sub is-gapful( Int \n ) { n ≥ 100 and n %% n.comb[0,*-1].join }
 
 [Ulrich Rieke's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ulrich-rieke/raku/ch-2.p6) also breaks `isGapful` into its own sub, and then uses a lazy sequence to print the first 20 gapful numbers:
 
-```raku
+```perl
 sub isGapful( Int $num is copy --> Bool ) {
   my $first = $num.Str.comb.Array.shift ;
   my $last = $num.Str.comb.Array.pop ;

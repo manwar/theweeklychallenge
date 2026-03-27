@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2020blogadvent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
-<h3 id="-day-2blogadvent-calendar-2020-12-02--day-3--day-4blogadvent-calendar-2020-12-04-">| <a href="/blog/advent-calendar-2020-12-02"><strong>Day 2</strong></a> | <strong>Day 3</strong> | <a href="/blog/advent-calendar-2020-12-04"><strong>Day 4</strong></a> |</h3>
+        <h2 id="advent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
+<h3 id="-day-2--day-3--day-4-">| <a href="/blog/advent-calendar-2020-12-02"><strong>Day 2</strong></a> | <strong>Day 3</strong> | <a href="/blog/advent-calendar-2020-12-04"><strong>Day 4</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-018"><strong>E. Choroba</strong></a>. Today he is talking about his solution to the task <code>LRU Cache</code> of <strong><a href="/blog/perl-weekly-challenge-049">&ldquo;The Weekly Challenge - 049&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="http://blogs.perl.org/users/e_choroba/2020/03/perl-weekly-challenge-048-smallest-multiple-and-lru-cache.html"><strong>post</strong></a> by <strong>E. Choroba</strong>.</p>
 <hr>
@@ -187,166 +187,166 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Write a script to demonstrate LRU Cache feature. It should support operations get and set. Accept the capacity of the LRU Cache as command line argument.</p>
 </blockquote>
 <p>I started by converting the example into a test suite. I modified the behaviour a bit, though: returning -1 for elements not found in the cache means we couldn’t store -1 as a cached value. In fact, any value we choose would be impossible to store: we could die on a cache miss, or we can return a reference to the value if it’s been found, and undef otherwise. Then it would be possible to store undef in the cache, as it would be returned as <code>\undef</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Cache::LRU;
-<span style="color:#66d9ef">use</span> enum <span style="color:#e6db74">qw( CAPACITY HASH ARRAY )</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
-    <span style="color:#66d9ef">my</span> ($class, $capacity) <span style="color:#f92672">=</span> @_;
-    bless [$capacity, {}, <span style="color:#f92672">[]</span>], $class
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">capacity</span> { $_[<span style="color:#ae81ff">0</span>][CAPACITY] }
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_value</span> { $_[<span style="color:#ae81ff">0</span>][HASH]{ $_[<span style="color:#ae81ff">1</span>] } }
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_move_to_start</span> {
-    <span style="color:#66d9ef">my</span> ($self, $key) <span style="color:#f92672">=</span> @_;
-    @{ $self<span style="color:#f92672">-&gt;</span>[ARRAY] } <span style="color:#f92672">=</span> ($key, grep $_ <span style="color:#f92672">ne</span> $key, @{ $self<span style="color:#f92672">-&gt;</span>[ARRAY] });
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span> {
-    <span style="color:#66d9ef">my</span> ($self, $key) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">unless</span> exists $self<span style="color:#f92672">-&gt;</span>[HASH]{$key};
-
-    $self<span style="color:#f92672">-&gt;</span>_move_to_start($key);
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>$self<span style="color:#f92672">-&gt;</span>_value($key)
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">set</span> {
-    <span style="color:#66d9ef">my</span> ($self, $key, $value) <span style="color:#f92672">=</span> @_;
-    $self<span style="color:#f92672">-&gt;</span>[HASH]{$key} <span style="color:#f92672">=</span> $value <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> @_;
-    $self<span style="color:#f92672">-&gt;</span>_move_to_start($key);
-    delete $self<span style="color:#f92672">-&gt;</span>[HASH]{ pop @{ $self<span style="color:#f92672">-&gt;</span>[ARRAY] } }
-        <span style="color:#66d9ef">if</span> @{ $self<span style="color:#f92672">-&gt;</span>[ARRAY] } <span style="color:#f92672">&gt;</span> $self<span style="color:#f92672">-&gt;</span>capacity;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">inspect</span> {
-    [reverse @{ $_[<span style="color:#ae81ff">0</span>][ARRAY] }]
-}
-</code></pre></div><p>Do you see the problem?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Cache::LRU;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> enum <span style="color:#e6db74">qw( CAPACITY HASH ARRAY )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($class, $capacity) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    bless [$capacity, {}, <span style="color:#f92672">[]</span>], $class
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">capacity</span> { $_[<span style="color:#ae81ff">0</span>][CAPACITY] }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_value</span> { $_[<span style="color:#ae81ff">0</span>][HASH]{ $_[<span style="color:#ae81ff">1</span>] } }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_move_to_start</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $key) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    @{ $self<span style="color:#f92672">-&gt;</span>[ARRAY] } <span style="color:#f92672">=</span> ($key, grep $_ <span style="color:#f92672">ne</span> $key, @{ $self<span style="color:#f92672">-&gt;</span>[ARRAY] });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $key) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">unless</span> exists $self<span style="color:#f92672">-&gt;</span>[HASH]{$key};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>_move_to_start($key);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>$self<span style="color:#f92672">-&gt;</span>_value($key)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">set</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $key, $value) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>[HASH]{$key} <span style="color:#f92672">=</span> $value <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> @_;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>_move_to_start($key);
+</span></span><span style="display:flex;"><span>    delete $self<span style="color:#f92672">-&gt;</span>[HASH]{ pop @{ $self<span style="color:#f92672">-&gt;</span>[ARRAY] } }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> @{ $self<span style="color:#f92672">-&gt;</span>[ARRAY] } <span style="color:#f92672">&gt;</span> $self<span style="color:#f92672">-&gt;</span>capacity;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">inspect</span> {
+</span></span><span style="display:flex;"><span>    [reverse @{ $_[<span style="color:#ae81ff">0</span>][ARRAY] }]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Do you see the problem?</p>
 <p>It’s hidden in the <code>_move_to_start()</code> subroutine. When we need to move an element to the start, we need to iterate over the whole array, because we don’t know its index. Storing the index wouldn’t help, either, as we would have to adjust the stored indices after each change. The problem doesn’t manifest in our toy example, but creating a cache with capacity 2000 and populating and querying it 10 thousand times takes more than 4 seconds.</p>
 <p>Therefore, I decided to implement the cache using a real linked list. Let’s start with a class implementing it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Linked::List;
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-
-<span style="color:#66d9ef">use</span> enum <span style="color:#e6db74">qw( KEY VALUE PREV NEXT )</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
-    <span style="color:#66d9ef">my</span> ($class, $key, $value) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-    @$self[KEY, VALUE, PREV, NEXT] <span style="color:#f92672">=</span> ($key, $value, $self, $self);
-    bless $self, $class
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">extract</span> {
-    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $prev <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[PREV];
-    <span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[NEXT];
-    $prev<span style="color:#f92672">-&gt;</span>[NEXT] <span style="color:#f92672">=</span> $next;
-    $next<span style="color:#f92672">-&gt;</span>[PREV] <span style="color:#f92672">=</span> $prev;
-    @$self[PREV, NEXT] <span style="color:#f92672">=</span> ($self, $self);
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prepend_to</span> {
-    <span style="color:#66d9ef">my</span> ($self, $list) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $list;
-    $self<span style="color:#f92672">-&gt;</span>extract <span style="color:#66d9ef">if</span> $self<span style="color:#f92672">-&gt;</span>[PREV] <span style="color:#f92672">!=</span> $self;
-    $self<span style="color:#f92672">-&gt;</span>[NEXT] <span style="color:#f92672">=</span> $list <span style="color:#e6db74">//</span> $self;
-    $self<span style="color:#f92672">-&gt;</span>[PREV] <span style="color:#f92672">=</span> $list<span style="color:#f92672">-&gt;</span>[PREV] <span style="color:#e6db74">//</span> $self;
-    $list<span style="color:#f92672">-&gt;</span>[PREV][NEXT] <span style="color:#f92672">=</span> $self;
-    $list<span style="color:#f92672">-&gt;</span>[PREV] <span style="color:#f92672">=</span> $self;
-}
-
-<span style="color:#75715e"># Prevent memory leaks.</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">demolish</span> {
-    $_[<span style="color:#ae81ff">0</span>][NEXT] <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>][PREV] <span style="color:#f92672">=</span> undef;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">key</span>  { $_[<span style="color:#ae81ff">0</span>][KEY] }
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prev</span> { $_[<span style="color:#ae81ff">0</span>][PREV] }
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next</span> { $_[<span style="color:#ae81ff">0</span>][NEXT] }
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">value</span> :lvalue { $_[<span style="color:#ae81ff">0</span>][VALUE] }
-</code></pre></div><p>You can write a test suite for the class as an exercise.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Linked::List;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> enum <span style="color:#e6db74">qw( KEY VALUE PREV NEXT )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($class, $key, $value) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>    @$self[KEY, VALUE, PREV, NEXT] <span style="color:#f92672">=</span> ($key, $value, $self, $self);
+</span></span><span style="display:flex;"><span>    bless $self, $class
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">extract</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $prev <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[PREV];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[NEXT];
+</span></span><span style="display:flex;"><span>    $prev<span style="color:#f92672">-&gt;</span>[NEXT] <span style="color:#f92672">=</span> $next;
+</span></span><span style="display:flex;"><span>    $next<span style="color:#f92672">-&gt;</span>[PREV] <span style="color:#f92672">=</span> $prev;
+</span></span><span style="display:flex;"><span>    @$self[PREV, NEXT] <span style="color:#f92672">=</span> ($self, $self);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prepend_to</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $list) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $list;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>extract <span style="color:#66d9ef">if</span> $self<span style="color:#f92672">-&gt;</span>[PREV] <span style="color:#f92672">!=</span> $self;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>[NEXT] <span style="color:#f92672">=</span> $list <span style="color:#e6db74">//</span> $self;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>[PREV] <span style="color:#f92672">=</span> $list<span style="color:#f92672">-&gt;</span>[PREV] <span style="color:#e6db74">//</span> $self;
+</span></span><span style="display:flex;"><span>    $list<span style="color:#f92672">-&gt;</span>[PREV][NEXT] <span style="color:#f92672">=</span> $self;
+</span></span><span style="display:flex;"><span>    $list<span style="color:#f92672">-&gt;</span>[PREV] <span style="color:#f92672">=</span> $self;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prevent memory leaks.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">demolish</span> {
+</span></span><span style="display:flex;"><span>    $_[<span style="color:#ae81ff">0</span>][NEXT] <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>][PREV] <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">key</span>  { $_[<span style="color:#ae81ff">0</span>][KEY] }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prev</span> { $_[<span style="color:#ae81ff">0</span>][PREV] }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next</span> { $_[<span style="color:#ae81ff">0</span>][NEXT] }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">value</span> :lvalue { $_[<span style="color:#ae81ff">0</span>][VALUE] }
+</span></span></code></pre></div><p>You can write a test suite for the class as an exercise.</p>
 <p>The linked list is represented by its first element, but it’s implemented as a cyclic list, i.e. the first elements points to the last element as its predecessor and vice versa. The extract method detaches an element from the linked list by connecting the previous and next elements.</p>
 <p>Note the demolish method. It breaks the cyclic reference to prevent memory leaks, we have to call it in our cache implementation when removing an element from the cache.</p>
 <p>The cache implementation will be similar to the previous one. Neither get nor set will require walking the whole list. Again, optimisation makes the code a bit more complex and harder to read. On the other hand, the benchmark test takes 0.16 seconds, which is about 25 times faster!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Cache::LRU;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> strict;
-
-<span style="color:#66d9ef">use</span> enum <span style="color:#e6db74">qw( CAPACITY HASH FIRST )</span>;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
-    <span style="color:#66d9ef">my</span> ($class, $capacity) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
-    @$self[CAPACITY, HASH, FIRST]
-        <span style="color:#f92672">=</span> ($capacity, {}, undef);
-    bless $self, $class
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span> {
-    <span style="color:#66d9ef">my</span> ($self, $key) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> exists $self<span style="color:#f92672">-&gt;</span>[HASH]{$key};
-
-    <span style="color:#66d9ef">my</span> $element <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[HASH]{$key};
-    <span style="color:#66d9ef">if</span> ($element <span style="color:#f92672">!=</span> ($self<span style="color:#f92672">-&gt;</span>[FIRST] <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)) {
-        $element<span style="color:#f92672">-&gt;</span>extract;
-        $element<span style="color:#f92672">-&gt;</span>prepend_to($self<span style="color:#f92672">-&gt;</span>[FIRST]);
-        $self<span style="color:#f92672">-&gt;</span>[FIRST] <span style="color:#f92672">=</span> $element;
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>$element<span style="color:#f92672">-&gt;</span>value
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">set</span> {
-    <span style="color:#66d9ef">my</span> ($self, $key, $value) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#66d9ef">my</span> $element;
-    <span style="color:#66d9ef">if</span> (exists $self<span style="color:#f92672">-&gt;</span>[HASH]{$key}) {
-        $element <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[HASH]{$key};
-    } <span style="color:#66d9ef">else</span> {
-        $element <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Linked::List&#39;</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($key, $value);
-        $self<span style="color:#f92672">-&gt;</span>[HASH]{$key} <span style="color:#f92672">=</span> $element;
-    }
-    $element<span style="color:#f92672">-&gt;</span>prepend_to($self<span style="color:#f92672">-&gt;</span>[FIRST])
-        <span style="color:#66d9ef">unless</span> $element <span style="color:#f92672">==</span> ($self<span style="color:#f92672">-&gt;</span>[FIRST] <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
-    $self<span style="color:#f92672">-&gt;</span>[HASH]{$key}<span style="color:#f92672">-&gt;</span>value <span style="color:#f92672">=</span> $value;
-    $self<span style="color:#f92672">-&gt;</span>[FIRST] <span style="color:#f92672">=</span> $element;
-    <span style="color:#66d9ef">if</span> (keys %{ $self<span style="color:#f92672">-&gt;</span>[HASH] } <span style="color:#f92672">&gt;</span> $self<span style="color:#f92672">-&gt;</span>[CAPACITY]) {
-        <span style="color:#66d9ef">my</span> $last <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[FIRST]<span style="color:#f92672">-&gt;</span>prev;
-        $last<span style="color:#f92672">-&gt;</span>extract;
-        delete $self<span style="color:#f92672">-&gt;</span>[HASH]{ $last<span style="color:#f92672">-&gt;</span>key };
-        $last<span style="color:#f92672">-&gt;</span>demolish;
-    }
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">inspect</span> {
-    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $element <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[FIRST];
-    <span style="color:#66d9ef">my</span> @keys;
-    <span style="color:#66d9ef">for</span> (keys %{ $self<span style="color:#f92672">-&gt;</span>[HASH] }) {
-        unshift @keys, $element<span style="color:#f92672">-&gt;</span>key;
-        $element <span style="color:#f92672">=</span> $element<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
-    }
-    <span style="color:#66d9ef">return</span> [@keys]
-}
-</code></pre></div><p>You can see that both the get and set methods extract the element from the list and prepend it to the first position (set can even populate it if it doesn’t exist yet). They also change the cache object to point to the first element of the list. Moreover, set also removes the last element (the list is cyclic, so it’s just the element preceding the first one) when the capacity has been reached.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Cache::LRU;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> enum <span style="color:#e6db74">qw( CAPACITY HASH FIRST )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($class, $capacity) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+</span></span><span style="display:flex;"><span>    @$self[CAPACITY, HASH, FIRST]
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">=</span> ($capacity, {}, undef);
+</span></span><span style="display:flex;"><span>    bless $self, $class
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $key) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> exists $self<span style="color:#f92672">-&gt;</span>[HASH]{$key};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $element <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[HASH]{$key};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($element <span style="color:#f92672">!=</span> ($self<span style="color:#f92672">-&gt;</span>[FIRST] <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)) {
+</span></span><span style="display:flex;"><span>        $element<span style="color:#f92672">-&gt;</span>extract;
+</span></span><span style="display:flex;"><span>        $element<span style="color:#f92672">-&gt;</span>prepend_to($self<span style="color:#f92672">-&gt;</span>[FIRST]);
+</span></span><span style="display:flex;"><span>        $self<span style="color:#f92672">-&gt;</span>[FIRST] <span style="color:#f92672">=</span> $element;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>$element<span style="color:#f92672">-&gt;</span>value
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">set</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $key, $value) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $element;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (exists $self<span style="color:#f92672">-&gt;</span>[HASH]{$key}) {
+</span></span><span style="display:flex;"><span>        $element <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[HASH]{$key};
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        $element <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Linked::List&#39;</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($key, $value);
+</span></span><span style="display:flex;"><span>        $self<span style="color:#f92672">-&gt;</span>[HASH]{$key} <span style="color:#f92672">=</span> $element;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    $element<span style="color:#f92672">-&gt;</span>prepend_to($self<span style="color:#f92672">-&gt;</span>[FIRST])
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> $element <span style="color:#f92672">==</span> ($self<span style="color:#f92672">-&gt;</span>[FIRST] <span style="color:#e6db74">//</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>[HASH]{$key}<span style="color:#f92672">-&gt;</span>value <span style="color:#f92672">=</span> $value;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>[FIRST] <span style="color:#f92672">=</span> $element;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (keys %{ $self<span style="color:#f92672">-&gt;</span>[HASH] } <span style="color:#f92672">&gt;</span> $self<span style="color:#f92672">-&gt;</span>[CAPACITY]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $last <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[FIRST]<span style="color:#f92672">-&gt;</span>prev;
+</span></span><span style="display:flex;"><span>        $last<span style="color:#f92672">-&gt;</span>extract;
+</span></span><span style="display:flex;"><span>        delete $self<span style="color:#f92672">-&gt;</span>[HASH]{ $last<span style="color:#f92672">-&gt;</span>key };
+</span></span><span style="display:flex;"><span>        $last<span style="color:#f92672">-&gt;</span>demolish;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">inspect</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $element <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>[FIRST];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @keys;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (keys %{ $self<span style="color:#f92672">-&gt;</span>[HASH] }) {
+</span></span><span style="display:flex;"><span>        unshift @keys, $element<span style="color:#f92672">-&gt;</span>key;
+</span></span><span style="display:flex;"><span>        $element <span style="color:#f92672">=</span> $element<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [@keys]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You can see that both the get and set methods extract the element from the list and prepend it to the first position (set can even populate it if it doesn’t exist yet). They also change the cache object to point to the first element of the list. Moreover, set also removes the last element (the list is cyclic, so it’s just the element preceding the first one) when the capacity has been reached.</p>
 <p>Do you see -1 mentioned twice in the code? We are comparing the reference addresses of two objects, if the object doesn’t exist, we use -1 which is an impossible value for an address (it means the cache is empty).</p>
 <p>For completeness, here’s the benchmark code. Its output was used to verify both the implementations work identically.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say }</span>;
-
-srand(<span style="color:#ae81ff">1</span>);
-<span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Cache::LRU&#39;</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2000</span>);
-$c<span style="color:#f92672">-&gt;</span>set(int rand <span style="color:#ae81ff">5000</span>, rand) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10_000</span>;
-$c<span style="color:#f92672">-&gt;</span>get(int rand <span style="color:#ae81ff">5000</span>) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10_000</span>;
-
-<span style="color:#66d9ef">my</span> @inspect <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>inspect;
-@inspect <span style="color:#f92672">=</span> ref $inspect[<span style="color:#ae81ff">0</span>] ? @{ $inspect[<span style="color:#ae81ff">0</span>] } : @inspect;
-say <span style="color:#e6db74">&#34;@inspect&#34;</span>;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say }</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>srand(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Cache::LRU&#39;</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2000</span>);
+</span></span><span style="display:flex;"><span>$c<span style="color:#f92672">-&gt;</span>set(int rand <span style="color:#ae81ff">5000</span>, rand) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10_000</span>;
+</span></span><span style="display:flex;"><span>$c<span style="color:#f92672">-&gt;</span>get(int rand <span style="color:#ae81ff">5000</span>) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10_000</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @inspect <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>inspect;
+</span></span><span style="display:flex;"><span>@inspect <span style="color:#f92672">=</span> ref $inspect[<span style="color:#ae81ff">0</span>] ? @{ $inspect[<span style="color:#ae81ff">0</span>] } : @inspect;
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">&#34;@inspect&#34;</span>;
+</span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></p>
 

@@ -211,9 +211,9 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h2 id="docker-volume">Docker Volume</h2>
 <hr>
-<h3 id="1-setupsetup"><a href="#setup">1. Setup</a></h3>
-<h3 id="2-bind-mountbind-mount"><a href="#bind-mount">2. Bind Mount</a></h3>
-<h3 id="3-use-of-docker-volumeuse-of-docker-volume"><a href="#use-of-docker-volume">3. Use of Docker Volume</a></h3>
+<h3 id="1-setup"><a href="#setup">1. Setup</a></h3>
+<h3 id="2-bind-mount"><a href="#bind-mount">2. Bind Mount</a></h3>
+<h3 id="3-use-of-docker-volume"><a href="#use-of-docker-volume">3. Use of Docker Volume</a></h3>
 <br>
 <h2 id="setup">Setup</h2>
 <hr>
@@ -297,15 +297,15 @@ nginx_bind_mount
 <br>
 <p>We will now create the configuration file.</p>
 <br>
-<pre><code>services:
-  nginx:
-    image: nginx
-    container_name: ngnix_bind_mount
-    volumes:
-      - ./html:/usr/share/nginx/html
-    ports:
-      - 8080:80
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  nginx:
+</span></span><span style="display:flex;"><span>    image: nginx
+</span></span><span style="display:flex;"><span>    container_name: ngnix_bind_mount
+</span></span><span style="display:flex;"><span>    volumes:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#f92672">.</span><span style="color:#e6db74">/html:/</span>usr<span style="color:#e6db74">/share/</span>nginx<span style="color:#f92672">/</span>html
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#ae81ff">8080</span>:<span style="color:#ae81ff">80</span>
+</span></span></code></pre></div><br>
 <p>Did you notice, I removed the line <code>version: '3.8'</code> from the configuration file?</p>
 <p>That&rsquo;s because the <code>docker compose</code> command doesn&rsquo;t like it and throws a warning like this:</p>
 <br>
@@ -466,18 +466,18 @@ new_nginx_docker_volume
 <br>
 <p>One last time, we will create a container using the configuration file with docker volume.</p>
 <br>
-<pre><code>services:
-  nginx:
-    image: nginx
-    container_name: ngnix_docker_volume
-    volumes:
-      - nginx_volume:/usr/share/nginx/html
-    ports:
-      - 8080:80
-
-volumes:
-  nginx_volume:
-</code></pre><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  nginx:
+</span></span><span style="display:flex;"><span>    image: nginx
+</span></span><span style="display:flex;"><span>    container_name: ngnix_docker_volume
+</span></span><span style="display:flex;"><span>    volumes:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> nginx_volume:<span style="color:#e6db74">/usr/s</span>hare<span style="color:#e6db74">/nginx/</span>html
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#ae81ff">8080</span>:<span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>volumes:
+</span></span><span style="display:flex;"><span>  nginx_volume:
+</span></span></code></pre></div><br>
 <p>Start the container now:</p>
 <br>
 <pre><code>$ docker compose up -d

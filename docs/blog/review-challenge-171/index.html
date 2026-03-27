@@ -206,7 +206,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h3 id="enough-fine-so-without-even-further-ado">Enough? Fine. So without even further ado&hellip;</h3>
 <hr>
-<h2 id="---nbsp--nbsp--nbsp---task-1pwc171task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc171task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc171blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC171TASK1">Task 1</a>                 •             <a href="#PWC171TASK2">Task 2</a>                 •             <a href="#PWC171BLOGS">BLOGS</a>                  •</h2>
+<h2 id="----------task-1------------------------task-2------------------------blogs---------------">•             <a href="#PWC171TASK1">Task 1</a>                 •             <a href="#PWC171TASK2">Task 2</a>                 •             <a href="#PWC171BLOGS">BLOGS</a>                  •</h2>
 <hr>
 <h1 id="PWC171TASK1">TASK 1</h1>
 <h1 id="abundant-number">Abundant Number</h1>
@@ -220,9 +220,9 @@ n.</p>
 </blockquote>
 <p>For example, 945 is the first Abundant Odd Number.</p>
 <p>Sum of divisors:</p>
-<pre><code>    1 + 3 + 5 + 7 + 9 + 15 + 21 + 27 + 35
-      + 45 + 63 + 105 + 135 + 189 + 315 = 975
-</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">21</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">27</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">35</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#ae81ff">45</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">63</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">105</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">135</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">189</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">315</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">975</span>
+</span></span></code></pre></div><h2 id="about-the-solutions">about the solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
@@ -285,41 +285,41 @@ n.</p>
 <p>All divisors must multiply by some complement to produce the target, and the smallest complement we&rsquo;re considering is 2 — as we&rsquo;re not including the number as a divisor to itself — so consequently all divisors in the set must be less than or equal to one-half the target (one of course is given). This puts an upper bound on our search space. Candidate divisors are checked with a modulo function to see whether there is any remainder when they divide the target, and if not they are added to a list.</p>
 <p>In the second part Adam uses <code>unpack</code> as a <code>sum</code> function — using the <code>%32I*</code> template —  which is probably non-intuitive, even arcane, but gets the job done. For a clue as to what&rsquo;s going on with this, I&rsquo;ll refer you to the <a href="https://perldoc.perl.org/perlpacktut#Doing-Sums">Perl pack tutorial, and the section on sums</a>.</p>
 <p>Also note the loop construct is a bare block — the looping is performed within the block at the end using <code>redo</code>. Very interesting style choices here to start our day.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">proper_divisors</span>{
-        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span> @divisors;
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>){
-            push @divisors, $x <span style="color:#66d9ef">if</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>x <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-        }
-        <span style="color:#66d9ef">return</span> @divisors;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">n_abundant_odd</span>{
-        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">my</span> @odd_abundants;
-        {
-            push @odd_abundants, $x <span style="color:#66d9ef">if</span> $x % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> unpack(<span style="color:#e6db74">&#34;%32I*&#34;</span>, pack(<span style="color:#e6db74">&#34;I*&#34;</span>, proper_divisors($x))) <span style="color:#f92672">&gt;</span> $x;
-            $x<span style="color:#f92672">++</span>;
-            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @odd_abundants <span style="color:#f92672">&lt;</span> $n;
-        }
-        <span style="color:#66d9ef">return</span> @odd_abundants;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">proper_divisors</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @divisors;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>){
+</span></span><span style="display:flex;"><span>            push @divisors, $x <span style="color:#66d9ef">if</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>x <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> @divisors;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">n_abundant_odd</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @odd_abundants;
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            push @odd_abundants, $x <span style="color:#66d9ef">if</span> $x % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> unpack(<span style="color:#e6db74">&#34;%32I*&#34;</span>, pack(<span style="color:#e6db74">&#34;I*&#34;</span>, proper_divisors($x))) <span style="color:#f92672">&gt;</span> $x;
+</span></span><span style="display:flex;"><span>            $x<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @odd_abundants <span style="color:#f92672">&lt;</span> $n;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> @odd_abundants;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/kjetillll/perl/ch-1.pl"><strong>Kjetil Skotheim</strong></a></p>
 <p><code>unpack</code> is an amazing tool to peek inside structured data, and Adam&rsquo;s unusual template to sum the divisors is a perfectly legitimate use. However new member Kjetil offers us the more intuitive, sensibly self-named function, <code>sum</code>, from the core module <code>List::Util</code>.</p>
 <p>Unlike <code>unpack</code>, it is very much called what it do.</p>
 <p><em>[Note to everyone not a native English speaker: do not mistake everything I write as in any way proper English. It is a forgiving language, but many things I choose to write are just made up.]</em></p>
 <p>Anyhoo <em>[see note]</em>, here we have a delightfully compact solution from Kjetil which uses a <code>grep</code> statement to filter a list of all possible divisors and immediately sum them. If this number is abundant then we&rsquo;re good. No checks for oddness you say? That&rsquo;s because we start at 1 and skip by 2s, and will never see an even candidate.</p>
 <p>So no checks required. That&rsquo;s convenient. Evenness is overrated.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;sum&#39;</span>;
-    <span style="color:#66d9ef">my</span> $want <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">20</span>;
-    <span style="color:#66d9ef">my</span>($have,$n)<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
-    sum( grep $n % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) <span style="color:#f92672">&gt;</span> $n
-        <span style="color:#f92672">and</span> <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$n\n&#34;</span>
-        <span style="color:#f92672">and</span> $have<span style="color:#f92672">++</span>
-        <span style="color:#66d9ef">while</span> $have <span style="color:#f92672">&lt;</span> $want
-          <span style="color:#f92672">and</span> $n<span style="color:#f92672">+=</span><span style="color:#ae81ff">2</span>;
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;sum&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $want <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span>($have,$n)<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    sum( grep $n % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) <span style="color:#f92672">&gt;</span> $n
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">and</span> <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$n\n&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">and</span> $have<span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> $have <span style="color:#f92672">&lt;</span> $want
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">and</span> $n<span style="color:#f92672">+=</span><span style="color:#ae81ff">2</span>;
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/roger-bell-west/rust/ch-1.rs">Rust</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -327,34 +327,34 @@ n.</p>
 <p>At the other end of the spectrum we have <code>Math::Prime::Util</code>, a module with several hundred functions relevant to number theory, primes and factoring. Among them is <code>divisor_sum</code>, which, as you might think, sums the divisor set.</p>
 <p>The function does however act on the <em>entire</em> divisor set, which includes the trivial divisor of the number itself. This is not a deal breaker, as the formula for abundance is easily modified for this case to those numbers whose sum exceeds twice the original value.</p>
 <p>Again we start looking at 1 and count by 2s, so that only odd numbers are checked.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(divisor_sum)</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">oddabundant</span>($ct) {
-      <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-      <span style="color:#66d9ef">my</span> @o;
-      <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">if</span> (divisor_sum($n) <span style="color:#f92672">&gt;</span> $n <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>) {
-          push @o,$n;
-          <span style="color:#66d9ef">if</span> (scalar @o <span style="color:#f92672">&gt;=</span> $ct) {
-            <span style="color:#66d9ef">last</span>;
-          }
-        }
-        $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
-      }
-      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(divisor_sum)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">oddabundant</span>($ct) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @o;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (divisor_sum($n) <span style="color:#f92672">&gt;</span> $n <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>          push @o,$n;
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (scalar @o <span style="color:#f92672">&gt;=</span> $ct) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
 <p>CY provides us with a super-compact version of this solution using <code>divisor_sum</code>. As no single-digit abundant numbers exist she goes ahead and starts counting at 9, again skipping by 2s.</p>
 <p>I will note that don&rsquo;t want to tell anyone how to run their life, but I am skeptical of having two variables <code>$n</code> and <code>$N</code> in the same script. It seems like asking for trouble, not unlike having different data-types sharing the same symbol, only differentiated by a sigil. Permitted, sure, but confusing as the two variables are pronounced the same.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw/divisor_sum/</span>;
-
-    <span style="color:#66d9ef">while</span> (scalar @abunt <span style="color:#f92672">&lt;</span> $N) {
-        $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
-        <span style="color:#66d9ef">if</span> (divisor_sum($n) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$n) {
-            push @abunt, $n;
-        }
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw/divisor_sum/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (scalar @abunt <span style="color:#f92672">&lt;</span> $N) {
+</span></span><span style="display:flex;"><span>        $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (divisor_sum($n) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$n) {
+</span></span><span style="display:flex;"><span>            push @abunt, $n;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/raku/ch-1.raku">Raku</a></p>
 <p>Summing divisors is a common enough operation in number theory that the writers of <code>Math::Prime::Util</code> saw fit to include a function tailor-made for the purpose, which to me says something about how weird number theory really is. But ultimately this is no concern, and I truly value their contributions to mathematics — don&rsquo;t get me wrong.</p>
@@ -363,128 +363,128 @@ n.</p>
 <p>It is said when the first prepackaged cake-baking products were released — a dry mix of flour, suger, levening and flavor — it would have been trivial to add powdered egg and milk in with the other ingredients. But when the companies did this no one bought the product: it turns out the home bakers felt they were no longer doing anything. There was no satisfaction; it was <em>too</em> easy. So eggs and milk, common pantry staples everyone at the time would have, were taken out again so they could then be added in, and the cooks could feel like they were baking properly.</p>
 <p>It&rsquo;s an interesting piece of psychology, that.</p>
 <p>Here the monk Athanasius delivers solutions to use two ways: the easy way and the not-quite-as-easy way, the first using <code>divisor_sum</code>, the second a little less abstractly using <code>divisors</code>, both from <code>Math::Prime::Util</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solve_with_sum</span>
-    {
-        <span style="color:#66d9ef">my</span> @abundant;
-
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; scalar @abundant <span style="color:#f92672">&lt;</span> $TARGET; $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>)
-        {
-            push @abundant, $n <span style="color:#66d9ef">if</span> divisor_sum( $n ) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $n;
-        }
-
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@abundant;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solve_with_divisors</span>
-    {
-        <span style="color:#66d9ef">my</span> @abundant;
-        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $count <span style="color:#f92672">&lt;</span> $TARGET; $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>)
-        {
-            <span style="color:#66d9ef">my</span>  @divisors <span style="color:#f92672">=</span> divisors( $n );
-            pop @divisors;
-            <span style="color:#66d9ef">my</span>  $sum  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-                $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @divisors;
-
-            <span style="color:#66d9ef">if</span> ($sum <span style="color:#f92672">&gt;</span> $n)
-            {
-                push @abundant, sprintf <span style="color:#e6db74">&#34;%2d. %4d: %s = %d&#34;</span>,
-                                        <span style="color:#f92672">++</span>$count, $n, join( <span style="color:#e6db74">&#39;+&#39;</span>, @divisors ), $sum;
-            }
-        }
-
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@abundant;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solve_with_sum</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @abundant;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; scalar @abundant <span style="color:#f92672">&lt;</span> $TARGET; $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            push @abundant, $n <span style="color:#66d9ef">if</span> divisor_sum( $n ) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $n;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@abundant;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solve_with_divisors</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @abundant;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $count <span style="color:#f92672">&lt;</span> $TARGET; $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span>  @divisors <span style="color:#f92672">=</span> divisors( $n );
+</span></span><span style="display:flex;"><span>            pop @divisors;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span>  $sum  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>                $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @divisors;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($sum <span style="color:#f92672">&gt;</span> $n)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                push @abundant, sprintf <span style="color:#e6db74">&#34;%2d. %4d: %s = %d&#34;</span>,
+</span></span><span style="display:flex;"><span>                                        <span style="color:#f92672">++</span>$count, $n, join( <span style="color:#e6db74">&#39;+&#39;</span>, @divisors ), $sum;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@abundant;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://pjcs-pwc.blogspot.com/2022/07/abundantly-odd-and-oh-dear.html">Abundantly odd and &hellip; Oh dear!</a></p>
 <p>Here&rsquo;s another one from Peter requiring a bit of egg and milk, using <code>divisors</code>. Note that summing the list is not a difficult operation or anything, dispatched here in a single line.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(divisors)</span>;
-    binmode(STDOUT, <span style="color:#e6db74">&#39;:utf8&#39;</span>);
-
-    <span style="color:#75715e"># Write a script to generate first 20 Abundant Odd Numbers.</span>
-    <span style="color:#75715e"># n is an abundant number if the sum of its divisors σ(n) &gt; 2n.</span>
-
-    <span style="color:#75715e"># Blog: https://pjcs-pwc.blogspot.com/2022/07/abundantly-odd-and-oh-dear.html</span>
-
-    <span style="color:#66d9ef">my</span> ($count, $i, @divisors, $sum);
-
-    <span style="color:#75715e"># loop over odd numbers</span>
-    $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> ($i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>) {
-
-        <span style="color:#75715e"># add the divisors</span>
-        @divisors <span style="color:#f92672">=</span> divisors($i);
-        $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @divisors;
-
-        <span style="color:#75715e"># we have an AON if the sum exceeds 2i</span>
-        <span style="color:#66d9ef">if</span> ($sum <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $i) {
-            $count <span style="color:#f92672">++</span>;
-            say <span style="color:#e6db74">qq[aon[$count] = $i because σ($i) = $sum which is more than 2 * $i = ]</span> <span style="color:#f92672">.</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $i);
-        }
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(divisors)</span>;
+</span></span><span style="display:flex;"><span>    binmode(STDOUT, <span style="color:#e6db74">&#39;:utf8&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Write a script to generate first 20 Abundant Odd Numbers.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># n is an abundant number if the sum of its divisors σ(n) &gt; 2n.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Blog: https://pjcs-pwc.blogspot.com/2022/07/abundantly-odd-and-oh-dear.html</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($count, $i, @divisors, $sum);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># loop over odd numbers</span>
+</span></span><span style="display:flex;"><span>    $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> ($i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># add the divisors</span>
+</span></span><span style="display:flex;"><span>        @divisors <span style="color:#f92672">=</span> divisors($i);
+</span></span><span style="display:flex;"><span>        $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @divisors;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># we have an AON if the sum exceeds 2i</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($sum <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $i) {
+</span></span><span style="display:flex;"><span>            $count <span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            say <span style="color:#e6db74">qq[aon[$count] = $i because σ($i) = $sum which is more than 2 * $i = ]</span> <span style="color:#f92672">.</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
 <p>It should be noted that <code>Math::Prime::Util</code> was not the only option available, either: here Niels &ldquo;PerlBoy&rdquo; van Dijke employs the services of the eponymous module from celebrated Hollywood cosmetologist <code>Math::Factor</code> to provide <code>factors()</code>. It should be noted that this module distinguishes simply between factors and prime factors, the one all-inclusive the second only the prime factorization. &ldquo;Factors&rdquo; in this context is equivalent to &ldquo;divisors&rdquo;.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum0)</span>;
-    <span style="color:#66d9ef">use</span> Math::Factor::XS <span style="color:#e6db74">qw(factors)</span>;
-
-    <span style="color:#75715e"># Prototype(s)</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isOddAbudant</span> ($);
-
-
-    <span style="color:#66d9ef">my</span> ($i,$n) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
-    <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">20</span>) {
-      <span style="color:#66d9ef">if</span> (isOddAbudant($n)) {
-        say <span style="color:#e6db74">&#34;$i\t$n&#34;</span>; $i<span style="color:#f92672">++</span>;
-      }
-      $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
-    }
-
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isOddAbudant</span> ($) {
-      <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>] % 2 <span style="color:#f92672">&amp;&amp;</span> sum0(factors($_[<span style="color:#ae81ff">0</span>])) <span style="color:#f92672">&gt;</span> $_[<span style="color:#ae81ff">0</span>];
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum0)</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Factor::XS <span style="color:#e6db74">qw(factors)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Prototype(s)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isOddAbudant</span> ($);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($i,$n) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">20</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (isOddAbudant($n)) {
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">&#34;$i\t$n&#34;</span>; $i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isOddAbudant</span> ($) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>] % 2 <span style="color:#f92672">&amp;&amp;</span> sum0(factors($_[<span style="color:#ae81ff">0</span>])) <span style="color:#f92672">&gt;</span> $_[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
 <p>Back to basics, Ulrich demonstrates that obtaining a divisor list using trial division is not complicated either. Here he includes a <code>findDivisors()</code> function that checks candidates from 1 to half the target value.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">findDivisors</span> {
-      <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
-      <span style="color:#66d9ef">my</span> @divisors ;
-      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> int( $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) ) {
-          <span style="color:#66d9ef">if</span> ( $number % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
-              push @divisors , $i ;
-          }
-      }
-      <span style="color:#66d9ef">return</span> @divisors ;
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/perl/ch-1.pl"><strong>Bartosz Jarzyna</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">findDivisors</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> @divisors ;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> int( $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) ) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> ( $number % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+</span></span><span style="display:flex;"><span>              push @divisors , $i ;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> @divisors ;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/perl/ch-1.pl"><strong>Bartosz Jarzyna</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/pascal/ch-1.pas">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/brtastic/raku/ch-1.raku">Raku</a></p>
 <p>Using the listwise filtering <code>grep</code> operation, trial division can be accomplished in a single line. Bartosz does chose to include the <code>List::Util</code> function <code>sum0</code> though.</p>
 <p><code>List::Util</code> contains two functions, <code>sum</code> and <code>sum0</code>, which are largely interchangeable, and in my experience it seems that most people pick one or the other and default to it. Both functions work on a list of values, performing sequential addition to return a single aggregate value. The only difference between them is that when given an empty list, <code>sum</code> will return undef, and <code>sum0</code> will return the real value 0. So your data, or lack thereof, should determine which to use. Practically speaking this in not lkely to come up, but might, and one should know both exist.</p>
-<p>This opens a banquet of existential questions as to the nature of nothingness that I will leave as an exercise to the reader. In my opinion, Jean-Paul Satre would be good place to start, avec <a href="https://en.wikipedia.org/wiki/Being_and_Nothingness"><em>L'Être et le néant : Essai d&rsquo;ontologie phénoménologique</em></a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum0)</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_divisors</span> ($number)
-    {
-        <span style="color:#66d9ef">return</span> grep { $number % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_next_abundant_odd</span> ($current = 1)
-    {
-        <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;number is not abundant odd&#39;</span>) {
-            <span style="color:#66d9ef">return</span> $current
-                <span style="color:#66d9ef">if</span> $current % 2 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>
-                <span style="color:#f92672">&amp;&amp;</span> sum0(get_divisors $current) <span style="color:#f92672">&gt;</span> $current
-            ;
-
-            <span style="color:#f92672">++</span>$current;
-        }
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>This opens a banquet of existential questions as to the nature of nothingness that I will leave as an exercise to the reader. In my opinion, Jean-Paul Satre would be good place to start, avec <a href="https://en.wikipedia.org/wiki/Being_and_Nothingness"><em>L&rsquo;Être et le néant : Essai d&rsquo;ontologie phénoménologique</em></a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum0)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_divisors</span> ($number)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> grep { $number % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_next_abundant_odd</span> ($current = 1)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;number is not abundant odd&#39;</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> $current
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> $current % 2 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&amp;&amp;</span> sum0(get_divisors $current) <span style="color:#f92672">&gt;</span> $current
+</span></span><span style="display:flex;"><span>            ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">++</span>$current;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/polettix/raku/ch-1.raku">Raku</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -499,32 +499,32 @@ n.</p>
 <p>So by tracking divisors and their complements together, we only need to continue until the complement divisor is less than the low value. At that point we know we have crossed the square root without needing to actually ever compute it.</p>
 <p>And finally, what of the square root itself? To keep the divisor list properly ordered two lists are compiled, a <code>@low</code> array, which low values are appended to, and a <code>@high</code> that has the ever-shrinking high values prepended. At the end the two lists are deliveded together as one, the low before the high. In the case of the square root, however, the divisor and the complement are the same. To avoid adding the root twice, the first, low, value is always added, but the second value is only added if the low and high values are different.</p>
 <p>Nice.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;sum&#39;</span>;
-
-    <span style="color:#66d9ef">while</span> (@abundants <span style="color:#f92672">&lt;</span> $n) {
-       push @abundants, $candidate <span style="color:#66d9ef">if</span> is_abundant($candidate);
-       $candidate <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
-    }
-    say join <span style="color:#e6db74">&#39;, &#39;</span>, @abundants;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_abundant</span> ($n) { $n <span style="color:#f92672">&lt;</span> sum(proper_positive_divisors($n)) }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">proper_positive_divisors</span> ($n) {
-       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $n;
-       $n <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>$n <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
-       <span style="color:#66d9ef">my</span> (@lows, @highs) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>);
-       <span style="color:#66d9ef">my</span> ($lo, $hi) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, $n);
-       <span style="color:#66d9ef">while</span> ($lo <span style="color:#f92672">&lt;</span> $hi) {
-          <span style="color:#66d9ef">if</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>lo <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-             push @lows, $lo;
-             $hi <span style="color:#f92672">=</span> int($n <span style="color:#f92672">/</span> $lo);
-             unshift @highs, $hi <span style="color:#66d9ef">if</span> $hi <span style="color:#f92672">!=</span> $lo;
-          }
-          <span style="color:#f92672">++</span>$lo;
-       }
-       <span style="color:#66d9ef">return</span> (@lows, @highs);
-    }
-</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;sum&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (@abundants <span style="color:#f92672">&lt;</span> $n) {
+</span></span><span style="display:flex;"><span>       push @abundants, $candidate <span style="color:#66d9ef">if</span> is_abundant($candidate);
+</span></span><span style="display:flex;"><span>       $candidate <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    say join <span style="color:#e6db74">&#39;, &#39;</span>, @abundants;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_abundant</span> ($n) { $n <span style="color:#f92672">&lt;</span> sum(proper_positive_divisors($n)) }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">proper_positive_divisors</span> ($n) {
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $n;
+</span></span><span style="display:flex;"><span>       $n <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>$n <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">my</span> (@lows, @highs) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">my</span> ($lo, $hi) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, $n);
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">while</span> ($lo <span style="color:#f92672">&lt;</span> $hi) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>lo <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>             push @lows, $lo;
+</span></span><span style="display:flex;"><span>             $hi <span style="color:#f92672">=</span> int($n <span style="color:#f92672">/</span> $lo);
+</span></span><span style="display:flex;"><span>             unshift @highs, $hi <span style="color:#66d9ef">if</span> $hi <span style="color:#f92672">!=</span> $lo;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">++</span>$lo;
+</span></span><span style="display:flex;"><span>       }
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">return</span> (@lows, @highs);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/d/ch1.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/pascal/ch1.pas">Pascal</a></p>
@@ -573,12 +573,12 @@ n.</p>
 <p><em>Submitted by: Mohammad S Anwar</em></p>
 <p>Create sub compose($f, $g) which takes in two parameters $f and $g as subroutine refs and returns subroutine ref i.e. compose($f, $g)-&gt;($x) = $f-&gt;($g-&gt;($x))</p>
 <p><strong>e.g.</strong></p>
-<pre><code>    $f = (one or more parameters function)
-    $g = (one or more parameters function)
-
-    $h = compose($f, $g)
-    $f-&gt;($g-&gt;($x,$y, ..)) == $h-&gt;($x, $y, ..) for any $x, $y, ...
-</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    $f <span style="color:#f92672">=</span> (one <span style="color:#f92672">or</span> more parameters function)
+</span></span><span style="display:flex;"><span>    $g <span style="color:#f92672">=</span> (one <span style="color:#f92672">or</span> more parameters function)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $h <span style="color:#f92672">=</span> compose($f, $g)
+</span></span><span style="display:flex;"><span>    $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>($x,$y, <span style="color:#f92672">..</span>)) <span style="color:#f92672">==</span> $h<span style="color:#f92672">-&gt;</span>($x, $y, <span style="color:#f92672">..</span>) <span style="color:#66d9ef">for</span> any $x, $y, <span style="color:#f92672">...</span>
+</span></span></code></pre></div><h2 id="about-the-solutions-1">about the solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
@@ -629,104 +629,104 @@ n.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a></p>
 <p>Walt will start us off with a demonstration the form. He creates two toy functions, <code>sum()</code>  and <code>double()</code> that serve as stand-in examples for any arbitrary subroutine.</p>
 <p>His <code>compose()</code> routine takes two coderef inputs and returns an anonymous subroutine that applies the first to the results of the second. Thus by calling <code>compose()</code> a third routine is created, as per spec, that can be called with arguments that will feed the chain of first the onte then the other.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>($f, $g) {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> { $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_)) };
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span> {
-        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @_;
-        <span style="color:#66d9ef">return</span> $sum;
-    }
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">double</span> {
-        <span style="color:#66d9ef">return</span> map { $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> } @_;
-    }
-
-    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> compose(<span style="color:#f92672">\&amp;</span>sum, <span style="color:#f92672">\&amp;</span>double);
-    say $c<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>);
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>($f, $g) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> { $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_)) };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $sum;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">double</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> map { $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> } @_;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> compose(<span style="color:#f92672">\&amp;</span>sum, <span style="color:#f92672">\&amp;</span>double);
+</span></span><span style="display:flex;"><span>    say $c<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>);
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://colincrain.com/2022/07/01/let-me-make-this-abundantly-clear">Let Me Make This Abundantly Clear - Programming Excursions in Perl and Raku</a></p>
 <p>For my own submission, I was a bit torn by how to provide the best example. Defining a named subroutine and taking an explicit reference to it allows the name to be a meaningful descriptive of what&rsquo;s happening, but I feel immediately assigning a scalar an anonymous subroutine reference is more pure to the spirit of what&rsquo;s going on when we compose the functions later.</p>
 <p>What to do?</p>
 <p>Originally I took the long road to obtain a subroutine reference, but by now I&rsquo;ve changed my mind. Conveniently I included code done both ways, and just commented some out.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $g <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $_[<span style="color:#ae81ff">1</span>] };
-    <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>    };
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> ($f, $g) {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {$f<span style="color:#f92672">-&gt;</span>( $g<span style="color:#f92672">-&gt;</span>( @_ ) )};
-    }
-
-    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> compose( $f, $g );
-
-    say $c<span style="color:#f92672">-&gt;</span>( <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> );
-</code></pre></div><p>The top coderef sums two arguments, the bottom squares one. The coderef returned by <code>compose</code> sums and then squares, in this case returning 25.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $g <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $_[<span style="color:#ae81ff">1</span>] };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> ($f, $g) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {$f<span style="color:#f92672">-&gt;</span>( $g<span style="color:#f92672">-&gt;</span>( @_ ) )};
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> compose( $f, $g );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say $c<span style="color:#f92672">-&gt;</span>( <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> );
+</span></span></code></pre></div><p>The top coderef sums two arguments, the bottom squares one. The coderef returned by <code>compose</code> sums and then squares, in this case returning 25.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
 <p>Matthew give us an example using the old dereferencing syntax, stacking sigils:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>{
-        <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> shift();
-        <span style="color:#66d9ef">my</span> $g <span style="color:#f92672">=</span> shift();
-
-        <span style="color:#66d9ef">return</span>(
-            sub{
-
-                <span style="color:#75715e"># This @ARG is the one passed to</span>
-                <span style="color:#75715e"># the sub, not to compose()</span>
-                <span style="color:#66d9ef">return</span>(<span style="color:#f92672">&amp;</span>$f(<span style="color:#f92672">&amp;</span>$g(@ARG)));
-
-            }
-        );
-
-    }
-</code></pre></div><p>I find this quite noisy, personally (although I admit to being sometimes still seduced by the simplicity of <code>@$_</code>). Also braces are often required using this syntax to properly delineate where the reference starts, which makes things <em>really</em> noisy.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> shift();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $g <span style="color:#f92672">=</span> shift();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>(
+</span></span><span style="display:flex;"><span>            sub{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># This @ARG is the one passed to</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># the sub, not to compose()</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>(<span style="color:#f92672">&amp;</span>$f(<span style="color:#f92672">&amp;</span>$g(@ARG)));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>I find this quite noisy, personally (although I admit to being sometimes still seduced by the simplicity of <code>@$_</code>). Also braces are often required using this syntax to properly delineate where the reference starts, which makes things <em>really</em> noisy.</p>
 <p>I always encourage the modern post-dereferencing arrow, but that&rsquo;s just me. And yes, using</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#e6db74">&#34;@$__&#34;</span> <span style="color:#66d9ef">for</span> @arr
-</code></pre></div><p>to dump an array-of-arrays is quite easy, I admit. But I try and limit that to debugging.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;@$__&#34;</span> <span style="color:#66d9ef">for</span> @arr
+</span></span></code></pre></div><p>to dump an array-of-arrays is quite easy, I admit. But I try and limit that to debugging.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
 <p>I generally find that when even Jorg can&rsquo;t find a way to either strip something down or spice it up then the answer is already in its lowest-energy state.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> ($f, $g) {
-        <span style="color:#66d9ef">sub</span> {$f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_))};
-    }
-</code></pre></div><p>This simple syntax is just kind of perfect as it is. Notice because there is no <code>return</code> statement elsewhere in the sub we automatically return the last thing evaluated, in this case the anonymous subroutine we create. So no <code>return</code> statement is required.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> ($f, $g) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">sub</span> {$f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_))};
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>This simple syntax is just kind of perfect as it is. Notice because there is no <code>return</code> statement elsewhere in the sub we automatically return the last thing evaluated, in this case the anonymous subroutine we create. So no <code>return</code> statement is required.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/d/ch2.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/deadmarshal/pascal/ch2.pas">Pascal</a></p>
 <p>It is said that there are many ways up the mountain, but only one peak. Here to follow is Ali&rsquo;s submission to prove the point (so to speak):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>{
-      <span style="color:#66d9ef">my</span> ($f, $g) <span style="color:#f92672">=</span> @_;
-      <span style="color:#66d9ef">sub</span> {
-        $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(shift()));
-      }
-    }
-</code></pre></div><p>The only difference here is we aren&rsquo;t using the freshly-out-of-experimental <code>signatures</code> feature, so we need to assign our arguments from the stack manually.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">my</span> ($f, $g) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>        $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(shift()));
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>The only difference here is we aren&rsquo;t using the freshly-out-of-experimental <code>signatures</code> feature, so we need to assign our arguments from the stack manually.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/pokgopun/go/ch-2.go">Go</a></p>
 <p>PoGoPun&rsquo;s take on the constructor is quite interesting.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>{
-        <span style="color:#66d9ef">my</span> @f <span style="color:#f92672">=</span> @_;
-        <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> shift @f;
-        <span style="color:#66d9ef">return</span> @f ? sub{ $f<span style="color:#f92672">-&gt;</span>(compose(@f)<span style="color:#f92672">-&gt;</span>(@_)) } : $f;
-    }
-</code></pre></div><p>What&rsquo;s happening here? Given a list of function coderefs, they recursively compose the head of the list into a new function until the list has been exhausted. Thus, if we add an example to PoGoPun&rsquo;s solution:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $doub <span style="color:#f92672">=</span> compose( <span style="color:#f92672">\&amp;</span>Square, <span style="color:#f92672">\&amp;</span>Square );
-    <span style="color:#66d9ef">my</span> $trip <span style="color:#f92672">=</span> compose( <span style="color:#f92672">\&amp;</span>Square, <span style="color:#f92672">\&amp;</span>Square, <span style="color:#f92672">\&amp;</span>Square );
-
-    say <span style="color:#e6db74">&#34;doub &#34;</span>, $doub<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">2</span>);
-    say <span style="color:#e6db74">&#34;trip &#34;</span>, $trip<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">2</span>);
-</code></pre></div><p>we get this:</p>
-<pre><code>    doub 16
-    trip 256
-</code></pre><p><code>Square()</code> does pretty much what you&rsquo;d think it does. Actually it works listwise and squares each element in a <em>list</em> of numbers, but we&rsquo;ll get to that. So composing that function with itself squares the number twice, as we see. However handing a third instance in the chain squares <em>that</em> result, yielding the eighth power. Neat, and we can give <code>compose()</code> as many coderefs as we wish, as it works recursively until finished.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @f <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> shift @f;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> @f ? sub{ $f<span style="color:#f92672">-&gt;</span>(compose(@f)<span style="color:#f92672">-&gt;</span>(@_)) } : $f;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>What&rsquo;s happening here? Given a list of function coderefs, they recursively compose the head of the list into a new function until the list has been exhausted. Thus, if we add an example to PoGoPun&rsquo;s solution:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $doub <span style="color:#f92672">=</span> compose( <span style="color:#f92672">\&amp;</span>Square, <span style="color:#f92672">\&amp;</span>Square );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $trip <span style="color:#f92672">=</span> compose( <span style="color:#f92672">\&amp;</span>Square, <span style="color:#f92672">\&amp;</span>Square, <span style="color:#f92672">\&amp;</span>Square );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;doub &#34;</span>, $doub<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;trip &#34;</span>, $trip<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">2</span>);
+</span></span></code></pre></div><p>we get this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    doub <span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>    trip <span style="color:#ae81ff">256</span>
+</span></span></code></pre></div><p><code>Square()</code> does pretty much what you&rsquo;d think it does. Actually it works listwise and squares each element in a <em>list</em> of numbers, but we&rsquo;ll get to that. So composing that function with itself squares the number twice, as we see. However handing a third instance in the chain squares <em>that</em> result, yielding the eighth power. Neat, and we can give <code>compose()</code> as many coderefs as we wish, as it works recursively until finished.</p>
 <p>As we mentioned the toy functions PokGoPUn provides work on lists, and they
 also make a nice listwise presentation of their results, emphasizing that the compose function is not commutative — the ordering of the arguments very much matters.</p>
-<pre><code>    Sumdigit(19, 29, 39) = (10, 11, 12) =&gt; Square(10, 11, 12) = (100, 121, 144)
-    =&gt; SqaureAfterSumdigit(19, 29, 39) = (100, 121, 144)
-
-    Square(19, 29, 39) = (361, 841, 1521) =&gt; Sumdigit(361, 841, 1521) = (10, 13, 9)
-    =&gt; SumdigitAfterSquare(19, 29, 39) = (10, 13, 9)
-</code></pre><p>Capiche?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    Sumdigit(<span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">39</span>) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">12</span>) <span style="color:#f92672">=&gt;</span> Square(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">12</span>) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">144</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">=&gt;</span> SqaureAfterSumdigit(<span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">39</span>) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">144</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Square(<span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">39</span>) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">361</span>, <span style="color:#ae81ff">841</span>, <span style="color:#ae81ff">1521</span>) <span style="color:#f92672">=&gt;</span> Sumdigit(<span style="color:#ae81ff">361</span>, <span style="color:#ae81ff">841</span>, <span style="color:#ae81ff">1521</span>) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">9</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">=&gt;</span> SumdigitAfterSquare(<span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">39</span>) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">9</span>)
+</span></span></code></pre></div><p>Capiche?</p>
 <p>Now we&rsquo;ll have a look at a bunch of ways to wrap the exact same syntactic core:</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a></p>
 <p>  <strong>additional languages:</strong>
@@ -735,55 +735,55 @@ also make a nice listwise presentation of their results, emphasizing that the co
 <a href="https://ry.ca/2022/07/first-class-functions/">PWC 171 › First Class Functions - Ryan J Thompson</a></p>
 <p>As the core logic and syntax is pretty fixed, here Ryan demonstrates a few alternate ways to obtain a function coderef. We&rsquo;ve seen the syntax for taking an explicit reference to an existing named subroutine, using a backslash reference on the subroutine sigil: <code>\&amp;mysub()</code>. Note the <code>&amp;</code> sigil is required or the reference produced will be on whatever is returned by the subroutine, which is not what we want here. On the other hand the subroutine can be any code, anywhere — here Ryan takes a reference to <code>sum0</code> from <code>List::Util</code>. It doesn&rsquo;t even need to be in the same package, or even Perl code: <code>List::Util</code> defaults to compiled C written using XS.</p>
 <p>A perhaps more elegant way to to this, and I think the most common in real-world practice, is that if we know we want a reference to a subroutine then there is little reason to name it in the first place. In this case we can assign the constucter directly to a scalar and get the reference that way: <code>$coderef = sub { ... }</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt; sum0 &gt;</span>;
-
-    <span style="color:#66d9ef">my</span> $squares <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { map { $_ <span style="color:#f92672">*</span> $_ } @_ };
-    <span style="color:#66d9ef">my</span> $h <span style="color:#f92672">=</span> comp( <span style="color:#f92672">\&amp;</span>sum0, $squares );
-
-    say <span style="color:#e6db74">&#34;The sum of squares for 1..10 = &#34;</span> <span style="color:#f92672">.</span> $h<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>);
-
-    <span style="color:#75715e"># Demonstrate function composition</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">comp</span> {
-        <span style="color:#66d9ef">my</span> ($f, $g) <span style="color:#f92672">=</span> @_;
-
-        <span style="color:#66d9ef">sub</span> { $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_)) }
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt; sum0 &gt;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $squares <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { map { $_ <span style="color:#f92672">*</span> $_ } @_ };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $h <span style="color:#f92672">=</span> comp( <span style="color:#f92672">\&amp;</span>sum0, $squares );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;The sum of squares for 1..10 = &#34;</span> <span style="color:#f92672">.</span> $h<span style="color:#f92672">-&gt;</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Demonstrate function composition</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">comp</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($f, $g) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">sub</span> { $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_)) }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
 <p>Choroba implements some basic input validation using <code>Ref::Util:is_plain_coderef</code>, to make sure the reference being passed is indeed a code reference. It is, after all, just another scalar and could be anything, or nothing.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Ref::Util <span style="color:#e6db74">qw{ is_plain_coderef }</span>;
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> ($f, $g) {
-        is_plain_coderef($_) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Not a CODE reference!&#34;</span>
-            <span style="color:#66d9ef">for</span> $f, $g;
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> ($x) { $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>($x)) }
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Ref::Util <span style="color:#e6db74">qw{ is_plain_coderef }</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> ($f, $g) {
+</span></span><span style="display:flex;"><span>        is_plain_coderef($_) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Not a CODE reference!&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> $f, $g;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> ($x) { $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>($x)) }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
 <p>  <strong>blog writeup:</strong>
 <a href="https://wlmb.github.io/2022/06/27/PWC171/">Perl Weekly Challenge 171 – W. Luis Mochán</a></p>
 <p>Luis inputs his functions as strings from the command line (!) which are then evaled, which is of course completely, shockingly unsafe. But hey, we&rsquo;re all friends here, right? We know pwerfectly well not to touch the bare ends of the wires, right?</p>
 <p>When locked up tight this code is of course perfectly safe. Just don&rsquo;t let it out of your sight.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> ($f, $g)<span style="color:#f92672">=</span>map {eval $_ <span style="color:#f92672">or</span> die $@} <span style="color:#66d9ef">my</span> ($fs, $gs)<span style="color:#f92672">=</span>(shift, shift);
-    <span style="color:#66d9ef">my</span> $h<span style="color:#f92672">=</span>compose($f, $g);
-    say <span style="color:#e6db74">&#34;$fs ∘ $gs : &#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @ARGV), <span style="color:#e6db74">&#34; ↦ &#34;</span>, $h<span style="color:#f92672">-&gt;</span>(@ARGV);
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>($f, $g){
-        <span style="color:#66d9ef">sub</span> {$f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_))};
-    }
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($f, $g)<span style="color:#f92672">=</span>map {eval $_ <span style="color:#f92672">or</span> die $@} <span style="color:#66d9ef">my</span> ($fs, $gs)<span style="color:#f92672">=</span>(shift, shift);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $h<span style="color:#f92672">=</span>compose($f, $g);
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;$fs ∘ $gs : &#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @ARGV), <span style="color:#e6db74">&#34; ↦ &#34;</span>, $h<span style="color:#f92672">-&gt;</span>(@ARGV);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span>($f, $g){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">sub</span> {$f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@_))};
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
 <p>As Duncan demonstrates, a function <code>fun</code>, from <code>Function::Parameters</code> is just a fancy subroutine with extra parts. Code references work the same for them as any other subroutine.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Function::Parameters;
-
-    fun compose( $f, $g )
-    {
-        <span style="color:#66d9ef">return</span> fun(@x) { <span style="color:#66d9ef">return</span> $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@x)); }
-    }
-
-
-    <span style="color:#66d9ef">my</span> $sum       <span style="color:#f92672">=</span> fun( @x ) { <span style="color:#66d9ef">return</span> sum0(@x); };
-    <span style="color:#66d9ef">my</span> $double    <span style="color:#f92672">=</span> fun( @x ) { <span style="color:#66d9ef">return</span> map { <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $_ } @x };
-    <span style="color:#66d9ef">my</span> $sumdouble <span style="color:#f92672">=</span> compose( $sum, $double );
-    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $sumdouble<span style="color:#f92672">-&gt;</span>( @ARGV );
-</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Function::Parameters;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    fun compose( $f, $g )
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> fun(@x) { <span style="color:#66d9ef">return</span> $f<span style="color:#f92672">-&gt;</span>($g<span style="color:#f92672">-&gt;</span>(@x)); }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $sum       <span style="color:#f92672">=</span> fun( @x ) { <span style="color:#66d9ef">return</span> sum0(@x); };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $double    <span style="color:#f92672">=</span> fun( @x ) { <span style="color:#66d9ef">return</span> map { <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $_ } @x };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $sumdouble <span style="color:#f92672">=</span> compose( $sum, $double );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $sumdouble<span style="color:#f92672">-&gt;</span>( @ARGV );
+</span></span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/perl/ch-2.pl"><strong>Stephen G Lynn</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/steve-g-lynn/raku/ch-2.p6">Raku</a></p>
 <p>  <strong>blog writeup:</strong>
@@ -799,63 +799,63 @@ also make a nice listwise presentation of their results, emphasizing that the co
 <p>So how do you compose functions without references, you may ask? Typeglobs are sort of a pointer to a name in the symbol table, which can be attached to a variety of data types: scalars, arrays, hashes, filehandles or subroutines are the main group. There are I believe 9, including the typeglob. Typeglobs sort of point to all of these types simultaneously. It&rsquo;s confusing ab=nd they were mostly used for filehandles in my world. But to the point: using typeglobs we can hack into the argument stack for the <code>&amp;g</code> subroutine using <code>splice</code> and directly insert the output from <code>&amp;f</code>.</p>
 <p>That&rsquo;s the simplified version. Stephen&rsquo;s code is actually sneakier, and hackier (to use the historic, noble definition of the term)</p>
 <p>He provides two ways to do the deed. In the first, <code>compose</code> becomes the composed subroutine. In the second, a string is returned that needs to be evaled, containing the necessary code to create the composed function. In his second example, if we insert the line:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#e6db74">&#34;unevaled string: &#34;</span>, <span style="color:#f92672">&amp;</span>alt_compose(<span style="color:#f92672">*</span>sum,<span style="color:#f92672">*</span>factors);
-</code></pre></div><p>we add this to the output which might serve to clarify things somewhat. Or not, I don&rsquo;t know. I&rsquo;ll venture most people will have no idea what is going on here. Good luck.</p>
-<pre><code>    unevaled string: &amp;main::sum(2,3,5,6,10,15)
-</code></pre><p>See? And with that clue I&rsquo;m out. Here&rsquo;s the full text of Stephen&rsquo;s solution:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># This function &#34;composes&#34; subroutines using old features from perl 4:</span>
-    <span style="color:#75715e"># package vars, typeglobs, and the symbol table.</span>
-
-    <span style="color:#75715e">#-- The subroutine call &amp;compose(*g,*f) returns sub { &amp;g(@g) }</span>
-    <span style="color:#75715e">#-- where &amp;f(@f) is one of the arguments in @g</span>
-    <span style="color:#75715e">#-- and $g (int) indicates the position in which &amp;f is spliced into</span>
-    <span style="color:#75715e">#-- @g</span>
-
-
-    <span style="color:#75715e">#-- approach using typeglobs (perl 4 style)</span>
-    <span style="color:#75715e">#-- does not return a subroutine, evaluates g(f()) and returns the result</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> {
-        local (<span style="color:#f92672">*</span>g, <span style="color:#f92672">*</span>f)<span style="color:#f92672">=</span>@_;
-        splice(@g,$g,<span style="color:#ae81ff">0</span>,<span style="color:#f92672">&amp;</span>f(@f));
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>g(@g); <span style="color:#75715e">#-- not a subroutine ref</span>
-    }
-
-    <span style="color:#75715e">#-- alt (same as compose but returning a string to be eval&#39;ed)</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">alt_compose</span> {
-        local (<span style="color:#f92672">*</span>g, <span style="color:#f92672">*</span>f)<span style="color:#f92672">=</span>@_;
-        splice(@g,$g,<span style="color:#ae81ff">0</span>,<span style="color:#f92672">&amp;</span>f(@f));
-        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&amp;&#39;</span><span style="color:#f92672">.</span>substr(<span style="color:#f92672">*</span>g,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;(&#39;</span><span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;,&#39;</span>,@g)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;)&#39;</span>;
-    }
-
-
-    <span style="color:#75715e">#-- this is the direct solution to the challenge: modern Perl</span>
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">alt_2_compose</span> { <span style="color:#75715e">#-- for the simple case g(f(x)) [no other g params]</span>
-        <span style="color:#66d9ef">my</span> ($rg, $rf, @x)<span style="color:#f92672">=</span>@_;
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> { <span style="color:#f92672">&amp;</span>$rg(<span style="color:#f92672">&amp;</span>$rf(@x))  };
-    }
-
-
-    <span style="color:#75715e">#-- example find sum ( factors (30) ) using compose,etc.</span>
-
-    <span style="color:#66d9ef">use</span> Math::Factor::XS <span style="color:#e6db74">qw(factors)</span>;
-
-    {<span style="color:#75715e">#-- example: print sum (factors (30)) using compose</span>
-    local @factors<span style="color:#f92672">=</span>(<span style="color:#ae81ff">30</span>); <span style="color:#75715e">#-- @_ for factors</span>
-    local $sum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#75715e">#-- location to insert &amp;factors in sum @_</span>
-    local @sum<span style="color:#f92672">=</span>(); <span style="color:#75715e">#-- sum @_ excluding &amp;myfactors(..)</span>
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;compose: &#34;</span>,<span style="color:#f92672">&amp;</span>compose(<span style="color:#f92672">*</span>sum, <span style="color:#f92672">*</span>factors),<span style="color:#e6db74">&#34;\n&#34;</span>; <span style="color:#75715e">#-- 41</span>
-    @sum<span style="color:#f92672">=</span>(); <span style="color:#75715e">#-- reset before alternative compose</span>
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;alt_compose: &#34;</span>,eval(<span style="color:#f92672">&amp;</span>alt_compose(<span style="color:#f92672">*</span>sum,<span style="color:#f92672">*</span>factors)),<span style="color:#e6db74">&#34;\n&#34;</span>; <span style="color:#75715e">#--41</span>
-    }
-
-    <span style="color:#66d9ef">print</span> <span style="color:#f92672">&amp;</span>{<span style="color:#e6db74">&#34;alt_2_compose: &#34;</span>,<span style="color:#f92672">&amp;</span>alt_2_compose(<span style="color:#e6db74">&#39;sum&#39;</span>,<span style="color:#e6db74">&#39;factors&#39;</span>,<span style="color:#ae81ff">30</span>)},<span style="color:#e6db74">&#34;\n&#34;</span>; <span style="color:#75715e">#-- 41</span>
-
-    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span> {
-    <span style="color:#75715e">#-- sum over an array</span>
-        <span style="color:#66d9ef">my</span> $sum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">return</span> ( (map {$sum <span style="color:#f92672">+=</span> $_} @_ ) [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] );
-    }
-</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;unevaled string: &#34;</span>, <span style="color:#f92672">&amp;</span>alt_compose(<span style="color:#f92672">*</span>sum,<span style="color:#f92672">*</span>factors);
+</span></span></code></pre></div><p>we add this to the output which might serve to clarify things somewhat. Or not, I don&rsquo;t know. I&rsquo;ll venture most people will have no idea what is going on here. Good luck.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    unevaled string: <span style="color:#f92672">&amp;</span>main::sum(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">15</span>)
+</span></span></code></pre></div><p>See? And with that clue I&rsquo;m out. Here&rsquo;s the full text of Stephen&rsquo;s solution:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#75715e"># This function &#34;composes&#34; subroutines using old features from perl 4:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># package vars, typeglobs, and the symbol table.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#-- The subroutine call &amp;compose(*g,*f) returns sub { &amp;g(@g) }</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#-- where &amp;f(@f) is one of the arguments in @g</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#-- and $g (int) indicates the position in which &amp;f is spliced into</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#-- @g</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#-- approach using typeglobs (perl 4 style)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#-- does not return a subroutine, evaluates g(f()) and returns the result</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compose</span> {
+</span></span><span style="display:flex;"><span>        local (<span style="color:#f92672">*</span>g, <span style="color:#f92672">*</span>f)<span style="color:#f92672">=</span>@_;
+</span></span><span style="display:flex;"><span>        splice(@g,$g,<span style="color:#ae81ff">0</span>,<span style="color:#f92672">&amp;</span>f(@f));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>g(@g); <span style="color:#75715e">#-- not a subroutine ref</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#-- alt (same as compose but returning a string to be eval&#39;ed)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">alt_compose</span> {
+</span></span><span style="display:flex;"><span>        local (<span style="color:#f92672">*</span>g, <span style="color:#f92672">*</span>f)<span style="color:#f92672">=</span>@_;
+</span></span><span style="display:flex;"><span>        splice(@g,$g,<span style="color:#ae81ff">0</span>,<span style="color:#f92672">&amp;</span>f(@f));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&amp;&#39;</span><span style="color:#f92672">.</span>substr(<span style="color:#f92672">*</span>g,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;(&#39;</span><span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;,&#39;</span>,@g)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;)&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#-- this is the direct solution to the challenge: modern Perl</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">alt_2_compose</span> { <span style="color:#75715e">#-- for the simple case g(f(x)) [no other g params]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($rg, $rf, @x)<span style="color:#f92672">=</span>@_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> { <span style="color:#f92672">&amp;</span>$rg(<span style="color:#f92672">&amp;</span>$rf(@x))  };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#-- example find sum ( factors (30) ) using compose,etc.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> Math::Factor::XS <span style="color:#e6db74">qw(factors)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {<span style="color:#75715e">#-- example: print sum (factors (30)) using compose</span>
+</span></span><span style="display:flex;"><span>    local @factors<span style="color:#f92672">=</span>(<span style="color:#ae81ff">30</span>); <span style="color:#75715e">#-- @_ for factors</span>
+</span></span><span style="display:flex;"><span>    local $sum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#75715e">#-- location to insert &amp;factors in sum @_</span>
+</span></span><span style="display:flex;"><span>    local @sum<span style="color:#f92672">=</span>(); <span style="color:#75715e">#-- sum @_ excluding &amp;myfactors(..)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;compose: &#34;</span>,<span style="color:#f92672">&amp;</span>compose(<span style="color:#f92672">*</span>sum, <span style="color:#f92672">*</span>factors),<span style="color:#e6db74">&#34;\n&#34;</span>; <span style="color:#75715e">#-- 41</span>
+</span></span><span style="display:flex;"><span>    @sum<span style="color:#f92672">=</span>(); <span style="color:#75715e">#-- reset before alternative compose</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;alt_compose: &#34;</span>,eval(<span style="color:#f92672">&amp;</span>alt_compose(<span style="color:#f92672">*</span>sum,<span style="color:#f92672">*</span>factors)),<span style="color:#e6db74">&#34;\n&#34;</span>; <span style="color:#75715e">#--41</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#f92672">&amp;</span>{<span style="color:#e6db74">&#34;alt_2_compose: &#34;</span>,<span style="color:#f92672">&amp;</span>alt_2_compose(<span style="color:#e6db74">&#39;sum&#39;</span>,<span style="color:#e6db74">&#39;factors&#39;</span>,<span style="color:#ae81ff">30</span>)},<span style="color:#e6db74">&#34;\n&#34;</span>; <span style="color:#75715e">#-- 41</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#-- sum over an array</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $sum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ( (map {$sum <span style="color:#f92672">+=</span> $_} @_ ) [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] );
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/adam-russell/prolog/ch-2.p">Prolog</a></p>

@@ -1076,7 +1076,7 @@ sub swap_slice {
 
 Somewhat to my surprise, Colin's `splice` version performed very well. It was nearly equal on up to about 1000 elements, before it slowed down relative to the other methods. What about `List::Util`'s `shuffle` though? `List::Util` is a core module and its `shuffle` is [pure C code](https://metacpan.org/source/PEVANS/Scalar-List-Utils-1.54/ListUtil.xs#L1218), but still F-Y.
 
-```
+```perl
                Rate     splice swap_slice       swap List::Util
 splice      17500/s         --        -1%        -2%       -95%
 swap_slice  17603/s         1%         --        -2%       -95%
@@ -1835,7 +1835,7 @@ I don't know what the purpose of this script is. My guess is that it is trying t
 
 [Ruben Westerberg's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/ruben-westerberg/perl/ch-2.pl) has another randomly-choosing computer, but this one, I think I can beat!
 
-```
+```perl
 NEW GAME
 Select left or right ends of list with the < or  > keys
 
@@ -1923,7 +1923,7 @@ ch-2.pl - Lucky Winner Simulator 9000
 
 ### SYNOPSIS
 
-```
+```perl
 ch-2.pl [options] [algorithm1 algorithm2 ...]
 ch-2.pl --human=<cpu_algorithm>
 ch-2.pl --help
@@ -1931,7 +1931,7 @@ ch-2.pl --help
 
 ### OPTIONS
 
-```
+```perl
 --count=<iter>     Play <iter> games                   Default: 1000
 --coins=<N>        Every game uses <N> coins           Default: 8
 --maxcoin=<N>      Maximum coin value                  Default: 200
@@ -2002,7 +2002,7 @@ This is a bit of combinatorial game theory. `$ahead` (the inner sub) traverses a
 
 Of course, this grows exponentially, so that's why I used smaller values of `$n`. Looking ahead 5 moves barely does any better than looking ahead 3 moves.  Looking ahead 1 move is already significantly better than greedy, which I guess would be a 0-move lookahead in this context.
 
-```
+```perl
 Leaderboard:
      ahead5:    7066 wins
      ahead3:    7037 wins

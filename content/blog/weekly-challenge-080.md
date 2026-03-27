@@ -91,7 +91,7 @@ With the power of **Raku**, just one `sub smallest-positive-number()` is enough 
 
 <br>
 
-```perl6
+```perl
 sub smallest-positive-number(@n where .all ~~ Int --> Int) {
 
     my @positive-numbers = @n.sort.grep: { $_ > 0 };
@@ -126,7 +126,7 @@ Even cleaner version in **Raku** as below.
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(:@N where .all ~~ Int = (2, 3, 7, 6, 8, -1, -10, 15)) {
@@ -165,7 +165,7 @@ Same unit test in **Raku**.
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 # examples from the task
@@ -262,7 +262,7 @@ This is plain translation of **Perl** version.
 
 <br>
 
-```perl6
+```perl
 sub count-candies(@rankings
                   where @rankings.elems > 1 &&
                   all(@rankings) ~~ PositiveInt --> Int) {
@@ -315,7 +315,7 @@ Followed by **Raku** version.
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 subset PositiveInt of Int where * > 0;
@@ -350,7 +350,7 @@ along with unit test in **Raku**.
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 subset PositiveInt of Int where * > 0;

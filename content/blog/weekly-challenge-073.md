@@ -95,7 +95,7 @@ Doing the one-liner like below gave me immense pleasure.
 
 <br>
 
-```perl6
+```perl
 my $window = $l.[$index .. $index + $size - 1].map: { .Int };
 ```
 
@@ -105,7 +105,7 @@ I want to stay foccussed and keep learning.
 
 <br>
 
-```perl6
+```perl
 sub min-sliding-window(Str $list is copy, Int $size) {
 
     die "ERROR: Invalid list [$list].\n"
@@ -177,7 +177,7 @@ print join ("\n", (join ', ', @{min_sliding_window($A, $S)}), "");
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str :$A = "1, 5, 0, 2, 9, 3, 7, 6, 4, 8",
@@ -257,7 +257,7 @@ Here **Raku** is simply behaving like a good boy and getting the work done.
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 my $list = "1, 5, 0, 2, 9, 3, 7, 6, 4, 8";
@@ -329,7 +329,7 @@ The best line in the **Raku** solution is below:
 
 <br>
 
-```perl6
+```perl
 my $min = min( $l.[0 .. $i - 1].map: { .Int } );
 ```
 
@@ -339,7 +339,7 @@ Other than that, rest is plain **Raku** magic.
 
 <br>
 
-```perl6
+```perl
 sub smallest-neighbour(Str $list is copy) {
 
     die "ERROR: Invalid list [$list].\n"
@@ -381,7 +381,7 @@ print join("\n", (join ', ', @{smallest_neighbour($A)}), "");
 
 <br>
 
-```perl6
+```perl
 use v6.d;
 
 sub MAIN(Str $list = "7, 8, 3, 12, 10") {
@@ -446,7 +446,7 @@ done_testing;
 
 <br>
 
-```perl6
+```perl
 use Test;
 
 my %test-cases = (

@@ -98,7 +98,7 @@ sub decrypt_string {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-364/mohammad-anwar/raku/ch-1.raku)
 ***
-```raku
+```perl
 sub decrypt-string(Str $str --> Str) {
     return $str.subst(/(\d**2)'#' | (\d)/, { chr(($0 // $1).Int + 96) }, :g);
 }

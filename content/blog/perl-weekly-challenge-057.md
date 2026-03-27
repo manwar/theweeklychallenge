@@ -86,7 +86,7 @@ BONUS
 
 *In addition* to the above, you may wish to pretty-print your binary tree in a human readable text-based format similar to the following:
 
-```
+```perl
       1
     /   \
    3     2

@@ -38,7 +38,7 @@ Which seems again as though it has a fairly straightforward solution: determine 
 
 <br>
 
-```perl6
+```perl
 sub ca($n) {
   my $a=0;
 ```
@@ -49,7 +49,7 @@ Extract hour and minute:
 
 <br>
 
-```perl6
+```perl
   if ($n ~~ /(<[0..9]>+)\:(<[0..9]>+)/) {
 ```
 
@@ -59,7 +59,7 @@ Convert each one to an angle (note that each minute puts half a degree on the ho
 
 <br>
 
-```perl6
+```perl
     my ($ha,$ma)=map {$_ % 360}, ($0*30+$1/2,$1*6);
 ```
 
@@ -79,7 +79,7 @@ Reduce until we get an angle lying in (-180..180):
 
 <br>
 
-```perl6
+```perl
     while ($a > 180) {
       $a-=360;
     }
@@ -91,7 +91,7 @@ And take the absolute again.
 
 <br>
 
-```perl6
+```perl
     $a=abs($a);
   }
   return $a;
@@ -104,7 +104,7 @@ The complete solution in **Raku**.
 
 <br>
 
-```perl6
+```perl
 #! /usr/bin/perl6
 
 use Test;

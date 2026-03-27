@@ -193,16 +193,15 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>For a start, look at the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ryan-thompson/perl5/ch-1.pl"><strong>Ryan Thompson</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/colin-crain/perl5/ch-1.pl"><strong>Colin Crain</strong></a> which were heavily commented. This should provides us with some context and their thought on solving this tasks. Similarly but in blog post, read the write-up by <a href="http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-37-week-days-in-each-month-and-daylight-gainloss.html"><strong>Laurent Rosenfeld</strong></a>, <a href="http://blogs.perl.org/users/e_choroba/2019/12/perl-weekly-challenge-037-weekdays-and-daylight-gainloss.html"><strong>E. Choroba</strong></a>, and <a href="https://raku-musings.com/weekdays-daylight.html"><strong>Arne Sommer</strong></a>. They provides us with even more insight on how they approached this task.</p>
 <p>And as usual, a few things that caught our attention.</p>
 <p>The <code>Date::Manip::Recur</code> <strong>CPAN</strong> module used by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/colin-crain/perl5/ch-1.pl"><strong>Colin Crain</strong></a> was rather interesting and unique compare to typical <strong>CPAN</strong> modules found in most submitted solutions. The <strong>CPAN</strong> module provides a way to parse and manipulate recurrence which was used by the participant to filter out all weekdays.</p>
-<pre><code>    my $recur   = new Date::Manip::Recur;
-    $recur-&gt;parse(&quot;0:0:0:1*0:0:0*IBD&quot;,&quot;Jan 1  2019&quot;,&quot;Jan 1  2019&quot;,&quot;Dec 31 2019&quot;);
-    my @date    = $recur-&gt;dates();
-
-</code></pre><p>Now, if the above recurrence modifier string was rather obscure, look at the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl5/ch-1.pl"><strong>Javier Luque</strong></a> which use the <code>DateTime::Event::Recurrence</code> <strong>CPAN</strong> module. As shown below, the code is pretty much self-explanatory.</p>
-<pre><code>    my $working_days =
-        DateTime::Event::Recurrence-&gt;weekly(
-            days =&gt; [1 .. 5]
-        );
-</code></pre><p>For a purist solution (without using any <strong>CPAN</strong> modules), <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a> was the only particpant who seemed to achieve that feat.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $recur   <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date::Manip::Recur;
+</span></span><span style="display:flex;"><span>    $recur<span style="color:#f92672">-&gt;</span>parse(<span style="color:#e6db74">&#34;0:0:0:1*0:0:0*IBD&#34;</span>,<span style="color:#e6db74">&#34;Jan 1  2019&#34;</span>,<span style="color:#e6db74">&#34;Jan 1  2019&#34;</span>,<span style="color:#e6db74">&#34;Dec 31 2019&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @date    <span style="color:#f92672">=</span> $recur<span style="color:#f92672">-&gt;</span>dates();
+</span></span></code></pre></div><p>Now, if the above recurrence modifier string was rather obscure, look at the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl5/ch-1.pl"><strong>Javier Luque</strong></a> which use the <code>DateTime::Event::Recurrence</code> <strong>CPAN</strong> module. As shown below, the code is pretty much self-explanatory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $working_days <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        DateTime::Event::Recurrence<span style="color:#f92672">-&gt;</span>weekly(
+</span></span><span style="display:flex;"><span>            days <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">5</span>]
+</span></span><span style="display:flex;"><span>        );
+</span></span></code></pre></div><p>For a purist solution (without using any <strong>CPAN</strong> modules), <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a> was the only particpant who seemed to achieve that feat.</p>
 <hr>
 <hr>
 <h2 id="task-2">Task #2</h2>

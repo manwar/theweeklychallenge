@@ -62,7 +62,7 @@ Write a script to generate first 20 Chowla Numbers, named after [Sarvadaman D. S
 C(n) = sum of divisors of n except 1 and n
 
 **Output:**
-```
+```perl
     0, 0, 0, 2, 0, 5, 0, 6, 3, 7, 0, 15, 0, 9, 8, 14, 0, 20, 0, 21
 
 ```
@@ -462,7 +462,7 @@ I thought the technique to not remove the 1 factor twice when asked for Chowla(1
 *Submitted by: Mohammad S Anwar*<br>
 You are given four squares as below with numbers named a,b,c,d,e,f,g.
 
-```
+```perl
               (1)                    (3)
         ╔══════════════╗      ╔══════════════╗
         ║              ║      ║              ║
@@ -486,14 +486,14 @@ Write a script to place the given unique numbers in the square box so that sum o
 
 **Input:**
 
-```
+```perl
     1,2,3,4,5,6,7
 
 ```
 
 **Output:**
 
-```
+```perl
     a = 6
     b = 4
     c = 1

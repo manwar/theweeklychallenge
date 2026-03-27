@@ -72,7 +72,7 @@ sub add_to_array_form { map $_+0, split //, join('', @{$_[0]}) + $_[1] }
 
 <br>
 
-```raku
+```perl
 #!/usr/bin/env raku
 
 use Test;

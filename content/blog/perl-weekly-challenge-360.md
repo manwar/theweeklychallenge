@@ -62,7 +62,7 @@ sub digital_root_additive_persistence {
 
 ### Raku: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-359/mohammad-anwar/raku/ch-1.raku)
 
-```raku
+```perl
 sub digital-root-additive-persistence(Int $num) {
     return (0, $num) if $num < 10;
 

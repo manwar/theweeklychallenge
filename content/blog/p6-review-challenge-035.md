@@ -103,7 +103,7 @@ Then, task # 1 says to *pay attention to any changes which might need to be made
 
 Of course, if we add those six punctuation symbols to the conversion table, we also don't want to remove them from the input string, so that the code statement to remove non Morse letters will be changed to something like this:
 
-``` Perl6
+```perl
 $input ~~ s:i:g/<-[A..Z0..9\s.,?'!;]>//; # remove non Morse characters
 ```
 
@@ -117,7 +117,7 @@ The program uses the file containing the Morse codes to populate a hash mapping 
 
 After this preliminary step, the hash contains an encoding table like this:
 
-``` Perl6
+```perl
 0 => 1110111011101110111
 1 => 10111011101110111
 2 => 101011101110111
@@ -223,7 +223,7 @@ And given a string passed as an argument to the script, we get the following out
 
 [Arne Sommers](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/arne-sommer/perl6/ch-1.p6) first created a [BinaryMorse2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/arne-sommer/perl6/lib/BinaryMorse2.pm6) module providing a `%morse` letter-to-Morse translation table and a `%remorse` Morse-to-letter translation table (he used the built-in `antipair` function for creating the latter, which is probably better than the way I did it with `reverse`, because I copied it from my Perl 5 code without thinking too much about it). Arne's module also creates a lookup table mapping ASCII letters to binary-encoded Morse code and provides two subroutines, `morsify` (to turn plain test into binary encoded Morse code) and `demorsify` (to do the opposite), and it is probably more interesting to quote these, rather than the main code of his program:
 
-``` Perl6
+```perl
 my %binary-morse;
 for %morse.kv -> $char, $value
 {
@@ -268,7 +268,7 @@ our sub demorsify (BinaryMorse $text)
 
 [Daniel Mita](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/daniel-mita/perl6/ch-1.p6) also created a module, called [Morse](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/daniel-mita/perl6/Morse.pm6). His module is object-oriented and includes a grammar to decode binary-encoded Morse code. His translation table converts ASCII characters directly to binary numbers:
 
-``` Perl6
+```perl
 my constant %values = (
     :A(0b10111),         :B(0b111010101),
     :C(0b11101011101),   :D(0b1110101),
@@ -293,7 +293,7 @@ my constant %values = (
 
 The `%chars` reverse translation table is built using the built-in `antipairs` routine. With this translation table, encoding to binary-encoded Morse is relatively easy, so we will rather quote the decoding part, which is much more interesting:
 
-``` Perl6
+```perl
  grammar Decode {
     token TOP  { <word>+ % '0' ** 7 }
     token word { <char>+ % '000' }
@@ -338,7 +338,7 @@ The `%chars` reverse translation table is built using the built-in `antipairs` r
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/kevin-colyer/perl6/ch-1.p6) created a nice Morse translation table that came as a surprise to me:
 
-``` Perl6
+```perl
 my %morse =
     'A' =>  '•−',
     'B' =>  '−•••',
@@ -360,7 +360,7 @@ my %morse =
 
 This is Kevin's encoding subroutine:
 
-``` Perl6
+```perl
 sub encodeBinaryMorse($text is copy, :$visualise=False) {
     $text=filterMorseInput($text);
     my Str $bm = '';
@@ -389,7 +389,7 @@ sub filterMorseInput ($text) {
 
 [Mark Senn](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/mark-senn/perl6/ch-1.p6) constructed his translation table as follows (notice the spaces between dots and dashes that are later converted to intra-character gaps):
 
-``` Perl6
+```perl
 my %plain2cipher =
     a => '. -',          b => '- . . .',      c => '- . - .',
     d => '- . .',        e => '.',            f => '. . - .',
@@ -407,7 +407,7 @@ for %plain2cipher.values -> $_ is rw  {
 
 He then used the `invert` function to generate the `%cipher2plain` reverse lookup table. This is Mark's code for decoding a binary-coded Morse code:
 
-```Perl6
+```perl
 $_ = $ciphertext;
 $plaintext = '';
 my @word = .split(/0000000/);  # word gap
@@ -424,7 +424,7 @@ loop (my $i = 0;  $i < @word.elems;  $i++)  {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/simon-proctor/perl6/ch-1.p6) hard-coded his translation table from ASCII letters to binary-encoded Morse codes:
 
-```Perl6
+```perl
 constant %MORSE-MAP = (
     A => '10111',         B => '111010101',     C => '11101011101',    D => '1110101',
     E => '1',             F => '101011101',     G => '111011101',      H => '1010101',
@@ -435,7 +435,7 @@ constant %MORSE-MAP = (
 ```
 Simon's code for encoding plain text is quite concise and goes as follows:
 
-``` Perl6
+```perl
 my $input = $*IN.slurp.chomp.uc;
 die "A-Z AND SPACES ONLY STOP PLEASE TRY AGAIN STOP" unless $input ~~ m!^ <[A..Z \  \n \t]>+ $!;
 
@@ -447,7 +447,7 @@ print Blob.new(@stream).decode("ascii");
 
 And this is his code pipeline for decoding binary-encoded Morse code:
 
-``` Perl6
+```perl
     say $*IN
     .slurp(:bin)
     .decode("ascii")
@@ -464,7 +464,7 @@ And this is his code pipeline for decoding binary-encoded Morse code:
 
 [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/jaldhar-h-vyas/perl6/ch-1.p6) also hard-coded his translation table from ASCII letters to binary-encoded Morse strings:
 
-``` Perl6
+```perl
 my %to_morse = (
     'A' => '10111',
     'B' => '111010101',
@@ -480,7 +480,7 @@ my %to_morse = (
 
 Jaldhar's subroutine for encoding is as follows:
 
-``` Perl6
+```perl
 sub morse_encode(Str $message) {
     my @words = split /\W/, $message;
     for @words <-> $word {
@@ -498,7 +498,7 @@ sub morse_encode(Str $message) {
 
 And his decoding subroutine is like so:
 
-``` Perl6
+```perl
 sub morse_decode(Str $message) {
 
     my @words = $message.split($WORD_GAP);
@@ -517,7 +517,7 @@ sub morse_decode(Str $message) {
 
 [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/javier-luque/perl6/ch-1.p6) also used a hard-coded lookup table that he apparently created with a Perl 5 script in the course of solving the task in P5:
 
-``` Perl6
+```perl
 # I generated this lookup table using a modified perl5 script
 my %morse = (
 '!' => '1010111011101',     "'" => '1011101110111011101',
@@ -533,7 +533,7 @@ my %morse = (
 
 Encoding a plain text message into binary-encoded Morse code is done as follows:
 
-``` Perl6
+```perl
     my @words = $message.split(rx{\s+});
     for (0 .. @words.end) -> $i {
         # Split characters
@@ -555,7 +555,7 @@ Encoding a plain text message into binary-encoded Morse code is done as follows:
 
 And this is Javier's loop for decoding:
 
-``` Perl6
+```perl
     my @words = $message.split($word_gap);
     for (0 .. @words - 1) -> $i {
         # Split characters
@@ -574,7 +574,7 @@ And this is Javier's loop for decoding:
 
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/roger-bell-west/perl6/ch-1.p6) created a `%t` hash mapping ASCII letters to dots and dashes:
 
-``` Perl6
+```perl
 my %t=(
   E => '.',
   I => '..',
@@ -591,7 +591,7 @@ my %t=(
 
 And used it to created a `%e` lookup table mapping ASCII letters to binary-encoded Morse codes:
 
-``` Perl6
+```perl
 my %e;
 for keys %t -> $char {
   %e{$char}=join('0',map {{'.' => '1',
@@ -603,7 +603,7 @@ for keys %t -> $char {
 
 His encoding code then goes as follows:
 
-``` Perl6
+```perl
 my @in;
 for lines() {
   .chomp;
@@ -627,7 +627,7 @@ print join('0000000',@l),"\n";
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/ruben-westerberg/perl6/ch-1.p6) constructed his lookup table as follows:
 
-``` Perl6
+```perl
 my %forwardTable=map { (.key=> join("0",comb "",.value))}, (
     a=>".-",
     b=>"-...",
@@ -643,7 +643,7 @@ my %forwardTable=map { (.key=> join("0",comb "",.value))}, (
 
 His encoding subroutine uses a `for ... when` construct (remember that `when` needs `$_` to be populated with the value being tested, `for` can do that as well as `given`):
 
-``` Perl6
+```perl
 sub encode ($in) {
 
     my @codes=map { |($_,"000") },  %forwardTable{$in.comb("")};

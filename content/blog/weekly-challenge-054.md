@@ -109,7 +109,7 @@ It is time to do main task. Using the built-in **permutations()**, it becomes a 
 
 The final solution looks like below:
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6.c;
@@ -132,7 +132,7 @@ Also I have used **multi** keyword of **Raku** for the first time. It was ideal 
 
 Please check out the **[documentation](https://docs.raku.org/syntax/multi)** for more informations.
 
-```perl6
+```perl
 #!/usr/bin/env perl6
 
 use v6.c;

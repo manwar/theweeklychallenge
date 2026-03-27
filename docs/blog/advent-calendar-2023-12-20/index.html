@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2023blogadvent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
-<h3 id="-nbsp-day-19blogadvent-calendar-2023-12-19-nbsp--nbsp-day-20-nbsp--nbsp-day-21blogadvent-calendar-2023-12-21-nbsp-">|   <a href="/blog/advent-calendar-2023-12-19"><strong>Day 19</strong></a>   |   <strong>Day 20</strong>   |   <a href="/blog/advent-calendar-2023-12-21"><strong>Day 21</strong></a>   |</h3>
+        <h2 id="advent-calendar-2023"><a href="/blog/advent-calendar-2023"><strong>Advent Calendar 2023</strong></a></h2>
+<h3 id="--day-19----day-20----day-21--">|   <a href="/blog/advent-calendar-2023-12-19"><strong>Day 19</strong></a>   |   <strong>Day 20</strong>   |   <a href="/blog/advent-calendar-2023-12-21"><strong>Day 21</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Jaldhar H. Vyas</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-235"><strong>The Weekly Challenge - 235</strong></a>. This is re-produced for <code>Advent Calendar 2023</code> from the original <a href="https://www.braincells.com/perl/2023/09/perl_weekly_challenge_week_235.html"><strong>post</strong></a>.</p>
 <hr>
@@ -209,56 +209,56 @@ Example 3
 <p>This is not a <code>one-liner</code> I&rsquo;m afraid but it is fairly short and simple.</p>
 <p>First we define a <code>flag</code> to note whether we are going in strictly increasing order or not. Initially it is <code>false</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> Bool $increasing <span style="color:#f92672">=</span> False;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> Bool $increasing <span style="color:#f92672">=</span> False;
+</span></span></code></pre></div><br>
 <p>Then setting <code>$i</code> in a range from <code>0</code> to the length of <code>@ints</code> (which we have populated from command-line arguments) &hellip;</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @ints<span style="color:#f92672">.</span>end <span style="color:#f92672">-&gt;</span> $i {
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @ints<span style="color:#f92672">.</span>end <span style="color:#f92672">-&gt;</span> $i {
+</span></span></code></pre></div><br>
 <p>&hellip;we make a copy of <code>@ints</code> and remove the <code>$ith</code> element from it.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @copy <span style="color:#f92672">=</span> @ints;
-    @copy<span style="color:#f92672">.</span>splice($i, <span style="color:#ae81ff">1</span>);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @copy <span style="color:#f92672">=</span> @ints;
+</span></span><span style="display:flex;"><span>    @copy<span style="color:#f92672">.</span>splice($i, <span style="color:#ae81ff">1</span>);
+</span></span></code></pre></div><br>
 <p>We check if this copy is in strictly increasing order. Originally I did this by comparing <code>@copy</code> with yet another copy which had <code>.sort()</code> run upon it. If the two were equivalent it would mean increasing order. But it is more efficent to use <code>[&lt;]</code> operator instead.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> [<span style="color:#f92672">&lt;</span>] @copy {
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> [<span style="color:#f92672">&lt;</span>] @copy {
+</span></span></code></pre></div><br>
 <p>If <code>@copy</code> is in increasing order, we can set <code>$increasing</code> to <code>true</code> and <code>stop</code> searching. There may be other viable candidates but we only care if there is at least one.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        $increasing <span style="color:#f92672">=</span> True;
-        <span style="color:#66d9ef">last</span>;
-    }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>        $increasing <span style="color:#f92672">=</span> True;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><br>
 <p>If it wasn&rsquo;t, we go back and try a different copy.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Regardless of the outcome, we print the value of <code>$increasing</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say $increasing;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>say $increasing;
+</span></span></code></pre></div><br>
 <p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-235/jaldhar-h-vyas/raku/ch-1.raku"><strong>Full code on GitHub: Raku</strong></a></p>
 <br>
 <p>This is the <code>Perl</code> version.</p>
 <p><code>Perl</code> doesn&rsquo;t have specific <code>true</code> and <code>false</code> values so I used <code>1</code> and <code>undef</code> instead.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $increasing <span style="color:#f92672">=</span> undef;
-
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @ARGV <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-    <span style="color:#66d9ef">my</span> @copy <span style="color:#f92672">=</span> @ARGV;
-    splice @copy, $i, <span style="color:#ae81ff">1</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $increasing <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @ARGV <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @copy <span style="color:#f92672">=</span> @ARGV;
+</span></span><span style="display:flex;"><span>    splice @copy, $i, <span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><br>
 <p>As we don&rsquo;t have <code>[&lt;]</code> I had to use my previous tactic of comparing the copy to a sorted version of itself. This uses smart matching so I had to add <code>use experimental qw/ smartmatch /;</code> at the top of the script to prevent an annoying warning message. Oh and both arguments had to be array references for some reason.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">\</span>@copy <span style="color:#f92672">~~</span> [sort @copy]) {
-        $increasing <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">last</span>;
-    }
-}
-
-say $increasing ? <span style="color:#e6db74">&#39;true&#39;</span> : <span style="color:#e6db74">&#39;false&#39;</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">\</span>@copy <span style="color:#f92672">~~</span> [sort @copy]) {
+</span></span><span style="display:flex;"><span>        $increasing <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say $increasing ? <span style="color:#e6db74">&#39;true&#39;</span> : <span style="color:#e6db74">&#39;false&#39;</span>;
+</span></span></code></pre></div><br>
 <p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-235/jaldhar-h-vyas/perl/ch-1.pl"><strong>Full code on GitHub: Perl</strong></a></p>
 <br>
 <h2 id="challenge-2-duplicate-zeros">Challenge 2: Duplicate Zeros</h2>
@@ -287,54 +287,54 @@ Example 3
 <p>My plan for solving this one is to go through <code>@ints</code> (taken from the command-line arguments as usual.) and copy each element into a new array.</p>
 <p>So we need a new array called <code>@output</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @output;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @output;
+</span></span></code></pre></div><br>
 <p>Then for each element in <code>@ints...</code></p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> @ints <span style="color:#f92672">-&gt;</span> $elem {
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> @ints <span style="color:#f92672">-&gt;</span> $elem {
+</span></span></code></pre></div><br>
 <p>&hellip;If the current element is a <code>0</code>, instead of <code>one</code>, <code>two</code> <code>0</code>s are copied into <code>@output</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> $elem <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-        @output<span style="color:#f92672">.</span>push(<span style="color:#f92672">|</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>));
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> $elem <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        @output<span style="color:#f92672">.</span>push(<span style="color:#f92672">|</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>));
+</span></span></code></pre></div><br>
 <p>Otherwise the element is copied into <code>@output</code> as-is.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    } <span style="color:#66d9ef">else</span> {
-        @output<span style="color:#f92672">.</span>push($elem);
-    }
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        @output<span style="color:#f92672">.</span>push($elem);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><br>
 <p>If the length of <code>@output</code> has become the same as the length of <code>@ints</code>, it is time to stop processing.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> @output<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> @ints<span style="color:#f92672">.</span>elems {
-        <span style="color:#66d9ef">last</span>;
-    }
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> @output<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> @ints<span style="color:#f92672">.</span>elems {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <p>Finally, we print the suitably prettyed-up <code>@output</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say <span style="color:#e6db74">q{(}</span>, @output<span style="color:#f92672">.</span>join(<span style="color:#e6db74">q{, }</span>, ), <span style="color:#e6db74">q{)}</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>say <span style="color:#e6db74">q{(}</span>, @output<span style="color:#f92672">.</span>join(<span style="color:#e6db74">q{, }</span>, ), <span style="color:#e6db74">q{)}</span>;
+</span></span></code></pre></div><br>
 <p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-235/jaldhar-h-vyas/raku/ch-2.raku"><strong>Full code on GitHub: Raku</strong></a></p>
 <br>
 <p>This is the <code>Perl</code> version, a straightforward translation from <code>Raku</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @output;
-
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $elem (@ARGV) {
-    <span style="color:#66d9ef">if</span> ($elem <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-        push @output, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>;
-    } <span style="color:#66d9ef">else</span> {
-        push @output, $elem;
-    }
-
-    <span style="color:#66d9ef">if</span> (scalar @output <span style="color:#f92672">==</span> scalar @ARGV) {
-        <span style="color:#66d9ef">last</span>;
-    }
-}
-
-say <span style="color:#e6db74">q{(}</span>, (join <span style="color:#e6db74">q{, }</span>, @output), <span style="color:#e6db74">q{)}</span>;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @output;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $elem (@ARGV) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($elem <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        push @output, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        push @output, $elem;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (scalar @output <span style="color:#f92672">==</span> scalar @ARGV) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">q{(}</span>, (join <span style="color:#e6db74">q{, }</span>, @output), <span style="color:#e6db74">q{)}</span>;
+</span></span></code></pre></div><br>
 <p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-235/jaldhar-h-vyas/perl/ch-21.pl"><strong>Full code on GitHub: Perl</strong></a></p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>

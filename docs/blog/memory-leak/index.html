@@ -216,23 +216,23 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <p>Just for fun, I am using <code>Perl v5.36</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
- <span style="color:#ae81ff">2</span>
- <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> L {
- <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
- <span style="color:#ae81ff">5</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
- <span style="color:#ae81ff">6</span>     <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> { bless { self_ref <span style="color:#f92672">=&gt;</span> undef }, $_[<span style="color:#ae81ff">0</span>] }
- <span style="color:#ae81ff">7</span> }
- <span style="color:#ae81ff">8</span>
- <span style="color:#ae81ff">9</span> <span style="color:#66d9ef">package</span> main;
-<span style="color:#ae81ff">10</span>
-<span style="color:#ae81ff">11</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
-<span style="color:#ae81ff">12</span>
-<span style="color:#ae81ff">13</span> <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> L<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-<span style="color:#ae81ff">14</span>
-<span style="color:#ae81ff">15</span> <span style="color:#75715e"># This would leak memory.</span>
-<span style="color:#ae81ff">16</span> $l<span style="color:#f92672">-&gt;</span>{self_ref} <span style="color:#f92672">=</span> $l;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> L {
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">5</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">6</span>     <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> { bless { self_ref <span style="color:#f92672">=&gt;</span> undef }, $_[<span style="color:#ae81ff">0</span>] }
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">7</span> }
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">9</span> <span style="color:#66d9ef">package</span> main;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">11</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13</span> <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> L<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">14</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">15</span> <span style="color:#75715e"># This would leak memory.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span> $l<span style="color:#f92672">-&gt;</span>{self_ref} <span style="color:#f92672">=</span> $l;
+</span></span></code></pre></div><br>
 <h3 id="time-to-see-the-memory-leak">Time to see the memory leak</h3>
 <br>
 <p><img src="/images/blog/ml-2.png" alt="Image-2"></p>
@@ -245,25 +245,25 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <p>Before <code>Perl v5.36</code>, you would take the help of <strong>CPAN</strong> module <a href="https://metacpan.org/pod/Scalar::Util"><strong>Scalar::Util</strong></a> which gives us the handy function <code>weaken</code>. Since I am playing with the latest toy, I would take the luxury and use the <code>experimental builtin</code> by the same name.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
- <span style="color:#ae81ff">2</span>
- <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> L {
- <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
- <span style="color:#ae81ff">5</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
- <span style="color:#ae81ff">6</span>     <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> { bless { self_ref <span style="color:#f92672">=&gt;</span> undef }, $_[<span style="color:#ae81ff">0</span>] }
- <span style="color:#ae81ff">7</span> }
- <span style="color:#ae81ff">8</span>
- <span style="color:#ae81ff">9</span> <span style="color:#66d9ef">package</span> main;
-<span style="color:#ae81ff">10</span>
-<span style="color:#ae81ff">11</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
-<span style="color:#ae81ff">12</span> <span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(builtin)</span>;
-<span style="color:#ae81ff">13</span> <span style="color:#66d9ef">use</span> builtin <span style="color:#e6db74">qw(weaken)</span>;
-<span style="color:#ae81ff">14</span>
-<span style="color:#ae81ff">15</span> <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> L<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-<span style="color:#ae81ff">16</span>
-<span style="color:#ae81ff">17</span> <span style="color:#75715e"># Fix the memory leak.</span>
-<span style="color:#ae81ff">18</span> $l<span style="color:#f92672">-&gt;</span>{self_ref} <span style="color:#f92672">=</span> weaken $l;
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> L {
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">5</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">6</span>     <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> { bless { self_ref <span style="color:#f92672">=&gt;</span> undef }, $_[<span style="color:#ae81ff">0</span>] }
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">7</span> }
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">9</span> <span style="color:#66d9ef">package</span> main;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">11</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">12</span> <span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(builtin)</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13</span> <span style="color:#66d9ef">use</span> builtin <span style="color:#e6db74">qw(weaken)</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">14</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">15</span> <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> L<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">17</span> <span style="color:#75715e"># Fix the memory leak.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">18</span> $l<span style="color:#f92672">-&gt;</span>{self_ref} <span style="color:#f92672">=</span> weaken $l;
+</span></span></code></pre></div><br>
 <h3 id="let-us-check-if-the-script-still-leak-memory">Let us check, if the script still leak memory?</h3>
 <br>
 <p><img src="/images/blog/ml-3.png" alt="Image-3"></p>
@@ -278,48 +278,48 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h3 id="why-not-i-sound-more-confident-now--">Why not? I sound more confident now. :-)</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
- <span style="color:#ae81ff">2</span>
- <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> M {
- <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Moo;
- <span style="color:#ae81ff">5</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
- <span style="color:#ae81ff">6</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
- <span style="color:#ae81ff">7</span>     has self_ref <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
- <span style="color:#ae81ff">8</span> }
- <span style="color:#ae81ff">9</span>
-<span style="color:#ae81ff">10</span> <span style="color:#66d9ef">package</span> main;
-<span style="color:#ae81ff">11</span>
-<span style="color:#ae81ff">12</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
-<span style="color:#ae81ff">13</span>
-<span style="color:#ae81ff">14</span> <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> M<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-<span style="color:#ae81ff">15</span>
-<span style="color:#ae81ff">16</span> <span style="color:#75715e"># This would leak memory.</span>
-<span style="color:#ae81ff">17</span> $m<span style="color:#f92672">-&gt;</span>self_ref($m);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> M {
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">5</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">6</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">7</span>     has self_ref <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">8</span> }
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span> <span style="color:#66d9ef">package</span> main;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">11</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">12</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">14</span> <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> M<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">15</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span> <span style="color:#75715e"># This would leak memory.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">17</span> $m<span style="color:#f92672">-&gt;</span>self_ref($m);
+</span></span></code></pre></div><br>
 <h3 id="lets-run-the-script-and-see-the-memory-leak">Lets run the script and see the memory leak.</h3>
 <br>
 <p><img src="/images/blog/ml-4.png" alt="Image-4"></p>
 <br>
 <p>So we have seen the memory leak, time to fix the leak. To fix the leak, we can use <code>weak_ref</code> attribute supported by <code>Moo</code>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
- <span style="color:#ae81ff">2</span>
- <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> M {
- <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Moo;
- <span style="color:#ae81ff">5</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
- <span style="color:#ae81ff">6</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
- <span style="color:#ae81ff">7</span>     has self_ref <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>, weak_ref <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
- <span style="color:#ae81ff">8</span> }
- <span style="color:#ae81ff">9</span>
-<span style="color:#ae81ff">10</span> <span style="color:#66d9ef">package</span> main;
-<span style="color:#ae81ff">11</span>
-<span style="color:#ae81ff">12</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
-<span style="color:#ae81ff">13</span>
-<span style="color:#ae81ff">14</span> <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> M<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
-<span style="color:#ae81ff">15</span>
-<span style="color:#ae81ff">16</span> <span style="color:#75715e"># Fix the memory leak.</span>
-<span style="color:#ae81ff">17</span> $m<span style="color:#f92672">-&gt;</span>self_ref($m);
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> M {
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Moo;
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">5</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">6</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">7</span>     has self_ref <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>, weak_ref <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">8</span> }
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span> <span style="color:#66d9ef">package</span> main;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">11</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">12</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">14</span> <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> M<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">15</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span> <span style="color:#75715e"># Fix the memory leak.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">17</span> $m<span style="color:#f92672">-&gt;</span>self_ref($m);
+</span></span></code></pre></div><br>
 <h3 id="time-to-check-if-memory-leak-is-fixed-now">Time to check if memory leak is fixed now.</h3>
 <br>
 <p><img src="/images/blog/ml-5.png" alt="Image-5"></p>

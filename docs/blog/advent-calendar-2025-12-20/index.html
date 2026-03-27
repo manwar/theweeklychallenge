@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2025blogadvent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
-<h3 id="-nbsp-day-19blogadvent-calendar-2025-12-19-nbsp--nbsp-day-20-nbsp--nbsp-day-21blogadvent-calendar-2025-12-21-nbsp-">|   <a href="/blog/advent-calendar-2025-12-19"><strong>Day 19</strong></a>   |   <strong>Day 20</strong>   |   <a href="/blog/advent-calendar-2025-12-21"><strong>Day 21</strong></a>   |</h3>
+        <h2 id="advent-calendar-2025"><a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a></h2>
+<h3 id="--day-19----day-20----day-21--">|   <a href="/blog/advent-calendar-2025-12-19"><strong>Day 19</strong></a>   |   <strong>Day 20</strong>   |   <a href="/blog/advent-calendar-2025-12-21"><strong>Day 21</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Vinod Kumar K</code>. Today he is talking about his solutioni to <a href="/blog/perl-weekly-challenge-344"><strong>The Weekly Challenge - 344</strong></a>. This is re-produced for <code>Advent Calendar 2025</code> from the original <a href="https://dev.to/vinodk89/perl-weekly-challenge-344-1god"><strong>post</strong></a>.</p>
 <hr>
@@ -199,51 +199,51 @@ Write a script to add $x to the integer in the array-form.
 <p>In <code>Perl</code>, when we use a list of digits in a string context, they are automatically concatenated. This allows us to convert the array-form number into a standard integer, perform the addition, and then convert the sum back into its array form in three concise steps.</p>
 <p>Here is the add_to_array_form subroutine:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_to_array_form</span> {
-    <span style="color:#66d9ef">my</span> ($ints_ref, $x) <span style="color:#f92672">=</span> @_;
-
-    <span style="color:#75715e"># 1. Convert the array of digits into a single string/number.</span>
-    <span style="color:#66d9ef">my</span> $int_form <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>, @$ints_ref);
-
-    <span style="color:#75715e"># 2. Perform the arithmetic. Perl handles the large number arithmetic here.</span>
-    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $int_form <span style="color:#f92672">+</span> $x;
-
-    <span style="color:#75715e"># 3. Split the resulting sum back into an array of individual digits.</span>
-    <span style="color:#66d9ef">my</span> @result_array <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $sum;
-
-    <span style="color:#66d9ef">return</span> @result_array;
-}
-</code></pre></div><br>
-<p>This solution is highly efficient and perfectly illustrates <code>Perl</code>'s strength in handling scalar contexts and type coercion.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_to_array_form</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($ints_ref, $x) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 1. Convert the array of digits into a single string/number.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $int_form <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>, @$ints_ref);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 2. Perform the arithmetic. Perl handles the large number arithmetic here.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $int_form <span style="color:#f92672">+</span> $x;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 3. Split the resulting sum back into an array of individual digits.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @result_array <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $sum;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @result_array;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
+<p>This solution is highly efficient and perfectly illustrates <code>Perl</code>&rsquo;s strength in handling scalar contexts and type coercion.</p>
 <h3 id="example">Example</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vinod@vinod:~/my_folder/git/perlweeklychallenge-club/challenge-344/vinod-k/perl$ perl ch-1.pl
-
-Input Array: <span style="color:#f92672">(</span>1, 2, 3, 4<span style="color:#f92672">)</span>
-Input X: <span style="color:#ae81ff">12</span>
-Output Array: <span style="color:#f92672">(</span>1, 2, 4, 6<span style="color:#f92672">)</span>
-
-Input Array: <span style="color:#f92672">(</span>2, 7, 4<span style="color:#f92672">)</span>
-Input X: <span style="color:#ae81ff">181</span>
-Output Array: <span style="color:#f92672">(</span>4, 5, 5<span style="color:#f92672">)</span>
-
-Input Array: <span style="color:#f92672">(</span>9, 9, 9<span style="color:#f92672">)</span>
-Input X: <span style="color:#ae81ff">1</span>
-Output Array: <span style="color:#f92672">(</span>1, 0, 0, 0<span style="color:#f92672">)</span>
-
-Input Array: <span style="color:#f92672">(</span>1, 0, 0, 0, 0<span style="color:#f92672">)</span>
-Input X: <span style="color:#ae81ff">9999</span>
-Output Array: <span style="color:#f92672">(</span>1, 9, 9, 9, 9<span style="color:#f92672">)</span>
-
-Input Array: <span style="color:#f92672">(</span>0<span style="color:#f92672">)</span>
-Input X: <span style="color:#ae81ff">1000</span>
-Output Array: <span style="color:#f92672">(</span>1, 0, 0, 0<span style="color:#f92672">)</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vinod@vinod:~/my_folder/git/perlweeklychallenge-club/challenge-344/vinod-k/perl$ perl ch-1.pl
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Input Array: <span style="color:#f92672">(</span>1, 2, 3, 4<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Input X: <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>Output Array: <span style="color:#f92672">(</span>1, 2, 4, 6<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Input Array: <span style="color:#f92672">(</span>2, 7, 4<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Input X: <span style="color:#ae81ff">181</span>
+</span></span><span style="display:flex;"><span>Output Array: <span style="color:#f92672">(</span>4, 5, 5<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Input Array: <span style="color:#f92672">(</span>9, 9, 9<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Input X: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>Output Array: <span style="color:#f92672">(</span>1, 0, 0, 0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Input Array: <span style="color:#f92672">(</span>1, 0, 0, 0, 0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Input X: <span style="color:#ae81ff">9999</span>
+</span></span><span style="display:flex;"><span>Output Array: <span style="color:#f92672">(</span>1, 9, 9, 9, 9<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Input Array: <span style="color:#f92672">(</span>0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Input X: <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>Output Array: <span style="color:#f92672">(</span>1, 0, 0, 0<span style="color:#f92672">)</span>
+</span></span></code></pre></div><br>
 <h2 id="challenge-2-build-target-from-source-subarrays">Challenge 2: Build Target from Source Subarrays</h2>
 <p>You are given two list: @source and @target.</p>
 <p>Write a script to see if you can build the exact @target by putting these smaller lists from @source together in some order. You cannot break apart or change the order inside any of the smaller lists in @source.</p>
 <h3 id="my-solution-1">My Solution:</h3>
-<p>They way used to solve this is - to convert the array sequences into strings and use the power of <code>Perl</code>'s regular expression engine to perform prefix matching and consumption.</p>
+<p>They way used to solve this is - to convert the array sequences into strings and use the power of <code>Perl</code>&rsquo;s regular expression engine to perform prefix matching and consumption.</p>
 <ul>
 <li>Convert the $target array into a string (e.g., &ldquo;1234&rdquo;).</li>
 <li>In a loop, iterate through all unused source subarrays.</li>
@@ -252,69 +252,69 @@ Output Array: <span style="color:#f92672">(</span>1, 0, 0, 0<span style="color:#
 </ul>
 <p>This logic is in the <code>can_build_target</code> subroutine:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">can_build_target</span> {
-    <span style="color:#66d9ef">my</span> ($source_ref, $target_ref) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> $target_string <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>, @$target_ref);
-
-    <span style="color:#66d9ef">my</span> $source_count <span style="color:#f92672">=</span> scalar @$source_ref;
-    <span style="color:#66d9ef">my</span> %used_source_indices <span style="color:#f92672">=</span> ();
-    <span style="color:#66d9ef">my</span> @used_order <span style="color:#f92672">=</span> ();
-
-    <span style="color:#66d9ef">while</span> (length $target_string) {
-        <span style="color:#66d9ef">my</span> $match_found_in_cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $source_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> exists $used_source_indices{$i};
-
-            <span style="color:#66d9ef">my</span> $sub_array_ref <span style="color:#f92672">=</span> $source_ref<span style="color:#f92672">-&gt;</span>[$i];
-            <span style="color:#66d9ef">my</span> $source_pattern <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>, @$sub_array_ref);
-
-            <span style="color:#75715e"># The core of the greedy match:</span>
-            <span style="color:#75715e"># s/ ... / / checks for a match AND removes it if successful.</span>
-            <span style="color:#75715e"># ^: Anchors the match to the start of the string.</span>
-            <span style="color:#75715e"># \Q...\E: Quotes the pattern so it&#39;s treated literally (no regex metacharacters).</span>
-            <span style="color:#66d9ef">if</span> ($target_string <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\Q$source_pattern\E//</span>) {
-                $used_source_indices{$i} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-                push @used_order, $sub_array_ref;
-                $match_found_in_cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-                <span style="color:#66d9ef">last</span>; <span style="color:#75715e"># Move to the next prefix</span>
-            }
-        }
-
-        <span style="color:#75715e"># If we couldn&#39;t match any source subarray, we fail.</span>
-        <span style="color:#66d9ef">unless</span> ($match_found_in_cycle) {
-            <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">0</span>, <span style="color:#f92672">[]</span>);
-        }
-    }
-    <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">1</span>, <span style="color:#f92672">\</span>@used_order);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">can_build_target</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($source_ref, $target_ref) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $target_string <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>, @$target_ref);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $source_count <span style="color:#f92672">=</span> scalar @$source_ref;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %used_source_indices <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @used_order <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (length $target_string) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $match_found_in_cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $source_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> exists $used_source_indices{$i};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $sub_array_ref <span style="color:#f92672">=</span> $source_ref<span style="color:#f92672">-&gt;</span>[$i];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $source_pattern <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>, @$sub_array_ref);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># The core of the greedy match:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># s/ ... / / checks for a match AND removes it if successful.</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># ^: Anchors the match to the start of the string.</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># \Q...\E: Quotes the pattern so it&#39;s treated literally (no regex metacharacters).</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($target_string <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\Q$source_pattern\E//</span>) {
+</span></span><span style="display:flex;"><span>                $used_source_indices{$i} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                push @used_order, $sub_array_ref;
+</span></span><span style="display:flex;"><span>                $match_found_in_cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">last</span>; <span style="color:#75715e"># Move to the next prefix</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If we couldn&#39;t match any source subarray, we fail.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($match_found_in_cycle) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">0</span>, <span style="color:#f92672">[]</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">1</span>, <span style="color:#f92672">\</span>@used_order);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="example-1">Example</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">inod@vinod:~/my_folder/git/perlweeklychallenge-club/challenge-344/vinod-k/perl$ perl ch-2.pl
-Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>2,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4<span style="color:#f92672">])</span>
-Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>1, 2, 3, 4<span style="color:#f92672">)</span>
-Output: true
-Use in the order: <span style="color:#f92672">([</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4<span style="color:#f92672">])</span>
-
-Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>1,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2,4<span style="color:#f92672">])</span>
-Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>1, 2, 3, 4<span style="color:#f92672">)</span>
-Output: false
-
-Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>9,1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>5,8<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2<span style="color:#f92672">])</span>
-Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>5, 8, 2, 9, 1<span style="color:#f92672">)</span>
-Output: true
-Use in the order: <span style="color:#f92672">([</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4<span style="color:#f92672">])</span>
-
-Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>3<span style="color:#f92672">])</span>
-Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>1, 2, 3<span style="color:#f92672">)</span>
-Output: false
-
-Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>7,4,6<span style="color:#f92672">])</span>
-Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>7, 4, 6<span style="color:#f92672">)</span>
-Output: true
-Use in the order: <span style="color:#f92672">([</span>7,4,6<span style="color:#f92672">])</span>
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>inod@vinod:~/my_folder/git/perlweeklychallenge-club/challenge-344/vinod-k/perl$ perl ch-2.pl
+</span></span><span style="display:flex;"><span>Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>2,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4<span style="color:#f92672">])</span>
+</span></span><span style="display:flex;"><span>Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>1, 2, 3, 4<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Output: true
+</span></span><span style="display:flex;"><span>Use in the order: <span style="color:#f92672">([</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4<span style="color:#f92672">])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>1,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2,4<span style="color:#f92672">])</span>
+</span></span><span style="display:flex;"><span>Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>1, 2, 3, 4<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Output: false
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>9,1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>5,8<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2<span style="color:#f92672">])</span>
+</span></span><span style="display:flex;"><span>Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>5, 8, 2, 9, 1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Output: true
+</span></span><span style="display:flex;"><span>Use in the order: <span style="color:#f92672">([</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>2,3<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>4<span style="color:#f92672">])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>1<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>3<span style="color:#f92672">])</span>
+</span></span><span style="display:flex;"><span>Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>1, 2, 3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Output: false
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Input: @source <span style="color:#f92672">=</span> <span style="color:#f92672">([</span>7,4,6<span style="color:#f92672">])</span>
+</span></span><span style="display:flex;"><span>Input: @target <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>7, 4, 6<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Output: true
+</span></span><span style="display:flex;"><span>Use in the order: <span style="color:#f92672">([</span>7,4,6<span style="color:#f92672">])</span>
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
 <p>|   <a href="/blog/advent-calendar-2025"><strong>Advent Calendar 2025</strong></a>   |</p>

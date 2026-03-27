@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>The Weekly Challenge - 364</span>
         </nav>
-        <span class="reading-time" title="1353 words">
+        <span class="reading-time" title="1357 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -178,16 +178,16 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <h2 id="table-of-contents">TABLE OF CONTENTS</h2>
 <hr>
-<h3 id="nbspnbsp1-headlinesheadlines">  1. <a href="#HEADLINES">HEADLINES</a></h3>
-<h3 id="nbspnbsp2-sponsorsponsor">  2. <a href="#SPONSOR">SPONSOR</a></h3>
-<h3 id="nbspnbsp3-recaprecap">  3. <a href="#RECAP">RECAP</a></h3>
-<h3 id="nbspnbsp4-perl-reviewperlreview">  4. <a href="#PERLREVIEW">PERL REVIEW</a></h3>
-<h3 id="nbspnbsp5-raku-reviewrakureview">  5. <a href="#RAKUREVIEW">RAKU REVIEW</a></h3>
-<h3 id="nbspnbsp6-chartchart">  6. <a href="#CHART">CHART</a></h3>
-<h3 id="nbspnbsp7-new-membersnewmembers">  7. <a href="#NEWMEMBERS">NEW MEMBERS</a></h3>
-<h3 id="nbspnbsp8-guestsguests">  8. <a href="#GUESTS">GUESTS</a></h3>
-<h3 id="nbspnbsp9-task-1-decrypt-stringtask1">  9. <a href="#TASK1">TASK #1: Decrypt String</a></h3>
-<h3 id="10-task-2-goal-parsertask2">10. <a href="#TASK2">TASK #2: Goal Parser</a></h3>
+<h3 id="1-headlines">  1. <a href="#HEADLINES">HEADLINES</a></h3>
+<h3 id="2-sponsor">  2. <a href="#SPONSOR">SPONSOR</a></h3>
+<h3 id="3-recap">  3. <a href="#RECAP">RECAP</a></h3>
+<h3 id="4-perl-review">  4. <a href="#PERLREVIEW">PERL REVIEW</a></h3>
+<h3 id="5-raku-review">  5. <a href="#RAKUREVIEW">RAKU REVIEW</a></h3>
+<h3 id="6-chart">  6. <a href="#CHART">CHART</a></h3>
+<h3 id="7-new-members">  7. <a href="#NEWMEMBERS">NEW MEMBERS</a></h3>
+<h3 id="8-guests">  8. <a href="#GUESTS">GUESTS</a></h3>
+<h3 id="9-task-1-decrypt-string">  9. <a href="#TASK1">TASK #1: Decrypt String</a></h3>
+<h3 id="10-task-2-goal-parser">10. <a href="#TASK2">TASK #2: Goal Parser</a></h3>
 <h2 id="HEADLINES">HEADLINES</h2>
 <hr>
 <p>Welcome to the <code>Week #364</code> of <code>The Weekly Challenge</code>.</p>
@@ -214,160 +214,160 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <br>
 <p>Below is my contributions to the <code>Task #1</code> of <code>Week #363</code>. No solution in <code>Raku</code> this time, sorry.</p>
-<h3 id="perl-source-codehttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-363mohammad-anwarperlch-1pl">Perl: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-363/mohammad-anwar/perl/ch-1.pl">source code</a></h3>
+<h3 id="perl-source-code">Perl: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-363/mohammad-anwar/perl/ch-1.pl">source code</a></h3>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lie_detector</span> {
-    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> shift;
-
-    <span style="color:#66d9ef">my</span> ($word) <span style="color:#f92672">=</span> $str <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^([^-—]+)/</span>;
-    $word <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+$//</span>;
-
-    <span style="color:#66d9ef">my</span> $vow <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> $word <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[aeiou]/gi</span>;
-    <span style="color:#66d9ef">my</span> $con <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> $word <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[b-df-hj-np-tv-z]/gi</span>;
-
-    <span style="color:#66d9ef">my</span> ($v_phrase, $c_phrase) <span style="color:#f92672">=</span> $str <span style="color:#f92672">=~</span><span style="color:#e6db74"> /([\w\s]+?)\s+vowels?.*?([\w\s]+?)\s+consonants?/</span>;
-
-    <span style="color:#66d9ef">if</span> (defined $v_phrase <span style="color:#f92672">&amp;&amp;</span> defined $c_phrase) {
-        $v_phrase <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s+|\s+$//g</span>;
-        $c_phrase <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s+|\s+$//g</span>;
-
-        <span style="color:#66d9ef">my</span> $v_claim <span style="color:#f92672">=</span> words2nums($v_phrase);
-        <span style="color:#66d9ef">my</span> $c_claim <span style="color:#f92672">=</span> words2nums($c_phrase);
-
-        <span style="color:#66d9ef">return</span> (defined $v_claim <span style="color:#f92672">&amp;&amp;</span> defined $c_claim <span style="color:#f92672">&amp;&amp;</span>
-                $v_claim <span style="color:#f92672">==</span> $vow <span style="color:#f92672">&amp;&amp;</span> $c_claim <span style="color:#f92672">==</span> $con) ? <span style="color:#e6db74">&#34;true&#34;</span> : <span style="color:#e6db74">&#34;false&#34;</span>;
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>;
-}
-</code></pre></div><h3 id="python-source-codehttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-363mohammad-anwarpythonch-1py">Python: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-363/mohammad-anwar/python/ch-1.py">source code</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lie_detector</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($word) <span style="color:#f92672">=</span> $str <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^([^-—]+)/</span>;
+</span></span><span style="display:flex;"><span>    $word <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+$//</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $vow <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> $word <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[aeiou]/gi</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $con <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> $word <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[b-df-hj-np-tv-z]/gi</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($v_phrase, $c_phrase) <span style="color:#f92672">=</span> $str <span style="color:#f92672">=~</span><span style="color:#e6db74"> /([\w\s]+?)\s+vowels?.*?([\w\s]+?)\s+consonants?/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (defined $v_phrase <span style="color:#f92672">&amp;&amp;</span> defined $c_phrase) {
+</span></span><span style="display:flex;"><span>        $v_phrase <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s+|\s+$//g</span>;
+</span></span><span style="display:flex;"><span>        $c_phrase <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s+|\s+$//g</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $v_claim <span style="color:#f92672">=</span> words2nums($v_phrase);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $c_claim <span style="color:#f92672">=</span> words2nums($c_phrase);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (defined $v_claim <span style="color:#f92672">&amp;&amp;</span> defined $c_claim <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>                $v_claim <span style="color:#f92672">==</span> $vow <span style="color:#f92672">&amp;&amp;</span> $c_claim <span style="color:#f92672">==</span> $con) ? <span style="color:#e6db74">&#34;true&#34;</span> : <span style="color:#e6db74">&#34;false&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="python-source-code">Python: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-363/mohammad-anwar/python/ch-1.py">source code</a></h3>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lie_detector</span>(s):
-    match <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^([^-—]+)&#39;</span>, s)
-
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> match:
-        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>
-
-    word <span style="color:#f92672">=</span> match<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>strip()
-    vow  <span style="color:#f92672">=</span> len(re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;[aeiou]&#39;</span>, word, re<span style="color:#f92672">.</span>IGNORECASE))
-    con  <span style="color:#f92672">=</span> len(re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;[b-df-hj-np-tv-z]&#39;</span>, word, re<span style="color:#f92672">.</span>IGNORECASE))
-
-    m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;([\w\s]+?)\s+vowels?\b.*?([\w\s]+?)\s+consonants?\b&#39;</span>, s)
-    <span style="color:#66d9ef">if</span> m:
-        v_phrase <span style="color:#f92672">=</span> m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>strip()
-        c_phrase <span style="color:#f92672">=</span> m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>strip()
-
-        <span style="color:#66d9ef">try</span>:
-            v_claim <span style="color:#f92672">=</span> w2n<span style="color:#f92672">.</span>word_to_num(v_phrase)
-            c_claim <span style="color:#f92672">=</span> w2n<span style="color:#f92672">.</span>word_to_num(c_phrase)
-            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#66d9ef">if</span> v_claim <span style="color:#f92672">==</span> vow <span style="color:#f92672">and</span> c_claim <span style="color:#f92672">==</span> con <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;false&#34;</span>
-        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ValueError</span>:
-            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>
-
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>
-</code></pre></div><p>Thank you <code>Team PWC</code>, once again.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lie_detector</span>(s):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">match</span> <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span><span style="color:#66d9ef">match</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^([^-—]+)&#39;</span>, s)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">match</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    word <span style="color:#f92672">=</span> <span style="color:#66d9ef">match</span><span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>strip()
+</span></span><span style="display:flex;"><span>    vow  <span style="color:#f92672">=</span> len(re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;[aeiou]&#39;</span>, word, re<span style="color:#f92672">.</span>IGNORECASE))
+</span></span><span style="display:flex;"><span>    con  <span style="color:#f92672">=</span> len(re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;[b-df-hj-np-tv-z]&#39;</span>, word, re<span style="color:#f92672">.</span>IGNORECASE))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;([\w\s]+?)\s+vowels?\b.*?([\w\s]+?)\s+consonants?\b&#39;</span>, s)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> m:
+</span></span><span style="display:flex;"><span>        v_phrase <span style="color:#f92672">=</span> m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>strip()
+</span></span><span style="display:flex;"><span>        c_phrase <span style="color:#f92672">=</span> m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>strip()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            v_claim <span style="color:#f92672">=</span> w2n<span style="color:#f92672">.</span>word_to_num(v_phrase)
+</span></span><span style="display:flex;"><span>            c_claim <span style="color:#f92672">=</span> w2n<span style="color:#f92672">.</span>word_to_num(c_phrase)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#66d9ef">if</span> v_claim <span style="color:#f92672">==</span> vow <span style="color:#f92672">and</span> c_claim <span style="color:#f92672">==</span> con <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;false&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ValueError</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;false&#34;</span>
+</span></span></code></pre></div><p>Thank you <code>Team PWC</code>, once again.</p>
 <p><code>Happy Hacking!!</code></p>
 <hr>
 <br>
 <p>Last <code>5 weeks</code> mainstream contribution stats. Thank you <code>Team PWC</code>  for your support and encouragements.</p>
 <table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">  <code>Week</code>  </td>
-<td align="center">   <code>Perl</code>   </td>
-<td align="center">   <code>Raku</code>   </td>
-<td align="center">   <code>Blog</code>   </td>
-</tr>
-<tr>
-<td align="center">   <code>359</code>   </td>
-<td align="center">   56   </td>
-<td align="center">   20   </td>
-<td align="center">   22   </td>
-</tr>
-<tr>
-<td align="center">   <code>360</code>   </td>
-<td align="center">   61   </td>
-<td align="center">   19   </td>
-<td align="center">   19   </td>
-</tr>
-<tr>
-<td align="center">   <code>361</code>   </td>
-<td align="center">   59   </td>
-<td align="center">   25   </td>
-<td align="center">   18   </td>
-</tr>
-<tr>
-<td align="center">   <code>362</code>   </td>
-<td align="center">   56   </td>
-<td align="center">   27   </td>
-<td align="center">   21   </td>
-</tr>
-<tr>
-<td align="center">   <code>363</code>   </td>
-<td align="center">   45   </td>
-<td align="center">   18   </td>
-<td align="center">   14   </td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">  <code>Week</code>  </td>
+          <td style="text-align: center">   <code>Perl</code>   </td>
+          <td style="text-align: center">   <code>Raku</code>   </td>
+          <td style="text-align: center">   <code>Blog</code>   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>359</code>   </td>
+          <td style="text-align: center">   56   </td>
+          <td style="text-align: center">   20   </td>
+          <td style="text-align: center">   22   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>360</code>   </td>
+          <td style="text-align: center">   61   </td>
+          <td style="text-align: center">   19   </td>
+          <td style="text-align: center">   19   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>361</code>   </td>
+          <td style="text-align: center">   59   </td>
+          <td style="text-align: center">   25   </td>
+          <td style="text-align: center">   18   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>362</code>   </td>
+          <td style="text-align: center">   56   </td>
+          <td style="text-align: center">   27   </td>
+          <td style="text-align: center">   21   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>363</code>   </td>
+          <td style="text-align: center">   45   </td>
+          <td style="text-align: center">   18   </td>
+          <td style="text-align: center">   14   </td>
+      </tr>
+  </tbody>
 </table>
 <hr>
 <br>
 <p>Last <code>5 weeks</code> guest contribution stats. Thank you each and every guest contributors for your time and efforts.</p>
 <table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">  <code>Week</code>  </td>
-<td align="center">   <code>Guests</code>   </td>
-<td align="center">   <code>Contributions</code>   </td>
-<td align="center">   <code>Languages</code>   </td>
-</tr>
-<tr>
-<td align="center">   <code>359</code>   </td>
-<td align="center">   18   </td>
-<td align="center">   68   </td>
-<td align="center">   23   </td>
-</tr>
-<tr>
-<td align="center">   <code>360</code>   </td>
-<td align="center">   17   </td>
-<td align="center">   75   </td>
-<td align="center">   23   </td>
-</tr>
-<tr>
-<td align="center">   <code>361</code>   </td>
-<td align="center">   14   </td>
-<td align="center">   55   </td>
-<td align="center">   21   </td>
-</tr>
-<tr>
-<td align="center">   <code>362</code>   </td>
-<td align="center">   17   </td>
-<td align="center">   68   </td>
-<td align="center">   22   </td>
-</tr>
-<tr>
-<td align="center">   <code>363</code>   </td>
-<td align="center">   13   </td>
-<td align="center">   39   </td>
-<td align="center">   12   </td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">  <code>Week</code>  </td>
+          <td style="text-align: center">   <code>Guests</code>   </td>
+          <td style="text-align: center">   <code>Contributions</code>   </td>
+          <td style="text-align: center">   <code>Languages</code>   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>359</code>   </td>
+          <td style="text-align: center">   18   </td>
+          <td style="text-align: center">   68   </td>
+          <td style="text-align: center">   23   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>360</code>   </td>
+          <td style="text-align: center">   17   </td>
+          <td style="text-align: center">   75   </td>
+          <td style="text-align: center">   23   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>361</code>   </td>
+          <td style="text-align: center">   14   </td>
+          <td style="text-align: center">   55   </td>
+          <td style="text-align: center">   21   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>362</code>   </td>
+          <td style="text-align: center">   17   </td>
+          <td style="text-align: center">   68   </td>
+          <td style="text-align: center">   22   </td>
+      </tr>
+      <tr>
+          <td style="text-align: center">   <code>363</code>   </td>
+          <td style="text-align: center">   13   </td>
+          <td style="text-align: center">   39   </td>
+          <td style="text-align: center">   12   </td>
+      </tr>
+  </tbody>
 </table>
 <hr>
 <h3 id="top-10-guest-languages">TOP 10 Guest Languages</h3>
@@ -386,15 +386,15 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </code></pre>
 <h3 id="blogs-with-creative-title">Blogs with Creative Title</h3>
 <hr>
-<h4 id="1-sheriff-detectorhttpsraku-musingscomsheriff-detectorhtml-by-arne-sommer">1. <a href="https://raku-musings.com/sheriff-detector.html">Sheriff Detector</a> by Arne Sommer.</h4>
-<h4 id="2-lying-sheriffshttpsgithubsommreydethe-bears-den20260306ch-363html-by-jorg-sommrey">2. <a href="https://github.sommrey.de/the-bears-den/2026/03/06/ch-363.html">Lying Sheriffs</a> by Jorg Sommrey.</h4>
-<h4 id="3-i-dont-lie-sheriffhttpsgithubcommatthiasmuthperlweeklychallenge-clubtreemuthm-363challenge-363matthias-muthreadme-by-matthias-muth">3. <a href="https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-363/challenge-363/matthias-muth#readme">I Don&rsquo;t Lie, Sheriff!</a> by Matthias Muth.</h4>
-<h4 id="4-i-shot-the-subnethttpspackydardancombk8-by-packy-anderson">4. <a href="https://packy.dardan.com/b/k8">I Shot The Subnet…</a> by Packy Anderson.</h4>
-<h4 id="5-lies-and-lies-withinhttpccgicampbellsmithsforce9coukchallenge363-by-peter-campbell-smith">5. <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/363">Lies and lies within</a> by Peter Campbell Smith.</h4>
-<h4 id="6-stringy-sheriffhttpsblogfiredrakeorgarchive202603the_weekly_challenge_363__stringy_sheriffhtml-by-roger-bell_west">6. <a href="https://blog.firedrake.org/archive/2026/03/The_Weekly_Challenge_363__Stringy_Sheriff.html">Stringy Sheriff</a> by Roger Bell_West.</h4>
-<h4 id="7-the-subnet-detectorhttpsdevtosimongreennetweekly-challlenge-the-subnet-detector-1d9l-by-simon-green">7. <a href="https://dev.to/simongreennet/weekly-challlenge-the-subnet-detector-1d9l">The subnet detector</a> by Simon Green.</h4>
+<h4 id="1-sheriff-detector-by-arne-sommer">1. <a href="https://raku-musings.com/sheriff-detector.html">Sheriff Detector</a> by Arne Sommer.</h4>
+<h4 id="2-lying-sheriffs-by-jorg-sommrey">2. <a href="https://github.sommrey.de/the-bears-den/2026/03/06/ch-363.html">Lying Sheriffs</a> by Jorg Sommrey.</h4>
+<h4 id="3-i-don-by-matthias-muth">3. <a href="https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-363/challenge-363/matthias-muth#readme">I Don&rsquo;t Lie, Sheriff!</a> by Matthias Muth.</h4>
+<h4 id="4-i-shot-the-subnet-by-packy-anderson">4. <a href="https://packy.dardan.com/b/k8">I Shot The Subnet…</a> by Packy Anderson.</h4>
+<h4 id="5-lies-and-lies-within-by-peter-campbell-smith">5. <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/363">Lies and lies within</a> by Peter Campbell Smith.</h4>
+<h4 id="6-stringy-sheriff-by-roger-bell_west">6. <a href="https://blog.firedrake.org/archive/2026/03/The_Weekly_Challenge_363__Stringy_Sheriff.html">Stringy Sheriff</a> by Roger Bell_West.</h4>
+<h4 id="7-the-subnet-detector-by-simon-green">7. <a href="https://dev.to/simongreennet/weekly-challlenge-the-subnet-detector-1d9l">The subnet detector</a> by Simon Green.</h4>
 <hr>
-<h3 id="githubhttpsgithubcommanwarperlweeklychallenge-club-repository-stats"><a href="https://github.com/manwar/perlweeklychallenge-club">GitHub</a> Repository Stats</h3>
+<h3 id="github-repository-stats"><a href="https://github.com/manwar/perlweeklychallenge-club">GitHub</a> Repository Stats</h3>
 <hr>
 <h4 id="1-commits-48227-96">1. Commits: 48,227 (<code>+96</code>)</h4>
 <h4 id="2-pull-requests-13698-65">2. Pull Requests: 13,698 (<code>+65</code>)</h4>
@@ -427,9 +427,9 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Please check out the guest contributions for the <a href="/blog/guest-contribution/#363"><strong>Week #363</strong></a>.</p>
 <p>Please find <a href="/blog/guest-contribution"><strong>past solutions</strong></a> by respected <strong>guests</strong>. Please share your creative solutions in other languages.</p>
 <h2 id="TASK1">Task 1: Decrypt String</h2>
-<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<h5 id="submitted-by-mohammad-sajid-anwar"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
 <hr>
-<p>You are given a string formed by digits and &lsquo;#'.</p>
+<p>You are given a string formed by digits and &lsquo;#&rsquo;.</p>
 <p>Write a script to map the given string to English lowercase characters following the given rules.</p>
 <pre><code>- Characters 'a' to 'i' are represented by '1' to '9' respectively.
 - Characters 'j' to 'z' are represented by '10#' to '26#' respectively.
@@ -478,7 +478,7 @@ Output: &quot;aijz&quot;
 26# -&gt; z
 </code></pre>
 <h2 id="TASK2">Task 2: Goal Parser</h2>
-<h5 id="submitted-by-mohammad-sajid-anwarhttpsmanwarorg-1"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
+<h5 id="submitted-by-mohammad-sajid-anwar-1"><strong>Submitted by:</strong> <a href="https://manwar.org">Mohammad Sajid Anwar</a></h5>
 <hr>
 <p>You are given a string, <code>$str</code>.</p>
 <p>Write a script to interpret the given string using <code>Goal Parser</code>.</p>

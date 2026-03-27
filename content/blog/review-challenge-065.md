@@ -41,7 +41,7 @@ Output:
 Almost all members, myself included, submitted some variation on the same basic pattern:
 - create a list of all possible candidate numbers
 - iterate through that list
-- use ```split //, $number``` to divide the digits into an array
+- use `split //, $number` to divide the digits into an array
 - sum that array and check for equality agains the target value
 
 ## VARIATIONS
@@ -156,7 +156,7 @@ That's it, three lines and the truth. I'm amused and impressed.
 
 **Jaldhar** has brought us a very interesting way to produce his number lists. He starts with with the list 1..9. Creating an iterator from the specified number of digits, he passes this and the anonymous array [0..9] to a special function `X`, which uses a couple of nested `map` functions to produce the cross product of the two. Every array in the array-of-arrays @digits is spawned into 10 new arrays, each with one of the digits 0 through 9 appended.
 
-Each number at this point is an array of single digits, to sum them he includes an accumulator to sum within the familiar ```grep``` construction
+Each number at this point is an array of single digits, to sum them he includes an accumulator to sum within the familiar `grep` construction
 
 ```perl
 grep { my $accum; map {$accum += $_; } @{$_}; $accum == $S; }

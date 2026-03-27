@@ -204,7 +204,7 @@ First without the use of environment variable:
 
 <br>
 
-``` perl
+```perl
 $ perl -Mv5.38 -E 'say rand'
 0.796259729963825
 

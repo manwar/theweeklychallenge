@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2020blogadvent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
-<h3 id="-day-1--day-2blogadvent-calendar-2020-12-02-">| <strong>Day 1</strong> | <a href="/blog/advent-calendar-2020-12-02"><strong>Day 2</strong></a> |</h3>
+        <h2 id="advent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
+<h3 id="-day-1--day-2-">| <strong>Day 1</strong> | <a href="/blog/advent-calendar-2020-12-02"><strong>Day 2</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-014"><strong>Jaldhar H. Vyas</strong></a>. Today he is talking about his solutions to <a href="/blog/perl-weekly-challenge-042"><strong>&ldquo;The Weekly Challenge - 042&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="https://www.braincells.com/perl/2020/01/perl_weekly_challenge_week_42.html"><strong>post</strong></a> by <strong>Jaldhar H. Vyas</strong>.</p>
 <hr>
@@ -197,10 +197,10 @@ Decimal 8 = Octal 10
 </code></pre>
 <hr>
 <p>Fortunately, Mohammed has eased my re-entry with an easy task. This can be done as a one-liner. Here is the Perl version:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;map { printf &#34;Decimal %d = Octal %o\n&#34;, $_, $_ } (0 .. 50);&#39;</span>
-</code></pre></div><p>&hellip;and this is Raku:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">$ perl6 <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;[0 .. 50].map({ printf(&#34;Deciamal %d = Octal %o\n&#34;, $_, $_) });&#39;</span>
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;map { printf &#34;Decimal %d = Octal %o\n&#34;, $_, $_ } (0 .. 50);&#39;</span>
+</span></span></code></pre></div><p>&hellip;and this is Raku:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl6 <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;[0 .. 50].map({ printf(&#34;Deciamal %d = Octal %o\n&#34;, $_, $_) });&#39;</span>
+</span></span></code></pre></div><hr>
 <h3 id="balanced-brackets">Balanced Brackets</h3>
 <p>Write a script to generate a string with random number of ( and ) brackets. Then make the script validate the string if it has balanced brackets.</p>
 <p>For example:</p>
@@ -213,55 +213,55 @@ Decimal 8 = Octal 10
 <p>There are two interesting parts to this problem; one, randomly generating sequences of brackets, and two, finding if they are balanced or not.</p>
 <p>I did not want to make the sequences too long as if they were purely randomly chosen, it would substantially increase the chance of the sequence being unbalanced. Also I didn&rsquo;t want the sequence to be of odd length as that would automatically mean it was unbalanced. So in all, what I wanted is for sequences which are 2, 4, or 6 brackets only.</p>
 <p>In perl I did it like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @brackets;
-
-<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> ((int rand <span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>) {
-    push @brackets, (int rand <span style="color:#ae81ff">2</span> ? <span style="color:#e6db74">&#39;(&#39;</span> : <span style="color:#e6db74">&#39;)&#39;</span>);
-}
-</code></pre></div><p><code>int rand 3</code> gives a number between 0 to 2. Adding 1 makes it 1 to 3 and mutiplying by 2 gives 2, 4, or 6.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @brackets;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> ((int rand <span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>    push @brackets, (int rand <span style="color:#ae81ff">2</span> ? <span style="color:#e6db74">&#39;(&#39;</span> : <span style="color:#e6db74">&#39;)&#39;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>int rand 3</code> gives a number between 0 to 2. Adding 1 makes it 1 to 3 and mutiplying by 2 gives 2, 4, or 6.</p>
 <p>Inside the loop, int rand 2 gives the values 0 or 1 which are used to select the left or right bracket which is then added to the @brackets array.</p>
 <p>This is the Raku version:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>)<span style="color:#f92672">.</span>pick {
-    @brackets<span style="color:#f92672">.</span>push(Bool<span style="color:#f92672">.</span>pick ?? <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#39;)&#39;</span>);
-}
-</code></pre></div><p>Raku has the nifty <code>.pick</code> method which chooses one of a list of values. Much simpler. For choosing the bracket too, <code>.pick</code> can be used. In this case, it is called directly on the <code>Bool</code> class to give a <code>True</code> or <code>False</code> value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>)<span style="color:#f92672">.</span>pick {
+</span></span><span style="display:flex;"><span>    @brackets<span style="color:#f92672">.</span>push(Bool<span style="color:#f92672">.</span>pick ?? <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#39;)&#39;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Raku has the nifty <code>.pick</code> method which chooses one of a list of values. Much simpler. For choosing the bracket too, <code>.pick</code> can be used. In this case, it is called directly on the <code>Bool</code> class to give a <code>True</code> or <code>False</code> value.</p>
 <p>Now we have a sequence of brackets, we can do the second task, determining if the brackets are balanced. The simplest way to do that is with a stack. When we see a left bracket, it is pushed onto the stack. When we see a right bracket, it is popped off again. If after examining the entire sequence, the stack is empty, it means the brackets are balanced. In Perl it looks like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isBalanced</span> {
-    <span style="color:#66d9ef">my</span> ($brackets) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> @stack;
-
-    map {
-        <span style="color:#66d9ef">if</span> ( $brackets<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span> ) {
-            push @stack, <span style="color:#e6db74">&#39;(&#39;</span>;
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>scalar @stack) {
-                <span style="color:#66d9ef">return</span> undef;
-            }
-            pop @stack;
-        }
-    } (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @{$brackets} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
-
-    <span style="color:#66d9ef">return</span> scalar @stack <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p>One small optimization is that if we attempt to pop an empty stack, we can immediately return false because we know the sequence is unbalanced. (E,g, this can happen if the sequence begins with an end bracket.) As perl does not have a true boolean data type, the function returns undef which is always a false value in boolean context.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isBalanced</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($brackets) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @stack;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    map {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( $brackets<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span> ) {
+</span></span><span style="display:flex;"><span>            push @stack, <span style="color:#e6db74">&#39;(&#39;</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>scalar @stack) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> undef;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            pop @stack;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    } (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @{$brackets} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> scalar @stack <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>One small optimization is that if we attempt to pop an empty stack, we can immediately return false because we know the sequence is unbalanced. (E,g, this can happen if the sequence begins with an end bracket.) As perl does not have a true boolean data type, the function returns undef which is always a false value in boolean context.</p>
 <p>This is the Raku version:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isBalanced</span>(@brackets) {
-    <span style="color:#66d9ef">my</span> @stack;
-
-    (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @brackets<span style="color:#f92672">.</span>elems)<span style="color:#f92672">.</span>map({
-        <span style="color:#66d9ef">if</span> @brackets[$_] <span style="color:#f92672">~~</span> <span style="color:#e6db74">&#39;(&#39;</span> {
-            @stack<span style="color:#f92672">.</span>push( <span style="color:#e6db74">&#39;(&#39;</span> );
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>@stack<span style="color:#f92672">.</span>elems {
-                <span style="color:#66d9ef">return</span> False;
-            }
-            @stack<span style="color:#f92672">.</span>pop;
-        }
-    });
-
-    <span style="color:#66d9ef">return</span> @stack<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p>it is mostly the same but Raku has small conveniences which make the code simpler and more legible such as proper function prototypes, a boolean type and the ability to exclude one or both ends of a range (^.., ..^ which is used here, or ^..^)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isBalanced</span>(@brackets) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @stack;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @brackets<span style="color:#f92672">.</span>elems)<span style="color:#f92672">.</span>map({
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> @brackets[$_] <span style="color:#f92672">~~</span> <span style="color:#e6db74">&#39;(&#39;</span> {
+</span></span><span style="display:flex;"><span>            @stack<span style="color:#f92672">.</span>push( <span style="color:#e6db74">&#39;(&#39;</span> );
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>@stack<span style="color:#f92672">.</span>elems {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> False;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            @stack<span style="color:#f92672">.</span>pop;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @stack<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>it is mostly the same but Raku has small conveniences which make the code simpler and more legible such as proper function prototypes, a boolean type and the ability to exclude one or both ends of a range (^.., ..^ which is used here, or ^..^)</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></p>

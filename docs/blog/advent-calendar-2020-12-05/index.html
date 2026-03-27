@@ -177,409 +177,408 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2020blogadvent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
-<h3 id="-day-4blogadvent-calendar-2020-12-04--day-5--day-6blogadvent-calendar-2020-12-06-">| <a href="/blog/advent-calendar-2020-12-04"><strong>Day 4</strong></a> | <strong>Day 5</strong> | <a href="/blog/advent-calendar-2020-12-06"><strong>Day 6</strong></a> |</h3>
+        <h2 id="advent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
+<h3 id="-day-4--day-5--day-6-">| <a href="/blog/advent-calendar-2020-12-04"><strong>Day 4</strong></a> | <strong>Day 5</strong> | <a href="/blog/advent-calendar-2020-12-06"><strong>Day 6</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-029"><strong>Dave Jacoby</strong></a>. Today he is talking about his solution to the task <code>Invert Tree</code> of <strong><a href="/blog/perl-weekly-challenge-057">&ldquo;The Weekly Challenge - 057&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="https://jacoby.github.io/2020/04/20/challenge-57-mostly-binary-trees.html"><strong>post</strong></a> by <strong>Dave Jacoby</strong>.</p>
 <hr>
 <h2 id="task-1--invert-tree">TASK #1 › Invert Tree</h2>
 <hr>
 <p>You are given a <a href="https://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/FullvsComplete.html">full binary tree</a> of any height, similar to the one below:</p>
-<p><img src="/images/blog/pwc-057-1.svg" width=300 /></p>
+<img src="/images/blog/pwc-057-1.svg" width=300 />
 <p>Write a script to <strong>invert</strong> the tree, by mirroring the children of every node, from left to right. The expected output from the tree above would be:</p>
-<p><img src="/images/blog/pwc-057-2.svg" width=300 /></p>
+<img src="/images/blog/pwc-057-2.svg" width=300 />
 <p>The input can be any sensible machine-readable binary tree format of your choosing, and the output should be the same format.</p>
 <h3 id="bonus">BONUS</h3>
 <p><em>In addition</em> to the above, you may wish to pretty-print your binary tree in a human readable text-based format similar to the following:</p>
-<pre><code>       1
-      /  \
-     3    2
-    / \  / \
-   7   6 5  4
-
-</code></pre><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>       <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">/</span>  <span style="color:#f92672">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">3</span>    <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/ \  /</span> <span style="color:#f92672">\</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">7</span>   <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">4</span>
+</span></span></code></pre></div><hr>
 <p>First, we modify last week’s Node. Rather than having an array for children, we have distinct <code>left</code> and <code>right</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">package</span> Node;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> ( $class, $value = 0 ) {
-    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> {};
-    $self<span style="color:#f92672">-&gt;</span>{value}  <span style="color:#f92672">=</span> $value;
-    $self<span style="color:#f92672">-&gt;</span>{left}   <span style="color:#f92672">=</span> undef;
-    $self<span style="color:#f92672">-&gt;</span>{right}  <span style="color:#f92672">=</span> undef;
-    $self<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> undef;
-    <span style="color:#66d9ef">return</span> bless $self, $class;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">value</span> ( $self ) {
-    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{value};
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_root</span> ( $self ) {
-    <span style="color:#66d9ef">return</span> defined $self<span style="color:#f92672">-&gt;</span>{parent} ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_leaf</span> ( $self ) {
-    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{left} <span style="color:#f92672">eq</span> undef
-      <span style="color:#f92672">&amp;&amp;</span> $self<span style="color:#f92672">-&gt;</span>{right} <span style="color:#f92672">eq</span> undef ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left</span> ( $self, $node = undef ) {
-    <span style="color:#66d9ef">if</span> ( defined $node ) {
-        $self<span style="color:#f92672">-&gt;</span>{left}   <span style="color:#f92672">=</span> $node;
-        $node<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> $self;
-    }
-    <span style="color:#66d9ef">else</span> {
-        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{left};
-    }
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">right</span> ( $self, $node = undef ) {
-    <span style="color:#66d9ef">if</span> ( defined $node ) {
-        $self<span style="color:#f92672">-&gt;</span>{right}  <span style="color:#f92672">=</span> $node;
-        $node<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> $self;
-    }
-    <span style="color:#66d9ef">else</span> {
-        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{right};
-    }
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parent</span> ($self ) {
-    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{parent};
-}
-</code></pre></div><p>With that, a reminder that, <a href="https://varlogrant.blogspot.com/2016/11/graphs-are-not-that-scary.html">“(as) a programmer, all you’re dealing with are arrays and hashes. Nothing scary.”</a> In this case, a list of nodes and a list of edges. In this case, it is important to keep track of whether the node is on a <code>left</code> or <code>right</code> edge, so we’ll have a <code>nodes</code> array, a hash of <code>left</code> edges and a hash of <code>right</code> edges.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">{
-  <span style="color:#e6db74">&#34;left&#34;</span>: {
-    <span style="color:#e6db74">&#34;1&#34;</span>: <span style="color:#ae81ff">2</span>,
-    <span style="color:#e6db74">&#34;2&#34;</span>: <span style="color:#ae81ff">4</span>,
-    <span style="color:#e6db74">&#34;3&#34;</span>: <span style="color:#ae81ff">6</span>
-  },
-  <span style="color:#e6db74">&#34;nodes&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>],
-  <span style="color:#e6db74">&#34;right&#34;</span>: {
-    <span style="color:#e6db74">&#34;1&#34;</span>: <span style="color:#ae81ff">3</span>,
-    <span style="color:#e6db74">&#34;2&#34;</span>: <span style="color:#ae81ff">5</span>,
-    <span style="color:#e6db74">&#34;3&#34;</span>: <span style="color:#ae81ff">7</span>
-  }
-}
-</code></pre></div><p>We could throw everything into a <a href="https://metacpan.org/pod/Graph">Graph</a> object, especially if we wanted to export with <a href="https://metacpan.org/pod/Graph::D3">Graph::D3</a> so we can have visualization fun with <a href="https://d3js.org/">D3.js</a>, but that’s far beyond where the requirements go. I’m just using JSON to make everything transparent and working without installing non-Core modules.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Node;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> ( $class, $value = 0 ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{value}  <span style="color:#f92672">=</span> $value;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{left}   <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{right}  <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> bless $self, $class;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">value</span> ( $self ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{value};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_root</span> ( $self ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> defined $self<span style="color:#f92672">-&gt;</span>{parent} ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_leaf</span> ( $self ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{left} <span style="color:#f92672">eq</span> undef
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&amp;&amp;</span> $self<span style="color:#f92672">-&gt;</span>{right} <span style="color:#f92672">eq</span> undef ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left</span> ( $self, $node = undef ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( defined $node ) {
+</span></span><span style="display:flex;"><span>        $self<span style="color:#f92672">-&gt;</span>{left}   <span style="color:#f92672">=</span> $node;
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> $self;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{left};
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">right</span> ( $self, $node = undef ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( defined $node ) {
+</span></span><span style="display:flex;"><span>        $self<span style="color:#f92672">-&gt;</span>{right}  <span style="color:#f92672">=</span> $node;
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> $self;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{right};
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parent</span> ($self ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{parent};
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With that, a reminder that, <a href="https://varlogrant.blogspot.com/2016/11/graphs-are-not-that-scary.html">“(as) a programmer, all you’re dealing with are arrays and hashes. Nothing scary.”</a> In this case, a list of nodes and a list of edges. In this case, it is important to keep track of whether the node is on a <code>left</code> or <code>right</code> edge, so we’ll have a <code>nodes</code> array, a hash of <code>left</code> edges and a hash of <code>right</code> edges.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;left&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;1&#34;</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;2&#34;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;3&#34;</span>: <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;nodes&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;right&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;1&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;2&#34;</span>: <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;3&#34;</span>: <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We could throw everything into a <a href="https://metacpan.org/pod/Graph">Graph</a> object, especially if we wanted to export with <a href="https://metacpan.org/pod/Graph::D3">Graph::D3</a> so we can have visualization fun with <a href="https://d3js.org/">D3.js</a>, but that’s far beyond where the requirements go. I’m just using JSON to make everything transparent and working without installing non-Core modules.</p>
 <p>So, how do we import a tree? And while we’re on it, how do we export a tree?</p>
 <p>In short, we create a hash of nodes, so when we want the node for <code>4</code>, we just look in <code>$nodes{4}</code>, but each node, where applicable, has a <code>left</code> and <code>right</code> child set, and looking back to <code>Node</code>, you’ll see that when <code>$root-&gt;left($node)</code> is run, not only does <code>$root-&gt;{left} == $node</code>, but <code>$node-&gt;{parent} == $root</code>.</p>
 <p>Since <code>import_tree</code> is making a hash of <code>Nodes</code> from arrays and hashes, <code>export_tree</code> is making arrays and hashes from a hash of <code>Nodes</code>.</p>
 <p>Plus, <code>import_tree</code> only reads from a file, while <code>export_tree</code> prints to either a file or to STDOUT.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">import_tree</span> ( $file = &#34;&#34; ) {
-    <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">-</span>f $file <span style="color:#f92672">&amp;&amp;</span> open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file ) {
-        <span style="color:#66d9ef">my</span> $text  <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&lt;$fh&gt;</span>;
-        <span style="color:#66d9ef">my</span> $obj   <span style="color:#f92672">=</span> $json<span style="color:#f92672">-&gt;</span>decode($text);
-        <span style="color:#66d9ef">my</span> %nodes <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($_) } $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-        for <span style="color:#66d9ef">my</span> $id ( $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
-            <span style="color:#66d9ef">my</span> $left  <span style="color:#f92672">=</span> $obj<span style="color:#f92672">-&gt;</span>{left}{$id};
-            <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> $obj<span style="color:#f92672">-&gt;</span>{right}{$id};
-            $nodes{$id}<span style="color:#f92672">-&gt;</span>left( $nodes{$left} )   <span style="color:#66d9ef">if</span> defined $left;
-            $nodes{$id}<span style="color:#f92672">-&gt;</span>right( $nodes{$right} ) <span style="color:#66d9ef">if</span> defined $right;
-        }
-        <span style="color:#66d9ef">return</span> wantarray ? %nodes : <span style="color:#f92672">\</span>%nodes;
-    }
-    exit;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">export_tree</span> ( $nodes, $file = undef ) {
-    <span style="color:#66d9ef">my</span> $obj <span style="color:#f92672">=</span> {};
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $node ( values $nodes<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span> ) {
-        <span style="color:#66d9ef">my</span> $left  <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>left();
-        <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>right();
-        <span style="color:#66d9ef">my</span> $id    <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>value();
-        push $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $id;
-        $obj<span style="color:#f92672">-&gt;</span>{left}{$id}  <span style="color:#f92672">=</span> $left<span style="color:#f92672">-&gt;</span>value()  <span style="color:#66d9ef">if</span> $left;
-        $obj<span style="color:#f92672">-&gt;</span>{right}{$id} <span style="color:#f92672">=</span> $right<span style="color:#f92672">-&gt;</span>value() <span style="color:#66d9ef">if</span> $right;
-    }
-    $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> sort $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-    if ( defined $file <span style="color:#f92672">&amp;&amp;</span> open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $file ) {
-        say $fh $json<span style="color:#f92672">-&gt;</span>encode($obj);
-    }
-    <span style="color:#66d9ef">else</span> {
-        say $json<span style="color:#f92672">-&gt;</span>encode($obj);
-    }
-}
-</code></pre></div><p>So, the reversal. I had thoughts about whole-tree reversals and such, but really, that’s too much work. For every node, you just have to replace the left child with the right and vice versa. Again, we’re way relying on the data to not be a cyclic graph, although I suppose we could add a done hash to avoid doubling up.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reverse_tree</span>( $node ) {
-    <span style="color:#66d9ef">if</span> ( defined $node<span style="color:#f92672">-&gt;</span>left() <span style="color:#f92672">&amp;&amp;</span> defined $node<span style="color:#f92672">-&gt;</span>right() ) {
-        <span style="color:#66d9ef">my</span> $store <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>left();
-        $node<span style="color:#f92672">-&gt;</span>left( $node<span style="color:#f92672">-&gt;</span>right() );
-        $node<span style="color:#f92672">-&gt;</span>right($store);
-    }
-    <span style="color:#66d9ef">elsif</span> ( defined $node<span style="color:#f92672">-&gt;</span>left() ) {
-        $node<span style="color:#f92672">-&gt;</span>right( $node<span style="color:#f92672">-&gt;</span>left() );
-        $node<span style="color:#f92672">-&gt;</span>{left} <span style="color:#f92672">=</span> undef;
-    }
-    <span style="color:#66d9ef">elsif</span> ( defined $node<span style="color:#f92672">-&gt;</span>right() ) {
-        $node<span style="color:#f92672">-&gt;</span>left( $node<span style="color:#f92672">-&gt;</span>right() );
-        $node<span style="color:#f92672">-&gt;</span>{right} <span style="color:#f92672">=</span> undef;
-    }
-    reverse_tree( $node<span style="color:#f92672">-&gt;</span>left() )  <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>left();
-    reverse_tree( $node<span style="color:#f92672">-&gt;</span>right() ) <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>right();
-}
-</code></pre></div><p>We need to find the root of the tree and run <code>reverse_tree</code> on that, or else we’ll have a partial reversal, but that’s easy.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_root</span>( $node ) {
-    <span style="color:#66d9ef">return</span> $node <span style="color:#66d9ef">if</span> ( $node<span style="color:#f92672">-&gt;</span>is_root );
-    <span style="color:#66d9ef">return</span> find_root( $node<span style="color:#f92672">-&gt;</span>parent() );
-}
-</code></pre></div><p>We can also find if this is a binary tree, rather than trust that it is.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tree_depth</span> ( $node ) {
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>is_root();
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> tree_depth( $node<span style="color:#f92672">-&gt;</span>parent() );
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_binary_tree</span> ( $node ) {
-    state $depth <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-
-    <span style="color:#75715e"># if all the leaves are at the same depth</span>
-    <span style="color:#75715e"># return 1, else return 0</span>
-    <span style="color:#66d9ef">if</span> ( $node<span style="color:#f92672">-&gt;</span>is_leaf ) {
-        <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> tree_depth($node);
-        $depth <span style="color:#f92672">=</span> $d <span style="color:#66d9ef">if</span> $depth <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $depth <span style="color:#f92672">!=</span> $d;
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-
-    <span style="color:#75715e"># return 0 if we don&#39;t have two children</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined $node<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">&amp;&amp;</span> defined $node<span style="color:#f92672">-&gt;</span>right;
-    <span style="color:#66d9ef">return</span> ( is_binary_tree( $node<span style="color:#f92672">-&gt;</span>left ) <span style="color:#f92672">&amp;&amp;</span> is_binary_tree( $node<span style="color:#f92672">-&gt;</span>right ) );
-}
-</code></pre></div><p>Then there’s the <code>Bonus</code>, and while it works, I’m not happiest with the aesthetics of it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display_tree</span> ( $node, $depth = 0, $arrayref = [] ) {
-
-    <span style="color:#75715e"># instead of hash or Node display, we&#39;re pulling it</span>
-    <span style="color:#75715e"># to $arrayref-&gt;[ depth ][ left .. right ]</span>
-    <span style="color:#66d9ef">if</span> ($node) {
-        push $arrayref<span style="color:#f92672">-&gt;</span>[$depth]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $node<span style="color:#f92672">-&gt;</span>value();
-        display_tree( $node<span style="color:#f92672">-&gt;</span>left(),  $depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $arrayref );
-        display_tree( $node<span style="color:#f92672">-&gt;</span>right(), $depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $arrayref );
-    }
-    <span style="color:#66d9ef">else</span> {
-        push $arrayref<span style="color:#f92672">-&gt;</span>[$depth]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#e6db74">&#39;_&#39;</span>;
-    }
-
-    <span style="color:#75715e"># when we&#39;ve recursed and returned to the root</span>
-    <span style="color:#66d9ef">if</span> ( $depth <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
-        <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-        my $w     <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">+</span> ( <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$max );
-        <span style="color:#66d9ef">my</span> $edges <span style="color:#f92672">=</span> <span style="color:#e6db74">q{/  \\}</span>;
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $arrayref<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
-            <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>[$i];
-            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> scalar grep { $_ <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;_&#39;</span> } $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-            if ( $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
-                <span style="color:#66d9ef">my</span> $l    <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
-                <span style="color:#66d9ef">my</span> $str2 <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;    &#39;</span>, map { $edges } $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-                my $pad2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span> x ( $w <span style="color:#f92672">-</span> int( <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> length $str2 ) );
-                say <span style="color:#e6db74">qq{$pad2$str2}</span>;
-            }
-            <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;    &#39;</span>, $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-            my $pad <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span> x ( $w <span style="color:#f92672">-</span> int( <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> length $str ) );
-            say <span style="color:#e6db74">qq{$pad$str}</span>;
-        }
-    }
-}
-</code></pre></div><p>In short, we pull it into an array-of-arrays and display and indent things based on that. There’s alignment and tweaking to be done, but below is the code</p>
-<pre><code>                    1
-                  /   \
-                 2     3
-                / \   / \
-               4   5 6   7
-
-                    1
-                  /   \
-                 3     2
-                / \   / \
-               7   6 5   4
-</code></pre><p>Now, the code in total.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> utf8;
-<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ fc postderef say signatures state switch }</span>;
-<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw{ experimental }</span>;
-
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{max}</span>;
-<span style="color:#66d9ef">use</span> JSON;
-
-<span style="color:#66d9ef">my</span> $json  <span style="color:#f92672">=</span> JSON<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>pretty<span style="color:#f92672">-&gt;</span>canonical;
-<span style="color:#66d9ef">my</span> %nodes <span style="color:#f92672">=</span> import_tree( $ARGV[<span style="color:#ae81ff">0</span>] );
-
-<span style="color:#66d9ef">my</span> ($rand) <span style="color:#f92672">=</span> keys %nodes;
-<span style="color:#66d9ef">my</span> $root <span style="color:#f92672">=</span> find_root( $nodes{$rand} );
-
-<span style="color:#66d9ef">if</span> ( is_binary_tree($root) ) {
-    display_tree($root);
-    reverse_tree($root);
-    display_tree($root);
-    export_tree( <span style="color:#f92672">\</span>%nodes, $ARGV[<span style="color:#ae81ff">1</span>] );
-}
-
-exit;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tree_depth</span> ( $node ) {
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>is_root();
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> tree_depth( $node<span style="color:#f92672">-&gt;</span>parent() );
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_binary_tree</span> ( $node ) {
-    state $depth <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-
-    <span style="color:#75715e"># if all the leaves are at the same depth</span>
-    <span style="color:#75715e"># return 1, else return 0</span>
-    <span style="color:#66d9ef">if</span> ( $node<span style="color:#f92672">-&gt;</span>is_leaf ) {
-        <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> tree_depth($node);
-        $depth <span style="color:#f92672">=</span> $d <span style="color:#66d9ef">if</span> $depth <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $depth <span style="color:#f92672">!=</span> $d;
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    }
-
-    <span style="color:#75715e"># return 0 if we don&#39;t have two children</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined $node<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">&amp;&amp;</span> defined $node<span style="color:#f92672">-&gt;</span>right;
-    <span style="color:#66d9ef">return</span> ( is_binary_tree( $node<span style="color:#f92672">-&gt;</span>left ) <span style="color:#f92672">&amp;&amp;</span> is_binary_tree( $node<span style="color:#f92672">-&gt;</span>right ) );
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display_tree</span> ( $node, $depth = 0, $arrayref = [] ) {
-
-    <span style="color:#75715e"># instead of hash or Node display, we&#39;re pulling it</span>
-    <span style="color:#75715e"># to $arrayref-&gt;[ depth ][ left .. right ]</span>
-    <span style="color:#66d9ef">if</span> ($node) {
-        push $arrayref<span style="color:#f92672">-&gt;</span>[$depth]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $node<span style="color:#f92672">-&gt;</span>value();
-        display_tree( $node<span style="color:#f92672">-&gt;</span>left(),  $depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $arrayref );
-        display_tree( $node<span style="color:#f92672">-&gt;</span>right(), $depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $arrayref );
-    }
-    <span style="color:#66d9ef">else</span> {
-        push $arrayref<span style="color:#f92672">-&gt;</span>[$depth]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#e6db74">&#39;_&#39;</span>;
-    }
-
-    <span style="color:#75715e"># when we&#39;ve recursed and returned to the root</span>
-    <span style="color:#66d9ef">if</span> ( $depth <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
-        <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-        my $w     <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">+</span> ( <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$max );
-        <span style="color:#66d9ef">my</span> $edges <span style="color:#f92672">=</span> <span style="color:#e6db74">q{/  \\}</span>;
-        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $arrayref<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
-            <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>[$i];
-            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> scalar grep { $_ <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;_&#39;</span> } $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-            if ( $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
-                <span style="color:#66d9ef">my</span> $l    <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
-                <span style="color:#66d9ef">my</span> $str2 <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;    &#39;</span>, map { $edges } $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-                my $pad2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span> x ( $w <span style="color:#f92672">-</span> int( <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> length $str2 ) );
-                say <span style="color:#e6db74">qq{$pad2$str2}</span>;
-            }
-            <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;    &#39;</span>, $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-            my $pad <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span> x ( $w <span style="color:#f92672">-</span> int( <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> length $str ) );
-            say <span style="color:#e6db74">qq{$pad$str}</span>;
-        }
-    }
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reverse_tree</span>( $node ) {
-    <span style="color:#66d9ef">if</span> ( defined $node<span style="color:#f92672">-&gt;</span>left() <span style="color:#f92672">&amp;&amp;</span> defined $node<span style="color:#f92672">-&gt;</span>right() ) {
-        <span style="color:#66d9ef">my</span> $store <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>left();
-        $node<span style="color:#f92672">-&gt;</span>left( $node<span style="color:#f92672">-&gt;</span>right() );
-        $node<span style="color:#f92672">-&gt;</span>right($store);
-    }
-    <span style="color:#66d9ef">elsif</span> ( defined $node<span style="color:#f92672">-&gt;</span>left() ) {
-        $node<span style="color:#f92672">-&gt;</span>right( $node<span style="color:#f92672">-&gt;</span>left() );
-        $node<span style="color:#f92672">-&gt;</span>{left} <span style="color:#f92672">=</span> undef;
-    }
-    <span style="color:#66d9ef">elsif</span> ( defined $node<span style="color:#f92672">-&gt;</span>right() ) {
-        $node<span style="color:#f92672">-&gt;</span>left( $node<span style="color:#f92672">-&gt;</span>right() );
-        $node<span style="color:#f92672">-&gt;</span>{right} <span style="color:#f92672">=</span> undef;
-    }
-    reverse_tree( $node<span style="color:#f92672">-&gt;</span>left() )  <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>left();
-    reverse_tree( $node<span style="color:#f92672">-&gt;</span>right() ) <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>right();
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_root</span>( $node ) {
-    <span style="color:#66d9ef">return</span> $node <span style="color:#66d9ef">if</span> ( $node<span style="color:#f92672">-&gt;</span>is_root );
-    <span style="color:#66d9ef">return</span> find_root( $node<span style="color:#f92672">-&gt;</span>parent() );
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">import_tree</span> ( $file = &#34;&#34; ) {
-    <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">-</span>f $file <span style="color:#f92672">&amp;&amp;</span> open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file ) {
-        <span style="color:#66d9ef">my</span> $text  <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&lt;$fh&gt;</span>;
-        <span style="color:#66d9ef">my</span> $obj   <span style="color:#f92672">=</span> $json<span style="color:#f92672">-&gt;</span>decode($text);
-        <span style="color:#66d9ef">my</span> %nodes <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($_) } $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-        for <span style="color:#66d9ef">my</span> $id ( $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
-            <span style="color:#66d9ef">my</span> $left  <span style="color:#f92672">=</span> $obj<span style="color:#f92672">-&gt;</span>{left}{$id};
-            <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> $obj<span style="color:#f92672">-&gt;</span>{right}{$id};
-            $nodes{$id}<span style="color:#f92672">-&gt;</span>left( $nodes{$left} )   <span style="color:#66d9ef">if</span> defined $left;
-            $nodes{$id}<span style="color:#f92672">-&gt;</span>right( $nodes{$right} ) <span style="color:#66d9ef">if</span> defined $right;
-        }
-        <span style="color:#66d9ef">return</span> wantarray ? %nodes : <span style="color:#f92672">\</span>%nodes;
-    }
-    exit;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">export_tree</span> ( $nodes, $file = undef ) {
-    <span style="color:#66d9ef">my</span> $obj <span style="color:#f92672">=</span> {};
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $node ( values $nodes<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span> ) {
-        <span style="color:#66d9ef">my</span> $left  <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>left();
-        <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>right();
-        <span style="color:#66d9ef">my</span> $id    <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>value();
-        push $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $id;
-        $obj<span style="color:#f92672">-&gt;</span>{left}{$id}  <span style="color:#f92672">=</span> $left<span style="color:#f92672">-&gt;</span>value()  <span style="color:#66d9ef">if</span> $left;
-        $obj<span style="color:#f92672">-&gt;</span>{right}{$id} <span style="color:#f92672">=</span> $right<span style="color:#f92672">-&gt;</span>value() <span style="color:#66d9ef">if</span> $right;
-    }
-    $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> sort $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-    if ( defined $file <span style="color:#f92672">&amp;&amp;</span> open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $file ) {
-        say $fh $json<span style="color:#f92672">-&gt;</span>encode($obj);
-    }
-    <span style="color:#66d9ef">else</span> {
-        say $json<span style="color:#f92672">-&gt;</span>encode($obj);
-    }
-}
-
-<span style="color:#66d9ef">package</span> Node;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> ( $class, $value = 0 ) {
-    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> {};
-    $self<span style="color:#f92672">-&gt;</span>{value}  <span style="color:#f92672">=</span> $value;
-    $self<span style="color:#f92672">-&gt;</span>{left}   <span style="color:#f92672">=</span> undef;
-    $self<span style="color:#f92672">-&gt;</span>{right}  <span style="color:#f92672">=</span> undef;
-    $self<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> undef;
-    <span style="color:#66d9ef">return</span> bless $self, $class;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">value</span> ( $self ) {
-    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{value};
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_root</span> ( $self ) {
-    <span style="color:#66d9ef">return</span> defined $self<span style="color:#f92672">-&gt;</span>{parent} ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_leaf</span> ( $self ) {
-    <span style="color:#66d9ef">return</span> ( <span style="color:#f92672">!</span>defined $self<span style="color:#f92672">-&gt;</span>{left} <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>defined $self<span style="color:#f92672">-&gt;</span>{right} )
-      ? <span style="color:#ae81ff">1</span>
-      : <span style="color:#ae81ff">0</span>;
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left</span> ( $self, $node = undef ) {
-    <span style="color:#66d9ef">if</span> ( defined $node ) {
-        $self<span style="color:#f92672">-&gt;</span>{left}   <span style="color:#f92672">=</span> $node;
-        $node<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> $self;
-    }
-    <span style="color:#66d9ef">else</span> {
-        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{left};
-    }
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">right</span> ( $self, $node = undef ) {
-    <span style="color:#66d9ef">if</span> ( defined $node ) {
-        $self<span style="color:#f92672">-&gt;</span>{right}  <span style="color:#f92672">=</span> $node;
-        $node<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> $self;
-    }
-    <span style="color:#66d9ef">else</span> {
-        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{right};
-    }
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parent</span> ($self ) {
-    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{parent};
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">import_tree</span> ( $file = &#34;&#34; ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">-</span>f $file <span style="color:#f92672">&amp;&amp;</span> open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $text  <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&lt;$fh&gt;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $obj   <span style="color:#f92672">=</span> $json<span style="color:#f92672">-&gt;</span>decode($text);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> %nodes <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($_) } $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>        for <span style="color:#66d9ef">my</span> $id ( $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $left  <span style="color:#f92672">=</span> $obj<span style="color:#f92672">-&gt;</span>{left}{$id};
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> $obj<span style="color:#f92672">-&gt;</span>{right}{$id};
+</span></span><span style="display:flex;"><span>            $nodes{$id}<span style="color:#f92672">-&gt;</span>left( $nodes{$left} )   <span style="color:#66d9ef">if</span> defined $left;
+</span></span><span style="display:flex;"><span>            $nodes{$id}<span style="color:#f92672">-&gt;</span>right( $nodes{$right} ) <span style="color:#66d9ef">if</span> defined $right;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> wantarray ? %nodes : <span style="color:#f92672">\</span>%nodes;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    exit;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">export_tree</span> ( $nodes, $file = undef ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $obj <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $node ( values $nodes<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span> ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $left  <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>left();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>right();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $id    <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>value();
+</span></span><span style="display:flex;"><span>        push $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $id;
+</span></span><span style="display:flex;"><span>        $obj<span style="color:#f92672">-&gt;</span>{left}{$id}  <span style="color:#f92672">=</span> $left<span style="color:#f92672">-&gt;</span>value()  <span style="color:#66d9ef">if</span> $left;
+</span></span><span style="display:flex;"><span>        $obj<span style="color:#f92672">-&gt;</span>{right}{$id} <span style="color:#f92672">=</span> $right<span style="color:#f92672">-&gt;</span>value() <span style="color:#66d9ef">if</span> $right;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> sort $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>    if ( defined $file <span style="color:#f92672">&amp;&amp;</span> open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $file ) {
+</span></span><span style="display:flex;"><span>        say $fh $json<span style="color:#f92672">-&gt;</span>encode($obj);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        say $json<span style="color:#f92672">-&gt;</span>encode($obj);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So, the reversal. I had thoughts about whole-tree reversals and such, but really, that’s too much work. For every node, you just have to replace the left child with the right and vice versa. Again, we’re way relying on the data to not be a cyclic graph, although I suppose we could add a done hash to avoid doubling up.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reverse_tree</span>( $node ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( defined $node<span style="color:#f92672">-&gt;</span>left() <span style="color:#f92672">&amp;&amp;</span> defined $node<span style="color:#f92672">-&gt;</span>right() ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $store <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>left();
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>left( $node<span style="color:#f92672">-&gt;</span>right() );
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>right($store);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> ( defined $node<span style="color:#f92672">-&gt;</span>left() ) {
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>right( $node<span style="color:#f92672">-&gt;</span>left() );
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>{left} <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> ( defined $node<span style="color:#f92672">-&gt;</span>right() ) {
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>left( $node<span style="color:#f92672">-&gt;</span>right() );
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>{right} <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    reverse_tree( $node<span style="color:#f92672">-&gt;</span>left() )  <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>left();
+</span></span><span style="display:flex;"><span>    reverse_tree( $node<span style="color:#f92672">-&gt;</span>right() ) <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>right();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We need to find the root of the tree and run <code>reverse_tree</code> on that, or else we’ll have a partial reversal, but that’s easy.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_root</span>( $node ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $node <span style="color:#66d9ef">if</span> ( $node<span style="color:#f92672">-&gt;</span>is_root );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> find_root( $node<span style="color:#f92672">-&gt;</span>parent() );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We can also find if this is a binary tree, rather than trust that it is.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tree_depth</span> ( $node ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>is_root();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> tree_depth( $node<span style="color:#f92672">-&gt;</span>parent() );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_binary_tree</span> ( $node ) {
+</span></span><span style="display:flex;"><span>    state $depth <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># if all the leaves are at the same depth</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># return 1, else return 0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( $node<span style="color:#f92672">-&gt;</span>is_leaf ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> tree_depth($node);
+</span></span><span style="display:flex;"><span>        $depth <span style="color:#f92672">=</span> $d <span style="color:#66d9ef">if</span> $depth <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $depth <span style="color:#f92672">!=</span> $d;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># return 0 if we don&#39;t have two children</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined $node<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">&amp;&amp;</span> defined $node<span style="color:#f92672">-&gt;</span>right;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ( is_binary_tree( $node<span style="color:#f92672">-&gt;</span>left ) <span style="color:#f92672">&amp;&amp;</span> is_binary_tree( $node<span style="color:#f92672">-&gt;</span>right ) );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Then there’s the <code>Bonus</code>, and while it works, I’m not happiest with the aesthetics of it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display_tree</span> ( $node, $depth = 0, $arrayref = [] ) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># instead of hash or Node display, we&#39;re pulling it</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># to $arrayref-&gt;[ depth ][ left .. right ]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($node) {
+</span></span><span style="display:flex;"><span>        push $arrayref<span style="color:#f92672">-&gt;</span>[$depth]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $node<span style="color:#f92672">-&gt;</span>value();
+</span></span><span style="display:flex;"><span>        display_tree( $node<span style="color:#f92672">-&gt;</span>left(),  $depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $arrayref );
+</span></span><span style="display:flex;"><span>        display_tree( $node<span style="color:#f92672">-&gt;</span>right(), $depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $arrayref );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        push $arrayref<span style="color:#f92672">-&gt;</span>[$depth]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#e6db74">&#39;_&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># when we&#39;ve recursed and returned to the root</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( $depth <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>        my $w     <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">+</span> ( <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$max );
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $edges <span style="color:#f92672">=</span> <span style="color:#e6db74">q{/  \\}</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $arrayref<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>[$i];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> scalar grep { $_ <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;_&#39;</span> } $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>            if ( $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span> $l    <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span> $str2 <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;    &#39;</span>, map { $edges } $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>                my $pad2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span> x ( $w <span style="color:#f92672">-</span> int( <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> length $str2 ) );
+</span></span><span style="display:flex;"><span>                say <span style="color:#e6db74">qq{$pad2$str2}</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;    &#39;</span>, $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>            my $pad <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span> x ( $w <span style="color:#f92672">-</span> int( <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> length $str ) );
+</span></span><span style="display:flex;"><span>            say <span style="color:#e6db74">qq{$pad$str}</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In short, we pull it into an array-of-arrays and display and indent things based on that. There’s alignment and tweaking to be done, but below is the code</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>                    <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">/</span>   <span style="color:#f92672">\</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ae81ff">2</span>     <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">/ \   /</span> <span style="color:#f92672">\</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#ae81ff">4</span>   <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>   <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">/</span>   <span style="color:#f92672">\</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ae81ff">3</span>     <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">/ \   /</span> <span style="color:#f92672">\</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#ae81ff">7</span>   <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">5</span>   <span style="color:#ae81ff">4</span>
+</span></span></code></pre></div><p>Now, the code in total.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> utf8;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ fc postderef say signatures state switch }</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw{ experimental }</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{max}</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> JSON;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $json  <span style="color:#f92672">=</span> JSON<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>pretty<span style="color:#f92672">-&gt;</span>canonical;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %nodes <span style="color:#f92672">=</span> import_tree( $ARGV[<span style="color:#ae81ff">0</span>] );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> ($rand) <span style="color:#f92672">=</span> keys %nodes;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $root <span style="color:#f92672">=</span> find_root( $nodes{$rand} );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ( is_binary_tree($root) ) {
+</span></span><span style="display:flex;"><span>    display_tree($root);
+</span></span><span style="display:flex;"><span>    reverse_tree($root);
+</span></span><span style="display:flex;"><span>    display_tree($root);
+</span></span><span style="display:flex;"><span>    export_tree( <span style="color:#f92672">\</span>%nodes, $ARGV[<span style="color:#ae81ff">1</span>] );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>exit;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tree_depth</span> ( $node ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>is_root();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> tree_depth( $node<span style="color:#f92672">-&gt;</span>parent() );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_binary_tree</span> ( $node ) {
+</span></span><span style="display:flex;"><span>    state $depth <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># if all the leaves are at the same depth</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># return 1, else return 0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( $node<span style="color:#f92672">-&gt;</span>is_leaf ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> tree_depth($node);
+</span></span><span style="display:flex;"><span>        $depth <span style="color:#f92672">=</span> $d <span style="color:#66d9ef">if</span> $depth <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $depth <span style="color:#f92672">!=</span> $d;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># return 0 if we don&#39;t have two children</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined $node<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">&amp;&amp;</span> defined $node<span style="color:#f92672">-&gt;</span>right;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ( is_binary_tree( $node<span style="color:#f92672">-&gt;</span>left ) <span style="color:#f92672">&amp;&amp;</span> is_binary_tree( $node<span style="color:#f92672">-&gt;</span>right ) );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display_tree</span> ( $node, $depth = 0, $arrayref = [] ) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># instead of hash or Node display, we&#39;re pulling it</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># to $arrayref-&gt;[ depth ][ left .. right ]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($node) {
+</span></span><span style="display:flex;"><span>        push $arrayref<span style="color:#f92672">-&gt;</span>[$depth]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $node<span style="color:#f92672">-&gt;</span>value();
+</span></span><span style="display:flex;"><span>        display_tree( $node<span style="color:#f92672">-&gt;</span>left(),  $depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $arrayref );
+</span></span><span style="display:flex;"><span>        display_tree( $node<span style="color:#f92672">-&gt;</span>right(), $depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $arrayref );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        push $arrayref<span style="color:#f92672">-&gt;</span>[$depth]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#e6db74">&#39;_&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># when we&#39;ve recursed and returned to the root</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( $depth <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>        my $w     <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">+</span> ( <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$max );
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $edges <span style="color:#f92672">=</span> <span style="color:#e6db74">q{/  \\}</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $arrayref<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>[$i];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> scalar grep { $_ <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;_&#39;</span> } $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>            if ( $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span> $l    <span style="color:#f92672">=</span> $arrayref<span style="color:#f92672">-&gt;</span>[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ];
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span> $str2 <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;    &#39;</span>, map { $edges } $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>                my $pad2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span> x ( $w <span style="color:#f92672">-</span> int( <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> length $str2 ) );
+</span></span><span style="display:flex;"><span>                say <span style="color:#e6db74">qq{$pad2$str2}</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;    &#39;</span>, $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>            my $pad <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span> x ( $w <span style="color:#f92672">-</span> int( <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> length $str ) );
+</span></span><span style="display:flex;"><span>            say <span style="color:#e6db74">qq{$pad$str}</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reverse_tree</span>( $node ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( defined $node<span style="color:#f92672">-&gt;</span>left() <span style="color:#f92672">&amp;&amp;</span> defined $node<span style="color:#f92672">-&gt;</span>right() ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $store <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>left();
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>left( $node<span style="color:#f92672">-&gt;</span>right() );
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>right($store);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> ( defined $node<span style="color:#f92672">-&gt;</span>left() ) {
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>right( $node<span style="color:#f92672">-&gt;</span>left() );
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>{left} <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elsif</span> ( defined $node<span style="color:#f92672">-&gt;</span>right() ) {
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>left( $node<span style="color:#f92672">-&gt;</span>right() );
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>{right} <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    reverse_tree( $node<span style="color:#f92672">-&gt;</span>left() )  <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>left();
+</span></span><span style="display:flex;"><span>    reverse_tree( $node<span style="color:#f92672">-&gt;</span>right() ) <span style="color:#66d9ef">if</span> $node<span style="color:#f92672">-&gt;</span>right();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_root</span>( $node ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $node <span style="color:#66d9ef">if</span> ( $node<span style="color:#f92672">-&gt;</span>is_root );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> find_root( $node<span style="color:#f92672">-&gt;</span>parent() );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">import_tree</span> ( $file = &#34;&#34; ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">-</span>f $file <span style="color:#f92672">&amp;&amp;</span> open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $text  <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&lt;$fh&gt;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $obj   <span style="color:#f92672">=</span> $json<span style="color:#f92672">-&gt;</span>decode($text);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> %nodes <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($_) } $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>        for <span style="color:#66d9ef">my</span> $id ( $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $left  <span style="color:#f92672">=</span> $obj<span style="color:#f92672">-&gt;</span>{left}{$id};
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> $obj<span style="color:#f92672">-&gt;</span>{right}{$id};
+</span></span><span style="display:flex;"><span>            $nodes{$id}<span style="color:#f92672">-&gt;</span>left( $nodes{$left} )   <span style="color:#66d9ef">if</span> defined $left;
+</span></span><span style="display:flex;"><span>            $nodes{$id}<span style="color:#f92672">-&gt;</span>right( $nodes{$right} ) <span style="color:#66d9ef">if</span> defined $right;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> wantarray ? %nodes : <span style="color:#f92672">\</span>%nodes;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    exit;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">export_tree</span> ( $nodes, $file = undef ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $obj <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $node ( values $nodes<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span> ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $left  <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>left();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>right();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $id    <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>value();
+</span></span><span style="display:flex;"><span>        push $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $id;
+</span></span><span style="display:flex;"><span>        $obj<span style="color:#f92672">-&gt;</span>{left}{$id}  <span style="color:#f92672">=</span> $left<span style="color:#f92672">-&gt;</span>value()  <span style="color:#66d9ef">if</span> $left;
+</span></span><span style="display:flex;"><span>        $obj<span style="color:#f92672">-&gt;</span>{right}{$id} <span style="color:#f92672">=</span> $right<span style="color:#f92672">-&gt;</span>value() <span style="color:#66d9ef">if</span> $right;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> sort $obj<span style="color:#f92672">-&gt;</span>{nodes}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</span></span><span style="display:flex;"><span>    if ( defined $file <span style="color:#f92672">&amp;&amp;</span> open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $file ) {
+</span></span><span style="display:flex;"><span>        say $fh $json<span style="color:#f92672">-&gt;</span>encode($obj);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        say $json<span style="color:#f92672">-&gt;</span>encode($obj);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Node;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> ( $class, $value = 0 ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{value}  <span style="color:#f92672">=</span> $value;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{left}   <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{right}  <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> undef;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> bless $self, $class;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">value</span> ( $self ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{value};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_root</span> ( $self ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> defined $self<span style="color:#f92672">-&gt;</span>{parent} ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_leaf</span> ( $self ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ( <span style="color:#f92672">!</span>defined $self<span style="color:#f92672">-&gt;</span>{left} <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>defined $self<span style="color:#f92672">-&gt;</span>{right} )
+</span></span><span style="display:flex;"><span>      ? <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>      : <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left</span> ( $self, $node = undef ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( defined $node ) {
+</span></span><span style="display:flex;"><span>        $self<span style="color:#f92672">-&gt;</span>{left}   <span style="color:#f92672">=</span> $node;
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> $self;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{left};
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">right</span> ( $self, $node = undef ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( defined $node ) {
+</span></span><span style="display:flex;"><span>        $self<span style="color:#f92672">-&gt;</span>{right}  <span style="color:#f92672">=</span> $node;
+</span></span><span style="display:flex;"><span>        $node<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> $self;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{right};
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parent</span> ($self ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{parent};
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></p>
 

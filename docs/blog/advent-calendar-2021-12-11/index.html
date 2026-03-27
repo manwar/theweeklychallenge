@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-10blogadvent-calendar-2021-12-10--day-11--day-12blogadvent-calendar-2021-12-12-">| <a href="/blog/advent-calendar-2021-12-10"><strong>Day 10</strong></a> | <strong>Day 11</strong> | <a href="/blog/advent-calendar-2021-12-12"><strong>Day 12</strong></a> |</h3>
+        <h2 id="advent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
+<h3 id="-day-10--day-11--day-12-">| <a href="/blog/advent-calendar-2021-12-10"><strong>Day 10</strong></a> | <strong>Day 11</strong> | <a href="/blog/advent-calendar-2021-12-12"><strong>Day 12</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-016"><strong>Adam Russell</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-122"><strong>&ldquo;The Weekly Challenge - 122&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/07/25"><strong>post</strong></a> by <code>Adam Russell</code>.</p>
 <hr>
@@ -192,35 +192,35 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <br>
 <h2 id="solution">Solution:</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">moving_average</span>{
-    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    {
-        $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-        $sum <span style="color:#f92672">+=</span> shift;
-        <span style="color:#66d9ef">print</span> $sum <span style="color:#f92672">/</span> $n;
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;, &#34;</span> <span style="color:#66d9ef">if</span> @_;
-        <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @_;
-    }
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
-}
-
-
-MAIN:{
-    <span style="color:#66d9ef">my</span> @N;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>; $i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1_000_000</span>; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">10</span>){
-        push @N, $i;
-    }
-    moving_average(@N);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">moving_average</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        $sum <span style="color:#f92672">+=</span> shift;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> $sum <span style="color:#f92672">/</span> $n;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;, &#34;</span> <span style="color:#66d9ef">if</span> @_;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @_;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>MAIN:{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @N;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>; $i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1_000_000</span>; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">10</span>){
+</span></span><span style="display:flex;"><span>        push @N, $i;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    moving_average(@N);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h2 id="output">Output:</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl perl<span style="color:#f92672">/</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl
-<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">65</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">95</span>,
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl perl<span style="color:#f92672">/</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">65</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">95</span>,
+</span></span></code></pre></div><br>
 <h2 id="notes">Notes</h2>
 <br>
 <p>Typically when one thinks of a stream the idea is of a virtually endless source of data. Or, at least, data which is handled as if this were the case. Here the <code>&quot;stream&quot;</code> is simulated by a long (<code>one million items</code>) array.</p>

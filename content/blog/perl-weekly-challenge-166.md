@@ -167,7 +167,7 @@ Arial.ttf  Courier_New.ttf  Helvetica.ttf  Impact.otf  Monaco.ttf  Verdana.ttf
 
 The output should look similar to the following:
 
-```
+```perl
 dir_a          | dir_b           | dir_c
 -------------- | --------------- | ---------------
 Comic_Sans.ttf | Comic_Sans.ttf  |

@@ -87,7 +87,7 @@ For example, 945 is the first Abundant Odd Number.
 
 Sum of divisors:
 
-```
+```perl
     1 + 3 + 5 + 7 + 9 + 15 + 21 + 27 + 35
       + 45 + 63 + 105 + 135 + 189 + 315 = 975
 ```
@@ -610,7 +610,7 @@ Create sub compose($f, $g) which takes in two parameters $f and $g as subroutine
 
 **e.g.**
 
-```
+```perl
     $f = (one or more parameters function)
     $g = (one or more parameters function)
 
@@ -826,7 +826,7 @@ What's happening here? Given a list of function coderefs, they recursively compo
 
 we get this:
 
-```
+```perl
     doub 16
     trip 256
 ```
@@ -836,7 +836,7 @@ we get this:
 As we mentioned the toy functions PokGoPUn provides work on lists, and they
 also make a nice listwise presentation of their results, emphasizing that the compose function is not commutative — the ordering of the arguments very much matters.
 
-```
+```perl
     Sumdigit(19, 29, 39) = (10, 11, 12) => Square(10, 11, 12) = (100, 121, 144)
     => SqaureAfterSumdigit(19, 29, 39) = (100, 121, 144)
 
@@ -967,7 +967,7 @@ He provides two ways to do the deed. In the first, `compose` becomes the compose
 
 we add this to the output which might serve to clarify things somewhat. Or not, I don't know. I'll venture most people will have no idea what is going on here. Good luck.
 
-```
+```perl
     unevaled string: &main::sum(2,3,5,6,10,15)
 ```
 

@@ -65,7 +65,7 @@ Write a script to display all valid phone numbers in the given text file.
 **Acceptable Phone Number Formats**
 
 
-```
+```perl
     +nn  nnnnnnnnnn
     (nn) nnnnnnnnnn
     nnnn nnnnnnnnnn
@@ -73,7 +73,7 @@ Write a script to display all valid phone numbers in the given text file.
 **Input File**
 
 
-```
+```perl
     0044 1148820341
      +44 1148820341
       44-11-4882-0341
@@ -83,7 +83,7 @@ Write a script to display all valid phone numbers in the given text file.
 **Output**
 
 
-```
+```perl
     0044 1148820341
      +44 1148820341
     (44) 1148820341
@@ -136,7 +136,7 @@ I have come to expect that when given a task with a simple, obvious and "correct
 ## a SPACE ASTRAY
 
 There was an anomaly in the input data that was brought up quite a bit, in that the first line entry under the "acceptable formats" section,
-```
+```perl
     +nn  nnnnnnnnnn
 ```
 has two spaces between the country code and subscriber line sections, while the corresponding phone number closely matching that format, `+44 1148820341`, has only one. This, if noticed at all, led to a number of interpretations about permissable whitespace within the number. Consequently some required one space, others one or more, and still others went with any amount including none. At least one submission both accepted the extra space for input and then went on to standardize the format for output.
@@ -746,7 +746,7 @@ Write a script to transpose the contents of the given file.
 
 **Input File**
 
-```
+```perl
     name,age,sex
     Mohammad,45,m
     Joe,20,m
@@ -755,7 +755,7 @@ Write a script to transpose the contents of the given file.
 ```
 **Output:**
 
-```
+```perl
     name,Mohammad,Joe,Julie,Cristina
     age,45,20,35,10
     sex,m,m,f,f

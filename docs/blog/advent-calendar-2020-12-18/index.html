@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2020blogadvent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
-<h3 id="-day-17blogadvent-calendar-2020-12-17--day-18--day-19blogadvent-calendar-2020-12-19-">| <a href="/blog/advent-calendar-2020-12-17"><strong>Day 17</strong></a> | <strong>Day 18</strong> | <a href="/blog/advent-calendar-2020-12-19"><strong>Day 19</strong></a> |</h3>
+        <h2 id="advent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
+<h3 id="-day-17--day-18--day-19-">| <a href="/blog/advent-calendar-2020-12-17"><strong>Day 17</strong></a> | <strong>Day 18</strong> | <a href="/blog/advent-calendar-2020-12-19"><strong>Day 19</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-030"><strong>Kevin Colyer</strong></a>. Today he is talking about his solution to the task <code>Collatz Conjecture</code> of <strong><a href="/blog/perl-weekly-challenge-054">&ldquo;The Weekly Challenge - 054&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="https://kevincolyer.wordpress.com/2020/04/05/perl-weekly-challenge-week-54/"><strong>post</strong></a> by <strong>Kevin Colyer</strong>.</p>
 <hr>
@@ -203,68 +203,68 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>(2) I used a an array <code>@length</code> to cache the lengths of the chains. This will grow to about 1 million entries, but as I gave it a type, hopefully this will allow the compiler to do this smartly and quickly. A state variable saves me cluttering up the program with a global variable as this is the only part that needs it anyway.</p>
 <p>(3) As we are looping through the sequence if we find a filled entry, at the value of it’s chain to our current length and end the loop – we are done as we know will will reach 1.</p>
 <p>(4) We know the length of the chain so cache it in <code>@length</code> for the next run.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">collatzSeqChain</span>(Int $n is copy) {
-    <span style="color:#66d9ef">my</span> Str $seq <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$n&#34;</span>;
-    <span style="color:#66d9ef">while</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
-        <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">+&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-            $n<span style="color:#f92672">=</span> $n <span style="color:#f92672">+&gt;</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># (1)</span>
-        } <span style="color:#66d9ef">else</span> {
-            $n <span style="color:#f92672">=</span> $n <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-        }
-        $seq <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#34; -&gt; $n&#34;</span>;
-    }
-    <span style="color:#66d9ef">return</span> $seq;
-}
-
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">collatzSeqLen</span>(Int $number) returns Int {
-    state Int @length; <span style="color:#75715e"># (2)</span>
-    <span style="color:#66d9ef">my</span> Int $n<span style="color:#f92672">=</span>$number;
-    <span style="color:#66d9ef">my</span> Int $len<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
-
-    <span style="color:#66d9ef">while</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
-        <span style="color:#66d9ef">if</span> @length[$n]:exists {
-            $len <span style="color:#f92672">+=</span> @length[$n];
-            <span style="color:#66d9ef">last</span>; <span style="color:#75715e"># (3)</span>
-        }
-        <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">+&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-            $n <span style="color:#f92672">=</span> $n <span style="color:#f92672">+&gt;</span> <span style="color:#ae81ff">1</span>;
-        } <span style="color:#66d9ef">else</span> {
-            $n <span style="color:#f92672">=</span> $n <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-        }
-        $len<span style="color:#f92672">++</span>;
-    }
-    @length[$number]<span style="color:#f92672">=</span>$len; <span style="color:#75715e"># (4)</span>
-    <span style="color:#66d9ef">return</span> $len;
-}
-
-multi MAIN(<span style="color:#e6db74">&#39;test&#39;</span>) {
-    say collatzSeqChain(<span style="color:#ae81ff">23</span>);
-}
-
-multi MAIN(<span style="color:#e6db74">&#39;sequence&#39;</span>, Int :$number<span style="color:#f92672">=</span><span style="color:#ae81ff">23</span> ) {
-    die <span style="color:#e6db74">&#34;number must be a positive integer &gt; 1 [$number]&#34;</span> <span style="color:#66d9ef">if</span> $number  number in sequence [$number]<span style="color:#e6db74">&#34; if $want &gt;= $number;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">    my Int @chain = 0;
-</span><span style="color:#e6db74">    my Int $topMin = 1;
-</span><span style="color:#e6db74">    my Int @top;
-</span><span style="color:#e6db74">    my Int @topN;
-</span><span style="color:#e6db74">    my %ltoi; # (5)
-</span><span style="color:#e6db74">    my $t = now.Int; # (6)
-</span><span style="color:#e6db74">    my Int $x = $number;
-</span><span style="color:#e6db74">    my Int $l;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">    for 1..$x -&gt; Int $i {
-</span><span style="color:#e6db74">        $l = collatzSeqLen($i);
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">        next if $l  $want;
-</span><span style="color:#e6db74">        $topMin = @top[0]; # (8)
-</span><span style="color:#e6db74">    }
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">    @top.map({ &#34;</span><span style="color:#f92672">\</span>n{%ltoi{$_}} length $_ <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>n<span style="color:#e6db74">&#34;~collatzSeqChain( %ltoi{$_} )  })&gt;&gt;.say; # (9)
-</span><span style="color:#e6db74">    say &#34;</span><span style="color:#f92672">\</span>n$x sequences searched in {Rat(now <span style="color:#f92672">-</span>$t)} seconds<span style="color:#960050;background-color:#1e0010">&#34;</span>; <span style="color:#75715e"># (10)</span>
-}
-</code></pre></div><p>The final MAIN function gives the lengths of the N longest chains. The defaults are sequences up to 1,000,000 and N of 20.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">collatzSeqChain</span>(Int $n is copy) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> Str $seq <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$n&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">+&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>            $n<span style="color:#f92672">=</span> $n <span style="color:#f92672">+&gt;</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># (1)</span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            $n <span style="color:#f92672">=</span> $n <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $seq <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#34; -&gt; $n&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $seq;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">collatzSeqLen</span>(Int $number) returns Int {
+</span></span><span style="display:flex;"><span>    state Int @length; <span style="color:#75715e"># (2)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> Int $n<span style="color:#f92672">=</span>$number;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> Int $len<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> @length[$n]:exists {
+</span></span><span style="display:flex;"><span>            $len <span style="color:#f92672">+=</span> @length[$n];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span>; <span style="color:#75715e"># (3)</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">+&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>            $n <span style="color:#f92672">=</span> $n <span style="color:#f92672">+&gt;</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            $n <span style="color:#f92672">=</span> $n <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $len<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    @length[$number]<span style="color:#f92672">=</span>$len; <span style="color:#75715e"># (4)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $len;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>multi MAIN(<span style="color:#e6db74">&#39;test&#39;</span>) {
+</span></span><span style="display:flex;"><span>    say collatzSeqChain(<span style="color:#ae81ff">23</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>multi MAIN(<span style="color:#e6db74">&#39;sequence&#39;</span>, Int :$number<span style="color:#f92672">=</span><span style="color:#ae81ff">23</span> ) {
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;number must be a positive integer &gt; 1 [$number]&#34;</span> <span style="color:#66d9ef">if</span> $number  number in sequence [$number]<span style="color:#e6db74">&#34; if $want &gt;= $number;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    my Int @chain = 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    my Int $topMin = 1;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    my Int @top;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    my Int @topN;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    my %ltoi; # (5)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    my $t = now.Int; # (6)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    my Int $x = $number;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    my Int $l;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    for 1..$x -&gt; Int $i {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        $l = collatzSeqLen($i);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        next if $l  $want;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        $topMin = @top[0]; # (8)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    @top.map({ &#34;</span><span style="color:#f92672">\</span>n{%ltoi{$_}} length $_ <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>n<span style="color:#e6db74">&#34;~collatzSeqChain( %ltoi{$_} )  })&gt;&gt;.say; # (9)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    say &#34;</span><span style="color:#f92672">\</span>n$x sequences searched in {Rat(now <span style="color:#f92672">-</span>$t)} seconds<span style="color:#960050;background-color:#1e0010">&#34;</span>; <span style="color:#75715e"># (10)</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The final MAIN function gives the lengths of the N longest chains. The defaults are sequences up to 1,000,000 and N of 20.</p>
 <p>(5) I use a hash <code>%ltoi</code> (length to index) to keep the relations to the longest lengths and the sequence starting point that produces the chain.</p>
 <p>(6) This line takes a snapshot of the current time so I can get an idea of how quickly the loop runs. It is paired with comment (10) below</p>
 <p>(7) Each time we derive another sequence length we compare it to the minimum length of the top 20 longest sequences. We also check if it is longer that there is not another sequence that long in there. I am not interested in duplicate lengths really. Optional statement really.</p>

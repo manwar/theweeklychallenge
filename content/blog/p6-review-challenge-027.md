@@ -57,7 +57,7 @@ There is one slight complication, though: if one (and only one) of the point pai
 
 Another observation is that this type of problem calls for object-oriented programming (even though I'm generally not a great OO fan). So, we will define a `Point` type and a `Segment` class (with two `Point` attributes) providing the `slope` and `y-intercept` methods to compute the equation of a line passing through the two points. The `Point` role also provides a `gist` method enabling pretty printing of the point coordinates when using the `say` built-in function on a `Point` instance.
 
-``` Perl6
+```perl
 use v6;
 
 role Point {
@@ -129,7 +129,7 @@ This is a sample run of the program:
 
 As it is, this program isn't doing any validation on its arguments. So we will add a `valid-args` subroutine for that purpose and also check that the computed segments are not parallel.
 
-``` Perl6
+```perl
 use v6;
 
 role Point {
@@ -270,7 +270,7 @@ My program just above is much longer than most other solutions presented below. 
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/arne-sommer/perl6/ch-1.p6)'s solution is much shorter than mine, but I'm afraid Arne looked only at some of the edge cases:
 
-``` Perl6
+```perl
 my \ta1 = (y3−y4) * (x1−x3) + (x4−x3) * (y1−y3);
 my \ta2 = (x4−x3) * (y1−y2) − (x1−x2) * (y4−y3);
 my \tb1 = (y1−y2) * (x1−x3) + (x2−x1) * (y1−y3);
@@ -293,7 +293,7 @@ else
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/kevin-colyer/perl6/ch-1.p6)'s solution is also shorter than mine but also appears to skip some of the validation. This is the code of Kevin's subroutine making the real work:
 
-``` Perl6
+```perl
 sub intersection($a,$b,$c,$d,$e,$f,$g,$h) {
     my $m1=($b-$d)/($a-$c);
     my $m2=($f-$h)/($e-$g);
@@ -315,7 +315,7 @@ sub intersection($a,$b,$c,$d,$e,$f,$g,$h) {
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/markus-holzer/perl6/ch-1.p6) also made a very short solution. This is Markus's main subroutine:
 
-``` Perl6
+```perl
 sub intersection( Int \x1, Int \y1, Int \x2, Int \y2, Int \x3, Int \y3, Int \x4, Int \y4 )
 {
     CATCH { default { fail "Lines are parallel or identical" } }
@@ -339,7 +339,7 @@ sub intersection( Int \x1, Int \y1, Int \x2, Int \y2, Int \x3, Int \y3, Int \x4,
 
 Noud's main subroutine is as follows:
 
-``` Perl6
+```perl
 sub line_intersection(($x1, $y1), ($x2, $y2), ($x3, $y3), ($x4, $y4)) {
     if (($x1 == $x2 and $y1 == $y2) or ($x3 == $x4 and $y3 == $y4)) {
         die "Input doesn't represent two lines.";
@@ -374,7 +374,7 @@ sub line_intersection(($x1, $y1), ($x2, $y2), ($x3, $y3), ($x4, $y4)) {
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/simon-proctor/perl6/ch-1.p6)'s program is also fairly short:
 
-``` Perl6
+```perl
 sub MAIN( Rat() \a, Rat() \b, Rat() \c, Rat() \d,
           Rat() \p, Rat() \q, Rat() \r, Rat() \s ) {
 
@@ -402,7 +402,7 @@ sub MAIN( Rat() \a, Rat() \b, Rat() \c, Rat() \d,
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/joelle-maslak/perl6/ch-1.p6)'s code starts with a very interesting and detailed comment about all the edge cases. Well worth reading. Her program is object-oriented and defines a `Point` and a `Line` classes (both use the CPAN `StrictClass` role, which I did not know before and which makes the program choke on unknown attributes). Her `Line` class defines five methods and also redefines the `eqv` infix operator for `Line` objects:
 
-``` Perl6
+```perl
 # We need an eqv that works
 CORE::<&infix:<eqv>>.add_dispatchee(
     multi sub infix:<eqv> (Line:D $line1, Line:D $line2 -->Bool) {
@@ -420,7 +420,7 @@ CORE::<&infix:<eqv>>.add_dispatchee(
 ```
 [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/roger-bell-west/perl6/ch-1.p6) contributed a fairly concise program (except for his rather verbose way of retrieving the argupments passed to the program):
 
-``` Perl6
+```perl
 my @x;
 my @y;
 
@@ -452,7 +452,7 @@ say "@x[0] @y[0]";
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/ruben-westerberg/perl6/ch-1.p6) also suggested a very concise program:
 
-``` Perl6
+```perl
 my @l;
 while @l < 2  {
     my @p=split " ", prompt("Enter line"~(@l+1)~":  x1 y1 x2 y2\n"), :skip-empty;
@@ -500,7 +500,7 @@ I initially tried to redefine the `=` assignment operator but that appears to be
 
 So, I decided to create my own `=:=` assignment operator for watched variables. Besides that, the program uses the `WatchedValue` class to enable the storing of current and past values.
 
-``` Perl6
+```perl
 use v6;
 
 class WatchedValue {
@@ -543,7 +543,7 @@ I do not know how to avoid or suppress these warnings (it seems that the `no war
 
 All challengers except Noud and Yet Ebreo used objects of the built-in [Proxy](https://docs.perl6.org/type/Proxy) class, which I did not know about before. According to the Perl 6 documentation, a proxy is an object that allows you to set a hook that executes whenever a value is retrieved from a container (`FETCH`) or when it is set (`STORE`). This is quite obviously the right tool for solving the task at hand. This is the example provided in the official Perl 6 documentation to create a container that returns twice what was stored in it:
 
-``` Perl6
+```perl
 sub double() is rw {
     my $storage = 0;
     Proxy.new(
@@ -559,7 +559,7 @@ sub double() is rw {
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/arne-sommer/perl6/ch-2.p6)'s program defines a`%hist` hash to store values according to their time stamp, and then defines the `memoryvariable` subroutine creating and returning `Proxy` object:
 
-``` Perl6
+```perl
 sub memoryvariable($label) is rw
 {
   my $val;
@@ -584,7 +584,7 @@ Arne also defines two additional subroutines, one for displaying the stored hist
 
 [Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/kevin-colyer/perl6/ch-2.p6) created a `HistoryInt` class also using a `Proxy` object, storing the historical values in an array attribute (`@.history`) of the `HistoryInt` class:
 
-``` Perl6
+```perl
 class HistoryInt {
   has Int $.x =0 ;
   has @.history;
@@ -606,7 +606,7 @@ class HistoryInt {
 
 [Markus Holzer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/markus-holzer/perl6/ch-2.p6)'s program is extremely concise:
 
-``` Perl6
+```perl
 use Scalar::History;
 
 my Int $x := Scalar::History.create(10, Int);
@@ -618,7 +618,7 @@ thanks to the fact that it uses the [Scalar::History](https://github.com/holli-h
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/simon-proctor/perl6/ch-2.p6) implemented a `Historic` class with a `@!values` attribute, implementing various setters and getters and using `Proxy` objects. One very interesting point is that he also implemented a `Δ=` operator to handle `Historic` objects:
 
-``` Perl6
+```perl
 multi sub infix:<Δ=> ( Any:U $h is rw, Any $v ) is equiv(&infix:<=>) {
      $h = Historic.new();
      $h.set( $v );
@@ -633,7 +633,7 @@ multi sub infix:<Δ=> (Historic:D $h, Any $a) is equiv(&infix:<=>) {
 
 [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/joelle-maslak/perl6/ch-2.p6) implemented a `History` class with the `@!hist` and `$!data` attributes, also using `Proxy` objects:
 
-``` Perl6
+```perl
 class History {
     has @!hist;
     has $!data;
@@ -656,7 +656,7 @@ class History {
 
 [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/ruben-westerberg/perl6/ch-2.p6) used a `@history` array to store the successive values of a `Proxy` object:
 
-``` Perl6
+```perl
 sub remembering (@history) {
     return-rw Proxy.new(
         FETCH => method () {@history[*-1]},
@@ -667,7 +667,7 @@ sub remembering (@history) {
 
 [Noud](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/noud/perl6/ch-2.p6) wrote a program that reads another program and writes a third one. His program takes another program as an argument and parses it to collect information about the variables used in this other script. After that, it creates a `%var_hash_` that updates the current values of each of the defined variables after each semicolon. The new script is then executed using the EVAL method. Noud humourously comments that he hopes he doesn't get banned from the Perl Weekly Challenge club for using the dangerous `EVAL` statement in this problem. He certainly shouldn't be banned, especially not for writing such an innovative solution! It is worth quoting the whole program:
 
-``` Perl6
+```perl
 use MONKEY-SEE-NO-EVAL;
 
 sub MAIN(Str $filename) {
@@ -715,7 +715,7 @@ sub MAIN(Str $filename) {
 
 [Yet Ebreo](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/yet-ebreo/perl6/ch-2.p6) created an *apparently* very simple `hist` class with a `STORE` method:
 
-``` Perl6
+```perl
 class hist {
     has @.history;
     has $!var handles <Str gist FETCH Numeric>;

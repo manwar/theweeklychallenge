@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-21blogadvent-calendar-2021-12-21--day-22--day-23blogadvent-calendar-2021-12-23-">| <a href="/blog/advent-calendar-2021-12-21"><strong>Day 21</strong></a> | <strong>Day 22</strong> | <a href="/blog/advent-calendar-2021-12-23"><strong>Day 23</strong></a> |</h3>
+        <h2 id="advent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
+<h3 id="-day-21--day-22--day-23-">| <a href="/blog/advent-calendar-2021-12-21"><strong>Day 21</strong></a> | <strong>Day 22</strong> | <a href="/blog/advent-calendar-2021-12-23"><strong>Day 23</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-037"><strong>Javier Luque</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-076"><strong>&ldquo;The Weekly Challenge - 076&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://perlchallenges.wordpress.com/2020/09/04/perl-weekly-challenge-076/"><strong>post</strong></a> by <code>Javier Luque</code>.</p>
 <hr>
@@ -217,184 +217,184 @@ D R S M P C U U N E L T E S I L
 <br>
 <h3 id="perl-5-solution">Perl 5 Solution</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
-<span style="color:#75715e"># Test: ./ch-2.pl</span>
-<span style="color:#66d9ef">use</span> Modern::Perl;
-<span style="color:#66d9ef">use</span> Data::Dumper;
-
-<span style="color:#66d9ef">my</span> $matrix <span style="color:#f92672">=</span> letters_to_matrix(shift);
-<span style="color:#66d9ef">my</span> $words  <span style="color:#f92672">=</span> dictionary_to_hash(shift);
-
-<span style="color:#66d9ef">my</span> $max_height <span style="color:#f92672">=</span> scalar @$matrix;
-<span style="color:#66d9ef">my</span> $max_width  <span style="color:#f92672">=</span> scalar @{$matrix<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]};
-<span style="color:#66d9ef">my</span> @answers;
-
-<span style="color:#75715e"># Loop through each letter</span>
-<span style="color:#75715e"># from left to right</span>
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_height <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_width <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-        push @answers,
-             find_words($matrix, $words, $i,
-                        $j, $max_height, $max_width);
-    }
-}
-
-say <span style="color:#e6db74">&#34;Found &#34;</span> <span style="color:#f92672">.</span> scalar(@answers) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; words:&#34;</span>;
-say join <span style="color:#e6db74">&#39;, &#39;</span>, sort @answers;
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_words</span> {
-    <span style="color:#66d9ef">my</span> ($matrix, $words, $row, $col, $h, $w) <span style="color:#f92672">=</span> @_;
-    <span style="color:#66d9ef">my</span> @found;
-
-    <span style="color:#75715e"># Orthogonal directions with 1 on top</span>
-    <span style="color:#75715e"># 1t 2tr 3r 4br 5b 6bl 7l 8tl</span>
-    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">8</span>) {
-        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $row;
-        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $col;
-        <span style="color:#66d9ef">my</span> $possible_word <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
-
-        <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $j <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $i <span style="color:#f92672">&lt;</span> $h <span style="color:#f92672">&amp;&amp;</span> $j <span style="color:#f92672">&lt;</span> $w) {
-            $possible_word <span style="color:#f92672">.=</span> lc($matrix<span style="color:#f92672">-&gt;</span>[$i][$j]);
-
-            push @found, $possible_word
-                <span style="color:#66d9ef">if</span> ($words<span style="color:#f92672">-&gt;</span>{$possible_word});
-
-            <span style="color:#75715e"># Next position calculations</span>
-            $i<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>);
-            $i<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>);
-            $j<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>);
-            $j<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>);
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> @found;
-}
-
-<span style="color:#75715e"># Load the letters into a matrix</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">letters_to_matrix</span> {
-    <span style="color:#66d9ef">my</span> $filename <span style="color:#f92672">=</span> shift <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;challenge.txt&#39;</span>;
-    <span style="color:#66d9ef">my</span> @letter_matrix;
-
-    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;:encoding(UTF-8)&#39;</span>, $filename) <span style="color:#f92672">||</span> die <span style="color:#e6db74">&#34;$@&#34;</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
-        chomp $row;
-        <span style="color:#66d9ef">my</span> @letters <span style="color:#f92672">=</span> split (<span style="color:#e6db74">&#39; &#39;</span>, $row);
-        push @letter_matrix, <span style="color:#f92672">\</span>@letters;
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@letter_matrix
-}
-
-<span style="color:#75715e"># Load the dictionary into memory</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dictionary_to_hash</span> {
-    <span style="color:#66d9ef">my</span> $filename <span style="color:#f92672">=</span> shift <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;words.txt&#39;</span>;
-    <span style="color:#66d9ef">my</span> %possible_words;
-
-    <span style="color:#75715e"># Challenge only wants words greater</span>
-    <span style="color:#75715e"># than 5 so just keep those</span>
-    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;:encoding(UTF-8)&#39;</span>, $filename) <span style="color:#f92672">||</span> die <span style="color:#e6db74">&#34;$@&#34;</span>;
-    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
-        chomp $row;
-        $possible_words{lc($row)} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-            <span style="color:#66d9ef">if</span> (length($row) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">5</span>);
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%possible_words;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test: ./ch-2.pl</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Modern::Perl;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Data::Dumper;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $matrix <span style="color:#f92672">=</span> letters_to_matrix(shift);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $words  <span style="color:#f92672">=</span> dictionary_to_hash(shift);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $max_height <span style="color:#f92672">=</span> scalar @$matrix;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $max_width  <span style="color:#f92672">=</span> scalar @{$matrix<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @answers;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Loop through each letter</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># from left to right</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_height <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_width <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        push @answers,
+</span></span><span style="display:flex;"><span>             find_words($matrix, $words, $i,
+</span></span><span style="display:flex;"><span>                        $j, $max_height, $max_width);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>say <span style="color:#e6db74">&#34;Found &#34;</span> <span style="color:#f92672">.</span> scalar(@answers) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; words:&#34;</span>;
+</span></span><span style="display:flex;"><span>say join <span style="color:#e6db74">&#39;, &#39;</span>, sort @answers;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_words</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($matrix, $words, $row, $col, $h, $w) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @found;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Orthogonal directions with 1 on top</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 1t 2tr 3r 4br 5b 6bl 7l 8tl</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">8</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $row;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $col;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $possible_word <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $j <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $i <span style="color:#f92672">&lt;</span> $h <span style="color:#f92672">&amp;&amp;</span> $j <span style="color:#f92672">&lt;</span> $w) {
+</span></span><span style="display:flex;"><span>            $possible_word <span style="color:#f92672">.=</span> lc($matrix<span style="color:#f92672">-&gt;</span>[$i][$j]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            push @found, $possible_word
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> ($words<span style="color:#f92672">-&gt;</span>{$possible_word});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Next position calculations</span>
+</span></span><span style="display:flex;"><span>            $i<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span>            $i<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>            $j<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span>            $j<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @found;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load the letters into a matrix</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">letters_to_matrix</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $filename <span style="color:#f92672">=</span> shift <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;challenge.txt&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @letter_matrix;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;:encoding(UTF-8)&#39;</span>, $filename) <span style="color:#f92672">||</span> die <span style="color:#e6db74">&#34;$@&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
+</span></span><span style="display:flex;"><span>        chomp $row;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @letters <span style="color:#f92672">=</span> split (<span style="color:#e6db74">&#39; &#39;</span>, $row);
+</span></span><span style="display:flex;"><span>        push @letter_matrix, <span style="color:#f92672">\</span>@letters;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@letter_matrix
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load the dictionary into memory</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dictionary_to_hash</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $filename <span style="color:#f92672">=</span> shift <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;words.txt&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %possible_words;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Challenge only wants words greater</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># than 5 so just keep those</span>
+</span></span><span style="display:flex;"><span>    open(<span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;:encoding(UTF-8)&#39;</span>, $filename) <span style="color:#f92672">||</span> die <span style="color:#e6db74">&#34;$@&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
+</span></span><span style="display:flex;"><span>        chomp $row;
+</span></span><span style="display:flex;"><span>        $possible_words{lc($row)} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (length($row) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%possible_words;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="output">Output</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>pl
-
-Found <span style="color:#ae81ff">87</span> words:
-acies, aimed, align, alose, angil, antes, argos, arose, ashed, ation, blunt, blunts, broad, buffa, buries, butea, caeli, clove, cloven, clune, const, constitution, constitutions, cosin, croon, depart, departed, duddie, enter, filch, garlic, goats, grieve, grieves, grith, hazard, hugin, ileac, izing, liens, lunts, malign, malignant, malls, margo, meroe, midst, midsts, neuma, ought, ovary, parte, parted, pasmo, patna, pudgiest, quash, quashed, raias, raped, resor, roser, ruses, shazar, shrine, shrines, sices, social, socializing, soyas, spasm, spasmodic, staun, succor, succors, tallu, talos, talose, theor, theorem, theorems, traci, tracie, virus, viruses, wifie, wigged
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ <span style="color:#960050;background-color:#1e0010">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Found <span style="color:#ae81ff">87</span> words:
+</span></span><span style="display:flex;"><span>acies, aimed, align, alose, angil, antes, argos, arose, ashed, ation, blunt, blunts, broad, buffa, buries, butea, caeli, clove, cloven, clune, const, constitution, constitutions, cosin, croon, depart, departed, duddie, enter, filch, garlic, goats, grieve, grieves, grith, hazard, hugin, ileac, izing, liens, lunts, malign, malignant, malls, margo, meroe, midst, midsts, neuma, ought, ovary, parte, parted, pasmo, patna, pudgiest, quash, quashed, raias, raped, resor, roser, ruses, shazar, shrine, shrines, sices, social, socializing, soyas, spasm, spasmodic, staun, succor, succors, tallu, talos, talose, theor, theorem, theorems, traci, tracie, virus, viruses, wifie, wigged
+</span></span></code></pre></div><br>
 <h3 id="raku-solution">Raku Solution</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e"># Test: perl6 ch-2.p6</span>
-
-multi MAIN { MAIN(<span style="color:#e6db74">&#34;challenge.txt&#34;</span>, <span style="color:#e6db74">&#34;words.txt&#34;</span>) };
-multi MAIN(Str $letter_file, Str $word_file) {
-    <span style="color:#66d9ef">my</span> @matrix <span style="color:#f92672">=</span> letters<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>matrix($letter_file);
-    <span style="color:#66d9ef">my</span> %words  <span style="color:#f92672">=</span> dictionary<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>hash($word_file);
-    <span style="color:#66d9ef">my</span> @answers;
-
-    <span style="color:#66d9ef">my</span> $max_height <span style="color:#f92672">=</span> @matrix<span style="color:#f92672">.</span>elems;
-    <span style="color:#66d9ef">my</span> $max_width  <span style="color:#f92672">=</span> @matrix<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems;
-
-    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_height <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $i {
-        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_width <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $j {
-            <span style="color:#66d9ef">my</span> @found <span style="color:#f92672">=</span>
-                find<span style="color:#f92672">-</span>words(@matrix, %words, $i,
-                          $j, $max_height, $max_width);
-            @answers<span style="color:#f92672">.</span>push: @found
-                <span style="color:#66d9ef">if</span> @found<span style="color:#f92672">.</span>elems;
-        }
-    }
-    say <span style="color:#e6db74">&#34;Found &#34;</span> <span style="color:#f92672">~</span>  @answers<span style="color:#f92672">.</span>List<span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>elems <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; words:&#34;</span>;
-    say @answers<span style="color:#f92672">.</span>List<span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>);
-}
-
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find</span>-words(@matrix, %words, $row, $col, $h, $w) {
-    <span style="color:#66d9ef">my</span> @found;
-
-    <span style="color:#75715e"># Orthogonal directions with 1 on top</span>
-    <span style="color:#75715e"># 1t 2tr 3r 4br 5b 6bl 7l 8tl</span>
-    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">-&gt;</span> $x {
-        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $row;
-        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $col;
-        <span style="color:#66d9ef">my</span> $possible_word <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
-
-        <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $j <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $i <span style="color:#f92672">&lt;</span> $h <span style="color:#f92672">&amp;&amp;</span> $j <span style="color:#f92672">&lt;</span> $w) {
-            $possible_word <span style="color:#f92672">~=</span> @matrix<span style="color:#f92672">.</span>[$i][$j]<span style="color:#f92672">.</span>lc;
-
-            @found<span style="color:#f92672">.</span>push($possible_word)
-                <span style="color:#66d9ef">if</span> (%words{$possible_word});
-
-            <span style="color:#75715e"># Next position calculations</span>
-            $i<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>);
-            $i<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>);
-            $j<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>);
-            $j<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>);
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> @found;
-}
-
-
-<span style="color:#75715e"># Load the letters into a matrix</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">letters</span>-to-matrix(Str $filename) {
-    <span style="color:#66d9ef">my</span> @letter_matrix;
-
-    <span style="color:#66d9ef">for</span> $filename<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line {
-        <span style="color:#66d9ef">my</span> @letters <span style="color:#f92672">=</span> $line<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>);
-        @letter_matrix<span style="color:#f92672">.</span>push(@letters);
-    }
-
-    <span style="color:#66d9ef">return</span> @letter_matrix;
-}
-
-<span style="color:#75715e"># Load the dictionary into memory</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dictionary</span>-to-hash(Str $filename) {
-    <span style="color:#66d9ef">my</span> %possible_words;
-
-    <span style="color:#75715e"># Challenge only wants words greater</span>
-    <span style="color:#75715e"># than 5 so just keep those</span>
-    <span style="color:#66d9ef">for</span> $filename<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line {
-        %possible_words{$line<span style="color:#f92672">.</span>lc} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-            <span style="color:#66d9ef">if</span> ($line<span style="color:#f92672">.</span>chars <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">5</span>);
-    }
-
-    <span style="color:#66d9ef">return</span> %possible_words
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e"># Test: perl6 ch-2.p6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>multi MAIN { MAIN(<span style="color:#e6db74">&#34;challenge.txt&#34;</span>, <span style="color:#e6db74">&#34;words.txt&#34;</span>) };
+</span></span><span style="display:flex;"><span>multi MAIN(Str $letter_file, Str $word_file) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @matrix <span style="color:#f92672">=</span> letters<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>matrix($letter_file);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %words  <span style="color:#f92672">=</span> dictionary<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>hash($word_file);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @answers;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max_height <span style="color:#f92672">=</span> @matrix<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $max_width  <span style="color:#f92672">=</span> @matrix<span style="color:#f92672">.</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_height <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $i {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_width <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $j {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> @found <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                find<span style="color:#f92672">-</span>words(@matrix, %words, $i,
+</span></span><span style="display:flex;"><span>                          $j, $max_height, $max_width);
+</span></span><span style="display:flex;"><span>            @answers<span style="color:#f92672">.</span>push: @found
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> @found<span style="color:#f92672">.</span>elems;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;Found &#34;</span> <span style="color:#f92672">~</span>  @answers<span style="color:#f92672">.</span>List<span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>elems <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; words:&#34;</span>;
+</span></span><span style="display:flex;"><span>    say @answers<span style="color:#f92672">.</span>List<span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find</span>-words(@matrix, %words, $row, $col, $h, $w) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @found;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Orthogonal directions with 1 on top</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 1t 2tr 3r 4br 5b 6bl 7l 8tl</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">-&gt;</span> $x {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $row;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $col;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $possible_word <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $j <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $i <span style="color:#f92672">&lt;</span> $h <span style="color:#f92672">&amp;&amp;</span> $j <span style="color:#f92672">&lt;</span> $w) {
+</span></span><span style="display:flex;"><span>            $possible_word <span style="color:#f92672">~=</span> @matrix<span style="color:#f92672">.</span>[$i][$j]<span style="color:#f92672">.</span>lc;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            @found<span style="color:#f92672">.</span>push($possible_word)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (%words{$possible_word});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Next position calculations</span>
+</span></span><span style="display:flex;"><span>            $i<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span>            $i<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>            $j<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span>            $j<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @found;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load the letters into a matrix</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">letters</span>-to-matrix(Str $filename) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @letter_matrix;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> $filename<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @letters <span style="color:#f92672">=</span> $line<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>);
+</span></span><span style="display:flex;"><span>        @letter_matrix<span style="color:#f92672">.</span>push(@letters);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @letter_matrix;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load the dictionary into memory</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dictionary</span>-to-hash(Str $filename) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> %possible_words;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Challenge only wants words greater</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># than 5 so just keep those</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> $filename<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line {
+</span></span><span style="display:flex;"><span>        %possible_words{$line<span style="color:#f92672">.</span>lc} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($line<span style="color:#f92672">.</span>chars <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> %possible_words
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="output-1">Output</h3>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>p6
-
-Found <span style="color:#ae81ff">87</span> words:
-acies, aimed, align, alose, angil, antes, argos, arose, ashed, ation, blunt, blunts, broad, buffa, buries, butea, caeli, clove, cloven, clune, const, constitution, constitutions, cosin, croon, depart, departed, duddie, enter, filch, garlic, goats, grieve, grieves, grith, hazard, hugin, ileac, izing, liens, lunts, malign, malignant, malls, margo, meroe, midst, midsts, neuma, ought, ovary, parte, parted, pasmo, patna, pudgiest, quash, quashed, raias, raped, resor, roser, ruses, shazar, shrine, shrines, sices, social, socializing, soyas, spasm, spasmodic, staun, succor, succors, tallu, talos, talose, theor, theorem, theorems, traci, tracie, virus, viruses, wifie, wigged
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ perl6 ch<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span>p6
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Found <span style="color:#ae81ff">87</span> words:
+</span></span><span style="display:flex;"><span>acies, aimed, align, alose, angil, antes, argos, arose, ashed, ation, blunt, blunts, broad, buffa, buries, butea, caeli, clove, cloven, clune, const, constitution, constitutions, cosin, croon, depart, departed, duddie, enter, filch, garlic, goats, grieve, grieves, grith, hazard, hugin, ileac, izing, liens, lunts, malign, malignant, malls, margo, meroe, midst, midsts, neuma, ought, ovary, parte, parted, pasmo, patna, pudgiest, quash, quashed, raias, raped, resor, roser, ruses, shazar, shrine, shrines, sices, social, socializing, soyas, spasm, spasmodic, staun, succor, succors, tallu, talos, talose, theor, theorem, theorems, traci, tracie, virus, viruses, wifie, wigged
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></p>

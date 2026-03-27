@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2024blogadvent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
-<h3 id="-nbsp-day-9blogadvent-calendar-2024-12-09-nbsp--nbsp-day-10-nbsp--nbsp-day-11blogadvent-calendar-2024-12-11-nbsp-">|   <a href="/blog/advent-calendar-2024-12-09"><strong>Day 9</strong></a>   |   <strong>Day 10</strong>   |   <a href="/blog/advent-calendar-2024-12-11"><strong>Day 11</strong></a>   |</h3>
+        <h2 id="advent-calendar-2024"><a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a></h2>
+<h3 id="--day-9----day-10----day-11--">|   <a href="/blog/advent-calendar-2024-12-09"><strong>Day 9</strong></a>   |   <strong>Day 10</strong>   |   <a href="/blog/advent-calendar-2024-12-11"><strong>Day 11</strong></a>   |</h3>
 <hr>
 <p>The gift is presented by <code>Robbie Hatley</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-260"><strong>The Weekly Challenge - 260</strong></a>. This is re-produced for <code>Advent Calendar 2024</code> from the original <a href="https://hatley-software.blogspot.com/2024/03/robbie-hatleys-solutions-to-weekly.html"><strong>post</strong></a>.</p>
 <hr>
@@ -196,37 +196,37 @@ Write a script to return 1 if the number of occurrences of each value in the giv
 <br>
 <p>There are probably other ways to solve this (<code>TIMTOWTDI</code>), but the method I stumbled on was to first create a sub called <code>&quot;occurrences&quot;</code> which returns a list of the occurrences of the various kinds of elements in the input array, then I apply <code>&quot;occurrences&quot; twice</code>, basically <code>&quot;occurrences of occurrences&quot;</code>. If the result is a list of <code>1s</code>, then the occurrences of element kinds are unique, otherwise they aren&rsquo;t. Instead of checking every element of <code>&quot;occurrences of occurrences&quot;</code> individually, I just look at their product; if it&rsquo;s <code>1</code>, the occurrences are unique, otherwise they aren&rsquo;t:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> utf8;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;product&#39;</span>;
-
-<span style="color:#75715e"># What are the occurrences of the elements of an array?</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">occurrences</span>(@array) {
-   <span style="color:#66d9ef">my</span> %a;
-   <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $item (@array) {<span style="color:#f92672">++</span>$a{$item};}
-   <span style="color:#66d9ef">return</span> values %a;
-}
-
-<span style="color:#75715e"># Are the occurrences of the elements of an array unique?</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">occurrences_are_unique</span>(@array) {
-   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> product occurrences occurrences @array;
-}
-
-<span style="color:#66d9ef">my</span> @arrays <span style="color:#f92672">=</span> @ARGV ? eval($ARGV[<span style="color:#ae81ff">0</span>]) :
-(
-   [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],
-   [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>],
-   [<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">9</span>],
-);
-
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $aref (@arrays) {
-   say <span style="color:#e6db74">&#39;&#39;</span>;
-   say <span style="color:#e6db74">&#39;@ints = (&#39;</span>, join(<span style="color:#e6db74">&#39;, &#39;</span>, @$aref), <span style="color:#e6db74">&#39;)&#39;</span>;
-   occurrences_are_unique @$aref
-   <span style="color:#f92672">and</span> say <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39; (occurrences are unique)&#39;</span>
-   <span style="color:#f92672">or</span>  say <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39; (occurrences are not unique)&#39;</span>;
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> utf8;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;product&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># What are the occurrences of the elements of an array?</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">occurrences</span>(@array) {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> %a;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $item (@array) {<span style="color:#f92672">++</span>$a{$item};}
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> values %a;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Are the occurrences of the elements of an array unique?</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">occurrences_are_unique</span>(@array) {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> product occurrences occurrences @array;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @arrays <span style="color:#f92672">=</span> @ARGV ? eval($ARGV[<span style="color:#ae81ff">0</span>]) :
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>   [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>],
+</span></span><span style="display:flex;"><span>   [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>],
+</span></span><span style="display:flex;"><span>   [<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">9</span>],
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $aref (@arrays) {
+</span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#39;@ints = (&#39;</span>, join(<span style="color:#e6db74">&#39;, &#39;</span>, @$aref), <span style="color:#e6db74">&#39;)&#39;</span>;
+</span></span><span style="display:flex;"><span>   occurrences_are_unique @$aref
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">and</span> say <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39; (occurrences are unique)&#39;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">or</span>  say <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39; (occurrences are not unique)&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <h3 id="task-2-dictionary-rank">Task #2: Dictionary Rank</h3>
 <hr>
 <br>
@@ -237,27 +237,27 @@ Write a script to compute the dictionary rank of the given word.
 <br>
 <p>Example 1 says <code>&quot;combinations&quot;</code>, but the context makes it clear that the author actually meant <code>&quot;permutations&quot;</code>. With that in mind, I use the <code>&quot;permute&quot;</code> function from <code>CPAN</code> module <code>&quot;Math::Combinatorics&quot;</code> to get a list of all letter orders, then sort, then use the <code>&quot;uniq&quot;</code> function from <code>CPAN</code> module <code>&quot;List::Util&quot;</code> to get rid of duplicates, then use the <code>&quot;firstidx&quot;</code> function from <code>CPAN</code> module <code>&quot;List::MoreUtils&quot;</code> to find the index of the first element which is equal to the original word, then add <code>1</code> for <code>1-indexing</code>:</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
-<span style="color:#66d9ef">use</span> utf8;
-<span style="color:#66d9ef">use</span> Math::Combinatorics <span style="color:#e6db74">&#39;permute&#39;</span>;
-<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;uniq&#39;</span>;
-<span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">&#39;firstidx&#39;</span>;
-
-<span style="color:#75715e"># What is the &#34;dictionary order&#34; (as defined in the problem</span>
-<span style="color:#75715e"># description) of a word?</span>
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dictionary_order</span> ($word) {
-   <span style="color:#66d9ef">my</span> @dic <span style="color:#f92672">=</span> uniq sort map {join <span style="color:#e6db74">&#39;&#39;</span>, @$_} permute split <span style="color:#e6db74">//</span>, $word;
-   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> firstidx {$_ <span style="color:#f92672">eq</span> $word} @dic;
-}
-
-<span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> @ARGV ? @ARGV : <span style="color:#e6db74">qw( CAT GOOGLE SECRET )</span>;
-
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (@words) {
-   say <span style="color:#e6db74">&#39;&#39;</span>;
-   say <span style="color:#e6db74">&#34;word = $word&#34;</span>;
-   say <span style="color:#e6db74">&#39;dictionary order = &#39;</span>, dictionary_order($word);
-}
-</code></pre></div><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> utf8;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Math::Combinatorics <span style="color:#e6db74">&#39;permute&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;uniq&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">&#39;firstidx&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># What is the &#34;dictionary order&#34; (as defined in the problem</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># description) of a word?</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dictionary_order</span> ($word) {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">my</span> @dic <span style="color:#f92672">=</span> uniq sort map {join <span style="color:#e6db74">&#39;&#39;</span>, @$_} permute split <span style="color:#e6db74">//</span>, $word;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> firstidx {$_ <span style="color:#f92672">eq</span> $word} @dic;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> @ARGV ? @ARGV : <span style="color:#e6db74">qw( CAT GOOGLE SECRET )</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (@words) {
+</span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#34;word = $word&#34;</span>;
+</span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#39;dictionary order = &#39;</span>, dictionary_order($word);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <strong><a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a></strong>.</p>
 <p>|   <a href="/blog/advent-calendar-2024"><strong>Advent Calendar 2024</strong></a>   |</p>

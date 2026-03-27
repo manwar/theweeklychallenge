@@ -177,8 +177,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
     
     <article class="prose">
 
-        <h2 id="advent-calendar-2020blogadvent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
-<h3 id="-day-16blogadvent-calendar-2020-12-16--day-17--day-18blogadvent-calendar-2020-12-18-">| <a href="/blog/advent-calendar-2020-12-16"><strong>Day 16</strong></a> | <strong>Day 17</strong> | <a href="/blog/advent-calendar-2020-12-18"><strong>Day 18</strong></a> |</h3>
+        <h2 id="advent-calendar-2020"><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></h2>
+<h3 id="-day-16--day-17--day-18-">| <a href="/blog/advent-calendar-2020-12-16"><strong>Day 16</strong></a> | <strong>Day 17</strong> | <a href="/blog/advent-calendar-2020-12-18"><strong>Day 18</strong></a> |</h3>
 <hr>
 <p>The gift is presented by <a href="/blog/meet-the-champion-027"><strong>Scimon Proctor</strong></a>. Today he is talking about his solution to the task <code>Trailing Zeros</code> of <strong><a href="/blog/perl-weekly-challenge-072">&ldquo;The Weekly Challenge - 072&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="https://dev.to/scimon/the-weekly-challenge-in-raku-week-72-part-1-2i0g"><strong>post</strong></a> by <strong>Scimon Proctor</strong>.</p>
 <hr>
@@ -198,40 +198,40 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <h1 id="finding-factorials">Finding Factorials</h1>
 <p>First thing to note is we can define the ! factorial operator quite easily :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">postfix</span>:&lt;!&gt; (UInt $N) {<span style="color:#f92672">...</span>}
-</code></pre></div><p>We&rsquo;ll cover the <code>...</code> bit in a sec but this defines <code>!</code> as a postfix operator that requires and Unsigned Integer in front of it. Thing is I won&rsquo;t be using this in my challenge because right now defining operators directly in scripts really slows down parsing (if you put them in Modules you get them precompiled but generally I don&rsquo;t make a module for the challenges).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">postfix</span>:&lt;!&gt; (UInt $N) {<span style="color:#f92672">...</span>}
+</span></span></code></pre></div><p>We&rsquo;ll cover the <code>...</code> bit in a sec but this defines <code>!</code> as a postfix operator that requires and Unsigned Integer in front of it. Thing is I won&rsquo;t be using this in my challenge because right now defining operators directly in scripts really slows down parsing (if you put them in Modules you get them precompiled but generally I don&rsquo;t make a module for the challenges).</p>
 <p>Still it&rsquo;s nice to know you can do it. Anyway lets say we instead make a <code>fact($N)</code> sub how hard is that?</p>
 <p>Personally I can think of three different ways of doing it off the top of my head, all of which are quite Rakuish so lets cover them each.</p>
 <h1 id="sequences-are-fun">Sequences are fun</h1>
 <p>A <strong>Raku</strong> <code>Seq</code> is a iterable object that returns values that are generally calculated as required. There&rsquo;s a couple of sequences that can provide factorials. This first uses the <code>...</code> <a href="https://docs.raku.org/language/operators#index-entry-..._operators"><strong>Sequence operator</strong></a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">@F <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,{$_ <span style="color:#f92672">*</span> $+<span style="color:#f92672">+</span>}<span style="color:#f92672">...*</span>)
-</code></pre></div><p>Here we define our starting condition <code>@F[0] == 1</code> then our iterator in this $_ is given the value of the previous item in the list and $ is a local state variable. This will be 1 in the first iteration so <code>@F[1] == 1</code> and then 2, 3 and so on. We use * as the final condition meaning we will keep generating values forever, but as sequences are lazy this doesn&rsquo;t cause our code to die.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>@F <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,{$_ <span style="color:#f92672">*</span> $+<span style="color:#f92672">+</span>}<span style="color:#f92672">...*</span>)
+</span></span></code></pre></div><p>Here we define our starting condition <code>@F[0] == 1</code> then our iterator in this $_ is given the value of the previous item in the list and $ is a local state variable. This will be 1 in the first iteration so <code>@F[1] == 1</code> and then 2, 3 and so on. We use * as the final condition meaning we will keep generating values forever, but as sequences are lazy this doesn&rsquo;t cause our code to die.</p>
 <p>Another way to create a <code>Sequence</code> would be to use [gather and take]{https://docs.raku.org/syntax/gather%20take} to explictly define it :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">my</span> @F <span style="color:#f92672">=</span> lazy gather {
-    <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    loop {
-        take $val;
-        $val <span style="color:#f92672">*=</span> $idx<span style="color:#f92672">++</span>;
-    }
-};
-</code></pre></div><p>A bit more wordy but sometimes this can be good. For a simple sequence like this it&rsquo;s probably over kill but in other cases you may fine it useful.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @F <span style="color:#f92672">=</span> lazy gather {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    loop {
+</span></span><span style="display:flex;"><span>        take $val;
+</span></span><span style="display:flex;"><span>        $val <span style="color:#f92672">*=</span> $idx<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>A bit more wordy but sometimes this can be good. For a simple sequence like this it&rsquo;s probably over kill but in other cases you may fine it useful.</p>
 <h1 id="recursion-is-fun-too">Recursion is fun too</h1>
 <p>A classic way to do factorials (and in some languages the only way) is to use recursion. Raku lends itself to this with multi subs for example :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fact</span>( 0 ) { <span style="color:#ae81ff">1</span> }
-
-multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fact</span>( UInt $N ) { $N <span style="color:#f92672">*</span> fact( $N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) }
-</code></pre></div><p>Here fact will recursively call itself until <code>$N</code> is 1 at which point the fact(0) call will match and the stack can unroll.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fact</span>( 0 ) { <span style="color:#ae81ff">1</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fact</span>( UInt $N ) { $N <span style="color:#f92672">*</span> fact( $N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) }
+</span></span></code></pre></div><p>Here fact will recursively call itself until <code>$N</code> is 1 at which point the fact(0) call will match and the stack can unroll.</p>
 <p>This is probably safe to do as in this challenge <code>$N</code> can&rsquo;t go over 10 but it&rsquo;s dangerous to rely on otherwise as you may get stack overflows.</p>
 <p>Still nice to know it&rsquo;s easy enough.</p>
 <h1 id="meta-ops-are-your-friends">Meta Ops are your friends</h1>
 <p>When I did the challenge my first thought was to turn to Meta Operators. As 5! can be written as <code>1 * 2 * 3 * 4 * 5</code> this looks to me like a reduction on the list <code>(1,2,3,4,5)</code> with the <code>*</code> operator. the <code>[]</code> reduction metaoperator lets you write this like so :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fact</span>(UInt $N) { [<span style="color:#f92672">*</span>] (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$N) }
-</code></pre></div><p>Note this works for <code>0</code> as the Range <code>1..0</code> is the list <code>(1)</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fact</span>(UInt $N) { [<span style="color:#f92672">*</span>] (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$N) }
+</span></span></code></pre></div><p>Note this works for <code>0</code> as the Range <code>1..0</code> is the list <code>(1)</code>.</p>
 <h1 id="finding-the-trailing-zeros">Finding the Trailing Zeros.</h1>
 <p>So we&rsquo;ve got our factorial using one of the above options how do we find trailing zeros? Well as an old school Perl dev the first thing that comes to my mind is to use a Regex. The expression <code>0*$</code> will match 0 or more <code>0's</code> at the end of a string. We then can count the length of this match and return it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">say (fact($N) <span style="color:#f92672">~~</span> <span style="color:#e6db74">m!(0*)$!</span>)[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>Str<span style="color:#f92672">.</span>codes;
-</code></pre></div><p>We get a Match object and can get it&rsquo;s zeroth value which is the first capture (here&rsquo;s a difference in Raku Regexes, captures start at 0). We coerce this to a Str and then count the code points. And Bingo, the count of trailing 0&rsquo;s.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>say (fact($N) <span style="color:#f92672">~~</span> <span style="color:#e6db74">m!(0*)$!</span>)[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>Str<span style="color:#f92672">.</span>codes;
+</span></span></code></pre></div><p>We get a Match object and can get it&rsquo;s zeroth value which is the first capture (here&rsquo;s a difference in Raku Regexes, captures start at 0). We coerce this to a Str and then count the code points. And Bingo, the count of trailing 0&rsquo;s.</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></p>

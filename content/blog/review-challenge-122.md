@@ -61,7 +61,7 @@ You are given a stream of numbers, @N.
 Write a script to print the average of the stream at every point.
 
 **Example**
-```
+```perl
 
     Input: @N = (10, 20, 30, 40, 50, 60, 70, 80, 90, ...)
     Output:      10, 15, 20, 25, 30, 35, 40, 45, 50, ...
@@ -270,7 +270,7 @@ And in a final turn away from existential dread, CY switches things up in an ent
 
 We saw several examples of this technique, with some providing much more elaborate stream generating functions, both integral and auxiliary. We will have a look into this idea further a little later in the program.
 
-```
+```perl
 
     [colincrain@boris:~/Code/PWC/122-Review/TASK1]$  perl 122-1-CheokYinFung-REVIEW.pl
     Keep entering a number and the average of the stream will be printed.
@@ -590,7 +590,7 @@ Write a script to find out the different ways you can score $S.
 
 **Example**
 
-```
+```perl
 
     Input: $S = 4
     Output: 1 1 1 1
