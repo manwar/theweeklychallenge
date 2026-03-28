@@ -13,48 +13,6 @@ tags: ["Perl"]
 
 <br>
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/slurp-in-perl" title="Slurp in Perl">
-                <img src="/images/blog/slurp-mini.png" class="img-fluid">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/scientist-in-perl" title="Scientist in Perl">
-                <img src="/images/blog/scientist-in-perl-mini.png" class="img-fluid">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/extraction-in-perl" title="Text Extraction in Perl">
-                <img src="/images/blog/extraction-in-perl-mini.png" class="img-fluid">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/random-in-perl" title="Random in Perl">
-                <img src="/images/blog/random-in-perl-mini.png" class="img-fluid">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/subroutine-signatures" title="Subroutine Signatures in Perl">
-                <img src="/images/blog/subroutine-signatures-mini.png" class="img-fluid">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/read-large-file" title="Read Large File">
-                <img src="/images/blog/read-large-file-mini.png" class="img-fluid">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/welcome-to-perl" title="Welcome to Perl">
-                <img src="/images/blog/welcome-to-perl-mini.png" class="img-fluid">
-            </a>
-        </div>
-    </div>
-</div>
-
-<br>
-
 ## Special variable ${^LAST_SUCCESSFUL_PATTERN} in Perl v5.38
 ***
 
