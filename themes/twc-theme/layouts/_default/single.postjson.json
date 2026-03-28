@@ -3,7 +3,11 @@
 {{- $content = $content | replaceRE `src="(/[^"]+)"` "src=\"https://theweeklychallenge.org$1\"" -}}
 {{- $content = $content | replaceRE `(?m)[ \t]*<img\s[^>]*src="([^"]+)"[^>]*>` "\n![image]($1)\n" -}}
 {{- $content = $content | replaceRE `<[^>]+>` "" -}}
-{{- $content = $content | replaceRE `(?m)^[ \t]+$` "" -}}
+{{- $content = $content | replaceRE `(?m)^[|\s]+$` "" -}}
+{{- $content = $content | replaceRE ` \| ` " " -}}
+{{- $content = $content | replaceRE `(?m)^\|` "" -}}
+{{- $content = $content | replaceRE `(?m)\|$` "" -}}
+{{- $content = $content | replaceRE `\|` "" -}}
 {
   "slug":    {{ .File.BaseFileName | jsonify }},
   "title":   {{ .Title | jsonify }},
