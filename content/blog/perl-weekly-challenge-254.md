@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 254"
 date: 2024-01-29T00:00:00+00:00
 description: "The Weekly Challenge - 254"
 type: post
-image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

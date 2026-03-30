@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 138"
 date: 2021-11-08T00:00:00+00:00
 description: "The Weekly Challenge - 138"
 type: post
-image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

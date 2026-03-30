@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 166"
 date: 2022-05-23T00:00:00+00:00
 description: "The Weekly Challenge - 166"
 type: post
-image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

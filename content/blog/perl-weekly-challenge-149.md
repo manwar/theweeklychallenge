@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 149"
 date: 2022-01-24T00:00:00+00:00
 description: "The Weekly Challenge - 149"
 type: post
-image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 214"
 date: 2023-04-24T00:00:00+00:00
 description: "The Weekly Challenge - 214"
 type: post
-image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

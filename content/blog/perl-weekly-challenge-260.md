@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 260"
 date: 2024-03-11T00:00:00+00:00
 description: "The Weekly Challenge - 260"
 type: post
-image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

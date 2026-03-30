@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 199"
 date: 2023-01-09T00:00:00+00:00
 description: "The Weekly Challenge - 199"
 type: post
-image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

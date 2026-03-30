@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 178"
 date: 2022-08-15T00:00:00+00:00
 description: "The Weekly Challenge - 178"
 type: post
-image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

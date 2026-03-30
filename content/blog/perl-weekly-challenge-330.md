@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 330"
 date: 2025-07-14T00:00:00+00:00
 description: "The Weekly Challenge - 330"
 type: post
-image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 145"
 date: 2021-12-27T00:00:00+00:00
 description: "The Weekly Challenge - 145"
 type: post
-image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

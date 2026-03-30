@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 278"
 date: 2024-07-15T00:00:00+00:00
 description: "The Weekly Challenge - 278"
 type: post
-image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

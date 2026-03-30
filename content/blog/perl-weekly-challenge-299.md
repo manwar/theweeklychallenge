@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 299"
 date: 2024-12-09T00:00:00+00:00
 description: "The Weekly Challenge - 299"
 type: post
-image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

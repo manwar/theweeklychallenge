@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 235"
 date: 2023-09-18T00:00:00+00:00
 description: "The Weekly Challenge - 235"
 type: post
-image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

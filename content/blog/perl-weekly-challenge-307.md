@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 307"
 date: 2025-02-02T00:00:00+00:00
 description: "The Weekly Challenge - 307"
 type: post
-image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

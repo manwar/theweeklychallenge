@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 358"
 date: 2026-01-26T00:00:00+00:00
 description: "The Weekly Challenge - 358"
 type: post
-image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

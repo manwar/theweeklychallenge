@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 171"
 date: 2022-06-27T00:00:00+00:00
 description: "The Weekly Challenge - 171"
 type: post
-image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 291"
 date: 2024-10-14T00:00:00+00:00
 description: "The Weekly Challenge - 291"
 type: post
-image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

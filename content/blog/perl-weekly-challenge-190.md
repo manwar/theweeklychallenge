@@ -3,7 +3,6 @@ title: "The Weekly Challenge - 190"
 date: 2022-11-07T00:00:00+00:00
 description: "The Weekly Challenge - 190"
 type: post
-image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---
