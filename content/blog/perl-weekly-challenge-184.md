@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 184"
 date: 2022-09-26T00:00:00+00:00
 description: "The Weekly Challenge - 184"
 type: post
-image: images/twc-logo.png
+image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

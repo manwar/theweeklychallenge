@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 352"
 date: 2025-12-15T00:00:00+00:00
 description: "The Weekly Challenge - 352"
 type: post
-image: images/twc-logo.png
+image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 175"
 date: 2022-07-25T00:00:00+00:00
 description: "The Weekly Challenge - 175"
 type: post
-image: images/twc-logo.png
+image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

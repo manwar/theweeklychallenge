@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 250"
 date: 2024-01-01T00:00:00+00:00
 description: "The Weekly Challenge - 250"
 type: post
-image: images/twc-logo.png
+image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 332"
 date: 2025-07-26T00:00:00+00:00
 description: "The Weekly Challenge - 332"
 type: post
-image: images/twc-logo.png
+image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

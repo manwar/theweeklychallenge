@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 228"
 date: 2023-07-31T00:00:00+00:00
 description: "The Weekly Challenge - 228"
 type: post
-image: images/twc-logo.png
+image: images/og-image.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---

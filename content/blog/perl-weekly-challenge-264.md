@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 264"
 date: 2024-04-08T00:00:00+00:00
 description: "The Weekly Challenge - 264"
 type: post
-image: images/twc-logo.png
+image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

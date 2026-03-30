@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 316"
 date: 2025-04-07T00:00:00+00:00
 description: "The Weekly Challenge - 316"
 type: post
-image: images/twc-logo.png
+image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

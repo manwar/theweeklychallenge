@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 363"
 date: 2026-03-02T00:00:00+00:00
 description: "The Weekly Challenge - 363"
 type: post
-image: images/twc-logo.png
+image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

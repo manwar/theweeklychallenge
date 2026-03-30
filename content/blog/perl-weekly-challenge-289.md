@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 289"
 date: 2024-09-23T00:00:00+00:00
 description: "The Weekly Challenge - 289"
 type: post
-image: images/twc-logo.png
+image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---

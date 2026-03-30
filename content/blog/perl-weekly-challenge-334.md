@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 334"
 date: 2025-08-11T00:00:00+00:00
 description: "The Weekly Challenge - 334"
 type: post
-image: images/twc-logo.png
+image: images/og-image.jpg
 author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
