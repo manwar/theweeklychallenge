@@ -13,6 +13,14 @@ Writes: <site-root>/data/guestcontributions.yaml
 import re, yaml, os, sys
 
 
+class NoAliasDumper(yaml.Dumper):
+    """Prevent PyYAML from emitting anchors/aliases for repeated objects.
+    Hugo's go-yaml parser enforces a limit on non-scalar aliases, so we
+    always write fully-expanded YAML instead."""
+    def ignore_aliases(self, data):
+        return True
+
+
 def find_site_root():
     """Walk up from the script's own location until we find config.toml."""
     path = os.path.abspath(os.path.dirname(__file__))
@@ -32,8 +40,8 @@ if ROOT is None:
     print("       Run this script from within your Hugo site directory.")
     sys.exit(1)
 
-MARKDOWN = os.path.join(ROOT, 'content', 'blog', 'guest-contribution.md')
-OUTPUT   = os.path.join(ROOT, 'data', 'guestcontributions.yaml')
+MARKDOWN  = os.path.join(ROOT, 'content', 'blog', 'guest-contribution.md')
+OUTDIR    = os.path.join(ROOT, 'data', 'guestcontributions')
 
 if not os.path.exists(MARKDOWN):
     print(f"ERROR: {MARKDOWN} not found")
@@ -41,7 +49,7 @@ if not os.path.exists(MARKDOWN):
 
 print(f"Site root : {ROOT}")
 print(f"Reading   : {MARKDOWN}")
-print(f"Writing   : {OUTPUT}")
+print(f"Writing   : {OUTDIR}/week-NNN.yaml  (one file per week)")
 print()
 
 with open(MARKDOWN, 'r') as f:
@@ -94,11 +102,26 @@ for i, (week_num, blog_url, start, end) in enumerate(weeks):
 # Sort newest first
 all_weeks.sort(key=lambda w: w['week'], reverse=True)
 
-os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
-with open(OUTPUT, 'w') as f:
-    yaml.dump(all_weeks, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+os.makedirs(OUTDIR, exist_ok=True)
 
-print(f"✓ Written {len(all_weeks)} weeks, {sum(len(w['contributions']) for w in all_weeks)} entries")
+# Remove stale week files that no longer exist in the source
+existing_files = set(os.listdir(OUTDIR))
+current_files  = set()
+
+for week_data in all_weeks:
+    filename = f"week-{week_data['week']:03d}.yaml"
+    current_files.add(filename)
+    with open(os.path.join(OUTDIR, filename), 'w') as f:
+        yaml.dump(week_data, f, Dumper=NoAliasDumper, default_flow_style=False,
+                  allow_unicode=True, sort_keys=False)
+
+stale = existing_files - current_files
+for f in stale:
+    os.remove(os.path.join(OUTDIR, f))
+    print(f"  Removed stale file: {f}")
+
+print(f"✓ Written {len(all_weeks)} week files to {OUTDIR}/")
+print(f"  Total entries: {sum(len(w['contributions']) for w in all_weeks)}")
 if errors:
     print(f"  {len(errors)} parse error(s):")
     for e in errors[:5]: print(f"    {e}")

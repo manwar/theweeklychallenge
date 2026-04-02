@@ -1,6 +1,10 @@
-{{- $data := hugo.Data.guestcontributions -}}
+{{- $allWeeks := slice -}}
+{{- range hugo.Data.guestcontributions -}}
+    {{- $allWeeks = $allWeeks | append . -}}
+{{- end -}}
+{{- $allWeeks = sort $allWeeks "week" "desc" -}}
 [
-{{- range $i, $week := $data }}{{ if $i }},{{ end }}
+{{- range $i, $week := $allWeeks }}{{ if $i }},{{ end }}
 {
   "week": {{ $week.week }},
   "blog": {{ printf "https://theweeklychallenge.org%s" $week.blog | jsonify }},

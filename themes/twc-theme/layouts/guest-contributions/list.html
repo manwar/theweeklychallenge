@@ -1,8 +1,15 @@
 {{ define "main" }}
 
-{{/* ── Build week→year lookup from actual data ── */}}
-{{ $weekYears := dict }}
+{{/* ── Convert map→sorted slice once, reuse everywhere ── */}}
+{{ $allWeeks := slice }}
 {{ range hugo.Data.guestcontributions }}
+    {{ $allWeeks = $allWeeks | append . }}
+{{ end }}
+{{ $allWeeks = sort $allWeeks "week" "desc" }}
+
+{{/* ── Build week→year lookup ── */}}
+{{ $weekYears := dict }}
+{{ range $allWeeks }}
     {{ $w := .week }}
     {{ range $year, $range := $.Site.Params.weekYears }}
         {{ $first := index $range 0 }}
@@ -54,9 +61,8 @@
     {{ $last  := index $range 1 }}
     <div class="gc-year-grid{{ if eq $i 0 }} active{{ end }}" data-year="{{ $year }}">
         <div class="guest-week-grid">
-            {{/* Only show buttons for weeks that have actual data */}}
             {{ $weeksWithData := slice }}
-            {{ range hugo.Data.guestcontributions }}
+            {{ range $allWeeks }}
                 {{ if and (ge .week $first) (le .week $last) }}
                     {{ $weeksWithData = $weeksWithData | append .week }}
                 {{ end }}
@@ -76,7 +82,7 @@
     {{ $first := index $range 0 }}
     {{ $last  := index $range 1 }}
     <div class="gc-year-section{{ if eq $i 0 }} active{{ end }}" data-year="{{ $year }}">
-        {{ range hugo.Data.guestcontributions }}
+        {{ range $allWeeks }}
             {{ if and (ge .week $first) (le .week $last) }}
             <section class="gc-week" id="week-{{ .week }}">
                 <h2 class="gc-week-title">
