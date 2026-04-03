@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-04-01T00:00:00+00:00
+date: 2026-04-03T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1191,6 +1191,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-367/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-367/zapwai/c/ch-2.c) in **C**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-367/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-367/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Jorg Sommrey** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-367/jo-37/j/ch-1.ijs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-367/jo-37/j/ch-2.ijs) in **J**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-367/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-367/lubos-kolouch/python/ch-2.py) in **Python**.
 
@@ -13917,6 +13919,8 @@ ____
 
 ##### **Mohammad Sajid Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/mohammad-anwar/swift/ch-2.swift) in **Swift**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/paulo-custodio/c/ch-2.c) in **C**.
+
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/paulo-custodio/python/ch-2.py) in **Python**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/pokgopun/dart/ch-1.dart) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-176/pokgopun/dart/ch-2.dart) in **Dart**.
@@ -14033,7 +14037,7 @@ ____
 
 ##### **Mohammad Sajid Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/mohammad-anwar/swift/ch-2.swift) in **Swift**.
 
-##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/paulo-custodio/c/ch-1.c) in **C**.
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/paulo-custodio/c/ch-2.c) in **C**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-175/paulo-custodio/python/ch-2.py) in **Python**.
 
@@ -14133,6 +14137,8 @@ ____
 
 ##### **Mohammad Sajid Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/mohammad-anwar/swift/ch-2.swift) in **Swift**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/paulo-custodio/c/ch-2.c) in **C**.
+
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/pokgopun/dart/ch-1.dart) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/pokgopun/dart/ch-2.dart) in **Dart**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/pokgopun/go/ch-2.go) in **Go**.
@@ -14225,6 +14231,8 @@ ____
 
 ##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/mohammad-anwar/swift/ch-1.swift) in **Swift**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/paulo-custodio/c/ch-2.c) in **C**.
+
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/pokgopun/go/ch-2.go) in **Go**.
 
 ##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/robert-dicicco/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-173/robert-dicicco/julia/ch-2.jl) in **Julia**.
@@ -14278,6 +14286,8 @@ ____
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Mohammad Sajid Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/mohammad-anwar/python/ch-2.py) in **Python**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/paulo-custodio/c/ch-2.c) in **C**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-172/paulo-custodio/python/ch-2.py) in **Python**.
 
@@ -14379,6 +14389,8 @@ ____
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/paulo-custodio/c/ch-2.c) in **C**.
+
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/paulo-custodio/python/ch-2.py) in **Python**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-171/pokgopun/go/ch-2.go) in **Go**.
@@ -14434,6 +14446,8 @@ ____
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-170/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-170/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-170/mohammad-anwar/python/ch-1.py) in **Python**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-170/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-170/paulo-custodio/c/ch-2.c) in **C**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-170/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-170/paulo-custodio/python/ch-2.py) in **Python**.
 
