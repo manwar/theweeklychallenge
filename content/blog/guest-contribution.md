@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-04-08T00:00:00+00:00
+date: 2026-04-10T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1177,6 +1177,10 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ## [The Weekly Challenge - 368](/blog/perl-weekly-challenge-368) {#368}
 <br>
+
+##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-368/conor-hoekstra/apl/ch-1.tinyapl) in **APL**.
+
+##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-368/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-368/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-368/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-368/zapwai/c/ch-2.c) in **C**.
 
