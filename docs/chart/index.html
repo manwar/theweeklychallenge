@@ -877,59 +877,6 @@ function attachDrilldown(id,raw){
 }
 
  
-function loadChartWithFallback(canvasId, primaryUrl, fallbackUrl, wrapId, spinnerId){
-    if(_loaded[canvasId]) return;
-    _loaded[canvasId]=true; _ddStack[canvasId]=[];
-    if(spinnerId) spinShow(spinnerId);
-    fetch(BASE+primaryUrl)
-        .then(function(r){
-            if(!r.ok) throw new Error('HTTP '+r.status);
-            return r.json();
-        })
-        .then(function(data){
-             
-            var hasSeries = data && data.series && data.series.length &&
-                            data.series.some(function(s){ return s.data && s.data.length > 0; });
-            if(!hasSeries) throw new Error('empty');
-            if(spinnerId) spinHide(spinnerId);
-            try{ renderChart(canvasId, data); updateCountLabel(canvasId, data, wrapId); }
-            catch(e){ showError(canvasId,'Render error: '+e.message); console.error(e); }
-        })
-        .catch(function(){
-             
-            fetch(BASE+fallbackUrl)
-                .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-                .then(function(data){
-                    if(spinnerId) spinHide(spinnerId);
-                    try{ renderChart(canvasId, data); updateCountLabel(canvasId, data, wrapId); }
-                    catch(e){ showError(canvasId,'Render error: '+e.message); console.error(e); }
-                })
-                .catch(function(e){
-                    if(spinnerId) spinHide(spinnerId);
-                    showError(canvasId,'Could not load '+fallbackUrl);
-                    console.warn(fallbackUrl, e);
-                });
-        });
-}
-
-function updateCountLabel(canvasId, data, wrapId){
-    var countMap = {'guests-wrap':'guests-count','challenges-wrap':'challenges-count'};
-    if(!countMap[wrapId]) return;
-    var labelEl=document.getElementById(countMap[wrapId]); if(!labelEl) return;
-    var n=0;
-    if(data&&data.xAxis&&data.xAxis.categories) n=data.xAxis.categories.length;
-    else if(data&&data.series&&data.series[0]&&data.series[0].data) n=data.series[0].data.length;
-    var section=wrapId==='guests-wrap'?'Guest':'Member';
-    var updated='';
-    if(data&&data.subtitle&&data.subtitle.text){
-        var m=data.subtitle.text.match(/Last updated at ([^<]+)/);
-        if(m) updated=' · Last updated: '+m[1].trim();
-    }
-    labelEl.textContent = n > 0 ? section+'s: '+n+updated : updated||'';
-}
-
-
- 
 function loadChart(canvasId, jsonFile, wrapId, spinnerId){
     if(_loaded[canvasId]) return;
     _loaded[canvasId]=true; _ddStack[canvasId]=[];
@@ -1083,21 +1030,6 @@ function wireShowMore(showMoreId,showLessId,hiddenId){
 
 document.addEventListener('DOMContentLoaded',function(){
 
-    
-
-    function extractWeekNum(data){
-        var sources=[
-            data&&data.title&&data.title.text,
-            data&&data.subtitle&&data.subtitle.text
-        ];
-        for(var i=0;i<sources.length;i++){
-            if(!sources[i]) continue;
-            var m=sources[i].match(/\-\s*(\d+)\s*$/);
-            if(m) return parseInt(m[1],10);
-        }
-        return null;
-    }
-
      
     function buildVisibleTabs(containerId, prefix, jsonPrefix, currentWeekNum){
         var visibleTab=document.getElementById(containerId);
@@ -1117,7 +1049,7 @@ document.addEventListener('DOMContentLoaded',function(){
     }
 
      
-    var HUGO_CURRENT_WEEK= 369 ;
+    var HUGO_CURRENT_WEEK= 368 ;
 
      
     function boot(currentWeekNum){
@@ -1166,22 +1098,13 @@ document.addEventListener('DOMContentLoaded',function(){
     },{passive:true});
 
      
-    fetch(BASE+'pwc-current.json')
+    fetch('/current.json')
         .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
         .then(function(data){
-            var w=extractWeekNum(data);
-            if(w) return boot(w);
-             
-            return fetch(BASE+'gc-current.json')
-                .then(function(r){ if(!r.ok) throw new Error(); return r.json(); })
-                .then(function(d){ boot(extractWeekNum(d)||HUGO_CURRENT_WEEK); })
-                .catch(function(){ boot(HUGO_CURRENT_WEEK); });
+            boot(data.chart_week || HUGO_CURRENT_WEEK);
         })
         .catch(function(){
-            fetch(BASE+'gc-current.json')
-                .then(function(r){ if(!r.ok) throw new Error(); return r.json(); })
-                .then(function(data){ boot(extractWeekNum(data)||HUGO_CURRENT_WEEK); })
-                .catch(function(){ boot(HUGO_CURRENT_WEEK); });
+            boot(HUGO_CURRENT_WEEK);
         });
 });
 </script>
