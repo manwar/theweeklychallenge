@@ -1,5 +1,6 @@
 {{- /* 1. Pull data directly from config.toml [params] */ -}}
 {{- $currentWeekNum := .Site.Params.currentWeek -}}
+{{- $currentChartWeekNum := .Site.Params.currentChartWeek -}}
 {{- $banner         := .Site.Params.banner -}}
 
 {{- /* 2. Find the page for this week to get the URL and Date */ -}}
@@ -15,6 +16,7 @@
     {{- /* 3. Output JSON using ONLY config values for titles and descriptions */ -}}
     {
       "week":        {{ $currentWeekNum }},
+      "chart_week":  {{ $currentChartWeekNum }},
       "title":       {{ $latest.Title | jsonify }},
       "url":         {{ $latest.Permalink | jsonify }},
       "pubDate":     {{ $latest.Date.Format "2006-01-02" | jsonify }},
