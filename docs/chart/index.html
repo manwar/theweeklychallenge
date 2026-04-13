@@ -877,6 +877,59 @@ function attachDrilldown(id,raw){
 }
 
  
+function loadChartWithFallback(canvasId, primaryUrl, fallbackUrl, wrapId, spinnerId){
+    if(_loaded[canvasId]) return;
+    _loaded[canvasId]=true; _ddStack[canvasId]=[];
+    if(spinnerId) spinShow(spinnerId);
+    fetch(BASE+primaryUrl)
+        .then(function(r){
+            if(!r.ok) throw new Error('HTTP '+r.status);
+            return r.json();
+        })
+        .then(function(data){
+             
+            var hasSeries = data && data.series && data.series.length &&
+                            data.series.some(function(s){ return s.data && s.data.length > 0; });
+            if(!hasSeries) throw new Error('empty');
+            if(spinnerId) spinHide(spinnerId);
+            try{ renderChart(canvasId, data); updateCountLabel(canvasId, data, wrapId); }
+            catch(e){ showError(canvasId,'Render error: '+e.message); console.error(e); }
+        })
+        .catch(function(){
+             
+            fetch(BASE+fallbackUrl)
+                .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+                .then(function(data){
+                    if(spinnerId) spinHide(spinnerId);
+                    try{ renderChart(canvasId, data); updateCountLabel(canvasId, data, wrapId); }
+                    catch(e){ showError(canvasId,'Render error: '+e.message); console.error(e); }
+                })
+                .catch(function(e){
+                    if(spinnerId) spinHide(spinnerId);
+                    showError(canvasId,'Could not load '+fallbackUrl);
+                    console.warn(fallbackUrl, e);
+                });
+        });
+}
+
+function updateCountLabel(canvasId, data, wrapId){
+    var countMap = {'guests-wrap':'guests-count','challenges-wrap':'challenges-count'};
+    if(!countMap[wrapId]) return;
+    var labelEl=document.getElementById(countMap[wrapId]); if(!labelEl) return;
+    var n=0;
+    if(data&&data.xAxis&&data.xAxis.categories) n=data.xAxis.categories.length;
+    else if(data&&data.series&&data.series[0]&&data.series[0].data) n=data.series[0].data.length;
+    var section=wrapId==='guests-wrap'?'Guest':'Member';
+    var updated='';
+    if(data&&data.subtitle&&data.subtitle.text){
+        var m=data.subtitle.text.match(/Last updated at ([^<]+)/);
+        if(m) updated=' · Last updated: '+m[1].trim();
+    }
+    labelEl.textContent = n > 0 ? section+'s: '+n+updated : updated||'';
+}
+
+
+ 
 function loadChart(canvasId, jsonFile, wrapId, spinnerId){
     if(_loaded[canvasId]) return;
     _loaded[canvasId]=true; _ddStack[canvasId]=[];
@@ -1030,53 +1083,73 @@ function wireShowMore(showMoreId,showLessId,hiddenId){
 
 document.addEventListener('DOMContentLoaded',function(){
 
+    
+
+    function extractWeekNum(data){
+        var sources=[
+            data&&data.title&&data.title.text,
+            data&&data.subtitle&&data.subtitle.text
+        ];
+        for(var i=0;i<sources.length;i++){
+            if(!sources[i]) continue;
+            var m=sources[i].match(/\-\s*(\d+)\s*$/);
+            if(m) return parseInt(m[1],10);
+        }
+        return null;
+    }
+
      
-    (function(){
-        var visibleTab=document.getElementById('challenges-tabs');
-        var latest= 368 ;
-        var bottom=latest - 78;  
+    function buildVisibleTabs(containerId, prefix, jsonPrefix, currentWeekNum){
+        var visibleTab=document.getElementById(containerId);
+        if(!visibleTab) return;
+        var latest=currentWeekNum - 1;  
+        var bottom=latest - 78;         
         for(var n=latest;n>=bottom;n--){
             var pad=String(n).padStart(3,'0');
             var btn=document.createElement('button');
             btn.className='chart-tab';
-            btn.dataset.canvas='cv_pwc_'+pad;
-            btn.dataset.url='pwc-challenge-'+pad+'.json';
+            btn.dataset.canvas=prefix+pad;
+            btn.dataset.url=jsonPrefix+pad+'.json';
             btn.textContent=String(n);
             visibleTab.appendChild(btn);
         }
-        buildWeekTabs('challenges-tabs-old','challenges-wrap','challenges-spinner','cv_pwc_','pwc-challenge-',bottom-1,1);
-    })();
+        return bottom;
+    }
 
      
-    (function(){
-        var visibleTab=document.getElementById('guests-tabs');
-        var latest= 368 ;
-        var bottom=latest - 78;  
-        for(var n=latest;n>=bottom;n--){
-            var pad=String(n).padStart(3,'0');
-            var btn=document.createElement('button');
-            btn.className='chart-tab';
-            btn.dataset.canvas='cv_gc_'+pad;
-            btn.dataset.url='gc-challenge-'+pad+'.json';
-            btn.textContent=String(n);
-            visibleTab.appendChild(btn);
-        }
-        buildWeekTabs('guests-tabs-old','guests-wrap','guests-spinner','cv_gc_','gc-challenge-',bottom-1,1);
-    })();
+    var HUGO_CURRENT_WEEK= 369 ;
 
      
-    wireTabGroup(['members-tabs'],                          'members-wrap',       'members-spinner');
-    wireTabGroup(['guest-leaders-tabs'],                    'guest-leaders-wrap', 'guest-leaders-spinner');
-    wireTabGroup(['languages-tabs'],                        'languages-wrap',     'languages-spinner');
-    wireTabGroup(['guests-tabs','guests-tabs-old'],         'guests-wrap',        'guests-spinner');
-    wireTabGroup(['challenges-tabs','challenges-tabs-old'], 'challenges-wrap',    'challenges-spinner');
+    function boot(currentWeekNum){
+         
+        var pwcBottom=buildVisibleTabs('challenges-tabs','cv_pwc_','pwc-challenge-',currentWeekNum);
+        buildWeekTabs('challenges-tabs-old','challenges-wrap','challenges-spinner','cv_pwc_','pwc-challenge-',pwcBottom-1,1);
 
-     
-    loadChart('cv_leaders','pwc-leaders.json','leaders-wrap','leaders-spinner');
+         
+        var gcBottom=buildVisibleTabs('guests-tabs','cv_gc_','gc-challenge-',currentWeekNum);
+        buildWeekTabs('guests-tabs-old','guests-wrap','guests-spinner','cv_gc_','gc-challenge-',gcBottom-1,1);
 
-     
-    wireShowMore('gc-show-more','gc-show-less','guests-tabs-old');
-    wireShowMore('pwc-show-more','pwc-show-less','challenges-tabs-old');
+         
+        wireTabGroup(['members-tabs'],                          'members-wrap',       'members-spinner');
+        wireTabGroup(['guest-leaders-tabs'],                    'guest-leaders-wrap', 'guest-leaders-spinner');
+        wireTabGroup(['languages-tabs'],                        'languages-wrap',     'languages-spinner');
+        wireTabGroup(['guests-tabs','guests-tabs-old'],         'guests-wrap',        'guests-spinner');
+        wireTabGroup(['challenges-tabs','challenges-tabs-old'], 'challenges-wrap',    'challenges-spinner');
+
+         
+        loadChart('cv_leaders','pwc-leaders.json','leaders-wrap','leaders-spinner');
+
+         
+        wireShowMore('gc-show-more','gc-show-less','guests-tabs-old');
+        wireShowMore('pwc-show-more','pwc-show-less','challenges-tabs-old');
+
+         
+        loadChart('cv_m_1_30',   'pwc-summary-1-30.json',              'members-wrap',       'members-spinner');
+        loadChart('cv_gl_summary','guest-leaders.json',                 'guest-leaders-wrap', 'guest-leaders-spinner');
+        loadChart('cv_gc_cur',   'gc-current.json',                    'guests-wrap',        'guests-spinner');
+        loadChart('cv_pwc_cur',  'pwc-current.json',                   'challenges-wrap',    'challenges-spinner');
+        loadChart('cv_lang_sum', 'pwc-language-breakdown-summary.json','languages-wrap',     'languages-spinner');
+    }
 
      
     var sections=document.querySelectorAll('.chart-section');
@@ -1093,11 +1166,23 @@ document.addEventListener('DOMContentLoaded',function(){
     },{passive:true});
 
      
-    loadChart('cv_m_1_30',   'pwc-summary-1-30.json',              'members-wrap',       'members-spinner');
-    loadChart('cv_gl_summary','guest-leaders.json',                 'guest-leaders-wrap', 'guest-leaders-spinner');
-    loadChart('cv_gc_cur',    'gc-current.json',                    'guests-wrap',        'guests-spinner');
-    loadChart('cv_pwc_cur',   'pwc-current.json',                   'challenges-wrap',    'challenges-spinner');
-    loadChart('cv_lang_sum',  'pwc-language-breakdown-summary.json','languages-wrap',     'languages-spinner');
+    fetch(BASE+'pwc-current.json')
+        .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+        .then(function(data){
+            var w=extractWeekNum(data);
+            if(w) return boot(w);
+             
+            return fetch(BASE+'gc-current.json')
+                .then(function(r){ if(!r.ok) throw new Error(); return r.json(); })
+                .then(function(d){ boot(extractWeekNum(d)||HUGO_CURRENT_WEEK); })
+                .catch(function(){ boot(HUGO_CURRENT_WEEK); });
+        })
+        .catch(function(){
+            fetch(BASE+'gc-current.json')
+                .then(function(r){ if(!r.ok) throw new Error(); return r.json(); })
+                .then(function(data){ boot(extractWeekNum(data)||HUGO_CURRENT_WEEK); })
+                .catch(function(){ boot(HUGO_CURRENT_WEEK); });
+        });
 });
 </script>
 
