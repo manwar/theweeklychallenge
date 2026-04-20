@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/dbic-resultset/">
+    <title>DBIx::Class - Result Class &amp; ResultSet Class | Apr 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Use of Result class and ResultSet class with examples.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/dbic-resultset/">
+    <meta property="og:title"       content="DBIx::Class - Result Class &amp; ResultSet Class">
+    <meta property="og:description" content="Use of Result class and ResultSet class with examples.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/dbic-resultset.jpg">
+    
+    <meta property="article:published_time" content="2026-04-20T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-04-20T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="DBIx::Class - Result Class &amp; ResultSet Class">
+    <meta name="twitter:description" content="Use of Result class and ResultSet class with examples.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/dbic-resultset.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/dbic-resultset/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">DBIx::Class - Result Class &amp; ResultSet Class</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>DBIx::Class - Result Class &amp; ResultSet Class</span>
+        </nav>
+        <span class="reading-time" title="785 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  3 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 20 Apr 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/dbic-resultset.jpg" alt="DBIx::Class - Result Class &amp; ResultSet Class"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>As you all know, I started working on my second book, tentatively titled, <code>&quot;The Perl ORM Handbook: DBIx::Class&quot;</code> towards the end of <code>2025</code>. With the start of the new year, my focus shifted to a related project: a CPAN module called, <a href="https://metacpan.org/dist/DBIx-Class-Async"><strong>DBIx::Class::Async</strong></a>. As you can imagine, that project took up bulk of my spare time. Now that it has settled down a bit, I am ready to return to the book&rsquo;s manuscript.</p>
+<p>The book structure looks like this as of today:</p>
+<pre><code>Preface
+Who This Book Is For
+How This Book Is Structured
+Code Conventions
+Part I: Foundations
+    Chapter 1: Why ORM? The Case for DBIx::Class
+    Chapter 2: Core Concepts and First Schema
+Part II: The Building Blocks
+    Chapter 3: Defining Your Model: Result Classes
+    Chapter 4: Basic CRUD Operations
+    Chapter 5: Retrieving Data with ResultSets
+Part III: Relational Mapping
+    Chapter 6: Defining Relationships
+    Chapter 7: Working with Related Data
+Part IV: Advanced Data Handling
+    Chapter 8: Transforming Column Data (Inflate/Deflate)
+    Chapter 9: Practical Custom Inflators
+    Chapter 10: Complex Column Strategies
+Part V: Reusability and Modular Design
+    Chapter 11: Components: Encapsulating Reusable Behaviour
+    Chapter 12: Advanced Component Patterns
+Part VI: The Lifecycle and Events
+    Chapter 13: Hooks: Influencing the Object Lifecycle
+Part VII: Bringing It All Together
+    Chapter 14: Application Architecture Patterns
+    Chapter 15: Beyond the Basics
+</code></pre>
+<p>This blog post is a glimpse into what I am currently working on. Right now, my focus is on fine-tuning the discussion of a core <code>DBix::Class</code> topic:. <strong>ResultSet</strong> class. However, before I dive into <code>ResultSet</code>, it is essential to start with the <code>Result</code> class.</p>
+<h4 id="result-class">Result Class</h4>
+<p>In one line, <code>Result</code> class represents a single row in a table. Each instance of this class corresponds to one record. It defines the structure of the data and the relationships. It is used to access data or modify specific data. It provides key methods: <code>insert</code>, <code>update</code>, <code>delete</code> etc.</p>
+<h4 id="resetset-class">ResetSet Class</h4>
+<p>A <code>ResultSet</code> class represents a collection of rows. It is not the data itself, but rather the definition of how to get that data. It handles the <code>SELECT</code> logic. It allows you to filter, sort, and group data before it ever hits the database.</p>
+<h4 id="example">Example</h4>
+<p>For demo purpose, we will define <code>users</code> table with columns <code>id</code>, <code>username</code>, <code>status</code>, and <code>deleted</code>.</p>
+<p>First schema class:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::Schema&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>load_namespaces();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Now let&rsquo;s create simple <code>Result</code> class for the <code>users</code> table first.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema::Result::User;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::Core&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>table(<span style="color:#e6db74">&#39;users&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>add_columns(
+</span></span><span style="display:flex;"><span>    id       <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>, is_auto_increment <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>   },
+</span></span><span style="display:flex;"><span>    username <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;varchar&#39;</span>, size              <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">100</span> },
+</span></span><span style="display:flex;"><span>    status   <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;varchar&#39;</span>, size              <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">20</span>  },
+</span></span><span style="display:flex;"><span>    deleted  <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>, default_value     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>   },
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>set_primary_key(<span style="color:#e6db74">&#39;id&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Using the above <code>Result</code> class, we can search active users like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> MyApp::Schema;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $schema <span style="color:#f92672">=</span> MyApp::Schema<span style="color:#f92672">-&gt;</span>connect(<span style="color:#e6db74">&#39;dbi:SQLite:dbname=:memory:&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$schema<span style="color:#f92672">-&gt;</span>deploy({ add_drop_table <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @users <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    { username <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, status <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;active&#39;</span>,   deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span> },
+</span></span><span style="display:flex;"><span>    { username <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Bob&#39;</span>,   status <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;active&#39;</span>,   deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span> },
+</span></span><span style="display:flex;"><span>    { username <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;John&#39;</span>,  status <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;inactive&#39;</span>, deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $user (@users) {
+</span></span><span style="display:flex;"><span>    $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>create($user);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @active_users <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>search({
+</span></span><span style="display:flex;"><span>    status  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;active&#39;</span>,
+</span></span><span style="display:flex;"><span>    deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Active Users: &#34;</span>, scalar @active_users, <span style="color:#e6db74">&#34;\n&#34;</span>;  <span style="color:#75715e"># 2</span>
+</span></span></code></pre></div><p>If we perform this operation more than once then we have to repeat the logic again.</p>
+<p>To avoid that, we can create <code>ResultSet</code> class and put the logic in it like below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema::ResultSet::User;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::ResultSet&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">active</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>search({
+</span></span><span style="display:flex;"><span>        $self<span style="color:#f92672">-&gt;</span>current_source_alias <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.status&#39;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;active&#39;</span>,
+</span></span><span style="display:flex;"><span>        $self<span style="color:#f92672">-&gt;</span>current_source_alias <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.deleted&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Time to register this <code>ResultSet</code> class in <code>Result</code> class. Just add one line: <code>__PACKAGE__-&gt;resultset_class('MyApp::Schema::ResultSet::User');</code></p>
+<p>So the <code>Result</code> class now looks like below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema::Result::User;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::Core&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>table(<span style="color:#e6db74">&#39;users&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>add_columns(
+</span></span><span style="display:flex;"><span>    id       <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>, is_auto_increment <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>   },
+</span></span><span style="display:flex;"><span>    username <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;varchar&#39;</span>, size              <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">100</span> },
+</span></span><span style="display:flex;"><span>    status   <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;varchar&#39;</span>, size              <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">20</span>  },
+</span></span><span style="display:flex;"><span>    deleted  <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>, default_value     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>   },
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>resultset_class(<span style="color:#e6db74">&#39;MyApp::Schema::ResultSet::User&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>set_primary_key(<span style="color:#e6db74">&#39;id&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Using the above <code>ResultSet</code> class, we can now search active users like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> MyApp::Schema;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $schema <span style="color:#f92672">=</span> MyApp::Schema<span style="color:#f92672">-&gt;</span>connect(<span style="color:#e6db74">&#39;dbi:SQLite:dbname=:memory:&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$schema<span style="color:#f92672">-&gt;</span>deploy({ add_drop_table <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @users <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    { username <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, status <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;active&#39;</span>,   deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span> },
+</span></span><span style="display:flex;"><span>    { username <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Bob&#39;</span>,   status <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;active&#39;</span>,   deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span> },
+</span></span><span style="display:flex;"><span>    { username <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;John&#39;</span>,  status <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;inactive&#39;</span>, deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $user (@users) {
+</span></span><span style="display:flex;"><span>    $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>create($user);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @active_users <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>active;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Active Users: &#34;</span>, scalar @active_users, <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span></code></pre></div><p>This is much cleaner and easy to maintain.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">perl</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/mojo-with-websocket/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Mojolicious with WebSocket</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+            </span>
+            <span class="related-post-date">7 Feb 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/dancer2-dbic-async-htmx/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Dancer2 &#43; Dancer2::Plugin::DBIC::Async &#43; HTMX</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+            </span>
+            <span class="related-post-date">5 Feb 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/dbix-class-async-evolution/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Evolution of DBIx::Class::Async</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+            </span>
+            <span class="related-post-date">3 Feb 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/dbic-resultset\/';
+            this.page.identifier = '26ca7aff5610a2a9a61a7b6357c8e9a4';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
