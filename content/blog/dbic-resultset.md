@@ -154,6 +154,8 @@ So the `Result` class now looks like below:
 ```perl
 package MyApp::Schema::Result::User;
 
+use strict;
+use warnings;
 use base 'DBIx::Class::Core';
 
 __PACKAGE__->table('users');
