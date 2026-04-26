@@ -151,13 +151,13 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>Testing in Perl</span>
         </nav>
-        <span class="reading-time" title="1365 words">
+        <span class="reading-time" title="1473 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
     <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
   </svg>
-  6 min read
+  7 min read
 </span>
 
         <div class="post-meta">
@@ -338,6 +338,19 @@ Stop it when done   : yath stop
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span> directories, <span style="color:#ae81ff">6</span> files
 </span></span></code></pre></div><p>Can we use <code>prove</code> to run the test in parallel?</p>
 <p>Yes, we can.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ prove -v t/parallel/ -j4
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Job 1 started at 1777243707.02666 on PID 244346</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===(</span>       1;<span style="color:#ae81ff">0</span>  1/?  0/?  0/?  0/? <span style="color:#f92672">)====================================</span><span style="color:#75715e"># Job 2 started at 1777243707.02893 on PID 244347</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===(</span>       2;<span style="color:#ae81ff">0</span>  1/?  1/?  0/?  0/? <span style="color:#f92672">)====================================</span><span style="color:#75715e"># Job 3 started at 1777243707.03 on PID 244348</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===(</span>       3;<span style="color:#ae81ff">0</span>  1/?  1/?  1/?  0/? <span style="color:#f92672">)====================================</span><span style="color:#75715e"># Job 4 started at 1777243707.03165 on PID 244349</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===(</span>       4;<span style="color:#ae81ff">0</span>  1/?  1/?  1/?  1/? <span style="color:#f92672">)====================================</span>ok
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===(</span>       4;<span style="color:#ae81ff">0</span>  1/1  1/?  1/? <span style="color:#f92672">)=========================================</span>ok
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===(</span>       4;<span style="color:#ae81ff">0</span>  1/?  1/? <span style="color:#f92672">)==============================================</span>ok
+</span></span><span style="display:flex;"><span>t/parallel/test_4.t .. ok
+</span></span><span style="display:flex;"><span>All tests successful.
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">=</span>4, Tests<span style="color:#f92672">=</span>4,  <span style="color:#ae81ff">3</span> wallclock secs <span style="color:#f92672">(</span> 0.01 usr  0.00 sys +  0.15 cusr  0.01 csys <span style="color:#f92672">=</span>  0.17 CPU<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Result: PASS
+</span></span></code></pre></div><p>Now try <code>yath</code> as below:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ yath test t/parallel/ -v
 </span></span><span style="display:flex;"><span>PERL_HASH_SEED not set, setting to <span style="color:#e6db74">&#39;20260426&#39;</span> <span style="color:#66d9ef">for</span> more reproducible results.
 </span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> LAUNCH <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    t/parallel/test_1.t

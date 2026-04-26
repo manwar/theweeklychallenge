@@ -219,6 +219,23 @@ Can we use `prove` to run the test in parallel?
 Yes, we can.
 
 ```bash
+$ prove -v t/parallel/ -j4
+# Job 1 started at 1777243707.02666 on PID 244346
+===(       1;0  1/?  0/?  0/?  0/? )====================================# Job 2 started at 1777243707.02893 on PID 244347
+===(       2;0  1/?  1/?  0/?  0/? )====================================# Job 3 started at 1777243707.03 on PID 244348
+===(       3;0  1/?  1/?  1/?  0/? )====================================# Job 4 started at 1777243707.03165 on PID 244349
+===(       4;0  1/?  1/?  1/?  1/? )====================================ok
+===(       4;0  1/1  1/?  1/? )=========================================ok
+===(       4;0  1/?  1/? )==============================================ok
+t/parallel/test_4.t .. ok
+All tests successful.
+Files=4, Tests=4,  3 wallclock secs ( 0.01 usr  0.00 sys +  0.15 cusr  0.01 csys =  0.17 CPU)
+Result: PASS
+```
+
+Now try `yath` as below:
+
+```bash
 $ yath test t/parallel/ -v
 PERL_HASH_SEED not set, setting to '20260426' for more reproducible results.
 ( LAUNCH )  job  1    t/parallel/test_1.t
