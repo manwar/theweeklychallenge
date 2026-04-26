@@ -291,7 +291,7 @@ Assertion Count: 4
 
 While the `prove -j` could do this, `yath` is the preferred choice because of `Job Sorting`. If you have a massive suite, `yath` tracks which tests take the longest and runs them first in the next run.
 
-I have only scratched the surface, if you want to explore further the take a look at this [**App::Yath**](https://metacpan.org/pod/App::Yath).
+I have only scratched the surface, if you want to explore further then take a look at this [**App::Yath**](https://metacpan.org/pod/App::Yath).
 
 ***
 
