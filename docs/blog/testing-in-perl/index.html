@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/testing-in-perl/">
+    <title>Testing in Perl | Apr 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Explore the choices of testing in Perl.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/testing-in-perl/">
+    <meta property="og:title"       content="Testing in Perl">
+    <meta property="og:description" content="Explore the choices of testing in Perl.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/testing-in-perl.jpg">
+    
+    <meta property="article:published_time" content="2026-04-26T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-04-26T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Testing in Perl">
+    <meta name="twitter:description" content="Explore the choices of testing in Perl.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/testing-in-perl.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/testing-in-perl/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Testing in Perl</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>Testing in Perl</span>
+        </nav>
+        <span class="reading-time" title="1365 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  6 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 26 Apr 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/testing-in-perl.jpg" alt="Testing in Perl"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>If you&rsquo;re a fan of <code>Test Driven Development (TDD)</code> like I am, you have likely explored many different ways to test your code. I&rsquo;m not ashamed to call myself an <code>old school student</code>; for a long time, I relied on my good old friend, <a href="https://metacpan.org/pod/Test::More"><strong>Test::More</strong></a>, for most of my testing.</p>
+<p>However, a few years ago, I started using <a href="https://metacpan.org/pod/Test2::V0"><strong>Test2::V0</strong></a>. I&rsquo;ve seen our team at work, upgrade our unit tests to <code>Test2::V0</code>, and one particular change that stood out to me is the default deep checking. Specifically, the fact that <code>is()</code> now handles everything <code>is_deeply()</code> used to do.</p>
+<p>Let&rsquo;s set the stage for today&rsquo;s walkthrough:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cpanm -vS Test2::Suite Test2::Harness
+</span></span></code></pre></div><p>We will create very basic unit test, <code>t/demo1.t</code>, using <code>Test::More</code> first:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ok(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;Basic truth check&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is_deeply(
+</span></span><span style="display:flex;"><span>    { name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Joe&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">41</span> },
+</span></span><span style="display:flex;"><span>    { name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Joe&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">41</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Hash structures match exactly&#34;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>like(<span style="color:#e6db74">&#34;Hello World&#34;</span>, <span style="color:#e6db74">qr/Hello/</span>, <span style="color:#e6db74">&#34;Regex check works&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><p>In the <code>Perl</code> world, <code>prove</code> is the classic command-line tool used to run tests. It acts as a wrapper around <a href="https://metacpan.org/pod/Test::Harness"><strong>Test::Harness</strong></a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ prove
+</span></span><span style="display:flex;"><span>t/demo1.t .. ok
+</span></span><span style="display:flex;"><span>All tests successful.
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">=</span>1, Tests<span style="color:#f92672">=</span>3,  <span style="color:#ae81ff">0</span> wallclock secs <span style="color:#f92672">(</span> 0.01 usr  0.00 sys +  0.04 cusr  0.00 csys <span style="color:#f92672">=</span>  0.05 CPU<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Result: PASS
+</span></span></code></pre></div><p>So far so good, right?</p>
+<p>The creator of <code>Test::Harness</code> came up with modern alternative such as <a href="https://metacpan.org/pod/Test2::Harness"><strong>Test2::Harness</strong></a>. With this, we got another command-line tool <code>yath</code>.</p>
+<p>So how do you use <code>yath</code> instead of <code>prove</code>?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ yath
+</span></span><span style="display:flex;"><span>PERL_HASH_SEED not set, setting to <span style="color:#e6db74">&#39;20260426&#39;</span> <span style="color:#66d9ef">for</span> more reproducible results.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>** Defaulting to the <span style="color:#e6db74">&#39;test&#39;</span> command **
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> PASSED <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    t/demo1.t
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                                Yath Result Summary
+</span></span><span style="display:flex;"><span>-----------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>     File Count: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>Assertion Count: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>      Wall Time: 0.48 seconds
+</span></span><span style="display:flex;"><span>       CPU Time: 0.43 seconds <span style="color:#f92672">(</span>usr: 0.12s | sys: 0.03s | cusr: 0.21s | csys: 0.07s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      CPU Usage: 90%
+</span></span><span style="display:flex;"><span>    --&gt;  Result: PASSED  &lt;--
+</span></span></code></pre></div><p>Since we are using the modern framework, why not upgrade the unit test, <code>t/demo2.t</code>, to use <code>Test2::V0</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test2::V0;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ok(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;Basic truth check&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>is(
+</span></span><span style="display:flex;"><span>    { name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Joe&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">41</span> },
+</span></span><span style="display:flex;"><span>    { name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Joe&#39;</span>, age <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">41</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Hash structures match exactly&#34;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>like(<span style="color:#e6db74">&#34;Hello World&#34;</span>, <span style="color:#e6db74">qr/Hello/</span>, <span style="color:#e6db74">&#34;Regex check works&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><p>Now run the test using <code>yath</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ yath
+</span></span><span style="display:flex;"><span>PERL_HASH_SEED not set, setting to <span style="color:#e6db74">&#39;20260426&#39;</span> <span style="color:#66d9ef">for</span> more reproducible results.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>** Defaulting to the <span style="color:#e6db74">&#39;test&#39;</span> command **
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> PASSED <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    t/demo1.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> PASSED <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    t/demo2.t
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                                Yath Result Summary
+</span></span><span style="display:flex;"><span>-----------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>     File Count: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>Assertion Count: <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>      Wall Time: 0.37 seconds
+</span></span><span style="display:flex;"><span>       CPU Time: 0.45 seconds <span style="color:#f92672">(</span>usr: 0.09s | sys: 0.02s | cusr: 0.26s | csys: 0.08s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      CPU Usage: 123%
+</span></span><span style="display:flex;"><span>    --&gt;  Result: PASSED  &lt;--
+</span></span></code></pre></div><p>The magic of <code>yath</code> is in its subcommands.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ yath test
+</span></span><span style="display:flex;"><span>PERL_HASH_SEED not set, setting to <span style="color:#e6db74">&#39;20260426&#39;</span> <span style="color:#66d9ef">for</span> more reproducible results.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> PASSED <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    t/demo1.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> PASSED <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    t/demo2.t
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                                Yath Result Summary
+</span></span><span style="display:flex;"><span>-----------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>     File Count: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>Assertion Count: <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>      Wall Time: 0.41 seconds
+</span></span><span style="display:flex;"><span>       CPU Time: 0.42 seconds <span style="color:#f92672">(</span>usr: 0.10s | sys: 0.03s | cusr: 0.22s | csys: 0.07s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      CPU Usage: 103%
+</span></span><span style="display:flex;"><span>    --&gt;  Result: PASSED  &lt;--
+</span></span></code></pre></div><p>It doesn&rsquo;t stop there, try this now:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ yath test -v
+</span></span><span style="display:flex;"><span>PERL_HASH_SEED not set, setting to <span style="color:#e6db74">&#39;20260426&#39;</span> <span style="color:#66d9ef">for</span> more reproducible results.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> LAUNCH <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    t/demo1.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASS  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">1</span>  + Basic truth check
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASS  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">1</span>  + Hash structures match exactly
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASS  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">1</span>  + Regex check works
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PLAN  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">1</span>    Expected assertions: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    rss:  29112kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    size: 33580kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    peak: 33584kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> PASSED <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    t/demo1.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  TIME  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    Startup: 0.03667s | Events: 0.00035s | Cleanup: 0.00273s | Total: 0.03975s
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> LAUNCH <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    t/demo2.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  NOTE  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    Seeded srand with seed <span style="color:#e6db74">&#39;20260426&#39;</span> from local date.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASS  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">2</span>  + Basic truth check
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASS  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">2</span>  + Hash structures match exactly
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASS  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">2</span>  + Regex check works
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PLAN  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">2</span>    Expected assertions: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    rss:  31200kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    size: 35196kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    peak: 35196kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> PASSED <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    t/demo2.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  TIME  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    Startup: 0.04264s | Events: 0.00068s | Cleanup: 0.00262s | Total: 0.04594s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                                Yath Result Summary
+</span></span><span style="display:flex;"><span>-----------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>     File Count: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>Assertion Count: <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>      Wall Time: 0.71 seconds
+</span></span><span style="display:flex;"><span>       CPU Time: 0.41 seconds <span style="color:#f92672">(</span>usr: 0.11s | sys: 0.01s | cusr: 0.23s | csys: 0.06s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      CPU Usage: 57%
+</span></span><span style="display:flex;"><span>    --&gt;  Result: PASSED  &lt;--
+</span></span></code></pre></div><p>One of the best feature of <code>yath</code> is the persistent runner. It pre-loads your environment so tests start instantly:</p>
+<pre><code>Start the runner    : yath start
+Run tests against it: yath run
+Stop it when done   : yath stop
+</code></pre>
+<p>So far, we have seen tests running sequentially. How about running the test in parallel?</p>
+<p>For that, lets create some more test to demo this feature.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir t/parallel
+</span></span><span style="display:flex;"><span>$ <span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>1..4<span style="color:#f92672">}</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>cat <span style="color:#e6db74">&lt;&lt;EOF &gt; t/parallel/test_$i.t
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">use Test2::V0;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">use Time::HiRes qw(time);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">my \$start_time = time();
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">my \$pid = \$\$;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">diag(&#34;Job $i started at \$start_time on PID \$pid&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">sleep 2;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">ok(1, &#34;Job $i finished&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">done_testing;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>This is what we got.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tree
+</span></span><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>└── t
+</span></span><span style="display:flex;"><span>    ├── demo1.t
+</span></span><span style="display:flex;"><span>    ├── demo2.t
+</span></span><span style="display:flex;"><span>    └── parallel
+</span></span><span style="display:flex;"><span>        ├── test_1.t
+</span></span><span style="display:flex;"><span>        ├── test_2.t
+</span></span><span style="display:flex;"><span>        ├── test_3.t
+</span></span><span style="display:flex;"><span>        └── test_4.t
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span> directories, <span style="color:#ae81ff">6</span> files
+</span></span></code></pre></div><p>Can we use <code>prove</code> to run the test in parallel?</p>
+<p>Yes, we can.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ yath test t/parallel/ -v
+</span></span><span style="display:flex;"><span>PERL_HASH_SEED not set, setting to <span style="color:#e6db74">&#39;20260426&#39;</span> <span style="color:#66d9ef">for</span> more reproducible results.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> LAUNCH <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    t/parallel/test_1.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  NOTE  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    Seeded srand with seed <span style="color:#e6db74">&#39;20260426&#39;</span> from local date.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  DIAG  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    Job <span style="color:#ae81ff">1</span> started at 1777241712.9551 on PID <span style="color:#ae81ff">240015</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASS  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">1</span>  + Job <span style="color:#ae81ff">1</span> finished
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PLAN  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">1</span>    Expected assertions: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    rss:  31164kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    size: 35200kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    peak: 35200kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> PASSED <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    t/parallel/test_1.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  TIME  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">1</span>    Startup: 0.07473s | Events: 2.00068s | Cleanup: 0.00319s | Total: 2.07860s
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> LAUNCH <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    t/parallel/test_2.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  NOTE  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    Seeded srand with seed <span style="color:#e6db74">&#39;20260426&#39;</span> from local date.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  DIAG  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    Job <span style="color:#ae81ff">2</span> started at 1777241715.02359 on PID <span style="color:#ae81ff">240016</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASS  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">2</span>  + Job <span style="color:#ae81ff">2</span> finished
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PLAN  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">2</span>    Expected assertions: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    rss:  31200kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    size: 35140kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    peak: 35148kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> PASSED <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    t/parallel/test_2.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  TIME  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">2</span>    Startup: 0.04366s | Events: 2.00074s | Cleanup: 0.00350s | Total: 2.04790s
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> LAUNCH <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">3</span>    t/parallel/test_3.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  NOTE  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">3</span>    Seeded srand with seed <span style="color:#e6db74">&#39;20260426&#39;</span> from local date.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  DIAG  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">3</span>    Job <span style="color:#ae81ff">3</span> started at 1777241717.09132 on PID <span style="color:#ae81ff">240017</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASS  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">3</span>  + Job <span style="color:#ae81ff">3</span> finished
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PLAN  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">3</span>    Expected assertions: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">3</span>    rss:  31204kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">3</span>    size: 35108kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">3</span>    peak: 35108kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> PASSED <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">3</span>    t/parallel/test_3.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  TIME  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">3</span>    Startup: 0.04252s | Events: 2.00085s | Cleanup: 0.00329s | Total: 2.04666s
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> LAUNCH <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">4</span>    t/parallel/test_4.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  NOTE  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">4</span>    Seeded srand with seed <span style="color:#e6db74">&#39;20260426&#39;</span> from local date.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  DIAG  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">4</span>    Job <span style="color:#ae81ff">4</span> started at 1777241719.15869 on PID <span style="color:#ae81ff">240018</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASS  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">4</span>  + Job <span style="color:#ae81ff">4</span> finished
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PLAN  <span style="color:#f92672">]</span>  job  <span style="color:#ae81ff">4</span>    Expected assertions: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">4</span>    rss:  31204kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">4</span>    size: 35128kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> MEMORY <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">4</span>    peak: 35128kB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> PASSED <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">4</span>    t/parallel/test_4.t
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>  TIME  <span style="color:#f92672">)</span>  job  <span style="color:#ae81ff">4</span>    Startup: 0.04226s | Events: 2.00090s | Cleanup: 0.00369s | Total: 2.04685s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                                Yath Result Summary
+</span></span><span style="display:flex;"><span>-----------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>     File Count: <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>Assertion Count: <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>      Wall Time: 8.79 seconds
+</span></span><span style="display:flex;"><span>       CPU Time: 8.71 seconds <span style="color:#f92672">(</span>usr: 0.11s | sys: 0.06s | cusr: 6.88s | csys: 1.66s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      CPU Usage: 99%
+</span></span><span style="display:flex;"><span>    --&gt;  Result: PASSED  &lt;--
+</span></span></code></pre></div><p>While the <code>prove -j</code> could do this, <code>yath</code> is the preferred choice because of <code>Job Sorting</code>. If you have a massive suite, <code>yath</code> tracks which tests take the longest and runs them first in the next run.</p>
+<p>I have only scratched the surface, if you want to explore further the take a look at this <a href="https://metacpan.org/pod/App::Yath"><strong>App::Yath</strong></a>.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">perl</a>
+        
+        <a href="https://theweeklychallenge.org/tags/testing" class="post-tag">testing</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/dbic-resultset/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">DBIx::Class - Result Class &amp; ResultSet Class</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+            </span>
+            <span class="related-post-date">20 Apr 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/mojo-with-websocket/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Mojolicious with WebSocket</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+            </span>
+            <span class="related-post-date">7 Feb 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/dancer2-dbic-async-htmx/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Dancer2 &#43; Dancer2::Plugin::DBIC::Async &#43; HTMX</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+            </span>
+            <span class="related-post-date">5 Feb 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/testing-in-perl\/';
+            this.page.identifier = '4946f2230a90cc0c1d7b89d08a7bdd01';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
