@@ -180,7 +180,7 @@ You are given a sequence of 5 lowercase letters, with one letter replaced by '?'
 
 #### Example 1
 
-    Input: $seq = qw(a c ? g i)
+    Input: @seq = qw(a c ? g i)
     Output: e
 
     The pattern of the sequence is +2,+2,+2,+2.
@@ -192,7 +192,7 @@ You are given a sequence of 5 lowercase letters, with one letter replaced by '?'
 
 #### Example 2
 
-    Input: $seq = qw(a d ? j m)
+    Input: @seq = qw(a d ? j m)
     Output: g
 
     The pattern of the sequence is +3,+3,+3,+3.
@@ -204,7 +204,7 @@ You are given a sequence of 5 lowercase letters, with one letter replaced by '?'
 
 #### Example 3
 
-    Input: $seq = qw(a e ? m q)
+    Input: @seq = qw(a e ? m q)
     Output: i
 
     The pattern of the sequence is +4,+4,+4,+4.
@@ -216,7 +216,7 @@ You are given a sequence of 5 lowercase letters, with one letter replaced by '?'
 
 #### Example 4
 
-    Input: $seq = qw(a c f ? k)
+    Input: @seq = qw(a c f ? k)
     Output: h
 
     The pattern of the sequence is +2,+3,+2,+3.
@@ -228,7 +228,7 @@ You are given a sequence of 5 lowercase letters, with one letter replaced by '?'
 
 #### Example 5
 
-    Input: $seq = qw(b e g ? l)
+    Input: @seq = qw(b e g ? l)
     Output: j
 
     The pattern of the sequence is +3,+2,+3,+2.
