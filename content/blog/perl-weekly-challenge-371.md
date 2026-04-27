@@ -244,7 +244,7 @@ You are given a sequence of 5 lowercase letters, with one letter replaced by '?'
 
 You are given an array of numbers.
 
-Write a script to find all subsets where the sum of elements equals the sum of their indices.
+Write a script to find all proper subsets with more than one element where the sum of elements equals the sum of their indices.
 
 #### Example 1
 
