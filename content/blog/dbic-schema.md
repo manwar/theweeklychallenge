@@ -40,7 +40,7 @@ First thing first: what is `Schema` class, and why do we need it?
 
 In one sentence, the `Schame` class is the control center for your database. Imagine your database is a massive warehouse full of filing cabinets (tables) and folders (records); the `Schame` class is the `Manager` who holds the map, the rules, and handles all the keys.
 
-It acts is a `Single Point of Entry`. Instead of having database passwords and connection settings scattered all over your codebase, you consolidate them within the `Schame` class.
+It acts as a `Single Point of Entry`. Instead of having database passwords and connection settings scattered all over your codebase, you consolidate them within the `Schame` class.
 
 Let's revisit that definition and look closer at `load_namespace()`. As the name suggests, this method automatically finds your `Result` and `ResultSet` classes within their default namespaces. If your schema class is `MyApp::Schema` then the default namespaces will be `MyApp::Schema::Result::*` and `MyApp::Schema::ResultSet::*` respectively.
 
