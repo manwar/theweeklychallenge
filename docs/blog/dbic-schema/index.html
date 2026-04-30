@@ -196,8 +196,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
 </span></span></code></pre></div><p>For my upcoming book, I wanted to dig deeper to justify the context of our architectural choices.</p>
 <p>First thing first: what is <code>Schema</code> class, and why do we need it?</p>
-<p>In one sentence, the <code>Schame</code> class is the control center for your database. Imagine your database is a massive warehouse full of filing cabinets (tables) and folders (records); the <code>Schame</code> class is the <code>Manager</code> who holds the map, the rules, and handles all the keys.</p>
-<p>It acts as a <code>Single Point of Entry</code>. Instead of having database passwords and connection settings scattered all over your codebase, you consolidate them within the <code>Schame</code> class.</p>
+<p>In one sentence, the <code>Schema</code> class is the control center for your database. Imagine your database is a massive warehouse full of filing cabinets (tables) and folders (records); the <code>Schema</code> class is the <code>Manager</code> who holds the map, the rules, and handles all the keys.</p>
+<p>It acts as a <code>Single Point of Entry</code>. Instead of having database passwords and connection settings scattered all over your codebase, you consolidate them within the <code>Schema</code> class.</p>
 <p>Let&rsquo;s revisit that definition and look closer at <code>load_namespace()</code>. As the name suggests, this method automatically finds your <code>Result</code> and <code>ResultSet</code> classes within their default namespaces. If your schema class is <code>MyApp::Schema</code> then the default namespaces will be <code>MyApp::Schema::Result::*</code> and <code>MyApp::Schema::ResultSet::*</code> respectively.</p>
 <p>For a database table <code>users</code>, we define the following <code>Result</code> and <code>ResultSet</code> class:</p>
 <pre><code>- MyApp::Schema::Result::User
