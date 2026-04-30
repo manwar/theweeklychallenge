@@ -51,7 +51,7 @@ For a database table `users`, we define the following `Result` and `ResultSet` c
 
 Simple, right?
 
-However, there is a slight concern - if not a problem. What if you common logic that needs to apply to more than one table? In that case, you would end up adding duplicate code to the `ResultSet` classes of both tables.
+However, there is a slight concern - if not a problem. What if you have common logic that needs to apply to more than one table? In that case, you would end up adding duplicate code to the `ResultSet` classes of both tables.
 
 Suppose we have two tables, `users` and `managers`, which both share a column: `is_deleted`. To handle this, we have our `ResultSet` classes, `MyApp::Schema::ResultSet::User` and `MyApp::Schema::ResultSet::Manager`.
 
