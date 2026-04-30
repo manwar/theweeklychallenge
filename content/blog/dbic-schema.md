@@ -20,7 +20,7 @@ I am in a bit of a dilemma: should I be sharing this before the book is publishe
 
 #### Schema Class
 
-This is how you define in general.
+In the earlier post, this is how we defined the `Schema` class.
 
 ```perl
 package MyApp::Schema;
