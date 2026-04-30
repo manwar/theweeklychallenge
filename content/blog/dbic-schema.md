@@ -70,6 +70,9 @@ We have a clean solution for this issue. We define a comman `ResultSet` class th
 
 ```perl
 package MyApp::Schema::DefaultRS;
+
+use strict;
+use warnings;
 use base 'DBIx::Class::ResultSet';
 
 sub active {
@@ -130,6 +133,9 @@ __PACKAGE__->load_namespaces(
 
 ```perl
 package MyApp::Schema::DefaultRS;
+
+use strict;
+use warnings;
 use base 'DBIx::Class::ResultSet';
 
 sub active {
