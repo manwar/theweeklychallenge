@@ -91,8 +91,7 @@ In my local setup, I had to install few missing libraries and create softlink.
 ```bash
 $ sudo apt-get install -y libaio1t64 libaio-dev
 $ sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
-$ cpanm -vS Math::Base36
-$ cpanm -vS DBD::Oracle
+$ cpanm -vS Math::Base36 DBD::Oracle
 ```
 
 Let's test the connection.
