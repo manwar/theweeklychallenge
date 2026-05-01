@@ -24,7 +24,7 @@ There was just one big issue: I didn't have a working `Oracle` database to begin
 
 So, what other options did I have then? My good old friend, the `Docker` container.
 
-Before doing anything else, I needed to create an `Oracle` account by visiting [**this page**](https://profile.oracle.com/myprofile/account/create-account.jspx). Once that was done, I had to create an auth token to use with the container. You can find the page to generate the token [**here**](https://container-registry.oracle.com).
+Before doing anything else, I needed to create an `Oracle` account by visiting [**this page**](https://profile.oracle.com/myprofile/account/create-account.jspx). Once that was done, I had to generate an auth token to use with the container. You can find the page to generate the token [**here**](https://container-registry.oracle.com).
 
 With that settled, we are now ready to spin up a `Docker` container for the `Oracle` database.
 
