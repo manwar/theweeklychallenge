@@ -174,7 +174,7 @@ Result: PASS
 
 Now it's time to bundle the changes and upload them to `CPAN`.
 
-Before, I do that, I want to switch to `v-string` versioning. Consequently, the next version will be `v1.0.0`.
+Before, I do that, I want to switch to `v-string` versioning. Consequently, the next version will be [**DBIx::Class::Async v1.0.0**](https://metacpan.org/dist/DBIx-Class-Async)`.
 
 The updated distribution is now available in the [**GitHub repository**](https://github.com/manwar/DBIx-Class-Async).
 
