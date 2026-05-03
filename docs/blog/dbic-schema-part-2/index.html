@@ -5,32 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     
-    <link rel="canonical" href="https://theweeklychallenge.org/blog/dbic-schema/">
-    <title>DBIx::Class - Schema Class | Apr 2026 | The Weekly Challenge</title>
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/dbic-schema-part-2/">
+    <title>DBIx::Class - Schema Class (Part 2) | May 2026 | The Weekly Challenge</title>
 
     
-    <meta name="description" content="A complete introduction to Schema class.">
+    <meta name="description" content="Introduction to Schema class features connection() and exception_action().">
     <meta name="author" content="Mohammad Sajid Anwar">
     
 
     
     <meta property="og:site_name"   content="The Weekly Challenge">
     <meta property="og:type"        content="article">
-    <meta property="og:url"         content="https://theweeklychallenge.org/blog/dbic-schema/">
-    <meta property="og:title"       content="DBIx::Class - Schema Class">
-    <meta property="og:description" content="A complete introduction to Schema class.">
-    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/dbic-schema.jpg">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/dbic-schema-part-2/">
+    <meta property="og:title"       content="DBIx::Class - Schema Class (Part 2)">
+    <meta property="og:description" content="Introduction to Schema class features connection() and exception_action().">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/dbic-schema-part-2.jpg">
     
-    <meta property="article:published_time" content="2026-04-30T00:00:00Z">
-    <meta property="article:modified_time"  content="2026-04-30T00:00:00Z">
+    <meta property="article:published_time" content="2026-05-03T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-05-03T00:00:00Z">
     <meta property="article:author" content="Mohammad Sajid Anwar">
     
 
     
     <meta name="twitter:card"        content="summary_large_image">
-    <meta name="twitter:title"       content="DBIx::Class - Schema Class">
-    <meta name="twitter:description" content="A complete introduction to Schema class.">
-    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/dbic-schema.jpg">
+    <meta name="twitter:title"       content="DBIx::Class - Schema Class (Part 2)">
+    <meta name="twitter:description" content="Introduction to Schema class features connection() and exception_action().">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/dbic-schema-part-2.jpg">
     <meta name="twitter:site" content="@PerlWChallenge">
 
     
@@ -60,7 +60,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
     document.documentElement.classList.add('light-mode-pre');
 }
 </script>
-<body data-url="https://theweeklychallenge.org/blog/dbic-schema/">
+<body data-url="https://theweeklychallenge.org/blog/dbic-schema-part-2/">
     <nav class="twc-nav" id="twc-nav">
     <div class="nav-inner">
         <a href="https://theweeklychallenge.org/" class="nav-logo">
@@ -144,26 +144,26 @@ if (localStorage.getItem('twc-theme') === 'light') {
         
 <div class="page-hero">
     <div class="page-hero-inner">
-        <h1 class="page-title">DBIx::Class - Schema Class</h1>
+        <h1 class="page-title">DBIx::Class - Schema Class (Part 2)</h1>
         <nav class="breadcrumb">
             <a href="https://theweeklychallenge.org/">Home</a>
             <span class="bc-sep">›</span>
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
-            <span>DBIx::Class - Schema Class</span>
+            <span>DBIx::Class - Schema Class (Part 2)</span>
         </nav>
-        <span class="reading-time" title="783 words">
+        <span class="reading-time" title="867 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
     <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
   </svg>
-  3 min read
+  4 min read
 </span>
 
         <div class="post-meta">
             <span class="post-meta-item">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                Published 30 Apr 2026
+                Published 3 May 2026
             </span>
             
         </div>
@@ -173,83 +173,16 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <div class="content-wrap">
     
     <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
-    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/dbic-schema.jpg" alt="DBIx::Class - Schema Class"></div>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/dbic-schema-part-2.jpg" alt="DBIx::Class - Schema Class (Part 2)"></div>
     
     <article class="prose">
 
         <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
 <hr>
 <br>
-<p>In my <a href="/blog/dbic-resultset"><strong>earlier post</strong></a>, I discussed about <code>Result</code> and <code>ResultSet</code> class. In this post I am focussing on the <code>Schema</code> class. I know, this feels a bit backward!</p>
-<p>While working on my first book <a href="https://perlschool.com/books/design-patterns"><strong>Design Patterns in Modern Perl</strong></a>, I learned that nothing is truly <code>&quot;complete&quot;</code> until it is published. Even then, there always seem to be a few things left pending. As I progress through the manuscript for my current book on <code>DBIx::Class</code>, I&rsquo;ve realised that something very important was missing.</p>
-<p>I am in a bit of a dilemma: should I be sharing this before the book is published? It&rsquo;s a hard balance to strike, but I am going ahead with it anyway&hellip;</p>
-<h4 id="schema-class">Schema Class</h4>
-<p>In the earlier post, this is how we defined the <code>Schema</code> class.</p>
+<p>In my <a href="/blog/dbic-schema"><strong>previous post</strong></a>, I discussed about <code>Schema</code> class ability to assign <code>default_resultset_class</code>. In this post I am focussing on two more features i.e. <code>connection()</code> and <code>exception_class()</code>.</p>
+<p>The <code>Schema</code> class and <code>Result</code> class from the previous post looks like below:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::Schema&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>load_namespaces();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
-</span></span></code></pre></div><p>For my upcoming book, I wanted to dig deeper to justify the context of our architectural choices.</p>
-<p>First thing first: what is <code>Schema</code> class, and why do we need it?</p>
-<p>In one sentence, the <code>Schema</code> class is the control center for your database. Imagine your database is a massive warehouse full of filing cabinets (tables) and folders (records); the <code>Schema</code> class is the <code>Manager</code> who holds the map, the rules, and handles all the keys.</p>
-<p>It acts as a <code>Single Point of Entry</code>. Instead of having database passwords and connection settings scattered all over your codebase, you consolidate them within the <code>Schema</code> class.</p>
-<p>Let&rsquo;s revisit that definition and look closer at <code>load_namespace()</code>. As the name suggests, this method automatically finds your <code>Result</code> and <code>ResultSet</code> classes within their default namespaces. If your schema class is <code>MyApp::Schema</code> then the default namespaces will be <code>MyApp::Schema::Result::*</code> and <code>MyApp::Schema::ResultSet::*</code> respectively.</p>
-<p>For a database table <code>users</code>, we define the following <code>Result</code> and <code>ResultSet</code> class:</p>
-<pre><code>- MyApp::Schema::Result::User
-- MyApp::Schema::ResultSet::User
-</code></pre>
-<p>Simple, right?</p>
-<p>However, there is a slight concern - if not a problem. What if you have common logic that needs to apply to more than one table? In that case, you would end up adding duplicate code to the <code>ResultSet</code> classes of both tables.</p>
-<p>Suppose we have two tables, <code>users</code> and <code>managers</code>, which both share a column: <code>is_deleted</code>. To handle this, we have our <code>ResultSet</code> classes, <code>MyApp::Schema::ResultSet::User</code> and <code>MyApp::Schema::ResultSet::Manager</code>.</p>
-<p>To define an <code>active()</code> method for both tables, we would normally have to add the following code to both classes.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">active</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> shift;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>search({ is_deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span> });
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>So we found duplication already, how do we resolve this?</p>
-<p>We have a clean solution for this issue. We define a comman <code>ResultSet</code> class that applies to all <code>Result</code> class.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema::DefaultRS;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::ResultSet&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">active</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> shift;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>search({ is_deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span> });
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
-</span></span></code></pre></div><p>Now that we have comman <code>ResultSet</code> class i.e. <code>MyApp::Schema::DefaultRS</code>, we can configure <code>Schema</code> class like below:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::Schema&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>load_namespaces(
-</span></span><span style="display:flex;"><span>    default_resultset_class <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;DefaultRS&#39;</span>,
-</span></span><span style="display:flex;"><span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
-</span></span></code></pre></div><p>Let&rsquo;s build a complete solution.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tree
-</span></span><span style="display:flex;"><span>├── lib
-</span></span><span style="display:flex;"><span>│   └── MyApp
-</span></span><span style="display:flex;"><span>│       ├── Schema
-</span></span><span style="display:flex;"><span>│       │   ├── DefaultRS.pm
-</span></span><span style="display:flex;"><span>│       │   └── Result
-</span></span><span style="display:flex;"><span>│       │       ├── Manager.pm
-</span></span><span style="display:flex;"><span>│       │       └── User.pm
-</span></span><span style="display:flex;"><span>│       └── Schema.pm
-</span></span><span style="display:flex;"><span>└── test.pl
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span> directories, <span style="color:#ae81ff">5</span> files
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
@@ -288,13 +221,47 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>set_primary_key(<span style="color:#e6db74">&#39;id&#39;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema::Result::Manager;
+</span></span></code></pre></div><p>Now in order to demo the two features I mentioned above, I have to add few things.</p>
+<pre><code>1) Add Result class (Post)
+2) Update Result class (User) to link to Result class (Post)
+</code></pre>
+<p>To demonstrate the relationship, which is where the real power of a <code>Schema</code> class lies. The most important bit is a post belongs to a user.</p>
+<p>This is the <code>Result</code> class for post.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema::Result::Post;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::Core&#39;</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>table(<span style="color:#e6db74">&#39;managers&#39;</span>);
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>table(<span style="color:#e6db74">&#39;posts&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>add_columns(
+</span></span><span style="display:flex;"><span>    id         <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>, is_auto_increment <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
+</span></span><span style="display:flex;"><span>    user_id    <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>                         },
+</span></span><span style="display:flex;"><span>    title      <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;varchar&#39;</span>, size          <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">255</span>   },
+</span></span><span style="display:flex;"><span>    body       <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;text&#39;</span>,    is_nullable   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>     },
+</span></span><span style="display:flex;"><span>    is_deleted <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>, default_value <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>     },
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>set_primary_key(<span style="color:#e6db74">&#39;id&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>belongs_to(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;author&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;MyApp::Schema::Result::User&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;user_id&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>To complement the above <code>Result</code> class, we need to add relationship where a user can have many posts.</p>
+<p>We also add unique constraint <code>user_name_unique</code> to stop duplicate user name.</p>
+<p>And this looks like this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema::Result::User;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::Core&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>table(<span style="color:#e6db74">&#39;users&#39;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>add_columns(
 </span></span><span style="display:flex;"><span>    id         <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>, is_auto_increment <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>   },
@@ -304,47 +271,116 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>set_primary_key(<span style="color:#e6db74">&#39;id&#39;</span>);
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>add_unique_constraint(
+</span></span><span style="display:flex;"><span>    user_name_unique <span style="color:#f92672">=&gt;</span> [ <span style="color:#e6db74">&#39;name&#39;</span> ],
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>has_many(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;posts&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;MyApp::Schema::Result::Post&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;user_id&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span></code></pre></div><p>Now that that we have setup the relationship needed to demo the features, we will now configure the <code>Schema</code> class.</p>
+<p>First we assign the package attribute <code>exception_action</code>.</p>
+<p>It sits there like a <code>&quot;trap&quot;</code> waiting to catch any error that occurs anywhere in your <code>ResultSet</code> or <code>Result</code> classes.</p>
+<p>For example, if I try to create a post and assign to unknown user, we generate exception, <code>FOREIGN KEY constraint failed</code>.</p>
+<p>The database engine returns an error code to <code>Perl</code>.</p>
+<p><code>DBIx::Class</code> catches the error and checks: <code>Does this user have an exception_class defined?</code></p>
+<p>If yes then it runs your sub otherwise throws the standard messy error.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>exception_action(<span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($error) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;MyBlog Database Error: $error&#34;</span>;
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Let&rsquo;s move to the second feature, overriding <code>connection()</code> in the <code>Schema</code> class.</p>
+<p>For example, when we call <code>MyApp::Schema-&gt;connect()</code>, it eventually calls the internal <code>connection()</code> of base class <code>DBIx::Class::Schema</code>.</p>
+<p>With this, we trap that call to <code>connection()</code>.</p>
+<p>In <code>DBIx::Class</code>, <code>on_connect_do</code> is an attribute of the <code>Storage</code> engine that allows you to execute a list of <code>SQL</code> statements immediately after the database connection is established.</p>
+<p>When you connect to a database, the server starts a new <code>&quot;session&quot;</code> with default settings. Often, those defaults aren&rsquo;t what you need for your application to run correctly. Instead of manually running setup queries every time you call <code>connect()</code>, you tell <code>DBIx::Class</code> to handle it for you automatically.</p>
+<p><code>SQLite</code> disables foreign key checks by default. To ensure your <code>Post</code> always has a valid <code>User</code>, you must turn this on every time you connect.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">connection</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $schema <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span><span style="color:#f92672">::</span>method(@_);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $schema<span style="color:#f92672">-&gt;</span>storage<span style="color:#f92672">-&gt;</span>on_connect_do([
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;PRAGMA foreign_keys = ON&#39;</span>,
+</span></span><span style="display:flex;"><span>    ]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $schema;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We have everything we need to test the features.</p>
+<p><strong>Source:</strong> <code>test-features.pl</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;lib/&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Test::More;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> MyApp::Schema;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $schema <span style="color:#f92672">=</span> MyApp::Schema<span style="color:#f92672">-&gt;</span>connect(<span style="color:#e6db74">&#39;dbi:SQLite:dbname=:memory:&#39;</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$schema<span style="color:#f92672">-&gt;</span>deploy({ add_drop_table <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> });
+</span></span><span style="display:flex;"><span>$schema<span style="color:#f92672">-&gt;</span>deploy;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @managers <span style="color:#f92672">=</span> (
-</span></span><span style="display:flex;"><span>    { name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Manager1&#39;</span> },
-</span></span><span style="display:flex;"><span>    { name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Manager2&#39;</span>, is_deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
-</span></span><span style="display:flex;"><span>    { name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Manager3&#39;</span>, is_deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
-</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Feature 1: Testing connection() &amp; Foreign Key Enforcement</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $manager (@managers) {
-</span></span><span style="display:flex;"><span>    $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Manager&#39;</span>)<span style="color:#f92672">-&gt;</span>create($manager);
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $fk_error;
+</span></span><span style="display:flex;"><span>eval {
+</span></span><span style="display:flex;"><span>    $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Post&#39;</span>)<span style="color:#f92672">-&gt;</span>create({
+</span></span><span style="display:flex;"><span>        user_id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">99</span>,
+</span></span><span style="display:flex;"><span>        title   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Orphan Post&#39;</span>,
+</span></span><span style="display:flex;"><span>        body    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;This post has no valid author.&#39;</span>
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>$fk_error <span style="color:#f92672">=</span> $@;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @users <span style="color:#f92672">=</span> (
-</span></span><span style="display:flex;"><span>    { name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;User1&#39;</span> },
-</span></span><span style="display:flex;"><span>    { name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;User2&#39;</span> },
-</span></span><span style="display:flex;"><span>    { name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;User3&#39;</span>, is_deleted <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
-</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>ok($fk_error, <span style="color:#e6db74">&#34;Database prevented insertion of an orphan post&#34;</span>);
+</span></span><span style="display:flex;"><span>like(
+</span></span><span style="display:flex;"><span>    $fk_error,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">qr/FOREIGN KEY constraint failed/</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;SQLite PRAGMA is successfully enforcing data integrity&#34;</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $user (@users) {
-</span></span><span style="display:flex;"><span>    $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>create($user);
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Feature 2: Testing exception_action()</span>
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>create({
+</span></span><span style="display:flex;"><span>    name  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;UniqueUser&#39;</span>,
+</span></span><span style="display:flex;"><span>});
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Active managers: &#34;</span>, $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Manager&#39;</span>)<span style="color:#f92672">-&gt;</span>active<span style="color:#f92672">-&gt;</span>count, <span style="color:#e6db74">&#34;\n&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Active users: &#34;</span>, $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>active<span style="color:#f92672">-&gt;</span>count, <span style="color:#e6db74">&#34;\n&#34;</span>;
-</span></span></code></pre></div><h4 id="result">Result</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl -Ilib/ test.pl
-</span></span><span style="display:flex;"><span>Active managers: <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>Active users: <span style="color:#ae81ff">2</span>
-</span></span></code></pre></div><hr>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Now, try to create another user with the same name.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $custom_error;
+</span></span><span style="display:flex;"><span>eval {
+</span></span><span style="display:flex;"><span>    $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>create({
+</span></span><span style="display:flex;"><span>        name  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;UniqueUser&#39;</span>
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>$custom_error <span style="color:#f92672">=</span> $@;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>like(
+</span></span><span style="display:flex;"><span>    $custom_error,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">qr/MyBlog Database Error:/</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;The exception_action hook correctly caught and reformatted the error&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>done_testing;
+</span></span></code></pre></div><p>Time to see in action:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ prove -lvr test-features.pl
+</span></span><span style="display:flex;"><span>test-features.pl ..
+</span></span><span style="display:flex;"><span>ok <span style="color:#ae81ff">1</span> - Database prevented insertion of an orphan post
+</span></span><span style="display:flex;"><span>ok <span style="color:#ae81ff">2</span> - SQLite PRAGMA is successfully enforcing data integrity
+</span></span><span style="display:flex;"><span>ok <span style="color:#ae81ff">3</span> - The exception_action hook correctly caught and reformatted the error
+</span></span><span style="display:flex;"><span>1..3
+</span></span><span style="display:flex;"><span>ok
+</span></span><span style="display:flex;"><span>All tests successful.
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">=</span>1, Tests<span style="color:#f92672">=</span>3,  <span style="color:#ae81ff">0</span> wallclock secs <span style="color:#f92672">(</span> 0.01 usr  0.01 sys +  0.10 cusr  0.05 csys <span style="color:#f92672">=</span>  0.17 CPU<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Result: PASS
+</span></span></code></pre></div><p>There are still more to <code>Schema</code> class, so watch this space. Hopefully there will be another post in the series.</p>
+<p>I am happy with what I achieved on a <code>Sunday</code> afternoon sitting alone in the corner of my bedroom home office.</p>
+<hr>
 <br>
-<p>Believe me, this is just the beginning. Plenty more to it, watch this space.</p>
 <p><code>Happy Hacking !!!</code></p>
 
     </article>
@@ -369,15 +405,6 @@ if (localStorage.getItem('twc-theme') === 'light') {
         Related Posts
     </h3>
     <div class="related-posts-grid">
-        <a class="related-post-card" href="/blog/dbic-schema-part-2/">
-            <span class="related-post-section">blog</span>
-            <span class="related-post-title">DBIx::Class - Schema Class (Part 2)</span>
-            <span class="related-post-tags">
-                <span class="related-post-tag">perl</span>
-                <span class="related-post-tag">dbic</span>
-            </span>
-            <span class="related-post-date">3 May 2026</span>
-        </a>
         <a class="related-post-card" href="/blog/dbix-async-oracle/">
             <span class="related-post-section">blog</span>
             <span class="related-post-title">DBIx::Class::Async - Oracle Database</span>
@@ -387,6 +414,15 @@ if (localStorage.getItem('twc-theme') === 'light') {
                 <span class="related-post-tag">async</span>
             </span>
             <span class="related-post-date">1 May 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/dbic-schema/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">DBIx::Class - Schema Class</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">dbic</span>
+            </span>
+            <span class="related-post-date">30 Apr 2026</span>
         </a>
         <a class="related-post-card" href="/blog/testing-in-perl/">
             <span class="related-post-section">blog</span>
@@ -401,6 +437,32 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </div>
 
     
+<nav class="post-nav" aria-label="Post navigation">
+  <div class="post-nav-inner">
+    <a class="post-nav-item post-nav-prev" href="/blog/perl-weekly-challenge-001/">
+      <span class="post-nav-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Previous
+      </span>
+      <span class="post-nav-title">A New Week a New Challenge</span>
+    </a>
+    <a class="post-nav-item post-nav-next" href="/blog/perl-weekly-challenge-003/">
+      <span class="post-nav-label">
+        Next
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </span>
+      <span class="post-nav-title">Perl Weekly Challenge - 003</span>
+    </a>
+  </div>
+</nav>
 
 
     
@@ -422,8 +484,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
         window.disqus_config = function() {
-            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/dbic-schema\/';
-            this.page.identifier = '0707b11ea24ec8f288a87305c2a83558';
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/dbic-schema-part-2\/';
+            this.page.identifier = '661dbe456b75da792b25ef7bd11a7344';
         };
     }
     </script>
