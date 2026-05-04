@@ -287,7 +287,7 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 
 You are given a string text of words that are placed among number of spaces.
 
-Write a script to rearrange the spaces so that there is an equal number of spaces between every pair of adjacent words and that number is maximised. If you can't distribute, place the extra speaces at the end. Finally return the string.
+Write a script to rearrange the spaces so that there is an equal number of spaces between every pair of adjacent words and that number is maximised. If you can't distribute, place the extra spaces at the end. Finally return the string.
 
 #### Example 1
 
@@ -348,7 +348,7 @@ Write a script to return the length of the largest substring between two equal c
 
 #### Example 3
 
-    Input: $str = "abbc
+    Input: $str = "abbc"
     Output: 0
 
     For character "b", we have substring "".
