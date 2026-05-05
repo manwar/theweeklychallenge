@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-05-04T00:00:00+00:00
+date: 2026-05-05T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1178,13 +1178,27 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ## [The Weekly Challenge - 372](/blog/perl-weekly-challenge-372) {#372}
 <br>
 
+##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/zapwai/c/ch-2.c) in **C**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/lubos-kolouch/python/ch-2.py) in **Python**.
+
+##### **Marton Polgar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/2colours/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/2colours/prolog/ch-2.p) in **Prolog**.
 
 ##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/mohammad-anwar/python/ch-1.py) in **Python**.
 
 ##### **Peter Meszaros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/peter-meszaros/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/peter-meszaros/tcl/ch-2.tcl) in **Tcl**.
 
 ##### **Simon Green** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/sgreen/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/sgreen/python/ch-2.py) in **Python**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/ulrich-rieke/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/ulrich-rieke/python/ch-2.py) in **Python**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-372/ulrich-rieke/rust/ch-2.rs) in **Rust**.
 
 ___
 ## [The Weekly Challenge - 371](/blog/perl-weekly-challenge-371) {#371}
@@ -1221,6 +1235,8 @@ ___
 ##### **Jorge Morales** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-371/mrbocch/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-371/mrbocch/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-371/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-371/lubos-kolouch/python/ch-2.py) in **Python**.
+
+##### **Marton Polgar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-371/2colours/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-371/2colours/prolog/ch-2.p) in **Prolog**.
 
 ##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-371/mohammad-anwar/python/ch-1.py) in **Python**.
 
