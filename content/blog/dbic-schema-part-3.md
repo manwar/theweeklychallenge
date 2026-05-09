@@ -224,8 +224,8 @@ try {
 print "Testing utf8mb4 support... ";
 my $emoji_name = "User 🍕 Emoji";
 try {
-    my $m = $schema->resultset('User')->create({ name => $emoji_name });
-    my $fetched = $schema->resultset('User')->find($m->id);
+    my $user    = $schema->resultset('User')->create({ name => $emoji_name });
+    my $fetched = $schema->resultset('User')->find($user->id);
 
     if ($fetched->name eq $emoji_name) {
         print "SUCCESS (Emoji stored and retrieved: " . $fetched->name . ")\n";
