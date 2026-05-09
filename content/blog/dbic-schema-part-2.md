@@ -155,7 +155,7 @@ If yes then it runs your sub otherwise throws the standard messy error.
 __PACKAGE__->exception_action(sub {
     my ($error) = @_;
 
-    die "MyBlog Database Error: $error";
+    die "MyApp Database Error: $error";
 });
 ```
 
@@ -239,7 +239,7 @@ $custom_error = $@;
 
 like(
     $custom_error,
-    qr/MyBlog Database Error:/,
+    qr/MyApp Database Error:/,
     "The exception_action hook correctly caught and reformatted the error");
 
 done_testing;
