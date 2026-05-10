@@ -230,7 +230,7 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
 #### 1. [Missing Equilibrium](https://raku-musings.com/missing-equilibrium.html) by Arne Sommer.
 #### 2. [Subset Equilibrium (Just nod if you can hear me)](https://dev.to/boblied/pwc-371-subset-equilibrium-just-nod-if-you-can-hear-me-14im) by Bob Lied.
 #### 3. [Missing Equilibria](https://github.sommrey.de/the-bears-den/2026/05/01/ch-371.html) by Jorg Sommrey.
-#### 4. [The Missing Equilibrium]() by Matthias Muth.
+#### 4. [The Missing Equilibrium](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-371/challenge-371/matthias-muth#readme) by Matthias Muth.
 #### 5. [My subset is-a missing a letter…](https://packy.dardan.com/b/of) by Packy Anderson.
 #### 6. [Solve the question and balance the subset](http://ccgi.campbellsmiths.force9.co.uk/challenge/371) by Peter Campbell Smith.
 #### 7. [Missing Equilibrium](https://blog.firedrake.org/archive/2026/05/The_Weekly_Challenge_371__Missing_Equilibrium.html) by Roger Bell_West.
