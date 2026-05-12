@@ -151,13 +151,13 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>DBIx::Class - Schema Class (Part 3)</span>
         </nav>
-        <span class="reading-time" title="782 words">
+        <span class="reading-time" title="1053 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
     <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
   </svg>
-  3 min read
+  5 min read
 </span>
 
         <div class="post-meta">
@@ -357,6 +357,76 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>Testing utf8mb4 support... SUCCESS <span style="color:#f92672">(</span>Emoji stored and retrieved: User 🍕 Emoji<span style="color:#f92672">)</span>
 </span></span></code></pre></div><p>We now have clean application code, no more sensitive data in the source code.</p>
 <hr>
+<h4 id="update--2026-05-12">UPDATE    [2026-05-12]</h4>
+<hr>
+<br>
+<p><code>Dave Cross</code> suggested another way of loading database credentials by using CPAN module, <a href="https://metacpan.org/pod/Env::Dot"><strong>Env::Dot</strong></a>.</p>
+<p>So to use this, I have to create <code>.env</code> file in the root folder like below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>MYSQL_DSN<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dbi:mysql:database=testdb;host=localhost&#34;</span>
+</span></span><span style="display:flex;"><span>MYSQL_USER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;root&#34;</span>
+</span></span><span style="display:flex;"><span>MYSQL_PASSWORD<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;root&#34;</span>
+</span></span></code></pre></div><p>Now the updated test script looks like this:</p>
+<p><strong>Source:</strong> <code>test-env.pl</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> utf8;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Env::Dot;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Try::Tiny;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> open <span style="color:#e6db74">qw(:std :utf8)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;lib/&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> MyApp::Schema;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $schema <span style="color:#f92672">=</span> MyApp::Schema<span style="color:#f92672">-&gt;</span>connect(
+</span></span><span style="display:flex;"><span>    $ENV{<span style="color:#e6db74">&#39;MYSQL_DSN&#39;</span>},
+</span></span><span style="display:flex;"><span>    $ENV{<span style="color:#e6db74">&#39;MYSQL_USER&#39;</span>},
+</span></span><span style="display:flex;"><span>    $ENV{<span style="color:#e6db74">&#39;MYSQL_PASSWORD&#39;</span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> (undef, $charset) <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>storage<span style="color:#f92672">-&gt;</span>dbh<span style="color:#f92672">-&gt;</span>selectrow_array(<span style="color:#e6db74">&#34;SHOW VARIABLES LIKE &#39;character_set_connection&#39;&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Connection Charset: $charset\n\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$schema<span style="color:#f92672">-&gt;</span>deploy({ add_drop_table <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Testing Strict Mode... &#34;</span>;
+</span></span><span style="display:flex;"><span>try {
+</span></span><span style="display:flex;"><span>    $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>create({
+</span></span><span style="display:flex;"><span>        name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;This is a very long name that should definitely exceed the column length limit &#34;</span> x <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;FAILED (Data was truncated/accepted instead of throwing error)\n&#34;</span>;
+</span></span><span style="display:flex;"><span>} catch {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;SUCCESS (Insert blocked as expected)\n&#34;</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Testing utf8mb4 support... &#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $emoji_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;User 🍕 Emoji&#34;</span>;
+</span></span><span style="display:flex;"><span>try {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $user    <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>create({ name <span style="color:#f92672">=&gt;</span> $emoji_name });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $fetched <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;User&#39;</span>)<span style="color:#f92672">-&gt;</span>find($user<span style="color:#f92672">-&gt;</span>id);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($fetched<span style="color:#f92672">-&gt;</span>name <span style="color:#f92672">eq</span> $emoji_name) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;SUCCESS (Emoji stored and retrieved: &#34;</span> <span style="color:#f92672">.</span> $fetched<span style="color:#f92672">-&gt;</span>name <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;)\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;FAILED (Emoji corrupted on retrieval)\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>} catch {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $err <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;FAILED (Error inserting emoji: $err)\n&#34;</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>The test result is same as before:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl test-env.pl
+</span></span><span style="display:flex;"><span>Connection Charset: utf8mb4
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Testing Strict Mode... SUCCESS <span style="color:#f92672">(</span>Insert blocked as expected<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Testing utf8mb4 support... SUCCESS <span style="color:#f92672">(</span>Emoji stored and retrieved: User 🍕 Emoji<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Same result as expected.</p>
+<p>By default, <code>Env::Dot</code>, looks for <code>.env</code> in the current folder but in case it is located somewhere else, you can do something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Env::Dot read <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    dotenv_file <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/other/path/my_environment.env&#39;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><hr>
 <br>
 <p><code>Happy Hacking !!!</code></p>
 

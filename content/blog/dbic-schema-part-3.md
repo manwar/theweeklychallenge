@@ -252,6 +252,99 @@ We now have clean application code, no more sensitive data in the source code.
 
 ***
 
+#### UPDATE &nbsp;&nbsp; [2026-05-12]
+
+***
+
+<br>
+
+`Dave Cross` suggested another way of loading database credentials by using CPAN module, [**Env::Dot**](https://metacpan.org/pod/Env::Dot).
+
+So to use this, I have to create `.env` file in the root folder like below:
+
+```bash
+MYSQL_DSN="dbi:mysql:database=testdb;host=localhost"
+MYSQL_USER="root"
+MYSQL_PASSWORD="root"
+```
+
+Now the updated test script looks like this:
+
+**Source:** `test-env.pl`
+
+```perl
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use utf8;
+use Env::Dot;
+use Try::Tiny;
+use open qw(:std :utf8);
+
+use lib 'lib/';
+use MyApp::Schema;
+
+my $schema = MyApp::Schema->connect(
+    $ENV{'MYSQL_DSN'},
+    $ENV{'MYSQL_USER'},
+    $ENV{'MYSQL_PASSWORD'});
+
+my (undef, $charset) = $schema->storage->dbh->selectrow_array("SHOW VARIABLES LIKE 'character_set_connection'");
+print "Connection Charset: $charset\n\n";
+
+$schema->deploy({ add_drop_table => 1 });
+
+print "Testing Strict Mode... ";
+try {
+    $schema->resultset('User')->create({
+        name => "This is a very long name that should definitely exceed the column length limit " x 10
+    });
+    print "FAILED (Data was truncated/accepted instead of throwing error)\n";
+} catch {
+    print "SUCCESS (Insert blocked as expected)\n";
+};
+
+print "Testing utf8mb4 support... ";
+my $emoji_name = "User 🍕 Emoji";
+try {
+    my $user    = $schema->resultset('User')->create({ name => $emoji_name });
+    my $fetched = $schema->resultset('User')->find($user->id);
+
+    if ($fetched->name eq $emoji_name) {
+        print "SUCCESS (Emoji stored and retrieved: " . $fetched->name . ")\n";
+    } else {
+        print "FAILED (Emoji corrupted on retrieval)\n";
+    }
+} catch {
+    my $err = shift;
+    print "FAILED (Error inserting emoji: $err)\n";
+};
+```
+
+The test result is same as before:
+
+```bash
+$ perl test-env.pl
+Connection Charset: utf8mb4
+
+Testing Strict Mode... SUCCESS (Insert blocked as expected)
+Testing utf8mb4 support... SUCCESS (Emoji stored and retrieved: User 🍕 Emoji)
+```
+
+Same result as expected.
+
+By default, `Env::Dot`, looks for `.env` in the current folder but in case it is located somewhere else, you can do something like this:
+
+```perl
+use Env::Dot read => {
+    dotenv_file => '/other/path/my_environment.env',
+};
+```
+
+***
+
 <br>
 
 `Happy Hacking !!!`
