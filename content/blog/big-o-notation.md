@@ -52,7 +52,7 @@ Today, I will focus mostly on `Time Complexity` from the `Perl` point of view.
 In `Perl`, searching a hash is `O(1)` because it uses a lookup table. It doesn't matter if the hash has `10` keys or `10 million`, the time to find a value is virtually identical.
 
 ```perl
-my %library = ( '1-23-45': 'Learning Perl', '6-78-90': 'Mastering Perl' );
+my %library = ( '1-23-45' => 'Learning Perl', '6-78-90' => 'Mastering Perl' );
 
 # Finding a book by its key is instant
 my $book = $library{'6-78-90'};
