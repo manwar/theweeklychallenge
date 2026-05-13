@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/big-o-notation/">
+    <title>Big O Notation | May 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Introduction to Time and Space Complexity.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/big-o-notation/">
+    <meta property="og:title"       content="Big O Notation">
+    <meta property="og:description" content="Introduction to Time and Space Complexity.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/big-o-notation.jpg">
+    
+    <meta property="article:published_time" content="2026-05-13T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-05-13T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Big O Notation">
+    <meta name="twitter:description" content="Introduction to Time and Space Complexity.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/big-o-notation.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/big-o-notation/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Big O Notation</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>Big O Notation</span>
+        </nav>
+        <span class="reading-time" title="1956 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  9 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 13 May 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/big-o-notation.jpg" alt="Big O Notation"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>Before I start, let me give you some background: I hold an <code>Honours Degree in Mathematics</code>. During my degree program in <code>1993</code>, I completed a one-year <code>Diploma in Information and System Management</code> course. That was the only formal technical education I ever received, and even then I was only taught <code>COBOL</code> and <code>FoxPro</code>. Everything else I have learned has been through books or, later, by looking up materials online.</p>
+<p>These days, <code>AI</code> is making things easier but with a catch. I still prefer reading authentic materials available freely online, and I have a long <code>TODO</code> list of topics I want to explore. Today, I finally picked one from that list that has been waiting for a long time.</p>
+<p>As now you know, I don&rsquo;t have a formal <code>Computer Science</code> background, so I often find many gaps in my knowledge. One of those was <code>Time/Space Complexity</code>. I tried to get to the bottom of it but failed in my last attempt. A friend of mine, <code>Flavio Poletti</code>, tried to explain the subject to me a few years ago but I still didn&rsquo;t quite click.</p>
+<p>In this post, I will try to <code>&quot;brain dump&quot;</code> what I know so far. Please correct me if I am missing something or talking rubbish!</p>
+<p>In computer science, we use <code>Big O Notation</code> to measure the <code>&quot;cost&quot;</code> of an algorithm in two different forms: <code>Time</code> and <code>Space</code>.</p>
+<h4 id="1-time-complexity-speed">1. Time Complexity (Speed)</h4>
+<p>This measures how many steps an algorithm takes as the input size (n) grows. The goal is to finish the task as fast as possible.</p>
+<h4 id="2-space-complexity-memory">2. Space Complexity (Memory)</h4>
+<p>This measures how much extra memory your script needs to finish the task as the input size (n) grows. The goal is to use as little <code>RAM</code> as possible.</p>
+<p>Today, I will focus mostly on <code>Time Complexity</code> from the <code>Perl</code> point of view.</p>
+<h4 id="1o1-constant-time"><a href="#CONSTANT_TIME">1.  O(1) - Constant Time</a></h4>
+<h4 id="2on-linear-time"><a href="#LINEAR_TIME">2.  O(n) - Linear Time</a></h4>
+<h4 id="3olog-n-logarithmic-time"><a href="#LOGRITHMIC_TIME">3.  O(log n) - Logarithmic Time</a></h4>
+<h4 id="4on--2-quadratic-time"><a href="#QUADRATIC_TIME">4.  O(n ^ 2) - Quadratic Time</a></h4>
+<h4 id="5on-log-n-linearithmic-time"><a href="#LINEARTHMIC_TIME">5.  O(n log n) - Linearithmic Time</a></h4>
+<h4 id="6osqrt-n-square-root-time"><a href="#SQUARE_ROOT_TIME">6.  O(sqrt n) - Square Root Time</a></h4>
+<h4 id="7on--3-cube-time"><a href="#CUBE_TIME">7.  O(n ^ 3) - Cube Time</a></h4>
+<h4 id="8o2--n-exponential-time"><a href="#EXPONENTIAL_TIME">8.  O(2 ^ n) - Exponential Time</a></h4>
+<h4 id="9on-factorial-time"><a href="#FACTORIAL_TIME">9.  O(n!) - Factorial Time</a></h4>
+<br>
+<h4 id="CONSTANT_TIME">1.  O(1) - Constant Time</h4>
+<hr>
+<br>
+<p>In <code>Perl</code>, searching a hash is <code>O(1)</code> because it uses a lookup table. It doesn&rsquo;t matter if the hash has <code>10</code> keys or <code>10 million</code>, the time to find a value is virtually identical.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %library <span style="color:#f92672">=</span> ( <span style="color:#e6db74">&#39;1-23-45&#39;</span>: <span style="color:#e6db74">&#39;Learning Perl&#39;</span>, <span style="color:#e6db74">&#39;6-78-90&#39;</span>: <span style="color:#e6db74">&#39;Mastering Perl&#39;</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Finding a book by its key is instant</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $book <span style="color:#f92672">=</span> $library{<span style="color:#e6db74">&#39;6-78-90&#39;</span>};
+</span></span></code></pre></div><h4 id="LINEAR_TIME">2.  O(n) - Linear Time</h4>
+<hr>
+<br>
+<p>If you have an array, you usually have to look at every element. This is the most common time complexity in basic scripts.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @books <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;Learning Perl&#39;</span>, <span style="color:#e6db74">&#39;Mastering Perl&#39;</span>, <span style="color:#e6db74">&#39;Perl Best Practices&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $_book <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Perl Best Practices&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $book (@books) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($book <span style="color:#f92672">eq</span> $_book) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Found it!\n&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">last</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If <code>@books</code> grows to a million items, this loop might have to run <code>a million times</code>.</p>
+<h4 id="LOGARITHMIC_TIME">3.  O(log n) - Logarithmic Time</h4>
+<hr>
+<br>
+<p>If your array is sorted, you can be much smarter. You jump to the middle, see if your target is higher or lower, and cut the search area in half every time.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> List::BinarySearch <span style="color:#e6db74">qw(binsearch)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @sorted_numbers <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $target <span style="color:#f92672">=</span> <span style="color:#ae81ff">70</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Instead of checking 1, 2, 3... it finds 70 in just a few jumps</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> binsearch { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } $target, @sorted_numbers;
+</span></span></code></pre></div><h4 id="QUADRATIC_TIME">4.  O(n ^ 2) - Quadratic Time</h4>
+<hr>
+<br>
+<p>This usually happens when you are comparing every item in a list against every other item (like finding duplicates without using a hash).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#list) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#list) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">!=</span> $j <span style="color:#f92672">&amp;&amp;</span> $list[$i] <span style="color:#f92672">==</span> $list[$j]) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Found a duplicate: $list[$i]\n&#34;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>WARNING:</strong> If <code>@list</code> has <code>1_000</code> items, <code>Perl</code> performs <code>1_000_000</code> comparisons. If it has <code>10_000</code> items, it performs <code>100_000_000</code>!</p>
+<h4 id="LINEARITHMIC_TIME">5.  O(n log n) - Linearthmic Time</h4>
+<hr>
+<br>
+<p>This is the <code>&quot;Gold Standard&quot;</code> for sorting. Most modern sorting algorithms, like <code>Perl</code>&rsquo;s built-in <code>sort</code>, run in <code>O(n log n)</code>.</p>
+<p>Efficient sorting algorithms work by repeatedly splitting the data in half.</p>
+<p>Why <code>O(n log n)</code>?</p>
+<p>The number of times you can split <code>n items</code> in half until you reach one item is log<sub>2</sub>n. At each of those splits, the algorithm has to look at or compare all <code>n items</code> to merge them back together in order.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e"># An unsorted array of &#39;n&#39; elements</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> (<span style="color:#ae81ff">54</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">20</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Perl&#39;s built-in sort is O(n log n)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @data;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Sorted List: @sorted\n&#34;</span>;
+</span></span></code></pre></div><p>It is slightly slower than <code>O(n)</code> but much, much faster than <code>O(n^2)</code>.</p>
+<h4 id="SQUARE_ROOT_TIME">6.  O(sqrt n) - Square Root Time</h4>
+<hr>
+<br>
+<p>This is rarer but very important in number theory and cryptography.</p>
+<p>Testing if a number is prime. To see if <code>101</code> is prime, you don&rsquo;t need to check all numbers up to <code>101</code>, you only need to check numbers up to <code>sqrt {101}</code>, which is roughly <code>10</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; $i <span style="color:#f92672">&lt;=</span> sqrt($n); $i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="CUBE_TIME">7.  O(n ^ 3) - Cube Time</h4>
+<hr>
+<br>
+<p>Common in <code>3D graphics</code> or complex matrix math.</p>
+<p>It occurs when the number of operations grows with the cube of the input size. In code, this most commonly appears as three nested loops iterating over the same collection (or collections of similar size).</p>
+<p>While <code>O(n^2)</code> is often considered <code>&quot;slow&quot;</code> for large datasets, <code>O(n^3)</code> is significantly worse.</p>
+<p>It is usually only acceptable for very small inputs.</p>
+<p>Finding Triplets: A simple example is searching for three numbers in a list that add up to a specific sum using a brute-force approach.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $target  <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $n       <span style="color:#f92672">=</span> scalar @numbers;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Three nested loops = O(n * n * n) = O(n^3)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> $n; $i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; $j <span style="color:#f92672">&lt;</span> $n; $j<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> $j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; $k <span style="color:#f92672">&lt;</span> $n; $k<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($numbers[$i] <span style="color:#f92672">+</span> $numbers[$j] <span style="color:#f92672">+</span> $numbers[$k] <span style="color:#f92672">==</span> $target) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Found triplet: $numbers[$i], $numbers[$j], $numbers[$k]\n&#34;</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To see how quickly this gets out of hand, look at how the operations explode compared to the previous complexities we discussed:</p>
+<pre><code>a) n = 10    : 10^3     = 1_000 operations. (Instant)
+b) n = 100   : 100^3    = 1_000_000 operations. (Noticeable)
+c) n = 1_000 : 1_000^3  = 1_000_000_000 operations. (1 Billion!)
+d) n = 10_000: 10_000^3 = 1_000_000_000_000 operations. (1 Trillion!)
+</code></pre>
+<p>You don&rsquo;t see <code>O(n^3)</code> as often as the others because developers try very hard to avoid it.</p>
+<h4 id="EXPONENTIAL_TIME">8.  O(2 ^ n) - Exponential Time</h4>
+<hr>
+<br>
+<p>This is where things get truly <code>&quot;dangerous&quot;</code> for a programmer. In this complexity, the number of operations doubles every time you add just one single element to your input.</p>
+<p>This usually happens in algorithms that try to explore every possible combination or subset of a problem.</p>
+<p>The most famous example of <code>O(2^n)</code> is the <code>&quot;naive&quot;</code> recursive calculation of the <code>Fibonacci</code> sequence. To calculate a number, the function calls itself twice, creating a massive tree of redundant calculations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fibonacci</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Base cases</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $n <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Exponential growth: Each call branches into TWO more calls: O(2^n)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> fibonacci($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fibonacci($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Fibonacci of $num is: &#34;</span> <span style="color:#f92672">.</span> fibonacci($num) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span></code></pre></div><p>Why is this so slow?</p>
+<p>To calculate <code>fibonacci(5)</code>, the code calculates <code>fibonacci(3)</code> multiple times, <code>fibonacci(2)</code> even more times, and so on. It doesn&rsquo;t <code>&quot;remember&quot;</code> that it already did the work.</p>
+<p>In <code>Perl</code>, we solve <code>O(2^n)</code> recursive problems using <code>Memoization</code>. By storing the result of a calculation in a <code>hash</code>, we can turn an exponential <code>O(2^n)</code> nightmare into a linear <code>O(n)</code> dream.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %memo;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fast_fib</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $n <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $memo{$n} <span style="color:#66d9ef">if</span> exists $memo{$n};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $memo{$n} <span style="color:#f92672">=</span> fast_fib($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fast_fib($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $memo{$n};
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="FACTORIAL_TIME">9.  O(n!) - Factorial Time</h4>
+<hr>
+<br>
+<p>The slowest of the common complexities.</p>
+<p>While exponential growth <code>O(2^n)</code> is scary, factorial growth <code>O(n!)</code> is catastrophic.</p>
+<p>In factorial time, every time you add a single new element, you multiply the entire previous workload by the new total number of elements.</p>
+<p>The classic example is generating every possible ordering of a list. If you have 3 letters (<code>A</code>, <code>B</code>, <code>C</code>), there are <code>3 x 2 x 1 = 6</code> permutations. If you have 10 letters, there are over <code>3.6 million</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#e6db74">&#39;D&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">backtrack</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($items, $current) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>@$items) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@$current\n&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#$items) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @remaining <span style="color:#f92672">=</span> @$items;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $picked    <span style="color:#f92672">=</span> splice(@remaining, $i, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Recursive call that branches n! times</span>
+</span></span><span style="display:flex;"><span>        backtrack(<span style="color:#f92672">\</span>@remaining, [@$current, $picked]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>backtrack(<span style="color:#f92672">\</span>@list, <span style="color:#f92672">[]</span>);
+</span></span></code></pre></div><p>If <code>n=20</code>, an <code>O(2^n)</code> algorithm might take a second or two on a modern computer. An <code>O(n!)</code> algorithm would take roughly <code>77 years</code> on that same computer.</p>
+<h3 id="time-vs-space">Time vs Space</h3>
+<hr>
+<br>
+<p><strong>1. The Hash Approach: O(n) Time, O(n) Space</strong></p>
+<p>This is the most balanced approach, but it is <code>&quot;expensive&quot;</code> in terms of memory.</p>
+<pre><code>Time : You walk the list once O(n).
+Space: You create a new hash (%seen) that grows as the list grows.
+       If you have 1 million numbers, you now have 1 million hash
+       keys sitting in your RAM.
+</code></pre>
+<p>Final verdict, you <code>&quot;traded&quot;</code> space to get better time.</p>
+<p><strong>2. The Nested Loop: O(n^2) Time, O(1) Space</strong></p>
+<p>This is the <code>&quot;space-saver&quot;</code> but <code>&quot;time-waster&quot;</code>.</p>
+<pre><code>Time : You compare every pair O(n^2).
+Space: You aren't storing anything new. You just have your original list
+       and two small counter variables (i and j). Whether the list is 10
+       items or 10 million, the extra memory used is constant O(1).
+</code></pre>
+<p>Final verdict, you <code>&quot;traded&quot;</code> time to save space.</p>
+<p><strong>3. The Factorial Approach: O(n!) Time, O(n) Space</strong></p>
+<p>This is a disaster on both fronts.</p>
+<pre><code>Time : You are generating every possible arrangement O(n!).
+Space: Most permutation libraries in Perl generate the next permutation
+       &quot;on the fly&quot; (using an iterator), so the space is actually only
+       O(n) because it only holds one version of the list at a time.
+</code></pre>
+<p><strong>NOTE:</strong> If you try to store all permutations in an array before checking them, your <code>Space Complexity</code> would also become <code>O(n!)</code>, and your computer would likely crash almost instantly.</p>
+<pre><code>+--------------+-----------------+------------------+---------------------+
+| Algorithm    | Time Complexity | Space Complexity | Resource &quot;Cost&quot;     |
++--------------+-----------------+------------------+---------------------+
+| Hash Lookup  | O(n)            | O(n)             | High RAM, Low CPU   |
+| Nested Loops | O(n^2)          | O(1)             | Low RAM, High CPU   |
+| Sorting      | O(n log n)      | O(1)             | Low RAM, Medium CPU |
++--------------+-----------------+------------------+---------------------+
+</code></pre>
+<p><strong>How to distinguish them in your head?</strong></p>
+<p>Ask: <code>&quot;How much longer will this take if I double the data?&quot;</code> -&gt; That is <code>Time Complexity</code>.</p>
+<p>Ask: <code>&quot;How much more RAM will I use if I double the data?&quot;</code> -&gt; That is <code>Space Complexity</code>.</p>
+<h4 id="summary">SUMMARY</h4>
+<hr>
+<br>
+<p>When comparing all the complexities we&rsquo;ve discussed, you can see why developers work so hard to stay on the left side of this chart.</p>
+<ol>
+<li>
+<p><strong>Green Zone O(1), O(log n), O(n), O(sqrt n):</strong> Excellent. Scalable for almost any data size.</p>
+</li>
+<li>
+<p><strong>Yellow Zone O(n log n):</strong> Good. The standard for sorting.</p>
+</li>
+<li>
+<p><strong>Orange Zone (O(n^2), O(n^3):</strong> Risky. Fine for small lists, but will lag or crash with large data.</p>
+</li>
+<li>
+<p><strong>Red Zone O(2^n), O(n!):</strong> Horrible. Only usable for tiny inputs (usually n &lt; 20).</p>
+</li>
+</ol>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">perl</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/dbic-schema-part-3/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">DBIx::Class - Schema Class (Part 3)</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">dbic</span>
+                <span class="related-post-tag">mysql</span>
+            </span>
+            <span class="related-post-date">9 May 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/dbic-schema-part-2/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">DBIx::Class - Schema Class (Part 2)</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">dbic</span>
+            </span>
+            <span class="related-post-date">3 May 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/dbix-async-oracle/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">DBIx::Class::Async - Oracle Database</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">dbic</span>
+                <span class="related-post-tag">async</span>
+            </span>
+            <span class="related-post-date">1 May 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/big-o-notation\/';
+            this.page.identifier = '8acc0a7c13a451f95448690e57d6b787';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
