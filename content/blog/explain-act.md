@@ -77,6 +77,22 @@ Here is some commonly used commands:
 
 ***
 
+#### UPDATE &nbsp;&nbsp; [2026-05-14]
+
+***
+
+<br>
+
+Someone asked if using `act` we can cache action.
+
+I dig deeper and found out that yes it is very much possible.
+
+So to speed up running `act` and to use cached action and images, we can use the flag `--action-offline-mode`.
+
+There is another choice, instead of adding the flag every time, we can create `.actrc` file in the root folder and add a line `--action-offline-mode`.
+
+***
+
 <br>
 
 `Happy Hacking !!!`
