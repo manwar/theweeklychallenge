@@ -1,73 +1,35 @@
 ---
-title: "RECAP - Perl Weekly Challenge - 078"
-date: 2020-09-21T00:00:00+00:00
-description: "Quick recap of Perl Weekly Challenge - 078."
+title: "RECAP - The Weekly Challenge - 078"
+date: 2026-05-14T00:00:00+00:00
+description: "Quick recap of The Weekly Challenge - 078."
 type: post
 image: images/blog/recap-challenge-078.jpg
-author: Mohammad S Anwar
+author: Mohammad Sajid Anwar
 tags: ["Perl", "Raku"]
 ---
 
 ## TABLE OF CONTENTS
 ***
 
-### 1. [HEADLINES](#HEADLINES)
-### 2. [YouTube WEEKLY](#YOUTUBEWEEKLY)
-### 3. [STAR CONTRIBUTORS](#STARCONTRIBUTORS)
-### 4. [CONTRIBUTION STATS](#CONTRIBUTIONSTATS)
-### 5. [GUESTS](#GUESTS)
-### 6. [LANGUAGES](#LANGUAGES)
-### 7. [CENTURION CLUB](#CENTURIONCLUB)
-### 8. [DAMIAN CONWAY’s CORNER](#DAMIANCONWAYCORNER)
-### 9. [ANDREW SHITOV's CORNER](#ANDREWSHITOVCORNER)
-### 10. [PERL SOLUTIONS](#PERLSOLUTIONS)
-### 11. [RAKU SOLUTIONS](#RAKUSOLUTIONS)
-### 12. [PERL & RAKU SOLUTIONS](#PERLRAKUSOLUTIONS)
+### &nbsp;&nbsp;1. [HEADLINES](#HEADLINES)
+### &nbsp;&nbsp;2. [STAR CONTRIBUTORS](#STARCONTRIBUTORS)
+### &nbsp;&nbsp;3. [CONTRIBUTION STATS](#CONTRIBUTIONSTATS)
+### &nbsp;&nbsp;4. [GUESTS](#GUESTS)
+### &nbsp;&nbsp;5. [LANGUAGES](#LANGUAGES)
+### &nbsp;&nbsp;6. [CENTURION CLUB](#CENTURIONCLUB)
+### &nbsp;&nbsp;7. [DAMIAN CONWAY's CORNER](#DAMIANCONWAYCORNER)
+### &nbsp;&nbsp;8. [ANDREW SHITOV's CORNER](#ANDREWSHITOVCORNER)
+### &nbsp;&nbsp;9. [PERL SOLUTIONS](#PERLSOLUTIONS)
+### 10. [RAKU SOLUTIONS](#RAKUSOLUTIONS)
+### 11. [PERL & RAKU SOLUTIONS](#PERLRAKUSOLUTIONS)
 
 <br>
 
 ## HEADLINES {#HEADLINES}
-
 ***
 
-**Abigail** shared solutions to [**Week #77**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-077/abigail/node) and [**Week #78**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-078/abigail/node) in `Node`.
+Thank you **Team PWC** for your continuous support and encouragement.
 
-**Tyler Wardhaugh** shared solutions to [**Week #72**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-072/tyler-wardhaugh/clojure) in `Clojure`.
-
-**Myoungjin Jeon** shared solutions to [**Week #64**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-064/jeongoon/haskell) in `Haskell` and [**Week #67**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-067/jeongoon/common-lisp) in `Lisp`.
-
-<br>
-
-## YouTube WEEKLY {#YOUTUBEWEEKLY}
-***
-
-<br>
-
-**Richard Park** live coding session in **APL**.
-
-<br>
-
-<iframe width="500" height="300" src="https://www.youtube.com/embed/hRKRT3wCLrA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<br>
-<br>
-
-Please checkout my live coding session in **Perl**.
-
-<br>
-
-#### TASK #1: Leader Element
-
-<iframe width="500" height="300" src="https://www.youtube.com/embed/EmZ8rzgLXp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<br>
-<br>
-
-#### TASK #2: Left Rotation
-
-<iframe width="500" height="300" src="https://www.youtube.com/embed/zXvirywoA58" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<br>
 <br>
 
 ## STAR CONTRIBUTORS {#STARCONTRIBUTORS}
@@ -75,179 +37,169 @@ Please checkout my live coding session in **Perl**.
 
 Following members shared solutions to both tasks in `Perl` and `Raku` as well as blogged about it.
 
-#### 1) Arne Sommer
-#### 2) Colin Crain
-#### 3) Jaldhar H. Vyas
-#### 4) Laurent Rosenfeld
-#### 5) Mohammad S Anwar
-#### 6) Roger Bell_West
+#### 1. Arne Sommer
+#### 2. Colin Crain
+#### 3. Jaldhar H. Vyas
+#### 4. Laurent Rosenfeld
+#### 5. Mohammad Sajid Anwar
+#### 6. Roger Bell_West
+
+<br>
+
+### Overall Contributions Stats:
+
+<br>
+
+#### 1. Perl: 3743 (61%)
+#### 2. Raku: 2312 (39%)
+#### 3. Blog: 1084
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
-
 ***
 
-The total contributions in the week is `121`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `128`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1) PERL: 66
-#### 2) RAKU: 37
-#### 3) BLOG: 18
+#### 1. Perl: 68
+#### 2. Raku: 41
+#### 3. Blog: 19
 
 <br>
 
 ## GUESTS {#GUESTS}
-
 ***
 
-#### 1) Ulrich Rieke: C++ (24), Haskell (28).
-#### 2) Lubos Kolouch: Python (36).
-#### 3) Richard Park: APL (34).
-#### 4) Myoungjin Jeon: Elm (2), Haskell (17), Lisp (14).
-#### 5) Walt Mankowski: C (6), C++ (4), Python (20).
-#### 6) User Person: Python (21).
-#### 7) Mohammad S Anwar: Java (1), Swift (18).
-#### 8) Orestis Zekai: Python (16).
-#### 9) Tyler Wardhaugh: Clojure (14), Lua (2).
-#### 10) Cheok-Yin Fung: Java (2), Lisp (9), Python (3).
-#### 11) Adam Russell: C++ (8), Prolog (5).
-#### 12) Roger Bell_West: Postscript (2), Python (10).
-#### 13) Wanderdoc: R (12).
-#### 14) Andrew Shitov: C++ (6), HTML (1), Python (2), XSLT (1).
-#### 15) Burkhard Nickels: Python (8).
-#### 16) Leo Manfredi: Bash (2), Python (6).
-#### 17) Sangeet Kar: Python (8).
-#### 18) Jonas Berlin: Rust (7).
-#### 19) Shawn Wagner: Java (2), OCaml (1), Tcl (4).
-#### 20) Dave Jacoby: HTML (1), Node (3), Rust (2).
-#### 21) Shawak: Ruby (6).
-#### 22) Arne Sommer: Bash (1), Node (1), PHP (1), Python (1), Ruby (1).
-#### 23) Abigail: Node (4).
-#### 24) Aviral Goel: Haskell (4).
-#### 25) Kivanc Yazan: Python (4).
-#### 26) Yet Ebreo: Python (2), Ruby (2).
-#### 27) Duncan C. White: Postscript (3).
-#### 28) Rage311: Rust (3).
-#### 29) Ben Davies: Idris (2).
-#### 30) Daniel Mita: Go (1), Javascript (1).
-#### 31) E. Choroba: Erlang (2).
-#### 32) Nuno Vieira: JavaScript (2).
-#### 33) Pete Houston: Awk (2).
-#### 34) Darren Bottin: Prolog (1).
-#### 35) Jaldhar H. Vyas: C++ (1).
-#### 36) Lance Wicks: Elm (1).
-#### 37) Laurent Rosenfeld: Gembase (1).
-#### 38) Steven Wilson: Rust (1).
+#### 1. Paulo Custodio (285)
+    Ada (2), Awk (12), BASIC (8), Bc (8), Brainfuck (3), C (55), C++ (24), D (1), Forth (6), Fortran (1), Lua (8), Pascal (1), Python (156).
+#### 2. Lubos Kolouch (191)
+    Bash (1), C++ (1), Go (5), Java (23), JavaScript (1), Kotlin (2), PHP (1), Python (155), Ruby (1), VBA (1).
+#### 3. Stuart Little (176)
+    Haskell (156), Lua (20).
+#### 4. AhmetEmre (150)
+    BQN (150).
+#### 5. Abigail (124)
+    Awk (10), BASIC (1), Bash (10), Bc (5), Befunge-93 (4), C (10), Go (7), Java (7), Lua (10), Node.js (14), Pascal (7), Python (10), R (7), Ruby (10), Scheme (7), Tcl (5).
+#### 6. David Ferrone (116)
+    C (29), JavaScript (29), Python (29), Rust (29).
+#### 7. Archar Gelod (104)
+    Nim (104).
+#### 8. Ulrich Rieke (52)
+    C++ (24), Haskell (28).
+#### 9. Myoungjin Jeon (34)
+    Elm (2), Go (1), Haskell (17), Lisp (14).
+#### 10. Richard Park (34)
+    APL (34).
+#### 11. Walt Mankowski (30)
+    C (6), C++ (4), Python (20).
+#### 12. Cheok-Yin Fung (22)
+    Java (5), Lisp (9), Python (3), Smalltalk (5).
+#### 13. PokGoPun (22)
+    Dart (6), Go (16).
+#### 14. User Person (21)
+    Python (21).
+#### 15. Mohammad Sajid Anwar (19)
+    Java (1), Swift (18).
+#### 16. Conor Hoekstra (16)
+    APL (9), BQN (7).
+#### 17. Orestis Zekai (16)
+    Python (16).
+#### 18. Tyler Wardhaugh (16)
+    Clojure (14), Lua (2).
+#### 19. Adam Russell (13)
+    C++ (8), Prolog (5).
+#### 20. Roger Bell_West (12)
+    Postscript (2), Python (10).
+#### 21. Wanderdoc (12)
+    R (12).
+#### 22. Andrew Shitov (10)
+    C++ (6), HTML (1), Python (2), XSLT (1).
+#### 23. Burkhard Nickels (8)
+    Python (8).
+#### 24. Leo Manfredi (8)
+    Bash (2), Python (6).
+#### 25. Sangeet Kar (8)
+    Python (8).
+#### 26. Jonas Berlin (7)
+    Rust (7).
+#### 27. Shawn Wagner (7)
+    Java (2), OCaml (1), Tcl (4).
+#### 28. Alexander Pankoff (6)
+    Haskell (6).
+#### 29. Dave Jacoby (6)
+    HTML (1), Node.js (3), Rust (2).
+#### 30. Shawak (6)
+    Ruby (6).
+#### 31. Arne Sommer (5)
+    Bash (1), Node.js (1), PHP (1), Python (1), Ruby (1).
+#### 32. Aviral Goel (4)
+    Haskell (4).
+#### 33. Kivanc Yazan (4)
+    Python (4).
+#### 34. Mohammad Foda (4)
+    Haxe (2), Nim (2).
+#### 35. Yet Ebreo (4)
+    Python (2), Ruby (2).
+#### 36. Andrii Mishchenko (3)
+    Ruby (3).
+#### 37. Duncan C. White (3)
+    Postscript (3).
+#### 38. Rage311 (3)
+    Rust (3).
+#### 39. Ben Davies (2)
+    Idris (2).
+#### 40. Daniel Mita (2)
+    Go (1), JavaScript (1).
+#### 41. E. Choroba (2)
+    Erlang (2).
+#### 42. Marton Polgar (2)
+    Prolog (2).
+#### 43. Nuno Vieira (2)
+    JavaScript (2).
+#### 44. Pete Houston (2)
+    Awk (2).
+#### 45. Aaryan Rastogi (1)
+    JavaScript (1).
+#### 46. Darren Bottin (1)
+    Prolog (1).
+#### 47. Jaldhar H. Vyas (1)
+    C++ (1).
+#### 48. Karishma Rajput (1)
+    Node.js (1).
+#### 49. Lance Wicks (1)
+    Elm (1).
+#### 50. Laurent Rosenfeld (1)
+    Gembase (1).
+#### 51. Steven Wilson (1)
+    Rust (1).
 
 <br>
 
 ## LANGUAGES {#LANGUAGES}
-
 ***
 
-`Python` continued to maintain the lead. `Haskell` is also very popular among the team.
-
-We now have solutions in **30 different languages** apart from `Perl` and `Raku`. It all started with `Python` in the **Week #18** by `Orestis Zekai`.
-
-#### 1) Python: 137
-#### 2) Haskell: 49
-#### 3) C++: 43
-#### 4) APL: 34
-#### 5) Lisp: 23
-#### 6) Swift: 18
-#### 7) Clojure: 14
-#### 8) Rust: 13
-#### 9) R: 12
-#### 10) Ruby: 9
-#### 11) Node: 8
-#### 12) C: 6
-#### 13) Prolog: 6
-#### 14) Java: 5
-#### 15) Postscript: 5
-#### 16) Tcl: 4
-#### 17) Bash: 3
-#### 18) Elm: 3
-#### 19) Awk: 2
-#### 20) Erlang: 2
-#### 21) HTML: 2
-#### 22) Idris: 2
-#### 23) JavaScript: 2
-#### 24) Lua: 2
-#### 25) Gembase: 1
-#### 26) Go: 1
-#### 27) Javascript: 1
-#### 28) OCaml: 1
-#### 29) PHP: 1
-#### 30) XSLT: 1
+    Python (451), Haskell (211), BQN (157), Nim (106), C (100), C++ (68), APL (43), Rust (42), Lua (40), Java (38), JavaScript (34), Go (30), Awk (24), Lisp (23), Ruby (23), Node.js (19), R (19), Swift (18), Bash (14), Clojure (14), Bc (13), BASIC (9), Tcl (9), Pascal (8), Prolog (8), Scheme (7), Dart (6), Forth (6), Postscript (5), Smalltalk (5), Befunge-93 (4), Brainfuck (3), Elm (3), Ada (2), Erlang (2), HTML (2), Haxe (2), Idris (2), Kotlin (2), PHP (2), D (1), Fortran (1), Gembase (1), OCaml (1), VBA (1), XSLT (1).
 
 <br>
 
 ## CENTURION CLUB {#CENTURIONCLUB}
-
 ***
 
-Changes to the ranking in the **Centurion Club** last week listed below:
-
-#### a) **Mohammad S Anwar** moved up to the rank **#010**.
-#### b) **Shahed Nooshmand** moved up to the rank **#030**.
-#### c) **Walt Mankowski** moved up to the rank **#036**.
-
-<br>
-
-Finally I made it to `Top 10` at the end of **Week #78**.
-
-#### 1) Laurent Rosenfeld (**870**)
-#### 2) Jaldhar H. Vyas (**652**)
-#### 3) Roger Bell_West (**550**)
-#### 4) Arne Sommer (**524**)
-#### 5) Javier Luque (**460**)
-#### 6) Ruben Westerberg (**452**)
-#### 7) Colin Crain (**410**)
-#### 8) E. Choroba (**400**)
-#### 9) Athanasius (**392**)
-#### 10) Mohammad S Anwar (**364**)
-#### 11) Adam Russell (**362**)
-#### 12) Joelle Maslak (**334**)
-#### 13) Simon Proctor (**304**)
-#### 14) Dave Jacoby (**300**)
-#### 15) Ryan Thompson (**278**)
-#### 16) Luca Ferrari (**268**)
-#### 17) Duncan C. White (**266**)
-#### 18) Ulrich Rieke (**244**)
-#### 19) Andrezgz (**230**)
-#### 20) Yet Ebreo (**216**)
-#### 21) Noud Aldenhoven (**188**)
-#### 22) Kevin Colyer (**176**)
-#### 23) Cheok-Yin Fung (**168**)
-#### 24) Kian-Meng Ang (**162**)
-#### 25) Mark Anderson (**162**)
-#### 26) Markus Holzer (**162**)
-#### 27) Wanderdoc (**152**)
-#### 28) Steven Wilson (**146**)
-#### 29) Lubos Kolouch (**142**)
-#### 30) Shahed Nooshmand (**140**)
-#### 31) Duane Powell (**136**)
-#### 32) Feng Chang (**112**)
-#### 33) Saif Ahmed (**110**)
-#### 34) Burkhard Nickels (**108**)
-#### 35) Alicia Bielsa (**106**)
-#### 36) Walt Mankowski (**102**)
+    Laurent Rosenfeld (870), Jaldhar H. Vyas (710), Roger Bell_West (550), Arne Sommer (520), Lubos Kolouch (466), Javier Luque (460), Ruben Westerberg (452), Colin Crain (408), E. Choroba (398), Athanasius (382), Mohammad Sajid Anwar (364), Adam Russell (360), Paulo Custodio (312), Stuart Little (312), Simon Proctor (302), Dave Jacoby (298), Ryan Thompson (282), Jorg Sommrey (274), Joelle Maslak (274), Luca Ferrari (268), Duncan C. White (264), Ulrich Rieke (244), Andrezgz (222), Yet Ebreo (212), Noud Aldenhoven (188), Kevin Colyer (176), Cheok-Yin Fung (174), Kian-Meng Ang (162), Markus Holzer (162), Mark Anderson (160), Wanderdoc (152), Shahed Nooshmand (140), Steven Wilson (138), Duane Powell (136), Feng Chang (122), Saif Ahmed (110), Alicia Bielsa (106), Burkhard Nickels (106), Walt Mankowski (102).
 
 <br>
 
 ## DAMIAN CONWAY's CORNER {#DAMIANCONWAYCORNER}
-
 ***
 
-Please checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.org/blog/damian-corner) by **Damian Conway** solving the **["Perl Weekly Challenge"](/challenges)**.
+Please checkout the masterpiece collection of [**blogs**](/blog/damian-corner) by **Damian Conway** solving the **[The Weekly Challenge](/challenges)**.
 
 <br>
 
 ## ANDREW SHITOV's CORNER {#ANDREWSHITOVCORNER}
-
 ***
 
-Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can find all his contributions to the **["Perl Weekly Challenge"](/challenges)** on this [**nicely laid out page**](https://andrewshitov.com/raku-challenges-index/).
+Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can find all his contributions to the **[The Weekly Challenge](/challenges)** on this [**nicely laid out page**](https://andrewshitov.com/raku-challenges-index/).
 
 <br>
 
@@ -273,7 +225,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Alexander Pankoff
-![Alexander Pankoff](/images/team/user.jpg)
+![Alexander Pankoff](/images/team/alexander-pankoff.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/alexander-pankoff/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/alexander-pankoff/perl/ch-2.pl)]
@@ -349,7 +301,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### James Smith
-![James Smith](/images/team/user.jpg)
+![James Smith](/images/team/james-smith.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/james-smith/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/james-smith/perl/ch-2.pl)]
@@ -357,7 +309,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Jorg Sommrey
-![Jorg Sommrey](/images/team/user.jpg)
+![Jorg Sommrey](/images/team/jorg-sommrey.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jo-37/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jo-37/perl/ch-2.pl)]
@@ -369,6 +321,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/lubos-kolouch/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/lubos-kolouch/perl/ch-2.pl)]
+[[**BLOG #1**](https://kolouch.net/perlweeklychallenge/blog-78.html)]
 
 ***
 
@@ -385,6 +338,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/nunovieira220/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/nunovieira220/perl/ch-2.pl)]
+
+***
+
+### Paulo Custodio
+![Paulo Custodio](/images/team/paulo-custodio.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/paulo-custodio/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/paulo-custodio/perl/ch-2.pl)]
 
 ***
 
@@ -445,15 +406,22 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 <br>
 
 ## RAKU SOLUTIONS {#RAKUSOLUTIONS}
-
 ***
 
 ### Andrew Shitov
-![Andrew Shitov](/images/team/user.jpg)
+![Andrew Shitov](/images/team/andrew-shitov.jpg)
 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/ash/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/ash/raku/ch-2.raku)]
 [[**BLOG #1**](https://andrewshitov.com/2020/09/14/the-weekly-challenge-078/)]
+
+***
+
+### Feng Chang
+![Feng Chang](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/feng-chang/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/feng-chang/raku/ch-2.raku)]
 
 ***
 
@@ -512,10 +480,17 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/simon-proctor/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/simon-proctor/raku/ch-2.raku)]
 
+***
+
+### Stuart Little
+![Stuart Little](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/stuart-little/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/stuart-little/raku/ch-2.p6)]
+
 <br>
 
-## PERL & RAKU SOLUTIONS {#PERLRAKUSOLUTIONS}
-
+# PERL & RAKU SOLUTIONS {#PERLRAKUSOLUTIONS}
 ***
 
 ### Arne Sommer
@@ -592,8 +567,8 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 ***
 
-### Mohammad S Anwar
-![Mohammad S Anwar](/images/team/mohammad_anwar.jpg)
+### Mohammad Sajid Anwar
+![Mohammad Sajid Anwar](/images/team/mohammad_anwar.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/mohammad-anwar/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/mohammad-anwar/perl/ch-2.pl)]

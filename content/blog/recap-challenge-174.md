@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 174"
-date: 2026-04-08T00:00:00+00:00
+date: 2026-05-14T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 174."
 type: post
 image: images/blog/recap-challenge-174.jpg
@@ -49,20 +49,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 8799 (63%)
+#### 1. Perl: 8826 (63%)
 #### 2. Raku: 5090 (37%)
-#### 3. Blog: 2758
+#### 3. Blog: 2939
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `103`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `104`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
 #### 1. Perl: 54
 #### 2. Raku: 29
-#### 3. Blog: 20
+#### 3. Blog: 21
 
 <br>
 
@@ -73,8 +73,8 @@ The total contributions in the week is `103`. Well done **Team PWC**. I would al
     Awk (122), BASIC (22), Bash (110), Bc (58), Befunge-93 (34), Brainfuck (1), C (124), C Shell (19), COBOL (18), Chef (1), Erlang (19), Forth (18), Fortran (20), Go (66), Java (63), Lua (110), M4 (18), MMIX (14), Mumps (1), Node.js (129), OCaml (17), Ook (1), PHP (17), Pascal (66), Postscript (16), Python (114), R (61), Rexx (17), Ruby (108), SQL (23), Scheme (58), Sed (15), Tcl (60).
 #### 2. Roger Bell_West (819)
     Bash (1), JavaScript (57), Kotlin (62), Lua (57), Postscript (93), Python (195), Ruby (183), Rust (171).
-#### 3. Paulo Custodio (738)
-    Ada (21), Awk (28), BASIC (44), Bc (17), Brainfuck (5), C (114), C++ (57), D (14), Forth (42), Fortran (8), Lua (38), Pascal (6), Python (344).
+#### 3. Paulo Custodio (740)
+    Ada (21), Awk (28), BASIC (44), Bc (17), Brainfuck (5), C (116), C++ (57), D (14), Forth (42), Fortran (8), Lua (38), Pascal (6), Python (344).
 #### 4. Stuart Little (436)
     Haskell (256), Lua (88), Node.js (44), Python (48).
 #### 5. Lubos Kolouch (393)
@@ -245,14 +245,14 @@ The total contributions in the week is `103`. Well done **Team PWC**. I would al
 ## LANGUAGES {#LANGUAGES}
 ***
 
-    Python (1398), Haskell (480), Ruby (363), Lua (362), C (333), BQN (255), C++ (252), Rust (233), Go (216), Java (195), Node.js (192), Awk (180), JavaScript (156), Clojure (140), Bash (126), APL (120), Nim (117), Postscript (112), Pascal (99), Prolog (93), Kotlin (87), Bc (82), Tcl (81), Julia (76), R (74), BASIC (66), Excel VBA (63), PostgreSQL (61), Scala (61), Forth (60), Scheme (58), Lisp (41), PHP (39), D (38), Befunge-93 (35), Fortran (30), Swift (28), Dart (27), Ada (25), OCaml (25), SQL (23), Erlang (21), C Shell (19), COBOL (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), Ring (13), Smalltalk (9), J (8), Brainfuck (6), Modula 3 (4), Oberon (4), TypeScript (4), CESIL (3), Crystal (3), Gembase (3), Janet (3), Nuweb (3), Zig (3), C3 (2), Coconut (2), Dc (2), HTML (2), Haxe (2), Idris (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Bourne Shell (1), C# (1), Chef (1), Elixir (1), Fish (1), GNAT (1), IO (1), Logo (1), Mumps (1), Ook (1), SVG (1), VBA (1), Visual BASIC (1), XSLT (1).
+    Python (1398), Haskell (480), Ruby (363), Lua (362), C (335), BQN (255), C++ (252), Rust (233), Go (216), Java (195), Node.js (192), Awk (180), JavaScript (156), Clojure (140), Bash (126), APL (120), Nim (117), Postscript (112), Pascal (99), Prolog (93), Kotlin (87), Bc (82), Tcl (81), Julia (76), R (74), BASIC (66), Excel VBA (63), PostgreSQL (61), Scala (61), Forth (60), Scheme (58), Lisp (41), PHP (39), D (38), Befunge-93 (35), Fortran (30), Swift (28), Dart (27), Ada (25), OCaml (25), SQL (23), Erlang (21), C Shell (19), COBOL (18), M4 (18), Rexx (17), Sed (16), Elm (15), MMIX (14), Ring (13), Smalltalk (9), J (8), Brainfuck (6), Modula 3 (4), Oberon (4), TypeScript (4), CESIL (3), Crystal (3), Gembase (3), Janet (3), Nuweb (3), Zig (3), C3 (2), Coconut (2), Dc (2), HTML (2), Haxe (2), Idris (2), Miranda (2), Myrddin (2), Nix (2), Odin (2), WebAssembly (2), Wolfram (2), YaBasic (2), Bourne Shell (1), C# (1), Chef (1), Elixir (1), Fish (1), GNAT (1), IO (1), Logo (1), Mumps (1), Ook (1), SVG (1), VBA (1), Visual BASIC (1), XSLT (1).
 
 <br>
 
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1762), Jaldhar H. Vyas (1590), Roger Bell_West (1494), Arne Sommer (1318), Colin Crain (1162), Athanasius (1048), Luca Ferrari (1044), Flavio Poletti (1034), Adam Russell (898), Ulrich Rieke (886), Dave Jacoby (846), E. Choroba (786), Lubos Kolouch (714), Paulo Custodio (696), Jorg Sommrey (644), Stuart Little (644), Duncan C. White (630), Mohammad Sajid Anwar (624), James Smith (604), Abigail (574), Cheok-Yin Fung (542), W. Luis Mochan (504), Mark Anderson (500), Simon Proctor (494), Simon Green (490), Javier Luque (460), Ruben Westerberg (452), Ryan Thompson (390), Feng Chang (374), Niels van Dijke (368), Pete Houston (360), Wanderdoc (358), Jan Krnavek (354), Joelle Maslak (274), Andrezgz (252), Peter Campbell Smith (238), Bruce Gray (224), Yet Ebreo (222), Steven Wilson (200), Markus Holzer (198), Myoungjin Jeon (192), Matthew Neleigh (190), Noud Aldenhoven (188), Alexander Pankoff (184), Walt Mankowski (184), Andrew Shitov (182), Kevin Colyer (176), Robert DiCicco (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Shahed Nooshmand (140), Cristina Heredia (126), Bob Lied (120), Dave Cross (120), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Andinus (112), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Robert Ransbottom (104), Nuno Vieira (104).
+    Laurent Rosenfeld (1762), Jaldhar H. Vyas (1590), Roger Bell_West (1494), Arne Sommer (1318), Colin Crain (1162), Athanasius (1048), Luca Ferrari (1044), Lubos Kolouch (1042), Flavio Poletti (1034), Adam Russell (898), Ulrich Rieke (886), Dave Jacoby (846), E. Choroba (786), Paulo Custodio (696), Jorg Sommrey (644), Stuart Little (644), Duncan C. White (630), Mohammad Sajid Anwar (624), James Smith (604), Abigail (574), Cheok-Yin Fung (542), W. Luis Mochan (504), Mark Anderson (500), Simon Proctor (494), Simon Green (490), Javier Luque (460), Ruben Westerberg (452), Ryan Thompson (390), Feng Chang (374), Niels van Dijke (368), Pete Houston (360), Wanderdoc (358), Jan Krnavek (354), Joelle Maslak (274), Andrezgz (252), Peter Campbell Smith (238), Bruce Gray (224), Yet Ebreo (222), Steven Wilson (200), Markus Holzer (198), Myoungjin Jeon (192), Matthew Neleigh (190), Noud Aldenhoven (188), Alexander Pankoff (184), Walt Mankowski (184), Andrew Shitov (182), Kevin Colyer (176), Robert DiCicco (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Bob Lied (140), Shahed Nooshmand (140), Cristina Heredia (126), Dave Cross (120), Joan Mimosinnet (120), Kang-min Liu (118), Julio de Castro (116), Saif Ahmed (114), Andinus (112), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Robert Ransbottom (104), Nuno Vieira (104).
 
 <br>
 
@@ -377,6 +377,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/lubos-kolouch/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-174/lubos-kolouch/perl/ch-2.pl)]
+[[**BLOG #1**](https://kolouch.net/perlweeklychallenge/blog-174.html)]
 
 ***
 
