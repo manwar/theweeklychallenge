@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 155"
-date: 2026-05-14T00:00:00+00:00
+date: 2026-05-15T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 155."
 type: post
 image: images/blog/recap-challenge-155.jpg
@@ -52,18 +52,18 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 #### 1. Perl: 7857 (63%)
 #### 2. Raku: 4509 (37%)
-#### 3. Blog: 2538
+#### 3. Blog: 2393
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `100`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `99`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
 #### 1. Perl: 51
 #### 2. Raku: 27
-#### 3. Blog: 22
+#### 3. Blog: 21
 
 <br>
 
@@ -241,7 +241,7 @@ The total contributions in the week is `100`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1574), Jaldhar H. Vyas (1420), Roger Bell_West (1304), Arne Sommer (1180), Colin Crain (1032), Lubos Kolouch (928), Athanasius (902), Flavio Poletti (802), Adam Russell (786), Luca Ferrari (780), Ulrich Rieke (760), Dave Jacoby (746), E. Choroba (708), Stuart Little (644), Paulo Custodio (620), Abigail (574), Jorg Sommrey (570), Mohammad Sajid Anwar (564), Duncan C. White (556), James Smith (490), Simon Proctor (480), Cheok-Yin Fung (462), Javier Luque (460), Ruben Westerberg (452), Simon Green (446), Mark Anderson (430), W. Luis Mochan (390), Wanderdoc (354), Feng Chang (348), Pete Houston (328), Niels van Dijke (318), Ryan Thompson (298), Jan Krnavek (290), Joelle Maslak (274), Andrezgz (246), Yet Ebreo (222), Markus Holzer (198), Steven Wilson (198), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Bruce Gray (170), Walt Mankowski (168), Duane Powell (164), Kian-Meng Ang (162), Alexander Pankoff (156), Shahed Nooshmand (140), Mark Senn (136), Peter Campbell Smith (132), Cristina Heredia (124), Matthew Neleigh (124), Dave Cross (120), Joan Mimosinnet (120), Kang-min Liu (118), Bob Lied (116), Julio de Castro (116), Gustavo Chaves (112), Saif Ahmed (110), Alicia Bielsa (106), Burkhard Nickels (106), Andinus (104), Nuno Vieira (104).
+    Laurent Rosenfeld (1574), Jaldhar H. Vyas (1420), Roger Bell_West (1304), Arne Sommer (1180), Colin Crain (1032), Athanasius (902), Flavio Poletti (802), Adam Russell (786), Luca Ferrari (780), Ulrich Rieke (760), Dave Jacoby (746), E. Choroba (708), Stuart Little (644), Lubos Kolouch (638), Paulo Custodio (620), Abigail (574), Jorg Sommrey (570), Mohammad Sajid Anwar (564), Duncan C. White (556), James Smith (490), Simon Proctor (480), Cheok-Yin Fung (462), Javier Luque (460), Ruben Westerberg (452), Simon Green (446), Mark Anderson (430), W. Luis Mochan (390), Wanderdoc (354), Feng Chang (348), Pete Houston (328), Niels van Dijke (318), Ryan Thompson (298), Jan Krnavek (290), Joelle Maslak (274), Andrezgz (246), Yet Ebreo (222), Markus Holzer (198), Steven Wilson (198), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Bruce Gray (170), Walt Mankowski (168), Duane Powell (164), Kian-Meng Ang (162), Alexander Pankoff (156), Shahed Nooshmand (140), Mark Senn (136), Peter Campbell Smith (132), Cristina Heredia (124), Matthew Neleigh (124), Dave Cross (120), Joan Mimosinnet (120), Kang-min Liu (118), Bob Lied (116), Julio de Castro (116), Gustavo Chaves (112), Saif Ahmed (110), Alicia Bielsa (106), Burkhard Nickels (106), Andinus (104), Nuno Vieira (104).
 
 <br>
 
@@ -343,7 +343,6 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-155/lubos-kolouch/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-155/lubos-kolouch/perl/ch-2.pl)]
-[[**BLOG #1**](https://kolouch.net/perlweeklychallenge/blog-155.html)]
 
 ***
 

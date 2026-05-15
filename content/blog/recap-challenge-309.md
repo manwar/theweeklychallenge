@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 309"
-date: 2026-05-14T00:00:00+00:00
+date: 2026-05-15T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 309."
 type: post
 image: images/blog/recap-challenge-309.jpg
@@ -48,7 +48,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 #### 1. Perl: 16290 (64%)
 #### 2. Raku: 9035 (36%)
-#### 3. Blog: 6038
+#### 3. Blog: 5769
 
 <br>
 
@@ -345,7 +345,7 @@ The total contributions in the week is `91`. Well done **Team PWC**. I would als
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Luca Ferrari (3034), Jaldhar H. Vyas (2930), Laurent Rosenfeld (2906), Roger Bell_West (2820), Arne Sommer (2152), Athanasius (2002), Lubos Kolouch (1954), Ulrich Rieke (1840), Flavio Poletti (1716), Dave Jacoby (1424), Colin Crain (1336), E. Choroba (1328), Jorg Sommrey (1318), W. Luis Mochan (1312), Adam Russell (1290), Paulo Custodio (1232), Simon Green (1132), Mark Anderson (1018), Peter Campbell Smith (1018), Cheok-Yin Fung (892), James Smith (882), Thomas Kohler (874), Feng Chang (862), Jan Krnavek (824), Duncan C. White (794), Ali Moradi (752), Bob Lied (746), Niels van Dijke (724), Mohammad Sajid Anwar (718), Packy Anderson (682), Robbie Hatley (682), Bruce Gray (674), Stuart Little (644), Robert Ransbottom (580), Abigail (574), Robert DiCicco (574), Wanderdoc (572), Matthew Neleigh (562), Simon Proctor (560), David Ferrone (556), Matthias Muth (502), Peter Meszaros (496), Stephen G. Lynn (478), Javier Luque (460), Ruben Westerberg (452), Ryan Thompson (442), BarrOff (404), Reinier Maliepaard (390), Pete Houston (360), Joelle Maslak (314), Kjetil Skotheim (268), Andrezgz (264), Andrew Shitov (254), Steven Wilson (254), Yet Ebreo (222), Alexander Pankoff (220), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Solathian (192), Noud Aldenhoven (188), Marton Polgar (182), Avery Adams (176), Kevin Colyer (176), Nelo Tovar (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Mariano Spadaccini (134), Andinus (132), Pip Stuart (132), Humberto Massa (128), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Santiago Leyva (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104).
+    Luca Ferrari (3034), Jaldhar H. Vyas (2930), Laurent Rosenfeld (2906), Roger Bell_West (2820), Arne Sommer (2152), Athanasius (2002), Ulrich Rieke (1840), Flavio Poletti (1716), Dave Jacoby (1424), Lubos Kolouch (1416), Colin Crain (1336), E. Choroba (1328), Jorg Sommrey (1318), W. Luis Mochan (1312), Adam Russell (1290), Paulo Custodio (1232), Simon Green (1132), Mark Anderson (1018), Peter Campbell Smith (1018), Cheok-Yin Fung (892), James Smith (882), Thomas Kohler (874), Feng Chang (862), Jan Krnavek (824), Duncan C. White (794), Ali Moradi (752), Bob Lied (746), Niels van Dijke (724), Mohammad Sajid Anwar (718), Packy Anderson (682), Robbie Hatley (682), Bruce Gray (674), Stuart Little (644), Robert Ransbottom (580), Abigail (574), Robert DiCicco (574), Wanderdoc (572), Matthew Neleigh (562), Simon Proctor (560), David Ferrone (556), Matthias Muth (502), Peter Meszaros (496), Stephen G. Lynn (478), Javier Luque (460), Ruben Westerberg (452), Ryan Thompson (442), BarrOff (404), Reinier Maliepaard (390), Pete Houston (360), Joelle Maslak (314), Kjetil Skotheim (268), Andrezgz (264), Andrew Shitov (254), Steven Wilson (254), Yet Ebreo (222), Alexander Pankoff (220), Markus Holzer (198), Walt Mankowski (196), Myoungjin Jeon (192), Solathian (192), Noud Aldenhoven (188), Marton Polgar (182), Avery Adams (176), Kevin Colyer (176), Nelo Tovar (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Mark Senn (156), Dave Cross (140), Shahed Nooshmand (140), Mariano Spadaccini (134), Andinus (132), Pip Stuart (132), Humberto Massa (128), Cristina Heredia (126), Joan Mimosinnet (120), Kang-min Liu (118), Santiago Leyva (118), Julio de Castro (116), Saif Ahmed (114), Gustavo Chaves (112), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104).
 
 <br>
 

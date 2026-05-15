@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 147"
-date: 2026-05-14T00:00:00+00:00
+date: 2026-05-15T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 147."
 type: post
 image: images/blog/recap-challenge-147.jpg
@@ -52,18 +52,18 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 #### 1. Perl: 7461 (63%)
 #### 2. Raku: 4282 (37%)
-#### 3. Blog: 2373
+#### 3. Blog: 2236
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `110`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `109`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
 #### 1. Perl: 54
 #### 2. Raku: 30
-#### 3. Blog: 26
+#### 3. Blog: 25
 
 <br>
 
@@ -239,7 +239,7 @@ The total contributions in the week is `110`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1494), Jaldhar H. Vyas (1340), Roger Bell_West (1224), Arne Sommer (1116), Colin Crain (944), Lubos Kolouch (880), Athanasius (838), Adam Russell (754), Luca Ferrari (708), Flavio Poletti (706), Ulrich Rieke (700), Dave Jacoby (694), E. Choroba (676), Stuart Little (644), Paulo Custodio (588), Mohammad Sajid Anwar (548), Jorg Sommrey (542), Abigail (530), Duncan C. White (524), Simon Proctor (480), Javier Luque (460), Ruben Westerberg (452), Cheok-Yin Fung (442), James Smith (442), Simon Green (422), Mark Anderson (400), Wanderdoc (354), W. Luis Mochan (342), Feng Chang (332), Pete Houston (310), Niels van Dijke (298), Ryan Thompson (298), Joelle Maslak (274), Jan Krnavek (270), Andrezgz (246), Yet Ebreo (222), Markus Holzer (198), Steven Wilson (194), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (180), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Walt Mankowski (162), Shahed Nooshmand (140), Cristina Heredia (124), Dave Cross (120), Joan Mimosinnet (120), Kang-min Liu (118), Bob Lied (116), Julio de Castro (116), Alexander Pankoff (114), Gustavo Chaves (112), Mark Senn (112), Saif Ahmed (110), Bruce Gray (108), Alicia Bielsa (106), Burkhard Nickels (106), Andinus (104), Nuno Vieira (104).
+    Laurent Rosenfeld (1494), Jaldhar H. Vyas (1340), Roger Bell_West (1224), Arne Sommer (1116), Colin Crain (944), Athanasius (838), Adam Russell (754), Luca Ferrari (708), Flavio Poletti (706), Ulrich Rieke (700), Dave Jacoby (694), E. Choroba (676), Stuart Little (644), Lubos Kolouch (606), Paulo Custodio (588), Mohammad Sajid Anwar (548), Jorg Sommrey (542), Abigail (530), Duncan C. White (524), Simon Proctor (480), Javier Luque (460), Ruben Westerberg (452), Cheok-Yin Fung (442), James Smith (442), Simon Green (422), Mark Anderson (400), Wanderdoc (354), W. Luis Mochan (342), Feng Chang (332), Pete Houston (310), Niels van Dijke (298), Ryan Thompson (298), Joelle Maslak (274), Jan Krnavek (270), Andrezgz (246), Yet Ebreo (222), Markus Holzer (198), Steven Wilson (194), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (180), Kevin Colyer (176), Aaron Smith (174), Duane Powell (164), Kian-Meng Ang (162), Walt Mankowski (162), Shahed Nooshmand (140), Cristina Heredia (124), Dave Cross (120), Joan Mimosinnet (120), Kang-min Liu (118), Bob Lied (116), Julio de Castro (116), Alexander Pankoff (114), Gustavo Chaves (112), Mark Senn (112), Saif Ahmed (110), Bruce Gray (108), Alicia Bielsa (106), Burkhard Nickels (106), Andinus (104), Nuno Vieira (104).
 
 <br>
 
@@ -359,7 +359,6 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/lubos-kolouch/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/lubos-kolouch/perl/ch-2.pl)]
-[[**BLOG #1**](https://kolouch.net/perlweeklychallenge/blog-147.html)]
 
 ***
 

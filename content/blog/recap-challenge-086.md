@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 086"
-date: 2026-05-14T00:00:00+00:00
+date: 2026-05-15T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 086."
 type: post
 image: images/blog/recap-challenge-086.jpg
@@ -50,7 +50,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 #### 1. Perl: 4280 (62%)
 #### 2. Raku: 2591 (38%)
-#### 3. Blog: 1218
+#### 3. Blog: 1141
 
 <br>
 
@@ -191,7 +191,7 @@ The total contributions in the week is `106`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (942), Jaldhar H. Vyas (790), Roger Bell_West (628), Arne Sommer (584), Lubos Kolouch (514), Colin Crain (484), Javier Luque (460), Ruben Westerberg (452), Athanasius (446), E. Choroba (430), Adam Russell (406), Mohammad Sajid Anwar (394), Paulo Custodio (344), Stuart Little (344), Dave Jacoby (334), Simon Proctor (334), Jorg Sommrey (308), Ulrich Rieke (296), Duncan C. White (292), Ryan Thompson (282), Joelle Maslak (274), Luca Ferrari (268), Andrezgz (222), Yet Ebreo (212), Cheok-Yin Fung (206), Mark Anderson (192), Noud Aldenhoven (188), Markus Holzer (186), Wanderdoc (180), Kevin Colyer (176), Myoungjin Jeon (172), Kian-Meng Ang (162), Feng Chang (154), Steven Wilson (152), Walt Mankowski (144), Shahed Nooshmand (140), Duane Powell (136), Andrew Shitov (128), Saif Ahmed (110), Alicia Bielsa (106), Burkhard Nickels (106), Pete Houston (106), Simon Green (104), Dave Cross (100), Niels van Dijke (100).
+    Laurent Rosenfeld (942), Jaldhar H. Vyas (790), Roger Bell_West (628), Arne Sommer (584), Colin Crain (484), Javier Luque (460), Ruben Westerberg (452), Athanasius (446), E. Choroba (430), Adam Russell (406), Mohammad Sajid Anwar (394), Lubos Kolouch (360), Paulo Custodio (344), Stuart Little (344), Dave Jacoby (334), Simon Proctor (334), Jorg Sommrey (308), Ulrich Rieke (296), Duncan C. White (292), Ryan Thompson (282), Joelle Maslak (274), Luca Ferrari (268), Andrezgz (222), Yet Ebreo (212), Cheok-Yin Fung (206), Mark Anderson (192), Noud Aldenhoven (188), Markus Holzer (186), Wanderdoc (180), Kevin Colyer (176), Myoungjin Jeon (172), Kian-Meng Ang (162), Feng Chang (154), Steven Wilson (152), Walt Mankowski (144), Shahed Nooshmand (140), Duane Powell (136), Andrew Shitov (128), Saif Ahmed (110), Alicia Bielsa (106), Burkhard Nickels (106), Pete Houston (106), Simon Green (104), Dave Cross (100), Niels van Dijke (100).
 
 <br>
 

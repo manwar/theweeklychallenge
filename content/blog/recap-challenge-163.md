@@ -1,6 +1,6 @@
 ---
 title: "RECAP - The Weekly Challenge - 163"
-date: 2026-05-14T00:00:00+00:00
+date: 2026-05-15T00:00:00+00:00
 description: "Quick recap of The Weekly Challenge - 163."
 type: post
 image: images/blog/recap-challenge-163.jpg
@@ -53,18 +53,18 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 #### 1. Perl: 8272 (63%)
 #### 2. Raku: 4763 (37%)
-#### 3. Blog: 2712
+#### 3. Blog: 2559
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `121`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `120`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
 #### 1. Perl: 59
 #### 2. Raku: 37
-#### 3. Blog: 25
+#### 3. Blog: 24
 
 <br>
 
@@ -246,7 +246,7 @@ The total contributions in the week is `121`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1654), Jaldhar H. Vyas (1500), Roger Bell_West (1384), Arne Sommer (1240), Colin Crain (1114), Lubos Kolouch (976), Athanasius (968), Flavio Poletti (898), Luca Ferrari (888), Adam Russell (830), Ulrich Rieke (822), Dave Jacoby (794), E. Choroba (740), Paulo Custodio (652), Stuart Little (644), Jorg Sommrey (602), Duncan C. White (588), Mohammad Sajid Anwar (588), Abigail (574), James Smith (538), Cheok-Yin Fung (498), Simon Proctor (488), Simon Green (464), Javier Luque (460), Mark Anderson (458), Ruben Westerberg (452), W. Luis Mochan (438), Feng Chang (374), Pete Houston (356), Wanderdoc (354), Niels van Dijke (340), Ryan Thompson (324), Jan Krnavek (314), Joelle Maslak (274), Andrezgz (252), Yet Ebreo (222), Markus Holzer (198), Steven Wilson (198), Bruce Gray (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Alexander Pankoff (180), Kevin Colyer (176), Aaron Smith (174), Peter Campbell Smith (174), Walt Mankowski (168), Duane Powell (164), Kian-Meng Ang (162), Matthew Neleigh (152), Mark Senn (144), Shahed Nooshmand (140), Robert DiCicco (126), Cristina Heredia (124), Dave Cross (120), Joan Mimosinnet (120), Kang-min Liu (118), Bob Lied (116), Julio de Castro (116), Andinus (112), Gustavo Chaves (112), Saif Ahmed (110), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104).
+    Laurent Rosenfeld (1654), Jaldhar H. Vyas (1500), Roger Bell_West (1384), Arne Sommer (1240), Colin Crain (1114), Athanasius (968), Flavio Poletti (898), Luca Ferrari (888), Adam Russell (830), Ulrich Rieke (822), Dave Jacoby (794), E. Choroba (740), Lubos Kolouch (670), Paulo Custodio (652), Stuart Little (644), Jorg Sommrey (602), Duncan C. White (588), Mohammad Sajid Anwar (588), Abigail (574), James Smith (538), Cheok-Yin Fung (498), Simon Proctor (488), Simon Green (464), Javier Luque (460), Mark Anderson (458), Ruben Westerberg (452), W. Luis Mochan (438), Feng Chang (374), Pete Houston (356), Wanderdoc (354), Niels van Dijke (340), Ryan Thompson (324), Jan Krnavek (314), Joelle Maslak (274), Andrezgz (252), Yet Ebreo (222), Markus Holzer (198), Steven Wilson (198), Bruce Gray (196), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Alexander Pankoff (180), Kevin Colyer (176), Aaron Smith (174), Peter Campbell Smith (174), Walt Mankowski (168), Duane Powell (164), Kian-Meng Ang (162), Matthew Neleigh (152), Mark Senn (144), Shahed Nooshmand (140), Robert DiCicco (126), Cristina Heredia (124), Dave Cross (120), Joan Mimosinnet (120), Kang-min Liu (118), Bob Lied (116), Julio de Castro (116), Andinus (112), Gustavo Chaves (112), Saif Ahmed (110), Alicia Bielsa (106), Burkhard Nickels (106), Nuno Vieira (104).
 
 <br>
 
@@ -357,7 +357,6 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/lubos-kolouch/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/lubos-kolouch/perl/ch-2.pl)]
-[[**BLOG #1**](https://kolouch.net/perlweeklychallenge/blog-163.html)]
 
 ***
 
