@@ -184,12 +184,14 @@ Write a script to return all possible vowel substrings in the given string. A vo
 #### Example 3
 
     Input: $str = "aeiouuaxaeiou"
-    Output: ("aeiou", "aeiou", "eiouua")
+    Output: ("aeiou", "aeiou", "eiouua", "aeiouu", "aeiouua")
+
+    NOTE: Updated output [2025-05-18]
 
 #### Example 4
 
     Input: $str = "uaeiou"
-    Output: ("aeiou", "uaeio")
+    Output: ("aeiou", "uaeio", "uaeiou")
 
 #### Example 5
 
@@ -218,8 +220,6 @@ Write a script to return the largest number with all digits the same in the give
 
     Input: $str = "44221155"
     Output: 55
-
-    None found.
 
 #### Example 4
 
