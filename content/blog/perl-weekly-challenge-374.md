@@ -177,7 +177,9 @@ Write a script to return all possible vowel substrings in the given string. A vo
 #### Example 2
 
     Input: $str = "aaeeeiioouu"
-    Output: ("aaeeeiioou", "aeeeiioou", "aeeeiioouu")
+    Output: ("aaeeeiioou", "aaeeeiioouu", "aeeeiioou", "aeeeiioouu")
+
+    NOTE: Updated output [2025-05-18]
 
 #### Example 3
 
