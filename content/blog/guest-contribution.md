@@ -1178,6 +1178,12 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ## [The Weekly Challenge - 374](/blog/perl-weekly-challenge-374) {#374}
 <br>
 
+##### **Alexandre Ros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-374/alexland7219/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-374/alexland7219/bqn/ch-2.bqn) in **BQN**.
+
+##### **Alexandre Ros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-374/alexland7219/prolog/ch-1.pl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-374/alexland7219/prolog/ch-2.pl) in **Prolog**.
+
+##### **Alexandre Ros** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-374/alexland7219/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-374/alexland7219/uiua/ch-2.ua) in **Uiua**.
+
 ##### **Andrea Piseri** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-374/ap29600/k/ch-1.k) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-374/ap29600/k/ch-2.k) in **K**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-374/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-374/zapwai/c/ch-2.c) in **C**.
