@@ -14,7 +14,7 @@ tags: ["perl", "design pattern"]
 
 In this blog post, I am talking about `Strategy Design Pattern` in `Perl`. The examples used in the post is taken from my book, [**Design Patterns in Modern Perl**](https://perlschool.com/books/design-patterns).
 
-Have seen code like this in your career? I have.
+Have you seen code like this in your career? I have.
 
 ```perl
 sub publish {
@@ -30,13 +30,13 @@ sub publish {
 }
 ```
 
-Do you see any issue in the above code?
+Do you see any issues in the above code?
 
-Having done design patterns, I clearly see one issue. In future if we want to add another another strategy then we certainly have to re-visit the code.
+Having studied design patterns, I see one potential issue. In the future, if we want to add another strategy, we will have to revisit the code.
 
-Changing fully functional and tested code is risk of introducing bugs.
+Changing fully functional, tested code always carries the risk of introducing new bugs.
 
-Let's get to the basics first, we all know the famous `5 BASIC Design Principles`:
+Let's get to basics first, we all know the famous five core design principles, known as `SOLID`:
 
 ### 1. Single Responsibility Principle (SRP)
 
@@ -60,9 +60,9 @@ Let's get to the basics first, we all know the famous `5 BASIC Design Principles
 
 You don't need to treat `SOLID` as absolute, rigid laws. Instead, think of them as diagnostic tools. If you ever find yourself dreading a new feature request because you know it will require modifying 10 different files, it usually means one of these five principles has been violated.
 
-The strategy design patterns strictly follows the `OCP` rule i.e. you should be able to add new functionality or behavior to your code without changing any of the existing code you've already written and tested. Following `OCP` rule prevents a `"fragile codebase"` where fixing or adding one thing breaks three others.
+The Strategy design patterns strictly follows the `Open/Closed Principle (OCP)`, which states that you should be able to add new functionality or behavior to your codebase without modifying any of the existing code you've already written and tested. Adhering to the `OCP` prevents a `"fragile codebase"`, a common pitfall where adding a feature or fixing a bug unexpectedly breaks unrelated parts of the system.
 
-Here is the complete code that lacks the design pattern.
+Here is the complete original code that lacks the design pattern.
 
 ```perl
 package TextFormatter;
