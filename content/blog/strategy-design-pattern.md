@@ -140,7 +140,7 @@ You can see, where we are heading.
 
 To address this issue, we can implement the `Strategy` design pattern.
 
-Let's take the original code, where we had only two strategies: `upper` and `lower` and convert them to use the strategy design pattern.
+Let's take the original code, where we had only two strategies: `upper` case and `lower` case and convert them to use the `Strategy` design pattern.
 
 For detailed discussion, you can follow [**my book**](https://perlschool.com/books/design-patterns). Let's create a role to design the generic strategy as below:
 
