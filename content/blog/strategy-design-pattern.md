@@ -142,7 +142,7 @@ To address this issue, we can implement the `Strategy` design pattern.
 
 Let's take the original code, where we had only two strategies: `upper` case and `lower` case and convert them to use the `Strategy` design pattern.
 
-For detailed discussion, you can follow [**my book**](https://perlschool.com/books/design-patterns). Let's create a role to design the generic strategy as below:
+For detailed discussion, you can follow [**my book**](https://perlschool.com/books/design-patterns). Let's create a role (interface) to design the generic strategy as below:
 
 ```perl
 package FormatterStrategy;
@@ -153,7 +153,7 @@ requires qw/format/;
 1;
 ```
 
-Now that we have a defined role, we can create as many strategy (concrete class) as we want. Since we want to focus on original code. We will create two strategies (concrete class) using the role we just created as below:
+Now that we have a defined role (interface), we can create as many strategy (concrete class) as we want. Since we want to focus on original code, we will create two strategies (concrete class) using the role (interface) we just created as below:
 
 ```perl
 package UpperCaseFormatter;
