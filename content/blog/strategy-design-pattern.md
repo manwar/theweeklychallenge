@@ -12,7 +12,7 @@ tags: ["perl", "design pattern"]
 ***
 <br>
 
-In this blog post, I am talking about `Strategy Design Pattern` in `Perl`. The examples used in the post is taken from my book, [**Design Patterns in Modern Perl**](https://perlschool.com/books/design-patterns).
+In this blog post, I am talking about `Strategy` design pattern in `Perl`. The examples used in the post is taken from my book, [**Design Patterns in Modern Perl**](https://perlschool.com/books/design-patterns).
 
 Have you seen code like this in your career? I have.
 
