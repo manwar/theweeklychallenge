@@ -38,23 +38,23 @@ Changing fully functional, tested code always carries the risk of introducing ne
 
 Let's get to basics first, we all know the famous five core design principles, known as `SOLID`:
 
-### 1. Single Responsibility Principle (SRP)
+### 1. [S]ingle Responsibility Principle (SRP)
 
 > "A class should have one, and only one, reason to change."
 
-### 2. Open/Closed Principle (OCP)
+### 2. [O]pen/Closed Principle (OCP)
 
 > "Software entities should be open for extension, but closed for modification."
 
-### 3. Liskov Substitution Principle (LSP)
+### 3. [L]iskov Substitution Principle (LSP)
 
 > "Objects of a superclass should be replaceable with objects of its subclasses without breaking the application."
 
-### 4. Interface Segregation Principle (ISP)
+### 4. [I]nterface Segregation Principle (ISP)
 
 > "Many client-specific interfaces are better than one general-purpose interface."
 
-### 5. Dependency Inversion Principle (DIP)
+### 5. [D]ependency Inversion Principle (DIP)
 
 > "Depend upon abstractions, code to an interface, not a concrete implementation."
 
